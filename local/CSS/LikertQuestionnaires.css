@@ -1,0 +1,35 @@
+body {background-color: rgb(150, 150, 150)}
+
+
+.jspsych-display-element {
+  font-size: 25px;
+  color: black;
+}
+.jspsych-content {
+  max-width: 100%; 
+}
+
+#jspsych-survey-likert-preamble {
+	color:black;
+}
+
+#jspsych-survey-likert-opts {
+	color:black;
+}
+
+.jspsych-survey-likert-opts li input[type=radio] {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -6px;
+}
+
+.jspsych-survey-multi-choice-response-0 input[type=radio] {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -6px;
+}
+

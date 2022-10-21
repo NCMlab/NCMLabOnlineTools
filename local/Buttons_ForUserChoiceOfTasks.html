@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroop Word</title>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jatos.js"></script>
+
+  </head>
+  <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+</body>
+  <script>
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_finish: function() {
+      // set the updated list of NON-completed task to the JATOS session data      
+      jatos.setStudySessionData(jsPsych.TEMP)
+      // Check which button was pressed and advance to that task
+      switch(jsPsych.responseButton) {
+        case "Word":
+          // Word
+          // This sets session data which can be accessed later by other tasks
+          // find current case in the session data list and remove it
+          // find and remove entry in the list
+          jatos.startComponent(11);
+        case 'Color':
+          // Color
+          jatos.startComponent(12);
+        case 'ColorWord':
+          // Word/Color
+          jatos.startComponent(13);
+        default:
+          console.log('DEFAULT') 
+      }
+      
+    }
+  });
+
+  timeline = [];
+  
+  jatos.onLoad(() => {
+      // CHeck to see if any session data listing the expected components to complete has been created
+      
+      // store the jatos session data in the variable jsPaych so it can be accessed from elsewhere in the code
+      jsPsych.TEMP = jatos.studySessionData;
+      console.log('JATOS ONLOAD');
+      console.log(jsPsych.TEMP)
+      
+      // Check to see if the session data is empty
+      // if so set it in the jsPsych variable and the jatos variable
+      // the jatos variable can be accessed from all components of this session
+      if (Object.keys( jsPsych.TEMP ).length === 0) {
+        // the following is a list of all components. It should be saved in a config file
+         jsPsych.TEMP  = ['Word', 'Color','ColorWord']
+         jatos.setStudySessionData( jsPsych.TEMP )
+      }
+      console.log(jatos)
+      console.log(jsPsych.TEMP)
+      // add the quit button to the html 
+      jatos.addAbortButton({
+        text: "Quit",
+        confirmText: "You really wanne quit?",
+        tooltip: "Don't you dare clicking here!",
+        msg: "This worker aborted the mission.",
+        style: "color:green",
+        style: "left:1em"
+      });
+    });
+
+var trial1 = {
+  // This displays a series of buttons on the screen for each component of this session. 
+  // The buttons are dynamically created based on what has been completed already
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p>Running</p>',
+    prompt: "<p>Stroop</p>", 
+    // This is just a place holder to stop a jsPsych error
+    choices: '',
+    on_start: function(trial) {
+      // set the buttons at the start of this trial
+      var TEMP = jsPsych.TEMP;
+      trial.choices = TEMP;
+    },
+    on_finish: function() {
+      // What button number was pressed?
+      var data = jsPsych.data.get().last(1);
+      // What is the text label for this button?
+      var responseButton = jsPsych.TEMP[data.trials[0].response]
+      // Put the button pressed label inot a local variable
+      jsPsych.responseButton = responseButton
+      // Find the index in the available button list that was pressed
+      var ind = jsPsych.TEMP.indexOf(responseButton)
+      // Remove the pressed button from the button list in the local variable
+      jsPsych.TEMP.splice(ind, 1); 
+    }
+  };
+var trial2 = {
+  // This displays a series of buttons on the screen for each component of this session. 
+// The buttons are dynamically created based on what has been completed already
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p>Running</p>',
+    prompt: "<p>Stroop</p>", 
+    // This is just a place holder to stop a jsPsych error
+    choices: ['Next']
+  }
+timeline.push(trial1)
+//timeline.push(trial2)
+  jatos.onLoad(() => {jsPsych.run(timeline);});
+  </script>
+</html>

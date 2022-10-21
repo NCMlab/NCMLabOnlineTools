@@ -1,0 +1,38 @@
+    var timeline = [];
+    const Test1 = Test
+    const Test2 = Test
+    Test1.questions = items.slice(0,3)
+    timeline.push(Test1)
+
+    Test2.questions = items.slice(5,6)
+    timeline.push(Test2)
+
+
+    
+    
+
+
+
+
+    var QPerPage = 4
+    var NQuestions = items.length;
+    // How many pages needed?
+    var NPage = Math.ceil(NQuestions/QPerPage)
+    PageCount = 0
+    
+    for (var i = 0; i < NPage; i++)
+    {
+        //console.log(i)
+        var start = QPerPage*i
+        var stop = (i+1)*QPerPage
+        
+        if (stop > NQuestions) {stop = NQuestions}
+        //console.log(start+":"+stop)
+        //console.log(items.slice(start,stop))
+      //  var temp = Test
+      //  var tempQ = []//items.slice(start,stop)
+      //  temp.questions = tempQ
+        //timeline.push(temp)
+       // console.log(timeline)
+    }
+    //console.log(timeline)

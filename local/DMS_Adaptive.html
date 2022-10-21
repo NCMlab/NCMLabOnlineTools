@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych ANT">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMS Adaptive</title>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jspsych/plugins/jspsych-instructions.js"></script>    
+    <script src="DMS_setup_eng.js"></script>
+    <script src="StairClass.js"></script>
+    <script src="DMS_functions.js"></script>
+    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
+    <style>
+      .stimulus { font-size: 45; }
+      .background {color:  [150, 150, 150]}
+      .instruct {font-size:  20;}
+      .jspsych-html-keyboard-response-stimulus {font-size: 45;}
+      .jspsych-display-element {
+        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-size: 36px;
+        line-height: 0.85em;
+      }
+      table.a {
+        table-layout: fixed; 
+        width:480px;
+        height: 400px;
+        margin-left:auto;
+        margin-right:auto;
+      }  
+
+    </style>
+  </head>
+  <script>
+    // ADD 3-2-1 COUNTDOWN BEFORE THE START OF EACH LOAD BLOCK
+    // For the DMS adaptive it may work to have a global object similar to the staircase
+    // This object can be called and added to from the stimuli. This is needed
+    // to Keep track of the previous letters that have been used. I am current only preventing interference
+    // from the previous trial; however, someone may be interested in limiting the proactive interference 
+    // from multiple previous trials.
+
+   /* create timeline */
+    var timeline = [];
+    //constructor(Current=1, MinValue=1, MaxValue=9, MaxReversals=5,
+    //    MaxTrials=40, StepSize=1, NUp=3, NDown=1, FastStart=true) 
+    
+    let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
+    let stimList = new AdaptiveStimulusList();
+
+    // Make experiment run in full screen mode
+    // Note, that the fullscreen plugin needs to imported above
+    timeline.push({
+      type: 'fullscreen',
+      fullscreen_mode: FullScreenMode
+    });
+  
+    var Instructions = {
+       type: 'instructions',
+       pages: instructions,
+       show_clickable_nav: true,
+       css_classes: 'instruct'
+    }
+
+    // Keep track of how many trials have been presented.
+    // After a certain count present a long duration ITI
+    var count = 0;
+
+
+      //trial_duration: 100
+    
+    var Stimulus = {
+      type: 'html-keyboard-response',
+      stimulus: function(){
+        console.log("Current: "+stair1.Current)
+        console.log("Last Stim: "+stimList.getLastStim())
+        console.log("Last Probe: "+stimList.getLastProbe())
+        output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
+        console.log(output)
+        return PutLettersInGrid(output[0],3,3,700,20,60)
+        //return StimulusLetters
+      },
+      trial_duration: StimOnTime,
+      choices: jsPsych.NO_KEYS,
+      on_finish: function(data){
+        stimList.addStim(output[2])
+        stimList.addProbe(output[1][0])
+        stimList.addCorrect(output[1][1])
+        //data.trialType = "Stimulus",
+        count += 1
+        },
+    }
+
+
+    var Retention = {
+      // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
+      // The cue itself is actually made in the setup file and not here. This could be changed if desired
+      type: 'html-keyboard-response',
+      stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: RetOnTime,
+      //on_finish: function(data){
+              // data.trialType = "Retention"
+      //},
+    } 
+    
+    var Probe = {
+      type: 'html-keyboard-response',
+      stimulus: function() {
+        return '<p style="color:'+ProbeColor+'; font-size:'+FontSize+'px">'+stimList.CurrentProbe+'</p>'
+      },
+      choices: KeyboardChoices,
+      trial_duration: ProbeOnTime,
+      on_finish: function(data){
+        // NEED TO UPDATE THIS BASED ON TEH ADAPTIVE NATURE OF THE TRIALS
+        // This puts the stimulus letters on the same line as the trial response
+        data.ProbeLetter = stimList.CurrentProbe
+        // tag this trial
+        data.trialType = "Probe"
+        data.StimLetters = stimList.getCurrentStim()
+        data.Load = data.StimLetters.length
+        var correct = stimList.getCurrentCorrect() //jsPsych.timelineVariable("Correct", true)
+        // in the list of allowable key presses, what is the index of wehat was pressed?
+        var ResponseIndex = KeyboardChoices.indexOf(data.response)
+        //console.log(ResponseMapping[ResponseIndex])
+        if (ResponseMapping[ResponseIndex] == correct) 
+          {
+            data.correct = 1,
+            stair1.Decide(true)
+          }
+        else {
+          data.correct = 0
+          stair1.Decide(false)
+        }
+        /* If the ESCAPE key is pressed the current timeline is ended and the thank you screen is shown */
+        if (data.response == 27) {jsPsych.end();}
+
+      }
+    }
+
+    var Fix = {
+      type: 'html-keyboard-response',
+      stimulus: '<p style="font-size:'+FontSize+'px; color:'+ProbeColor+'">+</p>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: ITITime,
+     // on_finish: function(data){
+     //   data.trialType = "fixation"
+     // }
+    } 
+
+    var WaitTime = {
+      // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
+      // The cue itself is actually made in the setup file and not here. This could be changed if desired
+      type: 'html-keyboard-response',
+      stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: WaitOnTime,
+    } 
+
+    var test_procedure = {
+      // Make sure this order is correct: fixation cue and then the stimulus
+      // Otherwise the scoring will not make any sense
+      timeline: [Stimulus, Retention, Probe, Fix],
+      randomize_order: false  
+    };
+    
+    var loop_node = {
+      timeline: [test_procedure],
+      loop_function: function(data){
+      return (! stair1.Finished)
+     }
+    }
+
+    var ThankYou = {
+        type: "html-keyboard-response",
+        stimulus: "Thank you",
+        on_finish(data) {
+          data.Capacity = stair1.CalculateAverage(),
+          console.log(data.Capacity)
+        }
+    };
+
+    var debrief_block = {
+      type: "html-keyboard-response",
+      stimulus: function() {
+        return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
+      }
+    }
+
+    timeline.push(Instructions)
+    timeline.push(WaitTime)
+    timeline.push(CountdownTimer())
+    timeline.push(loop_node)
+    //timeline.push(test_procedure)
+    timeline.push(debrief_block)
+    timeline.push(ThankYou)
+    /* start the experiment */
+    //jatos.onLoad(function() {
+    jsPsych.init({
+        experiment_width: 600,
+        timeline: timeline,
+        minimum_valid_rt: 100,
+        on_finish: function() {
+          jsPsych.data.get().localSave('csv','DMSMydata.csv');
+        }
+      })
+  </script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire: CUDITR</title>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jspsych/plugins/jspsych-instructions.js"></script>    
+    <script src="jspsych/plugins/jspsych-survey-likert.js"></script>
+    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
+    <link href="CSS/LikertQuestionnaires.css" rel="stylesheet">
+    
+    <script src="questionnaire_setup_eng.js"></script>
+    <script src="questionnaire_functions.js"></script>
+    <script src="assets/CUDITR_setup_eng.js"></script> 
+  <style>
+    input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
+  </style>
+  </head>
+  <script>
+
+    // How many options are there in the scale?
+    var ScaleSize = scale01.length;
+
+    // Break item list into pages
+    itemPages = MakePagesOfItems(items, QPerPage)
+
+    // By defining the sum and missed questions counters here, outside of other variables they have a larger scope. 
+    // That means that each page of the scale adds to these variables. Therefore, the results from the last page have 
+    // the correct complete values calculated across all pages of the questionnaire.
+    var Sum = 0
+    var MissedQuestions = 0
+    // Prepare the questionnaire
+    var Test = {
+        type: 'survey-likert',
+        // the items are taken from the import JS file
+        timeline: itemPages,
+        // The instructions are also in the JS file
+        preamble: "<h2>"+title+"</h2>"+instructions,
+        on_finish: function(data){
+          // The responses to each question on a likert scale are stored in an Object
+          // cycle over the object and find the key and values for each
+//          var Sum = 0;
+          
+          var count = 0;
+          // cycle over each entry in teh object that holds the likert scale and responses
+          for (const [key, value] of Object.entries(jsPsych.data.getLastTrialData().values()[0].response)) 
+            {   // Check to see if any questions were not answers. If so then score them as a zero.
+                if (value === "")
+                {
+                    Sum += 0
+                    // Keep track of how many questions were missed
+                    MissedQuestions += 1
+                }
+                else
+                {
+                    // Check to see if the scoring for this items should be reveresed
+                    if (ReverseScoreDirection[count])
+                    {
+                        Sum += ScaleSize - value
+                    }
+                    else 
+                    {
+                        Sum += value + 1
+                    }
+                }
+                // If there are no reversals of the scoring then allow the entry of a single flag instead of a full array 
+                if (ReverseScoreDirection.length > 1)
+                {
+                    count += 1      
+                }
+            }
+          data.Sum = Sum
+          data.NumberMissedQuestions = MissedQuestions
+        }
+    };
+    // Make a procedure which allows the questions to be timeline variables.
+    var procedure = {
+        timeline: [Test],
+        }
+    var timeline = []
+    // add the pages of the questionnaire to the timeline
+    timeline.push(procedure)
+
+    jsPsych.init({
+        experiment_width: PageWidth,
+        timeline: timeline,
+            on_finish: function() {
+                jsPsych.data.displayData();
+                var D = jsPsych.data.get().last(2)
+                console.log(D)
+                //jsPsych.data.get().localSave('csv','test.csv');
+      }
+    })
+    </script>
+</html>

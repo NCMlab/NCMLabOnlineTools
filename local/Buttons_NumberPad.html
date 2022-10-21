@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test Buttons">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Buttons</title>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="plugin-html-numberpad-response.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .button {
+      border: none;
+      color: red;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 26px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button {background-color: 'grey';} /* Green */
+    </style>
+  </head>
+  <script>
+  var jsPsych = initJsPsych({});
+  var timeline = [];
+	
+
+var trialA = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p style="font-size:48px; color:red;">GREEN</p>',
+  choices: ['Red', 'Green', 'Blue'],
+  prompt: "<p>What color is the ink?</p>"
+};
+
+var trial = {
+    type: jsPsychNumberPadResponse,
+    //button_html: '<button class="jspsych-btn">%choice%</button>',
+    button_html: '<button class="button" >%choice%</button>',
+    stimulus: '<p style="font-size:24px; color:black;">GREEN</p>',
+    choices: ['1','2','3','4','5','6','7','8','9','0','<i class="material-icons">backspace</i>','Enter'],
+    margin_vertical: '4px',
+    response_ends_trial: false,
+    response_disables: false,
+    prompt: "<p>What color is the ink?</p>",
+    on_finish() {
+      // get the entered response
+      var trial_data = jsPsych.data.getLastTrialData().values();
+      var response = trial_data[0].response;
+      console.log(response)
+    }
+  };
+//	<input type="number" name="age" id="age" min="1" max="10" step="2">
+	
+  timeline.push(trialA);
+  timeline.push(trial);
+	jsPsych.run(timeline)
+</script>
+</body>
+</html>

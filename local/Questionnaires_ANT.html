@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych ANT">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANT</title>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jspsych/plugins/jspsych-instructions.js"></script>
+    <script src="ANT_Setup_EN.js"></script>
+    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .stimulus { font-size: FontSize; }
+      .jspsych-html-keyboard-response-stimulus {font-size: FontSize;}
+      .jspsych-display-element {
+        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-size: 72px;
+        line-height: 0.85em;
+      }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+            }
+
+    </style>
+  </head>
+  <script>
+	/*<?php
+		$post_data = json_decode(file_get_contents('php://input'), true); 
+		// the directory "data" must be writable by the server
+		$name = "data/".$post_data['filename'].".csv"; 
+		$data = $post_data['filedata'];
+		// write the file to disk
+		file_put_contents($name, $data);
+		?>*/
+
+    /* create timeline */
+
+    var timeline = [];
+
+  //https://www.webnots.com/keyboard-shortcuts-for-asterisk-symbol/
+    var Stim = {
+      type: 'html-keyboard-response',
+      stimulus: function()
+      { // The stimulus is based on the conditions laid out in the ANT
+        // variable read from the setup file.
+        // Recall that the ANT variable is an array of objects. 
+        // The object contains everything there is know about this trial.
+        // Read how this trial will be made
+        var centralArrow = jsPsych.timelineVariable("centralArrow", true)
+        var flanker = jsPsych.timelineVariable("flanker", true)
+        var position = jsPsych.timelineVariable("position", true)
+        
+        // make the stimulus for this trial
+        var stim = flanker + centralArrow + flanker
+        return stim
+      },
+      choices: KeyboardChoices,
+      on_finish: function(data, correct){
+        // find the correct response for this trial
+        var correct = jsPsych.timelineVariable("correct", true)
+        // in the list of allowable key presses, what is the index of what was pressed?
+        var ResponseIndex = KeyboardChoices.indexOf(data.response)
+        //console.log(ResponseMapping[ResponseIndex])
+        
+        if (ResponseMapping[ResponseIndex] == correct) 
+          {data.correct = 1}
+          else {data.correct = 0}
+        /* If the ESCAPE key is pressed the current timeline is ended and the thank you screen is shown */
+        if (data.key_press == 27) {jsPsych.end();}
+        // What data to write to the output data file
+        data.flankerType = jsPsych.timelineVariable("flankerType", true);
+        data.cuePos = jsPsych.timelineVariable("cuePos", true);
+        data.cueType = jsPsych.timelineVariable("cueType", true);
+        data.trialType = 'trial';
+      },
+
+    } 
+
+    var Fix = {
+      // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
+      // The cue itself is actually made in the setup file and not here. This could be changed if desired
+      type: 'html-keyboard-response',
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable("fixation", true)
+        return stim
+      },
+      choices: jsPsych.NO_KEYS,
+      trial_duration: FixationDuration,
+      //on_finish: function(data){
+      //  data.trialType = "fixation"
+      //}
+      
+    } 
+
+    var test_procedure = {
+      // Make sure this order is correct: fixation cue and then the stimulus
+      // Otherwise the scoring will not make any sense
+      timeline: [Fix, Stim],
+      timeline_variables: ANT,
+      sample: {
+        type: 'fixed-repetitions',
+        // "fixed-repetitons": Repeat each item in the timeline variables size times, in a random order.
+        // Unlike using the repetitons parameter, this method allows for consecutive trials to use the same
+        // timeline variable set.
+        size: 1, 
+      }
+    };
+    timeline.push(test_procedure)
+
+    /* define debrief */
+    var debrief_block = {
+      type: 'html-keyboard-response',
+        stimulus: function() {
+
+        var trials = jsPsych.data.get().filter({trialType: 'trial'});
+        var correct_trials = trials.filter({correct: true});
+        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+        var rt = Math.round(correct_trials.select('rt').mean());
+
+        return `<p>You responded correctly on ${accuracy}% of the trials.</p>
+          <p>Your average response time was ${rt}ms.</p>
+          <p>Press any key to complete the experiment. Thank you!</p>`;
+
+      }
+    };
+    timeline.push(debrief_block);
+
+    /* start the experiment */
+    //jatos.onLoad(function() {
+    jsPsych.init({
+        experiment_width: 600,
+        timeline: timeline,
+        on_finish: function() {
+          jsPsych.data.get().localSave('csv','ANTMydata.csv');
+        }
+      })
+  </script>
+</html>

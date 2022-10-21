@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire: BDI</title>
+    <script src="jsPsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="assets/LawtonIADL.js"></script>
+    <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+    <link href="CSS/LikertQuestionnaires.css" rel="stylesheet">
+        <script src="questionnaire_setup_eng.js"></script>    
+    <script src="questionnaire_functions.js"></script>
+
+    <style>
+    input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
+  </style>
+
+  </head>
+  <body></body>
+  <script>
+  // Split the list of questions based on a limited number per page
+  itemPages = MakePagesOfItemsMCSurvey(items, 2)
+  // define the running score
+  var Sum = 0
+  // keep track of which page of the questionnaire the code is on
+  var PageCount = 0
+  // define the multiple choice survey block
+  var multi_choice_block = {
+    type: 'survey-multi-choice',
+    // instead of defining the questions, define a timeline variable
+    timeline: itemPages,
+     // The instructions are also in the JS file
+    preamble: "<h1>"+title+"</h1>"+instructions,
+    // after each page is finished, then cycle over the responses and score them
+    on_finish: function(data){
+      // keep track of which question on teh page the code is on
+      var Qcount = 0
+      // cycle over the questions on the page
+      for (const [key, value] of Object.entries(jsPsych.data.getLastTrialData().values()[0].response))
+        { 
+          // Check to see if an overall values array is defined
+          if (typeof values === 'undefined') {
+            // if there is no overall values, extract from each trial
+            values = multi_choice_block.timeline[PageCount].questions[Qcount].values  
+          }
+          // extract the options for the current question          
+          var TempOptions = multi_choice_block.timeline[PageCount].questions[Qcount].options
+          // find the index for the participant's response
+          const responseIndex = TempOptions.findIndex(element => element == value)
+          // what is the assigned score for this response
+          const score = values[responseIndex]
+          // add the current question score to the running sum
+          Sum += score
+          // add the running sum to the overall data
+          data.Sum = Sum
+          Qcount += 1
+        }
+      PageCount += 1
+    }
+  }
+  // define the procedure
+  var procedure = {
+      timeline: [multi_choice_block],
+  }
+
+  jsPsych.init({
+    timeline: [procedure],
+    on_finish: function() {
+      jsPsych.data.displayData();
+    }
+  });
+
+
+  </script>
+</html>

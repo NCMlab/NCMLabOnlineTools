@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Trail Making Task: A">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trailmaking Task A</title>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-browser-check.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="TrailMaking_Setup_EN.js"></script>
+    <script src="FindCanvasSize.js"></script>
+    <script src="plugin-sketchpad-trailmaking.js"></script>
+    <link rel='stylesheet' type='text/css' href='default_style.css'>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    
+    <link rel="stylesheet" type='text/css' href='TrailMaking.css'>
+
+  </head>
+  <script>
+  var jsPsych = initJsPsych({
+      //on_finish: () => {
+        //jsPsych.data.displayData();
+      //}
+    });
+  timeline = [];
+
+  var enter_fullscreen = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true
+  }
+
+  var exit_fullscreen = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: false,
+    delay_after: 0,
+  }
+
+  // adjust the canvas size as needed
+  sizes = FindCanvasSize(SuggestedWidthA, SuggestedHeightA, HeightAdj,0) 
+  CanvasWidthA = sizes.CanvasWidth
+  CanvasHeightA = sizes.CanvasHeight
+  sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, HeightAdj,0) 
+  CanvasWidthB = sizes.CanvasWidth
+  CanvasHeightB = sizes.CanvasHeight
+  console.log('CANVAS SIZE FOR SAMPLE A')
+  sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, HeightAdj,0) 
+  CanvasWidthSampleA = sizes.CanvasWidth
+  console.log(CanvasWidthSampleA)
+  CanvasHeightSampleA = sizes.CanvasHeight
+
+  console.log('CANVAS SIZE FOR SAMPLE B')
+  
+  sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, HeightAdj,0) 
+  CanvasWidthSampleB = sizes.CanvasWidth
+  CanvasHeightSampleB = sizes.CanvasHeight
+  
+  if ( FullScreenMode ) {
+    timeline.push(enter_fullscreen)  
+  }
+  
+  var trial_SampleA = {
+      type: jsPsychSketchpad,   
+      Circles: SampleCirclesA, 
+      canvas_width: CanvasWidthSampleA,
+      canvas_height: CanvasHeightSampleA,
+      canvas_border_width: 1,
+      stroke_width: pen_width,
+      save_final_image: false,
+      save_strokes: false,
+      show_clear_button: false,
+      show_undo_button: false,
+      show_redo_button: false,
+      show_countdown_trial_duration: ShowTimerSampleA
+    }
+  var trial_SampleB = {
+      type: jsPsychSketchpad,   
+      Circles: SampleCirclesB, 
+      canvas_width: CanvasWidthSampleB,
+      canvas_height: CanvasHeightSampleB,
+      canvas_border_width: 1,
+      stroke_width: pen_width,
+      save_final_image: false,
+      save_strokes: false,
+      show_clear_button: false,
+      show_undo_button: false,
+      show_redo_button: false,
+    }
+  var trialA = {
+      type: jsPsychSketchpad,   
+      Circles: CirclesA, 
+      canvas_width: CanvasWidthA,
+      canvas_height: CanvasHeightA,
+      canvas_border_width: 1,
+      stroke_width: pen_width,
+      save_final_image: true,
+      save_strokes: false,
+      show_clear_button: false,
+      show_undo_button: false,
+      show_redo_button: false,
+      show_countdown_trial_duration: ShowTimerA,
+      trial_duration: DurationA,
+      on_finish: function() {
+        // download the drawing as a file
+        var imageData = jsPsych.data.get().last(1).values()[0].png;
+        var a = document.createElement('a');
+        a.href = imageData; //make the link of image
+        a.download = "TrailsA.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+
+  var trialB = {
+      type: jsPsychSketchpad,   
+      Circles: CirclesB, 
+      canvas_width: CanvasWidthB,
+      canvas_height: CanvasHeightB,
+      canvas_border_width: 1,
+      stroke_width: pen_width,
+      save_final_image: true,
+      save_strokes: false,
+      show_clear_button: false,
+      show_undo_button: false,
+      show_redo_button: false,
+      show_countdown_trial_duration: ShowTimerB,
+      trial_duration: DurationB,
+      on_finish: function() {
+        // download the drawing as a file
+        var imageData = jsPsych.data.get().last(1).values()[0].png;
+        var a = document.createElement('a');
+        a.href = imageData; //make the link of image
+        a.download = "TrailsB.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+
+  var InstructionsSampleA = {
+    type: jsPsychInstructions,
+    pages: InstructionsSampleA,
+    show_clickable_nav: true
+  }
+  var InstructionsA = {
+    type: jsPsychInstructions,
+    pages: InstructionsA,
+    show_clickable_nav: true
+  }
+  var InstructionsSampleB = {
+    type: jsPsychInstructions,
+    pages: InstructionsSampleB,
+    show_clickable_nav: true
+  }
+  var InstructionsB = {
+    type: jsPsychInstructions,
+    pages: InstructionsB,
+    show_clickable_nav: true
+  }
+
+  //timeline.push(InstructionsSampleA)
+  timeline.push(trial_SampleA)
+  
+  timeline.push(InstructionsA)
+  timeline.push(trialA)
+  
+  timeline.push(InstructionsSampleB)
+  timeline.push(trial_SampleB)
+
+  timeline.push(InstructionsB)
+  timeline.push(trialB)
+
+  if ( FullScreenMode ) {
+    timeline.push(exit_fullscreen)
+  }
+  
+  jsPsych.run(timeline)
+
+    //});
+  </script>
+</html>
