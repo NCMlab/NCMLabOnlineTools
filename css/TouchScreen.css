@@ -1,7 +1,7 @@
 table {
-  width: cal(100vw - 10px);
-  height: calc(100vh - 20px);
-    border: 1px solid #ddd;
+  width: 70vw;
+  height: 95vh;
+    
     }
 .center {
   margin-left: auto;
@@ -21,4 +21,7 @@ table {
   height:  30%; 
   } 
   
-body {background-color: rgb(200,200,200);}
+.jspsych-btn {
+  padding: 3px 6px;
+  font-size:4vmin;
+}

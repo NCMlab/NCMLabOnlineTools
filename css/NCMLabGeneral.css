@@ -1,0 +1,64 @@
+/* body-stage
+From Experiment Factory
+*/
+
+/* 
+The following are variables that are used below in the CSS.
+*/
+:root {
+  --FixationSize:  8vw;
+  --PromptSize:  4vw;
+}
+
+body {
+  background-color: rgb(200,200,200);
+  border-radius: 15px;
+    position: fixed;
+  left: 5vw;
+  top: 2vh;
+  height: 94vh;
+  width: 90vw;
+  box-shadow: 2px 2px 1px #999;
+  border-radius: 15px;
+  z-index: 0;
+  padding: 30px 30px 30px 30px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  overflow: auto;
+}
+
+/* Buttons 
+From Experiment Factory
+*/
+.jspsych-btn, #jspsych-instructions-next, #jspsych-instructions-back {
+  font-size:4vmin;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 1vmin 2vmin 1vmin 2vmin;
+  color: white;
+  background-color:cornflowerblue;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-rad
+}
+/* 
+Set the fixation size so it changes as the display size changes.
+Make sure to set the class everywhere a fixation cross is used.
+This allows for universal change of teh fixation cross, for instance, if it needs to be made bigger.
+*/
+p.Fixation {
+  text-align:  center;
+  font-size: var(--FixationSize);
+  color:  black;
+}
+p.PromptText {
+  font-size: var(--PromptSize);
+}
+p.Instructions {
+  font-size:  4vmin;
+}
