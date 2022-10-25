@@ -7,11 +7,24 @@ var NumberOfCyclesForPractice = 1
 // How many times to cycle over all different trials for TESTING
 var NumberOfCyclesForTesting = 2
 
-var InstructionText = 'For this task you will see...'
+var InstructionText = [
+	{'page':'<p class="Instructions">Welcome to the Attention Netowrk experiment.</p>'},
+    {'page':'<p class="Instructions">In this experiment you will see groups of five arrows and dashes pointing left or right (e.g ← ← ← ← ←, or — — → — —) presented randomly at the top or bottom of the screen.'},
+    {'page':'<p class="Instructions">Your job is to indicate which way the central arrow is pointing by pressing the corresponding arrow key.'},
+      ];
+'In this experiment you will see groups of five arrows and dashes pointing left or right (e.g ← ← ← ← ←, or — — → — —) presented randomly at the top or bottom of the screen.'
+
+'Your job is to indicate which way the central arrow is pointing by pressing the corresponding arrow key.'
+
+'Before the arrows and dashes come up, an * will occasionally come up somewhere on the screen.'
+
+'Irrespective of whether or where the * appears, it is important that you respond as quickly and accurately as possible by pressing the arrow key corresponding to the direction of the center arrow.'
+
+'After you end instructions we will start with practice. During practice you will receive feedback about whether your responses are correct. You will not receive feedback during the rest of the experiment.'
 
 var ScreenSpacing = 300
 // Set the fixation time between trials, in milliseconds
-var FixationDuration = 300
+var FixationDuration = 600
 // how many flankers should be on either side of the central arrow
 var NFlankers = 2;
 // define the flankers as empty strings
@@ -35,44 +48,30 @@ var KeyboardChoices = ['arrowleft', 'arrowright'];
 // The above key codes need to be mapped onto text descriptions used later for scoring
 var ResponseMapping = ['left', 'right'];
 
-// format the stimuli on the screen. This uses the fontsize specified above
-// The stimuli are presented with some at the top of the screen, some in the middle and some at the bottom. Build an
-// html formatted table of the stimuli.
-function PutIntoTable(top='top', middle='mid', bottom='bot', width=600, height=ScreenSpacing) {
-      return '<table margin-left="auto" margin-right="auto" border="0" width="'+width+'"><tr height="'+height+'"><td>'+top+'</td></tr><tr height="'+height+'"><td><div style="font-size:'+FontSize+'px;">'+middle+'</div></td></tr> <tr height="'+height+'"><td>'+bottom+'</td></tr></table>';
-    }
-
-         // What type of trial is this?
-          // Factors: 
-          // flanker: left, right, none [3]
-          // central arrow direction: left, right [2]
-          // star: top&bot, top, bot, none, middle [5]
-          // position: top, bottom [2]
-
-
 // Create the array of objects dynamically
 // https://stackoverflow.com/questions/7858385/how-to-add-values-to-an-array-of-objects-dynamically-in-javascript
 
 // The order of these is important and needs to map onto the for loops below which index these lists
 var flankers = [flankersL, flankersR, flankersN];
 var centralArrow = ["\u2190", "\u2192"]; // left, right
-var fixation = [PutIntoTable("\u2217","+","\u2217"), PutIntoTable("\u2217","+"," "), PutIntoTable(" ","+","\u2217"), PutIntoTable(" ","+"," "), PutIntoTable(" ","\u2217"," ")];
 var position = ["high","low"];
+var Cue = '<p class="Fixation">'+"\u2217"+'</p>';
+var Crosshair = '<p class="Fixation">+</p>';
 var count = 0;
 var ANT = [];
 
 // The test procedure in the HTML specifies how many times to repeat the stimuli presentation
 // The following sets up the stimuli for all cells across the different factors
 // This also adds text descriptions which will go into the resulatnt data file and will be used for scoring
-for(var i=0; i<3; i++) { // flanker type: LEFT, RIGHT, NEUTRAL
+for(var i=0; i < 3; i++) { // flanker type: LEFT, RIGHT, NEUTRAL
 	for (var j = 0; j < 2; j++) { // cycle over central arrow directions
-		for (var k = 0; k < 1; k++) { // cycle over fixation positions
+		for (var k = 0; k < 5; k++) { // cycle over fixation positions
 			for (var m = 0; m < 2; m++) { // cycle over stimulus position
 				// Set up all the stimuli
 				ANT[count] = {};
 				ANT[count].flanker = flankers[i]; // left/right/neutral
 				ANT[count].centralArrow = centralArrow[j]; // right/left
-				ANT[count].fixation = fixation[k]; //upper/lower/both/center/none
+				
 				ANT[count].position = position[m]; // upper/lower
 				// 	THE FOLLOWING NEEDS TO BE CHECKED AND CONFIRMED
 
@@ -99,12 +98,11 @@ for(var i=0; i<3; i++) { // flanker type: LEFT, RIGHT, NEUTRAL
 				// Flankers are NEURAL
 				if (i==2) {ANT[count].flankerType = 'neuFlanker';}
 				// Position of the CUE
-
 				if (k==0) {ANT[count].cuePos = 'both';}
-				if (k==1) {ANT[count].cuePos = 'upper';}
-				if (k==2) {ANT[count].cuePos = 'lower';}
+				if (k==1) {ANT[count].cuePos = 'high';}
+				if (k==2) {ANT[count].cuePos = 'low';}
 				if (k==3) {ANT[count].cuePos = 'none';}
-				if (k==4) {ANT[count].cuePos = 'center';}
+				if (k==4) {ANT[count].cuePos = 'middle';}
 				// Code whether the stim is congruent with the CUE
 				// Stimulus is HIGH (m = 0)
 				if (k==0 & m==0) {ANT[count].cueType = 'bothCue';}
@@ -123,3 +121,87 @@ for(var i=0; i<3; i++) { // flanker type: LEFT, RIGHT, NEUTRAL
 		}
 	}
 }
+
+function PutStimIntoTable(Input, position) {
+	switch(position) {
+		case 'high':
+			var TopInput = Input;
+			var MidInput = Crosshair;
+			var BotInput = ' '
+			break;
+		case 'low':
+			var TopInput = ' ';
+			var MidInput = Crosshair;
+			var BotInput = Input;
+			break;
+	}
+	  var html = '';
+	  html += '<table class="center">'
+	  html += '<tr>'
+	  html += '<td class="TopRow">'
+	  html += TopInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '<tr>'
+	  html += '<td class="MidRow">'
+	  html += MidInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '<tr>'
+	  html += '<td class="BotRow">'
+	  html += BotInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '</table>'
+     return html
+	}
+
+
+function PutFixIntoTable(position) {
+	switch(position) {
+		case 'high':
+			var TopInput = Cue;
+			var MidInput = Crosshair;
+			var BotInput = ''
+			break;
+		case 'low':
+			var TopInput = '';
+			var MidInput = Crosshair;
+			var BotInput = Cue;
+			break;
+		case 'both':
+			var TopInput = Cue;
+			var MidInput = Crosshair;
+			var BotInput = Cue;
+			break;
+		case 'none':
+			var TopInput = '';
+			var MidInput = Crosshair;
+			var BotInput = '';
+			break;
+		case 'middle':
+			var TopInput = '';
+			var MidInput = Cue;
+			var BotInput = '';
+			break;									
+	}
+	  var html = '';
+	  html += '<table class="center">'
+	  html += '<tr>'
+	  html += '<td class="TopRow">'
+	  html += TopInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '<tr>'
+	  html += '<td class="MidRow">'
+	  html += MidInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '<tr>'
+	  html += '<td class="BotRow">'
+	  html += BotInput
+	  html += '</td>'
+	  html += '</tr>'
+	  html += '</table>'
+     return html
+	}	

@@ -7,6 +7,7 @@ The following are variables that are used below in the CSS.
 */
 :root {
   --FixationSize:  8vw;
+  --ANTArrowSize:  12vw;
   --PromptSize:  4vw;
 }
 
@@ -18,7 +19,7 @@ body {
   top: 2vh;
   height: 94vh;
   width: 90vw;
-  box-shadow: 2px 2px 1px #999;
+  box-shadow: 2px 2px 6px #888888/*#999*/;
   border-radius: 15px;
   z-index: 0;
   padding: 30px 30px 30px 30px;
@@ -54,6 +55,11 @@ This allows for universal change of teh fixation cross, for instance, if it need
 p.Fixation {
   text-align:  center;
   font-size: var(--FixationSize);
+  color:  black;
+}
+p.ANTArrowSize {
+  text-align:  center;
+  font-size: var(--ANTArrowSize);
   color:  black;
 }
 p.PromptText {

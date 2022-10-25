@@ -34,9 +34,17 @@
             }
 
     </style>
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='../css/ANT.css'>
   </head>
+  <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
   <script>
+
+
    var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
       //on_finish: () => {
         //jsPsych.data.displayData();
       //}
@@ -61,6 +69,7 @@
         
         // make the stimulus for this trial
         var stim = flanker + centralArrow + flanker
+        stim = PutStimIntoTable('<p class="ANTArrowSize">'+stim+'</p>', position)
         return stim
       },
       choices: KeyboardChoices,
@@ -91,18 +100,16 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: function()
       {
-        var stim = jsPsych.timelineVariable("fixation", true)
-        return stim
+        var position = jsPsych.timelineVariable("cuePos", true)
+        return PutFixIntoTable(position)
       },
       trial_duration: FixationDuration,      
     } 
 
-
-
     var test_procedure = {
       timeline: [Fix, Stim],
       timeline_variables: ANT,
-      randomize_order: false,
+      randomize_order: true,
       repetitions: 1, 
     }
 
