@@ -28,13 +28,19 @@
         font-size: 72px;
         line-height: 0.85em;
       }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+            }
+
     </style>
-    
     <link rel="stylesheet" type='text/css' href='../css/ANT.css'>
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    
   </head>
+  
   <body>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%"></div>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class = 'center'></div>
   </body>
   <script>
 
@@ -66,8 +72,8 @@
         
         // make the stimulus for this trial
         var stim = flanker + centralArrow + flanker
-        stim = '<p class="ANTArrowSize">'+stim+'</p>';
-        stim = PutStimIntoTable(stim, position);
+        //<p class="ANTArrowSize">'+stim+'</p>'
+        stim = PutStimIntoTable(stim, position)
         return stim
       },
       choices: KeyboardChoices,

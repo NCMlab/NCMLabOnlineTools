@@ -1,27 +1,37 @@
 table {
   width: 70vw;
   height: 85vh;
-    
     }
 .center {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
 .TopRow {
-  height:  30%;
-    text-align: center;
+  height:  25%;
+  text-align: center;
+  vertical-align: middle;
   }
 .MidRow {
   text-align: center;
-  height:  40%; 
+  height:  25%;
   vertical-align: middle;
   } 
 .BotRow {
   text-align: center;
-  height:  30%; 
+  height:  25%; 
+  vertical-align: middle;
+  } 
+.ButtonRow {
+  text-align: center;
+  height:  25%; 
+  vertical-align: middle;
   } 
   
 .jspsych-btn {
   padding: 3px 6px;
   font-size:4vmin;
 }
+
+

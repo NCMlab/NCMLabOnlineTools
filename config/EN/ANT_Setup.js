@@ -55,7 +55,7 @@ var ResponseMapping = ['left', 'right'];
 var flankers = [flankersL, flankersR, flankersN];
 var centralArrow = ["\u2190", "\u2192"]; // left, right
 var position = ["high","low"];
-var Cue = '<p class="Fixation">'+"\u2217"+'</p>';
+var Cue = '<p class="AntCue">'+"\u2217"+'</p>';
 var Crosshair = '<p class="Fixation">+</p>';
 var count = 0;
 var ANT = [];
@@ -152,6 +152,11 @@ function PutStimIntoTable(Input, position) {
 	  html += BotInput
 	  html += '</td>'
 	  html += '</tr>'
+	  html += '<tr>'
+	  html += '<td class="ButtonRow">'
+	  html += BotInput
+	  html += '</td>'
+	  html += '</tr>'
 	  html += '</table>'
      return html
 	}
@@ -162,10 +167,10 @@ function PutFixIntoTable(position) {
 		case 'high':
 			var TopInput = Cue;
 			var MidInput = Crosshair;
-			var BotInput = ''
+			var BotInput = ' '
 			break;
 		case 'low':
-			var TopInput = '';
+			var TopInput = ' ';
 			var MidInput = Crosshair;
 			var BotInput = Cue;
 			break;
@@ -175,14 +180,14 @@ function PutFixIntoTable(position) {
 			var BotInput = Cue;
 			break;
 		case 'none':
-			var TopInput = '';
+			var TopInput = ' ';
 			var MidInput = Crosshair;
-			var BotInput = '';
+			var BotInput = ' ';
 			break;
 		case 'middle':
-			var TopInput = '';
+			var TopInput = ' ';
 			var MidInput = Cue;
-			var BotInput = '';
+			var BotInput = ' ';
 			break;									
 	}
 	  var html = '';
@@ -199,6 +204,11 @@ function PutFixIntoTable(position) {
 	  html += '</tr>'
 	  html += '<tr>'
 	  html += '<td class="BotRow">'
+	  html += BotInput
+	  html += '</td>'
+	  html += '</tr>'	  
+	  html += '<tr>'
+	  html += '<td class="ButtonRow">'
 	  html += BotInput
 	  html += '</td>'
 	  html += '</tr>'
