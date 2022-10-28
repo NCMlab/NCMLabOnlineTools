@@ -1,6 +1,7 @@
-table {
+table.Ant {
   width: 70vw;
   height: 85vh;
+  border-width: 1px;
     }
 .center {
   margin-left: auto;
@@ -8,24 +9,21 @@ table {
   margin-top: 10px;
   margin-bottom: 10px;
   }
-.TopRow {
-  height:  25%;
+.AntTopRow {
+  border-width: 1px;
+  height:  15%;
   text-align: center;
   vertical-align: middle;
   }
-.MidRow {
+.AntMidRow {
+  border-width: 1px;
   text-align: center;
-  height:  25%;
+  height:  15%;
   vertical-align: middle;
   } 
-.BotRow {
+.AntBotRow {
   text-align: center;
-  height:  25%; 
-  vertical-align: middle;
-  } 
-.ButtonRow {
-  text-align: center;
-  height:  25%; 
+  height:  15%; 
   vertical-align: middle;
   } 
   

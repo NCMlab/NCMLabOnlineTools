@@ -135,28 +135,23 @@ function PutStimIntoTable(Input, position) {
 			var BotInput = Input;
 			break;
 	}
-	  var html = '';
-	  html += '<table class="center">'
-	  html += '<tr>'
-	  html += '<td class="TopRow">'
+var html = '';
+	  html += '<table style="height:100%; text-align:center">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += TopInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr>'
-	  html += '<td class="MidRow">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += MidInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr>'
-	  html += '<td class="BotRow">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += BotInput
 	  html += '</td>'
-	  html += '</tr>'
-	  html += '<tr>'
-	  html += '<td class="ButtonRow">'
-	  html += BotInput
-	  html += '</td>'
-	  html += '</tr>'
+	  html += '</tr>'	  
 	  html += '</table>'
      return html
 	}
@@ -191,27 +186,22 @@ function PutFixIntoTable(position) {
 			break;									
 	}
 	  var html = '';
-	  html += '<table class="center">'
-	  html += '<tr>'
-	  html += '<td class="TopRow">'
+	  html += '<table style="height:100%; text-align:center">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += TopInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr>'
-	  html += '<td class="MidRow">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += MidInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr>'
-	  html += '<td class="BotRow">'
+	  html += '<tr style="height:33%">'
+	  html += '<td>'
 	  html += BotInput
 	  html += '</td>'
 	  html += '</tr>'	  
-	  html += '<tr>'
-	  html += '<td class="ButtonRow">'
-	  html += BotInput
-	  html += '</td>'
-	  html += '</tr>'
 	  html += '</table>'
      return html
 	}	

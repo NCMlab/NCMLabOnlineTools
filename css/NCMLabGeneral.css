@@ -11,6 +11,11 @@ The following are variables that are used below in the CSS.
   --ANTArrowSize:  8vw;
   --PromptSize:  4vw;
 }
+
+table {
+  width: 100%;
+}
+
 html { background-color: white; }
 body {
   background-color: rgb(200,200,200);
@@ -53,6 +58,12 @@ Set the fixation size so it changes as the display size changes.
 Make sure to set the class everywhere a fixation cross is used.
 This allows for universal change of teh fixation cross, for instance, if it needs to be made bigger.
 */
+
+.touchscreen {
+    /* size of the upper panel */
+    height: 85%;
+}
+
 p.Fixation {
   text-align:  center;
   font-size: var(--FixationSize);
