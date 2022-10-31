@@ -12,8 +12,7 @@
     <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../jspsych_addons/plugin-html-button-response_Stroop.js"></script>
-
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src='../config/Language_Config.js'>//Load language</script>    
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
@@ -29,17 +28,22 @@
         font-size: 72px;
         line-height: 0.85em;
       }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+            }
+
     </style>
     
-    <link rel="stylesheet" type='text/css' href='../css/ANT.css'>
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    
   </head>
+  
   <body>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%"></div>
+    <div id="jspsych-target"></div>
   </body>
   <script>
 
-  var ResponseButtons = ['Left', 'Right'];
 
    var jsPsych = initJsPsych({
 
@@ -55,9 +59,7 @@
 
   //https://www.webnots.com/keyboard-shortcuts-for-asterisk-symbol/
     var Stim = {
-      type: jsPsychHtmlButtonResponse,
-      choices: ResponseButtons,
-      prompt: 'Empty',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       { // The stimulus is based on the conditions laid out in the ANT
         // variable read from the setup file.
@@ -70,8 +72,8 @@
         
         // make the stimulus for this trial
         var stim = flanker + centralArrow + flanker
-        stim = '<p class="ANTArrowSize">'+stim+'</p>';
-        stim = PutStimIntoTable(stim, position);
+        //<p class="ANTArrowSize">'+stim+'</p>'
+        stim = PutStimIntoTable('<p class="ANTArrowSize">'+stim+'</p>', position)
         return stim
       },
       choices: KeyboardChoices,
@@ -99,7 +101,7 @@
     var Fix = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
-      type: jsPsychHtmlButtonResponse,
+      type: jspsychHtmlButtonResponseTouchscreen,
       choices: KeyboardChoices,
       stimulus: function()
       {

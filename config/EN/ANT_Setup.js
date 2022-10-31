@@ -137,17 +137,17 @@ function PutStimIntoTable(Input, position) {
 	}
 var html = '';
 	  html += '<table style="height:100%; text-align:center">'
-	  html += '<tr style="height:33%">'
+	  html += '<tr height="30%">'
 	  html += '<td>'
 	  html += TopInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr style="height:33%">'
+	  html += '<tr height="30%">'
 	  html += '<td>'
 	  html += MidInput
 	  html += '</td>'
 	  html += '</tr>'
-	  html += '<tr style="height:33%">'
+	  html += '<tr height="30%">'
 	  html += '<td>'
 	  html += BotInput
 	  html += '</td>'

@@ -95,7 +95,6 @@ var jspsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           var html = '';
           html += '<table style="height:85vh">'
           html += '<tr>'
-          html += '<tr>'
           html += '<td>'
           html += trial.stimulus
           html += '</tr>'

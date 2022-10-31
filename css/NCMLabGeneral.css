@@ -8,7 +8,7 @@ The following are variables that are used below in the CSS.
 :root {
   --FixationSize:  5vw;
   --CueSize:  5vw;
-  --ANTArrowSize:  8vw;
+  --ANTArrowSize:  5vw;
   --PromptSize:  4vw;
 }
 

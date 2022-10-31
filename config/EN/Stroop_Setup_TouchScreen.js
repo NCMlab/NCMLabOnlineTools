@@ -79,17 +79,6 @@ var WordTestRepeats = 1
 var ColorWordTestRepeats = 4
 
 
-
-/* ========================================================= 
-	This is a function for positioning the instruction figure and stimuli on the screen
-	If the instruction keyboard mapping figure is too low change the 'height' value below.
-*/
-
-function PutIntoTable(top='top', middle='mid', width=600, height=300, img_path=keyboard_path) {
-   return '<table border="0" width="'+width+'"><tr height="'+height+'"><td>'+top+'</td></tr><tr height="'+height+'">'+
-          '<td><div style="font-size:60px;">'+middle+'</div></td></tr><tr height="'+height+'">'+
-          '<td valign="bottom"><img src="'+ keyboard_path +'"></td></tr></table>';
- }
 /* ========================================================= 
 	This is the stimuli list for both stroop color and word
    The green is very bright. TO make it less bright change it to something like (0,200,0)
@@ -97,6 +86,24 @@ function PutIntoTable(top='top', middle='mid', width=600, height=300, img_path=k
 var StroopWordPrompt = "<p class='PromptText'>What word is shown below?</p>";
 var StroopColorPrompt = "<p class='PromptText'>What color is shown below?</p>";
 var StroopColorWordPrompt = "<p class='PromptText'>What color is the word written in?</p>";
+
+
+function PutStimIntoTable(prompt, stim) {
+    var html = '';
+    html += '<table style="height:100%; text-align:center">'
+    html += '<tr style="height:15%">'
+    html += '<td>'
+    html += prompt
+    html += '</td>'
+    html += '</tr>'
+    html += '<tr>'
+    html += '<td>'
+    html += stim
+    html += '</td>'
+    html += '</tr>'
+    html += '</table>'
+    return html
+}
 
 var StroopWordList = [
    {

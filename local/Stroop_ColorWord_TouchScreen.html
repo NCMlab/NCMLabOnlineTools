@@ -11,7 +11,7 @@
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-instructions.js"></script>
     <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-html-button-response_Stroop.js"></script>
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     
     
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
@@ -21,9 +21,7 @@
         var url = "../config/"+Language+"/Stroop_Setup_TouchScreen.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-
-
-    <link rel="stylesheet" type='text/css' href='../css/TouchScreen.css'>
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
 
   </head>
   <body>
@@ -50,7 +48,7 @@
    /* Create the initial welcome and instructions for practice.
    This uses the built in instructions module. Make sure it gets imported above */ 
     var ColorWordInstr = {
-      type: jsPsychHtmlButtonResponse,
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: jsPsych.timelineVariable('page'), // Variable in the config file
       post_trial_gap: 0,
       prompt: '',
@@ -61,10 +59,15 @@
 
 
   var fixation = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style="font-size:'+StimulusFontSize+'">+</p>',
+    type: jspsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+    {
+      stim = PutStimIntoTable(StroopColorWordPrompt, '<p class="Fixation">+</p>');
+      return stim
+    },
     choices: ResponseButtons,
     post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
     prompt: StroopColorWordPrompt,
     trial_duration: function(){
       return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
@@ -73,29 +76,35 @@
   }
 
   var feedback = {
-    type: jsPsychHtmlButtonResponse,
+    type: jspsychHtmlButtonResponseTouchscreen,
     stimulus: function(){
       var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
       if (last_trial_correct) {
-        return '<p style="font-size:'+FeedbackFontSize+'";>Correct</p>';
+        var stim = '<p style="font-size:'+FeedbackFontSize+'";>Correct</p>';
       } else {
-        return '<p style="font-size:'+FeedbackFontSize+'";>Incorrect</p>';
+        var stim = '<p style="font-size:'+FeedbackFontSize+'";>Incorrect</p>';
       }
+      console.log(stim)
+      return PutStimIntoTable(StroopColorWordPrompt, stim)
     },
     choices: ResponseButtons,
+    margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: StroopColorWordPrompt,
     trial_duration: FeedbackLength,
   }  
+
   // This creates the stimulus
   var Stimulus = {
-    type: jsPsychHtmlButtonResponse,
+    type: jspsychHtmlButtonResponseTouchscreen,
     stimulus: function()
     {
         var Stim = '<p class="stimulus" style="color:rgb'+jsPsych.timelineVariable('Color')+'; font-size:'+StimulusFontSize+'">' +jsPsych.timelineVariable('Word')+'</p>'
+        stim = PutStimIntoTable(StroopColorWordPrompt, stim) 
         return Stim
     },
     choices: ResponseButtons, 
+    margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: StroopColorWordPrompt, //Add this to config file
     on_finish: function(data){
@@ -168,7 +177,7 @@
       // Prepare debriefing for after the practice trials
     var debrief = {
       prompt: '',
-      type: jsPsychHtmlButtonResponse,
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
             var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(16*ColorWordPracticeRepeats)
             console.log(DataFromThisPracticeRun)
@@ -177,7 +186,7 @@
             var accuracy = Math.round(NumberCorrect / total_trials * 100);
             return "<p>You responded correctly on <strong>"+accuracy+"%</strong> of the "+total_trials+" trials.</p> " +
             "<p>Press any key to continue the experiment. </p>";
-            
+
           },
       choices: ['Next'], 
     }
