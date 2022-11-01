@@ -100,7 +100,7 @@
     stimulus: function()
     {
         var Stim = '<p class="stimulus" style="color:rgb'+jsPsych.timelineVariable('Color')+'; font-size:'+StimulusFontSize+'">' +jsPsych.timelineVariable('Word')+'</p>'
-        stim = PutStimIntoTable(StroopColorWordPrompt, stim) 
+        Stim = PutStimIntoTable(StroopColorWordPrompt, Stim) 
         return Stim
     },
     choices: ResponseButtons, 

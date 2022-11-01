@@ -95,12 +95,11 @@
   // This creates the stimulus
   var Stimulus = {
     type: jspsychHtmlButtonResponseTouchscreen,
-    stimulus: jsPsych.timelineVariable('Word'), // Variable in the config file
     stimulus: function()
       {
         //var Stim = jsPsych.timelineVariable('Word')
         var Stim = '<p  class="Fixation">' +jsPsych.timelineVariable('Word')+'</p>'
-        stim = PutStimIntoTable(StroopWordPrompt, stim) 
+        Stim = PutStimIntoTable(StroopWordPrompt, Stim) 
         return Stim
       },
     choices: ResponseButtons, 
