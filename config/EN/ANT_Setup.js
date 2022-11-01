@@ -8,23 +8,19 @@ var NumberOfCyclesForPractice = 1
 var NumberOfCyclesForTesting = 2
 
 var InstructionText = [
-	{'page':'<p class="Instructions">Welcome to the Attention Netowrk experiment.</p>'},
+		{'page':'<p class="Instructions">Welcome to the Attention Network experiment.</p>'},
     {'page':'<p class="Instructions">In this experiment you will see groups of five arrows and dashes pointing left or right (e.g ← ← ← ← ←, or — — → — —) presented randomly at the top or bottom of the screen.'},
     {'page':'<p class="Instructions">Your job is to indicate which way the central arrow is pointing by pressing the corresponding arrow key.'},
+    {'page':'<p class="Instructions">Before the arrows and dashes come up, an * will occasionally come up somewhere on the screen.'},
+    {'page':'<p class="Instructions">Irrespective of whether or where the * appears, it is important that you respond as quickly and accurately as possible by pressing the arrow key corresponding to the direction of the center arrow.'},    
+    {'page':'<p class="Instructions">After you end instructions we will start with practice. During practice you will receive feedback about whether your responses are correct. You will not receive feedback during the rest of the experiment.'},
       ];
-'In this experiment you will see groups of five arrows and dashes pointing left or right (e.g ← ← ← ← ←, or — — → — —) presented randomly at the top or bottom of the screen.'
-
-'Your job is to indicate which way the central arrow is pointing by pressing the corresponding arrow key.'
-
-'Before the arrows and dashes come up, an * will occasionally come up somewhere on the screen.'
-
-'Irrespective of whether or where the * appears, it is important that you respond as quickly and accurately as possible by pressing the arrow key corresponding to the direction of the center arrow.'
-
-'After you end instructions we will start with practice. During practice you will receive feedback about whether your responses are correct. You will not receive feedback during the rest of the experiment.'
 
 var ScreenSpacing = 300
 // Set the fixation time between trials, in milliseconds
 var FixationDuration = 600
+
+
 // how many flankers should be on either side of the central arrow
 var NFlankers = 2;
 // define the flankers as empty strings
@@ -45,6 +41,7 @@ var FontSize = 72
 
 // What are the keyboard keys to record responses from
 var KeyboardChoices = ['arrowleft', 'arrowright'];
+var TouchscreenChoices = [0, 1];
 // The above key codes need to be mapped onto text descriptions used later for scoring
 var ResponseMapping = ['left', 'right'];
 
@@ -122,12 +119,17 @@ for(var i=0; i < 3; i++) { // flanker type: LEFT, RIGHT, NEUTRAL
 	}
 }
 
-function PutStimIntoTable(Input, position) {
+function ANT_PutStimIntoTable(Input, position) {
 	switch(position) {
 		case 'high':
 			var TopInput = Input;
 			var MidInput = Crosshair;
 			var BotInput = ' '
+			break;
+		case 'center':
+			var TopInput = ' ';
+			var MidInput = Input;
+			var BotInput = ' ';
 			break;
 		case 'low':
 			var TopInput = ' ';
@@ -157,7 +159,7 @@ var html = '';
 	}
 
 
-function PutFixIntoTable(position) {
+function ANT_PutFixIntoTable(position) {
 	switch(position) {
 		case 'high':
 			var TopInput = Cue;

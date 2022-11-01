@@ -18,6 +18,8 @@
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../config/"+Language+"/ANT_Setup.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/General_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     
     <style>
@@ -32,13 +34,10 @@
         margin-left: auto;
         margin-right: auto;
             }
-
     </style>
-    
+
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-    
   </head>
-  
   <body>
     <div id="jspsych-target"></div>
   </body>
@@ -57,8 +56,19 @@
 
     var timeline = [];
 
+
+   /* Create the initial welcome and instructions for practice.
+   This uses the built in instructions module. Make sure it gets imported above */ 
+    var Instr = {
+      type: jspsychHtmlButtonResponseTouchscreen,
+      stimulus: jsPsych.timelineVariable('page'), // Variable in the config file
+      post_trial_gap: 0,
+      prompt: '',
+      choices: ['Next'], 
+    }
+
   //https://www.webnots.com/keyboard-shortcuts-for-asterisk-symbol/
-    var Stim = {
+    var Stimulus = {
       type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       { // The stimulus is based on the conditions laid out in the ANT
@@ -73,16 +83,18 @@
         // make the stimulus for this trial
         var stim = flanker + centralArrow + flanker
         //<p class="ANTArrowSize">'+stim+'</p>'
-        stim = PutStimIntoTable('<p class="ANTArrowSize">'+stim+'</p>', position)
+        stim = ANT_PutStimIntoTable('<p class="ANTArrowSize">'+stim+'</p>', position)
         return stim
       },
       choices: KeyboardChoices,
       on_finish: function(data, correct){
         // find the correct response for this trial
         var correct = jsPsych.timelineVariable("correct", true)
+        console.log(correct)
         // in the list of allowable key presses, what is the index of what was pressed?
-        var ResponseIndex = KeyboardChoices.indexOf(data.response)
-        //console.log(ResponseMapping[ResponseIndex])
+        var ResponseIndex = TouchscreenChoices.indexOf(data.response)
+        console.log(ResponseIndex)
+        console.log(ResponseMapping[ResponseIndex])
         
         if (ResponseMapping[ResponseIndex] == correct) 
           {data.correct = 1}
@@ -98,7 +110,7 @@
 
     } 
 
-    var Fix = {
+    var fixation = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jspsychHtmlButtonResponseTouchscreen,
@@ -106,19 +118,26 @@
       stimulus: function()
       {
         var position = jsPsych.timelineVariable("cuePos", true)
-        return PutFixIntoTable(position)
+        return ANT_PutFixIntoTable(position)
       },
       trial_duration: FixationDuration,      
     } 
 
-    var test_procedure = {
-      timeline: [Fix, Stim],
-      timeline_variables: ANT,
-      randomize_order: true,
-      repetitions: 1, 
-    }
-
-    timeline.push(test_procedure)
+  var feedback = {
+    type: jspsychHtmlButtonResponseTouchscreen,
+    stimulus: function(){
+      var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+      if (last_trial_correct) {
+        var stim = '<p style="font-size:'+FeedbackFontSize+'";>Correct</p>';
+      } else {
+        var stim = '<p style="font-size:'+FeedbackFontSize+'";>Incorrect</p>';
+      }
+      return ANT_PutStimIntoTable(stim, 'center')
+    },
+    choices: KeyboardChoices,
+    post_trial_gap: 0,
+    trial_duration: FeedbackLength,
+  }    
 
     /* define debrief */
     var debrief_block = {
@@ -136,6 +155,30 @@
 
       }
     };
+    
+
+    var instr_procedure = {
+      timeline: [Instr],
+      timeline_variables: InstructionText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+    var practice_procedure = {
+      timeline: [fixation, Stimulus, feedback],
+      timeline_variables: ANT,
+      randomize_order: true,
+      repetitions: 1, 
+    }
+
+    var test_procedure = {
+      timeline: [fixation, Stimulus],
+      timeline_variables: ANT,
+      randomize_order: true,
+      repetitions: 2, 
+    }
+
+    timeline.push(instr_procedure);
+    timeline.push(test_procedure)
     timeline.push(debrief_block);
 
     /* start the experiment */

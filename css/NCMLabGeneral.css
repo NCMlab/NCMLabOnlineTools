@@ -83,5 +83,6 @@ p.PromptText {
   font-size: var(--PromptSize);
 }
 p.Instructions {
+  text-align:  center;
   font-size:  4vmin;
 }

@@ -1,8 +1,6 @@
 var FullScreenMode = false;
 var TextFontSize = "30px";
 var StimulusFontSize = '60px';
-var FeedbackFontSize = "30px";
-var GapBetweenButtons = "3px";
 
 var keyboard_path = "./assets/images/StroopColorsKeyboard.png"
 
@@ -62,8 +60,6 @@ var ColorWordThankYouText = [{'page': 'Thank you. Press any key to end the exper
 var ResponseChoices = ['v','b','n','m',27]
 
 var ResponseButtons = ['Red','Yellow','Green','Blue']
-
-var FeedbackLength = 400; // This is in milliseconds
 
 //var FixationLength = 500; // This is in milliseconds
 
