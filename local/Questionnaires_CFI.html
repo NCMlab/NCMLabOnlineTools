@@ -7,23 +7,48 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire: CFI</title>
-    <script src="jspsych/jspsych.js"></script>
-    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
-    <script src="jspsych/plugins/jspsych-instructions.js"></script>    
-    <script src="jspsych/plugins/jspsych-survey-likert.js"></script>
-    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
-    <link href="CSS/LikertQuestionnaires.css" rel="stylesheet">
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../jspsych/dist/plugin-instructions.js"></script>
     
-    <script src="questionnaire_setup_eng.js"></script>
-    <script src="questionnaire_functions.js"></script>
-    <script src="assets/cfi_setup_eng.js"></script> 
+    <script src="../jspsych/dist/plugin-survey-likert.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <script src='../config/Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../config/"+Language+"/cfi_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/Questionnaire_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+
+    <link rel="stylesheet" type='text/css' href='../css/LikertQuestionnaires.css'>
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    
+    <script src="../functions/questionnaire_functions.js"></script>
   <style>
     input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
   </style>
   </head>
+  <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
+
   <script>
+
+    var jsPsych = initJsPsych({
+
+        display_element: 'jspsych-target',
+        on_interaction_data_update: function(data) {
+            console.log(JSON.stringify(data))
+        },
+        on_finish: function() {
+        //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+        }
+    });
+    
+    timeline = [];
+
 
     // How many options are there in the scale?
     var ScaleSize = scale01.length;
@@ -38,7 +63,7 @@
     var MissedQuestions = 0
     // Prepare the questionnaire
     var Test = {
-        type: 'survey-likert',
+        type: jsPsychSurveyLikert,
         // the items are taken from the import JS file
         timeline: itemPages,
         // The instructions are also in the JS file
@@ -84,19 +109,10 @@
     var procedure = {
         timeline: [Test],
         }
-    var timeline = []
+
     // add the pages of the questionnaire to the timeline
     timeline.push(procedure)
 
-    jsPsych.init({
-        experiment_width: PageWidth,
-        timeline: timeline,
-            on_finish: function() {
-                jsPsych.data.displayData();
-                var D = jsPsych.data.get().last(2)
-                console.log(D)
-                //jsPsych.data.get().localSave('csv','test.csv');
-      }
-    })
+    jsPsych.run(timeline)
     </script>
 </html>
