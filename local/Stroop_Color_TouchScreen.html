@@ -15,13 +15,17 @@
     
     
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
     <script src='../config/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../config/"+Language+"/Stroop_Setup_TouchScreen.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/General_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+
+    
 
   </head>
   <body>
@@ -51,6 +55,7 @@
       type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: jsPsych.timelineVariable('page'), // Variable in the config file
       post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
       prompt: '',
       choices: ['Next'], 
     }

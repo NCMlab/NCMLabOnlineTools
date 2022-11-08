@@ -26,7 +26,7 @@ var tolerance = 0;
 var pen_width = 2;
 
 // This adjust the height so there is room for the Finished button and the timer
-var HeightAdj = 160;
+var HeightAdj = 400;
 
 //Whether or not to change the color of the circle when response is correct
 var GiveFeedback = true;          
@@ -116,10 +116,10 @@ var CirclesB = [
     {centerX:0.507326007326007, centerY:0.436555891238671, radius: radius, label: '1'},
     {centerX:0.703296703296703, centerY:0.743202416918429, radius: radius, label: 'A'},
     {centerX:0.362637362637363, centerY:0.712990936555891, radius: radius, label: '2'},
-    {centerX:0.45970695970696, centerY:0.18429003021148, radius: radius, label: 'B'},
+    {centerX:0.45970695970696,  centerY:0.18429003021148,  radius: radius, label: 'B'},
     {centerX:0.571428571428571, centerY:0.302114803625378, radius: radius, label: '3'},
     {centerX:0.703296703296703, centerY:0.516616314199396, radius: radius, label: 'C'},
-    {centerX:0.6996336996337, centerY:0.134441087613293, radius: radius, label: '4'},
+    {centerX:0.6996336996337,   centerY:0.134441087613293, radius: radius, label: '4'},
     {centerX:0.847985347985348, centerY:0.151057401812689, radius: radius, label: 'D'},
     {centerX:0.846153846153846, centerY:0.580060422960725, radius: radius, label: '5'},
     {centerX:0.782051282051282, centerY:0.823262839879154, radius: radius, label: 'E'},
@@ -127,15 +127,15 @@ var CirclesB = [
     {centerX:0.296703296703297, centerY:0.889728096676737, radius: radius, label: 'F'},
     {centerX:0.234432234432234, centerY:0.442598187311178, radius: radius, label: '7'},
     {centerX:0.153846153846154, centerY:0.566465256797583, radius: radius, label: 'G'},
-    {centerX:0.119047619047619, centerY:0.0574018126888218, radius: radius, label: '8'},
-    {centerX:0.267399267399267, centerY:0.27190332326284, radius: radius, label: 'H'},
+    {centerX:0.119047619047619, centerY:0.0574018126888218,radius: radius, label: '8'},
+    {centerX:0.267399267399267, centerY:0.27190332326284,  radius: radius, label: 'H'},
     {centerX:0.265567765567766, centerY:0.126888217522659, radius: radius, label: '9'},
-    {centerX:0.617216117216117, centerY:0.0438066465256798, radius: radius, label: 'I'},
-    {centerX:0.926739926739927, centerY:0.0574018126888218, radius: radius, label: '10'},
+    {centerX:0.617216117216117, centerY:0.0438066465256798,radius: radius, label: 'I'},
+    {centerX:0.926739926739927, centerY:0.0574018126888218,radius: radius, label: '10'},
     {centerX:0.877289377289377, centerY:0.675226586102719, radius: radius, label: 'J'},
     {centerX:0.924908424908425, centerY:0.913897280966767, radius: radius, label: '11'},
-    {centerX:0.0732600732600733, centerY:0.933534743202417, radius: radius, label: 'K'},
-    {centerX:0.0567765567765568, centerY:0.486404833836858, radius: radius, label: '12'},
+    {centerX:0.0732600732600733,centerY:0.933534743202417, radius: radius, label: 'K'},
+    {centerX:0.0567765567765568,centerY:0.486404833836858, radius: radius, label: '12'},
     {centerX:0.168498168498169, centerY:0.741691842900302, radius: radius, label: 'L'},
 ]
 // canvas width
@@ -149,13 +149,28 @@ var DurationB = 1000*60*5
 
 
 
-var InstructionsSampleA = ['For this task you will see numbers in circles.</br> Please draw a line with the mouse or your finger (on a touch screen) from one number to the next, in order.</br> Start at 1, then go to 2, then go to 3, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.', 
-    'When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.', 'First, you will tray a practice test. Press next to practice'];
+var InstructionsSampleA = [
+    {'page':'<p class="Instructions">For this task you will see numbers in circles.</br> Please draw a line with the mouse or your finger (on a touch screen) from one number to the next, in order.</br> Start at 1, then go to 2, then go to 3, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.'}, 
+    {'page':'<p class="Instructions">When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}, 
+    {'page':'<p class="Instructions">First, you will tray a practice test. Press next to practice'},
+    ];
 
-var InstructionsA = ['Now you will perform the actual test.</br> Remember, start at 1, then go to 2, then go to 3, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.', 'When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.', 'Press next to begin.'];
+var InstructionsA = [
+    {'page':'<p class="Instructions">Now you will perform the actual test.</br> Remember, start at 1, then go to 2, then go to 3, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.'}, 
+    {'page':'<p class="Instructions">When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'},
+    {'page':'<p class="Instructions">Press next to begin.'}
+    ];
 
 
-var InstructionsSampleB = ['For this task you will see numbers and letters in circles.</br> Please draw a line with the mouse or your finger (on a touch screen) from one number/letter to the next, in order.</br> Start at 1, then go to A, then go to 2, then B, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.<br> When you have finished press the Finished button at the bottom of the screen.', 'When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.', 'First, you will try a practice test. Press next to practice'];
+var InstructionsSampleB = [
+    {'page':'<p class="Instructions">For this task you will see numbers and letters in circles.</br> Please draw a line with the mouse or your finger (on a touch screen) from one number/letter to the next, in order.</br> Start at 1, then go to A, then go to 2, then B, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.<br> When you have finished press the Finished button at the bottom of the screen.'},
+    {'page':'<p class="Instructions">When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}, 
+    {'page':'<p class="Instructions">First, you will try a practice test. Press next to practice'}
+    ];
 
-var InstructionsB = ['Now you will perform the actual test.</br> Remember, start at 1, then go to A, then go to 2, then B, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.', 'When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.', 'Press next to begin.'];
+var InstructionsB = [
+    {'page':'<p class="Instructions">Now you will perform the actual test.</br> Remember, start at 1, then go to A, then go to 2, then B, and so on.</br> Please try not to lift the pen as you move from one number to the next. Work as quickly and accurately as you can.</br> When you have finished press the Finished button at the bottom of the screen.'}, 
+    {'page':'<p class="Instructions">When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}, 
+    {'page':'<p class="Instructions">Press next to begin.'}
+    ];
 

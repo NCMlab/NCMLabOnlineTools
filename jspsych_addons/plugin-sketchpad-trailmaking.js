@@ -344,22 +344,25 @@ var jsPsychSketchpad = (function (jspsych) {
           let display_html;
           if (this.params.prompt !== null) {
               if (this.params.prompt_location == "abovecanvas") {
-                  display_html = this.params.prompt + timer_html + canvas_html + finish_button_html;
+                  display_html = this.params.prompt + canvas_html + '<table  style="width:50%"><tr><td text-align="right">'+finish_button_html+'</td><td style="text-align:left">' + timer_html +'</td></tr></table>';
               }
               if (this.params.prompt_location == "belowcanvas") {
-                  display_html = timer_html + canvas_html + this.params.prompt + finish_button_html;
+                  display_html =  canvas_html + this.params.prompt + '<table  style="width:50%"><tr><td text-align="right">'+finish_button_html+'</td><td style="text-align:left">' + timer_html +'</td></tr></table>';
               }
               if (this.params.prompt_location == "belowbutton") {
-                  display_html = timer_html + canvas_html + finish_button_html + this.params.prompt;
-              }
+                  display_html = canvas_html + finish_button_html + this.params.prompt + timer_html;
+                  console.log("BELOW")
+              } 
               if (this.params.prompt_location == "loc") {
-                  display_html = timer_html  + canvas_html + finish_button_html + this.params.prompt;
+                  display_html = canvas_html + finish_button_html + this.params.prompt  + timer_html;
+                  console.log("LOC")
               }
 
 
           }
           else {
-              display_html = timer_html + canvas_html + finish_button_html;
+              display_html = canvas_html + '<table><tr><td>'+finish_button_html+'</td><td>' + timer_html +'</td></tr></table>';
+              console.log("ELSE")
           }
           this.display.innerHTML = display_html;
           this.sketchpad = this.display.querySelector("#sketchpad-canvas");

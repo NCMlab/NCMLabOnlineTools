@@ -21,10 +21,10 @@ body {
   background-color: rgb(200,200,200);
   border-radius: 15px;
     position: fixed;
-  left: 5vw;
+  left: 2vw;
   top: 2vh;
-  height: 94vh;
-  width: 90vw;
+  height: 95vh;
+  width: 95vw;
   box-shadow: 4px 4px 6px #888888/*#999*/;
   border-radius: 15px;
   z-index: 0;
@@ -39,7 +39,7 @@ body {
 From Experiment Factory
 */
 .jspsych-btn, #jspsych-instructions-next, #jspsych-instructions-back {
-  font-size:4vmin;
+  font-size:3vmin;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 1vmin 2vmin 1vmin 2vmin;
   color: white;
@@ -85,4 +85,5 @@ p.PromptText {
 p.Instructions {
   text-align:  center;
   font-size:  4vmin;
+  line-height:  1.6;
 }

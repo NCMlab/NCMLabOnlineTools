@@ -6,16 +6,27 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMS Block based</title>
-    <script src="jspsych/jspsych.js"></script>
-    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
-    <script src="jspsych/plugins/jspsych-instructions.js"></script>    
-    <script src="DMS_setup_eng.js"></script>
-    <script src="DMS_functions.js"></script>
-    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
-    <style>
+    <title>DMS Block Based</title>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../jspsych/dist/plugin-instructions.js"></script>    
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../functions/DMS_functions.js"></script>
+    <script src="../functions/StairClass.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <script src='../config/Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../config/"+Language+"/DMS_setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/General_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    
+     <style>
       .stimulus { font-size: 45; }
       .background {color:  [150, 150, 150]}
       .instruct {font-size:  20;}
@@ -33,11 +44,22 @@
         margin-right:auto;
       }  
 
-
     </style>
   </head>
+    <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
   <script>
     // ADD 3-2-1 COUNTDOWN BEFORE THE START OF EACH LOAD BLOCK
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+      }
+    });
   /* create timeline */
     var timeline = [];
     
@@ -54,19 +76,18 @@
 
     // Make experiment run in full screen mode
     // Note, that the fullscreen plugin needs to imported above
-    timeline.push({
-      type: 'fullscreen',
-      fullscreen_mode: FullScreenMode
-    });
-  
-    var Instructions = {
-       type: 'instructions',
-       pages: instructions,
-       show_clickable_nav: true,
+
+    var instr = {
+      type: jspsychHtmlButtonResponseTouchscreen,
+      stimulus: jsPsych.timelineVariable('page'),
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
     }
 
     var ThankYou = {
-        type: "html-keyboard-response",
+        type: jspsychHtmlButtonResponseTouchscreen,
         stimulus: "Thank you"
     };
 
@@ -76,14 +97,14 @@
 
     
     var Stimulus = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
         var StimulusLetters = jsPsych.timelineVariable("StimulusLetters")
         return PutLettersInGrid(StimulusLetters,3,3,700,20,FontSize)
         //return StimulusLetters
       },
       trial_duration: StimOnTime,
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       on_finish: function(data){
         data.trialType = "Stimulus",
         count += 1
@@ -93,19 +114,18 @@
     var Retention = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
       //stimulus: '+',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: RetOnTime,
       on_finish: function(data){
         data.trialType = "Retention"
-        data.current_node_id = jsPsych.currentTimelineNodeID()
       }
     } 
     
     var Probe = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
         var ProbeLetter = jsPsych.timelineVariable("ProbeLetter")
         return '<p style="color:'+ProbeColor+'; font-size:'+FontSize+'px">'+ProbeLetter+'</p>'
@@ -137,9 +157,9 @@
       on_start: function(){
         console.log('Got here')
       },
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:'+ProbeColor+'">+</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: InterBlockTime,
       on_finish: function(data){
         data.trialType = "fixation"
@@ -163,15 +183,20 @@
     }
 
     var Fix = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:'+ProbeColor+'">+</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: ITITime,
       on_finish: function(data){
         data.trialType = "fixation"
       }
     } 
-
+    var instr_procedure = {
+      timeline: [instr],
+      timeline_variables: instructions,
+      randomize_order: false,
+      repetitions: 1,
+    }
     var test_procedure = {
       // Make sure this order is correct: fixation cue and then the stimulus
       // Otherwise the scoring will not make any sense
@@ -180,17 +205,11 @@
       randomize_order: false  
     };
     
-    timeline.push(Instructions)
+    timeline.push(instr_procedure)
     timeline.push(test_procedure)
     timeline.push(ThankYou)
     /* start the experiment */
     //jatos.onLoad(function() {
-    jsPsych.init({
-        experiment_width: 600,
-        timeline: timeline,
-        on_finish: function() {
-          jsPsych.data.get().localSave('csv','DMSMydata.csv');
-        }
-      })
+    jsPsych.run(timeline)
   </script>
 </html>

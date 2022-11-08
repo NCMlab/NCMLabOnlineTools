@@ -2,5 +2,5 @@
 
 // How many questions per page are there?
 // Enter a negative value of you want all questions on the same page
-var QPerPage = 4;
+var QPerPage = 1;
 var PageWidth = 800;

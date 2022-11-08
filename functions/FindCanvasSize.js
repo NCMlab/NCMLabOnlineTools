@@ -6,8 +6,8 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
 	var ScreenWidth = screen.width
 
   // adjust the height and width
-  ScreenHeight = ScreenHeight - HeightOffset
-  ScreenWidth = ScreenWidth - WidthOffset
+  ScreenHeight = ScreenHeight*HeightOffset
+  ScreenWidth = ScreenWidth*WidthOffset
 
   console.log("Suggested Height")
   console.log(SuggestedHeight)
@@ -38,7 +38,7 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
     if ( ScreenWidth > ScreenHeight) {
       console.log('Landscape')
       // landscape -- use height adjust width
-      CanvasHeight = ScreenHeight - HeightOffset
+      CanvasHeight = ScreenHeight * HeightOffset
       CanvasWidth = ScreenHeight * ratio
     }
     else {

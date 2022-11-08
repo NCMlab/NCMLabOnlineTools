@@ -14,25 +14,39 @@
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-browser-check.js"></script>
     <script src="../jspsych/dist/plugin-survey-text.js"></script>
-     
+     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     
     <script src='../config/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../config/"+Language+"/TrailMaking_Setup.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/General_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+
     </script>
 
     <script src="../functions/FindCanvasSize.js"></script>
     <script src="../jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
-    <link rel='stylesheet' type='text/css' href='default_style.css'>
+
+
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
     <link rel="stylesheet" type='text/css' href='../css/TrailMaking.css'>
 
+
+
   </head>
+    <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%; width:100%" class='center'></div>
+  </body>
+  
+
+
   <script>
   var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
       //on_finish: () => {
         //jsPsych.data.displayData();
       //}
@@ -50,22 +64,25 @@
     delay_after: 0,
   }
 
+  // find screen dimension
+  var ScreenHeight = screen.height
+  var ScreenWidth = screen.width
+
+
   // adjust the canvas size as needed
-  sizes = FindCanvasSize(SuggestedWidthA, SuggestedHeightA, HeightAdj,0) 
+  sizes = FindCanvasSize(SuggestedWidthA, SuggestedHeightA, 0.95, 0.85) 
   CanvasWidthA = sizes.CanvasWidth
   CanvasHeightA = sizes.CanvasHeight
-  sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, HeightAdj,0) 
+  sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, 0.95, 0.85) 
   CanvasWidthB = sizes.CanvasWidth
   CanvasHeightB = sizes.CanvasHeight
   console.log('CANVAS SIZE FOR SAMPLE A')
-  sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, HeightAdj,0) 
+  sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, 0.95,0.85) 
   CanvasWidthSampleA = sizes.CanvasWidth
   console.log(CanvasWidthSampleA)
   CanvasHeightSampleA = sizes.CanvasHeight
-
   console.log('CANVAS SIZE FOR SAMPLE B')
-  
-  sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, HeightAdj,0) 
+  sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, 0.95,0.85) 
   CanvasWidthSampleB = sizes.CanvasWidth
   CanvasHeightSampleB = sizes.CanvasHeight
   
@@ -152,37 +169,50 @@
       }
     }
 
-  var InstructionsSampleA = {
-    type: jsPsychInstructions,
-    pages: InstructionsSampleA,
-    show_clickable_nav: true
+  var SampleAInstr = {
+    type: jspsychHtmlButtonResponseTouchscreen,
+    stimulus: jsPsych.timelineVariable('page'),
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
   }
+  /*
   var InstructionsA = {
-    type: jsPsychInstructions,
+    type: jspsychHtmlButtonResponseTouchscreen,
     pages: InstructionsA,
     show_clickable_nav: true
   }
   var InstructionsSampleB = {
-    type: jsPsychInstructions,
+    type: jspsychHtmlButtonResponseTouchscreen,
     pages: InstructionsSampleB,
     show_clickable_nav: true
   }
   var InstructionsB = {
-    type: jsPsychInstructions,
+    type: jspsychHtmlButtonResponseTouchscreen,
     pages: InstructionsB,
     show_clickable_nav: true
   }
 
+*/
+  // Define a practie procedure which provides feedback
+  var instr_procedure = {
+      timeline: [SampleAInstr],
+      timeline_variables: InstructionsSampleA,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
   //timeline.push(InstructionsSampleA)
   timeline.push(trial_SampleA)
   
-  timeline.push(InstructionsA)
+  timeline.push(instr_procedure)
   timeline.push(trialA)
   
-  timeline.push(InstructionsSampleB)
+  //timeline.push(InstructionsSampleB)
   timeline.push(trial_SampleB)
 
-  timeline.push(InstructionsB)
+  //timeline.push(InstructionsB)
   timeline.push(trialB)
 
   if ( FullScreenMode ) {

@@ -7,16 +7,26 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMS Adaptive</title>
-    <script src="jspsych/jspsych.js"></script>
-    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
-    <script src="jspsych/plugins/jspsych-instructions.js"></script>    
-    <script src="DMS_setup_eng.js"></script>
-    <script src="StairClass.js"></script>
-    <script src="DMS_functions.js"></script>
-    <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
-    <style>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../jspsych/dist/plugin-instructions.js"></script>    
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../functions/DMS_functions.js"></script>
+    <script src="../functions/StairClass.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <script src='../config/Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../config/"+Language+"/DMS_setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../config/"+Language+"/General_Setup.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    
+     <style>
       .stimulus { font-size: 45; }
       .background {color:  [150, 150, 150]}
       .instruct {font-size:  20;}
@@ -36,6 +46,9 @@
 
     </style>
   </head>
+    <body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
   <script>
     // ADD 3-2-1 COUNTDOWN BEFORE THE START OF EACH LOAD BLOCK
     // For the DMS adaptive it may work to have a global object similar to the staircase
@@ -43,7 +56,15 @@
     // to Keep track of the previous letters that have been used. I am current only preventing interference
     // from the previous trial; however, someone may be interested in limiting the proactive interference 
     // from multiple previous trials.
-
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+      }
+    });
    /* create timeline */
     var timeline = [];
     //constructor(Current=1, MinValue=1, MaxValue=9, MaxReversals=5,
@@ -54,16 +75,18 @@
 
     // Make experiment run in full screen mode
     // Note, that the fullscreen plugin needs to imported above
-    timeline.push({
-      type: 'fullscreen',
-      fullscreen_mode: FullScreenMode
-    });
+    /*timeline.push({
+      type: jsPsychFullscreen,
+      fullscreen_mode: false
+    });*/
   
-    var Instructions = {
-       type: 'instructions',
-       pages: instructions,
-       show_clickable_nav: true,
-       css_classes: 'instruct'
+    var instr = {
+      type: jspsychHtmlButtonResponseTouchscreen,
+      stimulus: jsPsych.timelineVariable('page'),
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
     }
 
     // Keep track of how many trials have been presented.
@@ -74,7 +97,7 @@
       //trial_duration: 100
     
     var Stimulus = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function(){
         console.log("Current: "+stair1.Current)
         console.log("Last Stim: "+stimList.getLastStim())
@@ -85,7 +108,8 @@
         //return StimulusLetters
       },
       trial_duration: StimOnTime,
-      choices: jsPsych.NO_KEYS,
+      choices: [],
+      prompt: '',
       on_finish: function(data){
         stimList.addStim(output[2])
         stimList.addProbe(output[1][0])
@@ -99,9 +123,9 @@
     var Retention = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: RetOnTime,
       //on_finish: function(data){
               // data.trialType = "Retention"
@@ -109,7 +133,7 @@
     } 
     
     var Probe = {
-      type: 'html-keyboard-response',
+      type:jspsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
         return '<p style="color:'+ProbeColor+'; font-size:'+FontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
@@ -124,9 +148,16 @@
         data.StimLetters = stimList.getCurrentStim()
         data.Load = data.StimLetters.length
         var correct = stimList.getCurrentCorrect() //jsPsych.timelineVariable("Correct", true)
+        console.log("Correct Answer is:")
+        console.log(correct)
+        console.log("Participant Response is:")
+        console.log(data.response)
         // in the list of allowable key presses, what is the index of wehat was pressed?
-        var ResponseIndex = KeyboardChoices.indexOf(data.response)
-        //console.log(ResponseMapping[ResponseIndex])
+        var ResponseIndex = ResponseMapping.indexOf(data.response)
+        console.log(ResponseMapping)
+        console.log(ResponseIndex)
+        console.log("Program thinks this answer is:")
+        console.log(ResponseMapping[ResponseIndex])
         if (ResponseMapping[ResponseIndex] == correct) 
           {
             data.correct = 1,
@@ -143,9 +174,9 @@
     }
 
     var Fix = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:'+ProbeColor+'">+</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: ITITime,
      // on_finish: function(data){
      //   data.trialType = "fixation"
@@ -155,12 +186,19 @@
     var WaitTime = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: WaitOnTime,
     } 
-
+    
+    var instr_procedure = {
+      timeline: [instr],
+      timeline_variables: instructions,
+      randomize_order: false,
+      repetitions: 1,
+    }
+    
     var test_procedure = {
       // Make sure this order is correct: fixation cue and then the stimulus
       // Otherwise the scoring will not make any sense
@@ -176,8 +214,9 @@
     }
 
     var ThankYou = {
-        type: "html-keyboard-response",
+        type: jspsychHtmlButtonResponseTouchscreen,
         stimulus: "Thank you",
+        choices: [],
         on_finish(data) {
           data.Capacity = stair1.CalculateAverage(),
           console.log(data.Capacity)
@@ -185,28 +224,30 @@
     };
 
     var debrief_block = {
-      type: "html-keyboard-response",
+      type: jspsychHtmlButtonResponseTouchscreen,
+      choices: [],
       stimulus: function() {
         return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
       }
     }
 
-    timeline.push(Instructions)
-    timeline.push(WaitTime)
-    timeline.push(CountdownTimer())
+    timeline.push(instr_procedure)
+    //timeline.push(WaitTime)
+    //timeline.push(CountdownTimer())
     timeline.push(loop_node)
     //timeline.push(test_procedure)
-    timeline.push(debrief_block)
+    //timeline.push(debrief_block)
     timeline.push(ThankYou)
     /* start the experiment */
     //jatos.onLoad(function() {
-    jsPsych.init({
+    jsPsych.run(timeline)
+    /*jsPsych.init({
         experiment_width: 600,
         timeline: timeline,
         minimum_valid_rt: 100,
         on_finish: function() {
           jsPsych.data.get().localSave('csv','DMSMydata.csv');
         }
-      })
+      })*/
   </script>
 </html>

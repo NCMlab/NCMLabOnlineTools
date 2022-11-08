@@ -12,10 +12,10 @@ var FullScreenMode = true;
 
 var FontSize = 72;
 
-var KeyboardChoices = ['arrowleft', 'arrowright'];
+var KeyboardChoices = ['No', 'Yes'];
 // the following is used for scoring and allows the keyboard choices to be whatever you would like
 // This response mapping correspopnds to the order of the above KeyboardChoices
-var ResponseMapping = [true, false];
+var ResponseMapping = [0, 1];
 
 // Timings of the different trial phases in MILLISECONDS
 var StimOnTime = 2500
@@ -54,15 +54,17 @@ var FastStart = true
 // ===================================================
 
 // This is for rapid testing
-MaxTrials = 5
-StimOnTime = 250
-RetOnTime = 250
+MaxTrials = 15
+StimOnTime = 500
+RetOnTime = 500
 
-var instructions = ['This is the Verbal Delayed Match to Sample Task',
-	'<p>Press [LEFT] if the letter WAS in the set.<br>Press [RIGHT] if the letter WAS NOT in the set.<br>',
-	'<p>You will NOT receive feedback after each trial.</p>',
-	'Remember that the letters to study will be in white and CAPITALIZED. The test letter will be in blue and will be lowercase.',
-	'Try to respond as quickly and as accurately as possible. Press next to begin.']
+var instructions = [
+	{'page': '<p class="Instructions">This is the Verbal Delayed Match to Sample Task</p>'},
+	{'page': '<p class="Instructions">Press [Yes] if the letter WAS in the set.<br>Press [No] if the letter WAS NOT in the set.</p>'},
+	{'page': '<p class="Instructions">You will NOT receive feedback after each trial.</p>'},
+	{'page': '<p class="Instructions">Remember that the letters to study will be in white and CAPITALIZED. The test letter will be in blue and will be lowercase.</p>'},
+	{'page': '<p class="Instructions">Try to respond as quickly and as accurately as possible. Press next to begin.</p>'},
+	]
 
 
 // The following are stimulus lists that are carefully selected to be counterbalanced for 

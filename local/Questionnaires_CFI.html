@@ -11,7 +11,8 @@
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-instructions.js"></script>
     
-    <script src="../jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="../jspsych_addons/jspsych-survey-likert-rich.js"></script>
+    <script src="../jspsych_addons/plugin-survey-likert.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <script src='../config/Language_Config.js'>//Load language</script>
     <script> 
@@ -24,7 +25,7 @@
 
     <link rel="stylesheet" type='text/css' href='../css/LikertQuestionnaires.css'>
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-    
+    <link rel="stylesheet" type='text/css' href='../css/likert.css'>
     <script src="../functions/questionnaire_functions.js"></script>
   <style>
     input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
@@ -61,6 +62,7 @@
     // the correct complete values calculated across all pages of the questionnaire.
     var Sum = 0
     var MissedQuestions = 0
+    console.log(itemPages)
     // Prepare the questionnaire
     var Test = {
         type: jsPsychSurveyLikert,

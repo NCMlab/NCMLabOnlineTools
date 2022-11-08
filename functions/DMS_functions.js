@@ -53,21 +53,21 @@ function PutLettersInGrid(LetterList,NRows,NCols, width=600, height=300, FontSiz
 function CountdownTimer(MillisecondsPerNumber = 1000)
 	{
     var Three = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">3</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: MillisecondsPerNumber,
       }
     var Two = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">2</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: MillisecondsPerNumber,
       }
     var One = {
-      type: 'html-keyboard-response',
+      type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">1</p>',
-      choices: jsPsych.NO_KEYS,
+      choices: [],
       trial_duration: MillisecondsPerNumber,
       }
 
