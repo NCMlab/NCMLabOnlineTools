@@ -78,7 +78,8 @@ function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {
 	// cycle over the list of stimuli and make a list of audio file paths
 	var AudioFilePaths = []
 	for ( let i = 0; i < Stimuli.length; i ++ ) {
-		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
+//		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
+		AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i]))
 	}
 	return AudioFilePaths
 }

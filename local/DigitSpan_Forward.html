@@ -21,10 +21,11 @@
     <script src="../functions/StairClass.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src='../config/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../config/"+Language+"/Stroop_Setup_TouchScreen.js"
+        var url = "../config/"+Language+"/DigitSpan_Setup.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "../config/"+Language+"/General_Setup.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
@@ -36,7 +37,10 @@
   <script>
 
   
-  Stimuli = CreateDigitList(2)
+  let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
+  console.log(stair1)
+
+  Stimuli = CreateDigitList(1)
   Input = MakeListOfStimuli(FolderOfAudioFiles, Stimuli)
 
   var jsPsych = initJsPsych({
@@ -65,12 +69,13 @@
   var timeline = [];
   var trial = {
     type: jsPsychAudioKeyboardResponse,
-    stimulus: function() {
-      var file = jsPsych.timelineVariable('file')
-      console.log(file)
-      return file;
-    },
+    stimulus: MakeListOfStimuli(FolderOfAudioFiles, CreateDigitList(3)), 
+    // stimulus: function() {
+    //   var file = jsPsych.timelineVariable('file')
+    //   return file;
+    // },
     choices: ['e', 'i'],
+    trial_duration: AudioDuration, 
     prompt: "<p>Is the pitch high or low? Press 'e' for low and 'i' for high.</p>",
     response_ends_trial: true
   };
@@ -90,7 +95,6 @@
       var trial_data = jsPsych.data.getLastTrialData().values();
       var response = trial_data[0].response;
       console.log(CheckResponse(Stimuli, response))
-      
     }
   };
 
@@ -99,12 +103,20 @@
       timeline: [trial],
       timeline_variables: Input,
       randomize_order: false,
-      trial_duration: AudioDuration, 
       repetitions: 1,
     }
+
+
+
+  var loop_node = {
+      timeline: [trial_procedure, NumberPadTrial],
+      loop_function: function(data){
+      return (! stair1.Finished)
+     }
+    }
   timeline.push(pre_audio)
-  timeline.push(trial_procedure)
-  timeline.push(NumberPadTrial)
+  timeline.push(loop_node)
+  
   jsPsych.run(timeline)
 </script>
   </body>

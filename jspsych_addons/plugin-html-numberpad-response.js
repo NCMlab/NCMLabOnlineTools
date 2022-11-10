@@ -169,11 +169,11 @@ var jsPsychNumberPadResponse = (function (jspsych) {
               var btns = document.querySelectorAll(".jspsych-html-button-response-button button");
               // push the response to the array 
               // What to do if the Enter button is pressed
-              if (parseInt(choice) == 10) {
+              if (parseInt(choice) == 11) {
                 console.log('End Trial')
                 end_trial();
               }
-              else if (parseInt(choice) == 11) {
+              else if (parseInt(choice) == 10) {
                 console.log('BACKSPACE Trial')
                 response.button.pop();
                 document.getElementById('jspsych-html-button-response-stimulus').innerHTML = '<p>'+response.button+'</p>';

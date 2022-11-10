@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digit Span</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../jspsych/dist/jspsych.js"></script>
+<script src="../jspsych/dist/plugin-audio-keyboard-response.js"></script>
+<script src="../jspsych/dist/plugin-html-button-response.js"></script>
+<script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+<script src="../jspsych/dist/plugin-call-function.js"></script>
+
+<script src="../jspsych/dist/plugin-preload.js"></script>
+<script src="../functions/fds_adaptive.js"></script>
+<link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+<link rel="stylesheet" type='text/css' href='../css/fds-style.css'>
+
+</head>
+<body>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+</body>
+<script>
+var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+      }
+});
+//Define Timeline
+var timeline = [];
+
+//Function to load sounds only if useAudio is set to true in bds_adaptive.js
+function loadSounds(){
+if(useAudio){
+	return fds_sounds;
+	} else {
+	return null;
+  }};
+
+//Function to give the option for a local save of the data
+var localSave;
+
+function saveData() {
+	if(localSave == 1) {
+		var identifier = 'FDS_'+Math.round(new Date().getTime()/1000)+'.csv';
+		jsPsych.data.get().localSave('csv',identifier);
+		alert("You may now close this tab.");
+	} else {
+		alert("You may now close this tab.");
+		}
+	};
+
+//Final screen
+var save_data = {
+	type: jsPsychHtmlButtonResponse,
+	stimulus: '<p>This concludes the task. Would you like to save the data?</p>',
+	choices: ['No','Yes'],
+	on_finish: function(data){
+		localSave = jsPsych.data.get().last(1).values()[0].response;
+	}
+};
+
+//Push components to experiment timeline
+timeline.push(fds_adaptive); //from bds_adaptive.js
+//timeline.push(save_data); //final screen asking about data
+
+//Initialize the Experiment
+jsPsych.run(timeline)
+
+</script>
+</body>
+</html>
