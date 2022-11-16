@@ -1,8 +1,3 @@
-var FullScreenMode = false;
-var TextFontSize = "30px";
-var StimulusFontSize = '60px';
-
-var keyboard_path = "./assets/images/StroopColorsKeyboard.png"
 
 var ColorInstrText = [
       {'page':'<p class="Instructions">Welcome to the Stroop Color experiment.</p>'},
@@ -55,26 +50,6 @@ var WordThankYouText = [{'page': 'Thank you. Press Next to end the experiment.'}
 
 var ColorWordThankYouText = [{'page': 'Thank you. Press any key to end the experiment.'}]
 
-/* If the response choice get modified here they also need to be modified below
-*/
-var ResponseChoices = ['v','b','n','m',27]
-
-var ResponseButtons = ['Red','Yellow','Green','Blue']
-
-//var FixationLength = 500; // This is in milliseconds
-
-var ColorPracticeRepeats = 1
-var WordPracticeRepeats = 1 
-var ColorWordPracticeRepeats = 1
-
-// Since there are 4 possible trials, the number of trials will be 4 times the number of repeats
-var ColorTestRepeats = 1
-// Since there are 4 possible trials, the number of trials will be 4 times the number of repeats
-var WordTestRepeats = 1
-// Since there are 16 possible trials, the number of trials will be 4 times the number of repeats
-var ColorWordTestRepeats = 4
-
-
 /* ========================================================= 
 	This is the stimuli list for both stroop color and word
    The green is very bright. TO make it less bright change it to something like (0,200,0)
@@ -82,24 +57,6 @@ var ColorWordTestRepeats = 4
 var StroopWordPrompt = "<p class='PromptText'>What word is shown below?</p>";
 var StroopColorPrompt = "<p class='PromptText'>What color is shown below?</p>";
 var StroopColorWordPrompt = "<p class='PromptText'>What color is the word written in?</p>";
-
-
-function PutStimIntoTable(prompt, stim) {
-    var html = '';
-    html += '<table style="height:100%; text-align:center">'
-    html += '<tr style="height:15%">'
-    html += '<td>'
-    html += prompt
-    html += '</td>'
-    html += '</tr>'
-    html += '<tr>'
-    html += '<td>'
-    html += stim
-    html += '</td>'
-    html += '</tr>'
-    html += '</table>'
-    return html
-}
 
 var StroopWordList = [
    {

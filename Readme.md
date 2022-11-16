@@ -1,7 +1,10 @@
 - assets
-- - images
+-- images
 - config
-- - EN (English configuration files)
+-- Instructions
+--- EN (English instruction files)
+-- Parameters
+files containing the parameters and specific functions for different tasks
 - css
 - functions
 functions utilized by different tasks
