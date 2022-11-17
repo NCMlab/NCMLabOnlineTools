@@ -16,7 +16,7 @@ var fixation = {
   type: jspsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    stim = PutStimIntoTable(StroopColorPrompt, '<p class="Fixation">+</p>');
+    stim = PutStimIntoTable(StroopWordPrompt, '<p class="Fixation">+</p>');
     return stim
   },
   choices: ResponseButtons,
@@ -30,26 +30,25 @@ var fixation = {
 }
 
 // Define the stimuli
-var Stimulus = {
-  type: jspsychHtmlButtonResponseTouchscreen,
-  stimulus: function()
-  {
-    var color = jsPsych.timelineVariable('Color')
-    var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
-
-    stim = PutStimIntoTable(StroopColorPrompt, stim) 
-    return stim
-  },
-  choices: ResponseButtons, 
-  margin_horizontal: GapBetweenButtons,
-  post_trial_gap: 0,
-  prompt: StroopColorPrompt, //Add this to config file
-  on_finish: function(data){
-    data.button = jsPsych.timelineVariable('button'),
-    // check to see if the response is correct 
-    data.correct = data.response == data.button;
-    },
-};
+  var Stimulus = {
+    type: jspsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+      {
+        //var Stim = jsPsych.timelineVariable('Word')
+        var Stim = '<p  class="Fixation">' +jsPsych.timelineVariable('Word')+'</p>'
+        Stim = PutStimIntoTable(StroopWordPrompt, Stim) 
+        return Stim
+      },
+    choices: ResponseButtons, 
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    prompt: StroopWordPrompt, //Add this to config file
+    on_finish: function(data){
+      data.button = jsPsych.timelineVariable('button'),
+      // check to see if teh response is correct 
+      data.correct = data.response == data.button;
+      },
+  };
 
 // Define the feedback
 var feedback = {
@@ -62,12 +61,12 @@ var feedback = {
     } else {
       var stim = '<p style="font-size:'+FeedbackFontSize+'";>Incorrect</p>';
     }
-    return PutStimIntoTable(StroopColorPrompt, stim)
+    return PutStimIntoTable(StroopWordPrompt, stim)
   },
   choices: ResponseButtons,
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: StroopColorPrompt,
+  prompt: StroopWordPrompt,
   trial_duration: FeedbackLength,
   on_finish: function(data){
     data.task = 'feedback'
@@ -79,9 +78,8 @@ var debrief = {
   prompt: '',
   type: jspsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*ColorPracticeRepeats)
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
         console.log(DataFromThisPracticeRun)
-        console.log("HELLO WORLD")
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
         var accuracy = Math.round(NumberCorrect / total_trials * 100);
@@ -148,35 +146,35 @@ var if_node = {
 // Define procedures using the stimuli
 var thank_you = {
     timeline: [Instructions],
-    timeline_variables: ColorThankYouText,
+    timeline_variables: WordThankYouText,
     randomize_order: false,
     repetitions: 1,
   }
 // Define a practie procedure which provides feedback
   var instr_procedure = {
       timeline: [Instructions],
-      timeline_variables: ColorInstrText,
+      timeline_variables: WordInstrText,
       randomize_order: false,
       repetitions: 1,
     }
   
   var instr_test_procedure = {
       timeline: [Instructions],
-      timeline_variables: ColorTestInstrText,
+      timeline_variables: WordTestInstrText,
       randomize_order: false,
       repetitions: 1,
     }
 
   var instr_poor_performance = {
       timeline: [Instructions],
-      timeline_variables: ColorInstrPoorPerformanceText,
+      timeline_variables: WordInstrPoorPerformanceText,
       randomize_order: false,
       repetitions: 1,
     }
   
   var thank_you = {
       timeline: [Instructions],
-      timeline_variables: ColorThankYouText,
+      timeline_variables: WordThankYouText,
       randomize_order: false,
       repetitions: 1,
     }
