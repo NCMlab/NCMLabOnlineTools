@@ -18,19 +18,14 @@
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../jspsych_addons/plugin-html-numberpad-response.js"></script>
     <script src="../functions/DigitSpan_functions.js"></script>
-    <script src="../functions/StairClass.js"></script>
+    <script src="../functions/StairClass_functions.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src='../config/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../config/"+Language+"/DigitSpan_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "../config/"+Language+"/General_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-
+    <script src='../config/DigitSpan_setup.js'></script>
+    <script src='../config/General_setup.js'></script>
+    <script src='../Language_Config.js'>//Load language</script>
+    
   </head>
     <body>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
