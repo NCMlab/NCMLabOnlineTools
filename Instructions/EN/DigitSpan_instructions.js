@@ -18,3 +18,7 @@ var GettingStartedText = [
 	];
 
 var ThankYouText = [{'page':'Thank you. Press any key to end the experiment.'}]
+
+
+var ForwardTrialQuestion = '<p class="Instructions">Enter the number list you heard.</p>'
+var BackwardTrialQuestion = '<p class="Instructions">Enter the number list you heard <b>Backward</b>.</p>'

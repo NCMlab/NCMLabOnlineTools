@@ -17,19 +17,17 @@ function MaxInitialNumberList(ListLength) {
 	}
 	return arr
 }
+function RevereseStimList(Stimuli) {
+	return Stimuli.reverse()
+}
 
 
-
-function CreateDigitList(ListLength, Direction = 'Forward'){
+function CreateDigitList(ListLength){
 	arr = MaxInitialNumberList(ListLength)
 	ShuffledArray = shuffle(arr)
 	List = ShuffledArray.slice(0,ListLength)
 	console.log(List)
-	if ( Direction == 'Backward' ) {
-		List = List.reverse()
-	}
 	return List
-
 }
 
 function ConvertResponseStringToDigits(input, Direction) {
