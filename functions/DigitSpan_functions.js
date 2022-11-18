@@ -1,15 +1,14 @@
 
 var MaxNumberOfDigits = 20;
-var FolderOfAudioFiles = '../assets/NumberSoundFiles/';
-var AudioFileNameStructure = 'Xc.wav';
+var FolderOfAudioFiles = '../assets/digits/';
+var AudioFileNameStructure = 'XN.wav';
 var AudioDuration = 1000;
 
-
-function MaxInitialNumberList() {
+function MaxInitialNumberList(ListLength) {
 	// Make initial list of digits of maximum length
 	var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	count = 1
-	while ( arr.length < MaxNumberOfDigits ) {
+	while ( arr.length < ListLength ) {
 		arr.push(count)
 		count += 1
 		if ( count > 9) {
@@ -22,7 +21,7 @@ function MaxInitialNumberList() {
 
 
 function CreateDigitList(ListLength, Direction = 'Forward'){
-	arr = MaxInitialNumberList()
+	arr = MaxInitialNumberList(ListLength)
 	ShuffledArray = shuffle(arr)
 	List = ShuffledArray.slice(0,ListLength)
 	console.log(List)
@@ -38,9 +37,7 @@ function ConvertResponseStringToDigits(input, Direction) {
 }
 
 function CheckResponse(Stimuli, Response) {
-	console.log(Stimuli)
-	console.log(Response)
-  	if (Stimuli === Response) return true;
+  if (Stimuli === Response) return true;
 	if (Stimuli == null || Response == null) return false;
   	if (Stimuli.length !== Response.length) return false;
 
@@ -54,7 +51,6 @@ function CheckResponse(Stimuli, Response) {
   		}
   	return true;
 }
-
 
 
 function shuffle(array) {
@@ -79,7 +75,7 @@ function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {
 	var AudioFilePaths = []
 	for ( let i = 0; i < Stimuli.length; i ++ ) {
 //		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
-		AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i]))
+		AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
 	}
 	return AudioFilePaths
 }

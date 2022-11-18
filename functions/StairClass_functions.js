@@ -71,6 +71,7 @@
 	  			this.CurrentDirection = -1	
 	  		}  			
   		}
+  		
   		// Check to see if any stopping conditions are met
   		checkFinished() {
   			if (this.ReversalCount == this.MaxReversals) {

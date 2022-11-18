@@ -84,7 +84,6 @@ var jsPsychNumberPadResponse = (function (jspsych) {
           
           html += '<div id="jspsych-html-button-response-btngroup">';
           html += '<table class="center"><tr>';
-          console.log(trial.choices.length)
           // What to do if buttons 1 - 0 are pressed 
           for (var i = 0; i < trial.choices.length-1; i++) {
               var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
@@ -104,7 +103,6 @@ var jsPsychNumberPadResponse = (function (jspsych) {
                 html += '</tr><tr>'
               }
           };
-          console.log(str)
           //str = buttons[trial.choices.length].replace(/%choice%/g, trial.choices[trial.choices.length]);
           var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
           html += '<tr><th colspan="3">'
@@ -174,15 +172,12 @@ var jsPsychNumberPadResponse = (function (jspsych) {
                 end_trial();
               }
               else if (parseInt(choice) == 10) {
-                console.log('BACKSPACE Trial')
                 response.button.pop();
                 document.getElementById('jspsych-html-button-response-stimulus').innerHTML = '<p>'+response.button+'</p>';
               }
               else {
                 response.button.push(parseInt(choice)+1);
-                
                 document.getElementById('jspsych-html-button-response-stimulus').innerHTML = '<p>'+response.button+'</p>';
-                
                 response.rt = rt;
               }
               

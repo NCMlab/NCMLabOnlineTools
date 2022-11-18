@@ -6,11 +6,9 @@ var stimListOfFiles;
 var idx = 0; //for indexing the current letter to be presented
 var exitLetters; //for exiting the letter loop
 var TrialCount = 1;
-
+var FDSMaxTrials = 5;
 // =======================================================================
 var FDSstaircase = new Stair(FDSCurrent, MinValue, MaxValue, MaxReversals, FDSMaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
-console.log(FDSstaircase)
-
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -24,12 +22,7 @@ var preload_digits = {
   audio: function() {
     var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     var List = MakeListOfStimuli(FolderOfAudioFiles, initList)
-    console.log(initList)
-    console.log(List)
     return List
-  },
-  on_finish: function() {
-    console.log("All is good")
   },
 };
 // =======================================================================
@@ -41,30 +34,28 @@ var preload_digits = {
 // This screen is required so that the audio can be loaded and played
 var setup_fds = {
   type: jspsychHtmlButtonResponseTouchscreen,
-  stimulus: "HELLO",  //function() {return '<p>Trial '+ TrialCount +' of '+ FDSMaxTrials +'</p>';},
-  choices: ['BegXXXXin'],
-  prompt: "DF ",
-  //post_trial_gap: TimeGapBetweenAudioLetters,
- /* on_finish: function(){
-    console.log(FDSstaircase.Current)
+  stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ FDSMaxTrials +'</p>';},
+  choices: [],
+  trial_duration: 1000,
+  prompt: "",
+  post_trial_gap: TimeGapBetweenAudioLetters,
+  on_finish: function(){
     stimList = CreateDigitList(FDSstaircase.Current)
     stimListOfFiles = MakeListOfStimuli(FolderOfAudioFiles, stimList)
-    console.log(stimListOfFiles)
     TrialCount += 1
-    idx = 1; //reset the index prior to the letter presentation
-  }*/
+    idx = 0; //reset the index prior to the letter presentation
+  },
 };
 
 // letter audio presentation
 var letter_fds = {
-  on_load: function() {console.log('HERE')},
   type: jsPsychAudioKeyboardResponse,
   stimulus: function(){
-    console.log("Making stimuli")
     return stimListOfFiles[idx]},
   choices: 'NO_KEYS',
   post_trial_gap: TimeGapBetweenAudioLetters,
   trial_ends_after_audio: true,
+  prompt: '<p class="Fixation">+</p>',
   on_finish: function(){
     idx += 1; //update the index
     //check to see if we are at the end of the letter array
@@ -94,16 +85,10 @@ var NumberPadResponse = {
       var accuracy = CheckResponse(stimList, response)
       // update the staircase
       FDSstaircase.Decide(accuracy)
-      if (accuracy) {
-        console.log('Correct!')
-      }
-      else {
-        console.log('Incorrect!')
-      }
     }
   };
 
-// Define instructions
+ // Define instructions
 var Instructions = {
       type: jspsychHtmlButtonResponseTouchscreen,
       stimulus: function()
@@ -116,11 +101,9 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
     }
-
+ 
 // =======================================================================
 // Define any logic used in the experiment
-
-
 var letter_proc = {
     timeline: [letter_fds],
     loop_function: function(){
@@ -132,9 +115,8 @@ var letter_proc = {
     }
   };
 
-// procedure that loops over trials
 var procedure = {
-  timeline: [setup_fds, letter_proc],//, NumberPadResponse],
+  timeline: [setup_fds, letter_proc, NumberPadResponse],//, NumberPadResponse],
   loop_function: function(){
     // The criteria for stopping are: 
     //    reached the max number of trials.
@@ -147,8 +129,11 @@ var procedure = {
   }
 };
 
+
 // =======================================================================    
 // Define procedures using the stimuli
+// procedure that loops over trials
+
  var instr_procedure = {
       timeline: [Instructions],
       timeline_variables: AudioInstructions,
@@ -156,12 +141,16 @@ var procedure = {
       repetitions: 1,
     }
 
+
+
+
+
 // ======================================================================= 
   // Add procedures to the timeline
+timeline.push(preload_digits)
+timeline.push(instr_procedure)
+timeline.push(procedure)
 
-  //timeline.push(preload_digits)
-  //timeline.push(instructions_proc)
-timeline.push([setup_fds])
   
 
 

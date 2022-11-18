@@ -1,15 +1,25 @@
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 14
-var MaxReversals = 5
-var StartValue = 4
-var MinValue = 1
-var MaxValue = 20
-var StepSize = 1
-var NUp = 2
-var NDown = 1
-var FastStart = true
+var FDSCurrent = 3 // value to start at
+var BDSCurrent = 2 // value to start at
+var MinValue = 1 // minimum value possible
+var MaxValue = 30 // maximum value possible
+var StepSize = 1 // step size
+var NUp = 2 // number of required correct answers in a row before increasing load
+var NDown = 1 // number of required incorrect answers in a row before decreasing load
+var FastStart = true // At the bginning increase load after each correct response until the 
+				   	// first incorrect response is made
+var MaxReversals = 5 // Max number of reversals can be used as a stopping criteria
+var MaxTime = 420 //the amount of time for the experiment can also be used as a stopping criteria
+ 
+
+
+
 // ===================================================
+var TimeGapBetweenAudioLetters = 500 // milliseconds
+var BDSMaxTrials = 14
+var FDSMaxTrials = 14
+
 
 var useAudio = true; // change to false if you want this to be a visual task!
 
@@ -29,9 +39,8 @@ var digit_list = [1,2,3,4,5,6,7,8,9]; //digits to be used (unlikely you will wan
 var startingSpan = 3; //where we begin in terms of span
 var currentSpan; //to reference where participants currently are
 var spanHistory = []; //easy logging of the participant's trajectory
-var stimList; //this is going to house the ordering of the stimuli for each trial
-var idx = 0; //for indexing the current letter to be presented
-var exitLetters; //for exiting the letter loop
 
-var aud_digits = ['digits/one.wav', 'digits/two.wav', 'digits/three.wav', 'digits/four.wav', 'digits/five.wav', 'digits/six.wav', 'digits/seven.wav', 'digits/eight.wav', 'digits/nine.wav']; //the digits
+
+
+//var aud_digits = ['../assets/digits/one.wav', '../assets/digits/two.wav', '../assets/digits/three.wav', '../assets/digits/four.wav', '../assets/digits/five.wav', '../assets/digits/six.wav', '../assets/digits/seven.wav', '../assets/digits/eight.wav', '../assets/digits/nine.wav']; //the digits
 

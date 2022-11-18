@@ -10,38 +10,43 @@
     <title>NCMLab: Digit Span Forward</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>    
   <body>
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-instructions.js"></script>
     <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-html-button-response.js"></script>
     <script src="../jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-preload.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../jspsych_addons/plugin-html-numberpad-response.js"></script>
     <script src="../config/General_Setup.js"></script>
     <script src='../Language_Config.js'>//Load language</script>
+
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../Instructions/"+Language+"/DigitSpan_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../config/DigitSpan_Setup.js"></script>
+    <script src="../functions/StairClass_functions.js"></script>
     <script src="../functions/DigitSpan_functions.js"></script>
-    <script src="../functions/DigitSpan_Forward_experiment.js"></script>
+    <script src="../functions/DigitSpan_Forward_experiment2.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
 
     jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_interaction_data_update: function(data) {
-        console.log(JSON.stringify(data))
-    },
-    on_finish: function() {
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
       //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
     }
   });
-  jsPsych.run(timeline)
+  jsPsych.run(timeline);
   </script>
 </html>

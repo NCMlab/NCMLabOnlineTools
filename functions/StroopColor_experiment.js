@@ -146,12 +146,7 @@ var if_node = {
 }
 // =======================================================================    
 // Define procedures using the stimuli
-var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: ColorThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }
+
 // Define a practie procedure which provides feedback
   var instr_procedure = {
       timeline: [Instructions],
