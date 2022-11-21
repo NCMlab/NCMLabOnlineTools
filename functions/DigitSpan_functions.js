@@ -1,6 +1,6 @@
 
 var MaxNumberOfDigits = 20;
-var FolderOfAudioFiles = '../assets/digits/';
+// var FolderOfAudioFiles = '../assets/digits/';
 var AudioFileNameStructure = 'XN.wav';
 var AudioDuration = 1000;
 
@@ -73,6 +73,7 @@ function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {
 	var AudioFilePaths = []
 	for ( let i = 0; i < Stimuli.length; i ++ ) {
 //		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
+		console.log(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
 		AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
 	}
 	return AudioFilePaths
