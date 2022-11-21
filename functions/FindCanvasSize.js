@@ -34,7 +34,7 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
   
   if ( ! EnoughWidth  &&  ! EnoughHeight ) {
     console.log('Not enought height OR width')
-    // check if screen is portrair or landscape
+    // check if screen is portrait or landscape
     if ( ScreenWidth > ScreenHeight) {
       console.log('Landscape')
       // landscape -- use height adjust width
