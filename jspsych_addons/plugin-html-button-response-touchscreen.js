@@ -1,4 +1,4 @@
-var jspsychHtmlButtonResponseTouchscreen = (function (jspsych) {
+var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
   'use strict';
 
   const info = {

@@ -15,27 +15,8 @@
   </head>    
   <body>
     <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-html-button-response.js"></script>
-    
-    <script src="../jspsych/dist/plugin-audio-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-preload.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../config/General_Setup.js"></script>
-    <script src='../Language_Config.js'>//Load language</script>
-
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../Instructions/"+Language+"/DigitSpan_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-    <script src="../config/DigitSpan_Setup.js"></script>
-    <script src="../functions/StairClass_functions.js"></script>
-    <script> var Direction = "Forward"</script>
-    <script src="../functions/DigitSpan_functions.js"></script>
-    <script src="../functions/DigitSpan_experiment.js"></script>
+<script src="../config/General_Setup.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
@@ -49,6 +30,22 @@
       //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
     }
   });
+var timeline = [];
+   var RESP = {
+      type: jspsychHtmlButtonResponseTouchscreen,
+      
+      stimulus: function(){return PutStimIntoTable("JASON")},//response_grid,
+      post_trial_gap: 0,
+      margin_horizontal: 4,
+      choices: ['NEXT',"BACK"]
+ }
+
+ var practice_procedure = {
+  timeline: [RESP],
+  randomize_order: true,
+  repetitions: 1,
+}
+  timeline.push(practice_procedure)
   jsPsych.run(timeline);
   </script>
 </html>
