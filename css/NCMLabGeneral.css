@@ -96,7 +96,7 @@ p.Instructions {
     background-color:#fff;
     overflow:hidden;
     color: #000;
-    border-radius:15px;
+    border-radius:10px;
   border: 2px solid black;
 }
 
@@ -104,13 +104,13 @@ p.Instructions {
     float:left;
     position: relative;
     width: 47%;
-    height: 15%; /* = width for a 1:1 aspect ratio */
+    height: 25%; /* = width for a 1:1 aspect ratio */
     margin:1.5%;
     background-color:#fff;
     overflow:hidden;
     color: #000;
-    border-radius:15px;
-    font-size: 20px;
+    border-radius:10px;
+    font-size: 2vh;
   border: 2px solid black;
 }
 
@@ -125,24 +125,19 @@ p.Instructions {
 .numbers{
     font-weight:900;
     text-align: center;
-    font-size: 50px;
+    font-size: 4vh;
     position: relative;
     top: 50%; 
 }
 
 .numbox {
   width:30vw;
-  height: 30vw;
+  height: 40vw;
   position:absolute;
-  top:50%;
+  top:40%;
   left:50%;
   margin-right:-50%;
   transform: translate(-50%,-50%);
 }
 
-  position:absolute;
-  top:50%;
-  left:50%;
-  margin-right:-50%;
-  transform: translate(-50%,-50%);
-}
+

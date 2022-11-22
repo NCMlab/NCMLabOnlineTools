@@ -99,7 +99,7 @@ var response_grid =
     '<button id = button_8 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>8</div></div></button>' +
     '<button id = button_9 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>9</div></div></button>' +
     '<button class = clear_button id = "ClearButton" onclick = "clearResponse()">Clear</button>'+
-    '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 30px; color:blue;"><b></b></div></div>'
+    '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
 
  // Define instructions
 var Instructions = {
@@ -189,6 +189,7 @@ var procedure = {
     }
 // ======================================================================= 
 // Add all procedures to the timeline
+timeline.push(get_response)
 timeline.push(preload_digits)
 timeline.push(instr_procedure)
 timeline.push(procedure)
