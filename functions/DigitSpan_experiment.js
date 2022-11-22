@@ -189,7 +189,6 @@ var procedure = {
     }
 // ======================================================================= 
 // Add all procedures to the timeline
-timeline.push(get_response)
 timeline.push(preload_digits)
 timeline.push(instr_procedure)
 timeline.push(procedure)
