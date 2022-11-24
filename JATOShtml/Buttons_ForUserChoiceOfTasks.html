@@ -26,18 +26,22 @@
       jatos.setStudySessionData(jsPsych.TEMP)
       // Check which button was pressed and advance to that task
       switch(jsPsych.responseButton) {
-        case "Word":
+        case "Stroop Word":
           // Word
           // This sets session data which can be accessed later by other tasks
           // find current case in the session data list and remove it
           // find and remove entry in the list
-          jatos.startComponent(11);
-        case 'Color':
-          // Color
-          jatos.startComponent(12);
-        case 'ColorWord':
-          // Word/Color
-          jatos.startComponent(13);
+          jatos.startComponent(32);
+        case 'Stroop Color':
+          jatos.startComponent(34);
+        case 'Stroop ColorWord':
+          jatos.startComponent(35);
+        case 'Digitspan Forward':
+          jatos.startComponent(36);
+        case 'Digitspan Backward':
+          jatos.startComponent(37);
+        case 'Trailmaking':
+          jatos.startComponent(33);
         default:
           console.log('DEFAULT') 
       }
@@ -60,7 +64,7 @@
       // the jatos variable can be accessed from all components of this session
       if (Object.keys( jsPsych.TEMP ).length === 0) {
         // the following is a list of all components. It should be saved in a config file
-         jsPsych.TEMP  = ['Word', 'Color','ColorWord']
+         jsPsych.TEMP  = ['Stroop Word', 'Stroop Color','Stroop ColorWord', 'Digitspan Forward', 'Digitspan Backward','Trailmaking']
          jatos.setStudySessionData( jsPsych.TEMP )
       }
       console.log(jatos)
