@@ -6,7 +6,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stroop Word</title>
+    <title>Task Selection</title>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
@@ -27,21 +27,21 @@
       console.log(jsPsych.responseButton)
       // Check which button was pressed and advance to that task
       switch(jsPsych.responseButton) {
-        case 'StroopWord':
+        case '1':
           // Word
           // This sets session data which can be accessed later by other tasks
           // find current case in the session data list and remove it
           // find and remove entry in the list
           jatos.startComponent(32);
-        case 'StroopColor':
+        case '2':
           jatos.startComponent(34);
-        case 'StroopColorWord':
+        case '3':
           jatos.startComponent(35);
-        case 'DigitspanForward':
+        case '4':
           jatos.startComponent(36);
-        case 'DigitspanBackward':
+        case '5':
           jatos.startComponent(37);
-        case 'Trailmaking':
+        case '0':
           jatos.startComponent(33);
         default:
           console.log('DEFAULT') 
@@ -65,7 +65,7 @@
       // the jatos variable can be accessed from all components of this session
       if (Object.keys( jsPsych.TEMP ).length === 0) {
         // the following is a list of all components. It should be saved in a config file
-         jsPsych.TEMP  = ['StroopWord', 'StroopColor','StroopColorWord', 'DigitspanForward', 'DigitspanBackward','Trailmaking']
+         jsPsych.TEMP  = ['0', '1','2', '3', '4','5']
          jatos.setStudySessionData( jsPsych.TEMP )
       }
       console.log(jatos)
