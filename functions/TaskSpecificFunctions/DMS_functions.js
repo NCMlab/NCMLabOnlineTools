@@ -8,7 +8,6 @@ class AdaptiveStimulusList {
     this.CurrentProbe = CurrentProbe;
     this.PreviousProbe = [];
     this.CurrentCorrect = CurrentCorrect;
-
   }
   // return the current stimulus
   getCurrentStim() {return this.CurrentStim}
@@ -53,24 +52,23 @@ function PutLettersInGrid(LetterList,NRows,NCols, width=600, height=300, FontSiz
 function CountdownTimer(MillisecondsPerNumber = 1000)
 	{
     var Three = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">3</p>',
       choices: [],
       trial_duration: MillisecondsPerNumber,
       }
     var Two = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">2</p>',
       choices: [],
       trial_duration: MillisecondsPerNumber,
       }
     var One = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+FontSize+'px">1</p>',
       choices: [],
       trial_duration: MillisecondsPerNumber,
       }
-
     var Countdown_procedure = {
       // Make sure this order is correct: fixation cue and then the stimulus
       // Otherwise the scoring will not make any sense
