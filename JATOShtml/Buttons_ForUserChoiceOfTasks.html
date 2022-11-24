@@ -24,9 +24,10 @@
     on_finish: function() {
       // set the updated list of NON-completed task to the JATOS session data      
       jatos.setStudySessionData(jsPsych.TEMP)
+      console.log(jsPsych.responseButton)
       // Check which button was pressed and advance to that task
       switch(jsPsych.responseButton) {
-        case "Stroop Word":
+        case 'Stroop Word':
           // Word
           // This sets session data which can be accessed later by other tasks
           // find current case in the session data list and remove it
