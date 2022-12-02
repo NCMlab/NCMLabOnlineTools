@@ -1,0 +1,64 @@
+<html>
+<head>
+ <script src="annyang.min.js"></script>
+</head>
+<body>
+<script>
+var List = ['Apple', 'Penny', 'Watch', 'Church','Tin','Beef']
+var HeardList = []
+
+for (var i = 0; i < List.length; i++) {
+  
+  List[i] = List[i].toUpperCase()
+  console.log(List[i])
+};
+if (annyang) {
+  
+  // This is a Hello World Function!.
+  var myFunction1 = function() {
+    console.log("Hello")
+  }
+
+  // This function prints out the spoken words that it recognizes
+  var myFunction2 = function(tag) {
+    console.log(tag)
+    HeardList.push(tag)
+    console.log(HeardList)
+    // See if this item is in the word list
+    if (List.includes(tag.toUpperCase())) 
+    {
+      // find the words index in teh list
+      console.log(List.indexOf(tag.toUpperCase()))
+      console.log('Found One')
+      // remove the item
+      List.splice(List.indexOf(tag.toUpperCase()),1)
+      console.log(List)
+    }
+  }
+  
+  // This is a function assigned to the recognition of a specific word
+  const commands = {
+    'hello': myFunction1,
+  };
+  
+  // This is a function assigned to detecting any word
+  const commands2 = {
+    '*search': myFunction2,
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+  annyang.addCommands(commands2);
+  
+  
+
+  // Start listening.
+  annyang.start({autorestart: false, continuous: true});
+}
+
+
+
+</script>
+
+</body>
+</html>
