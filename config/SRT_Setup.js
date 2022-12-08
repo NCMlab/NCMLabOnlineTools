@@ -12,9 +12,23 @@ var WordList = [
 	{'Word':'PACK'},
 	{'Word':'TIN'},
 	]
+var WordListAlt01 = [
+	{'Word':'THROUGHOUT'},
+	{'Word':'LILY'},
+	{'Word':'FILM'},
+	{'Word':'DISCREET'},
+	{'Word':'LOFT'},
+	{'Word':'BEEF'},
+	{'Word':'STREET'},
+	{'Word':'HELMET'},
+	{'Word':'SNAKE'},
+	{'Word':'DOUG'},
+	{'Word':'PACK'},
+	{'Word':'10'},
+	]
 // Use this list to make sure the voice recognition works well
-var PracticeWordList = [
-	{'Word':'THROW'},
+var WordListAlt02 = [
+	{'Word':'ROW'},
 	{'Word':'LILY'},
 	{'Word':'FILM'},
 	{'Word':'DISCREET'},
@@ -31,7 +45,7 @@ var PracticeWordList = [
 var ResponseButtons = [1,0]
 
 var NBlocks = 5
-var TimePerWord = 1000 // milliseconds
+var TimePerWord = 200 // milliseconds
 var FixationTimeBetweenWords = 200 // milliseconds
 var RecallInstructions = 'Please repeat the entire word list'
 var GetReadyInstructions = 'Get ready for the next trial'
@@ -42,11 +56,8 @@ var Instructions = [
 	{'page': '(including the original list of words and the words you may have forgot). This procedure is repeated for 5 trials. Press Next to begin'},
 	]
 
-var Block01List = [0,1,2,3,4,5,6,7,8,9,10,11]
-var Block02List = [0,1,2,3,4,5,6,7,8,9,10,11]
-var Block03List = [0,1,2,3,4,5,6,7,8,9,10,11]
-var Block04List = [0,1,2,3,4,5,6,7,8,9,10,11]
-var test = [3,4,5]
+var BlockList = [0,1,2,3,4,5,6,7,8,9,10,11]
+
 var CreateSimpleWordList = function(WordList) {
 	var SimpleList = []
 	for (var i = 0; i < WordList.length; i++) {
@@ -58,66 +69,49 @@ var CreateSimpleWordList = function(WordList) {
 // This list is used for checking responses to see if the spoke word is part of 
 // the full list
 var SimpleList = CreateSimpleWordList(WordList)
+var SimpleListAlt01 = CreateSimpleWordList(WordListAlt01)
+var SimpleListAlt02 = CreateSimpleWordList(WordListAlt02)
 
 //ThisBlockList = [0,1,2,3,4,5,6,7,8,9,10,11]
 var FindRecalledWords01 = function(tag) {
     console.log(tag)
+    // record multipel words at once and cycle through the list
+    var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     // See if this item is in the word list
-    if (SimpleList.includes(tag.toUpperCase())) 
-    {
-      // find the words index in the list
-      console.log('Found One')
-      // remove the item
-      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
-      Block02List[SimpleList.indexOf(tag.toUpperCase())]=-99
-      //console.log(SimpleList)
-      console.log(Block02List)
-    }
+    for (var i = 0; i < response.length; i++) {
+	    if (SimpleList.includes(response[i].toUpperCase())) 
+	    {
+	      // find the words index in the list
+	      console.log('Found One')
+	      // remove the item
+	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
+	      BlockList[SimpleList.indexOf(response[i].toUpperCase())]=-99
+	      //console.log(SimpleList)
+	      console.log(BlockList)
+	    }
+	    // if the word is not found in teh primary pronunciation list, check the alternate lists
+	    else if (SimpleListAlt01.includes(response[i].toUpperCase())) 
+	    {
+	      // find the words index in the list
+	      console.log('Found One in the Alt List 01')
+	      // remove the item
+	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
+	      BlockList[SimpleListAlt01.indexOf(response[i].toUpperCase())]=-99
+	      //console.log(SimpleList)
+	      console.log(BlockList)
+	    }
+	    else if (SimpleListAlt02.includes(response[i].toUpperCase())) 
+	    {
+	      // find the words index in the list
+	      console.log('Found One in the Alt List 02')
+	      // remove the item
+	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
+	      BlockList[SimpleListAlt02.indexOf(response[i].toUpperCase())]=-99
+	      //console.log(SimpleList)
+	      console.log(BlockList)
+	    }
+
   }
-
-var FindRecalledWords02 = function(tag) {
-    console.log(tag)
-    // See if this item is in the word list
-    if (SimpleList.includes(tag.toUpperCase())) 
-    {
-      // find the words index in the list
-      console.log('Found One')
-      // remove the item
-      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
-      Block03List[SimpleList.indexOf(tag.toUpperCase())]=-99
-      //console.log(SimpleList)
-      console.log(Block03List)
-    }
-  }
-
-
-var FindRecalledWords03 = function(tag) {
-    console.log(tag)
-    // See if this item is in the word list
-    if (SimpleList.includes(tag.toUpperCase())) 
-    {
-      // find the words index in the list
-      console.log('Found One')
-      // remove the item
-      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
-      Block04List[SimpleList.indexOf(tag.toUpperCase())]=-99
-      //console.log(SimpleList)
-      
-    }
-  }
-
-var checkResponse = function(response) {
-        return response > -99;
 }
 
-var FindTrials2 = function() {
-  CurrentList = jsPsych.data.get().filter({task:'Recall'}).last(1).trials[0].RecallList
-  CurrentList = CurrentList.filter(checkResponse)
-  console.log(CurrentList)
-  return CurrentList  
-}
-
-var FindTrials = function() {
-	return test
-}
 
