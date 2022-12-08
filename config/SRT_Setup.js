@@ -31,7 +31,7 @@ var PracticeWordList = [
 var ResponseButtons = [1,0]
 
 var NBlocks = 5
-var TimePerWord = 200 // milliseconds
+var TimePerWord = 1000 // milliseconds
 var FixationTimeBetweenWords = 200 // milliseconds
 var RecallInstructions = 'Please repeat the entire word list'
 var GetReadyInstructions = 'Get ready for the next trial'
@@ -46,7 +46,7 @@ var Block01List = [0,1,2,3,4,5,6,7,8,9,10,11]
 var Block02List = [0,1,2,3,4,5,6,7,8,9,10,11]
 var Block03List = [0,1,2,3,4,5,6,7,8,9,10,11]
 var Block04List = [0,1,2,3,4,5,6,7,8,9,10,11]
-
+var test = [3,4,5]
 var CreateSimpleWordList = function(WordList) {
 	var SimpleList = []
 	for (var i = 0; i < WordList.length; i++) {
@@ -106,5 +106,18 @@ var FindRecalledWords03 = function(tag) {
     }
   }
 
+var checkResponse = function(response) {
+        return response > -99;
+}
 
+var FindTrials2 = function() {
+  CurrentList = jsPsych.data.get().filter({task:'Recall'}).last(1).trials[0].RecallList
+  CurrentList = CurrentList.filter(checkResponse)
+  console.log(CurrentList)
+  return CurrentList  
+}
+
+var FindTrials = function() {
+	return test
+}
 

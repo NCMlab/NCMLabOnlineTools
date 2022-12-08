@@ -13,6 +13,8 @@ the computer.
 // Define internal variables
 var CurrentList = [11]
 var timeline = [];
+var TrialCount = 0;
+var ind = 0;
 //var data = [];
 //data.WordList = WordList;
 // This is a list of the indices of words to present
@@ -41,17 +43,32 @@ var fixation = {
 }
 // Define the stimuli
 var Stimulus = {
+    on_start: function() {
+        ind = (TrialCount++) % 12
+        console.log(ind)
+        console.log(Block02List[ind])
+      },
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        var Stim = jsPsych.timelineVariable('Word')
-        console.log(Stim)
-        return Stim
+        if (Block02List[ind] > -99) {
+          return jsPsych.timelineVariable('Word')
+        }
+        else {
+          return '+'
+        }
       },
     choices: [], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    trial_duration: TimePerWord,
+    trial_duration: function() {
+      if (Block02List[ind] > -99) {
+        return TimePerWord
+      }
+      else {
+        return 0
+      }
+    },
     prompt: StroopWordPrompt, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
@@ -75,7 +92,10 @@ var RecallRequest01 = {
     on_finish: function(data){
       data.RecallList = Block02List
       data.task = 'Recall'
+      console.log(Block02List)
+      test = [4,3,2]
     },
+
   }
   
 var RecallRequest02 = {
@@ -136,30 +156,13 @@ var RecallRequest03 = {
         }
       }, 
   }
-//  function checkResponse(response) {
-//    console.log(response)
-//    return response > -99;
-//  }
 
-var checkResponse = function(response) {
-        return response > -99;
-}
-
-var FindTrials = function() {
-  CurrentList = jsPsych.data.get().filter({task:'Recall'}).last(1).trials[0].RecallList
-  CurrentList = CurrentList.filter(checkResponse)
-    console.log(CurrentList)
-    return CurrentList  
-}
   var block2 = {
       timeline: [fixation, Stimulus],
-      timeline_variables: WordList, 
-      sample: {
-        type: 'custom',
-        fn: function() {
-          return FindTrials;
-        }
-      },
+      timeline_variables: WordList,
+      repetitions: 1,
+      randomize_order: false
+      
   };
 
   var block3 = {
@@ -194,13 +197,27 @@ var FindTrials = function() {
       repetitions: 1, 
   }
 
+// Conditional Block
+  var CheckForRecalledWord = {
+    timeline: [fixation],
+    conditional_function: function(){
+      trial_counter++;
+      CurrentList = jsPsych.data.get().filter({task:'Recall'}).last(1).trials[0].RecallList
+      if (CurrentList[trial_counter] > -99){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+  
   
 // ======================================================================= 
 // Add procedures to the timeline
 
 timeline.push(block1);
 timeline.push(recall1);
-
 timeline.push(block2);
 timeline.push(recall2);
 timeline.push(block3);
