@@ -92,6 +92,9 @@ var RecallRequest01 = {
     prompt: StroopWordPrompt, //Add this to config file
     on_start: function(SimpleList) {
       BlockList = [0,1,2,3,4,5,6,7,8,9,10,11]
+      HeardList = []
+      BlockRecallCount = 0
+      BlockIntrusionCount = 0
       //data.ThisBlockList = [0,1,2,3,4,5,6,7,8,9,10,11]
       const commands01 = {'*search': FindRecalledWords01};
       annyang.start({autorestart: false, continuous: true});
@@ -100,6 +103,9 @@ var RecallRequest01 = {
     },
     on_finish: function(data){
       data.RecallList = BlockList
+      data.HeardList = HeardList
+      data.RecallCount = BlockRecallCount
+      data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
     },
 
