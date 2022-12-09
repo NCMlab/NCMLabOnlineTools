@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Stroop Word</title>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+  </head>    
+  <body>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    
+    <script src="../config/General_Setup.js"></script>
+    <script src='../Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../Instructions/"+Language+"/Stroop_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    <script src="../config/SRT_Setup.js"></script>
+    <script src="../functions/Experiments/SRT_experiment.js"></script>
+    <script src="../functions/TaskSpecificFunctions/SRT_function.js"></script>
+    <script src="annyang.min.js"></script>
+
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
+  <script>
+
+function createArray(Nrows, Ncols) {
+    var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(0))
+    return arr
+  }
+  
+  var A = createArray(12,5)
+  console.log(A)
+  A[0][1] = 4
+  A[5][3] = 6
+  A[2][3] = 5
+  console.log(A)
+
+
+  console.log(GetColumn(A,1))
+  console.log(GetColumn(A,3))
+  console.log(CountNonZeroWords(GetColumn(A,3))==2)
+  console.log(CheckForTwoCorrectTrials(A))
+    jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_interaction_data_update: function(data) {
+        console.log(JSON.stringify(data))
+    },
+  //  on_finish: function() {
+  //    jsPsych.data.get().localSave('csv','SRT.csv');
+  //  }
+  });
+  //jsPsych.run(timeline)
+  </script>
+
+</html>

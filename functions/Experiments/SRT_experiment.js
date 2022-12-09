@@ -14,7 +14,7 @@ the computer.
 
 var timeline = [];
 // overall
-var TrialCount = 0;
+
 var ind = 0;
 
 
@@ -41,7 +41,6 @@ var fixation = {
         return 0
       }
     },
-  data: {task: 'fixation'}
 }
 // Define the stimuli
 var Stimulus = {
@@ -107,6 +106,8 @@ var RecallRequest01 = {
       data.RecallCount = BlockRecallCount
       data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
+      BlockCount++
+      console.log(ResponseArray)
     },
 
   }
@@ -116,24 +117,31 @@ var RecallRequest01 = {
 // Define the test procedure which does NOT provide feedback
 
 
-  var block1 = {
+  var PresentListOfWords = {
       timeline: [fixation, Stimulus],
       timeline_variables: WordList,
       repetitions: 1,
       randomize_order: false      
   };
 
-  var recall1 = {
+  var recall = {
       timeline: [RecallRequest01],
       randomize_order: false,
       repetitions: 1,      
   }
 
-  
+  var Blocks = {
+    timeline: [PresentListOfWords, recall],
+    randomize_order: false,
+    repetitions: NBlocks,
+  }
   
 // ======================================================================= 
 // Add procedures to the timeline
 
+timeline.push(Blocks)
+/*timeline.push(block1);
+//timeline.push(recall1);
 timeline.push(block1);
 timeline.push(recall1);
 timeline.push(block1);
@@ -141,8 +149,6 @@ timeline.push(recall1);
 timeline.push(block1);
 timeline.push(recall1);
 timeline.push(block1);
-timeline.push(recall1);
-timeline.push(block1);
-timeline.push(recall1);
+timeline.push(recall1);*/
 
 
