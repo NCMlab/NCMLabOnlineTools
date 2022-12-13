@@ -23,7 +23,7 @@
     <script src='../Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../Instructions/"+Language+"/Stroop_Instructions.js"
+        var url = "../Instructions/"+Language+"/SRT_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../config/SRT_Setup.js"></script>
@@ -40,18 +40,36 @@ function createArray(Nrows, Ncols) {
     return arr
   }
   
-  var A = createArray(12,5)
+  var A = create2DArray(12,5)
   console.log(A)
-  A[0][1] = 4
-  A[5][3] = 6
-  A[2][3] = 5
+  A[0][1] = 1
+  A[0][0] = 2
+  A[2][0] = 6
+  A[2][1] = 6
+  A[2][2] = 6
+  A[2][3] = 6
+  A[2][4] = 5
+  A[2][5] = 1
   console.log(A)
+console.log(3!=1)
 
+CalcLongTermStorage(A) 
 
-  console.log(GetColumn(A,1))
-  console.log(GetColumn(A,3))
-  console.log(CountNonZeroWords(GetColumn(A,3))==2)
-  console.log(CheckForTwoCorrectTrials(A))
+BB = CreateSimpleWordList(AAAWordList)
+BBB = CreateSimpleIndexList(AAAWordList)
+console.log(BB)
+console.log(BBB)
+
+WordListIndex = []
+for (var i = 0; i < NWords; i++) {
+  WordListIndex.push(i)
+}
+console.log(WordListIndex)
+IndexOfWordRecalled = 14
+
+WordListIndex[BBB[IndexOfWordRecalled]]=-99
+console.log(WordListIndex)
+
     jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_interaction_data_update: function(data) {

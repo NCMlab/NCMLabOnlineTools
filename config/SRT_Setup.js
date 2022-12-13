@@ -1,61 +1,40 @@
+// This is the word list with the defined spellings
+// The word list may also be modified to have an index mapping added to it. 
 var WordList = [
-	{'Word':'THROW'},
-	{'Word':'LILY'},
-	{'Word':'FILM'},
-	{'Word':'DISCREET'},
-	{'Word':'LOFT'},
-	{'Word':'BEEF'},
-	{'Word':'STREET'},
-	{'Word':'HELMET'},
-	{'Word':'SNAKE'},
-	{'Word':'DUG'},
-	{'Word':'PACK'},
-	{'Word':'TIN'},
+	{'Word':'THROW'}, 	// 0
+	{'Word':'LILY'}, 	// 1
+	{'Word':'FILM'},	// 2
+	{'Word':'DISCREET'},// 3
+	{'Word':'LOFT'},	// 4
+	{'Word':'BEEF'},	// 5
+	{'Word':'STREET'},	// 6
+	{'Word':'HELMET'},	// 7
+	{'Word':'SNAKE'},	// 8 
+	{'Word':'DUG'},		// 9
+	{'Word':'PACK'},	// 10
+	{'Word':'TIN'},		// 11
 	]
-var WordListAlt01 = [
-	{'Word':'THROUGHOUT'},
-	{'Word':'LILY'},
-	{'Word':'FILM'},
-	{'Word':'DISCREET'},
-	{'Word':'LOFT'},
-	{'Word':'BEEF'},
-	{'Word':'STREET'},
-	{'Word':'HELMET'},
-	{'Word':'SNAKE'},
-	{'Word':'DOUG'},
-	{'Word':'PACK'},
-	{'Word':'10'},
-	]
-// Use this list to make sure the voice recognition works well
-var WordListAlt02 = [
-	{'Word':'ROW'},
-	{'Word':'LILY'},
-	{'Word':'FILM'},
-	{'Word':'DISCREET'},
-	{'Word':'LOFT'},
-	{'Word':'BEEF'},
-	{'Word':'STREET'},
-	{'Word':'HELMET'},
-	{'Word':'SNAKE'},
-	{'Word':'DUG'},
-	{'Word':'PACK'},
-	{'Word':'TIN'},
+
+var AlternatePronunciationsWordList = [
+	{'Word':'THROUGHOUT','index':0},
+	{'Word':'THROUGH','index':0},
+	{'Word':'ROW','index':0},
+	{'Word':'DOUG','index':9},
+	{'Word':'10','index':11},
+	{'Word':'DOG','index':9}
 	]
 
 var ResponseButtons = [1,0]
-
-var NBlocks = 5
-var TimePerWord = 200 // milliseconds
+// The number of immediate recall blocks 
+var NBlocks = 6
+// The time each word is presented on the screen for
+var TimePerWord = 100 // milliseconds
+// The amount of time to show a crosshair on the screen between each word
 var FixationTimeBetweenWords = 200 // milliseconds
-var RecallInstructions = 'Please repeat the entire word list'
-var GetReadyInstructions = 'Get ready for the next trial'
-var Instructions = [
-	{'page': 'You will see and hear a list of 12 words, presented one by one.'},
-	{'page': 'After you see and hear the list, you will have to recall as many of the words as you can in 1 minute by speaking them out loud.'},
-	{'page': 'For the words that were not recalled during the trial, they will be repeated and you will be asked to recall the entire list of words again.'},
-	{'page': '(including the original list of words and the words you may have forgot). This procedure is repeated for 5 trials. Press Next to begin'},
-	]
 
-//ThisBlockList = [0,1,2,3,4,5,6,7,8,9,10,11]
+var RecallDuration = 60 // in seconds
 
+
+NWords = WordList.length
+console.log(NWords)
 
