@@ -13,7 +13,8 @@ the computer.
 // Define internal variables
 var timeline = [];
 var ind = 0;
-
+var interval
+var time_left
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -88,11 +89,10 @@ var RecallRequest01 = {
     prompt: SRTWordPrompt, //Add this to config file
     on_start: function(SimpleList) {
       // reset the list of indices
-      WordListIndex = [0,1,2,3,4,5,6,7,8,9,10,11]
+      WordListIndex = CreateWordListIndex(WordList)
       HeardList = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
-      //data.ThisWordListIndex = [0,1,2,3,4,5,6,7,8,9,10,11]
       const commands01 = {'*search': FindRecalledWords01};
       annyang.start({autorestart: false, continuous: true});
       annyang.addCommands(commands01);
@@ -106,13 +106,14 @@ var RecallRequest01 = {
       data.task = 'Recall'
       BlockCount++
       console.log(ResponseArray)
+      clearInterval(interval);
     },
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = RecallDuration * 1000; // in milliseconds
     var start_time = performance.now();
-    document.querySelector('button').disabled = true;
-    var interval = setInterval(function(){
-      var time_left = wait_time - (performance.now() - start_time);
+    document.querySelector('button').disabled = false;
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
       var minutes = Math.floor(time_left / 1000 / 60);
       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
       var seconds_str = seconds.toString().padStart(2,'0');
@@ -173,8 +174,7 @@ var thank_you = {
   }  
 // ======================================================================= 
 // Add procedures to the timeline
-
-//timeline.push(instr_procedure)
+timeline.push(instr_procedure)
 timeline.push(Blocks)
 timeline.push(thank_you)
 /*timeline.push(block1);
