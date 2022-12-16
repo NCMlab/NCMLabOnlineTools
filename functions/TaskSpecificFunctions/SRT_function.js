@@ -15,7 +15,6 @@ var ResponseArray = create2DArray(NWords,NBlocks)
 var BlockCount = 0
 var TrialCount = 0
 
-
 var CreateSimpleWordList = function(WordList) {
 	var SimpleList = []
 	for (var i = 0; i < WordList.length; i++) {
@@ -56,6 +55,7 @@ WordListIndex = CreateWordListIndex(WordList)
 // indices for the world list containing the alternatives
 FullListIndex = CreateSimpleIndexList(WordList, AlternatePronunciationsWordList)
 console.log(FullListIndex)
+
 var FindRecalledWords01 = function(tag) {
     console.log(tag)
 
