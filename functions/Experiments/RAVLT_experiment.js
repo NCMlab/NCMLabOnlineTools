@@ -15,17 +15,25 @@ var timeline = [];
 var ind = 0;
 var interval
 var time_left
-SimpleWordList = CreateSimpleWordList(WordList)
-// create list of audio files from this list
-AudioFileList = CreateAudioFileList(FolderName, SimpleWordList, FileExtension)
-console.log(AudioFileList)
-AltSimpleWordList = CreateSimpleWordList(AlternatePronunciationsWordList)
-// Create the full list of primary and alternative pronunciations to search 
-FullWordList = SimpleWordList.concat(AltSimpleWordList)
-// indices fro teh primary word list
-WordListIndex = CreateWordListIndex(WordList)
-// indices for the world list containing the alternatives
-FullListIndex = CreateSimpleIndexList(WordList, AlternatePronunciationsWordList)
+// take list of words as dictionary items and make a simple list out of it
+SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+// convert it to a list of filenames for teh audio files for each word
+AudioFileListA = CreateAudioFileList(FolderName, SimpleWordListA, FileExtension)
+// convert it back to a list of dictionaries
+var AudioFileDictListA = AudioFileListA.map(function(e) {
+  return {Word: e}
+})
+
+SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+AudioFileListB = CreateAudioFileList(FolderName, SimpleWordListB, FileExtension)
+var AudioFileDictListB = AudioFileListB.map(function(e) {
+  return {Word: e}
+})
+
+
+// indices for the primary word list
+WordListIndex = CreateWordListIndex(WordListA)
+FullListIndex = WordListIndex
 console.log(FullListIndex)
 // =======================================================================
 var enter_fullscreen = {
@@ -34,16 +42,19 @@ var enter_fullscreen = {
 }
 
 // preload audio
-var preload_audio = {
+var preload_audioA = {
   type: jsPsychPreload,
-  audio: AudioFileList,
+  audio: AudioFileListA,
+};
+var preload_audioB = {
+  type: jsPsychPreload,
+  audio: AudioFileListB,
 };
 
 var preload_silence = {
   type: jsPsychPreload,
   audio: FolderName + 'Silence' + '.wav',
 };
-
 
 // =======================================================================
 // Define all of the different the stimuli 
@@ -64,9 +75,8 @@ var fixation = {
       }
     },
 }
+
 // Define the stimuli
-
-
 var AudioStimulus = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function()
@@ -77,7 +87,7 @@ var AudioStimulus = {
         // check to see if this trial was recalled in the previous block
         if (WordListIndex[ind] > -99) {
           // if NOT, then present the word
-          Stim = AudioFileList[ind]
+          Stim = jsPsych.timelineVariable('Word')
         }
         else {
           Stim = FolderName + 'Silence' + '.wav'
@@ -135,7 +145,7 @@ var VisualStimulus = {
         return 0
       }
     },
-    prompt: SRTWordPrompt, //Add this to config file
+    prompt: RAVLTWordPrompt, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -149,9 +159,10 @@ var RecallRequest01 = {
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: SRTWordPrompt, //Add this to config file
+    prompt: RAVLTWordPrompt, //Add this to config file
     on_start: function(SimpleList) {
       // reset the list of indices
+      // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
       WordListIndex = CreateWordListIndex(WordList)
       HeardList = []
       BlockRecallCount = 0
@@ -162,7 +173,6 @@ var RecallRequest01 = {
       //console.log('Started')
     },
     on_finish: function(data){
-      annyang.abort()
       data.RecallList = WordListIndex
       data.HeardList = HeardList
       data.RecallCount = BlockRecallCount
@@ -207,28 +217,56 @@ var Instructions = {
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
-  var instr_procedure = {
+  var instr_procedure01 = {
       timeline: [Instructions],
-      timeline_variables: SRTInstructions,
+      timeline_variables: RAVLTInstructions01,
       randomize_order: false,
       repetitions: 1,
     }
 
-  var PresentListOfWords = {
+  var instr_procedure02 = {
+      timeline: [Instructions],
+      timeline_variables: RAVLTInstructions02,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
+  var instr_procedure03 = {
+      timeline: [Instructions],
+      timeline_variables: RAVLTInstructions03,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
+  var instr_procedure04 = {
+      timeline: [Instructions],
+      timeline_variables: RAVLTInstructions04,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
+  var PresentListOfWordsA = {
       timeline: [fixation, AudioStimulus],
-      timeline_variables: WordList,
+      timeline_variables: AudioFileDictListA,
       repetitions: 1,
       randomize_order: false      
   }
+  var PresentListOfWordsB = {
+      timeline: [fixation, AudioStimulus],
+      timeline_variables: AudioFileDictListB,
+      repetitions: 1,
+      randomize_order: false      
+  }
+
   var recall = {
       timeline: [RecallRequest01],
       randomize_order: false,
-      repetitions: 1,      
+      repetitions: 1,      // need to pass a time line variable here which is the word list to recall
   }
   var Blocks = {
-    timeline: [PresentListOfWords, recall],
+    timeline: [instr_procedure02, PresentListOfWordsA, recall],
     randomize_order: false,
-    repetitions: NBlocks,
+    repetitions: NBlocks - 1,
   } 
 var thank_you = {
     timeline: [Instructions],
@@ -238,10 +276,16 @@ var thank_you = {
   }  
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(preload_audio)
-timeline.push(preload_silence)
-timeline.push(instr_procedure)
+timeline.push(preload_audioA)
+timeline.push(instr_procedure01)
+timeline.push(PresentListOfWordsA)
+timeline.push(recall)
 timeline.push(Blocks)
+timeline.push(instr_procedure03)
+timeline.push(PresentListOfWordsB)
+timeline.push(recall)
+timeline.push(instr_procedure04)
+timeline.push(recall)
 timeline.push(thank_you)
 /*timeline.push(block1);
 //timeline.push(recall1);

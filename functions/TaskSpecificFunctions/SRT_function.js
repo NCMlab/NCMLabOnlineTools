@@ -23,6 +23,13 @@ var CreateSimpleWordList = function(WordList) {
 	return SimpleList
 }
 
+var MakeAllWordsUpperCase = function(WordList) {
+	var outList = []
+	for ( var i = 0; i < WordList.length; i++ ) {
+		outList.push(WordList[i].toUpperCase())
+	}
+	return outList
+}
 var CreateSimpleIndexList = function(WordList, AltWordList) {
 	// this is used to map matches with alterantive pronunciations back to the
 	// primary spelling of the word
@@ -46,6 +53,15 @@ var CreateWordListIndex = function(WordList) {
 	return WordListIndex
 }
 
+var CreateAudioFileList = function(FolderName, WordList, FileExtension) {
+	var AudioFileList = []
+	for ( var i = 0; i < WordList.length; i++ ) {
+		AudioFileList.push(FolderName + WordList[i] + FileExtension)
+	}
+	return AudioFileList
+}
+
+/*
 SimpleWordList = CreateSimpleWordList(WordList)
 AltSimpleWordList = CreateSimpleWordList(AlternatePronunciationsWordList)
 // Create the full list of primary and alternative pronunciations to search 
@@ -55,7 +71,7 @@ WordListIndex = CreateWordListIndex(WordList)
 // indices for the world list containing the alternatives
 FullListIndex = CreateSimpleIndexList(WordList, AlternatePronunciationsWordList)
 console.log(FullListIndex)
-
+*/
 var FindRecalledWords01 = function(tag) {
     console.log(tag)
 
@@ -198,6 +214,8 @@ function CalcLongTermStorage(ResponseArray) {
 	}
 	console.log(LTSList)
 }
+
+
 /*
 def CalcLongTermStorage(ResponseArray):
     # Find the size of the data
