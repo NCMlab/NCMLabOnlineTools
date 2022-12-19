@@ -34,6 +34,8 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 var RecallDuration = 60 // in seconds
 
+var FolderName = '../assets/SRTSoundFiles/'
+var FileExtension = '.wav'
 
 NWords = WordList.length
 console.log(NWords)
