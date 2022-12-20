@@ -15,32 +15,69 @@ var timeline = [];
 var ind = 0;
 var interval
 var time_left
+var WordList = []
+var SimpleWordList = []
+var FullWordList = []
+var WordListIndex = []
+var FullListIndex = []
+
+// PREP WORK FOR WORD LIST A
 // take list of words as dictionary items and make a simple list out of it
 SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
-// convert it to a list of filenames for teh audio files for each word
+// Make a simple list of the alternative pronunciations
+AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
+// Make a full list the words and thier alternative pronunciations
+FullWordListA = SimpleWordListA.concat(AltSimpleWordListA)
+// indices fro the primary word list
+WordListIndexA = CreateWordListIndex(WordListA)
+// indices for the world list containing the alternatives
+FullListIndexA = CreateSimpleIndexList(WordListA, AlternatePronunciationsWordListA)
+// convert WordList to a list of filenames for teh audio files for each word
 AudioFileListA = CreateAudioFileList(FolderName, SimpleWordListA, FileExtension)
 // convert it back to a list of dictionaries
 var AudioFileDictListA = AudioFileListA.map(function(e) {
   return {Word: e}
 })
+// Create an array so the recall procedure can use a timelinevariable
+var WordListAForRecall = [{
+  'WordList': WordListA,
+  'SimpleWordList': SimpleWordListA,
+  'FullWordList': FullWordListA,
+  'WordListIndex': WordListIndexA,
+  'FullListIndex': FullListIndexA,
+}]
 
+// PREP WORK FOR WORD LIST B
+// take list of words as dictionary items and make a simple list out of it
 SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+// Make a simple list of the alternative pronunciations
+AltSimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListB))
+// Make a full list the words and thier alternative pronunciations
+FullWordListB = SimpleWordListB.concat(AltSimpleWordListB)
+// indices fro the primary word list
+WordListIndexB = CreateWordListIndex(WordListB)
+// indices for the world list containing the alternatives
+FullListIndexB = CreateSimpleIndexList(WordListB, AlternatePronunciationsWordListB)
+// convert WordList to a list of filenames for teh audio files for each word
 AudioFileListB = CreateAudioFileList(FolderName, SimpleWordListB, FileExtension)
+// convert it back to a list of dictionaries
 var AudioFileDictListB = AudioFileListB.map(function(e) {
   return {Word: e}
 })
+// Create an array so the recall procedure can use a timelinevariable
+var WordListBForRecall = [{
+  'WordList': WordListB,
+  'SimpleWordList': SimpleWordListB,
+  'FullWordList': FullWordListB,
+  'WordListIndex': WordListIndexB,
+  'FullListIndex': FullListIndexB,
+}]
 
-
-// indices for the primary word list
-WordListIndex = CreateWordListIndex(WordListA)
-FullListIndex = WordListIndex
-console.log(FullListIndex)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 }
-
 // preload audio
 var preload_audioA = {
   type: jsPsychPreload,
@@ -49,11 +86,6 @@ var preload_audioA = {
 var preload_audioB = {
   type: jsPsychPreload,
   audio: AudioFileListB,
-};
-
-var preload_silence = {
-  type: jsPsychPreload,
-  audio: FolderName + 'Silence' + '.wav',
 };
 
 // =======================================================================
@@ -65,15 +97,7 @@ var fixation = {
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
-  trial_duration: function() {
-      // if this word was recalled previously change the duration to 0 seconds also
-      if (WordListIndex[ind] > -99) {
-        return FixationTimeBetweenWords
-      }
-      else {
-        return 0
-      }
-    },
+  trial_duration: FixationTimeBetweenWords
 }
 
 // Define the stimuli
@@ -84,28 +108,13 @@ var AudioStimulus = {
         Stim = ''
         // find what trial index this is
         ind = (TrialCount) % NWords
-        // check to see if this trial was recalled in the previous block
-        if (WordListIndex[ind] > -99) {
-          // if NOT, then present the word
-          Stim = jsPsych.timelineVariable('Word')
-        }
-        else {
-          Stim = FolderName + 'Silence' + '.wav'
-        }
+        Stim = jsPsych.timelineVariable('Word')
         // return the chosen stimulus
         console.log(Stim)        
         return Stim
       },
     choices: [],  
-    trial_duration: function() {
-      // if this word was recalled previously change the duration to 0 seconds also
-      if (WordListIndex[ind] > -99) {
-        return TimePerWord
-      }
-      else {
-        return 0
-      }
-    },
+    trial_duration: TimePerWord,
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -153,7 +162,8 @@ var VisualStimulus = {
     }
   };
 
-var RecallRequest01 = {
+
+var RecallTrial = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: 'Please, recall the full list.<p><span id="clock">1:00</span></p>',
     choices: ['Next'], 
@@ -163,13 +173,19 @@ var RecallRequest01 = {
     on_start: function(SimpleList) {
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
-      WordListIndex = CreateWordListIndex(WordList)
+      console.log(jsPsych.timelineVariable('FullWordList'))
+      WordList = jsPsych.timelineVariable('WordList')
+      WordListIndex = jsPsych.timelineVariable('WordListIndex')
+      FullWordList = jsPsych.timelineVariable('FullWordList')
+      FullListIndex = jsPsych.timelineVariable('FullListIndex')
+
       HeardList = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
       const commands01 = {'*search': FindRecalledWords01};
-      annyang.start({autorestart: false, continuous: true});
       annyang.addCommands(commands01);
+      annyang.start({autorestart: true, continuous: true});
+      
       //console.log('Started')
     },
     on_finish: function(data){
@@ -181,6 +197,7 @@ var RecallRequest01 = {
       BlockCount++
       console.log(ResponseArray)
       clearInterval(interval);
+      annyang.abort()
     },
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = RecallDuration * 1000; // in milliseconds
@@ -201,6 +218,7 @@ var RecallRequest01 = {
     }, 250)
     }
   }
+
 // Define instructions
 var Instructions = {
       type: jsPsychHtmlButtonResponseTouchscreen,
@@ -258,16 +276,25 @@ var Instructions = {
       randomize_order: false      
   }
 
-  var recall = {
-      timeline: [RecallRequest01],
+  var recallA = {
+      timeline: [RecallTrial],
       randomize_order: false,
-      repetitions: 1,      // need to pass a time line variable here which is the word list to recall
+      timeline_variables: WordListAForRecall,
+      repetitions: 1,  
   }
+  var recallB = {
+      timeline: [RecallTrial],
+      randomize_order: false,
+      timeline_variables: WordListBForRecall,
+      repetitions: 1,   
+  }
+  
   var Blocks = {
-    timeline: [instr_procedure02, PresentListOfWordsA, recall],
+    timeline: [instr_procedure02, PresentListOfWordsA, recallA],
     randomize_order: false,
     repetitions: NBlocks - 1,
   } 
+
 var thank_you = {
     timeline: [Instructions],
     timeline_variables: ThankYouText,
@@ -277,15 +304,17 @@ var thank_you = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(preload_audioA)
+timeline.push(preload_audioB)
+
 timeline.push(instr_procedure01)
 timeline.push(PresentListOfWordsA)
-timeline.push(recall)
+timeline.push(recallA)
 timeline.push(Blocks)
 timeline.push(instr_procedure03)
 timeline.push(PresentListOfWordsB)
-timeline.push(recall)
+timeline.push(recallB)
 timeline.push(instr_procedure04)
-timeline.push(recall)
+timeline.push(recallA)
 timeline.push(thank_you)
 /*timeline.push(block1);
 //timeline.push(recall1);

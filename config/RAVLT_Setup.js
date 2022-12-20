@@ -18,6 +18,12 @@ var WordListA = [
 	{'Word':'River'},		// 14
 	]
 
+var AlternatePronunciationsWordListA = [
+	{'Word':'COLOUR','index':12},
+	{'Word':'KNOWS','index':10}
+	]
+
+
 var WordListB = [
 	{'Word':'Desk'},
 	{'Word':'Ranger'},
@@ -35,10 +41,11 @@ var WordListB = [
 	{'Word':'Church'},
 	{'Word':'Fish'},
 	]
+var AlternatePronunciationsWordListB = []
 
 var ResponseButtons = [1,0]
 // The number of immediate recall blocks 
-var NBlocks = 5
+var NBlocks = 2
 // The time each word is presented on the screen for
 var TimePerWord = 1000 // milliseconds
 // The amount of time to show a crosshair on the screen between each word
