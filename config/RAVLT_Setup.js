@@ -51,7 +51,7 @@ var TimePerWord = 1000 // milliseconds
 var FixationTimeBetweenWords = 200 // milliseconds
 
 var RecallDuration = 60 // in seconds
-var FolderName = '../assets/RAVLTSoundFiles/'
+var FolderName = 'assets/RAVLTSoundFiles/'
 var FileExtension = '.wav'
 
 
