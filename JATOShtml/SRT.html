@@ -29,6 +29,11 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="config/SRT_Setup.js"></script>
+    <script> 
+      // Some parameters in config file need to be overwritten to work with JATOS
+      var FolderName = 'assets/SRTSoundFiles/';
+    </script>
+
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
     <script src="functions/Experiments/SRT_experiment.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
