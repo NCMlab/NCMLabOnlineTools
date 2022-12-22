@@ -9,23 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: DMS Adaptive</title>
     <script src="jatos.js"></script>
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>    
-    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../functions/DMS_functions.js"></script>
-    <script src="../functions/StairClass.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>    
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="functions/DMS_functions.js"></script>
+    <script src="functions/StairClass.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
     <script src='../config/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../config/"+Language+"/DMS_setup.js"
+        var url = "Instructions/"+Language+"/DMS_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "../config/"+Language+"/General_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
+    <script src="functions/Experiments/DigitSpan_experiment.js"></script>        
     </script>
     
      <style>
