@@ -10,7 +10,7 @@ var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
 var FullScreenMode = true;
 
-var FontSize = 72;
+var DMSFontSize = 72;
 
 var KeyboardChoices = ['No', 'Yes'];
 // the following is used for scoring and allows the keyboard choices to be whatever you would like
@@ -53,11 +53,11 @@ var NDown = 1
 var FastStart = true
 // ===================================================
 
-// This is for rapid testing
+/* This is for rapid testing
 MaxTrials = 15
 StimOnTime = 500
 RetOnTime = 500
-
+*/
 
 // The following are stimulus lists that are carefully selected to be counterbalanced for 
 // probe type and to have six trials per block and minimal proactive interference from 
