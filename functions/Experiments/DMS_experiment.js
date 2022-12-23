@@ -174,9 +174,8 @@ var ThankYou = {
     }
 // ======================================================================= 
 // Add procedures to the timeline
-    //timeline.push(instr_procedure)
-    //timeline.push(WaitTime)
-    //timeline.push(CountdownTimer())
+    timeline.push(instr_procedure)
+    timeline.push(WaitTime)
     timeline.push(loop_node)
     //timeline.push(test_procedure)
     //timeline.push(debrief_block)
