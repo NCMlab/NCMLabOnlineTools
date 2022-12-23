@@ -19,7 +19,20 @@
     <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-instructions.js"></script>    
-    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js">
+    </script>
+     <style>
+      .stimulus { font-size: 45; }
+      .background {color:  [150, 150, 150]}
+      .instruct {font-size:  20;}
+      .jspsych-html-keyboard-response-stimulus {font-size: 45;}
+      .jspsych-display-element {
+        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-size: 36px;
+        line-height: 0.85em;
+      }
+    </style>
+
     <script src="../functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
@@ -35,29 +48,23 @@
 
     <script src="../config/DMS_setup.js"></script>
     <script src="../functions/Experiments/DMS_experiment.js"></script>
-     <style>
-      .stimulus { font-size: 45; }
-      .background {color:  [150, 150, 150]}
-      .instruct {font-size:  20;}
-      .jspsych-html-keyboard-response-stimulus {font-size: 45;}
-      .jspsych-display-element {
-        font-family: 'Open Sans', 'Arial', sans-serif;
-        font-size: 36px;
-        line-height: 0.85em;
+  <style>
+    @media screen and (orientation: portrait) {
+      html {background-color: rgb(220,220,220)}
+      #vDMSTable {
+        width: 80vw;
+        height: 60vh;
       }
-      table.a {
-        table-layout: fixed; 
-        width:480px;
-        height: 400px;
-        margin-left:auto;
-        margin-right:auto;
-      }  
-
-    </style>
+    }
+  </style>
 
   
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
+    </div> 
   </body>
+
+
+
   <script>
     // ADD 3-2-1 COUNTDOWN BEFORE THE START OF EACH LOAD BLOCK
     // For the DMS adaptive it may work to have a global object similar to the staircase

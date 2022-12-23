@@ -33,19 +33,20 @@ class AdaptiveStimulusList {
 }
 
 
-function PutLettersInGrid(LetterList,NRows,NCols, width=600, height=300, FontSize=40)
+function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', FontSize=40)
 	{
 		var count = 0;
 		var Table = '';
 		// create the html table and assign the class which is defined in the HTML file
-		Table += '<table class="a">'
+		Table += '<table id=vDMSTable>'
 		for (var i=0; i<NRows; i++) { // Cycle over rows
-			Table += '<tr height="'+height+'">'
+			Table += '<tr>'
 			for (var j=0; j<NCols; j++) { // cycle over columns
-				Table += '<td style="font-size:'+FontSize+'px; line-width:100px">'+LetterList[count]+'</td>';
+				Table += '<td style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>';
 				count += 1;
 			}
 		}
+		console.log(Table)
 		return Table
 	}
 

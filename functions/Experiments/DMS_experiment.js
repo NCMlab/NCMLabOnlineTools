@@ -1,4 +1,9 @@
 
+// Define Table size
+// Need to add conditional style based on portrait or landscape orientation
+console.log(screen.orientation)
+
+
 // =======================================================================
 // Define internal variables
 var timeline = [];
@@ -54,7 +59,7 @@ var enter_fullscreen = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
+      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
       choices: [],
       trial_duration: RetOnTime,
       //on_finish: function(data){
@@ -68,7 +73,7 @@ var enter_fullscreen = {
     var Probe = {
       type:jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
-        return '<p style="color:'+ProbeColor+'; font-size:'+FontSize+'px">'+stimList.CurrentProbe+'</p>'
+        return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
       choices: KeyboardChoices,
       trial_duration: ProbeOnTime,
@@ -108,7 +113,7 @@ var enter_fullscreen = {
 
     var Fix = {
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+FontSize+'px; color:'+ProbeColor+'">+</p>',
+      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:'+ProbeColor+'">+</p>',
       choices: [],
       trial_duration: ITITime,
      // on_finish: function(data){
@@ -122,7 +127,7 @@ var enter_fullscreen = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+FontSize+'px; color:black">+</p>',
+      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
       choices: [],
       trial_duration: WaitOnTime,
     } 
@@ -169,7 +174,7 @@ var ThankYou = {
     }
 // ======================================================================= 
 // Add procedures to the timeline
-        timeline.push(instr_procedure)
+    //timeline.push(instr_procedure)
     //timeline.push(WaitTime)
     //timeline.push(CountdownTimer())
     timeline.push(loop_node)
