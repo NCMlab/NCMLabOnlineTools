@@ -24,7 +24,7 @@ var fixation = {
 
 var ListAnimals = {
     type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: 'Please, speak as many animals as possible.<p><span id="clock">1:00</span></p>',
+    stimulus: 'Please, say as many animals as possible.<p><span id="clock">1:00</span></p>',
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
