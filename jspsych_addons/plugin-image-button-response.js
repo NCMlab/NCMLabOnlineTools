@@ -205,9 +205,9 @@ var jsPsychImageButtonResponse = (function (jspsych) {
               // add buttons to screen
               display_element.insertBefore(btngroup_div, canvas.nextElementSibling);
               // add prompt if there is one
-              if (trial.prompt !== null) {
-                  display_element.insertAdjacentHTML("beforeend", trial.prompt);
-              }
+              //if (trial.prompt !== null) {
+              //    display_element.insertAdjacentHTML("beforeend", trial.prompt);
+              //}
           }
           else {
               // display stimulus as an image element

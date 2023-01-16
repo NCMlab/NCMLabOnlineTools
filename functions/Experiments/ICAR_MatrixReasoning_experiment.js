@@ -11,18 +11,77 @@ var enter_fullscreen = {
 // =======================================================================
 // Define all of the different the stimuli 
 
+var fixation = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: '<p class="Fixation">+</p>',
+  choices: [],
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  trial_duration: FixationTimeBetweenTrials
+}
+
 var trial = {
     type: jsPsychImageButtonResponse,
-    stimulus: '../assets/MatrixReasoning/ICAR/12043/12043_stim.png',
-    choices: [
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionA.png" alt="Girl in a jacket" width="50" height="50">',
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionB.png" alt="Girl in a jacket" width="50" height="50">',
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionC.png" alt="Girl in a jacket" width="50" height="50">',
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionD.png" alt="Girl in a jacket" width="50" height="50">',
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionE.png" alt="Girl in a jacket" width="50" height="50">',
-      '<img src="../assets/MatrixReasoning/ICAR/12043/12043_optionF.png" alt="Girl in a jacket" width="50" height="50">',
-      ],
-    prompt: "<p>Please indicate which is the best answer to complete the figure below.</p>"
-};
+    stimulus: function()
+    {
+      var stim = MakeICARMatrxiReasoningStim(jsPsych.timelineVariable('stim'),StimulusFolderName)
+      return stim
+    },
+    choices: function()
+    {
+      var stim = MakeICARMatrxiReasoningOptions(jsPsych.timelineVariable('stim'),StimulusFolderName)
+      return stim
+    },
+    prompt: OptionsPrompt,
+    on_finish: function(data) 
+    {
+        var response = OptionMapping[data.response]
 
-timeline.push(trial)
+        var correct = jsPsych.timelineVariable('correct')
+        if ( response == correct ) 
+        {
+          data.correct = 1
+        }
+        else {data.correct = 0}
+    }
+    
+};
+// Define instructions
+var Instructions = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+    }  
+// =======================================================================    
+// Define procedures using the stimuli
+ var trial_procedure = {
+      timeline: [fixation, trial],
+      timeline_variables: ICAR_MatrixList,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  var instr_procedure = {
+      timeline: [Instructions],
+      timeline_variables: MatrixReasoning_Instructions,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  var thankyou_procedure = {
+      timeline: [Instructions],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }    
+// ======================================================================= 
+
+timeline.push(instr_procedure)
+timeline.push(trial_procedure)
+timeline.push(thankyou_procedure)
