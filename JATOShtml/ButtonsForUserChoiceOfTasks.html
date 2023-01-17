@@ -124,9 +124,12 @@ var trial2 = {
     prompt: "<p>Stroop</p>", 
     // This is just a place holder to stop a jsPsych error
     choices: ['Next']
+    on_finish: function() {
+     jatos.startComponent(34); 
+    }
   }
 timeline.push(trial1)
-//timeline.push(trial2)
+timeline.push(trial2)
   jatos.onLoad(() => {jsPsych.run(timeline);});
   </script>
 </html>
