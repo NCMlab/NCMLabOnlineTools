@@ -13,7 +13,7 @@ var enter_fullscreen = {
 
 // Define the fixation cross
 var fixation = {
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
     stim = PutStimIntoTable(StroopColorPrompt, '<p class="Fixation">+</p>');
@@ -31,7 +31,7 @@ var fixation = {
 
 // Define the stimuli
 var Stimulus = {
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
     var color = jsPsych.timelineVariable('Color')
@@ -53,7 +53,7 @@ var Stimulus = {
 
 // Define the feedback
 var feedback = {
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     console.log(last_trial_correct)
@@ -77,7 +77,7 @@ var feedback = {
 // Prepare debriefing for after the practice trials
 var debrief = {
   prompt: '',
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
         var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*ColorPracticeRepeats)
         console.log(DataFromThisPracticeRun)
@@ -93,7 +93,7 @@ var debrief = {
 
 // Define instructions
 var Instructions = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       {
         var stim = jsPsych.timelineVariable('page') // Variable in the config file
