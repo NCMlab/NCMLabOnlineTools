@@ -102,6 +102,7 @@ var trial1 = {
       var data = jsPsych.data.get().last(1);
       // What is the text label for this button?
       var responseButton = jsPsych.TEMP[data.trials[0].response]
+      console.log(responseButton)
       // Put the button pressed label inot a local variable
       jsPsych.responseButton = responseButton
       // Find the index in the available button list that was pressed
