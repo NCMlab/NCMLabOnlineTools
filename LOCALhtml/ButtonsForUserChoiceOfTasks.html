@@ -7,11 +7,11 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stroop Word</title>
-    <script src="jspsych/dist/jspsych.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych/dist/plugin-html-button-response.js"></script>
-    <script src="jatos.js"></script>
-    <script src="Button_config.js"></script>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-html-button-response.js"></script>
+    
+    <script src="../config/Button_config.js"></script>
   </head>
   <body>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
@@ -31,13 +31,16 @@
           // This sets session data which can be accessed later by other tasks
           // find current case in the session data list and remove it
           // find and remove entry in the list
-          jatos.startComponent(11);
+          //jatos.startComponent(11);
+          console.log('Word')
         case 'Color':
           // Color
-          jatos.startComponent(12);
+          //jatos.startComponent(12);
+          console.log('Color')
         case 'ColorWord':
           // Word/Color
-          jatos.startComponent(13);
+          //jatos.startComponent(13);
+          console.log('WordColor')
         default:
           console.log('DEFAULT') 
       }
@@ -47,34 +50,7 @@
 
   timeline = [];
   
-  jatos.onLoad(() => {
-      // CHeck to see if any session data listing the expected components to complete has been created
-      
-      // store the jatos session data in the variable jsPaych so it can be accessed from elsewhere in the code
-      jsPsych.TEMP = jatos.studySessionData;
-      console.log('JATOS ONLOAD');
-      console.log(jsPsych.TEMP)
-      
-      // Check to see if the session data is empty
-      // if so set it in the jsPsych variable and the jatos variable
-      // the jatos variable can be accessed from all components of this session
-      if (Object.keys( jsPsych.TEMP ).length === 0) {
-        // the following is a list of all components. It should be saved in a config file
-         jsPsych.TEMP  = ['Word', 'Color','ColorWord']
-         jatos.setStudySessionData( jsPsych.TEMP )
-      }
-      console.log(jatos)
-      console.log(jsPsych.TEMP)
-      // add the quit button to the html 
-      jatos.addAbortButton({
-        text: "Quit",
-        confirmText: "You really want to quit?",
-        tooltip: "Don't you dare clicking here!",
-        msg: "This worker aborted the mission.",
-        style: "color:green",
-        style: "left:1em"
-      });
-    });
+ 
 
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
@@ -87,14 +63,14 @@ var trial1 = {
     on_start: function(trial) {
       // set the buttons at the start of this trial
       var TEMP = jsPsych.TEMP;
-      trial.choices = TEMP;
-      console.log(MakeListOfButtonIcons(TEMP))
+      trial.choices = ['<img src="../assets/Icons/StroopColor.png">','<img src="../assets/Icons/StroopColor.png">','<img src="../assets/Icons/StroopColor.png">'];
       //str = '<img src ="../assets/Icons/"+'+ ' width='+StimWidth+' height='+StimHeight+'>'
     },
     on_finish: function() {
       // What button number was pressed?
       var data = jsPsych.data.get().last(1);
       // What is the text label for this button?
+      console.log(data.trials[0].response)
       var responseButton = jsPsych.TEMP[data.trials[0].response]
       // Put the button pressed label inot a local variable
       jsPsych.responseButton = responseButton
@@ -115,6 +91,17 @@ var trial2 = {
   }
 timeline.push(trial1)
 //timeline.push(trial2)
-  jatos.onLoad(() => {jsPsych.run(timeline);});
+  //jatos.onLoad(() => {jsPsych.run(timeline);});
+
+   jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_interaction_data_update: function(data) {
+        console.log(JSON.stringify(data))
+    },
+    on_finish: function() {
+      //jsPsych.data.get().localSave('csv','ICAR_MatrixReasoningTask.csv');
+    }
+  });
+  jsPsych.run(timeline)
   </script>
 </html>
