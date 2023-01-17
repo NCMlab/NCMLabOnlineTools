@@ -1,5 +1,5 @@
 var IconMapping = {}
-var IconFolder = "../assets/Icons/"
+var IconFolder = "assets/Icons/"
 IconMapping['Word'] = '<img src = "'+IconFolder+'StroopWord.png">'
 IconMapping['Color'] = '<img src = "'+IconFolder+'StroopColor.png">'
 IconMapping['ColorWord'] = '<img src = "'+IconFolder+'StroopColorWord.png">'

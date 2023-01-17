@@ -85,7 +85,7 @@ var trial1 = {
     prompt: "<p>Stroop</p>", 
     // This is just a place holder to stop a jsPsych error
     choices: '',
-    on_load: function(trial) {
+    on_start: function(trial) {
       // set the buttons at the start of this trial
       var TEMP = jsPsych.TEMP;
       trial.choices = TEMP;
