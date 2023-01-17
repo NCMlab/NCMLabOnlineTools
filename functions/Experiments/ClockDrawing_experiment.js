@@ -11,7 +11,7 @@ var trial = {
 }
 
 
-  var Instructions = {
+var Instructions = {
       type: jsPsychHtmlButtonResponseTouchscreen,
        stimulus: function()
       {
@@ -22,7 +22,7 @@ var trial = {
       margin_horizontal: GapBetweenButtons,
       prompt: '',
       choices: ['Next'], 
-  }
+}
 
 var welcome = {
       timeline: [Instructions],
@@ -31,13 +31,13 @@ var welcome = {
       repetitions: 1,
     }
 
-
-  var thank_you = {
+var thank_you = {
       timeline: [Instructions],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
-    }
+ }
+ 
 timeline.push(welcome)
 timeline.push(trial)
 timeline.push(thank_you)

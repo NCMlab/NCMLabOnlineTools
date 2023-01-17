@@ -31,13 +31,16 @@
           // This sets session data which can be accessed later by other tasks
           // find current case in the session data list and remove it
           // find and remove entry in the list
-          jatos.startComponent(11);
+          console.log('Word')
+          //jatos.startComponent(11);
         case 'Color':
           // Color
-          jatos.startComponent(12);
+          console.log('Color')
+          //jatos.startComponent(12);
         case 'ColorWord':
           // Word/Color
-          jatos.startComponent(13);
+          console.log('WordColor')
+          //jatos.startComponent(13);
         default:
           console.log('DEFAULT') 
       }
@@ -104,7 +107,7 @@ var trial1 = {
       // Find the index in the available button list that was pressed
       var ind = jsPsych.TEMP.indexOf(responseButton)
       // Remove the pressed button from the button list in the local variable
-      jsPsych.TEMP.splice(ind, 1); 
+      //jsPsych.TEMP.splice(ind, 1); 
     }
   };
 var trial2 = {
