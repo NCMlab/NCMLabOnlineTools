@@ -32,7 +32,7 @@
           // find current case in the session data list and remove it
           // find and remove entry in the list
           console.log('Word')
-          jatos.startComponent(34);
+          jatos.startComponent(32);
         case 'Color':
           // Color
           console.log('Color')
@@ -40,11 +40,11 @@
         case 'ColorWord':
           // Word/Color
           console.log('WordColor')
-          jatos.startComponent(35);
+          jatos.startComponent(32);
         case 'TrailsA':
           
           console.log('TrailsA')
-          jatos.startComponent(33);          
+          jatos.startComponent(32);          
         default:
           console.log('DEFAULT') 
       }
@@ -116,6 +116,7 @@ var trial1 = {
     },
     response_ends_trial: true,
   };
+
 var trial2 = {
   // This displays a series of buttons on the screen for each component of this session. 
 // The buttons are dynamically created based on what has been completed already
@@ -128,8 +129,8 @@ var trial2 = {
      jatos.startComponent(32); 
     }
   }
-timeline.push(trial1)
+timeline.push(trial2)
 
-  jatos.onLoad(() => {jsPsych.run(timeline);});
+jatos.onLoad(() => {jsPsych.run(timeline);});
   </script>
 </html>
