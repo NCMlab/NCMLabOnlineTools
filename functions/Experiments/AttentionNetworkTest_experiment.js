@@ -1,75 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="jsPsych ANT">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Jason Steffener, NCMLab">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANT</title>
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src='../config/Language_Config.js'>//Load language</script>    
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../config/"+Language+"/ANT_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "../config/"+Language+"/General_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-    
-    <style>
-      .stimulus { font-size: FontSize; }
-      .jspsych-html-keyboard-response-stimulus {font-size: FontSize;}
-      .jspsych-display-element {
-        font-family: 'Open Sans', 'Arial', sans-serif;
-        font-size: 72px;
-        line-height: 0.85em;
-      }
-      .center {
-        margin-left: auto;
-        margin-right: auto;
-            }
-    </style>
+// =======================================================================
+// Define internal variables
+var timeline = [];
+// =======================================================================
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: true
+}
 
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-  </head>
-  <body>
-    <div id="jspsych-target"></div>
-  </body>
-  <script>
+// =======================================================================
 
+// =======================================================================
+// Define all of the different the stimuli 
 
-   var jsPsych = initJsPsych({
-
-    display_element: 'jspsych-target',
-      //on_finish: () => {
-        //jsPsych.data.displayData();
-      //}
-    });
-  
-
-
-    var timeline = [];
-
-
-   /* Create the initial welcome and instructions for practice.
-   This uses the built in instructions module. Make sure it gets imported above */ 
-    var Instr = {
-      type: jspsychHtmlButtonResponseTouchscreen,
-      stimulus: jsPsych.timelineVariable('page'), // Variable in the config file
+// Define instructions
+var Instructions = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
       post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
       prompt: '',
       choices: ['Next'], 
-    }
-
+    }  
   //https://www.webnots.com/keyboard-shortcuts-for-asterisk-symbol/
     var Stimulus = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       { // The stimulus is based on the conditions laid out in the ANT
         // variable read from the setup file.
@@ -113,7 +71,7 @@
     var fixation = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       choices: KeyboardChoices,
       stimulus: function()
       {
@@ -124,7 +82,7 @@
     } 
 
   var feedback = {
-    type: jspsychHtmlButtonResponseTouchscreen,
+    type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function(){
       var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
       if (last_trial_correct) {
@@ -155,10 +113,14 @@
 
       }
     };
-    
+// =======================================================================    
+// Define procedures using the stimuli    
+   /* Create the initial welcome and instructions for practice.
+   This uses the built in instructions module. Make sure it gets imported above */ 
+
 
     var instr_procedure = {
-      timeline: [Instr],
+      timeline: [Instructions],
       timeline_variables: InstructionText,
       randomize_order: false,
       repetitions: 1,
@@ -177,12 +139,10 @@
       repetitions: 2, 
     }
 
+// ======================================================================= 
+// Add procedures to the timeline
     timeline.push(instr_procedure);
     timeline.push(test_procedure)
     timeline.push(debrief_block);
 
-    /* start the experiment */
-    //jatos.onLoad(function() {
-    jsPsych.run(timeline)
-  </script>
-</html>
+  
