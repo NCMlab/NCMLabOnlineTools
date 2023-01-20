@@ -106,7 +106,7 @@ var jsPsychImageButtonResponse = (function (jspsych) {
           var html;
 
           if (trial.render_on_canvas) {
-            console.log("RENDDER ON CANVAS")
+            console.log("RENDER ON CANVAS")
               var image_drawn = false;
               // first clear the display element (because the render_on_canvas method appends to display_element instead of overwriting it with .innerHTML)
               if (display_element.hasChildNodes()) {
@@ -228,6 +228,7 @@ var jsPsychImageButtonResponse = (function (jspsych) {
                       buttons.push(trial.button_html);
                   }
               }
+              html += '<table><tr><td>'
               html += '<div id="jspsych-image-button-response-btngroup">';
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
@@ -245,10 +246,10 @@ var jsPsychImageButtonResponse = (function (jspsych) {
                           "</div>";
               }
               html += "</div><p>";
-              html += "<hr>"
+              html += '</td></tr><tr height="200px"><td>'+trial.prompt+'</td></tr><tr><td>'
               // display stimulus as an image element
               html += '<img src="' + trial.stimulus + '" id="jspsych-image-button-response-stimulus">';
-
+              html += '</td></tr></table>'
 
               // update the page content
               display_element.innerHTML = html;
