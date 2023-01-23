@@ -26,7 +26,6 @@ function CreateDigitList(ListLength){
 	arr = MaxInitialNumberList(ListLength)
 	ShuffledArray = shuffle(arr)
 	List = ShuffledArray.slice(0,ListLength)
-	console.log(List)
 	return List
 }
 
@@ -73,7 +72,6 @@ function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {
 	var AudioFilePaths = []
 	for ( let i = 0; i < Stimuli.length; i ++ ) {
 //		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
-		console.log(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
 		AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
 	}
 	return AudioFilePaths
