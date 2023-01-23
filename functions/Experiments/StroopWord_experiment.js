@@ -135,30 +135,8 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        
-        data.task = 'Thank YOU'
-        var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(WordTestQuestionTypes*WordTestRepeats)  
-        console.log(DataFromTestRun)
-        // How many trials?
-        var total_trials = DataFromTestRun.count();
-        // How many were correct?
-        var NumberCorrect = DataFromTestRun.filter({correct: true}).count()
-        // What is the accuracy?
-        var accuracy = Math.round(NumberCorrect / total_trials * 100);
-        // How many time outs? (If applicable)
-        // Response time for correct trials
-        var CorrectTrials = DataFromTestRun.filter({correct: true})
-        var IncorrectTrials = DataFromTestRun.filter({correct: false})
-        var rt_Correct = Math.round(CorrectTrials.select('rt').mean());
-        var rt_Incorrect = Math.round(IncorrectTrials.select('rt').mean());
-
-        // Response time for incorrect trials
-        data.Results = {}
-        data.Results["NTrials"] = total_trials
-        data.Results["NCorrect"] = NumberCorrect
-        data.Results["Accuracy"] = accuracy
-        data.Results['Response_Cor'] = rt_Correct
-        data.Results['Response_Incor'] = rt_Incorrect
+        data = StroopWord_Scoring(data)
+        data.task = 'Sending Data'
       }
     }
 

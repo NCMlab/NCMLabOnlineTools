@@ -123,6 +123,26 @@ var test_stimulus = Object.assign({}, Stimulus)
     }
 })
 // =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = StroopColor_Scoring(data)
+        data.task = 'Sending Data'
+        
+      }
+    }
+
+// =======================================================================
 // Define any logic used in the experiment
 
 // This a conditional block which checks to see if the performance during practice was good enough
@@ -170,7 +190,7 @@ var if_node = {
     }
   
   var thank_you = {
-      timeline: [Instructions],
+      timeline: [SendData],
       timeline_variables: ColorThankYouText,
       randomize_order: false,
       repetitions: 1,
@@ -202,6 +222,6 @@ var if_node = {
   timeline.push(if_node);
   // Present test instructions
   timeline.push(instr_test_procedure);
-  // run the test
+  // run the test 
   timeline.push(test_procedure);
   timeline.push(thank_you);
