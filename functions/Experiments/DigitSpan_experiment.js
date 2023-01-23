@@ -44,16 +44,22 @@ var preload_digits = {
 // This screen is required so that the audio can be loaded and played
 var setup_fds = {
   type: jsPsychHtmlButtonResponseTouchscreen,
+  on_load: function() {
+    TrialCount += 1
+  },
   stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ FDSMaxTrials +'</p>';},
   choices: [],
   trial_duration: 1000,
   prompt: "",
   post_trial_gap: TimeGapBetweenAudioLetters,
-  on_finish: function(){
+  on_finish: function(data){
     stimList = CreateDigitList(staircase.Current)
     stimListOfFiles = MakeListOfStimuli(FolderOfAudioFiles, stimList)
-    TrialCount += 1
     idx = 0; //reset the index prior to the letter presentation
+    data.TrialNumber = TrialCount - 1
+    data.task = 'test trial'
+    data.NumberList = stimList
+
   },
 };
 
@@ -66,7 +72,9 @@ var letter_fds = {
   post_trial_gap: TimeGapBetweenAudioLetters,
   trial_ends_after_audio: true,
   prompt: '<p class="Fixation">+</p>',
-  on_finish: function(){
+  on_finish: function(data){
+    data.TrialNumber = TrialCount - 1
+    data.task = 'audio'
     idx += 1; //update the index
     //check to see if we are at the end of the letter array
     if (idx == stimList.length) {
@@ -124,23 +132,45 @@ var Instructions = {
   choices: ['Enter'],
   on_finish: function(data) {
       var curans = response;
-      console.log(curans)
       accuracy = CheckResponse(stimList, response)
-      console.log(accuracy)
       if (Direction == 'Backward') {
         accuracy = CheckResponse(RevereseStimList(stimList), response)   
       }
       else {
         accuracy = CheckResponse(stimList, response)        
       } 
+      data.TrialNumber = TrialCount - 1
+      data.StimLoad = staircase.Current
+      data.task = 'response trial'
+      data.correct = accuracy
+      data.NumberList = curans
       // update the staircase
       staircase.Decide(accuracy)
       //clear the response for the next trial
       response = []; 
+
   }
 };
 
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = DigitSpan_Forward_Scoring(data,staircase) 
+        data.task = 'Sending Data'
 
+      }
+    }  
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
@@ -178,14 +208,10 @@ var procedure = {
       repetitions: 1,
     }
   var thank_you = {
-      timeline: [Instructions],
+      timeline: [SendData],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
-      on_start: function() {
-        console.log(staircase)
-        console.log(staircase.CalculateAverage())
-      }
     }
 // ======================================================================= 
 // Add all procedures to the timeline
