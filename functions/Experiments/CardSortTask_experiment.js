@@ -1,9 +1,9 @@
 
 var count = 0
 var RuleChangeCount = 10
-var RuleList = [0,1,2,0,1,2] // Number, Color, Shape
+var RuleList = [0,1,2,0,1,2,0,1,2] // Number, Color, Shape
 var CurrentRuleCount = 0
-var Accuracy = 'dgh'
+var Accuracy = ''
 
 FileNames = MakeCSTFileNames()
 console.log(FileNames)
@@ -29,7 +29,7 @@ var trial = {
     },
     prompt: '-',
     on_finish: function(data) 
-    {
+    {   
         var response = data.response
         console.log("RESPONSE: "+response)
         var correct = jsPsych.timelineVariable('FactorMapping')
@@ -78,12 +78,32 @@ var trialBlank = {
     trial_duration:500
   };
 
+var debrief_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: function() {
+
+        var trials = jsPsych.data.get().filter({task: 'response'});
+        var correct_trials = trials.filter({correct: true});
+        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+        var rt = Math.round(correct_trials.select('rt').mean());
+
+        return `<p>You responded correctly on ${accuracy}% of the trials.</p>
+          <p>Your average response time was ${rt}ms.</p>
+          <p>Press any key to complete the experiment. Thank you!</p>`;
+
+      }
+    };
+    
 
 var trial_procedure = {
       timeline: [trial, trialBlank],
       timeline_variables: FileNames,
       randomize_order: true,
       repetitions: 1,
+      sample: {
+        type: 'without-replacement',
+        size: 10
+      },
       on_finish: function() {
         count++
 
@@ -96,3 +116,4 @@ var trial_procedure = {
     }
 
 timeline.push(trial_procedure)
+timeline.push(debrief_block);
