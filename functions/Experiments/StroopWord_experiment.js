@@ -13,7 +13,7 @@ var enter_fullscreen = {
 
 // Define the fixation cross
 var fixation = {
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
     stim = PutStimIntoTable(StroopWordPrompt, '<p class="Fixation">+</p>');
@@ -31,7 +31,7 @@ var fixation = {
 
 // Define the stimuli
   var Stimulus = {
-    type: jspsychHtmlButtonResponseTouchscreen,
+    type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
         //var Stim = jsPsych.timelineVariable('Word')
@@ -52,7 +52,7 @@ var fixation = {
 
 // Define the feedback
 var feedback = {
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     console.log(last_trial_correct)
@@ -76,7 +76,7 @@ var feedback = {
 // Prepare debriefing for after the practice trials
 var debrief = {
   prompt: '',
-  type: jspsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
         var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
         console.log(DataFromThisPracticeRun)
@@ -91,7 +91,7 @@ var debrief = {
 
 // Define instructions
 var Instructions = {
-      type: jspsychHtmlButtonResponseTouchscreen,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       {
         var stim = jsPsych.timelineVariable('page') // Variable in the config file
@@ -102,7 +102,6 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
     }
-
 
 
 
@@ -120,6 +119,49 @@ var test_stimulus = Object.assign({}, Stimulus)
       task: 'test trial',
     }
 })
+
+
+// ======================================================================= 
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        
+        data.task = 'Thank YOU'
+        var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(WordTestQuestionTypes*WordTestRepeats)  
+        console.log(DataFromTestRun)
+        // How many trials?
+        var total_trials = DataFromTestRun.count();
+        // How many were correct?
+        var NumberCorrect = DataFromTestRun.filter({correct: true}).count()
+        // What is the accuracy?
+        var accuracy = Math.round(NumberCorrect / total_trials * 100);
+        // How many time outs? (If applicable)
+        // Response time for correct trials
+        var CorrectTrials = DataFromTestRun.filter({correct: true})
+        var IncorrectTrials = DataFromTestRun.filter({correct: false})
+        var rt_Correct = Math.round(CorrectTrials.select('rt').mean());
+        var rt_Incorrect = Math.round(IncorrectTrials.select('rt').mean());
+
+        // Response time for incorrect trials
+        data.Results = {}
+        data.Results["NTrials"] = total_trials
+        data.Results["NCorrect"] = NumberCorrect
+        data.Results["Accuracy"] = accuracy
+        data.Results['Response_Cor'] = rt_Correct
+        data.Results['Response_Incor'] = rt_Incorrect
+      }
+    }
+
 // =======================================================================
 // Define any logic used in the experiment
 
@@ -143,14 +185,14 @@ var if_node = {
   }
 }
 // =======================================================================    
-// Define procedures using the stimuli
-var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: WordThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }
-// Define a practie procedure which provides feedback
+  // Define procedures using the stimuli
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: WordThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  // Define a practie procedure which provides feedback
   var instr_procedure = {
       timeline: [Instructions],
       timeline_variables: WordInstrText,
@@ -172,13 +214,6 @@ var thank_you = {
       repetitions: 1,
     }
   
-  var thank_you = {
-      timeline: [Instructions],
-      timeline_variables: WordThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
   var practice_procedure = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
@@ -192,9 +227,10 @@ var thank_you = {
       randomize_order: true,
       repetitions: WordTestRepeats, 
   }
+
 // ======================================================================= 
   // Add procedures to the timeline
-  timeline.push(instr_procedure);
+  /*timeline.push(instr_procedure);
   // run the practice trials
   timeline.push(practice_procedure);
   // provide feedback as to their performance
@@ -206,5 +242,6 @@ var thank_you = {
   // Present test instructions
   timeline.push(instr_test_procedure);
   // run the test
+  */
   timeline.push(test_procedure);
   timeline.push(thank_you);

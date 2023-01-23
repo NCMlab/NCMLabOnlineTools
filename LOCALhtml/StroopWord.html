@@ -26,7 +26,8 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../config/Stroop_Setup.js"></script>
-    <script src="../functions/StroopWord_experiment.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../functions/Experiments/StroopWord_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
@@ -37,7 +38,7 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+      jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
     }
   });
   jsPsych.run(timeline)
