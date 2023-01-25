@@ -17,8 +17,8 @@ var MaxTime = 420 //the amount of time for the experiment can also be used as a 
 
 // ===================================================
 var TimeGapBetweenAudioLetters = 500 // milliseconds
-var BDSMaxTrials = 14
-var FDSMaxTrials = 14
+var BDSMaxTrials = 4
+var FDSMaxTrials = 4
 
 
 

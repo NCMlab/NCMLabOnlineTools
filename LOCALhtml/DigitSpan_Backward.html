@@ -32,13 +32,14 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../config/DigitSpan_Setup.js"></script>
-    <script src="../functions/StairClass_functions.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script>
       var Direction = "Backward"
       var FolderOfAudioFiles = '../assets/digits/';
     </script>
-    <script src="../functions/DigitSpan_functions.js"></script>
-    <script src="../functions/DigitSpan_experiment.js"></script>
+    <script src="../functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
+    <script src="../functions/Experiments/DigitSpan_experiment.js"></script>
+    <script src="../TaskScoring/DigitSpan_Forward_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
@@ -49,7 +50,7 @@
           console.log(JSON.stringify(data))
       },
       on_finish: function() {
-      //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+        jsPsych.data.get().localSave('csv','DigitSpanBackwardMydata.csv');
     }
   });
   jsPsych.run(timeline);

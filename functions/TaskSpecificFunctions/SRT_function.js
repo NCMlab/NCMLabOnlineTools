@@ -10,7 +10,7 @@ var HeardList = []
 var BlockRecallCount = 0
 var BlockIntrusionCount = 0
 // used to store the order of the recalled words and used for scoring
-var ResponseArray = create2DArray(NWords,NBlocks)
+var ResponseArray = create2DArray(NWords,NBlocks + 2)
 // keep track of which block it is
 var BlockCount = 0
 var TrialCount = 0
@@ -142,6 +142,24 @@ function CountNonZeroWords(CurrentColumn) {
 	}
 	return NNonZero
 }
+
+function SumArray(input) {
+	var output = 0
+	for ( i = 0; i < input.length; i++ ) 
+		{ output += input[i]}
+	return output
+}
+
+function CreateWordCountPerTrial(data) 
+  {
+    const dimensions = [ data.length, data[0].length ];
+    RecallCount = Array(dimensions[1]).fill(0)
+    for ( var i = 0; i < dimensions[1]; i ++ )
+      {
+        RecallCount[i] = CountNonZeroWords(GetColumn(data, i))
+      }
+    return RecallCount
+  }
 
 function CheckForTwoCorrectTrials(ResponseArray) {
 	// This is useful for calculating whether two blocks were completely recalled in a  row

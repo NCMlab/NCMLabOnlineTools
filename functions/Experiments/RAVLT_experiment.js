@@ -195,7 +195,6 @@ var RecallTrial = {
       data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
       BlockCount++
-      console.log(ResponseArray)
       clearInterval(interval);
       annyang.abort()
     },
@@ -232,6 +231,27 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
     }  
+
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = RAVLT_Scoring(data, ResponseArray)
+        data.task = 'Sending Data'
+        
+      }
+    }
+
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
@@ -296,7 +316,7 @@ var Instructions = {
   } 
 
 var thank_you = {
-    timeline: [Instructions],
+    timeline: [SendData],
     timeline_variables: ThankYouText,
     randomize_order: false,
     repetitions: 1,
