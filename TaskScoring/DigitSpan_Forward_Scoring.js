@@ -1,4 +1,4 @@
-function DigitSpan_Forward_Scoring(data, Stair) {
+function DigitSpan_Scoring(data, Stair) {
 	
 	var NTrials = Stair.TrialCount
 	var NReversal = Stair.ReversalCount

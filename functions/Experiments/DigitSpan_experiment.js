@@ -166,7 +166,7 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        data = DigitSpan_Forward_Scoring(data,staircase) 
+        data = DigitSpan_Scoring(data,staircase) 
         data.task = 'Sending Data'
 
       }
