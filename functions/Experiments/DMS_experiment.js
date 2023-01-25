@@ -96,6 +96,7 @@ var enter_fullscreen = {
         console.log(ResponseIndex)
         console.log("Program thinks this answer is:")
         console.log(ResponseMapping[ResponseIndex])
+        console.log(data)
         if (ResponseMapping[ResponseIndex] == correct) 
           {
             data.correct = 1,
@@ -147,7 +148,35 @@ var ThankYou = {
         return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
       }
     }
-    // =======================================================================    
+
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = DMS_Scoring(data,staircase) 
+        data.task = 'Sending Data'
+
+      }
+    }  
+// =========================================
+// Define any logic used 
+    var loop_node = {
+      timeline: [test_procedure],
+      loop_function: function(data){
+      return (! stair1.Finished)
+     }
+    }
+   // =======================================================================    
 // Define procedures using the stimuli
 
      var instr_procedure = {
@@ -163,15 +192,13 @@ var ThankYou = {
       timeline: [Stimulus, Retention, Probe, Fix],
       randomize_order: false  
     };
-
-// =========================================
-// Define any logic used 
-    var loop_node = {
-      timeline: [test_procedure],
-      loop_function: function(data){
-      return (! stair1.Finished)
-     }
-    }
+  
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }    
 // ======================================================================= 
 // Add procedures to the timeline
     timeline.push(instr_procedure)
@@ -179,4 +206,4 @@ var ThankYou = {
     timeline.push(loop_node)
     //timeline.push(test_procedure)
     //timeline.push(debrief_block)
-    timeline.push(ThankYou)
+    timeline.push(thank_you)
