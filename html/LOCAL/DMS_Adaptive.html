@@ -9,17 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Verbal DMS</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
     </script>
   </head>    
   <body>
   
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>    
-    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js">
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>    
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js">
     </script>
      <style>
       .stimulus { font-size: 45; }
@@ -32,22 +32,21 @@
         line-height: 0.85em;
       }
     </style>
+    <script src="../../config/General_Setup.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/DMS_functions.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
 
-    <script src="../functions/TaskSpecificFunctions/DMS_functions.js"></script>
-    <script src="../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-    <script src="../config/General_Setup.js"></script>
-    <script src='../Language_Config.js'>//Load language</script>
+    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../Instructions/"+Language+"/DMS_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
 
 
-    <script src="../config/DMS_setup.js"></script>
-    <script src="../functions/Experiments/DMS_experiment.js"></script>
+    <script src="../../config/DMS_setup.js"></script>
+    <script src="../../functions/Experiments/DMS_experiment.js"></script>
+    <script src="../../functions/Scoring/DMS_Scoring.js"></script>
   <style>
     @media screen and (orientation: portrait) {
       #vDMSTable {
@@ -56,11 +55,9 @@
       }
     }
   </style>
-
-  
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
     </div> 
-    <script>console.log("HELLO")</script>
+    
   </body>
 
 

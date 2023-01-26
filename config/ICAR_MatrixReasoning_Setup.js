@@ -1,5 +1,5 @@
 
-var StimulusFolderName = "../assets/MatrixReasoning/ICAR/"
+var StimulusFolderName = "../../assets/Images/MatrixReasoning/ICAR/"
 
 var ICAR_MatrixList = [
   {"stim":"12043","correct":4},

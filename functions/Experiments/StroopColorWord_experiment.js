@@ -218,7 +218,7 @@ var thank_you = {
   }
 // ======================================================================= 
   // Add procedures to the timeline
-  /* timeline.push(instr_procedure);
+  timeline.push(instr_procedure);
   // run the practice trials
   timeline.push(practice_procedure);
   // provide feedback as to their performance
@@ -229,6 +229,6 @@ var thank_you = {
   timeline.push(if_node);
   // Present test instructions
   timeline.push(instr_test_procedure);
-  // run the test */
+  // run the test 
   timeline.push(test_procedure);
   timeline.push(thank_you);

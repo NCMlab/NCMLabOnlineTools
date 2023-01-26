@@ -25,7 +25,7 @@
     <script src='../Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../Instructions/"+Language+"/AFT_Instructions.js"
+        var url = "../InstructionsAndStimuli/"+Language+"/AFT_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../config/RAVLT_Setup.js"></script>
@@ -43,7 +43,9 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      jsPsych.data.get().localSave('csv','AnimalFluencyTask.csv');
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','AnimalFluencyTask.csv');
+      }
     }
   });
   jsPsych.run(timeline)

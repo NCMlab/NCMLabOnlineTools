@@ -6,3 +6,4 @@ var instructions = [
 	{'page': '<p class="Instructions">Try to respond as quickly and as accurately as possible. Press next to begin.</p>'},
 	]
 
+var ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
