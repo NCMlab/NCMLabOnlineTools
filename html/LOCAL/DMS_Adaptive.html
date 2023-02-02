@@ -35,7 +35,6 @@
     <script src="../../config/General_Setup.js"></script>
     <script src="../../functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
@@ -86,6 +85,7 @@
           console.log(JSON.stringify(data))
       },
       on_finish: function() {
+
       //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
     }
   });
