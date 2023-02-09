@@ -1,6 +1,8 @@
 var jsPsychCancellationMouse = (function (jspsych) {
   'use strict';
 
+
+
   const info = {
       name: "cancellation-mouse",
       parameters: {
@@ -83,6 +85,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
               pretty_name: "Prompt",
               default: null,
           },
+          border_width: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Border Width",
+              default: 2,
+          },
 
 
       },
@@ -99,6 +106,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
       }
+      
+      getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+      }
+
       trial(display_element, trial) {
           var startTime = -1;
           var response = {
@@ -130,6 +144,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           info.row = e.currentTarget.getAttribute("data-row");
                           info.column = e.currentTarget.getAttribute("data-column");
                           info.rt = Math.round(performance.now() - startTime);
+                          console.log(info)
                           after_response(info);
                       }
                   });
@@ -139,7 +154,12 @@ var jsPsychCancellationMouse = (function (jspsych) {
               if (trial.fade_duration == null) {
                 // THE COLOR OF THE TARGET CELL IS CHANGED
                 // THIS ASSUMES A SINGLE TARGET
-                  display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[0] + "-" + trial.target[1]).style.backgroundColor = trial.target_color;
+                console.log(trial.target.length)
+                if ( trial.target.length > 0 ) {
+                  for (var index = 0; index < trial.target.length; index++ ) {
+                    display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[index][0] + "-" + trial.target[index][1]).style.backgroundColor = trial.target_color;
+                  }
+                }
               }
               else {
                   display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[0] + "-" + trial.target[1]).style.transition = "background-color " + trial.fade_duration;
@@ -150,7 +170,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
               }
           };
           // display stimulus
-          var stimulus = this.stimulus(trial.grid, trial.grid_square_size, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels);
+          var stimulus = this.stimulus(trial.grid, trial.grid_square_size, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width);
           display_element.innerHTML = stimulus;
           if (trial.pre_target_duration <= 0) {
               showTarget();
@@ -181,18 +201,21 @@ var jsPsychCancellationMouse = (function (jspsych) {
           // function to handle responses by the subject
           function after_response(info) {
               // only record first response
+
               response = response.rt == null ? info : response;
+              
               if (trial.response_ends_trial) {
                   endTrial();
               }
           }
       }
-      stimulus(grid, square_size, target, target_color, non_target_labels, target_labels) {
-          console.log(square_size)
+      stimulus(grid, square_size, target, target_color, non_target_labels, target_labels, border_width) {
           var stimulus = "<div id='jspsych-serial-reaction-time-stimulus' style='margin:auto; display: table; table-layout: fixed; border-spacing:" +
               square_size / 4 +
               "px'>";
+          
           for (var i = 0; i < grid.length; i++) {
+
               stimulus +=
                   "<div class='jspsych-serial-reaction-time-stimulus-row' style='display:table-row;'>";
               for (var j = 0; j < grid[i].length; j++) {
@@ -219,27 +242,41 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           square_size / 2 +
                           "px;";
                   if (grid[i][j] == 1) {
-                      stimulus += "border: 1px solid black;";
+                      stimulus += "border: solid black " + border_width +"px;"
                   }
                   
                   if (typeof target !== "undefined" && target[0] == i && target[1] == j) {
-                      console.log(target)
                       stimulus += "background-color: " + target_color + ";";
                     }
-                      stimulus += "'>";    
+                  stimulus += "'>";    
                   
                   
-
+                  /*( THERE IS ALREADY A LOOP THAT CYCLES OVER ALL LOCATIONS IN THE GRID
+                  I NEED TO USE THIS TO CHECK TO SEE IF EACH LOCATION IS A TARGET OR NOT */
 
 
                   //if (typeof labels !== "undefined" && labels[i][j] !== false) {
                   //if (typeof non_target_labels !== "undefined") {  
-                  if (typeof target !== "undefined" && target[0] == i && target[1] == j) {  
-                      stimulus += non_target_labels;
-                  } else {
-                    stimulus += target_labels;
-                  }
 
+                  console.log(index)
+                  for ( var index = 0; index < target.length; index++ ) {
+                    if (typeof target !== "undefined" && target[index][0] == i && target[index][1] == j) {  
+                      // check to see if the non targets are an array. If so than draw from this list
+                        stimulus += target_labels;
+                        break;
+                    }
+                  
+                    else {
+/*                    console.log(target)
+                    console.log(i)
+                    console.log(j) */
+                    if ( non_target_labels.length > 1 ) {
+                      var NNonTargets = non_target_labels.length
+                      stimulus += non_target_labels[this.getRandomInt(0,NNonTargets)];
+                      }
+                    }
+                  
+                    }
                   stimulus += "</div>";
               }
               stimulus += "</div>";
