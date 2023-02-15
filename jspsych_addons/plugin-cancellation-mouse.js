@@ -1,3 +1,10 @@
+/* var x=document.getElementById('myTable').rows[parseInt(rn,10)].cells;
+x[parseInt(cn,10)].innerHTML=content;
+
+
+https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-6.php
+*/
+
 var jsPsychCancellationMouse = (function (jspsych) {
   'use strict';
 
@@ -120,7 +127,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
               row: null,
               column: null,
           };
-          const showTarget = () => {
+          const showTarget = (target) => {
               var resp_targets;
               // NON TARGET ALOWANCE
               if (!trial.allow_nontarget_responses) {
@@ -144,8 +151,8 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           info.row = e.currentTarget.getAttribute("data-row");
                           info.column = e.currentTarget.getAttribute("data-column");
                           info.rt = Math.round(performance.now() - startTime);
-                          console.log(info)
                           after_response(info);
+                          
                       }
                   });
               }
@@ -154,7 +161,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
               if (trial.fade_duration == null) {
                 // THE COLOR OF THE TARGET CELL IS CHANGED
                 // THIS ASSUMES A SINGLE TARGET
-                console.log(trial.target.length)
+
                 if ( trial.target.length > 0 ) {
                   for (var index = 0; index < trial.target.length; index++ ) {
                     display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[index][0] + "-" + trial.target[index][1]).style.backgroundColor = trial.target_color;
@@ -199,11 +206,23 @@ var jsPsychCancellationMouse = (function (jspsych) {
               this.jsPsych.finishTrial(trial_data);
           };
           // function to handle responses by the subject
-          function after_response(info) {
+
+          function after_response(info, target) {
               // only record first response
 
               response = response.rt == null ? info : response;
-              
+
+              console.log(info.row)
+              for (var i = 0; i < trial.target.length; i++ )
+              {
+                console.log(trial.target[i][0].toString())
+
+                if (trial.target[i][0].toString() == info.row) {  
+                  console.log("CORRECT")
+                  console.log(display_element)
+
+                }
+              }
               if (trial.response_ends_trial) {
                   endTrial();
               }
@@ -216,10 +235,8 @@ var jsPsychCancellationMouse = (function (jspsych) {
           
           for (var i = 0; i < grid.length; i++) {
 
-              stimulus +=
-                  "<div class='jspsych-serial-reaction-time-stimulus-row' style='display:table-row;'>";
+              stimulus += "<div class='jspsych-serial-reaction-time-stimulus-row' style='display:table-row;'>";
               for (var j = 0; j < grid[i].length; j++) {
-                  
                   var classname = "jspsych-serial-reaction-time-stimulus-cell";
                   stimulus +=
                       "<div class='" +
@@ -258,28 +275,25 @@ var jsPsychCancellationMouse = (function (jspsych) {
                   //if (typeof labels !== "undefined" && labels[i][j] !== false) {
                   //if (typeof non_target_labels !== "undefined") {  
 
-                  console.log(index)
+                  
+                  var LettersToDisplay = ''
                   for ( var index = 0; index < target.length; index++ ) {
                     if (typeof target !== "undefined" && target[index][0] == i && target[index][1] == j) {  
                       // check to see if the non targets are an array. If so than draw from this list
-                        stimulus += target_labels;
+                        LettersToDisplay = target_labels;
                         break;
                     }
-                  
-                    else {
-/*                    console.log(target)
-                    console.log(i)
-                    console.log(j) */
-                    if ( non_target_labels.length > 1 ) {
-                      var NNonTargets = non_target_labels.length
-                      stimulus += non_target_labels[this.getRandomInt(0,NNonTargets)];
+                    if ( LettersToDisplay == '' ) {
+                      if ( non_target_labels.length > 1 ) {
+                        var NNonTargets = non_target_labels.length
+                        LettersToDisplay += non_target_labels[this.getRandomInt(0,NNonTargets)];
                       }
                     }
-                  
-                    }
+                  }
+                  stimulus += LettersToDisplay
                   stimulus += "</div>";
-              }
-              stimulus += "</div>";
+                }
+            stimulus += "</div>";
           }
           stimulus += "</div>";
           return stimulus;

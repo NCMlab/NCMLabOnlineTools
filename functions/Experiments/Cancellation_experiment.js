@@ -15,7 +15,7 @@ var trial_1 = {
   	allow_nontarget_responses: true,
   	response_ends_trial: false,
   	target: ListOfTargets,
-  	non_target_labels: ["A","C"],//["A","C","D","E","F","G","H","J"],
+  	non_target_labels: ["A","C","D","E","F","G","H","J"],
   	target_labels: "B",
   	border_width: 0
 }
