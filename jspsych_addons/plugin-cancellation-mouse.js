@@ -1,6 +1,8 @@
 /* var x=document.getElementById('myTable').rows[parseInt(rn,10)].cells;
 x[parseInt(cn,10)].innerHTML=content;
 
+// add variables for square width, square height, and font size
+// add font selection also
 
 https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-6.php
 */
@@ -212,7 +214,8 @@ var jsPsychCancellationMouse = (function (jspsych) {
                 if (trial.target[i][0].toString() == info.row & trial.target[i][1].toString() == info.column) {  
                   console.log("CORRECT")                  
                   var x=document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
-                  x.innerHTML = '<em style="color:red">&#x2715</em>'
+                  //x.innerHTML = '<i style="color:red">&#x2715</i>'
+                  x.innerHTML = '<i style="color:red">X</i>'
                 }
               }
               if (trial.response_ends_trial) {
