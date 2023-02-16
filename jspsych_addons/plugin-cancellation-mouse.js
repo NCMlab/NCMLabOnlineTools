@@ -7,9 +7,6 @@ https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-6.php
 
 var jsPsychCancellationMouse = (function (jspsych) {
   'use strict';
-
-
-
   const info = {
       name: "cancellation-mouse",
       parameters: {
@@ -162,11 +159,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
                 // THE COLOR OF THE TARGET CELL IS CHANGED
                 // THIS ASSUMES A SINGLE TARGET
 
-                if ( trial.target.length > 0 ) {
+               /* if ( trial.target.length > 0 ) {
                   for (var index = 0; index < trial.target.length; index++ ) {
                     display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[index][0] + "-" + trial.target[index][1]).style.backgroundColor = trial.target_color;
                   }
-                }
+                } */
               }
               else {
                   display_element.querySelector("#jspsych-serial-reaction-time-stimulus-cell-" + trial.target[0] + "-" + trial.target[1]).style.transition = "background-color " + trial.fade_duration;
@@ -209,18 +206,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
 
           function after_response(info, target) {
               // only record first response
-
               response = response.rt == null ? info : response;
-
-              console.log(info.row)
               for (var i = 0; i < trial.target.length; i++ )
               {
-                console.log(trial.target[i][0].toString())
-
-                if (trial.target[i][0].toString() == info.row) {  
-                  console.log("CORRECT")
-                  console.log(display_element)
-
+                if (trial.target[i][0].toString() == info.row & trial.target[i][1].toString() == info.column) {  
+                  console.log("CORRECT")                  
+                  var x=document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
+                  x.innerHTML = '<em style="color:red">&#x2715</em>'
                 }
               }
               if (trial.response_ends_trial) {
