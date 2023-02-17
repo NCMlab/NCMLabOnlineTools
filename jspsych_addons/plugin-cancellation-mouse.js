@@ -44,10 +44,20 @@ var jsPsychCancellationMouse = (function (jspsych) {
               default: undefined,
           },
           /** The width and height in pixels of each square in the grid. */
-          grid_square_size: {
+          grid_square_width: {
               type: jspsych.ParameterType.INT,
-              pretty_name: "Grid square size",
+              pretty_name: "Grid square width",
               default: 100,
+          },
+          grid_square_height: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Grid square height",
+              default: 100,
+          },
+          font_family: {
+            type: jspsych.ParameterType.STRING,
+              pretty_name: "Font",
+              default: "Courier",
           },
           /** The color of the target square. */
           target_color: {
@@ -96,7 +106,19 @@ var jsPsychCancellationMouse = (function (jspsych) {
               pretty_name: "Border Width",
               default: 2,
           },
-
+           /* Whether to show the button that ends the trial
+           */
+          show_finished_button: {
+              type: jspsych.ParameterType.BOOL,
+              default: true,
+          },
+          /**
+           * The label for the button that ends the trial
+           */
+          finished_button_label: {
+              type: jspsych.ParameterType.STRING,
+              default: "Finished",
+          },
 
       },
   };
@@ -155,6 +177,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
                       }
                   });
               }
+              
+              /*trial.querySelector("#sketchpad-end").addEventListener("click", () => {
+                  end_trial();
+              });*/
+          
               startTime = performance.now();
               // I DO NOT SEE WHAT THE FADE DOES
               if (trial.fade_duration == null) {
@@ -176,7 +203,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
               }
           };
           // display stimulus
-          var stimulus = this.stimulus(trial.grid, trial.grid_square_size, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width);
+          var stimulus = this.stimulus(trial.grid, trial.grid_square_width, trial.grid_square_height, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width,trial.font_family);
           display_element.innerHTML = stimulus;
           if (trial.pre_target_duration <= 0) {
               showTarget();
@@ -186,8 +213,16 @@ var jsPsychCancellationMouse = (function (jspsych) {
           }
           //show prompt if there is one
           if (trial.prompt !== null) {
-              display_element.insertAdjacentHTML("beforeend", trial.prompt);
+              display_element.insertAdjacentHTML("afterbegin", trial.prompt);
           }
+
+          if (trial.show_finished_button) {
+              trial.finish_button_html = `<p id="finish-btn"><button class="jspsych-btn" id="sketchpad-end">${trial.finished_button_label}</button></p>`;
+              display_element.insertAdjacentHTML("beforeend", trial.finish_button_html);
+          }
+
+          display_element.querySelector("#sketchpad-end").addEventListener("click", () => {endTrial()});
+
           const endTrial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
@@ -223,11 +258,12 @@ var jsPsychCancellationMouse = (function (jspsych) {
               }
           }
       }
-      stimulus(grid, square_size, target, target_color, non_target_labels, target_labels, border_width) {
+      stimulus(grid, square_width, square_height, target, target_color, non_target_labels, target_labels, border_width, font_family) {
           var stimulus = "<div id='jspsych-serial-reaction-time-stimulus' style='margin:auto; display: table; table-layout: fixed; border-spacing:" +
-              square_size / 4 +
+              square_width / 4 +
               "px'>";
           
+
           for (var i = 0; i < grid.length; i++) {
 
               stimulus += "<div class='jspsych-serial-reaction-time-stimulus-row' style='display:table-row;'>";
@@ -247,11 +283,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           j +
                           " " +
                           "style='width:" +
-                          square_size +
-                          "px; height:" +
-                          square_size +
-                          "px; display:table-cell; vertical-align:middle; text-align: center; cursor: pointer; font-size:" +
-                          square_size / 2 +
+                          square_width +
+                          "; height:" +
+                          square_height +
+                          "; display:table-cell; vertical-align:middle; text-align: center; cursor: pointer; font-family: font_family; font-size:" +
+                          square_width / 2 +
                           "px;";
                   if (grid[i][j] == 1) {
                       stimulus += "border: solid black " + border_width +"px;"
@@ -261,15 +297,6 @@ var jsPsychCancellationMouse = (function (jspsych) {
                       stimulus += "background-color: " + target_color + ";";
                     }
                   stimulus += "'>";    
-                  
-                  
-                  /*( THERE IS ALREADY A LOOP THAT CYCLES OVER ALL LOCATIONS IN THE GRID
-                  I NEED TO USE THIS TO CHECK TO SEE IF EACH LOCATION IS A TARGET OR NOT */
-
-
-                  //if (typeof labels !== "undefined" && labels[i][j] !== false) {
-                  //if (typeof non_target_labels !== "undefined") {  
-
                   
                   var LettersToDisplay = ''
                   for ( var index = 0; index < target.length; index++ ) {
