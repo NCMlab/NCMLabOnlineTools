@@ -234,6 +234,34 @@ var jsPsychCancellationMouse = (function (jspsych) {
                   response: [parseInt(response.row, 10), parseInt(response.column, 10)],
                   correct: response.row == trial.target[0] && response.column == trial.target[1],
               };
+              // score trials
+              var TotalScore = 0
+              var LeftScore = 0
+              var RightScore = 0
+              var LeftMaxScore = 0
+              var RightMaxScore = 0
+              var MidLineSplit = trial.grid[0].length/2
+              
+              for ( var i = 0; i < trial.target.length; i ++ ) {
+                if ( trial.target[i][1] < MidLineSplit ) { LeftMaxScore += 1}
+                else {RightMaxScore += 1}
+                if ( 'response' in trial.target[i] ) { 
+                  TotalScore += 1 
+
+                  if ( trial.target[i][1] < MidLineSplit )
+                    {LeftScore += 1}
+                  else {RightScore += 1}
+                  // score left and right
+                }
+
+              }
+              console.log(TotalScore)
+              console.log(LeftScore)
+              console.log(RightMaxScore)
+              console.log(RightScore)
+              console.log(LeftMaxScore)
+
+              //SingleLetterCancellation_Scoring(data, trial)
               // clear the display
               display_element.innerHTML = "";
               // move on to the next trial
@@ -248,13 +276,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
               {
                 if (trial.target[i][0].toString() == info.row & trial.target[i][1].toString() == info.column) {  
                   console.log("CORRECT")                  
-                  var x=document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
+                  var x = document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
                   //x.innerHTML = '<i style="color:red">&#x2715</i>'
                   x.innerHTML = '<i style="color:red">X</i>'
+                  trial.target[i].response = "Correct"
                 }
-              }
-              if (trial.response_ends_trial) {
-                  endTrial();
               }
           }
       }
