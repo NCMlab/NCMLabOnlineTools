@@ -27,8 +27,10 @@
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/RAVLT_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../../InstructionsAndStimuli/"+Language+"/Stimuli/RAVLT.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="../../config/RAVLT_Setup.js"></script>
+    <script src="../../config/WordRecallGeneral_Setup.js"></script>
     <script src="../../functions/TaskSpecificFunctions/SRT_function.js"></script>
     <script src="../../functions/Experiments/RAVLT_experiment.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/annyang.min.js"></script>
