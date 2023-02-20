@@ -36,17 +36,16 @@
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script> 
       var Direction = "Forward"
-      var FolderOfAudioFiles = 'assets/digits/';
+      var FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set001/'
     </script>
-
     <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
     <script src="functions/Experiments/DigitSpan_experiment.js"></script>
-    <script src="functions/Scoring/DigitSpan_Forward_Scoring.js"></script>
+    <script src="functions/TaskScoring/DigitSpan_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
 
-  var jsPsych = initJsPsych({
+    var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -59,7 +58,6 @@
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
@@ -84,8 +82,7 @@
         confirmText: "Do you really want to quit?",
         tooltip: "This will quit the entire experiment",
         msg: "This worker aborted the mission.",
-        style: "top:8px; color:green"
-
+        style: "top:8px; right:40px; color:green"
       });
       jsPsych.run(timeline);
     });
