@@ -47,13 +47,12 @@
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
-      //jatos.startComponent(15);
-      //jsPsych.data.get().localSave('csv','StroopColorMydata.csv');
-    }
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','TrailMakingAandB_data.csv');
+      }    }
   });
 
 

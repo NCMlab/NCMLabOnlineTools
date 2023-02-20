@@ -57,8 +57,9 @@
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
-      //jatos.startComponent(15);
-      //jsPsych.data.get().localSave('csv','StroopColorMydata.csv');
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','ICARMatrixReasoning_data.csv');
+      }
     }
   });
 

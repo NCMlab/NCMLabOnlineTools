@@ -46,7 +46,7 @@
   </body>
   <script>
 
-    var jsPsych = initJsPsych({
+  var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -63,8 +63,9 @@
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
-      //jatos.startComponent(15);
-      //jsPsych.data.get().localSave('csv','StroopColorMydata.csv');
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','DigitSpanForward_data.csv');
+      }
     }
   });
 

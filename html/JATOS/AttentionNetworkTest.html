@@ -3,50 +3,36 @@
   <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Verbal DMS">
+    <meta name="description" content="jsPsych Attention Network Test">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Verbal DMS</title>
+    <title>NCMLab: Attention Network Test</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-    </script>
   </head>    
   <body>
-    <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="jspsych/dist/plugin-instructions.js"></script>    
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-sketchpad.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
-    <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    
     <script src="config/General_Setup.js"></script>
-    <script src='Language_Config.js'>//Load language</script>
+    <script src="config/ANT_Setup.js"></script>
+    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "Instructions/"+Language+"/DMS_Instructions.js"
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/AttentionNetworkTest_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-
-
-    <script src="config/DMS_setup.js"></script>
-    <script src="functions/Experiments/DMS_experiment.js"></script>
-       <style>
-    @media screen and (orientation: portrait) {
-      #vDMSTable {
-        width: 80vw;
-        height: 60vh;
-      }
-    }
-  </style>
-  
+    <script src="../../functions/experiments/AttentionNetworkTest_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
- var jsPsych = initJsPsych({
+
+var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -59,15 +45,16 @@
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','DMSAdaptive_data.csv');
-      }
-    }
+        jsPsych.data.get().localSave('csv','AttentionNetworkTest_data.csv');
+      }    }
   });
+
+
+
 
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
