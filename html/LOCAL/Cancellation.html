@@ -18,15 +18,16 @@
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-cancellation-mouse.js"></script>
-    
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
 
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/Trailmaking_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/Cancellation_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
+    <script src="../../functions/TaskSpecificFunctions/Cancellation_functions.js"></script>
     <script src="../../functions/Experiments/Cancellation_experiment.js"></script>
     <script src="../../functions/Scoring/SingleLetterCancellation_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
@@ -38,7 +39,9 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      //jsPsych.data.get().localSave('csv','CancellationMydata.csv');
+		
+        	jsPsych.data.get().localSave('csv','CancellationMydata.csv');
+      	
     }
   });
   jsPsych.run(timeline)

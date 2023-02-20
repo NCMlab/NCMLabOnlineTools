@@ -1,51 +1,104 @@
+// =======================================================================
+// Define internal variables
 var timeline = [];
+// var ListOfTargets = [[1,1],[4,2],[0,2]]
+var NRows = 6
+var NCols = 52
+var NTargets = 104
 
-function create2DArray(Nrows, Ncols) {
-    var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(1))
-    return arr
-  }
-ListOfTargets = [[1,1],[4,2],[0,2]]
-ListOfTargets=[[0,1],[0,5],[0,8],[0,11],[0,13],[0,15],[0,17],[0,21],[0,24],[1,51]]
+var grid = create2DArray(NRows,NCols)
+var ListOfTargets = CreateCancellationList(NRows, NCols, NTargets)
 
-// Make permuted list of Targets
-function CreateCancellationList(NRows, NCols, NTargets) {
-    var NPossible = NRows*NCols
-    var ListOfTargets = []
-    var count = 0
-    // create a list of all possible locations
-    for (var i = 0; i < NRows; i++) {
-        for (var j = 0; j < NCols; j++){
-            // only allow every other location to be a target
-            if ( count % 2 == 1 ) {
-                ListOfTargets.push([i,j])
-            }
-            count += 1
-        }
-    }
-    // shuffle the list
-    const shuffledArray = ListOfTargets.sort((a, b) => 0.5 - Math.random());
-    // only return the specified number of targets
-    return shuffledArray.slice(0, NTargets)
+// =======================================================================
+
+// =======================================================================
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: true
 }
 
-var ListOfTargets = CreateCancellationList(6, 52, 104)
+// =======================================================================
+// Define all of the different the stimuli 
 
 
-//ListOfTargets = [[1,1],[0,1]]
-var grid = create2DArray(6,52)
+ // Define instructions
+var Instructions = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data.task = 'Instructions'
+    }
+    }
+
 
 var trial_1 = {
 	type: jsPsychCancellationMouse,
   	grid: grid,
   	grid_square_width: '5vw',
     grid_square_height: '5vh',
-    prompt: "<p>JASON</p>",
+    prompt: "<p>Click on all of the letter <b>H</b></p>",
   	allow_nontarget_responses: true,
   	response_ends_trial: false,
   	target: ListOfTargets,
   	non_target_labels: ["A","B","C","D","E","F","G","I"],
   	target_labels: "H",
-  	border_width: 0
+  	border_width: 0,
+    on_finish: function(data){
+        console.log(data)
+        data.target = data.target
+        data.task = 'Trial'
+    }
 }
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = SingleLetterCancellation_Scoring(data) 
+        console.log(data)
+        data.task = 'Sending Data'
 
+      }
+    }  
+// =======================================================================    
+// Define procedures using the stimuli
+
+ var instr_procedure = {
+      timeline: [Instructions],
+      timeline_variables: SingleLetterCanceelationInstructionText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
+// =======================================================================
+// Define any logic used in the experiment    
+// ======================================================================= 
+// Add all procedures to the timeline
+timeline.push(instr_procedure)
 timeline.push(trial_1)	
+console.log(trial_1)
+timeline.push(thank_you)
+
