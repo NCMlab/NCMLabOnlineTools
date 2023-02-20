@@ -23,26 +23,25 @@
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src='Language_Config.js'>//Load language</script>
+    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "Instructions/"+Language+"/ICAR_MatrixReasoning_Instructions.js"
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/ICAR_MatrixReasoning_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="config/ICAR_MatrixReasoning_Setup.js"></script>
-    <script> 
-      // Some parameters in config file need to be overwritten to work with JATOS
-      var StimulusFolderName = "assets/MatrixReasoning/ICAR/"
-    </script>
     <script src="functions/TaskSpecificFunctions/ICAR_MatrixReasoning_functions.js"></script>
     <script src="functions/Experiments/ICAR_MatrixReasoning_experiment.js"></script>
+
+
+    
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
 
     var jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      on_trial_start: function() {
+    display_element: 'jspsych-target',
+    on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
       console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
@@ -53,12 +52,11 @@
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','ICARMatrixReasoning_data.csv');
+        jsPsych.data.get().localSave('csv','MatrixReasoningICAR_data.csv');
       }
     }
   });
@@ -78,7 +76,7 @@
         confirmText: "Do you really want to quit?",
         tooltip: "This will quit the entire experiment",
         msg: "This worker aborted the mission.",
-        style: "top:8px; left:16px; color:green"
+        style: "top:8px; right:40px; color:green"
       });
       jsPsych.run(timeline);
     });
