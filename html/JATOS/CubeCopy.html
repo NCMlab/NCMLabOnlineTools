@@ -50,7 +50,9 @@
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','CubeCopy_data.csv');
-      }    }
+      }    
+      jatos.startNextComponent();
+    }
   });
 
 

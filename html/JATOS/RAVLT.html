@@ -60,7 +60,9 @@
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','RAVLT_data.csv');
-      }    }
+      }    
+      jatos.startNextComponent();
+    }
   });
 
 

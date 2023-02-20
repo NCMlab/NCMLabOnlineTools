@@ -53,7 +53,9 @@ var jsPsych = initJsPsych({
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','StroopColorWord_data.csv');
-      }    }
+      }    
+      jatos.startNextComponent();
+    }
   });
 
 
