@@ -1,18 +1,23 @@
 
+// =======================================================================
+// Define internal variables
 var count = 0
-var RuleChangeCount = 10
-var RuleList = [0,1,2,0,1,2,0,1,2] // Number, Color, Shape
 var CurrentRuleCount = 0
 var Accuracy = ''
 
 FileNames = MakeCSTFileNames()
-console.log(FileNames)
 var timeline = [];
-
+// =======================================================================
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: true
+}
+// =======================================================================
+// Define all of the different the stimuli 
 var trial = {
     type: jsPsychImageButtonResponse,
     render_on_canvas: false,
-    stimulus_height: 100,
+    stimulus_height: StimCardHeight,
     
     stimulus: function()
     {
@@ -21,10 +26,10 @@ var trial = {
     },
     choices: function()
     {
-      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height="100vh">',
-        '<img src="'+ImageFolder+'2-red-cross.png" height="100vh" >',
-        '<img src="'+ImageFolder+'3-yellow-star.png" height="100vh" >',
-        '<img src="'+ImageFolder+'4-green-triangle.png" height="100vh" >']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
       console.log(stim)
       return stim
     },
@@ -52,7 +57,7 @@ var trial = {
 var trialBlank = {
     type: jsPsychImageButtonResponse,
     render_on_canvas: false,
-    stimulus_height: 100,
+    stimulus_height: StimCardHeight,
     stimulus: function()
     {
       var stim = ImageFolder+'blank.png'
@@ -61,19 +66,19 @@ var trialBlank = {
     
     choices: function()
     {
-      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height="100vh">',
-        '<img src="'+ImageFolder+'2-red-cross.png" height="100vh" >',
-        '<img src="'+ImageFolder+'3-yellow-star.png" height="100vh" >',
-        '<img src="'+ImageFolder+'4-green-triangle.png" height="100vh" >']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardHeight+'>',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
       return stim
     },
     prompt: function(data)
     {
       var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
         if(last_trial_correct){
-          return "<p>Correct!</p>"; // the parameter value has to be returned from the function
+          return '<p style="font-size:'+FeedbackSize+'vh">Correct!</p>'; // the parameter value has to be returned from the function
         } else {
-          return "<p>Wrong.</p>"; // the parameter value has to be returned from the function
+          return '<p style="font-size:'+FeedbackSize+'vh">Wrong!</p>'; // the parameter value has to be returned from the function
         }
     },
     trial_duration:500
@@ -94,8 +99,22 @@ var debrief_block = {
 
       }
     };
-    
 
+var Instructions = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+       stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+  }
+    
+// =======================================================================    
+// Define procedures using the stimuli
 var trial_procedure = {
       timeline: [trial, trialBlank],
       timeline_variables: FileNames,
@@ -116,5 +135,32 @@ var trial_procedure = {
       }
     }
 
+
+var welcome = {
+      timeline: [Instructions],
+      timeline_variables: WelcomeText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  
+  var instructions = {
+      timeline: [Instructions],
+      timeline_variables: InstructionText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  
+  var thank_you = {
+      timeline: [Instructions],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+// =======================================================================    
+  //timeline.push()
+timeline.push(welcome)
+timeline.push(instructions)    
 timeline.push(trial_procedure)
 timeline.push(debrief_block);
+
+
