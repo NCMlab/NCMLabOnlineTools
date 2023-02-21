@@ -81,7 +81,6 @@ var debrief = {
   stimulus: function() {
         var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*ColorPracticeRepeats)
         console.log(DataFromThisPracticeRun)
-        console.log("HELLO WORLD")
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
         var accuracy = Math.round(NumberCorrect / total_trials * 100);

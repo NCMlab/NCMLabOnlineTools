@@ -89,7 +89,7 @@ var debrief_block = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: function() {
 
-        var trials = jsPsych.data.get().filter({task: 'response'});
+        var trials = jsPsych.data.get().filter({task: 'practice trial'});
         var correct_trials = trials.filter({correct: true});
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
         var rt = Math.round(correct_trials.select('rt').mean());
@@ -113,11 +113,24 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
   }
-    
+// =======================================================================
+// This is used for labelling trials in the output data
+var prac_stimulus = Object.assign({}, trial)
+  prac_stimulus = Object.assign(prac_stimulus, {    
+    data: {
+      task: 'practice trial',
+    }
+})
+var test_stimulus = Object.assign({}, trial)
+  test_stimulus = Object.assign(test_stimulus, {    
+    data: {
+      task: 'test trial',
+    }
+})    
 // =======================================================================    
 // Define procedures using the stimuli
 var Practice_procedure = {
-      timeline: [trial, trialBlank],
+      timeline: [prac_stimulus, trialBlank],
       timeline_variables: FileNames,
       randomize_order: true,
       repetitions: 1,
@@ -137,7 +150,7 @@ var Practice_procedure = {
     }
 
 var trial_procedure = {
-      timeline: [trial, trialBlank],
+      timeline: [test_stimulus, trialBlank],
       timeline_variables: FileNames,
       randomize_order: true,
       repetitions: 1,
@@ -183,9 +196,10 @@ timeline.push(welcome)
 //timeline.push(instructions)    
 var CurrentRuleCount = 0
 timeline.push(Practice_procedure)
+timeline.push(debrief_block);
 timeline.push(welcome)
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
-//timeline.push(debrief_block);
+
 
 
