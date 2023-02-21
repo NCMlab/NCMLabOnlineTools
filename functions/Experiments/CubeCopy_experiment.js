@@ -40,7 +40,7 @@ var thank_you = {
       repetitions: 1,
  }
  
-//timeline.push(welcome)
+timeline.push(welcome)
 timeline.push(trial)
 timeline.push(thank_you)
 

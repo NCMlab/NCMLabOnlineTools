@@ -1,5 +1,4 @@
-function SingleLetterCancellation_Scoring(data) {
-	console.log(data)
+function SingleLetterCancellation_Scoring(data, trial) {
   // score trials
   var TotalScore = 0
   var LeftScore = 0

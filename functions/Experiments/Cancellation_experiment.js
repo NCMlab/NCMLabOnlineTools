@@ -52,7 +52,6 @@ var trial_1 = {
   	target_labels: "H",
   	border_width: 0,
     on_finish: function(data){
-        console.log(data)
         data.target = data.target
         data.task = 'Trial'
     }
@@ -71,8 +70,11 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        data = SingleLetterCancellation_Scoring(data) 
-        console.log(data)
+        
+        trialData = jsPsych.data.get().filter({task:'Trial'})
+        console.log(trialData.trials[0])
+        data = SingleLetterCancellation_Scoring(data, trialData.trials[0]) 
+        
         data.task = 'Sending Data'
 
       }
@@ -99,6 +101,6 @@ var SendData = {
 // Add all procedures to the timeline
 timeline.push(instr_procedure)
 timeline.push(trial_1)	
-console.log(trial_1)
+
 timeline.push(thank_you)
 
