@@ -16,15 +16,16 @@ var trial = {
     
     stimulus: function()
     {
-      var stim = '../assets/CardSortTaskItems/'+jsPsych.timelineVariable('stim')
+      var stim = ImageFolder+jsPsych.timelineVariable('stim')
       return stim
     },
     choices: function()
     {
-      var stim = ['<img src="../assets/CardSortTaskItems/1-blue-circle.png" height="100vh">',
-        '<img src="../assets/CardSortTaskItems/2-red-cross.png" height="100vh" >',
-        '<img src="../assets/CardSortTaskItems/3-yellow-star.png" height="100vh" >',
-        '<img src="../assets/CardSortTaskItems/4-green-triangle.png" height="100vh" >']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height="100vh">',
+        '<img src="'+ImageFolder+'2-red-cross.png" height="100vh" >',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height="100vh" >',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height="100vh" >']
+      console.log(stim)
       return stim
     },
     prompt: '-',
@@ -54,16 +55,16 @@ var trialBlank = {
     stimulus_height: 100,
     stimulus: function()
     {
-      var stim = '../assets/CardSortTaskItems/blank.png'
+      var stim = ImageFolder+'blank.png'
       return stim
     },
     
     choices: function()
     {
-      var stim = ['<img src="../assets/CardSortTaskItems/1-blue-circle.png" height="100vh">',
-        '<img src="../assets/CardSortTaskItems/2-red-cross.png" height="100vh" >',
-        '<img src="../assets/CardSortTaskItems/3-yellow-star.png" height="100vh" >',
-        '<img src="../assets/CardSortTaskItems/4-green-triangle.png" height="100vh" >']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height="100vh">',
+        '<img src="'+ImageFolder+'2-red-cross.png" height="100vh" >',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height="100vh" >',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height="100vh" >']
       return stim
     },
     prompt: function(data)
