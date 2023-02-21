@@ -1,9 +1,10 @@
 
 var timeline = []
+var NeckerCubeFileName = 'NeckerCube.png'
 
 var trial = {
   type: jsPsychSketchpad,
-  prompt: Instructions+'<p><img src="assets/Images/CubeCopy/NeckerCube.png" width="300vw" height="300vh" border="2px">',
+  prompt: Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">',
   prompt_location: 'abovecanvas',
   canvas_width: "300vw",
   canvas_height: "300vh",
