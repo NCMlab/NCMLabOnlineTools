@@ -2,7 +2,9 @@
 // =======================================================================
 // Define internal variables
 var count = 0
-var CurrentRuleCount = 0
+var PracticeCount = 0
+
+var PracticeCurrentRuleCount = 0
 var Accuracy = ''
 
 FileNames = MakeCSTFileNames()
@@ -30,7 +32,6 @@ var trial = {
         '<img src="'+ImageFolder+'2-red-cross.png" height='+CardHeight+'>',
         '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardHeight+'>',
         '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
-      console.log(stim)
       return stim
     },
     prompt: '-',
@@ -38,7 +39,7 @@ var trial = {
     {   
         var response = data.response
         console.log("RESPONSE: "+response)
-        var correct = jsPsych.timelineVariable('FactorMapping')
+        var correct = jsPsych.timelineVariable('FactorMapping') 
         if ( response == correct[0][RuleList[CurrentRuleCount]])
           {
             console.log("CORRECT")
@@ -115,6 +116,26 @@ var Instructions = {
     
 // =======================================================================    
 // Define procedures using the stimuli
+var Practice_procedure = {
+      timeline: [trial, trialBlank],
+      timeline_variables: FileNames,
+      randomize_order: true,
+      repetitions: 1,
+      sample: {
+        type: 'without-replacement',
+        size: PracticeRuleChangeCount*PracticeRuleList.length
+      },
+      on_finish: function() {
+        PracticeCount++
+
+        console.log("Trial count: "+PracticeCount+", Rule count: "+PracticeRuleList[PracticeCurrentRuleCount])
+        if ( (PracticeCount % PracticeRuleChangeCount) == 0 )
+        {
+          CurrentRuleCount++
+        }
+      }
+    }
+
 var trial_procedure = {
       timeline: [trial, trialBlank],
       timeline_variables: FileNames,
@@ -122,7 +143,7 @@ var trial_procedure = {
       repetitions: 1,
       sample: {
         type: 'without-replacement',
-        size: 10
+        size: RuleChangeCount*RuleList.length
       },
       on_finish: function() {
         count++
@@ -159,8 +180,12 @@ var welcome = {
 // =======================================================================    
   //timeline.push()
 timeline.push(welcome)
-timeline.push(instructions)    
+//timeline.push(instructions)    
+var CurrentRuleCount = 0
+timeline.push(Practice_procedure)
+timeline.push(welcome)
+var CurrentRuleCount = 0
 timeline.push(trial_procedure)
-timeline.push(debrief_block);
+//timeline.push(debrief_block);
 
 
