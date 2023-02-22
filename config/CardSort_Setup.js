@@ -1,6 +1,6 @@
 // How many cards before the rules change
 var PracticeRuleChangeCount = 4
-var RuleChangeCount = 2
+var RuleChangeCount = 10
 
 // What is the order of rules?
 var PracticeRuleList = [2,0,1] // Number, Color, Shape
