@@ -101,6 +101,7 @@ var enter_fullscreen = {
     }
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
+  timeline.push(enter_fullscreen)
   timeline.push(instrSampleA_procedure)
   timeline.push(trial_SampleA)
   timeline.push(instrA_procedure)
