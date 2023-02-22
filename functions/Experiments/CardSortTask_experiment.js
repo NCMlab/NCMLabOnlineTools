@@ -61,7 +61,7 @@ var trialBlank = {
     stimulus_height: StimCardHeight,
     stimulus: function()
     {
-      var stim = ImageFolder+'blank.png'
+      var stim = ImageFolder+'Blank.png'
       return stim
     },
     
