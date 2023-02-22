@@ -214,10 +214,10 @@ var welcome = {
 // =======================================================================    
   //timeline.push()
 timeline.push(welcome)
-//timeline.push(instructions)    
+timeline.push(instructions)    
 var CurrentRuleCount = 0
-//timeline.push(Practice_procedure)
-//timeline.push(debrief_block);
+timeline.push(Practice_procedure)
+timeline.push(debrief_block);
 timeline.push(welcome)
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
