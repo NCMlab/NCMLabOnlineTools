@@ -16,11 +16,11 @@ var WordPracticeRepeats = 1
 var ColorWordPracticeRepeats = 1
 
 // Since there are 4 possible trials, the number of trials will be 4 times the number of repeats
-var ColorTestRepeats = 1
+var ColorTestRepeats = 4
 var ColorTestQuestionTypes = 4
 // Since there are 4 possible trials, the number of trials will be 4 times the number of repeats
-var WordTestRepeats = 1
+var WordTestRepeats = 4
 var WordTestQuestionTypes = 4
 // Since there are 16 possible trials, the number of trials will be 4 times the number of repeats
-var ColorWordTestRepeats = 1
+var ColorWordTestRepeats = 4
 var ColorWordTestQuestionTypes = 16
