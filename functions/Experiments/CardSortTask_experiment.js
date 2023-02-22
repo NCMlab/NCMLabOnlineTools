@@ -79,7 +79,7 @@ var trialBlank = {
         if(last_trial_correct){
           return '<p style="font-size:'+FeedbackSize+'vh">Correct!</p>'; // the parameter value has to be returned from the function
         } else {
-          return '<p style="font-size:'+FeedbackSize+'vh">Wrong!</p>'; // the parameter value has to be returned from the function
+          return '<p style="font-size:'+FeedbackSize+'vh">Incorrect!</p>'; // the parameter value has to be returned from the function
         }
     },
     trial_duration:500
@@ -95,8 +95,7 @@ var debrief_block = {
         var rt = Math.round(correct_trials.select('rt').mean());
 
         return `<p>You responded correctly on ${accuracy}% of the trials.</p>
-          <p>Your average response time was ${rt}ms.</p>
-          <p>Press any key to complete the experiment. Thank you!</p>`;
+          <p>Press any key to perform the experiment.</p>`;
 
       }
     };
@@ -127,8 +126,30 @@ var test_stimulus = Object.assign({}, trial)
       task: 'test trial',
     }
 })    
+
 // =======================================================================    
 // Define procedures using the stimuli
+
+// Add scoring procedures to the Thank you screen
+var SendData = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+      on_finish: function(data){
+        data = CardSort_Scoring(data)
+        console.log(data)
+        data.task = 'Sending Data'
+        
+      }
+    }  
+
 var Practice_procedure = {
       timeline: [prac_stimulus, trialBlank],
       timeline_variables: FileNames,
@@ -185,21 +206,21 @@ var welcome = {
     }
   
   var thank_you = {
-      timeline: [Instructions],
+      timeline: [SendData],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
-    }
+    }    
 // =======================================================================    
   //timeline.push()
 timeline.push(welcome)
 //timeline.push(instructions)    
 var CurrentRuleCount = 0
-timeline.push(Practice_procedure)
-timeline.push(debrief_block);
+//timeline.push(Practice_procedure)
+//timeline.push(debrief_block);
 timeline.push(welcome)
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
-
+timeline.push(thank_you)
 
 
