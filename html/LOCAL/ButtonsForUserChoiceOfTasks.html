@@ -7,11 +7,11 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stroop Word</title>
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
     
-    <script src="../config/Button_config.js"></script>
+    <script src="../../config/Button_config.js"></script>
   </head>
   <body>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
@@ -63,7 +63,7 @@ var trial1 = {
     on_start: function(trial) {
       // set the buttons at the start of this trial
       var TEMP = jsPsych.TEMP;
-      trial.choices = ['<img src="../assets/Icons/StroopColor.png">','<img src="../assets/Icons/StroopColor.png">','<img src="../assets/Icons/StroopColor.png">'];
+      trial.choices = ['<img src="../../assets/Icons/StroopColor.png">','<img src="../../assets/Icons/StroopColor.png">','<img src="../../assets/Icons/StroopColor.png">'];
       //str = '<img src ="../assets/Icons/"+'+ ' width='+StimWidth+' height='+StimHeight+'>'
     },
     on_finish: function() {
