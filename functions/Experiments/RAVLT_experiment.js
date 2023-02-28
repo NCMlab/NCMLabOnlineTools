@@ -23,7 +23,7 @@ var FullListIndex = []
 
 // PREP WORK FOR WORD LIST A
 // take list of words as dictionary items and make a simple list out of it
-SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+SimpleWordListA = MakeAllWordsUpperCase(WordListA)
 // Make a simple list of the alternative pronunciations
 AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
 // Make a full list the words and thier alternative pronunciations
@@ -201,8 +201,7 @@ var RecallTrial = {
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = RecallDuration * 1000; // in milliseconds
     var start_time = performance.now();
-    document.querySelector('button').disabled = false;
-    interval = setInterval(function(){
+    doc˚˚˚˚˚˚˚˚ erval = setInterval(function(){
     time_left = wait_time - (performance.now() - start_time);
       var minutes = Math.floor(time_left / 1000 / 60);
       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
@@ -217,6 +216,7 @@ var RecallTrial = {
     }, 250)
     }
   }
+
 
 // Define instructions
 var Instructions = {
