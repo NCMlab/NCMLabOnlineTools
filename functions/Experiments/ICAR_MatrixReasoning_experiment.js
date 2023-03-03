@@ -10,6 +10,10 @@ var enter_fullscreen = {
 }
 // =======================================================================
 // Define all of the different the stimuli 
+var preload = {
+    type: jsPsychPreload,
+    auto_preload: true 
+}
 
 var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -81,7 +85,7 @@ var Instructions = {
       repetitions: 1,
     }    
 // ======================================================================= 
-
+timeline.push(preload)
 timeline.push(instr_procedure)
 timeline.push(trial_procedure)
 timeline.push(thankyou_procedure)
