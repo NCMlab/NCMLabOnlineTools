@@ -68,7 +68,8 @@ var letter_fds = {
   type: jsPsychAudioKeyboardResponse,
   stimulus: function(){
     return stimListOfFiles[idx]},
-  choices: 'NO_KEYS',
+  choices: [],
+  trial_duration: 1000,
   post_trial_gap: TimeGapBetweenAudioLetters,
   trial_ends_after_audio: true,
   prompt: '<p class="Fixation">+</p>',
