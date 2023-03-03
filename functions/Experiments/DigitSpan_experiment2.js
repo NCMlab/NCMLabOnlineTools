@@ -77,7 +77,60 @@ var AudioStimulus = {
     }
   }
 };
+//From the Experiment Factory Repository
+var clearResponse = function() {
+    response = [];
+    document.getElementById("echoed_txt").innerHTML = response;
+  }
+//function to push button responses to array
+var recordClick = function(elm) {
+    response.push(Number($(elm).text()))
+    document.getElementById("echoed_txt").innerHTML = response;
+  }
 
+var response_grid =
+    '<div class = numbox>' +
+    '<button id = button_1 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>1</div></div></button>' +
+    '<button id = button_2 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>2</div></div></button>' +
+    '<button id = button_3 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>3</div></div></button>' +
+    '<button id = button_4 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>4</div></div></button>' +
+    '<button id = button_5 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>5</div></div></button>' +
+    '<button id = button_6 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>6</div></div></button>' +
+    '<button id = button_7 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>7</div></div></button>' +
+    '<button id = button_8 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>8</div></div></button>' +
+    '<button id = button_9 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>9</div></div></button>' +
+    '<button class = clear_button id = "ClearButton" onclick = "clearResponse()">Clear</button>'+
+    '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
+
+
+var get_response = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: response_grid,
+  //function() {
+  //  return PutStimIntoTable('What were the numbers <b>in order</b>?',response_grid)
+  //},
+  choices: ['Enter'],
+  on_finish: function(data) {
+      var curans = response;
+      accuracy = CheckResponse(stimList, response)
+      if (Direction == 'Backward') {
+        accuracy = CheckResponse(RevereseStimList(stimList), response)   
+      }
+      else {
+        accuracy = CheckResponse(stimList, response)        
+      } 
+      data.TrialNumber = TrialCount - 1
+      data.StimLoad = staircase.Current
+      data.task = 'response trial'
+      data.correct = accuracy
+      data.NumberList = curans
+      // update the staircase
+      staircase.Decide(accuracy)
+      //clear the response for the next trial
+      response = []; 
+
+  }
+};
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
@@ -92,7 +145,7 @@ var letter_proc = {
   };
 
 var procedure = {
-  timeline: [setup_fds, letter_proc],//, NumberPadResponse],
+  timeline: [setup_fds, letter_proc, get_response],//, NumberPadResponse],
   loop_function: function(){
     // The criteria for stopping are: 
     //    reached the max number of trials.
