@@ -37,6 +37,15 @@ var preload_digits = {
 };
 // =======================================================================
 // Define all of the different the stimuli 
+var fixation = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: '<p class="Fixation">+</p>',
+  choices: [],
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  trial_duration: 500
+}
 
 // Define instructions
 
@@ -67,6 +76,7 @@ var setup_fds = {
 var letter_fds = {
   type: jsPsychAudioKeyboardResponse,
   stimulus: function(){
+    console.log(stimListOfFiles[idx])
     return stimListOfFiles[idx]},
   choices: [],
   post_trial_gap: TimeGapBetweenAudioLetters,
@@ -84,6 +94,7 @@ var letter_fds = {
     }
   }
 };
+
 //From the Experiment Factory Repository
 var clearResponse = function() {
     response = [];
@@ -174,7 +185,7 @@ var SendData = {
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
-    timeline: [letter_fds],
+    timeline: [fixation, letter_fds],
     loop_function: function(){
       if ( exitLetters == 0 ){
         return true;
