@@ -39,9 +39,8 @@ var preload_digits = {
 // Define all of the different the stimuli 
 
 // Define instructions
+// Define the stimuli
 
-// set-up screen
-// This screen is required so that the audio can be loaded and played
 var setup_fds = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   on_load: function() {
@@ -63,27 +62,23 @@ var setup_fds = {
   },
 };
 
-// letter audio presentation
-var letter_fds = {
-  type: jsPsychAudioKeyboardResponse,
-  stimulus: function(){
-    return stimListOfFiles[idx]},
-  choices: [],
-  post_trial_gap: TimeGapBetweenAudioLetters,
-  trial_ends_after_audio: true,
-  prompt: '<p class="Fixation">+</p>',
-  on_finish: function(data){
-    data.TrialNumber = TrialCount - 1
-    data.task = 'audio'
-    idx += 1; //update the index
-    //check to see if we are at the end of the letter array
-    if (idx == stimList.length) {
-      exitLetters = 1;
-    } else  {
-      exitLetters = 0;
-    }
-  }
-};
+var AudioStimulus = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: function(){
+      console.log(stimListOfFiles[idx])
+      return stimListOfFiles[idx]},
+    choices: [],
+    post_trial_gap: TimeGapBetweenAudioLetters,
+    trial_ends_after_audio: true,
+    prompt: '<p class="Fixation">+</p>',
+    on_finish: function(data) {
+      data.task = 'word'
+      // updatethe trial counter
+      TrialCount++
+    },
+  };
+
+
 //From the Experiment Factory Repository
 var clearResponse = function() {
     response = [];
@@ -174,7 +169,7 @@ var SendData = {
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
-    timeline: [letter_fds],
+    timeline: [AudioStimulus],
     loop_function: function(){
       if ( exitLetters == 0 ){
         return true;
