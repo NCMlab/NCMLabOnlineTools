@@ -201,7 +201,7 @@ var RecallTrial = {
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = RecallDuration * 1000; // in milliseconds
     var start_time = performance.now();
-    doc˚˚˚˚˚˚˚˚ erval = setInterval(function(){
+    interval = setInterval(function(){
     time_left = wait_time - (performance.now() - start_time);
       var minutes = Math.floor(time_left / 1000 / 60);
       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
