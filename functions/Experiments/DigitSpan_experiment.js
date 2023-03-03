@@ -185,7 +185,7 @@ var SendData = {
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
-    timeline: [fixation, letter_fds],
+    timeline: [letter_fds],
     loop_function: function(){
       if ( exitLetters == 0 ){
         return true;

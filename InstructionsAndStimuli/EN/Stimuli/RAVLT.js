@@ -1,7 +1,7 @@
 // Rey auditory verbal learning test
 
 var WordListA = [
-	{'Word':'X1'}, 		// 0
+	{'Word':'Drum'}, 		// 0
 	{'Word':'Curtain'}, 	// 1
 	{'Word':'Bell'},		// 2
 	{'Word':'Coffee'},		// 3
