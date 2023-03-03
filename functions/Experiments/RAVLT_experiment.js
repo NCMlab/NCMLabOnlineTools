@@ -23,7 +23,8 @@ var FullListIndex = []
 
 // PREP WORK FOR WORD LIST A
 // take list of words as dictionary items and make a simple list out of it
-SimpleWordListA = MakeAllWordsUpperCase(WordListA)
+console.log(WordListA)
+SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
 // Make a simple list of the alternative pronunciations
 AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
 // Make a full list the words and thier alternative pronunciations
