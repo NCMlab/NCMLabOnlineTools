@@ -57,7 +57,7 @@ var setup_fds = {
     TrialCount += 1
   },
   stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ FDSMaxTrials +'</p>';},
-  choices: [],
+  choices: ['Continue'],
   trial_duration: 1000,
   prompt: "",
   post_trial_gap: TimeGapBetweenAudioLetters,
