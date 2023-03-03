@@ -24,3 +24,21 @@ function MakeICARMatrxiReasoningOptions(StimulusID, StimulusFolderName)
 	options.push('I do not know')
 	return options
 }
+
+function MakeICARMatrxiReasoningOptionsFileNames(StimulusID, StimulusFolderName) 
+{
+	var options = []
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionA.png'
+	options.push(str)
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionB.png'
+	options.push(str)
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionC.png'
+	options.push(str)
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionD.png'
+	options.push(str)
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionE.png'
+	options.push(str)
+	var str = StimulusFolderName + StimulusID + '/' + StimulusID + '_optionF.png'
+	options.push(str)
+	return options	
+}

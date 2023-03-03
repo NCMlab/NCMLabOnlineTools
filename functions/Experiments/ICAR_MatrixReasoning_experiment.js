@@ -2,7 +2,19 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+// Make a list of all images used for preloading
+var ImageFileList = []
 
+for ( var i = 0; i < ICAR_MatrixList.length; i++ ){
+  
+  ImageFileList.push(MakeICARMatrxiReasoningStim(ICAR_MatrixList[i]['stim'], StimulusFolderName))
+  OptionNames = MakeICARMatrxiReasoningOptionsFileNames(ICAR_MatrixList[i]['stim'], StimulusFolderName)
+  for (var j = 0; j < 6; j++)
+    { 
+      ImageFileList.push(OptionNames[j])
+    }
+  }
+console.log(ImageFileList)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -12,9 +24,8 @@ var enter_fullscreen = {
 // Define all of the different the stimuli 
 var preload = {
     type: jsPsychPreload,
-    auto_preload: true 
+    images: ImageFileList,    
 }
-
 var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: '<p class="Fixation">+</p>',
