@@ -1,4 +1,4 @@
-var jsPsychImageButtonResponse = (function (jspsych) {
+var jsPsychImageButtonResponseCST = (function (jspsych) {
   'use strict';
 
   const info = {
@@ -10,6 +10,11 @@ var jsPsychImageButtonResponse = (function (jspsych) {
               pretty_name: "Stimulus",
               default: undefined,
           },
+          discardPile: {
+              type: jspsych.ParameterType.IMAGE,
+              pretty_name: "Discard",
+              default: undefined,
+          },          
           /** Set the image height in pixels */
           stimulus_height: {
               type: jspsych.ParameterType.INT,
@@ -212,6 +217,7 @@ var jsPsychImageButtonResponse = (function (jspsych) {
               //}
           }
           else {
+            // DO NOT RENDER ON CANVAS
             html = ''
               //display buttons
               var buttons = [];
@@ -228,7 +234,8 @@ var jsPsychImageButtonResponse = (function (jspsych) {
                       buttons.push(trial.button_html);
                   }
               }
-              html += '<table><tr><td>'
+              // Make row for the stimuli at the top
+              html += '<table border = "0"><tr><td colspan="3">'
               html += '<div id="jspsych-image-button-response-btngroup">';
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
@@ -246,7 +253,16 @@ var jsPsychImageButtonResponse = (function (jspsych) {
                           "</div>";
               }
               html += "</div><p>";
-              html += '</td></tr><tr height="200px"><td>'+trial.prompt+'</td></tr><tr><td>'
+              html += '</td></tr>'
+              // Second row for the prompt/feedback
+              html += '<tr height="200px"><td colspan="2">'+trial.prompt+'</td></tr>'
+              // Third row for discard pile
+              var Rotation = 0//(Math.random() * 10) - 5;
+              html += '<tr><td>'
+              html += '<img src="' + trial.discardPile + '" id="jspsych-image-button-response-discard"  style="transform:rotate('+Rotation+'deg)";>';
+              html += '<p></td><td width="70%" align="left"> &#8592; Discard Pile</td></tr>'
+              // Fourth row for the stimulus card
+              html += '<tr><td colspan="2">'
               // display stimulus as an image element
               html += '<img src="' + trial.stimulus + '" id="jspsych-image-button-response-stimulus">';
               html += '</td></tr></table>'
@@ -255,6 +271,7 @@ var jsPsychImageButtonResponse = (function (jspsych) {
               display_element.innerHTML = html;
               // set image dimensions after image has loaded (so that we have access to naturalHeight/naturalWidth)
               var img = display_element.querySelector("#jspsych-image-button-response-stimulus");
+              var imgDiscard = display_element.querySelector("#jspsych-image-button-response-discard");
               if (trial.stimulus_height !== null) {
                   height = trial.stimulus_height;
                   if (trial.stimulus_width == null && trial.maintain_aspect_ratio) {
@@ -277,6 +294,8 @@ var jsPsychImageButtonResponse = (function (jspsych) {
               }
               img.style.height = height.toString() + "px";
               img.style.width = width.toString() + "px";
+              imgDiscard.style.height = height.toString() + "px";
+              imgDiscard.style.width = width.toString() + "px";
           }
           // start timing
           var start_time = performance.now();

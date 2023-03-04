@@ -7,6 +7,8 @@ var PracticeCount = 0
 var PracticeCurrentRuleCount = 0
 var Accuracy = ''
 
+var PreviousCard = ImageFolder+'Blank.png'
+var TrialCount = 0
 FileNames = MakeCSTFileNames()
 var timeline = [];
 // =======================================================================
@@ -16,8 +18,9 @@ var enter_fullscreen = {
 }
 // =======================================================================
 // Define all of the different the stimuli 
+
 var trial = {
-    type: jsPsychImageButtonResponse,
+    type: jsPsychImageButtonResponseCST,
     render_on_canvas: false,
     stimulus_height: StimCardHeight,
     
@@ -25,6 +28,17 @@ var trial = {
     {
       var stim = ImageFolder+jsPsych.timelineVariable('stim')
       return stim
+    },
+    discardPile: function()
+    {
+      if ( TrialCount > 0 ) {
+        var temp = jsPsych.data.get().last(2)
+        var discard = temp.select('stimulus').values[0]
+      }
+      else {
+        discard = PreviousCard 
+      }
+      return discard
     },
     choices: function()
     {
@@ -34,9 +48,10 @@ var trial = {
         '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
       return stim
     },
-    prompt: '-',
+    prompt: '+',
     on_finish: function(data) 
     {   
+        TrialCount += 1
         var response = data.response
         console.log("RESPONSE: "+response)
         var correct = jsPsych.timelineVariable('FactorMapping') 
@@ -56,7 +71,7 @@ var trial = {
   };
 
 var trialBlank = {
-    type: jsPsychImageButtonResponse,
+    type: jsPsychImageButtonResponseCST,
     render_on_canvas: false,
     stimulus_height: StimCardHeight,
     stimulus: function()
@@ -64,7 +79,17 @@ var trialBlank = {
       var stim = ImageFolder+'Blank.png'
       return stim
     },
-    
+    discardPile: function()
+    {
+      if ( TrialCount > 1 ) {
+        var temp = jsPsych.data.get().last(2)
+        var discard = temp.select('stimulus').values[1]
+      }
+      else {
+        discard = PreviousCard 
+      }
+      return discard
+    },
     choices: function()
     {
       var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardHeight+'>',
