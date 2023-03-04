@@ -11,7 +11,8 @@ let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepS
 let stimList = new AdaptiveStimulusList();
     // Keep track of how many trials have been presented.
     // After a certain count present a long duration ITI
-    var count = 0;
+var count = 0;
+console.log(stair1)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -55,6 +56,7 @@ var enter_fullscreen = {
         count += 1
         },
     }
+
      var Retention = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
@@ -67,9 +69,6 @@ var enter_fullscreen = {
       //},
     } 
 
-
-   
-    
     var Probe = {
       type:jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
@@ -122,8 +121,6 @@ var enter_fullscreen = {
      // }
     } 
 
-
-
     var WaitTime = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
@@ -132,7 +129,8 @@ var enter_fullscreen = {
       choices: [],
       trial_duration: WaitOnTime,
     } 
-var ThankYou = {
+
+    var ThankYou = {
         type: jsPsychHtmlButtonResponseTouchscreen,
         stimulus: "Thank you",
         choices: [],
@@ -141,6 +139,7 @@ var ThankYou = {
           console.log(data.Capacity)
         }
     };
+
     var debrief_block = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       choices: [],
@@ -171,11 +170,11 @@ var SendData = {
 // =========================================
 // Define any logic used 
     var loop_node = {
-      timeline: [test_procedure],
+      timeline: [Stimulus, Retention, Probe, Fix],
       loop_function: function(data){
-      return (! stair1.Finished)
+        return (! stair1.Finished)
      }
-    }
+    };
    // =======================================================================    
 // Define procedures using the stimuli
 
@@ -185,14 +184,7 @@ var SendData = {
       randomize_order: false,
       repetitions: 1,
     }
-    
-    var test_procedure = {
-      // Make sure this order is correct: fixation cue and then the stimulus
-      // Otherwise the scoring will not make any sense
-      timeline: [Stimulus, Retention, Probe, Fix],
-      randomize_order: false  
-    };
-  
+      
   var thank_you = {
       timeline: [SendData],
       timeline_variables: ThankYouText,
@@ -204,6 +196,5 @@ var SendData = {
     timeline.push(instr_procedure)
     timeline.push(WaitTime)
     timeline.push(loop_node)
-    //timeline.push(test_procedure)
-    //timeline.push(debrief_block)
+    timeline.push(debrief_block)
     timeline.push(thank_you)
