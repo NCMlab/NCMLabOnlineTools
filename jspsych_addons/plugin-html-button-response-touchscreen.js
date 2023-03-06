@@ -98,7 +98,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           html += '<td>'
           html += trial.stimulus
           html += '</tr>'
-          html += '<tr style="height:15%; text-align:center">'
+          html += '<tr style="height:25%; text-align:center">'
           html += '<td>'
           html += '<div id="jspsych-html-button-response-btngroup">';
                   for (var i = 0; i < trial.choices.length; i++) {
