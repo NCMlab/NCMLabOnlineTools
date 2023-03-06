@@ -1,6 +1,6 @@
 var FeedbackLength = 400; // This is in milliseconds
 var FeedbackFontSize = "30px";
-var GapBetweenButtons = "10px";
+var GapBetweenButtons = "5px";
 
 var FullScreenMode = false;
 var TextFontSize = "30px";
