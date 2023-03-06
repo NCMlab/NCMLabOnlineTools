@@ -5,11 +5,11 @@ var timeline = [];
 console.log('==============================')
 
 
-sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, 0.7, 0.85) 
+sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, 0.7, 0.75) 
 CanvasWidthB = sizes.CanvasWidth
 CanvasHeightB = sizes.CanvasHeight
 
-sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, 0.95,0.85) 
+sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, 0.95,0.75) 
 CanvasWidthSampleB = sizes.CanvasWidth
 CanvasHeightSampleB = sizes.CanvasHeight
 // =======================================================================
