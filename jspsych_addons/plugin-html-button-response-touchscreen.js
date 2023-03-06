@@ -104,7 +104,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   for (var i = 0; i < trial.choices.length; i++) {
                       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                       html +=
-                          '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:' +
+                          '<div class="jspsych-html-button-response-button" style="display: inline-block; font-size:2em; margin:' +
                               trial.margin_vertical +
                               " " +
                               trial.margin_horizontal +
