@@ -4,13 +4,13 @@
 var timeline = [];
 console.log('==============================')
 console.log('CANVAS SIZE FOR A')
-sizes = FindCanvasSize(SuggestedWidthA, SuggestedHeightA, 0.7, 0.85) 
+sizes = FindCanvasSize(SuggestedWidthA, SuggestedHeightA, 0.7, 0.75) 
 CanvasWidthA = sizes.CanvasWidth
 CanvasHeightA = sizes.CanvasHeight
 console.log('==============================')
 
 
-sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, 0.95,0.85) 
+sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, 0.95,0.75) 
 CanvasWidthSampleA = sizes.CanvasWidth
 console.log(CanvasWidthSampleA)
 CanvasHeightSampleA = sizes.CanvasHeight
