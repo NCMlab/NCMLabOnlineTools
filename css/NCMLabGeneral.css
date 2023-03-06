@@ -146,7 +146,7 @@ p.Instructions {
 }
 
 .REDCross {color:red}
-
+/* Change the size of the font in the buttons */
 .jspsych-btn {
-  font-size: larger;
+  font-size: large;
 }

@@ -72,6 +72,7 @@ WordListIndex = CreateWordListIndex(WordList)
 FullListIndex = CreateSimpleIndexList(WordList, AlternatePronunciationsWordList)
 console.log(FullListIndex)
 */
+
 var FindRecalledWords01 = function(tag) {
     console.log(tag)
     console.log(FullWordList)
