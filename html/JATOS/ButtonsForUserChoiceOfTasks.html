@@ -97,6 +97,7 @@ var trial1 = {
       var TEMP = jsPsych.TEMP;
       trial.choices = TEMP;
       console.log("HELLO")
+      pseudoSwitch('something')
       console.log(MakeListOfButtonIcons(TEMP))
       trial.choices = MakeListOfButtonIcons(TEMP)
       //str = '<img src ="../assets/Icons/"+'+ ' width='+StimWidth+' height='+StimHeight+'>'
@@ -125,11 +126,34 @@ var trial2 = {
     prompt: "<p>Stroop</p>", 
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
-    on_finish: function() {
-     jatos.startComponent(32); 
-    }
+    
   }
+
+
+// you can have initial casses
+var callbacks = {
+   'something': [() => 42]
+};
+
+// and you can create new entry with this function
+function add(_case, fn) {
+   callbacks[_case] = callbacks[_case] || [];
+   callbacks[_case].push(fn);
+}
+
+// this function work like switch(value)
+// to make the name shorter you can name it `cond` (like in scheme)
+function pseudoSwitch(value) {
+  console.log(value)
+   if (callbacks[value]) {
+      callbacks[value].forEach(function(fn) {
+          fn();
+      });
+   }
+}
+
 timeline.push(trial1)
+timeline.push(trial2)
 
 jatos.onLoad(() => {jsPsych.run(timeline);});
   </script>

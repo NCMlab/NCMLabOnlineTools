@@ -50,7 +50,34 @@
 
   timeline = [];
   
- 
+// you can have initial casses
+var callbacks = {
+   'default': [() => {
+    console.log('default')
+  }]
+};
+add('StroopColor', () => {console.log('StroopColor')})
+add('StroopWord', () => {console.log('StroopWord')})
+add('StroopColorWord', () => {console.log('StroopColorWord')})
+
+var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
+
+// and you can create new entry with this function
+function add(_case, fn) {
+   callbacks[_case] = callbacks[_case] || [];
+   callbacks[_case].push(fn);
+}
+
+// this function work like switch(value)
+// to make the name shorter you can name it `cond` (like in scheme)
+function pseudoSwitch(value) {
+   if (callbacks[value]) {
+      callbacks[value].forEach(function(fn) {
+          fn();
+      });
+   }
+}
+
 
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
@@ -63,21 +90,23 @@ var trial1 = {
     on_start: function(trial) {
       // set the buttons at the start of this trial
       var TEMP = jsPsych.TEMP;
-      trial.choices = ['<img src="../../assets/Icons/StroopColor.png">','<img src="../../assets/Icons/StroopColor.png">','<img src="../../assets/Icons/StroopColor.png">'];
+      trial.choices = ['<img src="../../assets/Icons/StroopColor.png">','<img src="../../assets/Icons/StroopWord.png">','<img src="../../assets/Icons/StroopColorWord.png">'];
       //str = '<img src ="../assets/Icons/"+'+ ' width='+StimWidth+' height='+StimHeight+'>'
     },
     on_finish: function() {
       // What button number was pressed?
       var data = jsPsych.data.get().last(1);
       // What is the text label for this button?
-      console.log(data.trials[0].response)
-      var responseButton = jsPsych.TEMP[data.trials[0].response]
+      pseudoSwitch(ButtonMapping[data.trials[0].response])
+      
+
+/*      var responseButton = jsPsych.TEMP[data.trials[0].response]
       // Put the button pressed label inot a local variable
       jsPsych.responseButton = responseButton
       // Find the index in the available button list that was pressed
       var ind = jsPsych.TEMP.indexOf(responseButton)
       // Remove the pressed button from the button list in the local variable
-
+*/
 
       //jsPsych.TEMP.splice(ind, 1); 
     }
@@ -91,8 +120,10 @@ var trial2 = {
     // This is just a place holder to stop a jsPsych error
     choices: ['Next']
   }
+
+
 timeline.push(trial1)
-//timeline.push(trial2)
+timeline.push(trial2)
   //jatos.onLoad(() => {jsPsych.run(timeline);});
 
    jsPsych = initJsPsych({
