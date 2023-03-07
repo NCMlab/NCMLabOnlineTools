@@ -11,8 +11,8 @@ const component = {index: 5, name:'Digitspan Backward', componentID: 37}
 ComponentList.push(component)
 
 var BatteryList = []
-const component = {index: 1, name:'Battery001', list: [2,4]}
-BatteryList.push(component)
+const BattComp = {index: 1, name:'Battery001', list: [2,4]}
+BatteryList.push(BattComp)
 
 
 
