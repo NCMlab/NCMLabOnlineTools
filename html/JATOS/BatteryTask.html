@@ -41,9 +41,6 @@ var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      console.log(jatos.urlQueryParameters);
-      var input = jatos.urlQueryParameters;
-      console.log(input.a);
       // Add jatos info to the data file
       jsPsych.data.addProperties({assignedURLID: input.a});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
@@ -66,7 +63,6 @@ var jsPsych = initJsPsych({
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);

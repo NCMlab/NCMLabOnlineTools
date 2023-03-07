@@ -6,8 +6,9 @@ TaskList.push('Stroop Color/Word')
 
 
 // Check the status of the JATOS session data
-var SessionData = jatos.studySessionData;
-console.log(SessionData)
+
+console.log(jatos)
+
 var trial1 = {
 
   // This displays a series of buttons on the screen for each component of this session. 
