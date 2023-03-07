@@ -1,12 +1,12 @@
 var timeline = []
 var TaskList = []
-TaskList.push('Stroop Color')
-TaskList.push('Stroop Word')
-TaskList.push('Stroop Color/Word')
+
 console.log(BatteryList)
+console.log(BatteryList[0].list)
 console.log(ComponentList)
-for ( var i = 0; i < BatteryList.length; i ++ ) {
-	console.log(ComponentList[BatteryList[0][i]])
+for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
+	console.log(ComponentList[BatteryList[0].list[i]])
+	TaskList.push(ComponentList[BatteryList[0].list[i]].name)
 }
 
 
@@ -17,7 +17,7 @@ var callbacks = {
 };
 add('Stroop Color', () => {
 	console.log('StroopColor')
-	jatos.startComponent(32);
+	//jatos.startComponent(32);
 })
 add('Stroop Word', () => {console.log('StroopWord')})
 add('Stroop Color/Word', () => {console.log('StroopColorWord')})
@@ -43,9 +43,9 @@ function pseudoSwitch(value) {
 
 // Check the status of the JATOS session data
 
-console.log(jatos.studySessionData)
-jatos.studySessionData = TaskList
-console.log(jatos.studySessionData)
+//console.log(jatos.studySessionData)
+//jatos.studySessionData = TaskList
+//console.log(jatos.studySessionData)
 var trial1 = {
 
   // This displays a series of buttons on the screen for each component of this session. 
@@ -58,12 +58,13 @@ var trial1 = {
     	}
     	return stim
     },
-    prompt: "<p>Stroop</p>", 
+    prompt: '', 
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
     response_ends_trial: true,
     on_finish: function() {
     	pseudoSwitch(TaskList[0])
+    	// Need to shorten the task list and save it as jatos session variable
     }
   };
  timeline.push(trial1)
