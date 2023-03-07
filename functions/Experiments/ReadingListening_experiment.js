@@ -10,12 +10,8 @@ var VisualStimulus = {
     prompt: "Read this Word",
   };
 
-var HeardSentence = []
-var DisplayWord = function(tag) {
-	HeardSentence = tag
-	CompareReadAndHeard(Input, HeardSentence)
-}
-var Input = []
+
+
 var InputSentences = []
 
 InputSentences.push({'stim':"Rice is often served in round bowls"})
@@ -26,8 +22,20 @@ InputSentences.push({'stim':"These days a chicken leg is a rare dish"})
 InputSentences.push({'stim':"The juice of lemons makes fine punch"})
 InputSentences.push({'stim':"The box was thrown beside the parked truck"})
 InputSentences.push({'stim':"The hogs were fed chopped corn and garbage"})
-InputSentences.push({'stim':"Four hours of steady work faced us"})
+InputSentences.push({'stim':"4 hours of steady work faced us"})
 InputSentences.push({'stim':"A large size in stockings is hard to sell"})
+
+var WaitForWords = function() {
+  annyang.addCallback('result', function(userSaid) {
+        console.log('sound stopped');
+        // userSaid contains multiple possibilities for what was heard
+        console.log(userSaid)
+        console.log(ReadSentence)
+        //jsPsych.finishTrial();
+        console.log(document.getElementById("JASON").style.color="blue")
+       });
+
+}
 
 var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
 	ReadSentenceWords = ReadSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
@@ -47,39 +55,37 @@ var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
 	Score = MatchedWords/NWords
 	console.log(Score)
 }
-
+var ReadSentence = ''
 var RecallRequest01 = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-      Input = jsPsych.timelineVariable('stim')
-      var stim = "Please read the following sentence out load: <p>"+jsPsych.timelineVariable('stim')+"</p>Then press next when you are done."
+      ReadSentence = jsPsych.timelineVariable('stim')
+      console.log(ReadSentence)
+      var stim = 'Please read the following sentence out load: <div id="JASON">'+ReadSentence+'</div>Then press next when you are done.'
       return stim
     },
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: 'Yo', //Add this to config file
+    prompt: '', //Add this to config file
     on_start: function() {
-      // reset the list of indices
-      const commands01 = {'*search': DisplayWord};
+      console.log('================================')
+      // start listening
       annyang.start({autorestart: false, continuous: true});
-      annyang.addCommands(commands01);
       //console.log('Started')
+      // perform this when the sound stops
+		 console.log(WaitForWords())
 
-		annyang.addCallback('result', function() {
-  		console.log('sound stopped');
-	});
     },
-    on_finish: function(data){
-      data.Heard = HeardSentence
+    on_finish: function(data){  
       annyang.abort()
-      
     },
   }
+
   var trials = {
       timeline: [RecallRequest01],
       timeline_variables: InputSentences,
-      randomize_order: true,
+      randomize_order: false,
       repetitions: 1,
     }
   timeline.push(trials)
