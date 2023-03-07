@@ -1,5 +1,5 @@
 /* Customizable batteries with modifiable parameters 
-The idea is to have one folder with all of the JATOS html tasks in it. Also included is a battery 'task.' This is a list of the tasks that will be presented to the participant. This can be the full battery or a subset. Ideally, there would be JSON parameters that can be passed to teh batteries, such as number of trials.
+The idea is to have one folder with all of the JATOS html tasks in it. Also included is a battery 'task.' This is a list of the tasks that will be presented to the participant. This can be the full battery or a subset. Ideally, there would be JSON parameters that can be passed to the batteries, such as number of trials.
 
 The battery task has a list of teh tasks to do and after each button press of start the next task JATOS calls the component. At the end of teh task the user is brought back to the battery task. But now the completed task is removed from teh list.
 
@@ -10,6 +10,9 @@ Instead of using the JSON study input, I can use the URL input. It would need so
 There can be a site where the user types in the patient ID, clicks the tasks to administer and a specific URL is created. The battery component decodes the URL and identifies what tasks to do. It then generates the Component list.
 
 A battery list is also possible. Instead of sending a list of component IDs, the URL just has battery ID that is sent alomng with teh participant ID.
+
+http://localhost:9000/publix/MvEwRA6kh0q?Battery=1
+
 */
 
 <!DOCTYPE html>
@@ -50,7 +53,8 @@ var jsPsych = initJsPsych({
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
       // Add jatos info to the data file
-      //jsPsych.data.addProperties({assignedURLID: input.a});
+      console.log(input.Battery)
+      jsPsych.data.addProperties({assignedURLID: input.Battery});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
