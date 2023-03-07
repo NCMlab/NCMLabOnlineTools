@@ -3,7 +3,7 @@ var TaskList = []
 TaskList.push('Stroop Color')
 TaskList.push('Stroop Word')
 TaskList.push('Stroop Color/Word')
-config.log(BatteryList)
+console.log(BatteryList)
 
 var callbacks = {
    'default': [() => {
