@@ -33,6 +33,8 @@ var WaitForWords = function() {
         console.log(ReadSentence)
         //jsPsych.finishTrial();
         console.log(document.getElementById("JASON").style.color="blue")
+        document.getElementById("jspsych-html-button-response-button-0").disabled = true;
+        console.log(document.getElementById("jspsych-html-button-response-button-0"))
        });
 
 }
