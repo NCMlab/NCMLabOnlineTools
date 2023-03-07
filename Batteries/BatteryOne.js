@@ -7,7 +7,7 @@ TaskList.push('Stroop Color/Word')
 
 // Check the status of the JATOS session data
 
-console.log(jatos)
+console.log(jatos.studySessionData)
 
 var trial1 = {
 
