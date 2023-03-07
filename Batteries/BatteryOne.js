@@ -4,7 +4,7 @@ TaskList.push('Stroop Color')
 TaskList.push('Stroop Word')
 TaskList.push('Stroop Color/Word')
 console.log(BatteryList)
-for ( var i = 0; i < BateryList.length; i ++ ) {
+for ( var i = 0; i < BatteryList.length; i ++ ) {
 	console.log(ComponentList[BatteryList[0][i]])
 }
 
