@@ -3,7 +3,13 @@ var TaskList = []
 TaskList.push('Stroop Color')
 TaskList.push('Stroop Word')
 TaskList.push('Stroop Color/Word')
+
+
+// Check the status of the JATOS session data
+var SessionData = jatos.studySessionData;
+console.log(SessionData)
 var trial1 = {
+
   // This displays a series of buttons on the screen for each component of this session. 
   // The buttons are dynamically created based on what has been completed already
     type: jsPsychHtmlButtonResponse,
