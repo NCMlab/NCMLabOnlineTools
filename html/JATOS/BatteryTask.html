@@ -78,6 +78,7 @@ var jsPsych = initJsPsych({
       console.log(jatos)
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
+      jsPsych.data.addProperties({Battery: URLParameters.Battery});
       jatos.addJatosIds(resultsData);
       jatos.addAbortButton({
         text: "Quit",
