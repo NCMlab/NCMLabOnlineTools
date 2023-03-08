@@ -53,6 +53,7 @@ var jsPsych = initJsPsych({
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
       // Add jatos info to the data file
+      console.log(jatos.urlQueryParameters)
       console.log(jatos.urlQueryParameters.Battery)
       
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});

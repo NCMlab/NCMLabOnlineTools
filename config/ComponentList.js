@@ -7,10 +7,12 @@ ComponentList.push({index: 3, name:'Digitspan Forward', componentID: 36})
 ComponentList.push({index: 4, name:'Digitspan Backward', componentID: 37})
 
 var BatteryList = []
-const BattComp = {index: 1, name:'Battery001', list: [2,4,0]}
+var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
+BatteryList.push({index: 1, name:'Battery001', list: [2,4,0], description: BatteryDescription})
+BatteryList.push({index: 2, name:'Battery002', list: [0,1,2], description: BatteryDescription})
+BatteryList.push({index: 3, name:'Battery003', list: [3,4], description: BatteryDescription})
 
 
-BatteryList.push(BattComp)
 
 
 
