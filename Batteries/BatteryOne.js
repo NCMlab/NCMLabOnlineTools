@@ -2,8 +2,7 @@ var timeline = []
 var TaskList = []
 
 // What battery was passed?
-console.log(URLParameters)
-console.log(jsPsych.data.displayData())
+
 
 
 console.log(ComponentList)
