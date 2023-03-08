@@ -55,7 +55,7 @@ var jsPsych = initJsPsych({
       // Add jatos info to the data file
       var URLParameters = jatos.urlQueryParameters
       console.log(URLParameters)
-      
+      jsPsych.data.addProperties({Battery: URLParameters.Battery});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
