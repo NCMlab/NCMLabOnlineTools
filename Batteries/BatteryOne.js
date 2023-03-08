@@ -3,7 +3,7 @@ var TaskList = []
 
 // What battery was passed?
 
-
+console.log(GLOBALVARIABLE)
 
 console.log(ComponentList)
 for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
