@@ -80,6 +80,7 @@ var jsPsych = initJsPsych({
       var resultsData = {'name':'JASON'};
       URLParameters = jatos.urlQueryParameters
       jsPsych.data.addProperties({Battery: URLParameters.Battery});
+      console.log(jsPsych.data)
       jatos.addJatosIds(resultsData);
       jatos.addAbortButton({
         text: "Quit",
