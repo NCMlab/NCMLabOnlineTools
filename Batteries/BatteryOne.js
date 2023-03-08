@@ -56,16 +56,14 @@ var trial0 = {
     choices: ['Next'],
     response_ends_trial: true,
     on_finish: function(){
+    	// read the data for this trial
     	var all_data = jsPsych.data.get();
+    	// find the battery selected and extract its list of components
     	var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-    	console.log(list);
+    	// Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
 			TaskList.push(ComponentList[list[i]].name)
 		}
-		console.log(TaskList)
-
-    	
-
     }
   };
 var trial1 = {
@@ -101,6 +99,8 @@ var trial1 = {
     }
   };
 
-
+// The first trial is needed to get the data that jatos has added. Adding data in
+// jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
+  // Once the data is added, then it can be read and worked with.
  timeline.push(trial0)
  timeline.push(trial1)
