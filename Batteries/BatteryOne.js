@@ -69,7 +69,7 @@ var trial1 = {
 		var all_data = jsPsych.data.get();
 
 		// get csv representation of data and log to console
-		console.log(all_data.csv());
+		console.log(all_data);
 	},
     on_finish: function() {
     	pseudoSwitch(TaskList[0])
