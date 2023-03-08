@@ -6,9 +6,6 @@ var TaskList = []
 
 
 console.log(ComponentList)
-for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
-	TaskList.push(ComponentList[BatteryList[0].list[i]].name)
-}
 
 var callbacks = {
    'default': [() => {
@@ -60,8 +57,14 @@ var trial0 = {
     response_ends_trial: true,
     on_finish: function(){
     	var all_data = jsPsych.data.get();
-    	console.log(BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).name);
-    	console.log(BatteryList[parseInt(all_data.trials[0].Battery)])
+    	var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
+    	console.log(list);
+    	for ( var i = 0; i < list.length; i ++ ) {
+			TaskList.push(ComponentList[i].name)
+		}
+		console.log(TaskList)
+
+    	
 
     }
   };
