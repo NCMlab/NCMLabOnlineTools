@@ -7,10 +7,8 @@ var TaskList = []
 
 console.log(ComponentList)
 for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
-	console.log(ComponentList[BatteryList[0].list[i]])
 	TaskList.push(ComponentList[BatteryList[0].list[i]].name)
 }
-
 
 var callbacks = {
    'default': [() => {
@@ -60,6 +58,10 @@ var trial0 = {
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
     response_ends_trial: true,
+    on_finish: function(){
+    	var all_data = jsPsych.data.get();
+    	console.log(all_data)
+    }
   };
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
@@ -79,7 +81,7 @@ var trial1 = {
     on_start: function() {
     	// select all trials
 		var all_data = jsPsych.data.get();
-
+		// What bettery is it?
 		// get csv representation of data and log to console
 		console.log(all_data);
 	},
