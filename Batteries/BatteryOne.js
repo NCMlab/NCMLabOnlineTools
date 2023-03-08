@@ -60,7 +60,7 @@ var trial0 = {
     	var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	console.log(list);
     	for ( var i = 0; i < list.length; i ++ ) {
-			TaskList.push(ComponentList[i].name)
+			TaskList.push(ComponentList[list[i]].name)
 		}
 		console.log(TaskList)
 
