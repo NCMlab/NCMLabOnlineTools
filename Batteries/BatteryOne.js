@@ -60,7 +60,8 @@ var trial0 = {
     response_ends_trial: true,
     on_finish: function(){
     	var all_data = jsPsych.data.get();
-    	console.log(all_data.trials[0])
+    	console.log(BatteryList[parseInt(all_data.trials[0].Battery)])
+
     }
   };
 var trial1 = {
