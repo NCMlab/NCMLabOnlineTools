@@ -64,16 +64,19 @@ var trial1 = {
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
     response_ends_trial: true,
+    on_start: function() {
+    	// select all trials
+		var all_data = jsPsych.data.get();
+
+		// get csv representation of data and log to console
+		console.log(all_data.csv());
+	},
     on_finish: function() {
     	pseudoSwitch(TaskList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
-// select all trials
-var all_data = jsPsych.data.get();
 
-// get csv representation of data and log to console
-console.log(all_data.csv());
-  
+
  timeline.push(trial1)
  timeline.push(trial1)
