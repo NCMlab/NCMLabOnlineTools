@@ -3,7 +3,7 @@ var TaskList = []
 
 // What battery was passed?
 
-console.log(GLOBALVARIABLE)
+
 
 console.log(ComponentList)
 for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
@@ -72,6 +72,11 @@ var trial1 = {
 		console.log(all_data);
 	},
     on_finish: function() {
+    			var all_data = jsPsych.data.get();
+
+		// get csv representation of data and log to console
+		console.log(all_data);
+
     	pseudoSwitch(TaskList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
