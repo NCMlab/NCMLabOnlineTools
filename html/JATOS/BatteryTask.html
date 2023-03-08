@@ -11,7 +11,7 @@ There can be a site where the user types in the patient ID, clicks the tasks to 
 
 A battery list is also possible. Instead of sending a list of component IDs, the URL just has battery ID that is sent alomng with teh participant ID.
 
-http://localhost:9000/publix/MvEwRA6kh0q?Battery=1
+http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
 
 */
 
@@ -53,8 +53,8 @@ var jsPsych = initJsPsych({
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
       // Add jatos info to the data file
-      console.log(jatos.urlQueryParameters)
-      console.log(jatos.urlQueryParameters.Battery)
+      var URLParameters = jatos.urlQueryParameters
+      console.log(URLParameters)
       
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
