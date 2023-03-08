@@ -2,6 +2,8 @@ var timeline = []
 var TaskList = []
 
 // What battery was passed?
+console.log(URLParameters{'Barrery'})
+
 console.log(ComponentList)
 for ( var i = 0; i < BatteryList[0].list.length; i ++ ) {
 	console.log(ComponentList[BatteryList[0].list[i]])
