@@ -60,7 +60,7 @@ var trial0 = {
     response_ends_trial: true,
     on_finish: function(){
     	var all_data = jsPsych.data.get();
-    	console.log(all_data[0].trials)
+    	console.log(all_data[0])
     }
   };
 var trial1 = {
