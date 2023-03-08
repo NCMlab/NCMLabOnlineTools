@@ -2,6 +2,7 @@ var timeline = []
 var TaskList = []
 
 // What battery was passed?
+console.log(jatos.urlQueryParameters)
 console.log(URLParameters.Battery)
 
 console.log(ComponentList)
