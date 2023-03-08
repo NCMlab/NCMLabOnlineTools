@@ -48,8 +48,20 @@ function pseudoSwitch(value) {
 //console.log(jatos.studySessionData)
 //jatos.studySessionData = TaskList
 //console.log(jatos.studySessionData)
+var trial0 = {
+  // This displays a series of buttons on the screen for each component of this session. 
+  // The buttons are dynamically created based on what has been completed already
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function() {
+    	var stim = "Hello World"
+    	return stim
+    },
+    prompt: '', 
+    // This is just a place holder to stop a jsPsych error
+    choices: ['Next'],
+    response_ends_trial: true,
+  };
 var trial1 = {
-
   // This displays a series of buttons on the screen for each component of this session. 
   // The buttons are dynamically created based on what has been completed already
     type: jsPsychHtmlButtonResponse,
@@ -83,5 +95,5 @@ var trial1 = {
   };
 
 
- timeline.push(trial1)
+ timeline.push(trial0)
  timeline.push(trial1)
