@@ -67,7 +67,7 @@ var fixation = {
 // Define the stimuli
 
 
-var AudioStimulus = {
+var PresentSelectiveWords_Audio = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function()
       {
@@ -102,7 +102,7 @@ var AudioStimulus = {
       TrialCount++
     },
   };
-
+// THE FOLLOWING IS NOT USED
 var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()

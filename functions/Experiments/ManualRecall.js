@@ -1,10 +1,6 @@
 
-SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
-
-var timeline = []
-
 // Manual Recall Trial
-var trial = {
+var ManualRecallTrial = {
   type: jsPsychSurvey,
   on_start: function(SimpleList) {
       // reset the list of indices
@@ -53,7 +49,7 @@ var trial = {
       }, 
     ]
   ],
-  title: 'RAVLT Recall',
+  title: 'Word Recall',
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: 'Submit',
@@ -81,14 +77,17 @@ var trial = {
             NIntrustion++
             HeardList.push(data.response.Intrusion01)
       }
-      
-      
-      //data.NIntrusions = NIntrustion
+      //data.RecallList = WordListIndex
+      data.HeardList = HeardList
+      //data.RecallCount = BlockRecallCount
+      data.NIntrusions = NIntrustion
       data.task = 'Recall'
       BlockCount++
+      // reset the timer
+      clearInterval(interval);
       console.log(data)
       
   },
  
 };
-timeline.push(trial) 
+

@@ -41,10 +41,3 @@ var WordListB = [
 	{'Word':'Fish'},
 	]
 var AlternatePronunciationsWordListB = []
-var FolderName = '../../assets/SoundFiles/Words/RAVLTSet001/'
-var FileExtension = '.wav'
-
-var NWords = WordListA.length
-
-// The number of immediate recall blocks 
-var NBlocks = 5
