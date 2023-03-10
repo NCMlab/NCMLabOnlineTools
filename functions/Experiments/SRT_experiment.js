@@ -225,6 +225,7 @@ var Instructions = {
   var recall = {
       timeline: [ManualRecallTrial],
       timeline_variables: WordList,
+
       randomize_order: false,
       repetitions: 1,      
   }
@@ -244,7 +245,8 @@ var thank_you = {
 timeline.push(preload_audio)
 timeline.push(preload_silence)
 timeline.push(recall)
-//timeline.push(instr_procedure)
+timeline.push(instr_procedure)
+
 timeline.push(Blocks)
 timeline.push(thank_you)
 /*timeline.push(block1);
