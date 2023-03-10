@@ -1,7 +1,7 @@
 # Folder Structure
 * assets 
-..* icons
-..* Images
+	* icons
+  * Images
 ..* SoundFiles
 - config
 -- Instructions
