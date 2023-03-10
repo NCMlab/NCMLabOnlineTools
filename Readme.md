@@ -1,9 +1,15 @@
 # Folder Structure
 * assets 
 	* icons
-  * Images
-..* SoundFiles
-- config
+	* Images
+	* SoundFiles
+		* Digits
+			* Set001
+			* Set002
+			* Set_en-GB-Neural2-B_Speed70
+				Digits generated with Gooogle's text to voice function using the Neural2 algorithm with the Great Britain voice number "B" played at 70 percent speed  
+		* Words
+* config
 -- Instructions
 --- EN (English instruction files)
 -- Parameters
