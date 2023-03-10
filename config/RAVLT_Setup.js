@@ -5,5 +5,5 @@ var FileExtension = '.wav'
 NWords = WordListA.length
 console.log(NWords)
 
-var NBlocks = 6
+var NBlocks = 1
 var RecallType = 'Manual' // 'Free'

@@ -3,7 +3,7 @@ PrepareWordLists = function(WordList, AlternatePronunciationsWordList) {
 	// Make a simple list of the alternative pronunciations
 	AltSimpleWordList = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordList))
 	// Make a full list the words and thier alternative pronunciations
-	FullWordList = SimpleWordListA.concat(AltSimpleWordList)
+	FullWordList = SimpleWordList.concat(AltSimpleWordList)
 	// indices fro the primary word list
 	WordListIndex = CreateWordListIndex(WordList)
 	// indices for the world list containing the alternatives

@@ -2,10 +2,9 @@
 // Manual Recall Trial
 var ManualRecallTrial = {
   type: jsPsychSurvey,
-  on_start: function(SimpleList) {
+  on_start: function() {
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
-      console.log(jsPsych.timelineVariable('FullWordList'))
       WordList = jsPsych.timelineVariable('WordList')
       WordListIndex = jsPsych.timelineVariable('WordListIndex')
       FullWordList = jsPsych.timelineVariable('FullWordList')
@@ -21,7 +20,9 @@ var ManualRecallTrial = {
       {
         type: 'multi-select',
         prompt: 'Which words were recalled?', 
-        options: SimpleWordListA,
+        options:  function() {
+          return MakeAllWordsUpperCase(CreateSimpleWordList(jsPsych.timelineVariable('WordList')))
+        },
         columns: 3,
         name: 'ListRecall', 
       },
@@ -49,7 +50,7 @@ var ManualRecallTrial = {
       }, 
     ]
   ],
-  title: 'Word Recall',
+  title: '----------------------- Word Recall ----------------------',
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: 'Submit',

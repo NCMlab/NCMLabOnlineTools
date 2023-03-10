@@ -34,9 +34,10 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 var RecallDuration = 60 // in seconds
 
-var FolderName = '../assets/SRTSoundFiles/'
+var FolderName = '../../assets/SoundFiles/Words/SRTSet001/'
 var FileExtension = '.wav'
 
 NWords = WordList.length
 console.log(NWords)
 
+var WordPrompt = "Yo"

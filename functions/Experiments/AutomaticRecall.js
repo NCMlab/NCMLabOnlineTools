@@ -4,7 +4,7 @@ var AutomaticRecallTrial = {
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: RAVLTWordPrompt, //Add this to config file
+    prompt: WordPrompt, //Add this to config file
     on_start: function(SimpleList) {
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?

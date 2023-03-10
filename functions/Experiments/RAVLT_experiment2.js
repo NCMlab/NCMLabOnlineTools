@@ -37,11 +37,11 @@ var enter_fullscreen = {
 // preload audio
 var preload_audioA = {
   type: jsPsychPreload,
-  audio: AudioFileListA,
+  audio: AudioFileDictListA,
 };
 var preload_audioB = {
   type: jsPsychPreload,
-  audio: AudioFileListB,
+  audio: AudioFileDictListB,
 };
 
 // =======================================================================
@@ -200,15 +200,15 @@ var SendData = {
   }
 
   var recallA = {
-      timeline: [RecallTrial],
+      timeline: [ManualRecallTrial],
       randomize_order: false,
-      timeline_variables: WordListAForRecall,
+      timeline_variables: WordListForRecallA,
       repetitions: 1,  
   }
   var recallB = {
-      timeline: [RecallTrial],
+      timeline: [ManualRecallTrial],
       randomize_order: false,
-      timeline_variables: WordListBForRecall,
+      timeline_variables: WordListForRecallB,
       repetitions: 1,   
   }
   
@@ -228,15 +228,15 @@ var thank_you = {
 // Add procedures to the timeline
 timeline.push(preload_audioA)
 timeline.push(preload_audioB)
-timeline.push(ManualRecallTrial)
+timeline.push(recallA)
 timeline.push(instr_procedure01)
 timeline.push(PresentListOfWordsA)
 timeline.push(recallA)
 
 timeline.push(Blocks)
-timeline.push(instr_procedure03)
-timeline.push(PresentListOfWordsB)
-timeline.push(recallB)
+//timeline.push(instr_procedure03)
+//timeline.push(PresentListOfWordsB)
+//timeline.push(recallB)
 timeline.push(instr_procedure04)
 timeline.push(recallA)
 timeline.push(thank_you)
