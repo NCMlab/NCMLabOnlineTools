@@ -1,10 +1,12 @@
 
 var timeline = []
-var NeckerCubeFileName = 'NeckerCube.png'
-
+var FigureFileName = 'Figure001.png'
+var FigureWidth = 400
+var FigureRatioHeightToWidth = 0.782
+var FigureHeight = FigureWidth*FigureRatioHeightToWidth
 var trial = {
   type: jsPsychSketchpad,
-  prompt: Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">',
+  prompt: Instructions+'<p><img src="'+ImageFolder+FigureFileName+'" width="'+FigureWidth+'vw" height="'+FigureHeight+'vh" border="2px">',
   prompt_location: 'abovecanvas',
   canvas_width: "500vw",
   canvas_height: "400vh",

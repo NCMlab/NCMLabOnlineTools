@@ -1,5 +1,8 @@
-- assets
--- images
+# Folder Structure
+- assets 
+- - icons
+- - Images
+- - SoundFiles
 - config
 -- Instructions
 --- EN (English instruction files)

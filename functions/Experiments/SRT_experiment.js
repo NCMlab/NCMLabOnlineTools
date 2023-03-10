@@ -221,7 +221,7 @@ var Instructions = {
       randomize_order: false      
   }
   var recall = {
-      timeline: [RecallRequest01],
+      timeline: [ManualRecallTrial],
       randomize_order: false,
       repetitions: 1,      
   }
@@ -240,6 +240,7 @@ var thank_you = {
 // Add procedures to the timeline
 timeline.push(preload_audio)
 timeline.push(preload_silence)
+timeline.push(recall)
 timeline.push(instr_procedure)
 timeline.push(Blocks)
 timeline.push(thank_you)
