@@ -3,7 +3,7 @@ var timeline = []
 var TaskNameList = []
 var ComponentIDList = []
 var ComponentParameterLists = []
-var JATOSSessionData
+var JATOSSessionData = ''
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 
