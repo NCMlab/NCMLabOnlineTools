@@ -7,12 +7,6 @@ var callbacks = {
     console.log('default')
   }]
 };
-add('Stroop Color', () => {
-	console.log('StroopColor')
-	//jatos.startComponent(32);
-})
-add('Stroop Word', () => {console.log('StroopWord')})
-add('Stroop Color/Word', () => {console.log('StroopColorWord')})
 
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
