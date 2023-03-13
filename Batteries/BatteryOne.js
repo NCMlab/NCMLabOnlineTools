@@ -56,14 +56,16 @@ var trial0 = {
     choices: ['Next'],
     response_ends_trial: true,
     on_finish: function(){
+
     	// read the data for this trial
     	var all_data = jsPsych.data.get();
+      console.log(all_data)
     	// find the battery selected and extract its list of components
     	var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	// Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
-			TaskList.push(ComponentList[list[i]].name)
-		}
+		  	TaskList.push(ComponentList[list[i]].name)
+		  }
     }
   };
 var trial1 = {
@@ -84,6 +86,7 @@ var trial1 = {
     on_start: function() {
     	// select all trials
 		var all_data = jsPsych.data.get();
+    console.log(all_data)
 		// What bettery is it?
 		// get csv representation of data and log to console
 		console.log(all_data);
