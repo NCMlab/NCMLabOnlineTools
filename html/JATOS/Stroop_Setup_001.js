@@ -1,7 +1,7 @@
 
 
 export const Stroop_Setup = 40;
-
+export const age = 3;
 /*{ColorPracticeRepeats: 0,
 	WordPracticeRepeats: 0,
 	ColorWordPracticeRepeats: 0,
