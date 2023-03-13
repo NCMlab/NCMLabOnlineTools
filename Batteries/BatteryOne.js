@@ -69,8 +69,8 @@ var trial0 = {
     	for ( var i = 0; i < list.length; i ++ ) {
 		  	var tempName = ComponentList[list[i]].name
         var tempCID = ComponentList[list[i]].componentID
-        TaskNameList.push(temp)
-        ComponentIDList.push(ComponentList[list[i]].componentID)
+        TaskNameList.push(tempName)
+        ComponentIDList.push(tempCID)
         add(ComponentList[list[i]].name, () => {
           console.log(tempName)
           console.log(tempCID)
