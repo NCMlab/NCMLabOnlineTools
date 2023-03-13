@@ -1,6 +1,6 @@
 // =======================================================================
 // Use the correct parameter set
-
+console.log(jatos.StudySessionData)
 // =======================================================================
 // Define internal variables
 var timeline = [];
