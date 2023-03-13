@@ -1,5 +1,8 @@
 var timeline = []
 var TaskList = []
+var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
+
+
 
 // What battery was passed?
 var callbacks = {
@@ -7,9 +10,6 @@ var callbacks = {
     console.log('default')
   }]
 };
-
-var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
-
 // and you can create new entry with this function
 function add(_case, fn) {
    callbacks[_case] = callbacks[_case] || [];
@@ -51,7 +51,7 @@ var trial0 = {
       console.log(all_data)
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-
+      console.log(ParameterList)
       var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	// Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
