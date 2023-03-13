@@ -1,9 +1,6 @@
 // =======================================================================
 // Use the correct parameter set
-console.log(jatos)
-var setup = jatos.studySessionData.ComponentParameterLists
 console.log(setup)
-
 // =======================================================================
 // Define internal variables
 var timeline = [];
