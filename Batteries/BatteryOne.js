@@ -3,7 +3,7 @@ var timeline = []
 var TaskNameList = []
 var ComponentIDList = []
 var ComponentParameterLists = []
-var JATOSSessionData = {}
+
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 
@@ -65,7 +65,7 @@ var trial0 = {
         ComponentIDList.push(ComponentList[list[i]].componentID)
 		  }
       // Add things to the jatos session data
-      JATOSSessionData{TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
+      var JATOSSessionData = {TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
       // Set the list of components
 
     }
