@@ -12,6 +12,7 @@ There can be a site where the user types in the patient ID, clicks the tasks to 
 A battery list is also possible. Instead of sending a list of component IDs, the URL just has battery ID that is sent alomng with teh participant ID.
 
 http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
+https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
 
 */
 
@@ -46,7 +47,7 @@ http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
     <script src="Batteries/BatteryOne.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
-  <script>
+  <script type="module">
 var GLOBALVARIABLE = "JASON"
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
