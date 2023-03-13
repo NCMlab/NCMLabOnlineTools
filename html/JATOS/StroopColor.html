@@ -21,11 +21,7 @@
     
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script>
-      console.log(jatos)
-      var id = jatos.workerId
-      console.log(id)
-    </script>
+
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
@@ -69,9 +65,10 @@
 
 
   jatos.onLoad(() => {
+
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
+      console.log(jatos.studySessionData)
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
