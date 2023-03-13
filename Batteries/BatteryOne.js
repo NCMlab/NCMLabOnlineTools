@@ -6,7 +6,7 @@ var ComponentParameterLists = []
 var JATOSSessionData = ''
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
-
+var TaskList = []
 
 // What battery was passed?
 var callbacks = {
@@ -30,6 +30,12 @@ function pseudoSwitch(value) {
    }
 }
 
+add('Stroop Color', () => {
+  console.log('StroopColor')
+  //jatos.startComponent(32);
+})
+add('Stroop Word', () => {console.log('StroopWord')})
+add('Stroop Color/Word', () => {console.log('StroopColorWord')})
 
 // Check the status of the JATOS session data
 
@@ -63,6 +69,10 @@ var trial0 = {
     	for ( var i = 0; i < list.length; i ++ ) {
 		  	TaskNameList.push(ComponentList[list[i]].name)
         ComponentIDList.push(ComponentList[list[i]].componentID)
+        add(ComponentList[list[i]].name, () => {
+          console.log(ComponentList[list[i]].name)
+          //jatos.startComponent(32);
+        })
 		  }
       // Add things to the jatos session data
       JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
@@ -99,7 +109,7 @@ var trial1 = {
 		// get csv representation of data and log to console
 		console.log(all_data);
 
-    pseudoSwitch(TaskList[0])
+    pseudoSwitch(TaskNameList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
