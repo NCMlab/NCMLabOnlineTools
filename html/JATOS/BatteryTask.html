@@ -44,10 +44,10 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/AttentionNetworkTest_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="Batteries/BatteryOne.js"></script>
+    <script type="module" src="Batteries/BatteryOne.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
-  <script type="module">
+  <script>
 var GLOBALVARIABLE = "JASON"
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
