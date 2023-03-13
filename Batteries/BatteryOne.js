@@ -62,7 +62,7 @@ var trial0 = {
       console.log(all_data)
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      console.log("../../config/"+ParameterList[0]+".js")
+      console.log("./../../config/"+ParameterList[0]+".js")
       import {Stroop_Setup} from "../../config/"+ParameterList[0]+".js"
       var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	// Make a task list of the components of the battery
