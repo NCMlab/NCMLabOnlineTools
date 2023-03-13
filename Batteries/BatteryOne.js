@@ -79,10 +79,13 @@ var trial0 = {
 		  }
       // Add things to the jatos session data
       JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
+      console.log(jatos)
+      console.log(jatos.StudySessionData)
       jatos.StudySessionData.CurrentIndex = 0;
       jatos.StudySessionData.TaskNameList = TaskNameList
       jatos.StudySessionData.ComponentIDList = ComponentIDList
       jatos.StudySessionData.ComponentParameterLists = ComponentParameterLists
+      console.log(jatos)
       // Set the list of components
 
     }
