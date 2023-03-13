@@ -67,10 +67,11 @@ var trial0 = {
     	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       // Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
-		  	TaskNameList.push(ComponentList[list[i]].name)
+		  	var temp = ComponentList[list[i]].name
+        TaskNameList.push(temp)
         ComponentIDList.push(ComponentList[list[i]].componentID)
         add(ComponentList[list[i]].name, () => {
-          console.log(ComponentList[list[i]].name)
+          console.log(temp)
           //jatos.startComponent(32);
         })
 		  }
