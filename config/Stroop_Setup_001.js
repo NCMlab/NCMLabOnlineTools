@@ -1,6 +1,6 @@
 
 
-var Stroop_Setup = {ColorPracticeRepeats: 0,
+export const Stroop_Setup = {ColorPracticeRepeats: 0,
 	WordPracticeRepeats: 0,
 	ColorWordPracticeRepeats: 0,
 	ColorTestRepeats = 4,
@@ -9,4 +9,4 @@ var Stroop_Setup = {ColorPracticeRepeats: 0,
 	WordTestQuestionTypes: 4,
 	ColorWordTestRepeats: 4,
 	ColorWordTestQuestionTypes: 16
-}
+};
