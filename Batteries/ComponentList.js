@@ -36,7 +36,7 @@ BatteryList.push({index: 3,
 
 // Step one is for JATOS to see if any parameters have been passed to it via the URL.
 // If so, the URL parameters are decoded. If a battery is passed, then the battery
-// is loaded. Then cycle through anay provided parameter lists and load them up.
+// is loaded. Then cycle through any provided parameter lists and load them up.
 // A careful look through all
 
 // Use the JATOS session data to store the componentID list of tasks for this battery

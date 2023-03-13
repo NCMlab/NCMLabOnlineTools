@@ -1,5 +1,9 @@
 var timeline = []
-var TaskList = []
+// List of the names of the different tasks
+var TaskNameList = []
+var ComponentIDList = []
+var ComponentParameterLists = []
+
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 
@@ -52,11 +56,17 @@ var trial0 = {
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       console.log(ParameterList)
+
       var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-    	// Make a task list of the components of the battery
+    	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      // Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
-		  	TaskList.push(ComponentList[list[i]].name)
+		  	TaskNameList.push(ComponentList[list[i]].name)
+        ComponentIDList.push(ComponentList[list[i]].componentID)
 		  }
+      // Add things to teh jatos session data
+      // Set the list of components
+
     }
   };
 var trial1 = {
@@ -65,8 +75,8 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
     	var stim = ''
-    	for (var i = 0; i < TaskList.length; i++ ) {
-    		stim += '<p>' + TaskList[i] + '</p>'
+    	for (var i = 0; i < TaskNameList.length; i++ ) {
+    		stim += '<p>' + TaskNameList[i] + '</p>'
     	}
     	return stim
     },
@@ -81,6 +91,9 @@ var trial1 = {
 		// What bettery is it?
 		// get csv representation of data and log to console
 		console.log(all_data);
+    console.log(TaskNameList)
+    console.log(ComponentIDList)
+    console.log(ComponentParameterLists)
 	},
     on_finish: function() {
     			var all_data = jsPsych.data.get();
