@@ -63,7 +63,7 @@ var trial0 = {
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       console.log(ParameterList[0])
-      import { Stroop_Setup, age }  from "./Stroop_Setup_001.js";
+      import { Stroop_Setup, age }  from "Stroop_Setup_001.js";
       var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	// Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
