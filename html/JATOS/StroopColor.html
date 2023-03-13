@@ -37,7 +37,7 @@
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
-
+var setup
  var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
@@ -69,7 +69,7 @@
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-      var setup = jatos.studySessionData.ComponentParameterLists[1]
+      setup = jatos.studySessionData.ComponentParameterLists[1]
       console.log(setup)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
