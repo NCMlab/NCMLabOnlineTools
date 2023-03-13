@@ -65,7 +65,8 @@ var trial0 = {
         ComponentIDList.push(ComponentList[list[i]].componentID)
 		  }
       // Add things to the jatos session data
-      JATOSSessionData = {TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
+      JATOSSessionData = {CurrentIndex = 0, TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
+      jatos.setStudySessionData(JATOSSessionData)
       // Set the list of components
 
     }
@@ -87,16 +88,9 @@ var trial1 = {
     response_ends_trial: true,
     on_start: function() {
     	// select all trials
-		var all_data = jsPsych.data.get();
-    console.log(all_data)
-		// What bettery is it?
-		// get csv representation of data and log to console
-		console.log(all_data);
-    console.log(TaskNameList)
-    console.log(ComponentIDList)
-    console.log(ComponentParameterLists)
-    console.log(jatos)
-    jatos.setStudySessionData(JATOSSessionData)
+
+    
+    
     console.log(jatos)
 	},
     on_finish: function() {
@@ -105,7 +99,7 @@ var trial1 = {
 		// get csv representation of data and log to console
 		console.log(all_data);
 
-    	pseudoSwitch(TaskList[0])
+    pseudoSwitch(TaskList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
@@ -115,3 +109,4 @@ var trial1 = {
   // Once the data is added, then it can be read and worked with.
  timeline.push(trial0)
  timeline.push(trial1)
+ timeline.push(trial0)
