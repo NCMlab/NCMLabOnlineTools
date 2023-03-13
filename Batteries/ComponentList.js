@@ -12,17 +12,17 @@ BatteryList.push({index: 1,
 	name:'Battery001', 
 	list: [2,4,0], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_Setup001']})
+	ParameterLists: ['','Stroop_Setup001','']})
 BatteryList.push({index: 2, 
 	name:'Battery002', 
 	list: [0,1,2], 
 	description: BatteryDescription,
-	ParameterLists: []})
+	ParameterLists: ['','','']})
 BatteryList.push({index: 3, 
 	name:'Battery003', 
 	list: [3,4], 
 	description: BatteryDescription,
-	ParameterLists: []})
+	ParameterLists: ['','']})
 
 
 // I would like for there to be a default parameter setup that is loaded. If the 
@@ -39,3 +39,11 @@ BatteryList.push({index: 3,
 // is loaded. Then cycle through anay provided parameter lists and load them up.
 // A careful look through all
 
+// Use the JATOS session data to store the componentID list of tasks for this battery
+// Also create a list of the parameters to use for each component.
+// SessionData
+// 		ParticipantID
+// 		ListOfComponentIDs for this battery
+//		Current index of component to complete (useful to keep track of what was done and icons)
+//		List of Dictionaries of Parameters for each component
+// 
