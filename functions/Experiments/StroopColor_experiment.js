@@ -1,3 +1,7 @@
+// =======================================================================
+// Use the correct parameter set
+var setup = jatos.studySessionData.ComponentParameterLists[1]
+console.log(setup)
 
 // =======================================================================
 // Define internal variables
