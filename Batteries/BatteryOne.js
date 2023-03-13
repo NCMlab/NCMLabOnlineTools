@@ -65,7 +65,7 @@ var trial0 = {
         ComponentIDList.push(ComponentList[list[i]].componentID)
 		  }
       // Add things to the jatos session data
-      JATOSSessionData = {CurrentIndex = 0, TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
+      JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList, ComponentParameterLists} 
       jatos.setStudySessionData(JATOSSessionData)
       // Set the list of components
 
