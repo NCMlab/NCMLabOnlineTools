@@ -1,6 +1,7 @@
 // =======================================================================
 // Use the correct parameter set
-var setup = jatos.studySessionData.ComponentParameterLists[1]
+console.log(jatos)
+var setup = jatos.studySessionData.ComponentParameterLists
 console.log(setup)
 
 // =======================================================================
