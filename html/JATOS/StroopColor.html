@@ -68,7 +68,8 @@
 
       var JATOSID = jatos.workerId;
       console.log(jatos)
-      console.log(jatos.studySessionData)
+      var setup = jatos.studySessionData.ComponentParameterLists[1]
+      console.log(setup)
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
