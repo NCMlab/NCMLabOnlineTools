@@ -94,6 +94,11 @@ var trial1 = {
     console.log(TaskNameList)
     console.log(ComponentIDList)
     console.log(ComponentParameterLists)
+    console.log(jatos)
+    jatos.setStudySessionData(TaskNameList)
+    jatos.setStudySessionData(ComponentIDList)
+    jatos.setStudySessionData(ComponentParameterLists)
+    console.log(jatos)
 	},
     on_finish: function() {
     			var all_data = jsPsych.data.get();
