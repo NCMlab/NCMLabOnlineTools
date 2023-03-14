@@ -44,6 +44,12 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/AttentionNetworkTest_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
+    <script>
+      // can I call jatos and load the session variable values?
+      jatos.onLoad(function() {
+        console.log(jatos.studySessionData)
+      });
+    </script>
     <script src="Batteries/BatteryOne.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
