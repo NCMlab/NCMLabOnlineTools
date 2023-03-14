@@ -78,7 +78,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
         console.log(DataFromThisPracticeRun)
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
@@ -135,7 +135,7 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        data = StroopWord_Scoring(data)
+        //data = StroopWord_Scoring(data)
         data.task = 'Sending Data'
       }
     }
@@ -151,7 +151,7 @@ var if_node = {
   timeline: [instr_poor_performance, practice_procedure, debrief],
   conditional_function: function(){
     // check performance on the practice
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
+          var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
           var total_trials = DataFromThisPracticeRun.count();
           var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
           var accuracy = Math.round(NumberCorrect / total_trials * 100);
@@ -192,18 +192,38 @@ var if_node = {
       repetitions: 1,
     }
   
-  var practice_procedure = {
+
+ // Define the practice procedure which DOES provide feedback
+  var PracticeLoopCount = 1
+  var practice_loop_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
       randomize_order: true,
-      repetitions: WordPracticeRepeats,
-    }
-  // Define the test procedure which does NOT provide feedback
-  var test_procedure = {
+      loop_function: function(data){
+          console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.WordPracticeRepeats))
+          if (PracticeLoopCount < parseInt(Stroop_parameters.WordPracticeRepeats)){
+              PracticeLoopCount += 1
+              return true;
+          } else {
+              return false;
+          }
+      }
+  }
+    // Define the test procedure which does NOT provide feedback
+  var TestLoopCount = 1
+  var test_loop_node = {
       timeline: [fixation, test_stimulus],
       timeline_variables: StroopWordList,
       randomize_order: true,
-      repetitions: WordTestRepeats, 
+      loop_function: function(data){
+          console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.WordTestRepeats))
+          if (TestLoopCount < parseInt(Stroop_parameters.WordTestRepeats)){
+              TestLoopCount += 1
+              return true;
+          } else {
+              return false;
+          }
+      }
   }
 
 // ======================================================================= 
@@ -221,5 +241,5 @@ var if_node = {
   timeline.push(instr_test_procedure);
   // run the test
   
-  timeline.push(test_procedure);
+  timeline.push(test_loop_node);
   timeline.push(thank_you);
