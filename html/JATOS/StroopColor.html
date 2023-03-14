@@ -40,8 +40,6 @@
         parameters = jatos.studySessionData.ComponentParameterLists[1]
         console.log(parameters)  
       });
-      console.log(jatos)
-      console.log(jatos.studySessionData)
   </script>
   
     <script src="config/Stroop_Setup.js"></script>
@@ -52,6 +50,7 @@
   </body>
   <script>
 var setup = []
+console.log(parameters)  
  var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
