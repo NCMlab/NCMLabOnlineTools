@@ -66,8 +66,6 @@ var trial0 = {
         TaskNameList.push(tempName)
         ComponentIDList.push(tempCID)
         add(ComponentList[list[i]].name, () => {
-          console.log(tempName)
-          console.log(tempCID)
           jatos.startComponent(tempCID);
         })
 		  }
@@ -99,17 +97,9 @@ var trial1 = {
     on_start: function() {
     	// select all trials
     console.log(callbacks)
-    console.log(ComponentList)
-    console.log(TaskNameList)   
-    console.log(jatos)
 	},
     on_finish: function() {
-    			var all_data = jsPsych.data.get();
-
-		// get csv representation of data and log to console
-		console.log(all_data);
-
-    pseudoSwitch(TaskNameList[0])
+      pseudoSwitch(TaskNameList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
