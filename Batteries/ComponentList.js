@@ -18,11 +18,11 @@ function add(_case, fn) {
    callbacks[_case] = callbacks[_case] || [];
    callbacks[_case].push(fn);
 }
-add(0, jatos.startComponent(32))
-add(1, jatos.startComponent(34))
-add(2, jatos.startComponent(35))
-add(3, jatos.startComponent(36))
-add(4, jatos.startComponent(37))
+add(0, function(){jatos.startComponent(32)});
+add(1, function(){jatos.startComponent(33)});
+add(2, function(){jatos.startComponent(35)});
+add(3, function(){jatos.startComponent(36)});
+add(4, function(){jatos.startComponent(37)});
 
 // this function work like switch(value)
 // to make the name shorter you can name it `cond` (like in scheme)
