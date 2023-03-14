@@ -1,7 +1,7 @@
 // =======================================================================
 // Use the correct parameter set
 
-console.log(setup)
+
 // =======================================================================
 // Define internal variables
 var timeline = [];
