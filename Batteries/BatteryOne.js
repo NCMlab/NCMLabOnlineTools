@@ -104,8 +104,8 @@ var trial1 = {
     on_start: function() {
     	// select all trials
 
-    
-    
+    console.log(ComponentList)
+    console.log(TaskNameList)   
     console.log(jatos)
 	},
     on_finish: function() {

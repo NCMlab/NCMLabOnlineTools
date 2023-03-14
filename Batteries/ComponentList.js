@@ -23,7 +23,7 @@ BatteryList.push({index: 2,
 	ParameterLists: ['','','']})
 BatteryList.push({index: 3, 
 	name:'Battery003', 
-	list: [3,4], 
+	list: [0,1], 
 	description: BatteryDescription,
 	ParameterLists: ['','']})
 
