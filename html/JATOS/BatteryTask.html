@@ -58,7 +58,10 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
   
 
   <script>
-
+      jatos.onLoad(() => {
+        console.log("Hello World in in MAIN SCRIPT")
+        console.log(jatos.studySessionData)
+      });
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
