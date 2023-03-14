@@ -41,7 +41,7 @@ var Stimulus = {
   {
     var color = jsPsych.timelineVariable('Color')
     var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
-    console.log(Stroop_parameters)
+    console.log(Stroop_parameters.ColorPracticeRepeats)
     stim = PutStimIntoTable(StroopColorPrompt, stim) 
     return stim
   },
@@ -208,7 +208,7 @@ var if_node = {
         console.log(Stroop_parameters.ColorPracticeRepeats)
         return Stroop_parameters.ColorPracticeRepeats},
     }
-    
+
   // Define the test procedure which does NOT provide feedback
   var test_procedure = {
       timeline: [fixation, test_stimulus],
