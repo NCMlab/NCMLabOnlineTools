@@ -204,8 +204,11 @@ var if_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
       randomize_order: true,
-      repetitions: WordPracticeRepeats,
+      repetitions: function() {
+        console.log(Stroop_parameters.ColorPracticeRepeats)
+        return Stroop_parameters.ColorPracticeRepeats},
     }
+    
   // Define the test procedure which does NOT provide feedback
   var test_procedure = {
       timeline: [fixation, test_stimulus],
