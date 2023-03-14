@@ -230,7 +230,7 @@ var if_node = {
   // Add procedures to the timeline
   timeline.push(instr_procedure);
   // run the practice trials
-  timeline.push(practice_procedure);
+  timeline.push(practice_loop_node);
   // provide feedback as to their performance
   timeline.push(debrief);
   // decide if the person did well enough
