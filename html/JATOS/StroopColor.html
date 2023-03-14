@@ -34,8 +34,12 @@
         
         parameters = jatos.studySessionData.ComponentParameterLists[1]
         console.log(parameters)  
-      if (parameters == 'Stroop_001') {var Stroop_parameters = Stroop_001}  
-      else if (parameters == 'Stroop_Default') {var Stroop_parameters = Stroop_Default}
+      if (parameters == 'Stroop_001') {
+        console.log('Got here')
+        Stroop_parameters = Stroop_001}  
+      else if (parameters == 'Stroop_Default') {
+        console.log('Got Over here')
+        Stroop_parameters = Stroop_Default}
       console.log(Stroop_parameters)
       });
   </script>
