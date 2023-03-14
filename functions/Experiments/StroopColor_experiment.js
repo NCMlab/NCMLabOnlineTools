@@ -139,7 +139,7 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        data = StroopColor_Scoring(data)
+        //data = StroopColor_Scoring(data)
         data.task = 'Sending Data'
         
       }
