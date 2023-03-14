@@ -8,27 +8,7 @@ var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 var TaskList = []
 
-// What battery was passed?
-var callbacks = {
-   'default': [() => {
-    console.log('default')
-  }]
-};
-// and you can create new entry with this function
-function add(_case, fn) {
-   callbacks[_case] = callbacks[_case] || [];
-   callbacks[_case].push(fn);
-}
 
-// this function work like switch(value)
-// to make the name shorter you can name it `cond` (like in scheme)
-function pseudoSwitch(value) {
-   if (callbacks[value]) {
-      callbacks[value].forEach(function(fn) {
-          fn();
-      });
-   }
-}
 
 
 // Check the status of the JATOS session data
@@ -65,9 +45,6 @@ var trial0 = {
         var tempCID = ComponentList[list[i]].componentID
         TaskNameList.push(tempName)
         ComponentIDList.push(tempCID)
-        add(ComponentList[list[i]].name, () => {
-          `jatos.startComponent(${tempCID})`;
-        })
 		  }
 
       // Add things to the jatos session data
@@ -99,7 +76,7 @@ var trial1 = {
     console.log(callbacks)
 	},
     on_finish: function() {
-      pseudoSwitch(TaskNameList[0])
+      pseudoSwitch(list[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };

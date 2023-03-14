@@ -1,12 +1,38 @@
 var ComponentList = []
 
 ComponentList.push({index: 0, name:'Stroop Color', componentID: 32})
-ComponentList.push({index: 1, name:'Stroop Word', componentID: 34})
-ComponentList.push({index: 2, name:'Stroop Color/Word', componentID: 32})
+ComponentList.push({index: 1, name:'Stroop Word', componentID: 33})
+ComponentList.push({index: 2, name:'Stroop Color/Word', componentID: 35})
 ComponentList.push({index: 3, name:'Digitspan Forward', componentID: 36})
 ComponentList.push({index: 4, name:'Digitspan Backward', componentID: 37})
 
 
+// What battery was passed?
+var callbacks = {
+   'default': [() => {
+    console.log('default')
+  }]
+};
+// and you can create new entry with this function
+function add(_case, fn) {
+   callbacks[_case] = callbacks[_case] || [];
+   callbacks[_case].push(fn);
+}
+add(0, jatos.startComponent(32))
+add(1, jatos.startComponent(34))
+add(2, jatos.startComponent(35))
+add(3, jatos.startComponent(36))
+add(4, jatos.startComponent(37))
+
+// this function work like switch(value)
+// to make the name shorter you can name it `cond` (like in scheme)
+function pseudoSwitch(value) {
+   if (callbacks[value]) {
+      callbacks[value].forEach(function(fn) {
+          fn();
+      });
+   }
+}
 
 
 var BatteryList = []
