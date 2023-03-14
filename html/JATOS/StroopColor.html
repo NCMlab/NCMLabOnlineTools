@@ -84,9 +84,8 @@ var setup = []
     }
   });
 
-</script>
-<script src="functions/Experiments/StroopColor_experiment.js" defer></script>
-<script>
+
+
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
@@ -102,6 +101,11 @@ var setup = []
         style: "top:8px; right:40px; color:green"
       });
       console.log(Stroop_parameters)
+
+    let myCoolCode = document.createElement("script");
+    myCoolCode.setAttribute("src", "functions/Experiments/StroopColor_experiment.js");
+    document.body.appendChild(myCoolCode);
+
       jsPsych.run(timeline);
     });
   </script>

@@ -124,4 +124,4 @@ var trial1 = {
   // Once the data is added, then it can be read and worked with.
  timeline.push(trial0)
  timeline.push(trial1)
- timeline.push(trial0)
+ 
