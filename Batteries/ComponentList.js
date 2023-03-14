@@ -2,7 +2,7 @@ var ComponentList = []
 
 ComponentList.push({index: 0, name:'Stroop Color', componentID: 32})
 ComponentList.push({index: 1, name:'Stroop Word', componentID: 34})
-ComponentList.push({index: 2, name:'Stroop Color/Word', componentID: 35})
+ComponentList.push({index: 2, name:'Stroop Color/Word', componentID: 32})
 ComponentList.push({index: 3, name:'Digitspan Forward', componentID: 36})
 ComponentList.push({index: 4, name:'Digitspan Backward', componentID: 37})
 
