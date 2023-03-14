@@ -31,8 +31,7 @@
       jatos.onLoad(() => {
         console.log("Hello World in in JATOS LOAD")
         console.log(jatos)
-        
-        parameters = jatos.studySessionData.ComponentParameterLists[0]
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
         console.log(parameters)  
       if (parameters == 'Stroop_001') {
         console.log('Got here')
