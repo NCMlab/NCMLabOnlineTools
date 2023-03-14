@@ -1,10 +1,10 @@
 var ComponentList = []
 
-ComponentList.push({index: 0, name:'Stroop Color', componentID: 32})
-ComponentList.push({index: 1, name:'Stroop Word', componentID: 33})
-ComponentList.push({index: 2, name:'Stroop Color/Word', componentID: 35})
-ComponentList.push({index: 3, name:'Digitspan Forward', componentID: 36})
-ComponentList.push({index: 4, name:'Digitspan Backward', componentID: 37})
+ComponentList.push({index: '0', name:'Stroop Color', componentID: 32})
+ComponentList.push({index: '1', name:'Stroop Word', componentID: 33})
+ComponentList.push({index: '2', name:'Stroop Color/Word', componentID: 35})
+ComponentList.push({index: '3', name:'Digitspan Forward', componentID: 36})
+ComponentList.push({index: '4', name:'Digitspan Backward', componentID: 37})
 
 
 // What battery was passed?
@@ -28,11 +28,11 @@ function pseudoSwitch(value) {
       });
    }
 }
-add(0, function(){jatos.startComponent(32)});
-add(1, function(){jatos.startComponent(33)});
-add(2, function(){jatos.startComponent(35)});
-add(3, function(){jatos.startComponent(36)});
-add(4, function(){jatos.startComponent(37)});
+add('0', function(){jatos.startComponent(32)});
+add('1', function(){jatos.startComponent(33)});
+add('2', function(){jatos.startComponent(35)});
+add('3', function(){jatos.startComponent(36)});
+add('4', function(){jatos.startComponent(37)});
 
 
 
@@ -40,7 +40,7 @@ var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 BatteryList.push({index: 1, 
 	name:'Battery001', 
-	list: [1,0,2], 
+	list: ['1','0','2'], 
 	description: BatteryDescription,
 	ParameterLists: ['Stroop_Default','Stroop_001','Stroop_Default']})
 BatteryList.push({index: 2, 
