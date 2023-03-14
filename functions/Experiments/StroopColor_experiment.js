@@ -6,6 +6,7 @@
 // Define internal variables
 var timeline = [];
 console.log(parameters)
+console.log(Stroop_parameters)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
