@@ -27,7 +27,7 @@
       // can I call jatos and load the session variable values?
       console.log("Hello World in HEAD")
       var Stroop_parameters = 'Stroop_parametersXXXX'
-      var parameters
+      var parameters = 'empty_parameters'
       jatos.onLoad(() => {
         console.log("Hello World in in JATOS LOAD")
         console.log(jatos)
@@ -54,13 +54,13 @@
     </script>
     <script src="config/Stroop_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script> 
-      window.addEventListener('load', function () {
-        alert("It's loaded!")
-      })
-    </script>
-    <script src="functions/Experiments/StroopColor_experiment.js" defer></script>
+    
     <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
+      <script>
+        let myCoolCode = document.createElement("script");
+        myCoolCode.setAttribute("src", "functions/Experiments/StroopColor_experiment.js");
+          document.body.appendChild(myCoolCode);
+    </script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
