@@ -41,7 +41,6 @@ var Stimulus = {
   {
     var color = jsPsych.timelineVariable('Color')
     var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
-    console.log(Stroop_parameters.ColorPracticeRepeats)
     stim = PutStimIntoTable(StroopColorPrompt, stim) 
     return stim
   },
@@ -206,13 +205,16 @@ var if_node = {
       randomize_order: true,
       repetitions: parseInt(Stroop_parameters.ColorPracticeRepeats),
     }
+
+
+  console.log(Stroop_parameters.ColorPracticeRepeats)    
   var PracticeLoopCount = 0
   var loop_node = {
-      
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
       randomize_order: true,
       loop_function: function(data){
+          console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.ColorPracticeRepeats))
           if (PracticeLoopCount < parseInt(Stroop_parameters.ColorPracticeRepeats)){
               PracticeLoopCount += 1
               return true;
