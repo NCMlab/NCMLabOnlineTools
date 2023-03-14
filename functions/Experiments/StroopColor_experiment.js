@@ -213,7 +213,7 @@ var if_node = {
       timeline_variables: StroopWordList,
       randomize_order: true,
       loop_function: function(data){
-          if (PracticeLoopCount < 1){
+          if (PracticeLoopCount < parseInt(Stroop_parameters.ColorPracticeRepeats)){
               PracticeLoopCount += 1
               return true;
           } else {
