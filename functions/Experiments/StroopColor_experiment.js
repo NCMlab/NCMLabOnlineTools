@@ -206,6 +206,21 @@ var if_node = {
       randomize_order: true,
       repetitions: parseInt(Stroop_parameters.ColorPracticeRepeats),
     }
+  var PracticeLoopCount = 0
+  var loop_node = {
+      
+      timeline: [fixation, prac_stimulus, feedback],
+      timeline_variables: StroopWordList,
+      randomize_order: true,
+      loop_function: function(data){
+          if (PracticeLoopCount < 3){
+              PracticeLoopCount += 1
+              return true;
+          } else {
+              return false;
+          }
+      }
+  }
 
   // Define the test procedure which does NOT provide feedback
   var test_procedure = {
@@ -219,6 +234,7 @@ var if_node = {
   // Add procedures to the timeline
   timeline.push(instr_procedure);
   // run the practice trials
+  timeline.push(loop_node)
   timeline.push(practice_procedure);
   // provide feedback as to their performance
   timeline.push(debrief);
