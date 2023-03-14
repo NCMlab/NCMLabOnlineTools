@@ -21,11 +21,7 @@
     
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script>console.log(jatos)
-      
-      parameters = jatos.studySessionData.ComponentParameterLists[1]
-      console.log(parameters)
-    </script>
+
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
@@ -34,6 +30,20 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
 
     </script>
+      <script>
+      // can I call jatos and load the session variable values?
+      console.log("Hello World in HEAD")
+      jatos.onLoad(() => {
+        console.log("Hello World in in JATOS LOAD")
+        console.log(jatos)
+        
+        parameters = jatos.studySessionData.ComponentParameterLists[1]
+        console.log(parameters)  
+      });
+      console.log(jatos)
+      console.log(jatos.studySessionData)
+  </script>
+  
     <script src="config/Stroop_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/Experiments/StroopColor_experiment.js"></script>
