@@ -5,8 +5,8 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-console.log(parameters)
-console.log(Stroop_parameters)
+
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -41,7 +41,7 @@ var Stimulus = {
   {
     var color = jsPsych.timelineVariable('Color')
     var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
-
+    console.log(Stroop_parameters)
     stim = PutStimIntoTable(StroopColorPrompt, stim) 
     return stim
   },
