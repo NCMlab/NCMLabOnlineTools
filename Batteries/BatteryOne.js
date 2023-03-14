@@ -3,7 +3,7 @@ var timeline = []
 var TaskNameList = []
 var ComponentIDList = []
 var ComponentParameterLists = []
-var JATOSSessionData = ''
+
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 var TaskList = []
@@ -44,7 +44,9 @@ var trial0 = {
 		  	var tempName = ComponentList[TaskList[i]].name
         TaskNameList.push(tempName)
 		  }
-
+      // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+      JATOSSessionData = jatos.studySessionData
+      console.log(JATOSSessionData)
       // Add things to the jatos session data
       JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
       console.log(jatos)
