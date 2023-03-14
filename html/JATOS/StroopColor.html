@@ -22,14 +22,6 @@
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
 
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-
-    </script>
       <script>
       // can I call jatos and load the session variable values?
       console.log("Hello World in HEAD")
@@ -39,12 +31,20 @@
         
         var parameters = jatos.studySessionData.ComponentParameterLists[1]
         console.log(parameters)  
-              console.log(parameters)
       if (parameters == 'Stroop_001') {var Stroop_parameters = Stroop_001}  
       else if (parameters == 'Stroop_Default') {var Stroop_parameters = Stroop_Default}
+      console.log(Stroop_parameters)
       });
   </script>
   
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+
+    </script>
     <script src="config/Stroop_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/Experiments/StroopColor_experiment.js"></script>
@@ -84,8 +84,6 @@ var setup = []
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-      parameters = jatos.studySessionData.ComponentParameterLists[1]
-      console.log(parameters)
 
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
@@ -96,7 +94,7 @@ var setup = []
         msg: "This worker aborted the mission.",
         style: "top:8px; right:40px; color:green"
       });
-
+      console.log(Stroop_parameters)
       jsPsych.run(timeline);
     });
   </script>
