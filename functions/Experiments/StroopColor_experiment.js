@@ -213,7 +213,7 @@ var if_node = {
       timeline_variables: StroopWordList,
       randomize_order: true,
       loop_function: function(data){
-          if (PracticeLoopCount < 5){
+          if (PracticeLoopCount < 1){
               PracticeLoopCount += 1
               return true;
           } else {
