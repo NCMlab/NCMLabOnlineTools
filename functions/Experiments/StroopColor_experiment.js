@@ -33,6 +33,9 @@ var fixation = {
   data: {task: 'fixation'}
 }
 
+
+console.log(parameters)
+console.log(Stroop_parameters)
 // Define the stimuli
 var Stimulus = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -212,6 +215,8 @@ var if_node = {
       randomize_order: true,
       repetitions: WordTestRepeats, 
   }
+  console.log(parameters)
+console.log(Stroop_parameters)
 // ======================================================================= 
   // Add procedures to the timeline
   timeline.push(instr_procedure);
