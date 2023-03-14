@@ -83,7 +83,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*parseInt(Stroop_parameters.ColorPracticeRepeats))
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
         console.log(DataFromThisPracticeRun)
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
@@ -156,7 +156,7 @@ var if_node = {
   timeline: [instr_poor_performance, practice_procedure, debrief],
   conditional_function: function(){
     // check performance on the practice
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
           var total_trials = DataFromThisPracticeRun.count();
           var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
           var accuracy = Math.round(NumberCorrect / total_trials * 100);
@@ -170,7 +170,6 @@ var if_node = {
 // =======================================================================    
 // Define procedures using the stimuli
 
-// Define a practie procedure which provides feedback
   var instr_procedure = {
       timeline: [Instructions],
       timeline_variables: ColorInstrText,
@@ -199,17 +198,9 @@ var if_node = {
       repetitions: 1,
     }
 
-  var practice_procedure = {
-      timeline: [fixation, prac_stimulus, feedback],
-      timeline_variables: StroopWordList,
-      randomize_order: true,
-      repetitions: parseInt(Stroop_parameters.ColorPracticeRepeats),
-    }
-
-
-  console.log(Stroop_parameters.ColorPracticeRepeats)    
+ // Define the practice procedure which DOES provide feedback
   var PracticeLoopCount = 1
-  var loop_node = {
+  var practice_loop_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
       randomize_order: true,
@@ -223,20 +214,28 @@ var if_node = {
           }
       }
   }
-
   // Define the test procedure which does NOT provide feedback
-  var test_procedure = {
+  var TestLoopCount = 1
+  var test_loop_node = {
       timeline: [fixation, test_stimulus],
       timeline_variables: StroopWordList,
       randomize_order: true,
-      repetitions: ColorTestRepeats, 
+      loop_function: function(data){
+          console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.ColorTestRepeats))
+          if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
+              TestLoopCount += 1
+              return true;
+          } else {
+              return false;
+          }
+      }
   }
 
 // ======================================================================= 
   // Add procedures to the timeline
   timeline.push(instr_procedure);
   // run the practice trials
-  timeline.push(loop_node)
+  timeline.push(practice_loop_node)
   //timeline.push(practice_procedure);
   // provide feedback as to their performance
   timeline.push(debrief);
@@ -247,5 +246,5 @@ var if_node = {
   // Present test instructions
   timeline.push(instr_test_procedure);
   // run the test 
-  timeline.push(test_procedure);
+  timeline.push(test_loop_node);
   timeline.push(thank_you);

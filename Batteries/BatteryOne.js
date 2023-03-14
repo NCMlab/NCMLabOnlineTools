@@ -42,9 +42,7 @@ var trial0 = {
       // Make a task list of the components of the battery
     	for ( var i = 0; i < TaskList.length; i ++ ) {
 		  	var tempName = ComponentList[TaskList[i]].name
-        var tempCID = ComponentList[TaskList[i]].componentID
         TaskNameList.push(tempName)
-        ComponentIDList.push(tempCID)
 		  }
 
       // Add things to the jatos session data

@@ -2,48 +2,27 @@
 var ResponseChoices = ['v','b','n','m',27]
 var ResponseButtons = ['Red','Yellow','Green','Blue']
 
-// Implement with an ITI or without
-// Try to mimic teh paper and pencil version using a 100 trials and a time limit
-/*
-if ( parameters == 'Stroop_Default' ) {
-	var ColorPracticeRepeats = 1
-	var WordPracticeRepeats = 1
-	var ColorWordPracticeRepeats = 1
-	var ColorTestRepeats = 4
-	var ColorTestQuestionTypes = 4
-	var WordTestRepeats = 4
-	var WordTestQuestionTypes = 4
-	var ColorWordTestRepeats = 4
-	var ColorWordTestQuestionTypes = 16
-}
-
-else if ( parameters == 'Stroop_001' ) {
-	var ColorPracticeRepeats = 5
-	var WordPracticeRepeats = 5
-	var ColorWordPracticeRepeats = 5
-	var ColorTestRepeats = 4
-	var ColorTestQuestionTypes = 4
-	var WordTestRepeats = 4
-	var WordTestQuestionTypes = 4
-	var ColorWordTestRepeats = 4
-	var ColorWordTestQuestionTypes = 16
-}
-*/
-
-	var ColorWordPracticeRepeats = 5
-	var ColorTestRepeats = 4
-	var ColorTestQuestionTypes = 4
-	var WordTestRepeats = 4
-	var WordTestQuestionTypes = 4
-	var ColorWordTestRepeats = 4
-	var ColorWordTestQuestionTypes = 16
 
 var Stroop_Default = {
 	ColorPracticeRepeats:1,
 	WordPracticeRepeats:1,
+	ColorWordPracticeRepeats:1,
+	ColorTestRepeats:1,
+	ColorTestQuestionTypes:4,
+	WordTestRepeats:1,
+	WordTestQuestionTypes:4,
+	ColorWordTestRepeats:1,
+	ColorWordTestQuestionTypes:16
 }
 
 var Stroop_001 = {
-	ColorPracticeRepeats:7,
+	ColorPracticeRepeats:2,
 	WordPracticeRepeats:2,
+	ColorWordPracticeRepeats:2,
+	ColorTestRepeats:2,
+	ColorTestQuestionTypes:4,
+	WordTestRepeats:2,
+	WordTestQuestionTypes:4,
+	ColorWordTestRepeats:2,
+	ColorWordTestQuestionTypes:16
 }
