@@ -204,7 +204,7 @@ var if_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
       randomize_order: true,
-      repetitions: 2,
+      repetitions: parseInt(Stroop_parameters.ColorPracticeRepeats),
     }
 
   // Define the test procedure which does NOT provide feedback
