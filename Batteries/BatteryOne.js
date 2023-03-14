@@ -74,7 +74,8 @@ var trial1 = {
     console.log(callbacks)
 	},
     on_finish: function() {
-      pseudoSwitch(TaskList[0])
+      JATOSSessionData = jatos.studySessionData
+      pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };

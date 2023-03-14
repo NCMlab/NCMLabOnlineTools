@@ -80,7 +80,11 @@ var TrialCount = 1;
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','StroopColor_data.csv');
       }    
-      jatos.startNextComponent();
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      jatos.startComponent(54);
     }
   });
 
