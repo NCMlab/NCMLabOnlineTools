@@ -30,12 +30,6 @@ function pseudoSwitch(value) {
    }
 }
 
-add('Stroop Color', () => {
-  console.log('StroopColor')
-  //jatos.startComponent(32);
-})
-add('Stroop Word', () => {console.log('StroopWord')})
-add('Stroop Color/Word', () => {console.log('StroopColorWord')})
 
 // Check the status of the JATOS session data
 
@@ -77,6 +71,7 @@ var trial0 = {
           jatos.startComponent(tempCID);
         })
 		  }
+
       // Add things to the jatos session data
       JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
       console.log(jatos)
@@ -103,7 +98,7 @@ var trial1 = {
     response_ends_trial: true,
     on_start: function() {
     	// select all trials
-
+    console.log(callbacks)
     console.log(ComponentList)
     console.log(TaskNameList)   
     console.log(jatos)
