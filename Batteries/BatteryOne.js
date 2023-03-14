@@ -66,7 +66,7 @@ var trial0 = {
         TaskNameList.push(tempName)
         ComponentIDList.push(tempCID)
         add(ComponentList[list[i]].name, () => {
-          jatos.startComponent(tempCID);
+          jatos.startComponent(${tempCID});
         })
 		  }
 
