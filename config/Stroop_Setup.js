@@ -45,6 +45,6 @@ var Stroop_Default = {
 }
 
 var Stroop_001 = {
-	ColorPracticeRepeats:5,
+	ColorPracticeRepeats:7,
 	WordPracticeRepeats:2,
 }
