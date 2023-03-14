@@ -10,7 +10,7 @@ var TaskList = []
 
 
 function isEmpty(obj) {
-    return **Object.keys(obj).length === 0**;
+    return Object.keys(obj).length === 0;
 }
 
 // Check the status of the JATOS session data
