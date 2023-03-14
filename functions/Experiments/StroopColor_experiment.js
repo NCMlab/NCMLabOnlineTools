@@ -84,7 +84,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*ColorPracticeRepeats)
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*parseInt(Stroop_parameters.ColorPracticeRepeats))
         console.log(DataFromThisPracticeRun)
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()

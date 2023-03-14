@@ -29,8 +29,7 @@ else if ( parameters == 'Stroop_001' ) {
 	var ColorWordTestQuestionTypes = 16
 }
 */
-	var ColorPracticeRepeats = 5
-	var WordPracticeRepeats = 5
+
 	var ColorWordPracticeRepeats = 5
 	var ColorTestRepeats = 4
 	var ColorTestQuestionTypes = 4
