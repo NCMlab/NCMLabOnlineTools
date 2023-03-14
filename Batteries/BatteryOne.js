@@ -40,9 +40,9 @@ var trial0 = {
       TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       // Make a task list of the components of the battery
-    	for ( var i = 0; i < list.length; i ++ ) {
-		  	var tempName = ComponentList[list[i]].name
-        var tempCID = ComponentList[list[i]].componentID
+    	for ( var i = 0; i < TaskList.length; i ++ ) {
+		  	var tempName = ComponentList[TaskList[i]].name
+        var tempCID = ComponentList[TaskList[i]].componentID
         TaskNameList.push(tempName)
         ComponentIDList.push(tempCID)
 		  }
