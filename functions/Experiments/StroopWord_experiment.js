@@ -148,7 +148,7 @@ var SendData = {
 // otherwise practice is done again
 // If accuracy is below 50% then run what is in the  if_node timeline, else skip it
 var if_node = {
-  timeline: [instr_poor_performance, practice_procedure, debrief],
+  timeline: [instr_poor_performance, practice_loop_node, debrief],
   conditional_function: function(){
     // check performance on the practice
           var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
