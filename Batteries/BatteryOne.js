@@ -9,7 +9,9 @@ var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 var TaskList = []
 
 
-
+function isEmpty(obj) {
+    return **Object.keys(obj).length === 0**;
+}
 
 // Check the status of the JATOS session data
 
@@ -47,8 +49,10 @@ var trial0 = {
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
       console.log(JATOSSessionData)
-      // Add things to the jatos session data
-      JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
+      if ( isEmpty(JATOSSessionData) ) {
+        // Add things to the jatos session data
+        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
+      }
       console.log(jatos)
       jatos.studySessionData = JATOSSessionData
       console.log(jatos)
