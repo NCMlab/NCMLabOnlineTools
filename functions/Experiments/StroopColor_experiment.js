@@ -208,7 +208,7 @@ var if_node = {
 
 
   console.log(Stroop_parameters.ColorPracticeRepeats)    
-  var PracticeLoopCount = 0
+  var PracticeLoopCount = 1
   var loop_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
