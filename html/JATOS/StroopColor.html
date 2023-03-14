@@ -93,7 +93,9 @@ var setup = []
         msg: "This worker aborted the mission.",
         style: "top:8px; right:40px; color:green"
       });
-      console.log(parameters)  
+      console.log(parameters)
+      if (parameters == 'Stroop_001') {var Stroop_parameters = Stroop_001}  
+      else if (parameters == 'Stroop_Default') {var Stroop_parameters = Stroop_Default}
       jsPsych.run(timeline);
     });
   </script>

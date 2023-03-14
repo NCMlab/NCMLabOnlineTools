@@ -5,7 +5,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-
+console.log(parameters)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,

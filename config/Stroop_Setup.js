@@ -38,3 +38,13 @@ else if ( parameters == 'Stroop_001' ) {
 	var WordTestQuestionTypes = 4
 	var ColorWordTestRepeats = 4
 	var ColorWordTestQuestionTypes = 16
+
+var Stroop_Default = {
+	ColorPracticeRepeats:1,
+	WordPracticeRepeats:1,
+}
+
+var Stroop_001 = {
+	ColorPracticeRepeats:5,
+	WordPracticeRepeats:5,
+}
