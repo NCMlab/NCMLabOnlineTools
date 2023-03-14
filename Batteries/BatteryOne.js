@@ -37,7 +37,7 @@ var trial0 = {
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       console.log(ParameterList)
 
-      var list = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
+      TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       // Make a task list of the components of the battery
     	for ( var i = 0; i < list.length; i ++ ) {
@@ -76,7 +76,7 @@ var trial1 = {
     console.log(callbacks)
 	},
     on_finish: function() {
-      pseudoSwitch(list[0])
+      pseudoSwitch(TaskList[0])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
