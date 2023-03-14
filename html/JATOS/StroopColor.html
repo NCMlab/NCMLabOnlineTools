@@ -50,7 +50,7 @@
   </body>
   <script>
 var setup = []
-console.log(parameters)  
+
  var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
@@ -93,6 +93,7 @@ console.log(parameters)
         msg: "This worker aborted the mission.",
         style: "top:8px; right:40px; color:green"
       });
+      console.log(parameters)  
       jsPsych.run(timeline);
     });
   </script>
