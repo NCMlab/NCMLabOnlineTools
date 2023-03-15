@@ -13,7 +13,8 @@ var Stroop_Default = {
 	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:1,
 	ColorWordTestQuestionTypes:16,
-	ITI_Design: function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];}
+	ITI_Design: function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];},
+	showTime: true,
 }
 
 var Stroop_001 = {
@@ -26,8 +27,8 @@ var Stroop_001 = {
 	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:2,
 	ColorWordTestQuestionTypes:16,
-	ITI_Design: 100
-
+	ITI_Design: 100,
+	showTime: true,
 }
 
 add('Stroop_Default', function(){ Stroop_parameters = Stroop_Default});

@@ -2,10 +2,40 @@
 // Use the correct parameter set
 
 
+
+var timer_start = {
+  type: jsPsychCallFunction,
+  func: function(){
+    var start_time = performance.now();
+    interval = setInterval(function(){
+        time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      }, 250
+    )
+  }
+}
+
+var timer_stop = {
+  type: jsPsychCallFunction,
+  func: function(){
+    clearInterval(interval);
+    document.querySelector('#clock').innerHTML = '00:00'
+  }
+}
+
 // =======================================================================
 // Define internal variables
 var timeline = [];
- var PracticeLoopCount = 1
+var PracticeLoopCount = 1
+var RepeatPractice = 1
+var MaxRepeatPractice = 2
+var RecallDuration = 120
+var testFlag = false
+
+var wait_time = RecallDuration * 1000; // in milliseconds
 
 // =======================================================================
 var enter_fullscreen = {
@@ -53,7 +83,8 @@ var Stimulus = {
     data.button = jsPsych.timelineVariable('button'),
     // check to see if the response is correct 
     data.correct = data.response == data.button;
-    },
+    // Update the timer if this is a test trial
+  },
 };
 
 // Define the feedback
@@ -172,84 +203,100 @@ var if_node = {
       }
   }
 }
+
+
+  
 // =======================================================================    
 // Define procedures using the stimuli
 
-  var instr_procedure = {
-      timeline: [Instructions],
-      timeline_variables: ColorInstrText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-  
-  var instr_test_procedure = {
-      timeline: [Instructions],
-      timeline_variables: ColorTestInstrText,
-      randomize_order: false,
-      repetitions: 1,
-    }
+var instr_procedure = {
+    timeline: [Instructions],
+    timeline_variables: ColorInstrText,
+    randomize_order: false,
+    repetitions: 1,
+  }
 
-  var instr_poor_performance = {
-      timeline: [Instructions],
-      timeline_variables: ColorInstrPoorPerformanceText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-  
-  var thank_you = {
-      timeline: [SendData],
-      timeline_variables: ColorThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }
+var instr_test_procedure = {
+    timeline: [Instructions],
+    timeline_variables: ColorTestInstrText,
+    randomize_order: false,
+    repetitions: 1,
+  }
 
- // Define the practice procedure which DOES provide feedback
- 
-  var practice_loop_node = {
-      timeline: [fixation, prac_stimulus, feedback],
-      timeline_variables: StroopWordList,
-      randomize_order: true,
-      loop_function: function(data){
-          console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.ColorPracticeRepeats))
-          if (PracticeLoopCount < parseInt(Stroop_parameters.ColorPracticeRepeats)){
-              PracticeLoopCount += 1
-              return true;
-          } else {
-              return false;
-          }
+var instr_poor_performance = {
+    timeline: [Instructions],
+    timeline_variables: ColorInstrPoorPerformanceText,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+var thank_you = {
+    timeline: [SendData],
+    timeline_variables: ColorThankYouText,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+// Define the practice procedure which DOES provide feedback
+var repeat_practice_as_needed = {
+  timeline: [practice_loop_node],
+  loop_function: function(){
+    var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
+    var total_trials = DataFromThisPracticeRun.count();
+    var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
+    var accuracy = Math.round(NumberCorrect / total_trials * 100);
+    if (RepeatPractice)
+  },
+}
+
+var practice_loop_node = {
+  timeline: [fixation, prac_stimulus, feedback],
+  timeline_variables: StroopWordList,
+  randomize_order: true,
+  loop_function: function(data){
+      console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.ColorPracticeRepeats))
+      if (PracticeLoopCount < parseInt(Stroop_parameters.ColorPracticeRepeats)){
+          PracticeLoopCount += 1
+          return true;
+      } else {
+          return false;
       }
   }
-  // Define the test procedure which does NOT provide feedback
-  var TestLoopCount = 1
-  var test_loop_node = {
-      timeline: [fixation, test_stimulus],
-      timeline_variables: StroopWordList,
-      randomize_order: true,
-      loop_function: function(data){
-          console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.ColorTestRepeats))
-          if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
-              TestLoopCount += 1
-              return true;
-          } else {
-              return false;
-          }
-      }
-  }
+}
+// Define the test procedure which does NOT provide feedback
+var TestLoopCount = 1
+var test_loop_node = {
+    timeline: [fixation, test_stimulus],
+    timeline_variables: StroopWordList,
+    randomize_order: true,
+    loop_function: function(data){
+        console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.ColorTestRepeats))
+        if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
+            TestLoopCount += 1
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 // ======================================================================= 
-  // Add procedures to the timeline
-  timeline.push(instr_procedure);
-  // run the practice trials
-  timeline.push(practice_loop_node)
-  //timeline.push(practice_procedure);
-  // provide feedback as to their performance
-  timeline.push(debrief);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // Present test instructions
-  timeline.push(instr_test_procedure);
-  // run the test 
-  timeline.push(test_loop_node);
-  timeline.push(thank_you);
+// Add procedures to the timeline
+timeline.push(instr_procedure);
+// run the practice trials
+timeline.push(timer_start)
+timeline.push(practice_loop_node)
+timeline.push(timer_stop)
+// provide feedback as to their performance
+timeline.push(debrief);
+// decide if the person did well enough
+timeline.push(if_node);
+// decide if the person did well enough
+timeline.push(if_node);
+// Present test instructions
+timeline.push(instr_test_procedure);
+// run the test 
+timeline.push(timer_start)
+timeline.push(test_loop_node);
+timeline.push(timer_stop)
+timeline.push(thank_you);

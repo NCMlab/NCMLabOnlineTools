@@ -1,7 +1,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-
+var RecallDuration = 60
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -10,17 +10,6 @@ var enter_fullscreen = {
 
 // =======================================================================
 // Define all of the different the stimuli 
-var fixation = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: '<p class="Fixation">+</p>',
-  choices: [],
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  trial_duration: FixationTimeBetweenWords
-}
-
-
 
 var ListAnimals = {
     type: jsPsychHtmlButtonResponseTouchscreen,

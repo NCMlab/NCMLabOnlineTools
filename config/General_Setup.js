@@ -6,5 +6,5 @@ var FullScreenMode = false;
 var TextFontSize = "30px";
 var StimulusFontSize = '60px';
 
-var SaveLocalFile = true
+var SaveLocalFile = false
 

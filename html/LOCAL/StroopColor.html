@@ -14,6 +14,7 @@
   <body>
     <script src="../../jspsych/dist/jspsych.js"></script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -37,6 +38,14 @@
     <script src="../../functions/Experiments/StroopColor_experiment.js"></script>
     <script src="../../functions/Scoring/StroopColor_Scoring.js"></script> 
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+
+
+  <body>
+  <div id="srt-score">
+    <p>Time: <span id="clock">00:00</span></p>
+  </div>
+  <div id="jspsych-target"></div>
+</body>
   </body>
   <script>
 
