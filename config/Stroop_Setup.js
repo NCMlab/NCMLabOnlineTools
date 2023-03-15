@@ -12,7 +12,8 @@ var Stroop_Default = {
 	WordTestRepeats:1,
 	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:1,
-	ColorWordTestQuestionTypes:16
+	ColorWordTestQuestionTypes:16,
+	ITI_Design: function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];}
 }
 
 var Stroop_001 = {
@@ -24,8 +25,13 @@ var Stroop_001 = {
 	WordTestRepeats:2,
 	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:2,
-	ColorWordTestQuestionTypes:16
+	ColorWordTestQuestionTypes:16,
+	ITI_Design: 100
+
 }
-// Create the 
+
 add('Stroop_Default', function(){ Stroop_parameters = Stroop_Default});
-add('Stroop_Default', function(){ Stroop_parameters = Stroop_001});
+add('Stroop_001', function(){ Stroop_parameters = Stroop_001});
+
+// Fixed ITI --> ITI_Design: 100
+// random ITI --> 'function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];}

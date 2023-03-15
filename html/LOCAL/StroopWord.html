@@ -17,7 +17,7 @@
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    
+    <script src="../../functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -26,9 +26,13 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "../../InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
-
     </script>
     <script src="../../config/Stroop_Setup.js"></script>
+     <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('Stroop_001')
+    </script>
     <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../functions/Experiments/StroopWord_experiment.js"></script>
     <script src="../../functions/Scoring/StroopWord_Scoring.js"></script>

@@ -21,34 +21,25 @@
     
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script src='InstructionsAndStimuli/Language_
+    Config.js'>//Load language</script>
     <script src="config/Stroop_Setup.js"></script>
     
-      <script>
-
-      // can I call jatos and load the session variable values?
-      console.log("Hello World in HEAD")
-      var Stroop_parameters = 'Stroop_parametersXXXX'
+    <script>
+      var Stroop_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        console.log("Hello World in in JATOS LOAD")
-        console.log(jatos)
-        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
-        console.log(parameters)  
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
       pseudoSwitch(parameters)
-      console.log(Stroop_parameters)
       });
-  </script>
-  <script>console.log(parameters)</script>
+    </script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
-
     </script>
-
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/Experiments/StroopColor_experiment.js"></script>
     <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
@@ -57,7 +48,7 @@
   <script>
 var setup = []
 var TrialCount = 1;
- var jsPsych = initJsPsych({
+var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -81,12 +72,10 @@ var TrialCount = 1;
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
+      // Go back to battery management
       jatos.startComponent(54);
     }
   });
-
-
-
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)

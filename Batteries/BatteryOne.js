@@ -7,8 +7,6 @@ var ComponentParameterLists = []
 var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
 
 var TaskList = []
-
-
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
@@ -63,13 +61,19 @@ var trial0 = {
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
   // The buttons are dynamically created based on what has been completed already
+  // Add checkmark to icons
+  // https://stackoverflow.com/questions/53920359/easiest-way-to-display-a-check-mark-over-image-when-a-checkbox-input-is-selected 
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
     	var stim = ''
-    	for (var i = 0; i < TaskNameList.length; i++ ) {
-    		stim += '<p>' + TaskNameList[i] + '</p>'
+    	for (var i = 0; i < TaskNameList.length; i++ ) 
+      {
+        if ( i < JATOSSessionData.CurrentIndex ) {
+    		stim += '<p><del>' + TaskNameList[i] + '</del></p>'
+    	 }
+        else {stim += '<p>' + TaskNameList[i] + '</p>'}
     	}
-    	return stim
+      return stim
     },
     prompt: '', 
     // This is just a place holder to stop a jsPsych error

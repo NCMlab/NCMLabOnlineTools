@@ -5,7 +5,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-
+ var PracticeLoopCount = 1
 
 // =======================================================================
 var enter_fullscreen = {
@@ -27,9 +27,10 @@ var fixation = {
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: StroopColorPrompt,
-  trial_duration: function(){
-    return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-  },
+  trial_duration: Stroop_parameters.ITI_Design,
+  //function(){
+  //  return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+  //},
   data: {task: 'fixation'}
 }
 
@@ -92,6 +93,10 @@ var debrief = {
         "<p>Press any key to continue the experiment. </p>";
       },
   choices: ['Next'], 
+  on_finish: function() {
+    // reset the counter for the if loop
+    PracticeLoopCount = 1
+  }
 }
 
 // Define instructions
@@ -199,7 +204,7 @@ var if_node = {
     }
 
  // Define the practice procedure which DOES provide feedback
-  var PracticeLoopCount = 1
+ 
   var practice_loop_node = {
       timeline: [fixation, prac_stimulus, feedback],
       timeline_variables: StroopWordList,
