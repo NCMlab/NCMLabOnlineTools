@@ -50,7 +50,7 @@ BatteryList.push({index: 2,
 	ParameterLists: ['Stroop_001','Stroop_001','Stroop_Default']})
 BatteryList.push({index: 3, 
 	name:'Battery003', 
-	list: [0,1], 
+	list: ['0','1'], 
 	description: BatteryDescription,
 	ParameterLists: ['','']})
 
