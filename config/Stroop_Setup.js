@@ -26,3 +26,6 @@ var Stroop_001 = {
 	ColorWordTestRepeats:2,
 	ColorWordTestQuestionTypes:16
 }
+// Create the 
+add('Stroop_Default', function(){ Stroop_parameters = Stroop_Default});
+add('Stroop_Default', function(){ Stroop_parameters = Stroop_001});

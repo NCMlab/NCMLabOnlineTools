@@ -20,8 +20,10 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-
+    <script src="config/Stroop_Setup.js"></script>
+    
       <script>
 
       // can I call jatos and load the session variable values?
@@ -33,12 +35,7 @@
         console.log(jatos)
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
         console.log(parameters)  
-      if (parameters == 'Stroop_001') {
-        console.log('Got here')
-        Stroop_parameters = Stroop_001}  
-      else if (parameters == 'Stroop_Default') {
-        console.log('Got Over here')
-        Stroop_parameters = Stroop_Default}
+      pseudoSwitch(parameters)
       console.log(Stroop_parameters)
       });
   </script>
@@ -51,7 +48,7 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
 
     </script>
-    <script src="config/Stroop_Setup.js"></script>
+
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/Experiments/StroopColor_experiment.js"></script>
     <script src="functions/Scoring/StroopColor_Scoring.js"></script> 

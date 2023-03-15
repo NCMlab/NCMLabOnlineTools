@@ -8,27 +8,8 @@ ComponentList.push({index: '4', name:'Digitspan Backward', componentID: 37})
 
 
 // What battery was passed?
-var callbacks = {
-   'default': [() => {
-    console.log('default')
-  }]
-};
-// and you can create new entry with this function
-function add(_case, fn) {
-   callbacks[_case] = callbacks[_case] || [];
-   callbacks[_case].push(fn);
-}
 
-// this function work like switch(value)
-// to make the name shorter you can name it `cond` (like in scheme)
-function pseudoSwitch(value) {
-   if (callbacks[value]) {
-      callbacks[value].forEach(function(fn) {
-          fn();
-      });
-   }
-}
-
+// I think I can use the name instead of the index
 add('0', function(){jatos.startComponent(32)});
 add('1', function(){jatos.startComponent(34)});
 add('2', function(){jatos.startComponent(35)});
