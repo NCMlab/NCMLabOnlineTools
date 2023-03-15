@@ -28,6 +28,7 @@ function pseudoSwitch(value) {
       });
    }
 }
+
 add('0', function(){jatos.startComponent(32)});
 add('1', function(){jatos.startComponent(34)});
 add('2', function(){jatos.startComponent(35)});
