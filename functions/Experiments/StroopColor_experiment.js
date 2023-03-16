@@ -243,6 +243,7 @@ var timer_start = {
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
+console.log(Stroop_parameters)
 if ( Stroop_parameters.ColorPracticeRepeats > 0 )
 {
   // add instructions that the following trials are practice
