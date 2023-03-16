@@ -49,7 +49,8 @@
     </div>
     <script> // display the timer or not based on the showTimer flag
       if ( Stroop_parameters.AllowedTime > 0 ) 
-          { document.getElementById("screen_timer").style.display = true}
+          { console.log("TURNING TIMER ON!")
+            document.getElementById("screen_timer").style.display = true}
       else { document.getElementById("screen_timer").style.display = "none"}
     </script> 
     <script src="functions/Experiments/StroopColor_experiment.js" defer></script>
