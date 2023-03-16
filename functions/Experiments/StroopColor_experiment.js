@@ -15,6 +15,7 @@ var CalculateWaitTime = {
     if ( Stroop_parameters.AllowedTime > 0 ) {
       console.log(Stroop_parameters)
       var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+    }
   }
 }
 
