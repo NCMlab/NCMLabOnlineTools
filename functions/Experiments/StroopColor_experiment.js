@@ -1,7 +1,7 @@
 // =======================================================================
 // Use the correct parameter set
 
-
+console.log(Stroop_parameters)
 // =======================================================================
 // Define internal variables
 var timeline = [];
