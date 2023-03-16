@@ -18,7 +18,7 @@
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../../functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -32,34 +32,38 @@
     <script>
       // This is where the parameters to be used as specified.
       // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
-      pseudoSwitch('Stroop_Default')
+      pseudoSwitch('Stroop_Victoria')
     </script>
-    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    
     <script src="../../functions/Experiments/StroopColor_experiment.js"></script>
     <script src="../../functions/Scoring/StroopColor_Scoring.js"></script> 
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
 
 
-  <body>
-  <div id="srt-score">
+  
+  <div id="screen_timer">
     <p>Time: <span id="clock">00:00</span></p>
   </div>
-  <div id="jspsych-target"></div>
-</body>
-  </body>
-  <script>
+  <script> // display the timer or not based on the showTimer flag
+    if ( Stroop_parameters.AllowedTime > 0 ) 
+        { document.getElementById("screen_timer").style.display = true}
+    else { document.getElementById("screen_timer").style.display = "none"}
+  </script>
 
-    jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_interaction_data_update: function(data) {
-        console.log(JSON.stringify(data))
-    },
-    on_finish: function() {
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','StroopColorMydata.csv');
+
+</body>
+  <script>
+      jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        if ( SaveLocalFile ) {
+          jsPsych.data.get().localSave('csv','StroopColorMydata.csv');
+        }
       }
-    }
-  });
-  jsPsych.run(timeline)
+    });
+    jsPsych.run(timeline)
   </script>
 </html>

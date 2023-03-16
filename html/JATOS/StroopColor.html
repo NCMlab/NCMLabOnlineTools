@@ -20,11 +20,19 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     
     <script src="config/General_Setup.js"></script>
-    <script src="functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_
     Config.js'>//Load language</script>
     <script src="config/Stroop_Setup.js"></script>
-    
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    <script src="functions/Experiments/StroopColor_experiment.js"></script>
+    <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
@@ -33,17 +41,16 @@
       pseudoSwitch(parameters)
       });
     </script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="functions/Experiments/StroopColor_experiment.js"></script>
-    <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
+
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="screen_timer">
+        <p>Time: <span id="clock">00:00</span></p>
+    </div>
+    <script> // display the timer or not based on the showTimer flag
+      if ( Stroop_parameters.AllowedTime > 0 ) 
+          { document.getElementById("screen_timer").style.display = true}
+      else { document.getElementById("screen_timer").style.display = "none"}
+    </script> 
   </body>
   <script>
 var setup = []

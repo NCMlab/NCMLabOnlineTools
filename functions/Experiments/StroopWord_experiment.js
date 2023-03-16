@@ -2,11 +2,15 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-
+var time_left
+var StopFlag
+if ( Stroop_parameters.AllowedTime > 0 ) {
+  var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+}
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 // =======================================================================
 // Define all of the different the stimuli 
@@ -23,10 +27,7 @@ var fixation = {
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: StroopColorPrompt,
-  trial_duration: function(){
-    return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-  },
-  data: {task: 'fixation'}
+  trial_duration: Stroop_parameters.ITI_Design,
 }
 
 // Define the stimuli
@@ -87,6 +88,10 @@ var debrief = {
         "<p>Press any key to continue the experiment. </p>";
       },
   choices: ['Next'], 
+  on_finish: function() {
+    // reset the counter for the if loop
+    PracticeLoopCount = 1
+  }
 }
 
 // Define instructions
@@ -143,33 +148,10 @@ var SendData = {
 // =======================================================================
 // Define any logic used in the experiment
 
-// This a conditional block which checks to see if the performance during practice was good enough
-// if performance on the practice is above 50% accurate then the test procedure is done.
-// otherwise practice is done again
-// If accuracy is below 50% then run what is in the  if_node timeline, else skip it
-var if_node = {
-  timeline: [instr_poor_performance, practice_loop_node, debrief],
-  conditional_function: function(){
-    // check performance on the practice
-          var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
-          var total_trials = DataFromThisPracticeRun.count();
-          var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
-          var accuracy = Math.round(NumberCorrect / total_trials * 100);
-      if (accuracy < 50) {
-        return true;
-      } else {
-        return false;
-      }
-  }
-}
+
 // =======================================================================    
   // Define procedures using the stimuli
-  var thank_you = {
-      timeline: [SendData],
-      timeline_variables: WordThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }
+
   // Define a practie procedure which provides feedback
   var instr_procedure = {
       timeline: [Instructions],
@@ -177,7 +159,14 @@ var if_node = {
       randomize_order: false,
       repetitions: 1,
     }
-  
+
+  var instr_practice_procedure = {
+    timeline: [Instructions],
+    timeline_variables: WordPracticeText,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
   var instr_test_procedure = {
       timeline: [Instructions],
       timeline_variables: WordTestInstrText,
@@ -192,6 +181,12 @@ var if_node = {
       repetitions: 1,
     }
   
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: WordThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }
 
  // Define the practice procedure which DOES provide feedback
   var PracticeLoopCount = 1
@@ -216,30 +211,44 @@ var if_node = {
       timeline_variables: StroopWordList,
       randomize_order: true,
       loop_function: function(data){
-          console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.WordTestRepeats))
+        // is the stopping condition number of trials or time
+        if ( Stroop_parameters.AllowedTime < 0 ) {
           if (TestLoopCount < parseInt(Stroop_parameters.WordTestRepeats)){
               TestLoopCount += 1
-              return true;
+              StopFlag = true;
           } else {
-              return false;
-          }
-      }
+              StopFlag = false;
+          } 
+        } else if ( time_left > 0 ) { StopFlag = true }
+        else { StopFlag = false }
+        return StopFlag
+    }
   }
+var timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ timer_function(wait_time)}
+}
 
 // ======================================================================= 
   // Add procedures to the timeline
-  timeline.push(instr_procedure);
-  // run the practice trials
-  timeline.push(practice_loop_node);
+timeline.push(enter_fullscreen)
+timeline.push(instr_procedure);
+// run the practice trials
+if ( Stroop_parameters.ColorPracticeRepeats > 0 )
+{
+  // add instructions that the following trials are practice
+  timeline.push(instr_practice_procedure);
+  timeline.push(practice_loop_node);  
   // provide feedback as to their performance
   timeline.push(debrief);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // Present test instructions
-  timeline.push(instr_test_procedure);
-  // run the test
-  
-  timeline.push(test_loop_node);
+}
+// Present test instructions
+timeline.push(instr_test_procedure);
+// run the test 
+// If there is a timer, start it
+if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_start) }
+timeline.push(test_loop_node);
+// If there is a timer, stop it
+if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_stop) }
+timeline.push(thank_you);
   timeline.push(thank_you);

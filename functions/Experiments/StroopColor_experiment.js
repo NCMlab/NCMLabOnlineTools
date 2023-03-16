@@ -2,45 +2,18 @@
 // Use the correct parameter set
 
 
-
-var timer_start = {
-  type: jsPsychCallFunction,
-  func: function(){
-    var start_time = performance.now();
-    interval = setInterval(function(){
-        time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      }, 250
-    )
-  }
-}
-
-var timer_stop = {
-  type: jsPsychCallFunction,
-  func: function(){
-    clearInterval(interval);
-    document.querySelector('#clock').innerHTML = '00:00'
-  }
-}
-
 // =======================================================================
 // Define internal variables
 var timeline = [];
-var PracticeLoopCount = 1
-var RepeatPractice = 1
-var MaxRepeatPractice = 2
-var RecallDuration = 120
-var testFlag = false
-
-var wait_time = RecallDuration * 1000; // in milliseconds
-
+var time_left
+var StopFlag
+if ( Stroop_parameters.AllowedTime > 0 ) {
+  var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+}
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 // =======================================================================
 // Define all of the different the stimuli 
@@ -58,10 +31,6 @@ var fixation = {
   margin_horizontal: GapBetweenButtons,
   prompt: StroopColorPrompt,
   trial_duration: Stroop_parameters.ITI_Design,
-  //function(){
-  //  return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-  //},
-  data: {task: 'fixation'}
 }
 
 
@@ -83,7 +52,6 @@ var Stimulus = {
     data.button = jsPsych.timelineVariable('button'),
     // check to see if the response is correct 
     data.correct = data.response == data.button;
-    // Update the timer if this is a test trial
   },
 };
 
@@ -115,7 +83,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
         console.log(DataFromThisPracticeRun)
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
@@ -144,23 +112,23 @@ var Instructions = {
       choices: ['Next'], 
     }
 
-
-
-
 // =======================================================================
 // This is used for labelling trials in the output data
+// This allows the same stimuli to be used for both practice and test trials
 var prac_stimulus = Object.assign({}, Stimulus)
   prac_stimulus = Object.assign(prac_stimulus, {    
     data: {
       task: 'practice trial',
     }
 })
+
 var test_stimulus = Object.assign({}, Stimulus)
   test_stimulus = Object.assign(test_stimulus, {    
     data: {
       task: 'test trial',
     }
 })
+
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
@@ -177,41 +145,24 @@ var SendData = {
       on_finish: function(data){
         //data = StroopColor_Scoring(data)
         data.task = 'Sending Data'
-        
       }
     }
 
 // =======================================================================
 // Define any logic used in the experiment
 
-// This a conditional block which checks to see if the performance during practice was good enough
-// if performance on the practice is above 50% accurate then the test procedure is done.
-// otherwise practice is done again
-// If accuracy is below 50% then run what is in the  if_node timeline, else skip it
-var if_node = {
-  timeline: [instr_poor_performance, practice_loop_node, debrief],
-  conditional_function: function(){
-    // check performance on the practice
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
-          var total_trials = DataFromThisPracticeRun.count();
-          var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
-          var accuracy = Math.round(NumberCorrect / total_trials * 100);
-      if (accuracy < 50) {
-        return true;
-      } else {
-        return false;
-      }
-  }
-}
-
-
-  
 // =======================================================================    
 // Define procedures using the stimuli
-
 var instr_procedure = {
     timeline: [Instructions],
     timeline_variables: ColorInstrText,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+var instr_practice_procedure = {
+    timeline: [Instructions],
+    timeline_variables: ColorPracticeText,
     randomize_order: false,
     repetitions: 1,
   }
@@ -238,17 +189,7 @@ var thank_you = {
   }
 
 // Define the practice procedure which DOES provide feedback
-var repeat_practice_as_needed = {
-  timeline: [practice_loop_node],
-  loop_function: function(){
-    var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.ColorTestQuestionTypes)*parseInt(Stroop_parameters.ColorPracticeRepeats))
-    var total_trials = DataFromThisPracticeRun.count();
-    var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
-    var accuracy = Math.round(NumberCorrect / total_trials * 100);
-    if (RepeatPractice)
-  },
-}
-
+var PracticeLoopCount = 1
 var practice_loop_node = {
   timeline: [fixation, prac_stimulus, feedback],
   timeline_variables: StroopWordList,
@@ -263,40 +204,59 @@ var practice_loop_node = {
       }
   }
 }
+
 // Define the test procedure which does NOT provide feedback
 var TestLoopCount = 1
 var test_loop_node = {
     timeline: [fixation, test_stimulus],
+    // The word list contains four stimuli, so that test_stimulus is actually a loop
     timeline_variables: StroopWordList,
+    // The order of teh four stimuli is randomized
     randomize_order: true,
+    // The number of times the four stimuli are preseneted is looped over
+    // This loop will always complete at least once.
+    // This is why there is an if/then check below in case the number of practice repeats is set to 0
     loop_function: function(data){
-        console.log('Working on loop: '+TestLoopCount+" of "+parseInt(Stroop_parameters.ColorTestRepeats))
-        if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
-            TestLoopCount += 1
-            return true;
-        } else {
-            return false;
-        }
+        // is the stopping condition number of trials or time
+        if ( Stroop_parameters.AllowedTime < 0 ) {
+          if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
+              TestLoopCount += 1
+              StopFlag = true;
+          } else {
+              StopFlag = false;
+          } 
+        } else if ( time_left > 0 ) { StopFlag = true }
+        else { StopFlag = false }
+        return StopFlag
     }
+}
+
+var timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ timer_function(wait_time)}
 }
 
 // ======================================================================= 
 // Add procedures to the timeline
+// Split the instructions into General intro, practice instruct, Test Instructs
+// This allows the user to skip the practice 
+timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
-timeline.push(timer_start)
-timeline.push(practice_loop_node)
-timeline.push(timer_stop)
-// provide feedback as to their performance
-timeline.push(debrief);
-// decide if the person did well enough
-timeline.push(if_node);
-// decide if the person did well enough
-timeline.push(if_node);
+if ( Stroop_parameters.ColorPracticeRepeats > 0 )
+{
+  // add instructions that the following trials are practice
+  timeline.push(instr_practice_procedure);
+  timeline.push(practice_loop_node);  
+  // provide feedback as to their performance
+  timeline.push(debrief);
+}
 // Present test instructions
 timeline.push(instr_test_procedure);
 // run the test 
-timeline.push(timer_start)
+// If there is a timer, start it
+if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_start) }
 timeline.push(test_loop_node);
-timeline.push(timer_stop)
+// If there is a timer, stop it
+if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_stop) }
 timeline.push(thank_you);

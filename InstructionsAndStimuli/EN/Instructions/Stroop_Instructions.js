@@ -1,7 +1,10 @@
 
 var ColorInstrText = [
       {'page':'<p class="Instructions">Welcome to the Stroop Color experiment.</p>'},
-      {'page':'<p class="Instructions">You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color.'},
+      {'page':'<p class="Instructions">You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color.'},      
+      ];
+
+var ColorPracticeText = [
       {'page':'<p class="Instructions">Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'},
       ];
 
@@ -16,9 +19,12 @@ var ColorTestInstrText = [
 var WordInstrText = [
       {'page': '<p class="Instructions">Welcome to the Stroop Word experiment.</p>'},
       {'page': '<p class="Instructions">In this task, words will appear in the center of the screen, like this:</p><p class="Instructions">BLUE</p>'},
-      {'page': '<p class="Instructions">You need to indicate what word is written. </br>You will press the button that corresponds to that color.'},
-      {'page': '<p class="Instructions">Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'}
+      {'page': '<p class="Instructions">You need to indicate what word is written. </br>You will press the button that corresponds to that color.'},      
       ]
+
+var WordPracticeText = [
+      {'page': '<p class="Instructions">Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'}
+      ];
 
 var WordInstrPoorPerformanceText = [
       {'page': '<p class="Instructions">There will be another run of practice trials with feedback.</p> <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'}

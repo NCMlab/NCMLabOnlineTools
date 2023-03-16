@@ -14,11 +14,12 @@
   <body>
     <script src="../../jspsych/dist/jspsych.js"></script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../../functions/GeneralPurposeFunctions/SwitchCaseFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
@@ -31,12 +32,21 @@
      <script>
       // This is where the parameters to be used as specified.
       // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
-      pseudoSwitch('Stroop_001')
+      pseudoSwitch('Stroop_Victoria')
     </script>
-    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    
     <script src="../../functions/Experiments/StroopWord_experiment.js"></script>
     <script src="../../functions/Scoring/StroopWord_Scoring.js"></script>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>  
+    <div id="screen_timer"><p>Time: <span id="clock">00:00</span></p></div>
+
+    <script> // display the timer or not based on the showTimer flag
+      if ( Stroop_parameters.AllowedTime > 0 ) 
+          { document.getElementById("screen_timer").style.display = true}
+      else { document.getElementById("screen_timer").style.display = "none"}
+    </script>
+
+  
   </body>
   <script>
 
