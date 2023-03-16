@@ -10,12 +10,11 @@ var ColorTestQuestionTypes = 4
 var ColorWordTestQuestionTypes = 16
 
 var Stroop_Default = {
-	ColorPracticeRepeats:1,
+	ColorPracticeRepeats:2,
 	WordPracticeRepeats:1,
 	ColorWordPracticeRepeats:1,
-	ColorTestRepeats:1,
+	ColorTestRepeats:2,
 	WordTestRepeats:1,
-	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:1,
 	ITI_Design: function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];},
 	AllowedTime: 20, // in seconds

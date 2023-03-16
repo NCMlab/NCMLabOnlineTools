@@ -264,7 +264,7 @@ timeline.push(CheckNumberRepeats)
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
-
+console.log(RunPracticeFlag)
 if ( RunPracticeFlag )
 {
   console.log("PRACTICE REPEATS")
