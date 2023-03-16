@@ -251,6 +251,7 @@ var CheckNumberRepeats = {
     type: jsPsychCallFunction,
     func: function(){
      RunPracticeFlag = Stroop_parameters.ColorPracticeRepeats > 0 
+     console.log(RunPracticeFlag)
     }
 }
 
