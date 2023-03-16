@@ -17,7 +17,7 @@ var CalculateWaitTime = {
       var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
   }
 }
-timeline.push(CalculateWaitTime)
+
 
 // =======================================================================
 var enter_fullscreen = {
@@ -249,6 +249,7 @@ var timer_start = {
 // Add procedures to the timeline
 // Split the instructions into General intro, practice instruct, Test Instructs
 // This allows the user to skip the practice 
+timeline.push(CalculateWaitTime)
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
