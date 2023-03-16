@@ -7,6 +7,7 @@ var timeline = [];
 var time_left
 var StopFlag
 var wait_time 
+var RunPracticeFlag
 
 var CalculateWaitTime = {
   // This stops the interval timer and resets the clock to 00:00
@@ -14,7 +15,7 @@ var CalculateWaitTime = {
   func: function(){
     if ( Stroop_parameters.AllowedTime > 0 ) {
       console.log(Stroop_parameters)
-      var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+      wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
     }
   }
 }
@@ -246,17 +247,26 @@ var timer_start = {
     func: function(){ timer_function(wait_time)}
 }
 
+var CheckNumberRepeats = {
+    type: jsPsychCallFunction,
+    func: function(){
+     RunPracticeFlag = Stroop_parameters.ColorPracticeRepeats > 0 
+    }
+}
+
 // ======================================================================= 
 // Add procedures to the timeline
 // Split the instructions into General intro, practice instruct, Test Instructs
 // This allows the user to skip the practice 
 timeline.push(CalculateWaitTime)
+timeline.push(CheckNumberRepeats)
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
-console.log(Stroop_parameters)
-if ( Stroop_parameters.ColorPracticeRepeats > 0 )
+
+if ( RunPracticeFlag )
 {
+  console.log("PRACTICE REPEATS")
   // add instructions that the following trials are practice
   timeline.push(instr_practice_procedure);
   timeline.push(practice_loop_node);  
