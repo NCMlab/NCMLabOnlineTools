@@ -18,7 +18,7 @@ var Stroop_Default = {
 	WordTestQuestionTypes:4,
 	ColorWordTestRepeats:1,
 	ITI_Design: function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];},
-	AllowedTime: -99, // in seconds
+	AllowedTime: 20, // in seconds
 }
 
 var Stroop_001 = {
