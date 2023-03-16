@@ -7,7 +7,7 @@ var timeline = [];
 var time_left
 var StopFlag
 var wait_time 
-var RunPracticeFlag
+var RunPracticeFlag = -9999
 
 var CalculateWaitTime = {
   // This stops the interval timer and resets the clock to 00:00
@@ -250,6 +250,7 @@ var timer_start = {
 var CheckNumberRepeats = {
     type: jsPsychCallFunction,
     func: function(){
+     console.log(RunPracticeFlag)
      RunPracticeFlag = Stroop_parameters.ColorPracticeRepeats > 0 
      console.log(RunPracticeFlag)
     }
