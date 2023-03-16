@@ -41,16 +41,16 @@
       var parameters = 'empty'
       jatos.onLoad(() => {
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
-      pseudoSwitch(parameters)
-      console.log(parameters)
-      console.log(Stroop_parameters)
-      });
-    // display the timer or not based on the showTimer flag
-      console.log(Stroop_parameters)
-      if ( Stroop_parameters.AllowedTime > 0 ) 
-          { console.log("TURNING TIMER ON!")
-            document.getElementById("screen_timer").style.display = true}
-      else { document.getElementById("screen_timer").style.display = "none"}
+        pseudoSwitch(parameters)
+        console.log(parameters)
+        console.log(Stroop_parameters)
+      
+        // display the timer or not based on the showTimer flag
+        if ( Stroop_parameters.AllowedTime > 0 ) 
+            { console.log("TURNING TIMER ON!")
+              document.getElementById("screen_timer").style.display = true}
+        else { document.getElementById("screen_timer").style.display = "none"}
+      })
     </script> 
     <script src="functions/Experiments/StroopColor_experiment.js" defer></script>
     <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
