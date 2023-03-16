@@ -6,10 +6,19 @@
 var timeline = [];
 var time_left
 var StopFlag
-if ( Stroop_parameters.AllowedTime > 0 ) {
-  console.log(Stroop_parameters)
-  var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+var wait_time 
+
+var CalculateWaitTime = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( Stroop_parameters.AllowedTime > 0 ) {
+      console.log(Stroop_parameters)
+      var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+  }
 }
+timeline.push(CalculateWaitTime)
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
