@@ -1,6 +1,7 @@
 // =======================================================================
 // Use the correct parameter set
 
+console.log(parameters)
 console.log(Stroop_parameters)
 // =======================================================================
 // Define internal variables
