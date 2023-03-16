@@ -31,7 +31,11 @@
         var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="screen_timer">
+        <p>Time: <span id="clock">00:00</span></p>
+    </div>
+    
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
@@ -41,13 +45,7 @@
       console.log(parameters)
       console.log(Stroop_parameters)
       });
-    </script>
-
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-    <div id="screen_timer">
-        <p>Time: <span id="clock">00:00</span></p>
-    </div>
-    <script> // display the timer or not based on the showTimer flag
+    // display the timer or not based on the showTimer flag
       console.log(Stroop_parameters)
       if ( Stroop_parameters.AllowedTime > 0 ) 
           { console.log("TURNING TIMER ON!")
