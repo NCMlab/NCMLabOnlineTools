@@ -253,6 +253,7 @@ var CheckNumberRepeats = {
      console.log(RunPracticeFlag)
      RunPracticeFlag = Stroop_parameters.ColorPracticeRepeats > 0 
      console.log(RunPracticeFlag)
+     return RunPracticeFlag
     }
 }
 
@@ -266,7 +267,7 @@ timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // run the practice trials
 console.log(RunPracticeFlag)
-if ( RunPracticeFlag )
+if ( true )
 {
   console.log("PRACTICE REPEATS")
   // add instructions that the following trials are practice
