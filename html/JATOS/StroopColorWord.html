@@ -39,7 +39,9 @@
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
+      var BatteryHtmlID
       jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
         pseudoSwitch(parameters)
         console.log(parameters)
@@ -83,7 +85,7 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management
-      jatos.startComponent(54);
+      jatos.startComponent(BatteryHtmlID);
     }
   });
   jatos.onLoad(() => {
