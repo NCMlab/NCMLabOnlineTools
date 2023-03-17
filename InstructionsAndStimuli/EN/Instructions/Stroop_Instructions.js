@@ -39,9 +39,12 @@ var ColorWordInstrText = [
       {'page': '<p class="Instructions">Welcome to the Stroop Color/Word experiment.</p>'},
       {'page': '<p class="Instructions">In this task, words will appear like this:</p><p style="font-size:'+ StimulusFontSize+'; color:rgb(250,0,0)">BLUE</p>'},
       {'page': '<p class="Instructions">You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color.' },
-      {'page': '<p class="Instructions">Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'},
       ];
 
+var ColorWordPracticeText = [
+      {'page': '<p class="Instructions">Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'},
+      ];
+            
 var ColorWordInstrPoorPerformanceText = [
       {'page': '<p class="Instructions">There will be another run of practice trials with feedback.</p> <p class="Instructions">Remember to respond as accurately and quickly as possible.</p>'}
       ];

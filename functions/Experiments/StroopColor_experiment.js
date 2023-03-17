@@ -160,7 +160,8 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        //data = StroopColor_Scoring(data)
+        data.Stroop_parameters = Stroop_parameters
+        data = StroopColor_Scoring(data)
         data.task = 'Sending Data'
       }
     }

@@ -1,5 +1,5 @@
 function StroopColorWord_Scoring(data) {
-	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(ColorWordTestQuestionTypes*ColorWordTestRepeats)  
+	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(ColorWordTestQuestionTypes*Stroop_parameters.ColorWordTestRepeats)  
     // How many trials?
     var total_trials = DataFromTestRun.count();
     // How many were correct?

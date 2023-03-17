@@ -158,7 +158,7 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        //data = StroopWord_Scoring(data)
+        data = StroopWord_Scoring(data)
         data.task = 'Sending Data'
       }
     }

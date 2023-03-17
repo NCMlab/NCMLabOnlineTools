@@ -1,5 +1,6 @@
 function StroopColor_Scoring(data) {
-	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(ColorTestQuestionTypes*ColorTestRepeats)  
+    console.log(data)
+	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(ColorTestQuestionTypes*Stroop_parameters.ColorTestRepeats)  
     // How many trials?
     var total_trials = DataFromTestRun.count();
     // How many were correct?

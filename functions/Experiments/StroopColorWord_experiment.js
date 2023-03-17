@@ -2,11 +2,26 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var time_left
+var StopFlag
+var wait_time 
+var RunPracticeFlag = -9999
+
+var CalculateWaitTime = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( Stroop_parameters.AllowedTime > 0 ) {
+      wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+      console.log("The wiat time is set to: "+wait_time)
+    }
+  }
+}
 
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 // =======================================================================
 // Define all of the different the stimuli 
@@ -23,10 +38,13 @@ var fixation = {
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: StroopColorPrompt,
-  trial_duration: function(){
-    return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+  trial_duration: function() {
+    console.log("In the fixation block")
+    if (Stroop_parameters.ITI_Duration > 0 ) {return  Stroop_parameters.ITI_Duration}
+      else {
+        return jsPsych.randomization.sampleWithoutReplacement(Stroop_parameters.ITI_Range, 1)[0]
+      }
   },
-  data: {task: 'fixation'}
 }
 
 // Define the stimuli
@@ -81,8 +99,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(16*ColorWordPracticeRepeats)
-        console.log(DataFromThisPracticeRun)
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(ColorWordTestQuestionTypes)*parseInt(Stroop_parameters.ColorWordPracticeRepeats))
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
         var accuracy = Math.round(NumberCorrect / total_trials * 100);
@@ -147,34 +164,10 @@ var SendData = {
 // =======================================================================
 // Define any logic used in the experiment
 
-// This a conditional block which checks to see if the performance during practice was good enough
-// if performance on the practice is above 50% accurate then the test procedure is done.
-// otherwise practice is done again
-// If accuracy is below 50% then run what is in the  if_node timeline, else skip it
-var if_node = {
-  timeline: [instr_poor_performance, practice_procedure, debrief],
-  conditional_function: function(){
-    // check performance on the practice
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(4*WordPracticeRepeats)
-          var total_trials = DataFromThisPracticeRun.count();
-          var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
-          var accuracy = Math.round(NumberCorrect / total_trials * 100);
-      if (accuracy < 50) {
-        return true;
-      } else {
-        return false;
-      }
-  }
-}
+
 // =======================================================================    
 // Define procedures using the stimuli
-var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: ColorWordThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }
-// Define a practie procedure which provides feedback
+
   var instr_procedure = {
       timeline: [Instructions],
       timeline_variables: ColorWordInstrText,
@@ -182,6 +175,13 @@ var thank_you = {
       repetitions: 1,
     }
   
+  var instr_practice_procedure = {
+      timeline: [Instructions],
+      timeline_variables: ColorWordPracticeText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
   var instr_test_procedure = {
       timeline: [Instructions],
       timeline_variables: ColorWordTestInstrText,
@@ -203,32 +203,95 @@ var thank_you = {
       repetitions: 1,
     }
 
-  var practice_procedure = {
-      timeline: [fixation, prac_stimulus, feedback],
-      timeline_variables: StroopColorWordList,
-      randomize_order: true,
-      repetitions: WordPracticeRepeats,
-    }
-  // Define the test procedure which does NOT provide feedback
-  var test_procedure = {
-      timeline: [fixation, test_stimulus],
-      timeline_variables: StroopColorWordList,
-      randomize_order: true,
-      repetitions: ColorWordTestRepeats, 
+// Define the practice procedure which DOES provide feedback
+var PracticeLoopCount = 1
+var practice_loop_node = {
+  timeline: [fixation, prac_stimulus, feedback],
+  timeline_variables: StroopColorWordList,
+  randomize_order: true,
+  loop_function: function(data){
+      console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.ColorWordPracticeRepeats))
+      if (PracticeLoopCount < parseInt(Stroop_parameters.ColorWordPracticeRepeats)){
+          PracticeLoopCount += 1
+          return true;
+      } else {
+          return false;
+      }
   }
+}
+var TestLoopCount = 1
+var test_loop_node = {
+    timeline: [fixation, test_stimulus],
+    // The word list contains four stimuli, so that test_stimulus is actually a loop
+    timeline_variables: StroopColorWordList,
+    // The order of teh four stimuli is randomized
+    randomize_order: true,
+    // The number of times the four stimuli are preseneted is looped over
+    // This loop will always complete at least once.
+    // This is why there is an if/then check below in case the number of practice repeats is set to 0
+    loop_function: function(data){
+        // is the stopping condition number of trials or time
+        if ( Stroop_parameters.AllowedTime < 0 ) {
+          if (TestLoopCount < parseInt(Stroop_parameters.ColorWordTestRepeats)){
+              TestLoopCount += 1
+              StopFlag = true;
+          } else {
+              StopFlag = false;
+          } 
+        } else if ( time_left > 0 ) { StopFlag = true }
+        else { StopFlag = false }
+        return StopFlag
+    }
+}
+
+
+var timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( Stroop_parameters.AllowedTime > 0 ) {
+        timer_function(wait_time) }
+    }
+}
+
+var timer_stop = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( Stroop_parameters.AllowedTime > 0 ) {
+      clearInterval(interval);
+      document.querySelector('#clock').innerHTML = '00:00'
+    }
+  }
+}
+
+var CheckNumberRepeats = {
+    type: jsPsychCallFunction,
+    func: function(){
+     console.log("The practice flag is set to (should be empty): "+RunPracticeFlag)
+     RunPracticeFlag = Stroop_parameters.ColorWordPracticeRepeats > 0 
+     console.log("The practice flag is set to (should have a value: "+RunPracticeFlag)
+     return RunPracticeFlag
+    }
+}
+
 // ======================================================================= 
   // Add procedures to the timeline
-  timeline.push(instr_procedure);
-  // run the practice trials
-  timeline.push(practice_procedure);
+timeline.push(CalculateWaitTime) // works
+timeline.push(CheckNumberRepeats) // works
+timeline.push(enter_fullscreen)
+timeline.push(instr_procedure);
+// add instructions that the following trials are practice
+ timeline.push(instr_practice_procedure); 
+timeline.push(practice_loop_node);  // works
   // provide feedback as to their performance
-  timeline.push(debrief);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // decide if the person did well enough
-  timeline.push(if_node);
-  // Present test instructions
-  timeline.push(instr_test_procedure);
-  // run the test 
-  timeline.push(test_procedure);
-  timeline.push(thank_you);
+timeline.push(debrief);
+
+// Present test instructions
+timeline.push(instr_test_procedure);
+// run the test 
+// If there is a timer, start it
+timeline.push(timer_start);
+timeline.push(test_loop_node);
+// If there is a timer, stop it
+timeline.push(timer_stop);
+timeline.push(thank_you);

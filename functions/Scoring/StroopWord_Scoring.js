@@ -1,5 +1,5 @@
 function StroopWord_Scoring(data) {
-	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(WordTestQuestionTypes*WordTestRepeats)  
+	var DataFromTestRun = jsPsych.data.get().filter({task: 'test trial'}).last(WordTestQuestionTypes*Stroop_parameters.WordTestRepeats)  
     // How many trials?
     var total_trials = DataFromTestRun.count();
     // How many were correct?
