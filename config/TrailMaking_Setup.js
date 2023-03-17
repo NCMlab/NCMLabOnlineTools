@@ -1,9 +1,6 @@
 
 
-
-var FullScreenMode = true;
-
-var InstructionFontSize = "40px";
+//var InstructionFontSize = "40px";
 
 // size of each circle
 var radius = 15;
@@ -81,6 +78,15 @@ var CirclesA = [
     {centerX:0.72, centerY:0.516363636363636, radius: radius, label: '24'},
     {centerX:0.692, centerY:0.934545454545455, radius: radius, label: '25'},
 ]
+
+var CirclesA_001 = [
+    {centerX:0.54, centerY:0.712727272727273, radius: radius, label: '1'},
+    {centerX:0.408, centerY:0.825454545454545, radius: radius, label: '2'},
+    {centerX:0.624, centerY:0.832727272727273, radius: radius, label: '3'},
+    {centerX:0.64, centerY:0.378181818181818, radius: radius, label: '4'},
+    {centerX:0.4, centerY:0.490909090909091, radius: radius, label: '5'},
+    {centerX:0.512, centerY:0.589090909090909, radius: radius, label: '6'},
+]
 // canvas width
 var SuggestedWidthA = 850;
 // canvas height
@@ -148,4 +154,20 @@ var ShowTimerB = true;
 var DurationB = 1000*60*5
 
 
+var TrailMakingA_Default = {
+    Circles: CirclesA,
+    ShowPractice: true,
+}
 
+var TrailMakingA_001 = {
+    Circles: CirclesA_001,
+    ShowPractice: false,
+}
+var TrailMakingB_Default = {
+    Circles: CirclesB,
+    ShowPractice: true,
+}
+
+add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
+add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
+add('TrailMakingA_001', function(){ TrailMaking_parameters = TrailMakingA_001});

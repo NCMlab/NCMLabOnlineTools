@@ -39,7 +39,7 @@ var enter_fullscreen = {
   
   var trialA = {
       type: jsPsychSketchpad,   
-      Circles: CirclesA, 
+      Circles: TrailMaking_parameters.Circles, 
       canvas_width: CanvasWidthA,
       canvas_height: CanvasHeightA,
       canvas_border_width: 1,
@@ -99,11 +99,20 @@ var enter_fullscreen = {
       randomize_order: false,
       repetitions: 1,
     }
+
+  var if_node = {
+    timeline: [InstructionsSampleAPractice, trial_SampleA],
+    conditional_function: function(){
+      if (TrailMaking_parameters.ShowPractice)
+        {return true}
+      else {return false}
+    }
+  }
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
   timeline.push(enter_fullscreen)
   timeline.push(instrSampleA_procedure)
-  timeline.push(trial_SampleA)
+  timeline.push(if_node)
   timeline.push(instrA_procedure)
   timeline.push(trialA)
   timeline.push(thank_you)
