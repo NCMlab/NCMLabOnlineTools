@@ -27,7 +27,17 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script>
-      console.log(window.location.href)  
+      let url = window.location.href
+      let position = url.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      }
     </script>
     <script src="Batteries/ComponentList.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
