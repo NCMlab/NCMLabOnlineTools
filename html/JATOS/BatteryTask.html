@@ -27,6 +27,7 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script>
+      // check what URL is calling this file and load the config file accordingly
       let url_running = window.location.href
       let position = url_running.search("localhost")
       if ( position >= 0 ) {
@@ -36,10 +37,9 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
       } else {
         console.log("Running on remote host")
         var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
+        document.write("\<script src='" + url + "'\>\</script\>"); 
       }
     </script>
-    <script src="Batteries/ComponentList.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up

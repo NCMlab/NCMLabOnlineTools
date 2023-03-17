@@ -15,7 +15,7 @@ add('1', function(){jatos.startComponent(34)});
 add('2', function(){jatos.startComponent(35)});
 add('3', function(){jatos.startComponent(36)});
 add('4', function(){jatos.startComponent(37)});
-
+const BatteryHtmlID = 54
 
 var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'

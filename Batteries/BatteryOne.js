@@ -13,9 +13,6 @@ function isEmpty(obj) {
 
 // Check the status of the JATOS session data
 
-//console.log(jatos.studySessionData)
-//jatos.studySessionData = TaskList
-//console.log(jatos.studySessionData)
 var trial0 = {
   // This displays a series of buttons on the screen for each component of this session. 
   // The buttons are dynamically created based on what has been completed already
@@ -32,11 +29,8 @@ var trial0 = {
 
     	// read the data for this trial
     	var all_data = jsPsych.data.get();
-      console.log(all_data)
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      console.log(ParameterList)
-
       TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
     	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       // Make a task list of the components of the battery
@@ -46,15 +40,13 @@ var trial0 = {
 		  }
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
-      console.log(JATOSSessionData)
       if ( isEmpty(JATOSSessionData) ) {
         // Add things to the jatos session data
         JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
+        // add the ID to return to the JATOS battery
+        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
       }
-      console.log(jatos)
       jatos.studySessionData = JATOSSessionData
-      console.log(jatos)
-      // Set the list of components
 
     }
   };
@@ -79,10 +71,6 @@ var trial1 = {
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
     response_ends_trial: true,
-    on_start: function() {
-    	// select all trials
-    console.log(callbacks)
-	},
     on_finish: function() {
       JATOSSessionData = jatos.studySessionData
       pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
