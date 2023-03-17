@@ -22,9 +22,9 @@ var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 BatteryList.push({index: 1, 
 	name:'Battery001', 
-	list: ['0','1','0'], 
+	list: ['0','0','0'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_Default','Stroop_Default','Stroop_001']})
+	ParameterLists: ['Stroop_Default','Stroop_001','Stroop_Victoria']})
 BatteryList.push({index: 2, 
 	name:'Battery002', 
 	list: ['1','0'], 

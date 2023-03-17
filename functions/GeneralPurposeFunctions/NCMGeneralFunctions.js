@@ -35,14 +35,7 @@ var timer_function = function(wait_time){
 
 }
 
-var timer_stop = {
-  // This stops the interval timer and resets the clock to 00:00
-  type: jsPsychCallFunction,
-  func: function(){
-    clearInterval(interval);
-    document.querySelector('#clock').innerHTML = '00:00'
-  }
-}
+
 // ===========================================================================
 /* 
 A Switch/Case function that can have an arbitrary size
