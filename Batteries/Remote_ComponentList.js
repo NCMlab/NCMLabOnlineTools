@@ -10,12 +10,12 @@ ComponentList.push({index: '4', name:'Digitspan Backward', componentID: 37})
 // What battery was passed?
 
 // I think I can use the name instead of the index
-add('0', function(){jatos.startComponent(32)});
-add('1', function(){jatos.startComponent(34)});
-add('2', function(){jatos.startComponent(35)});
-add('3', function(){jatos.startComponent(36)});
-add('4', function(){jatos.startComponent(37)});
-
+add('0', function(){jatos.startComponent(26)});
+add('1', function(){jatos.startComponent(56)});
+add('2', function(){jatos.startComponent(57)});
+add('3', function(){jatos.startComponent(58)});
+add('4', function(){jatos.startComponent(59)});
+var BatteryHtmlID = 69
 
 var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
