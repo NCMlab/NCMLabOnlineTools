@@ -31,7 +31,7 @@ var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    stim = PutStimIntoTable(StroopColorPrompt, '<p class="Fixation">+</p>');
+    stim = PutStimIntoTable(StroopWordPrompt, '<p class="Fixation">+</p>');
     return stim
   },
   choices: ResponseButtons,

@@ -6,7 +6,7 @@ var ResponseChoices = ['v','b','n','m',27]
 // They are not color coded, they just have the words
 var ResponseButtons = ['Red','Yellow','Green','Blue']
 var ColorTestQuestionTypes = 4
-var ColorTestQuestionTypes = 4
+var WordTestQuestionTypes = 4
 var ColorWordTestQuestionTypes = 16
 
 var Stroop_Default = {
