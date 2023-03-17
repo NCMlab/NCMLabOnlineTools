@@ -27,8 +27,8 @@ https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script>
-      let url = window.location.href
-      let position = url.search("localhost")
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
       if ( position >= 0 ) {
         console.log("Running on localhost")
         var url = "Batteries/Local_ComponentList.js"
