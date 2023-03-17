@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Stroop Word</title>
+    <title>NCMLab: Stroop Color</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
   </head>    
@@ -15,57 +15,57 @@
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script src="config/Stroop_Setup.js"></script>
     <script> 
-
-      // can I call jatos and load the session variable values?
-      console.log("Hello World in HEAD")
-      var Stroop_parameters = 'Stroop_parametersXXXX'
-      var parameters = 'empty'
-      jatos.onLoad(() => {
-        console.log("Hello World in in JATOS LOAD")
-        console.log(jatos)
-        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
-        console.log(parameters)  
-      if (parameters == 'Stroop_001') {
-        console.log('Got here')
-        Stroop_parameters = Stroop_001}  
-      else if (parameters == 'Stroop_Default') {
-        console.log('Got Over here')
-        Stroop_parameters = Stroop_Default}
-      console.log(Stroop_parameters)
-      });
-  </script>
-  <script>console.log(parameters)</script>      
-  <script>
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Stroop_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "InstructionsAndStimuli/"+Language+"/Stimuli/Stroop.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
-
     </script>
-    <script src="config/Stroop_Setup.js"></script>
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="functions/Experiments/StroopWord_experiment.js"></script>
-    <script src="functions/Scoring/StroopWord_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="screen_timer">
+        <p>Time: <span id="clock">00:00</span></p>
+    </div>
+    
+    <script>
+      var Stroop_parameters = 'empty'
+      var parameters = 'empty'
+      jatos.onLoad(() => {
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        pseudoSwitch(parameters)
+        console.log(parameters)
+        console.log(Stroop_parameters)
+      
+        // display the timer or not based on the showTimer flag
+        if ( Stroop_parameters.AllowedTime > 0 ) 
+            { console.log("TURNING TIMER ON!")
+              document.getElementById("screen_timer").style.display = true}
+        else { document.getElementById("screen_timer").style.display = "none"}
+      })
+    </script> 
+    <script src="functions/Experiments/StroopWord_experiment.js" defer></script>
+    <script src="functions/Scoring/StroopWord_Scoring.js"></script> 
   </body>
   <script>
 var setup = []
-var TrialCount = 1;    
+var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      console.log(jatos.urlQueryParameters);
+//      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
-      console.log(input.a);
+      console.log(TrialCount)
+      TrialCount += 1
       // Add jatos info to the data file
       jsPsych.data.addProperties({assignedURLID: input.a});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
@@ -78,22 +78,19 @@ var jsPsych = initJsPsych({
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','StroopWord_data.csv');
       }    
-  // update session data
+      // update session data
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
+      // Go back to battery management
       jatos.startComponent(54);
     }
   });
-
-
-
-
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
       console.log(JATOSID)
+
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jatos.addAbortButton({

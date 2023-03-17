@@ -4,9 +4,20 @@
 var timeline = [];
 var time_left
 var StopFlag
-if ( Stroop_parameters.AllowedTime > 0 ) {
-  var wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+var wait_time 
+var RunPracticeFlag = -9999
+
+var CalculateWaitTime = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( Stroop_parameters.AllowedTime > 0 ) {
+      wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+      console.log("The wiat time is set to: "+wait_time)
+    }
+  }
 }
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -20,15 +31,22 @@ var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    stim = PutStimIntoTable(StroopWordPrompt, '<p class="Fixation">+</p>');
+    stim = PutStimIntoTable(StroopColorPrompt, '<p class="Fixation">+</p>');
     return stim
   },
   choices: ResponseButtons,
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: StroopColorPrompt,
-  trial_duration: Stroop_parameters.ITI_Design,
+  trial_duration: function() {
+    console.log("In the fixation block")
+    if (Stroop_parameters.ITI_Duration > 0 ) {return  Stroop_parameters.ITI_Duration}
+      else {
+        return jsPsych.randomization.sampleWithoutReplacement(Stroop_parameters.ITI_Range, 1)[0]
+      }
+  },
 }
+
 
 // Define the stimuli
   var Stimulus = {
@@ -79,7 +97,7 @@ var debrief = {
   prompt: '',
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(Stroop_parameters.WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
+        var DataFromThisPracticeRun = jsPsych.data.get().filter({task: 'practice trial'}).last(parseInt(WordTestQuestionTypes)*parseInt(Stroop_parameters.WordPracticeRepeats))
         console.log(DataFromThisPracticeRun)
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
@@ -205,15 +223,20 @@ var SendData = {
       }
   }
     // Define the test procedure which does NOT provide feedback
-  var TestLoopCount = 1
-  var test_loop_node = {
-      timeline: [fixation, test_stimulus],
-      timeline_variables: StroopWordList,
-      randomize_order: true,
-      loop_function: function(data){
+var TestLoopCount = 1
+var test_loop_node = {
+    timeline: [fixation, test_stimulus],
+    // The word list contains four stimuli, so that test_stimulus is actually a loop
+    timeline_variables: StroopWordList,
+    // The order of teh four stimuli is randomized
+    randomize_order: true,
+    // The number of times the four stimuli are preseneted is looped over
+    // This loop will always complete at least once.
+    // This is why there is an if/then check below in case the number of practice repeats is set to 0
+    loop_function: function(data){
         // is the stopping condition number of trials or time
         if ( Stroop_parameters.AllowedTime < 0 ) {
-          if (TestLoopCount < parseInt(Stroop_parameters.WordTestRepeats)){
+          if (TestLoopCount < parseInt(Stroop_parameters.ColorTestRepeats)){
               TestLoopCount += 1
               StopFlag = true;
           } else {
@@ -223,32 +246,55 @@ var SendData = {
         else { StopFlag = false }
         return StopFlag
     }
-  }
+}
+
 var timer_start = {
     type: jsPsychCallFunction,
-    func: function(){ timer_function(wait_time)}
+    func: function(){ 
+      if ( Stroop_parameters.AllowedTime > 0 ) {
+        timer_function(wait_time) }
+    }
+}
+
+var timer_stop = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( Stroop_parameters.AllowedTime > 0 ) {
+      clearInterval(interval);
+      document.querySelector('#clock').innerHTML = '00:00'
+    }
+  }
+}
+
+var CheckNumberRepeats = {
+    type: jsPsychCallFunction,
+    func: function(){
+     console.log("The practice flag is set to (should be empty): "+RunPracticeFlag)
+     RunPracticeFlag = Stroop_parameters.WordPracticeRepeats > 0 
+     console.log("The practice flag is set to (should have a value: "+RunPracticeFlag)
+     return RunPracticeFlag
+    }
 }
 
 // ======================================================================= 
   // Add procedures to the timeline
+timeline.push(CalculateWaitTime) // works
+timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
-// run the practice trials
-if ( Stroop_parameters.ColorPracticeRepeats > 0 )
-{
-  // add instructions that the following trials are practice
-  timeline.push(instr_practice_procedure);
-  timeline.push(practice_loop_node);  
+// add instructions that the following trials are practice
+ timeline.push(instr_practice_procedure); 
+timeline.push(practice_loop_node);  // works
   // provide feedback as to their performance
-  timeline.push(debrief);
-}
+timeline.push(debrief);
+
 // Present test instructions
 timeline.push(instr_test_procedure);
 // run the test 
 // If there is a timer, start it
-if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_start) }
+timeline.push(timer_start);
 timeline.push(test_loop_node);
 // If there is a timer, stop it
-if (Stroop_parameters.AllowedTime > 0 ) { timeline.push(timer_stop) }
+timeline.push(timer_stop);
 timeline.push(thank_you);
-  timeline.push(thank_you);

@@ -208,11 +208,6 @@ var thank_you = {
 // Define the practice procedure which DOES provide feedback
 var PracticeLoopCount = 1
 var practice_loop_node = {
-  on_load: function() {
-    console.log("Hello from teh practice loop")
-    console.log("The parameters are")
-    console.log(Stroop_parameters)
-  },
   timeline: [fixation, prac_stimulus, feedback],
   timeline_variables: StroopWordList,
   randomize_order: true,
@@ -287,7 +282,6 @@ var CheckNumberRepeats = {
 // Split the instructions into General intro, practice instruct, Test Instructs
 // This allows the user to skip the practice 
  timeline.push(CalculateWaitTime) // works
-
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
