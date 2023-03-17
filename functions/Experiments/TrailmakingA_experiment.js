@@ -14,6 +14,23 @@ sizes = FindCanvasSize(SuggestedWidthSampleA, SuggestedHeightSampleA, 0.95,0.75)
 CanvasWidthSampleA = sizes.CanvasWidth
 console.log(CanvasWidthSampleA)
 CanvasHeightSampleA = sizes.CanvasHeight
+var ShowPractice = false
+var Circles
+
+var CheckPracticeFlag = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    console.log(TrailMaking_parameters)
+    Circles = TrailMaking_parameters.Circles
+    console.log(Circles)
+    if ( TrailMaking_parameters.ShowPractice ) {
+      ShowPractice = true
+      console.log("Practice is turned on")
+    }
+  }
+}
+
 
 // =======================================================================
 var enter_fullscreen = {
@@ -39,7 +56,7 @@ var enter_fullscreen = {
   
   var trialA = {
       type: jsPsychSketchpad,   
-      Circles: TrailMaking_parameters.Circles, 
+      Circles: function(){ return TrailMaking_parameters.Circles}, 
       canvas_width: CanvasWidthA,
       canvas_height: CanvasHeightA,
       canvas_border_width: 1,
@@ -92,6 +109,12 @@ var enter_fullscreen = {
       randomize_order: false,
       repetitions: 1,
     }
+  var instrA_practice_rocedure = {
+      timeline: [Instructions],
+      timeline_variables: InstructionsSampleAPractice,
+      randomize_order: false,
+      repetitions: 1,
+    }
   
   var thank_you = {
       timeline: [Instructions],
@@ -100,16 +123,18 @@ var enter_fullscreen = {
       repetitions: 1,
     }
 
+
   var if_node = {
-    timeline: [InstructionsSampleAPractice, trial_SampleA],
+    timeline: [instrA_practice_rocedure, trial_SampleA],
     conditional_function: function(){
-      if (TrailMaking_parameters.ShowPractice)
+      if ( ShowPractice )
         {return true}
       else {return false}
     }
   }
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
+  timeline.push(CheckPracticeFlag)
   timeline.push(enter_fullscreen)
   timeline.push(instrSampleA_procedure)
   timeline.push(if_node)

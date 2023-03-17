@@ -15,7 +15,7 @@ var CalculateWaitTime = {
   func: function(){
     if ( Stroop_parameters.AllowedTime > 0 ) {
       wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
-      console.log("The wiat time is set to: "+wait_time)
+      console.log("The wait time is set to: "+wait_time)
     }
   }
 }
