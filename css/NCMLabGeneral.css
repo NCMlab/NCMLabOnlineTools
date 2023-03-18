@@ -151,3 +151,30 @@ p.Instructions {
 .jspsych-btn {
   font-size: large;
 }
+ /* https://stackoverflow.com/questions/53920359/easiest-way-to-display-a-check-mark-over-image-when-a-checkbox-input-is-selected */
+.categories-wrapper {
+    position: relative;
+    max-height: 400px;
+    max-width: 400px;
+}
+.category-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    width: 10%;
+    height: 10%;
+    z-index: 99;
+}
+
+.selectMe {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.category-input:checked {
+    opacity: 1;
+}

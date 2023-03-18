@@ -27,7 +27,7 @@ var trial0 = {
     choices: ['Next'],
     response_ends_trial: true,
     on_finish: function(){
-
+      console.log(ComponentList)
     	// read the data for this trial
     	var all_data = jsPsych.data.get();
     	// find the battery selected and extract its list of components
@@ -49,6 +49,7 @@ var trial0 = {
         JATOSSessionData.BatteryHtmlID = BatteryHtmlID
       }
       jatos.studySessionData = JATOSSessionData
+      console.log(TaskIconList)
 
     }
   };
