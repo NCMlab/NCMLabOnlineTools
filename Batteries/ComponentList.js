@@ -1,10 +1,10 @@
 var ComponentList = []
 
-ComponentList.push({index: '0', name:'Stroop Color', componentID: 32})
-ComponentList.push({index: '1', name:'Stroop Word', componentID: 34})
-ComponentList.push({index: '2', name:'Stroop Color/Word', componentID: 35})
-ComponentList.push({index: '3', name:'Digitspan Forward', componentID: 36})
-ComponentList.push({index: '4', name:'Digitspan Backward', componentID: 37})
+ComponentList.push({index: '0', name:'Stroop Color', iconFileName = 'StroopColor.png', componentID: 32})
+ComponentList.push({index: '1', name:'Stroop Word', iconFileName = 'StroopWord`.png',componentID: 34})
+ComponentList.push({index: '2', name:'Stroop Color/Word', iconFileName = 'StroopColorWord.png',componentID: 35})
+ComponentList.push({index: '3', name:'Trail Making A', iconFileName = 'TrailMakingA.png',componentID: 46})
+
 
 
 // What battery was passed?
@@ -21,9 +21,9 @@ var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 BatteryList.push({index: 1, 
 	name:'Battery001', 
-	list: ['0','1','2'], 
+	list: ['0','1','2','4'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_Default','Stroop_001','Stroop_Victoria']})
+	ParameterLists: ['Stroop_Default','Stroop_001','Stroop_Victoria','TrailMakingA_Default']})
 BatteryList.push({index: 2, 
 	name:'Battery002', 
 	list: ['1','0'], 

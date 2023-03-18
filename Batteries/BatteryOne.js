@@ -1,6 +1,7 @@
 var timeline = []
 // List of the names of the different tasks
 var TaskNameList = []
+var TaskIconList = []
 var ComponentIDList = []
 var ComponentParameterLists = []
 
@@ -37,6 +38,7 @@ var trial0 = {
     	for ( var i = 0; i < TaskList.length; i ++ ) {
 		  	var tempName = ComponentList[TaskList[i]].name
         TaskNameList.push(tempName)
+        TaskIconList.push(ComponentList[TaskList[i]].iconFileName)
 		  }
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
@@ -58,12 +60,17 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
     	var stim = ''
+
     	for (var i = 0; i < TaskNameList.length; i++ ) 
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
-    		stim += '<p><del>' + TaskNameList[i] + '</del></p>'
+    		  //stim += '<p><del>' + TaskNameList[i] + '</del></p>'
+          stim += '<img src="../../assets/Icons/'+TaskIconList[i]+'">'
     	 }
-        else {stim += '<p>' + TaskNameList[i] + '</p>'}
+        else {
+          //stim += '<p>' + TaskNameList[i] + '</p>'
+          stim += '<img src="../../assets/Icons/'+TaskIconList[i]+'">'
+        }
     	}
       return stim
     },
