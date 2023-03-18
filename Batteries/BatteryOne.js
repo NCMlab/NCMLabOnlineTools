@@ -65,11 +65,11 @@ var trial1 = {
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
     		  //stim += '<p><del>' + TaskNameList[i] + '</del></p>'
-          stim += '<img src="../../assets/Icons/'+TaskIconList[i]+'">'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'">'
     	 }
         else {
           //stim += '<p>' + TaskNameList[i] + '</p>'
-          stim += '<img src="../../assets/Icons/'+TaskIconList[i]+'">'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'">'
         }
     	}
       return stim
