@@ -61,18 +61,26 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
     	var stim = ''
+    
+
+    //stim += '<label for="category-input" class="selectMe"></label>'
+    //stim += '<input type="hidden" name="categoryFiles[]" value="">'
+    
 
     	for (var i = 0; i < TaskNameList.length; i++ ) 
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
     		  //stim += '<p><del>' + TaskNameList[i] + '</del></p>'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'">'
+          stim += '<div class="container">'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" />'
+          stim += '<div class="centered">COMPLETED</div></div>'
     	 }
         else {
-          //stim += '<p>' + TaskNameList[i] + '</p>'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'">'
+          stim += '<div class="container">'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" />'
         }
     	}
+
       return stim
     },
     prompt: '', 
