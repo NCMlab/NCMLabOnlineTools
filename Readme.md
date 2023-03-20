@@ -60,7 +60,7 @@ ExperimentName_Setup_AnyOtherDescriptives_LANGUAGE.js
 e.g. Stroop_Setup_TouchScreen_EN.js
 
 
-# Intergration of Voice Recognition 
+# Integration of Voice Recognition 
 ## Free Recall in Remote Administration
 e.g. Verbal Learning Tasks
 
