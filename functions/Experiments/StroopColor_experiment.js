@@ -282,12 +282,12 @@ var CheckNumberRepeats = {
 // Add procedures to the timeline
 // Split the instructions into General intro, practice instruct, Test Instructs
 // This allows the user to skip the practice 
- timeline.push(CalculateWaitTime) // works
+timeline.push(CalculateWaitTime) // works
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure);
 // add instructions that the following trials are practice
- timeline.push(instr_practice_procedure); 
+timeline.push(instr_practice_procedure); 
 timeline.push(practice_loop_node);  // works
   // provide feedback as to their performance
 timeline.push(debrief);

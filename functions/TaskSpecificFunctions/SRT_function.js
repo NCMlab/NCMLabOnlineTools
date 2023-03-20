@@ -10,10 +10,14 @@ var HeardList = []
 var BlockRecallCount = 0
 var BlockIntrusionCount = 0
 // used to store the order of the recalled words and used for scoring
-var ResponseArray = create2DArray(NWords,NBlocks + 2)
+
 // keep track of which block it is
 var BlockCount = 0
 var TrialCount = 0
+
+var CreateResponseArray = function(NWords, NBlocks) {
+	return create2DArray(NWords,NBlocks + 2)
+}
 
 var CreateSimpleWordList = function(WordList) {
 	var SimpleList = []

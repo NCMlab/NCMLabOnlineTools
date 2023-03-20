@@ -41,3 +41,6 @@ var WordListB = [
 	{'Word':'Fish'},
 	]
 var AlternatePronunciationsWordListB = []
+
+NWords = WordListA.length
+

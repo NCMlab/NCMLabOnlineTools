@@ -23,7 +23,7 @@
 
     <script src="../../jspsych/dist/plugin-preload.js"></script>
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
-
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -33,17 +33,32 @@
         var url = "../../InstructionsAndStimuli/"+Language+"/Stimuli/RAVLT.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="../../config/WordRecallGeneral_Setup.js"></script>
     <script src="../../config/RAVLT_Setup.js"></script>
-    
+    <script> var BaseFolderName = '../../assets/SoundFiles/Words/'</script>
+    <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('RAVLT_Default')
+    </script>
     <script src="../../functions/TaskSpecificFunctions/SRT_function.js"></script>
-    
     <script src="../../functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="../../functions/Scoring/RAVLT_Scoring.js"></script>
-    <script src="../../functions/Experiments/ManualRecall.js"></script>
-    <script src="../../functions/Experiments/AutomaticRecall.js"></script>
-    <script src="../../functions/Experiments/RAVLT_experiment2.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/WordRecall.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/SetupRAVLTexperiment.js"></script>
+    <script>
+      // set the recall type, before the timeline is created
+
+
+      if ( RAVLT_parameters.RecallType == 'Manual' ) {
+        console.log('MANUAL')
+        RecallProcedure = ManualRecallA
+      } else {
+        console.log('SPOKEN')
+        RecallProcedure = SpokenRecallA
+      }
+    </script>
+    <script src="../../functions/Experiments/RAVLT_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>

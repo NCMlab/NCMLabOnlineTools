@@ -21,58 +21,7 @@ var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
 
-// PREP WORK FOR WORD LIST A
-// take list of words as dictionary items and make a simple list out of it
-console.log(WordListA)
-SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
-// Make a simple list of the alternative pronunciations
-AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
-// Make a full list the words and thier alternative pronunciations
-FullWordListA = SimpleWordListA.concat(AltSimpleWordListA)
-// indices fro the primary word list
-WordListIndexA = CreateWordListIndex(WordListA)
-// indices for the world list containing the alternatives
-FullListIndexA = CreateSimpleIndexList(WordListA, AlternatePronunciationsWordListA)
-// convert WordList to a list of filenames for teh audio files for each word
-AudioFileListA = CreateAudioFileList(FolderName, SimpleWordListA, FileExtension)
-// convert it back to a list of dictionaries
-var AudioFileDictListA = AudioFileListA.map(function(e) {
-  return {Word: e}
-})
-// Create an array so the recall procedure can use a timelinevariable
-var WordListAForRecall = [{
-  'WordList': WordListA,
-  'SimpleWordList': SimpleWordListA,
-  'FullWordList': FullWordListA,
-  'WordListIndex': WordListIndexA,
-  'FullListIndex': FullListIndexA,
-}]
 
-// PREP WORK FOR WORD LIST B
-// take list of words as dictionary items and make a simple list out of it
-SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
-// Make a simple list of the alternative pronunciations
-AltSimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListB))
-// Make a full list the words and thier alternative pronunciations
-FullWordListB = SimpleWordListB.concat(AltSimpleWordListB)
-// indices fro the primary word list
-WordListIndexB = CreateWordListIndex(WordListB)
-// indices for the world list containing the alternatives
-FullListIndexB = CreateSimpleIndexList(WordListB, AlternatePronunciationsWordListB)
-// convert WordList to a list of filenames for teh audio files for each word
-AudioFileListB = CreateAudioFileList(FolderName, SimpleWordListB, FileExtension)
-// convert it back to a list of dictionaries
-var AudioFileDictListB = AudioFileListB.map(function(e) {
-  return {Word: e}
-})
-// Create an array so the recall procedure can use a timelinevariable
-var WordListBForRecall = [{
-  'WordList': WordListB,
-  'SimpleWordList': SimpleWordListB,
-  'FullWordList': FullWordListB,
-  'WordListIndex': WordListIndexB,
-  'FullListIndex': FullListIndexB,
-}]
 
 // =======================================================================
 var enter_fullscreen = {
@@ -115,7 +64,7 @@ var AudioStimulus = {
         return Stim
       },
     choices: [],  
-    trial_duration: TimePerWord,
+    trial_duration: RAVLT_parameters.TimePerWord,
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -164,62 +113,6 @@ var VisualStimulus = {
   };
 
 
-var RecallTrial = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: 'Please, recall the full list.<p><span id="clock">1:00</span></p>',
-    choices: ['Next'], 
-    margin_horizontal: GapBetweenButtons,
-    post_trial_gap: 0,
-    prompt: RAVLTWordPrompt, //Add this to config file
-    on_start: function(SimpleList) {
-      // reset the list of indices
-      // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
-      console.log(jsPsych.timelineVariable('FullWordList'))
-      WordList = jsPsych.timelineVariable('WordList')
-      WordListIndex = jsPsych.timelineVariable('WordListIndex')
-      FullWordList = jsPsych.timelineVariable('FullWordList')
-      FullListIndex = jsPsych.timelineVariable('FullListIndex')
-
-      HeardList = []
-      BlockRecallCount = 0
-      BlockIntrusionCount = 0
-
-      // Add a flag for the type of recall
-      
-      const commands01 = {'*search': FindRecalledWords01};
-      annyang.addCommands(commands01);
-      annyang.start({autorestart: true, continuous: true});
-      
-      //console.log('Started')
-    },
-    on_finish: function(data){
-      data.RecallList = WordListIndex
-      data.HeardList = HeardList
-      data.RecallCount = BlockRecallCount
-      data.NIntrusions = BlockIntrusionCount
-      data.task = 'Recall'
-      BlockCount++
-      clearInterval(interval);
-      annyang.abort()
-    },
-    on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-    }
-  }
 
 
 
@@ -301,47 +194,40 @@ var SendData = {
       randomize_order: false      
   }
 
-  var recallA = {
-      timeline: [RecallTrial],
-      randomize_order: false,
-      timeline_variables: WordListAForRecall,
-      repetitions: 1,  
-  }
-  var recallB = {
-      timeline: [RecallTrial],
-      randomize_order: false,
-      timeline_variables: WordListBForRecall,
-      repetitions: 1,   
-  }
-  
+
+
   var Blocks = {
-    timeline: [instr_procedure02, PresentListOfWordsA, recallA],
-    randomize_order: false,
-    repetitions: NBlocks - 1,
+      timeline: [instr_procedure02, PresentListOfWordsA, RecallProcedure],
+      randomize_order: false,
+      repetitions: RAVLT_parameters.NBlocks - 1,
   } 
 
-var thank_you = {
-    timeline: [SendData],
-    timeline_variables: ThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }  
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }  
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(preload_audioA)
 timeline.push(preload_audioB)
-timeline.push(ManualRecallTrial)
-timeline.push(instr_procedure01)
-timeline.push(PresentListOfWordsA)
-timeline.push(recallA)
+console.log(RecallProcedure)
+//timeline.push(ManualRecallA)
+//timeline.push(ManualRecallA)
+
+//timeline.push(PresentListOfWordsA)
+//timeline.push(recallA)
 
 timeline.push(Blocks)
-timeline.push(instr_procedure03)
+/*timeline.push(instr_procedure03)
 timeline.push(PresentListOfWordsB)
 timeline.push(recallB)
 timeline.push(instr_procedure04)
 timeline.push(recallA)
 timeline.push(thank_you)
+
+
 /*timeline.push(block1);
 //timeline.push(recall1);
 timeline.push(block1);
