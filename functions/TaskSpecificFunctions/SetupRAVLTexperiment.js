@@ -24,7 +24,6 @@ var WordListAForRecall = {
   'WordListIndex': WordListIndexA,
   'FullListIndex': FullListIndexA,
 }
-console.log(WordListAForRecall)
 
 // PREP WORK FOR WORD LIST B
 // take list of words as dictionary items and make a simple list out of it
@@ -44,22 +43,20 @@ var AudioFileDictListB = AudioFileListB.map(function(e) {
   return {Word: e}
 })
 
-console.log(NWords)
-console.log(RAVLT_parameters.NBlocks)
 var ResponseArray = CreateResponseArray(NWords, RAVLT_parameters.NBlocks)
-console.log(ResponseArray)
 
 // Create an array so the recall procedure can use a timelinevariable
-var WordListBForRecall = [{
+var WordListBForRecall = {
   'WordList': WordListB,
   'SimpleWordList': SimpleWordListB,
   'FullWordList': FullWordListB,
   'WordListIndex': WordListIndexB,
   'FullListIndex': FullListIndexB,
-}]
+}
 
+var RecallProcedureA
+var RecallProcedureB
 
-var RecallProcedure
 var ManualRecallA = {
   timeline: [ManualRecall],
   randomize_order: false,
@@ -67,9 +64,23 @@ var ManualRecallA = {
   repetitions: 1,   
 }
 
+var ManualRecallB = {
+  timeline: [ManualRecall],
+  randomize_order: false,
+  timeline_variables: [WordListBForRecall],
+  repetitions: 1,   
+}
+
 var SpokenRecallA = {
   timeline: [SpokenRecall],
   randomize_order: false,
   timeline_variables: [WordListAForRecall],
+  repetitions: 1,   
+}
+
+var SpokenRecallB = {
+  timeline: [SpokenRecall],
+  randomize_order: false,
+  timeline_variables: [WordListBForRecall],
   repetitions: 1,   
 }

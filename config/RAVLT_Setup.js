@@ -9,7 +9,7 @@ var FixationTimeBetweenWords = 200 // milliseconds
 var RAVLT_Default = {
 	FolderName: 'RAVLTSet001/',
 	FileExtension: '.wav',
-	NBlocks:3,
+	NBlocks:2,
 	RecallType:'Manual',
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds

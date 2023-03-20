@@ -19,9 +19,12 @@
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
-
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -31,13 +34,30 @@
         var url = "InstructionsAndStimuli/"+Language+"/Stimuli/RAVLT.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-
-    <script>var FolderName = 'assets/SoundFiles/Words/RAVLTSet001/'</script>
-    <script src="config/WordRecallGeneral_Setup.js"></script>
+    <script src="config/RAVLT_Setup.js"></script>
+    <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
+    <script>pseudoSwitch('RAVLT_001')</script>
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
-    <script src="functions/Experiments/RAVLT_experiment.js"></script>
+    <script src="functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="functions/Scoring/RAVLT_Scoring.js"></script>
+    <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
+ 
+    <script src="functions/TaskSpecificFunctions/SetupRAVLTexperiment.js"></script>
+    <script>
+      // set the recall type, before the timeline is created
+      if ( RAVLT_parameters.RecallType == 'Manual' ) {
+        console.log('MANUAL')
+        RecallProcedureA = ManualRecallA
+        RecallProcedureB = ManualRecallB
+      } else {
+        console.log('SPOKEN')
+        RecallProcedureA = SpokenRecallA
+        RecallProcedureB = SpokenRecallB
+      }
+    </script>
+    <script src="functions/Experiments/RAVLT_experiment.js"></script>
+
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>

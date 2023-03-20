@@ -194,12 +194,27 @@ var SendData = {
       randomize_order: false      
   }
 
+var FirstBlock = {
+      timeline: [instr_procedure01, PresentListOfWordsA, RecallProcedureA],
+      randomize_order: false,
+      repetitions: 1,
+  } 
 
-
-  var Blocks = {
-      timeline: [instr_procedure02, PresentListOfWordsA, RecallProcedure],
+  var AfterFirstBlock = {
+      timeline: [instr_procedure02, PresentListOfWordsA, RecallProcedureA],
       randomize_order: false,
       repetitions: RAVLT_parameters.NBlocks - 1,
+  } 
+
+  var BlockB = {
+      timeline: [instr_procedure03, PresentListOfWordsB, RecallProcedureB],
+      randomize_order: false,
+      repetitions: 1,
+  } 
+  var FinalRecalBlockA = {
+      timeline: [instr_procedure04, RecallProcedureA],
+      randomize_order: false,
+      repetitions: 1,
   } 
 
   var thank_you = {
@@ -212,14 +227,12 @@ var SendData = {
 // Add procedures to the timeline
 timeline.push(preload_audioA)
 timeline.push(preload_audioB)
-console.log(RecallProcedure)
-//timeline.push(ManualRecallA)
-//timeline.push(ManualRecallA)
 
-//timeline.push(PresentListOfWordsA)
-//timeline.push(recallA)
-
-timeline.push(Blocks)
+timeline.push(FirstBlock)
+timeline.push(AfterFirstBlock)
+timeline.push(BlockB)
+timeline.push(FinalRecalBlockA)
+timeline.push(thank_you)
 /*timeline.push(instr_procedure03)
 timeline.push(PresentListOfWordsB)
 timeline.push(recallB)
