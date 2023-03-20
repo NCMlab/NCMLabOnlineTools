@@ -60,6 +60,20 @@ ExperimentName_Setup_AnyOtherDescriptives_LANGUAGE.js
 e.g. Stroop_Setup_TouchScreen_EN.js
 
 
+# Intergration of Voice Recognition 
+## Free Recall in Remote Administration
+e.g. Verbal Learning Tasks
+
+## Assess Spoken Responses in Remote Administration 
+e.g. Tasks requiring participants to speak freely
+
+# Modifiable Parameter Sets
+Task components load up easily modifiable parameter sets. Therefore, the task component code does not need to be modified to change parameter values. 
+This allows the reuse of the task component code for multiple situations.
+
+# Immediate Modifiable Scoring
+Scoring of responses in incorporated into the task administration code. The result is that at task completion summary scores are calculated and stored in teh database along with the raw data. This allows different scoring approaches based on the parameters used for task administration.
+e.g. Stroop with time to complete 24 trials vs. number of trials completed in 45 seconds.
 
 # Cognitive Batteries
 A battery is a collection of task components to be administered. Batteries may differ based on the task components included, or may include the same task components but with differing parameters. An example, may be short and long versions of the same task components. Therefore, each tasks component requires its own set of parameters that describe the number of trials, timings, etc. 
