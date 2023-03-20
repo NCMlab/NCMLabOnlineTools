@@ -60,11 +60,7 @@ var trial1 = {
   // https://stackoverflow.com/questions/53920359/easiest-way-to-display-a-check-mark-over-image-when-a-checkbox-input-is-selected 
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
-    	var stim = ''
-    
-
-    //stim += '<label for="category-input" class="selectMe"></label>'
-    //stim += '<input type="hidden" name="categoryFiles[]" value="">'
+    	var stim = '<div id="main">'
     
 
     	for (var i = 0; i < TaskNameList.length; i++ ) 
@@ -77,10 +73,10 @@ var trial1 = {
     	 }
         else {
           stim += '<div class="container">'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" />'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" /></div>'
         }
     	}
-
+      stim += '</div>'
       return stim
     },
     prompt: '', 
