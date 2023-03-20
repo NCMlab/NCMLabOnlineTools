@@ -1,17 +1,36 @@
-
 // =======================================================================
 // Define internal variables
 var timeline = [];
 console.log('==============================')
-
-
+console.log('CANVAS SIZE FOR B')
 sizes = FindCanvasSize(SuggestedWidthB, SuggestedHeightB, 0.7, 0.75) 
 CanvasWidthB = sizes.CanvasWidth
 CanvasHeightB = sizes.CanvasHeight
+console.log('==============================')
+
 
 sizes = FindCanvasSize(SuggestedWidthSampleB, SuggestedHeightSampleB, 0.95,0.75) 
 CanvasWidthSampleB = sizes.CanvasWidth
+console.log(CanvasWidthSampleB)
 CanvasHeightSampleB = sizes.CanvasHeight
+var ShowPractice = false
+var Circles
+
+var CheckPracticeFlag = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    console.log(TrailMaking_parameters)
+    Circles = TrailMaking_parameters.Circles
+    console.log(Circles)
+    if ( TrailMaking_parameters.ShowPractice ) {
+      ShowPractice = true
+      console.log("Practice is turned on")
+    }
+  }
+}
+
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -32,11 +51,12 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
+      show_countdown_trial_duration: ShowTimerSampleB
     }
 
   var trialB = {
       type: jsPsychSketchpad,   
-      Circles: CirclesB, 
+      Circles: function(){ return TrailMaking_parameters.Circles}, 
       canvas_width: CanvasWidthB,
       canvas_height: CanvasHeightB,
       canvas_border_width: 1,
@@ -89,18 +109,36 @@ var enter_fullscreen = {
       randomize_order: false,
       repetitions: 1,
     }  
+
+  var instrB_practice_rocedure = {
+      timeline: [Instructions],
+      timeline_variables: InstructionsSampleBPractice,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
   var thank_you = {
       timeline: [Instructions],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
     }
+  
+  var if_node = {
+    timeline: [instrB_practice_rocedure, trial_SampleB],
+    conditional_function: function(){
+      if ( ShowPractice )
+        {return true}
+      else {return false}
+    }
+  }    
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
+  timeline.push(CheckPracticeFlag)
+  timeline.push(enter_fullscreen)
   timeline.push(instrSampleB_procedure)
-  timeline.push(trial_SampleB)
+  timeline.push(if_node)
   timeline.push(instrB_procedure)
   timeline.push(trialB)
   timeline.push(thank_you)
-  
   

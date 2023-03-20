@@ -15,12 +15,14 @@
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
 
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
@@ -29,8 +31,20 @@
     </script>
     <script src="config/TrailMaking_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
-    <script src="functions/Experiments/TrailmakingB_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <script>
+      var TrailMaking_parameters = 'empty'
+      var parameters = 'empty'
+      var BatteryHtmlID
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        pseudoSwitch(parameters)      
+        console.log(parameters)
+        console.log(TrailMaking_parameters)
+      })
+    </script> 
+    <script src="functions/Experiments/TrailmakingB_experiment.js"></script>
   </body>
   <script>
 
@@ -53,7 +67,12 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','TrailMakingB_data.csv');
       }
-      jatos.startNextComponent();
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management on JATOS
+      jatos.startComponent(BatteryHtmlID);
     }
   });
 
