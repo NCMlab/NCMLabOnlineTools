@@ -30,6 +30,19 @@
     <script> 
       var NeckerCubeFolder = 'assets/Images/CubeCopy/'
     </script>
+    <script src="config/CubeCopy_config.js"></script>
+    <script>
+      var CubeCopy_parameters = 'empty'
+      var parameters = 'empty'
+      var BatteryHtmlID
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        pseudoSwitch(parameters)      
+        console.log(parameters)
+        console.log(CubeCopy_parameters)
+      })
+    </script> 
     <script src="functions/Experiments/CubeCopy_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -56,9 +69,6 @@
       jatos.startNextComponent();
     }
   });
-
-
-
 
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
