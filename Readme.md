@@ -7,7 +7,7 @@ e.g. Verbal Learning Tasks
 e.g. fluency and sentence recall tasks
 
 # Drawing Capabilities
-Administration is designed for use with touchscreen technologies. This allows the participant to perform tasks that require drawing. e.g. trail maming and figure copying tasks.
+Administration is designed for use with touchscreen technologies. This allows the participant to perform tasks that require drawing. e.g. trail making and figure copying tasks.
 
 # Adaptive Difficulty
 Adaptive difficulty protocols are available for task administration. This allows for tasks to adjust their difficulty based on participant responses. e.g. digit span
