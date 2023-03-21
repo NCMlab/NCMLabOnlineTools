@@ -32,8 +32,11 @@ var trial0 = {
     	var all_data = jsPsych.data.get();
     	// find the battery selected and extract its list of components
     	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      console.log(ParameterList)
       TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
+      console.log(TaskList)
     	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      console.log(ComponentList)
       // Make a task list of the components of the battery
     	for ( var i = 0; i < TaskList.length; i ++ ) {
 		  	var tempName = ComponentList[TaskList[i]].name
