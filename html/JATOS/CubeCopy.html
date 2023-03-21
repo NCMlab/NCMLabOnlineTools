@@ -38,6 +38,8 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        console.log(BatteryHtmlID)
+        console.log(jatos.studySessionData)
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
         pseudoSwitch(parameters)      
         console.log(parameters)

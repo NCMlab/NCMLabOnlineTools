@@ -27,27 +27,33 @@ var trial0 = {
     choices: ['Next'],
     response_ends_trial: true,
     on_finish: function(){
+      // There needs to be three lists to describe a battery:
+      // A list of task names
+      // A list of task parameter object names
+      // A list of task icon filenames
+      // We start with a Battery which includes the list of names and the list of parameter object names
       console.log(ComponentList)
+      var result = ComponentList.find(item => item.name === 'Stroop Color').iconFileName;
+      console.log(result)
     	// read the data for this trial
     	var all_data = jsPsych.data.get();
     	// find the battery selected and extract its list of components
-    	var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
       console.log(ParameterList)
       TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
       console.log(TaskList)
-    	ComponentParameterLists = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      console.log(ComponentList)
-      // Make a task list of the components of the battery
+
+    	// Make a task list of the components of the battery
     	for ( var i = 0; i < TaskList.length; i ++ ) {
-		  	var tempName = ComponentList[TaskList[i]].name
-        TaskNameList.push(tempName)
-        TaskIconList.push(ComponentList[TaskList[i]].iconFileName)
+
+        TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
 		  }
+      console.log(TaskIconList)
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
       if ( isEmpty(JATOSSessionData) ) {
         // Add things to the jatos session data
-        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentIDList:ComponentIDList, ComponentParameterLists:ComponentParameterLists} 
+        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
         // add the ID to return to the JATOS battery
         JATOSSessionData.BatteryHtmlID = BatteryHtmlID
       }
@@ -62,24 +68,25 @@ var trial1 = {
   // Add checkmark to icons
   // https://stackoverflow.com/questions/53920359/easiest-way-to-display-a-check-mark-over-image-when-a-checkbox-input-is-selected 
     type: jsPsychHtmlButtonResponse,
+    // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
+      console.log(TaskIconList)
     	var stim = '<div id="main">'
-    
-
-    	for (var i = 0; i < TaskNameList.length; i++ ) 
+    	for (var i = 0; i < TaskList.length; i++ ) 
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
     		  //stim += '<p><del>' + TaskNameList[i] + '</del></p>'
           stim += '<div class="container">'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" />'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" />'
           stim += '<div class="centered">COMPLETED</div></div>'
     	 }
         else {
           stim += '<div class="container">'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskNameList[i]+'" /></div>'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" /></div>'
         }
     	}
       stim += '</div>'
+      console.log(stim)
       return stim
     },
     prompt: '', 
@@ -88,6 +95,8 @@ var trial1 = {
     response_ends_trial: true,
     on_finish: function() {
       JATOSSessionData = jatos.studySessionData
+      // This is the function that starts the JATOS component for the next item in the battery
+      // The pseudoswitch should receive a task name using the JATOS currentIndex value
       pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
     	// Need to shorten the task list and save it as jatos session variable
     }

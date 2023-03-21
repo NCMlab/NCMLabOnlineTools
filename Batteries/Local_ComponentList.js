@@ -7,7 +7,7 @@ ComponentList.push({name:'Trail Making A', iconFileName:'TrailMakingA.png'})
 ComponentList.push({name:'Trail Making B', iconFileName:'TrailMakingB.png'})
 ComponentList.push({name:'RAVLT', iconFileName:'RAVLT.png'})
 ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
-
+ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
 
 // What battery was passed?
 
@@ -19,17 +19,19 @@ add('Trail Making A', function(){jatos.startComponent(46)});
 add('Trail Making B', function(){jatos.startComponent(39)});
 add('RAVLT', function(){jatos.startComponent(52)});
 add('ICAR Matrix Reasoning', function(){jatos.startComponent(52)});
+add('Cube Copy', function(){jatos.startComponent(51)});
 
 const BatteryHtmlID = 54
 
 var BatteryList = []
+// This is not used yet
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
 BatteryList.push({index: 1, 
 	name:'Battery001', 
-	list: ['Stroop Color','Stroop Word','Stroop Color/Word','Trail Making A','Trail Making B','RAVLT'], 
+	list: ['Cube Copy','Stroop Color','Stroop Word','Stroop Color/Word','Trail Making A','Trail Making B','RAVLT'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_Default',
+	ParameterLists: ['CubeCopy_Default','Stroop_Default',
 		'Stroop_Default',
 		'Stroop_001',
 		'TrailMakingA_Default',
