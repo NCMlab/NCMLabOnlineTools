@@ -65,20 +65,49 @@ e.g. Stroop_Setup_TouchScreen_EN.js
 e.g. Verbal Learning Tasks
 
 ## Assess Spoken Responses in Remote Administration 
-e.g. Tasks requiring participants to speak freely
+e.g. fluency and sentence recall tasks
+
+# Drawing Capabilities
+Administration is designed for use with touchscreen technologies. This allows the participant to perform tasks that require drawing. e.g. trail maming and figure copying tasks.
+
+# Adaptive Difficulty
+Adaptive difficulty protocols are available for task administration. This allows for tasks to adjust their difficulty based on participant responses. e.g. digit span
 
 # Modifiable Parameter Sets
 Task components load up easily modifiable parameter sets. Therefore, the task component code does not need to be modified to change parameter values. 
 This allows the reuse of the task component code for multiple situations.
 
 # Immediate Modifiable Scoring
-Scoring of responses in incorporated into the task administration code. The result is that at task completion summary scores are calculated and stored in teh database along with the raw data. This allows different scoring approaches based on the parameters used for task administration.
+Scoring of responses in incorporated into the task administration code. The result is that at task completion summary scores are calculated and stored in the database along with the raw data. This allows different scoring approaches based on the parameters used for task administration.
 e.g. Stroop with time to complete 24 trials vs. number of trials completed in 45 seconds.
 
+# Modifiable Languages
+Once translated, the instructions and any language based stimulus (e.g. words) are easily changable through the modifiable parameters. This allows the user to choose the language of administration, and even the accent spoken by the pre-recorded audio stimuli. 
+
+# Verbal Stimuli
+Word and number stimuli are pre-recorded using text to speech technology. This allows the choice of language, accent, and speaking speed. The user can setup their tasks to match language and accent to any local population.
+
 # Cognitive Batteries
-A battery is a collection of task components to be administered. Batteries may differ based on the task components included, or may include the same task components but with differing parameters. An example, may be short and long versions of the same task components. Therefore, each tasks component requires its own set of parameters that describe the number of trials, timings, etc. 
+Multiple tasks may be selected and ordered into batteries. Batteries may differ based on the task components included, or may include the same task components but with differing parameters. An example, may be short and long versions of the same task components. Therefore, each tasks component requires its own set of parameters that describe the number of trials, timings, etc. 
 
-Within JATOS all tasks components are listed and by default every task component that is marked as 'active' is administered. A battery is defined with a list of task components to be adminstered along with defined parameter sets. The chosen battery is defined in the URL with a single parameter, the battery index. The initial component (web-page) reads the battery index from the URL, reads through the list of all batteries to extract its definition. A list of the task components is created and administered to the user.  At the same time, the battery, and the assigned parameters, are saved into the JATOS session data. This allows each task component in the battery to have access to the entire list of task components and which task components in the battery have already been completed. This also provides feedback to the user as to how many task components have been completed and how many are left to complete.
+# Summary
+The use of modifiable parameters and batteries means the end user does not need to modify any of the code that delivers the task components. They only need to develop their own personalized batteries. Once multiple batteries are developed they are administered based on a URL parameter in the hyperlink provided to participants.
 
-The HTML for each task component reads the JATOS session data, identifies its assigned parameters and loads those parameters. The various parameter sets are defined in the TaskName_config.js files. The batteries are defined in the Batteries/ComponentList.js file.
+# Tasks currently implemented
+- Stroop Color, Word, Color/Word
+- Trail making A and B
+- Rey Aditory Verbal Learning Task
+- Digit span forward and backward
+- Verbal delayed match to sample
+- Cube copy
+- Clock drawing
+- Rey Osterrieth Complex Figure Drawing
+- Letter cancellation task
+- Attention Network Test
+- Animal fluency
+- Card sort
+- ICAR Matrix reasoning
+
+
+
 
