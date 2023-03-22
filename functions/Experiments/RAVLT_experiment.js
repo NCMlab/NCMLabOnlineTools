@@ -21,7 +21,7 @@ var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
 
-
+var TrialCount
 
 // =======================================================================
 var enter_fullscreen = {
@@ -228,11 +228,14 @@ var FirstBlock = {
 timeline.push(preload_audioA)
 timeline.push(preload_audioB)
 
-timeline.push(FirstBlock)
-timeline.push(AfterFirstBlock)
-timeline.push(BlockB)
-timeline.push(FinalRecalBlockA)
-timeline.push(thank_you)
+//timeline.push(FirstBlock)
+//timeline.push(instr_procedure01)
+//timeline.push(PresentListOfWordsA)
+timeline.push(RecallProcedureA)
+//timeline.push(AfterFirstBlock)
+//timeline.push(BlockB)
+//timeline.push(FinalRecalBlockA)
+//timeline.push(thank_you)
 /*timeline.push(instr_procedure03)
 timeline.push(PresentListOfWordsB)
 timeline.push(recallB)

@@ -54,8 +54,6 @@ var WordListBForRecall = {
   'FullListIndex': FullListIndexB,
 }
 
-var RecallProcedureA
-var RecallProcedureB
 
 var ManualRecallA = {
   timeline: [ManualRecall],

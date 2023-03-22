@@ -20,6 +20,7 @@ var ManualRecall = {
     }, 250)
   },*/
   on_start: function() {
+          
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
       WordList = jsPsych.timelineVariable('WordList')
@@ -69,7 +70,7 @@ var ManualRecall = {
       }, 
     ]
   ],
-  title: '----------------------- Word Recall ----------------------',
+  title: 'Word Recall',
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: 'Submit',
@@ -110,6 +111,8 @@ var ManualRecall = {
   },
 };
 
+
+console.log(ManualRecall)
 var SpokenRecall = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: 'Please, recall the full list.<p><span id="clock">1:00</span></p>',

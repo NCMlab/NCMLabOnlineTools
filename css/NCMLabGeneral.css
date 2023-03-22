@@ -167,3 +167,7 @@ p.Instructions {
   left: 0%;
   transform:rotate(-25deg);
 }
+
+.sv_main .sv_container .sv_body {
+  background-color: darkred;
+}

@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Rey Auditory Verbal Learning Test</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+  <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
   </head>    
   <body>
     <script src="../../jspsych/dist/jspsych.js"></script>
@@ -18,8 +20,7 @@
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../../jspsych/dist/plugin-survey-multi-select.js"></script>
-    <script src="../../jspsych/dist/plugin-survey.js"></script>
+  <script src="../../jspsych/dist/plugin-survey.js"></script>
 
     <script src="../../jspsych/dist/plugin-preload.js"></script>
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
@@ -52,10 +53,15 @@
 
       if ( RAVLT_parameters.RecallType == 'Manual' ) {
         console.log('MANUAL')
-        RecallProcedure = ManualRecallA
+        RecallProcedureA = ManualRecallA
+        RecallProcedureB = ManualRecallB
+        console.log(RecallProcedureA)
+
+        
       } else {
         console.log('SPOKEN')
-        RecallProcedure = SpokenRecallA
+        RecallProcedureA = SpokenRecallA
+        RecallProcedureB = SpokenRecallB
       }
     </script>
     <script src="../../functions/Experiments/RAVLT_experiment.js"></script>
