@@ -42,7 +42,7 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      if ( SaveLocalFile ) {
+      if ( true ) {
         jsPsych.data.get().localSave('csv','AnimalFluencyTask.csv');
       }
     }
