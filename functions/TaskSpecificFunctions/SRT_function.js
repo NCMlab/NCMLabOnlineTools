@@ -2,9 +2,9 @@
 
 // Create list of indices for the word list
 WordListIndex = []
-for (var i = 0; i < NWords; i++) {
-	WordListIndex.push(i)
-}
+//for (var i = 0; i < NWords; i++) {
+//	WordListIndex.push(i)
+//}
 
 var HeardList = []
 var BlockRecallCount = 0

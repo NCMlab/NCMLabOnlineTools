@@ -9,3 +9,8 @@ var RecordSpokenWords = function(tag) {
 	 }
 	 return HeardList
 }
+var RecordUserSaid = function(userSaid) {
+        console.log('sound stopped');
+        // userSaid contains multiple possibilities for what was heard
+        console.log(userSaid)
+}

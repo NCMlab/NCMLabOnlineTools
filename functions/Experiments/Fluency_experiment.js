@@ -8,27 +8,82 @@ var enter_fullscreen = {
   fullscreen_mode: true
 }
 
+var TotalList = []
+var SimpleList = []
+function ThisGetRow(Input, Row) {
+  // extract the data for a single block
+   const dimensions = [ Input.length, Input[0].length ];
+   var row = []
+   for (var i = 0; i < dimensions[1]; i++) {
+    row.push(Input[Row][i])
+   }
+   return row
+  }
+
+var WaitForWords = function() {
+      annyang.addCallback('result', function(userSaid) {
+        console.log('sound stopped');
+        // userSaid contains multiple possibilities for what was heard
+        console.log(userSaid)
+        SimpleList.push(userSaid)
+       /* // Parse userSaid. It provides five possibilities for what it heard for each word
+        // Make a table of rows for eahc unique word and columns for each possibility
+        
+        // i is the columns
+        var NWords = -99
+        for ( var i = 0; i < userSaid.length; i++ ) { // cycle over possible pronunciations
+          HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+          if ( NWords < 0 ) {NWords = HeardWords.length} // cycle over words 
+        }
+        var Words = create2DArray(NWords,userSaid.length)
+        for ( var i = 0; i < userSaid.length; i++ ) { // number of words
+          HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+          for ( var j = 0; j < HeardWords.length; j++ ) // number of pronunciations
+          {
+            Words[j][i] = HeardWords[j]
+          }
+        }
+        //console.log(Words)
+        for ( var i = 0; i < NWords; i++ ) {
+          TotalList.push(ThisGetRow(Words,i))
+        }
+        console.log(TotalList)*/
+        //jsPsych.finishTrial();
+        document.getElementById("jspsych-html-button-response-button-0").disabled = true;
+       });
+
+}
 // =======================================================================
 // Define all of the different the stimuli 
 
-var ListAnimals = {
+var Fluency = {
     type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: 'Please, say as many animals as possible.<p><span id="clock">1:00</span></p>',
+    stimulus: function() {
+
+      var stim = 'Please, say as many '+jsPsych.timelineVariable('Category')+' as possible.<p><span id="clock">1:00</span></p>'
+      return stim 
+    },
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: '', //Add this to config file
     on_start: function() {
-      HeardList = []
+      /* HeardList = []
       const commands01 = {'*search': RecordSpokenWords};
-      annyang.addCommands(commands01);
+      const commands02 = {'result': RecordUserSaid};
+      annyang.addCommands(commands02);
       annyang.start({autorestart: true, continuous: true});      
+      */
+      annyang.start({autorestart: false, continuous: true});
+      WaitForWords()
     },
     on_finish: function(data){
-      data.HeardList = HeardList
+      //data.HeardList = TotalList
+      data.SimpleList = SimpleList
       data.task = 'Recall'
       clearInterval(interval);
       annyang.abort()
+      console.log(data.HeardList)
     },
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = RecallDuration * 1000; // in milliseconds
@@ -71,14 +126,15 @@ var Instructions = {
 // Define the test procedure which does NOT provide feedback
   var instr_procedure01 = {
       timeline: [Instructions],
-      timeline_variables: AFTInstructions,
+      timeline_variables: Fluency_Instructions,
       randomize_order: false,
       repetitions: 1,
     }
 
   var List = {
-      timeline: [ListAnimals],
+      timeline: [Fluency],
       randomize_order: false,
+      timeline_variables: [Fluency_parameters],
       repetitions: 1,  
   }
   var thank_you = {

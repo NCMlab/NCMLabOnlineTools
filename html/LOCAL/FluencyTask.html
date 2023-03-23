@@ -21,16 +21,26 @@
     <script src="../../jspsych/dist/plugin-preload.js"></script>
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
 
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/AFT_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/Fluency_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     
+    <script src="../../config/Fluency_Setup.js"></script>
+    <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('Fluency_F')
+      console.log(Fluency_parameters)
+    </script>
     <script src="../../functions/TaskSpecificFunctions/AFT_function.js"></script>
-    <script src="../../functions/Experiments/AFT_experiment.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/SRT_function.js"></script>
+    
+    <script src="../../functions/Experiments/Fluency_experiment.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -42,8 +52,8 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      if ( true ) {
-        jsPsych.data.get().localSave('csv','AnimalFluencyTask.csv');
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','FluencyTask.csv');
       }
     }
   });
