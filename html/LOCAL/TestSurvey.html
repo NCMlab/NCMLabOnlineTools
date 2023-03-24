@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Self-report</title>
+
+  <!-- Load libraries -->
+  <script src="../../jspsych/dist/jspsych.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+  
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="../../NIVLab-jspsych-demos/tasks/self-report/plugin-survey-template.js"></script>
+  
+	<script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/stai.js"></script>
+ 
+<div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+</head>
+<body></body>
+<script>
+	var timeline = []
+timeline.push(stai);
+
+
+      jsPsych = initJsPsych({
+      
+    });
+    jsPsych.run(timeline)
+  </script>
+  
+</html>

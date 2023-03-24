@@ -112,4 +112,5 @@ ExperimentName_Setup_AnyOtherDescriptives_LANGUAGE.js
 e.g. Stroop_Setup_TouchScreen_EN.js
 
 
-
+GitHub submodules
+https://www.youtube.com/watch?v=eJrh5IjWSGM
