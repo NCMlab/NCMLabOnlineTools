@@ -1,14 +1,13 @@
-var Fluency_Animal = {
-	Category: "ANIMALS",
+SerialSubtract_Default = {
+	StartValue: 101,
+	StepValue: 7,
 }
 
-var Fluency_FruitsVegetables = {
-	Category: "FRUITS and VEGETABLES",
+SerialSubtract_001 = {
+	StartValue: 100,
+	StepValue: 7,
 }
 
-var Fluency_F = {
-	Category: "WORDS THAT START WITH THE LETTER F",
-}
-add('Fluency_Animal', function(){ Fluency_parameters = Fluency_Animal});
-add('Fluency_FruitsVegetables', function(){ Fluency_parameters = Fluency_FruitsVegetables});
-add('Fluency_F', function(){ Fluency_parameters = Fluency_F});
+
+add('SerialSubtract_Default', function(){ SerialSubtract_parameters = SerialSubtract_Default});
+add('SerialSubtract_001', function(){ SerialSubtract_parameters = SerialSubtract_001});

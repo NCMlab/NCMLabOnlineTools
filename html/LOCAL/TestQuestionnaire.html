@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire: BDI</title>
+        <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+  </head>
+  <body>  
+    <script src="../../jsPsych/dist/jspsych.js"></script>
+	<script src="../../jsPsych/dist/plugin-survey.js"></script>
+<div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <style>
+        .sv_main div{
+            background-color: aquamarine;
+        }
+        
+        .sv_p_root div{
+            font-family:'Courier New', Courier, monospace;
+            font-size: 12px;
+            text-align: left;
+        }
+        .jspsych-content-wrapper {
+        	overflow: auto;	
+        }
+        .jspsych-display-element {
+        	line-height:0.7em;
+        }
+      </style>
+
+
+<script>
+	var timeline = []
+var trial = {
+  type: jsPsychSurvey,
+  pages: [
+    [
+      {
+        type: 'html',
+        prompt: 'Please answer the following questions:',
+      },
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true,
+        columns: 0,
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+      {
+        type: 'multi-choice',
+        prompt: "Which of the following do you like the most?", 
+        name: 'VegetablesLike', 
+        options: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas'], 
+        required: true
+      }, 
+    ]
+  ],
+};
+
+timeline.push(trial)
+      jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+    });
+    jsPsych.run(timeline)
+  </script>
+</html>
