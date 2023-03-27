@@ -7,14 +7,14 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire: BDI</title>
-    <script src="jsPsych/jspsych.js"></script>
-    <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
-    <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
-    <script src="assets/bdi_setup_eng.js"></script>
-    <link rel="stylesheet" href="jsPsych/css/jspsych.css">
-    <link href="CSS/LikertQuestionnaires.css" rel="stylesheet">
-        <script src="questionnaire_setup_eng.js"></script>    
-    <script src="questionnaire_functions.js"></script>
+    <script src="../../jsPsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jsPsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="../../Questionnaires/EN/bdi_setup.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link href="../../CSS/LikertQuestionnaires.css" rel="stylesheet">
+        <script src="../../config/Questionnaire_Setup.js"></script>    
+    <script src="../../functions/GeneralPurposeFunctions/questionnaire_functions.js"></script>
 
     <style>
     input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
@@ -24,14 +24,14 @@
   <body></body>
   <script>
   // Split the list of questions based on a limited number per page
-  itemPages = MakePagesOfItemsMCSurvey(items, 2)
+  itemPages = MakePagesOfItemsMCSurvey(items, 21)
   // define the running score
   var Sum = 0
   // keep track of which page of the questionnaire the code is on
   var PageCount = 0
   // define the multiple choice survey block
   var multi_choice_block = {
-    type: 'survey-multi-choice',
+    type: jsPsychSurveyMultiChoice,
     // instead of defining the questions, define a timeline variable
     timeline: itemPages,
      // The instructions are also in the JS file
@@ -64,18 +64,13 @@
       PageCount += 1
     }
   }
-  // define the procedure
-  var procedure = {
-      timeline: [multi_choice_block],
-  }
 
-  jsPsych.init({
-    timeline: [procedure],
-    on_finish: function() {
-      jsPsych.data.displayData();
-    }
+  var timeline = []
+  timeline.push(multi_choice_block)
+  var jsPsych = initJsPsych({
+    
   });
-
+jsPsych.run(timeline)
 
   </script>
 </html>

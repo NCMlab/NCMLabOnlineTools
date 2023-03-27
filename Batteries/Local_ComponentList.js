@@ -8,7 +8,7 @@ ComponentList.push({name:'Trail Making B', iconFileName:'TrailMakingB.png'})
 ComponentList.push({name:'RAVLT', iconFileName:'RAVLT.png'})
 ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
 ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
-ComponentList.push({name:'Self-Report', iconFileName:'CubeCopy.png'})
+ComponentList.push({name:'Self-Report', iconFileName:'SelfReport.png'})
 
 // What battery was passed?
 
@@ -42,14 +42,14 @@ BatteryList.push({index: 3,
 		'RAVLT_Default'
 		]})
 
-BatteryList.push({index: 1, 
+BatteryList.push({index: 2, 
 	name:'Battery002', 
 	list: ['Stroop Word','Stroop Word'], 
 	description: BatteryDescription,
 	ParameterLists: ['Stroop_Default','Stroop_Default']})
 
-BatteryList.push({index: 2, 
+BatteryList.push({index: 1, 
 	name:'List of Questionnaires', 
 	list: ['Self-Report','Self-Report'], 
 	description: BatteryDescription,
-	ParameterLists: ['rtq','rtq']})
+	ParameterLists: ['panas','stai']})

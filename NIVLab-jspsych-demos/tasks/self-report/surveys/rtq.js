@@ -33,22 +33,3 @@ var rtq = {
   survey_width: 950,
   item_width: 55
 }
-
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = 'Answer the following questions' // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: 50,
-      prompt: '',
-      choices: ['Next'], 
-    }
-
-var timeline = []
-
-    timeline.push(Instructions)
-    timeline.push(rtq)
-    timeline.push(Instructions)
