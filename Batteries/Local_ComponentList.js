@@ -8,6 +8,7 @@ ComponentList.push({name:'Trail Making B', iconFileName:'TrailMakingB.png'})
 ComponentList.push({name:'RAVLT', iconFileName:'RAVLT.png'})
 ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
 ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
+ComponentList.push({name:'Self-Report', iconFileName:'CubeCopy.png'})
 
 // What battery was passed?
 
@@ -20,7 +21,7 @@ add('Trail Making B', function(){jatos.startComponent(39)});
 add('RAVLT', function(){jatos.startComponent(52)});
 add('ICAR Matrix Reasoning', function(){jatos.startComponent(52)});
 add('Cube Copy', function(){jatos.startComponent(51)});
-add('Self-Report',function(){jatos.startComponent(59)});
+add('Self-Report',function(){jatos.startComponent(56)});
 
 
 const BatteryHtmlID = 54
@@ -29,7 +30,7 @@ var BatteryList = []
 // This is not used yet
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
-BatteryList.push({index: 1, 
+BatteryList.push({index: 3, 
 	name:'Battery001', 
 	list: ['Cube Copy','Stroop Color','Stroop Word','Stroop Color/Word','Trail Making A','Trail Making B','RAVLT'], 
 	description: BatteryDescription,
@@ -41,14 +42,14 @@ BatteryList.push({index: 1,
 		'RAVLT_Default'
 		]})
 
-BatteryList.push({index: 2, 
+BatteryList.push({index: 1, 
 	name:'Battery002', 
-	list: ['Stroop Word','Stroop Color'], 
+	list: ['Stroop Word','Stroop Word'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_001','Stroop_Default']})
+	ParameterLists: ['Stroop_Default','Stroop_Default']})
 
-BatteryList.push({index: 3, 
+BatteryList.push({index: 2, 
 	name:'List of Questionnaires', 
-	list: ['Self-Report'], 
+	list: ['Self-Report','Self-Report'], 
 	description: BatteryDescription,
-	ParameterLists: ['stai']})
+	ParameterLists: ['rtq','rtq']})

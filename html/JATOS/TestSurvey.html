@@ -4,29 +4,51 @@
   <title>Self-report</title>
 
   <!-- Load libraries -->
-  
+  <script src="jatos.js"></script>
   <script src="jspsych/dist/jspsych.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
 
 
   <!-- Load jsPsych plug-ins -->
+  <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
   <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
   <script src="NIVLab-jspsych-demos/tasks/self-report/plugin-survey-template.js"></script>
   <script src="NIVLab-jspsych-demos/tasks/self-report/surveys/stai.js"></script>
   <script src="NIVLab-jspsych-demos/tasks/self-report/surveys/nfc.js"></script>
 	<script src="NIVLab-jspsych-demos/tasks/self-report/surveys/nfcs.js"></script>
   <script src="NIVLab-jspsych-demos/tasks/self-report/surveys/panas.js"></script>
-  
+  <script src="NIVLab-jspsych-demos/tasks/self-report/surveys/rtq.js"></script>
   <script src="config/SelfReport_Setup.js"></script>
   <script>
-      var timeline = []
+
   </script>
 
-
+<style>
+  .jspsych-content-wrapper {
+    overflow: auto; 
+  }
+</style>
 <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+
+    <script>
+      var Stroop_parameters = 'empty'
+      var parameters = 'empty'
+      var BatteryHtmlID
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        console.log(BatteryHtmlID)
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        pseudoSwitch(parameters)
+        console.log(parameters)
+        timeline.push(Instructions)
+  })      
+      
+  </script> 
 </head>
 <body></body>
 <script>
+  var setup = []
+  var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
@@ -52,6 +74,8 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management on JATOS
+      console.log(BatteryHtmlID)
+      console.log("GOING HOME")
       jatos.startComponent(BatteryHtmlID);
     }
   });
@@ -69,7 +93,7 @@ var jsPsych = initJsPsych({
         msg: "This worker aborted the mission.",
         style: "top:8px; right:40px; color:green; bottom: unset"
       });
-      console.log(Stroop_parameters)
+      
       jsPsych.run(timeline);
     });
   </script>

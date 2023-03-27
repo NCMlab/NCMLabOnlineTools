@@ -56,11 +56,6 @@
       }
     </script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/AttentionNetworkTest_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
     <script src="Batteries/BatteryOne.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -84,12 +79,6 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
-    on_finish: function() {
-      jatos.endStudy(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        //jsPsych.data.get().localSave('csv','AttentionNetworkTest_data.csv');
-      }    
-    }
   });
 
   jatos.onLoad(() => {
