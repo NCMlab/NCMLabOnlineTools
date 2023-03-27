@@ -20,6 +20,8 @@ add('Trail Making B', function(){jatos.startComponent(39)});
 add('RAVLT', function(){jatos.startComponent(52)});
 add('ICAR Matrix Reasoning', function(){jatos.startComponent(52)});
 add('Cube Copy', function(){jatos.startComponent(51)});
+add('Self-Report',function(){jatos.startComponent(59)});
+
 
 const BatteryHtmlID = 54
 
@@ -44,3 +46,9 @@ BatteryList.push({index: 2,
 	list: ['Stroop Word','Stroop Color'], 
 	description: BatteryDescription,
 	ParameterLists: ['Stroop_001','Stroop_Default']})
+
+BatteryList.push({index: 3, 
+	name:'List of Questionnaires', 
+	list: ['Self-Report'], 
+	description: BatteryDescription,
+	ParameterLists: ['stai']})

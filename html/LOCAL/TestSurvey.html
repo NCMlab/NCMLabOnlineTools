@@ -4,23 +4,32 @@
   <title>Self-report</title>
 
   <!-- Load libraries -->
+  
   <script src="../../jspsych/dist/jspsych.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-  
+
 
   <!-- Load jsPsych plug-ins -->
+  <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
   <script src="../../NIVLab-jspsych-demos/tasks/self-report/plugin-survey-template.js"></script>
+  <script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/stai.js"></script>
+  <script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/nfc.js"></script>
+	<script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/nfcs.js"></script>
+  <script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/panas.js"></script>
   
-	<script src="../../NIVLab-jspsych-demos/tasks/self-report/surveys/stai.js"></script>
- 
+  <script src="../../config/SelfReport_Setup.js"></script>
+  <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      var timeline = []
+      pseudoSwitch('stai')
+  </script>
+
+
 <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
 </head>
 <body></body>
 <script>
-	var timeline = []
-timeline.push(stai);
-
-
       jsPsych = initJsPsych({
       
     });
