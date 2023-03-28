@@ -29,3 +29,14 @@ var items = [
 var instructions = "The following statements deal with your beliefs and feelings about your own behavior. Read each statement and respond by circling the number that best represents your agreement with each statement. "
 
 var reference = "Martin, M. M., & Rubin, R. B. (1995). A New Measure of Cognitive Flexibility. Psychological Reports, 76(2), 623–626. doi:10.2466/pr0.1995.76.2.623 "
+
+var notes = ""
+
+var cfs = {}
+cfs.title = title
+cfs.scale01 = scale01
+cfs.ReverseScoreDirection = ReverseScoreDirection
+cfs.items = items
+cfs.instructions = instructions
+cfs.references = references
+cfs.notes = notes

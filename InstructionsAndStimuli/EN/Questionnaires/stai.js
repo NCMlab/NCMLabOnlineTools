@@ -33,4 +33,17 @@ var items = [
     {prompt: "I get in a state of tension or turmoil as I think over my recent concerns and interest.", labels: scale01},
   ]
 
-  var instructions = 'Read each statement and then choose the answer to indicate how you generally feel.'
+var instructions = 'Read each statement and then choose the answer to indicate how you generally feel.'
+
+var references = ""
+
+var notes = ""
+
+var stai = {}
+stai.title = title
+stai.scale01 = scale01
+stai.ReverseScoreDirection = ReverseScoreDirection
+stai.items = items
+stai.instructions = instructions
+stai.references = references
+stai.notes = notes

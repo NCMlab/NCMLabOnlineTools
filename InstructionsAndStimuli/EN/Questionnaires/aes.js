@@ -1,3 +1,4 @@
+
 var title = "Apathy Evaluation Scale (AES)"
 
 
@@ -36,3 +37,13 @@ var instructions = 'For each statement, choose the answer that best describes th
 var references = "Marin, R. S., Biedrzycki, R. C., & Firinciogullari, S. (1991). Reliability and validity of the Apathy Evaluation Scale. Psychiatry research, 38(2), 143-162."
 
 var notes = "The Apathy Evaluation Scale (AES) (46): Apathy was quantified using the AES, consisting of 18 items relating to apathy, each scored on a 4-point Likert-type scale. The score range for the complete AES (total AES score) is 18 to 72, with a lower score indicating greater apathy."
+
+
+var aes = {}
+aes.title = title
+aes.scale01 = scale01
+aes.ReverseScoreDirection = ReverseScoreDirection
+aes.items = items
+aes.instructions = instructions
+aes.references = references
+aes.notes = notes

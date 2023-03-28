@@ -38,3 +38,13 @@ var instructions = 'This scale consists of a number of words that describe diffe
 
 var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. *Journal of Personality and Social Psychology, 54*(6), 1063–1070."
 
+var notes = ""
+
+var panas = {}
+panas.title = title
+panas.scale01 = scale01
+panas.ReverseScoreDirection = ReverseScoreDirection
+panas.items = items
+panas.instructions = instructions
+panas.references = references
+panas.notes = notes

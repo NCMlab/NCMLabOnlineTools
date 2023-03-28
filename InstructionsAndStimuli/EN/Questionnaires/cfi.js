@@ -39,3 +39,14 @@ var instructions = "Please indicate the extent to which you agree or disagree wi
 
 var reference = "Dennis, John & Vander Wal, Jillon. (2010). The Cognitive Flexibility Inventory: Instrument Development and Estimates of Reliability and Validity. Cogn Ther Res. 34. 241-253. 10.1007/s10608-009-9276-4. "
 
+var notes = ""
+
+
+var cfi = {}
+cfi.title = title
+cfi.scale01 = scale01
+cfi.ReverseScoreDirection = ReverseScoreDirection
+cfi.items = items
+cfi.instructions = instructions
+cfi.references = references
+cfi.notes = notes

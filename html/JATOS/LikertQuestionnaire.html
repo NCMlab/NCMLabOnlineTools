@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likert Questionnaire</title>
+    <script src="jatos.js"></script>
+    <script src="jsPsych/dist/jspsych.js"></script>
+    <script src="jsPsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jsPsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="jsPsych/dist/plugin-fullscreen.js"></script>
+    <script src="jsPsych/dist/plugin-instructions.js"></script>    
+    <script src="jsPsych/dist/plugin-survey-likert.js"></script>
+    <script src="config/General_Setup.js"></script>
+        <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link href="CSS/LikertQuestionnaires.css" rel="stylesheet">
+        <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="config/Questionnaire_Setup.js"></script>
+
+    <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script> 
+    <script src="InstructionsAndStimuli/EN/Questionnaires/cfi.js"></script> 
+    <script src="InstructionsAndStimuli/EN/Questionnaires/cfs.js"></script> 
+    <script src="InstructionsAndStimuli/EN/Questionnaires/cuditr.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/panas.js"></script>  
+    <script src="InstructionsAndStimuli/EN/Questionnaires/stai.js"></script> 
+        <script>
+        var CurrentTest
+      var Stroop_parameters = 'empty'
+      var parameters = 'empty'
+      var BatteryHtmlID
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        pseudoSwitch(parameters)
+        console.log(parameters)
+        CurrentTest = eval(parameters)
+        console.log(CurrentTest)
+
+      })
+      
+    </script> 
+    <script src="functions/GeneralPurposeFunctions/questionnaire_functions.js"></script>
+  <style>
+    input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
+    .jspsych-content {max-width:90%}
+  </style>
+  </head>
+  <body>  <div id="jspsych-target"  style="overflow:hidden; height:100%;overflow:auto"  class='center' ></div>
+
+
+</body>
+<script>
+var setup = []
+var TrialCount = 1;
+var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_trial_start: function() {
+      //http://127.0.0.1:9000/publix/fNTRhuguK1x
+//      console.log(jatos.urlQueryParameters);
+      var input = jatos.urlQueryParameters;
+      console.log(TrialCount)
+      TrialCount += 1
+      // Add jatos info to the data file
+      jsPsych.data.addProperties({assignedURLID: input.a});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+    },
+    on_finish: function() {
+      jatos.endStudy(jsPsych.data.get().json())
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','StroopColor_data.csv');
+      }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management on JATOS
+        console.log(BatteryHtmlID)
+      console.log("GOING HOME")
+      jatos.startComponent(BatteryHtmlID);
+    }
+  });
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);
+      jatos.addAbortButton({
+        text: "Quit",
+        confirmText: "Do you really want to quit?",
+        tooltip: "This will quit the entire experiment",
+        msg: "This worker aborted the mission.",
+        style: "top:8px; right:40px; color:green; bottom: unset"
+      });
+      
+      jsPsych.run(MakeLikertQuestionnaire(CurrentTest));
+    });
+  </script>
+</html>
