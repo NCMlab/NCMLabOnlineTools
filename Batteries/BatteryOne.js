@@ -82,7 +82,7 @@ var trial1 = {
     	 }
         else {
           stim += '<div class="container">'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" />HELLO</div>'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" /></div>'
         }
     	}
       stim += '</div>'
@@ -105,5 +105,5 @@ var trial1 = {
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.
- timeline.push(trial0)
+ //timeline.push(trial0)
  timeline.push(trial1)
