@@ -1,41 +1,58 @@
-
-// Define the components by name and assign them numbers
 var ComponentList = []
-ComponentList.push({index: '0', name:'Stroop Color'})
-ComponentList.push({index: '1', name:'Stroop Word'})
-ComponentList.push({index: '2', name:'Stroop Color/Word'})
-ComponentList.push({index: '3', name:'Digitspan Forward'})
-ComponentList.push({index: '4', name:'Digitspan Backward'})
+
+ComponentList.push({name:'Stroop Color', iconFileName:'StroopColor.png'})
+ComponentList.push({name:'Stroop Word', iconFileName:'StroopWord.png'})
+ComponentList.push({name:'Stroop Color/Word', iconFileName:'StroopColorWord.png'})
+ComponentList.push({name:'Trail Making A', iconFileName:'TrailMakingA.png'})
+ComponentList.push({name:'Trail Making B', iconFileName:'TrailMakingB.png'})
+ComponentList.push({name:'RAVLT', iconFileName:'RAVLT.png'})
+ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
+ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
+ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
+ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
+
+// What battery was passed?
+
+// I think I can use the name instead of the index
+add('Stroop Color', function(){jatos.startComponent(5)});
+add('Stroop Word', function(){jatos.startComponent(6)});
+add('Stroop Color/Word', function(){jatos.startComponent(7)});
+add('Trail Making A', function(){jatos.startComponent(3)});
+add('Trail Making B', function(){jatos.startComponent(4)});
+add('RAVLT', function(){jatos.startComponent(10)});
+add('ICAR Matrix Reasoning', function(){jatos.startComponent(16)});
+add('Cube Copy', function(){jatos.startComponent(15)});
+add('Likert',function(){jatos.startComponent(19)});
 
 
-// Add the components by their number and JATOS component IDs to the 
-// pseudo Switch/Case
-
-add('0', function(){jatos.startComponent(26)});
-add('1', function(){jatos.startComponent(56)});
-add('2', function(){jatos.startComponent(57)});
-add('3', function(){jatos.startComponent(58)});
-add('4', function(){jatos.startComponent(59)});
-// Define th JATOS ID to return back to teh Battery HTML page
-const BatteryHtmlID = 69
+const BatteryHtmlID = 1
 
 
-// Define all of the batteries
 var BatteryList = []
+// This is not used yet
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
-BatteryList.push({index: 1, 
+
+BatteryList.push({index: 3, 
 	name:'Battery001', 
-	list: ['0','1','2'], 
+	list: ['Cube Copy','Stroop Color','Stroop Word','Stroop Color/Word','Trail Making A','Trail Making B','RAVLT'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_Default','Stroop_001','Stroop_Victoria']})
+	ParameterLists: ['CubeCopy_Default','Stroop_Default',
+		'Stroop_Default',
+		'Stroop_001',
+		'TrailMakingA_Default',
+		'TrailMakingB_Default',
+		'RAVLT_Default'
+		]})
+
 BatteryList.push({index: 2, 
 	name:'Battery002', 
-	list: ['1','0'], 
+	list: ['Stroop Word','Stroop Word'], 
 	description: BatteryDescription,
-	ParameterLists: ['Stroop_001','Stroop_001','Stroop_Default']})
-BatteryList.push({index: 3, 
-	name:'Battery003', 
-	list: ['0','1'], 
+	ParameterLists: ['Stroop_Default','Stroop_Default']})
+
+BatteryList.push({index: 1, 
+	name:'List of Questionnaires', 
+	list: ['Likert','Likert','Likert','Likert'], 
 	description: BatteryDescription,
-	ParameterLists: ['','']})
+	ParameterLists: ['panas','cfi','cfs','stai']})
 
