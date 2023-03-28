@@ -19,7 +19,7 @@ var trial0 = {
   // The buttons are dynamically created based on what has been completed already
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {
-    	var stim = "Hello World"
+    	var stim = "Press Next to Continue"
     	return stim
     },
     prompt: '', 
@@ -70,7 +70,6 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
-      console.log(TaskIconList)
     	var stim = '<div id="main">'
     	for (var i = 0; i < TaskList.length; i++ ) 
       {
@@ -86,7 +85,6 @@ var trial1 = {
         }
     	}
       stim += '</div>'
-      console.log(stim)
       return stim
     },
     prompt: '', 
@@ -105,5 +103,6 @@ var trial1 = {
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.
- //timeline.push(trial0)
+ timeline.push(trial0)
  timeline.push(trial1)
+
