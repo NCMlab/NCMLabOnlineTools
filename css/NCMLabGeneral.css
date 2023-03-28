@@ -24,16 +24,16 @@ table {
 html { background-color: white; }
 body {
   background-color: rgb(200,200,200);
-  border-radius: 15px;
+  border-radius: 10px;
     position: fixed;
-  left: 2vw;
-  top: 2vh;
-  height: 88vh;
-  width: 90vw;
+  left: 0vw;
+  top: 1vh;
+  height: 96vh;
+  width: 98vw;
   box-shadow: 4px 4px 6px #888888/*#999*/;
-  border-radius: 15px;
+  border-radius: 10px;
   z-index: 0;
-  padding: 30px 30px 30px 30px;
+  
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
@@ -166,8 +166,4 @@ p.Instructions {
   top: 50%;
   left: 0%;
   transform:rotate(-25deg);
-}
-
-.sv_main .sv_container .sv_body {
-  background-color: darkred;
 }

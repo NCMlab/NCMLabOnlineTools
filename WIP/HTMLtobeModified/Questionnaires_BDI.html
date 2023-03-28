@@ -15,16 +15,21 @@
     <link href="../../CSS/LikertQuestionnaires.css" rel="stylesheet">
         <script src="../../config/Questionnaire_Setup.js"></script>    
     <script src="../../functions/GeneralPurposeFunctions/questionnaire_functions.js"></script>
-
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/likert.css'>
     <style>
     input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
+     .jspsych-content {max-width:90%}
   </style>
 
   </head>
-  <body></body>
+  <body>
+        <div id="jspsych-target"  style="overflow:hidden; height:100%; overflow:auto" class='center'></div>
+
+  </body>
   <script>
   // Split the list of questions based on a limited number per page
-  itemPages = MakePagesOfItemsMCSurvey(items, 21)
+  itemPages = MakePagesOfItemsMCSurvey(items, items.length)
   // define the running score
   var Sum = 0
   // keep track of which page of the questionnaire the code is on
@@ -67,9 +72,9 @@
 
   var timeline = []
   timeline.push(multi_choice_block)
-  var jsPsych = initJsPsych({
-    
-  });
+    var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+    });
 jsPsych.run(timeline)
 
   </script>

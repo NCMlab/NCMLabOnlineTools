@@ -7,36 +7,30 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire: CFI</title>
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jsPsych/dist/jspsych.js"></script>
+    <script src="../../jsPsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jsPsych/dist/plugin-instructions.js"></script>
     
-    <script src="../jspsych_addons/jspsych-survey-likert-rich.js"></script>
-    <script src="../jspsych_addons/plugin-survey-likert.js"></script>
+    <script src="../../jsPsych_addons/jspsych-survey-likert-rich.js"></script>
+    <script src="../../jsPsych_addons/plugin-survey-likert.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-    <script src='../config/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../config/"+Language+"/cfi_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-        var url = "../config/"+Language+"/Questionnaire_Setup.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-
-    <link rel="stylesheet" type='text/css' href='../css/LikertQuestionnaires.css'>
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-    <link rel="stylesheet" type='text/css' href='../css/likert.css'>
-    <script src="../functions/questionnaire_functions.js"></script>
+    <script src="../../Questionnaires/EN/cfi_setup_eng.js"></script>
+<script src="../../config/Questionnaire_Setup.js"></script>
+    <link rel="stylesheet" type='text/css' href='../../css/LikertQuestionnaires.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/likert.css'>
+    <script src="../../functions/GeneralPurposeFunctions/questionnaire_functions.js"></script>
   <style>
     input[type="radio"] {height: 35px; width: 35px; vertical-align: middle;}
+    .jspsych-content {max-width:90}
   </style>
   </head>
   <body>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%;overflow:auto"  class='center' ></div>
   </body>
 
   <script>
-
+        
     var jsPsych = initJsPsych({
 
         display_element: 'jspsych-target',
@@ -55,7 +49,7 @@
     var ScaleSize = scale01.length;
 
     // Break item list into pages
-    itemPages = MakePagesOfItems(items, QPerPage)
+    itemPages = MakePagesOfItems(items, items.length)
 
     // By defining the sum and missed questions counters here, outside of other variables they have a larger scope. 
     // That means that each page of the scale adds to these variables. Therefore, the results from the last page have 

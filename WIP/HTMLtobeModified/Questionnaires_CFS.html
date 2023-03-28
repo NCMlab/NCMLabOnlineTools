@@ -6,7 +6,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire: CFS</title>
+    <title>Likert Questionnaire</title>
     <script src="jspsych/jspsych.js"></script>
     <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
@@ -29,7 +29,7 @@
     var ScaleSize = scale01.length;
 
     // Break item list into pages
-    itemPages = MakePagesOfItems(items, QPerPage)
+    itemPages = MakePagesOfItems(items, items.length)
 
     // By defining the sum and missed questions counters here, outside of other variables they have a larger scope. 
     // That means that each page of the scale adds to these variables. Therefore, the results from the last page have 

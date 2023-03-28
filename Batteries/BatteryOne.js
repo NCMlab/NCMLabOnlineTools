@@ -82,7 +82,7 @@ var trial1 = {
     	 }
         else {
           stim += '<div class="container">'
-          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" /></div>'
+          stim += '<img src="assets/Icons/'+TaskIconList[i]+'" alt="'+TaskList[i]+'" />HELLO</div>'
         }
     	}
       stim += '</div>'
