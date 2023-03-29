@@ -29,7 +29,7 @@ var trial0 = {
     on_start: function() {
       console.log("HELLO WORLD")
       // Get this user's info
-    fetch(`http://ncmlab.ca/get_user/1 `)
+    fetch(`get_user/1 `)
     .then((response) => response.json())
    .then((data) => {
    // Do something with the data
