@@ -26,6 +26,15 @@ var trial0 = {
     // This is just a place holder to stop a jsPsych error
     choices: ['Next'],
     response_ends_trial: true,
+    on_start: function() {
+      console.log("HELLO WORLD")
+      // Get this user's info
+    fetch(`http://ncmlab.ca/get_user/1 `)
+    .then((response) => response.json())
+   .then((data) => {
+   // Do something with the data
+    });
+    },
     on_finish: function(){
       // There needs to be three lists to describe a battery:
       // A list of task names
