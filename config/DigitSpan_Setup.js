@@ -20,7 +20,8 @@ var TimeGapBetweenAudioLetters = 500 // milliseconds
 var BDSMaxTrials = 14
 var FDSMaxTrials = 14
 
-
+// There should also be the option of two incorrect in a row
+// Or just a single trial with a given length
 var DigitSpan_Forward_Adaptive_14 = {
 	instructionText: ForwardAudioInstructions,
 	Current: 3,
@@ -50,3 +51,6 @@ var DigitSpan_Backward_Adaptive_14 = {
 	MaxTrials: 14,
 	StimulusMode: 'Audio'
 }
+
+add('DigitSpan_Forward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Forward_Adaptive_14});
+add('DigitSpan_Backward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Backward_Adaptive_14});
