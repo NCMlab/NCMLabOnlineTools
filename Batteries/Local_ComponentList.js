@@ -8,6 +8,7 @@ ComponentList.push({name:'Trail Making B', iconFileName:'TrailMakingB.png'})
 ComponentList.push({name:'RAVLT', iconFileName:'RAVLT.png'})
 ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
 ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
+ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
 
@@ -22,6 +23,7 @@ add('Trail Making B', function(){jatos.startComponent(39)});
 add('RAVLT', function(){jatos.startComponent(52)});
 add('ICAR Matrix Reasoning', function(){jatos.startComponent(52)});
 add('Cube Copy', function(){jatos.startComponent(51)});
+add('Digit Span', function(){jatos.startComponent(36)});
 add('Likert',function(){jatos.startComponent(57)});
 add('MultipleChoice',function(){jatos.startComponent(56)});
 

@@ -6,18 +6,11 @@ var stimListOfFiles;
 var idx = 0; //for indexing the current letter to be presented
 var exitLetters; //for exiting the letter loop
 var TrialCount = 1;
-var MaxTrials = 14;
+
 //var Direction = 'Forward'
 var response = [];
 // =======================================================================
-if ( Direction == 'Forward' ) {
-  var staircase = new Stair(FDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
-  var instructionText = ForwardAudioInstructions
-}
-else { // Backward span
-  var staircase = new Stair(BDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
-  var instructionText =  BackwardAudioInstructions
-}
+var staircase = new Stair(DigitSpan_parameters.Current, DigitSpan_parameters.MinValue, DigitSpan_parameters.MaxValue, DigitSpan_parameters.MaxReversals, DigitSpan_parameters.MaxTrials, DigitSpan_parameters.StepSize, DigitSpan_parameters.NUp, DigitSpan_parameters.NDown, DigitSpan_parameters.FastStart, DigitSpan_parameters.MaxTime)
 
 // =======================================================================
 var enter_fullscreen = {
@@ -41,7 +34,7 @@ var setup_fds = {
   on_load: function() {
     TrialCount += 1
   },
-  stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ FDSMaxTrials +'</p>';},
+  stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ MaxTrials +'</p>';},
   choices: ['Next'],
   prompt: "Press next to Continue",
   post_trial_gap: TimeGapBetweenAudioLetters,

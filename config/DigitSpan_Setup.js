@@ -21,4 +21,32 @@ var BDSMaxTrials = 14
 var FDSMaxTrials = 14
 
 
+var DigitSpan_Forward_Adaptive_14 = {
+	instructionText: ForwardAudioInstructions,
+	Current: 3,
+	MinValue: 1,
+	MaxValue: 30,
+	StepSize: 1,
+	NUp: 2,
+	NDown: 1,
+	FastStart: true,
+	MaxReversals: 50,
+	MaxTime: 420,
+	MaxTrials: 14,
+	StimulusMode: 'Audio' // 'Visual'
+}
 
+var DigitSpan_Backward_Adaptive_14 = {
+	instructionText: BackwardAudioInstructions,
+	Current: 3,
+	MinValue: 1,
+	MaxValue: 30,
+	StepSize: 1,
+	NUp: 2,
+	NDown: 1,
+	FastStart: true,
+	MaxReversals: 50,
+	MaxTime: 420,
+	MaxTrials: 14,
+	StimulusMode: 'Audio'
+}
