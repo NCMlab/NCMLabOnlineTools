@@ -36,14 +36,21 @@
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
-      var BatteryHtmlID = -99
+      
       jatos.onLoad(() => {
+
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        console.log(BatteryHtmlID)
-        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        if (typeof BatteryHtmlID === 'undefined') 
+        {
+          parameters = 'Stroop_Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        }
         pseudoSwitch(parameters)
         console.log(parameters)
         console.log(Stroop_parameters)
+
       
         // display the timer or not based on the showTimer flag
         if ( Stroop_parameters.AllowedTime > 0 ) 
