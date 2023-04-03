@@ -42,11 +42,9 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
-        pseudoSwitch(parameters)
-        console.log(parameters)
-        console.log(Stroop_parameters)
-      
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Default'}
+        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        pseudoSwitch(parameters)      
         // display the timer or not based on the showTimer flag
         if ( Stroop_parameters.AllowedTime > 0 ) 
             { console.log("TURNING TIMER ON!")
@@ -85,7 +83,9 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management
-      jatos.startComponent(BatteryHtmlID);
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
+      }
     }
   });
   jatos.onLoad(() => {
@@ -102,7 +102,6 @@ var jsPsych = initJsPsych({
         msg: "This worker aborted the mission.",
         style: "top:8px; right:40px; color:green; bottom: unset"
       });
-      console.log(Stroop_parameters)
       jsPsych.run(timeline);
     });
   </script>

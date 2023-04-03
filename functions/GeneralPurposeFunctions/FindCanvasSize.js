@@ -29,8 +29,8 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
 
   // if there is not enough height use the max and adjust the width based on the ratio
   
-  CanvasWidth = SuggestedWidth
-  CanvasHeight = SuggestedHeight
+  var CanvasWidth = SuggestedWidth
+  var CanvasHeight = SuggestedHeight
   
   if ( ! EnoughWidth  &&  ! EnoughHeight ) {
     console.log('Not enought height OR width')

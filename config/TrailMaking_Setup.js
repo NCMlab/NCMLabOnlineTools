@@ -51,7 +51,7 @@ var ShowTimerSampleA = false;
 
 
 // SETUP FOR TRAILS A
-var CirclesA = [
+var CirclesA_001 = [
     {centerX:0.54, centerY:0.712727272727273, radius: radius, label: '1'},
     {centerX:0.408, centerY:0.825454545454545, radius: radius, label: '2'},
     {centerX:0.624, centerY:0.832727272727273, radius: radius, label: '3'},
@@ -79,7 +79,7 @@ var CirclesA = [
     {centerX:0.692, centerY:0.934545454545455, radius: radius, label: '25'},
 ]
 
-var CirclesA_001 = [
+var CirclesA_002 = [
     {centerX:0.54, centerY:0.712727272727273, radius: radius, label: '1'},
     {centerX:0.408, centerY:0.825454545454545, radius: radius, label: '2'},
     {centerX:0.624, centerY:0.832727272727273, radius: radius, label: '3'},
@@ -118,7 +118,7 @@ var ShowTimerSampleB = false;
 
 
 // SETUP FOR TRAILS B
-var CirclesB = [
+var CirclesB_001 = [
     {centerX:0.507326007326007, centerY:0.436555891238671, radius: radius, label: '1'},
     {centerX:0.703296703296703, centerY:0.743202416918429, radius: radius, label: 'A'},
     {centerX:0.362637362637363, centerY:0.712990936555891, radius: radius, label: '2'},
@@ -155,18 +155,47 @@ var DurationB = 1000*60*5
 
 
 var TrailMakingA_Default = {
-    Circles: CirclesA,
+    Circles: CirclesA_001,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
     ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    Instructions: InstructionsA,
+    SampleInstructions: InstructionsSampleAPractice,
+}
+
+var TrailMakingB_Default = {
+    Circles: CirclesB_001,
+    SuggestedWidth: SuggestedWidthB,
+    SuggestedHeight: SuggestedHeightB,
+    ShowTimer: true,
+    Duration: DurationB,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesB,
+    PracticeSuggestedWidth: SuggestedWidthSampleB,
+    PracticeSuggestedHeight: SuggestedHeightSampleB,
+    Instructions: InstructionsB,
+    SampleInstructions: InstructionsSampleB,
 }
 
 var TrailMakingA_001 = {
     Circles: CirclesA_001,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
     ShowPractice: false,
+    PracticeCircles: null,
+    PracticeSuggestedWidth: null,
+    PracticeSuggestedHeight: null,
+    Instructions: InstructionsA,
+    SampleInstructions: InstructionsSampleAPractice,
 }
-var TrailMakingB_Default = {
-    Circles: CirclesB,
-    ShowPractice: true,
-}
+
 
 add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
 add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
