@@ -40,7 +40,7 @@ var enter_fullscreen = {
 }
 // =======================================================================
 // Define all of the different the stimuli 
-  var trial_Sample = {
+  var trial_Practice = {
       type: jsPsychSketchpad,   
       Circles: TrailMaking_parameters.PracticeCircles, 
       canvas_width: PracticeCanvasWidth,
@@ -101,9 +101,9 @@ var enter_fullscreen = {
 // =======================================================================    
 // Define procedures using the stimuli
 
-  var instrSample_procedure = {
+  var instrPractice_procedure = {
       timeline: [Instructions],
-      timeline_variables: TrailMaking_parameters.SampleInstructions,
+      timeline_variables: TrailMaking_parameters.InstructionsPractice,
       randomize_order: false,
       repetitions: 1,
     }
@@ -111,12 +111,6 @@ var enter_fullscreen = {
   var instr_procedure = {
       timeline: [Instructions],
       timeline_variables: TrailMaking_parameters.Instructions,
-      randomize_order: false,
-      repetitions: 1,
-    }
-  var instrA_practice_rocedure = {
-      timeline: [Instructions],
-      timeline_variables: TrailMaking_parameters.SampleInstructions,
       randomize_order: false,
       repetitions: 1,
     }
@@ -130,7 +124,7 @@ var enter_fullscreen = {
 
 
   var if_node = {
-    timeline: [instrA_practice_rocedure, trial_Sample],
+    timeline: [instrPractice_procedure, trial_Practice],
     conditional_function: function(){
       if ( ShowPractice )
         {return true}
@@ -141,7 +135,7 @@ var enter_fullscreen = {
   //timeline.push(InstructionsSampleA)
   timeline.push(CheckPracticeFlag)
   timeline.push(enter_fullscreen)
-  timeline.push(instrSample_procedure)
+  timeline.push(instr_procedure)
   timeline.push(if_node)
   timeline.push(instr_procedure)
   timeline.push(trials)

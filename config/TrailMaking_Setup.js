@@ -165,7 +165,7 @@ var TrailMakingA_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     Instructions: InstructionsA,
-    SampleInstructions: InstructionsSampleAPractice,
+    InstructionsPractice: InstructionsPractice,
 }
 
 var TrailMakingB_Default = {
@@ -179,7 +179,7 @@ var TrailMakingB_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     Instructions: InstructionsB,
-    SampleInstructions: InstructionsSampleB,
+    InstructionsPractice: InstructionsPractice,
 }
 
 var TrailMakingA_001 = {
