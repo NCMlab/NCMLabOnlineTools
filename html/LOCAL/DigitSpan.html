@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Digit Span Forward</title>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>    
+  <body>
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-preload.js"></script>
+    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
+
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../config/General_Setup.js"></script>
+    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DigitSpan_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+    <script> 
+      var Direction = "Forward"
+      var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set001/'
+      var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
+    </script>
+    <script src="../../functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
+    <script src="../../config/DigitSpan_Setup.js"></script>
+    <script>var DigitSpan_parameters = DigitSpan_Forward_Adaptive_14</script>
+    <script src="../../functions/Experiments/DigitSpan_experiment_v02.js"></script>
+    <script src="../../functions/Scoring/DigitSpan_Scoring.js"></script>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  </body>
+  <script>
+
+    jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','DigitSpanForwardMydata.csv');
+    }
+  });
+  jsPsych.run(timeline);
+  </script>
+</html>

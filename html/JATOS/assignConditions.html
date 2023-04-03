@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Brain Training Study</title>
+
+    <script src="jatos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Import Font Detector-->
+    <script src="fontdetect.3.0.1/lib/fontdetect.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="jspsych-4.3/css/jspsych.css" rel="stylesheet" type="text/css">
+    </link>
+
+    <!-- Import css file -->
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
+</head>
+
+<body>
+    <div class=experiment-body>
+        <div class="loader" style='margin-top: 20%;'><br />
+            <p>Loading...</p>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // not in use for now, remember to integrate into instructions etc later - need to  think how is best
+    var expParams;
+    var ID;
+
+    jatos.onLoad(function () {
+        //expParams = jatos.studyJsonInput.expParams;
+        expParams = jatos.batchJsonInput.expParams;
+        $(".loader").fadeOut("slow");
+        checkScreenSize();
+    });
+
+    function checkScreenSize(){
+        var screenHeight = window.screen.height;
+        if (screenHeight > 1000){
+            checkBrowser();
+        } else {
+            document.write('<center><br/><p class="instructions">This experiment requires a screen least 1000 pixels high. Please try to run it from a different computer.</p>');
+        }
+    };
+
+    function checkBrowser() {
+        var browserInfo = getBrowserInfo();
+        switch (browserInfo.browser) {
+            case "Chrome":
+            //case "Firefox":
+                FontDetect.onFontLoaded('ds-digitalnormal', setBatchData, onItDidntLoad, { msTimeout: 5000 });
+                break;
+            default:
+                document.write('<center><br/><p class="instructions">This experiment only supports Google Chrome</p>' // or Mozilla Firefox.
+                    + '<p class="instructions">Please reopen the experiment in Chrome.</p>');
+                break;
+        };
+    };
+
+    // If font doesn't load in 5 seconds, end experiment
+    function onItDidntLoad(fontname) {
+        alert(fontname + ' didn\'t load within 5 seconds. Ending experiment');
+    };
+
+    function setBatchData() {
+        var existingData = jatos.batchSession.getAll();
+        // run only once at the very beginning of data collection
+        if (jQuery.isEmptyObject(existingData)) {
+            resetBatchData();
+        } else {
+            whatToRun();
+        };
+    };
+
+    function resetBatchData() {
+        var cleanBatch = {
+            "counterbalance": {
+                "prepost": [
+                    { "condName": "ps_pw_ms_mw", "numSubjsAssigned": 0 },
+                    { "condName": "ps_pw_mw_ms", "numSubjsAssigned": 0 },
+                    { "condName": "pw_ps_ms_mw", "numSubjsAssigned": 0 },
+                    { "condName": "pw_ps_mw_ms", "numSubjsAssigned": 0 } //,
+                    // { "condName": "ms_mw_ps_pw", "numSubjsAssigned": 0 }, //allow only conditions starting with perception, 
+                    // { "condName": "mw_ms_ps_pw", "numSubjsAssigned": 0 }, //so that perception-task-based detailed confidence 
+                    // { "condName": "ms_mw_pw_ps", "numSubjsAssigned": 0 }, //instructions are always followed by perception
+                    // { "condName": "mw_ms_pw_ps", "numSubjsAssigned": 0 }
+                ],
+                "training": [
+                    //{ "condName": "shapes_feedback1", "numSubjsAssigned": 0 }, // no type 1 training, ok?
+                    { "condName": "shapes_feedback2", "numSubjsAssigned": 0 },
+                    //{ "condName": "words_feedback1", "numSubjsAssigned": 0 },
+                    { "condName": "words_feedback2", "numSubjsAssigned": 0 }
+                ]
+            },
+            "subjects": {}
+        }
+        var deferred = jatos.batchSession.setAll(cleanBatch);
+        deferred.done(() => { whatToRun() });
+    };
+
+    function whatToRun() {
+        var subjParams = {};
+        if (jatos.componentJsonInput.whichID == "auto") {
+            if (jatos.workerType == "Jatos") {
+                ID = makeid(6); //dummy ID 
+            } else if (jatos.workerType == "PersonalMultiple") {
+                ID = "personalMultiple_" + jatos.workerId;
+            } 
+            else {
+                ID = jatos.urlQueryParameters.workerId; // for MTurk
+                
+                //ID = jatos.urlQueryParameters.PROLIFIC_PID; // for prolific 
+            };
+        } else {
+            ID = jatos.componentJsonInput.whichID; //this allows us to test multiple sessions with the same longitudinal ID (set by hand)
+        }
+        //get anything already stored in Batch session data 
+        var IDexists = jatos.batchSession.defined("/subjects/" + ID);
+        if (IDexists) {
+            subjParams[ID] = jatos.batchSession.getAll().subjects[ID];
+            subjParams[ID].newSubj = false;
+            subjParams.ID = ID;
+            jatos.studySessionData = subjParams;
+            checkTimeBetweenSessions(subjParams); //study session has been set  in whatToRun
+        } else {
+            // if ID not yet in database
+            // define their counterbalanced experimental conditions
+            subjParams = {
+                [ID]: {
+                    lastSession: 0,
+                    lastTimestamp: NaN,                  // will be filled in later once the session data are stored. 
+                    lastBrightness_words: 136,            // default values (AFAIK) from Carpenter
+                    lastBrightness_shapes: 136,
+                    status: "started pretraining",
+                    newSubj: true,
+                    pointsPerSession : [],
+                    bonusPerSession : []
+                },
+                ID: ID
+            };
+
+            var basePaymentRates = [4, 2, 2, 2, 2, 2, 2, 2, 2, 3];
+            subjParams[ID].giveOutBonus = shuffle([ 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0, 0, 0, 0]); //we set this for each subject here
+            subjParams[ID].bonusPerSession = multiplyvector(subjParams[ID].giveOutBonus, basePaymentRates); //we set this for each subject here            
+            subjParams[ID].bonusPerSession[5-1] = 0; //subjects get anyway bonus for completing 5 and 10 sessions.
+            subjParams[ID].bonusPerSession[10-1] = 0; //together this will give min: 4, max:6 extra bonuses (4-7 in carpenter)
+
+
+            //get the condition with the lowest number to keep counterbalancing correct
+            updateCounterbalanceCount(subjParams).then((currentCondition) => {
+
+                subjParams[ID].prepost = {};
+                subjParams[ID].training = {};
+                var componentOrder; //note that this will break if you change the names of the components in jatos
+                subjParams[ID].prepost.condName = currentCondition.prepost.condName;
+                subjParams[ID].training.condName = currentCondition.training.condName;
+                switch (currentCondition.training.condName) {
+                    case "shapes_feedback1":
+                        subjParams[ID].training.stimulus = "abstract";
+                        subjParams[ID].training.feedback = 1;
+                        break;
+                    case "shapes_feedback2":
+                        subjParams[ID].training.stimulus = "abstract";
+                        subjParams[ID].training.feedback = 2;
+                        break;
+                    case "words_feedback1":
+                        subjParams[ID].training.stimulus = "words";
+                        subjParams[ID].training.feedback = 1;
+                        break;
+                    case "words_feedback2":
+                        subjParams[ID].training.stimulus = "words";
+                        subjParams[ID].training.feedback = 2;
+                        break;
+                };
+                // add this to the batch session
+                var deferred = jatos.batchSession.add("/subjects/" + ID, subjParams[ID]);
+                deferred.done(() => {
+                    jatos.studySessionData = subjParams;
+                    checkTimeBetweenSessions(subjParams); //study session has been set  in whatToRun
+                });
+            });
+        };
+    };
+
+    function getPrePosttrainingComponentOrder(orderedComponentNames) {
+        var name;
+        var componentOrder = [];
+        var order;
+        var comp;
+        for (order = 0; order < orderedComponentNames.length; order++) {
+            for (comp = 0; comp < jatos.componentList.length; comp++) {
+                name = (jatos.componentList[comp].title);
+                if (name == orderedComponentNames[order] && jatos.componentList[comp].active) {
+                    componentOrder.push(comp + 1);          // position is 1-based
+                    break;
+                };
+            };
+        };
+        return componentOrder;
+    };
+
+    function updateCounterbalanceCount(subjParams) {
+        var currentConditionCount = jatos.batchSession.getAll().counterbalance;
+        //if (subjParams[ID].newSubj) {
+        var currentCondition = { training: {}, prepost: {} };
+
+        //getindexofmin always finds the last item with the lowest number. Because all conditions
+        //start with 0 subjs assigned, if nobody drops off then the training and pre-post conditions will
+        //always be yoked
+        //shuffle these two independently to avoid this 
+        shuffle(currentConditionCount.prepost);
+        shuffle(currentConditionCount.training);
+
+        minCount = getIndexOfMin(currentConditionCount.prepost);
+        currentCount = currentConditionCount.prepost[minCount.index].numSubjsAssigned;
+        currentConditionCount.prepost[minCount.index].numSubjsAssigned = currentCount + 1;
+        currentCondition.prepost = currentConditionCount.prepost[minCount.index];
+
+        minCount = getIndexOfMin(currentConditionCount.training);
+        currentCount = currentConditionCount.training[minCount.index].numSubjsAssigned;
+        currentConditionCount.training[minCount.index].numSubjsAssigned = currentCount + 1;
+        currentCondition.training = currentConditionCount.training[minCount.index];
+
+        var deferred = jatos.batchSession.replace("/counterbalance", currentConditionCount);
+        return deferred.then(() => { return currentCondition });
+        //}
+    };
+
+    function checkTimeBetweenSessions(subjParams) {
+        var hoursDifference = (Date.now() - subjParams[ID].lastTimestamp) / 36e5;
+        subjParams.hoursDifference = hoursDifference;
+        if (hoursDifference < expParams.minHoursWaitBetweenSessions) {
+            var minWaitMillisec = expParams.minHoursWaitBetweenSessions * 60 * 60 * 1000;
+            var earliestTimeAllowed = subjParams[ID].lastTimestamp + minWaitMillisec; //it was before: subjParams[ID].lastSession
+            var remainingMilisec = earliestTimeAllowed - Date.now(); // / 36e5;
+            var remainingSec = remainingMilisec / 1000;
+            var hours = Math.floor(remainingSec / 3600);
+            var minutes = Math.floor((remainingSec - (hours * 3600)) / 60);
+            var seconds = Math.floor(remainingSec - (hours * 3600) - (minutes * 60));
+            //submit to result data to keep track of people attempting to log on
+            jatos.submitResultData(subjParams);
+            // Output remaining time to wait
+            //setInterval(displayRemainingTime(subjParams), 1000); 
+
+            setInterval(function () { //time remaining will be recalculated and updated every second
+                // this bit of code repeated from above. Ugly but works. 
+                var minWaitMillisec = expParams.minHoursWaitBetweenSessions * 60 * 60 * 1000;
+                var earliestTimeAllowed = subjParams[ID].lastTimestamp + minWaitMillisec; //it was before: subjParams[ID].lastSession
+                var remainingMilisec = earliestTimeAllowed - Date.now(); // / 36e5;
+                var remainingSec = remainingMilisec / 1000;
+                var hours = Math.floor(remainingSec / 3600);
+                var minutes = Math.floor((remainingSec - (hours * 3600)) / 60);
+                var seconds = Math.floor(remainingSec - (hours * 3600) - (minutes * 60));
+
+                document.open() //clear previous message
+                document.write('<center><br/><p class="instructions">You have not waited the minimum 24 hour period between sessions.</p><p class="instructions">You must wait another '
+                    + hours + ' hours, ' + minutes + ' minutes, and ' + seconds +
+                    ' seconds before you can participate in this session.</p>' +
+                    '<p class="instructions">Please DO NOT close or reload this browser tab or return the HIT on MTurk. Doing either will block the session and you will not be able to continue with the study.</p>' +
+                    '<p class="instructions">Once the remaining time elapsed, a Start button will automatically appear and you will be able to begin.</p>' +
+                    '<p class="instructions">Please contact the experimenters at ​the.online.brain.experiment@gmail.com​ if you encounter any problems.</p>' +
+                    '<p class="instructions">Thank you for participating!</p></center>');
+            }, 1000)
+
+            timeout(remainingMilisec).then(function () {  //timeout will be set once
+                runCorrespondingSession(subjParams);
+            });
+        } else {
+            runCorrespondingSession(subjParams);
+        };
+    };
+
+    function runCorrespondingSession(subjParams) {
+        // assumes order of components: demo/practice -> pretraining (baseline) -> training -> posttraining
+        //Added these two lines here to better document time difference
+        var hoursDifference = (Date.now() - subjParams[ID].lastTimestamp) / 36e5;
+        subjParams.hoursDifference = hoursDifference;
+
+        if (subjParams[ID].lastSession === 0 || subjParams[ID].lastSession === 9) {
+            var name;
+            for (comp = 0; comp < jatos.componentList.length; comp++) {
+                name = (jatos.componentList[comp].title);
+                if (name == "PrePost_allTasks") {
+                    break;
+                };
+            };
+            var positionOfPrepostComp = comp + 1;
+            jatos.startComponentByPos(positionOfPrepostComp, subjParams);
+        } else if (subjParams[ID].lastSession === expParams.numberTrainingSessions){
+            jatos.submitResultData(subjParams);
+            document.write('<center><br/><p class="instructions">You have already completed all sessions of this experiment.</p>' +
+                ' <p class="instructions">Thank you for participating! Please contact the experimenters at ​the.online.brain.experiment@gmail.com​ if you did not receive your payment through MTurk</p></center>')
+        } else {
+            var name;
+            for (comp = 0; comp < jatos.componentList.length; comp++) {
+                name = (jatos.componentList[comp].title);
+                if (name == "Training") {
+                    break;
+                };
+            };
+            var positionOfTrainingComp = comp + 1;
+            jatos.startComponentByPos(positionOfTrainingComp, subjParams);
+        }
+    };
+
+    function getBrowserInfo() {
+        var ua = navigator.userAgent, tem,
+            M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if (/trident/i.test(M[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return 'IE ' + (tem[1] || '');
+        }
+        if (M[1] === 'Chrome') {
+            tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+        }
+        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        if ((tem = ua.match(/version\/(\d+)/i)) != null)
+            M.splice(1, 1, tem[1]);
+        return { 'browser': M[0], 'version': M[1] };
+    };
+
+    function makeid(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    };
+
+    function getIndexOfMin(myArray) {
+        var lowestValue = Number.POSITIVE_INFINITY;
+        var lowestIndex;
+        var tmp;
+        for (var i = myArray.length - 1; i >= 0; i--) {
+            tmp = myArray[i].numSubjsAssigned;
+            if (tmp < lowestValue) {
+                lowestValue = tmp;
+                lowestIndex = i;
+            };
+        }
+        var lowest = { index: lowestIndex, condName: myArray[lowestIndex].condName }
+        return lowest;
+    };
+
+    /**
+     * Shuffles array in place.
+     * @param {Array} a items An array containing the items.
+     */
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        };
+        return a;
+    };
+
+    function timeout(milliseconds) {
+        // Create a new Deferred object
+        var deferred = $.Deferred();
+
+        // Resolve the Deferred after the amount of time specified by milliseconds
+        setTimeout(deferred.resolve, milliseconds);
+
+        // Return the Deferred's Promise object
+        return deferred.promise();
+    };
+
+    function multiplyvector(a,b){
+        return a.map((e,i) => Math.round(e * b[i]*100)/100); // and round to two decimals
+    }
+
+</script>
+
+</html>

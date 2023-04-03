@@ -29,11 +29,11 @@ var trial0 = {
     on_start: function() {
       console.log("HELLO WORLD")
       // Get this user's info
-    fetch(`http://ncmlab.ca/get_test_results`)
+    /*fetch(`http://ncmlab.ca/get_test_results`)
     .then((response) => response.json())
    .then((data) => {
    // Do something with the data
-    });
+    });*/
     },
     on_finish: function(){
       // There needs to be three lists to describe a battery:
@@ -67,7 +67,20 @@ var trial0 = {
         JATOSSessionData.BatteryHtmlID = BatteryHtmlID
       }
       jatos.studySessionData = JATOSSessionData
+
+
       console.log(TaskIconList)
+      // Get worker ID 
+      /* console.log(jatos.workerId)
+      console.log(jatos.batchId)
+      var CurrentBatchData = {}
+      CurrentBatchData.workerId = jatos.workerId
+      CurrentBatchData.currentIndex = JATOSSessionData.CurrentIndex 
+      jatos.batchSession.set("WorkerId_"+jatos.workerId, CurrentBatchData)
+      */
+      // get BATCH ID
+      console.log(jatos.batchSession.getAll())
+      console.log(jatos)
 
     }
   };

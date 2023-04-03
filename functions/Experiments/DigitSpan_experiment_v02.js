@@ -1,16 +1,24 @@
 // =======================================================================
 // Define internal variables
+console.log(DigitSpan_parameters)
 var timeline = [];
 var stimList; //this is going to house the ordering of the stimuli for each trial
 var stimListOfFiles;
 var idx = 0; //for indexing the current letter to be presented
 var exitLetters; //for exiting the letter loop
 var TrialCount = 1;
-
+var MaxTrials = 14;
 //var Direction = 'Forward'
 var response = [];
 // =======================================================================
-var staircase = new Stair(DigitSpan_parameters.Current, DigitSpan_parameters.MinValue, DigitSpan_parameters.MaxValue, DigitSpan_parameters.MaxReversals, DigitSpan_parameters.MaxTrials, DigitSpan_parameters.StepSize, DigitSpan_parameters.NUp, DigitSpan_parameters.NDown, DigitSpan_parameters.FastStart, DigitSpan_parameters.MaxTime)
+if ( Direction == 'Forward' ) {
+  var staircase = new Stair(FDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
+  var instructionText = ForwardAudioInstructions
+}
+else { // Backward span
+  var staircase = new Stair(BDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
+  var instructionText =  BackwardAudioInstructions
+}
 
 // =======================================================================
 var enter_fullscreen = {
@@ -25,51 +33,98 @@ var preload_digits = {
   audio: function() {
     var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     var List = MakeListOfStimuli(FolderOfAudioFiles, initList)
-    console.log(List)
     return List
   },
 };
-var setup_fds = {
+// get current list length
+// this will differ based on the DS trial type being used
+// stair/fixed/2-errors/etc
+var GetCurrentListLength = {
+    type: jsPsychCallFunction,
+    func: function(){
+        if (DigitSpan_parameters.DeliveryMethod == 'staircase') {
+            CurrentListLength = staircase.Current
+        }
+    }
+}
+var UpdateListLength = {
+    type: jsPsychCallFunction,
+    func: function(){
+        pass
+    }
+}
+
+var stim
+var SetupTrial = {
+    type: jsPsychCallFunction,
+    func: function(){
+        stimList = CreateDigitList(CurrentListLength)
+        if ( StimulusMode == 'audio' ) {
+            stim = MakeListOfStimuli(FolderOfAudioFiles, stimList)
+        }
+        else { // visual
+            stim = stimList
+        }
+        idx = 0; //reset the index prior to the letter presentation
+        data.TrialNumber = TrialCount - 1
+        data.task = 'test trial'
+        data.NumberList = stimList
+    }
+}
+
+// =======================================================================
+// Define all of the different the stimuli 
+var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  on_load: function() {
+  stimulus: '<p class="Fixation">+</p>',
+  choices: [],
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  trial_duration: 500
+}
+
+
+
+
+// Define instructions
+
+// set-up screen
+// This screen is required so that the audio can be loaded and played
+var TrialNumber = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    on_load: function() {
     TrialCount += 1
-  },
-  stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ MaxTrials +'</p>';},
-  choices: ['Next'],
-  prompt: "Press next to Continue",
-  post_trial_gap: TimeGapBetweenAudioLetters,
-  on_finish: function(data){
-    stimList = CreateDigitList(staircase.Current)
-    stimListOfFiles = MakeListOfStimuli(FolderOfAudioFiles, stimList)
-    idx = 0; //reset the index prior to the letter presentation
-    data.TrialNumber = TrialCount - 1
-    data.task = 'test trial'
-    data.NumberList = stimList
-  },
+    },
+    stimulus: function() {return '<p>Trial '+ TrialCount +' of '+ MaxTrials +'</p>';},
+    choices: ['Continue'],
+    prompt: "",
+    post_trial_gap: TimeGapBetweenAudioLetters,
 };
 
-// Define the stimuli
-var AudioStimulus = {
- type: jsPsychAudioKeyboardResponse,
-  stimulus: function(){
-    console.log(stimListOfFiles[idx])
-    return stimListOfFiles[idx]},
-  choices: [],
-  post_trial_gap: TimeGapBetweenAudioLetters,
-  trial_ends_after_audio: true,
-  prompt: '<p class="Fixation">+</p>',
-  on_finish: function(data){
+// letter audio presentation
+var AudioStim = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: function(){
+    console.log(stim[idx])
+    return stim[idx]},
+    choices: [],
+    post_trial_gap: TimeGapBetweenAudioLetters,
+    trial_ends_after_audio: true,
+    prompt: '<p class="Fixation">+</p>',
+    on_finish: function(data){
     data.TrialNumber = TrialCount - 1
     data.task = 'audio'
     idx += 1; //update the index
     //check to see if we are at the end of the letter array
     if (idx == stimList.length) {
-      exitLetters = 1;
+        exitLetters = 1;
     } else  {
-      exitLetters = 0;
+        exitLetters = 0;
     }
-  }
+    }
 };
+
 //From the Experiment Factory Repository
 var clearResponse = function() {
     response = [];
@@ -95,8 +150,21 @@ var response_grid =
     '<button class = clear_button id = "ClearButton" onclick = "clearResponse()">Clear</button>'+
     '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
 
+ // Define instructions
+var Instructions = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function()
+      {
+        var stim = jsPsych.timelineVariable('page') // Variable in the config file
+        return stim
+      },
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: ['Next'], 
+}
 
-var get_response = {
+ var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: response_grid,
   //function() {
@@ -121,13 +189,32 @@ var get_response = {
       staircase.Decide(accuracy)
       //clear the response for the next trial
       response = []; 
-
   }
 };
+
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+    {
+    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    return stim
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: '',
+    choices: ['Next'], 
+    on_finish: function(data){
+    data = DigitSpan_Scoring(data,staircase) 
+    data.task = 'Sending Data'
+
+    }
+}  
 // =======================================================================
 // Define any logic used in the experiment
 var letter_proc = {
-    timeline: [AudioStimulus],
+    timeline: [AudioStim],
     loop_function: function(){
       if ( exitLetters == 0 ){
         return true;
@@ -135,10 +222,10 @@ var letter_proc = {
         return false;
       }
     }
-  };
+}
 
 var procedure = {
-  timeline: [setup_fds, letter_proc, get_response],//, NumberPadResponse],
+  timeline: [GetCurrentListLength, SetupTrial, TrialNumber, letter_proc, get_response],//, NumberPadResponse],
   loop_function: function(){
     // The criteria for stopping are: 
     //    reached the max number of trials.
@@ -151,8 +238,28 @@ var procedure = {
   }
 };
 
-// =======================================================================
+// =======================================================================    
+// Define procedures using the stimuli
 
+ var instr_procedure = {
+      timeline: [Instructions],
+      timeline_variables: instructionText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+  var thank_you = {
+      timeline: [SendData],
+      timeline_variables: ThankYouText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+// ======================================================================= 
+// Add all procedures to the timeline
 timeline.push(preload_digits)
+//timeline.push(instr_procedure)
 timeline.push(procedure)
+//timeline.push(thank_you)
+  
+
+
 
