@@ -36,9 +36,10 @@
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
-      var BatteryHtmlID
+      var BatteryHtmlID = -99
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        console.log(BatteryHtmlID)
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
         pseudoSwitch(parameters)
         console.log(parameters)
