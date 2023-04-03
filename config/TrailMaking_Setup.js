@@ -165,7 +165,7 @@ var TrailMakingA_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     Instructions: InstructionsA,
-    InstructionsPractice: InstructionsPractice,
+    InstructionsShownWithPractice: InstructionsShownWithPracticeA
 }
 
 var TrailMakingB_Default = {
@@ -179,7 +179,7 @@ var TrailMakingB_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     Instructions: InstructionsB,
-    InstructionsPractice: InstructionsPractice,
+    InstructionsShownWithPractice: InstructionsShownWithPracticeB
 }
 
 var TrailMakingA_001 = {
@@ -193,10 +193,24 @@ var TrailMakingA_001 = {
     PracticeSuggestedWidth: null,
     PracticeSuggestedHeight: null,
     Instructions: InstructionsA,
-    SampleInstructions: InstructionsSampleAPractice,
+    InstructionsShownWithPractice: InstructionsShownWithPracticeA
+}
+var TrailMakingB_001 = {
+    Circles: CirclesB_001,
+    SuggestedWidth: SuggestedWidthB,
+    SuggestedHeight: SuggestedHeightB,
+    ShowTimer: true,
+    Duration: DurationB,
+    ShowPractice: false,
+    PracticeCircles: null,
+    PracticeSuggestedWidth: null,
+    PracticeSuggestedHeight: null,
+    Instructions: InstructionsB,
+    InstructionsShownWithPractice: InstructionsShownWithPracticeB
 }
 
 
 add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
 add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
 add('TrailMakingA_001', function(){ TrailMaking_parameters = TrailMakingA_001});
+add('TrailMakingB_001', function(){ TrailMaking_parameters = TrailMakingB_001});
