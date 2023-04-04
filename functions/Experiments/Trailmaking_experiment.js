@@ -22,16 +22,25 @@ var CheckPracticeFlag = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function(){
-    console.log(TrailMaking_parameters)
     Circles = TrailMaking_parameters.Circles
-    console.log(Circles)
     if ( TrailMaking_parameters.ShowPractice ) {
       ShowPractice = true
       console.log("Practice is turned on")
     }
   }
 }
-
+var InstructionText = [{'page':'empty!'}]
+var GetInstructionValuesFromInputParameters = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    console.log(InstructionText)
+    InstructionText = TrailMaking_parameters.Instructions
+    console.log(InstructionText)
+    console.log(InstructionsA)
+    console.log(Welcome)
+  }
+}
 
 // =======================================================================
 var enter_fullscreen = {
@@ -111,7 +120,7 @@ var Welcome_procedure = {
 
 var instr_procedure = {
     timeline: [Instructions],
-    timeline_variables: TrailMaking_parameters.Instructions,
+    timeline_variables: InstructionsA,
     randomize_order: false,
     repetitions: 1,
   }
@@ -149,6 +158,7 @@ var thank_you = {
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
   timeline.push(CheckPracticeFlag)
+  timeline.push(GetInstructionValuesFromInputParameters)
   timeline.push(enter_fullscreen)
   timeline.push(Welcome_procedure)
   timeline.push(instr_procedure)

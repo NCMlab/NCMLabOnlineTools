@@ -36,7 +36,7 @@
         var parameters = 'empty'
         jatos.onLoad(() => {
             BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-            if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingA_001'}
+            if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingA_Default'}
             else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
             pseudoSwitch(parameters)
             console.log(TrailMaking_parameters)
@@ -54,8 +54,8 @@ var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-//      console.log(jatos.urlQueryParameters);
+      // http://127.0.0.1:9000/publix/fNTRhuguK1x
+      // console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
       console.log(TrialCount)
       TrialCount += 1
