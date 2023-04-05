@@ -35,15 +35,14 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../../config/DigitSpan_Setup.js"></script>
-    <script>var DigitSpan_parameters = DigitSpan_Forward_TwoErrors</script>
+    <script>var DigitSpan_parameters = DigitSpan_Visual_Forward_Fixed01_Load05</script>
     <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script> 
-      var Direction = "Forward"
       var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set001/'
       var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
     </script>
     <script src="../../functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
-    <script src="../../functions/Experiments/DigitSpan_experiment_v02.js"></script>
+    <script src="../../functions/Experiments/DigitSpan_experiment.js"></script>
     <script src="../../functions/Scoring/DigitSpan_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -55,7 +54,7 @@
           console.log(JSON.stringify(data))
       },
       on_finish: function() {
-        //jsPsych.data.get().localSave('csv','DigitSpanForwardMydata.csv');
+        jsPsych.data.get().localSave('csv','DigitSpanMydata.csv');
     }
   });
   jsPsych.run(timeline);

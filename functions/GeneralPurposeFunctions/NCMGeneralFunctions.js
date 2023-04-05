@@ -67,3 +67,28 @@ function pseudoSwitch(value) {
       });
    }
 }
+
+//From the Experiment Factory Repository
+var clearResponse = function() {
+  response = [];
+  document.getElementById("echoed_txt").innerHTML = response;
+}
+//function to push button responses to array
+var recordClick = function(elm) {
+  response.push(Number($(elm).text()))
+  document.getElementById("echoed_txt").innerHTML = response;
+}
+// This is a numeric response pad
+var response_grid =
+  '<div class = numbox>' +
+  '<button id = button_1 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>1</div></div></button>' +
+  '<button id = button_2 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>2</div></div></button>' +
+  '<button id = button_3 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>3</div></div></button>' +
+  '<button id = button_4 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>4</div></div></button>' +
+  '<button id = button_5 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>5</div></div></button>' +
+  '<button id = button_6 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>6</div></div></button>' +
+  '<button id = button_7 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>7</div></div></button>' +
+  '<button id = button_8 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>8</div></div></button>' +
+  '<button id = button_9 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>9</div></div></button>' +
+  '<button class = clear_button id = "ClearButton" onclick = "clearResponse()">Clear</button>'+
+  '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'

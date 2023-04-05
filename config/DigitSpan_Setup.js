@@ -1,37 +1,45 @@
 // ===================================================
-// ADAPTIVE VERSION PARAMETERS
-var FDSCurrent = 3 // value to start at
-var BDSCurrent = 2 // value to start at
-var MinValue = 1 // minimum value possible
-var MaxValue = 30 // maximum value possible
-var StepSize = 1 // step size
-var NUp = 2 // number of required correct answers in a row before increasing load
-var NDown = 1 // number of required incorrect answers in a row before decreasing load
-var FastStart = true // At the bginning increase load after each correct response until the 
-				   	// first incorrect response is made
-var MaxReversals = 5 // Max number of reversals can be used as a stopping criteria
-var MaxTime = 420 //the amount of time for the experiment can also be used as a stopping criteria
- 
-
-
-
-// ===================================================
 var TimeGapBetweenAudioLetters = 500 // milliseconds
-
+var NumberDurationVisual = 1000 // milliseconds
+var DurationToWaitBetweenTrials = 1000 // milliseconds
 // ===================================================
+// == DigitSpan_Audio_Forward_Adaptive_14 ==
 Parameters = {
-	Current: 3,
-	MinValue: 1,
-	MaxValue: 30,
-	StepSize: 1,
-	NUp: 2,
-	NDown: 1,
-	FastStart: true,
-	MaxReversals: 50,
-	MaxTime: 420,
+	Current: 3, // value to start at
+	MinValue: 1, // minimum value possible
+	MaxValue: 30, // maximum value possible
+	StepSize: 1, // step size
+	NUp: 2, // number of required correct answers in a row before increasing load
+	NDown: 1, // number of required incorrect answers in a row before decreasing load
+	FastStart: true, // At the bginning increase load after each correct response until the 
+	// first incorrect response is made
+	MaxReversals: 50, // Not implemented
+	MaxTime: 420, // Not implemented
 	MaxTrials: 14
 }
-var DigitSpan_Forward_Adaptive_14 = {
+var DigitSpan_Audio_Forward_Adaptive_14 = {
+	instructionText: ForwardAudioInstructions,
+	direction: 'forward',
+	StimulusMode: 'audio', // 'visual',
+	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Visual_Forward_Adaptive_14 ==
+Parameters = {
+	Current: 3, // value to start at
+	MinValue: 1, // minimum value possible
+	MaxValue: 30, // maximum value possible
+	StepSize: 1, // step size
+	NUp: 2, // number of required correct answers in a row before increasing load
+	NDown: 1, // number of required incorrect answers in a row before decreasing load
+	FastStart: true, // At the bginning increase load after each correct response until the 
+	// first incorrect response is made
+	MaxReversals: 50, // Not implemented
+	MaxTime: 420, // Not implemented
+	MaxTrials: 14
+}
+var DigitSpan_Visual_Forward_Adaptive_14 = {
 	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'visual', // 'visual',
@@ -39,14 +47,59 @@ var DigitSpan_Forward_Adaptive_14 = {
 	Parameters: Parameters,
 }
 // ===================================================
+// == DigitSpan_Audio_Backward_Adaptive_14 ==
+Parameters = {
+	Current: 2, // value to start at
+	MinValue: 1, // minimum value possible
+	MaxValue: 30, // maximum value possible
+	StepSize: 1, // step size
+	NUp: 2, // number of required correct answers in a row before increasing load
+	NDown: 1, // number of required incorrect answers in a row before decreasing load
+	FastStart: true, // At the bginning increase load after each correct response until the 
+	// first incorrect response is made
+	MaxReversals: 50, // Not implemented
+	MaxTime: 420, // Not implemented
+	MaxTrials: 14
+}
+var DigitSpan_Audio_Backward_Adaptive_14 = {
+	instructionText: BackwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'audio', // 'visual',
+	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Visual_Backward_Adaptive_14 ==
+Parameters = {
+	Current: 2, // value to start at
+	MinValue: 1, // minimum value possible
+	MaxValue: 30, // maximum value possible
+	StepSize: 1, // step size
+	NUp: 2, // number of required correct answers in a row before increasing load
+	NDown: 1, // number of required incorrect answers in a row before decreasing load
+	FastStart: true, // At the bginning increase load after each correct response until the 
+	// first incorrect response is made
+	MaxReversals: 50, // Not implemented
+	MaxTime: 420, // Not implemented
+	MaxTrials: 14
+}
+var DigitSpan_Visual_Backward_Adaptive_14 = {
+	instructionText: BackwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'visual', // 'visual',
+	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Visual_Forward_TwoErrors ==
 Parameters = {
 	Current: 3,
 	MaxValue: 30,
 	StepSize: 1,
 	Nerrors: 2,
-	MaxTrials: 14
+	MaxTrials: 20 // ignored
 }
-var DigitSpan_Forward_TwoErrors = {
+var DigitSpan_Visual_Forward_TwoErrors = {
 	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'visual', // 'visual',
@@ -54,10 +107,86 @@ var DigitSpan_Forward_TwoErrors = {
 	Parameters: Parameters,
 }
 // ===================================================
+// == DigitSpan_Visual_Backward_TwoErrors ==
 Parameters = {
-	Current: 5
+	Current: 2,
+	MaxValue: 30,
+	StepSize: 1,
+	Nerrors: 2,
+	MaxTrials: 20 // ignored
 }
-var DigitSpan_OneTrial_Load5 = {
+var DigitSpan_Visual_Backward_TwoErrors = {
+	instructionText: BackwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'visual', // 'visual',
+	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Audio_Forward_TwoErrors ==
+Parameters = {
+	Current: 3,
+	MaxValue: 30,
+	StepSize: 1,
+	Nerrors: 2,
+	MaxTrials: 20 // ignored
+}
+var DigitSpan_Audio_Forward_TwoErrors = {
+	instructionText: ForwardAudioInstructions,
+	direction: 'forward',
+	StimulusMode: 'audio', // 'visual',
+	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Audio_Backward_TwoErrors ==
+Parameters = {
+	Current: 2,
+	MaxValue: 30,
+	StepSize: 1,
+	Nerrors: 2,
+	MaxTrials: 20 // ignored
+}
+var DigitSpan_Audio_Backward_TwoErrors = {
+	instructionText: BackwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'audio', // 'visual',
+	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+}
+// ===================================================
+// == DigitSpan_Visual_Forward_Fixed01_Load05 ==
+Parameters = {
+	Current: 5,
+	MaxTrials: 1
+}
+var DigitSpan_Visual_Forward_Fixed01_Load05 = {
+	instructionText: ForwardAudioInstructions,
+	direction: 'forward',
+	StimulusMode: 'visual',
+	DeliveryMethod: 'fixed',
+	Parameters: Parameters,	
+}
+// ===================================================
+// == DigitSpan_Visual_Backward_Fixed01_Load03 ==
+Parameters = {
+	Current: 3,
+	MaxTrials: 1
+}
+var DigitSpan_Visual_Backward_Fixed01_Load03 = {
+	instructionText: BackwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'visual',
+	DeliveryMethod: 'fixed',
+	Parameters: Parameters,	
+}
+// ===================================================
+// == DigitSpan_Audio_Forward_Fixed01_Load05 ==
+Parameters = {
+	Current: 5,
+	MaxTrials: 1
+}
+var DigitSpan_Audio_Forward_Fixed01_Load05 = {
 	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'audio',
@@ -65,8 +194,30 @@ var DigitSpan_OneTrial_Load5 = {
 	Parameters: Parameters,	
 }
 // ===================================================
-add('DigitSpan_Forward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Forward_Adaptive_14});
-add('DigitSpan_Forward_TwoErrors', function(){ DigitSpan_parameters = DigitSpan_Forward_TwoErrors});
-add('DigitSpan_OneTrial_Load5', function(){ DigitSpan_parameters = DigitSpan_OneTrial_Load5});
+// == DigitSpan_Audio_Backward_Fixed01_Load03 ==
+Parameters = {
+	Current: 3,
+	MaxTrials: 1
+}
+var DigitSpan_Visual_Forward_Fixed01_Load05 = {
+	instructionText: ForwardAudioInstructions,
+	direction: 'backward',
+	StimulusMode: 'audio',
+	DeliveryMethod: 'fixed',
+	Parameters: Parameters,	
+}
+// ===================================================
 
+add('DigitSpan_Audio_Forward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Audio_Forward_Adaptive_14});
+add('DigitSpan_Visual_Forward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Visual_Forward_Adaptive_14});
+add('DigitSpan_Audio_Backward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Audio_Backward_Adaptive_14});
+add('DigitSpan_Visual_Backward_Adaptive_14', function(){ DigitSpan_parameters = DigitSpan_Visual_Backward_Adaptive_14});
+add('DigitSpan_Visual_Forward_TwoErrors', function(){ DigitSpan_parameters = DigitSpan_Visual_Forward_TwoErrors});
+add('DigitSpan_Visual_Backward_TwoErrors', function(){ DigitSpan_parameters = DigitSpan_Visual_Backward_TwoErrors});
+add('DigitSpan_Audio_Forward_TwoErrors', function(){ DigitSpan_parameters = DigitSpan_Audio_Forward_TwoErrors});
+add('DigitSpan_Audio_Backward_TwoErrors', function(){ DigitSpan_parameters = DigitSpan_Audio_Backward_TwoErrors});
+add('DigitSpan_Visual_Forward_Fixed01_Load05', function(){ DigitSpan_parameters = DigitSpan_Visual_Forward_Fixed01_Load05});
+add('DigitSpan_Visual_Backward_Fixed01_Load03', function(){ DigitSpan_parameters = DigitSpan_Visual_Backward_Fixed01_Load03});
+add('DigitSpan_Audio_Forward_Fixed01_Load05', function(){ DigitSpan_parameters = DigitSpan_Audio_Forward_Fixed01_Load05});
+add('DigitSpan_Audio_Backward_Fixed01_Load03', function(){ DigitSpan_parameters = DigitSpan_Audio_Backward_Fixed01_Load03});
 
