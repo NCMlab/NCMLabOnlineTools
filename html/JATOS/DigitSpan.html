@@ -9,54 +9,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Digit Span Forward</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>    
-  <body>
-    <script src="../../jspsych/dist/jspsych.js"></script>
-    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../../jspsych/dist/plugin-call-function.js"></script>
-    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
-    <script src="../../jspsych/dist/plugin-preload.js"></script>
-    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
-
-    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+  
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-preload.js"></script>
+    <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     
-    <script src="../../config/General_Setup.js"></script>
-    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script src="config/General_Setup.js"></script>
+    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
 
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DigitSpan_Instructions.js"
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/DigitSpan_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="../../config/DigitSpan_Setup.js"></script>
-    <script>var DigitSpan_parameters = DigitSpan_Visual_Forward_Fixed01_Load05</script>
-    <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+    <script src="config/DigitSpan_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script> 
-      var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set001/'
-      var FolderOfAudioFiles = '../../assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
+      var FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set001/'
+      var FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
     </script>
-    <script src="../../functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
-    <script src="../../functions/Experiments/DigitSpan_experiment.js"></script>
-    <script src="../../functions/Scoring/DigitSpan_Scoring.js"></script>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  </body>
-  <script>
 
-    jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      on_interaction_data_update: function(data) {
-          console.log(JSON.stringify(data))
-      },
-      on_finish: function() {
-        jsPsych.data.get().localSave('csv','DigitSpanMydata.csv');
+    <script defer>
+      var DigitSpan_parameters = 'empty'
+      var parameters = 'empty'
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'DigitSpan_Visual_Forward_TwoErrors'
+          console.log(parameters)
+        }
+        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        pseudoSwitch(parameters)
+        console.log(DigitSpan_parameters)
+      })
+    </script> 
+    <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
+  </head>    
+  <body>
+    <script src="functions/Experiments/DigitSpan_experiment.js" defer></script>
+    <script src="functions/Scoring/DigitSpan_Scoring.js"></script>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  
+    </body>
+  <script>
+    var setup = []
+
+var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_trial_start: function() {
+      //http://127.0.0.1:9000/publix/fNTRhuguK1x
+//      console.log(jatos.urlQueryParameters);
+      var input = jatos.urlQueryParameters;
+      // Add jatos info to the data file
+      jsPsych.data.addProperties({assignedURLID: input.a});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+    },
+    on_finish: function() {
+      jatos.endStudy(jsPsych.data.get().json())
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','DigitSpan_data.csv');
+      }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management on JATOS
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
+      }
     }
   });
-  jsPsych.run(timeline);
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);
+      jatos.addAbortButton({
+        text: "Quit",
+        confirmText: "Do you really want to quit?",
+        tooltip: "This will quit the entire experiment",
+        msg: "This worker aborted the mission.",
+        style: "top:8px; right:40px; color:green; bottom: unset"
+      });
+      jsPsych.run(timeline);
+    });
   </script>
 </html>

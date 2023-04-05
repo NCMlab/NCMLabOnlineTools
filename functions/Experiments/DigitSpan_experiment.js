@@ -63,11 +63,8 @@ var UpdateListLength = {
     type: jsPsychCallFunction,
     func: function(){
         if (DigitSpan_parameters.DeliveryMethod == 'staircase') {
-          console.log('TrialNumber: '+TrialCount)  
-          console.log("Accuracy was: "+accuracy)
           staircase.Decide(accuracy)
           CurrentListLength = staircase.Current
-          console.log("CURRENTLENGTH: " +CurrentListLength)
         }
         if (DigitSpan_parameters.DeliveryMethod == 'numberErrors') {
           CurrentListLength += 1
@@ -94,7 +91,6 @@ var CheckWhetherToStop = {
         { StopFlag = false}
       }
       if (DigitSpan_parameters.DeliveryMethod == 'fixed') {
-        console.log("TrialCount: "+TrialCount)
         if ( TrialCount > DigitSpan_parameters.Parameters.MaxTrials )
           { StopFlag = false}
       }
@@ -105,6 +101,7 @@ var stim
 var SetupTrial = {
     type: jsPsychCallFunction,
     func: function(data){
+        console.log("Current List Length: "+CurrentListLength)
         stimList = CreateDigitList(CurrentListLength)
         if ( DigitSpan_parameters.StimulusMode == 'audio' ) {
             stim = MakeListOfStimuli(FolderOfAudioFiles, stimList)
@@ -112,7 +109,7 @@ var SetupTrial = {
         else { // visual
             stim = stimList
         }
-        console.log(stim)
+        console.log("The stimulus is: "+stim)
         idx = 0; //reset the index prior to the letter presentation
         //data.TrialNumber = TrialCount - 1
         //data.task = 'test trial'
@@ -132,16 +129,14 @@ var fixation = {
   trial_duration: 500
 }
 
-// Define instructions
-
 // set-up screen
-// This screen is required so that the audio can be loaded and played
+// Display the trial number onthe screen
 var TrialNumber = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     on_load: function() {
-    TrialCount += 1
+        TrialCount += 1
     },
-    stimulus: function() {return '<p>Trial number: '+ TrialCount + '</p>';},
+    stimulus: function() {return '<p>Trial number: '+ String(TrialCount) + '</p>';},
     choices: [],
     prompt: "",
     trial_duration: DurationToWaitBetweenTrials,
@@ -264,7 +259,6 @@ var present_audio = {
       else { return false }
     }
 }
-
 var present_visual = {
   timeline: [VisualStim],
   loop_function: function(){
@@ -272,7 +266,44 @@ var present_visual = {
     else { return false }
   }
 }
-
+// This is a clunky way to present the correct instructions.
+// The problem is that the timeline_variables does not accept functions
+var if_audio_forward_instr = {
+    timeline: [Instructions],
+    timeline_variables: ForwardAudioInstructions,
+    conditional_function: function() {
+        if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='forward' )
+            { return true }
+        else { return false }
+    }
+}
+var if_audio_backward_instr = {
+    timeline: [Instructions],
+    timeline_variables: BackwardAudioInstructions,
+    conditional_function: function() {
+        if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='backward' )
+            { return true }
+        else { return false }
+    }
+}
+var if_visual_forward_instr = {
+    timeline: [Instructions],
+    timeline_variables: ForwardVisualInstructions,
+    conditional_function: function() {
+        if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='forward' )
+            { return true }
+        else { return false }
+    }
+}
+var if_visual_backward_instr = {
+    timeline: [Instructions],
+    timeline_variables: BackwardVisualInstructions,
+    conditional_function: function() {
+        if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='backward' )
+            { return true }
+        else { return false }
+    }
+}
 
 var if_audio = {
   timeline: [present_audio],
@@ -295,9 +326,6 @@ var if_visual = {
 var procedure = {
   timeline: [SetupTrial, TrialNumber, if_audio, if_visual, get_response, UpdateListLength, CheckWhetherToStop],//, NumberPadResponse],
   loop_function: function(){
-    // The criteria for stopping are: 
-    //    reached the max number of trials.
-    // This will differ based on the type of experiment
     return StopFlag
   }
 };
@@ -311,25 +339,21 @@ var welcome_procedure = {
   repetitions: 1,
 }
 
-var instr_procedure = {
-  timeline: [Instructions],
-  timeline_variables: DigitSpan_parameters.instructionText,
-  randomize_order: false,
-  repetitions: 1,
+var thank_you = {
+    timeline: [SendData],
+    timeline_variables: ThankYouText,
+    randomize_order: false,
+    repetitions: 1,
 }
-
-  var thank_you = {
-      timeline: [SendData],
-      timeline_variables: ThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }
 // ======================================================================= 
 // Add all procedures to the timeline
 
 
 timeline.push(if_node)
-timeline.push(instr_procedure)
 timeline.push(ReadParametersAndSetup)
+timeline.push(if_audio_forward_instr)
+timeline.push(if_visual_forward_instr)
+timeline.push(if_audio_backward_instr)
+timeline.push(if_visual_backward_instr)
 timeline.push(procedure)
 timeline.push(thank_you)
