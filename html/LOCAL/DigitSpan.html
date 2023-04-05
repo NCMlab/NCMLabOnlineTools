@@ -8,10 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Digit Span Forward</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>    
   <body>
     <script src="../../jspsych/dist/jspsych.js"></script>
@@ -50,6 +47,7 @@
 
     jsPsych = initJsPsych({
       display_element: 'jspsych-target',
+      override_safe_mode: true,
       on_interaction_data_update: function(data) {
           console.log(JSON.stringify(data))
       },

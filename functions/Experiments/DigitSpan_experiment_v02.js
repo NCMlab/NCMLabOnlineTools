@@ -10,15 +10,9 @@ var TrialCount = 1;
 var MaxTrials = 14;
 //var Direction = 'Forward'
 var response = [];
+var staircase
 // =======================================================================
-if ( Direction == 'Forward' ) {
-  var staircase = new Stair(FDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
-  var instructionText = ForwardAudioInstructions
-}
-else { // Backward span
-  var staircase = new Stair(BDSCurrent, MinValue, MaxValue, MaxReversals, MaxTrials, StepSize, NUp, NDown, FastStart, MaxTime)
-  var instructionText =  BackwardAudioInstructions
-}
+
 
 // =======================================================================
 var enter_fullscreen = {
@@ -27,18 +21,54 @@ var enter_fullscreen = {
 }
 // =======================================================================
 // Initial setup procedures
+var ReadParametersAndSetup = {
+  type: jsPsychCallFunction,
+  func: function(){
+    if (DigitSpan_parameters.DeliveryMethod == 'staircase'){
+      console.log("STAIRCASE")
+      staircase = new Stair(DigitSpan_parameters.Parameters.Current, DigitSpan_parameters.Parameters.MinValue, DigitSpan_parameters.Parameters.MaxValue, DigitSpan_parameters.Parameters.MaxReversals, DigitSpan_parameters.Parameters.MaxTrials, DigitSpan_parameters.Parameters.StepSize, DigitSpan_parameters.Parameters.NUp, DigitSpan_parameters.Parameters.NDown, DigitSpan_parameters.Parameters.FastStart, DigitSpan_parameters.Parameters.MaxTime)
+    }
+    else if (DigitSpan_parameters.DeliveryMethod == 'fixed'){
+      console.log("FIXED")
+
+    }
+    else if (DigitSpan_parameters.DeliveryMethod == 'numberErrors'){
+      console.log("NUMBER OF ERRORS")
+    }
+  }
+}
+
+
+
 // preload audio
 var preload_digits = {
   type: jsPsychPreload,
   audio: function() {
     var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     var List = MakeListOfStimuli(FolderOfAudioFiles, initList)
+    console.log("PRELOADING AUDIO")
     return List
   },
 };
-// get current list length
-// this will differ based on the DS trial type being used
-// stair/fixed/2-errors/etc
+
+var CheckSetup = {
+  type: jsPsychCallFunction,
+  func: function(){
+    console.log(staircase)
+  }
+}
+
+var if_node = {
+  timeline: [preload_digits],
+  conditional_function: function(){
+
+    if ( DigitSpan_parameters.StimulusMode == 'audio' )
+      { return true }
+    else { return false }
+  }
+}
+
+
 var GetCurrentListLength = {
     type: jsPsychCallFunction,
     func: function(){
@@ -106,22 +136,22 @@ var TrialNumber = {
 var AudioStim = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function(){
-    console.log(stim[idx])
-    return stim[idx]},
+      console.log(stim[idx])
+      return stim[idx]},
     choices: [],
     post_trial_gap: TimeGapBetweenAudioLetters,
     trial_ends_after_audio: true,
     prompt: '<p class="Fixation">+</p>',
     on_finish: function(data){
-    data.TrialNumber = TrialCount - 1
-    data.task = 'audio'
-    idx += 1; //update the index
-    //check to see if we are at the end of the letter array
-    if (idx == stimList.length) {
-        exitLetters = 1;
-    } else  {
-        exitLetters = 0;
-    }
+      data.TrialNumber = TrialCount - 1
+      data.task = 'audio'
+      idx += 1; //update the index
+      //check to see if we are at the end of the letter array
+      if (idx == stimList.length) {
+          exitLetters = 1;
+      } else  {
+          exitLetters = 0;
+      }
     }
 };
 
@@ -240,13 +270,14 @@ var procedure = {
 
 // =======================================================================    
 // Define procedures using the stimuli
+var welcome_procedure = {
+  timeline: [Instructions],
+  timeline_variables: [{'page':"Welcome"}],
+  randomize_order: false,
+  repetitions: 1,
+}
 
- var instr_procedure = {
-      timeline: [Instructions],
-      timeline_variables: instructionText,
-      randomize_order: false,
-      repetitions: 1,
-    }
+
   var thank_you = {
       timeline: [SendData],
       timeline_variables: ThankYouText,
@@ -255,11 +286,10 @@ var procedure = {
     }
 // ======================================================================= 
 // Add all procedures to the timeline
-timeline.push(preload_digits)
-//timeline.push(instr_procedure)
-timeline.push(procedure)
-//timeline.push(thank_you)
-  
+timeline.push(welcome_procedure)
+timeline.push(if_node)
+timeline.push(ReadParametersAndSetup)
+timeline.push(CheckSetup)
 
 
-
+//timeline.push(letter_proc)
