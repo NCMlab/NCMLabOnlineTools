@@ -69,7 +69,9 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','CubeCopy_data.csv');
       }    
-      jatos.startNextComponent();
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
+      }
     }
   });
 
