@@ -17,8 +17,7 @@ var MaxTime = 420 //the amount of time for the experiment can also be used as a 
 
 // ===================================================
 var TimeGapBetweenAudioLetters = 500 // milliseconds
-var BDSMaxTrials = 14
-var FDSMaxTrials = 14
+
 // ===================================================
 Parameters = {
 	Current: 3,
@@ -35,7 +34,7 @@ Parameters = {
 var DigitSpan_Forward_Adaptive_14 = {
 	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
-	StimulusMode: 'audio', // 'visual',
+	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 }
@@ -50,7 +49,7 @@ Parameters = {
 var DigitSpan_Forward_TwoErrors = {
 	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
-	StimulusMode: 'audio', // 'visual',
+	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 }
