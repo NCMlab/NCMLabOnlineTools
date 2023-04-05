@@ -9,7 +9,7 @@ ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReason
 ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
-ComponentList.push({name:'DigitSpan', iconFileName:'MultiChoice.png'})
+ComponentList.push({name:'Digit Span', iconFileName:'MultiChoice.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -32,14 +32,9 @@ var BatteryDescription = 'This is a description of the battery of tests that wil
 
 BatteryList.push({index: 1, 
 	name:'Battery001', 
-	list: ['Digit Span','Cube Copy','Stroop Color','Stroop Word','Stroop Color/Word','Trail Making','RAVLT'], 
+	list: ['Digit Span','Cube Copy'], 
 	description: BatteryDescription,
-	ParameterLists: ['DigitSpan_Visual_Forward_Fixed01_Load05','CubeCopy_Default','Stroop_Default',
-		'Stroop_Default',
-		'Stroop_001',
-		'TrailMakingA_Default',
-		'RAVLT_Default'
-		]})
+	ParameterLists: ['DigitSpan_Visual_Forward_Fixed01_Load05','CubeCopy_Default']})
 
 BatteryList.push({index: 2, 
 	name:'Battery002', 
