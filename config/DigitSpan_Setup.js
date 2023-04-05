@@ -18,7 +18,6 @@ Parameters = {
 	MaxTrials: 14
 }
 var DigitSpan_Audio_Forward_Adaptive_14 = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
@@ -40,7 +39,6 @@ Parameters = {
 	MaxTrials: 14
 }
 var DigitSpan_Visual_Forward_Adaptive_14 = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
@@ -62,7 +60,6 @@ Parameters = {
 	MaxTrials: 14
 }
 var DigitSpan_Audio_Backward_Adaptive_14 = {
-	instructionText: BackwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
@@ -84,7 +81,6 @@ Parameters = {
 	MaxTrials: 14
 }
 var DigitSpan_Visual_Backward_Adaptive_14 = {
-	instructionText: BackwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
@@ -100,7 +96,6 @@ Parameters = {
 	MaxTrials: 20 // ignored
 }
 var DigitSpan_Visual_Forward_TwoErrors = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
@@ -116,7 +111,6 @@ Parameters = {
 	MaxTrials: 20 // ignored
 }
 var DigitSpan_Visual_Backward_TwoErrors = {
-	instructionText: BackwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
@@ -132,7 +126,6 @@ Parameters = {
 	MaxTrials: 20 // ignored
 }
 var DigitSpan_Audio_Forward_TwoErrors = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
@@ -148,7 +141,6 @@ Parameters = {
 	MaxTrials: 20 // ignored
 }
 var DigitSpan_Audio_Backward_TwoErrors = {
-	instructionText: BackwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
@@ -161,7 +153,6 @@ Parameters = {
 	MaxTrials: 1
 }
 var DigitSpan_Visual_Forward_Fixed01_Load05 = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'visual',
 	DeliveryMethod: 'fixed',
@@ -174,7 +165,6 @@ Parameters = {
 	MaxTrials: 1
 }
 var DigitSpan_Visual_Backward_Fixed01_Load03 = {
-	instructionText: BackwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'visual',
 	DeliveryMethod: 'fixed',
@@ -187,7 +177,6 @@ Parameters = {
 	MaxTrials: 1
 }
 var DigitSpan_Audio_Forward_Fixed01_Load05 = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'forward',
 	StimulusMode: 'audio',
 	DeliveryMethod: 'fixed',
@@ -200,7 +189,6 @@ Parameters = {
 	MaxTrials: 1
 }
 var DigitSpan_Visual_Forward_Fixed01_Load05 = {
-	instructionText: ForwardAudioInstructions,
 	direction: 'backward',
 	StimulusMode: 'audio',
 	DeliveryMethod: 'fixed',
