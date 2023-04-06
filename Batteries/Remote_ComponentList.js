@@ -34,7 +34,7 @@ var BatteryDescription = 'This is a description of the battery of tests that wil
 
 BatteryList.push({index: 1, 
 	name:'FaCE Battery', 
-	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction']
+	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction'],
 	description: 'A web-based version of the FaCE',
 	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE']})
 
