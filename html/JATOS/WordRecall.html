@@ -83,7 +83,9 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','WordRecall_data.csv');
       }    
-      //jatos.startNextComponent();
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
+      }
     }
   });
 
