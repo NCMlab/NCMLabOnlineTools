@@ -11,6 +11,7 @@ ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
 ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.png'})
+ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -24,7 +25,7 @@ add('Cube Copy', function(){jatos.startComponent(15)});
 add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
 add('Serial Subtraction',function(){jatos.startComponent(21)});
-
+add('Fluency',function(){jatos.startComponent(22)});
 const BatteryHtmlID = 1
 
 
@@ -34,9 +35,9 @@ var BatteryDescription = 'This is a description of the battery of tests that wil
 
 BatteryList.push({index: 1, 
 	name:'FaCE Battery', 
-	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction'],
+	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE']})
+	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable']})
 
 BatteryList.push({index: 2, 
 	name:'Battery002', 
