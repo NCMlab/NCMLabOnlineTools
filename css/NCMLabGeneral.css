@@ -135,15 +135,7 @@ p.Instructions {
     top: 50%; 
 }
 
-.numbox {
-  width:30vw;
-  height: 40vw;
-  position:absolute;
-  top:40%;
-  left:50%;
-  margin-right:-50%;
-  transform: translate(-50%,-50%);
-}
+
 
 .REDCross {color:red}
 /* Change the size of the font in the buttons */
@@ -167,3 +159,19 @@ p.Instructions {
   left: 0%;
   transform:rotate(-25deg);
 }
+
+
+div.numbox {
+  max-width: 300px;
+  
+  margin: auto;
+
+}
+/*.numbox {
+  
+  position:absolute;
+  top:40%;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%,-50%);
+}*/

@@ -9,7 +9,8 @@ ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReason
 ComponentList.push({name:'Cube Copy', iconFileName:'CubeCopy.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
-ComponentList.push({name:'Digit Span', iconFileName:'MultiChoice.png'})
+ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
+ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -22,6 +23,7 @@ add('ICAR Matrix Reasoning', function(){jatos.startComponent(16)});
 add('Cube Copy', function(){jatos.startComponent(15)});
 add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
+add('Serial Subtraction',function(){jatos.startComponent(21)});
 
 const BatteryHtmlID = 1
 

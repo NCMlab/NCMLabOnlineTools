@@ -3,7 +3,7 @@
 var timeline = [];
 var RecallDuration = 60
 var responseSerSub = [];
-var PreviousResult = SerialSubtract_parameters.StartValue
+var PreviousResult
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -14,11 +14,20 @@ var enter_fullscreen = {
 // =======================================================================
 // Define all of the different the stimuli 
 
+
+var GetPreviousResult = {
+  type: jsPsychCallFunction,
+  func: function(){
+    PreviousResult = SerialSubtract_parameters.StartValue
+  }
+}
+
 var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-      var prompt = 'Substract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.'
-      return PutStimIntoTable(prompt+response_gridSerSub) 
+    console.log(SerialSubtract_parameters)
+      var prompt = 'Subtract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.'
+      return PutStimIntoTable(prompt+response_gridSerSub,'') 
   },
   choices: ['Enter'],
   prompt:'',
@@ -86,6 +95,7 @@ var procedure = {
     else {return true}
   }
 };
+timeline.push(GetPreviousResult)
 timeline.push(instr_procedure01)
 timeline.push(procedure)
 timeline.push(thank_you)
