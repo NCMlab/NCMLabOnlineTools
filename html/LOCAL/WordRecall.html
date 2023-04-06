@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Rey Auditory Verbal Learning Test</title>
+    <title>NCMLab: Word Recall</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
@@ -29,17 +29,19 @@
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/RAVLT_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/WordRecall_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "../../InstructionsAndStimuli/"+Language+"/Stimuli/RAVLT.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "../../InstructionsAndStimuli/"+Language+"/Stimuli/FaCE.js"
+        document.write("\<script src='" + url + "'\>\</script\>");            
     </script>
-    <script src="../../config/RAVLT_Setup.js"></script>
+    <script src="../../config/WordRecall_Setup.js"></script>
     <script> var BaseFolderName = '../../assets/SoundFiles/Words/'</script>
     <script>
       // This is where the parameters to be used as specified.
       // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
-      pseudoSwitch('RAVLT_Default')
+      pseudoSwitch('FaCE_Default')
     </script>
     <style>
         .sv_main div{
@@ -59,22 +61,19 @@
     <script src="../../functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="../../functions/Scoring/RAVLT_Scoring.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/WordRecall.js"></script>
-    <script src="../../functions/TaskSpecificFunctions/SetupRAVLTexperiment.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/WordRecall_functions.js"></script>
     <script>
       // set the recall type, before the timeline is created
 
-
-      if ( RAVLT_parameters.RecallType == 'Manual' ) {
+      if ( WordRecall_parameters.RecallType == 'Manual' ) {
         console.log('MANUAL')
         RecallProcedureA = ManualRecallA
-        RecallProcedureB = ManualRecallB
+        if ( WordRecall_parameters.BListFlag) {RecallProcedureB = ManualRecallB}
         console.log(RecallProcedureA)
-
-        
       } else {
         console.log('SPOKEN')
         RecallProcedureA = SpokenRecallA
-        RecallProcedureB = SpokenRecallB
+        if ( WordRecall_parameters.BListFlag) {RecallProcedureB = SpokenRecallB}
       }
     </script>
     <script src="../../functions/Experiments/WordRecall_experiment.js"></script>

@@ -7,10 +7,12 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 var RAVLT_Default = {
+	WordList: 'RAVLT',
 	FolderName: 'RAVLTSet001/',
 	FileExtension: '.wav',
-	NBlocks:2,
-	RecallType:'Manual',
+	NBlocks: 2,
+	BListFlag: true, // Check to see if there is a second set of words
+	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
 }
@@ -18,21 +20,24 @@ var RAVLT_Default = {
 var RAVLT_001 = {
 	FolderName: 'RAVLTSet001/',
 	FileExtension: '.wav',
-	NBlocks:3,
+	NBlocks: 3,
+	BListFlag: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
 }
 
 var FaCE_Default = {
-	FolderName: 'FaCESet001/',
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	FileExtension: '.wav',
-	NBlocks:2,
+	NBlocks: 2,
+	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
-	TimePerWord: 500, // milliseconds
+	TimePerWord: 1000, // milliseconds
 }
 
 
-add('RAVLT_Default', function(){ RAVLT_parameters = RAVLT_Default});
-add('RAVLT_001', function(){ RAVLT_parameters = RAVLT_001});
+add('RAVLT_Default', function(){ WordRecall_parameters = RAVLT_Default});
+add('RAVLT_001', function(){ WordRecall_parameters = RAVLT_001});
+add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});

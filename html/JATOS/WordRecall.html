@@ -33,30 +33,32 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
         var url = "InstructionsAndStimuli/"+Language+"/Stimuli/RAVLT.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
+        var url = "InstructionsAndStimuli/"+Language+"/Stimuli/FaCE.js"
+        document.write("\<script src='" + url + "'\>\</script\>");               
     </script>
-    <script src="config/RAVLT_Setup.js"></script>
+    <script src="config/WordRecall_Setup.js"></script>
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
-    <script>pseudoSwitch('RAVLT_001')</script>
+    <script>pseudoSwitch('FaCE_Default')</script>
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
     <script src="functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="functions/Scoring/RAVLT_Scoring.js"></script>
     <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
  
-    <script src="functions/TaskSpecificFunctions/SetupRAVLTexperiment.js"></script>
+    <script src="functions/TaskSpecificFunctions/WordRecall_functions.js"></script>
     <script>
       // set the recall type, before the timeline is created
-      if ( RAVLT_parameters.RecallType == 'Manual' ) {
+      if ( WordRecall_parameters.RecallType == 'Manual' ) {
         console.log('MANUAL')
         RecallProcedureA = ManualRecallA
-        RecallProcedureB = ManualRecallB
+        if ( WordRecall_parameters.BListFlag) {RecallProcedureB = ManualRecallB}
       } else {
         console.log('SPOKEN')
         RecallProcedureA = SpokenRecallA
-        RecallProcedureB = SpokenRecallB
+        if ( WordRecall_parameters.BListFlag) {RecallProcedureB = SpokenRecallB}
       }
     </script>
-    <script src="functions/Experiments/RAVLT_experiment.js"></script>
+    <script src="functions/Experiments/WordRecall_experiment.js"></script>
 
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -79,9 +81,9 @@
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','RAVLT_data.csv');
+        jsPsych.data.get().localSave('csv','WordRecall_data.csv');
       }    
-      jatos.startNextComponent();
+      //jatos.startNextComponent();
     }
   });
 

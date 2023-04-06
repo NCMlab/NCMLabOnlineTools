@@ -20,9 +20,9 @@ var SimpleWordList = []
 var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
-
+var AudioFileListB = AudioFileListA
 var TrialCount
-
+var RecallProcedureB
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -33,6 +33,14 @@ var preload_audioA = {
   type: jsPsychPreload,
   audio: AudioFileListA,
 };
+
+
+var if_BList_preload = {
+  timeline: [preload_audioB],
+  conditional_function: function(){
+    console.log(WordRecall_parameters.BListFlag)
+    return  WordRecall_parameters.BListFlag}
+}
 var preload_audioB = {
   type: jsPsychPreload,
   audio: AudioFileListB,
@@ -64,14 +72,14 @@ var AudioStimulus = {
         return Stim
       },
     choices: [],  
-    trial_duration: RAVLT_parameters.TimePerWord,
+    trial_duration: WordRecall_parameters.TimePerWord,
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
       TrialCount++
     },
   };
-
+// NOT IMPLEMEMTED
 var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
@@ -104,16 +112,13 @@ var VisualStimulus = {
         return 0
       }
     },
-    prompt: RAVLTWordPrompt, //Add this to config file
+    prompt: WordPrompt, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
       TrialCount++
     }
   };
-
-
-
 
 
 // Define instructions
@@ -155,28 +160,28 @@ var SendData = {
 // Define the test procedure which does NOT provide feedback
   var instr_procedure01 = {
       timeline: [Instructions],
-      timeline_variables: RAVLTInstructions01,
+      timeline_variables: Instructions01,
       randomize_order: false,
       repetitions: 1,
     }
 
   var instr_procedure02 = {
       timeline: [Instructions],
-      timeline_variables: RAVLTInstructions02,
+      timeline_variables: Instructions02,
       randomize_order: false,
       repetitions: 1,
     }
 
   var instr_procedure03 = {
       timeline: [Instructions],
-      timeline_variables: RAVLTInstructions03,
+      timeline_variables: Instructions03,
       randomize_order: false,
       repetitions: 1,
     }
 
   var instr_procedure04 = {
       timeline: [Instructions],
-      timeline_variables: RAVLTInstructions04,
+      timeline_variables: Instructions04,
       randomize_order: false,
       repetitions: 1,
     }
@@ -203,7 +208,7 @@ var FirstBlock = {
   var AfterFirstBlock = {
       timeline: [instr_procedure02, PresentListOfWordsA, RecallProcedureA],
       randomize_order: false,
-      repetitions: RAVLT_parameters.NBlocks - 1,
+      repetitions: WordRecall_parameters.NBlocks - 1,
   } 
 
   var BlockB = {
@@ -225,22 +230,23 @@ var FirstBlock = {
     }  
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(instr_procedure01)
 timeline.push(preload_audioA)
-timeline.push(preload_audioB)
+timeline.push(if_BList_preload)
 
-//timeline.push(FirstBlock)
+timeline.push(FirstBlock)
 //timeline.push(instr_procedure01)
 //timeline.push(PresentListOfWordsA)
 timeline.push(RecallProcedureA)
-//timeline.push(AfterFirstBlock)
+timeline.push(AfterFirstBlock)
 //timeline.push(BlockB)
 //timeline.push(FinalRecalBlockA)
 //timeline.push(thank_you)
-/*timeline.push(instr_procedure03)
-timeline.push(PresentListOfWordsB)
-timeline.push(recallB)
-timeline.push(instr_procedure04)
-timeline.push(recallA)
+//timeline.push(instr_procedure03)
+//timeline.push(PresentListOfWordsB)
+//timeline.push(recallB)
+//timeline.push(instr_procedure04)
+//timeline.push(recallA)
 timeline.push(thank_you)
 
 
