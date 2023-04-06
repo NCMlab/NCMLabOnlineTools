@@ -30,34 +30,71 @@
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Fluency_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    
-    <script src="config/Fluency_Setup.js"></script>
-    <script>
-      // This is where the parameters to be used as specified.
-      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
-      pseudoSwitch('Fluency_F')
-      console.log(Fluency_parameters)
-    </script>
     <script src="functions/TaskSpecificFunctions/AFT_function.js"></script>
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
-    
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <script>
+      var Stroop_parameters = 'empty'
+      var parameters = 'empty'
+      var BatteryHtmlID
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Fluency_F'}
+        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        pseudoSwitch(parameters)      
+      })
+    </script>  
     <script src="functions/Experiments/Fluency_experiment.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
-
-    jsPsych = initJsPsych({
+var setup = []
+var TrialCount = 1;
+var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
-    on_interaction_data_update: function(data) {
-        console.log(JSON.stringify(data))
+    on_trial_start: function() {
+      //http://127.0.0.1:9000/publix/fNTRhuguK1x
+//      console.log(jatos.urlQueryParameters);
+      var input = jatos.urlQueryParameters;
+      console.log(TrialCount)
+      TrialCount += 1
+      // Add jatos info to the data file
+      jsPsych.data.addProperties({assignedURLID: input.a});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
     on_finish: function() {
+      jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','FluencyTask.csv');
+        jsPsych.data.get().localSave('csv','Fluency_data.csv');
+      }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
       }
     }
   });
-  jsPsych.run(timeline)
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);
+      jatos.addAbortButton({
+        text: "Quit",
+        confirmText: "Do you really want to quit?",
+        tooltip: "This will quit the entire experiment",
+        msg: "This worker aborted the mission.",
+        style: "top:8px; right:40px; color:green; bottom: unset"
+      });
+      jsPsych.run(timeline);
+    });
   </script>
 </html>

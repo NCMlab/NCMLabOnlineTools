@@ -80,11 +80,19 @@
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
+
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','WordRecall_data.csv');
       }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management
       if (typeof BatteryHtmlID != 'undefined') {
         jatos.startComponent(BatteryHtmlID);
+      }
+
       }
     }
   });
@@ -95,7 +103,6 @@
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
