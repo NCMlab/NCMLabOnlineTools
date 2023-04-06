@@ -9,13 +9,14 @@ var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
 var InstructionText
+
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
       sizes = FindCanvasSize(TrailMaking_parameters.SuggestedWidth, TrailMaking_parameters.SuggestedHeight, 0.7, 0.75) 
-      const CanvasWidth = sizes.CanvasWidth
-      const CanvasHeight = sizes.CanvasHeight
+       CanvasWidth = sizes.CanvasWidth
+       CanvasHeight = sizes.CanvasHeight
       console.log(CanvasWidth)
       console.log(CanvasHeight)
       console.log('==============================')
@@ -29,8 +30,6 @@ var FindCanvasSizePractice = {
       sizes = FindCanvasSize(TrailMaking_parameters.PracticeSuggestedWidth, TrailMaking_parameters.PracticeSuggestedHeight, 0.95, 0.75) 
       const PracticeCanvasWidth = sizes.CanvasWidth
       const PracticeCanvasHeight = sizes.CanvasHeight
-      console.log(CanvasWidth)
-      console.log(CanvasHeight)
       console.log('==============================')
   }
 }
@@ -69,7 +68,7 @@ var enter_fullscreen = {
 // =======================================================================
 // Define all of the different the stimuli 
   var trial_Practice = {
-      type: jsPsychSketchpad,   
+      type: jsPsychSketchpadTrailMaking,   
       Circles: function(){return TrailMaking_parameters.PracticeCircles}, 
       canvas_width: PracticeCanvasWidth,
       canvas_height: PracticeCanvasHeight,
@@ -85,10 +84,11 @@ var enter_fullscreen = {
     }
   
   var trials = {
-      type: jsPsychSketchpad,   
-      Circles: function(){ return TrailMaking_parameters.Circles}, 
-      canvas_width: CanvasWidth,
-      canvas_height: CanvasHeight,
+      type: jsPsychSketchpadTrailMaking,   
+      Circles: function(){ 
+        return TrailMaking_parameters.Circles}, 
+      canvas_width: function(){return CanvasWidth},
+      canvas_height: function(){return CanvasHeight},
       canvas_border_width: 1,
       stroke_width: pen_width,
       save_final_image: true,
@@ -96,7 +96,7 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      show_countdown_trial_duration: TrailMaking_parameters.ShowTimerA,
+      show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
       trial_duration: TrailMaking_parameters.Duration,
       // on_finish: function() {
       //   // download the drawing as a file

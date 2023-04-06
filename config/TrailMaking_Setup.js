@@ -154,6 +154,32 @@ var ShowTimerB = true;
 var DurationB = 1000*60*5
 
 
+var Circles_FaCE = [
+    {centerX:0.316901408450704, centerY:0.468354430379747, radius:radius,label: '1'},
+    {centerX:0.5, centerY:0.227848101265823, radius:radius,label: 'A'},
+    {centerX:0.640845070422535, centerY:0.556962025316456, radius:radius,label: '2'},
+    {centerX:0.676056338028169, centerY:0.164556962025317, radius:radius,label: 'B'},
+    {centerX:0.816901408450704, centerY:0.215189873417722, radius:radius,label: '3'},
+    {centerX:0.76056338028169, centerY:0.493670886075949, radius:radius,label: 'C'},
+    {centerX:0.915492957746479, centerY:0.379746835443038, radius:radius,label: '4'},
+    {centerX:0.76056338028169, centerY:0.683544303797468, radius:radius,label: 'D'},
+    {centerX:0.753521126760563, centerY:0.911392405063291, radius:radius,label: '5'},
+    {centerX:0.549295774647887, centerY:0.683544303797468, radius:radius,label: 'E'},
+    {centerX:0.450704225352113, centerY:0.873417721518987, radius:radius,label: '6'},
+    {centerX:0.232394366197183, centerY:0.810126582278481, radius:radius,label: 'F'},
+    {centerX:0.408450704225352, centerY:0.645569620253165, radius:radius,label: '7'},
+    {centerX:0.0704225352112676, centerY:0.620253164556962, radius:radius,label: 'G'},
+    {centerX:0.190140845070423, centerY:0.392405063291139, radius:radius,label: '8'},
+    {centerX:0.0915492957746479, centerY:0.20253164556962, radius:radius,label: 'H'},
+]
+// canvas width
+var SuggestedWidthFaCE = 850;
+var SuggestedHeightFaCE = 475;
+// use timer?
+var ShowTimerFaCE = false;
+// task duration
+var DurationFaCE = 1000*60*5
+
 var TrailMakingA_Default = {
     Circles: CirclesA_001,
     SuggestedWidth: SuggestedWidthA,
@@ -209,8 +235,22 @@ var TrailMakingB_001 = {
     InstructionsShownWithPractice: InstructionsShownWithPracticeB
 }
 
+var TrailMaking_FaCE = {
+    Circles: Circles_FaCE,
+    SuggestedWidth: SuggestedWidthFaCE,
+    SuggestedHeight: SuggestedHeightFaCE,
+    ShowTimer: false,
+    Duration: DurationFaCE,
+    ShowPractice: false,
+    PracticeCircles: null,
+    PracticeSuggestedWidth: null,
+    PracticeSuggestedHeight: null,
+    Instructions: InstructionsB,
+    InstructionsShownWithPractice: InstructionsShownWithPracticeB
+}
 
 add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
 add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
 add('TrailMakingA_001', function(){ TrailMaking_parameters = TrailMakingA_001});
 add('TrailMakingB_001', function(){ TrailMaking_parameters = TrailMakingB_001});
+add('TrailMaking_FaCE', function(){ TrailMaking_parameters = TrailMaking_FaCE});

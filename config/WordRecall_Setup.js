@@ -24,6 +24,15 @@ var RAVLT_001 = {
 	TimePerWord: 500, // milliseconds
 }
 
+var FaCE_Default = {
+	FolderName: 'FaCESet001/',
+	FileExtension: '.wav',
+	NBlocks:2,
+	RecallType:'Manual',
+	RecallDuration: 120, // seconds
+	TimePerWord: 500, // milliseconds
+}
+
 
 add('RAVLT_Default', function(){ RAVLT_parameters = RAVLT_Default});
 add('RAVLT_001', function(){ RAVLT_parameters = RAVLT_001});

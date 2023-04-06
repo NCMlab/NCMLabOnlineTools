@@ -1,6 +1,6 @@
 
 
-var jsPsychSketchpad = (function (jspsych) {
+var jsPsychSketchpadTrailMaking = (function (jspsych) {
   'use strict';
 
   const info = {
@@ -236,6 +236,7 @@ var jsPsychSketchpad = (function (jspsych) {
           this.InCircle = false;
           this.InCorrectCircle = false;
           this.InsideWhichCircle = -99
+          console.log(this)
       }
       trial(display_element, trial, on_load) {
           this.display = display_element;
@@ -509,7 +510,6 @@ var jsPsychSketchpad = (function (jspsych) {
           this.ctx.fillStyle = color;
           this.ctx.lineWidth = 2;
           this.ctx.fill();
-
       }
 
       convert_circles_locations(Circles, LocationsAsProportions, WindowX, WindowY)
