@@ -2,108 +2,47 @@
 // Define internal variables
 var timeline = [];
 var RecallDuration = 60
+var responseSerSub = [];
+var PreviousResult = SerialSubtract_parameters.StartValue
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 }
 
-var TotalList = []
-var SimpleList = []
-function ThisGetRow(Input, Row) {
-  // extract the data for a single block
-   const dimensions = [ Input.length, Input[0].length ];
-   var row = []
-   for (var i = 0; i < dimensions[1]; i++) {
-    row.push(Input[Row][i])
-   }
-   return row
-  }
 
-var WaitForWords = function() {
-      annyang.addCallback('result', function(userSaid) {
-        console.log('sound stopped');
-        // userSaid contains multiple possibilities for what was heard
-        console.log(userSaid)
-        SimpleList.push(userSaid)
-       /* // Parse userSaid. It provides five possibilities for what it heard for each word
-        // Make a table of rows for eahc unique word and columns for each possibility
-        
-        // i is the columns
-        var NWords = -99
-        for ( var i = 0; i < userSaid.length; i++ ) { // cycle over possible pronunciations
-          HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-          if ( NWords < 0 ) {NWords = HeardWords.length} // cycle over words 
-        }
-        var Words = create2DArray(NWords,userSaid.length)
-        for ( var i = 0; i < userSaid.length; i++ ) { // number of words
-          HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-          for ( var j = 0; j < HeardWords.length; j++ ) // number of pronunciations
-          {
-            Words[j][i] = HeardWords[j]
-          }
-        }
-        //console.log(Words)
-        for ( var i = 0; i < NWords; i++ ) {
-          TotalList.push(ThisGetRow(Words,i))
-        }
-        console.log(TotalList)*/
-        //jsPsych.finishTrial();
-        document.getElementById("jspsych-html-button-response-button-0").disabled = true;
-       });
-
-}
 // =======================================================================
 // Define all of the different the stimuli 
 
-var Fluency = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {
-
-      var stim = 'Please, say as many '+jsPsych.timelineVariable('Category')+' as possible.<p><span id="clock">1:00</span></p>'
-      return stim 
-    },
-    choices: ['Next'], 
-    margin_horizontal: GapBetweenButtons,
-    post_trial_gap: 0,
-    prompt: '', //Add this to config file
-    on_start: function() {
-      /* HeardList = []
-      const commands01 = {'*search': RecordSpokenWords};
-      const commands02 = {'result': RecordUserSaid};
-      annyang.addCommands(commands02);
-      annyang.start({autorestart: true, continuous: true});      
-      */
-      annyang.start({autorestart: false, continuous: true});
-      WaitForWords()
-    },
-    on_finish: function(data){
-      //data.HeardList = TotalList
-      data.SimpleList = SimpleList
-      data.task = 'Recall'
-      clearInterval(interval);
-      annyang.abort()
-      console.log(data.HeardList)
-    },
-    on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    document.querySelector('button').disabled = false;
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-    }
+var get_response = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+      var prompt = 'Substract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.'
+      return PutStimIntoTable(prompt+response_gridSerSub) 
+  },
+  choices: ['Enter'],
+  prompt:'',
+  on_finish: function(data) {
+      var curans = responseSerSub;
+      console.log(curans)
+      data.NumberList = curans
+      PreviousResult = curans
+      // update the staircase
+      //staircase.Decide(accuracy)
+      //clear the response for the next trial
+      responseSerSub = []; 
   }
+};
+
+var get_response2 = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: "HELLO WORLD",
+  choices: ['Enter'],
+  prompt:'',
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+};
+
 
 
 // Define instructions
@@ -126,17 +65,10 @@ var Instructions = {
 // Define the test procedure which does NOT provide feedback
   var instr_procedure01 = {
       timeline: [Instructions],
-      timeline_variables: Fluency_Instructions,
+      timeline_variables: SerialSubtraction_Instructions,
       randomize_order: false,
       repetitions: 1,
     }
-
-  var List = {
-      timeline: [Fluency],
-      randomize_order: false,
-      timeline_variables: [Fluency_parameters],
-      repetitions: 1,  
-  }
   var thank_you = {
     timeline: [Instructions],
     timeline_variables: ThankYouText,
@@ -146,7 +78,14 @@ var Instructions = {
 // ======================================================================= 
 // Add procedures to the timeline
 
-
+var procedure = {
+  timeline: [get_response],
+  loop_function: function(){
+    if ( PreviousResult < SerialSubtract_parameters.StopValue )
+    {return false}
+    else {return true}
+  }
+};
 timeline.push(instr_procedure01)
-timeline.push(List)
+timeline.push(procedure)
 timeline.push(thank_you)

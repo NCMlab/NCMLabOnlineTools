@@ -10,6 +10,7 @@
     <title>NCMLab: Animal Fluency Test</title>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>    
   <body>
     <script src="../../jspsych/dist/jspsych.js"></script>
@@ -26,22 +27,19 @@
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/Fluency_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/SerialSubtraction_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     
-    <script src="../../config/Fluency_Setup.js"></script>
+    <script src="../../config/SerialSubtraction_Setup.js"></script>
     <script>
       // This is where the parameters to be used as specified.
       // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
       pseudoSwitch('SerialSubtract_Default')
       console.log(SerialSubtract_parameters)
     </script>
-    <script src="../../functions/TaskSpecificFunctions/AFT_function.js"></script>
-    <script src="../../functions/TaskSpecificFunctions/SRT_function.js"></script>
     
-    <script src="../../functions/Experiments/Fluency_experiment.js"></script>
-    <script src="../../functions/GeneralPurposeFunctions/annyang.min.js"></script>
+    <script src="../../functions/Experiments/SerialSubtraction_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
