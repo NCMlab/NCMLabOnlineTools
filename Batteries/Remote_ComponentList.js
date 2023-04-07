@@ -24,8 +24,8 @@ add('ICAR Matrix Reasoning', function(){jatos.startComponent(16)});
 add('Cube Copy', function(){jatos.startComponent(15)});
 add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
-add('Serial Subtraction',function(){jatos.startComponent(21)});
-add('Fluency',function(){jatos.startComponent(22)});
+add('Serial Subtraction',function(){jatos.startComponent(22)});
+add('Fluency',function(){jatos.startComponent(23)});
 const BatteryHtmlID = 1
 
 
