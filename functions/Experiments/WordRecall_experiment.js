@@ -20,20 +20,32 @@ var SimpleWordList = []
 var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
-var AudioFileListB = AudioFileListA
 var TrialCount
 var RecallProcedureB
+var AudioFileListA
+var AudioFileListB
+var WordListAForRecall = 'empty'
+var WordListBForRecall
+var AudioFileDictListA
+var AudioFileDictListB
+var ItemCount = 0
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 }
+
 // preload audio
+// There will always be an A list
 var preload_audioA = {
   type: jsPsychPreload,
-  audio: AudioFileListA,
+  audio: function(){return AudioFileListA},
+  on_start: function() {console.log(AudioFileDictListA)}
 };
-
+var preload_audioB = {
+  type: jsPsychPreload,
+  audio: AudioFileListB,
+};
 
 var if_BList_preload = {
   timeline: [preload_audioB],
@@ -41,10 +53,119 @@ var if_BList_preload = {
     console.log(WordRecall_parameters.BListFlag)
     return  WordRecall_parameters.BListFlag}
 }
-var preload_audioB = {
-  type: jsPsychPreload,
-  audio: AudioFileListB,
-};
+
+// Make response array
+var MakeResponseArray = {
+  type: jsPsychCallFunction,
+  func: function() {
+    console.log(WordRecall_parameters.NBlocks)
+    var ResponseArray = CreateResponseArray(NWords, WordRecall_parameters.NBlocks)    
+  }
+}
+var ResetCounter = {
+  type: jsPsychCallFunction,
+  func: function() {
+    ItemCount = 0
+  }
+}
+
+ItemCount
+var MakeWordListA = {
+  type: jsPsychCallFunction,
+  func: function() {
+    console.log(WordRecall_parameters)
+    SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+    // Make a simple list of the alternative pronunciations
+    AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
+    // Make a full list the words and thier alternative pronunciations
+    FullWordListA = SimpleWordListA.concat(AltSimpleWordListA)
+    // indices fro the primary word list
+    WordListIndexA = CreateWordListIndex(WordListA)
+    // indices for the world list containing the alternatives
+    FullListIndexA = CreateSimpleIndexList(WordListA, AlternatePronunciationsWordListA)
+    // convert WordList to a list of filenames for teh audio files for each word
+    AudioFileListA = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListA, WordRecall_parameters.FileExtension)
+    // convert it back to a list of dictionaries
+    AudioFileDictListA = AudioFileListA.map(function(e) {
+      return {Word: e}
+    })
+    // Create an array so the recall procedure can use a timelinevariable
+    WordListAForRecall = {
+      'WordList': WordListA,
+      'SimpleWordList': SimpleWordListA,
+      'FullWordList': FullWordListA,
+      'WordListIndex': WordListIndexA,
+      'FullListIndex': FullListIndexA,
+    }
+    console.log(WordListAForRecall)
+    console.log(AudioFileListA)
+  }
+}
+
+var MakeWordListB = {
+  type: jsPsychCallFunction,
+  func: function() {
+    // PREP WORK FOR WORD LIST B
+    // take list of words as dictionary items and make a simple list out of it
+    SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+    // Make a simple list of the alternative pronunciations
+    AltSimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListB))
+    // Make a full list the words and thier alternative pronunciations
+    FullWordListB = SimpleWordListB.concat(AltSimpleWordListB)
+    // indices fro the primary word list
+    WordListIndexB = CreateWordListIndex(WordListB)
+    // indices for the world list containing the alternatives
+    FullListIndexB = CreateSimpleIndexList(WordListB, AlternatePronunciationsWordListB)
+    // convert WordList to a list of filenames for teh audio files for each word
+    AudioFileListB = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListB, WordRecall_parameters.FileExtension)
+    // convert it back to a list of dictionaries
+    AudioFileDictListB = AudioFileListB.map(function(e) {
+      return {Word: e}
+    })
+    // Create an array so the recall procedure can use a timelinevariable
+    WordListBForRecall = {
+      'WordList': WordListB,
+      'SimpleWordList': SimpleWordListB,
+      'FullWordList': FullWordListB,
+      'WordListIndex': WordListIndexB,
+      'FullListIndex': FullListIndexB,
+    }
+  }
+}
+
+var if_Spoken_RecallA = {
+  timeline: [SpokenRecallA],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Spoken' )
+    { return true }
+    else { return false }
+  }
+}
+var if_Manual_RecallA = {
+  timeline: [ManualRecallA],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Manual' )
+    { return true }
+    else { return false }
+  }
+}
+var if_Spoken_RecallB = {
+  timeline: [SpokenRecallB],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Spoken' && WordRecall_parameters.BListFlag)
+    { return true }
+    else { return false }
+  }
+}
+var if_Manual_RecallB = {
+  timeline: [ManualRecallB],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Manual' && WordRecall_parameters.BListFlag)
+    { return true }
+    else { return false }
+  }
+}
+
 
 // =======================================================================
 // Define all of the different the stimuli 
@@ -66,13 +187,14 @@ var AudioStimulus = {
         Stim = ''
         // find what trial index this is
         ind = (TrialCount) % NWords
-        Stim = jsPsych.timelineVariable('Word')
+        //Stim = jsPsych.timelineVariable('Word')
+        console.log(ItemCount)
+        Stim = AudioFileDictListA[ItemCount].Word
         // return the chosen stimulus
-        console.log(Stim)        
         return Stim
       },
     choices: [],  
-    trial_duration: WordRecall_parameters.TimePerWord,
+    trial_duration: function(){return WordRecall_parameters.TimePerWord},
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -192,6 +314,19 @@ var SendData = {
       repetitions: 1,
       randomize_order: false      
   }
+
+  var LoopAudioFiles = {
+    timeline: [AudioStimulus],
+    loop_function: function(){
+      console.log(ItemCount)
+      if ( ItemCount < AudioFileDictListA.length-1 ) {
+        ItemCount += 1
+        return true
+      }
+      else { return false}
+    }
+  }
+
   var PresentListOfWordsB = {
       timeline: [fixation, AudioStimulus],
       timeline_variables: AudioFileDictListB,
@@ -200,44 +335,57 @@ var SendData = {
   }
 
 var FirstBlock = {
-      timeline: [instr_procedure01, PresentListOfWordsA, RecallProcedureA],
+      timeline: [instr_procedure01, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
       randomize_order: false,
       repetitions: 1,
   } 
 
   var AfterFirstBlock = {
-      timeline: [instr_procedure02, PresentListOfWordsA, RecallProcedureA],
+      timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
       randomize_order: false,
       repetitions: WordRecall_parameters.NBlocks - 1,
   } 
 
   var BlockB = {
-      timeline: [instr_procedure03, PresentListOfWordsB, RecallProcedureB],
+      timeline: [instr_procedure03, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
       randomize_order: false,
       repetitions: 1,
   } 
   var FinalRecalBlockA = {
-      timeline: [instr_procedure04, RecallProcedureA],
+      timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA],
       randomize_order: false,
       repetitions: 1,
   } 
 
   var thank_you = {
-      timeline: [SendData],
+      timeline: [Instructions],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
     }  
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(instr_procedure01)
-timeline.push(preload_audioA)
-timeline.push(if_BList_preload)
+timeline.push(MakeWordListA)
+timeline.push(MakeWordListB)
 
+
+
+timeline.push(preload_audioA)
+//timeline.push(if_BList_preload)
+timeline.push(MakeResponseArray)
 timeline.push(FirstBlock)
+timeline.push(AfterFirstBlock)
+
+
+
+//timeline.push(instr_procedure01)
+
+
+//timeline.push(FirstBlock)
+
 //timeline.push(instr_procedure01)
 //timeline.push(PresentListOfWordsA)
-timeline.push(AfterFirstBlock)
+
 //timeline.push(BlockB)
 //timeline.push(FinalRecalBlockA)
 //timeline.push(thank_you)
@@ -246,6 +394,8 @@ timeline.push(AfterFirstBlock)
 //timeline.push(recallB)
 //timeline.push(instr_procedure04)
 //timeline.push(recallA)
+
+
 timeline.push(thank_you)
 
 

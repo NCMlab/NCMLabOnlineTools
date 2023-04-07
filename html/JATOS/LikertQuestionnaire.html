@@ -27,8 +27,8 @@
     <script src="InstructionsAndStimuli/EN/Questionnaires/cuditr.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/panas.js"></script>  
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai.js"></script> 
-        <script>
-        var CurrentTest
+    <script>
+      var CurrentTest
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
       var BatteryHtmlID
@@ -55,7 +55,6 @@
 </body>
 <script>
 var setup = []
-var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
@@ -90,7 +89,6 @@ var jsPsych = initJsPsych({
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jatos.addAbortButton({

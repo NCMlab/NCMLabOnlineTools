@@ -119,6 +119,8 @@ var FindWordListLength = function(WordList) {
 
 // Make functions for scoring the SRT results
 function create2DArray(Nrows, Ncols) {
+	console.log("NRows: " + Nrows)
+	console.log("NCols: " + Ncols)
     var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(0))
     return arr
   }
