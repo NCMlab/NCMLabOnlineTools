@@ -10,6 +10,11 @@ var PracticeCanvasHeight
 var PracticeCanvasWidth
 var InstructionText
 
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: FullScreenMode
+}
+
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,

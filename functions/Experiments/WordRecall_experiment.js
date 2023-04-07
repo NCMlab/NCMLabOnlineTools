@@ -32,7 +32,7 @@ var ItemCount = 0
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 
 // preload audio
@@ -383,6 +383,7 @@ var FirstBlock = {
   }      
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
 /* timeline.push(MakeWordListA)

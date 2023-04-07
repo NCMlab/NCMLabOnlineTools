@@ -1,6 +1,12 @@
 
 var timeline = []
 var NeckerCubeFileName = 'NeckerCube.png'
+
+var enter_fullscreen = {
+      type: jsPsychFullscreen,
+      fullscreen_mode: FullScreenMode
+    }
+    
 var trial = {
       type: jsPsychSketchpad,
       prompt: Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">',
@@ -39,7 +45,7 @@ var thank_you = {
       randomize_order: false,
       repetitions: 1,
  }
- 
+timeline.push(enter_fullscreen)
 timeline.push(welcome)
 timeline.push(trial)
 timeline.push(thank_you)

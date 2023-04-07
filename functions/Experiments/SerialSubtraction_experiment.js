@@ -7,7 +7,7 @@ var PreviousResult
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 
 
@@ -95,6 +95,7 @@ var procedure = {
     else {return true}
   }
 };
+timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
 timeline.push(instr_procedure01)
 timeline.push(procedure)

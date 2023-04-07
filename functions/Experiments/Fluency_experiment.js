@@ -6,7 +6,7 @@ var category
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 
 var GetCategory = {
@@ -150,7 +150,7 @@ var Instructions = {
 // ======================================================================= 
 // Add procedures to the timeline
 
-
+timeline.push(enter_fullscreen)
 timeline.push(instr_procedure01)
 timeline.push(GetCategory)
 timeline.push(Fluency)
