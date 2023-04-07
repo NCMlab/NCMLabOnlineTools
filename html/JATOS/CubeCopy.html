@@ -69,6 +69,12 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','CubeCopy_data.csv');
       }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management
+      console.log("BATTERY HTML: "+BatteryHtmlID)
       if (typeof BatteryHtmlID != 'undefined') {
         jatos.startComponent(BatteryHtmlID);
       }

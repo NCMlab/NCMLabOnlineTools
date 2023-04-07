@@ -15,6 +15,7 @@ var RAVLT_Default = {
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
 }
 
 var RAVLT_001 = {
@@ -25,6 +26,7 @@ var RAVLT_001 = {
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
 }
 
 var FaCE_Default = {
@@ -35,9 +37,21 @@ var FaCE_Default = {
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
 	TimePerWord: 1000, // milliseconds
+	DelayedRecallFlag: false,
+}
+var FaCE_Default_Delayed = {
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	FileExtension: '.wav',
+	NBlocks: 2,
+	BListFlag: false,
+	RecallType:'Manual',
+	RecallDuration: 120, // seconds
+	TimePerWord: 1000, // milliseconds
+	DelayedRecallFlag: true,
 }
 
 
 add('RAVLT_Default', function(){ WordRecall_parameters = RAVLT_Default});
 add('RAVLT_001', function(){ WordRecall_parameters = RAVLT_001});
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
+add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});

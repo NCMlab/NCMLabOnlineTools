@@ -2,10 +2,19 @@
 // Define internal variables
 var timeline = [];
 var RecallDuration = 60
+var category
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
+}
+
+var GetCategory = {
+  type: jsPsychCallFunction,
+  func: function() {
+    console.log(Fluency_parameters)
+    category = Fluency_parameters.Category
+  }
 }
 
 var TotalList = []
@@ -60,7 +69,7 @@ var Fluency = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
 
-      var stim = 'Please, say as many '+jsPsych.timelineVariable('Category')+' as possible.<p><span id="clock">1:00</span></p>'
+      var stim = 'Please, say as many '+category+' as possible.<p><span id="clock">1:00</span></p>'
       return stim 
     },
     choices: ['Next'], 
@@ -131,12 +140,7 @@ var Instructions = {
       repetitions: 1,
     }
 
-  var List = {
-      timeline: [Fluency],
-      randomize_order: false,
-      timeline_variables: [Fluency_parameters],
-      repetitions: 1,  
-  }
+
   var thank_you = {
     timeline: [Instructions],
     timeline_variables: ThankYouText,
@@ -148,5 +152,6 @@ var Instructions = {
 
 
 timeline.push(instr_procedure01)
-timeline.push(List)
+timeline.push(GetCategory)
+timeline.push(Fluency)
 timeline.push(thank_you)

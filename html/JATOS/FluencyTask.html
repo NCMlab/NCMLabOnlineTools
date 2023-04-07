@@ -32,9 +32,10 @@
     </script>
     <script src="functions/TaskSpecificFunctions/AFT_function.js"></script>
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
+    <script src="config/Fluency_Setup.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
     <script>
-      var Stroop_parameters = 'empty'
+      var Fluency_parameters = 'empty'
       var parameters = 'empty'
       var BatteryHtmlID
       jatos.onLoad(() => {
@@ -42,6 +43,7 @@
         if (typeof BatteryHtmlID === 'undefined') {parameters = 'Fluency_F'}
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)      
+        console.log(Fluency_parameters)
       })
     </script>  
     <script src="functions/Experiments/Fluency_experiment.js"></script>

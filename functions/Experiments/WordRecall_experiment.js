@@ -363,51 +363,34 @@ var FirstBlock = {
       randomize_order: false,
       repetitions: 1,
     }  
+
+  var DelayedRecallNo = {
+    timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, FirstBlock, AfterFirstBlock],
+    conditional_function: function() {
+      console.log(WordRecall_parameters)
+      if ( WordRecall_parameters.DelayedRecallFlag)
+      { return false }
+      else { return true }
+    }
+  }    
+  var DelayedRecallYes = {
+    timeline: [MakeWordListA, FinalRecalBlockA],
+    conditional_function: function() {
+      if ( WordRecall_parameters.DelayedRecallFlag)
+      { return true }
+      else { return false }
+    }
+  }      
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(MakeWordListA)
+timeline.push(DelayedRecallNo)
+timeline.push(DelayedRecallYes)
+/* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
-
-
-
 timeline.push(preload_audioA)
-//timeline.push(if_BList_preload)
+timeline.push(if_BList_preload)
 timeline.push(MakeResponseArray)
 timeline.push(FirstBlock)
 timeline.push(AfterFirstBlock)
-
-
-
-//timeline.push(instr_procedure01)
-
-
-//timeline.push(FirstBlock)
-
-//timeline.push(instr_procedure01)
-//timeline.push(PresentListOfWordsA)
-
-//timeline.push(BlockB)
-//timeline.push(FinalRecalBlockA)
-//timeline.push(thank_you)
-//timeline.push(instr_procedure03)
-//timeline.push(PresentListOfWordsB)
-//timeline.push(recallB)
-//timeline.push(instr_procedure04)
-//timeline.push(recallA)
-
-
 timeline.push(thank_you)
-
-
-/*timeline.push(block1);
-//timeline.push(recall1);
-timeline.push(block1);
-timeline.push(recall1);
-timeline.push(block1);
-timeline.push(recall1);
-timeline.push(block1);
-timeline.push(recall1);
-timeline.push(block1);
-timeline.push(recall1);*/
-
-
+*/
