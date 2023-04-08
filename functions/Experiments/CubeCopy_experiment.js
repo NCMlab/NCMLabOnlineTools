@@ -48,7 +48,7 @@ var thank_you = {
 
  var ScoreResults = {
       type: jsPsychCallFunction,
-      func: function() {
+      func: function(data) {
         data = CubeCopy_Scoring(data)
         data.task = 'Sending Data'
       }

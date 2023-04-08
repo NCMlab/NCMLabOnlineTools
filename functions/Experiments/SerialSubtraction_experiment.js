@@ -98,7 +98,7 @@ var procedure = {
 
 var ScoreResults = {
   type: jsPsychCallFunction,
-  func: function() {
+  func: function(data) {
     data = SerialSubtraction_Scoring(data,staircase) 
     data.task = 'Sending Data'
   }

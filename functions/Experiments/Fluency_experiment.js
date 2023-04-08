@@ -147,6 +147,13 @@ var Instructions = {
     randomize_order: false,
     repetitions: 1,
   }  
+  var ScoreResults = {
+    type: jsPsychCallFunction,
+    func: function(data) {
+      data = Fluency_Scoring(data, ResponseArray)
+      data.task = 'Sending Data'
+    }
+  }  
 // ======================================================================= 
 // Add procedures to the timeline
 

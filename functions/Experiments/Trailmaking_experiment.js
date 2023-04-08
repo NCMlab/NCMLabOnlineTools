@@ -67,7 +67,7 @@ var GetInstructionValuesFromInputParameters = {
 
 var ScoreResults = {
   type: jsPsychCallFunction,
-  func: function() {
+  func: function(data) {
     data = TrailMaking_Scoring(data)
     data.task = 'Sending Data'
   }
