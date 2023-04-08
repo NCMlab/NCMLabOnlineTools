@@ -279,7 +279,7 @@ var SendData = {
 var ScoreResults = {
   type: jsPsychCallFunction,
   func: function(data) {
-    data = RAVLT_Scoring(data, ResponseArray)
+    data = RAVLT_Scoring(data)
     data.task = 'Sending Data'
   }
 }
