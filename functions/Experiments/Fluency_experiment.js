@@ -129,7 +129,24 @@ var Instructions = {
       choices: ['Next'], 
     }  
 
-
+var SendData = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function()
+  {
+    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    return stim
+  },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: '',
+  trial_duration: 400, 
+  on_finish: function(data){
+        console.log(data)
+    data = Fluency_Scoring(data)
+    data.task = 'Sending Data'
+  }
+}
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
@@ -142,18 +159,12 @@ var Instructions = {
 
 
   var thank_you = {
-    timeline: [Instructions],
+    timeline: [SendData],
     timeline_variables: ThankYouText,
     randomize_order: false,
     repetitions: 1,
   }  
-  var ScoreResults = {
-    type: jsPsychCallFunction,
-    func: function(data) {
-      data = Fluency_Scoring(data, ResponseArray)
-      data.task = 'Sending Data'
-    }
-  }  
+
 // ======================================================================= 
 // Add procedures to the timeline
 

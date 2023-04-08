@@ -65,13 +65,7 @@ var GetInstructionValuesFromInputParameters = {
   }
 }
 
-var ScoreResults = {
-  type: jsPsychCallFunction,
-  func: function(data) {
-    data = TrailMaking_Scoring(data)
-    data.task = 'Sending Data'
-  }
-}
+
 
 // =======================================================================
 var enter_fullscreen = {
@@ -161,6 +155,25 @@ var TestInstructionsPage02 = {
   prompt: '',
   choices: ['Next'], 
 }
+
+var SendData = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function()
+  {
+    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    return stim
+  },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: '',
+  trial_duration: 400, 
+  on_finish: function(data){
+        console.log(data)
+    data = TrailMaking_Scoring(data)
+    data.task = 'Sending Data'
+  }
+}
 // =======================================================================    
 // Define procedures using the stimuli
 
@@ -188,7 +201,7 @@ var StartTaskPrompt = {
 }
 
 var thank_you = {
-  timeline: [Instructions],
+  timeline: [SendData],
   timeline_variables: ThankYouText,
   randomize_order: false,
   repetitions: 1,
@@ -216,6 +229,6 @@ var thank_you = {
   timeline.push(if_node)
   timeline.push(StartTaskPrompt)
   timeline.push(trials)
-  timeline.push(ScoreResults)
+  timeline.push(thank_you)
   
   

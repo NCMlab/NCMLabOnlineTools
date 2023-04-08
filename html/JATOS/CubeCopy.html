@@ -16,7 +16,7 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
-    
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych_addons/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -39,12 +39,12 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        console.log(BatteryHtmlID)
-        console.log(jatos.studySessionData)
-        parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'CubeCopy_Default'
+          console.log(parameters)
+        }
+        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)      
-        console.log(parameters)
-        console.log(CubeCopy_parameters)
       })
     </script> 
     <script src="functions/Scoring/CubeCopy_Scoring.js"></script>

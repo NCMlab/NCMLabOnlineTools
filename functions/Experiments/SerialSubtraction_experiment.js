@@ -42,7 +42,25 @@ var get_response = {
       responseSerSub = []; 
   }
 };
-
+var SendData = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function()
+  {
+    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    return stim
+  },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: '',
+  trial_duration: 400, 
+  on_finish: function(data){
+        console.log(data)
+    data = SerialSubtraction_Scoring(data)
+    data.task = 'Sending Data'
+  }
+}
+// ==========
 var get_response2 = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: "HELLO WORLD",
@@ -79,7 +97,7 @@ var Instructions = {
       repetitions: 1,
     }
   var thank_you = {
-    timeline: [Instructions],
+    timeline: [SendData],
     timeline_variables: ThankYouText,
     randomize_order: false,
     repetitions: 1,
@@ -96,13 +114,6 @@ var procedure = {
   }
 };
 
-var ScoreResults = {
-  type: jsPsychCallFunction,
-  func: function(data) {
-    data = SerialSubtraction_Scoring(data,staircase) 
-    data.task = 'Sending Data'
-  }
-}
 
 timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)

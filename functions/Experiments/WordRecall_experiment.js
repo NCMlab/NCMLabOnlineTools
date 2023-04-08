@@ -271,18 +271,12 @@ var SendData = {
       prompt: '',
       choices: ['Next'], 
       on_finish: function(data){
-        data = RAVLT_Scoring(data, ResponseArray)
+        data = WordRecall_Scoring(data)
         data.task = 'Sending Data'
         
       }
     }
-var ScoreResults = {
-  type: jsPsychCallFunction,
-  func: function(data) {
-    data = WordRecall_Scoring(data)
-    data.task = 'Sending Data'
-  }
-}
+
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
@@ -393,6 +387,7 @@ timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
 timeline.push(ScoreResults)
+timeline.push(thank_you)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)
@@ -400,5 +395,5 @@ timeline.push(if_BList_preload)
 timeline.push(MakeResponseArray)
 timeline.push(FirstBlock)
 timeline.push(AfterFirstBlock)
-timeline.push(thank_you)
+
 */

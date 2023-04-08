@@ -245,18 +245,12 @@ var SendData = {
     prompt: '',
     choices: ['Next'], 
     on_finish: function(data){
-    //data = DigitSpan_Scoring(data,staircase) 
+    data = DigitSpan_Scoring(data) 
     data.task = 'Sending Data'
 
     }
 }  
-var ScoreResults = {
-  type: jsPsychCallFunction,
-  func: function() {
-    data = DigitSpan_Scoring(data,staircase) 
-    data.task = 'Sending Data'
-  }
-}
+
 
 // =======================================================================
 // Define any logic used in the experiment
