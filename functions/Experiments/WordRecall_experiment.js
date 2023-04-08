@@ -386,7 +386,6 @@ var FirstBlock = {
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
-timeline.push(ScoreResults)
 timeline.push(thank_you)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
