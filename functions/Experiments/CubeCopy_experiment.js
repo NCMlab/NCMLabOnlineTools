@@ -45,8 +45,16 @@ var thank_you = {
       randomize_order: false,
       repetitions: 1,
  }
+
+ var ScoreResults = {
+      type: jsPsychCallFunction,
+      func: function() {
+        data = CubeCopy_Scoring(data)
+        data.task = 'Sending Data'
+      }
+    }
 timeline.push(enter_fullscreen)
 timeline.push(welcome)
 timeline.push(trial)
-timeline.push(thank_you)
+timeline.push(ScoreResults)
 

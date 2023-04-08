@@ -95,8 +95,17 @@ var procedure = {
     else {return true}
   }
 };
+
+var ScoreResults = {
+  type: jsPsychCallFunction,
+  func: function() {
+    data = SerialSubtraction_Scoring(data,staircase) 
+    data.task = 'Sending Data'
+  }
+}
+
 timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
 timeline.push(instr_procedure01)
 timeline.push(procedure)
-timeline.push(thank_you)
+timeline.push(ScoreResults)

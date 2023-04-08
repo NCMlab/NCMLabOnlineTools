@@ -250,6 +250,14 @@ var SendData = {
 
     }
 }  
+var ScoreResults = {
+  type: jsPsychCallFunction,
+  func: function() {
+    data = DigitSpan_Scoring(data,staircase) 
+    data.task = 'Sending Data'
+  }
+}
+
 // =======================================================================
 // Define any logic used in the experiment
 var present_audio = {
@@ -356,4 +364,4 @@ timeline.push(if_visual_forward_instr)
 timeline.push(if_audio_backward_instr)
 timeline.push(if_visual_backward_instr)
 timeline.push(procedure)
-timeline.push(thank_you)
+timeline.push(ScoreResults)

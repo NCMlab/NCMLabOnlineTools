@@ -276,7 +276,13 @@ var SendData = {
         
       }
     }
-
+var ScoreResults = {
+  type: jsPsychCallFunction,
+  func: function() {
+    data = RAVLT_Scoring(data, ResponseArray)
+    data.task = 'Sending Data'
+  }
+}
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
@@ -358,7 +364,7 @@ var FirstBlock = {
   } 
 
   var thank_you = {
-      timeline: [Instructions],
+      timeline: [SendData],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
@@ -386,6 +392,7 @@ var FirstBlock = {
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
+timeline.push(ScoreResults)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)

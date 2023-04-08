@@ -65,6 +65,14 @@ var GetInstructionValuesFromInputParameters = {
   }
 }
 
+var ScoreResults = {
+  type: jsPsychCallFunction,
+  func: function() {
+    data = TrailMaking_Scoring(data)
+    data.task = 'Sending Data'
+  }
+}
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -208,6 +216,6 @@ var thank_you = {
   timeline.push(if_node)
   timeline.push(StartTaskPrompt)
   timeline.push(trials)
-  timeline.push(thank_you)
+  timeline.push(ScoreResults)
   
   
