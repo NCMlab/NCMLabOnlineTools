@@ -5,7 +5,7 @@ var GetReadyInstructions = 'Get ready for the next trial'
 
 var Instructions01 = [
 	{'page': 'You are going to hear a list of words. Listen carefully. At the end of the list you are to repeat back as many words as you can remember.'},
-	{'page': "It doesn't matter in what order you repeat them, just try to remember as many as you can. Press Next to begin."},
+	{'page': "It doesn't matter in what order you repeat them, just try to remember as many as you can. <p>Press Next to begin.</p>"},
 	]
 
 

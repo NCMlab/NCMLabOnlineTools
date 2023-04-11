@@ -1,3 +1,6 @@
+// Need to add battery instructions
+// overall scoring of a battery?
+
 var timeline = []
 var enter_fullscreen = {
   type: jsPsychFullscreen,

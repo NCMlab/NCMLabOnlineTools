@@ -120,3 +120,16 @@ var response_gridSerSub =
   '<button id = button_0 class = "square num-button" onclick = "recordClickSerSub(this)"><div class = content><div class = numbers>0</div></div></button>' +
   '<button class = clear_button id = "ClearButton" onclick = "clearResponseSerSub()">Clear</button>'+
   '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
+
+
+  function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {
+    // cycle over the list of stimuli and make a list of audio file paths
+    var AudioFilePaths = []
+    for ( let i = 0; i < Stimuli.length; i ++ ) {
+  //		AudioFilePaths.push({file: FolderOfAudioFiles + AudioFileNameStructure.replace('X', Stimuli[i])})
+      AudioFilePaths.push(FolderOfAudioFiles + AudioFileNameStructure.replace('N', Stimuli[i]))
+    }
+    return AudioFilePaths
+  }
+  
+  
