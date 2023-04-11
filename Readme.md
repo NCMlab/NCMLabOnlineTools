@@ -42,14 +42,14 @@ All introduction, instruction, and thank you text can be translated into other l
 The use of modifiable parameters and batteries means the end user does not need to modify any of the code that delivers the task components. They only need to develop their own personalized batteries. Once multiple batteries are developed they are administered based on a URL parameter in the hyperlink provided to participants.
 
 # Tasks currently implemented
-- Stroop Color, Word, Color/Word
+1. Stroop Color, Word, Color/Word
 	- Victoria administration
 	- Golden administration
-- Word Recall
+1. Word Recall
 	- Rey's auditory verbal learning test
 	- Manual recall with an administrator to score responses
 	- Speech recognition to score responses
-- Verbal fluency
+1. Verbal fluency
 	- Speech recognition to count responses (needs administrator to review and confirm responses)
 	- Manual responses with administrator to count responses (TO DO)
 - Trail making
