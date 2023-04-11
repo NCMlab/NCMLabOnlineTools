@@ -52,40 +52,42 @@ The use of modifiable parameters and batteries means the end user does not need 
 1. Verbal fluency
 	- Speech recognition to count responses (needs administrator to review and confirm responses)
 	- Manual responses with administrator to count responses (TO DO)
-- Trail making
+1. Trail making
 	- A or B 
 	- Automatic scoring of duration and accuracy
 	- Drawing is saved for later inspection
-- Digit span
+1. Digit span
 	- forward
 	- backward
 	- fixed number of trials
 	- continue until a set number of contiguous errors are made
 	- adaptive difficulty using staircase procedures
-- Cube copy	
+1. Cube copy	
 	- Drawing is saved for later inspection
-- Clock drawing
+1. Clock drawing
 	- Drawing is saved for later inspection
-- Rey Osterrieth Complex Figure Drawing (TO DO)
+1. Rey Osterrieth Complex Figure Drawing (TO DO)
 	- Drawing is saved for later inspection
-- Card sort
-- Letter cancellation task (DOUBLE CHECK)
-- ICAR Matrix reasoning (DOUBLE CHECK)
-- Verbal delayed match to sample (DOUBLE CHECK)
+1. Card sort
+1. Letter cancellation task (DOUBLE CHECK)
+1. ICAR Matrix reasoning (DOUBLE CHECK)
+1. Verbal delayed match to sample (DOUBLE CHECK)
 	- adaptive difficulty using staircase procedures
-- Attention Network Test (DOUBLE CHECK)
+1. Attention Network Test (DOUBLE CHECK)
 
 
 
 # Questionnaires
-- Beck Depression Index
-- Cognitive Flexibility Index
-- STAI
-- Cognitive Flexibility Scale
-- Questionnaires can be incorporated into any battery.
+1. Beck Depression Index
+1. Cognitive Flexibility Index
+1. STAI
+1. Cognitive Flexibility Scale
+1. Questionnaires can be incorporated into any battery.
 	- Current questionnaire types
 		- multiple choice
-		- Likert 
+		- Likert
+1. Easily edited configuartion file to add any other questionnaires.
+
 # Folder Structure
 * assets 
 	* icons
