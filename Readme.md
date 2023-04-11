@@ -7,14 +7,14 @@ e.g. Verbal Learning Tasks
 e.g. fluency and sentence recall tasks
 
 # Drawing Capabilities
-Administration is designed for use with touchscreen technologies. This allows the participant to perform tasks that require drawing. e.g. trail making and figure copying tasks.
+Administration is designed for use with touchscreen technologies. This allows the participant to perform tasks that require drawing. e.g. trail making and figure copying tasks. Drawing results are saved as PNG files for visual inspection. Components of drawing are also saved for more in-depth analysis of drawing component speed, variability (shakiness), etc.
 
 # Adaptive Difficulty
 Adaptive difficulty protocols are available for task administration. This allows for tasks to adjust their difficulty based on participant responses. e.g. digit span
 
 # Modifiable Parameter Sets
 Task components load up easily modifiable parameter sets. Therefore, the task component code does not need to be modified to change parameter values. 
-This allows the reuse of the task component code for multiple situations.
+This allows the reuse of the task component code for multiple situations. Parameter sets include different versions of the same test, for instance the Golden or the Victoria versions of the Stroop. It is also possible to turn on/off the welcome or thank you screen for a test. This facilitates creating screening batteries.
 
 # Immediate Modifiable Scoring
 Scoring of responses in incorporated into the task administration code. The result is that at task completion summary scores are calculated and stored in the database along with the raw data. This allows different scoring approaches based on the parameters used for task administration.
@@ -29,37 +29,63 @@ Word and number stimuli are pre-recorded using text to speech technology. This a
 # Cognitive Batteries
 Multiple tasks may be selected and ordered into batteries. Batteries may differ based on the task components included, or may include the same task components but with differing parameters. An example, may be short and long versions of the same task components. Therefore, each tasks component requires its own set of parameters that describe the number of trials, timings, etc. 
 
+# Audio Assessment 
+This is to ensure that participants can hear any audio and that their speakers are functioning properly.
+
+# Speaking Assessment
+This is to ensure that the speech recognition is working properly and that the participant's microphone is functioning.
+
+# Language
+All introduction, instruction, and thank you text can be translated into other languages and loaded via configuration files.
+
 # Summary
 The use of modifiable parameters and batteries means the end user does not need to modify any of the code that delivers the task components. They only need to develop their own personalized batteries. Once multiple batteries are developed they are administered based on a URL parameter in the hyperlink provided to participants.
 
 # Tasks currently implemented
 - Stroop Color, Word, Color/Word
-- Trail making A and B
-- Rey Aditory Verbal Learning Task
-- Digit span forward and backward
-- Verbal delayed match to sample
-- Cube copy
+	- Victoria administration
+	- Golden administration
+- Word Recall
+	- Rey's auditory verbal learning test
+	- Manual recall with an administrator to score responses
+	- Speech recognition to score responses
+- Verbal fluency
+	- Speech recognition to count responses (needs administrator to review and confirm responses)
+	- Manual responses with administrator to count responses (TO DO)
+- Trail making
+	- A or B 
+	- Automatic scoring of duration and accuracy
+	- Drawing is saved for later inspection
+- Digit span
+	- forward
+	- backward
+	- fixed number of trials
+	- continue until a set number of contiguous errors are made
+	- adaptive difficulty using staircase procedures
+- Cube copy	
+	- Drawing is saved for later inspection
 - Clock drawing
-- Rey Osterrieth Complex Figure Drawing
-- Letter cancellation task
-- Attention Network Test
-- Animal fluency
+	- Drawing is saved for later inspection
+- Rey Osterrieth Complex Figure Drawing (TO DO)
+	- Drawing is saved for later inspection
 - Card sort
-- ICAR Matrix reasoning
+- Letter cancellation task (DOUBLE CHECK)
+- ICAR Matrix reasoning (DOUBLE CHECK)
+- Verbal delayed match to sample (DOUBLE CHECK)
+	- adaptive difficulty using staircase procedures
+- Attention Network Test (DOUBLE CHECK)
+
 
 
 # Questionnaires
 - Beck Depression Index
-	- jsPsychSurveyMultiChoice
-	- Each question has its own set of options, like a mutliple choice exam
 - Cognitive Flexibility Index
-	- jsPsychSurveyLikert
-	- This is a Likert with 7 options (which are all the same)
 - STAI
-	- jsPsychSurveyLikert
 - Cognitive Flexibility Scale
-	- jsPsychSurveyLikert
-
+- Questionnaires can be incorporated into any battery.
+	- Current questionnaire types
+		- multiple choice
+		- Likert 
 # Folder Structure
 * assets 
 	* icons

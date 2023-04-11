@@ -15,18 +15,18 @@ ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
-add('Stroop Color', function(){jatos.startComponent(32)});
-add('Stroop Word', function(){jatos.startComponent(34)});
-add('Stroop Color/Word', function(){jatos.startComponent(35)});
-add('Trail Making', function(){jatos.startComponent(46)});
-add('Word Recall', function(){jatos.startComponent(39)});
-add('ICAR Matrix Reasoning', function(){jatos.startComponent(52)});
-add('Cube Copy', function(){jatos.startComponent(51)});
-add('Likert',function(){jatos.startComponent(57)});
-add('Digit Span',function(){jatos.startComponent(58)});
-add('Serial Subtraction',function(){jatos.startComponent(59)});
-add('Fluency',function(){jatos.startComponent(60)});
-const BatteryHtmlID = 54
+add('Stroop Color', function(){jatos.startComponent(3)});
+add('Stroop Word', function(){jatos.startComponent(4)});
+add('Stroop Color/Word', function(){jatos.startComponent(5)});
+add('Trail Making', function(){jatos.startComponent(17)});
+add('Word Recall', function(){jatos.startComponent(6)});
+add('ICAR Matrix Reasoning', function(){jatos.startComponent(12)});
+add('Cube Copy', function(){jatos.startComponent(11)});
+add('Likert',function(){jatos.startComponent(15)});
+add('Digit Span',function(){jatos.startComponent(16)});
+add('Serial Subtraction',function(){jatos.startComponent(18)});
+add('Fluency',function(){jatos.startComponent(19)});
+const BatteryHtmlID = 1
 
 
 var BatteryList = []
