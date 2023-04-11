@@ -11,9 +11,8 @@ var TaskNameList = []
 var TaskIconList = []
 var ComponentIDList = []
 var ComponentParameterLists = []
-
-var ButtonMapping = ['StroopColor','StroopWord','StroopColorWord']
-
+var DisplayBatteryInstructionsFlag
+var BatteryInstructions
 var TaskList = []
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
@@ -24,21 +23,22 @@ var SetupBattery = {
     type: jsPsychCallFunction,
     func: function() {
         console.log(ComponentList)
-        var result = ComponentList.find(item => item.name === 'Stroop Color').iconFileName;
-        console.log(result)
-          // read the data for this trial
-          var all_data = jsPsych.data.get();
-          // find the battery selected and extract its list of components
+
+        // read the data for this trial
+        var all_data = jsPsych.data.get();
+        console.log(all_data)
+        // find the battery selected and extract its list of components
         var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
         console.log(ParameterList)
         TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
         console.log(TaskList)
-  
+        // Extract the battery instructions
+        BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
+        console.log(BatteryInstructions)
           // Make a task list of the components of the battery
-          for ( var i = 0; i < TaskList.length; i ++ ) {
-  
+        for ( var i = 0; i < TaskList.length; i ++ ) {
           TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
-            }
+        }
         console.log(TaskIconList)
         // Check the session data to see if it is empty, if so add to it. If not, leave it alone
         JATOSSessionData = jatos.studySessionData
@@ -47,82 +47,39 @@ var SetupBattery = {
           JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
           // add the ID to return to the JATOS battery
           JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+          // If this is the first visit to this manager, display the battery instructions
+          DisplayBatteryInstructionsFlag = true
+          
         }
+        else {DisplayBatteryInstructionsFlag = false}
+        console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
         jatos.studySessionData = JATOSSessionData
         console.log(jatos.batchSession.getAll())
         console.log(jatos)
     }
 }
 var trial0 = {
-  // This displays a series of buttons on the screen for each component of this session. 
-  // The buttons are dynamically created based on what has been completed already
-    type: jsPsychHtmlButtonResponse,
-    stimulus: function() {
-    	var stim = "Press Next to Continue"
-    	return stim
-    },
-    prompt: '', 
-    // This is just a place holder to stop a jsPsych error
-    choices: ['Next'],
-    response_ends_trial: true,
-    on_start: function() {
-      console.log("HELLO WORLD")
-      // Get this user's info
-    /*fetch(`http://ncmlab.ca/get_test_results`)
-    .then((response) => response.json())
-   .then((data) => {
-   // Do something with the data
-    });*/
-    },
-    on_finish: function(){
-      // There needs to be three lists to describe a battery:
-      // A list of task names
-      // A list of task parameter object names
-      // A list of task icon filenames
-      // We start with a Battery which includes the list of names and the list of parameter object names
-      console.log(ComponentList)
-      var result = ComponentList.find(item => item.name === 'Stroop Color').iconFileName;
-      console.log(result)
-    	// read the data for this trial
-    	var all_data = jsPsych.data.get();
-    	// find the battery selected and extract its list of components
-      var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      console.log(ParameterList)
-      TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-      console.log(TaskList)
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "",
+  choices: "",
+  trial_duration: 10
+}
+var trial0a = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: function(){ return BatteryInstructions},
+  choices: ['Next']
+}
 
-    	// Make a task list of the components of the battery
-    	for ( var i = 0; i < TaskList.length; i ++ ) {
+var if_node_BatteryInstructions = {
+  timeline: [trial0a],
+  conditional_function: function() {
+    console.log(DisplayBatteryInstructionsFlag)
+      if ( DisplayBatteryInstructionsFlag )
+          { return true }
+      else { return false }
+  }
+}
 
-        TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
-		  }
-      console.log(TaskIconList)
-      // Check the session data to see if it is empty, if so add to it. If not, leave it alone
-      JATOSSessionData = jatos.studySessionData
-      if ( isEmpty(JATOSSessionData) ) {
-        // Add things to the jatos session data
-        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
-        // add the ID to return to the JATOS battery
-        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-      }
-      jatos.studySessionData = JATOSSessionData
-
-
-      console.log(TaskIconList)
-      // Get worker ID 
-      /* console.log(jatos.workerId)
-      console.log(jatos.batchId)
-      var CurrentBatchData = {}
-      CurrentBatchData.workerId = jatos.workerId
-      CurrentBatchData.currentIndex = JATOSSessionData.CurrentIndex 
-      jatos.batchSession.set("WorkerId_"+jatos.workerId, CurrentBatchData)
-      */
-      // get BATCH ID
-      console.log(jatos.batchSession.getAll())
-      console.log(jatos)
-
-    }
-  };
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
   // The buttons are dynamically created based on what has been completed already
@@ -131,7 +88,7 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
-    	var stim = '<div id="main">'
+    	var stim = '<div>This is a list of the individual testss you will complete.<p>Press Next to continue.</div><div id="main">'
     	for (var i = 0; i < TaskList.length; i++ ) 
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
@@ -164,7 +121,11 @@ var trial1 = {
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.
-timeline.push(enter_fullscreen)
-timeline.push(SetupBattery)
+  timeline.push(trial0)
+  timeline.push(SetupBattery)
+timeline.push(if_node_BatteryInstructions)
+
+//timeline.push(enter_fullscreen)
+
 timeline.push(trial1)
 
