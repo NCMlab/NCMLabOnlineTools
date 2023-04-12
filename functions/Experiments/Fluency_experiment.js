@@ -218,6 +218,15 @@ var if_ManualResponse = {
   }
 }
 
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
@@ -234,6 +243,12 @@ var instr_procedure01 = {
     repetitions: 1,
   }
 
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
 
 var thank_you = {
   timeline: [Instructions],
@@ -245,6 +260,7 @@ var thank_you = {
 // ======================================================================= 
 // Add procedures to the timeline
 
+timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure01)
 timeline.push(GetCategory)

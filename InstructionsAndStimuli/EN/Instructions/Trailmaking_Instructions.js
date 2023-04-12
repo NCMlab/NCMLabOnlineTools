@@ -1,5 +1,5 @@
-var Welcome = [
-    {'page': '<p class="Instructions">Welcome to the Trail Making experiment.</p>'},
+var WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Trail Making Task.</p>'},
 ]
 
 var PracticePrompt = [

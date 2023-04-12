@@ -2,20 +2,23 @@ Fluency_Animals = {
 	Category: '<b>Animals</b>',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
-	ShowThankYou: false
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 Fluency_FruitsVegetable = {
 	Category: '<b>fruits and vegetables</b>',
-	TimeLimit: 6, // seconds
+	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
+	ShowWelcome: false,
 	ShowThankYou: false
 }
 
 Fluency_F = {
 	Category: '<b>words that start with F</b>',
-	TimeLimit: 6, // seconds
+	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
+	ShowWelcome: false,
 	ShowThankYou: false
 }
 

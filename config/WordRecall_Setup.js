@@ -16,6 +16,8 @@ var RAVLT_Default = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 var RAVLT_001 = {
@@ -27,6 +29,8 @@ var RAVLT_001 = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 var FaCE_Default = {
@@ -38,6 +42,8 @@ var FaCE_Default = {
 	RecallDuration: 120, // seconds
 	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 var FaCE_Default_Delayed = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
@@ -48,6 +54,8 @@ var FaCE_Default_Delayed = {
 	RecallDuration: 120, // seconds
 	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 

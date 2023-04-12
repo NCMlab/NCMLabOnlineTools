@@ -35,24 +35,34 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
 }
-var SendData = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: '',
-      trial_duration: 400, 
-      on_finish: function(data){
-            console.log(data)
-        data = CubeCopy_Scoring(data)
-        data.task = 'Sending Data'
+var if_Welcome = {
+      timeline: [welcome],
+      conditional_function: function() {
+            if ( Fluency_parameters.ShowWelcome)
+            { return true }
+            else { return false }
       }
-    }
+}
+
+var if_ThankYou = {
+      timeline: [thank_you],
+      conditional_function: function() {
+            if ( CubeCopy_parameters.ShowThankYou)
+            { return true }
+            else { return false }
+      }
+}
+
+var SendData = {
+      type: jsPsychCallFunction,
+      func: function() {
+            var data = jsPsych.data.get()
+            console.log(data)
+            data = CubeCopy_Scoring(data)
+            data.task = 'Sending Data'
+      }
+}
+    
 var welcome = {
       timeline: [Instructions],
       timeline_variables: WelcomeText,
@@ -61,7 +71,7 @@ var welcome = {
 }
 
 var thank_you = {
-      timeline: [SendData],
+      timeline: [Instructions],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
@@ -70,6 +80,7 @@ var thank_you = {
 
 
 timeline.push(enter_fullscreen)
-timeline.push(welcome)
+timeline.push(if_Welcome)
 timeline.push(trial)
-timeline.push(thank_you)
+timeline.push(SendData)
+timeline.push(if_ThankYou)

@@ -61,7 +61,7 @@ var GetInstructionValuesFromInputParameters = {
     const InstructionText = TrailMaking_parameters.Instructions
     console.log(InstructionText)
     console.log(InstructionsA)
-    console.log(Welcome)
+    console.log(WelcomeText)
   }
 }
 
@@ -157,31 +157,39 @@ var TestInstructionsPage02 = {
 }
 
 var SendData = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function()
-  {
-    var stim = jsPsych.timelineVariable('page') // Variable in the config file
-    return stim
-  },
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: '',
-  trial_duration: 400, 
-  on_finish: function(data){
-        console.log(data)
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
     data = TrailMaking_Scoring(data)
     data.task = 'Sending Data'
+  }
+}
+
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowThankYou)
+    { return true }
+    else { return false }
   }
 }
 // =======================================================================    
 // Define procedures using the stimuli
 
-var Welcome_procedure = {
-    timeline: [Instructions],
-    timeline_variables: Welcome,
-    randomize_order: false,
-    repetitions: 1,
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
 }
 
 
@@ -201,21 +209,20 @@ var StartTaskPrompt = {
 }
 
 var thank_you = {
-  timeline: [SendData],
+  timeline: [Instructions],
   timeline_variables: ThankYouText,
   randomize_order: false,
   repetitions: 1,
 }
 
-
-  var if_node = {
-    timeline: [StartPracticePrompt, trial_Practice],
-    conditional_function: function(){
-      if ( TrailMaking_parameters.ShowPractice )
-        {return true}
-      else {return false}
-    }
+var if_node = {
+  timeline: [StartPracticePrompt, trial_Practice],
+  conditional_function: function(){
+    if ( TrailMaking_parameters.ShowPractice )
+      {return true}
+    else {return false}
   }
+}
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
   timeline.push(FindCanvasSizeTest)
@@ -223,12 +230,13 @@ var thank_you = {
   timeline.push(CheckPracticeFlag)
   timeline.push(GetInstructionValuesFromInputParameters)
   timeline.push(enter_fullscreen)
-  timeline.push(Welcome_procedure)
+  timeline.push(if_Welcome)
   timeline.push(TestInstructionsPage01)
   timeline.push(TestInstructionsPage02)
   timeline.push(if_node)
   timeline.push(StartTaskPrompt)
   timeline.push(trials)
-  timeline.push(thank_you)
+  timeline.push(SendData)
+  timeline.push(if_ThankYou)
   
   

@@ -15,13 +15,15 @@ Parameters = {
 	// first incorrect response is made
 	MaxReversals: 50, // Not implemented
 	MaxTime: 420, // Not implemented
-	MaxTrials: 14
+	MaxTrials: 14,
 }
 var DigitSpan_Audio_Forward_Adaptive_14 = {
 	direction: 'forward',
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_Adaptive_14 ==
@@ -43,6 +45,8 @@ var DigitSpan_Visual_Forward_Adaptive_14 = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_Adaptive_14 ==
@@ -64,6 +68,8 @@ var DigitSpan_Audio_Backward_Adaptive_14 = {
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_Adaptive_14 ==
@@ -85,6 +91,8 @@ var DigitSpan_Visual_Backward_Adaptive_14 = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_TwoErrors ==
@@ -100,6 +108,8 @@ var DigitSpan_Visual_Forward_TwoErrors = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_TwoErrors ==
@@ -115,6 +125,8 @@ var DigitSpan_Visual_Backward_TwoErrors = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Forward_TwoErrors ==
@@ -130,6 +142,8 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_TwoErrors ==
@@ -145,6 +159,8 @@ var DigitSpan_Audio_Backward_TwoErrors = {
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_Fixed01_Load05 ==
@@ -157,6 +173,8 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	StimulusMode: 'visual',
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_Fixed01_Load03 ==
@@ -169,6 +187,8 @@ var DigitSpan_Visual_Backward_Fixed01_Load03 = {
 	StimulusMode: 'visual',
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Forward_Fixed01_Load05 ==
@@ -181,6 +201,8 @@ var DigitSpan_Audio_Forward_Fixed01_Load05 = {
 	StimulusMode: 'audio',
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_Fixed01_Load03 ==
@@ -193,6 +215,8 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	StimulusMode: 'audio',
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 // ===================================================
 

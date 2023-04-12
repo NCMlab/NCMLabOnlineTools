@@ -19,6 +19,8 @@ var Stroop_Default = {
 	ITI_Range: [250, 500, 750, 1000, 1250, 1500, 1750, 2000],// only used if ITI duration < 0
 	ITI_Duration: -99,
 	AllowedTime: -99, // in seconds
+	ShowWelcome: false,
+	ShowThankYou: false,
   }
 
 var Stroop_001 = {
@@ -31,6 +33,8 @@ var Stroop_001 = {
 	ITI_Range: [],
 	ITI_Duration: 100,
 	AllowedTime: -99, // in seconds
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 var Stroop_Victoria = {
@@ -44,6 +48,8 @@ var Stroop_Victoria = {
 	ITI_Duration: 100, 
 	AllowedTime: 45, // in seconds. If a positive value is provided 
 	// then blocks of trials are presented until the timer runs out
+	ShowWelcome: false,
+	ShowThankYou: false,
 }
 
 add('Stroop_Default', function(){ Stroop_parameters = Stroop_Default});

@@ -3,3 +3,7 @@ var Fluency_Instructions = [
 	]
 
 var ThankYouText = [{'page':'Thank you.'}]
+
+var WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Fluency Task.</p>'},
+]
