@@ -90,7 +90,7 @@ var instr_procedure01 = {
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    if ( Fluency_parameters.ShowWelcome)
+    if ( SerialSubtraction_parameters.ShowWelcome)
     { return true }
     else { return false }
   }
@@ -99,7 +99,7 @@ var if_Welcome = {
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( Fluency_parameters.ShowThankYou)
+    if ( SerialSubtraction_parameters.ShowThankYou)
     { return true }
     else { return false }
   }

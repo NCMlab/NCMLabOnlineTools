@@ -38,7 +38,7 @@ var Instructions = {
 var if_Welcome = {
       timeline: [welcome],
       conditional_function: function() {
-            if ( Fluency_parameters.ShowWelcome)
+            if ( CubeCopy_parameters.ShowWelcome)
             { return true }
             else { return false }
       }
