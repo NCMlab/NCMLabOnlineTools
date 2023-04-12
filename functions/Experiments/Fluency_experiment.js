@@ -3,6 +3,10 @@
 var timeline = [];
 var RecallDuration = 60
 var category
+var Count = 0
+var HasCounterStarted = false
+
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -95,7 +99,7 @@ var Fluency = {
       console.log(data.HeardList)
     },
     on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
+    var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
     var start_time = performance.now();
     document.querySelector('button').disabled = false;
     interval = setInterval(function(){
@@ -129,41 +133,114 @@ var Instructions = {
       choices: ['Next'], 
     }  
 
-var SendData = {
+
+var Counter = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    var stim = 'Say as many '+category+' as possible.<p><span id="clock">1:00</span></p>'+
+    'As the administrator: Press Next for every correct response made. <p />'+
+    'Number of responses: <div id="FluencyCounter">'+Count+'</div>'+
+    'When the timer runs out, press Next again to finish.'
     return stim
   },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
-  choices: '',
-  trial_duration: 400, 
+  response_ends_trial: true,
+  choices: ['Next'], 
+  on_load: function(){ // This inserts a timer on the recall duration
+    if ( ! HasCounterStarted ) {
+      var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
+      var start_time = performance.now();
+      document.querySelector('button').disabled = false;
+      interval = setInterval(function(){
+      time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        if(time_left <= 0){
+          document.querySelector('#clock').innerHTML = "0:00";
+          document.querySelector('button').disabled = false;
+          clearInterval(interval);
+          // STOP VOICE RECORDING!!!
+        }
+      }, 250)
+      HasCounterStarted = true
+      }
+    }
+}  
+
+var CountResponses = {
+  timeline: [Counter],
+  loop_function: function() {
+    if ( time_left > 0 ) 
+    { 
+      Count++
+      return true 
+    }
+    else { return false }
+  },
   on_finish: function(data){
-        console.log(data)
+    //data.HeardList = TotalList
+    console.log(data)
+    data.Count = Count
+    data.task = 'Recall'
+  }
+}
+
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
     data = Fluency_Scoring(data)
     data.task = 'Sending Data'
   }
 }
 // =======================================================================    
 // Define procedures using the stimuli
-// Define the test procedure which does NOT provide feedback
-  var instr_procedure01 = {
-      timeline: [Instructions],
-      timeline_variables: Fluency_Instructions,
-      randomize_order: false,
-      repetitions: 1,
-    }
+var if_SpokenResponse = {
+  timeline: [Fluency],
+  conditional_function: function() {
+    if ( Fluency_parameters.RecallType == 'Spoken' )
+    { return true }
+    else { return false }
+  }
+}
+var if_ManualResponse = {
+  timeline: [CountResponses],
+  conditional_function: function() {
+    if ( Fluency_parameters.RecallType == 'Manual' )
+    { return true }
+    else { return false }
+  }
+}
 
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
 
-  var thank_you = {
-    timeline: [SendData],
-    timeline_variables: ThankYouText,
+var instr_procedure01 = {
+    timeline: [Instructions],
+    timeline_variables: Fluency_Instructions,
     randomize_order: false,
     repetitions: 1,
-  }  
+  }
+
+
+var thank_you = {
+  timeline: [Instructions],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}  
 
 // ======================================================================= 
 // Add procedures to the timeline
@@ -171,5 +248,7 @@ var SendData = {
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure01)
 timeline.push(GetCategory)
-timeline.push(Fluency)
-timeline.push(thank_you)
+timeline.push(if_ManualResponse)
+timeline.push(if_SpokenResponse)
+timeline.push(SendData)
+timeline.push(if_ThankYou)
