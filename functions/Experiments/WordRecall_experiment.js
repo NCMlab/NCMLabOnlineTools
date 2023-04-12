@@ -260,22 +260,14 @@ var Instructions = {
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-      on_finish: function(data){
-        data = WordRecall_Scoring(data)
-        data.task = 'Sending Data'
-        
-      }
-    }
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
+    data = WordRecall_Scoring(data)
+    data.task = 'Sending Data'
+  }
+}
 
 // =======================================================================    
 // Define procedures using the stimuli
@@ -356,9 +348,15 @@ var FirstBlock = {
       randomize_order: false,
       repetitions: 1,
   } 
+  var welcome = {
+    timeline: [Instructions],
+    timeline_variables: WelcomeText,
+    randomize_order: false,
+    repetitions: 1,
+  }
 
   var thank_you = {
-      timeline: [SendData],
+      timeline: [Instructions],
       timeline_variables: ThankYouText,
       randomize_order: false,
       repetitions: 1,
@@ -381,12 +379,33 @@ var FirstBlock = {
       else { return false }
     }
   }      
+
+  var if_Welcome = {
+    timeline: [welcome],
+    conditional_function: function() {
+      if ( WordRecall_parameters.ShowWelcome)
+      { return true }
+      else { return false }
+    }
+  }
+  
+  var if_ThankYou = {
+    timeline: [thank_you],
+    conditional_function: function() {
+      if ( WordRecall_parameters.ShowThankYou)
+      { return true }
+      else { return false }
+    }
+  }
+  
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
-timeline.push(thank_you)
+timeline.push(SendData)
+timeline.push(if_ThankYou)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)

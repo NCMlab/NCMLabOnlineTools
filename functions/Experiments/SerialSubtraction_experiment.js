@@ -43,19 +43,10 @@ var get_response = {
   }
 };
 var SendData = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function()
-  {
-    var stim = jsPsych.timelineVariable('page') // Variable in the config file
-    return stim
-  },
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: '',
-  trial_duration: 400, 
-  on_finish: function(data){
-        console.log(data)
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
     data = SerialSubtraction_Scoring(data)
     data.task = 'Sending Data'
   }
@@ -90,18 +81,43 @@ var Instructions = {
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
-  var instr_procedure01 = {
-      timeline: [Instructions],
-      timeline_variables: SerialSubtraction_Instructions,
-      randomize_order: false,
-      repetitions: 1,
-    }
-  var thank_you = {
-    timeline: [SendData],
-    timeline_variables: ThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }  
+var instr_procedure01 = {
+  timeline: [Instructions],
+  timeline_variables: SerialSubtraction_Instructions,
+  randomize_order: false,
+  repetitions: 1,
+}
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
+
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+        
+var thank_you = {
+  timeline: [Instructions],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}  
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -114,9 +130,9 @@ var procedure = {
   }
 };
 
-
+timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
 timeline.push(instr_procedure01)
 timeline.push(procedure)
-timeline.push(thank_you)
+timeline.push(if_ThankYou)

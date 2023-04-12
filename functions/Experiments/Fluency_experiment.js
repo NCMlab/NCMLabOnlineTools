@@ -260,7 +260,7 @@ var thank_you = {
 // ======================================================================= 
 // Add procedures to the timeline
 
-timeline.push(if_Welcome)
+timeline.push(if_Welcome
 timeline.push(enter_fullscreen)
 timeline.push(instr_procedure01)
 timeline.push(GetCategory)

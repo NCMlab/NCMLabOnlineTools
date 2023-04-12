@@ -77,8 +77,6 @@ var thank_you = {
       repetitions: 1,
  }
 
-
-
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(trial)

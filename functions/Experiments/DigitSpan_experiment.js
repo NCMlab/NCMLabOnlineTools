@@ -234,23 +234,14 @@ var Instructions = {
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function()
-    {
-    var stim = jsPsych.timelineVariable('page') // Variable in the config file
-    return stim
-    },
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: '',
-    choices: ['Next'], 
-    on_finish: function(data){
-    data = DigitSpan_Scoring(data) 
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
+    data = Digit_Scoring(data)
     data.task = 'Sending Data'
-
-    }
-}  
-
+  }
+}
 
 // =======================================================================
 // Define any logic used in the experiment
@@ -331,10 +322,26 @@ var procedure = {
     return StopFlag
   }
 };
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
 
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( Fluency_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
 // =======================================================================    
 // Define procedures using the stimuli
-var welcome_procedure = {
+var welcome = {
   timeline: [Instructions],
   timeline_variables: [{'page':"Welcome"}],
   randomize_order: false,
@@ -342,7 +349,7 @@ var welcome_procedure = {
 }
 
 var thank_you = {
-    timeline: [SendData],
+    timeline: [Instructions],
     timeline_variables: ThankYouText,
     randomize_order: false,
     repetitions: 1,
@@ -350,7 +357,7 @@ var thank_you = {
 // ======================================================================= 
 // Add all procedures to the timeline
 
-
+timeline.push(if_Welcome)
 timeline.push(if_node)
 timeline.push(ReadParametersAndSetup)
 timeline.push(if_audio_forward_instr)
@@ -358,4 +365,5 @@ timeline.push(if_visual_forward_instr)
 timeline.push(if_audio_backward_instr)
 timeline.push(if_visual_backward_instr)
 timeline.push(procedure)
-timeline.push(ScoreResults)
+timeline.push(SendData)
+timeline.push(if_ThankYou)
