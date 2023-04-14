@@ -169,6 +169,10 @@ var Counter = {
       }, 250)
       HasCounterStarted = true
       }
+    },
+    on_finish: function(data) {
+      data.task = 'Recall'
+      data.count = Count
     }
 }  
 

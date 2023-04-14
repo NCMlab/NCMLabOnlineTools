@@ -8,7 +8,7 @@ Fluency_Animals = {
 
 Fluency_FruitsVegetable = {
 	Category: '<b>fruits and vegetables</b>',
-	TimeLimit: 60, // seconds
+	TimeLimit: 6, // seconds
 	RecallType: 'Manual',
 	ShowWelcome: false,
 	ShowThankYou: false

@@ -36,6 +36,7 @@
     </script>
     <script src="../../functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
     <script src="../../functions/Experiments/Trailmaking_experiment.js"></script>
+    <script src="../../functions/Scoring/Trailmaking_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
   <script>
@@ -46,8 +47,8 @@
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','TrailMakingA_data.csv');
+      if ( true ) {
+        jsPsych.data.get().localSave('csv','TrailMaking_data.csv');
       }
     }
   });

@@ -6,7 +6,7 @@ SerialSubtract_FaCE = {
 	ShowThankYou: false,
 }
 
-SerialSubtract_001 = {
+SerialSubtract_Default = {
 	StartValue: 100,
 	StepValue: 7,
     StopValue: 65,
@@ -16,4 +16,4 @@ SerialSubtract_001 = {
 
 
 add('SerialSubtract_FaCE', function(){ SerialSubtract_parameters = SerialSubtract_FaCE});
-add('SerialSubtract_001', function(){ SerialSubtract_parameters = SerialSubtract_001});
+add('SerialSubtract_Default', function(){ SerialSubtract_parameters = SerialSubtract_Default});

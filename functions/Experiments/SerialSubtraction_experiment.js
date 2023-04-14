@@ -25,7 +25,6 @@ var GetPreviousResult = {
 var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-    console.log(SerialSubtract_parameters)
       var prompt = '<p class="Instructions">Subtract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.</p>'
       return PutStimIntoTable(prompt+response_gridSerSub,'') 
   },
@@ -33,7 +32,15 @@ var get_response = {
   prompt:'',
   on_finish: function(data) {
       var curans = responseSerSub;
-      console.log(curans)
+      // check to see if subtraction is correct or not
+      var ExpectedResult = PreviousResult - SerialSubtract_parameters.StepValue
+      if ( ExpectedResult == curans ) {
+        data.correct = 1
+      }
+      else {
+        data.correct = 0
+      }
+      data.trial = 'task'
       data.NumberList = curans
       PreviousResult = curans
       // update the staircase

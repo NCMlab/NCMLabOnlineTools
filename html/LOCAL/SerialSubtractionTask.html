@@ -7,94 +7,55 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Animal Fluency Test</title>
-    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-    <script src="ImportedModules/jquery-3.6.4.js"></script>
+    <title>NCMLab: Serial Subtraction</title>
+    <link rel="stylesheet" href="../../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <script src="../../ImportedModules/jquery-3.6.4.js"></script>
   </head>    
   <body>
-    <script src="jatos.js"></script>
-    <script src="jspsych/dist/jspsych.js"></script>
-    <script src="jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="jspsych/dist/plugin-call-function.js"></script>
-    <script src="jspsych/dist/plugin-instructions.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="jspsych/dist/plugin-preload.js"></script>
-    <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-preload.js"></script>
+    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
 
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="config/General_Setup.js"></script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../config/General_Setup.js"></script>
+    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/SerialSubtraction_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/SerialSubtraction_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     
-    <script src="config/SerialSubtraction_Setup.js"></script>
+    <script src="../../config/SerialSubtraction_Setup.js"></script>
   
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
     <script>
-      var SerialSubtract_parameters = 'empty'
-      var parameters = 'empty'
-      jatos.onLoad(() => {
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'SerialSubtract_Default'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
-        pseudoSwitch(parameters)
-      })
-    </script> 
-    <script src="functions/Experiments/SerialSubtraction_experiment.js"></script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('SerialSubtract_Default')
+
+    </script>
+    <script src="../../functions/Experiments/SerialSubtraction_experiment.js"></script>
+    <script src="../../functions/Scoring/SerialSubtraction_Scoring.js"></script>
   </body>
   <script>
-var setup = []
-var TrialCount = 1;
-var jsPsych = initJsPsych({
+    jsPsych = initJsPsych({
     display_element: 'jspsych-target',
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-//      console.log(jatos.urlQueryParameters);
-      var input = jatos.urlQueryParameters;
-      console.log(TrialCount)
-      TrialCount += 1
-      // Add jatos info to the data file
-      jsPsych.data.addProperties({assignedURLID: input.a});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+    on_interaction_data_update: function(data) {
+        console.log(JSON.stringify(data))
     },
     on_finish: function() {
-      jatos.endStudy(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','SerialSubtraction_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-      if (typeof BatteryHtmlID != 'undefined') {
-        jatos.startComponent(BatteryHtmlID);
+      if ( true ) {
+        jsPsych.data.get().localSave('csv','SerialSubtractiondata.csv');
       }
     }
   });
-  jatos.onLoad(() => {
-      var JATOSID = jatos.workerId;
-      console.log(jatos)
-      console.log(JATOSID)
-
-      var resultsData = {'name':'JASON'};
-      jatos.addJatosIds(resultsData);
-      jatos.addAbortButton({
-        text: "Quit",
-        confirmText: "Do you really want to quit?",
-        tooltip: "This will quit the entire experiment",
-        msg: "This worker aborted the mission.",
-        style: "top:8px; right:40px; color:green; bottom: unset"
-      });
-      jsPsych.run(timeline);
-    });
-  </script>
+  jsPsych.run(timeline)
+</script>
 </html>

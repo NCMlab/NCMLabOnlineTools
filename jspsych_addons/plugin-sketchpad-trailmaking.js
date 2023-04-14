@@ -258,6 +258,10 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             if ( i == this.params.Circles.length - 1) {
               this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,LastCircleLabel, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
             }
+            if ( i == 3 ) {
+                this.add_line(this.params.Circles[0].centerX, this.params.Circles[0].centerY, this.params.Circles[1].centerX, this.params.Circles[1].centerY)
+                this.add_line(this.params.Circles[1].centerX, this.params.Circles[1].centerY, this.params.Circles[2].centerX, this.params.Circles[2].centerY)
+            }
 
           }
           var OutData = [];
@@ -500,11 +504,29 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.ctx.fillText(label, centerX, centerY+actualHeight/2);
 
       }
+      add_line(centerX_start, centerY_start, centerX_stop, centerY_stop) {
+        // draw a line connecting circles
+        this.ctx.beginPath();
+        // make the line dashed
+        this.ctx.setLineDash([10,10]),
+        this.ctx.moveTo(centerX_start, centerY_start);
+        this.ctx.lineTo(centerX_stop, centerY_stop);
+        this.ctx.stroke();
+        // Add arrowheads
+        var path = new Path2D()
+        path.moveTo(centerX_stop, centerY_stop);
+        path.lineTo(centerX_stop+15, centerY_stop);
+        path.lineTo(centerX_stop+15, centerY_stop+15);
+        this.ctx.fill(path)
+      }
+
 
       add_circles(centerX, centerY, radius, color = 'red', AsProp = false, WindowX = 200, WindowY = 200) {
           // ADD CIRCLE TO THE BACKGROUND
           this.ctx.beginPath();
           console.log(AsProp)
+          // make sure the line is solid
+          this.ctx.setLineDash([]),
           this.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
           this.ctx.stroke();
           this.ctx.fillStyle = color;
@@ -522,7 +544,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             Circles[i].centerY = Circles[i].centerY*WindowY;
           }
         }
-      
         return Circles;
       }
 
@@ -612,7 +633,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                           this.add_circles(this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY, this.Circles[this.CompletedCircle].radius, CorrectCircleColor); 
                           this.add_text(this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY, this.Circles[this.CompletedCircle].label);
                         }
-                        
                       }
                       // register an error
                       else 
@@ -631,7 +651,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                   if ( currentDistance > (radius + tolerance))
                   {
                     // left a circle
-                    
                     this.InCircle = false;
                     // left the Correct circle
                     if (this.InsideWhichCircle == this.CompletedCircle)
@@ -699,6 +718,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
               this.set_clear_btn_state(true);
           }
           this.is_drawing = false;
+          console.log(this)
       }
       render_drawing() {
           this.ctx.clearRect(0, 0, this.sketchpad.width, this.sketchpad.height);

@@ -115,6 +115,9 @@ var enter_fullscreen = {
       //   a.click();
       //   document.body.removeChild(a);
       // }
+      on_finish: function() {
+        console.log(jsPsych.data.get().last(1))
+      }
     }
 
   var Instructions = {
@@ -161,6 +164,7 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
     Results = TrailMaking_Scoring(data)
+    console.log(Results)
     jsPsych.finishTrial(Results)
   }
 }
