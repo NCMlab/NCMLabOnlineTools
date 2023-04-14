@@ -3,7 +3,7 @@ var WelcomeText = [
 ]
 
 var SerialSubtraction_Instructions = [
-	{'page': 'This is a test of attention. You will be given a large number and asked tosubtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  <p>Press next to begin.'},
+	{'page': '<p class="Instructions">This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.</p>'},
 	]
 
 var ThankYouText = [{'page':'Thank you.'}]

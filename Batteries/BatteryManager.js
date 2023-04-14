@@ -88,7 +88,7 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
-    	var stim = '<div>This is a list of the individual testss you will complete.<p>Press Next to continue.</div><div id="main">'
+    	var stim = '<div>This is a list of the individual tests you will complete.<p>Press Next to continue.</div><div id="main">'
     	for (var i = 0; i < TaskList.length; i++ ) 
       {
         if ( i < JATOSSessionData.CurrentIndex ) {
@@ -124,8 +124,6 @@ var trial1 = {
   timeline.push(trial0)
   timeline.push(SetupBattery)
 timeline.push(if_node_BatteryInstructions)
-
 //timeline.push(enter_fullscreen)
-
 timeline.push(trial1)
 

@@ -26,7 +26,7 @@ var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
     console.log(SerialSubtract_parameters)
-      var prompt = 'Subtract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.'
+      var prompt = '<p class="Instructions">Subtract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.</p>'
       return PutStimIntoTable(prompt+response_gridSerSub,'') 
   },
   choices: ['Enter'],
@@ -46,9 +46,8 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    console.log(data)
-    data = SerialSubtraction_Scoring(data)
-    data.task = 'Sending Data'
+    Results = SerialSubtraction_Scoring(data)    
+    jsPsych.finishTrial(Results)
   }
 }
 // ==========
@@ -90,7 +89,7 @@ var instr_procedure01 = {
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    if ( SerialSubtraction_parameters.ShowWelcome)
+    if ( SerialSubtract_parameters.ShowWelcome)
     { return true }
     else { return false }
   }
@@ -99,7 +98,7 @@ var if_Welcome = {
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( SerialSubtraction_parameters.ShowThankYou)
+    if ( SerialSubtract_parameters.ShowThankYou)
     { return true }
     else { return false }
   }
@@ -135,4 +134,5 @@ timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
 timeline.push(instr_procedure01)
 timeline.push(procedure)
+timeline.push(SendData)
 timeline.push(if_ThankYou)

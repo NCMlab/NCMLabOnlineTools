@@ -15,10 +15,10 @@
 */
 
 function DigitSpan_Scoring(data) {
-	
-	data.PrimaryResults = {}
-	data.PrimaryResults['Score'] = -99
-	data.AllResults = {}
-	data.AllResults['Score'] = -99
-	return data
+	Results = {}
+	Results.PrimaryResults = {}
+	Results.PrimaryResults['Score'] = -99
+	Results.AllResults = {}
+	Results.AllResults['Score'] = -99
+	return Results
 }

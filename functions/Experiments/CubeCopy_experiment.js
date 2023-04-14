@@ -57,10 +57,9 @@ var SendData = {
       type: jsPsychCallFunction,
       func: function() {
             var data = jsPsych.data.get()
-            console.log(data)
-            data = CubeCopy_Scoring(data)
-            data.task = 'Sending Data'
-      }
+            Results = CubeCopy_Scoring(data)
+            jsPsych.finishTrial(Results)
+      },
 }
     
 var welcome = {

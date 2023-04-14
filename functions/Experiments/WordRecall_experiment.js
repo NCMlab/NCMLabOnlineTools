@@ -263,9 +263,8 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    console.log(data)
-    data = WordRecall_Scoring(data)
-    data.task = 'Sending Data'
+    Results = WordRecall_Scoring(data)
+    jsPsych.finishTrial(Results)
   }
 }
 
