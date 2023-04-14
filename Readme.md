@@ -51,7 +51,7 @@ The use of modifiable parameters and batteries means the end user does not need 
 	- Speech recognition to score responses
 1. Verbal fluency
 	- Speech recognition to count responses (needs administrator to review and confirm responses)
-	- Manual responses with administrator to count responses (TO DO)
+	- Manual responses with administrator to count responses
 1. Trail making
 	- A or B 
 	- Automatic scoring of duration and accuracy
@@ -66,7 +66,7 @@ The use of modifiable parameters and batteries means the end user does not need 
 	- Drawing is saved for later inspection
 1. Clock drawing
 	- Drawing is saved for later inspection
-1. Rey Osterrieth Complex Figure Drawing (TO DO)
+1. Rey Osterrieth Complex Figure Drawing (DOUBLE CHECK)
 	- Drawing is saved for later inspection
 1. Card sort
 1. Letter cancellation task (DOUBLE CHECK)
