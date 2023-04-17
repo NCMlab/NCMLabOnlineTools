@@ -42,7 +42,7 @@ var FindCanvasSizeTest = {
       show_undo_button: false,
       show_redo_button: false,
       show_countdown_trial_duration: LineBisection_parameters.ShowTimer,
-      trial_duration: LineBisection_parameters.Duration,
+      trial_duration: function(){return LineBisection_parameters.Duration},
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
@@ -104,7 +104,7 @@ var if_ThankYou = {
 // Define procedures using the stimuli
 var Instruct = {
   timeline: [Instructions],
-  timeline_variables:  LineBisection_parameters.Instructions,
+  timeline_variables: InstructionText,
   randomize_order: false,
   repetitions: 1,
 }

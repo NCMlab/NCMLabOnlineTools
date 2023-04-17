@@ -14,7 +14,7 @@ var Lines_001 = [
     {LeftX:0.3, LeftY:0.9, RightX:0.7, RightY:0.9},
     
 ]
-var Duration_001 = 1000*60*1 // milliseconds
+
 var LocationsAsProportions = true;
 
 // ideal canvas size
@@ -28,10 +28,9 @@ var LineBisection_001 = {
     SuggestedWidth: 1000,
     SuggestedHeight: 1000,
     ShowTimer: false,
-    Duration: Duration_001,
-    Instructions: Instructions,
-    ShowWelcome: false,
-	ShowThankYou: false,
+    Duration: 1000*60*3, // milliseconds,
+    ShowWelcome: true,
+	ShowThankYou: true,
     stroke_width: 10,
 }
 

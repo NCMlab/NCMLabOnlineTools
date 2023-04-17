@@ -30,3 +30,4 @@ function LineLength(LeftX, LeftY, RightX, RightY) {
 function MidPoint(LeftX, LeftY, RightX, RightY) {
 	return [RightX - LeftX, RightY, LeftY]
 }
+

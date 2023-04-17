@@ -12,6 +12,7 @@ ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
 ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.png'})
 ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
+ComponentList.push({name:'LineBisection', iconFileName:'LineBisection.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -26,6 +27,7 @@ add('Likert',function(){jatos.startComponent(15)});
 add('Digit Span',function(){jatos.startComponent(16)});
 add('Serial Subtraction',function(){jatos.startComponent(18)});
 add('Fluency',function(){jatos.startComponent(19)});
+add('LineBisection',function(){jatos.startComponent(20)});
 const BatteryHtmlID = 1
 
 
