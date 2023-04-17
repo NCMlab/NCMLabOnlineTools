@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Line Bisection">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Line Bisection</title>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+  </head>    
+  <body>
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../jspsych_addons/plugin-sketchpad-linebisection.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../config/General_Setup.js"></script>
+    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/LineBisection_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+    <script src="../../config/LineBisection_Setup.js"></script>
+    <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('LineBisection_001')
+      console.log(LineBisection_parameters)
+    </script>
+    <script src="../../functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
+    <script src="../../functions/Experiments/LineBisection_experiment.js"></script>
+    <script src="../../functions/Scoring/LineBisection_Scoring.js"></script>
+    <div id="jspsych-target"  style="overflow:flex; height:100%" class='center'></div>
+  </body>
+  <script>
+
+    jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_interaction_data_update: function(data) {
+        console.log(JSON.stringify(data))
+    },
+    on_finish: function() {
+      if ( false ) {
+        jsPsych.data.get().localSave('csv','LineBisection_data.csv');
+      }
+    }
+  });
+  jsPsych.run(timeline)
+  </script>
+</html>
