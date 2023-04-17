@@ -28,7 +28,7 @@ add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
 add('Serial Subtraction',function(){jatos.startComponent(22)});
 add('Fluency',function(){jatos.startComponent(23)});
-add('LineBisection',function(){jatos.startComponent(24)});
+add('Line Bisection',function(){jatos.startComponent(24)});
 add('Clock Drawing',function(){jatos.startComponent(14)});
 const BatteryHtmlID = 1
 
