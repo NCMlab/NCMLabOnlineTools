@@ -18,7 +18,7 @@
     <script src="../../jspsych/dist/plugin-sketchpad.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -26,6 +26,12 @@
         var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/ClockDrawing_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
+    <script src="../../config/ClockDrawing_config.js"></script>
+        <script>
+          // This is where the parameters to be used as specified.
+          // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+          pseudoSwitch('ClockDrawing_001')
+        </script>
     
     <script src="../../functions/Experiments/ClockDrawing_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>

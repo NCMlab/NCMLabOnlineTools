@@ -24,21 +24,25 @@ var Instructions = {
       choices: ['Next'], 
 }
 
-var welcome = {
-      timeline: [Instructions],
-      timeline_variables: WelcomeText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-var thank_you = {
-      timeline: [Instructions],
-      timeline_variables: ThankYouText,
-      randomize_order: false,
-      repetitions: 1,
- }
- 
-timeline.push(welcome)
+ var if_Welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  conditional_function: function() {
+    if ( ClockDrawing_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+var if_ThankYou = {
+  timeline: [Instructions],
+  timeline_variables: ThankYouText,
+  conditional_function: function() {
+    if ( ClockDrawing_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
+timeline.push(if_Welcome)
 timeline.push(trial)
-timeline.push(thank_you)
+timeline.push(if_ThankYou)
 

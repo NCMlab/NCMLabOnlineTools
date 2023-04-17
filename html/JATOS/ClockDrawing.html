@@ -19,7 +19,7 @@
     <script src="jspsych/dist/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -28,6 +28,19 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     
+    <script src="config/ClockDrawing_config.js"></script>
+    <script>
+      var ClockDrawing_parameters = 'empty'
+      var parameters = 'empty'      
+  jatos.onLoad(() => {
+      BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+      if (typeof BatteryHtmlID === 'undefined') {parameters = 'ClockDrawing_001'}
+      else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+      pseudoSwitch(parameters)
+      console.log(ClockDrawing_parameters)
+  })
+</script>
+
     <script src="functions/Experiments/ClockDrawing_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -52,7 +65,10 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
       }    
-      jatos.startNextComponent();
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
+      }
+
     }
   });
 

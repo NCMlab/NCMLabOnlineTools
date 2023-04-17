@@ -29,7 +29,7 @@ var LineBisection_001 = {
     SuggestedHeight: 1000,
     ShowTimer: false,
     Duration: 1000*60*3, // milliseconds,
-    ShowWelcome: true,
+    ShowWelcome: false,
 	ShowThankYou: true,
     stroke_width: 10,
 }
