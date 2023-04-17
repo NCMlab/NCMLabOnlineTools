@@ -13,6 +13,7 @@ ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
 ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.png'})
 ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 ComponentList.push({name:'LineBisection', iconFileName:'LineBisection.png'})
+ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -28,6 +29,7 @@ add('Digit Span',function(){jatos.startComponent(20)});
 add('Serial Subtraction',function(){jatos.startComponent(22)});
 add('Fluency',function(){jatos.startComponent(23)});
 add('LineBisection',function(){jatos.startComponent(24)});
+add('Clock Drawing',function(){jatos.startComponent(14)});
 const BatteryHtmlID = 1
 
 
@@ -35,7 +37,7 @@ var BatteryList = []
 // This is not used yet
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
-BatteryList.push({index: 1, 
+BatteryList.push({index: 5, 
 	name:'FaCE Battery', 
 	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
 	description: 'A web-based version of the FaCE',
@@ -55,3 +57,11 @@ BatteryList.push({index: 3,
 	description: BatteryDescription,
 	ParameterLists: ['panas','cfi','cfs','stai']})
 
+	BatteryList.push({index: 1, 
+		name:'Barbados', 
+		list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
+		description: BatteryDescription,
+		ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
+		BatteryInstructions:"This is the NCMLab Evaluation"
+	})
+	
