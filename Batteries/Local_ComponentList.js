@@ -66,6 +66,6 @@ BatteryList.push({index: 1,
 	name:'Barbados', 
 	list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
 	description: BatteryDescription,
-	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
+	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','CubeCopy_Default'],
 	BatteryInstructions:"This is the NCMLab Evaluation"
 })

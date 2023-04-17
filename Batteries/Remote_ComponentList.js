@@ -12,7 +12,7 @@ ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
 ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.png'})
 ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
-ComponentList.push({name:'LineBisection', iconFileName:'LineBisection.png'})
+ComponentList.push({name:'Line Bisection', iconFileName:'LineBisection.png'})
 ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 // What battery was passed?
 
