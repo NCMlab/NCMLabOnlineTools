@@ -16,6 +16,7 @@ var ind = 0;
 var interval
 var time_left
 var WordList = []
+var WordListA
 var SimpleWordList = []
 var FullWordList = []
 var WordListIndex = []
@@ -34,6 +35,26 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
 }
+
+// Pick Correct Word Lists
+var ChooseWordList = {
+  type: jsPsychCallFunction,
+  func: function() {
+    if ( WordRecall_parameters.WordList === "RAVLT" ) {
+      WordListA = RAVLT.WordListA
+      AlternatePronunciationsWordListA = RAVLT.AlternatePronunciationsWordListA
+      WordListB = RAVLT.WordListB
+      AlternatePronunciationsWordListB = RAVLT.AlternatePronunciationsWordListB
+    }
+    if ( WordRecall_parameters.WordList === "FaCE" ) {
+      WordListA = FaCE.WordListA
+      AlternatePronunciationsWordListA = FaCE.AlternatePronunciationsWordListA
+      WordListB = FaCE.WordListB
+      AlternatePronunciationsWordListB = FaCE.AlternatePronunciationsWordListB
+    }
+  }
+}
+
 
 // preload audio
 // There will always be an A list
@@ -399,6 +420,7 @@ var FirstBlock = {
   
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(ChooseWordList)
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)

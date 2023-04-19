@@ -7,14 +7,14 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 var RAVLT_Default = {
-	WordList: 'RAVLT',
 	FolderName: 'RAVLTSet001/',
+	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 2,
+	NBlocks: 5,
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 500, // milliseconds
+	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -22,12 +22,13 @@ var RAVLT_Default = {
 
 var RAVLT_001 = {
 	FolderName: 'RAVLTSet001/',
+	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 3,
+	NBlocks: 5,
 	BListFlag: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
-	TimePerWord: 500, // milliseconds
+	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -35,6 +36,7 @@ var RAVLT_001 = {
 
 var FaCE_Default = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	WordList: 'FaCE',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false,
@@ -47,6 +49,7 @@ var FaCE_Default = {
 }
 var FaCE_Default_Delayed = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	WordList: 'FaCE',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false,

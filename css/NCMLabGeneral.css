@@ -177,3 +177,17 @@ div.numbox {
   margin-right:-50%;
   transform: translate(-50%,-50%);
 }*/
+
+
+div.HoverALaCarte {
+  background-color: rgb(247, 247, 210);
+  padding: 2px;
+  display: none;
+ 
+  word-wrap: break-word;
+}
+span:hover + div {
+  display: block;
+ 
+  word-wrap: break-word;
+}

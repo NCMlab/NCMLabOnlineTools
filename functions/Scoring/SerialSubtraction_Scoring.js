@@ -1,11 +1,12 @@
 function SerialSubtraction_Scoring(data) {
 	console.log(data)
+	var TotalScore
 	temp = data.filter({trial: 'task'})
 	const NResponses = temp.length
 	console.log(temp)
 	const NCorrect = temp.filter({correct: 1}).count()
 	const NInc = temp.filter({correct: 0}).count()
-	if ( NInc > 0 ) {const TotalScore = 0} else {TotalScore = 1}
+	if ( NInc > 0 ) {TotalScore = 0} else {TotalScore = 1}
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.PrimaryResults['Accuracy'] = TotalScore

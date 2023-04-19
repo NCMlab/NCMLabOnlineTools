@@ -5,7 +5,7 @@ ComponentList.push({name:'Stroop Word', iconFileName:'StroopWord.png'})
 ComponentList.push({name:'Stroop Color/Word', iconFileName:'StroopColorWord.png'})
 ComponentList.push({name:'Trail Making', iconFileName:'TrailMaking.png'})
 ComponentList.push({name:'Word Recall', iconFileName:'WordRecall.png'})
-ComponentList.push({name:'Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
+ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
 ComponentList.push({name:'Cube Copy', iconFileName:'ShapeCopy.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
@@ -22,7 +22,7 @@ add('Stroop Word', function(){jatos.startComponent(4)});
 add('Stroop Color/Word', function(){jatos.startComponent(5)});
 add('Trail Making', function(){jatos.startComponent(17)});
 add('Word Recall', function(){jatos.startComponent(6)});
-add('Matrix Reasoning', function(){jatos.startComponent(12)});
+add('ICAR Matrix Reasoning', function(){jatos.startComponent(12)});
 add('Cube Copy', function(){jatos.startComponent(11)});
 add('Likert',function(){jatos.startComponent(15)});
 add('Digit Span',function(){jatos.startComponent(16)});
@@ -30,7 +30,7 @@ add('Serial Subtraction',function(){jatos.startComponent(18)});
 add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
-const BatteryHtmlID = 1
+const BatteryHtmlID = 21
 
 
 var BatteryList = []
@@ -42,7 +42,8 @@ BatteryList.push({index: 5,
 	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
 	description: 'A web-based version of the FaCE',
 	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-	BatteryInstructions: "This is the Fast Cognitive Evaluation",
+	ButtonName: ['FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
+    BatteryInstructions: "This is the Fast Cognitive Evaluation",
 	RunAudioTest: true
 })
 
@@ -67,38 +68,15 @@ BatteryList.push({index: 1,
 	list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
 	description: BatteryDescription,
 	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','CubeCopy_Default'],
-	BatteryInstructions:"This is the NCMLab Evaluation"
+	ButtonName: ['A','B','Forward 2 err','Backward 2 err','',''],
+    BatteryInstructions:"This is the NCMLab Evaluation"
 })
-
 
 BatteryList.push({index: 101, 
 	name:'Barbados', 
-	list: ['Trail Making', 'Trail Making', 
-	'Digit Span', 'Digit Span', 
-	'Line Bisection', 'Clock Drawing','Cube Copy',
-	'Stroop Color','Stroop Word','Stroop Color/Word',
-	'Word Recall', 'Serial Subtraction','Matrix Reasoning'
-	], 
+	list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
 	description: BatteryDescription,
-	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
-
-	'DigitSpan_Audio_Forward_Adaptive_14','DigitSpan_Audio_Forward_Adaptive_14',
-	'LineBisection_001','CubeCopy_Default','CubeCopy_Default',
-	'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
-	'RAVLT_Default','SerialSubtract_Default','MatrixReasoning_ICAR'
-	],
-	ButtonName: ['Trails A','Trails B',
-	'DS, Forward Adapt','DS, Backward Adapt',
-	'Line Bisect','Clock Draw','Cube Copy',
-	'Victoria','Victoria','Victoria',
-	'RAVLT, Manual', 'Serial Subtraction', 'ICAR'
-	],
-	ButtonDescription: ['','',
-		'Digit span forward (audio) adaptive difficulty for 14 trials',
-		'Digit span backward (audio) adaptive difficulty for 14 trials',
-		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
-		'How long to complete 24 trials','How long to complete 24 trials','How long to complete 24 trials',
-		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements'
-		],
+	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','CubeCopy_Default'],
+	ButtonName: ['A','B','Forward 2 err','Backward 2 err','',''],
     BatteryInstructions:"This is the NCMLab Evaluation"
 })

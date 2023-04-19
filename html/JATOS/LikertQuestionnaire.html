@@ -6,7 +6,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Likert Questionnaire</title>
+    <title>NCMLab: Likert Questionnaire</title>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
@@ -29,7 +29,7 @@
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai.js"></script> 
     <script>
       var CurrentTest
-      var Stroop_parameters = 'empty'
+      var Likert_parameters = 'empty'
       var parameters = 'empty'
       var BatteryHtmlID
       jatos.onLoad(() => {
@@ -73,7 +73,7 @@ var jsPsych = initJsPsych({
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','StroopColor_data.csv');
+        jsPsych.data.get().localSave('csv','Questionnaire_data.csv');
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData

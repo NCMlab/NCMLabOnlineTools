@@ -44,3 +44,9 @@ var AlternatePronunciationsWordListB = []
 
 NWords = WordListA.length
 
+var RAVLT = {}
+RAVLT.WordListA = WordListA
+RAVLT.AlternatePronunciationsWordListA = AlternatePronunciationsWordListA
+RAVLT.WordListB = WordListB
+RAVLT.AlternatePronunciationsWordListB = AlternatePronunciationsWordListB
+RAVLT.NWords = WordListA.length

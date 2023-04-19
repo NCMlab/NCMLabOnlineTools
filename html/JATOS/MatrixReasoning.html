@@ -22,6 +22,7 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -29,7 +30,7 @@
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/ICAR_MatrixReasoning_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="config/ICAR_MatrixReasoning_Setup.js"></script>
+    <script src="config/MatrixReasoning_Setup.js"></script>
     <script>
       var MatrixReasoning_parameters = 'empty'
       var parameters = 'empty'      
@@ -44,9 +45,9 @@
 
 
 
-<script>var StimulusFolderName = "assets/Images/MatrixReasoning/"</script>
-<script src="functions/TaskSpecificFunctions/ICAR_MatrixReasoning_functions.js"></script>
-<script src="functions/Experiments/ICAR_MatrixReasoning_experiment.js"></script>
+<script>var FolderName = "assets/Images/MatrixReasoning"</script>
+<script src="functions/TaskSpecificFunctions/MatrixReasoning_functions.js"></script>
+<script src="functions/Experiments/MatrixReasoning_experiment.js"></script>
 
 
     

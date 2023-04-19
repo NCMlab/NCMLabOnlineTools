@@ -24,6 +24,7 @@ var Stroop_Default = {
   }
 
 var Stroop_001 = {
+	// This i sused to see how long it takes someone to complete a set number of trials
 	ColorPracticeRepeats:2,
 	WordPracticeRepeats:2,
 	ColorWordPracticeRepeats:2,

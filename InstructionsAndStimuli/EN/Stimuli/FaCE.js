@@ -13,7 +13,7 @@ var WordListA = [
 var AlternatePronunciationsWordListA = [
 	]
 
-var InterferrenceWordList = [
+var WordListB = [
 	]
 var RecognitionWordList = []
 
@@ -25,3 +25,11 @@ var NWords = WordListA.length
 
 // The number of immediate recall blocks 
 var NBlocks = 3
+
+
+var FaCE = {}
+FaCE.WordListA = WordListA
+FaCE.AlternatePronunciationsWordListA = AlternatePronunciationsWordListA
+FaCE.WordListB = WordListB
+FaCE.AlternatePronunciationsWordListB = AlternatePronunciationsWordListB
+FaCE.NWords = WordListA.length

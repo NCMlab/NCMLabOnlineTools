@@ -19,8 +19,8 @@ var MatrixReasoning_ICAR = {
   StimList: MatrixList,
   StimWidth: "70vw", // how large the options are
   StimHeight: "70vh",
-  FixationTimeBetweenTrials = 2000,// milliseconds
-  OptionMapping = '123456', // used for scoring
+  FixationTimeBetweenTrials: 2000,// milliseconds
+  OptionMapping: '123456', // used for scoring
 }
 
 
