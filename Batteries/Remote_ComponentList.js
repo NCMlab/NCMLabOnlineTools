@@ -75,7 +75,6 @@ BatteryList.push({index: 101,
 	], 
 	description: BatteryDescription,
 	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
-
 	'DigitSpan_Audio_Forward_Adaptive_14','DigitSpan_Audio_Forward_Adaptive_14',
 	'LineBisection_001','CubeCopy_Default','CubeCopy_Default',
 	'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
@@ -90,8 +89,8 @@ BatteryList.push({index: 101,
 	ButtonDescription: ['','',
 		'Digit span forward (audio) adaptive difficulty for 14 trials',
 		'Digit span backward (audio) adaptive difficulty for 14 trials',
+		'','','',
 		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
-		'How long to complete 24 trials','How long to complete 24 trials','How long to complete 24 trials',
 		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements'
 		],
 	BatteryInstructions:"This is the NCMLab Evaluation"
