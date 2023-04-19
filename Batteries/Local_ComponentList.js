@@ -31,7 +31,7 @@ add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
 const BatteryHtmlID = 1
-
+const UserChoiceHtmlID = 21
 
 var BatteryList = []
 // This is not used yet

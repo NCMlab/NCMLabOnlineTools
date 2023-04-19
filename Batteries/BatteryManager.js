@@ -86,7 +86,7 @@ var if_node_ALaCarte = {
     data = jsPsych.data.get()
     console.log(data.trials[0].Battery)
     if (Number(data.trials[0].Battery) > 100 ) {
-      jatos.startComponent(21)
+      jatos.startComponent(UserChoiceHtmlID)
     }
   }
 }

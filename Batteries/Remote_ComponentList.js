@@ -5,7 +5,7 @@ ComponentList.push({name:'Stroop Word', iconFileName:'StroopWord.png'})
 ComponentList.push({name:'Stroop Color/Word', iconFileName:'StroopColorWord.png'})
 ComponentList.push({name:'Trail Making', iconFileName:'TrailMaking.png'})
 ComponentList.push({name:'Word Recall', iconFileName:'WordRecall.png'})
-ComponentList.push({name:'ICAR Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
+ComponentList.push({name:'Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
 ComponentList.push({name:'Cube Copy', iconFileName:'ShapeCopy.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
@@ -22,7 +22,7 @@ add('Stroop Word', function(){jatos.startComponent(6)});
 add('Stroop Color/Word', function(){jatos.startComponent(7)});
 add('Trail Making', function(){jatos.startComponent(21)});
 add('Word Recall', function(){jatos.startComponent(10)});
-add('ICAR Matrix Reasoning', function(){jatos.startComponent(16)});
+add('Matrix Reasoning', function(){jatos.startComponent(16)});
 add('Cube Copy', function(){jatos.startComponent(15)});
 add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
@@ -31,7 +31,7 @@ add('Fluency',function(){jatos.startComponent(23)});
 add('Line Bisection',function(){jatos.startComponent(24)});
 add('Clock Drawing',function(){jatos.startComponent(14)});
 const BatteryHtmlID = 1
-
+const UserChoiceHtmlID = 25
 
 var BatteryList = []
 // This is not used yet
@@ -57,11 +57,42 @@ BatteryList.push({index: 3,
 	description: BatteryDescription,
 	ParameterLists: ['panas','cfi','cfs','stai']})
 
-	BatteryList.push({index: 1, 
-		name:'Barbados', 
-		list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
-		description: BatteryDescription,
-		ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
-		BatteryInstructions:"This is the NCMLab Evaluation"
-	})
-	
+BatteryList.push({index: 1, 
+	name:'Barbados', 
+	list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
+	description: BatteryDescription,
+	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
+	BatteryInstructions:"This is the NCMLab Evaluation"
+})
+
+BatteryList.push({index: 101, 
+	name:'Barbados', 
+	list: ['Trail Making', 'Trail Making', 
+	'Digit Span', 'Digit Span', 
+	'Line Bisection', 'Clock Drawing','Cube Copy',
+	'Stroop Color','Stroop Word','Stroop Color/Word',
+	'Word Recall', 'Serial Subtraction','Matrix Reasoning'
+	], 
+	description: BatteryDescription,
+	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
+
+	'DigitSpan_Audio_Forward_Adaptive_14','DigitSpan_Audio_Forward_Adaptive_14',
+	'LineBisection_001','CubeCopy_Default','CubeCopy_Default',
+	'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
+	'RAVLT_Default','SerialSubtract_Default','MatrixReasoning_ICAR'
+	],
+	ButtonName: ['Trails A','Trails B',
+	'DS, Forward Adapt','DS, Backward Adapt',
+	'Line Bisect','Clock Draw','Cube Copy',
+	'Victoria','Victoria','Victoria',
+	'RAVLT, Manual', 'Serial Subtraction', 'ICAR'
+	],
+	ButtonDescription: ['','',
+		'Digit span forward (audio) adaptive difficulty for 14 trials',
+		'Digit span backward (audio) adaptive difficulty for 14 trials',
+		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
+		'How long to complete 24 trials','How long to complete 24 trials','How long to complete 24 trials',
+		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements'
+		],
+	BatteryInstructions:"This is the NCMLab Evaluation"
+})
