@@ -18,22 +18,22 @@
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>    
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-
-
     <script src="config/DMS_setup.js"></script>
-    <script src="functions/Experiments/DMS_experiment.js"></script>
+    
        <style>
     @media screen and (orientation: portrait) {
       #vDMSTable {
@@ -43,38 +43,57 @@
     }
   </style>
   
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <script>
+      var vDMS_parameters = 'empty'
+      var parameters = 'empty'
+      jatos.onLoad(() => {
+        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'vDMS_Adaptive'}
+        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        pseudoSwitch(parameters)
+      })
+    </script> 
+  <script src="functions/Experiments/DMS_experiment.js"></script>
   </body>
   <script>
- var jsPsych = initJsPsych({
+var setup = []
+var TrialCount = 1;
+var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      console.log(jatos.urlQueryParameters);
+//      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
-      console.log(input.a);
+      console.log(TrialCount)
+      TrialCount += 1
       // Add jatos info to the data file
       jsPsych.data.addProperties({assignedURLID: input.a});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','DMSAdaptive_data.csv');
+        jsPsych.data.get().localSave('csv','vDMS_data.csv');
+      }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management on JATOS
+      if (typeof BatteryHtmlID != 'undefined') {
+        jatos.startComponent(BatteryHtmlID);
       }
-      jatos.startNextComponent();
     }
   });
-
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
       console.log(JATOSID)
+
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jatos.addAbortButton({

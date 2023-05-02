@@ -7,3 +7,8 @@ var instructions = [
 	]
 
 var ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
+
+
+var WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Verbal Delayed Match to Sample  Task.</p>'},
+]

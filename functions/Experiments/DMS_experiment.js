@@ -16,7 +16,7 @@ console.log(stair1)
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 // =======================================================================
 // Define all of the different the stimuli 
@@ -130,15 +130,7 @@ var enter_fullscreen = {
       trial_duration: WaitOnTime,
     } 
 
-    var ThankYou = {
-        type: jsPsychHtmlButtonResponseTouchscreen,
-        stimulus: "Thank you",
-        choices: [],
-        on_finish(data) {
-          data.Capacity = stair1.CalculateAverage(),
-          console.log(data.Capacity)
-        }
-    };
+
 
     var debrief_block = {
       type: jsPsychHtmlButtonResponseTouchscreen,
@@ -147,10 +139,7 @@ var enter_fullscreen = {
         return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
       }
     }
-
-// =======================================================================
-// Add scoring procedures to the Thank you screen
-var SendData = {
+    var Instructions = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function()
       {
@@ -161,12 +150,18 @@ var SendData = {
       margin_horizontal: GapBetweenButtons,
       prompt: '',
       choices: ['Next'], 
-      on_finish: function(data){
-        data = DMS_Scoring(data,staircase) 
-        data.task = 'Sending Data'
-
-      }
     }  
+
+// =======================================================================
+// Add scoring procedures to the Thank you screen
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    Results = DMS_Scoring(data)    
+    jsPsych.finishTrial(Results)
+  }
+}
 // =========================================
 // Define any logic used 
     var loop_node = {
@@ -177,24 +172,50 @@ var SendData = {
     };
    // =======================================================================    
 // Define procedures using the stimuli
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( vDMS_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
 
-     var instr_procedure = {
-      timeline: [instr],
-      timeline_variables: instructions,
-      randomize_order: false,
-      repetitions: 1,
-    }
-      
-  var thank_you = {
-      timeline: [SendData],
-      timeline_variables: ThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }    
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( vDMS_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+        
+var instr_procedure = {
+  timeline: [instr],
+  timeline_variables: instructions,
+  randomize_order: false,
+  repetitions: 1,
+}
+  
+var thank_you = {
+  timeline: [SendData],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}    
 // ======================================================================= 
 // Add procedures to the timeline
-    timeline.push(instr_procedure)
-    timeline.push(WaitTime)
-    timeline.push(loop_node)
-    timeline.push(debrief_block)
-    timeline.push(thank_you)
+timeline.push(if_Welcome)
+timeline.push(enter_fullscreen)
+timeline.push(instr_procedure)
+timeline.push(WaitTime)
+timeline.push(loop_node)
+timeline.push(debrief_block)
+timeline.push(SendData)
+timeline.push(if_ThankYou)

@@ -14,6 +14,7 @@ ComponentList.push({name:'Serial Subtraction', iconFileName:'SerialSubtraction.p
 ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 ComponentList.push({name:'Line Bisection', iconFileName:'LineBisection.png'})
 ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
+ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -30,6 +31,7 @@ add('Serial Subtraction',function(){jatos.startComponent(18)});
 add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
+add('Verbal DMS',function(){jatos.startComponent(22)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
 
@@ -77,28 +79,31 @@ BatteryList.push({index: 101,
 	'Digit Span', 'Digit Span', 
 	'Line Bisection', 'Clock Drawing','Cube Copy',
 	'Stroop Color','Stroop Word','Stroop Color/Word',
-	'Word Recall', 'Serial Subtraction','Matrix Reasoning'
+	'Word Recall', 'Serial Subtraction','Matrix Reasoning',
+	'Verbal DMS'
 	], 
 	description: BatteryDescription,
 	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
-
 	'DigitSpan_Audio_Forward_Adaptive_14','DigitSpan_Audio_Forward_Adaptive_14',
 	'LineBisection_001','CubeCopy_Default','CubeCopy_Default',
 	'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
-	'RAVLT_Default','SerialSubtract_Default','MatrixReasoning_ICAR'
+	'RAVLT_Default','SerialSubtract_Default','MatrixReasoning_ICAR',
+	'vDMS_Adaptive'
 	],
 	ButtonName: ['Trails A','Trails B',
 	'DS, Forward Adapt','DS, Backward Adapt',
 	'Line Bisect','Clock Draw','Cube Copy',
 	'Victoria','Victoria','Victoria',
-	'RAVLT, Manual', 'Serial Subtraction', 'ICAR'
+	'RAVLT, Manual', 'Serial Subtraction', 'ICAR',
+	'Verbal DMS'
 	],
 	ButtonDescription: ['','',
 		'Digit span forward (audio) adaptive difficulty for 14 trials',
 		'Digit span backward (audio) adaptive difficulty for 14 trials',
+		'','','',
 		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
-		'How long to complete 24 trials','How long to complete 24 trials','How long to complete 24 trials',
-		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements'
+		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements',
+		'Adaptive difficulty'
 		],
     BatteryInstructions:"This is the NCMLab Evaluation"
 })

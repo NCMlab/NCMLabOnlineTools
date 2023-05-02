@@ -1,12 +1,14 @@
-function DMS_Scoring(data, Stair) {
+function DMS_Scoring(Stair) {
 	var NTrials = Stair.TrialCount
 	var NReversal = Stair.ReversalCount
 	var Threshold = Stair.CalculateAverage()
-	data.PrimaryResults = {}
-	data.PrimaryResults['Threshold'] = Threshold
-	data.AllResults = {}
-	data.AllResults['Threshold'] = Threshold
-	data.AllResults['NReversal'] = NReversal
-	data.AllResults['NTrials'] = NTrials
-	return data
+	Results = {}
+	Results.PrimaryResults['Threshold'] = Threshold
+	Results.AllResults = {}
+	Results.AllResults['Threshold'] = Threshold
+	Results.AllResults['NReversal'] = NReversal
+	Results.AllResults['NTrials'] = NTrials
+	return Results
 }
+
+

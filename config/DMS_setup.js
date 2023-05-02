@@ -8,8 +8,6 @@
 
 var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
-var FullScreenMode = true;
-
 var DMSFontSize = 72;
 
 var KeyboardChoices = ['No', 'Yes'];
@@ -42,7 +40,7 @@ var NTrialsPerBlock = 6
 var NumberOfBlocks = 5
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 50
+var MaxTrials = 40
 var MaxReversals = 15
 var StartValue = 1
 var MinValue = 1
@@ -289,3 +287,11 @@ var DMSLetterMRIList002 = [
 	{"StimulusLetters": "BCQKFXHRN", "ProbeLetter": "m", "Correct": true, "Load": 9},
 	{"StimulusLetters": "RLSZQYGVP", "ProbeLetter": "t", "Correct": true, "Load": 9}
 ]
+
+
+vDMS_Adaptive = {
+	ShowWelcome: false,
+	ShowThankYou: false
+}
+
+add('vDMS_Adaptive', function(){ vDMS_parameters = vDMS_Adaptive});
