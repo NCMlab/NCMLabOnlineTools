@@ -149,22 +149,14 @@ var test_stimulus = Object.assign({}, Stimulus)
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-      on_finish: function(data){
-        data.Stroop_parameters = Stroop_parameters
-        data = StroopColor_Scoring(data)
-        data.task = 'Sending Data'
-      }
-    }
+  type: jsPsychCallFunction,
+  func: function() {
+    var trialData = jsPsych.data.get().filter({task:'Trial'})
+    console.log(trialData.trials[0])
+    Results = StroopColor_Scoring(trialData.trials[0]) 
+    jsPsych.finishTrial(Results)
+  },
+}    
 
 // =======================================================================
 // Define any logic used in the experiment
@@ -199,12 +191,19 @@ var instr_poor_performance = {
     repetitions: 1,
   }
 
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: ColorWelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+
 var thank_you = {
-    timeline: [SendData],
-    timeline_variables: ColorThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-  }
+  timeline: [Instructions],
+  timeline_variables: ColorThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}
 
 // Define the practice procedure which DOES provide feedback
 var PracticeLoopCount = 1
@@ -278,6 +277,25 @@ var CheckNumberRepeats = {
     }
 }
 
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowWelcome)
+        { console.log(Cancellation_parameters)
+          return true }
+        else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowThankYou)
+        { return true }
+        else { return false }
+  }
+}
+
 // ======================================================================= 
 // Add procedures to the timeline
 // Split the instructions into General intro, practice instruct, Test Instructs
@@ -285,6 +303,7 @@ var CheckNumberRepeats = {
 timeline.push(CalculateWaitTime) // works
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
+timeline.push(if_Welcome)
 timeline.push(instr_procedure);
 // add instructions that the following trials are practice
 timeline.push(instr_practice_procedure); 
@@ -300,4 +319,5 @@ timeline.push(timer_start);
 timeline.push(test_loop_node);
 // If there is a timer, stop it
 timeline.push(timer_stop);
-timeline.push(thank_you);
+timeline.push(SendData)
+timeline.push(if_ThankYou);

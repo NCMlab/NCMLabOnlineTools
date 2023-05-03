@@ -1,6 +1,6 @@
+var ColorWelcomeText = [{'page':'<p class="Instructions">Welcome to the Stroop Color experiment.</p>'}]
 
 var ColorInstrText = [
-      {'page':'<p class="Instructions">Welcome to the Stroop Color experiment.</p>'},
       {'page':'<p class="Instructions">You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color.'},      
       ];
 
@@ -16,8 +16,9 @@ var ColorTestInstrText = [
       {'page':'<p class="Instructions">Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. </p>'}
       ];
 
-var WordInstrText = [
-      {'page': '<p class="Instructions">Welcome to the Stroop Word experiment.</p>'},
+var WordWelcomeText = [{'page': '<p class="Instructions">Welcome to the Stroop Word experiment.</p>'}]
+
+var WordInstrText = [      
       {'page': '<p class="Instructions">In this task, words will appear in the center of the screen, like this:</p><p class="Instructions">BLUE</p>'},
       {'page': '<p class="Instructions">You need to indicate what word is written. </br>You will press the button that corresponds to that color.'},      
       ]
@@ -35,8 +36,9 @@ var WordTestInstrText = [
       {'page': '<p class="Instructions">Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. </p>'}
       ]
     
+var ColorWordWelcomeText = [{'page': '<p class="Instructions">Welcome to the Stroop Color/Word experiment.</p>'}]
+
 var ColorWordInstrText = [
-      {'page': '<p class="Instructions">Welcome to the Stroop Color/Word experiment.</p>'},
       {'page': '<p class="Instructions">In this task, words will appear like this:</p><p style="font-size:'+ StimulusFontSize+'; color:rgb(250,0,0)">BLUE</p>'},
       {'page': '<p class="Instructions">You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color.' },
       ];

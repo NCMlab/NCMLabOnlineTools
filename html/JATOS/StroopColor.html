@@ -13,6 +13,7 @@
   </head>    
   <body>
     <script src="jatos.js"></script>
+    <script src="ImportedModules/jquery-3.6.4.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
@@ -32,15 +33,18 @@
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-    
+    <div id="screen_timer">
+      <p>Time: <span id="clock">00:00</span></p>
+    </div>
     <script>
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Default'}
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Golden'}
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)
+        console.log(Stroop_parameters)
         // display the timer or not based on the showTimer flag
         if ( Stroop_parameters.AllowedTime > 0 ) 
             { console.log("TURNING TIMER ON!")

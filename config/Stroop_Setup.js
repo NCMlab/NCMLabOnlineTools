@@ -19,26 +19,30 @@ var Stroop_Default = {
 	ITI_Range: [250, 500, 750, 1000, 1250, 1500, 1750, 2000],// only used if ITI duration < 0
 	ITI_Duration: -99,
 	AllowedTime: -99, // in seconds
-	ShowWelcome: false,
-	ShowThankYou: false,
+	Score_NumberTrials: null,
+	Score_ProcedureName: null,
+	ShowWelcome: true,
+	ShowThankYou: true,
   }
 
-var Stroop_001 = {
-	// This i sused to see how long it takes someone to complete a set number of trials
+var Stroop_Victoria = {
+	// This is used to see how long it takes someone to complete a set number of trials
 	ColorPracticeRepeats:2,
 	WordPracticeRepeats:2,
 	ColorWordPracticeRepeats:2,
-	ColorTestRepeats:2,
-	WordTestRepeats:2,
+	ColorTestRepeats:6,
+	WordTestRepeats:6,
 	ColorWordTestRepeats:2,
 	ITI_Range: [],
-	ITI_Duration: 100,
+	ITI_Duration: 10,
 	AllowedTime: -99, // in seconds
+	Score_NumberTrials: 24,
+	Score_ProcedureName: 'Victoria',
 	ShowWelcome: false,
 	ShowThankYou: false,
 }
 
-var Stroop_Victoria = {
+var Stroop_Golden = {
 	ColorPracticeRepeats:2,
 	WordPracticeRepeats:2,
 	ColorWordPracticeRepeats:1,
@@ -46,9 +50,11 @@ var Stroop_Victoria = {
 	WordTestRepeats:6,
 	ColorWordTestRepeats:2,
 	ITI_Range: [],
-	ITI_Duration: 100, 
+	ITI_Duration: 10, 
 	AllowedTime: 45, // in seconds. If a positive value is provided 
 	// then blocks of trials are presented until the timer runs out
+	Score_NumberTrials: null,
+	Score_ProcedureName: 'Golden',
 	ShowWelcome: false,
 	ShowThankYou: false,
 }
@@ -56,6 +62,7 @@ var Stroop_Victoria = {
 add('Stroop_Default', function(){ Stroop_parameters = Stroop_Default});
 add('Stroop_001', function(){ Stroop_parameters = Stroop_001});
 add('Stroop_Victoria', function(){ Stroop_parameters = Stroop_Victoria});
+add('Stroop_Golden', function(){ Stroop_parameters = Stroop_Golden});
 
 // Fixed ITI --> ITI_Design: 100
 // random ITI --> 'function(){return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];}
