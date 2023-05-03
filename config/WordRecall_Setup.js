@@ -6,7 +6,7 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 
-var RAVLT_Default = {
+var RAVLT_Manual_Immediate = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
@@ -16,6 +16,19 @@ var RAVLT_Default = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
+}
+var RAVLT_Manual_Delayed = {
+	FolderName: 'RAVLTSet001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: true, // Check to see if there is a second set of words
+	RecallType: 'Manual',
+	RecallDuration: 60, // seconds
+	TimePerWord: 1000, // milliseconds
+	DelayedRecallFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: false,
 }
@@ -62,7 +75,7 @@ var FaCE_Default_Delayed = {
 }
 
 
-add('RAVLT_Default', function(){ WordRecall_parameters = RAVLT_Default});
-add('RAVLT_001', function(){ WordRecall_parameters = RAVLT_001});
+add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_Immediate});
+add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});

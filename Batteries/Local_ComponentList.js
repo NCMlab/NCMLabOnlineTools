@@ -15,6 +15,7 @@ ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 ComponentList.push({name:'Line Bisection', iconFileName:'LineBisection.png'})
 ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
+ComponentList.push({name:'Cancellation', iconFileName:'Cancellation.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -32,6 +33,7 @@ add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
 add('Verbal DMS',function(){jatos.startComponent(22)});
+add('Cancellation',function(){jatos.startComponent(9)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
 
@@ -106,4 +108,37 @@ BatteryList.push({index: 101,
 		'Adaptive difficulty'
 		],
     BatteryInstructions:"This is the NCMLab Evaluation"
+})
+
+BatteryList.push({index: 102, 
+	name:'Chemo Brain', 
+	list: ['Trail Making', 'Trail Making', 
+		'Stroop Color','Stroop Word','Stroop Color/Word',
+		'Word Recall',
+		'Digit Span', 'Digit Span', 'Word Recall',
+		'Cube Copy', 'Cancellation', 'Line Bisection'
+	], 
+	description: 'A Pilot Study Assessing Cognitive Functioning of Patients being treated for Thoracic Tumors',
+	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
+		'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
+		'RAVLT_Manual_Immediate',
+		'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
+		'RAVLT_Manual_Delayed',
+		'CubeCopy_Default','Cancellation_001','LineBisection_001'
+	],
+	ButtonName: ['Trails A','Trails B',
+		'Victoria','Victoria','Victoria',
+		'RAVLT, Immediate',
+		'DS Forward, 2err ','DS Backward, 2err',
+		'RAVLT, Delayed',
+		'Cube Copy','Cancellation','Line Bisect'
+	],
+	ButtonDescription: ['','',
+		'','','',
+		'',
+		'','',
+		'','','',
+		'',
+		],
+    BatteryInstructions:"Instruct"
 })

@@ -1,4 +1,4 @@
-function SingleLetterCancellation_Scoring(data, trial) {
+function SingleLetterCancellation_Scoring(trial) {
   // score trials
   var TotalScore = 0
   var LeftScore = 0
@@ -25,13 +25,15 @@ function SingleLetterCancellation_Scoring(data, trial) {
   console.log(RightMaxScore)
   console.log(RightScore)
   console.log(LeftMaxScore)
-  data.PrimaryResults = {}
-  data.PrimaryResults['TotalScore'] = TotalScore
-  data.AllResults = {}
-  data.AllResults['LeftScore'] = LeftScore
-  data.AllResults['RightScore'] = RightScore
-  data.AllResults['LeftMaxScore'] = LeftMaxScore
-  data.AllResults['RightMaxScore'] = RightMaxScore
-  return data
+  
+  Results = {}
+  Results.PrimaryResults = {}
+  Results.PrimaryResults['TotalScore'] = TotalScore
+  Results.AllResults = {}
+  Results.AllResults['LeftScore'] = LeftScore
+  Results.AllResults['RightScore'] = RightScore
+  Results.AllResults['LeftMaxScore'] = LeftMaxScore
+  Results.AllResults['RightMaxScore'] = RightMaxScore
+  return Results
 
 }
