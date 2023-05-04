@@ -50,3 +50,37 @@ RAVLT.AlternatePronunciationsWordListA = AlternatePronunciationsWordListA
 RAVLT.WordListB = WordListB
 RAVLT.AlternatePronunciationsWordListB = AlternatePronunciationsWordListB
 RAVLT.NWords = WordListA.length
+
+
+var RecognitionWordList = [
+	{'Word':'Teacher'},
+	{'Word':'River'},
+	{'Word':'Bridge'},
+	{'Word':'Farmer'},
+	{'Word':'Pen'},
+	{'Word':'Forehead'},
+	{'Word':'Kerchief'},
+	{'Word':'House'},
+	{'Word':'Moon'},
+	{'Word':'Color'},
+	{'Word':'Beet'},
+	{'Word':'Curtain'},
+	{'Word':'Floor'},
+	{'Word':'Soldier'},
+	{'Word':'Drum'},
+	{'Word':'Coffee'},
+	{'Word':'Road'},
+	{'Word':'Hat'},
+	{'Word':'Turkey'},
+	{'Word':'Minute'},
+	{'Word':'Nose'},
+	{'Word':'School'},
+	{'Word':'Bell'},
+	{'Word':'Face'},
+	{'Word':'Garden'},
+	{'Word':'Classroom'},
+	{'Word':'Parent'},
+	{'Word':'Children'},
+	{'Word':'Broomstick'},
+	{'Word':'Gun'}
+]
