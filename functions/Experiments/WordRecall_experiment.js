@@ -22,6 +22,7 @@ var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
 var TrialCount
+var BlockCount = 0
 var RecallProcedureB
 var AudioFileListA
 var AudioFileListB
@@ -29,6 +30,7 @@ var WordListAForRecall = 'empty'
 var WordListBForRecall
 var AudioFileDictListA
 var AudioFileDictListB
+var ResponseArray
 var ItemCount = 0
 // =======================================================================
 var enter_fullscreen = {
@@ -61,7 +63,7 @@ var ChooseWordList = {
 var preload_audioA = {
   type: jsPsychPreload,
   audio: function(){return AudioFileListA},
-  on_start: function() {console.log(AudioFileDictListA)}
+  on_start: function() {}
 };
 var preload_audioB = {
   type: jsPsychPreload,
@@ -79,10 +81,29 @@ var if_BList_preload = {
 var MakeResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(WordRecall_parameters.NBlocks)
-    var ResponseArray = CreateResponseArray(NWords, WordRecall_parameters.NBlocks)    
+    ResponseArray = Array.from(Array(NWords), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
   }
 }
+
+var UpdateResponseArray = {
+  type: jsPsychCallFunction,
+  func: function() {
+    console.log(WordRecall_parameters.NBlocks)
+    var data = jsPsych.data.get().filter({task: 'Recall'}).last()
+    console.log(WordListAForRecall.SimpleWordList)
+    console.log(data.trials[0].RecallList)
+    console.log("Working on Block: " + (BlockCount-1)/2)
+    // find the index of each item recalled
+    for ( var i = 0; i < data.trials[0].RecallList.length; i++ )
+    {
+      currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
+      ResponseArray[currentIndex][(BlockCount-1)/2] = i
+    }
+    console.log(ResponseArray)
+    BlockCount = BlockCount + 1
+  }
+}
+
 var ResetCounter = {
   type: jsPsychCallFunction,
   func: function() {
@@ -119,7 +140,6 @@ var MakeWordListA = {
       'FullListIndex': FullListIndexA,
     }
     console.log(WordListAForRecall)
-    console.log(AudioFileListA)
   }
 }
 
@@ -209,7 +229,6 @@ var AudioStimulus = {
         // find what trial index this is
         ind = (TrialCount) % NWords
         //Stim = jsPsych.timelineVariable('Word')
-        console.log(ItemCount)
         Stim = AudioFileDictListA[ItemCount].Word
         // return the chosen stimulus
         return Stim
@@ -266,17 +285,17 @@ var VisualStimulus = {
 
 // Define instructions
 var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }  
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function()
+    {
+      var stim = jsPsych.timelineVariable('page') // Variable in the config file
+      return stim
+    },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: ['Next'], 
+}  
 
 // =======================================================================
 // Add scoring procedures to the Thank you screen
@@ -284,7 +303,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = WordRecall_Scoring(data)
+    Results = WordRecall_Scoring(data, ResponseArray)
     jsPsych.finishTrial(Results)
   }
 }
@@ -292,131 +311,131 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
-  var instr_procedure01 = {
-      timeline: [Instructions],
-      timeline_variables: Instructions01,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var instr_procedure02 = {
-      timeline: [Instructions],
-      timeline_variables: Instructions02,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var instr_procedure03 = {
-      timeline: [Instructions],
-      timeline_variables: Instructions03,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var instr_procedure04 = {
-      timeline: [Instructions],
-      timeline_variables: Instructions04,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var PresentListOfWordsA = {
-      timeline: [fixation, AudioStimulus],
-      timeline_variables: AudioFileDictListA,
-      repetitions: 1,
-      randomize_order: false      
-  }
-
-  var LoopAudioFiles = {
-    timeline: [AudioStimulus],
-    loop_function: function(){
-      console.log(ItemCount)
-      if ( ItemCount < AudioFileDictListA.length-1 ) {
-        ItemCount += 1
-        return true
-      }
-      else { return false}
-    }
-  }
-
-  var PresentListOfWordsB = {
-      timeline: [fixation, AudioStimulus],
-      timeline_variables: AudioFileDictListB,
-      repetitions: 1,
-      randomize_order: false      
-  }
-
-var FirstBlock = {
-      timeline: [instr_procedure01, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
-      randomize_order: false,
-      repetitions: 1,
-  } 
-
-  var AfterFirstBlock = {
-      timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
-      randomize_order: false,
-      repetitions: WordRecall_parameters.NBlocks - 1,
-  } 
-
-  var BlockB = {
-      timeline: [instr_procedure03, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
-      randomize_order: false,
-      repetitions: 1,
-  } 
-  var FinalRecalBlockA = {
-      timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA],
-      randomize_order: false,
-      repetitions: 1,
-  } 
-  var welcome = {
+var instr_procedure01 = {
     timeline: [Instructions],
-    timeline_variables: WelcomeText,
+    timeline_variables: Instructions01,
     randomize_order: false,
     repetitions: 1,
   }
 
-  var thank_you = {
-      timeline: [Instructions],
-      timeline_variables: ThankYouText,
+var instr_procedure02 = {
+    timeline: [Instructions],
+    timeline_variables: Instructions02,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+var instr_procedure03 = {
+    timeline: [Instructions],
+    timeline_variables: Instructions03,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+var instr_procedure04 = {
+    timeline: [Instructions],
+    timeline_variables: Instructions04,
+    randomize_order: false,
+    repetitions: 1,
+  }
+
+var PresentListOfWordsA = {
+    timeline: [fixation, AudioStimulus],
+    timeline_variables: AudioFileDictListA,
+    repetitions: 1,
+    randomize_order: false      
+}
+
+var LoopAudioFiles = {
+  timeline: [AudioStimulus],
+  loop_function: function(){
+    if ( ItemCount < AudioFileDictListA.length-1 ) {
+      ItemCount += 1
+      return true
+    }
+    else { return false}
+  }
+}
+
+var PresentListOfWordsB = {
+    timeline: [fixation, AudioStimulus],
+    timeline_variables: AudioFileDictListB,
+    repetitions: 1,
+    randomize_order: false      
+}
+
+var FirstBlock = {
+      timeline: [instr_procedure01, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
       randomize_order: false,
       repetitions: 1,
-    }  
+  } 
 
-  var DelayedRecallNo = {
-    timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, FirstBlock, AfterFirstBlock],
-    conditional_function: function() {
-      console.log(WordRecall_parameters)
-      if ( WordRecall_parameters.DelayedRecallFlag)
-      { return false }
-      else { return true }
-    }
-  }    
-  var DelayedRecallYes = {
-    timeline: [MakeWordListA, FinalRecalBlockA],
-    conditional_function: function() {
-      if ( WordRecall_parameters.DelayedRecallFlag)
-      { return true }
-      else { return false }
-    }
-  }      
+var AfterFirstBlock = {    
+    timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+    randomize_order: false,
+    repetitions: WordRecall_parameters.NBlocks - 1,
+} 
 
-  var if_Welcome = {
-    timeline: [welcome],
-    conditional_function: function() {
-      if ( WordRecall_parameters.ShowWelcome)
-      { return true }
-      else { return false }
-    }
+var BlockB = {
+    timeline: [instr_procedure03, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
+    randomize_order: false,
+    repetitions: 1,
+} 
+
+var FinalRecalBlockA = {
+    timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA],
+    randomize_order: false,
+    repetitions: 1,
+} 
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var thank_you = {
+    timeline: [Instructions],
+    timeline_variables: ThankYouText,
+    randomize_order: false,
+    repetitions: 1,
+  }  
+
+var DelayedRecallNo = {
+  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, FirstBlock, AfterFirstBlock],
+  conditional_function: function() {
+    console.log(WordRecall_parameters)
+    if ( WordRecall_parameters.DelayedRecallFlag)
+    { return false }
+    else { return true }
   }
-  
-  var if_ThankYou = {
-    timeline: [thank_you],
-    conditional_function: function() {
-      if ( WordRecall_parameters.ShowThankYou)
-      { return true }
-      else { return false }
-    }
+}    
+var DelayedRecallYes = {
+  timeline: [MakeWordListA, FinalRecalBlockA],
+  conditional_function: function() {
+    if ( WordRecall_parameters.DelayedRecallFlag)
+    { return true }
+    else { return false }
   }
+}      
+
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( WordRecall_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( WordRecall_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
   
 // ======================================================================= 
 // Add procedures to the timeline

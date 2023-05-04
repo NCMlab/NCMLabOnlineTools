@@ -153,7 +153,7 @@ var SendData = {
   func: function() {
     var trialData = jsPsych.data.get().filter({task:'Trial'})
     console.log(trialData.trials[0])
-    Results = StroopColor_Scoring(trialData.trials[0]) 
+    Results = StroopSimple_Scoring(trialData.trials[0]) 
     jsPsych.finishTrial(Results)
   },
 }    

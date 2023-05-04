@@ -121,7 +121,7 @@ var FindWordListLength = function(WordList) {
 function create2DArray(Nrows, Ncols) {
 	console.log("NRows: " + Nrows)
 	console.log("NCols: " + Ncols)
-    var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(0))
+    var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(-99))
     return arr
   }
 

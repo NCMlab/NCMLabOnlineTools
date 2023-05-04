@@ -51,11 +51,11 @@ var FaCE_Default = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	WordList: 'FaCE',
 	FileExtension: '.wav',
-	NBlocks: 2,
+	NBlocks: 5,
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 100, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,

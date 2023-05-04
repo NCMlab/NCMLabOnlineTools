@@ -1,4 +1,4 @@
-function StroopColor_Scoring(data) {
+function StroopSimple_Scoring(data) {
     console.log(data)
 	Results = {}
     Results.PrimaryResults = {}

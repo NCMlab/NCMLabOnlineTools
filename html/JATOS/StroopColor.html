@@ -41,7 +41,7 @@
       var parameters = 'empty'
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Golden'}
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Default'}
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)
         console.log(Stroop_parameters)
@@ -53,7 +53,7 @@
       })
     </script> 
     <script src="functions/Experiments/StroopColor_experiment.js"></script>
-    <script src="functions/Scoring/StroopColor_Scoring.js"></script> 
+    <script src="functions/Scoring/StroopSimple_Scoring.js"></script> 
   </body>
   <script>
 var setup = []
