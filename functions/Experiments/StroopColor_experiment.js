@@ -147,13 +147,13 @@ var test_stimulus = Object.assign({}, Stimulus)
 })
 
 // =======================================================================
-// Add scoring procedures to the Thank you screen
+// Scoring procedure
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var trialData = jsPsych.data.get().filter({task:'Trial'})
-    console.log(trialData.trials[0])
-    Results = StroopSimple_Scoring(trialData.trials[0]) 
+    var trialData = jsPsych.data.get()//.filter({task:'Trial'})
+    console.log(trialData)
+    Results = StroopSimple_Scoring(trialData) 
     jsPsych.finishTrial(Results)
   },
 }    
@@ -281,7 +281,7 @@ var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
         if ( Stroop_parameters.ShowWelcome)
-        { console.log(Cancellation_parameters)
+        { console.log(Stroop_parameters)
           return true }
         else { return false }
   }

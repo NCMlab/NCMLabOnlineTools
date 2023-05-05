@@ -126,8 +126,6 @@ var Instructions = {
       choices: ['Next'], 
     }
 
-
-
 // =======================================================================
 // This is used for labelling trials in the output data
 var prac_stimulus = Object.assign({}, Stimulus)
@@ -136,6 +134,7 @@ var prac_stimulus = Object.assign({}, Stimulus)
       task: 'practice trial',
     }
 })
+
 var test_stimulus = Object.assign({}, Stimulus)
   test_stimulus = Object.assign(test_stimulus, {    
     data: {
@@ -145,23 +144,16 @@ var test_stimulus = Object.assign({}, Stimulus)
 
 
 // ======================================================================= 
-// Add scoring procedures to the Thank you screen
+// Scoring procedure
 var SendData = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-      on_finish: function(data){
-        data = StroopSimple_Scoring(data)
-        data.task = 'Sending Data'
-      }
-    }
+  type: jsPsychCallFunction,
+  func: function() {
+    var trialData = jsPsych.data.get().filter({task:'Trial'})
+    console.log(trialData.trials[0])
+    Results = StroopSimple_Scoring(trialData.trials[0]) 
+    jsPsych.finishTrial(Results)
+  },
+}    
 
 // =======================================================================
 // Define any logic used in the experiment
@@ -198,9 +190,16 @@ var SendData = {
       randomize_order: false,
       repetitions: 1,
     }
-  
+
+    var welcome = {
+      timeline: [Instructions],
+      timeline_variables: WordWelcomeText,
+      randomize_order: false,
+      repetitions: 1,
+    }
+
   var thank_you = {
-      timeline: [SendData],
+      timeline: [Instructions],
       timeline_variables: WordThankYouText,
       randomize_order: false,
       repetitions: 1,
@@ -277,11 +276,31 @@ var CheckNumberRepeats = {
     }
 }
 
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowWelcome)
+        { console.log(Stroop_parameters)
+          return true }
+        else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowThankYou)
+        { return true }
+        else { return false }
+  }
+}
+
 // ======================================================================= 
   // Add procedures to the timeline
 timeline.push(CalculateWaitTime) // works
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
+timeline.push(if_Welcome)
 timeline.push(instr_procedure);
 // add instructions that the following trials are practice
  timeline.push(instr_practice_procedure); 
@@ -297,4 +316,5 @@ timeline.push(timer_start);
 timeline.push(test_loop_node);
 // If there is a timer, stop it
 timeline.push(timer_stop);
-timeline.push(thank_you);
+timeline.push(SendData)
+timeline.push(if_ThankYou);

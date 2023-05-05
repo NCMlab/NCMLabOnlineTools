@@ -30,8 +30,6 @@ function DigitSpan_Scoring(data) {
 		Results.AllResults['Threshold'] = Threshold
 	}
 	if (DigitSpan_parameters.DeliveryMethod == 'fixed')
-	{}
-	if (DigitSpan_parameters.DeliveryMethod == 'numberErrors')
 	{
 		var DataFromTestRun = jsPsych.data.get().filter({task: 'response trial'})
 		console.log(DataFromTestRun)
@@ -58,8 +56,36 @@ function DigitSpan_Scoring(data) {
 		Results.AllResults['Load List'] = LoadList
 		Results.AllResults['Accuracy List'] = AccuracyList
 	}
+	if (DigitSpan_parameters.DeliveryMethod == 'numberErrors')
+	{
+		var DataFromTestRun = jsPsych.data.get().filter({task: 'response trial'})
+		console.log(DataFromTestRun)
+		var NTrials = DataFromTestRun.count()
+		console.log("Number of trials: " + NTrials)
+		Results.AllResults['NTrials'] = NTrials
+		// Make list of loads
+		var LoadList = []
+		var AccuracyList = []
+		var MaxCorrect = -99
+		for (var i = 0; i < NTrials; i++ )
+		{
+
+			LoadList.push(DataFromTestRun.trials[i].StimLoad)
+			if (DataFromTestRun.trials[i].correct)
+			{ 
+				AccuracyList.push(1)
+				MaxCorrect = DataFromTestRun.trials[i].StimLoad
+			}
+			else {AccuracyList.push(0)}
+		}
+		Results.PrimaryResults['Threshold'] = MaxCorrect
+		Results.AllResults['Threshold'] = MaxCorrect
+		Results.AllResults['Load List'] = LoadList
+		Results.AllResults['Accuracy List'] = AccuracyList
+	}
 
 	Results.PrimaryResults["Scoring Type"] = DigitSpan_parameters.DeliveryMethod
+	Results.AllResults["Scoring Type"] = DigitSpan_parameters.DeliveryMethod
 	console.log(Results)
 	return Results
 }

@@ -73,5 +73,6 @@ function StroopSimple_Scoring(data) {
     Results.AllResults["Accuracy"] = accuracy
     Results.AllResults['Response_Cor'] = rt_Correct
     Results.AllResults['Response_Incor'] = rt_Incorrect
+    console.log(Results)
     return Results
 }
