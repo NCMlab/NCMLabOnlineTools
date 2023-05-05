@@ -146,9 +146,9 @@ var test_stimulus = Object.assign({}, Stimulus)
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var trialData = jsPsych.data.get().filter({task:'Trial'})
-    console.log(trialData.trials[0])
-    Results = StroopColorWord_Scoring(trialData.trials[0]) 
+    var trialData = jsPsych.data.get()//.filter({task:'Trial'})
+    console.log(trialData)
+    Results = StroopColorWord_Scoring(trialData) 
     jsPsych.finishTrial(Results)
   },
 }    

@@ -127,7 +127,7 @@ BatteryList.push({index: 102,
 		'CubeCopy_Default','Cancellation_001','LineBisection_001'
 	],
 	ButtonName: ['Trails A','Trails B',
-		'Victoria','Victoria','Victoria',
+		'','','',
 		'RAVLT, Immediate',
 		'DS Forward, 2err ','DS Backward, 2err',
 		'RAVLT, Delayed',

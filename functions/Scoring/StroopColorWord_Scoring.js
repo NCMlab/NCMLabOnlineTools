@@ -1,4 +1,5 @@
 function StroopColorWord_Scoring(data) {
+    console.log(data)
     Results = {}
     Results.PrimaryResults = {}
     Results.AllResults = {}
@@ -106,19 +107,20 @@ function StroopColorWord_Scoring(data) {
 
     // The following measures are included for all scoring types
     Results.PrimaryResults["Scoring Type"] = Stroop_parameters.Score_ProcedureName
-        Results.AllResults["Accuracy_Cong"] = CongAccuracy
-        Results.AllResults["Accuracy_Incong"] = IncongAccuracy
-        Results.AllResults["NTrials"] = total_trials
-        Results.AllResults["Accuracy"] = accuracy
-        Results.AllResults['ResponseTime_Cor'] = rt_Correct
-        Results.AllResults['ResponseTime_Incor'] = rt_Incorrect
-        Results.AllResults["NCorrect_Congruent"] = CorCongTrials.count()
-        Results.AllResults["NCorrect_Incongruent"] = CorIncongTrials.count()
-        Results.AllResults["Accuracy_Cong"] = CongAccuracy
-        Results.AllResults["Accuracy_Incong"] = IncongAccuracy
-        Results.AllResults['ResponseTime_CorCong'] = rt_CorCong
-        Results.AllResults['ResponseTime_CorIncong'] = rt_CorIncong
-        Results.AllResults['ResponseTime_IncorCong'] = rt_IncorCong
-        Results.AllResults['ResponseTime_IncorIncong'] = rt_IncorIncong    
-        return Results
-    }
+    Results.AllResults["Accuracy_Cong"] = CongAccuracy
+    Results.AllResults["Accuracy_Incong"] = IncongAccuracy
+    Results.AllResults["NTrials"] = total_trials
+    Results.AllResults["Accuracy"] = accuracy
+    Results.AllResults['ResponseTime_Cor'] = rt_Correct
+    Results.AllResults['ResponseTime_Incor'] = rt_Incorrect
+    Results.AllResults["NCorrect_Congruent"] = CorCongTrials.count()
+    Results.AllResults["NCorrect_Incongruent"] = CorIncongTrials.count()
+    Results.AllResults["Accuracy_Cong"] = CongAccuracy
+    Results.AllResults["Accuracy_Incong"] = IncongAccuracy
+    Results.AllResults['ResponseTime_CorCong'] = rt_CorCong
+    Results.AllResults['ResponseTime_CorIncong'] = rt_CorIncong
+    Results.AllResults['ResponseTime_IncorCong'] = rt_IncorCong
+    Results.AllResults['ResponseTime_IncorIncong'] = rt_IncorIncong    
+    console.log(Results)
+    return Results
+}
