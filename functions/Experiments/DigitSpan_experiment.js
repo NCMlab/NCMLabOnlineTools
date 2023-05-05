@@ -224,6 +224,7 @@ var Instructions = {
       data.task = 'response trial'
       data.correct = accuracy
       data.NumberList = curans
+      console.log(data)
       // update the staircase
       //staircase.Decide(accuracy)
       //clear the response for the next trial
@@ -237,6 +238,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get() 
+    console.log(data)
     Results = DigitSpan_Scoring(data)
     jsPsych.finishTrial(Results)
   }
@@ -321,6 +323,21 @@ var procedure = {
     return StopFlag
   }
 };
+
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: [{'page':"Welcome"}],
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var thank_you = {
+    timeline: [Instructions],
+    timeline_variables: ThankYouText,
+    randomize_order: false,
+    repetitions: 1,
+}
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -340,19 +357,7 @@ var if_ThankYou = {
 }
 // =======================================================================    
 // Define procedures using the stimuli
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: [{'page':"Welcome"}],
-  randomize_order: false,
-  repetitions: 1,
-}
 
-var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: ThankYouText,
-    randomize_order: false,
-    repetitions: 1,
-}
 // ======================================================================= 
 // Add all procedures to the timeline
 

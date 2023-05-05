@@ -108,8 +108,8 @@ var DigitSpan_Visual_Forward_TwoErrors = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
-	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowWelcome: true,
+	ShowThankYou: true,
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_TwoErrors ==
