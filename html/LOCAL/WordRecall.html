@@ -8,13 +8,14 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Word Recall</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="../../jspsych/dist/jspsych.css" />
     
-    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+   
   <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
-  </head>    
-  <body>
-    <script src="../../jspsych/dist/jspsych.js"></script>
+  
+    <script src="../../jspsych/dist/jspsych.js">
+      // <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+    </script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../../jspsych/dist/plugin-call-function.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
@@ -45,25 +46,22 @@
     <script>
       // This is where the parameters to be used as specified.
       // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
-      pseudoSwitch('FaCE_Default')
+      pseudoSwitch('RAVLT_Manual_Immediate')
     </script>
     <style>
         .sv_main {
             font-family:'Courier New', Courier, monospace;
-            
             font-size: 18px;
             text-align: left;
         }
 
     </style>
-
-    
-    
-    
-    
     <script src="../../functions/TaskSpecificFunctions/SRT_function.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
     <script src="../../functions/Experiments/WordRecall_experiment.js"></script>
+    
+  </head>    
+  <body>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   </body>
   <script>

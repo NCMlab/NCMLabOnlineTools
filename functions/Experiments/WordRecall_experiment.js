@@ -31,6 +31,7 @@ var WordListBForRecall
 var AudioFileDictListA
 var AudioFileDictListB
 var ResponseArray
+var NumberBlocks
 var ItemCount = 0
 // =======================================================================
 var enter_fullscreen = {
@@ -76,12 +77,21 @@ var if_BList_preload = {
     console.log(WordRecall_parameters.BListFlag)
     return  WordRecall_parameters.BListFlag}
 }
+// Update Number of blocks variable
+var HowManyBlocks = {
+  type: jsPsychCallFunction,
+  func: function() {
+    NumberBlocks = WordRecall_parameters.NBlocks
+    console.log("This task will run for "+NumberBlocks+ " blocks")
+  }
+}
 
 // Make response array
 var MakeResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
-    ResponseArray = Array.from(Array(NWords), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
+    ResponseArray = Array.from(Array(WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
+    console.log(ResponseArray)
   }
 }
 
@@ -97,6 +107,8 @@ var UpdateResponseArray = {
     for ( var i = 0; i < data.trials[0].RecallList.length; i++ )
     {
       currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
+      console.log(ResponseArray)
+      console.log("Current index: " + currentIndex)
       ResponseArray[currentIndex][(BlockCount-1)/2] = i
     }
     console.log(ResponseArray)
@@ -367,14 +379,19 @@ var PresentListOfWordsB = {
 var FirstBlock = {
       timeline: [instr_procedure01, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
       randomize_order: false,
-      repetitions: 1,
+      repetitions: 1
   } 
 
-var AfterFirstBlock = {    
-    timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
-    randomize_order: false,
-    repetitions: WordRecall_parameters.NBlocks - 1,
-} 
+var AfterFirstBlockLoop = {
+  timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+  randomize_order: false,
+  loop_function: function(data) {
+    console.log("Block Count (in loop): " + (BlockCount)/2)
+    if ( ((BlockCount)/2) < NumberBlocks )
+    { return true }
+    else { return false }
+  }
+}
 
 var BlockB = {
     timeline: [instr_procedure03, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
@@ -402,7 +419,7 @@ var thank_you = {
   }  
 
 var DelayedRecallNo = {
-  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, FirstBlock, AfterFirstBlock],
+  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, HowManyBlocks, FirstBlock, AfterFirstBlockLoop],
   conditional_function: function() {
     console.log(WordRecall_parameters)
     if ( WordRecall_parameters.DelayedRecallFlag)

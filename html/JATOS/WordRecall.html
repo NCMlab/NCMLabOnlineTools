@@ -8,7 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Rey Auditory Verbal Learning Test</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
   
     <script src="jatos.js"></script>
@@ -50,7 +50,7 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'FaCE_Default'}
+        if (typeof BatteryHtmlID === 'undefined') {parameters = 'RAVLT_Manual_Immediate'}
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)      
         console.log(WordRecall_parameters)
@@ -62,7 +62,7 @@
     <style>
         .sv_main {
             font-family:'Courier New', Courier, monospace;
-            font-size: 14px;
+            font-size: 18px;
             text-align: left;
         }
       
@@ -70,7 +70,7 @@
     </head>    
   
   <body>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   </body>
   
   <script>

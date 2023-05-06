@@ -205,9 +205,9 @@ var Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
     if ( DigitSpan_parameters.direction == 'forward' ) {
-      return PutStimIntoTable(ForwardTrialQuestion + response_grid) 
+      return PutStimIntoTable(ForwardTrialQuestion + response_grid,'') 
     }
-    else {return PutStimIntoTable(BackwardTrialQuestion + response_grid) }
+    else {return PutStimIntoTable(BackwardTrialQuestion + response_grid,'') }
   },
   choices: ['Enter'],
   on_finish: function(data) {

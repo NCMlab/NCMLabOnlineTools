@@ -10,15 +10,16 @@ var RAVLT_Manual_Immediate = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 6,
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 100, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
 }
+
 var RAVLT_Manual_Delayed = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',
