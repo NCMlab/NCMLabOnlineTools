@@ -400,7 +400,7 @@ var BlockB = {
 } 
 
 var FinalRecalBlockA = {
-    timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA],
+    timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
     randomize_order: false,
     repetitions: 1,
 } 
@@ -428,7 +428,7 @@ var DelayedRecallNo = {
   }
 }    
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, FinalRecalBlockA],
+  timeline: [MakeWordListA, MakeResponseArray, FinalRecalBlockA],
   conditional_function: function() {
     if ( WordRecall_parameters.DelayedRecallFlag)
     { return true }
