@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Verbal DMS">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Spatial DMS</title>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    </script>
+  </head>    
+  <body>
+  
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>    
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-canvas-button-response.js"></script>
+    
+     <style>
+      .stimulus { font-size: 45; }
+      .background {color:  [150, 150, 150]}
+      .instruct {font-size:  20;}
+      .jspsych-html-keyboard-response-stimulus {font-size: 45;}
+      .jspsych-display-element {
+        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-size: 36px;
+        line-height: 0.85em;
+      }
+    </style>
+    <script src="../../config/General_Setup.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/DMS_functions.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script> 
+    // Based on the language set in the Language Config, the correct code is loaded up
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+    </script>
+
+
+    <script src="../../config/SpatialDMS_setup.js"></script>
+    <script src="../../functions/Experiments/SpatialDMS_experiment.js"></script>
+    <script src="../../functions/Scoring/DMS_Scoring.js"></script>
+  <style>
+    @media screen and (orientation: portrait) {
+      #vDMSTable {
+        width: 80vw;
+        height: 60vh;
+      }
+    }
+
+  </style>
+    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
+    </div> 
+    
+  </body>
+
+
+
+  <script>
+    // ADD 3-2-1 COUNTDOWN BEFORE THE START OF EACH LOAD BLOCK
+    // For the DMS adaptive it may work to have a global object similar to the staircase
+    // This object can be called and added to from the stimuli. This is needed
+    // to Keep track of the previous letters that have been used. I am current only preventing interference
+    // from the previous trial; however, someone may be interested in limiting the proactive interference 
+    // from multiple previous trials.
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
+      }
+    });
+    jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_interaction_data_update: function(data) {
+          console.log(JSON.stringify(data))
+      },
+      on_finish: function() {
+
+      jsPsych.data.get().localSave('csv','SpatialDMSMydata.csv');
+    }
+  });
+  jsPsych.run(timeline);
+  </script>
+</html>

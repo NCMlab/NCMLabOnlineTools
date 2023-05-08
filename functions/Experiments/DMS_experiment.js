@@ -204,7 +204,7 @@ var instr_procedure = {
 }
   
 var thank_you = {
-  timeline: [SendData],
+  timeline: [Instructions],
   timeline_variables: ThankYouText,
   randomize_order: false,
   repetitions: 1,
