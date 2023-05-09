@@ -16,6 +16,7 @@ ComponentList.push({name:'Line Bisection', iconFileName:'LineBisection.png'})
 ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
 ComponentList.push({name:'Cancellation', iconFileName:'Cancellation.png'})
+ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -34,6 +35,7 @@ add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
 add('Verbal DMS',function(){jatos.startComponent(22)});
 add('Cancellation',function(){jatos.startComponent(9)});
+add('Spatial DMS',function(){jatos.startComponent(24)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
 const UsageManagerHtmlID = 23
@@ -84,7 +86,7 @@ BatteryList.push({index: 101,
 	'Stroop Color','Stroop Word','Stroop Color/Word',
 	'Word Recall', 'Serial Subtraction','Matrix Reasoning',
 	'Word Recall', 
-	'Verbal DMS'
+	'Verbal DMS', 'Spatial DMS'
 	], 
 	description: BatteryDescription,
 	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
@@ -93,14 +95,14 @@ BatteryList.push({index: 101,
 	'Stroop_Golden','Stroop_Golden','Stroop_Golden',
 	'RAVLT_Manual_Immediate','SerialSubtract_Default','MatrixReasoning_ICAR',
 	'RAVLT_Manual_Delayed',
-	'vDMS_Adaptive'
+	'vDMS_Adaptive', 'SpatialDMS_Adaptive'
 	],
 	ButtonName: ['Trails A','Trails B',
 	'DS, Forward Adapt','DS, Backward Adapt',
 	'Line Bisect','Clock Draw','Cube Copy',
 	'Victoria','Victoria','Victoria',
-	'RAVLT, Manual', 'Serial Subtraction', 'ICAR',
-	'Verbal DMS'
+	'RAVLT, Immediate', 'Serial Subtraction', 'ICAR','RAVLT, Delay',
+	'Verbal DMS', 'Spatial DMS'
 	],
 	ButtonDescription: ['','',
 		'Digit span forward (audio) adaptive difficulty for 14 trials',
@@ -108,7 +110,7 @@ BatteryList.push({index: 101,
 		'','','',
 		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
 		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements',
-		'Adaptive difficulty'
+		'Adaptive difficulty','Adaptive difficulty'
 		],
     BatteryInstructions:"This is the NCMLab Evaluation"
 })

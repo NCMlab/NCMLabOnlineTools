@@ -38,6 +38,7 @@
     <script src="../../functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
@@ -47,17 +48,14 @@
 
 
     <script src="../../config/SpatialDMS_setup.js"></script>
+    <script>
+      // This is where the parameters to be used as specified.
+      // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+      pseudoSwitch('SpatialDMS_Adaptive')
+    </script>
     <script src="../../functions/Experiments/SpatialDMS_experiment.js"></script>
     <script src="../../functions/Scoring/DMS_Scoring.js"></script>
-  <style>
-    @media screen and (orientation: portrait) {
-      #vDMSTable {
-        width: 80vw;
-        height: 60vh;
-      }
-    }
 
-  </style>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
     </div> 
     

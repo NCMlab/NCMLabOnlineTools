@@ -2,85 +2,39 @@
 // Define internal variables
 var timeline = [];
 
-
 var Current = 4
 DMSFontSize = 36
 var count = 0
-const GridCountX = 10
-const GridCountY = 10
+const GridCountX = 6
+const GridCountY = 6
 const NumberLocations = GridCountX*GridCountY
 var CurrentLocations
 const CircleColor = 'black'
-
-
 const CanvasWidth = 600
 const CanvasHeight = 600
-var CurrentLoad = 4
-var CircleRadius
 // Decide circle radius based on the canvas size
-if ( CanvasWidth > CanvasHeight) {
-  CircleRadius = (CanvasHeight/GridCountX)/2
-}
-else {
-  CircleRadius = (CanvasWidth/GridCountX)/2
-}
-console.log("Circle Radius: "+ CircleRadius)
-var CircleLocation = 5
-// translate the location into coordinates for drawing
+const CircleRadius = CalculateRadius(CanvasWidth, CanvasHeight)
 
-function filledCirc(canvas, x, y, radius, color) {
-  var ctx = canvas.getContext("2d");
-  ctx.beginPath();
-  ctx.moveTo(x,y);
-  ctx.arc(x, y, radius, 0, 2 * Math.PI);
-  ctx.fillStyle = color;
-  ctx.fill();
+// =======================================================================
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: FullScreenMode
 }
-
-function CanvasText(canvas, x, y, text) {
-  var ctx = canvas.getContext("2d");
-  ctx.font = "30px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = 'middle'; 
-  ctx.fillText(text, x, y);
-}
-
-
-function shuffle(array) {
-  //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  let currentIndex = array.length,  randomIndex;
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
-
-function ReturnElementsFromPermute(count, N) {
-  var shuffledValues = shuffle(Array.from(Array(N).keys()))
-  return shuffledValues.slice(0,count)
-}
-
-function mapLinearIndexToGridIndex(index, gridX, gridY) {
-  var y = Math.floor(index/gridX)
-  var x = index % gridX
-  return [x,y]
-}
-
-function NegativeProbeLocation(CurrentLocations, N) {
-  var NonLocations = Array.from(Array(N).keys())
-  for ( var i = 0; i < CurrentLocations.length; i ++ ) {
-    NonLocations = NonLocations.filter(function(e) { return e !==  CurrentLocations[i]})
-  }
-  return shuffle(NonLocations).slice(0,1)
-}
-
+// =======================================================================
 let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
+// =======================================================================
+var instr = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function()
+  {
+    var stim = jsPsych.timelineVariable('page') // Variable in the config file
+    return stim
+  },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: ['Next'], 
+}
 
 var VisualStimulus = {
   type: jsPsychCanvasButtonResponse,
@@ -146,12 +100,6 @@ var VisualProbe = {
   }
 };
 
-//PosProbeLocation = Locations[np.random.permutation(len(Locations))[0]]
-//NotLocations = np.arange(0,GridCount**2)
-//NotLocations = [x for x in NotLocations if x not in Locations]
-//NegProbeLocation = NotLocations[np.random.permutation(len(NotLocations))[0]]
-
-
 var VisualMask = {
   type: jsPsychCanvasButtonResponse,
   stimulus: function(c) {
@@ -174,22 +122,24 @@ var VisualMask = {
 var RetentionCanvas = {
   type: jsPsychCanvasButtonResponse,
   stimulus: function(c) {
-    CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, "+")
+    CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, "+", 'black')
+    document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
   canvas_size: [CanvasWidth, CanvasHeight],
-  choices: [],
+  choices: ['dummy'],
   prompt: '',
   trial_duration: StimOnTime,
-};''
-
-
-
-
+}
 
 var Fix = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: '<p style="font-size:'+DMSFontSize+'px; color:'+ProbeColor+'">+</p>',
-  choices: [],
+  type: jsPsychCanvasButtonResponse,
+  stimulus: function(c) {
+    CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, "+", 'red')
+    document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
+  },
+  canvas_size: [CanvasWidth, CanvasHeight],
+  choices: ['dummy'],
+  prompt: '',
   trial_duration: ITITime,
   // on_finish: function(data){
   //   data.trialType = "fixation"
@@ -210,17 +160,55 @@ var SendData = {
   // =========================================
 // Define any logic used 
 
-var procedure = {
-timeline: [VisualStimulus, VisualMask, VisualProbe],
-randomize_order: false,
-repetitions: 4,
-}  
 var loop_node = {
-  timeline: [VisualStimulus, VisualMask, VisualProbe],
+  timeline: [VisualStimulus, VisualMask, RetentionCanvas, VisualProbe, Fix],
   loop_function: function(data){
     return (! stair1.Finished)
  }
 };
 
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+    if ( SpatialDMS_parameters.ShowWelcome)
+    { return true }
+    else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+    if ( SpatialDMS_parameters.ShowThankYou)
+    { return true }
+    else { return false }
+  }
+}
+var welcome = {
+  timeline: [instr],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+        
+var instr_procedure = {
+  timeline: [instr],
+  timeline_variables: instructions,
+  randomize_order: false,
+  repetitions: 1,
+}
+  
+var thank_you = {
+  timeline: [instr],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}    
+// ======================================================================= 
+// Add procedures to the timeline
+timeline.push(if_Welcome)
+timeline.push(enter_fullscreen)
+timeline.push(instr_procedure)
 timeline.push(loop_node)
 timeline.push(SendData)
+timeline.push(if_ThankYou)
