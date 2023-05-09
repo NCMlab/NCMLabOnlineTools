@@ -14,55 +14,57 @@ var ComponentParameterLists = []
 var DisplayBatteryInstructionsFlag
 var BatteryInstructions
 var TaskList = []
+
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-// Check the status of the JATOS session data
-var SetupBattery = {
-    type: jsPsychCallFunction,
-    func: function() {
-        console.log(ComponentList)
-
-        // read the data for this trial
-        var all_data = jsPsych.data.get();
-        console.log(all_data)
-        // find the battery selected and extract its list of components
-        var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-        console.log(ParameterList)
-        TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-        console.log(TaskList)
-        // Extract the battery instructions
-        BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
-        console.log(BatteryInstructions)
-          // Make a task list of the components of the battery
-        for ( var i = 0; i < TaskList.length; i ++ ) {
-          TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
-        }
-        console.log(TaskIconList)
-        // Check the session data to see if it is empty, if so add to it. If not, leave it alone
-        JATOSSessionData = jatos.studySessionData
-        if ( isEmpty(JATOSSessionData) ) {
-          // Add things to the jatos session data
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
-          // add the ID to return to the JATOS battery
-          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-          // If this is the first visit to this manager, display the battery instructions
-          DisplayBatteryInstructionsFlag = true
-          
-        }
-        else {DisplayBatteryInstructionsFlag = false}
-        console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
-        jatos.studySessionData = JATOSSessionData
-        console.log(jatos.batchSession.getAll())
-        console.log(jatos)
-    }
-}
 var trial0 = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "",
   choices: "",
   trial_duration: 10
+  
+}
+var SetupBattery = {
+  type: jsPsychCallFunction,
+  func: function() {
+      console.log(ComponentList)
+
+      // read the data for this trial
+      var all_data = jsPsych.data.get();
+      console.log(all_data)
+      // find the battery selected and extract its list of components
+      var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      console.log(ParameterList)
+      TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
+      console.log(TaskList)
+      // Extract the battery instructions
+      BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
+      console.log(BatteryInstructions)
+        // Make a task list of the components of the battery
+      for ( var i = 0; i < TaskList.length; i ++ ) {
+        TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
+      }
+      console.log(TaskIconList)
+      // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+      JATOSSessionData = jatos.studySessionData
+      if ( isEmpty(JATOSSessionData) ) {
+        // Add things to the jatos session data
+        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
+        // add the ID to return to the JATOS battery
+        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+        JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+        // If this is the first visit to this manager, display the battery instructions
+        DisplayBatteryInstructionsFlag = true
+        
+      }
+      else {DisplayBatteryInstructionsFlag = false}
+      console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
+      jatos.studySessionData = JATOSSessionData
+      console.log(jatos.batchSession.getAll())
+      console.log(jatos)
+  }
 }
 var trial0a = {
   type: jsPsychHtmlButtonResponse,
@@ -80,16 +82,6 @@ var if_node_BatteryInstructions = {
   }
 }
 
-var if_node_ALaCarte = {
-  type: jsPsychCallFunction,
-  func: function() {    
-    data = jsPsych.data.get()
-    console.log(data.trials[0].Battery)
-    if (Number(data.trials[0].Battery) > 100 ) {
-      jatos.startComponent(UserChoiceHtmlID)
-    }
-  }
-}
 
 var trial1 = {
   // This displays a series of buttons on the screen for each component of this session. 
@@ -131,12 +123,10 @@ var trial1 = {
 
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
-  // Once the data is added, then it can be read and worked with.
-  timeline.push(trial0)
-  timeline.push(if_node_ALaCarte)
-  timeline.push(SetupBattery)
-  
+  // Once the data is added, then it can be read and worked with.  
+timeline.push(trial0)
 timeline.push(if_node_BatteryInstructions)
+timeline.push(SetupBattery)
 //timeline.push(enter_fullscreen)
 timeline.push(trial1)
 

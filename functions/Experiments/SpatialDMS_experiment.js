@@ -6,15 +6,15 @@ var timeline = [];
 var Current = 4
 DMSFontSize = 36
 var count = 0
-const GridCountX = 4
-const GridCountY = 4
+const GridCountX = 10
+const GridCountY = 10
 const NumberLocations = GridCountX*GridCountY
 var CurrentLocations
 const CircleColor = 'black'
 
 
-const CanvasWidth = 400
-const CanvasHeight = 400
+const CanvasWidth = 600
+const CanvasHeight = 600
 var CurrentLoad = 4
 var CircleRadius
 // Decide circle radius based on the canvas size

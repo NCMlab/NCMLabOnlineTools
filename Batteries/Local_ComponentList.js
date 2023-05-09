@@ -36,6 +36,7 @@ add('Verbal DMS',function(){jatos.startComponent(22)});
 add('Cancellation',function(){jatos.startComponent(9)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
+const UsageManagerHtmlID = 23
 
 var BatteryList = []
 // This is not used yet

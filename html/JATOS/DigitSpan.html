@@ -47,6 +47,7 @@
       var parameters = 'empty'
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         if (typeof BatteryHtmlID === 'undefined') {
           parameters = 'DigitSpan_Visual_Forward_TwoErrors'
           console.log(parameters)
@@ -90,8 +91,8 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management on JATOS
-      if (typeof BatteryHtmlID != 'undefined') {
-        jatos.startComponent(BatteryHtmlID);
+      if (typeof UsageManagerHtmlID != 'undefined') {
+        jatos.startComponent(UsageManagerHtmlID);
       }
     }
   });

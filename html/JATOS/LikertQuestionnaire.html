@@ -34,6 +34,7 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]  
         pseudoSwitch(parameters)
         console.log(parameters)
@@ -80,9 +81,9 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management on JATOS
-        console.log(BatteryHtmlID)
+        console.log(UsageManagerHtmlID)
       console.log("GOING HOME")
-      jatos.startComponent(BatteryHtmlID);
+      jatos.startComponent(UsageManagerHtmlID);
     }
   });
   jatos.onLoad(() => {

@@ -39,6 +39,7 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         if (typeof BatteryHtmlID === 'undefined') {
           parameters = 'CubeCopy_Default'
           console.log(parameters)
@@ -76,9 +77,8 @@
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management
-      console.log("BATTERY HTML: "+BatteryHtmlID)
-      if (typeof BatteryHtmlID != 'undefined') {
-        jatos.startComponent(BatteryHtmlID);
+      if (typeof UsageManagerHtmlID != 'undefined') {
+        jatos.startComponent(UsageManagerHtmlID);
       }
     }
   });

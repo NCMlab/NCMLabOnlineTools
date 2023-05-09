@@ -41,6 +41,7 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         if (typeof BatteryHtmlID === 'undefined') {parameters = 'Fluency_F'}
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)      
@@ -78,8 +79,8 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management
-      if (typeof BatteryHtmlID != 'undefined') {
-        jatos.startComponent(BatteryHtmlID);
+      if (typeof UsageManagerHtmlID != 'undefined') {
+        jatos.startComponent(UsageManagerHtmlID);
       }
     }
   });

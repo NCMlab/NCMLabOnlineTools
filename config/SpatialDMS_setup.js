@@ -18,8 +18,8 @@ var KeyboardChoices = ['No', 'Yes'];
 var ResponseMapping = [0, 1];
 
 // Timings of the different trial phases in MILLISECONDS
-var StimOnTime = 250
-var RetOnTime = 350
+var StimOnTime = 2500
+var RetOnTime = 3500
 var ProbeOnTime = 5000
 // This is the intertrial interval. 
 var ITITime = 1000
@@ -42,11 +42,11 @@ var NTrialsPerBlock = 6
 var NumberOfBlocks = 5
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 10
+var MaxTrials = 40
 var MaxReversals = 15
 var StartValue = 1
 var MinValue = 1
-var MaxValue = 9
+var MaxValue = 20
 var StepSize = 1
 var NUp = 3
 var NDown = 1
