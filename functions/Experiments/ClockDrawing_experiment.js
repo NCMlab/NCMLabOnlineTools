@@ -13,7 +13,6 @@ var trial = {
   }
 }
 
-
 var Instructions = {
       type: jsPsychHtmlButtonResponseTouchscreen,
        stimulus: function()

@@ -14,7 +14,7 @@ var RAVLT_Manual_Immediate = {
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 100, // milliseconds
+	TimePerWord: 1000, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,

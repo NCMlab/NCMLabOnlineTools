@@ -115,7 +115,8 @@ var enter_fullscreen = {
       //   a.click();
       //   document.body.removeChild(a);
       // }
-      on_finish: function() {
+      on_finish: function(data) {
+        data.trial = 'Trail Making'
         console.log(jsPsych.data.get().last(1))
       }
     }
@@ -169,6 +170,13 @@ var SendData = {
   }
 }
 
+var thank_you = {
+  timeline: [Instructions],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -211,12 +219,7 @@ var StartTaskPrompt = {
   repetitions: 1,
 }
 
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}
+
 
 var if_node = {
   timeline: [StartPracticePrompt, trial_Practice],

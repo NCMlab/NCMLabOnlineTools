@@ -193,7 +193,7 @@ var TrailMakingA_Default = {
     Instructions: InstructionsA,
     InstructionsShownWithPractice: InstructionsShownWithPracticeA,
     ShowWelcome: false,
-	ShowThankYou: false,
+	ShowThankYou: true,
 }
 
 var TrailMakingB_Default = {
@@ -209,7 +209,7 @@ var TrailMakingB_Default = {
     Instructions: InstructionsB,
     InstructionsShownWithPractice: InstructionsShownWithPracticeB,
     ShowWelcome: false,
-	ShowThankYou: false,
+	ShowThankYou: true,
 }
 
 var TrailMakingA_001 = {
