@@ -243,6 +243,7 @@ var AudioStimulus = {
         //Stim = jsPsych.timelineVariable('Word')
         Stim = AudioFileDictListA[ItemCount].Word
         // return the chosen stimulus
+        console.log(Stim)
         return Stim
       },
     choices: [],  
