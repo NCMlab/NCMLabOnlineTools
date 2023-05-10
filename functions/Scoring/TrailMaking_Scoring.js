@@ -14,5 +14,7 @@ function TrailMaking_Scoring(data) {
 	Results.AllResults['Accuracy'] = AllCorrect
 	Results.AllResults['Number of Errors'] = temp.ErrorCount 
 	Results.AllResults['All Data'] = temp.OutData
+	Results.AllResults['Image'] = temp.png
+	Results.AllResults['Response Time (ms)'] = temp.rt
 	return Results
 }

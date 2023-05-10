@@ -53,6 +53,8 @@ function LineBisection_Scoring(data) {
 	// 	var LEN = LineLength(LeftX, LeftY, RightX, RightY)
 	// 	console.log(LEN)
 	// }
+	Results.AllResults['Image'] = temp.png
+	Results.AllResults['Response Time (ms)'] = temp.rt
 	return Results
 }
 

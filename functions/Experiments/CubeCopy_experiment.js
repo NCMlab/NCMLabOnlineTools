@@ -19,7 +19,6 @@ var trial = {
       show_countdown_trial_duration: true,
       on_finish: function(data) {
             data.trial = 'Cube Copy'
-            console.log(data)
       }
 }
 

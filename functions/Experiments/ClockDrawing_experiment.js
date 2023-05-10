@@ -7,7 +7,10 @@ var trial = {
   prompt_location: 'abovecanvas',
   canvas_width: 600,
   canvas_height: 600,
-  canvas_border_width: 2
+  canvas_border_width: 2,
+  on_finish: function(data) {
+    data.trial = 'Clock Drawing'
+  }
 }
 
 
