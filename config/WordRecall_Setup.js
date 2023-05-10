@@ -14,7 +14,7 @@ var RAVLT_Manual_Immediate = {
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -28,7 +28,7 @@ var RAVLT_Manual_Delayed = {
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -42,7 +42,7 @@ var RAVLT_001 = {
 	BListFlag: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -56,7 +56,7 @@ var FaCE_Default = {
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
-	TimePerWord: 100, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -69,7 +69,7 @@ var FaCE_Default_Delayed = {
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
-	TimePerWord: 1000, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: false,
