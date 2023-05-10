@@ -151,8 +151,8 @@ var AudioStim = {
       return stim[idx]},
     choices: [],
     post_trial_gap: TimeGapBetweenAudioLetters,
-    trial_ends_after_audio: true,
     prompt: '<p class="Fixation">+</p>',
+    trial_duration: 1000,
     on_finish: function(data){
       data.TrialNumber = TrialCount - 1
       data.task = 'audio'
