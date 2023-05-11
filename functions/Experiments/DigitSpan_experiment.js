@@ -183,8 +183,8 @@ var AudioStim = {
     console.log(stim[idx])
     return stim[idx]
   },
-  choices: [],
-  trial_duration: 1500,
+  choices: ['Next'],
+  trial_ends_after_audio: false,
   prompt: '<p class="Fixation">Press the letter or number you heard</p>',
   on_finish: function(data) {
     idx += 1; //update the index
