@@ -270,8 +270,8 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
              OutData[i] = {
                 'Count':-99,
                 'Label':-99,
-                'EnterTime':-99,
-                'LeaveTime':-99,
+                'EnterLocTime':-99,
+                'LeaveLocTime':-99,
             };            
           }
 
@@ -626,7 +626,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                       {
                         // record data 
                         this.OutData[this.CompletedCircle].Count = this.CompletedCircle;
-                        this.OutData[this.CompletedCircle].EnterTime = performance.now();
+                        this.OutData[this.CompletedCircle].EnterLocTime = performance.now();
                         this.OutData[this.CompletedCircle].Label = this.Circles[this.CompletedCircle].label;
                         if ( GiveFeedback ) 
                         {
@@ -655,7 +655,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                     // left the Correct circle
                     if (this.InsideWhichCircle == this.CompletedCircle)
                     {
-                      this.OutData[this.CompletedCircle].LeaveTime = performance.now();  
+                      this.OutData[this.CompletedCircle].LeaveLocTime = performance.now();  
                       this.CompletedCircle++;
                     }
                   }
