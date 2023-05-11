@@ -12,6 +12,7 @@ var staircase
 var accuracy 
 var MaxErrorsInRow = 0
 var CurrentListLength
+var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var StopFlag = true // will stop procedure if false, but only checks AFTER ONE TRIAL
 // =======================================================================
 var enter_fullscreen = {
@@ -42,7 +43,7 @@ var ReadParametersAndSetup = {
 var preload_digits = {
   type: jsPsychPreload,
   audio: function() {
-    var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    
     var List = MakeListOfStimuli(FolderOfAudioFiles, initList)
     console.log(List)
     console.log("PRELOADING AUDIO")
@@ -145,7 +146,7 @@ var TrialNumber = {
 
 // Audio presentation
 var AudioStim = {
-    type: jsPsychAudioKeyboardResponse,
+    type: jsPsychAudioButtonResponse,
     stimulus: function(){
       console.log(stim[idx])
       return stim[idx]},
@@ -165,6 +166,29 @@ var AudioStim = {
       }
     }
 };
+
+var TESTAudioStim = {
+  type: jsPsychAudioButtonResponse,
+  stimulus: function(){
+    console.log("Audio List length is: "+9)
+    randomElement = ReturnElementsFromPermute(1,9)  
+    //randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
+    console.log('Planning to present element: '+randomElement)
+    return stim[randomElement]
+  },
+  choices: initList,
+  trial_ends_after_audio: false,
+  prompt: '<p class="Fixation">Press the letter or number you heard</p>',
+  on_finish: function(data) {
+      if (randomElement == data.response) {
+          NumberCorrect++
+          data.correct = 1
+      }
+      else {data.correct = 0}
+      console.log(NumberCorrect/NumberOfTrials)
+  }
+};
+
 // Visual presentation
 var VisualStim = {
   type: jsPsychHtmlKeyboardResponse,
@@ -364,6 +388,10 @@ var if_ThankYou = {
 timeline.push(if_Welcome)
 timeline.push(if_node)
 timeline.push(ReadParametersAndSetup)
+
+
+
+
 timeline.push(if_audio_forward_instr)
 timeline.push(if_visual_forward_instr)
 timeline.push(if_audio_backward_instr)
