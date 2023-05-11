@@ -147,7 +147,7 @@ var TrialNumber = {
 };
 
 // Audio presentation
-var AudioStim = {
+var OLDAudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
       console.log("The stim list is: "+stim)
@@ -172,7 +172,7 @@ var AudioStim = {
     }
 };
 
-var NEWAudioStim = {
+var AudioStim = {
   type: jsPsychAudioButtonResponse,
   stimulus: function(){
     console.log("Audio List length is: "+9)
@@ -184,7 +184,8 @@ var NEWAudioStim = {
     return stim[idx]
   },
   choices: ['Next'],
-  trial_ends_after_audio: true,
+  trial_ends_after_audio: false,
+  trial_duration: 2000,
   prompt: '<p class="Fixation">Press the letter or number you heard</p>',
   on_finish: function(data) {
     idx += 1; //update the index
