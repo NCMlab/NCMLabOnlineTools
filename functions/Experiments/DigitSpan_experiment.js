@@ -183,11 +183,15 @@ var AudioStim = {
     console.log(stim[idx])
     return stim[idx]
   },
-  choices: ['Next'],
+  choices: [],
   trial_ends_after_audio: false,
   trial_duration: 2000,
-  prompt: '<p class="Fixation">Press the letter or number you heard</p>',
+  response_ends_trial: false,
+  prompt: '<p class="Fixation">+</p>',
   on_finish: function(data) {
+    console.log("Finished presenting")
+    data.TrialNumber = TrialCount - 1
+    data.task = 'audio'
     idx += 1; //update the index
       //check to see if we are at the end of the letter array
       if (idx == stimList.length) {
