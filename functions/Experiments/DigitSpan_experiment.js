@@ -185,7 +185,7 @@ var AudioStim = {
   },
   choices: [],
   trial_ends_after_audio: false,
-  trial_duration: 2000,
+  trial_duration: 1500,
   response_ends_trial: false,
   prompt: '<p class="Fixation">+</p>',
   on_finish: function(data) {
