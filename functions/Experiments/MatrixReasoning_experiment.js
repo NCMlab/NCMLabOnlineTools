@@ -9,9 +9,9 @@ var MatrixReasoningSetup = {
     func: function() 
     {
         for ( var i = 0; i < MatrixReasoning_parameters.StimList.length; i++ ){
-  
-            ImageFileList.push(MakeMatrxiReasoningStim(MatrixReasoning_parameters.StimList[i]['stim'], FolderName, MatrixReasoning_parameters.StimulusFolderName))
-            OptionNames = MakeMatrxiReasoningOptionsFileNames(MatrixReasoning_parameters.StimList[i]['stim'], FolderName, MatrixReasoning_parameters.StimulusFolderName)
+  //  MakeMatrxiReasoningStim(StimulusID, BaseFolderName, StimulusFolderName ) 
+            ImageFileList.push(MakeMatrxiReasoningStim(MatrixReasoning_parameters.StimList[i]['stim'], BaseFolderName, MatrixReasoning_parameters.StimulusFolderName))
+            OptionNames = MakeMatrxiReasoningOptionsFileNames(MatrixReasoning_parameters.StimList[i]['stim'], BaseFolderName, MatrixReasoning_parameters.StimulusFolderName)
             for (var j = 0; j < 6; j++)
             { 
             ImageFileList.push(OptionNames[j])
@@ -48,12 +48,12 @@ var trial = {
     type: jsPsychImageButtonResponse,
     stimulus: function()
     {
-      var stim = MakeMatrxiReasoningStim(jsPsych.timelineVariable('stim'),FolderName, MatrixReasoning_parameters.StimulusFolderName)
+      var stim = MakeMatrxiReasoningStim(jsPsych.timelineVariable('stim'),BaseFolderName, MatrixReasoning_parameters.StimulusFolderName)
       return stim
     },
     choices: function()
     {
-      var stim = MakeMatrxiReasoningOptions(jsPsych.timelineVariable('stim'),FolderName, MatrixReasoning_parameters.StimulusFolderName, 
+      var stim = MakeMatrxiReasoningOptions(jsPsych.timelineVariable('stim'),BaseFolderName, MatrixReasoning_parameters.StimulusFolderName, 
       MatrixReasoning_parameters.StimWidth, MatrixReasoning_parameters.StimHeight)
       return stim
     },

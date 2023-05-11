@@ -21,6 +21,7 @@
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../../jspsych/dist/plugin-preload.js"></script>
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
@@ -28,10 +29,18 @@
         var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/ICAR_MatrixReasoning_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
-    <script src="../../config/ICAR_MatrixReasoning_Setup.js"></script>
-    <script src="../../functions/TaskSpecificFunctions/ICAR_MatrixReasoning_functions.js"></script>
-    <script src="../../functions/Experiments/ICAR_MatrixReasoning_experiment.js"></script>
-
+    <script src="../../config/MatrixReasoning_Setup.js"></script>
+    <script>
+        // This is where the parameters to be used as specified.
+        // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+        pseudoSwitch('MatrixReasoning_ICAR')
+        console.log(MatrixReasoning_parameters)
+      </script>
+    <script src="../../functions/TaskSpecificFunctions/MatrixReasoning_functions.js"></script>
+    <script src="../../functions/Experiments/MatrixReasoning_experiment.js"></script>
+    <script> 
+        var BaseFolderName = '../../assets/Images/MatrixReasoning/'
+      </script>
 
     
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
