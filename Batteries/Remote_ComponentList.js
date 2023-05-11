@@ -33,8 +33,8 @@ add('Serial Subtraction',function(){jatos.startComponent(22)});
 add('Fluency',function(){jatos.startComponent(23)});
 add('Line Bisection',function(){jatos.startComponent(24)});
 add('Clock Drawing',function(){jatos.startComponent(14)});
-add('Verbal DMS',function(){jatos.startComponent(22)});
-add('Cancellation',function(){jatos.startComponent(26)});
+add('Verbal DMS',function(){jatos.startComponent(26)});
+add('Cancellation',function(){jatos.startComponent(13)});
 add('Spatial DMS',function(){jatos.startComponent(28)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 25
@@ -72,8 +72,6 @@ BatteryList.push({index: 1,
 	BatteryInstructions:"This is the NCMLab Evaluation"
 })
 
-
-
 BatteryList.push({index: 101, 
 	name:'Barbados', 
 	list: ['Trail Making', 'Trail Making', 
@@ -105,11 +103,12 @@ BatteryList.push({index: 101,
 		'Digit span backward (audio) adaptive difficulty for 14 trials',
 		'','','',
 		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
-		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements',
+		'RAVLT with manual scoring','','',
 		'Adaptive difficulty','Adaptive difficulty'
 		],
     BatteryInstructions:"This is the NCMLab Evaluation"
 })
+
 BatteryList.push({index: 102, 
 	name:'Chemo Brain', 
 	list: ['Trail Making', 'Trail Making', 
