@@ -12,6 +12,7 @@ var staircase
 var accuracy 
 var MaxErrorsInRow = 0
 var CurrentListLength
+var stim
 var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var StopFlag = true // will stop procedure if false, but only checks AFTER ONE TRIAL
 // =======================================================================
@@ -98,7 +99,7 @@ var CheckWhetherToStop = {
     }
 }
 
-var stim
+
 var SetupTrial = {
     type: jsPsychCallFunction,
     func: function(data){
@@ -106,6 +107,7 @@ var SetupTrial = {
         stimList = CreateDigitList(CurrentListLength)
         if ( DigitSpan_parameters.StimulusMode == 'audio' ) {
             stim = MakeListOfStimuli(FolderOfAudioFiles, stimList)
+            console.log("Made this list of stimuli: "+stim)
         }
         else { // visual
             stim = stimList
@@ -145,7 +147,7 @@ var TrialNumber = {
 };
 
 // Audio presentation
-var AudioStim = {
+var OLDAudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
       console.log("The stim list is: "+stim)
@@ -170,25 +172,28 @@ var AudioStim = {
     }
 };
 
-var TESTAudioStim = {
+var AudioStim = {
   type: jsPsychAudioButtonResponse,
   stimulus: function(){
     console.log("Audio List length is: "+9)
-    randomElement = ReturnElementsFromPermute(1,9)  
+     
     //randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
-    console.log('Planning to present element: '+randomElement)
-    return stim[randomElement]
+    console.log('Planning to present element: '+idx)
+    console.log("The stim list is: "+stim)
+    console.log(stim[idx])
+    return stim[idx]
   },
-  choices: initList,
-  trial_ends_after_audio: false,
+  choices: [],
+  trial_duration: 1500,
   prompt: '<p class="Fixation">Press the letter or number you heard</p>',
   on_finish: function(data) {
-      if (randomElement == data.response) {
-          NumberCorrect++
-          data.correct = 1
+    idx += 1; //update the index
+      //check to see if we are at the end of the letter array
+      if (idx == stimList.length) {
+          exitLetters = 1;
+      } else  {
+          exitLetters = 0;
       }
-      else {data.correct = 0}
-      console.log(NumberCorrect/NumberOfTrials)
   }
 };
 
