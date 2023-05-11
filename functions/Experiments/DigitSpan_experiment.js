@@ -155,7 +155,7 @@ var AudioStim = {
       console.log("Presenting: "+stim[idx])
       return stim[idx]},
     choices: [],
-    //post_trial_gap: TimeGapBetweenAudioLetters,
+    post_trial_gap: TimeGapBetweenAudioLetters,
     prompt: '<p class="Fixation">+</p>',
     trial_duration: function(){return 1500},
     on_finish: function(data){
