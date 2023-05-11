@@ -78,5 +78,5 @@ var thank_you = {
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(trial)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(SendData)

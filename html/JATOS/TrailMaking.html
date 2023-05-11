@@ -28,7 +28,6 @@
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/Trailmaking_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
- <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
     <script src="functions/Scoring/TrailMaking_Scoring.js"></script>
     <script src="config/TrailMaking_Setup.js"></script>
     <script>
@@ -47,10 +46,9 @@
 
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
     <script src="functions/Experiments/Trailmaking_experiment.js"></script>
-   
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
   </body>
   <script>
-    var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
@@ -68,7 +66,6 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
     on_finish: function() {
-      
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','Trailmaking_data.csv');

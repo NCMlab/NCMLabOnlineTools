@@ -165,8 +165,8 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
     Results = TrailMaking_Scoring(data)
-    console.log(Results)
     jsPsych.finishTrial(Results)
+    console.log(Results)
   }
 }
 
@@ -242,7 +242,6 @@ var if_node = {
   timeline.push(if_node)
   timeline.push(StartTaskPrompt)
   timeline.push(trials)
-  timeline.push(SendData)
   timeline.push(if_ThankYou)
-  
+  timeline.push(SendData)
   

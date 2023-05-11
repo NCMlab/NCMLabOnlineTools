@@ -116,8 +116,7 @@ var Instruct = {
   timeline.push(enter_fullscreen)
   timeline.push(Instruct)
   timeline.push(trials)
-  timeline.push(SendData)
   timeline.push(if_ThankYou)
-  
+  timeline.push(SendData)
   
   
