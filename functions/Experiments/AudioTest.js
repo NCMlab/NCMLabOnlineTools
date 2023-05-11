@@ -2,11 +2,13 @@
 // Define internal variables
 
 var timeline = []
-const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine']
+//const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','X1','X2','X3','X4']
+const AudioTestList = ['X1','X2','X3','X4','X5','X6','X7','X8','X9']
 var randomElement
 var List = []
-var NumberOfTrials = 7
+var NumberOfTrials = 10
 var NumberCorrect = 0
+
 // =======================================================================
 // preload audio
 var preload_audio = {
@@ -51,8 +53,11 @@ var fixation = {
 var AudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
-        randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
-        return List[randomElement]
+      console.log("Audio List length is: "+AudioTestList.length)
+      randomElement = ReturnElementsFromPermute(1,AudioTestList.length)  
+      //randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
+      console.log('Planning to present element: '+randomElement)
+      return List[randomElement]
     },
     choices: AudioTestList,
     trial_ends_after_audio: false,
