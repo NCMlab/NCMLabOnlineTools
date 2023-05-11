@@ -147,7 +147,7 @@ var TrialNumber = {
 };
 
 // Audio presentation
-var OLDAudioStim = {
+var AudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
       console.log("The stim list is: "+stim)
@@ -172,7 +172,7 @@ var OLDAudioStim = {
     }
 };
 
-var AudioStim = {
+var NEWAudioStim = {
   type: jsPsychAudioButtonResponse,
   stimulus: function(){
     console.log("Audio List length is: "+9)
