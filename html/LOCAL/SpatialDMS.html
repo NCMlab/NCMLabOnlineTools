@@ -41,8 +41,12 @@
     <script src="../../functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
+      // used for the image used during the instructions
+        var BaseFolderName = '../../assets/InstructionalImages/'
+      </script>
+    <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/SpatialDMS_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
 
@@ -56,7 +60,7 @@
     <script src="../../functions/Experiments/SpatialDMS_experiment.js"></script>
     <script src="../../functions/Scoring/DMS_Scoring.js"></script>
 
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'>
     </div> 
     
   </body>

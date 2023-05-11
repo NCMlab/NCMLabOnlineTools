@@ -23,10 +23,14 @@
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
+    <script> 
+        var BaseFolderName = '../../assets/Images/MatrixReasoning/'
+      </script>
+
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/ICAR_MatrixReasoning_Instructions.js"
+        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/MatrixReasoning_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="../../config/MatrixReasoning_Setup.js"></script>
@@ -38,11 +42,11 @@
       </script>
     <script src="../../functions/TaskSpecificFunctions/MatrixReasoning_functions.js"></script>
     <script src="../../functions/Experiments/MatrixReasoning_experiment.js"></script>
-    <script> 
-        var BaseFolderName = '../../assets/Images/MatrixReasoning/'
-      </script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  </body>
+    <div id="screen_timer">
+      <p>Time: <span id="clock">00:00</span></p>
+    </div>
+    </body>
   <script>
 
     jsPsych = initJsPsych({

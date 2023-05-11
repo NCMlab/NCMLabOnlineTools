@@ -26,14 +26,15 @@
     <script src="config/General_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
+      var BaseFolderName = 'assets/Images/MatrixReasoning/'
+    </script>
+    <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/ICAR_MatrixReasoning_Instructions.js"
+        var url = "InstructionsAndStimuli/"+Language+"/Instructions/MatrixReasoning_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
     <script src="config/MatrixReasoning_Setup.js"></script>
-    <script> 
-      var BaseFolderName = 'assets/Images/MatrixReasoning/'
-    </script>
+
     <script>
       var MatrixReasoning_parameters = 'empty'
       var parameters = 'empty'      

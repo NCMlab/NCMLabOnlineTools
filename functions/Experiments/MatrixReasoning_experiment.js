@@ -20,13 +20,25 @@ var MatrixReasoningSetup = {
         MatrixList = MatrixReasoning_parameters.MatrixList
     } 
 }
+
+var CalculateWaitTime = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( MatrixReasoning_parameters.AllowedTime > 0 ) {
+      wait_time = MatrixReasoning_parameters.AllowedTime * 1000; // in milliseconds
+      console.log("The wait time is set to: "+wait_time)
+    }
+  }
+}
+
 // Make a list of all images used for preloading
 
 
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: FullScreenMode
 }
 // =======================================================================
 // Define all of the different the stimuli 
@@ -70,6 +82,32 @@ var trial = {
     }
     
 };
+
+// =======================================================================
+// Scoring procedure
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var trialData = jsPsych.data.get()//.filter({task:'Trial'})
+    console.log(trialData)
+    Results = MatrixReasoning_Scoring(trialData) 
+    jsPsych.finishTrial(Results)
+  },
+}    
+
+var welcome = {
+  timeline: [Instructions],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var thank_you = {
+  timeline: [Instructions],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
+}
 // Define instructions
 var Instructions = {
       type: jsPsychHtmlButtonResponseTouchscreen,
@@ -83,6 +121,45 @@ var Instructions = {
       prompt: '',
       choices: ['Next'], 
     }  
+
+var timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( MatrixReasoning_parameters.AllowedTime > 0 ) {
+        timer_function(wait_time) }
+    }
+}
+  
+var timer_stop = {
+  // This stops the interval timer and resets the clock to 00:00
+  type: jsPsychCallFunction,
+  func: function(){
+    if ( MatrixReasoning_parameters.AllowedTime > 0 ) {
+      clearInterval(interval);
+      document.querySelector('#clock').innerHTML = '00:00'
+    }
+  }
+}    
+
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+        if ( MatrixReasoning_parameters.ShowWelcome)
+        { console.log(MatrixReasoning_parameters)
+          return true }
+        else { return false }
+  }
+}
+
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+        if ( MatrixReasoning_parameters.ShowThankYou)
+        { return true }
+        else { return false }
+  }
+}
+
 // =======================================================================    
 // Define procedures using the stimuli
  var trial_procedure = {
@@ -104,8 +181,15 @@ var Instructions = {
       repetitions: 1,
     }    
 // ======================================================================= 
+timeline.push(CalculateWaitTime) // works
+timeline.push(enter_fullscreen)
+timeline.push(if_Welcome)
 timeline.push(MatrixReasoningSetup)
 timeline.push(preload)
 timeline.push(instr_procedure)
+timeline.push(timer_start)
 timeline.push(trial_procedure)
+timeline.push(timer_stop)
 timeline.push(thankyou_procedure)
+timeline.push(SendData)
+timeline.push(if_ThankYou);

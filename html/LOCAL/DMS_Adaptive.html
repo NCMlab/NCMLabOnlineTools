@@ -18,9 +18,10 @@
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>    
-    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js">
-    </script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script> 
      <style>
       .stimulus { font-size: 45; }
       .background {color:  [150, 150, 150]}
@@ -37,6 +38,11 @@
     <script src="../../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script> 
+    // used for the image used during the instructions
+      var BaseFolderName = '../../assets/InstructionalImages/'
+    </script>
+
+    <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
@@ -44,6 +50,12 @@
 
 
     <script src="../../config/DMS_setup.js"></script>
+    <script>
+        // This is where the parameters to be used as specified.
+        // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
+        pseudoSwitch('vDMS_Adaptive')
+        console.log(vDMS_parameters)
+      </script>    
     <script src="../../functions/Experiments/DMS_experiment.js"></script>
     <script src="../../functions/Scoring/DMS_Scoring.js"></script>
   <style>
@@ -54,7 +66,7 @@
       }
     }
   </style>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'>
     </div> 
     
   </body>

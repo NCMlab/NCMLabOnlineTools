@@ -21,6 +21,7 @@ var MatrixReasoning_ICAR = {
   StimHeight: "70vh",
   FixationTimeBetweenTrials: 2000,// milliseconds
   OptionMapping: '123456', // used for scoring
+  AllowedTime: 10*60// seconds
 }
 
 
