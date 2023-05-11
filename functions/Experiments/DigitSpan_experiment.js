@@ -148,13 +148,16 @@ var TrialNumber = {
 var AudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
-      console.log(stim[idx])
+      console.log("The stim list is: "+stim)
+      console.log("The idx is: "+idx)
+      console.log("Presenting: "+stim[idx])
       return stim[idx]},
     choices: [],
     //post_trial_gap: TimeGapBetweenAudioLetters,
     prompt: '<p class="Fixation">+</p>',
     trial_duration: function(){return 1500},
     on_finish: function(data){
+      console.log("Finished presenting")
       data.TrialNumber = TrialCount - 1
       data.task = 'audio'
       idx += 1; //update the index
