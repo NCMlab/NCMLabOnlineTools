@@ -40,7 +40,7 @@ var NTrialsPerBlock = 6
 var NumberOfBlocks = 5
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 40
+var MaxTrials = 5
 var MaxReversals = 15
 var StartValue = 1
 var MinValue = 1

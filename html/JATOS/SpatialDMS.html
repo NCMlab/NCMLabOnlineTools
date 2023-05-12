@@ -8,7 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Spatial DMS</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
   </head>    
   <body>
@@ -38,7 +38,10 @@
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
-    
+    <script> 
+      // used for the image used during the instructions
+        var BaseFolderName = 'assets/InstructionalImages/'
+      </script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/SpatialDMS_Instructions.js"

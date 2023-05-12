@@ -96,6 +96,7 @@ var enter_fullscreen = {
         console.log("Program thinks this answer is:")
         console.log(ResponseMapping[ResponseIndex])
         console.log(data)
+        console.log(stair1)
         if (ResponseMapping[ResponseIndex] == correct) 
           {
             data.correct = 1,
@@ -158,7 +159,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = DMS_Scoring(data)    
+    Results = DMS_Scoring(stair1)    
     jsPsych.finishTrial(Results)
   }
 }
@@ -216,6 +217,7 @@ timeline.push(enter_fullscreen)
 timeline.push(instr_procedure)
 timeline.push(WaitTime)
 timeline.push(loop_node)
-timeline.push(debrief_block)
-timeline.push(SendData)
+//timeline.push(debrief_block)
 timeline.push(if_ThankYou)
+timeline.push(SendData)
+

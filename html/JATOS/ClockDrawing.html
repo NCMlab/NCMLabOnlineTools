@@ -8,7 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Clock Drawing</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
   </head>    
   <body>
@@ -16,6 +16,7 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -42,10 +43,11 @@
   })
 </script>
 
-    <script src="functions/Experiments/ClockDrawing_experiment.js"></script>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  </body>
-  <script>
+<script src="functions/Experiments/ClockDrawing_experiment.js"></script>
+<script src="functions/Scoring/ClockDrawing_Scoring.js"></script>
+<div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+</body>
+<script>
 var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
@@ -93,6 +95,7 @@ var jsPsych = initJsPsych({
         style: "top:8px; right:40px; color:green; bottom: unset"
       });
       jsPsych.run(timeline);
+      
     });
   </script>
 </html>

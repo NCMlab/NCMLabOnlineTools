@@ -103,7 +103,7 @@ function MakeStimulus(LettersToUse, Load)
 		// Make sure a load 1 letter is not L
 		var IsEll = true
 		while (IsEll) {
-			var ShuffledLetters = shuffle(LettersToUse)
+			var ShuffledLetters = DMSshuffle(LettersToUse)
 			//console.log(LettersToUse)
 			// Onky take the required number of letters based on the load
 			var LetterString = ShuffledLetters.substring(0,Load)
@@ -129,7 +129,7 @@ function CreateProbeLetter(CurrentStim, AllowableLetters)
 				// ADD CHCK TO MAKE SURE ELL IS NOT THE PROBE
 				var IsEll = true
 				while (IsEll) {
-					ShuffledStim = shuffle(CurrentStim)
+					ShuffledStim = DMSshuffle(CurrentStim)
 					CurrentProbe = ShuffledStim[0].toLowerCase()
 					console.log('Trying: '+CurrentProbe)
 					if (CurrentProbe != 'l') {
@@ -146,7 +146,7 @@ function CreateProbeLetter(CurrentStim, AllowableLetters)
         	CurrentAllowableList = RemoveOldLetters(AllowableLetters, CurrentStim, '')
 			var IsEll = true
 			while (IsEll) {
-				ShuffledStim = shuffle(CurrentAllowableList)
+				ShuffledStim = DMSshuffle(CurrentAllowableList)
 				CurrentProbe = ShuffledStim[0].toLowerCase()
 				// Check to make sure the probe letter is NOT ell
 				if (CurrentProbe != 'l') {
@@ -167,7 +167,7 @@ function getRandomInt(n)
   		return Math.floor(Math.random() * n);
 	}
 
-function shuffle(s) {
+function DMSshuffle(s) {
 	  var arr = s.split('');           // Convert String to array
 	  var n = arr.length;              // Length of the array
 	  

@@ -8,7 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Verbal DMS</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     </script>
   </head>    
@@ -23,10 +23,13 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    <script> 
+      // used for the image used during the instructions
+        var BaseFolderName = 'assets/InstructionalImages/'
+      </script>
     <script> 
     // Based on the language set in the Language Config, the correct code is loaded up
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/DMS_Instructions.js"
@@ -55,7 +58,8 @@
         pseudoSwitch(parameters)
       })
     </script> 
-  <script src="functions/Experiments/DMS_experiment.js"></script>
+    <script src="functions/Experiments/DMS_experiment.js"></script>
+    <script src="functions/Scoring/DMS_Scoring.js"></script>  
   </body>
   <script>
 var setup = []

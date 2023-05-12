@@ -17,6 +17,7 @@ ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
 ComponentList.push({name:'Cancellation', iconFileName:'Cancellation.png'})
 ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
+ComponentList.push({name:'Intake Form', iconFileName:'MultiChoice.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -36,6 +37,7 @@ add('Clock Drawing',function(){jatos.startComponent(10)});
 add('Verbal DMS',function(){jatos.startComponent(22)});
 add('Cancellation',function(){jatos.startComponent(9)});
 add('Spatial DMS',function(){jatos.startComponent(24)});
+add('Intake Form',function(){jatos.startComponent(26)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
 const UsageManagerHtmlID = 23
@@ -80,41 +82,51 @@ BatteryList.push({index: 1,
 
 BatteryList.push({index: 101, 
 	name:'Barbados', 
-	list: ['Trail Making', 'Trail Making', 
+	list: [
+	'Intake Form',
+	'Trail Making', 'Trail Making', 
 	'Digit Span', 'Digit Span', 
-	'Line Bisection', 'Clock Drawing','Cube Copy',
+	'Verbal DMS','Line Bisection', 'Clock Drawing',
+	'Cube Copy','Word Recall',
 	'Stroop Color','Stroop Word','Stroop Color/Word',
-	'Word Recall', 'Serial Subtraction','Matrix Reasoning',
-	'Word Recall', 
-	'Verbal DMS', 'Spatial DMS'
+	'Serial Subtraction','Word Recall', 
+	'Matrix Reasoning',
+	 'Spatial DMS'
 	], 
 	description: BatteryDescription,
-	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
+	ParameterLists: [
+	'',
+	'TrailMakingA_Default','TrailMakingB_Default',
 	'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
-	'LineBisection_001','CubeCopy_Default','CubeCopy_Default',
+	'vDMS_Adaptive','LineBisection_001','CubeCopy_Default',
+	'CubeCopy_Default','RAVLT_Manual_Immediate',
 	'Stroop_Golden','Stroop_Golden','Stroop_Golden',
-	'RAVLT_Manual_Immediate','SerialSubtract_Default','MatrixReasoning_ICAR',
-	'RAVLT_Manual_Delayed',
-	'vDMS_Adaptive', 'SpatialDMS_Adaptive'
+	'SerialSubtract_Default','RAVLT_Manual_Delayed',
+	'MatrixReasoning_ICAR',
+	'SpatialDMS_Adaptive'
 	],
-	ButtonName: ['Trails A','Trails B',
-	'DS, Forward Adapt','DS, Backward Adapt',
-	'Line Bisect','Clock Draw','Cube Copy',
-	'Victoria','Victoria','Victoria',
-	'RAVLT, Immediate', 'Serial Subtraction', 'ICAR','RAVLT, Delay',
-	'Verbal DMS', 'Spatial DMS'
+	ButtonName: [
+	'Intake Form*',
+	'Trails A*','Trails B*',
+	'DS, Forward*','DS, Backward*',
+	'Verbal DMS*','Line Bisect*','Clock Draw*',
+	'Cube Copy','RAVLT, Immediate',
+	'Color','Word','Color/Word',
+	 'Serial Subtraction', 'RAVLT, Delay',
+	 'ICAR',
+	 'Spatial DMS'
 	],
-	ButtonDescription: ['','',
-		'Digit span forward (audio) adaptive difficulty for 14 trials',
-		'Digit span backward (audio) adaptive difficulty for 14 trials',
+	ButtonDescription: [
+		'',
+		'','',
+		'',	'',
 		'','','',
-		'Stop after 45 seconds','Stop after 45 seconds','Stop after 45 seconds',
-		'RAVLT with manual scoring','','Matrix reasoning using ICAR elements',
-		'Adaptive difficulty','Adaptive difficulty'
+		'','','',
+		'','','',
+		'','',''
 		],
     BatteryInstructions:"This is the NCMLab Evaluation"
 })
-
 BatteryList.push({index: 102, 
 	name:'Chemo Brain', 
 	list: ['Trail Making', 'Trail Making', 
