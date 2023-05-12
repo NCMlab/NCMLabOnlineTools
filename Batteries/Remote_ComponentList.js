@@ -17,6 +17,7 @@ ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
 ComponentList.push({name:'Cancellation', iconFileName:'Cancellation.png'})
 ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
+ComponentList.push({name:'Intake Form', iconFileName:'MultiChoice.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -36,6 +37,7 @@ add('Clock Drawing',function(){jatos.startComponent(14)});
 add('Verbal DMS',function(){jatos.startComponent(26)});
 add('Cancellation',function(){jatos.startComponent(13)});
 add('Spatial DMS',function(){jatos.startComponent(28)});
+add('Intake Form',function(){jatos.startComponent(30)});
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 25
 const UsageManagerHtmlID = 27
@@ -74,7 +76,9 @@ BatteryList.push({index: 1,
 
 BatteryList.push({index: 101, 
 	name:'Barbados', 
-	list: ['Trail Making', 'Trail Making', 
+	list: [
+	'Intake Form',
+	'Trail Making', 'Trail Making', 
 	'Digit Span', 'Digit Span', 
 	'Verbal DMS','Line Bisection', 'Clock Drawing',
 	'Cube Copy','Word Recall',
@@ -84,7 +88,9 @@ BatteryList.push({index: 101,
 	 'Spatial DMS'
 	], 
 	description: BatteryDescription,
-	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default',
+	ParameterLists: [
+	'',
+	'TrailMakingA_Default','TrailMakingB_Default',
 	'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
 	'vDMS_Adaptive','LineBisection_001','CubeCopy_Default',
 	'CubeCopy_Default','RAVLT_Manual_Immediate',
@@ -93,16 +99,20 @@ BatteryList.push({index: 101,
 	'MatrixReasoning_ICAR',
 	'SpatialDMS_Adaptive'
 	],
-	ButtonName: ['Trails A','Trails B',
-	'DS, Forward','DS, Backward',
-	'Verbal DMS','Line Bisect','Clock Draw',
+	ButtonName: [
+	'Intake Form*',
+	'Trails A*','Trails B*',
+	'DS, Forward*','DS, Backward*',
+	'Verbal DMS*','Line Bisect*','Clock Draw*',
 	'Cube Copy','RAVLT, Immediate',
 	'Color','Word','Color/Word',
 	 'Serial Subtraction', 'RAVLT, Delay',
 	 'ICAR',
 	 'Spatial DMS'
 	],
-	ButtonDescription: ['','',
+	ButtonDescription: [
+		'',
+		'','',
 		'',	'',
 		'','','',
 		'','','',
