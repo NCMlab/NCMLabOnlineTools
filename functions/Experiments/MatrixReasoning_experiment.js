@@ -60,6 +60,7 @@ var trial = {
     type: jsPsychImageButtonResponse,
     stimulus: function()
     {
+      console.log(jsPsych.data.get())
       var stim = MakeMatrxiReasoningStim(jsPsych.timelineVariable('stim'),BaseFolderName, MatrixReasoning_parameters.StimulusFolderName)
       return stim
     },
@@ -72,7 +73,8 @@ var trial = {
     prompt: OptionsPrompt,
     on_finish: function(data) 
     {
-        var response = MatrixReasoning_parameters.OptionMapping[data.response]
+      data.task = 'test trial'  
+      var response = MatrixReasoning_parameters.OptionMapping[data.response]
         var correct = jsPsych.timelineVariable('correct')
         if ( response == correct ) 
         {
@@ -91,7 +93,9 @@ var SendData = {
     var trialData = jsPsych.data.get()//.filter({task:'Trial'})
     console.log(trialData)
     Results = MatrixReasoning_Scoring(trialData) 
+    console.log(Results)
     jsPsych.finishTrial(Results)
+    
   },
 }    
 
@@ -174,12 +178,7 @@ var if_ThankYou = {
       randomize_order: false,
       repetitions: 1,
     }
-  var thankyou_procedure = {
-      timeline: [Instructions],
-      timeline_variables: ThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }    
+  
 // ======================================================================= 
 timeline.push(CalculateWaitTime) // works
 timeline.push(enter_fullscreen)
@@ -190,6 +189,5 @@ timeline.push(instr_procedure)
 timeline.push(timer_start)
 timeline.push(trial_procedure)
 timeline.push(timer_stop)
-timeline.push(thankyou_procedure)
-timeline.push(SendData)
 timeline.push(if_ThankYou);
+timeline.push(SendData)

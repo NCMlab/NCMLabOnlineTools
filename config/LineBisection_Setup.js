@@ -30,7 +30,7 @@ var LineBisection_001 = {
     ShowTimer: false,
     Duration: 1000*60*3, // milliseconds,
     ShowWelcome: false,
-	ShowThankYou: true,
+	ShowThankYou: false,
     stroke_width: 10,
 }
 

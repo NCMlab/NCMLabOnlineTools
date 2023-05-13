@@ -27,7 +27,7 @@ var trial = {
           }, 
         {
           type: 'multi-choice',
-          prompt: "What sex were assigned at birth, on your original borth certificate?", 
+          prompt: "What sex were assigned at birth, on your original birth certificate?", 
           options: ['Female','Male'],
           name: 'Sex', 
           required: false,
