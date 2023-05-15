@@ -3,51 +3,65 @@ function LineBisection_Scoring(data) {
 	console.log(temp)
 	Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['Score'] = -99
 	Results.AllResults = {}
-	Results.AllResults['Score'] = -99
+	
+	
+	 Lines = temp.Lines
+	 Strokes = temp.strokes
+	 var LineCrossings = Array(Lines.length ).fill(0)
+	 const MissingValue = 999999
+	 var Distance = Array(Lines.length ).fill(MissingValue)
+	 var PercDistance = Array(Lines.length ).fill(MissingValue)
+	 var CrossFlag
+	 // cycle over each line
+	 for ( var i = 0; i < Lines.length; i++ ) {
+	 	var p = Lines[i].LeftX
+	 	var q = Lines[i].LeftY
+	 	var r = Lines[i].RightX
+	 	var s = Lines[i].RightY
+	 	// find the midpoint of each line
+		MPLine = MidPoint(p,q,r,s)
+	 	var FirstCrossingFlag = true
+		// cycle over each stroke
+	 	for ( var j = 0; j < Strokes.length; j++ ) {
+	 		for ( var k = 1; k < Strokes[j].length; k++ ) {
+	 			a = Strokes[j][k-1].x
+	 			b = Strokes[j][k-1].y
+	 			c = Strokes[j][k].x
+	 			d = Strokes[j][k].y
+				// does this stroke intersect with a line
+				if (intersects(a,b,c,d,p,q,r,s) && FirstCrossingFlag) {
+					console.log("CROSSING for line: "+ i + " and stroke "+ j)
+					// What is the troke point where it crosses a line
+					//console.log("Stroke crosses at point x: "+Strokes[j][k].x+", y: "+Strokes[j][k].y)
+					// if true, how far is it from the midpoint
+
+					// what is the midpoint of the stroke
+					MPLine = MidPoint(p,q,r,s)
+					//console.log("Midpoint of line "+i+" is at "+MPLine)
+					// Distance between midpoint of line and where the stroke crosses it
+					var DirDist = sideOfCrossing(MPLine[0],Strokes[j][k].x)*measureDistance(MPLine[0],MPLine[1],Strokes[j][k].x,Strokes[j][k].y)
+					console.log("This is a distance of: "+DirDist)
+					if ( Distance[i] > DirDist ) {
+						Distance[i] = DirDist
+						PercDistance[i] = 100*DirDist/LineLength(p,q,r,s)
+					}
+
+				}
+			}	
+		}
+	 }
+
+	// console.log(LineCrossings)
+	 console.log(Distance)
+	Results.PrimaryResults['Score'] = calculateAverage(removeEmptyValues(PercDistance, MissingValue))
+	Results.AllResults['Avgerage Percentage Distance'] = calculateAverage(removeEmptyValues(PercDistance, MissingValue))
 	Results.AllResults['Image'] = temp.png
 	Results.AllResults['Response Time (ms)'] = temp.rt
-	console.log(data)
-	
-	// Lines = temp.trials[0].Lines
-	// Strokes = temp.trials[0].strokes
-	// console.log(Lines)
-	// console.log(Strokes)
-	// var LineCrossings = Array(Lines.length ).fill(0)
-	// var Distance = Array(Lines.length ).fill(0)
-	// var CrossFlag
-	// for ( var i = 0; i < Lines.length; i++ ) {
-	// 	var p = Lines[i].LeftX
-	// 	var q = Lines[i].LeftY
-	// 	var r = Lines[i].RightX
-	// 	var s = Lines[i].RightY
-	// 	MPLine = MidPoint(p,q,r,s)
-	// 	var FirstCrossingFlag = true
-	// 	for ( var j = 0; j < Strokes.length; j++ ) {
-	// 		for ( var k = 4; k < Strokes[j].length; k++ ) {
-	// 			a = Strokes[j][k-4].x
-	// 			b = Strokes[j][k-4].y
-	// 			c = Strokes[j][k].x
-	// 			d = Strokes[j][k].y
 
-	// 			if (intersects(a,b,c,d,p,q,r,s) && FirstCrossingFlag) {
-	// 				// if true, how far is it from the midpoint
-	// 				MPStroke = MidPoint(a,b,c,d)
-	// 				console.log(MPLine)
-	// 				console.log(MPStroke)
-	// 				LineCrossings[i]++
-	// 				Distance[i] = LineLength(MPStroke[0],MPStroke[1],MPLine[0],MPLine[1])
-	// 				FirstCrossingFlag = false
-	// 			}
-	// 		}	
-	// 	}
-	// }
-	// console.log(LineCrossings)
-	// console.log(Distance)
 	// // Find the length of each line
-	// for ( var i = 0; i < temp.trials[0].Lines.length; i++) {
-	// 	tempLoc = temp.trials[0].Lines[i]
+	// for ( var i = 0; i < temp.Lines.length; i++) {
+	// 	tempLoc = temp.Lines[i]
 	// 	LeftX  = tempLoc.LeftX
 	// 	LeftY  = tempLoc.LeftY
 	// 	RightX  = tempLoc.RightX
@@ -66,7 +80,7 @@ function LineLength(LeftX, LeftY, RightX, RightY) {
 }
 
 function MidPoint(LeftX, LeftY, RightX, RightY) {
-	return [RightX - LeftX, RightY - LeftY]
+	return [LeftX + (RightX - LeftX)/2, LeftY + (RightY - LeftY)/2]
 }
 
 
@@ -83,3 +97,36 @@ function intersects(a,b,c,d,p,q,r,s) {
 	  return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
 	}
   };
+
+  function measureDistance(x1, y1, x2, y2) {
+	distance = Math.sqrt((x2-x1)**2 + (y2-y1)**2)
+	return distance
+  }
+
+  function sideOfCrossing(x1, x2) {
+	if (x1 < x2 ) {return 1}
+	else if (x2 > x1) {return -1}
+	else {return -1}
+  }
+
+
+  function calculateAverage(array) {
+    var total = 0;
+    var count = 0;
+	console.log(array)
+    array.forEach(function(item, index) {
+        total += item;
+        count++;
+    });
+
+    return total / count;
+}
+
+function removeEmptyValues(array, MissingValue) {
+	var index = array.indexOf(MissingValue);
+	if (index >= 0) {
+		array.splice( index );
+	}
+	console.log(array)
+	return array
+}
