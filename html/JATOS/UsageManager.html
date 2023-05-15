@@ -92,13 +92,6 @@ var jsPsych = initJsPsych({
       BatteryNumber = URLParameters.Battery
       console.log(jsPsych.data)
       jatos.addJatosIds(resultsData);
-      jatos.addAbortButton({
-        text: "Quit",
-        confirmText: "Do you really want to quit?",
-        tooltip: "This will quit the entire experiment",
-        msg: "This worker aborted the mission.",
-        style: "top:8px; right:40px; color:green; bottom: unset"
-      });
       jsPsych.run(timeline);
     });
   </script>

@@ -58,6 +58,11 @@
     </script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src="Batteries/UserChoiceManager.js"></script>
+
+    <div class="btn-group-header">
+      <button title="End the experiment" onclick="endExperiment()">End</button>
+      <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
+    </div>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
 
@@ -94,13 +99,6 @@ var jsPsych = initJsPsych({
       
       console.log(jsPsych.data)
       jatos.addJatosIds(resultsData);
-      jatos.addAbortButton({
-        text: "Quit",
-        confirmText: "Do you really want to quit?",
-        tooltip: "This will quit the entire experiment",
-        msg: "This worker aborted the mission.",
-        style: "top:8px; right:40px; color:green; bottom: unset"
-      });
       jsPsych.run(timeline);
     });
   </script>

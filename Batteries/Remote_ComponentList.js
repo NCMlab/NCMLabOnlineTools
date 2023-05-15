@@ -21,7 +21,10 @@ ComponentList.push({name:'Intake Form', iconFileName:'MultiChoice.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
-add('Stroop Color', function(){jatos.startComponent(5)});
+add('Stroop Color', function(){
+	console.log("Hello");console.log("Hello");console.log("Hello");console.log("Hello");console.log("Hello");console.log("Hello");console.log("Hello")
+	jatos.startComponent(5)
+});
 add('Stroop Word', function(){jatos.startComponent(6)});
 add('Stroop Color/Word', function(){jatos.startComponent(7)});
 add('Trail Making', function(){jatos.startComponent(21)});

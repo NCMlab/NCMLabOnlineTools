@@ -191,3 +191,29 @@ span:hover + div {
  
   word-wrap: break-word;
 }
+
+.btn-group-header button {
+  background-color: transparent;/*#04AA6D; /* Green background */
+  border: 0px;/*1px solid green; /* Green border */
+  /*color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  
+}
+
+.btn-group-header button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group-header:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group-header button:hover {
+  background-color: #04AA6D;
+}
