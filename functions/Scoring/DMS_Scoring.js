@@ -5,7 +5,8 @@ function DMS_Scoring(Stair) {
 	var Threshold = Stair.CalculateAverage()
 	Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['Threshold'] = Threshold
+	Results.PrimaryResults['Score Name'] = 'Threshold'
+	Results.PrimaryResults['Accuracy'] = Threshold
 	Results.AllResults = {}
 	Results.AllResults['Threshold'] = Threshold
 	Results.AllResults['Number of Reversal'] = NReversal

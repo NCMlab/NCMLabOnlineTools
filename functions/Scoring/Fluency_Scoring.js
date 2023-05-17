@@ -6,6 +6,7 @@ function Fluency_Scoring(data) {
 	var Count  = temp.trials[temp.trials.length - 1].count
 	Results = {}
 	Results.PrimaryResults = {}
+	Results.PrimaryResults['Score Name'] = 'Number of Words'
 	Results.PrimaryResults['Accuracy'] = Count
 	Results.AllResults = {}
 	Results.AllResults['Accuracy'] = Count

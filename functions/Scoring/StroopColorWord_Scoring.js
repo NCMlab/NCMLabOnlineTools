@@ -102,11 +102,12 @@ function StroopColorWord_Scoring(data) {
         var rt_CorIncong = Math.round(CorIncongTrials.select('rt').mean());
         var rt_IncorCong = Math.round(IncorCongTrials.select('rt').mean());
         var rt_IncorIncong = Math.round(IncorIncongTrials.select('rt').mean());
-        Results.PrimaryResults['NumberCompleted'] = total_trials
+        Results.PrimaryResults['Accuracy'] = total_trials
     }
 
     // The following measures are included for all scoring types
-    Results.PrimaryResults["Scoring Type"] = Stroop_parameters.Score_ProcedureName
+    Results.PrimaryResults['Score Name'] = Stroop_parameters.Score_ProcedureName
+    Results.AllResults["Scoring Type"] = Stroop_parameters.Score_ProcedureName
     Results.AllResults["Accuracy_Cong"] = CongAccuracy
     Results.AllResults["Accuracy_Incong"] = IncongAccuracy
     Results.AllResults["NTrials"] = total_trials

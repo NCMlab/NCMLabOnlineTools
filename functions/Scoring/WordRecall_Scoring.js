@@ -18,12 +18,13 @@ function WordRecall_Scoring(data, ResponseArray) {
 
 	Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['TotalWordsRecalled'] = TotalWordsRecalled
+	Results.PrimaryResults['Accuracy'] = TotalWordsRecalled
+	Results.PrimaryResults['Score Name'] = 'Total words recalled'
 	Results.AllResults = {}
-	Results.AllResults['TotalWordsRecalled'] = TotalWordsRecalled
-	Results.AllResults['WordsRecalledPerBlock'] = WordsRecalledPerBlock
-	Results.AllResults['TotalWords'] = TotalWords
-	Results.AllResults['ResponseArray'] = ResponseArray
+	Results.AllResults['Total Words Recalled'] = TotalWordsRecalled
+	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlock
+	Results.AllResults['Total Words'] = TotalWords
+	Results.AllResults['Response Array'] = ResponseArray
 	console.log(Results)
 	return Results
 }

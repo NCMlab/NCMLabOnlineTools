@@ -24,6 +24,7 @@ function TrailMaking_Scoring(data) {
 	console.log(trialData)
 	Results = {}
 	Results.PrimaryResults = {}
+	Results.PrimaryResults['Score Name'] = 'Accuracy'
 	Results.PrimaryResults['Accuracy'] = -99
 	Results.AllResults = {}
 	Results.AllResults['Score'] = -99

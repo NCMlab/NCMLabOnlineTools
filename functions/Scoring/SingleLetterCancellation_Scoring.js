@@ -20,20 +20,17 @@ function SingleLetterCancellation_Scoring(trial) {
     }
 
   }
-  console.log(TotalScore)
-  console.log(LeftScore)
-  console.log(RightMaxScore)
-  console.log(RightScore)
-  console.log(LeftMaxScore)
-  
+
   Results = {}
   Results.PrimaryResults = {}
-  Results.PrimaryResults['TotalScore'] = TotalScore
+  Results.PrimaryResults['Score Name'] = 'Total Score'
+  Results.PrimaryResults['Accuracy'] = TotalScore
   Results.AllResults = {}
-  Results.AllResults['LeftScore'] = LeftScore
-  Results.AllResults['RightScore'] = RightScore
-  Results.AllResults['LeftMaxScore'] = LeftMaxScore
-  Results.AllResults['RightMaxScore'] = RightMaxScore
+  Results.AllResults['Totoal Score'] = TotalScore
+  Results.AllResults['Left Score'] = LeftScore
+  Results.AllResults['Right Score'] = RightScore
+  Results.AllResults['Left Max Score'] = LeftMaxScore
+  Results.AllResults['Right Max Score'] = RightMaxScore
   return Results
 
 }

@@ -7,7 +7,8 @@ function MatrixReasoning_Scoring(data) {
 	var rt = Math.round(correct_trials.select('rt').mean());
     Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['Acc'] = accuracy
+	Results.PrimaryResults['Score Name'] = 'Percent correct'
+	Results.PrimaryResults['Accuracy'] = accuracy
 	Results.AllResults = {}
 	Results.AllResults['Acc'] = accuracy
 	Results.AllResults['RT'] = rt
