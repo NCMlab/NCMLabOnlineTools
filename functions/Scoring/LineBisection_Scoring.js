@@ -59,6 +59,8 @@ function LineBisection_Scoring(data) {
 	Results.AllResults['Average Percentage Distance'] = calculateAverage(removeEmptyValues(PercDistance, MissingValue))
 	Results.AllResults['Image'] = temp.png
 	Results.AllResults['Response Time (ms)'] = temp.rt
+	Results.AllResults['Notes'] = NotesForResultsPage
+
 
 	// // Find the length of each line
 	// for ( var i = 0; i < temp.Lines.length; i++) {

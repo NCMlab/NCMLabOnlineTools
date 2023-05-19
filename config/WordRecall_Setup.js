@@ -52,7 +52,7 @@ var FaCE_Default = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	WordList: 'FaCE',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 2,
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
@@ -61,6 +61,21 @@ var FaCE_Default = {
 	ShowWelcome: false,
 	ShowThankYou: false,
 }
+
+var FaCE_Default_FR = {
+	FolderName: 'FaCE_fr-FR-Neural2-A_Speed70/',
+	WordList: 'FaCE',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false,
+	RecallType:'Manual',
+	RecallDuration: 120, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
+}
+
 var FaCE_Default_Delayed = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	WordList: 'FaCE',
@@ -80,3 +95,4 @@ add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_I
 add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});
+add('FaCE_Default_FR', function(){ WordRecall_parameters = FaCE_Default_FR});

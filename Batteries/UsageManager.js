@@ -34,6 +34,8 @@ var SetupBattery = {
         // find the battery selected and extract its list of components
         var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
         console.log(ParameterList)
+        var Language = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Language
+        console.log(Language)
         TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
         console.log(TaskList)
         // Extract the battery instructions
@@ -52,6 +54,7 @@ var SetupBattery = {
           // add the ID to return to the JATOS battery
           JATOSSessionData.BatteryHtmlID = BatteryHtmlID
           JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+          JATOSSessionData.Language = Language
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true
           

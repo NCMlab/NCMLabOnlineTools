@@ -34,6 +34,7 @@
             var TrailMaking_parameters = 'empty'
             var parameters = 'empty'      
         jatos.onLoad(() => {
+            console.log(jatos.studySessionData)
             BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
             UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
             if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingB_Default'}
