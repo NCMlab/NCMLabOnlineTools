@@ -19,7 +19,7 @@ function WordRecall_Scoring(data, ResponseArray) {
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.PrimaryResults['Accuracy'] = TotalWordsRecalled
-	Results.PrimaryResults['Score Name'] = 'Total words recalled'
+	Results.PrimaryResults['ScoreName'] = 'Total words recalled'
 	Results.AllResults = {}
 	Results.AllResults['Total Words Recalled'] = TotalWordsRecalled
 	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlock

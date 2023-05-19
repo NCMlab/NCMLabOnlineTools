@@ -23,10 +23,10 @@ function SingleLetterCancellation_Scoring(trial) {
 
   Results = {}
   Results.PrimaryResults = {}
-  Results.PrimaryResults['Score Name'] = 'Total Score'
+  Results.PrimaryResults['ScoreName'] = 'Total Score'
   Results.PrimaryResults['Accuracy'] = TotalScore
   Results.AllResults = {}
-  Results.AllResults['Totoal Score'] = TotalScore
+  Results.AllResults['Total Score'] = TotalScore
   Results.AllResults['Left Score'] = LeftScore
   Results.AllResults['Right Score'] = RightScore
   Results.AllResults['Left Max Score'] = LeftMaxScore

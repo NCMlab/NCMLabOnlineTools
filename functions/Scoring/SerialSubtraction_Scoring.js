@@ -9,7 +9,7 @@ function SerialSubtraction_Scoring(data) {
 	if ( NInc > 0 ) {TotalScore = 0} else {TotalScore = 1}
 	Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['Score Name'] = "Correct"
+	Results.PrimaryResults['ScoreName'] = "All correct?"
 	Results.PrimaryResults['Accuracy'] = TotalScore
 	Results.AllResults = {}
 	Results.AllResults['Accuracy'] = TotalScore

@@ -21,7 +21,7 @@ function StroopSimple_Scoring(data) {
         var rt_Correct = Math.round(CorrectTrials.select('rt').mean());
         var rt_Incorrect = Math.round(IncorrectTrials.select('rt').mean());
         Results.PrimaryResults['Accuracy'] = accuracy
-        Results.PrimaryResults['Score Name'] = 'Percent correct'
+        Results.PrimaryResults['ScoreName'] = 'Percent correct'
     }
     else if  ( Stroop_parameters.Score_ProcedureName == 'Victoria' ) {
         // Score based on how long to complete a specified set of trials
@@ -43,7 +43,7 @@ function StroopSimple_Scoring(data) {
         var rt_Correct = Math.round(CorrectTrials.select('rt').mean());
         var rt_Incorrect = Math.round(IncorrectTrials.select('rt').mean());
         Results.PrimaryResults['Accuracy'] = Duration
-        Results.PrimaryResults['Score Name'] = 'Duration'
+        Results.PrimaryResults['ScoreName'] = 'Duration'
         Results.AllResults['Duration'] = Duration
         Results.AllResults['NumberIncorrect'] = NumberIncorrect
 
@@ -64,7 +64,7 @@ function StroopSimple_Scoring(data) {
         var rt_Correct = Math.round(CorrectTrials.select('rt').mean());
         var rt_Incorrect = Math.round(IncorrectTrials.select('rt').mean());
         Results.PrimaryResults['Accuracy'] = total_trials
-        Results.PrimaryResults['Score Name'] = 'Total trials'
+        Results.PrimaryResults['ScoreName'] = 'Total trials'
     }
 
     // The following measures are included for all scoring types

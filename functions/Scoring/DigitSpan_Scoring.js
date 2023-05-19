@@ -84,7 +84,7 @@ function DigitSpan_Scoring(data) {
 		Results.AllResults['Accuracy List'] = AccuracyList
 	}
 
-	Results.PrimaryResults['Score Name'] = DigitSpan_parameters.DeliveryMethod
+	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
 	Results.AllResults['Scoring Type'] = DigitSpan_parameters.DeliveryMethod
 	console.log(Results)
 	return Results

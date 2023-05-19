@@ -54,7 +54,7 @@ function LineBisection_Scoring(data) {
 
 	// console.log(LineCrossings)
 	 console.log(Distance)
-	Results.PrimaryResults['Score Name'] = 'Avgerage Percentage Distance'
+	Results.PrimaryResults['ScoreName'] = 'Avgerage Percentage Distance'
 	Results.PrimaryResults['Accuracy'] = calculateAverage(removeEmptyValues(PercDistance, MissingValue))
 	Results.AllResults['Average Percentage Distance'] = calculateAverage(removeEmptyValues(PercDistance, MissingValue))
 	Results.AllResults['Image'] = temp.png

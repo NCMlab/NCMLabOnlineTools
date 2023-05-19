@@ -106,7 +106,7 @@ function StroopColorWord_Scoring(data) {
     }
 
     // The following measures are included for all scoring types
-    Results.PrimaryResults['Score Name'] = Stroop_parameters.Score_ProcedureName
+    Results.PrimaryResults['ScoreName'] = Stroop_parameters.Score_ProcedureName
     Results.AllResults["Scoring Type"] = Stroop_parameters.Score_ProcedureName
     Results.AllResults["Accuracy_Cong"] = CongAccuracy
     Results.AllResults["Accuracy_Incong"] = IncongAccuracy
