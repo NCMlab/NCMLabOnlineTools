@@ -513,11 +513,11 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
         this.ctx.lineTo(centerX_stop, centerY_stop);
         this.ctx.stroke();
         // Add arrowheads
-        var path = new Path2D()
+        /*var path = new Path2D()
         path.moveTo(centerX_stop, centerY_stop);
         path.lineTo(centerX_stop+15, centerY_stop);
         path.lineTo(centerX_stop+15, centerY_stop+15);
-        this.ctx.fill(path)
+        this.ctx.fill(path)*/
       }
 
 
