@@ -80,6 +80,7 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
+      console.log(jatos.studySessionData.)
       // Go back to battery management on JATOS
       if (typeof UsageManagerHtmlID != 'undefined') {
         jatos.startComponent(UsageManagerHtmlID);

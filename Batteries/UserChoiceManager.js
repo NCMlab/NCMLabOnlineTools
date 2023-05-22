@@ -94,6 +94,7 @@ var SetupBattery = {
         // If this is the first visit to this manager, display the battery instructions
         DisplayBatteryInstructionsFlag = true
         JATOSSessionData.TaskList = TaskList
+        JATOSSessionData.CompletedTaskList 
       }
       else {DisplayBatteryInstructionsFlag = false}
       console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
