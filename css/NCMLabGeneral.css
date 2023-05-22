@@ -217,3 +217,22 @@ span:hover + div {
 .btn-group-header button:hover {
   background-color: #04AA6D;
 }
+
+
+
+.strikethrough-diagonal {
+  position: relative;
+  color: red;
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 60%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: inherit;
+    -webkit-transform: skewY(-10deg);
+    -moz-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+  }
+}

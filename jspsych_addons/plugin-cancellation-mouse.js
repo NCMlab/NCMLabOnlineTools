@@ -272,20 +272,25 @@ var jsPsychCancellationMouse = (function (jspsych) {
           function after_response(info, target) {
               // only record first response
               response = response.rt == null ? info : response;
+              console.log(response)
+              console.log(trial)
+              var yyy = document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
+              console.log(yyy)
+              yyy.innerHTML = '<span class="strikethrough-diagonal">'+yyy.innerHTML+'</span>'
+              console.log(yyy)
               for (var i = 0; i < trial.target.length; i++ )
               {
                 if (trial.target[i][0].toString() == info.row & trial.target[i][1].toString() == info.column) {  
-                  console.log("CORRECT")                  
-                  var x = document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
-                  //x.innerHTML = '<i style="color:red">&#x2715</i>'
-                  x.innerHTML = '<i style="color:red">X</i>'
                   trial.target[i].response = "Correct"
                 }
               }
+
           }
       }
       stimulus(grid, square_width, square_height, target, target_color, non_target_labels, target_labels, border_width, font_family) {
-          var stimulus = "<div id='jspsych-serial-reaction-time-stimulus' style='margin:auto; display: table; table-layout: fixed; border-spacing:" +
+        // make another grid that contains the  
+        
+        var stimulus = "<div id='jspsych-serial-reaction-time-stimulus' style='margin:auto; display: table; table-layout: fixed; border-spacing:" +
               square_width / 4 +
               "px'>";
           
