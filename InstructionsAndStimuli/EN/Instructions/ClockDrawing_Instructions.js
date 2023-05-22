@@ -1,4 +1,4 @@
-var Instructions = "I would like you to draw a clock, put in all the numbers, and set the hands for 10 after 11. Start by drawing the face of teh clock, then add the numbers to the clock's face. Finally, add the clock arms showing the time as 10 minutes after 11 o'clock." 
+var Instructions = "<div>I would like you to draw a clock, put in all the numbers, and set the hands for 10 after 11. Start by drawing the face of the clock, then add the numbers to the clock's face. Finally, add the clock arms showing the time as 10 minutes after 11 o'clock.</div>" 
 
 var WelcomeText = [{'page': 'This is the Clock Drawing Task. Press Next to Continue'}]
 
