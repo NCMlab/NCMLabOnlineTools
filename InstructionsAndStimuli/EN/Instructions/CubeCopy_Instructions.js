@@ -5,8 +5,7 @@ var WelcomeText = [{'page': 'This is the Cube Copying Task. Press Next to Contin
 var ThankYouText = [{'page': 'Thank you'}]
 
 
-var NotesForResultsPage = "The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 
-1 mild impairment; 2 impaired. "
+var NotesForResultsPage = "The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."
 
 /* Deficient Index  - Missing Elements 
                                 Mirror Image Missing
