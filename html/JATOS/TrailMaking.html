@@ -22,12 +22,8 @@
     <script src="jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/Trailmaking_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
+    <script src="InstructionsAndStimuli/EN/Instructions/Trailmaking_Instructions.js"></script>
+    
     <script src="functions/Scoring/TrailMaking_Scoring.js"></script>
     <script src="config/TrailMaking_Setup.js"></script>
     <script>
@@ -37,14 +33,14 @@
             console.log(jatos.studySessionData)
             BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
             UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+            Language = jatos.studySessionData.Language
             if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingB_Default'}
             else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
             pseudoSwitch(parameters)
             console.log(TrailMaking_parameters)
+            // if the language is not EN, load the language again
         })
     </script>
-
-
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
     <script src="functions/Experiments/Trailmaking_experiment.js"></script>
     <div class="btn-group-header">

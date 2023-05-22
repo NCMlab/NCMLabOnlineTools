@@ -12,15 +12,15 @@ BatteryList.push({index: 5,
 	Language:'FR',
 	RunAudioTest: true})
 
-	BatteryList.push({index: 15, 
-		name:'FaCE Battery', 
-		list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
-		description: 'A web-based version of the FaCE',
-		ParameterLists: ['FaCE_Default_FR','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-		BatteryInstructions: "This is the Fast Cognitive Evaluation",
-		Language:'FR',
-		RunAudioTest: true})
-	
+BatteryList.push({index: 15, 
+	name:'FaCE Battery', 
+	list: ['Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
+	description: 'A web-based version of the FaCE',
+	ParameterLists: ['TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	BatteryInstructions: "This is the Fast Cognitive Evaluation",
+	Language:'FR',
+	RunAudioTest: true})
+
 	
 BatteryList.push({index: 2, 
 	name:'Battery002', 
