@@ -13,6 +13,7 @@
   </head>    
   <body>
     <script src="jatos.js"></script>
+
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
@@ -22,9 +23,10 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+
+    
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
+    <script>
         var url = "InstructionsAndStimuli/"+Language+"/Instructions/ClockDrawing_Instructions.js"
         document.write("\<script src='" + url + "'\>\</script\>");  
     </script>
@@ -33,17 +35,18 @@
     <script>
       var ClockDrawing_parameters = 'empty'
       var parameters = 'empty'      
-  jatos.onLoad(() => {
-      BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-      UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-      if (typeof BatteryHtmlID === 'undefined') {parameters = 'ClockDrawing_001'}
-      else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
-      pseudoSwitch(parameters)
-      console.log(ClockDrawing_parameters)
-  })
-</script>
+      jatos.onLoad(() => {
+          BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+          UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+          if (typeof BatteryHtmlID === 'undefined') {parameters = 'ClockDrawing_001'}
+          else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+          pseudoSwitch(parameters)
+          console.log(ClockDrawing_parameters)
+          const LANG = jatos.studySessionData.Language
+      })
+    </script>
 
-<script src="functions/Experiments/ClockDrawing_experiment.js"></script>
+
 <script src="functions/Scoring/ClockDrawing_Scoring.js"></script>
 <div class="btn-group-header">
   <button title="Return to home screen" onclick="returnToUsageManager()">Home</button>
@@ -52,7 +55,8 @@
   <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
 </div>
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-</body>
+
+
 <script>
 var setup = []
 var TrialCount = 1;
@@ -80,7 +84,7 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      console.log(jatos.studySessionData.)
+      
       // Go back to battery management on JATOS
       if (typeof UsageManagerHtmlID != 'undefined') {
         jatos.startComponent(UsageManagerHtmlID);
@@ -98,4 +102,7 @@ var jsPsych = initJsPsych({
       
     });
   </script>
+  <script src="functions/Experiments/ClockDrawing_experiment.js"></script>
+  </body>
+
 </html>
