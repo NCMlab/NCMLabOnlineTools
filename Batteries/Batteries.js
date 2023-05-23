@@ -130,7 +130,8 @@ BatteryList.push({index: 102,
 		'','','',
 		'','',''
 		],
-    BatteryInstructions:"Chemo Brain Fog"
+    BatteryInstructions:"Chemo Brain Fog",
+	Language:'FR'
 })
 
 
