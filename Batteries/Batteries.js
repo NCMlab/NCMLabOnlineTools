@@ -18,7 +18,7 @@ BatteryList.push({index: 15,
 	description: 'A web-based version of the FaCE',
 	ParameterLists: ['TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
 	BatteryInstructions: "This is the Fast Cognitive Evaluation",
-	Language:'FR',
+	Language:'EN',
 	RunAudioTest: true})
 
 	
@@ -132,51 +132,5 @@ BatteryList.push({index: 102,
 		],
     BatteryInstructions:"Chemo Brain Fog",
 	Language:'FR'
-})
-
-
-
-
-BatteryList.push({index: 102, 
-	name:'Chemo Brain', 
-	list: [
-        'Intake Form',
-        'Clock Drawing','Cube Copy',
-        'Trail Making', 'Trail Making', 
-	    'Digit Span', 'Digit Span',	
-        'Word Recall',
-        'Stroop Color','Stroop Word','Stroop Color/Word',
-        'Line Bisection','Cancellation', 
-        'Word Recall'
-	], 
-	description: 'A Pilot Study Assessing Cognitive Functioning of Patients being treated for Thoracic Tumors',
-	ParameterLists: [
-        '',
-        'ClockDrawing_Default', 'CubeCopy_Default',
-        'TrailMakingA_Default','TrailMakingB_Default',
-		'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
-		'RAVLT_Manual_Immediate',
-		'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
-		'LineBisection_001','Cancellation_001',
-        'RAVLT_Manual_Delayed'
-	],
-	ButtonName: [
-        'Intake Form',
-        'Clock Drawing','Cube Copy',
-        'Trails A','Trails B',
-		'DS Forward','DS Backward',
-		'RAVLT, Immediate',
-		'Color','Word','Color/Word',
-        'Line Bisect','Cancellation',
-		'RAVLT, Delayed',
-	],
-	ButtonDescription: ['','',
-		'','','',
-		'',
-		'','',
-		'','','',
-		'','',''
-		],
-    BatteryInstructions:"Chemo Brain"
 })
 
