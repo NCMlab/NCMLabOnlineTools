@@ -9,6 +9,9 @@ var trial = {
   canvas_height: 600,
   canvas_border_width: 2,
   finished_button_label: function() {return LabelNames.Finished},
+  clear_button_label: function() {return LabelNames.Clear},
+  undo_button_label: function() {return LabelNames.Undo},
+  redo_button_label: function() {return LabelNames.Redo},
   on_finish: function(data) {
     data.trial = 'Clock Drawing'
   }
@@ -38,7 +41,7 @@ var SendData = {
 
  var if_Welcome = {
   timeline: [Instructions],
-  timeline_variables: function(){Instructions.WelcomeText},
+  timeline_variables: function(){return Instructions.WelcomeText},
   conditional_function: function() {
     if ( ClockDrawing_parameters.ShowWelcome)
     { return true }
@@ -47,7 +50,7 @@ var SendData = {
 }
 var if_ThankYou = {
   timeline: [Instructions],
-  timeline_variables: function(){Instructions.ThankYouText},
+  timeline_variables: function(){return Instructions.ThankYouText},
   conditional_function: function() {
     if ( ClockDrawing_parameters.ShowThankYou)
     { return true }

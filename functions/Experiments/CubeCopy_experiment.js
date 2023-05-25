@@ -9,20 +9,26 @@ var enter_fullscreen = {
     
 var trial = {
       type: jsPsychSketchpad,
-      prompt: Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">',
+      prompt: function() {
+            return Instructions.Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">'
+      },
       prompt_location: 'abovecanvas',
       canvas_width: function(){return CubeCopy_parameters.canvas_width},
       canvas_height: function(){return CubeCopy_parameters.canvas_height},
       background_color: "#000000",
       //background_image: '../assets/CubeCopyBackground.png',
       canvas_border_width: 2,
+      finished_button_label: function() {return LabelNames.Finished},
+      clear_button_label: function() {return LabelNames.Clear},
+      undo_button_label: function() {return LabelNames.Undo},
+      redo_button_label: function() {return LabelNames.Redo},
       show_countdown_trial_duration: true,
       on_finish: function(data) {
             data.trial = 'Cube Copy'
       }
 }
 
-var Instructions = {
+var Instructs = {
       type: jsPsychHtmlButtonResponseTouchscreen,
        stimulus: function()
       {
@@ -62,15 +68,15 @@ var SendData = {
 }
     
 var welcome = {
-      timeline: [Instructions],
-      timeline_variables: WelcomeText,
+      timeline: [Instructs],
+      timeline_variables: function(){return Instructions.WelcomeText},
       randomize_order: false,
       repetitions: 1,
 }
 
 var thank_you = {
-      timeline: [Instructions],
-      timeline_variables: ThankYouText,
+      timeline: [Instructs],
+      timeline_variables: function(){return Instructions.ThankyouText},
       randomize_order: false,
       repetitions: 1,
  }

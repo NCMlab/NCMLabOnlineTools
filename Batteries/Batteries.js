@@ -131,6 +131,49 @@ BatteryList.push({index: 102,
 		'','',''
 		],
     BatteryInstructions:"Chemo Brain Fog",
-	Language:'FR'
+	Language:'EN'
 })
 
+BatteryList.push({index: 202, 
+	name:'Chemo Brain', 
+	list: [
+        'Intake Form',
+        'Clock Drawing','Cube Copy',
+        'Trail Making', 'Trail Making', 
+	    'Digit Span', 'Digit Span',	
+        'Word Recall',
+        'Stroop Color','Stroop Word','Stroop Color/Word',
+        'Line Bisection','Cancellation', 
+        'Word Recall'
+	], 
+	description: 'A Pilot Study Assessing Cognitive Functioning of Patients being treated for Thoracic Tumors',
+	ParameterLists: [
+        '',
+        'ClockDrawing_Default', 'CubeCopy_Default',
+        'TrailMakingA_Default','TrailMakingB_Default',
+		'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
+		'RAVLT_Manual_Immediate',
+		'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
+		'LineBisection_001','Cancellation_001',
+        'RAVLT_Manual_Delayed'
+	],
+	ButtonName: [
+        "Formulaire d'admission",
+        "Dessin d'Horloge",'Copie de Cube',
+        'Sentiers A','Sentiers B',
+		'MC Endroit','MC Inversé',
+		'RAVLT, Immediate',
+		'Color','Word','Color/Word',
+        'Line Bisect','Cancellation',
+		'RAVLT, Delayed',
+	],
+	ButtonDescription: ['','',
+		'','','',
+		'',
+		'','',
+		'','','',
+		'','',''
+		],
+    BatteryInstructions:"Chemo Brain Fog",
+	Language:'FR'
+})

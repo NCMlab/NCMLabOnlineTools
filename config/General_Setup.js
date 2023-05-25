@@ -14,13 +14,19 @@ EN_LabelNames.Restart = 'Restart'
 EN_LabelNames.End = 'End'
 EN_LabelNames.Quit = 'Quit'
 EN_LabelNames.Finished = 'Finished'
+EN_LabelNames.Clear = 'Clear'
+EN_LabelNames.Undo = 'Undo'
+EN_LabelNames.Redo = 'Redo'
 
 var FR_LabelNames = {}
 FR_LabelNames.Home = "Page d'accueil"
 FR_LabelNames.Restart = 'Recommencer'
 FR_LabelNames.End = 'Fin'
-FR_LabelNames.Quit = 'Quittier'
+FR_LabelNames.Quit = 'Quitter'
 FR_LabelNames.Finished = 'Fini'
+FR_LabelNames.Clear = 'Effacer'
+FR_LabelNames.Undo = 'Dénouer'
+FR_LabelNames.Redo = 'Refaire'
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});
