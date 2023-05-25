@@ -38,7 +38,7 @@ var Instructs = {
       post_trial_gap: 0,
       margin_horizontal: GapBetweenButtons,
       prompt: '',
-      choices: ['Next'], 
+      choices:  function() {return [LabelNames.Next]}, 
 }
 var if_Welcome = {
       timeline: [welcome],

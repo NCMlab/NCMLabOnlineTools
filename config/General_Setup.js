@@ -17,6 +17,7 @@ EN_LabelNames.Finished = 'Finished'
 EN_LabelNames.Clear = 'Clear'
 EN_LabelNames.Undo = 'Undo'
 EN_LabelNames.Redo = 'Redo'
+EN_LabelNames.Next = 'Next'
 
 var FR_LabelNames = {}
 FR_LabelNames.Home = "Page d'accueil"
@@ -27,6 +28,7 @@ FR_LabelNames.Finished = 'Fini'
 FR_LabelNames.Clear = 'Effacer'
 FR_LabelNames.Undo = 'Dénouer'
 FR_LabelNames.Redo = 'Refaire'
+FR_LabelNames.Next = 'Prochain'
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

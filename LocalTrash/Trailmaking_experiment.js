@@ -1,7 +1,7 @@
 
-var timeline = []
-var count = 0
-
+// =======================================================================
+// Define internal variables
+var timeline = [];
 console.log('==============================')
 console.log('CANVAS SIZE')
 var CanvasHeight
@@ -73,8 +73,7 @@ var enter_fullscreen = {
       show_undo_button: false,
       show_redo_button: false,
       prompt: TrailMaking_parameters.InstructionsShownWithPractice,
-      show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
-      finished_button_label: function() {return LabelNames.Finished},
+      show_countdown_trial_duration: TrailMaking_parameters.ShowTimer
     }
   
   var trials = {
@@ -92,7 +91,6 @@ var enter_fullscreen = {
       show_redo_button: false,
       show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
       trial_duration: TrailMaking_parameters.Duration,
-      finished_button_label: function() {return LabelNames.Finished},
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
@@ -109,27 +107,56 @@ var enter_fullscreen = {
       }
     }
 
-var Instruct = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_parameters.InstructionText[count].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices:  function() {return [LabelNames.Next]}, 
+  var InstructX = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+    {
+      var stim = jsPsych.timelineVariable('page') // Variable in the config file
+      return stim
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: ['Next'], 
+  }
+  
+  var TestX = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: InstructionsText,
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: ['Next'], 
+  }
+  var TestInstructionsPage01 = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+     stimulus: function()
+    {
+      var stim = TrailMaking_parameters.Instructions
+      console.log(stim)
+      var output = stim[0]
+      return output.page
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: '',
+    choices: ['Next'], 
 }
 
-var Instructions_loop_node = {
-  timeline: [Instruct],
-  loop_function: function(data){
-    console.log(count)
-    count+=1
-    if ( count < TrailMaking_parameters.InstructionText.length){
-        
-        return true;
-      } else {
-          return false;
-      }
-  }
+var TestInstructionsPage02 = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+   stimulus: function()
+  {
+    var stim = TrailMaking_parameters.Instructions
+    var output = stim[1]
+    console.log(TrailMaking_parameters)
+    console.log(Instructions.PracticePrompt)
+    return output.page
+  },
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: ['Next'], 
 }
 
 var SendData = {
@@ -142,82 +169,86 @@ var SendData = {
   }
 }
 
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var practicePrompt = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.PracticePrompt[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var taskPrompt = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.RealTaskPrompt[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
+var thank_you = {
+  timeline: [InstructX],
+  timeline_variables: ThankYouText,
+  randomize_order: false,
+  repetitions: 1,
 }
 
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    console.log(TrailMaking_Instructions)
     if ( TrailMaking_parameters.ShowWelcome)
     { return true }
     else { return false }
   }
 }
-
-var thankyou = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var if_Thankyou = {
-  timeline: [thankyou],
+var if_ThankYou = {
+  timeline: [thank_you],
   conditional_function: function() {
-    console.log(TrailMaking_Instructions)
     if ( TrailMaking_parameters.ShowThankYou)
     { return true }
     else { return false }
   }
 }
+// =======================================================================    
+// Define procedures using the stimuli
 
-var if_Practice = {
-  timeline: [practicePrompt, trial_Practice],
+var welcome = {
+  timeline: [InstructX],
+  timeline_variables: WelcomeText,
+  randomize_order: false,
+  repetitions: 1,
+}
+// ADD CALLBACK TOLOAD UP AND PREPARE LOCAL VARIABLES BECAUSE THERE CAN 
+// BE NO FUNCTION CALLS HERE
+
+var StartPracticePrompt = {
+  timeline: [InstructX],
+  timeline_variables: PracticePrompt,
+  randomize_order: false,
+  repetitions: 1,
+}
+  
+var StartTaskPrompt = {
+  timeline: [InstructX],
+  timeline_variables: RealTaskPrompt,
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var PresentInstructions = {
+  timeline: [InstructX],
+  timeline_variables: InstructionsText,
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var if_node = {
+  timeline: [StartPracticePrompt, trial_Practice],
   conditional_function: function(){
     if ( TrailMaking_parameters.ShowPractice )
       {return true}
     else {return false}
   }
 }
+// =======================================================================    
+  //timeline.push(InstructionsSampleA)
+  timeline.push(SetupInstructionText)
+  timeline.push(TestX)
 
-timeline.push(FindCanvasSizeTest)
-timeline.push(FindCanvasSizePractice)
-timeline.push(CheckPracticeFlag)
-
-
-timeline.push(if_Welcome)
-
-timeline.push(Instructions_loop_node)
-timeline.push(if_Practice)
-timeline.push(taskPrompt)
-timeline.push(trials)
-
-timeline.push(if_ThankYou)
-timeline.push(SendData)
+  timeline.push(FindCanvasSizeTest)
+  timeline.push(FindCanvasSizePractice)
+  timeline.push(CheckPracticeFlag)
+  
+  timeline.push(enter_fullscreen)
+  timeline.push(if_Welcome)
+  timeline.push(PresentInstructions)
+  
+  timeline.push(if_node)
+  timeline.push(StartTaskPrompt)
+  timeline.push(trials)
+  timeline.push(if_ThankYou)
+  timeline.push(SendData)
+  
