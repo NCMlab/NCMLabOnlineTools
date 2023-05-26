@@ -91,7 +91,7 @@ var response_grid =
   '<button id = button_8 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>8</div></div></button>' +
   '<button id = button_9 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>9</div></div></button>' +
   '<button class = clear_button id = "ClearButton" onclick = "clearResponse()">Clear</button>'+
-  '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
+  '<p id = current_answer><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
 
 
 // FOR SERIAL SUBTRACTION
@@ -119,7 +119,7 @@ var response_gridSerSub =
   '<button id = button_9 class = "square num-button" onclick = "recordClickSerSub(this)"><div class = content><div class = numbers>9</div></div></button>' +
   '<button id = button_0 class = "square num-button" onclick = "recordClickSerSub(this)"><div class = content><div class = numbers>0</div></div></button>' +
   '<button class = clear_button id = "ClearButton" onclick = "clearResponseSerSub()">Clear</button>'+
-  '<p><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
+  '<p id = current_answer ><u><b>Current Answer:</b></u></p><div id=echoed_txt style="font-size: 3vh; color:blue;"><b></b></div></div>'
 
 
   function MakeListOfStimuli(FolderOfAudioFiles, Stimuli) {

@@ -10,11 +10,17 @@
     <title>NCMLab: Digit Span Forward</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-    
-    <script src="ImportedModules/jquery-3.6.4.js">
-      //<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    </script>
-  
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+    $(function(){
+      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+    });
+    </script> 
+</head>    
+<body>
+  <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -28,19 +34,11 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     
     <script src="config/General_Setup.js"></script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/DigitSpan_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
+    <script src="InstructionsAndStimuli/EN/Instructions/DigitSpan_Instructions.js"></script>
+    
     <script src="config/DigitSpan_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <script> 
-      //var FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set001/'
-      var FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
-    </script>
+
 
     <script defer>
       var DigitSpan_parameters = 'empty'
@@ -55,22 +53,26 @@
         else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
         pseudoSwitch(parameters)
         console.log(DigitSpan_parameters)
+        LANG = jatos.studySessionData.Language
+        console.log(LANG)
+        pseudoSwitch(LANG+'_DigitSpan_Instructions')
+        //load general label names
+        pseudoSwitch(LANG+'_LabelNames')
+        console.log(DigitSpan_Instructions)
+        // update the header button labels
+        document.getElementById('header-home-button').textContent = LabelNames.Home;
+        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+        document.getElementById('header-end-button').textContent = LabelNames.End;
+        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+
       })
     </script> 
     <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
-  </head>    
-  <body>
+  
     <script src="functions/Experiments/DigitSpan_experiment.js" defer></script>
     <script src="functions/Scoring/DigitSpan_Scoring.js"></script>
-    <div class="btn-group-header">
-      <button title="Return to home screen" onclick="returnToUsageManager()">Home</button>
-      <button title="Restart this task" onclick="restartTask()">Restart</button>
-      <button title="End the experiment" onclick="endExperiment()">End</button>
-      <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
-    </div>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  
-    </body>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  </body>
   <script>
     var setup = []
 

@@ -142,8 +142,8 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
-	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowWelcome: true,
+	ShowThankYou: true,
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_TwoErrors ==

@@ -18,6 +18,8 @@ EN_LabelNames.Clear = 'Clear'
 EN_LabelNames.Undo = 'Undo'
 EN_LabelNames.Redo = 'Redo'
 EN_LabelNames.Next = 'Next'
+EN_LabelNames.Enter = 'Enter'
+EN_LabelNames.CurrentAnswer = 'Current Answer'
 
 var FR_LabelNames = {}
 FR_LabelNames.Home = "Page d'accueil"
@@ -28,7 +30,9 @@ FR_LabelNames.Finished = 'Fini'
 FR_LabelNames.Clear = 'Effacer'
 FR_LabelNames.Undo = 'Dénouer'
 FR_LabelNames.Redo = 'Refaire'
-FR_LabelNames.Next = 'Prochain'
+FR_LabelNames.Next = 'Suivant'
+FR_LabelNames.Enter = 'Entrée'
+FR_LabelNames.CurrentAnswer = 'Réponse Actuelle'
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});
