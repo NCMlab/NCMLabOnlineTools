@@ -237,7 +237,7 @@ var if_node = {
   timeline.push(GetInstructionValuesFromInputParameters)
   timeline.push(enter_fullscreen)
 
-  
+  timeline.push(trials)
 
   timeline.push(if_Welcome)
   timeline.push(TestInstructionsPage01)

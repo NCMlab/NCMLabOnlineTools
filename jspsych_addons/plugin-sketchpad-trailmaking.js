@@ -258,9 +258,9 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             if ( i == this.params.Circles.length - 1) {
               this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,LastCircleLabel, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
             }
-            if ( i == 3 ) {
-                this.add_line(this.params.Circles[0].centerX, this.params.Circles[0].centerY, this.params.Circles[1].centerX, this.params.Circles[1].centerY)
-                this.add_line(this.params.Circles[1].centerX, this.params.Circles[1].centerY, this.params.Circles[2].centerX, this.params.Circles[2].centerY)
+            if ( i < 3 & i > 0) {
+                this.add_line(this.params.Circles[i-1].centerX, this.params.Circles[i-1].centerY, this.params.Circles[i].centerX, this.params.Circles[i].centerY,this.params.Circles[i].radius)
+                //this.add_line(this.params.Circles[1].centerX, this.params.Circles[1].centerY, this.params.Circles[2].centerX, this.params.Circles[2].centerY,this.params.Circles[i].radius)
             }
 
           }
@@ -504,13 +504,33 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.ctx.fillText(label, centerX, centerY+actualHeight/2);
 
       }
-      add_line(centerX_start, centerY_start, centerX_stop, centerY_stop) {
+      add_line(centerX_start, centerY_start, centerX_stop, centerY_stop, radius) {
         // draw a line connecting circles
         this.ctx.beginPath();
         // make the line dashed
-        this.ctx.setLineDash([10,10]),
-        this.ctx.moveTo(centerX_start, centerY_start);
-        this.ctx.lineTo(centerX_stop, centerY_stop);
+        this.ctx.setLineDash([10,10]);
+        // find the equation for the line and draw it starting at the edge of the circle, intead of it's center
+        // https://math.stackexchange.com/questions/175896/finding-a-point-along-a-line-a-certain-distance-away-from-another-point
+        const dd = this.measure_distance([centerX_start, centerY_start], [centerX_stop,centerY_stop]);
+        // the distance along this line is the circle radius
+        var dt = radius + 2;
+        // the ratio is
+        var t = dt/dd
+        // find teh starting point
+        var X_start = (1-t)* centerX_start + t*centerX_stop;
+        var Y_start = (1-t)* centerY_start + t*centerY_stop;
+        // Now setthe end point
+        // the distance along this line is the circle radius
+        var dt = dd - radius - 2;
+        // the ratio is
+        var t = dt/dd
+        // find teh starting point
+        var X_stop = (1-t)* centerX_start + t*centerX_stop;
+        var Y_stop = (1-t)* centerY_start + t*centerY_stop;
+        
+
+        this.ctx.moveTo(X_start, Y_start);
+        this.ctx.lineTo(X_stop, Y_stop);
         this.ctx.stroke();
         // Add arrowheads
         /*var path = new Path2D()
@@ -519,7 +539,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
         path.lineTo(centerX_stop+15, centerY_stop+15);
         this.ctx.fill(path)*/
       }
-
+      //add_arrowHead()
 
       add_circles(centerX, centerY, radius, color = 'red', AsProp = false, WindowX = 200, WindowY = 200) {
           // ADD CIRCLE TO THE BACKGROUND
@@ -588,6 +608,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       measure_distance(point1, point2) {
         var distance = Math.pow((point2[1] - point1[1]),2) + Math.pow((point2[0] - point1[0]),2)
         distance = Math.pow(distance,0.5)
+        console.log("HELLO FROM DISTANCEs")
         return distance;
       }
 
