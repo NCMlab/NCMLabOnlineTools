@@ -236,3 +236,8 @@ span:hover + div {
     transform: skewY(-10deg);
   }
 }
+
+
+.sv-string-viewer {
+  font-size: 1.5em
+}

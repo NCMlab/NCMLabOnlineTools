@@ -26,6 +26,19 @@ var Instructions = {
     choices: ['Next'], 
 }
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -56,5 +69,6 @@ var if_ThankYou = {
 timeline.push(if_Welcome)
 timeline.push(trial)
 timeline.push(if_ThankYou)
+timeline.push(Notes)
 timeline.push(SendData)
 

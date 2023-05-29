@@ -15,7 +15,7 @@
 */
 
 function DigitSpan_Scoring(data) {
-	console.log(data)
+	Notes = data.filter({trial: 'Notes'})
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.AllResults = {}
@@ -86,6 +86,6 @@ function DigitSpan_Scoring(data) {
 
 	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
 	Results.AllResults['Scoring Type'] = DigitSpan_parameters.DeliveryMethod
-	console.log(Results)
+	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
 	return Results
 }

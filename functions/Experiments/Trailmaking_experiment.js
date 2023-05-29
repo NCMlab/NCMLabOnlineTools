@@ -86,7 +86,6 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      prompt: TrailMaking_parameters.InstructionsShownWithPractice,
       show_countdown_trial_duration: TrailMaking_parameters.ShowTimer
     }
   
@@ -160,10 +159,24 @@ var TestInstructionsPage02 = {
   choices: ['Next'], 
 }
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
+    console.log(data)
     Results = TrailMaking_Scoring(data)
     jsPsych.finishTrial(Results)
     console.log(Results)
@@ -203,8 +216,6 @@ var welcome = {
   repetitions: 1,
 }
 
-
-
 var StartPracticePrompt = {
   timeline: [Instructions],
   timeline_variables: PracticePrompt,
@@ -219,8 +230,6 @@ var StartTaskPrompt = {
   repetitions: 1,
 }
 
-
-
 var if_node = {
   timeline: [StartPracticePrompt, trial_Practice],
   conditional_function: function(){
@@ -231,6 +240,7 @@ var if_node = {
 }
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
+  
   timeline.push(FindCanvasSizeTest)
   timeline.push(FindCanvasSizePractice)
   timeline.push(CheckPracticeFlag)
@@ -243,5 +253,6 @@ var if_node = {
   timeline.push(StartTaskPrompt)
   timeline.push(trials)
   timeline.push(if_ThankYou)
+  timeline.push(Notes)
   timeline.push(SendData)
   

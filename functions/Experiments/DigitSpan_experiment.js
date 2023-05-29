@@ -269,6 +269,19 @@ var Instructions = {
   }
 };
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
@@ -410,5 +423,6 @@ timeline.push(if_visual_forward_instr)
 timeline.push(if_audio_backward_instr)
 timeline.push(if_visual_backward_instr)
 timeline.push(procedure)
+timeline.push(Notes)
 timeline.push(SendData)
 timeline.push(if_ThankYou)
