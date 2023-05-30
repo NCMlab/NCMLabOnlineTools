@@ -6,6 +6,8 @@ console.log('==============================')
 console.log('CANVAS SIZE')
 var CanvasHeight
 var CanvasWidth
+var count = 0
+var NLines
 
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -24,14 +26,21 @@ var FindCanvasSizeTest = {
       console.log('==============================')
   }
 }
-
+var FindNumberOfLines = {
+  type: jsPsychCallFunction,
+  func: function() {
+    NLines = LineBisection_parameters.Lines.length
+    console.log("The number of lines is: "+NLines)
+  }
+}
 // =======================================================================
 // Define all of the different the stimuli 
 
   var trials = {
       type: jsPsychSketchpadLineBisection,   
       Lines: function(){ 
-        return LineBisection_parameters.Lines}, 
+        console.log(LineBisection_parameters.Lines[count])
+        return [LineBisection_parameters.Lines[count]]}, 
       canvas_width: function(){return CanvasWidth},
       canvas_height: function(){return CanvasHeight},
       canvas_border_width: 1,
@@ -56,9 +65,22 @@ var FindCanvasSizeTest = {
       on_finish: function(data) {
         data.trial = 'trial'
         console.log(jsPsych.data.get().last(1))
+        count++
       }
     }
 
+var loop_node = {
+  timeline: [trials],
+  loop_function: function(data){
+      if ( count < NLines ){
+          console.log("Count: "+count)
+          return true;
+      } else {
+        console.log("FALSE!!!")
+          return false;
+      }
+  }
+}
 var Instructions = {
     type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function()
@@ -126,8 +148,10 @@ var Instruct = {
   timeline.push(if_Welcome)
   timeline.push(FindCanvasSizeTest)
   timeline.push(enter_fullscreen)
+  timeline.push(FindNumberOfLines)
   timeline.push(Instruct)
-  timeline.push(trials)
+  timeline.push(loop_node)
+  ///timeline.push(trials)
   timeline.push(if_ThankYou)
   timeline.push(SendData)
   
