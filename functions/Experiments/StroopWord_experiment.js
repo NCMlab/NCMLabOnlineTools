@@ -142,6 +142,18 @@ var test_stimulus = Object.assign({}, Stimulus)
     }
 })
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
 
 // ======================================================================= 
 // Scoring procedure
@@ -149,8 +161,9 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var trialData = jsPsych.data.get().filter({task:'Trial'})
+    var Notes = jsPsych.data.get().filter({task:'Notes'})
     console.log(trialData.trials[0])
-    Results = StroopSimple_Scoring(trialData.trials[0]) 
+    Results = StroopSimple_Scoring(trialData.trials[0], Notes) 
     jsPsych.finishTrial(Results)
   },
 }    
@@ -306,7 +319,10 @@ timeline.push(instr_procedure);
  timeline.push(instr_practice_procedure); 
 timeline.push(practice_loop_node);  // works
   // provide feedback as to their performance
-timeline.push(debrief);
+  timeline.push(Notes)
+  timeline.push(SendData)
+
+  timeline.push(debrief);
 
 // Present test instructions
 timeline.push(instr_test_procedure);
@@ -316,5 +332,6 @@ timeline.push(timer_start);
 timeline.push(test_loop_node);
 // If there is a timer, stop it
 timeline.push(timer_stop);
+timeline.push(Notes)
 timeline.push(SendData)
 timeline.push(if_ThankYou);

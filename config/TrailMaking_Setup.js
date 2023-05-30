@@ -18,7 +18,7 @@ var FirstCircleLabel = 'begin'
 var LastCircleLabel = 'end'
 
 // how close to each circle the cursor needs to be
-var tolerance = 0;
+var tolerance = 15;
 // width of the pen
 var pen_width = 2;
 

@@ -1,5 +1,5 @@
-function StroopSimple_Scoring(data) {
-    console.log(data)
+function StroopSimple_Scoring(data, Notes) {
+    
 	Results = {}
     Results.PrimaryResults = {}
     Results.AllResults = {}
@@ -75,6 +75,7 @@ function StroopSimple_Scoring(data) {
     Results.AllResults["Accuracy"] = accuracy
     Results.AllResults['Response_Cor'] = rt_Correct
     Results.AllResults['Response_Incor'] = rt_Incorrect
-    console.log(Results)
+    console.log(Notes)
+    Results.AllResults['Notes'] = Notes
     return Results
 }
