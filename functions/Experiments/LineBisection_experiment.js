@@ -120,11 +120,13 @@ var if_Welcome = {
   timeline: [Instructions],
   timeline_variables: WelcomeText,
   conditional_function: function() {
-    if ( LineBisection_parameters.ShowWelcome)
+    //if ( LineBisection_parameters.ShowWelcome)
+    if (true) 
     { return true }
     else { return false }
   }
 }
+
 var if_ThankYou = {
   timeline: [Instructions],
   timeline_variables: ThankYouText,
@@ -154,5 +156,7 @@ var Instruct = {
   ///timeline.push(trials)
   timeline.push(if_ThankYou)
   timeline.push(SendData)
+  
+  
   
   
