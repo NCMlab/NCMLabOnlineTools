@@ -12,6 +12,7 @@ var staircase
 var accuracy 
 var MaxErrorsInRow = 0
 var CurrentListLength
+var PreviousListLength = -99
 var stim
 var initList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var StopFlag = true // will stop procedure if false, but only checks AFTER ONE TRIAL
@@ -68,8 +69,15 @@ var UpdateListLength = {
           staircase.Decide(accuracy)
           CurrentListLength = staircase.Current
         }
+        // change this so that it presents two trials of each load
         if (DigitSpan_parameters.DeliveryMethod == 'numberErrors') {
-          CurrentListLength += 1
+          console.log("Previous Length: "+ PreviousListLength)
+          console.log("Current Length: "+ CurrentListLength)
+          if ( PreviousListLength == CurrentListLength ) 
+          {
+            CurrentListLength += 1  
+          }
+          else {PreviousListLength = CurrentListLength}
           if (accuracy == false ) 
             { MaxErrorsInRow += 1 }
             // if correct, reset the counter
@@ -78,6 +86,8 @@ var UpdateListLength = {
         if (DigitSpan_parameters.DeliveryMethod == 'fixed') {
           CurrentListLength += 1
         }
+        console.log("Previous Length: "+ PreviousListLength)
+          console.log("Current Length: "+ CurrentListLength)
     }
 }
 
