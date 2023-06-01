@@ -40,6 +40,7 @@ var Instructs = {
       prompt: '',
       choices:  function() {return [LabelNames.Next]}, 
 }
+
 var if_Welcome = {
       timeline: [welcome],
       conditional_function: function() {
