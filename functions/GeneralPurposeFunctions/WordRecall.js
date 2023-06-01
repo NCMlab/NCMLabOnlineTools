@@ -34,7 +34,7 @@ var ManualRecallA = {
         type: 'multi-select',
         prompt: function(){return Instructions.WordRecallPrompt},
         options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
         },
         columns: 3,
         name: 'ListRecall', 

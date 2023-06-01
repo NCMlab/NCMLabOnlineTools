@@ -33,6 +33,10 @@ var AudioFileDictListB
 var ResponseArray
 var NumberBlocks
 var ItemCount = 0
+var countInstr01 = 0
+var countInstr02 = 0
+var countInstr03 = 0
+var countInstr04 = 0
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -103,6 +107,7 @@ var ResetCounter = {
   type: jsPsychCallFunction,
   func: function() {
     ItemCount = 0
+    console.log("Resetting counter")
   }
 }
 
@@ -222,7 +227,7 @@ var AudioStimulus = {
       {
         Stim = ''
         // find what trial index this is
-        ind = (TrialCount) % NWords
+        ind = (TrialCount) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
         Stim = AudioFileDictListA[ItemCount].Word
         // return the chosen stimulus
@@ -280,18 +285,79 @@ var VisualStimulus = {
 
 
 // Define instructions
-var Instructions = {
+
+var Instructions01 = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function()
-    {
-      var stim = jsPsych.timelineVariable('page') // Variable in the config file
-      return stim
-    },
+  stimulus: function (){return Instructions.Instructions01[countInstr01].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
-  choices: ['Next'], 
-}  
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions01_loop = {
+  timeline: [Instructions01],
+  loop_function: function(data){
+    console.log(countInstr01)
+    countInstr01+=1
+    if ( countInstr01 < Instructions.Instructions01.length){
+        return true} else { return false}
+  }
+}
+var Instructions02 = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions02[countInstr02].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions02_loop = {
+  timeline: [Instructions02],
+  loop_function: function(data){
+    console.log(countInstr02)
+    countInstr02+=1
+    if ( countInstr02 < Instructions.Instructions02.length){
+        return true} else { return false}
+  }
+}
+var Instructions03 = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions03[countInstr03].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions03_loop = {
+  timeline: [Instructions03],
+  loop_function: function(data){
+    console.log(countInstr03)
+    countInstr03+=1
+    if ( countInstr03 < Instructions.Instructions03.length){
+        return true} else { return false}
+  }
+}
+var Instructions04 = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions04[countInstr04].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions04_loop = {
+  timeline: [Instructions04],
+  loop_function: function(data){
+    console.log(countInstr03)
+    countInstr04+=1
+    if ( countInstr04 < Instructions.Instructions04.length){
+        return true} else { return false}
+  }
+}
 
 // =======================================================================
 // Add scoring procedures to the Thank you screen
@@ -307,33 +373,6 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 // Define the test procedure which does NOT provide feedback
-var instr_procedure01 = {
-    timeline: [Instructions],
-    timeline_variables: function() {return Instructions.Instructions01},
-    randomize_order: false,
-    repetitions: 1,
-  }
-
-var instr_procedure02 = {
-    timeline: [Instructions],
-    timeline_variables: function() {return Instructions.Instructions02},
-    randomize_order: false,
-    repetitions: 1,
-  }
-
-var instr_procedure03 = {
-    timeline: [Instructions],
-    timeline_variables: function() {return Instructions.Instructions03},
-    randomize_order: false,
-    repetitions: 1,
-  }
-
-var instr_procedure04 = {
-    timeline: [Instructions],
-    timeline_variables: function() {return Instructions.Instructions04},
-    randomize_order: false,
-    repetitions: 1,
-  }
 
 var PresentListOfWordsA = {
     timeline: [fixation, AudioStimulus],
@@ -361,13 +400,13 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [instr_procedure01, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+      timeline: [Instructions01_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
       randomize_order: false,
       repetitions: 1
   } 
 
 var AfterFirstBlockLoop = {
-  timeline: [instr_procedure02, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+  timeline: [Instructions02_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
   randomize_order: false,
   loop_function: function(data) {
     console.log("Block Count (in loop): " + (BlockCount)/2)
@@ -378,29 +417,16 @@ var AfterFirstBlockLoop = {
 }
 
 var BlockB = {
-    timeline: [instr_procedure03, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
+    timeline: [Instructions03_loop, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
     randomize_order: false,
     repetitions: 1,
 } 
 
 var FinalRecalBlockA = {
-    timeline: [instr_procedure04, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+    timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
     randomize_order: false,
     repetitions: 1,
 } 
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: function() {return Instructions.WelcomeText},
-  randomize_order: false,
-  repetitions: 1,
-}
-
-var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: function() {return Instructions.ThankYouText},
-    randomize_order: false,
-    repetitions: 1,
-  }  
 
 var DelayedRecallNo = {
   timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, HowManyBlocks, FirstBlock, AfterFirstBlockLoop],
@@ -420,10 +446,29 @@ var DelayedRecallYes = {
   }
 }      
 
+
+var welcome = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    if ( WordRecall_parameters.ShowWelcome)
+    if ( Instructions.ShowWelcome)
     { return true }
     else { return false }
   }
@@ -432,12 +477,11 @@ var if_Welcome = {
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( WordRecall_parameters.ShowThankYou)
+    if ( Instructions.ShowThankYou)
     { return true }
     else { return false }
   }
 }
-  
 // ======================================================================= 
 // Add procedures to the timeline
 

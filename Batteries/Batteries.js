@@ -233,12 +233,12 @@ BatteryList.push({index: 205,
 		'Fluency_FruitsVegetable',
 		'FaCE_Default_Delayed'],
 	ButtonName: [
-		'Immediate Memory',
+		'Mémoire immédiate ',
 		'Sentiers',
 		'Copie de Cube',
-		'Serial Subtraction',
-		'Fluency',
-		'Word Recall'
+		'Attention',
+		'Language',
+		'Rappel différé'
 	],
 	ButtonDescription: ['','','','',''],
 	BatteryInstructions:"",
