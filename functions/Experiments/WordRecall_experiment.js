@@ -39,24 +39,7 @@ var enter_fullscreen = {
   fullscreen_mode: FullScreenMode
 }
 
-// Pick Correct Word Lists
-var ChooseWordList = {
-  type: jsPsychCallFunction,
-  func: function() {
-    if ( WordRecall_parameters.WordList === "RAVLT" ) {
-      WordListA = RAVLT.WordListA
-      AlternatePronunciationsWordListA = RAVLT.AlternatePronunciationsWordListA
-      WordListB = RAVLT.WordListB
-      AlternatePronunciationsWordListB = RAVLT.AlternatePronunciationsWordListB
-    }
-    if ( WordRecall_parameters.WordList === "FaCE" ) {
-      WordListA = FaCE.WordListA
-      AlternatePronunciationsWordListA = FaCE.AlternatePronunciationsWordListA
-      WordListB = FaCE.WordListB
-      AlternatePronunciationsWordListB = FaCE.AlternatePronunciationsWordListB
-    }
-  }
-}
+
 
 
 // preload audio
@@ -90,7 +73,7 @@ var HowManyBlocks = {
 var MakeResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
-    ResponseArray = Array.from(Array(WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
+    ResponseArray = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
     console.log(ResponseArray)
   }
 }
@@ -128,15 +111,15 @@ var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(WordRecall_parameters)
-    SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+    SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
     // Make a simple list of the alternative pronunciations
-    AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListA))
+    AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListA))
     // Make a full list the words and thier alternative pronunciations
-    FullWordListA = SimpleWordListA.concat(AltSimpleWordListA)
+    FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
     // indices fro the primary word list
-    WordListIndexA = CreateWordListIndex(WordListA)
+    WordListIndexA = CreateWordListIndex(WordRecallLists.WordListA)
     // indices for the world list containing the alternatives
-    FullListIndexA = CreateSimpleIndexList(WordListA, AlternatePronunciationsWordListA)
+    FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
     AudioFileListA = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListA, WordRecall_parameters.FileExtension)
     // convert it back to a list of dictionaries
@@ -145,7 +128,7 @@ var MakeWordListA = {
     })
     // Create an array so the recall procedure can use a timelinevariable
     WordListAForRecall = {
-      'WordList': WordListA,
+      'WordList': WordRecallLists.WordListA,
       'SimpleWordList': SimpleWordListA,
       'FullWordList': FullWordListA,
       'WordListIndex': WordListIndexA,
@@ -160,15 +143,15 @@ var MakeWordListB = {
   func: function() {
     // PREP WORK FOR WORD LIST B
     // take list of words as dictionary items and make a simple list out of it
-    SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+    SimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB))
     // Make a simple list of the alternative pronunciations
-    AltSimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(AlternatePronunciationsWordListB))
+    AltSimpleWordListB = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListB))
     // Make a full list the words and thier alternative pronunciations
-    FullWordListB = SimpleWordListB.concat(AltSimpleWordListB)
+    FullWordListB = SimpleWordListB.concat(WordRecallLists.AltSimpleWordListB)
     // indices fro the primary word list
-    WordListIndexB = CreateWordListIndex(WordListB)
+    WordListIndexB = CreateWordListIndex(WordRecallLists.WordListB)
     // indices for the world list containing the alternatives
-    FullListIndexB = CreateSimpleIndexList(WordListB, AlternatePronunciationsWordListB)
+    FullListIndexB = CreateSimpleIndexList(WordRecallLists.WordListB, WordRecallLists.AlternatePronunciationsWordListB)
     // convert WordList to a list of filenames for teh audio files for each word
     AudioFileListB = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListB, WordRecall_parameters.FileExtension)
     // convert it back to a list of dictionaries
@@ -177,7 +160,7 @@ var MakeWordListB = {
     })
     // Create an array so the recall procedure can use a timelinevariable
     WordListBForRecall = {
-      'WordList': WordListB,
+      'WordList': WordRecallLists.WordListB,
       'SimpleWordList': SimpleWordListB,
       'FullWordList': FullWordListB,
       'WordListIndex': WordListIndexB,
@@ -287,7 +270,7 @@ var VisualStimulus = {
         return 0
       }
     },
-    prompt: WordPrompt, //Add this to config file
+    prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -326,28 +309,28 @@ var SendData = {
 // Define the test procedure which does NOT provide feedback
 var instr_procedure01 = {
     timeline: [Instructions],
-    timeline_variables: Instructions01,
+    timeline_variables: function() {return Instructions.Instructions01},
     randomize_order: false,
     repetitions: 1,
   }
 
 var instr_procedure02 = {
     timeline: [Instructions],
-    timeline_variables: Instructions02,
+    timeline_variables: function() {return Instructions.Instructions02},
     randomize_order: false,
     repetitions: 1,
   }
 
 var instr_procedure03 = {
     timeline: [Instructions],
-    timeline_variables: Instructions03,
+    timeline_variables: function() {return Instructions.Instructions03},
     randomize_order: false,
     repetitions: 1,
   }
 
 var instr_procedure04 = {
     timeline: [Instructions],
-    timeline_variables: Instructions04,
+    timeline_variables: function() {return Instructions.Instructions04},
     randomize_order: false,
     repetitions: 1,
   }
@@ -407,14 +390,14 @@ var FinalRecalBlockA = {
 } 
 var welcome = {
   timeline: [Instructions],
-  timeline_variables: WelcomeText,
+  timeline_variables: function() {return Instructions.WelcomeText},
   randomize_order: false,
   repetitions: 1,
 }
 
 var thank_you = {
     timeline: [Instructions],
-    timeline_variables: ThankYouText,
+    timeline_variables: function() {return Instructions.ThankYouText},
     randomize_order: false,
     repetitions: 1,
   }  
@@ -457,7 +440,7 @@ var if_ThankYou = {
   
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(ChooseWordList)
+
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)

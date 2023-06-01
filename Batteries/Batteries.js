@@ -177,3 +177,73 @@ BatteryList.push({index: 202,
     BatteryInstructions:"Chemo Brain Fog",
 	Language:'FR'
 })
+
+
+
+
+BatteryList.push({index: 105, 
+	name:'FaCE Battery', 
+	list: [
+		'Word Recall',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	], 
+	description: '',
+	ParameterLists: 
+		['FaCE_Default',
+		'TrailMaking_FaCE',
+		'CubeCopy_Default',
+		'SerialSubtract_FaCE',
+		'Fluency_FruitsVegetable',
+		'FaCE_Default_Delayed'],
+	ButtonName: [
+		'Immediate Memory',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	],
+	ButtonDescription: ['','','','',''],
+	BatteryInstructions:"",
+	Language:'EN'
+})
+
+
+
+BatteryList.push({index: 205, 
+	name:'FaCE Battery', 
+	list: [
+		'Word Recall',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	], 
+	description: '',
+	ParameterLists: 
+		['FaCE_Default_FR',
+		'TrailMaking_FaCE',
+		'CubeCopy_Default',
+		'SerialSubtract_FaCE',
+		'Fluency_FruitsVegetable',
+		'FaCE_Default_Delayed'],
+	ButtonName: [
+		'Immediate Memory',
+		'Sentiers',
+		'Copie de Cube',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	],
+	ButtonDescription: ['','','','',''],
+	BatteryInstructions:"",
+	Language:'FR'
+})
+
+
+
