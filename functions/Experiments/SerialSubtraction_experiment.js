@@ -4,6 +4,7 @@ var timeline = [];
 var RecallDuration = 60
 var responseSerSub = [];
 var PreviousResult
+var count = 0
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -25,7 +26,11 @@ var GetPreviousResult = {
 var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-      var prompt = '<p class="Instructions">Subtract '+SerialSubtract_parameters.StepValue+' from '+PreviousResult+ ' and continue to subtract '+SerialSubtract_parameters.StepValue+' from the result, even if the result is wrong.</p>'
+      var prompt = 
+        Instructions.GetResponse01+SerialSubtract_parameters.StepValue+
+        Instructions.GetResponse02+PreviousResult+
+        Instructions.GetResponse03+SerialSubtract_parameters.StepValue+
+        Instructions.GetResponse04
       return PutStimIntoTable(prompt+response_gridSerSub,'') 
   },
   choices: ['Enter'],
@@ -71,32 +76,52 @@ var get_response2 = {
 
 // Define instructions
 var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }  
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_procedure01_loop = {
+  timeline: [Instructions],
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < Instructions.Instructions.length){
+        return true} else { return false}
+  }
+}
 
 
 // =======================================================================    
 // Define procedures using the stimuli
-// Define the test procedure which does NOT provide feedback
-var instr_procedure01 = {
-  timeline: [Instructions],
-  timeline_variables: SerialSubtraction_Instructions,
-  randomize_order: false,
-  repetitions: 1,
+
+
+
+var welcome = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
+
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    if ( SerialSubtract_parameters.ShowWelcome)
+    if ( Instructions.ShowWelcome)
     { return true }
     else { return false }
   }
@@ -105,25 +130,11 @@ var if_Welcome = {
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( SerialSubtract_parameters.ShowThankYou)
+    if ( Instructions.ShowThankYou)
     { return true }
     else { return false }
   }
 }
-
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
-}
-        
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}  
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -139,7 +150,7 @@ var procedure = {
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
-timeline.push(instr_procedure01)
+timeline.push(instr_procedure01_loop)
 timeline.push(procedure)
 timeline.push(SendData)
 timeline.push(if_ThankYou)

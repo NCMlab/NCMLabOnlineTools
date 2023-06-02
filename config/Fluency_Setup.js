@@ -1,5 +1,5 @@
 Fluency_Animals = {
-	Category: '<b>Animals</b>',
+	Category: 'Animals',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
 	ShowWelcome: false,
@@ -7,15 +7,15 @@ Fluency_Animals = {
 }
 
 Fluency_FruitsVegetable = {
-	Category: '<b>fruits and vegetables</b>',
-	TimeLimit: 6, // seconds
+	Category: 'FruitsVegetables',
+	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
 	ShowWelcome: false,
 	ShowThankYou: false
 }
 
 Fluency_F = {
-	Category: '<b>words that start with F</b>',
+	Category: 'LetterF',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
 	ShowWelcome: false,

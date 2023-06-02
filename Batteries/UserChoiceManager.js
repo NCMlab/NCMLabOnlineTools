@@ -33,7 +33,7 @@ var trial2 = {
       console.log(TaskList)
   },
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Please pick a task',
+  stimulus: '',
   choices: function(){ 
       var stim = []
       console.log(TaskButtonNameList)

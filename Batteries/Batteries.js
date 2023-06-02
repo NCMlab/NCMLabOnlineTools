@@ -203,7 +203,7 @@ BatteryList.push({index: 105,
 		'Immediate Memory',
 		'Trail Making',
 		'Cube Copy',
-		'Serial Subtraction',
+		'Attention',
 		'Fluency',
 		'Word Recall'
 	],
