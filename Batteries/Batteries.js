@@ -240,7 +240,7 @@ BatteryList.push({index: 205,
 		'Language',
 		'Rappel différé'
 	],
-	ButtonDescription: ['','','','',''],
+	ButtonDescription: ['','','','','',''],
 	BatteryInstructions:"",
 	Language:'FR'
 })
