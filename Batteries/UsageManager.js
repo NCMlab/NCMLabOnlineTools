@@ -50,11 +50,14 @@ var SetupBattery = {
         JATOSSessionData = jatos.studySessionData
         if ( isEmpty(JATOSSessionData) ) {
           // Add things to the jatos session data
+          TaskCompleted = Array(TaskList.length).fill(0)
+          console.log(TaskCompleted)
           JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
           // add the ID to return to the JATOS battery
           JATOSSessionData.BatteryHtmlID = BatteryHtmlID
           JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.Language = Language
+          JATOSSessionData.TaskCompleted = TaskCompleted
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true
           

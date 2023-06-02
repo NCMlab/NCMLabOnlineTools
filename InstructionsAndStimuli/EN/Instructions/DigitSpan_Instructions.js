@@ -1,40 +1,67 @@
 var fdsTotalTrials = 3;
 
-var Forward_WelcomeText = [
-	{'page': '<p class="Instructions">Welcome to the <b>Foward Digit Span Task.</b></p>'}
-]
+var EN_Instructions = {}
 
-var Backward_WelcomeText = [
-	{'page': '<p class="Instructions">Welcome to the <b>Backward Digit Span Task.</b></p>'}
+EN_Instructions.WelcomeText = [
+	{'page': '<p class="Instructions">Welcome to the <b>Digit Span Task.</b></p>'}
 ]
-
-var ForwardAudioInstructions = [ 
+EN_Instructions.ForwardAudioInstructions = [ 
 		{'page': '<p class="Instructions">On each trial, you will hear a sequence of digits and be asked to enter them back in the <b>SAME</b> order in which they were heard.</p>'},
 		{'page': '<p class="Instructions">For example, if you heard the digits<br><b style="color:blue;">one</b>, <b style="color:blue;">two</b>, <b style="color:blue;">three</b>,<br> you would respond with<br><b style="color:blue;">1</b>, <b style="color:blue;">2</b>, <b style="color:blue;">3</b></p>'},
 	    ];
-
-var BackwardAudioInstructions = [ 
+EN_Instructions.BackwardAudioInstructions = [ 
 		{'page': '<p class="Instructions">On each trial, you will hear a sequence of digits and be asked to enter them in the <b>REVERSE</b> order in which they were heard.</p>'},
 		{'page': '<p class="Instructions">For example, if you heard the digits<br><b style="color:blue;">one</b>, <b style="color:blue;">two</b>, <b style="color:blue;">three</b>,<br> you would respond with<br><b style="color:blue;">3</b>, <b style="color:blue;">2</b>, <b style="color:blue;">1</b></p>'},
 	    ];
-
-var ForwardVisualInstructions = [ 
+EN_Instructions.ForwardVisualInstructions = [ 
 		{'page': '<p class="Instructions">On each trial, you will see a sequence of digits and be asked to enter them back in the <b>SAME</b> order in which they were seen.</p>'},
 		{'page': '<p class="Instructions">For example, if you saw the digits<br><b style="color:blue;">one</b>, <b style="color:blue;">two</b>, <b style="color:blue;">three</b>,<br> you would respond with<br><b style="color:blue;">1</b>, <b style="color:blue;">2</b>, <b style="color:blue;">3</b></p>'},
 		];
-
-var BackwardVisualInstructions = [ 
+EN_Instructions.BackwardVisualInstructions = [ 
 		{'page': '<p class="Instructions">On each trial, you will see a sequence of digits and be asked to enter them in the <b>REVERSE</b> order in which they were seen.</p>'},
 		{'page': '<p class="Instructions">For example, if you saw the digits<br><b style="color:blue;">one</b>, <b style="color:blue;">two</b>, <b style="color:blue;">three</b>,<br> you would respond with<br><b style="color:blue;">3</b>, <b style="color:blue;">2</b>, <b style="color:blue;">1</b></p>'},
 		];
-	
-
-var GettingStartedText = [
+EN_Instructions.GettingStartedText = [
 		{'page': '<p class="Instructions">To ensure high quality data, it is very important that you do not use any memory aid (e.g., pen and paper).<br>Please do the task solely in your head.</p>'},
-		{'page': '<p class="Instructions">There will be '+fdsTotalTrials+' total trials. Participation takes around 10 minutes.</p>'},
 	];
+EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
+EN_Instructions.ForwardTrialQuestion = '<p class="Instructions">Enter the number list in the SAME order.</p>'
+EN_Instructions.BackwardTrialQuestion = '<p class="Instructions">Enter the number list <b>Backwards</b>.</p>'
+EN_Instructions.TrialNumber = 'Trial number'
+EN_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
 
-var ThankYouText = [{'page':'Thank you.'}]
 
-var ForwardTrialQuestion = '<p class="Instructions">Enter the number list.</p>'
-var BackwardTrialQuestion = '<p class="Instructions">Enter the number list <b>Backwards</b>.</p>'
+var FR_Instructions = {}
+FR_Instructions.WelcomeText = [
+	{'page': '<p class="Instructions">C\'est la tâche de <b>Mémoire des Chiffres</b></p>'}
+]
+
+FR_Instructions.ForwardAudioInstructions = [ 
+		{'page': '<p class="Instructions">À chaque essai, vous entendrez une séquence de chiffres et on vous demandera de les écrire à nouveau dans le <b>MÊME</b> ordre dans lequel ils ont été entendus.</p>'},
+		{'page': '<p class="Instructions">Par exemple, si vous entendiez les chiffres <br><b style="color:blue;">un</b>, <b style="color:blue;">deux</b>, <b style="color:blue;">trois</b> vous répondriez par <br><b style="color:blue;">1</b>, <b style="color:blue;">2</b>, <b style="color:blue;">3</b></p>'},
+	];
+FR_Instructions.BackwardAudioInstructions = [ 
+		{'page': '<p class="Instructions">À chaque essai, vous entendrez une séquence de chiffres et on vous demandera de les écrire à nouveau dans le <b>INVERSE</b> ordre dans lequel ils ont été entendus.</p>'},
+		{'page': '<p class="Instructions">Par exemple, si vous entendiez les chiffres <br><b style="color:blue;">un</b>, <b style="color:blue;">deux</b>, <b style="color:blue;">trois</b> vous répondriez par <br><b style="color:blue;">3</b>, <b style="color:blue;">2</b>, <b style="color:blue;">1</b></p>'},
+	    ];
+FR_Instructions.ForwardVisualInstructions = [ 
+		{'page': '<p class="Instructions">À chaque essai, vous verrez une séquence de chiffres et on vous demandera de les écrire à nouveau dans le <b>MÊME</b> ordre dans lequel ils ont été vus.</p>'},
+		{'page': '<p class="Instructions">Par exemple, si vous verrez les chiffres <br><b style="color:blue;">un</b>, <b style="color:blue;">deux</b>, <b style="color:blue;">trois</b> vous répondriez par <br><b style="color:blue;">1</b>, <b style="color:blue;">2</b>, <b style="color:blue;">3</b></p>'},
+		];
+FR_Instructions.BackwardVisualInstructions = [ 
+		{'page': '<p class="Instructions">À chaque essai, vous verrez une séquence de chiffres et on vous demandera de les écrire à nouveau dans le <b>INVERSE</b> ordre dans lequel ils ont été vus.</p>'},
+		{'page': '<p class="Instructions">Par exemple, si vous verrez les chiffres <br><b style="color:blue;">un</b>, <b style="color:blue;">deux</b>, <b style="color:blue;">trois</b> vous répondriez par <br><b style="color:blue;">3</b>, <b style="color:blue;">2</b>, <b style="color:blue;">1</b></p>'},
+		];
+FR_Instructions.GettingStartedText = [
+		{'page': '<p class="Instructions">Pour garantir des données de haute qualité, il est très important que vous n\'utilisiez aucun aide-mémoire (par exemple, un stylo et du papier).<br>Veuillez effectuer la tâche uniquement dans votre tête.</p>'},
+	];
+FR_Instructions.ThankYouText = [{'page':'Merci'}]
+FR_Instructions.ForwardTrialQuestion = '<p class="Instructions">Entrez la liste des numéros dans le <b>MÊME</b> ordre</p>'
+FR_Instructions.BackwardTrialQuestion = '<p class="Instructions">Entrez la liste des numéros dans le <b>INVERSE</b> ordre</p>'
+FR_Instructions.TrialNumber = 'Essai numéro'
+FR_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_fr_FR-Neural2-A_Speed70/'
+
+
+add('EN_DigitSpan_Instructions', function(){ DigitSpan_Instructions = EN_Instructions});
+add('FR_DigitSpan_Instructions', function(){ DigitSpan_Instructions = FR_Instructions});
+

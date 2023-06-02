@@ -2,6 +2,7 @@
 // Define internal variables
 console.log(DigitSpan_parameters)
 var timeline = [];
+var count = 0
 var stimList; //this is going to house the ordering of the stimuli for each trial
 var stimListOfFiles;
 var idx = 0; //for indexing the current letter to be presented
@@ -46,7 +47,7 @@ var preload_digits = {
   type: jsPsychPreload,
   audio: function() {
     
-    var List = MakeListOfStimuli(FolderOfAudioFiles, initList)
+    var List = MakeListOfStimuli(DigitSpan_Instructions.FolderOfAudioFiles, initList)
     console.log(List)
     console.log("PRELOADING AUDIO")
     return List
@@ -116,7 +117,7 @@ var SetupTrial = {
         console.log("Current List Length: "+CurrentListLength)
         stimList = CreateDigitList(CurrentListLength)
         if ( DigitSpan_parameters.StimulusMode == 'audio' ) {
-            stim = MakeListOfStimuli(FolderOfAudioFiles, stimList)
+            stim = MakeListOfStimuli(DigitSpan_Instructions.FolderOfAudioFiles, stimList)
             console.log("Made this list of stimuli: "+stim)
         }
         else { // visual
@@ -149,7 +150,7 @@ var TrialNumber = {
     on_load: function() {
         TrialCount += 1
     },
-    stimulus: function() {return '<p>Trial number: '+ String(TrialCount) + '</p>';},
+    stimulus: function() {return '<p>'+DigitSpan_Instructions.TrialNumber+': '+ String(TrialCount) + '</p>';},
     choices: [],
     prompt: "",
     trial_duration: DurationToWaitBetweenTrials,
@@ -235,28 +236,65 @@ var VisualStim = {
 };
 
  // Define instructions
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
+ var Instructions = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return jsPsych.timeline_variables('page')},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+var AudioForward_Instructions = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return DigitSpan_Instructions.ForwardAudioInstructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
+var AudioBackward_Instructions = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return DigitSpan_Instructions.BackwardAudioInstructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+var VisualForward_Instructions = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return DigitSpan_Instructions.ForwardVisualInstructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var VisualBackward_Instructions = {
+type: jsPsychHtmlButtonResponseTouchscreen,
+stimulus: function (){return DigitSpan_Instructions.BackwardVisualInstructions[count].page},
+post_trial_gap: 0,
+margin_horizontal: GapBetweenButtons,
+prompt: '',
+choices: function() {return [LabelNames.Next]}, 
+}
  var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
     if ( DigitSpan_parameters.direction == 'forward' ) {
-      return PutStimIntoTable(ForwardTrialQuestion + response_grid,'') 
+      return PutStimIntoTable(DigitSpan_Instructions.ForwardTrialQuestion + response_grid,'') 
     }
-    else {return PutStimIntoTable(BackwardTrialQuestion + response_grid,'') }
+    else {return PutStimIntoTable(DigitSpan_Instructions.BackwardTrialQuestion + response_grid,'') }
   },
-  choices: ['Enter'],
+  on_load: function() {
+    
+    document.getElementById('ClearButton').innerHTML = LabelNames.Clear;
+    console.log(document.getElementById('current_answer'))
+    document.getElementById('current_answer').innerHTML = LabelNames.CurrentAnswer
+
+    
+  },
+  choices: function() {return [LabelNames.Enter]},
   on_finish: function(data) {
       var curans = response;
       accuracy = CheckResponse(stimList, response)
@@ -293,6 +331,44 @@ var Notes = {
 }
 
 // =======================================================================
+
+var AudioForward_Instructions_loop_node = {
+  timeline: [AudioForward_Instructions],
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < DigitSpan_Instructions.ForwardAudioInstructions.length){
+        return true} else { return false}
+  }
+}
+var AudioBackward_Instructions_loop_node = {
+  timeline: [AudioBackward_Instructions],
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < DigitSpan_Instructions.BackwardAudioInstructions.length){
+        return true} else { return false}
+  }
+}
+var VisualForward_Instructions_loop_node = {
+  timeline: [VisualForward_Instructions],
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < DigitSpan_Instructions.ForwardVisualInstructions.length){
+        return true} else { return false}
+  }
+}
+var VisualBackward_Instructions_loop_node = {
+  timeline: [VisualBackward_Instructions],
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < DigitSpan_Instructions.BackwardVisualInstructions.length){
+        return true} else { return false}
+  }
+}
+
 // Add scoring procedures to the Thank you screen
 var SendData = {
   type: jsPsychCallFunction,
@@ -323,8 +399,7 @@ var present_visual = {
 // This is a clunky way to present the correct instructions.
 // The problem is that the timeline_variables does not accept functions
 var if_audio_forward_instr = {
-    timeline: [Instructions],
-    timeline_variables: ForwardAudioInstructions,
+    timeline: [AudioForward_Instructions_loop_node],
     conditional_function: function() {
         if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='forward' )
             { return true }
@@ -332,8 +407,8 @@ var if_audio_forward_instr = {
     }
 }
 var if_audio_backward_instr = {
-    timeline: [Instructions],
-    timeline_variables: BackwardAudioInstructions,
+    timeline: [AudioBackward_Instructions_loop_node],
+    timeline_variables: function() {return DigitSpan_Instructions.BackwardAudioInstructions},
     conditional_function: function() {
         if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='backward' )
             { return true }
@@ -341,8 +416,8 @@ var if_audio_backward_instr = {
     }
 }
 var if_visual_forward_instr = {
-    timeline: [Instructions],
-    timeline_variables: ForwardVisualInstructions,
+    timeline: [VisualForward_Instructions_loop_node],
+    timeline_variables: function() {return DigitSpan_Instructions.ForwardVisualInstructions},
     conditional_function: function() {
         if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='forward' )
             { return true }
@@ -350,8 +425,8 @@ var if_visual_forward_instr = {
     }
 }
 var if_visual_backward_instr = {
-    timeline: [Instructions],
-    timeline_variables: BackwardVisualInstructions,
+    timeline: [VisualBackward_Instructions_loop_node],
+    timeline_variables: function() {return DigitSpan_Instructions.BackwardVisualInstructions},
     conditional_function: function() {
         if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='backward' )
             { return true }
@@ -385,15 +460,17 @@ var procedure = {
 };
 
 var welcome = {
-  timeline: [Instructions],
-  timeline_variables: [{'page':"Welcome"}],
-  randomize_order: false,
-  repetitions: 1,
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return DigitSpan_Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
 var thank_you = {
     timeline: [Instructions],
-    timeline_variables: ThankYouText,
+    timeline_variables: function() {return DigitSpan_Instructions.ThankYouText},
     randomize_order: false,
     repetitions: 1,
 }
@@ -422,6 +499,7 @@ var if_ThankYou = {
 // Add all procedures to the timeline
 
 timeline.push(if_Welcome)
+
 timeline.push(if_node)
 timeline.push(ReadParametersAndSetup)
 
@@ -435,4 +513,4 @@ timeline.push(if_visual_backward_instr)
 timeline.push(procedure)
 timeline.push(Notes)
 timeline.push(SendData)
-timeline.push(if_ThankYou)
+//timeline.push(if_ThankYou)

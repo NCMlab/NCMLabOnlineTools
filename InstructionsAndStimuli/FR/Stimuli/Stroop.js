@@ -1,10 +1,11 @@
 Color01Name = "Red"
-Color01RGB = "(255,0,0)"
 Color02Name = "Yellow"
-Color02RGB = "(255,255,0)"
 Color03Name = "Green"
-Color03RGB = "(0,255,0)"
 Color04Name = "Blue"
+
+Color01RGB = "(255,0,0)"
+Color02RGB = "(255,255,0)"
+Color03RGB = "(0,255,0)"
 Color04RGB = "(0,0,255)"
 
 var StroopWordList = [

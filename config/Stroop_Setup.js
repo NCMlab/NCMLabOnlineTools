@@ -4,7 +4,7 @@ var ResponseChoices = ['v','b','n','m',27]
 
 //These are the buttons shown on the screeen which the user sees and uses.
 // They are not color coded, they just have the words
-var ResponseButtons = ['Red','Yellow','Green','Blue']
+
 var ColorTestQuestionTypes = 4
 var WordTestQuestionTypes = 4
 var ColorWordTestQuestionTypes = 16
@@ -38,7 +38,7 @@ var Stroop_Victoria = {
 	AllowedTime: -99, // in seconds
 	Score_NumberTrials: 24,
 	Score_ProcedureName: 'Victoria',
-	ShowWelcome: false,
+	ShowWelcome: true,
 	ShowThankYou: false,
 }
 
@@ -55,7 +55,7 @@ var Stroop_Golden = {
 	// then blocks of trials are presented until the timer runs out
 	Score_NumberTrials: null,
 	Score_ProcedureName: 'Golden',
-	ShowWelcome: false,
+	ShowWelcome: true,
 	ShowThankYou: false,
 }
 

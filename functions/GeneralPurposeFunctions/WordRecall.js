@@ -32,11 +32,9 @@ var ManualRecallA = {
     [
       {
         type: 'multi-select',
-        prompt: function(){
-          var stim = 'Which words were recalled?'
-          return stim }, 
+        prompt: function(){return Instructions.WordRecallPrompt},
         options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordListA))
+          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
         },
         columns: 3,
         name: 'ListRecall', 
@@ -217,7 +215,7 @@ var SpokenRecallA = {
     choices: ['Next'], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: WordPrompt, //Add this to config file
+    prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
     on_start: function(SimpleList) {
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
@@ -269,7 +267,7 @@ var SpokenRecallB = {
   choices: ['Next'], 
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: WordPrompt, //Add this to config file
+  prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
   on_start: function(SimpleList) {
     // reset the list of indices
     // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?

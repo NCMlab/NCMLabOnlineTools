@@ -3,7 +3,8 @@
 var timeline = [];
 var RecallDuration = 60
 var category
-var Count = 0
+var itemCount = 0
+var count = 0
 var HasCounterStarted = false
 
 
@@ -17,7 +18,7 @@ var GetCategory = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(Fluency_parameters)
-    category = Fluency_parameters.Category
+    category = eval('Instructions.'+Fluency_parameters.Category)
   }
 }
 
@@ -73,7 +74,7 @@ var Fluency = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
 
-      var stim = 'Please, say as many '+category+' as possible.<p><span id="clock">1:00</span></p>'
+      var stim = 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'
       return stim 
     },
     choices: ['Next'], 
@@ -138,9 +139,9 @@ var Counter = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    var stim = 'Say as many '+category+' as possible.<p><span id="clock">1:00</span></p>'+
+    var stim = 'Say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'+
     'As the administrator: Press Next for every correct response made. <p />'+
-    'Number of responses: <div id="FluencyCounter">'+Count+'</div>'+
+    'Number of responses: <div id="FluencyCounter">'+itemCount+'</div>'+
     'When the timer runs out, press Next again to finish.'
     return stim
   },
@@ -172,7 +173,7 @@ var Counter = {
     },
     on_finish: function(data) {
       data.task = 'Recall'
-      data.count = Count
+      data.count = itemCount
     }
 }  
 
@@ -181,7 +182,7 @@ var CountResponses = {
   loop_function: function() {
     if ( time_left > 0 ) 
     { 
-      Count++
+      itemCount++
       return true 
     }
     else { return false }
@@ -189,7 +190,7 @@ var CountResponses = {
   on_finish: function(data){
     //data.HeardList = TotalList
     console.log(data)
-    data.Count = Count
+    data.itemCount = itemCount
     data.task = 'Recall'
   }
 }
@@ -222,51 +223,72 @@ var if_ManualResponse = {
   }
 }
 
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    if ( Fluency_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
+
+
+
+
+var Instructions = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-    if ( Fluency_parameters.ShowThankYou)
-    { return true }
-    else { return false }
-  }
-}
-
-var instr_procedure01 = {
-    timeline: [Instructions],
-    timeline_variables: Fluency_Instructions,
-    randomize_order: false,
-    repetitions: 1,
-  }
-
-var welcome = {
+var Instructions_loop = {
   timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
+  loop_function: function(data){
+    console.log(count)
+    count+=1
+    if ( count < Instructions.Instructions.length){
+        return true} else { return false}
+  }
 }
 
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}  
+
+  var welcome = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {return Instructions.WelcomeText[0].page},
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+  }
+  
+  var thank_you = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {return Instructions.ThankYouText[0].page},
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+  }
+  
+  var if_Welcome = {
+    timeline: [welcome],
+    conditional_function: function() {
+      if ( Instructions.ShowWelcome)
+      { return true }
+      else { return false }
+    }
+  }
+  
+  var if_ThankYou = {
+    timeline: [thank_you],
+    conditional_function: function() {
+      if ( Instructions.ShowThankYou)
+      { return true }
+      else { return false }
+    }
+  }
 
 // ======================================================================= 
 // Add procedures to the timeline
 
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
-timeline.push(instr_procedure01)
+timeline.push(Instructions_loop)
 timeline.push(GetCategory)
 timeline.push(if_ManualResponse)
 timeline.push(if_SpokenResponse)

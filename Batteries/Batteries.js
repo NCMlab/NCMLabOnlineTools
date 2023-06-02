@@ -12,15 +12,15 @@ BatteryList.push({index: 5,
 	Language:'FR',
 	RunAudioTest: true})
 
-	BatteryList.push({index: 15, 
-		name:'FaCE Battery', 
-		list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
-		description: 'A web-based version of the FaCE',
-		ParameterLists: ['FaCE_Default_FR','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-		BatteryInstructions: "This is the Fast Cognitive Evaluation",
-		Language:'FR',
-		RunAudioTest: true})
-	
+BatteryList.push({index: 15, 
+	name:'FaCE Battery', 
+	list: ['Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
+	description: 'A web-based version of the FaCE',
+	ParameterLists: ['TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	BatteryInstructions: "This is the Fast Cognitive Evaluation",
+	Language:'EN',
+	RunAudioTest: true})
+
 	
 BatteryList.push({index: 2, 
 	name:'Battery002', 
@@ -131,13 +131,10 @@ BatteryList.push({index: 102,
 		'','',''
 		],
     BatteryInstructions:"Chemo Brain Fog",
-	Language:'FR'
+	Language:'EN'
 })
 
-
-
-
-BatteryList.push({index: 102, 
+BatteryList.push({index: 202, 
 	name:'Chemo Brain', 
 	list: [
         'Intake Form',
@@ -161,10 +158,10 @@ BatteryList.push({index: 102,
         'RAVLT_Manual_Delayed'
 	],
 	ButtonName: [
-        'Intake Form',
-        'Clock Drawing','Cube Copy',
-        'Trails A','Trails B',
-		'DS Forward','DS Backward',
+        "Formulaire d'admission",
+        "Dessin d'Horloge",'Copie de Cube',
+        'Sentiers A','Sentiers B',
+		'MC Endroit','MC Inversé',
 		'RAVLT, Immediate',
 		'Color','Word','Color/Word',
         'Line Bisect','Cancellation',
@@ -177,6 +174,76 @@ BatteryList.push({index: 102,
 		'','','',
 		'','',''
 		],
-    BatteryInstructions:"Chemo Brain"
+    BatteryInstructions:"Chemo Brain Fog",
+	Language:'FR'
 })
+
+
+
+
+BatteryList.push({index: 105, 
+	name:'FaCE Battery', 
+	list: [
+		'Word Recall',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	], 
+	description: '',
+	ParameterLists: 
+		['FaCE_Default',
+		'TrailMaking_FaCE',
+		'CubeCopy_Default',
+		'SerialSubtract_FaCE',
+		'Fluency_FruitsVegetable',
+		'FaCE_Default_Delayed'],
+	ButtonName: [
+		'Immediate Memory',
+		'Trail Making',
+		'Cube Copy',
+		'Attention',
+		'Fluency',
+		'Word Recall'
+	],
+	ButtonDescription: ['','','','',''],
+	BatteryInstructions:"",
+	Language:'EN'
+})
+
+
+
+BatteryList.push({index: 205, 
+	name:'FaCE Battery', 
+	list: [
+		'Word Recall',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluency',
+		'Word Recall'
+	], 
+	description: '',
+	ParameterLists: 
+		['FaCE_Default_FR',
+		'TrailMaking_FaCE',
+		'CubeCopy_Default',
+		'SerialSubtract_FaCE',
+		'Fluency_FruitsVegetable',
+		'FaCE_Default_Delayed'],
+	ButtonName: [
+		'Mémoire immédiate ',
+		'Sentiers',
+		'Copie de Cube',
+		'Attention',
+		'Language',
+		'Rappel différé'
+	],
+	ButtonDescription: ['','','','',''],
+	BatteryInstructions:"",
+	Language:'FR'
+})
+
+
 

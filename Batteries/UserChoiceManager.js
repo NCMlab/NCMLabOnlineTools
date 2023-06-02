@@ -33,7 +33,7 @@ var trial2 = {
       console.log(TaskList)
   },
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Please pick a task',
+  stimulus: '',
   choices: function(){ 
       var stim = []
       console.log(TaskButtonNameList)
@@ -94,6 +94,7 @@ var SetupBattery = {
         // If this is the first visit to this manager, display the battery instructions
         DisplayBatteryInstructionsFlag = true
         JATOSSessionData.TaskList = TaskList
+        JATOSSessionData.CompletedTaskList 
       }
       else {DisplayBatteryInstructionsFlag = false}
       console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
