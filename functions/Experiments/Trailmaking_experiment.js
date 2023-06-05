@@ -24,6 +24,7 @@ var FindCanvasSizeTest = {
       console.log(CanvasWidth)
       console.log(CanvasHeight)
       console.log('==============================')
+      console.log(TrailMaking_Instructions)
   }
 }
 
@@ -165,6 +166,15 @@ var welcome = {
   choices: function() {return [LabelNames.Next]}, 
 }
 
+var thankyou = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {return TrailMaking_Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
 var practicePrompt = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {return TrailMaking_Instructions.PracticePrompt[0].page},
@@ -193,16 +203,7 @@ var if_Welcome = {
   }
 }
 
-var thankyou = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var if_Thankyou = {
+var if_ThankYou = {
   timeline: [thankyou],
   conditional_function: function() {
     console.log(TrailMaking_Instructions)

@@ -65,10 +65,3 @@ FR_Instructions.ThankYouText = [{'page':'Merci'}]
 
 add('EN_TrailMaking_Instructions', function(){ TrailMaking_Instructions = EN_Instructions});
 add('FR_TrailMaking_Instructions', function(){ TrailMaking_Instructions = FR_Instructions});
-
-
-var TESTInstructions = {}
-TESTInstructions.A = [
-    {'page': '<p class="Instructions">Pour cette tâche, vous verrez des nombres dans des cercles. Veuillez tracer une ligne d\'un nombre à l\'autre, dans l\'ordre. Commencez à 1, puis passez à 2, puis passez à 3, et ainsi de suite. Continuez jusqu\'à ce que vous atteigniez le numéro marqué end.'},
-    {'page': '<p class="Instructions">Tracez votre ligne aussi vite que vous le pouvez. Lorsque votre ligne entre dans un cercle correct, elle change de couleur, indiquant qu\'il s\'agit du prochain cercle correct dans la séquence.</br> Si le cercle ne change pas de couleur, vous avez fait une erreur et devez tracer votre ligne vers un autre cercle.'}
-]

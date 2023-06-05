@@ -48,13 +48,15 @@
             else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
             // load the parameters
             pseudoSwitch(parameters)
-            
+            console.log(TrailMaking_parameters)
             // load the language specific instructions
             LANG = jatos.studySessionData.Language
+            console.log(LANG)
             pseudoSwitch(LANG+'_TrailMaking_Instructions')
+            
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
-            
+            console.log(TrailMaking_Instructions)
             // The setup file decides which instruction set to provide. 
             // In the setup file the decision is stated as a string which
             // is evaluated here
