@@ -87,7 +87,8 @@ BatteryList.push({index: 101,
 		'','','',
 		'','',''
 		],
-    BatteryInstructions:"This is the NCMLab Evaluation"
+    BatteryInstructions:"This is the NCMLab Evaluation",
+	Language:'EN'
 })
 
 BatteryList.push({index: 102, 
