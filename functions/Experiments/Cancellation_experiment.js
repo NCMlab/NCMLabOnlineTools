@@ -1,6 +1,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var countInstr = 0
 // var ListOfTargets = [[1,1],[4,2],[0,2]]
 var grid
 var ListOfTargets
@@ -26,22 +27,24 @@ var InitialSetup = {
 
 
  // Define instructions
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-      on_finish: function(data){
-        data.task = 'Instructions'
-    }
-    }
-
+// General instructions
+var Instructions_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.SingleLetterCancellationInstructionText[countInstr].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+var instr_procedure_loop_node = {
+  timeline: [Instructions_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstr)
+    countInstr+=1
+    if ( countInstr < Instructions.SingleLetterCancellationInstructionText.length){
+        return true} else { return false}
+  }
+}
 
 var trial_1 = {
 	type: jsPsychCancellationMouse,
@@ -69,6 +72,19 @@ var trial_1 = {
     }
 }
 // =======================================================================
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: function() {return LabelNames.NoteInputBox},
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -83,25 +99,26 @@ var SendData = {
 
 
 
-var instr_procedure = {
-  timeline: [Instructions],
-  timeline_variables: SingleLetterCancellationInstructionText,
-  randomize_order: false,
-  repetitions: 1,
-}
- 
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
+var welcome = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
 var if_Welcome = {
@@ -131,8 +148,9 @@ var if_ThankYou = {
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(InitialSetup)
-timeline.push(instr_procedure)
+timeline.push(instr_procedure_loop_node)
 timeline.push(trial_1)	
+timeline.push(Notes)
 timeline.push(SendData)
 timeline.push(if_ThankYou)
 

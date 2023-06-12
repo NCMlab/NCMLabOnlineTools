@@ -15,7 +15,7 @@ ComponentList.push({name:'Fluency', iconFileName:'Fluency.png'})
 ComponentList.push({name:'Line Bisection', iconFileName:'LineBisection.png'})
 ComponentList.push({name:'Clock Drawing', iconFileName:'ClockDrawing.png'})
 ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
-ComponentList.push({name:'Cancellation', iconFileName:'Cancellation.png'})
+ComponentList.push({name:'Cancellation Task', iconFileName:'Cancellation.png'})
 ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
 ComponentList.push({name:'Intake Form', iconFileName:'MultiChoice.png'})
 // What battery was passed?
@@ -35,7 +35,7 @@ add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
 add('Clock Drawing',function(){jatos.startComponent(10)});
 add('Verbal DMS',function(){jatos.startComponent(22)});
-add('Cancellation',function(){jatos.startComponent(9)});
+add('Cancellation Task',function(){jatos.startComponent(9)});
 add('Spatial DMS',function(){jatos.startComponent(24)});
 add('Intake Form',function(){jatos.startComponent(26)});
 const BatteryHtmlID = 1

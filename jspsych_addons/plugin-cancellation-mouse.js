@@ -168,9 +168,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           return;
                       }
                       else {
+                            
                           var info = {};
                           info.row = e.currentTarget.getAttribute("data-row");
                           info.column = e.currentTarget.getAttribute("data-column");
+                          console.log("A LETTER WAS CLICKED: "+info)
                           info.rt = Math.round(performance.now() - startTime);
                           after_response(info);
                           
@@ -272,12 +274,10 @@ var jsPsychCancellationMouse = (function (jspsych) {
           function after_response(info, target) {
               // only record first response
               response = response.rt == null ? info : response;
-              console.log(response)
-              console.log(trial)
-              var yyy = document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
-              console.log(yyy)
-              yyy.innerHTML = '<span class="strikethrough-diagonal">'+yyy.innerHTML+'</span>'
-              console.log(yyy)
+              var clickedItem = document.getElementById("jspsych-serial-reaction-time-stimulus-cell-"+info.row+"-"+info.column)
+              //console.log(clickedItem)
+              clickedItem.classList.toggle("strikethrough-diagonal")
+              
               for (var i = 0; i < trial.target.length; i++ )
               {
                 if (trial.target[i][0].toString() == info.row & trial.target[i][1].toString() == info.column) {  
