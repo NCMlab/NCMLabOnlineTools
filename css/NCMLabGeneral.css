@@ -222,22 +222,27 @@ span:hover + div {
 
 .strikethrough-diagonal {
   position: relative;
-  color: red;
-  &:before {
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 60%;
-    right: 0;
-    border-top: 1px solid;
-    border-color: inherit;
-    -webkit-transform: skewY(-10deg);
-    -moz-transform: skewY(-10deg);
-    transform: skewY(-10deg);
-  }
+}
+.strikethrough-diagonal:before {
+  position: absolute;
+  content: "";
+  left: -30%;
+  top: 50%;
+  right: 30%;
+  border-top: 2px solid;
+  border-color: #F00;
+    z-index: -1;
+
+  -webkit-transform:rotate(-80deg);
+  -moz-transform:rotate(-80deg);
+  -ms-transform:rotate(-80deg);
+  -o-transform:rotate(-80deg);
+  transform:rotate(-80deg);
 }
 
-
+.strikethrough-diagonal:after {
+  content: "\00a0\00a0\00a0\00a0";
+}
 .sv-string-viewer {
   font-size: 1.5em
 }
