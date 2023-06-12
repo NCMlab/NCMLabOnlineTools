@@ -192,7 +192,8 @@ var TrailMakingA_Default = {
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     Instructions: 'InstructionsA',
     InstructionsShownWithPractice: InstructionsShownWithPracticeA,
-    ShowWelcome: false,
+    ShowInstructions: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
 }
 
@@ -208,7 +209,8 @@ var TrailMakingB_Default = {
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     Instructions: 'InstructionsB',
     InstructionsShownWithPractice: InstructionsShownWithPracticeB,
-    ShowWelcome: false,
+    ShowInstructions: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
 }
 
@@ -224,6 +226,7 @@ var TrailMakingA_001 = {
     PracticeSuggestedHeight: null,
     Instructions: 'InstructionsA',
     InstructionsShownWithPractice: InstructionsShownWithPracticeA,
+    ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
 }
@@ -239,6 +242,7 @@ var TrailMakingB_001 = {
     PracticeSuggestedHeight: null,
     Instructions: 'InstructionsB',
     InstructionsShownWithPractice: InstructionsShownWithPracticeB,
+    ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
 }
@@ -255,6 +259,7 @@ var TrailMaking_FaCE = {
     PracticeSuggestedHeight: null,
     Instructions: 'InstructionsB',
     InstructionsShownWithPractice: InstructionsShownWithPracticeB,
+    ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
 }

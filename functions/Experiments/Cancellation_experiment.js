@@ -53,8 +53,9 @@ var trial_1 = {
       console.log(ListOfTargets)
       return grid
     },
-  	grid_square_width: '5vw',
+  	grid_square_width: '10vw',
     grid_square_height: '5vh',
+    font_size: function() {return Cancellation_parameters.font_size},
     prompt: function() {
       var stim = "<p>Click on all of the <b>"+Cancellation_parameters.target_labels+"</b> that you see</p>"
       console.log(stim)

@@ -226,22 +226,22 @@ span:hover + div {
 .strikethrough-diagonal:before {
   position: absolute;
   content: "";
-  left: -20%;
+  left: 10%;
   top: 50%;
-  right: 20%;
+  right: 10%;
   border-top: 2px solid;
   border-color: #F00;
     z-index: -1;
 
-  -webkit-transform:rotate(-80deg);
-  -moz-transform:rotate(-80deg);
-  -ms-transform:rotate(-80deg);
-  -o-transform:rotate(-80deg);
-  transform:rotate(-80deg);
+  -webkit-transform:rotate(-70deg);
+  -moz-transform:rotate(-70deg);
+  -ms-transform:rotate(-70deg);
+  -o-transform:rotate(-70deg);
+  transform:rotate(-70deg);
 }
 
 .strikethrough-diagonal:after {
-  content: "\00a0\00a0\00a0\00a0";
+  content: "";
 }
 .sv-string-viewer {
   font-size: 1.5em

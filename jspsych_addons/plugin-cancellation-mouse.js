@@ -59,6 +59,11 @@ var jsPsychCancellationMouse = (function (jspsych) {
               pretty_name: "Font",
               default: "Courier",
           },
+          font_size: {
+            type: jspsych.ParameterType.INT,
+              pretty_name: "Font-Size",
+              default: 12,
+          },
           /** The color of the target square. */
           target_color: {
               type: jspsych.ParameterType.STRING,
@@ -205,7 +210,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
               }
           };
           // display stimulus
-          var stimulus = this.stimulus(trial.grid, trial.grid_square_width, trial.grid_square_height, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width,trial.font_family);
+          var stimulus = this.stimulus(trial.grid, trial.grid_square_width, trial.grid_square_height, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width,trial.font_family, trial.font_size);
           display_element.innerHTML = stimulus;
           if (trial.pre_target_duration <= 0) {
               showTarget();
@@ -287,7 +292,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
 
           }
       }
-      stimulus(grid, square_width, square_height, target, target_color, non_target_labels, target_labels, border_width, font_family) {
+      stimulus(grid, square_width, square_height, target, target_color, non_target_labels, target_labels, border_width, font_family, font_size) {
         // make another grid that contains the  
         
         var stimulus = "<div id='jspsych-serial-reaction-time-stimulus' style='margin:auto; display: table; table-layout: fixed; border-spacing:" +
@@ -318,7 +323,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
                           "; height:" +
                           square_height +
                           "; display:table-cell; vertical-align:middle; text-align: center; cursor: pointer; font-family: font_family; font-size:" +
-                          square_width / 2 +
+                          font_size +
                           "px;";
                   if (grid[i][j] == 1) {
                       stimulus += "border: solid black " + border_width +"px;"

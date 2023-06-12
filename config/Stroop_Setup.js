@@ -21,6 +21,7 @@ var Stroop_Default = {
 	AllowedTime: -99, // in seconds
 	Score_NumberTrials: null,
 	Score_ProcedureName: null,
+	ShowInstructions: true, 
 	ShowWelcome: true,
 	ShowThankYou: true,
   }
@@ -38,6 +39,7 @@ var Stroop_Victoria = {
 	AllowedTime: -99, // in seconds
 	Score_NumberTrials: 24,
 	Score_ProcedureName: 'Victoria',
+	ShowInstructions: true,
 	ShowWelcome: true,
 	ShowThankYou: false,
 }
@@ -55,6 +57,7 @@ var Stroop_Golden = {
 	// then blocks of trials are presented until the timer runs out
 	Score_NumberTrials: null,
 	Score_ProcedureName: 'Golden',
+	ShowInstructions: false,
 	ShowWelcome: true,
 	ShowThankYou: false,
 }

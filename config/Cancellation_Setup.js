@@ -1,6 +1,7 @@
 var Cancellation_Default = {
     NRows: 6,
     NCols: 52,
+
     NTargets: 104,
     non_target_labels: ["A","B","C","D","E","F","G","I"],
     target_labels: "H",
@@ -9,9 +10,10 @@ var Cancellation_Default = {
 }
 
 var Cancellation_001 = {
-    NRows: 3,
+    NRows: 10,
     NCols: 12,
-    NTargets: 10,
+    font_size: 28,
+    NTargets: 40,
     non_target_labels: ["A","B","C","D","E","F","G","I"],
     target_labels: "H",
     ShowWelcome: false,

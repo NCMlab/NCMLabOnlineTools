@@ -222,6 +222,18 @@ var if_Practice = {
   }
 }
 
+var if_Instructions = {
+  timeline: [Instructions_loop_node],
+  conditional_function: function() {
+        if ( TrailMaking_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
+
+// ======================================================================= 
+// Add procedures to the timeline
+
 timeline.push(FindCanvasSizeTest)
 timeline.push(FindCanvasSizePractice)
 timeline.push(CheckPracticeFlag)
@@ -229,7 +241,7 @@ timeline.push(CheckPracticeFlag)
 
 timeline.push(if_Welcome)
 
-timeline.push(Instructions_loop_node)
+timeline.push(if_Instructions)
 timeline.push(if_Practice)
 timeline.push(taskPrompt)
 timeline.push(trials)

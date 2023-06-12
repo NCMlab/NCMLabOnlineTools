@@ -319,6 +319,7 @@ var welcome = {
   prompt: 'PROMPT',
   choices: function() {return [LabelNames.Next]}, 
 }
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -328,6 +329,27 @@ var if_Welcome = {
         else { return false }
   }
 }
+
+var if_Practice_Instructions = {
+  timeline: [instr_practice_procedure_loop_node],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowInstructions)
+        { console.log(Stroop_parameters)
+          return true }
+        else { return false }
+  }
+}
+
+var if_Test_Instructions = {
+  timeline: [instr_test_procedure_loop_node],
+  conditional_function: function() {
+        if ( Stroop_parameters.ShowInstructions)
+        { console.log(Stroop_parameters)
+          return true }
+        else { return false }
+  }
+}
+
 // ======================================================================= 
 // Add procedures to the timeline
 // Split the instructions into General intro, practice instruct, Test Instructs
@@ -338,11 +360,11 @@ timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
 
 timeline.push(if_Welcome)
-timeline.push(instr_practice_procedure_loop_node);
+timeline.push(if_Practice_Instructions);
 timeline.push(practice_loop_node);
 
 timeline.push(debrief);
-timeline.push(instr_test_procedure_loop_node);
+timeline.push(if_Test_Instructions);
 
 timeline.push(timer_start);
 timeline.push(test_loop_node);
