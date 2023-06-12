@@ -43,7 +43,6 @@ var fixation = {
   margin_horizontal: GapBetweenButtons,
   prompt: function() {return Instructions.StroopColorPrompt},
   trial_duration: function() {
-    console.log("In the fixation block")
     if (Stroop_parameters.ITI_Duration > 0 ) {return  Stroop_parameters.ITI_Duration}
       else {
         return jsPsych.randomization.sampleWithoutReplacement(Stroop_parameters.ITI_Range, 1)[0]
@@ -65,7 +64,7 @@ var Stimulus = {
   choices: function() {return Instructions.ResponseButtons}, 
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: function() {return Instructions.StroopColorPrompt}, //Add this to config file
+  prompt: function() {return Instructions.StroopColorPrompt}, 
   on_finish: function(data){
     data.button = jsPsych.timelineVariable('button'),
     // check to see if the response is correct 
@@ -78,7 +77,6 @@ var feedback = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-    console.log(last_trial_correct)
     if (last_trial_correct) {
       var stim = '<p style="font-size:'+FeedbackFontSize+'";>'+
       LabelNames.Correct+'</p>';
@@ -116,6 +114,7 @@ var debrief = {
     PracticeLoopCount = 1
   }
 }
+// =======================================================================
 // This is used for labelling trials in the output data
 // This allows the same stimuli to be used for both practice and test trials
 var prac_stimulus = Object.assign({}, Stimulus)
@@ -131,6 +130,7 @@ var test_stimulus = Object.assign({}, Stimulus)
       task: 'test trial',
     }
 })
+// =======================================================================
 // Define instructions
 
 // General instructions
@@ -341,7 +341,6 @@ timeline.push(if_Welcome)
 timeline.push(instr_practice_procedure_loop_node);
 timeline.push(practice_loop_node);
 
-
 timeline.push(debrief);
 timeline.push(instr_test_procedure_loop_node);
 
@@ -352,25 +351,3 @@ timeline.push(timer_stop);
 timeline.push(Notes)
 timeline.push(SendData)
 timeline.push(if_ThankYou);
-
-
-/*
-
-// add instructions that the following trials are practice
-
-timeline.push(practice_loop_node);  // works
-  // provide feedback as to their performance
-
-
-// Present test instructions
-timeline.push(instr_test_procedure);
-// run the test 
-// If there is a timer, start it
-timeline.push(timer_start);
-timeline.push(test_loop_node);
-// If there is a timer, stop it
-timeline.push(timer_stop);
-timeline.push(Notes)
-timeline.push(SendData)
-timeline.push(if_ThankYou);
-*/

@@ -2,6 +2,10 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var countInstr = 0
+var countInstrPractice = 0
+var countInstrTest = 0
+
 var time_left
 var StopFlag
 var wait_time 
@@ -31,15 +35,14 @@ var fixation = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    stim = PutStimIntoTable(StroopWordPrompt, '<p class="Fixation">+</p>');
+    stim = PutStimIntoTable(Instructions.StroopWordPrompt, '<p class="Fixation">+</p>');
     return stim
   },
-  choices: ResponseButtons,
+  choices: function() {return Instructions.ResponseButtons},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
-  prompt: StroopColorPrompt,
+  prompt:  function() {return Instructions.StroopWordPrompt},
   trial_duration: function() {
-    console.log("In the fixation block")
     if (Stroop_parameters.ITI_Duration > 0 ) {return  Stroop_parameters.ITI_Duration}
       else {
         return jsPsych.randomization.sampleWithoutReplacement(Stroop_parameters.ITI_Range, 1)[0]
@@ -55,13 +58,13 @@ var fixation = {
       {
         //var Stim = jsPsych.timelineVariable('Word')
         var Stim = '<p  class="Fixation">' +jsPsych.timelineVariable('Word')+'</p>'
-        Stim = PutStimIntoTable(StroopWordPrompt, Stim) 
+        Stim = PutStimIntoTable(Instructions.StroopWordPrompt, Stim) 
         return Stim
       },
-    choices: ResponseButtons, 
+    choices: function() {return Instructions.ResponseButtons},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: StroopWordPrompt, //Add this to config file
+    prompt: function() {return Instructions.StroopWordPrompt},
     on_finish: function(data){
       data.button = jsPsych.timelineVariable('button'),
       // check to see if teh response is correct 
@@ -74,18 +77,17 @@ var feedback = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-    console.log(last_trial_correct)
     if (last_trial_correct) {
       var stim = '<p style="font-size:'+FeedbackFontSize+'";>Correct</p>';
     } else {
       var stim = '<p style="font-size:'+FeedbackFontSize+'";>Incorrect</p>';
     }
-    return PutStimIntoTable(StroopWordPrompt, stim)
+    return PutStimIntoTable(Instructions.StroopWordPrompt, stim)
   },
-  choices: ResponseButtons,
+  choices: function() {return Instructions.ResponseButtons},
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: StroopWordPrompt,
+  prompt: function() {return Instructions.StroopWordPrompt},
   trial_duration: FeedbackLength,
   on_finish: function(data){
     data.task = 'feedback'
@@ -102,30 +104,14 @@ var debrief = {
         var total_trials = DataFromThisPracticeRun.count();
         var NumberCorrect = DataFromThisPracticeRun.filter({correct: true}).count()
         var accuracy = Math.round(NumberCorrect / total_trials * 100);
-        return "<p>You responded correctly on <strong>"+accuracy+"%</strong> of the "+total_trials+" trials.</p> " +
-        "<p>Press any key to continue the experiment. </p>";
+        return Instructions.DebriefTextPart01+accuracy+Instructions.DebriefTextPart02+total_trials+Instructions.DebriefTextPart03
       },
-  choices: ['Next'], 
+  choices: function() {return [LabelNames.Next]}, 
   on_finish: function() {
     // reset the counter for the if loop
     PracticeLoopCount = 1
   }
 }
-
-// Define instructions
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }
-
 // =======================================================================
 // This is used for labelling trials in the output data
 var prac_stimulus = Object.assign({}, Stimulus)
@@ -141,82 +127,73 @@ var test_stimulus = Object.assign({}, Stimulus)
       task: 'test trial',
     }
 })
+// =======================================================================
+// Define instructions
 
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
+// General instructions
+var Instructions_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.WordInstrText[countInstr].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
 }
 
-// ======================================================================= 
-// Scoring procedure
-var SendData = {
-  type: jsPsychCallFunction,
-  func: function() {
-    var trialData = jsPsych.data.get().filter({task:'Trial'})
-    var Notes = jsPsych.data.get().filter({task:'Notes'})
-    console.log(trialData.trials[0])
-    Results = StroopSimple_Scoring(trialData.trials[0], Notes) 
-    jsPsych.finishTrial(Results)
-  },
-}    
+var instr_procedure_loop_node = {
+  timeline: [Instructions_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstr)
+    countInstr+=1
+    if ( countInstr < Instructions.WordInstrText.length){
+        return true} else { return false}
+  }
+}
+// Practice instructions
+var InstructionsPractice_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.WordPracticeText[countInstrPractice].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_practice_procedure_loop_node = {
+  timeline: [InstructionsPractice_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstrPractice)
+    countInstrPractice+=1
+    if ( countInstrPractice < Instructions.WordPracticeText.length){
+        return true} else { return false}
+  }
+}
+// test instructions
+var InstructionsTest_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.WordTestInstrText[countInstrTest].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_test_procedure_loop_node = {
+  timeline: [InstructionsTest_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstrTest)
+    countInstrTest+=1
+    if ( countInstrTest < Instructions.WordTestInstrText.length){
+        return true} else { return false}
+  }
+}
+
 
 // =======================================================================
 // Define any logic used in the experiment
 
 
 // =======================================================================    
-  // Define procedures using the stimuli
-
-  // Define a practie procedure which provides feedback
-  var instr_procedure = {
-      timeline: [Instructions],
-      timeline_variables: WordInstrText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var instr_practice_procedure = {
-    timeline: [Instructions],
-    timeline_variables: WordPracticeText,
-    randomize_order: false,
-    repetitions: 1,
-  }
-
-  var instr_test_procedure = {
-      timeline: [Instructions],
-      timeline_variables: WordTestInstrText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var instr_poor_performance = {
-      timeline: [Instructions],
-      timeline_variables: WordInstrPoorPerformanceText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-    var welcome = {
-      timeline: [Instructions],
-      timeline_variables: WordWelcomeText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-
-  var thank_you = {
-      timeline: [Instructions],
-      timeline_variables: WordThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }
 
  // Define the practice procedure which DOES provide feedback
   var PracticeLoopCount = 1
@@ -289,6 +266,53 @@ var CheckNumberRepeats = {
     }
 }
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
+// ======================================================================= 
+// Scoring procedure
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var trialData = jsPsych.data.get().filter({task:'Trial'})
+    var Notes = jsPsych.data.get().filter({task:'Notes'})
+    console.log(trialData.trials[0])
+    Results = StroopSimple_Scoring(trialData.trials[0], Notes) 
+    jsPsych.finishTrial(Results)
+  },
+}    
+
+var welcome = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.WordWelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.WordThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -313,20 +337,16 @@ var if_ThankYou = {
 timeline.push(CalculateWaitTime) // works
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
-timeline.push(if_Welcome)
-timeline.push(instr_procedure);
-// add instructions that the following trials are practice
- timeline.push(instr_practice_procedure); 
-timeline.push(practice_loop_node);  // works
-  // provide feedback as to their performance
-  timeline.push(Notes)
-  timeline.push(SendData)
 
-  timeline.push(debrief);
+timeline.push(if_Welcome)
+timeline.push(instr_practice_procedure_loop_node);
+timeline.push(practice_loop_node);
+
+timeline.push(debrief);
 
 // Present test instructions
-timeline.push(instr_test_procedure);
-// run the test 
+timeline.push(instr_test_procedure_loop_node);
+
 // If there is a timer, start it
 timeline.push(timer_start);
 timeline.push(test_loop_node);
