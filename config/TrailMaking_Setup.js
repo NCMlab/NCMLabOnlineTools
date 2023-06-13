@@ -226,7 +226,7 @@ var TrailMakingA_001 = {
     PracticeSuggestedHeight: null,
     Instructions: 'InstructionsA',
     InstructionsShownWithPractice: InstructionsShownWithPracticeA,
-    ShowInstructions: true,
+    ShowInstructions: false,
     ShowWelcome: false,
 	ShowThankYou: false,
 }
