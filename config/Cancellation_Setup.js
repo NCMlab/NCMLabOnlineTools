@@ -16,7 +16,7 @@ var Cancellation_001 = {
     NTargets: 40,
     non_target_labels: ["A","B","C","D","E","F","G","I"],
     target_labels: "H",
-    ShowWelcome: false,
+    ShowWelcome: true,
     ShowThankYou: false,
 }
 
