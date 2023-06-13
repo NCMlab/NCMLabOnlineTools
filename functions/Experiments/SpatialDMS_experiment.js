@@ -1,7 +1,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
-
+var countInstr = 0
 var Current = 4
 DMSFontSize = 36
 var count = 0
@@ -23,18 +23,6 @@ var enter_fullscreen = {
 // =======================================================================
 let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
 // =======================================================================
-var instr = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function()
-  {
-    var stim = jsPsych.timelineVariable('page') // Variable in the config file
-    return stim
-  },
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: ['Next'], 
-}
 
 var VisualStimulus = {
   type: jsPsychCanvasButtonResponse,
@@ -146,6 +134,26 @@ var Fix = {
   // }
 } 
 
+// test instructions
+var Instructions_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions[countInstr].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_procedure_loop_node = {
+  timeline: [Instructions_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstr)
+    countInstr+=1
+    if ( countInstr < Instructions.Instructions.length){
+        return true} else { return false}
+  }
+}
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -167,48 +175,82 @@ var loop_node = {
  }
 };
 
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    if ( SpatialDMS_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: function() {return LabelNames.NoteInputBox},
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
 }
 
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var trialData = jsPsych.data.get()//.filter({task:'Trial'})
+    console.log(trialData)
+    Results = SpatialDMS_Scoring(trialData) 
+    jsPsych.finishTrial(Results)
+  },
+}    
+
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( SpatialDMS_parameters.ShowThankYou)
-    { return true }
-    else { return false }
+        if ( Stroop_parameters.ShowThankYou)
+        { return true }
+        else { return false }
   }
 }
+
 var welcome = {
-  timeline: [instr],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    return Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
-        
-var instr_procedure = {
-  timeline: [instr],
-  timeline_variables: instructions,
-  randomize_order: false,
-  repetitions: 1,
+
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+        if ( SpatialDMS_parameters.ShowWelcome)
+        { return true }
+        else { return false }
+  }
 }
-  
-var thank_you = {
-  timeline: [instr],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}    
+
+var if_Instructions = {
+  timeline: [instr_procedure_loop_node],
+  conditional_function: function() {
+        if ( SpatialDMS_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
+
+
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
-timeline.push(instr_procedure)
+timeline.push(if_Instructions)
 timeline.push(loop_node)
+timeline.push(Notes)
 timeline.push(SendData)
 timeline.push(if_ThankYou)

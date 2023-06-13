@@ -18,6 +18,7 @@ var RAVLT_Manual_Immediate = {
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: false, // not implemented
 }
 
 var RAVLT_Manual_Delayed = {
@@ -32,6 +33,7 @@ var RAVLT_Manual_Delayed = {
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 var RAVLT_001 = {
@@ -46,6 +48,7 @@ var RAVLT_001 = {
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 var FaCE_Default = {
@@ -60,6 +63,7 @@ var FaCE_Default = {
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 var FaCE_Default_FR = {
@@ -73,7 +77,7 @@ var FaCE_Default_FR = {
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 var FaCE_Default_Delayed = {
@@ -87,7 +91,7 @@ var FaCE_Default_Delayed = {
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 

@@ -300,8 +300,8 @@ var Instructions01_loop = {
   loop_function: function(data){
     console.log(countInstr01)
     countInstr01+=1
-    if ( countInstr01 < Instructions.Instructions01.length){
-        return true} else { return false}
+    if ( countInstr01 < Instructions.Instructions01.length) 
+    { return true} else { return false}
   }
 }
 var Instructions02 = {
@@ -480,6 +480,40 @@ var if_ThankYou = {
     if ( Instructions.ShowThankYou)
     { return true }
     else { return false }
+  }
+}
+
+var if_Instructions01 = {
+  timeline: [Instructions01_loop],
+  conditional_function: function() {
+        if ( WordRecall_parameters.ShowInstructions)
+        { console.log('Instruct Decide 01')
+        return true }
+        else { return false }
+  }
+}
+var if_Instructions02 = {
+  timeline: [Instructions02_loop],
+  conditional_function: function() {
+        if ( WordRecall_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
+var if_Instructions03 = {
+  timeline: [Instructions03_loop],
+  conditional_function: function() {
+        if ( WordRecall_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
+var if_Instructions04 = {
+  timeline: [Instructions04_loop],
+  conditional_function: function() {
+        if ( WordRecall_parameters.ShowInstructions)
+        { return true }
+        else { return false }
   }
 }
 // ======================================================================= 
