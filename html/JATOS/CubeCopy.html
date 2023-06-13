@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Cube Copy</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
-    
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
@@ -37,9 +37,7 @@
     <script src="InstructionsAndStimuli/EN/Instructions/CubeCopy_Instructions.js"></script>
     <script src="config/CubeCopy_config.js"></script>    
     
-    <script> 
-      var NeckerCubeFolder = 'assets/Images/CubeCopy/'
-    </script>
+    <script> var NeckerCubeFolder = 'assets/Images/CubeCopy/' </script>
     
     <script>
       var CubeCopy_parameters = 'empty'
@@ -68,11 +66,11 @@
 
       })
     </script> 
-    <script src="functions/Scoring/CubeCopy_Scoring.js"></script>
-    <script src="functions/Experiments/CubeCopy_experiment.js"></script>
+  <script src="functions/Scoring/CubeCopy_Scoring.js"></script>
+    
 
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  </body>
+  <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+
   <script>
   var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
@@ -114,4 +112,6 @@
       jsPsych.run(timeline);
     });
   </script>
+  <script src="functions/Experiments/CubeCopy_experiment.js"></script>
+  </body>
 </html>

@@ -10,14 +10,17 @@ var enter_fullscreen = {
 var trial = {
       type: jsPsychSketchpad,
       prompt: function() {
-            return Instructions.Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">'
-      },
+            if ( CubeCopy_parameters.ShowInstructions )
+            { return Instructions.Instructions+'<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">'} 
+            else { return '<p><img src="'+NeckerCubeFolder+NeckerCubeFileName+'" width="300vw" height="300vh" border="2px">'}
+    },
+
       prompt_location: 'abovecanvas',
       canvas_width: function(){return CubeCopy_parameters.canvas_width},
       canvas_height: function(){return CubeCopy_parameters.canvas_height},
-      background_color: "#000000",
       //background_image: '../assets/CubeCopyBackground.png',
       canvas_border_width: 2,
+      background_color: '#ffffff',
       finished_button_label: function() {return LabelNames.Finished},
       clear_button_label: function() {return LabelNames.Clear},
       undo_button_label: function() {return LabelNames.Undo},
@@ -25,37 +28,6 @@ var trial = {
       show_countdown_trial_duration: true,
       on_finish: function(data) {
             data.trial = 'Cube Copy'
-      }
-}
-
-var Instructs = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-       stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices:  function() {return [LabelNames.Next]}, 
-}
-
-var if_Welcome = {
-      timeline: [welcome],
-      conditional_function: function() {
-            if ( CubeCopy_parameters.ShowWelcome)
-            { return true }
-            else { return false }
-      }
-}
-
-var if_ThankYou = {
-      timeline: [thank_you],
-      conditional_function: function() {
-            if ( CubeCopy_parameters.ShowThankYou)
-            { return true }
-            else { return false }
       }
 }
 
@@ -71,33 +43,58 @@ var Notes = {
       on_finish: function(data)
       { data.trial = "Notes" },
     }
-
-var SendData = {
+    
+    var SendData = {
       type: jsPsychCallFunction,
       func: function() {
             var data = jsPsych.data.get()
             Results = CubeCopy_Scoring(data)
             jsPsych.finishTrial(Results)
       },
-}
+    }
     
-var welcome = {
-      timeline: [Instructs],
-      timeline_variables: function(){return Instructions.WelcomeText},
-      randomize_order: false,
-      repetitions: 1,
-}
-
-var thank_you = {
-      timeline: [Instructs],
-      timeline_variables: function(){return Instructions.ThankyouText},
-      randomize_order: false,
-      repetitions: 1,
- }
-
+    var thank_you = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function() {
+        console.log(Instructions)
+        return Instructions.ThankYouText[0].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: 'PROMPT',
+      choices: function() {return [LabelNames.Next]}, 
+    }
+    var if_ThankYou = {
+      timeline: [thank_you],
+      conditional_function: function() {
+            if ( CubeCopy_parameters.ShowThankYou)
+            { return true }
+            else { return false }
+      }
+    }
+    
+    var welcome = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function() {
+        console.log(Instructions)
+        return Instructions.WelcomeText[0].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: 'PROMPT',
+      choices: function() {return [LabelNames.Next]}, 
+    }
+    
+    var if_Welcome = {
+      timeline: [welcome],
+      conditional_function: function() {
+            if ( CubeCopy_parameters.ShowWelcome)
+            { console.log("SHOWING WELCOME")
+              return true }
+            else { return false }
+      }
+    }
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(trial)
-timeline.push(if_ThankYou)
-//timeline.push(Notes)
+timeline.push(Notes)
 timeline.push(SendData)
+timeline.push(if_ThankYou)
