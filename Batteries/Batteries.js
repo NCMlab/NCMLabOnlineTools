@@ -41,7 +41,7 @@ BatteryList.push({index: 1,
 	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
 	BatteryInstructions:"This is the NCMLab Evaluation"
 })
-
+// ========================================================================
 BatteryList.push({index: 101, 
 	name:'Barbados', 
 	list: [
@@ -60,7 +60,7 @@ BatteryList.push({index: 101,
         '',
         'TrailMakingA_Default','TrailMakingB_Default',
         'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
-        'vDMS_Adaptive','LineBisection_001','CubeCopy_Default',
+        'vDMS_Adaptive','LineBisection_001','ClockDrawing_001',
         'CubeCopy_Default','RAVLT_Manual_Immediate',
         'Stroop_Golden','Stroop_Golden','Stroop_Golden',
         'Cancellation_001','RAVLT_Manual_Delayed',
@@ -90,7 +90,8 @@ BatteryList.push({index: 101,
     BatteryInstructions:"This is the NCMLab Evaluation",
 	Language:'EN'
 })
-
+// ========================================================================
+// ========================================================================
 BatteryList.push({index: 102, 
 	name:'Chemo Brain', 
 	list: [
@@ -134,7 +135,7 @@ BatteryList.push({index: 102,
     BatteryInstructions:"Chemo Brain Fog",
 	Language:'EN'
 })
-
+// ========================================================================
 BatteryList.push({index: 202, 
 	name:'Chemo Brain', 
 	list: [
@@ -180,7 +181,8 @@ BatteryList.push({index: 202,
 })
 
 
-
+// ========================================================================
+// ========================================================================
 
 BatteryList.push({index: 105, 
 	name:'FaCE Battery', 
@@ -213,7 +215,7 @@ BatteryList.push({index: 105,
 	Language:'EN'
 })
 
-
+// ========================================================================
 
 BatteryList.push({index: 205, 
 	name:'FaCE Battery', 

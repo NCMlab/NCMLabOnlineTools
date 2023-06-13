@@ -36,7 +36,7 @@
     <script src="config/General_Setup.js"></script>
     
     <script src="InstructionsAndStimuli/EN/Instructions/ClockDrawing_Instructions.js"></script>
-    <script src="config/ClockDrawing_config.js"></script>
+    <script src="config/ClockDrawing_Setup.js"></script>
     <script>var LANG</script>
     <script>
       var ClockDrawing_parameters = 'empty'
@@ -46,6 +46,7 @@
           UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
           if (typeof BatteryHtmlID === 'undefined') {parameters = 'ClockDrawing_001'}
           else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+          console.log(parameters)
           pseudoSwitch(parameters)
           console.log(ClockDrawing_parameters)
           LANG = jatos.studySessionData.Language
