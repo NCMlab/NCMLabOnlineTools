@@ -2,6 +2,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var countInstr = 0
 var MatrixList
 var ImageFileList = []
 var MatrixReasoningSetup = {
@@ -70,7 +71,7 @@ var trial = {
       MatrixReasoning_parameters.StimWidth, MatrixReasoning_parameters.StimHeight)
       return stim
     },
-    prompt: OptionsPrompt,
+    prompt: function() { return Instructions.OptionsPrompt },
     on_finish: function(data) 
     {
       data.task = 'test trial'  
@@ -87,6 +88,19 @@ var trial = {
 
 // =======================================================================
 // Scoring procedure
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: function() {return LabelNames.NoteInputBox},
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -99,32 +113,6 @@ var SendData = {
   },
 }    
 
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
-}
-
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}
-// Define instructions
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }  
 
 var timer_start = {
     type: jsPsychCallFunction,
@@ -145,25 +133,6 @@ var timer_stop = {
   }
 }    
 
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-        if ( MatrixReasoning_parameters.ShowWelcome)
-        { console.log(MatrixReasoning_parameters)
-          return true }
-        else { return false }
-  }
-}
-
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-        if ( MatrixReasoning_parameters.ShowThankYou)
-        { return true }
-        else { return false }
-  }
-}
-
 // =======================================================================    
 // Define procedures using the stimuli
  var trial_procedure = {
@@ -172,22 +141,84 @@ var if_ThankYou = {
       randomize_order: false,
       repetitions: 1,
     }
-  var instr_procedure = {
-      timeline: [Instructions],
-      timeline_variables: MatrixReasoning_Instructions,
-      randomize_order: false,
-      repetitions: 1,
+
+    var Instructions_Procedure = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function (){return Instructions.Instructions[countInstr].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: '',
+      choices: function() {return [LabelNames.Next]}, 
     }
-  
+    
+    var instr_procedure_loop_node = {
+      timeline: [Instructions_Procedure],
+      loop_function: function(data){
+        console.log("Instructional Loop Count is: "+countInstr)
+        countInstr+=1
+        if ( countInstr < Instructions.Instructions.length){
+            return true} else { return false}
+      }
+    }
+    
+    var thank_you = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function() {
+        return Instructions.ThankYouText[0].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: 'PROMPT',
+      choices: function() {return [LabelNames.Next]}, 
+    }
+
+    var if_ThankYou = {
+      timeline: [thank_you],
+      conditional_function: function() {
+            if ( MatrixReasoning_parameters.ShowThankYou)
+            { return true }
+            else { return false }
+      }
+    }
+    
+    var welcome = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function() {
+        return Instructions.WelcomeText[0].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: 'PROMPT',
+      choices: function() {return [LabelNames.Next]}, 
+    }
+    
+    var if_Welcome = {
+      timeline: [welcome],
+      conditional_function: function() {
+            if ( MatrixReasoning_parameters.ShowWelcome)
+            { return true }
+            else { return false }
+      }
+    }
+    
+    var if_Instructions = {
+      timeline: [instr_procedure_loop_node],
+      conditional_function: function() {
+            if ( MatrixReasoning_parameters.ShowInstructions)
+            { return true }
+            else { return false }
+      }
+    }
+    
+    
 // ======================================================================= 
 timeline.push(CalculateWaitTime) // works
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(MatrixReasoningSetup)
 timeline.push(preload)
-timeline.push(instr_procedure)
+timeline.push(if_Instructions)
 timeline.push(timer_start)
 timeline.push(trial_procedure)
 timeline.push(timer_stop)
-timeline.push(if_ThankYou);
+timeline.push(Notes)
 timeline.push(SendData)
+timeline.push(if_ThankYou);
