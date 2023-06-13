@@ -2,6 +2,7 @@
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var countInstr = 0
 console.log('==============================')
 console.log('CANVAS SIZE')
 var CanvasHeight
@@ -81,17 +82,38 @@ var loop_node = {
       }
   }
 }
-var Instructions = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-    {
-      var stim = jsPsych.timelineVariable('page') // Variable in the config file
-      return stim
-    },
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: '',
-    choices: ['Next'], 
+
+// test instructions
+var Instructions_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.InstructionText[countInstr].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_procedure_loop_node = {
+  timeline: [Instructions_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstr)
+    countInstr+=1
+    if ( countInstr < Instructions.InstructionText.length){
+        return true} else { return false}
+  }
+}
+
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: function() {return LabelNames.NoteInputBox},
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
 }
 
 var SendData = {
@@ -103,47 +125,57 @@ var SendData = {
     //jsPsych.finishTrial(Results)
   }
 }
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
-}
 
 var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
-var if_Welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
+var if_ThankYou = {
+  timeline: [thank_you],
   conditional_function: function() {
-    //if ( LineBisection_parameters.ShowWelcome)
-    if (true) 
-    { return true }
-    else { return false }
+        if ( LineBisection_parameters.ShowThankYou)
+        { return true }
+        else { return false }
   }
 }
 
-var if_ThankYou = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
+var welcome = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.WelcomeText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var if_Welcome = {
+  timeline: [welcome],
   conditional_function: function() {
-    if ( LineBisection_parameters.ShowThankYou)
-    { return true }
-    else { return false }
+        if ( LineBisection_parameters.ShowWelcome)
+        { 
+          return true }
+        else { return false }
   }
 }
-// =======================================================================    
-// Define procedures using the stimuli
-var Instruct = {
-  timeline: [Instructions],
-  timeline_variables: InstructionText,
-  randomize_order: false,
-  repetitions: 1,
+
+var if_Test_Instructions = {
+  timeline: [instr_procedure_loop_node],
+  conditional_function: function() {
+        if ( LineBisection_parameters.ShowInstructions)
+        { 
+          return true }
+        else { return false }
+  }
 }
+
 
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
@@ -151,11 +183,13 @@ var Instruct = {
   timeline.push(FindCanvasSizeTest)
   timeline.push(enter_fullscreen)
   timeline.push(FindNumberOfLines)
-  timeline.push(Instruct)
+  timeline.push(if_Test_Instructions)
   timeline.push(loop_node)
   ///timeline.push(trials)
-  timeline.push(if_ThankYou)
+  timeline.push(Notes)
   timeline.push(SendData)
+  timeline.push(if_ThankYou)
+  
   
   
   

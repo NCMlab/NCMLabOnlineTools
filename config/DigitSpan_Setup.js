@@ -24,6 +24,7 @@ var DigitSpan_Audio_Forward_Adaptive_14 = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_Adaptive_14 ==
@@ -47,6 +48,7 @@ var DigitSpan_Visual_Forward_Adaptive_14 = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_Adaptive_14 ==
@@ -70,6 +72,7 @@ var DigitSpan_Audio_Backward_Adaptive_14 = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_Adaptive_14 ==
@@ -93,6 +96,7 @@ var DigitSpan_Visual_Backward_Adaptive_14 = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_TwoErrors ==
@@ -110,6 +114,7 @@ var DigitSpan_Visual_Forward_TwoErrors = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_TwoErrors ==
@@ -127,6 +132,7 @@ var DigitSpan_Visual_Backward_TwoErrors = {
 	Parameters: Parameters,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Audio_Forward_TwoErrors ==
@@ -144,6 +150,7 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	Parameters: Parameters,
 	ShowWelcome: true,
 	ShowThankYou: true,
+	ShowInstructions: false, 
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_TwoErrors ==
@@ -159,8 +166,9 @@ var DigitSpan_Audio_Backward_TwoErrors = {
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
-	ShowWelcome: false,
+	ShowWelcome: true,
 	ShowThankYou: false,
+	ShowInstructions: false, 
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_Fixed01_Load05 ==
@@ -175,6 +183,7 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	Parameters: Parameters,	
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Backward_Fixed01_Load03 ==
@@ -189,6 +198,7 @@ var DigitSpan_Visual_Backward_Fixed01_Load03 = {
 	Parameters: Parameters,	
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Audio_Forward_Fixed01_Load05 ==
@@ -203,6 +213,7 @@ var DigitSpan_Audio_Forward_Fixed01_Load05 = {
 	Parameters: Parameters,	
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_Fixed01_Load03 ==
@@ -217,6 +228,7 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	Parameters: Parameters,	
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true, 
 }
 // ===================================================
 

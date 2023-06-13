@@ -492,6 +492,16 @@ var if_ThankYou = {
     else { return false }
   }
 }
+var if_Test_Instructions = {
+  timeline: [if_audio_forward_instr, if_visual_forward_instr, if_audio_backward_instr, if_visual_backward_instr],
+  conditional_function: function() {
+        if ( DigitSpan_parameters.ShowInstructions)
+        { 
+          return true }
+        else { return false }
+  }
+}
+
 // =======================================================================    
 // Define procedures using the stimuli
 
@@ -503,13 +513,7 @@ timeline.push(if_Welcome)
 timeline.push(if_node)
 timeline.push(ReadParametersAndSetup)
 
-
-
-
-timeline.push(if_audio_forward_instr)
-timeline.push(if_visual_forward_instr)
-timeline.push(if_audio_backward_instr)
-timeline.push(if_visual_backward_instr)
+timeline.push(if_Test_Instructions)
 timeline.push(procedure)
 timeline.push(Notes)
 timeline.push(SendData)

@@ -291,7 +291,8 @@ var DMSLetterMRIList002 = [
 
 vDMS_Adaptive = {
 	ShowWelcome: false,
-	ShowThankYou: false
+	ShowThankYou: false,
+	ShowInstructions: true,
 }
 
 add('vDMS_Adaptive', function(){ vDMS_parameters = vDMS_Adaptive});

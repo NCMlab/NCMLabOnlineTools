@@ -83,7 +83,7 @@ function LineBisection_Scoring(data) {
 	Results.AllResults['All Percentage Distances'] = PercDistance
 	Results.AllResults['Number of Trials Attempted'] = Distance.length
 	Results.AllResults['Number of Trials Completed'] = CountResponses(PercDistance, MissingValue)
-	Results.AllResults['Notes'] = NotesForResultsPage
+	Results.AllResults['Notes'] = Instructions.NotesForResultsPage
 
 
 	// // Find the length of each line

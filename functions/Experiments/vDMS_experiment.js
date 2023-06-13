@@ -7,6 +7,7 @@ console.log(screen.orientation)
 // =======================================================================
 // Define internal variables
 var timeline = [];
+var countInstr = 0
 let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
 let stimList = new AdaptiveStimulusList();
     // Keep track of how many trials have been presented.
@@ -20,19 +21,6 @@ var enter_fullscreen = {
 }
 // =======================================================================
 // Define all of the different the stimuli 
-
-    var instr = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }
 
     var Stimulus = {
       type: jsPsychHtmlButtonResponseTouchscreen,
@@ -140,18 +128,6 @@ var enter_fullscreen = {
         return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
       }
     }
-    var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }  
 
 // =======================================================================
 // Add scoring procedures to the Thank you screen
@@ -172,7 +148,60 @@ var SendData = {
      }
     };
    // =======================================================================    
-// Define procedures using the stimuli
+   var Instructions_Procedure = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function (){return Instructions.Instructions[countInstr].page},
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: '',
+    choices: function() {return [LabelNames.Next]}, 
+  }
+  
+  var instr_procedure_loop_node = {
+    timeline: [Instructions_Procedure],
+    loop_function: function(data){
+      console.log("Instructional Loop Count is: "+countInstr)
+      countInstr+=1
+      if ( countInstr < Instructions.Instructions.length){
+          return true} else { return false}
+    }
+  }
+  
+  var welcome = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      console.log(Instructions)
+      return Instructions.Instructions[0].page},
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+  }
+
+  var thank_you = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      console.log(Instructions)
+      return Instructions.Instructions[0].page},
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+  }  
+   // Define procedures using the stimuli
+   var Notes = {
+    type: jsPsychSurvey, 
+    pages: [[{
+          type: 'text',
+          prompt: function() {return LabelNames.NoteInputBox},
+          textbox_rows: 10,
+          name: 'Notes', 
+          required: false,
+        }]],
+    on_finish: function(data)
+    { data.trial = "Notes" },
+  }
+
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -190,34 +219,25 @@ var if_ThankYou = {
     else { return false }
   }
 }
-var welcome = {
-  timeline: [Instructions],
-  timeline_variables: WelcomeText,
-  randomize_order: false,
-  repetitions: 1,
+var if_Instructions = {
+  timeline: [instr_procedure_loop_node],
+  conditional_function: function() {
+        if ( vDMS_parameters.ShowInstructions)
+        { 
+          return true }
+        else { return false }
+  }
 }
-        
-var instr_procedure = {
-  timeline: [instr],
-  timeline_variables: instructions,
-  randomize_order: false,
-  repetitions: 1,
-}
-  
-var thank_you = {
-  timeline: [Instructions],
-  timeline_variables: ThankYouText,
-  randomize_order: false,
-  repetitions: 1,
-}    
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
-timeline.push(instr_procedure)
+timeline.push(if_Instructions)
 timeline.push(WaitTime)
 timeline.push(loop_node)
 //timeline.push(debrief_block)
-timeline.push(if_ThankYou)
+timeline.push(Notes)
 timeline.push(SendData)
+timeline.push(if_ThankYou)
+
 

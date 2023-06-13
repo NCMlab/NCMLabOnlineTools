@@ -36,22 +36,23 @@
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
+    
     <script> 
       // used for the image used during the instructions
         var BaseFolderName = 'assets/InstructionalImages/'
       </script>
-    <script src="config/DMS_setup.js"></script>
+    <script src="config/vDMS_setup.js"></script>
     
-       <style>
-    @media screen and (orientation: portrait) {
-      #vDMSTable {
-        width: 80vw;
-        height: 60vh;
+    <style>
+      @media screen and (orientation: portrait) {
+        #vDMSTable {
+          width: 80vw;
+          height: 60vh;
+        }
       }
-    }
-  </style>
-  
+    </style>
+  <script src="InstructionsAndStimuli/EN/Instructions/vDMS_Instructions.js"></script>
+    
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
       <script>
@@ -67,7 +68,7 @@
         console.log(vDMS_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_DMS_Instructions')
+        pseudoSwitch(LANG+'_vDMS_Instructions')
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(LabelNames)
@@ -77,14 +78,9 @@
         document.getElementById('header-restart-button').textContent = LabelNames.Restart;
         document.getElementById('header-end-button').textContent = LabelNames.End;
         document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-        // display the timer or not based on the showTimer flag
-        if ( Stroop_parameters.AllowedTime > 0 ) 
-            { console.log("TURNING TIMER ON!")
-              document.getElementById("screen_timer").style.display = true}
-        else { document.getElementById("screen_timer").style.display = "none"}
       })
     </script> 
-    <script src="functions/Experiments/DMS_experiment.js"></script>
+    <script src="functions/Experiments/vDMS_experiment.js"></script>
     <script src="functions/Scoring/DMS_Scoring.js"></script>  
   </body>
   <script>

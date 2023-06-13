@@ -47,8 +47,9 @@ var LineBisection_001 = {
     SuggestedHeight: 1000,
     ShowTimer: false,
     Duration: 1000*60*3, // milliseconds,
-    ShowWelcome: false,
-	ShowThankYou: false,
+    ShowWelcome: true,
+	ShowThankYou: true,
+    ShowInstructions: false, 
     stroke_width: 10,
 }
 
