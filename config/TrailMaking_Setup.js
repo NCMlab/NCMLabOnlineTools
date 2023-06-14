@@ -87,6 +87,20 @@ var CirclesA_002 = [
     {centerX:0.4, centerY:0.490909090909091, radius: radius, label: '5'},
     {centerX:0.512, centerY:0.589090909090909, radius: radius, label: '6'},
 ]
+var CirclesA_003 = [
+    {centerX:0.759375, centerY:0.54357629, radius: radius, label: '1'},
+    {centerX:0.57375, centerY:0.721875, radius: radius, label: '2'},
+    {centerX:0.8775, centerY:0.73502429, radius: radius, label: '3'},
+    {centerX:0.9, centerY:0.161784, radius: radius, label: '4'},
+    {centerX:0.5625, centerY:0.265631, radius: radius, label: '5'},
+    {centerX:0.72, centerY:0.376371, radius: radius, label: '6'},
+    {centerX:0.500625, centerY:0.456351, radius: radius, label: '7'},
+    {centerX:0.225, centerY:0.704975, radius: radius, label: '8'},
+    {centerX:0.286875, centerY:0.864275, radius: radius, label: '9'},
+    {centerX:0.421875, centerY:0.703296, radius: radius, label: '10'},
+    {centerX:0.556875, centerY:0.919056, radius: radius, label: '11'},
+    {centerX:0.084375, centerY:0.934464, radius: radius, label: '12'},
+]
 // canvas width
 var SuggestedWidthA = 850;
 // canvas height
@@ -143,6 +157,21 @@ var CirclesB_001 = [
     {centerX:0.0732600732600733,centerY:0.933534743202417, radius: radius, label: 'K'},
     {centerX:0.0567765567765568,centerY:0.486404833836858, radius: radius, label: '12'},
     {centerX:0.168498168498169, centerY:0.741691842900302, radius: radius, label: 'L'},
+]
+
+var CirclesB_003 = [
+    {centerX:0.53808962264151, centerY:0.356519, radius: radius, label: '1'},
+    {centerX:0.746108490566038, centerY:0.689199, radius: radius, label: 'A'},
+    {centerX:0.384198113207547, centerY:0.644019, radius: radius, label: '2'},
+    {centerX:0.488207547169811, centerY:0.143056, radius: radius, label: 'B'},
+    {centerX:0.606014150943396, centerY:0.206304, radius: radius, label: '3'},
+    {centerX:0.746108490566038, centerY:0.393139, radius: radius, label: 'C'},
+    {centerX:0.742924528301887, centerY:0.124656, radius: radius, label: '4'},
+    {centerX:0.9, centerY:0.130351, radius: radius, label: 'D'},
+    {centerX:0.897877358490566, centerY:0.4654, radius: radius, label: '5'},
+    {centerX:0.829952830188679, centerY:0.818479, radius: radius, label: 'E'},
+    {centerX:0.575235849056604, centerY:0.768499, radius: radius, label: '6'},
+    {centerX:0.315212264150943, centerY:0.9366, radius: radius, label: 'F'},
 ]
 // canvas width
 var SuggestedWidthB = 850;
@@ -214,36 +243,37 @@ var TrailMakingB_Default = {
 	ShowThankYou: false,
 }
 
-var TrailMakingA_001 = {
-    Circles: CirclesA_001,
+var TrailMakingA_003 = {
+    Circles: CirclesA_003,
     SuggestedWidth: SuggestedWidthA,
     SuggestedHeight: SuggestedHeightA,
     ShowTimer: true,
     Duration: DurationA,
-    ShowPractice: false,
-    PracticeCircles: null,
-    PracticeSuggestedWidth: null,
-    PracticeSuggestedHeight: null,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
     Instructions: 'InstructionsA',
     InstructionsShownWithPractice: InstructionsShownWithPracticeA,
     ShowInstructions: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
 }
-var TrailMakingB_001 = {
-    Circles: CirclesB_001,
+
+var TrailMakingB_003 = {
+    Circles: CirclesB_003,
     SuggestedWidth: SuggestedWidthB,
     SuggestedHeight: SuggestedHeightB,
     ShowTimer: true,
     Duration: DurationB,
-    ShowPractice: false,
-    PracticeCircles: null,
-    PracticeSuggestedWidth: null,
-    PracticeSuggestedHeight: null,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesB,
+    PracticeSuggestedWidth: SuggestedWidthSampleB,
+    PracticeSuggestedHeight: SuggestedHeightSampleB,
     Instructions: 'InstructionsB',
     InstructionsShownWithPractice: InstructionsShownWithPracticeB,
-    ShowInstructions: true,
-    ShowWelcome: false,
+    ShowInstructions: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
 }
 
@@ -268,4 +298,6 @@ add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_De
 add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
 add('TrailMakingA_001', function(){ TrailMaking_parameters = TrailMakingA_001});
 add('TrailMakingB_001', function(){ TrailMaking_parameters = TrailMakingB_001});
+add('TrailMakingA_003', function(){ TrailMaking_parameters = TrailMakingA_003});
+add('TrailMakingB_003', function(){ TrailMaking_parameters = TrailMakingB_003});
 add('TrailMaking_FaCE', function(){ TrailMaking_parameters = TrailMaking_FaCE});

@@ -79,13 +79,15 @@ function DigitSpan_Scoring(data) {
 			else {AccuracyList.push(0)}
 		}
 		Results.PrimaryResults['Accuracy'] = MaxCorrect
+		Results.AllResults['Accuracy'] = MaxCorrect
 		Results.AllResults['Threshold'] = MaxCorrect
 		Results.AllResults['Load List'] = LoadList
 		Results.AllResults['Accuracy List'] = AccuracyList
 	}
 
 	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
-	Results.AllResults['Scoring Type'] = DigitSpan_parameters.DeliveryMethod
+	Results.AllResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
 	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	Results.AllResults['Scoring Notes'] = DigitSpan_Instructions.NotesForResultsPage
 	return Results
 }

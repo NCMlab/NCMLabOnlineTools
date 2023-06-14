@@ -43,8 +43,8 @@ EN_Instructions.InstructionsB = [
 ] 
 EN_Instructions.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
-
-
+EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
+// ==================================================================================
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">C\'est la tâche de Sentiers.</p>'}]
 
@@ -62,6 +62,7 @@ FR_Instructions.InstructionsB = [
 ] 
 FR_Instructions.InstructionsShownWithPracticeB = 'Commencez au numéro 1 et tracez une ligne de 1 à A, A à 2, 2 à B et ainsi de suite, dans l\'ordre, jusqu\'à ce que vous atteigniez la lettre étiquetée end.<br/>Trace votre ligne aussi vite que possible. Lorsque votre ligne entre dans un cercle correct, elle change de couleur, indiquant qu\'il s\'agit du prochain cercle correct dans la séquence.</br> Si le cercle ne change pas de couleur, vous avez fait une erreur et devez tracer votre ligne vers un autre cercle.'
 FR_Instructions.ThankYouText = [{'page':'Merci'}]
+FR_Instructions.NotesForResultsPage = 'FR: The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
 add('EN_TrailMaking_Instructions', function(){ TrailMaking_Instructions = EN_Instructions});
 add('FR_TrailMaking_Instructions', function(){ TrailMaking_Instructions = FR_Instructions});

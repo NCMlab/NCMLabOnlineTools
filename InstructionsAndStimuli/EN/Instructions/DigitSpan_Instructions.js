@@ -29,7 +29,7 @@ EN_Instructions.ForwardTrialQuestion = '<p class="Instructions">Enter the number
 EN_Instructions.BackwardTrialQuestion = '<p class="Instructions">Enter the number list <b>Backwards</b>.</p>'
 EN_Instructions.TrialNumber = 'Trial number'
 EN_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_en-US-Neural2-F_Speed70/'
-
+EN_Instructions.NotesForResultsPage = "The digit span task presented a list of number sequences to the participant who needed to repeat those sequences. The Load List is the length of each number sequence presented. The <b> Accuracy List refers to which sequencers were repeated correctlt, 1 = correct, 0 = incorrect. The overall score for this test is the Threshold. This calculation depends on the Scoring Type used. For numberErrors the threshold is highest sequence length correctly repeated."
 
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
@@ -60,7 +60,7 @@ FR_Instructions.ForwardTrialQuestion = '<p class="Instructions">Entrez la liste 
 FR_Instructions.BackwardTrialQuestion = '<p class="Instructions">Entrez la liste des numéros dans le <b>INVERSE</b> ordre</p>'
 FR_Instructions.TrialNumber = 'Essai numéro'
 FR_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_fr_FR-Neural2-A_Speed70/'
-
+FR_Instructions.NotesForResultsPage = "FR: The digit span task presented a list of number sequences to the participant who needed to repeat those sequences. The <b>Load List</b> is the length of each number sequence presented. The <b> Accuracy List refers to which sequencers were repeated correctlt, 1 = correct, 0 = incorrect. The overall score for this test is the <b>Threshold</b>. This calculation depends on the <b>Scoring Type</b> used. For <b> numberErrors </b> the threshold is highest sequence length correctly repeated."
 
 add('EN_DigitSpan_Instructions', function(){ DigitSpan_Instructions = EN_Instructions});
 add('FR_DigitSpan_Instructions', function(){ DigitSpan_Instructions = FR_Instructions});

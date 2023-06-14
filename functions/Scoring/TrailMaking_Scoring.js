@@ -26,11 +26,15 @@ function TrailMaking_Scoring(data) {
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.PrimaryResults['ScoreName'] = 'Accuracy'
-	Results.PrimaryResults['Accuracy'] = -99
+	Results.PrimaryResults['Accuracy'] = trialData.ErrorCount 
 	Results.AllResults = {}
-	Results.AllResults['Score'] = -99
+	Results.AllResults['ScoreName'] = 'Number of Errors'
+	Results.AllResults['Accuracy'] = trialData.ErrorCount 
+	Results.AllResults['Manual Score'] = -99
+	Results.AllResults['Number of Errors'] = trialData.ErrorCount 
 	Results.AllResults['Image'] = trialData.png
 	Results.AllResults['Response Time (ms)'] = trialData.rt
 	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	Results.AllResults['Scoring Notes'] = TrailMaking_Instructions.NotesForResultsPage
 	return Results
 }

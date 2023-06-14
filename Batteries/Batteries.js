@@ -58,7 +58,7 @@ BatteryList.push({index: 101,
 	description: BatteryDescription,
 	ParameterLists: [
         '',
-        'TrailMakingA_Default','TrailMakingB_Default',
+        'TrailMakingA_003','TrailMakingB_003',
         'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
         'vDMS_Adaptive','LineBisection_001','ClockDrawing_001',
         'CubeCopy_Default','RAVLT_Manual_Immediate',
