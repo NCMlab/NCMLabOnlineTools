@@ -1,0 +1,56 @@
+well, try this one code
+//https://www.w3schools.com/css/css_units.asp
+   <!DOCTYPE html>
+   <html>
+     <head>
+       <style>
+
+       .img { 
+       width:100%;
+       height: auto;
+       top:0;
+       left:0;
+       position: relative; 
+       z-index: 1;
+       } 
+
+       button {
+        
+        width: 40px;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid white;
+        position: absolute;
+        color: white;
+        cursor: pointer;
+        border-radius: 50%
+        }
+        .Loc1 {
+            position: relative;
+            left: 40vw;
+            top: 40vh;
+        }
+        .Loc2 {
+            position: absolute;
+            left: 600px;
+            top: 250px;
+        }
+        .Loc1:active{
+            background-color: rgb(123, 180, 17)
+        }
+        button:before {
+            background-color: blue;
+        }
+      </style>
+   </head>
+
+     <body style="text-align:center; margin: 0px;">
+       <div class="mycenter" id="">
+          <button style="position:relative; left:-50vw; top:20vh">A</button>
+          <button class="Loc2">B</button>
+          
+       </div>
+       
+      </body>
+</html>

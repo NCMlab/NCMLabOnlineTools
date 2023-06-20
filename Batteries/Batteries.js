@@ -224,3 +224,22 @@ BatteryList.push({index: 1001,
 	RunAudioTest: true,
 	Footer: '©Test 2023'
 })
+
+BatteryList.push({index: 999, 
+	name:'TEST Battery', 
+	list: [
+		'Trail Making Buttons',
+	], 
+	description: '',
+	ParameterLists: 
+		[
+		'TrailMakingB_003',
+],
+	ButtonName: [
+		'Sentiers',
+	],
+	ButtonDescription: [''],
+	BatteryInstructions:"",
+	Language:'EN'
+})
+

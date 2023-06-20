@@ -255,6 +255,8 @@ var TrailMakingA_003 = {
 	ShowThankYou: true,
     AskForNotes: true,
     RecordGIF: true,
+	ShowThankYou: false,
+    Language: 'EN'
 }
 
 var TrailMakingB_003 = {

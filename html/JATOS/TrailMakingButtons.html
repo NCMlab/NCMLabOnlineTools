@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Trailmaking Task A">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Trailmaking Task</title>
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css">
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){
+        $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+      });
+    </script> 
+  </head>    
+  <body>
+    <div id="headerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-Trails.js"></script>
+    <script src="jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="InstructionsAndStimuli/EN/Instructions/TrailMaking_Instructions.js"></script>
+    <script src="functions/Scoring/TrailMaking_Scoring.js"></script>
+    <script src="config/TrailMaking_Setup.js"></script>
+    <script>
+            var TrailMaking_parameters = 'empty'
+            var parameters = 'empty'      
+        jatos.onLoad(() => {
+            console.log(jatos.studySessionData)
+            BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+            UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+            Language = jatos.studySessionData.Language
+            if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingB_003'}
+            else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+            // load the parameters
+            pseudoSwitch(parameters)
+            console.log(TrailMaking_parameters)
+            // load the language specific instructions
+            LANG = jatos.studySessionData.Language
+            console.log(LANG)
+            pseudoSwitch(LANG+'_TrailMaking_Instructions')
+            
+            //load general label names
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(TrailMaking_Instructions)
+            // The setup file decides which instruction set to provide. 
+            // In the setup file the decision is stated as a string which
+            // is evaluated here
+            eval('TrailMaking_parameters.InstructionText = TrailMaking_Instructions.'+TrailMaking_parameters.Instructions)
+            console.log(TrailMaking_Instructions)
+            // update the header button labels
+            document.getElementById('header-home-button').textContent = LabelNames.Home;
+            document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+            document.getElementById('header-end-button').textContent = LabelNames.End;
+            document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+
+        })
+    </script>
+    <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
+    <script src="functions/Experiments/TrailMakingButtons_experiment.js"></script>    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
+  </body>
+  <script>
+var TrialCount = 1;
+var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_trial_start: function() {
+      // http://127.0.0.1:9000/publix/fNTRhuguK1x
+      // console.log(jatos.urlQueryParameters);
+      var input = jatos.urlQueryParameters;
+      console.log(TrialCount)
+      TrialCount += 1
+      // Add jatos info to the data file
+      jsPsych.data.addProperties({assignedURLID: input.a});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+    },
+    on_finish: function() {
+      jatos.endStudy(jsPsych.data.get().json())
+      if ( SaveLocalFile ) {
+        jsPsych.data.get().localSave('csv','Trailmaking_data.csv');
+      }    
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      // Go back to battery management on JATOS
+      if (typeof UsageManagerHtmlID != 'undefined') {
+        jatos.startComponent(UsageManagerHtmlID);
+      }
+    }
+  });
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);
+      jsPsych.run(timeline);
+    });
+  </script>
+</html>
