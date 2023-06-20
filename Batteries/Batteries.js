@@ -78,15 +78,6 @@ BatteryList.push({index: 101,
         'ICAR',
         'Spatial DMS'
 	],
-	ButtonDescription: [
-		'',
-		'','',
-		'',	'',
-		'','','',
-		'','','',
-		'','','',
-		'','',''
-		],
     BatteryInstructions:"This is the NCMLab Evaluation",
 	Language:'EN'
 })
@@ -125,13 +116,6 @@ BatteryList.push({index: 102,
         'Line Bisect','Cancellation',
 		'RAVLT, Delayed',
 	],
-	ButtonDescription: ['','',
-		'','','',
-		'',
-		'','',
-		'','','',
-		'','',''
-		],
     BatteryInstructions:"Chemo Brain Fog",
 	Language:'EN'
 })
@@ -169,13 +153,6 @@ BatteryList.push({index: 202,
         'Line Bisect','Cancellation',
 		'RAVLT, Delayed',
 	],
-	ButtonDescription: ['','',
-		'','','',
-		'',
-		'','',
-		'','','',
-		'','',''
-		],
     BatteryInstructions:"Chemo Brain Fog",
 	Language:'FR'
 })
@@ -210,7 +187,6 @@ BatteryList.push({index: 105,
 		'Fluency',
 		'Word Recall'
 	],
-	ButtonDescription: ['','','','',''],
 	BatteryInstructions:"",
 	Language:'EN'
 })
@@ -243,7 +219,6 @@ BatteryList.push({index: 205,
 		'Language',
 		'Rappel différé'
 	],
-	ButtonDescription: ['','','','','',''],
 	BatteryInstructions:"",
 	Language:'FR'
 })

@@ -39,7 +39,7 @@ var trial2 = {
       console.log(TaskButtonNameList)
       for ( var i = 0; i < TaskIconList.length; i++ ) {
           stim.push(`<span><img src="assets/Icons/${TaskIconList[i]}" alt="${TaskList[i]}"></br>${TaskButtonNameList[i]}</span>
-          <div class="HoverALaCarte">${TaskButtonDescriptionList[i]}</div>`)
+          `)
       }
       return stim
   },
