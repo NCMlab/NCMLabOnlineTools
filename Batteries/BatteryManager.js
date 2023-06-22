@@ -92,6 +92,8 @@ var trial1 = {
     // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
       console.log("In the STIM fn")
+      console.log(jatos.studySessionData)
+      console.log(TaskList)
     	var stim = '<div>This is a list of the individual tests you will complete.<p>Press Next to continue.</div><div id="main">'
     	for (var i = 0; i < TaskList.length; i++ ) 
       {
@@ -161,4 +163,5 @@ timeline.push(if_node_BatteryInstructions)
 timeline.push(SetupBattery)
 //timeline.push(enter_fullscreen)
 timeline.push(CheckFirstTimeThrough)
+
 timeline.push(CheckLaterTimeThrough)
