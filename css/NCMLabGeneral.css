@@ -23,15 +23,15 @@ table {
   height: 50vh;
 }
 
-html { background-color: white; }
+html { background-color: rgb(213, 241, 255); }
 body {
-  background-color: rgb(200,200,200);
+  background-color: white;
   border-radius: 10px;
-    position: fixed;
-  left: 0vw;
-  top: 1vh;
-  height: 96vh;
-  width: 98vw;
+    position: relative;
+  left: 5vw;
+  top: 3vh;
+  height: 90vh;
+  width: 90vw;
   box-shadow: 4px 4px 6px #888888/*#999*/;
   border-radius: 10px;
   z-index: 0;
@@ -246,3 +246,13 @@ span:hover + div {
 .sv-string-viewer {
   font-size: 1.5em
 }
+
+
+  .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     color: rgb(0, 0, 0);
+     text-align: center;
+  }

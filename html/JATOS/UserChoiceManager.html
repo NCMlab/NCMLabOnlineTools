@@ -3,9 +3,9 @@
 <html>
   <head>
       <script>
-//http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
-//https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
-</script>
+        //http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
+        //https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
+      </script>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <meta name="description" content="jsPsych Attention Network Test">
@@ -16,23 +16,17 @@
     <title>NCMLab</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-  <style> 
-      #main {
-        width: 50vw;
-        height: 50vh;
-        border: 1px solid #c3c3c3;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      #main div {
-        width: 10vw;
-        height: 10vh;
-      }
-  </style>
-
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+        // use jquery to load up the header button html content 
+        // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){
+          $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+        });
+    </script> 
   </head>    
   <body>
+    
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -55,36 +49,43 @@
         document.write("\<script src='" + url + "'\>\</script\>"); 
       }
     </script>
-    <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script src="Batteries/Batteries.js"></script>
-    <script src="Batteries/UserChoiceManager.js"></script>
-    <div class="btn-group-header">
-      <button title="End the experiment" onclick="endExperiment()">End</button>
-      <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
-    </div>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  </body>
-
-
-  <script>
+    <script>
       jatos.onLoad(() => {
         console.log("Hello World in in MAIN SCRIPT")
         console.log(jatos.studySessionData)
-      });
-var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      // Add jatos info to the data file
-      URLParameters = jatos.urlQueryParameters
-      
-      jsPsych.data.addProperties({Battery: URLParameters.Battery});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-    },
-  });
+        LANG = jatos.studySessionData.Language
+        console.log(LANG)
+        //load general label names
+        pseudoSwitch(LANG+'_LabelNames')
+        console.log(LabelNames)
+        console.log(document.getElementById('header-home-button'))
+        document.getElementById('header-home-button').textContent = LabelNames.Home;
+        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+        document.getElementById('header-end-button').textContent = LabelNames.End;
+        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      })
+    </script>
+
+
+   
+    <script src="Batteries/Batteries.js"></script>
+    <script src="Batteries/UserChoiceManager.js"></script>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  
+  <script>
+  var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_trial_start: function() {
+        //http://127.0.0.1:9000/publix/fNTRhuguK1x
+        // Add jatos info to the data file
+        URLParameters = jatos.urlQueryParameters
+        jsPsych.data.addProperties({Battery: URLParameters.Battery});
+        jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+        jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+        jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+        jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      }
+    });
 
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
@@ -101,4 +102,5 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+  </body>
 </html>

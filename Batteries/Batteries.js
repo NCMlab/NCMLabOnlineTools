@@ -188,7 +188,8 @@ BatteryList.push({index: 105,
 		'Word Recall'
 	],
 	BatteryInstructions:"",
-	Language:'EN'
+	Language:'EN',
+	Footer: '©GagnonBruno2016'
 })
 
 // ========================================================================
@@ -220,7 +221,8 @@ BatteryList.push({index: 205,
 		'Rappel différé'
 	],
 	BatteryInstructions:"",
-	Language:'FR'
+	Language:'FR',
+	Footer: '©GagnonBruno2016'
 })
 
 
