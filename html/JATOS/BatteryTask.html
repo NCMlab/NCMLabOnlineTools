@@ -39,9 +39,9 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    
-    <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    
     <script>
       // check what URL is calling this file and load the config file accordingly
       let url_running = window.location.href
@@ -59,7 +59,7 @@
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src="Batteries/Batteries.js"></script>
     <script src="Batteries/BatteryManager.js"></script>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+    
   </body>
 
 
@@ -68,20 +68,23 @@
         console.log("Hello World in in MAIN SCRIPT")
         console.log(jatos.studySessionData)
       });
-var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      // Add jatos info to the data file
-      URLParameters = jatos.urlQueryParameters
-      
-      jsPsych.data.addProperties({Battery: URLParameters.Battery});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-    },
-  });
+  </script>
+  <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
+  <script>
+      var jsPsych = initJsPsych({
+          display_element: 'jspsych-target',
+          on_trial_start: function() {
+            //http://127.0.0.1:9000/publix/fNTRhuguK1x
+            // Add jatos info to the data file
+            URLParameters = jatos.urlQueryParameters
+            
+            jsPsych.data.addProperties({Battery: URLParameters.Battery});
+            jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+            jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+            jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+            jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+          },
+      });
 
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;

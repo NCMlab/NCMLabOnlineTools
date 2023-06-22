@@ -91,6 +91,7 @@ var trial1 = {
     type: jsPsychHtmlButtonResponse,
     // This makes a table of icons for all of the tasks in the battery
     stimulus: function() {
+      console.log("In the STIM fn")
     	var stim = '<div>This is a list of the individual tests you will complete.<p>Press Next to continue.</div><div id="main">'
     	for (var i = 0; i < TaskList.length; i++ ) 
       {
@@ -121,6 +122,37 @@ var trial1 = {
     }
   };
 
+  var trial2 = {
+    type: jsPsychCallFunction,
+    func: function() {
+      pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
+    }
+  }
+
+  var CheckFirstTimeThrough = {
+    timeline: [trial1],
+    conditional_function: function() {
+      if ( JATOSSessionData.CurrentIndex == 0)
+      {
+        console.log("FIRST TIME THROUGH")
+        return true
+      }
+      else { return false }
+    }
+  }
+
+  var CheckLaterTimeThrough = {
+    timeline: [trial2],
+    conditional_function: function() {
+      if ( JATOSSessionData.CurrentIndex > 0)
+      {
+        console.log("NOT FIRST TIME THROUGH")
+        return true
+      }
+      else { return false }
+    }
+  }
+    
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.  
@@ -128,5 +160,5 @@ timeline.push(trial0)
 timeline.push(if_node_BatteryInstructions)
 timeline.push(SetupBattery)
 //timeline.push(enter_fullscreen)
-timeline.push(trial1)
-
+timeline.push(CheckFirstTimeThrough)
+timeline.push(CheckLaterTimeThrough)
