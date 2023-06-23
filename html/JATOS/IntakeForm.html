@@ -6,7 +6,25 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Form</title>
+    <title>NCMLab: Intake Form</title>
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link href="css/LikertQuestionnaires.css" rel="stylesheet">
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+    </script>    
+    <style>
+      input[type="radio"] {height: 20px; width: 20px; vertical-align: middle;}
+      .jspsych-content {max-width:90%}
+    </style>     
+  </head>
+  <body>
+    <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
@@ -18,10 +36,7 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
-    <link href="css/LikertQuestionnaires.css" rel="stylesheet">
-        <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-
+    <script src="InstructionsAndStimuli/EN/Instructions/IntakeForm_Instructions.js"></script>
     <script>
       var CurrentTest
       var Likert_parameters = 'empty'
@@ -29,27 +44,27 @@
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+        console.log(BatteryHtmlID)
         UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+        IntakeFormConfig = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
+        pseudoSwitch(IntakeFormConfig)
+        console.log(pages)
+        // load the language specific instructions
+        LANG = jatos.studySessionData.Language
+        console.log(LANG)
+        
       })
       
     </script> 
    <script src="functions/Experiments/IntakeForm_experiment.js"></script>
    <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
-  <style>
-    input[type="radio"] {height: 20px; width: 20px; vertical-align: middle;}
-    .jspsych-content {max-width:90%}
-  </style>
-  </head>
-  <div class="btn-group-header">
-    <button title="Return to home screen" onclick="returnToUsageManager()">Home</button>
-    <button title="Restart this task" onclick="restartTask()">Restart</button>
-    <button title="End the experiment" onclick="endExperiment()">End</button>
-    <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
-  </div>
-  <body>  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
+  
+  
+
+  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
 
 
-</body>
+
 <script>
 var setup = []
 var TrialCount = 1;

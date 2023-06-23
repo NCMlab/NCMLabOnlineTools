@@ -15,13 +15,19 @@
     <script> 
     // use jquery to load up the header button html content 
     // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-    $(function(){
-      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-    });
+      $(function(){
+        $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+      });
+    </script> 
+    <script> 
+      $(function(){
+        $("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html"); 
+      });
     </script> 
   </head>    
   <body>
     <div id="headerButtons"></div>
+    
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -40,13 +46,11 @@
     <script src="InstructionsAndStimuli/EN/Stimuli/WordRecall_Lists.js"></script>
 
     <script src="config/WordRecall_Setup.js"></script>
-    <script>
-      var BaseFolderName = 'assets/SoundFiles/Words/'
-    </script>
+    
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="functions/Scoring/WordRecall_Scoring.js"></script>
     <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
-    
+    <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
  
     
     <script>
@@ -58,14 +62,20 @@
         console.log(Language)
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
         UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'RAVLT_Manual_Immediate'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'RAVLT_Manual_Immediate'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)      
         console.log(WordRecall_parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
-        pseudoSwitch(LANG+'_Instructions')
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         // Load language specific stimuli
         console.log(LANG+'_'+WordRecall_parameters.WordList)
         pseudoSwitch(LANG+'_'+WordRecall_parameters.WordList)
@@ -73,11 +83,6 @@
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       })
     </script> 
 
@@ -86,49 +91,63 @@
     <script src="functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
     <script src="functions/Experiments/WordRecall_experiment.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  </body>
+  
   
   <script>
-  var setup = []
-  var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      //console.log(jatos.urlQueryParameters);
-      var input = jatos.urlQueryParameters;
-      //console.log(input.a);
-      // Add jatos info to the data file
-      jsPsych.data.addProperties({assignedURLID: input.a});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-    },
-    on_finish: function() {
-      jatos.endStudy(jsPsych.data.get().json())
+    var setup = []
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_trial_start: function() {
+        //http://127.0.0.1:9000/publix/fNTRhuguK1x
+        //console.log(jatos.urlQueryParameters);
+        var input = jatos.urlQueryParameters;
+        //console.log(input.a);
+        // Add jatos info to the data file
+        jsPsych.data.addProperties({assignedURLID: input.a});
+        jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+        jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+        jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+        jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      },
+      on_finish: function() {
+        jatos.endStudy(jsPsych.data.get().json())
 
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','WordRecall_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Go back to battery management
+        if ( SaveLocalFile ) {
+          jsPsych.data.get().localSave('csv','WordRecall_data.csv');
+        }    
+        // update session data
+        JATOSSessionData = jatos.studySessionData
+        JATOSSessionData.CurrentIndex += 1
+        jatos.studySessionData = JATOSSessionData
+        // Go back to battery management
 
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
+        if (typeof UsageManagerHtmlID != 'undefined') {
+          jatos.startComponent(UsageManagerHtmlID);
+        }
       }
-    }
-  });
-
-  jatos.onLoad(() => {
-      var JATOSID = jatos.workerId;
-      console.log(jatos)
-      console.log(JATOSID)
-      var resultsData = {'name':'JASON'};
-      jatos.addJatosIds(resultsData);
-      jsPsych.run(timeline);
     });
+
+    jatos.onLoad(() => {
+        var JATOSID = jatos.workerId;
+        console.log(jatos)
+        console.log(JATOSID)
+        var resultsData = {'name':'JASON'};
+        jatos.addJatosIds(resultsData);
+        jsPsych.run(timeline);
+      });
   </script>
+
+<div id="footerText"></div>
+<script>
+    jatos.onLoad(() => {
+    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+    document.getElementById('header-end-button').textContent = LabelNames.End;
+    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+    })
+</script>
+
+
+</body>
 </html>

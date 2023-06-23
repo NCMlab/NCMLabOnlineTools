@@ -3,24 +3,17 @@ var BatteryList = []
 // This is not used yet
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
-BatteryList.push({index: 5, 
-	name:'FaCE Battery', 
-	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
-	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-	BatteryInstructions: "This is the Fast Cognitive Evaluation",
-	Language:'FR',
-	RunAudioTest: true})
 
 BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
-	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
+	list: ['Intake Form','Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-	BatteryInstructions: "This is the Fast Cognitive Evaluation",
+	ParameterLists: ['EN_IntakeForm_FaCE','FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	Instructions: ['Default','Default','Default','Default','Default','Default'],
+	BatteryInstructions: "<h1>This is the Fast Cognitive Evaluation</h1>",
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©GagnonBruno2016'
+	Footer: '©GagnonBruno 2016'
 })
 
 BatteryList.push({index: 16, 
@@ -31,7 +24,7 @@ BatteryList.push({index: 16,
 	BatteryInstructions: 'FR: A web-based version of the FaCE',
 	Language:'FR',
 	RunAudioTest: true,
-	Footer: '©GagnonBruno2016'
+	Footer: '©GagnonBruno 2016'
 })
 
 
@@ -110,7 +103,7 @@ BatteryList.push({index: 102,
 	], 
 	description: 'A Pilot Study Assessing Cognitive Functioning of Patients being treated for Thoracic Tumors',
 	ParameterLists: [
-        '',
+        'EN_IntakeForm_FaCE',
         'ClockDrawing_CBprotocol', 'CubeCopy_CBprotocol',
         'TrailMakingA_003','TrailMakingB_003',
 		'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',

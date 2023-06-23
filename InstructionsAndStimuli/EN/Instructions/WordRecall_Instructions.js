@@ -28,11 +28,9 @@ EN_Instructions.WordPrompt = 'empty'
 EN_Instructions.ThankYouText = [{'page': 'Thank you'}]
 
 EN_Instructions.WordRecallPrompt = 'Which words were recalled?'
-add('EN_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 
-
-// ======
-
+// ====================================================
 
 
 var FR_Instructions = {}
@@ -58,6 +56,6 @@ FR_Instructions.Instructions04 = [
 	]
 FR_Instructions.WordPrompt = 'empty'
 FR_Instructions.ThankYouText = [{'page': 'Merci'}]
-add('FR_Instructions', function(){ Instructions = FR_Instructions});
+add('FR_Instructions_Default', function(){ Instructions = FR_Instructions});
 
 

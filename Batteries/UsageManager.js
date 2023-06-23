@@ -38,6 +38,9 @@ var SetupBattery = {
         console.log(Language)
         TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
         console.log(TaskList)
+        
+        InstructionList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Instructions
+        
         // Extract the battery instructions
         BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
         console.log(BatteryInstructions)
@@ -53,7 +56,7 @@ var SetupBattery = {
           // Add things to the jatos session data
           TaskCompleted = Array(TaskList.length).fill(0)
           console.log(TaskCompleted)
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
+          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList} 
           // add the ID to return to the JATOS battery
           JATOSSessionData.BatteryHtmlID = BatteryHtmlID
           JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID

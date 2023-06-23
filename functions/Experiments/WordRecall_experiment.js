@@ -225,7 +225,7 @@ var AudioStimulus = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function()
       {
-        Stim = ''
+        Stim = '+'
         // find what trial index this is
         ind = (TrialCount) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
@@ -234,6 +234,7 @@ var AudioStimulus = {
         console.log(Stim)
         return Stim
       },
+      prompt:'<p class="Fixation">+</p>',
     choices: [],  
     trial_duration: function(){return WordRecall_parameters.TimePerWord},
     on_finish: function(data) {
