@@ -23,7 +23,7 @@
         // use jquery to load up the header button html content 
         // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
         $(function(){
-          $("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html"); 
+          $("#footerButtons").load("functions/GeneralPurposeFunctions/FooterButtons.html"); 
         });
       </script> 
         <style> 
@@ -43,6 +43,7 @@
   </head>    
   <body>
     <div id="headerButtons"></div>
+    <div id="footerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -83,11 +84,6 @@
             // The setup file decides which instruction set to provide. 
             // In the setup file the decision is stated as a string which
             // is evaluated here
-            // update the header button labels
-            document.getElementById('header-home-button').textContent = LabelNames.Home;
-            document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-            document.getElementById('header-end-button').textContent = LabelNames.End;
-            document.getElementById('header-quit-button').textContent = LabelNames.Quit;
 
         })
     </script>
@@ -126,6 +122,21 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+  
   <div id="footerText"></div>
+  <script>
+    jatos.onLoad(() => {
+            // update the header button labels
+            document.getElementById('header-home-button').textContent = LabelNames.Home;
+            document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
+            document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+            document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
+            document.getElementById('header-end-button').textContent = LabelNames.End;
+            document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+            console.log(jatos.studySessionData.FooterText)
+            document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+            
+    })
+  </script>
 </body>
 </html>

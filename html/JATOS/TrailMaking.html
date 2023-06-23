@@ -70,11 +70,7 @@
             eval('TrailMaking_parameters.InstructionText = TrailMaking_Instructions.'+TrailMaking_parameters.Instructions)
             console.log(TrailMaking_Instructions)
             // update the header button labels
-            document.getElementById('header-home-button').textContent = LabelNames.Home;
-            document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-            document.getElementById('header-end-button').textContent = LabelNames.End;
-            document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-
+         
         })
     </script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
@@ -124,5 +120,13 @@ var jsPsych = initJsPsych({
     });
   </script>
   <div id="footerText"></div>
+<script>
+  jatos.onLoad(() => {
+  document.getElementById('header-home-button').textContent = LabelNames.Home;
+  document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+  document.getElementById('header-end-button').textContent = LabelNames.End;
+  document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+  })
+</script>
 </body>
 </html>

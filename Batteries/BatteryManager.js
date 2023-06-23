@@ -41,7 +41,8 @@ var SetupBattery = {
       console.log(TaskList)
       // Extract the battery instructions
       BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
-      console.log(BatteryInstructions)
+      FooterText = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Footer
+      console.log(FooterText)
         // Make a task list of the components of the battery
       for ( var i = 0; i < TaskList.length; i ++ ) {
         TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
@@ -55,6 +56,7 @@ var SetupBattery = {
         // add the ID to return to the JATOS battery
         JATOSSessionData.BatteryHtmlID = BatteryHtmlID
         JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+        JATOSSessionData.FooterText = FooterText
         // If this is the first visit to this manager, display the battery instructions
         DisplayBatteryInstructionsFlag = true
         
@@ -124,6 +126,22 @@ var trial1 = {
     }
   };
 
+var LandingPage = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: function() {
+    return BatteryInstructions
+  },
+  choices: ['Next'],
+  response_ends_trial: true,
+  on_finish: function() {
+    JATOSSessionData = jatos.studySessionData
+    // This is the function that starts the JATOS component for the next item in the battery
+    // The pseudoswitch should receive a task name using the JATOS currentIndex value
+    pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
+    // Need to shorten the task list and save it as jatos session variable
+  }
+}
+
   var trial2 = {
     type: jsPsychCallFunction,
     func: function() {
@@ -132,7 +150,7 @@ var trial1 = {
   }
 
   var CheckFirstTimeThrough = {
-    timeline: [trial1],
+    timeline: [LandingPage],
     conditional_function: function() {
       if ( JATOSSessionData.CurrentIndex == 0)
       {

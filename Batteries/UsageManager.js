@@ -41,6 +41,7 @@ var SetupBattery = {
         // Extract the battery instructions
         BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
         console.log(BatteryInstructions)
+        FooterText = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Footer
           // Make a task list of the components of the battery
         for ( var i = 0; i < TaskList.length; i ++ ) {
           TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
@@ -58,6 +59,7 @@ var SetupBattery = {
           JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.Language = Language
           JATOSSessionData.TaskCompleted = TaskCompleted
+          JATOSSessionData.FooterText = FooterText
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true
           

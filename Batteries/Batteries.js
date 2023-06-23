@@ -14,14 +14,27 @@ BatteryList.push({index: 5,
 
 BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
-	list: ['Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
+	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
 	BatteryInstructions: "This is the Fast Cognitive Evaluation",
 	Language:'EN',
-	RunAudioTest: true})
+	RunAudioTest: true,
+	Footer: '©GagnonBruno2016'
+})
 
-	
+BatteryList.push({index: 16, 
+	name:'FaCE Battery', 
+	list: ['Word Recall','Trail Making','Cube Copy','Serial Subtraction','Fluency','Word Recall'],
+	description: 'FR: A web-based version of the FaCE',
+	ParameterLists: ['FaCE_Default','TrailMaking_FaCE','CubeCopy_Default','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	BatteryInstructions: 'FR: A web-based version of the FaCE',
+	Language:'FR',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno2016'
+})
+
+
 BatteryList.push({index: 2, 
 	name:'Battery002', 
 	list: ['Stroop Word','Stroop Word'], 
