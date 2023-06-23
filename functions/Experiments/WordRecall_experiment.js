@@ -360,6 +360,19 @@ var Instructions04_loop = {
   }
 }
 
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
@@ -469,7 +482,7 @@ var thank_you = {
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
-    if ( Instructions.ShowWelcome)
+    if ( WordRecall_parameters.ShowWelcome)
     { return true }
     else { return false }
   }
@@ -478,7 +491,7 @@ var if_Welcome = {
 var if_ThankYou = {
   timeline: [thank_you],
   conditional_function: function() {
-    if ( Instructions.ShowThankYou)
+    if ( WordRecall_parameters.ShowThankYou )
     { return true }
     else { return false }
   }
@@ -517,6 +530,15 @@ var if_Instructions04 = {
         else { return false }
   }
 }
+
+var if_Notes = {
+  timeline: [Notes],
+  conditional_function: function() {
+    if ( WordRecall_parameters.AskForNotes)
+    { return true }
+    else { return false }
+  }
+}
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -524,8 +546,10 @@ timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
-timeline.push(SendData)
+timeline.push(if_Notes)
 timeline.push(if_ThankYou)
+timeline.push(SendData)
+
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)

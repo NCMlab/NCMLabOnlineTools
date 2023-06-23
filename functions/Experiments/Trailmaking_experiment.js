@@ -231,6 +231,14 @@ var if_Instructions = {
   }
 }
 
+var if_Notes = {
+  timeline: [Notes],
+  conditional_function: function() {
+    if ( TrailMaking_parameters.AskForNotes)
+    { return true }
+    else { return false }
+  }
+}
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -247,5 +255,5 @@ timeline.push(taskPrompt)
 timeline.push(trials)
 
 timeline.push(if_ThankYou)
-timeline.push(Notes)
+timeline.push(if_Notes)
 timeline.push(SendData)

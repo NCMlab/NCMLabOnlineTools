@@ -1,32 +1,5 @@
-var WelcomeText = [
-    {'page': '<p class="Instructions">Welcome to the Trail Making Task.</p>'},
-]
 
-var PracticePrompt = [
-    {'page':'<p class="Instructions">First, you will perform a practice test.'},
-    ];
-
-var RealTaskPrompt = [
-    {'page':'<p class="Instructions">Press Next to begin the task.'},
-    ];
-
-
-var InstructionsA = [
-    {'page': '<p class="Instructions">For this task you will see some numbers in circles. Please, draw a line from one number to the next, in order. Start at 1, then go to 2, then go to 3, and so on. Continue until you reach the number labeled end.'},
-    {'page': '<p class="Instructions">Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}
-]
-
-var InstructionsShownWithPracticeA = 'Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle'
-
-var InstructionsB = [
-    {'page': '<p class="Instructions">For this task you will see  numbers and letters in circles. Please, draw a line switching in order between numbers and lettters. Start at number 1, then go to lettter A, then go to number 2, and then the next letter B, and so on. Continue in order, until you reach the letter labeled end.'},
-    {'page': '<p class="Instructions">Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}   
-] 
-var InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
-
-var ThankYouText = [{'page':'Thank you.'}]
-
-
+// ==================================================================================
 var EN_Instructions = {}
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">Welcome to the Trail Making Task.</p>'}]
 EN_Instructions.PracticePrompt = [{'page':'<p class="Instructions">First, you will perform a practice test.'}];
@@ -44,6 +17,8 @@ EN_Instructions.InstructionsB = [
 EN_Instructions.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
+
+add('EN_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = EN_Instructions});
 // ==================================================================================
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">C\'est la tâche de Sentiers.</p>'}]
@@ -64,5 +39,23 @@ FR_Instructions.InstructionsShownWithPracticeB = 'Commencez au numéro 1 et trac
 FR_Instructions.ThankYouText = [{'page':'Merci'}]
 FR_Instructions.NotesForResultsPage = 'FR: The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
-add('EN_TrailMaking_Instructions', function(){ TrailMaking_Instructions = EN_Instructions});
-add('FR_TrailMaking_Instructions', function(){ TrailMaking_Instructions = FR_Instructions});
+add('FR_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = FR_Instructions});
+// ==================================================================================
+var EN_Instructions = {}
+EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">Welcome to the Trail Making Task.</p>'}]
+EN_Instructions.PracticePrompt = [{'page':'<p class="Instructions">First, you will perform a practice test.'}];
+EN_Instructions.RealTaskPrompt = [{'page':'<p class="Instructions">Press <b>Next</b> to begin the task.'}];
+EN_Instructions.InstructionsA = [    
+    {'page': '<p class="Instructions">For this task you will see some numbers in circles. Please, draw a line from one number to the next, in order. Start at 1, then go to 2, then go to 3, and so on. Continue until you reach the number labeled end.'},
+    {'page': '<p class="Instructions">Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}
+]
+EN_Instructions.InstructionsShownWithPracticeA = 'Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle'
+
+EN_Instructions.InstructionsB = [
+    {'page': '<p class="Instructions">You are to draw a line without lifting the pencil, alternating from a number to a letter, while respecting the ascending numerical order and the alphabetical order. Start at the <b>1</b> and draw the line to the letter <b>A</b>, then to the <b>2</b>, and so on. End at the <b>H</b>'}, 
+] 
+EN_Instructions.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
+EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
+EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
+
+add('EN_TrailMaking_Instructions_FaCE', function(){ TrailMaking_Instructions = EN_Instructions});

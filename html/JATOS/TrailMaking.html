@@ -43,15 +43,21 @@
             BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
             UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
             Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {parameters = 'TrailMakingB_Default'}
-            else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+            if (typeof BatteryHtmlID === 'undefined') {
+              parameters = 'TrailMakingB_Default'
+              InstructionsToUse = 'Default'
+            }
+            else {
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+            }
             // load the parameters
             pseudoSwitch(parameters)
             console.log(TrailMaking_parameters)
             // load the language specific instructions
             LANG = jatos.studySessionData.Language
             console.log(LANG)
-            pseudoSwitch(LANG+'_TrailMaking_Instructions')
+            pseudoSwitch(LANG+'_TrailMaking_Instructions'+InstructionsToUse)
             
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')

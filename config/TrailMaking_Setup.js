@@ -219,11 +219,10 @@ var TrailMakingA_Default = {
     PracticeCircles: SampleCirclesA,
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
-    Instructions: 'InstructionsA',
-    InstructionsShownWithPractice: InstructionsShownWithPracticeA,
     ShowInstructions: false,
     ShowWelcome: true,
 	ShowThankYou: false,
+    AskForNotes: false,
 }
 
 var TrailMakingB_Default = {
@@ -236,11 +235,10 @@ var TrailMakingB_Default = {
     PracticeCircles: SampleCirclesB,
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
-    Instructions: 'InstructionsB',
-    InstructionsShownWithPractice: InstructionsShownWithPracticeB,
     ShowInstructions: false,
     ShowWelcome: true,
 	ShowThankYou: false,
+    AskForNotes: false,
 }
 
 var TrailMakingA_003 = {
@@ -253,11 +251,10 @@ var TrailMakingA_003 = {
     PracticeCircles: SampleCirclesA,
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
-    Instructions: 'InstructionsA',
-    InstructionsShownWithPractice: InstructionsShownWithPracticeA,
     ShowInstructions: false,
     ShowWelcome: true,
 	ShowThankYou: false,
+    AskForNotes: false,
 }
 
 var TrailMakingB_003 = {
@@ -270,11 +267,10 @@ var TrailMakingB_003 = {
     PracticeCircles: SampleCirclesB,
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
-    Instructions: 'InstructionsB',
-    InstructionsShownWithPractice: InstructionsShownWithPracticeB,
     ShowInstructions: false,
     ShowWelcome: true,
 	ShowThankYou: false,
+    AskForNotes: false,
 }
 
 var TrailMaking_FaCE = {
@@ -287,11 +283,10 @@ var TrailMaking_FaCE = {
     PracticeCircles: null,
     PracticeSuggestedWidth: null,
     PracticeSuggestedHeight: null,
-    Instructions: 'InstructionsB',
-    InstructionsShownWithPractice: InstructionsShownWithPracticeB,
     ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
+    AskForNotes: false,
 }
 
 add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
