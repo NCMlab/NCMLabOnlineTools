@@ -1,6 +1,6 @@
-function CubeCopy_Scoring(data) {
+function ImageCopy_Scoring(data) {
 	//Notes = data.filter({trial: 'Notes'})
-	trialData = data.filter({trial: 'Cube Copy'}).trials[0]
+	trialData = data.filter({trial: 'Image Copy'}).trials[0]
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.PrimaryResults['ScoreName'] = 'Accuracy'

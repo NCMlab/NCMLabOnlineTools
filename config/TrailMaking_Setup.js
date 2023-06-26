@@ -12,10 +12,7 @@ var CorrectCircleColor = 'yellow'
 var TextFont = "20px Verdana";
 var CircleBorderWidth = 2
 
-// label for first circle
-var FirstCircleLabel = 'begin'
-// label for last circle
-var LastCircleLabel = 'end'
+
 
 // how close to each circle the cursor needs to be
 var tolerance = 15;
@@ -287,6 +284,7 @@ var TrailMaking_FaCE = {
     ShowWelcome: false,
 	ShowThankYou: false,
     AskForNotes: false,
+    change_circle_color_only_when_correct: false,
 }
 
 add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});

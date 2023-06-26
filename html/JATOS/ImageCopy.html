@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Cube Copy</title>
+    <title>NCMLab: Image Copy</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
@@ -17,6 +17,7 @@
     // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
     $(function(){
       $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     });
     </script> 
 
@@ -34,41 +35,35 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/CubeCopy_Instructions.js"></script>
-    <script src="config/CubeCopy_config.js"></script>    
+    <script src="InstructionsAndStimuli/Instructions/ImageCopy_Instructions.js"></script>
+    <script src="config/ImageCopy_Setup.js"></script>    
     
-    <script> var NeckerCubeFolder = 'assets/Images/CubeCopy/' </script>
+    <script> var ImageFolder = 'assets/Images/ImageCopy/' </script>
     
     <script>
-      var CubeCopy_parameters = 'empty'
+      var ImageCopy_parameters = 'empty'
       var parameters = 'empty'
       var BatteryHtmlID
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
         UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         if (typeof BatteryHtmlID === 'undefined') {
-          parameters = 'CubeCopy_Default'
-          console.log(parameters)
+          parameters = 'ImageCopy_Default'
+          InstructionsToUse = 'Default'
         }
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)      
         LANG = jatos.studySessionData.Language
-        console.log(LANG)
-        pseudoSwitch(LANG+'_CubeCopy_Instructions')
+        pseudoSwitch(LANG+'_ImageCopy_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-
       })
     </script> 
-  <script src="functions/Scoring/CubeCopy_Scoring.js"></script>
-    
-
+  <script src="functions/Scoring/ImageCopy_Scoring.js"></script>
+  <script src="functions/Experiments/ImageCopy_experiment.js"></script>
   <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
   <script>
@@ -112,6 +107,16 @@
       jsPsych.run(timeline);
     });
   </script>
-  <script src="functions/Experiments/CubeCopy_experiment.js"></script>
+
+  <div id="footerText"></div>
+  <script>
+    jatos.onLoad(() => {
+      document.getElementById('header-home-button').textContent = LabelNames.Home;
+      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+    })
+</script>
   </body>
 </html>

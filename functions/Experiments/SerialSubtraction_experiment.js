@@ -27,8 +27,8 @@ var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
       var prompt = 
-        Instructions.GetResponse01+SerialSubtract_parameters.StepValue+
-        Instructions.GetResponse02+PreviousResult+
+        Instructions.GetResponse01+PreviousResult+
+        Instructions.GetResponse02+SerialSubtract_parameters.StepValue+
         Instructions.GetResponse03+SerialSubtract_parameters.StepValue+
         Instructions.GetResponse04
       return PutStimIntoTable(prompt+response_gridSerSub,'') 
@@ -54,6 +54,21 @@ var get_response = {
       responseSerSub = []; 
   }
 };
+
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -147,10 +162,29 @@ var procedure = {
   }
 };
 
+var if_Instructions = {
+  timeline: [instr_procedure01_loop],
+  conditional_function: function() {
+        if ( SerialSubtract_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
+
+var if_Notes = {
+  timeline: [Notes],
+  conditional_function: function() {
+    if ( SerialSubtract_parameters.AskForNotes)
+    { return true }
+    else { return false }
+  }
+}
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(GetPreviousResult)
-timeline.push(instr_procedure01_loop)
+timeline.push(if_Instructions)
 timeline.push(procedure)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(if_Notes)
+timeline.push(SendData)
+

@@ -32,7 +32,7 @@
     <script src="jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/TrailMaking_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/TrailMaking_Instructions.js"></script>
     <script src="functions/Scoring/TrailMaking_Scoring.js"></script>
     <script src="config/TrailMaking_Setup.js"></script>
     <script>
@@ -57,18 +57,11 @@
             // load the language specific instructions
             LANG = jatos.studySessionData.Language
             console.log(LANG)
-            pseudoSwitch(LANG+'_TrailMaking_Instructions'+InstructionsToUse)
+            pseudoSwitch(LANG+'_TrailMaking_Instructions_'+InstructionsToUse)
             
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
-            console.log(TrailMaking_Instructions)
-            // The setup file decides which instruction set to provide. 
-            // In the setup file the decision is stated as a string which
-            // is evaluated here
-            eval('TrailMaking_parameters.InstructionText = TrailMaking_Instructions.'+TrailMaking_parameters.Instructions)
-            console.log(TrailMaking_Instructions)
-            // update the header button labels
-         
+            console.log(TrailMaking_Instructions)         
         })
     </script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
@@ -124,6 +117,7 @@ var jsPsych = initJsPsych({
   document.getElementById('header-restart-button').textContent = LabelNames.Restart;
   document.getElementById('header-end-button').textContent = LabelNames.End;
   document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+  document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
   })
 </script>
 </body>

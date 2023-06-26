@@ -73,6 +73,7 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
+      change_circle_color_only_when_correct: TrailMaking_parameters.change_circle_color_only_when_correct,
       prompt: TrailMaking_parameters.InstructionsShownWithPractice,
       show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
       finished_button_label: function() {return LabelNames.Finished},
@@ -91,8 +92,11 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
+      change_circle_color_only_when_correct: function() {return TrailMaking_parameters.change_circle_color_only_when_correct},
       show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
       trial_duration: TrailMaking_parameters.Duration,
+      first_circle_label: function() {return TrailMaking_Instructions.FirstCircleLabel},
+      last_circle_label: function() {return TrailMaking_Instructions.LastCircleLabel},
       finished_button_label: function() {return LabelNames.Finished},
       // on_finish: function() {
       //   // download the drawing as a file
@@ -112,7 +116,7 @@ var enter_fullscreen = {
 
 var Instruct = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_parameters.InstructionText[count].page},
+  stimulus: function() {return TrailMaking_Instructions.Instructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
@@ -124,7 +128,7 @@ var Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < TrailMaking_parameters.InstructionText.length){
+    if ( count < TrailMaking_Instructions.Instructions.length){
         
         return true;
       } else {
@@ -248,7 +252,6 @@ timeline.push(CheckPracticeFlag)
 
 
 timeline.push(if_Welcome)
-
 timeline.push(if_Instructions)
 timeline.push(if_Practice)
 timeline.push(taskPrompt)

@@ -214,7 +214,21 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
               type: jspsych.ParameterType.HTML_STRING,
               default: `<span id="sketchpad-timer"></span> remaining`,
           },
-      },
+          /* Change circle color ONLY when correct or when entering ANY circle
+          */
+          change_circle_color_only_when_correct: {
+            type: jspsych.ParameterType.BOOL,
+            default: true,
+          },
+          first_circle_label: {
+            type: jspsych.ParameterType.STRING,
+            default: 'begin',
+          },
+          last_circle_label: {
+            type: jspsych.ParameterType.STRING,
+            default: 'end',
+          },
+        },
   };
   /**
    * **sketchpad**
@@ -243,7 +257,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.params = trial;
           this.current_stroke_color = trial.stroke_color;
           this.init_display();
-          
+          console.log(this.params)
 
           this.setup_event_listeners();
           this.add_background_color();
@@ -253,10 +267,10 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY, this.params.Circles[i].label, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
             // label the first circle
             if ( i == 0 ) {
-              this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,FirstCircleLabel, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
+              this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,this.params.first_circle_label, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
             }
             if ( i == this.params.Circles.length - 1) {
-              this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,LastCircleLabel, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
+              this.add_text(this.params.Circles[i].centerX, this.params.Circles[i].centerY - 2*this.params.Circles[i].radius,this.params.last_circle_label, LocationsAsProportions, this.params.canvas_width, this.params.canvas_height)
             }
             if ( i < 3 & i > 0) {
                 this.add_line(this.params.Circles[i-1].centerX, this.params.Circles[i-1].centerY, this.params.Circles[i].centerX, this.params.Circles[i].centerY,this.params.Circles[i].radius)
@@ -691,6 +705,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                       // check to see if this is the correct circle
                       if (this.InsideWhichCircle == this.CompletedCircle)
                       {
+                        console.log("CORRECT CIRCLE")
                         // record data 
                         this.OutData[this.CompletedCircle].Count = this.CompletedCircle;
                         this.OutData[this.CompletedCircle].EnterLocTime = performance.now();
@@ -704,6 +719,14 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                       // register an error
                       else 
                       {
+                        if ( ! this.params.change_circle_color_only_when_correct ) {
+                            console.log(this)
+                            console.log("WRONG CIRCLE ONE")
+                            this.add_circles(this.Circles[this.InsideWhichCircle].centerX, this.Circles[this.InsideWhichCircle].centerY, this.Circles[this.InsideWhichCircle].radius, CorrectCircleColor); 
+                            this.add_text(this.Circles[this.InsideWhichCircle].centerX, this.Circles[this.InsideWhichCircle].centerY, this.Circles[this.InsideWhichCircle].label);
+                        }
+                        console.log(this)
+                        console.log("WRONG CIRCLE TWO")
                         this.ErrorCount++; 
                       }
                       this.InCircle = true;
