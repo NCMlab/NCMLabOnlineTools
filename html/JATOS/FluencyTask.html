@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Fluency Test</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
@@ -16,6 +17,7 @@
     // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
     $(function(){
       $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     });
     </script> 
   </head>    
@@ -26,6 +28,7 @@
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
@@ -47,29 +50,27 @@
       jatos.onLoad(() => {
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
         UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Fluency_F'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'Fluency_F'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)      
         console.log(Fluency_parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
-        pseudoSwitch(LANG+'_Instructions')
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-  
       })
     </script>  
     <script src="functions/Experiments/Fluency_experiment.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  </body>
   <script>
 var setup = []
 var TrialCount = 1;
@@ -113,4 +114,15 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => {
+      document.getElementById('header-home-button').textContent = LabelNames.Home;
+      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      })
+    </script>
+    </body>
 </html>

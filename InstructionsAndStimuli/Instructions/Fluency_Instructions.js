@@ -11,8 +11,21 @@ EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Fluency Task.</p>'},
 ]
-add('EN_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
+// ============================================================================
+var EN_Instructions = {}
+EN_Instructions.Animals = 'Animals'
+EN_Instructions.FruitsVegetables = 'fruits and vegetables'
+EN_Instructions.LetterF = 'words that start with F'
+EN_Instructions.Instructions = [
+	{'page': '<p class="Instructions">This is a test of word fluency. You will be given a category and will need to name as many items from that category as possible within one minute. Do not name varieties of the same item. </br></br>Press next to begin.</p>'},
+	]
+EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 
+EN_Instructions.WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Fluency Task.</p>'},
+]
+add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 // ============================================================================
 var FR_Instructions = {}
 FR_Instructions.Animals = 'Animaux'

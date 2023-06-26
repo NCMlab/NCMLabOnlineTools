@@ -25,7 +25,7 @@ var ImageCopy_FaCE = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'NeckerCube.png',
+	Image: 'TwoCircles.png',
 }
 
 

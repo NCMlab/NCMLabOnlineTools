@@ -74,9 +74,14 @@ EN_Instructions.Instructions01 = [
 EN_Instructions.Instructions02 = [
 	{'page': '<p class="Instructions">Now, you will hear the same wordlist a second time. Try to remember and say as many words as you can from that list, even the ones that you recalled during your first try, in any given order</p>'},
 	]
-
+EN_Instructions.Instructions03 = [
+	{'page': '<p class="Instructions">Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin.</p>'},
+	]
+EN_Instructions.Instructions04 = [
+	{'page': '<p class="Instructions">Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin.</p>'},
+	]
 EN_Instructions.InstructionsDelayed = [
-	{'page': '<p class="Instructions">Recall all the words you can remember from the list you heard a number of times.</p>'},
+	{'page': '<p class="Instructions">Earlier, you heard a wordlist that you were asked you to remember. Now, you are to name every word that you remember from that list.</p>'},
 	]	
 
 EN_Instructions.WordPrompt = 'empty'
