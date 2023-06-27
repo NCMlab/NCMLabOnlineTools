@@ -19,7 +19,7 @@ BatteryList.push({index: 15,
 	Footer: '©GagnonBruno 2016'
 })
 
-BatteryList.push({index: 15, 
+BatteryList.push({index: 16, 
 	name:'FaCE Battery', 
 	list: ['Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall','Intake Form'],
 	//list: ['Intake Form'],
