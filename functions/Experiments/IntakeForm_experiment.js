@@ -2,8 +2,8 @@ var timeline = []
 
 var trial = {
   type: jsPsychSurvey,
-  pages: function() { return pages},
-  title: 'Intake Form',
+  pages: function() { return IntakeFormParameters.pages},
+  title: function() {return IntakeFormParameters.title},
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: 'Submit',

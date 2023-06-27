@@ -36,31 +36,37 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/IntakeForm_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
     <script>
-      var CurrentTest
-      var Likert_parameters = 'empty'
+      var IntakeFormParameters = 'empty'
       var parameters = 'empty'
       var BatteryHtmlID
       jatos.onLoad(() => {
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        console.log(BatteryHtmlID)
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        IntakeFormConfig = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
-        pseudoSwitch(IntakeFormConfig)
-        console.log(pages)
-        // load the language specific instructions
-        LANG = jatos.studySessionData.Language
-        console.log(LANG)
-        
+        console.log(jatos.studySessionData)
+            BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+            UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+            Language = jatos.studySessionData.Language
+            if (typeof BatteryHtmlID === 'undefined') {
+              parameters = 'EN_IntakeForm_Generic'
+            }
+            else {
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+            }
+            // load the parameters
+            pseudoSwitch(parameters)
+            console.log(IntakeFormParameters)
+            // load the language specific instructions
+            LANG = jatos.studySessionData.Language
+            console.log(LANG)
+            //load general label names
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(IntakeFormParameters)
+            console.log(LabelNames)
       })
       
     </script> 
    <script src="functions/Experiments/IntakeForm_experiment.js"></script>
    <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
-  
-  
-
   <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
 
 
@@ -107,4 +113,15 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => {
+      document.getElementById('header-home-button').textContent = LabelNames.Home;
+      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      })
+    </script>
+    </body>
 </html>

@@ -172,7 +172,16 @@ var LandingPage = {
       else { return false }
     }
   }
-    
+  var CheckForBatteryCompletion = {
+    type: jsPsychCallFunction,
+    func: function() {
+      if ( JATOSSessionData.CurrentIndex >= JATOSSessionData.TaskNameList.length )
+      {
+          console.log("FINISHED")
+          jatos.endStudy()
+      }
+    }
+  }
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.  
@@ -183,3 +192,4 @@ timeline.push(SetupBattery)
 timeline.push(CheckFirstTimeThrough)
 
 timeline.push(CheckLaterTimeThrough)
+timeline.push(CheckForBatteryCompletion)

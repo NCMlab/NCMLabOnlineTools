@@ -1,5 +1,5 @@
 // ============================================
-
+var FormTitle = 'FaCE Intake Form'
 var pages = [
       [
         {
@@ -29,14 +29,14 @@ var pages = [
             prompt: "What is your DAY of birth?", 
             placeholder: '1',
             name: 'DayOfBirth', 
-            required: true,
+            required: false,
           }, 
         {
             type: 'text',
             prompt: "What is your YEAR of birth?", 
             placeholder: '1900',
             name: 'YearOfBirth', 
-            required: true,
+            required: false,
           }, 
           
         {
@@ -61,10 +61,58 @@ var pages = [
       ]
     ]
   
-
-  add('EN_IntakeForm_FaCE', function(){ pages = pages });
+  var Intake_parameters = {}
+  Intake_parameters.title = FormTitle
+  Intake_parameters.pages = pages
+  add('EN_IntakeForm_FaCE', function(){ IntakeFormParameters = Intake_parameters });
+  
 // ============================================
-
+// FaCE Getting started questions
+var FormTitle = 'FaCE Orientation Form'
+var pages = [
+  [
+    {
+      type: 'drop-down',
+      prompt: "What MONTH are we in?", 
+      name: 'CurrentMonth', 
+      options: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      required: false,
+    },
+    {
+        type: 'text',
+        prompt: "What is today's DATE?", 
+        placeholder: '1',
+        name: 'CurrentDate', 
+        required: false,
+      }, 
+    {
+        type: 'text',
+        prompt: "What YEAR are we in?", 
+        placeholder: '1900',
+        name: 'CurrentYear', 
+        required: false,
+      }, 
+      {
+        type: 'text',
+        prompt: "What SEASON are we in?", 
+        placeholder: '',
+        name: 'CurrentSeason', 
+        required: false,
+      }, 
+      {
+        type: 'text',
+        prompt: "What CITY are we in?", 
+        placeholder: '',
+        name: 'CurrentCity', 
+        required: false,
+      }, 
+  ]
+]
+var Orient_parameters = {}
+Orient_parameters.title = FormTitle
+Orient_parameters.pages = pages
+add('EN_OrientationForm_FaCE', function(){ IntakeFormParameters = Orient_parameters });
+// ============================================
     pages: [
       [
         {
@@ -87,7 +135,7 @@ var pages = [
             prompt: "What is your year of birth?", 
             placeholder: '1900',
             name: 'YearOfBirth', 
-            required: true,
+            required: false,
           }, 
         {
           type: 'multi-choice',
@@ -131,4 +179,4 @@ var pages = [
           }*/
       ]
     ]
-  add('EN_IntakeForm_Generic', function(){ pages = pages });
+  add('EN_IntakeForm_Generic', function(){ IntakeFormParameters = pages });

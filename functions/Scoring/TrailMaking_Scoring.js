@@ -21,6 +21,8 @@ function OLDTrailMaking_Scoring(data) {
 
 function TrailMaking_Scoring(data) {
 	Notes = data.filter({trial: 'Notes'})
+	console.log(Notes)
+	console.log(Notes.trials.length)
 	trialData = data.filter({trial: 'Trail Making'}).trials[0]
 	console.log(trialData)
 	Results = {}
@@ -34,7 +36,9 @@ function TrailMaking_Scoring(data) {
 	Results.AllResults['Number of Errors'] = trialData.ErrorCount 
 	Results.AllResults['Image'] = trialData.png
 	Results.AllResults['Response Time (ms)'] = trialData.rt
-	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
 	Results.AllResults['Scoring Notes'] = TrailMaking_Instructions.NotesForResultsPage
 	return Results
 }
