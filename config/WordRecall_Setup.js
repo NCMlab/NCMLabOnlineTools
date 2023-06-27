@@ -65,7 +65,7 @@ var FaCE_Default = {
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
 }
@@ -81,7 +81,7 @@ var FaCE_Default_FR = {
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
 

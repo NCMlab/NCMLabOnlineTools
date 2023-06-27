@@ -27,6 +27,20 @@ EN_Instructions.WelcomeText = [
 ]
 add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 // ============================================================================
+var FR_Instructions_FaCE = {}
+FR_Instructions_FaCE.Animals = 'Animals'
+FR_Instructions_FaCE.FruitsVegetables = 'fruits and vegetables'
+FR_Instructions_FaCE.LetterF = 'words that start with F'
+FR_Instructions.StimPart01
+FR_Instructions_FaCE.Instructions = [
+	{'page': '<p class="Instructions">Je veux que vous me disiez le plus de noms de fruits et légumes différents possible. Ne dites pas plusieurs variétés du même fruit ou légume, par exemple, raisins verts et raisins rouges. Je vais vous dire d’arrêter après une minute. Êtes-vous prêt ? Maintenant, commencez </br></br>Press next to begin.</p>'},
+	]
+FR_Instructions_FaCE.ThankYouText = [{'page':'Thank you.'}]
+FR_Instructions_FaCE.WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Fluency Task.</p>'},
+]
+add('FR_Instructions_FaCE', function(){ Instructions = FR_Instructions_FaCE});
+// ============================================================================
 var FR_Instructions = {}
 FR_Instructions.Animals = 'Animaux'
 FR_Instructions.FruitsVegetables = 'fruits et légumes'

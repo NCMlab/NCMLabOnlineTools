@@ -67,7 +67,7 @@ FR_Instructions.RealTaskPrompt = [{'page':'<p class="Instructions">Press <b>Next
 FR_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle'
 
 FR_Instructions.Instructions = [
-    {'page': '<p class="Instructions">FR: You are to draw a line without lifting the pencil, alternating from a number to a letter, while respecting the ascending numerical order and the alphabetical order. Start at the <b>1</b> and draw the line to the letter <b>A</b>, then to the <b>2</b>, and so on. End at the <b>H</b>'}, 
+    {'page': '<p class="Instructions">Je veux que vous traciez une ligne sans lever le crayon, en alternant d’un chiffre à une lettre, tout en respectant l’ordre numérique ascendant et l’ordre alphabétique. Commencez ici (indiquez le 1) et tracez la ligne vers la lettre A, ensuite vers le 2,  et ainsi de suite. Terminez ici » (indiquez le H). '}, 
 ] 
 FR_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
 FR_Instructions.ThankYouText = [{'page':'Thank you.'}]

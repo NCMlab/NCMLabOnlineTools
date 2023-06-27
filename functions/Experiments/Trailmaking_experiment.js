@@ -254,7 +254,7 @@ timeline.push(CheckPracticeFlag)
 timeline.push(if_Welcome)
 timeline.push(if_Instructions)
 timeline.push(if_Practice)
-timeline.push(taskPrompt)
+//timeline.push(taskPrompt)
 timeline.push(trials)
 
 timeline.push(if_ThankYou)

@@ -26,6 +26,10 @@ var GetPreviousResult = {
 var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
+    console.log(response_gridSerSub)
+    response_gridSerSub = response_gridSerSub.replace('XCLEARX',LabelNames.Clear)
+    response_gridSerSub = response_gridSerSub.replace('XCURRENTANSWERX',LabelNames.CurrentAnswer)
+    console.log(response_gridSerSub)
       var prompt = 
         Instructions.GetResponse01+PreviousResult+
         Instructions.GetResponse02+SerialSubtract_parameters.StepValue+
@@ -33,7 +37,7 @@ var get_response = {
         Instructions.GetResponse04
       return PutStimIntoTable(prompt+response_gridSerSub,'') 
   },
-  choices: ['Enter'],
+  choices: function() { return [LabelNames.Enter] },
   prompt:'',
   on_finish: function(data) {
       var curans = responseSerSub;

@@ -22,6 +22,12 @@ EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]
 EN_Instructions.NotesForResultsPage = "The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."
 add('EN_ImageCopy_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 
+var FR_Instructions = {}
+FR_Instructions.Instructions = 'Je veux que vous copiez ce dessin le plus précisément possible'
+FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Cube Copying Task. Press <b>Next</b> to Continue'}]
+FR_Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]
+FR_Instructions.NotesForResultsPage = "The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."
+add('FR_ImageCopy_Instructions_FaCE', function(){ Instructions = FR_Instructions});
 
 /* Deficient Index  - Missing Elements 
                                 Mirror Image Missing

@@ -37,6 +37,7 @@ var countInstr01 = 0
 var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
+var countInstrDelay = 0
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -360,6 +361,24 @@ var Instructions04_loop = {
   }
 }
 
+var InstructionsDelayed = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.InstructionsDelayed[countInstrDelay].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var InstructionsDelayed_loop = {
+  timeline: [InstructionsDelayed],
+  loop_function: function(data){
+    console.log(countInstrDelay)
+    countInstrDelay+=1
+    if ( countInstrDelay < Instructions.InstructionsDelayed.length){
+        return true} else { return false}
+  }
+}
 var Notes = {
   type: jsPsychSurvey, 
   pages: [[{
@@ -442,6 +461,12 @@ var FinalRecalBlockA = {
     repetitions: 1,
 } 
 
+var DelayedRecalBlockA = {
+  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+  randomize_order: false,
+  repetitions: 1,
+} 
+
 var DelayedRecallNo = {
   timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, HowManyBlocks, FirstBlock, AfterFirstBlockLoop],
   conditional_function: function() {
@@ -452,7 +477,7 @@ var DelayedRecallNo = {
   }
 }    
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, MakeResponseArray, FinalRecalBlockA],
+  timeline: [MakeWordListA, MakeResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
     if ( WordRecall_parameters.DelayedRecallFlag)
     { return true }

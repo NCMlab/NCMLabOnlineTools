@@ -6,14 +6,14 @@ var BatteryDescription = 'This is a description of the battery of tests that wil
 
 BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
-	list: ['Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall','Intake Form'],
+	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed','EN_IntakeForm_FaCE'],
+	ParameterLists: ['EN_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE',''],
+	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
 	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>This is the Fast Cognitive Evaluation</h1>",
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
@@ -21,19 +21,18 @@ BatteryList.push({index: 15,
 
 BatteryList.push({index: 16, 
 	name:'FaCE Battery', 
-	list: ['Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall','Intake Form'],
+	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed','EN_IntakeForm_FaCE'],
+	ParameterLists: ['FR_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default_FR','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE',''],
+	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
 	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>This is the Fast Cognitive Evaluation</h1>",
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
 	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
-
 
 BatteryList.push({index: 2, 
 	name:'Battery002', 

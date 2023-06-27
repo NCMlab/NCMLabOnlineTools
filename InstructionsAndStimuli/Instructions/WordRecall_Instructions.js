@@ -90,3 +90,32 @@ EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Try to remembe
 EN_Instructions.WordRecallPrompt = 'Which words were recalled?'
 add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 
+// ====================================================
+
+var FR_Instructions = {}
+FR_Instructions.WelcomeText = [
+    {'page': '<p class="Instructions">Welcome to the Word Recall Task.</p>'},
+]
+FR_Instructions.RecallInstructions = 'Please repeat the entire word list'
+FR_Instructions.GetReadyInstructions = 'Get ready for the next trial'
+FR_Instructions.Instructions01 = [
+	{'page': '<p class="Instructions">Je vais vous lire une liste de mots que vous aurez à retenir. Écoutez-les attentivement. Quand j\’aurai terminé, je veux que vous me redisiez le plus de mots possible dont vous vous rappelez, dans l\’ordre que vous voulez</p>'},	
+	]
+	FR_Instructions.Instructions02 = [
+	{'page': '<p class="Instructions">Maintenant je vais lire la même liste de mots une seconde fois. Essayez de vous rappeler du plus grand nombre de mots possible, y compris ceux que vous avez énoncés la première fois et dites les moi, dans l\’ordre que vous souhaitez</p>'},
+	]
+	FR_Instructions.Instructions03 = [
+	{'page': '<p class="Instructions">Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin.</p>'},
+	]
+	FR_Instructions.Instructions04 = [
+	{'page': '<p class="Instructions">Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin.</p>'},
+	]
+	FR_Instructions.InstructionsDelayed = [
+	{'page': '<p class="Instructions">Je vous ai lu une série de mots plus tôt dont je vous ai demandé de vous rappeler. Maintenant, dites-moi tous les mots dont vous vous rappelez.</p>'},
+	]	
+
+FR_Instructions.WordPrompt = 'empty'
+FR_Instructions.ThankYouText = [{'page': '<p class="Instructions">Gardez-en mémoire les mots que je vous ai lus, je vais vous demander de les répéter à la fin du test.</p>'}]
+
+FR_Instructions.WordRecallPrompt = 'FR: Which words were recalled?'
+add('FR_Instructions_FaCE', function(){ Instructions = FR_Instructions});
