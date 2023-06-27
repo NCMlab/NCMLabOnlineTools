@@ -6,7 +6,7 @@ ComponentList.push({name:'Stroop Color/Word', iconFileName:'StroopColorWord.png'
 ComponentList.push({name:'Trail Making', iconFileName:'TrailMaking.png'})
 ComponentList.push({name:'Word Recall', iconFileName:'WordRecall.png'})
 ComponentList.push({name:'Matrix Reasoning', iconFileName:'ICARMatrixReasoning.png'})
-ComponentList.push({name:'Cube Copy', iconFileName:'ShapeCopy.png'})
+ComponentList.push({name:'Image Copy', iconFileName:'ShapeCopy.png'})
 ComponentList.push({name:'Likert', iconFileName:'Likert.png'})
 ComponentList.push({name:'MultipleChoice', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Digit Span', iconFileName:'DigitSpan.png'})
@@ -27,7 +27,7 @@ add('Stroop Color/Word', function(){jatos.startComponent(7)});
 add('Trail Making', function(){jatos.startComponent(21)});
 add('Word Recall', function(){jatos.startComponent(10)});
 add('Matrix Reasoning', function(){jatos.startComponent(16)});
-add('Cube Copy', function(){jatos.startComponent(15)});
+add('Image Copy', function(){jatos.startComponent(15)});
 add('Likert',function(){jatos.startComponent(19)});
 add('Digit Span',function(){jatos.startComponent(20)});
 add('Serial Subtraction',function(){jatos.startComponent(22)});
