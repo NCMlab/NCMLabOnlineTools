@@ -139,15 +139,15 @@ var Counter = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
   {
-    var stim = 'Say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'+
-    'As the administrator: Press Next for every correct response made. <p />'+
-    'Number of responses: <div id="FluencyCounter">'+itemCount+'</div>'+
-    'When the timer runs out, press Next again to finish.'
+    console.log(Instructions)
+    var stim = 
+      Instructions.ResponsePage01 + category + Instructions.ResponsePage02 +
+        itemCount + Instructions.ResponsePage03
     return stim
   },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
-  prompt: '',
+  prompt: 'TESTER',
   response_ends_trial: true,
   choices: ['Next'], 
   on_load: function(){ // This inserts a timer on the recall duration

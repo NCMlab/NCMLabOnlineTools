@@ -4,7 +4,7 @@ var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
 
-BatteryList.push({index: 15, 
+BatteryList.push({index: 915, 
 	name:'FaCE Battery', 
 	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
@@ -19,17 +19,17 @@ BatteryList.push({index: 15,
 	Footer: '©GagnonBruno 2016'
 })
 // TESTER
-BatteryList.push({index: 915, 
+BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
-	list: ['Word Recall'],
+	list: ['Fluency'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FaCE_Default_Delayed'],
+	ParameterLists: ['Fluency_FruitsVegetable'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: ['FaCE'],
 	//Instructions: ['Default'],
 	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-	Language:'EN',
+	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })

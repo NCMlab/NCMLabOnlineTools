@@ -86,8 +86,9 @@ EN_Instructions.InstructionsDelayed = [
 
 EN_Instructions.WordPrompt = 'empty'
 EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Try to remember the words from the list, you will be asked to repeat them at the end of the test.</p>'}]
-
+EN_Instructions.title = 'Word Recall'
 EN_Instructions.WordRecallPrompt = 'Which words were recalled?'
+EN_Instructions.IntrusionPrompt = 'Intrusion? (Words not in the list)'
 add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 
 // ====================================================
@@ -116,6 +117,7 @@ FR_Instructions.Instructions01 = [
 
 FR_Instructions.WordPrompt = 'empty'
 FR_Instructions.ThankYouText = [{'page': '<p class="Instructions">Gardez-en mémoire les mots que je vous ai lus, je vais vous demander de les répéter à la fin du test.</p>'}]
-
-FR_Instructions.WordRecallPrompt = 'FR: Which words were recalled?'
+FR_Instructions.title = 'Rappel différé'
+FR_Instructions.WordRecallPrompt = 'Quels mots ont été rappelés?'
+FR_Instructions.IntrusionPrompt = 'Intrusion? (Mots absents de la liste)'
 add('FR_Instructions_FaCE', function(){ Instructions = FR_Instructions});

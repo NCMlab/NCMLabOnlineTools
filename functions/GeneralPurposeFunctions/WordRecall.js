@@ -42,31 +42,31 @@ var ManualRecallA = {
 
       {
         type: 'text',
-        prompt: "Intrusion?", 
+        prompt: function() { return Instructions.IntrusionPrompt },
         placeholder: '',
         name: 'Intrusion01', 
         required: false,
       }, 
       {
         type: 'text',
-        prompt: "Intrusion?", 
+        prompt: function() { return Instructions.IntrusionPrompt },
         placeholder: '',
         name: 'Intrusion02', 
         required: false,
       }, 
       {
         type: 'text',
-        prompt: "Intrusion?", 
+        prompt: function() { return Instructions.IntrusionPrompt },
         placeholder: '',
         name: 'Intrusion03', 
         required: false,
       }, 
     ]
   ],
-  title: 'Word Recall',
+  title: function() { return Instructions.title },//'Word Recall',
   button_label_next: 'Continue',
   button_label_back: 'Previous',
-  button_label_finish: 'Submit',
+  button_label_finish: function() { return LabelNames.Submit },
   show_question_numbers: 'off',
   on_finish: function(data) {
       const RecallList = data.response.ListRecall
