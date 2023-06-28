@@ -1,4 +1,4 @@
-function WordRecall_Scoring(data, ResponseArray) {
+function WordRecall_Scoring(data, ResponseArray, IntrusionList) {
 	console.log(ResponseArray)
 	// Words recalled per block
 	var WordsRecalledPerBlock = Array(ResponseArray[0].length)
@@ -25,6 +25,7 @@ function WordRecall_Scoring(data, ResponseArray) {
 	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlock
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array'] = ResponseArray
+	Results.AllResults['Intrusions'] = IntrusionList
 	console.log(Results)
 	return Results
 }

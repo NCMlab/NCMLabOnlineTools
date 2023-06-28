@@ -38,6 +38,7 @@ var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
 var countInstrDelay = 0
+var IntrusionList = []
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -88,6 +89,7 @@ var UpdateResponseArray = {
   func: function() {
     console.log(WordRecall_parameters.NBlocks)
     var data = jsPsych.data.get().filter({task: 'Recall'}).last()
+    console.log(data)
     console.log(WordListAForRecall.SimpleWordList)
     console.log(data.trials[0].RecallList)
     console.log("Working on Block: " + (BlockCount-1)/2)
@@ -97,7 +99,12 @@ var UpdateResponseArray = {
       currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
       console.log(ResponseArray)
       console.log("Current index: " + currentIndex)
-      ResponseArray[currentIndex][(BlockCount-1)/2] = i
+      if ( currentIndex == -1 )
+      {
+        // Intrusion
+        IntrusionList.push(data.trials[0].RecallList[i])
+      }
+      else { ResponseArray[currentIndex][(BlockCount-1)/2] = i }
     }
     console.log(ResponseArray)
     BlockCount = BlockCount + 1
@@ -398,7 +405,8 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = WordRecall_Scoring(data, ResponseArray)
+
+    Results = WordRecall_Scoring(data, ResponseArray, IntrusionList)
     jsPsych.finishTrial(Results)
   }
 }
