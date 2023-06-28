@@ -218,7 +218,7 @@ var pages = [
 var Orient_parameters = {}
 Orient_parameters.title = FormTitle
 Orient_parameters.pages = pages
-add('EN_OrientationForm_FaCE', function(){ IntakeFormParameters = Orient_parameters });
+add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = Orient_parameters });
 // ============================================
     pages: [
       [

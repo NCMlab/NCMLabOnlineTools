@@ -149,7 +149,7 @@ var Counter = {
   margin_horizontal: GapBetweenButtons,
   prompt: 'TESTER',
   response_ends_trial: true,
-  choices: ['Next'], 
+  choices: function() { return [LabelNames.Next] }, 
   on_load: function(){ // This inserts a timer on the recall duration
     if ( ! HasCounterStarted ) {
       var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds

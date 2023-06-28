@@ -4,7 +4,7 @@ var BatteryList = []
 var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
 
 
-BatteryList.push({index: 915, 
+BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
 	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
@@ -18,28 +18,13 @@ BatteryList.push({index: 915,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
-// TESTER
-BatteryList.push({index: 15, 
-	name:'FaCE Battery', 
-	list: ['Fluency'],
-	//list: ['Intake Form'],
-	description: 'A web-based version of the FaCE',
-	ParameterLists: ['Fluency_FruitsVegetable'],
-	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['FaCE'],
-	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-	Language:'FR',
-	RunAudioTest: true,
-	Footer: '©GagnonBruno 2016'
-})
-// ==========
+
 BatteryList.push({index: 16, 
 	name:'FaCE Battery', 
 	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FR_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default_FR','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	ParameterLists: ['FR_IntakeForm_FaCE','FR_OrientationForm_FaCE','FaCE_Default_FR','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
 	//Instructions: ['Default'],
