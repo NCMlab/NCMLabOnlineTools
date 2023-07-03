@@ -38,13 +38,27 @@
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
     <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
+    <script>
       var IntakeFormParameters = 'empty'
       var parameters = 'empty'
-      var BatteryHtmlID
+      //var BatteryHtmlID
       jatos.onLoad(() => {
         console.log(jatos.studySessionData)
-            BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-            UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+        //    BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+         //   UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
             Language = jatos.studySessionData.Language
             if (typeof BatteryHtmlID === 'undefined') {
               parameters = 'EN_IntakeForm_Generic'
@@ -88,6 +102,9 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      console.log(jatos.studySessionData)
+      console.log(jatos.studySessionData.TaskNameList[2])
+      console.log(jatos.studySessionData.UsageType == 'Battery')
     },
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
@@ -98,10 +115,11 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-        console.log(UsageManagerHtmlID)
-      console.log("GOING HOME")
-      jatos.startComponent(UsageManagerHtmlID);
+      // If this a la carte or the end of teh battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponent(UsageManagerHtmlID) }
+      else // otherwise start the next component in the battery
+      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
     }
   });
   jatos.onLoad(() => {

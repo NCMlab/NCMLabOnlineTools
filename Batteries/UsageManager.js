@@ -82,6 +82,8 @@ var if_node_ALaCarte = {
         data = jsPsych.data.get()
         console.log(data.trials[0].Battery)
         if (Number(data.trials[0].Battery) > 100 ) {
+            JATOSSessionData.UsageType = 'ALaCarte'
+            jatos.studySessionData = JATOSSessionData
             jatos.startComponent(UserChoiceHtmlID)
         }
     }
@@ -93,6 +95,8 @@ var if_node_Battery = {
         data = jsPsych.data.get()
         console.log(data.trials[0].Battery)
         if (Number(data.trials[0].Battery) < 100 ) {
+            JATOSSessionData.UsageType = 'Battery'
+            jatos.studySessionData = JATOSSessionData
            jatos.startComponent(BatteryHtmlID)
         }
     }

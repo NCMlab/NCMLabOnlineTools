@@ -39,11 +39,23 @@
     <script src="config/SerialSubtraction_Setup.js"></script>
     <script src="functions/Scoring/SerialSubtraction_Scoring.js"></script>
     <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
+    <script>
       var SerialSubtract_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
         if (typeof BatteryHtmlID === 'undefined') {
           parameters = 'SerialSubtract_Default'
           InstructionsToUse = 'Default'
@@ -89,10 +101,11 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // If this a la carte or the end of teh battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponent(UsageManagerHtmlID) }
+      else // otherwise start the next component in the battery
+      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
     }
   });
   jatos.onLoad(() => {
