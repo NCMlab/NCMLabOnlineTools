@@ -129,7 +129,7 @@ var pages = [
 // ======= ENGLISH ============
 // FaCE Getting started questions
 var FormTitle = 'FaCE Orientation Form'
-var pages = [
+var EN_pages = [
   [
     {
       type: 'drop-down',
@@ -168,15 +168,15 @@ var pages = [
       }, 
   ]
 ]
-var Orient_parameters = {}
-Orient_parameters.title = FormTitle
-Orient_parameters.pages = pages
-add('EN_OrientationForm_FaCE', function(){ IntakeFormParameters = Orient_parameters });
+var EN_Orient_parameters = {}
+EN_Orient_parameters.title = FormTitle
+EN_Orient_parameters.pages = EN_pages
+add('EN_OrientationForm_FaCE', function(){ IntakeFormParameters = EN_Orient_parameters });
 // ============================================
 // ======= FRENCH ============
 // FaCE Getting started questions
 var FormTitle = 'FaCE Orientation Form'
-var pages = [
+var FR_pages = [
   [
     {
       type: 'drop-down',
@@ -215,10 +215,10 @@ var pages = [
       }, 
   ]
 ]
-var Orient_parameters = {}
-Orient_parameters.title = FormTitle
-Orient_parameters.pages = pages
-add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = Orient_parameters });
+var FR_Orient_parameters = {}
+FR_Orient_parameters.title = FormTitle
+FR_Orient_parameters.pages = FR_pages
+add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = FR_Orient_parameters });
 // ============================================
     pages: [
       [
