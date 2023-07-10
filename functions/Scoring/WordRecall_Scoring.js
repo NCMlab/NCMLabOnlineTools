@@ -26,6 +26,7 @@ function WordRecall_Scoring(data, ResponseArray, IntrusionList) {
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array'] = ResponseArray
 	Results.AllResults['Intrusions'] = IntrusionList
+	Results.AllResults['Word List A'] = WordListA
 	console.log(Results)
 	return Results
 }

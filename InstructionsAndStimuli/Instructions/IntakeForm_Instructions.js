@@ -62,6 +62,72 @@ var pages = [
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
   add('EN_IntakeForm_FaCE', function(){ IntakeFormParameters = EN_IntakeForm_FaCE });
+  
+  // ====== ENGLISH =========
+var FormTitle = 'FaCE Intake Form'
+var pages = [
+      [
+        {
+          type: 'text',
+          prompt: "Participant ID", 
+          placeholder: '00000000',
+          name: 'Participant ID', 
+          required: true,
+        }, 
+        {
+            type: 'drop-down',
+            prompt: "How many years of education have you completed? (completed elementary school: 6 years; completed high school : 5 years; CEGEP and university depending on the program studied)", 
+            name: 'Years of Edu', 
+            options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','other'],
+            required: false,
+          },
+
+        {
+          type: 'drop-down',
+          prompt: "In what MONTH were you born?", 
+          name: 'Month of Birth', 
+          options: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+          required: false,
+        },
+        {
+            type: 'text',
+            prompt: "What is your DAY of birth?", 
+            placeholder: '1',
+            name: 'Day of Birth', 
+            required: false,
+          }, 
+        {
+            type: 'text',
+            prompt: "What is your YEAR of birth?", 
+            placeholder: '1900',
+            name: 'Year of Birth', 
+            required: false,
+          }, 
+          
+        {
+          type: 'multi-choice',
+          prompt: "What is your sex?", 
+          options: ['Female', 'Male', 'Other', 'Do not want to answer'],
+          name: 'Sex', 
+          required: false,
+        }, 
+        
+        {
+          type: 'multi-choice',
+          prompt: "Which hand is your dominant one?", 
+          options: ['Left', 'Right'],
+          name: 'Handedness', 
+          required: false,
+        }, 
+    ]
+  ]
+  
+  var EN_IntakeForm_FaCE = {}
+  EN_IntakeForm_FaCE.title = FormTitle
+  EN_IntakeForm_FaCE.pages = pages
+  add('EN_IntakeForm_FaCETEST', function(){ IntakeFormParameters = EN_IntakeForm_FaCE });
+  
+
   // ============================================
   // ====== FRENCH =========
 var FormTitle = 'FaCE Informations générales '

@@ -580,8 +580,9 @@ timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
 timeline.push(if_Notes)
-timeline.push(if_ThankYou)
 timeline.push(SendData)
+timeline.push(if_ThankYou)
+
 
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)

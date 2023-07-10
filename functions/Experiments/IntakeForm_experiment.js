@@ -16,6 +16,17 @@ var trial = {
   }
 };
 
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    return "Thanks!"},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -28,4 +39,5 @@ var SendData = {
 
 timeline.push(trial)
 timeline.push(SendData)
+//timeline.push(thank_you)
   

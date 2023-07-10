@@ -18,7 +18,20 @@ BatteryList.push({index: 15,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
-
+BatteryList.push({index: 99, 
+	name:'FaCE Battery', 
+	list: ['Intake Form'],
+	//list: ['Intake Form'],
+	description: 'A web-based version of the FaCE',
+	ParameterLists: ['EN_IntakeForm_FaCETEST'],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [''],
+	//Instructions: ['Default'],
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
+})
 BatteryList.push({index: 16, 
 	name:'FaCE Battery', 
 	list: ['Intake Form','Intake Form','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
