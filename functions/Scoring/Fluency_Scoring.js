@@ -9,6 +9,8 @@ function Fluency_Scoring(data) {
 	Results.PrimaryResults['ScoreName'] = 'Number of Words'
 	Results.PrimaryResults['Accuracy'] = Count
 	Results.AllResults = {}
+	Results.AllResults['ScoreName'] = 'Number of Words'
 	Results.AllResults['Accuracy'] = Count
+	Results.AllResults['Words spoken'] = Count
 	return Results
 }

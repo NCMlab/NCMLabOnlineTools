@@ -84,6 +84,14 @@ var MakeResponseArray = {
   }
 }
 
+var MakeDelayedResponseArray = {
+  type: jsPsychCallFunction,
+  func: function() {
+    ResponseArray = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(1).fill(-99))
+    console.log(ResponseArray)
+  }
+}
+
 var UpdateResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
@@ -406,7 +414,7 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
 
-    Results = WordRecall_Scoring(data, ResponseArray, IntrusionList)
+    Results = WordRecall_Scoring(data, ResponseArray, IntrusionList, SimpleWordListA)
     jsPsych.finishTrial(Results)
   }
 }
@@ -485,7 +493,7 @@ var DelayedRecallNo = {
   }
 }    
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, MakeResponseArray, DelayedRecalBlockA],
+  timeline: [MakeWordListA, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
     if ( WordRecall_parameters.DelayedRecallFlag)
     { return true }
@@ -505,7 +513,19 @@ var welcome = {
 
 var thank_you = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return Instructions.ThankYouText[0].page},
+  stimulus: function() {
+    Results = {}
+    Results.AllResults = {}
+    data = jsPsych.data.get()
+    TrialData = data.filter({task:'Recall'})
+    console.log(TrialData.trials)
+    for ( var i = 0; i < TrialData.trials.length; i++ )
+	  {
+		  Results.AllResults['Block'+String(i).padStart(2, '0')] = TrialData.trials[i].userSaid  
+	  }
+    console.log(Results)
+    return Instructions.ThankYouText[0].page
+  },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
@@ -580,10 +600,8 @@ timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
 timeline.push(if_Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
-
-
+timeline.push(SendData)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)

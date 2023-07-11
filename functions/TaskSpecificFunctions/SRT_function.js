@@ -79,12 +79,12 @@ console.log(FullListIndex)
 
 var FindRecalledWords01 = function(tag) {
     console.log(tag)
-    console.log(FullWordList)
+    console.log(WordListAForRecall.FullWordList)
     // record multipel words at once and cycle through the list
     var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     // See if this item is in the word list
     for (var i = 0; i < response.length; i++) {
-    	var IndexOfWordRecalled = FullWordList.indexOf(response[i].toUpperCase())
+    	var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(response[i].toUpperCase())
     	console.log(IndexOfWordRecalled)
 	    if (IndexOfWordRecalled > -1) 
 	    {
@@ -93,10 +93,12 @@ var FindRecalledWords01 = function(tag) {
 	      // remove the item
 	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
 	      //WordListIndex[IndexOfWordRecalled]=-99
-		  WordListIndex[FullListIndex[IndexOfWordRecalled]]=-99
+		  WordListIndex[WordListAForRecall.FullListIndex[IndexOfWordRecalled]]=-99
 	      HeardList.push(response[i])
 	      // record this response in the response array with index starting at 1
-	      ResponseArray[FullListIndex[IndexOfWordRecalled]][BlockCount] = BlockRecallCount+1
+		  console.log("Block Count: "+BlockCount/2)
+	      ResponseArray[WordListAForRecall.FullListIndex[IndexOfWordRecalled]][BlockCount/2] = BlockRecallCount+1
+		  console.log(ResponseArray)
 	      BlockRecallCount++
 	    }
 	    else {

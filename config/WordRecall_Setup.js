@@ -103,10 +103,25 @@ var FaCE_Default_Delayed = {
 	AskForNotes: false,
 
 }
-
+var FaCE_Spoken = {
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	WordList: 'FaCE',
+	FileExtension: '.wav',
+	NBlocks: 2,
+	BListFlag: false,
+	RecallType:'Spoken',
+	RecallDuration: 120, // seconds
+	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: true,
+	ShowInstructions: true,
+	AskForNotes: false,
+}
 
 add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_Immediate});
 add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});
 add('FaCE_Default_FR', function(){ WordRecall_parameters = FaCE_Default_FR});
+add('FaCE_Spoken', function(){ WordRecall_parameters = FaCE_Spoken});

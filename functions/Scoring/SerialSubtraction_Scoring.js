@@ -12,6 +12,7 @@ function SerialSubtraction_Scoring(data) {
 	Results.PrimaryResults['ScoreName'] = "All correct?"
 	Results.PrimaryResults['Accuracy'] = TotalScore
 	Results.AllResults = {}
+	Results.AllResults['ScoreName'] = "All correct?"
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Number Of Responses'] = NResponses
 	Results.AllResults['Number of Correct Responses'] = NCorrect

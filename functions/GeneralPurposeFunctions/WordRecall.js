@@ -1,4 +1,5 @@
 console.log("LOADING WORD RECALL")
+var userSaidWords = []
 // Manual Recall Trial
 var ManualRecallA = {
   type: jsPsychSurvey,
@@ -220,6 +221,8 @@ var SpokenRecallA = {
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
       HeardList = []
+      userSaidWords = []
+      userSaid = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
 
@@ -228,8 +231,12 @@ var SpokenRecallA = {
       const commands01 = {'*search': FindRecalledWords01};
       annyang.addCommands(commands01);
       annyang.start({autorestart: true, continuous: true});
-      
-      //console.log('Started')
+
+      annyang.addCallback('result', function(userSaid) {
+        // userSaid contains multiple possibilities for what was heard
+        userSaidWords = userSaid
+        console.log(userSaidWords)
+      });
     },
     on_finish: function(data){
       data.RecallList = WordListIndex
@@ -237,6 +244,7 @@ var SpokenRecallA = {
       data.RecallCount = BlockRecallCount
       data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
+      data.userSaid = userSaidWords
       BlockCount++
       clearInterval(interval);
       annyang.abort()
@@ -311,4 +319,5 @@ var SpokenRecallB = {
   }, 250)
   }
 }
+
 
