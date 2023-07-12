@@ -97,7 +97,7 @@ var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Word Recall Task.</p>'},
 ]
-FR_Instructions.RecallInstructions = 'Please repeat the entire word list'
+FR_Instructions.RecallInstructions = 'FR: Please repeat the entire word list'
 FR_Instructions.GetReadyInstructions = 'Get ready for the next trial'
 FR_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">Je vais vous lire une liste de mots que vous aurez à retenir. Écoutez-les attentivement. Quand j\’aurai terminé, je veux que vous me redisiez le plus de mots possible dont vous vous rappelez, dans l\’ordre que vous voulez</p>'},	

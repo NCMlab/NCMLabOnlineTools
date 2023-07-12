@@ -92,7 +92,7 @@ var MakeDelayedResponseArray = {
   }
 }
 
-var UpdateResponseArray = {
+var UpdateManualResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(WordRecall_parameters.NBlocks)
@@ -206,6 +206,20 @@ var if_Manual_RecallA = {
     else { return false }
   }
 }
+
+var if_Manual_UpdateRecallA = {
+  timeline: [UpdateManualResponseArray],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Manual' )
+    { return true }
+    else { 
+      BlockCount = BlockCount + 1
+      return false 
+    }
+  }
+}
+
+
 var if_Spoken_RecallB = {
   timeline: [SpokenRecallB],
   conditional_function: function() {
@@ -321,6 +335,7 @@ var Instructions01_loop = {
     { return true} else { return false}
   }
 }
+
 var Instructions02 = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function (){return Instructions.Instructions02[countInstr02].page},
@@ -449,13 +464,13 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+      timeline: [Instructions01_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
       randomize_order: false,
       repetitions: 1
   } 
 
 var AfterFirstBlockLoop = {
-  timeline: [Instructions02_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+  timeline: [Instructions02_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
   randomize_order: false,
   loop_function: function(data) {
     console.log("Block Count (in loop): " + (BlockCount)/2)
@@ -472,13 +487,13 @@ var BlockB = {
 } 
 
 var FinalRecalBlockA = {
-    timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+    timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
     randomize_order: false,
     repetitions: 1,
 } 
 
 var DelayedRecalBlockA = {
-  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA, UpdateResponseArray],
+  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
   randomize_order: false,
   repetitions: 1,
 } 

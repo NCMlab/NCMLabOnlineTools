@@ -212,8 +212,10 @@ var ManualRecallB = {
 // ==========================================================================
 var SpokenRecallA = {
     type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: 'Please, recall the full list.<p><span id="clock">1:00</span></p>',
-    choices: ['Next'], 
+    stimulus: function() {
+      return Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+    },
+    choices: function() {return [LabelNames.Next]}, 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
@@ -234,13 +236,15 @@ var SpokenRecallA = {
 
       annyang.addCallback('result', function(userSaid) {
         // userSaid contains multiple possibilities for what was heard
-        userSaidWords = userSaid
+        userSaidWords += userSaid
+        userSaidWords += ';'
         console.log(userSaidWords)
       });
     },
     on_finish: function(data){
       data.RecallList = WordListIndex
       data.HeardList = HeardList
+      data.IntrusionList = IntrusionList
       data.RecallCount = BlockRecallCount
       data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'

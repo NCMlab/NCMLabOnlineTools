@@ -71,7 +71,7 @@ var SetupBattery = {
 var trial0a = {
   type: jsPsychHtmlButtonResponse,
   stimulus: function(){ return BatteryInstructions},
-  choices: ['Next']
+  choices: function() {return [LabelNames.Next]}, 
 }
 
 var if_node_BatteryInstructions = {
@@ -115,7 +115,7 @@ var trial1 = {
     },
     prompt: '', 
     // This is just a place holder to stop a jsPsych error
-    choices: ['Next'],
+    choices: function() {return [LabelNames.Next]}, 
     response_ends_trial: true,
     on_finish: function() {
       JATOSSessionData = jatos.studySessionData
@@ -131,7 +131,7 @@ var LandingPage = {
   stimulus: function() {
     return BatteryInstructions
   },
-  choices: ['Next'],
+  choices: function() {return [LabelNames.Next]}, 
   response_ends_trial: true,
   on_finish: function() {
     JATOSSessionData = jatos.studySessionData

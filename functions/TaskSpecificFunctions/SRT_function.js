@@ -7,6 +7,7 @@ WordListIndex = []
 //}
 
 var HeardList = []
+var IntrusionList = []
 var BlockRecallCount = 0
 var BlockIntrusionCount = 0
 // used to store the order of the recalled words and used for scoring
@@ -97,13 +98,14 @@ var FindRecalledWords01 = function(tag) {
 	      HeardList.push(response[i])
 	      // record this response in the response array with index starting at 1
 		  console.log("Block Count: "+BlockCount/2)
-	      ResponseArray[WordListAForRecall.FullListIndex[IndexOfWordRecalled]][BlockCount/2] = BlockRecallCount+1
+	      ResponseArray[WordListAForRecall.FullListIndex[IndexOfWordRecalled]][BlockCount/2] = BlockRecallCount
 		  console.log(ResponseArray)
 	      BlockRecallCount++
 	    }
 	    else {
 	    	// The spoken word mut be an intrusion
 	    	HeardList.push(response[i])
+			IntrusionList.push(response[i])
 	    	BlockIntrusionCount++
 	    }
   }
