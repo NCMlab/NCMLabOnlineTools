@@ -232,6 +232,7 @@ var SpokenRecallA = {
       
       const commands01 = {'*search': FindRecalledWords01};
       annyang.addCommands(commands01);
+      annyang.setLanguage(LANG)
       annyang.start({autorestart: true, continuous: true});
 
       annyang.addCallback('result', function(userSaid) {

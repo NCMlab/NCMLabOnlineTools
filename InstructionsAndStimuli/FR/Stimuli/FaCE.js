@@ -1,9 +1,9 @@
 // Hopkins Verbal Learning Word List
 
 var WordListA = [
-	{'Word':"Jambe"},		    // 0
+	{'Word':'Jambe'},		    // 0
 	{'Word':'Laine'}, 	    // 1
-	{'Word':'Chateau'}, 		// 2
+	{'Word':'Château'}, 		// 2
 	{'Word':'Tulipe'},		// 3
 	{'Word':'Bleu'},	    // 4
 	{'Word':'Cheval'},		// 5
@@ -11,6 +11,8 @@ var WordListA = [
 	]
 
 var AlternatePronunciationsWordListA = [
+	{'Word':'JAMBES','index':0},
+	{'Word':'CHATEAU','index':2},
 	]
 
 var WordListB = [
