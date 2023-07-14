@@ -1,8 +1,5 @@
 
 var BatteryList = []
-// This is not used yet
-var BatteryDescription = 'This is a description of the battery of tests that will be taken.'
-
 
 BatteryList.push({index: 15, 
 	name:'FaCE Battery', 
@@ -47,26 +44,7 @@ BatteryList.push({index: 16,
 	Footer: '©GagnonBruno 2016'
 })
 
-BatteryList.push({index: 2, 
-	name:'Battery002', 
-	list: ['Stroop Word','Stroop Word'], 
-	description: BatteryDescription,
-	ParameterLists: ['Stroop_Default','Stroop_Default']})
-
-BatteryList.push({index: 3, 
-	name:'List of Questionnaires', 
-	list: ['Likert','Likert','Likert','Likert'], 
-	description: BatteryDescription,
-	ParameterLists: ['panas','cfi','cfs','stai']})
-
-BatteryList.push({index: 1, 
-	name:'Barbados', 
-	list: ['Trail Making', 'Trail Making', 'Digit Span', 'Digit Span', 'Line Bisection', 'Clock Drawing'], 
-	description: BatteryDescription,
-	ParameterLists: ['TrailMakingA_Default','TrailMakingB_Default','DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors','LineBisection_001','ClockDrawing_001'],
-	BatteryInstructions:"This is the NCMLab Evaluation"
-})
-// ========================================================================
+/* // ========================================================================
 BatteryList.push({index: 101, 
 	name:'Barbados', 
 	list: [
@@ -80,7 +58,7 @@ BatteryList.push({index: 101,
         'Matrix Reasoning',
         'Spatial DMS'
 	], 
-	description: BatteryDescription,
+	description: 'Barbados',
 	ParameterLists: [
         '',
         'TrailMakingA_003','TrailMakingB_003',
@@ -142,113 +120,32 @@ BatteryList.push({index: 102,
 		'RAVLT, Delayed',
 	],
     BatteryInstructions:"Experimental Protocol",
-	Language:'EN'
-})
-// ========================================================================
-BatteryList.push({index: 202, 
-	name:'Chemo Brain', 
-	list: [
-        'Questionnaire',
-        'Clock Drawing','Image Copy',
-        'Trail Making', 'Trail Making', 
-	    'Digit Span', 'Digit Span',	
-        'Word Recall',
-        'Stroop Color','Stroop Word','Stroop Color/Word',
-        'Line Bisection','Cancellation Task', 
-        'Word Recall'
-	], 
-	description: 'A Pilot Study Assessing Cognitive Functioning of Patients being treated for Thoracic Tumors',
-	ParameterLists: [
-        '',
-        'ClockDrawing_Default', 'CubeCopy_Default',
-        'TrailMakingA_Default','TrailMakingB_Default',
-		'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
-		'RAVLT_Manual_Immediate',
-		'Stroop_Victoria','Stroop_Victoria','Stroop_Victoria',
-		'LineBisection_001','Cancellation_001',
-        'RAVLT_Manual_Delayed'
-	],
-	ButtonName: [
-        "Formulaire d'admission",
-        "Dessin d'Horloge",'Copie de Cube',
-        'Sentiers A','Sentiers B',
-		'MC Endroit','MC Inversé',
-		'RAVLT, Immediate',
-		'Color','Word','Color/Word',
-        'Line Bisect','Cancellation',
-		'RAVLT, Delayed',
-	],
-    BatteryInstructions:"Chemo Brain Fog",
 	Language:'FR'
-})
-
-
-// ========================================================================
+}) */
 // ========================================================================
 
-BatteryList.push({index: 105, 
+
+BatteryList.push({index: 101, 
 	name:'FaCE Battery', 
-	list: [
-		'Word Recall',
+	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
+	//list: ['Intake Form'],
+	description: 'A web-based version of the FaCE',
+	ParameterLists: ['EN_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
+	//Instructions: ['Default'],
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	ButtonName: [
+        'Intake Form',
+        'Orientation',
+		'Immediate Recall',
 		'Trail Making',
 		'Cube Copy',
 		'Serial Subtraction',
-		'Fluency',
-		'Word Recall'
-	], 
-	description: '',
-	ParameterLists: 
-		['FaCE_Default',
-		'TrailMaking_FaCE',
-		'CubeCopy_Default',
-		'SerialSubtract_FaCE',
-		'Fluency_FruitsVegetable',
-		'FaCE_Default_Delayed'],
-	ButtonName: [
-		'Immediate Memory',
-		'Trail Making',
-		'Cube Copy',
-		'Attention',
-		'Fluency',
-		'Word Recall'
+		'Fluidity',
+		'Delayed Recall'
 	],
-	BatteryInstructions:"",
 	Language:'EN',
-	Footer: '©GagnonBruno2016'
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
 })
-
-// ========================================================================
-
-BatteryList.push({index: 205, 
-	name:'FaCE Battery', 
-	list: [
-		'Word Recall',
-		'Trail Making',
-		'Cube Copy',
-		'Serial Subtraction',
-		'Fluency',
-		'Word Recall'
-	], 
-	description: '',
-	ParameterLists: 
-		['FaCE_Default_FR',
-		'TrailMaking_FaCE',
-		'CubeCopy_Default',
-		'SerialSubtract_FaCE',
-		'Fluency_FruitsVegetable',
-		'FaCE_Default_Delayed'],
-	ButtonName: [
-		'Mémoire immédiate ',
-		'Sentiers',
-		'Copie de Cube',
-		'Attention',
-		'Language',
-		'Rappel différé'
-	],
-	BatteryInstructions:"",
-	Language:'FR',
-	Footer: '©GagnonBruno2016'
-})
-
-
-

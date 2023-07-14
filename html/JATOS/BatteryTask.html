@@ -81,7 +81,6 @@
     </script>
     <script src="Batteries/Batteries.js"></script>
     <script src="Batteries/BatteryManager.js"></script>
-    
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
   
   <script>
@@ -118,6 +117,7 @@ var jsPsych = initJsPsych({
   <script>
     jatos.onLoad(() => {
             // update the header button labels
+            console.log(document.getElementById('header-home-button'))
             document.getElementById('header-home-button').textContent = LabelNames.Home;
             document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
             document.getElementById('header-restart-button').textContent = LabelNames.Restart;
