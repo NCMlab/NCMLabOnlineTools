@@ -8,7 +8,7 @@
       </script>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Attention Network Test">
+    <meta name="description" content="NCMLab">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +20,13 @@
     <script> 
         // use jquery to load up the header button html content 
         // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        $(function(){
-          $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-        });
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+        $(function(){$("#footerButtons").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
   </head>    
   <body>
-    
+    <div id="headerButtons"></div>
+    <div id="footerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -36,38 +36,36 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USERCHOICE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
+      let url_running = window.location.href;
+      let position = url_running.search("localhost");
+      var script = document.createElement('script');
+      if ( position >= 0) {
+        console.log("Loading Local")
+        script.src = 'Batteries/Local_ComponentList.js';
       } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
+        console.log("Loading Remote")
+        script.src = 'Batteries/Remote_ComponentList.js';
       }
+      document.body.appendChild(script);
     </script>
     <script>
       jatos.onLoad(() => {
-        console.log("Hello World in in MAIN SCRIPT")
-        console.log(jatos.studySessionData)
-        LANG = jatos.studySessionData.Language
-        console.log(LANG)
-        //load general label names
-        pseudoSwitch(LANG+'_LabelNames')
-        console.log(LabelNames)
-        console.log(document.getElementById('header-home-button'))
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+          console.log(jatos.studySessionData)
+          var BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+          var UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+          var Language = jatos.studySessionData.Language
+          // load the language specific instructions
+          LANG = jatos.studySessionData.Language
+          console.log(LANG)
+          
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
+          // The setup file decides which instruction set to provide. 
+          // In the setup file the decision is stated as a string which
+          // is evaluated here
+
       })
-    </script>
-
-
-   
+    </script>   
     <script src="Batteries/Batteries.js"></script>
     <script src="Batteries/UserChoiceManager.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
@@ -102,5 +100,23 @@
       jsPsych.run(timeline);
     });
   </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => {
+              // update the header button labels
+              console.log(document.getElementById('header-home-button'))
+              document.getElementById('header-home-button').textContent = LabelNames.Home;
+              document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+              document.getElementById('header-end-button').textContent = LabelNames.End;
+              document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+              document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
+              document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
+
+              console.log(jatos.studySessionData.FooterText)
+              document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+              
+      })
+    </script>
+  
   </body>
 </html>

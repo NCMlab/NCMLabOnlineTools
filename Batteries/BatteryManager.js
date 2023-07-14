@@ -23,8 +23,7 @@ var trial0 = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "",
   choices: "",
-  trial_duration: 10
-  
+  trial_duration: 10,  
 }
 var SetupBattery = {
   type: jsPsychCallFunction,
@@ -64,9 +63,7 @@ var SetupBattery = {
       else {DisplayBatteryInstructionsFlag = false}
       console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
       jatos.studySessionData = JATOSSessionData
-      console.log(jatos.batchSession.getAll())
-      console.log(jatos)
-  }
+  },
 }
 var trial0a = {
   type: jsPsychHtmlButtonResponse,
@@ -142,12 +139,13 @@ var LandingPage = {
   }
 }
 
-  var trial2 = {
-    type: jsPsychCallFunction,
-    func: function() {
-      pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
-    }
+
+var trial2 = {
+  type: jsPsychCallFunction,
+  func: function() {
+    pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
   }
+}
 
   var CheckFirstTimeThrough = {
     timeline: [LandingPage],
@@ -172,13 +170,14 @@ var LandingPage = {
       else { return false }
     }
   }
-  var CheckForBatteryCompletion = {
+
+   var CheckForBatteryCompletion = {
     type: jsPsychCallFunction,
-    func: function() {
+    func: function(data) {
       if ( JATOSSessionData.CurrentIndex >= JATOSSessionData.TaskNameList.length )
       {
           console.log("FINISHED")
-          jatos.endStudy()
+          jatos.endStudy(data)
       }
     }
   }

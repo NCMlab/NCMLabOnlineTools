@@ -12,7 +12,8 @@ var trial = {
   },
   show_question_numbers: 'onPage',
   on_finish: function(data) {
-    data.trial = "Intake Form"
+    data.trial = "Questionnaire"
+    data.title = IntakeFormParameters.title
   }
 };
 
