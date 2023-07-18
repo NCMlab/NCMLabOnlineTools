@@ -3,7 +3,7 @@ var fdsTotalTrials = 3;
 var EN_Instructions = {}
 
 EN_Instructions.WelcomeText = [
-	{'page': '<p class="Instructions">Welcome to the <b>Digit Span Task.</b></p>'}
+	{'page': '<p class="Instructions">Welcome to the Digit Span Task.</p>'}
 ]
 EN_Instructions.ForwardAudioInstructions = [ 
 		{'page': '<p class="Instructions">On each trial, you will hear a sequence of digits and be asked to enter them back in the <b>SAME</b> order in which they were heard.</p>'},
@@ -33,7 +33,7 @@ EN_Instructions.NotesForResultsPage = "The digit span task presented a list of n
 
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
-	{'page': '<p class="Instructions">C\'est la tâche de <b>Mémoire des Chiffres</b></p>'}
+	{'page': '<p class="Instructions">C\'est la tâche de Mémoire des Chiffres</p>'}
 ]
 
 FR_Instructions.ForwardAudioInstructions = [ 
@@ -62,6 +62,6 @@ FR_Instructions.TrialNumber = 'Essai numéro'
 FR_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_fr_FR-Neural2-A_Speed70/'
 FR_Instructions.NotesForResultsPage = "FR: The digit span task presented a list of number sequences to the participant who needed to repeat those sequences. The <b>Load List</b> is the length of each number sequence presented. The <b> Accuracy List refers to which sequencers were repeated correctlt, 1 = correct, 0 = incorrect. The overall score for this test is the <b>Threshold</b>. This calculation depends on the <b>Scoring Type</b> used. For <b> numberErrors </b> the threshold is highest sequence length correctly repeated."
 
-add('EN_DigitSpan_Instructions', function(){ DigitSpan_Instructions = EN_Instructions});
-add('FR_DigitSpan_Instructions', function(){ DigitSpan_Instructions = FR_Instructions});
+add('EN_DigitSpan_Instructions_Default', function(){ DigitSpan_Instructions = EN_Instructions});
+add('FR_DigitSpan_Instructions_Default', function(){ DigitSpan_Instructions = FR_Instructions});
 

@@ -1,5 +1,5 @@
-function StroopSimple_Scoring(data, Notes) {
-    
+function StroopSimple_Scoring(data) {
+    Notes = data.filter({trial: 'Notes'})
 	Results = {}
     Results.PrimaryResults = {}
     Results.AllResults = {}
@@ -75,7 +75,10 @@ function StroopSimple_Scoring(data, Notes) {
     Results.AllResults["Accuracy"] = accuracy
     Results.AllResults['Response_Cor'] = rt_Correct
     Results.AllResults['Response_Incor'] = rt_Incorrect
-    console.log(Notes)
-    Results.AllResults['Notes'] = Notes
+
+    if ( Notes.trials.length > 0 )
+        { Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+    else { Results.AllResults['Notes'] = '' }
+
     return Results
 }

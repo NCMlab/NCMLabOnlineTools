@@ -7,17 +7,16 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: ICAR Matrix Reasoning Task</title>
+    <title>NCMLab: Matrix Reasoning Task</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-    $(function(){
-      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-    });
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
   </head>    
   <body>
@@ -39,23 +38,44 @@
     <script> 
       var BaseFolderName = 'assets/Images/MatrixReasoning/'
     </script>
-    <script src="InstructionsAndStimuli/EN/Instructions/MatrixReasoning_Instructions.js"></script>
+
+    <script src="InstructionsAndStimuli/Instructions/MatrixReasoning_Instructions.js"></script>
     <script src="config/MatrixReasoning_Setup.js"></script>
+    <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
 
     <script>
       var MatrixReasoning_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
         console.log(jatos.studySessionData)
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Default'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        Language = jatos.studySessionData.Language
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'MatrixReasoning_ICAR'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
+
         pseudoSwitch(parameters)
         console.log(MatrixReasoning_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_MatrixReasoning_Instructions')
+        pseudoSwitch(LANG+'_MatrixReasoning_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(LabelNames)

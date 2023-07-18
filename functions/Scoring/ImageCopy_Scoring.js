@@ -1,5 +1,5 @@
 function ImageCopy_Scoring(data) {
-	//Notes = data.filter({trial: 'Notes'})
+	Notes = data.filter({trial: 'Notes'})
 	trialData = data.filter({trial: 'Image Copy'}).trials[0]
 	Results = {}
 	Results.PrimaryResults = {}
@@ -12,6 +12,10 @@ function ImageCopy_Scoring(data) {
 	//var smallPNG = drawImage(trialData.png, 0, 0, 100, 100)
 	Results.AllResults['Image'] = trialData.png
 	Results.AllResults['Response Time (ms)'] = trialData.rt
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	//Results.AllResults['Notes'] = Notes.trials[0].response.Notes
 	return Results
 }

@@ -171,7 +171,7 @@ var SendData = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
       console.log(Instructions)
-      return Instructions.Instructions[0].page},
+      return Instructions.WelcomeText[0].page},
     post_trial_gap: 0,
     margin_horizontal: GapBetweenButtons,
     prompt: 'PROMPT',
@@ -230,8 +230,8 @@ var if_Instructions = {
 }
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
+timeline.push(if_Welcome)
 timeline.push(if_Instructions)
 timeline.push(WaitTime)
 timeline.push(loop_node)

@@ -17,12 +17,12 @@ BatteryList.push({index: 15,
 })
 BatteryList.push({index: 99, 
 	name:'FaCE Battery', 
-	list: ['Questionnaire'],
+	list: ['Word Recall'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
-	ParameterLists: ['EN_IntakeForm_FaCE'],
+	ParameterLists: ['FaCE_Spoken'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: [''],
+	Instructions: ['FaCE'],
 	//Instructions: ['Default'],
 	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
 	Language:'EN',
@@ -44,46 +44,102 @@ BatteryList.push({index: 16,
 	Footer: '©GagnonBruno 2016'
 })
 
-/* // ========================================================================
-BatteryList.push({index: 101, 
-	name:'Barbados', 
+// ========================================================================
+BatteryList.push({index: 202, 
+	name:'NCM Lab Demonstration', 
 	list: [
-        'Intake Form',
-        'Trail Making', 'Trail Making', 
-        'Digit Span', 'Digit Span', 
-        'Verbal DMS','Line Bisection', 'Clock Drawing',
-        'Cube Copy','Word Recall',
-        'Stroop Color','Stroop Word','Stroop Color/Word',
-        'Cancellation Task','Word Recall', 
-        'Matrix Reasoning',
-        'Spatial DMS'
+        'Questionnaire', //1 
+        'Stroop Color',
+		'Stroop Word',
+		'Stroop Color/Word',
+		'Word Recall',
+		'Word Recall', //6
+		'Cancellation Task',
+		'Image Copy',
+		'Clock Drawing',
+		'Matrix Reasoning', //10 
+		'Digit Span',
+		'Digit Span', 
+		'Trail Making',
+		'Trail Making', 
+        'Serial Subtraction',//15
+		'Fluency',
+		'Line Bisection',
+        'Word Recall', 
+		'Verbal DMS',
+        'Spatial DMS' //20
 	], 
-	description: 'Barbados',
+	Instructions: ['', //1
+		'Default', 
+		'Default', 
+		'Default',	
+		'Default', 
+		'Default',  //6
+		'Default',
+		'Default', 
+		'Default',
+		'Default', //10
+		'Default', 
+		'Default',
+		'Default', 
+		'Default',
+		'Default', //15
+		'Default', 
+		'Default',
+		'Default', 
+		'Default',
+		'Default' //20
+	],
+	description: '',
 	ParameterLists: [
-        '',
-        'TrailMakingA_003','TrailMakingB_003',
-        'DigitSpan_Audio_Forward_TwoErrors','DigitSpan_Audio_Backward_TwoErrors',
-        'vDMS_Adaptive','LineBisection_001','ClockDrawing_001',
-        'CubeCopy_Default','RAVLT_Manual_Immediate',
-        'Stroop_Golden','Stroop_Golden','Stroop_Golden',
-        'Cancellation_001','RAVLT_Manual_Delayed',
-        'MatrixReasoning_ICAR',
-        'SpatialDMS_Adaptive'
+        'EN_IntakeForm_Generic', //1
+        'Stroop_Default',
+		'Stroop_Default',
+		'Stroop_Default',
+        'RAVLT_Manual_Immediate',
+		'RAVLT_Spoken_Immediate',//6
+		'Cancellation_001',
+		'ImageCopy_Default',
+		'ClockDrawing_001',
+		'MatrixReasoning_ICAR',//10
+		'DigitSpan_Audio_Forward_TwoErrors',
+		'DigitSpan_Audio_Backward_TwoErrors',
+        'TrailMakingA_003',
+		'TrailMakingB_003',
+		'SerialSubtract_Default',//15
+		'Fluency_Animals',
+		'LineBisection_001',
+        'RAVLT_Manual_Delayed',
+        'vDMS_Adaptive',
+		'SpatialDMS_Adaptive'//20
 	],
 	ButtonName: [
-        'Intake Form*',
-        'Trails A*','Trails B*',
-        'DS, Forward*','DS, Backward*',
-        'Verbal DMS*','Line Bisect*','Clock Draw*',
-        'Cube Copy','RAVLT, Immediate',
-        'Color','Word','Color/Word',
-        'Cancellation', 'RAVLT, Delay',
-        'ICAR',
-        'Spatial DMS'
+        'Intake Form', //1
+        'Color',
+		'Word',
+		'Color/Word',
+		'Recall, Imm (Manual)',
+		'Recall, Imm (Spoken)',//6
+		'Cancellation', 
+		'Cube Copy',
+		'Clock Draw',
+		'ICAR',//10
+		'DS, Forward',
+		'DS, Backward',
+		'Trails A',
+		'Trails B',
+        'Subtract',//15
+		'Fluency',
+        'Line Bisect',
+		'Word Recall, Delay',
+		'Verbal DMS',
+        'Spatial DMS'//20
 	],
     BatteryInstructions:"This is the NCMLab Evaluation",
-	Language:'EN'
+	Language:'EN',
+	Footer: "NCM Lab"
 })
+/*
 // ========================================================================
 // ========================================================================
 BatteryList.push({index: 102, 

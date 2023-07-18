@@ -248,10 +248,10 @@ var TrailMakingA_003 = {
     PracticeCircles: SampleCirclesA,
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
-    ShowInstructions: false,
+    ShowInstructions: true,
     ShowWelcome: true,
-	ShowThankYou: false,
-    AskForNotes: false,
+	ShowThankYou: true,
+    AskForNotes: true,
 }
 
 var TrailMakingB_003 = {
@@ -264,10 +264,10 @@ var TrailMakingB_003 = {
     PracticeCircles: SampleCirclesB,
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
-    ShowInstructions: false,
+    ShowInstructions: true,
     ShowWelcome: true,
-	ShowThankYou: false,
-    AskForNotes: false,
+	ShowThankYou: true,
+    AskForNotes: true,
 }
 
 var TrailMaking_FaCE = {

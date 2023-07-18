@@ -12,7 +12,7 @@ EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Spatial Delayed Match to Sample  Task.</p>'},
 ]
-add('EN_SpatialDMS_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_SpatialDMS_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}
@@ -29,4 +29,4 @@ FR_Instructions.ThankYouText = [{'page':'FR: Thank you. Press any key to continu
 FR_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">FR: Welcome to the Spatial Delayed Match to Sample  Task.</p>'},
 ]
-add('FR_SpatialDMS_Instructions', function(){ Instructions = FR_Instructions});
+add('FR_SpatialDMS_Instructions_Default', function(){ Instructions = FR_Instructions});

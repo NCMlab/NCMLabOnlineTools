@@ -1,4 +1,5 @@
 function SerialSubtraction_Scoring(data) {
+	Notes = data.filter({trial: 'Notes'})
 	console.log(data)
 	var TotalScore
 	temp = data.filter({trial: 'task'})
@@ -17,5 +18,9 @@ function SerialSubtraction_Scoring(data) {
 	Results.AllResults['Number Of Responses'] = NResponses
 	Results.AllResults['Number of Correct Responses'] = NCorrect
 	Results.AllResults['Number of Incorrect Responses'] = NInc
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	return Results
 }

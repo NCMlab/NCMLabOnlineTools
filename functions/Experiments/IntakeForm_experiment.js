@@ -7,7 +7,8 @@ var trial = {
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: function() {
-    console.log(LabelNames)
+    
+    console.log(IntakeFormParameters)
     return LabelNames.Submit
   },
   show_question_numbers: 'onPage',

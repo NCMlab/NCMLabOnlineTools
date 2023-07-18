@@ -150,7 +150,7 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	Parameters: Parameters,
 	ShowWelcome: true,
 	ShowThankYou: true,
-	ShowInstructions: false, 
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_TwoErrors ==
@@ -167,8 +167,8 @@ var DigitSpan_Audio_Backward_TwoErrors = {
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: true,
-	ShowThankYou: false,
-	ShowInstructions: false, 
+	ShowThankYou: true,
+	ShowInstructions: true, 
 }
 // ===================================================
 // == DigitSpan_Visual_Forward_Fixed01_Load05 ==

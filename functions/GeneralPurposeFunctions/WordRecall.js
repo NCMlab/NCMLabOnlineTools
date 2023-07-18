@@ -273,6 +273,18 @@ var SpokenRecallA = {
     }
   }
 
+var IntializeMicrophone = {
+    type: jsPsychInitializeMicrophone
+};
+
+var XXXSpokenRecallA = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: `
+    <p style="font-size:48px; color:red;">GREEN</p>
+    <p>Speak the color of the ink.</p>`,
+    recording_duration: 3500,
+};
+
 // ==========================================================================
 var SpokenRecallB = {
   type: jsPsychHtmlButtonResponseTouchscreen,

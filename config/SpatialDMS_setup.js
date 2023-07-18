@@ -65,8 +65,8 @@ RetOnTime = 500
 
 SpatialDMS_Adaptive = {
 	ShowWelcome: true,
-	ShowThankYou: false,
-	ShowInstructions: false
+	ShowThankYou: true,
+	ShowInstructions: true
 }
 
 add('SpatialDMS_Adaptive', function(){ SpatialDMS_parameters = SpatialDMS_Adaptive});

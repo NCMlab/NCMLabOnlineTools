@@ -89,9 +89,9 @@ var Notes = {
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var trialData = jsPsych.data.get().filter({task:'Trial'})
-    console.log(trialData.trials[0])
-    Results = SingleLetterCancellation_Scoring(trialData.trials[0]) 
+    var data = jsPsych.data.get()
+    
+    Results = SingleLetterCancellation_Scoring(data) 
     jsPsych.finishTrial(Results)
   },
 }    

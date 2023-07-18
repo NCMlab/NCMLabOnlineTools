@@ -13,11 +13,10 @@
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-    $(function(){
-      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-    });
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
 
   </head>    
@@ -33,7 +32,7 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/Stroop_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/Stroop_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Stimuli/Stroop.js"></script>
     <script src="config/Stroop_Setup.js"></script>
 
@@ -60,11 +59,6 @@
         pseudoSwitch(LANG+'_LabelNames')
         console.log(LabelNames)
         console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
         // display the timer or not based on the showTimer flag
         if ( Stroop_parameters.AllowedTime > 0 ) 
             { console.log("TURNING TIMER ON!")
@@ -124,5 +118,15 @@ var jsPsych = initJsPsych({
       }); */
       jsPsych.run(timeline);
     });
+  </script>
+  <div id="footerText"></div>
+  <script>
+    jatos.onLoad(() => {
+    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+    document.getElementById('header-end-button').textContent = LabelNames.End;
+    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+    })
   </script>
 </html>

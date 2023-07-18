@@ -2,8 +2,8 @@
 
 var ClockDrawing_001 = {
 	ShowWelcome: true,
-	ShowThankYou: false,
-	ShowInstructions: false, 
+	ShowThankYou: true,
+	ShowInstructions: true, 
 }
 var ClockDrawing_CBprotocol = {
 	ShowWelcome: true,

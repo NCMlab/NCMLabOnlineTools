@@ -16,7 +16,7 @@ EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Verbal Delayed Match to Sample  Task.</p>'},
 ]
 
-add('EN_vDMS_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_vDMS_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}
@@ -37,4 +37,4 @@ FR_Instructions.ThankYouText = [{'page':'FR: Thank you. Press any key to continu
 FR_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">FR: Welcome to the Verbal Delayed Match to Sample  Task.</p>'},
 ]
-add('FR_vDMS_Instructions', function(){ Instructions = FR_Instructions});
+add('FR_vDMS_Instructions_Default', function(){ Instructions = FR_Instructions});

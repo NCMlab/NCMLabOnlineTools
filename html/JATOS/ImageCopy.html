@@ -58,10 +58,12 @@
       var parameters = 'empty'
       jatos.onLoad(() => {
         if (typeof BatteryHtmlID === 'undefined') {
+          console.log("UNDEFINED BATTERY!")
           parameters = 'ImageCopy_Default'
-          InstructionsToUse = 'Default'
+          InstructionsToUse = 'EN_ImageCopy_Instructions_Default'
         }
         else {
+          console.log("+++DEFINED BATTERY!+++")
           parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }

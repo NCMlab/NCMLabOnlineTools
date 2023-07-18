@@ -291,7 +291,7 @@ var DMSLetterMRIList002 = [
 
 vDMS_Adaptive = {
 	ShowWelcome: true,
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true,
 }
 

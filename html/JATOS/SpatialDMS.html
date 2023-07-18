@@ -13,11 +13,10 @@
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-    $(function(){
-      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-    });
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
   </head>    
   <body>
@@ -49,42 +48,53 @@
       </style>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/SpatialDMS_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
 
     <script src="config/SpatialDMS_setup.js"></script>
-    
+    <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
     <script>
       var SpatialDMS_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
         console.log(jatos.studySessionData)
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'SpatialDMS_Adaptive'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        Language = jatos.studySessionData.Language
+            if (typeof BatteryHtmlID === 'undefined') {
+              parameters = 'SpatialDMS_Adaptive'
+              InstructionsToUse = 'Default'
+            }
+            else {
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+            }
         pseudoSwitch(parameters)
         console.log(SpatialDMS_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_SpatialDMS_Instructions')
+        pseudoSwitch(LANG+'_SpatialDMS_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(LabelNames)
-        console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       })
     </script> 
     <script src="functions/Experiments/SpatialDMS_experiment.js"></script>
     <script src="functions/Scoring/DMS_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  </body>
+  
   <script>
 var setup = []
 var TrialCount = 1;
@@ -128,4 +138,15 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => {
+      document.getElementById('header-home-button').textContent = LabelNames.Home;
+      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      })
+    </script>
+  </body>
 </html>

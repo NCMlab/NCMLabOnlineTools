@@ -9,6 +9,7 @@ Trial 5 minus score of the delayed recall).
 
 function RAVLT_Scoring(data, ResponseArray) {
 	console.log(ResponseArray)
+	Notes = data.filter({trial: 'Notes'})
 
 
 	RecallArray = CalcTotalRecallPerBlock(ResponseArray)
@@ -38,5 +39,9 @@ function RAVLT_Scoring(data, ResponseArray) {
 	data.AllResults['Trial1_Recall'] = Trial5_Recall
 	data.AllResults['Distraction_Recall'] = Distraction_Recall
 	data.AllResults['PostDistraction_Recall'] = PostDistraction_Recall	
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	return data
 }

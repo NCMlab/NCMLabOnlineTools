@@ -286,7 +286,8 @@ FR_Orient_parameters.title = FormTitle
 FR_Orient_parameters.pages = FR_pages
 add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = FR_Orient_parameters });
 // ============================================
-    pages: [
+var FormTitle = 'Intake Form'
+var pages = [
       [
         {
           type: 'text',
@@ -352,4 +353,7 @@ add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = FR_Orient_para
           }*/
       ]
     ]
-  add('EN_IntakeForm_Generic', function(){ IntakeFormParameters = pages });
+    var EN_IntakeForm_Generic = {}
+    EN_IntakeForm_Generic.title = FormTitle
+    EN_IntakeForm_Generic.pages = pages  
+  add('EN_IntakeForm_Generic', function(){ IntakeFormParameters = EN_IntakeForm_Generic });

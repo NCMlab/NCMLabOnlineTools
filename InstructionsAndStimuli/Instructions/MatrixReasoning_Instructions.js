@@ -12,7 +12,7 @@ EN_Instructions.WelcomeText = [
   {'page': '<p class="Instructions">Welcome to the Matrix Reasoning Task.</p>'},
 ]
 
-add('EN_MatrixReasoning_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_MatrixReasoning_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}
@@ -29,4 +29,4 @@ FR_Instructions.WelcomeText = [
 {'page': '<p class="Instructions">FR: Welcome to the Matrix Reasoning Task.</p>'},
 ]
 
-add('FR_MatrixReasoning_Instructions', function(){ Instructions = FR_Instructions});
+add('FR_MatrixReasoning_Instructions_Default', function(){ Instructions = FR_Instructions});

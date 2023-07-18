@@ -257,6 +257,7 @@ timeline.push(if_Practice)
 //timeline.push(taskPrompt)
 timeline.push(trials)
 
-timeline.push(if_ThankYou)
+
 timeline.push(if_Notes)
 timeline.push(SendData)
+timeline.push(if_ThankYou)

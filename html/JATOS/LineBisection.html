@@ -13,11 +13,10 @@
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
  <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-    $(function(){
-      $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html"); 
-    });
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
 
   </head>    
@@ -36,7 +35,7 @@
     <script src="jspsych_addons/plugin-sketchpad-linebisection.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Instructions/LineBisection_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/LineBisection_Instructions.js"></script>
     
     <script src="config/LineBisection_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
@@ -47,22 +46,23 @@
         console.log(jatos.studySessionData)
         BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
         UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'LineBisection_Default'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        if (typeof BatteryHtmlID === 'undefined') {
+          parameters = 'LineBisection_Default'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)
         console.log(LineBisection_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_LineBisection_Instructions')
+        pseudoSwitch(LANG+'_LineBisection_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(LabelNames)
         console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       })
     </script> 
     <script src="functions/Experiments/LineBisection_experiment.js"></script>
@@ -112,4 +112,14 @@
         jsPsych.run(timeline);
         });
   </script>
+      <div id="footerText"></div>
+      <script>
+        jatos.onLoad(() => {
+        document.getElementById('header-home-button').textContent = LabelNames.Home;
+        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+        document.getElementById('header-end-button').textContent = LabelNames.End;
+        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+        document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+        })
+      </script>
 </html>

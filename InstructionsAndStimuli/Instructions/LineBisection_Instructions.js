@@ -8,7 +8,7 @@ EN_Instructions.InstructionText = [
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 // The following notes show up on teh results page
 EN_Instructions.NotesForResultsPage = 'The scores on this test range from -50 to +50. The negative numbers represent a bias to the left. Positive numbers reflect a right hand bias.'
-add('EN_LineBisection_Instructions', function(){ Instructions = EN_Instructions});
+add('EN_LineBisection_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}
@@ -21,4 +21,4 @@ FR_Instructions.InstructionText = [
 FR_Instructions.ThankYouText = [{'page':'FR: Thank you.'}]
 // The following notes show up on teh results page
 FR_Instructions.NotesForResultsPage = 'FR: The scores on this test range from -50 to +50. The negative numbers represent a bias to the left. Positive numbers reflect a right hand bias.'
-add('FR_LineBisection_Instructions', function(){ Instructions = FR_Instructions});
+add('FR_LineBisection_Instructions_Default', function(){ Instructions = FR_Instructions});

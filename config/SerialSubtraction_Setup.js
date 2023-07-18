@@ -21,10 +21,10 @@ SerialSubtract_Default = {
 	StartValue: 100,
 	StepValue: 7,
     StopValue: 65,
-    ShowInstructions: false,
+    ShowInstructions: true,
     ShowWelcome: true,
-	ShowThankYou: false,
-    AskForNotes: false,
+	ShowThankYou: true,
+    AskForNotes: true,
 }
 
 

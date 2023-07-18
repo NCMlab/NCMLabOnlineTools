@@ -15,7 +15,7 @@ EN_Instructions.InstructionsB = [
     {'page': '<p class="Instructions">Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}   
 ] 
 EN_Instructions.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
-EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
+EN_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
 add('EN_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = EN_Instructions});
@@ -36,7 +36,7 @@ FR_Instructions.InstructionsB = [
     {'page': '<p class="Instructions">Tracez votre ligne aussi vite que vous le pouvez. Lorsque votre ligne entre dans un cercle correct, elle change de couleur, indiquant qu\'il s\'agit du prochain cercle correct dans la séquence.</br> Si le cercle ne change pas de couleur, vous avez fait une erreur et devez tracer votre ligne vers un autre cercle.'}   
 ] 
 FR_Instructions.InstructionsShownWithPracticeB = 'Commencez au numéro 1 et tracez une ligne de 1 à A, A à 2, 2 à B et ainsi de suite, dans l\'ordre, jusqu\'à ce que vous atteigniez la lettre étiquetée end.<br/>Trace votre ligne aussi vite que possible. Lorsque votre ligne entre dans un cercle correct, elle change de couleur, indiquant qu\'il s\'agit du prochain cercle correct dans la séquence.</br> Si le cercle ne change pas de couleur, vous avez fait une erreur et devez tracer votre ligne vers un autre cercle.'
-FR_Instructions.ThankYouText = [{'page':'Merci'}]
+FR_Instructions.ThankYouText = [{'page':'<p class="Instructions">Merci'}]
 FR_Instructions.NotesForResultsPage = 'FR: The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
 add('FR_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = FR_Instructions});
@@ -53,7 +53,7 @@ EN_Instructions.Instructions = [
     {'page': '<p class="Instructions">You are to draw a line without lifting the pencil, alternating from a number to a letter, while respecting the ascending numerical order and the alphabetical order. Start at the <b>1</b> and draw the line to the letter <b>A</b>, then to the <b>2</b>, and so on. End at the <b>H</b>'}, 
 ] 
 EN_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
-EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
+EN_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
 add('EN_TrailMaking_Instructions_FaCE', function(){ TrailMaking_Instructions = EN_Instructions});
@@ -70,7 +70,7 @@ FR_Instructions.Instructions = [
     {'page': '<p class="Instructions">Je veux que vous traciez une ligne sans lever le crayon, en alternant d’un chiffre à une lettre, tout en respectant l’ordre numérique ascendant et l’ordre alphabétique. Commencez ici (indiquez le 1) et tracez la ligne vers la lettre A, ensuite vers le 2,  et ainsi de suite. Terminez ici » (indiquez le H). '}, 
 ] 
 FR_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
-FR_Instructions.ThankYouText = [{'page':'Thank you.'}]
+FR_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 FR_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
 add('FR_TrailMaking_Instructions_FaCE', function(){ TrailMaking_Instructions = FR_Instructions});

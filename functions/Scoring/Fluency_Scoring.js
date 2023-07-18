@@ -1,4 +1,5 @@
 function Fluency_Scoring(data) {
+	Notes = data.filter({trial: 'Notes'})
 	console.log(data)
 	temp = data.filter({task: 'Recall'})
 	console.log(temp)
@@ -12,5 +13,9 @@ function Fluency_Scoring(data) {
 	Results.AllResults['ScoreName'] = 'Number of Words'
 	Results.AllResults['Accuracy'] = Count
 	Results.AllResults['Words spoken'] = Count
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	return Results
 }

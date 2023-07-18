@@ -11,7 +11,7 @@ var Cancellation_Default = {
 
 var Cancellation_001 = {
     NRows: 10,
-    NCols: 12,
+    NCols: 13,
     font_size: 28,
     NTargets: 40,
     non_target_labels: ["A","B","C","D","E","F","G","I"],

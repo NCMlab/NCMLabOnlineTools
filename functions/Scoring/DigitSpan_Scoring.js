@@ -87,7 +87,10 @@ function DigitSpan_Scoring(data) {
 
 	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
 	Results.AllResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
-	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	Results.AllResults['Scoring Notes'] = DigitSpan_Instructions.NotesForResultsPage
 	return Results
 }

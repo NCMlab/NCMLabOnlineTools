@@ -1,4 +1,5 @@
 function DMS_Scoring(Stair) {
+	Notes = data.filter({trial: 'Notes'})
 	console.log(Stair)	
 	var NTrials = Stair.TrialCount
 	var NReversal = Stair.ReversalCount
@@ -14,6 +15,10 @@ function DMS_Scoring(Stair) {
 	Results.AllResults['Load List'] = stair1.ValueList
 	Results.AllResults['NDown'] = stair1.NDown
 	Results.AllResults['NUp'] = stair1.NUp
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
 	return Results
 }
 

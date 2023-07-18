@@ -1,4 +1,5 @@
 function StroopColorWord_Scoring(data) {
+    Notes = data.filter({trial: 'Notes'})
     console.log(data)
     Results = {}
     Results.PrimaryResults = {}
@@ -122,6 +123,10 @@ function StroopColorWord_Scoring(data) {
     Results.AllResults['ResponseTime_CorIncong'] = rt_CorIncong
     Results.AllResults['ResponseTime_IncorCong'] = rt_IncorCong
     Results.AllResults['ResponseTime_IncorIncong'] = rt_IncorIncong    
+    if ( Notes.trials.length > 0 )
+        { Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+    else { Results.AllResults['Notes'] = '' }
+
     console.log(Results)
     return Results
 }

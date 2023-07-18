@@ -16,10 +16,26 @@ var RAVLT_Manual_Immediate = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: false, // not implemented
-	AskForNotes: false,
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: true, // not implemented
+	AskForNotes: true,
+}
+
+var RAVLT_Spoken_Immediate = {
+	FolderName: 'RAVLTSet001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 6,
+	BListFlag: true, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: true, // not implemented
+	AskForNotes: true,
 }
 
 var RAVLT_Manual_Delayed = {
@@ -134,6 +150,7 @@ var FaCE_Spoken_FR = {
 	AskForNotes: false,
 }
 add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_Immediate});
+add('RAVLT_Spoken_Immediate', function(){ WordRecall_parameters = RAVLT_Spoken_Immediate});
 add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});
