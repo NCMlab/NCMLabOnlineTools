@@ -1,6 +1,23 @@
 
 var timeline = []
-
+var encoder // needs to be global so sketchpad can use it
+var StartGIFRecorder = {
+  type: jsPsychCallFunction,
+  func: function() {
+    encoder = new GIFEncoder();
+    encoder.setRepeat(0); //0  -> loop forever
+    //1+ -> loop n times then stop
+    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
+  }
+}
+var if_GIFRecorder = {
+  timeline: [StartGIFRecorder],
+  conditional_function: function() {
+        if ( ImageCopy_parameters.RecordGIF )
+        { return true }
+        else { return false }
+  }
+}
 var enter_fullscreen = {
       type: jsPsychFullscreen,
       fullscreen_mode: FullScreenMode
@@ -15,13 +32,14 @@ var trial = {
           if ( ImageCopy_parameters.ShowInstructions )
             { return Instructions.Instructions+'<p><img src="'+ImageFolder+ImageCopy_parameters.Image+'" width="300vw" height="300vh" border="2px">'} 
           else { return '<p><img src="'+ImageFolder+ImageCopy_parameters.Image+'" width="300vw" height="300vh" border="2px">'}
-    },
-
+      },
+      GIFRecord: function() { return ImageCopy_parameters.RecordGIF },
       prompt_location: 'abovecanvas',
       canvas_width: function(){return ImageCopy_parameters.canvas_width},
       canvas_height: function(){return ImageCopy_parameters.canvas_height},
+      //canvas_width: 400,
+      //canvas_height: 400,
       canvas_border_width: 2,
-      background_color: '#ffffff',
       finished_button_label: function() {return LabelNames.Finished},
       clear_button_label: function() {return LabelNames.Clear},
       undo_button_label: function() {return LabelNames.Undo},
@@ -104,9 +122,10 @@ var Notes = {
         else { return false }
       }
     }
+timeline.push(if_GIFRecorder)
 timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(trial)
 timeline.push(if_Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(SendData)
