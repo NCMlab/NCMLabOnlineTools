@@ -10,7 +10,7 @@ FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">C\'est la tâch
 FR_Instructions.ThankYouText = [{'page': '<p class="Instructions">Merci. Appuyez sur <b>Suivant</b> pour Continuer.'}]
 FR_Instructions.NotesForResultsPage = "FR:Scoring is as follows: 10  Full No Impairment or Unlikely Impairment. 8-9 Other clinical determinants must be present otherwise no impairment. 5-8  Cognitive Impairment. 0-4  Prominent Cognitive Impairment"
 
-add('EN_ClockDrawing_Instructions', function(){ Instructions = EN_Instructions});
-add('FR_ClockDrawing_Instructions', function(){ Instructions = FR_Instructions});
+add('EN_ClockDrawing_Instructions_Default', function(){ Instructions = EN_Instructions});
+add('FR_ClockDrawing_Instructions_Default', function(){ Instructions = FR_Instructions});
 //Rouleau, I., D. P. Salmon, et al. (1992). "Quantitative and qualitative analyses of clock drawings in
 //Alzheimer's and Huntington's disease." Brain Cogn 18(1543577): 70-87.

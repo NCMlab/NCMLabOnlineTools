@@ -1,5 +1,7 @@
 var jsPsychSketchpad = (function (jspsych) {
   'use strict';
+var canvas
+var context
 
   const info = {
       name: "sketchpad",
@@ -222,12 +224,19 @@ var jsPsychSketchpad = (function (jspsych) {
           this.undo_history = [];
           this.mouse_position = { x: 0, y: 0 };
           this.draw_key_held = false;
+          
+          this.enc = encoder
+          this.enc.start()
+          
+          
+          
       }
       trial(display_element, trial, on_load) {
           this.display = display_element;
           this.params = trial;
           this.current_stroke_color = trial.stroke_color;
           this.init_display();
+          
           this.setup_event_listeners();
           this.add_background_color();
           this.add_background_image().then(() => {
@@ -235,11 +244,17 @@ var jsPsychSketchpad = (function (jspsych) {
           });
           this.start_time = performance.now();
           this.set_trial_duration_timer();
+          this.capture_frame();
           return new Promise((resolve, reject) => {
               this.trial_finished_handler = resolve;
           });
+          
       }
+      
       init_display() {
+        
+
+        console.log("Initialze encoder")
           this.add_css();
           let canvas_html;
           if (this.params.canvas_shape == "rectangle") {
@@ -307,8 +322,11 @@ var jsPsychSketchpad = (function (jspsych) {
           this.display.innerHTML = display_html;
           this.sketchpad = this.display.querySelector("#sketchpad-canvas");
           this.ctx = this.sketchpad.getContext("2d");
+          console.log("CTX:" + this.ctx)
+          
       }
       setup_event_listeners() {
+        
           document.addEventListener("pointermove", (e) => {
               this.mouse_position = { x: e.clientX, y: e.clientY };
           });
@@ -437,6 +455,8 @@ var jsPsychSketchpad = (function (jspsych) {
           });
       }
       start_draw(e) {
+        console.log("Start draw")
+        
           this.is_drawing = true;
           const x = Math.round(e.clientX - this.sketchpad.getBoundingClientRect().left);
           const y = Math.round(e.clientY - this.sketchpad.getBoundingClientRect().top);
@@ -471,6 +491,7 @@ var jsPsychSketchpad = (function (jspsych) {
           }
       }
       end_draw(e) {
+            
           if (this.is_drawing) {
               this.stroke.push({
                   action: "end",
@@ -481,8 +502,10 @@ var jsPsychSketchpad = (function (jspsych) {
               this.set_clear_btn_state(true);
           }
           this.is_drawing = false;
+          
       }
       render_drawing() {
+        console.log("Render draw")
           this.ctx.clearRect(0, 0, this.sketchpad.width, this.sketchpad.height);
           this.add_background_color();
           if (this.background_image) {
@@ -503,6 +526,7 @@ var jsPsychSketchpad = (function (jspsych) {
                   }
               }
           }
+          
       }
       undo() {
           this.undo_history.push(this.strokes.pop());
@@ -543,6 +567,10 @@ var jsPsychSketchpad = (function (jspsych) {
               this.display.querySelector("#sketchpad-clear").disabled = !enabled;
           }
       }
+      capture_frame() {
+        //capture a frame
+        this.capture_frame_interval = setInterval(() => { this.enc.addFrame(this.ctx) }, 500)
+      }
       set_trial_duration_timer() {
           if (this.params.trial_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
@@ -577,10 +605,18 @@ var jsPsychSketchpad = (function (jspsych) {
           this.end_trial(info.key);
       }
       end_trial(response = null) {
+        this.enc.finish();
+        clearInterval(this.capture_frame_interval)
+        var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+        var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+        
+        //this.enc.download("download.gif");
+
           this.jsPsych.pluginAPI.clearAllTimeouts();
           this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
           clearInterval(this.timer_interval);
           const trial_data = {};
+          trial_data.gif = data_url
           trial_data.rt = Math.round(performance.now() - this.start_time);
           trial_data.response = response;
           if (this.params.save_final_image) {
@@ -594,9 +630,10 @@ var jsPsychSketchpad = (function (jspsych) {
           this.jsPsych.finishTrial(trial_data);
           this.trial_finished_handler();
       }
+      
   }
   SketchpadPlugin.info = info;
-
+  
   return SketchpadPlugin;
 
 })(jsPsychModule);

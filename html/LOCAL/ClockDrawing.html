@@ -12,29 +12,33 @@
     <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
   </head>    
   <body>
+    <script type="text/javascript" src="../../ImportedModules/LZWEncoder.js"></script>
+    <script type="text/javascript" src="../../ImportedModules/NeuQuant.js"></script>
+    <script type="text/javascript" src="../../ImportedModules/GIFEncoder.js"></script>
+    <script type="text/javascript" src="../../ImportedModules/b64.js"></script>
     <script src="../../jspsych/dist/jspsych.js"></script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../../jspsych/dist/plugin-sketchpad.js"></script>
+    <script src="../../jspsych_addons/plugin-sketchpad.js"></script>
     <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../../config/General_Setup.js"></script>
-    <script src='../../InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "../../InstructionsAndStimuli/"+Language+"/Instructions/ClockDrawing_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-    </script>
-    <script src="../../config/ClockDrawing_config.js"></script>
+    <script src="../../InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js"></script>
+    <script src="../../config/ClockDrawing_Setup.js"></script>
+    
         <script>
           // This is where the parameters to be used as specified.
           // Since this is a LOCAL html, the parameter set to use is hardcoded, for now.
           pseudoSwitch('ClockDrawing_001')
+          pseudoSwitch('EN_ClockDrawing_Instructions_Default')
+          pseudoSwitch('EN_LabelNames')
+          console.log(Instructions)
         </script>
     
-    <script src="../../functions/Experiments/ClockDrawing_experiment.js"></script>
+    <script src="../../functions/Experiments/ClockDrawing_experimentRECORD.js"></script>
     <script src="../../functions/Scoring/ClockDrawing_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
   </body>
@@ -42,13 +46,17 @@
 
     jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    data_for_replay_local_save: true,
     on_interaction_data_update: function(data) {
         console.log(JSON.stringify(data))
     },
     on_finish: function() {
       jsPsych.data.get().localSave('csv','ClockDrawingData.csv');
+      jsPsych.data.displayData('json');
     }
   });
-  jsPsych.run(timeline)
+	
+		jsPsych.run(timeline)
+	
   </script>
 </html>
