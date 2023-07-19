@@ -4,6 +4,7 @@ var ClockDrawing_001 = {
 	ShowWelcome: true,
 	ShowThankYou: true,
 	ShowInstructions: true, 
+	RecordGIF: true,
 }
 var ClockDrawing_CBprotocol = {
 	ShowWelcome: true,

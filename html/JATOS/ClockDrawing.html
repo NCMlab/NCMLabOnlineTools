@@ -22,11 +22,15 @@
   <body>
     <div id="headerButtons"></div>
     <script src="jatos.js"></script>
+    <script type="text/javascript" src="ImportedModules/LZWEncoder.js"></script>
+    <script type="text/javascript" src="ImportedModules/NeuQuant.js"></script>
+    <script type="text/javascript" src="ImportedModules/GIFEncoder.js"></script>
+    <script type="text/javascript" src="ImportedModules/b64.js"></script>    
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
-    <script src="jspsych/dist/plugin-sketchpad.js"></script>
+    <script src="jspsych_addons/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -35,21 +39,40 @@
     
     <script src="InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js"></script>
     <script src="config/ClockDrawing_Setup.js"></script>
-    <script>var LANG</script>
+    <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
+
     <script>
       var ClockDrawing_parameters = 'empty'
       var parameters = 'empty'      
       jatos.onLoad(() => {
-          BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-          UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-          if (typeof BatteryHtmlID === 'undefined') {parameters = 'ClockDrawing_001'}
-          else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        Language = jatos.studySessionData.Language
+            if (typeof BatteryHtmlID === 'undefined') {
+              parameters = 'ClockDrawing_001'
+              InstructionsToUse = 'Default'
+            }
+            else {
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+            }
           console.log(parameters)
           pseudoSwitch(parameters)
           console.log(ClockDrawing_parameters)
           LANG = jatos.studySessionData.Language
           console.log(LANG)
-          pseudoSwitch(LANG+'_ClockDrawing_Instructions')
+          pseudoSwitch(LANG+'_ClockDrawing_Instructions_'+InstructionsToUse)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
           console.log(Instructions)
@@ -108,7 +131,7 @@ var jsPsych = initJsPsych({
       
     });
   </script>
-  <script src="functions/Experiments/ClockDrawing_experiment.js"></script>
+  <script src="functions/Experiments/ClockDrawing_experimentRECORD.js"></script>
   <div id="footerText"></div>
   <script>
     jatos.onLoad(() => {

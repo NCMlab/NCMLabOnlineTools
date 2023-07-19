@@ -1,12 +1,24 @@
 
 var timeline = []
 
-var encoder = new GIFEncoder();
-encoder.setRepeat(0); //0  -> loop forever
-//1+ -> loop n times then stop
-encoder.setDelay(100); //go to next frame every n milliseconds
-console.log(encoder)
-
+var encoder // needs to be global so sketchpad can use it
+var StartGIFRecorder = {
+  type: jsPsychCallFunction,
+  func: function() {
+    encoder = new GIFEncoder();
+    encoder.setRepeat(0); //0  -> loop forever
+    //1+ -> loop n times then stop
+    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
+  }
+}
+var if_GIFRecorder = {
+  timeline: [StartGIFRecorder],
+  conditional_function: function() {
+        if ( ClockDrawing_parameters.RecordGIF )
+        { return true }
+        else { return false }
+  }
+}
 
 var trial = {
   type: jsPsychSketchpad,
@@ -15,7 +27,7 @@ var trial = {
     { return Instructions.Instructions } 
     else { return ''}
   },
-  
+  GIFRecord: function() { return ClockDrawing_parameters.RecordGIF },
   prompt_location: 'abovecanvas',
   canvas_width: 600,
   canvas_height: 600,
@@ -48,8 +60,15 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
         var data = jsPsych.data.get()
+        console.log(data)
         Results = ClockDrawing_Scoring(data)
+        
+        // Once the images are added to the output data they can be removed so there are not multiple copies stored.
+        //jsPsych.data.allData.trials[1].png = 0
+        //jsPsych.data.allData.trials[1].gif = 0
+        console.log(jsPsych.data)
         jsPsych.finishTrial(Results)
+
   },
 }
 
@@ -93,9 +112,10 @@ var if_Welcome = {
   }
 }
 
-
+timeline.push(if_GIFRecorder)
 timeline.push(if_Welcome)
 timeline.push(trial)
 timeline.push(Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(SendData)
+

@@ -205,6 +205,10 @@ var context
               type: jspsych.ParameterType.HTML_STRING,
               default: `<span id="sketchpad-timer"></span> remaining`,
           },
+          GIFRecord: {              
+            type: jspsych.ParameterType.BOOL,
+            default: false,
+        },
       },
   };
   /**
@@ -225,11 +229,7 @@ var context
           this.mouse_position = { x: 0, y: 0 };
           this.draw_key_held = false;
           
-          this.enc = encoder
-          this.enc.start()
-          
-          
-          
+
       }
       trial(display_element, trial, on_load) {
           this.display = display_element;
@@ -244,6 +244,13 @@ var context
           });
           this.start_time = performance.now();
           this.set_trial_duration_timer();
+          console.log(this)
+          if ( this.params.GIFRecord )
+          {
+            this.enc = encoder
+            this.enc.start()
+          }
+
           this.capture_frame();
           return new Promise((resolve, reject) => {
               this.trial_finished_handler = resolve;
@@ -569,6 +576,7 @@ var context
       }
       capture_frame() {
         //capture a frame
+        console.log("Capturing Frame")
         this.capture_frame_interval = setInterval(() => { this.enc.addFrame(this.ctx) }, 500)
       }
       set_trial_duration_timer() {
