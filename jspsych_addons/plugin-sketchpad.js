@@ -614,11 +614,13 @@ var context
           this.end_trial(info.key);
       }
       end_trial(response = null) {
-        this.enc.finish();
-        clearInterval(this.capture_frame_interval)
-        var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
-        var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
-        
+        if ( this.params.GIFRecord )
+          { 
+            this.enc.finish();
+            clearInterval(this.capture_frame_interval)
+            var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+            var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+          };
         //this.enc.download("download.gif");
 
           this.jsPsych.pluginAPI.clearAllTimeouts();
