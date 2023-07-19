@@ -249,9 +249,10 @@ var context
           {
             this.enc = encoder
             this.enc.start()
+            this.capture_frame();
           }
 
-          this.capture_frame();
+          
           return new Promise((resolve, reject) => {
               this.trial_finished_handler = resolve;
           });
