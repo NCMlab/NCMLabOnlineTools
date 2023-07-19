@@ -338,7 +338,10 @@ var Instructions01_loop = {
 
 var Instructions02 = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions02[countInstr02].page},
+  stimulus: function (){
+    console.log("Instr02 count: "+countInstr02)
+    return Instructions.Instructions02[countInstr02].page
+  },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -473,6 +476,8 @@ var AfterFirstBlockLoop = {
   timeline: [Instructions02_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
   randomize_order: false,
   loop_function: function(data) {
+    // reset count for instructions
+    countInstr02 = 0
     console.log("Block Count (in loop): " + (BlockCount)/2)
     if ( ((BlockCount)/2) < NumberBlocks )
     { return true }
@@ -616,7 +621,7 @@ timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
 timeline.push(if_Notes)
 timeline.push(if_ThankYou)
-//timeline.push(SendData)
+timeline.push(SendData)
 /* timeline.push(MakeWordListA)
 timeline.push(MakeWordListB)
 timeline.push(preload_audioA)

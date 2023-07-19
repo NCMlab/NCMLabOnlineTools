@@ -1,34 +1,34 @@
 
-var EN_Instructions = {}
-EN_Instructions.WelcomeText = [
+var EN_Instructions_Default = {}
+EN_Instructions_Default.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Word Recall Task.</p>'},
 ]
-EN_Instructions.RecallInstructions = 'Please repeat the entire word list'
-EN_Instructions.GetReadyInstructions = 'Get ready for the next trial'
-EN_Instructions.Instructions01 = [
+EN_Instructions_Default.RecallInstructions = 'Please repeat the entire word list'
+EN_Instructions_Default.GetReadyInstructions = 'Get ready for the next trial'
+EN_Instructions_Default.Instructions01 = [
 	{'page': '<p class="Instructions">You are going to hear a list of words. Listen carefully. At the end of the list you are to repeat back as many words as you can recall.</p>'},
 	{'page': '<p class="Instructions">It does not matter in what order you repeat them, just try to recall as many as you can.<br/><br/>Press Next to begin.</p>'},
 	]
-EN_Instructions.Instructions02 = [
+	EN_Instructions_Default.Instructions02 = [
 	{'page': '<p class="Instructions">Now you will hear the same words again, and once again, at the end of the list repeat back as many words as you can recall, including words you said the first time. </p>'},
 	{'page': '<p class="Instructions">It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before.<br/><br/>Press next to begin.</p>'},
 	]
-EN_Instructions.Instructions03 = [
+	EN_Instructions_Default.Instructions03 = [
 	{'page': '<p class="Instructions">Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin.</p>'},
 	]
-EN_Instructions.Instructions04 = [
+	EN_Instructions_Default.Instructions04 = [
 	{'page': '<p class="Instructions">Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin.</p>'},
 	]
 
-EN_Instructions.InstructionsDelayed = [
+	EN_Instructions_Default.InstructionsDelayed = [
 	{'page': '<p class="Instructions">Recall all the words you can remember from the list you heard a number of times.</p>'},
 	]	
 
-EN_Instructions.WordPrompt = 'empty'
-EN_Instructions.ThankYouText = [{'page': 'Thank you'}]
+	EN_Instructions_Default.WordPrompt = 'empty'
+EN_Instructions_Default.ThankYouText = [{'page': 'Thank you'}]
 
-EN_Instructions.WordRecallPrompt = 'Which words were recalled?'
-add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
+EN_Instructions_Default.WordRecallPrompt = 'Which words were recalled?'
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions_Default});
 
 // ====================================================
 
