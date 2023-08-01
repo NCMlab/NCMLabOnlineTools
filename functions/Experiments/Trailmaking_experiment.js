@@ -1,5 +1,7 @@
 
 var timeline = []
+var encoder // needs to be global so sketchpad can use it
+
 var count = 0
 
 console.log('==============================')
@@ -8,6 +10,24 @@ var CanvasHeight
 var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
+
+var StartGIFRecorder = {
+  type: jsPsychCallFunction,
+  func: function() {
+    encoder = new GIFEncoder();
+    encoder.setRepeat(0); //0  -> loop forever
+    //1+ -> loop n times then stop
+    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
+  }
+}
+var if_GIFRecorder = {
+  timeline: [StartGIFRecorder],
+  conditional_function: function() {
+        if ( TrailMaking_parameters.RecordGIF )
+        { return true }
+        else { return false }
+  }
+}
 
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -85,6 +105,7 @@ var enter_fullscreen = {
         return TrailMaking_parameters.Circles}, 
       canvas_width: function(){return CanvasWidth},
       canvas_height: function(){return CanvasHeight},
+      GIFRecord: function() { return TrailMaking_parameters.RecordGIF },
       canvas_border_width: 1,
       stroke_width: pen_width,
       save_final_image: true,
@@ -110,7 +131,7 @@ var enter_fullscreen = {
       // }
       on_finish: function(data) {
         data.trial = 'Trail Making'
-        console.log(jsPsych.data.get().last(1))
+        console.log(jsPsych.data.get())
       }
     }
 
@@ -250,7 +271,7 @@ timeline.push(FindCanvasSizeTest)
 timeline.push(FindCanvasSizePractice)
 timeline.push(CheckPracticeFlag)
 
-
+timeline.push(if_GIFRecorder)
 timeline.push(if_Welcome)
 timeline.push(if_Instructions)
 timeline.push(if_Practice)
@@ -259,5 +280,5 @@ timeline.push(trials)
 
 
 timeline.push(if_Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(SendData)

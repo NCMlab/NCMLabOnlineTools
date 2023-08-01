@@ -228,6 +228,10 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             type: jspsych.ParameterType.STRING,
             default: 'end',
           },
+          GIFRecord: {              
+            type: jspsych.ParameterType.BOOL,
+            default: false,
+        },
         },
   };
   /**
@@ -303,6 +307,12 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           });
           this.start_time = performance.now();
           this.set_trial_duration_timer();
+          if ( this.params.GIFRecord )
+          {
+            this.enc = encoder
+            this.enc.start()
+            this.capture_frame();
+          }
           return new Promise((resolve, reject) => {
               this.trial_finished_handler = resolve;
           });
@@ -871,6 +881,11 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
               this.display.querySelector("#sketchpad-clear").disabled = !enabled;
           }
       }
+      capture_frame() {
+        //capture a frame
+        console.log("Capturing Frame")
+        this.capture_frame_interval = setInterval(() => { this.enc.addFrame(this.ctx) }, 500)
+      }
       set_trial_duration_timer() {
           if (this.params.trial_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
@@ -905,24 +920,33 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.end_trial(info.key);
       }
       end_trial(response = null) {
-          this.jsPsych.pluginAPI.clearAllTimeouts();
-          this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
-          clearInterval(this.timer_interval);
-          const trial_data = {};
-          trial_data.rt = Math.round(performance.now() - this.start_time);
-          trial_data.ErrorCount = this.ErrorCount;
-          trial_data.OutData = this.OutData;
-          trial_data.response = response;
-          if (this.params.save_final_image) {
-              trial_data.png = this.sketchpad.toDataURL();
-          }
-          if (this.params.save_strokes) {
-              trial_data.strokes = this.strokes;
-          }
-          this.display.innerHTML = "";
-          document.querySelector("#sketchpad-styles").remove();
-          this.jsPsych.finishTrial(trial_data);
-          this.trial_finished_handler();
+        if ( this.params.GIFRecord )
+        { 
+            this.enc.finish();
+            clearInterval(this.capture_frame_interval)
+            var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+            var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+        };
+
+        this.jsPsych.pluginAPI.clearAllTimeouts();
+        this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
+        clearInterval(this.timer_interval);
+        const trial_data = {};
+        trial_data.gif = data_url
+        trial_data.rt = Math.round(performance.now() - this.start_time);
+        trial_data.ErrorCount = this.ErrorCount;
+        trial_data.OutData = this.OutData;
+        trial_data.response = response;
+        if (this.params.save_final_image) {
+            trial_data.png = this.sketchpad.toDataURL();
+        }
+        if (this.params.save_strokes) {
+            trial_data.strokes = this.strokes;
+        }
+        this.display.innerHTML = "";
+        document.querySelector("#sketchpad-styles").remove();
+        this.jsPsych.finishTrial(trial_data);
+        this.trial_finished_handler();
       }
   }
   SketchpadPlugin.info = info;
