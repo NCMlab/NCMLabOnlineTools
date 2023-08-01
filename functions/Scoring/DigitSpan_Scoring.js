@@ -15,6 +15,7 @@
 */
 
 function DigitSpan_Scoring(data) {
+	console.log(data)
 	Notes = data.filter({trial: 'Notes'})
 	Results = {}
 	Results.PrimaryResults = {}
@@ -66,11 +67,15 @@ function DigitSpan_Scoring(data) {
 		// Make list of loads
 		var LoadList = []
 		var AccuracyList = []
+		var StimulusList = []
+		var ResponseList = []
 		var MaxCorrect = -99
 		for (var i = 0; i < NTrials; i++ )
 		{
 
 			LoadList.push(DataFromTestRun.trials[i].StimLoad)
+			StimulusList.push(DataFromTestRun.trials[i].StimList)
+			ResponseList.push(DataFromTestRun.trials[i].ResponseList)
 			if (DataFromTestRun.trials[i].correct)
 			{ 
 				AccuracyList.push(1)
@@ -83,6 +88,8 @@ function DigitSpan_Scoring(data) {
 		Results.AllResults['Threshold'] = MaxCorrect
 		Results.AllResults['Load List'] = LoadList
 		Results.AllResults['Accuracy List'] = AccuracyList
+		Results.AllResults['Stimulus List'] = StimulusList
+		Results.AllResults['Response List'] = ResponseList
 	}
 
 	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod

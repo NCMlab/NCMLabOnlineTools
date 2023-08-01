@@ -271,50 +271,52 @@ var VisualForward_Instructions = {
 }
 
 var VisualBackward_Instructions = {
-type: jsPsychHtmlButtonResponseTouchscreen,
-stimulus: function (){return DigitSpan_Instructions.BackwardVisualInstructions[count].page},
-post_trial_gap: 0,
-margin_horizontal: GapBetweenButtons,
-prompt: '',
-choices: function() {return [LabelNames.Next]}, 
-}
- var get_response = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    if ( DigitSpan_parameters.direction == 'forward' ) {
-      return PutStimIntoTable(DigitSpan_Instructions.ForwardTrialQuestion + response_grid,'') 
-    }
-    else {return PutStimIntoTable(DigitSpan_Instructions.BackwardTrialQuestion + response_grid,'') }
-  },
-  on_load: function() {
-    
-    document.getElementById('ClearButton').innerHTML = LabelNames.Clear;
-    console.log(document.getElementById('current_answer'))
-    document.getElementById('current_answer').innerHTML = LabelNames.CurrentAnswer
+  stimulus: function (){return DigitSpan_Instructions.BackwardVisualInstructions[count].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
 
-    
-  },
-  choices: function() {return [LabelNames.Enter]},
-  on_finish: function(data) {
-      var curans = response;
-      accuracy = CheckResponse(stimList, response)
-      if (DigitSpan_parameters.direction == 'backward') {
-        accuracy = CheckResponse(RevereseStimList(stimList), response)   
+var get_response = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      if ( DigitSpan_parameters.direction == 'forward' ) {
+        return PutStimIntoTable(DigitSpan_Instructions.ForwardTrialQuestion + response_grid,'') 
       }
-      else {
-        accuracy = CheckResponse(stimList, response)        
-      } 
-      data.TrialNumber = TrialCount - 1
-      data.StimLoad = CurrentListLength
-      data.task = 'response trial'
-      data.correct = accuracy
-      data.NumberList = curans
-      console.log(data)
-      // update the staircase
-      //staircase.Decide(accuracy)
-      //clear the response for the next trial
-      response = []; 
-  }
+      else {return PutStimIntoTable(DigitSpan_Instructions.BackwardTrialQuestion + response_grid,'') }
+    },
+    on_load: function() {
+      
+      document.getElementById('ClearButton').innerHTML = LabelNames.Clear;
+      console.log(document.getElementById('current_answer'))
+      document.getElementById('current_answer').innerHTML = LabelNames.CurrentAnswer
+
+      
+    },
+    choices: function() {return [LabelNames.Enter]},
+    on_finish: function(data) {
+        var curans = response;
+        accuracy = CheckResponse(stimList, response)
+        if (DigitSpan_parameters.direction == 'backward') {
+          accuracy = CheckResponse(RevereseStimList(stimList), response)   
+        }
+        else {
+          accuracy = CheckResponse(stimList, response)        
+        } 
+        data.TrialNumber = TrialCount - 1
+        data.StimLoad = CurrentListLength
+        data.task = 'response trial'
+        data.correct = accuracy
+        data.StimList = stimList
+        data.ResponseList = curans
+        console.log(data)
+        // update the staircase
+        //staircase.Decide(accuracy)
+        //clear the response for the next trial
+        response = []; 
+    }
 };
 
 var Notes = {
@@ -327,7 +329,9 @@ var Notes = {
         required: false,
       }]],
   on_finish: function(data)
-  { data.trial = "Notes" },
+  { 
+    data.trial = "Notes" 
+  },
 }
 
 // =======================================================================
@@ -469,11 +473,16 @@ var welcome = {
 }
 
 var thank_you = {
-    timeline: [Instructions],
-    timeline_variables: function() {return DigitSpan_Instructions.ThankYouText},
-    randomize_order: false,
-    repetitions: 1,
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(DigitSpan_Instructions)
+    return DigitSpan_Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
 }
+
 
 var if_Welcome = {
   timeline: [welcome],
@@ -516,5 +525,6 @@ timeline.push(ReadParametersAndSetup)
 timeline.push(if_Test_Instructions)
 timeline.push(procedure)
 timeline.push(Notes)
+timeline.push(if_ThankYou)
 timeline.push(SendData)
-//timeline.push(if_ThankYou)
+
