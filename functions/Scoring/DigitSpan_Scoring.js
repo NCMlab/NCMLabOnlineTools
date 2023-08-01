@@ -54,8 +54,6 @@ function DigitSpan_Scoring(data) {
 		}
 		Results.PrimaryResults['Threshold'] = MaxCorrect
 		Results.AllResults['Threshold'] = MaxCorrect
-		Results.AllResults['Load List'] = LoadList
-		Results.AllResults['Accuracy List'] = AccuracyList
 	}
 	if (DigitSpan_parameters.DeliveryMethod == 'numberErrors')
 	{
@@ -86,14 +84,20 @@ function DigitSpan_Scoring(data) {
 		Results.PrimaryResults['Accuracy'] = MaxCorrect
 		Results.AllResults['Accuracy'] = MaxCorrect
 		Results.AllResults['Threshold'] = MaxCorrect
-		Results.AllResults['Load List'] = LoadList
-		Results.AllResults['Accuracy List'] = AccuracyList
-		Results.AllResults['Stimulus List'] = StimulusList
-		Results.AllResults['Response List'] = ResponseList
 	}
 
+	var ResponseArray = Array.from(Array(NTrials), _ => Array(5).fill(-99))
+ 	for (var i = 0; i < NTrials; i++ )
+		{
+			ResponseArray[i][0] = i + 1
+			ResponseArray[i][1] = DataFromTestRun.trials[i].StimLoad
+			ResponseArray[i][2] = DataFromTestRun.trials[i].StimList
+			ResponseArray[i][3] = DataFromTestRun.trials[i].ResponseList
+			ResponseArray[i][4] = AccuracyList[i]
+		} 
 	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
 	Results.AllResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
+	Results.AllResults['DS Response Array'] = ResponseArray
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
