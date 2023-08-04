@@ -232,7 +232,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             type: jspsych.ParameterType.BOOL,
             default: false,
         },
-        },
+    },
   };
   /**
    * **sketchpad**

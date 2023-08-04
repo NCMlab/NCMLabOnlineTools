@@ -1,7 +1,9 @@
 function SingleLetterCancellation_Scoring(data) {
   Notes = data.filter({trial: 'Notes'})
   var trial = data.filter({task:'Trial'})
+  console.log(trial)
   trial = trial.trials[0]
+  console.log(trial)
   // score trials
   var TotalScore = 0
   var LeftScore = 0
@@ -34,6 +36,7 @@ function SingleLetterCancellation_Scoring(data) {
   Results.AllResults['Right Score'] = RightScore
   Results.AllResults['Left Max Score'] = LeftMaxScore
   Results.AllResults['Right Max Score'] = RightMaxScore
+  Results.AllResults['GIF'] = trial.gif
   if ( Notes.trials.length > 0 )
     { Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
   else { Results.AllResults['Notes'] = '' }

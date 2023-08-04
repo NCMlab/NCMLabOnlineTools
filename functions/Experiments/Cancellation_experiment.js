@@ -7,8 +7,25 @@ var grid
 var ListOfTargets
 var NTargets
 
-// =======================================================================
 
+// =======================================================================
+var StartGIFRecorder = {
+  type: jsPsychCallFunction,
+  func: function() {
+    encoder = new GIFEncoder();
+    encoder.setRepeat(0); //0  -> loop forever
+    //1+ -> loop n times then stop
+    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
+  }
+}
+var if_GIFRecorder = {
+  timeline: [StartGIFRecorder],
+  conditional_function: function() {
+        if ( Cancellation_parameters.RecordGIF )
+        { return true }
+        else { return false }
+  }
+}
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -56,6 +73,7 @@ var trial_1 = {
   	grid_square_width: '10vw',
     grid_square_height: '5vh',
     font_size: function() {return Cancellation_parameters.font_size},
+    GIFRecord: function() { return Cancellation_parameters.RecordGIF },
     prompt: function() {
       var stim = "<p>Click on all of the <b>"+Cancellation_parameters.target_labels+"</b> that you see</p>"
       console.log(stim)
@@ -70,6 +88,7 @@ var trial_1 = {
     on_finish: function(data){
         data.target = data.target
         data.task = 'Trial'
+        console.log(jsPsych.data.get())
     }
 }
 // =======================================================================
@@ -90,7 +109,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    
+    console.log(data)
     Results = SingleLetterCancellation_Scoring(data) 
     jsPsych.finishTrial(Results)
   },
@@ -147,11 +166,13 @@ var if_ThankYou = {
 // ======================================================================= 
 // Add all procedures to the timeline
 timeline.push(enter_fullscreen)
+timeline.push(if_GIFRecorder)
 timeline.push(if_Welcome)
 timeline.push(InitialSetup)
 timeline.push(instr_procedure_loop_node)
 timeline.push(trial_1)	
+
 timeline.push(Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
 
+timeline.push(SendData)

@@ -6,6 +6,7 @@ x[parseInt(cn,10)].innerHTML=content;
 
 https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-6.php
 */
+var trial_data
 
 var jsPsychCancellationMouse = (function (jspsych) {
   'use strict';
@@ -124,7 +125,10 @@ var jsPsychCancellationMouse = (function (jspsych) {
               type: jspsych.ParameterType.STRING,
               default: "Finished",
           },
-
+          GIFRecord: {              
+            type: jspsych.ParameterType.BOOL,
+            default: false,
+        },
       },
   };
   /**
@@ -148,6 +152,7 @@ var jsPsychCancellationMouse = (function (jspsych) {
 
       trial(display_element, trial) {
           var startTime = -1;
+          this.params = trial;
           var response = {
               rt: null,
               row: null,
@@ -155,6 +160,8 @@ var jsPsychCancellationMouse = (function (jspsych) {
           };
           const showTarget = (target) => {
               var resp_targets;
+
+
               // NON TARGET ALOWANCE
               if (!trial.allow_nontarget_responses) {
                 // IF NON TARGET IS ALLOWED THEN ONLY ONE CELL IS CONSIDERED A TARGET
@@ -208,7 +215,16 @@ var jsPsychCancellationMouse = (function (jspsych) {
               if (trial.trial_duration !== null) {
                   this.jsPsych.pluginAPI.setTimeout(endTrial, trial.trial_duration);
               }
+
+            //   if ( this.params.GIFRecord )
+            //   {
+            //     this.enc = encoder
+            //     this.enc.start()
+            //     this.capture_frame();
+            //   }
           };
+
+
           // display stimulus
           var stimulus = this.stimulus(trial.grid, trial.grid_square_width, trial.grid_square_height, trial.target, trial.target_color, trial.non_target_labels, trial.target_labels, trial.border_width,trial.font_family, trial.font_size);
           display_element.innerHTML = stimulus;
@@ -231,16 +247,29 @@ var jsPsychCancellationMouse = (function (jspsych) {
           display_element.querySelector("#sketchpad-end").addEventListener("click", () => {endTrial()});
 
           const endTrial = () => {
+            // if ( this.params.GIFRecord )
+            // { 
+            //     this.enc.finish();
+            //     clearInterval(this.capture_frame_interval)
+            //     var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+            //     var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+            // };
+
               // kill any remaining setTimeout handlers
-              this.jsPsych.pluginAPI.clearAllTimeouts();
-              // gather the data to store for the trial
-              var trial_data = {
-                  rt: response.rt,
-                  grid: trial.grid,
-                  target: trial.target,
-                  response: [parseInt(response.row, 10), parseInt(response.column, 10)],
-                  correct: response.row == trial.target[0] && response.column == trial.target[1],
+              this.jsPsych.pluginAPI.clearAllTimeouts();            
+              trial_data = {
+                rt: response.rt,
+                grid: trial.grid,
+                target: trial.target,
+                response: [parseInt(response.row, 10), parseInt(response.column, 10)],
+                correct: response.row == trial.target[0] && response.column == trial.target[1],
+                
               };
+            //   trial_data.gif = data_url
+
+
+
+              
               // score trials
               var TotalScore = 0
               var LeftScore = 0
@@ -260,18 +289,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
                   else {RightScore += 1}
                   // score left and right
                 }
-
               }
-              console.log(TotalScore)
-              console.log(LeftScore)
-              console.log(RightMaxScore)
-              console.log(RightScore)
-              console.log(LeftMaxScore)
 
               //SingleLetterCancellation_Scoring(data, trial)
               // clear the display
               display_element.innerHTML = "";
               // move on to the next trial
+
               this.jsPsych.finishTrial(trial_data);
           };
           // function to handle responses by the subject
@@ -366,6 +390,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
               this.simulate_visual(trial, simulation_options, load_callback);
           }
       }
+
+    //   capture_frame() {
+    //     //capture a frame
+    //     console.log("Capturing Frame")
+    //     this.capture_frame_interval = setInterval(() => { this.enc.addFrame(document.getElementById('jspsych-serial-reaction-time-stimulus'), 500)})
+    //   }
+
       create_simulation_data(trial, simulation_options) {
           let response = this.jsPsych.utils.deepCopy(trial.target);
           if (trial.allow_nontarget_responses && this.jsPsych.randomization.sampleBernoulli(0.8) !== 1) {

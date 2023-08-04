@@ -1,12 +1,12 @@
 var Cancellation_Default = {
     NRows: 6,
     NCols: 52,
-
     NTargets: 104,
     non_target_labels: ["A","B","C","D","E","F","G","I"],
     target_labels: "H",
 	ShowWelcome: true,
 	ShowThankYou: true,
+    RecordGIF: true,
 }
 
 var Cancellation_001 = {
@@ -18,6 +18,7 @@ var Cancellation_001 = {
     target_labels: "H",
     ShowWelcome: true,
     ShowThankYou: false,
+    RecordGIF: true,
 }
 
 
