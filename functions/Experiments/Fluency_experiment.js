@@ -7,8 +7,26 @@ var itemCount = 0
 var count = 0
 var HasCounterStarted = false
 
+const sleep = async (milliseconds) => {
+  await new Promise(resolve => {
+      return setTimeout(resolve, milliseconds)
+  });
+};
+
+const testSleep = async () => {
+  console.log('Step 1 - Called');
+  await sleep(5000);
+  console.log('Step 2 - Called');
+}
+
 
 // =======================================================================
+
+var InitializeMicrophone = {
+  type: jsPsychInitializeMicrophone
+};
+
+
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
@@ -35,11 +53,13 @@ function ThisGetRow(Input, Row) {
   }
 
 var WaitForWords = function() {
+      
       annyang.addCallback('result', function(userSaid) {
-        console.log('sound stopped');
+      console.log('sound stopped');
+        
         // userSaid contains multiple possibilities for what was heard
-        console.log(userSaid)
-        SimpleList.push(userSaid)
+      console.log(userSaid)
+      SimpleList.push(userSaid)
        /* // Parse userSaid. It provides five possibilities for what it heard for each word
         // Make a table of rows for eahc unique word and columns for each possibility
         
@@ -63,14 +83,15 @@ var WaitForWords = function() {
         }
         console.log(TotalList)*/
         //jsPsych.finishTrial();
-        document.getElementById("jspsych-html-button-response-button-0").disabled = true;
+        //document.getElementById("jspsych-html-button-response-button-0").disabled = true;
+        document.getElementById("finish-trial").disabled = false;
        });
 
 }
 // =======================================================================
 // Define all of the different the stimuli 
 
-var Fluency = {
+var FluencyOLD = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
 
@@ -119,6 +140,55 @@ var Fluency = {
     }
   }
 
+  var Fluency = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: function() {
+
+      var stim = 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'
+      return stim 
+    },
+    show_done_button: true,
+    done_button_label: 'Done',
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    recording_duration: 60000,
+    on_start: function() {
+      /* HeardList = []
+      const commands01 = {'*search': RecordSpokenWords};
+      const commands02 = {'result': RecordUserSaid};
+      annyang.addCommands(commands02);
+      annyang.start({autorestart: true, continuous: true});      
+      */
+      annyang.start({autorestart: false, continuous: true});
+      WaitForWords()
+    },
+    on_finish: function(data){
+      //data.HeardList = TotalList
+      data.SimpleList = SimpleList
+      data.task = 'Recall'
+      clearInterval(interval);
+      annyang.abort()
+      console.log(data.HeardList)
+    },
+    on_load: function(){ // This inserts a timer on the recall duration
+      var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
+      var start_time = performance.now();
+      document.querySelector('button').disabled = false;
+      interval = setInterval(function(){
+        time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        if(time_left <= 0){
+          document.querySelector('#clock').innerHTML = "0:00";
+          document.querySelector('button').disabled = false;
+          clearInterval(interval);
+          // STOP VOICE RECORDING!!!
+        }
+      }, 250)
+    }
+}
 
 // Define instructions
 var Instructions = {
@@ -207,13 +277,14 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 var if_SpokenResponse = {
-  timeline: [Fluency],
+  timeline: [InitializeMicrophone, Fluency],
   conditional_function: function() {
     if ( Fluency_parameters.RecallType == 'Spoken' )
     { return true }
     else { return false }
   }
 }
+
 var if_ManualResponse = {
   timeline: [CountResponses],
   conditional_function: function() {
@@ -225,7 +296,24 @@ var if_ManualResponse = {
 
 
 
-
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_start: function(data)
+    {
+      DD = jsPsych.data.get()
+      console.log(DD)
+      console.log(DD.filter({task: 'Recall'}))
+    },
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
 
 var Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -282,7 +370,14 @@ var Instructions_loop = {
       else { return false }
     }
   }
-
+  var if_Notes = {
+    timeline: [Notes],
+    conditional_function: function() {
+      if ( Fluency_parameters.AskForNotes)
+      { return true }
+      else { return false }
+    }
+  }
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -292,5 +387,6 @@ timeline.push(Instructions_loop)
 timeline.push(GetCategory)
 timeline.push(if_ManualResponse)
 timeline.push(if_SpokenResponse)
-timeline.push(SendData)
+timeline.push(if_Notes)
 timeline.push(if_ThankYou)
+timeline.push(SendData)

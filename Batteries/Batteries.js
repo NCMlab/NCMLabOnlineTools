@@ -205,3 +205,21 @@ BatteryList.push({index: 101,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
+
+BatteryList.push({index: 1001, 
+	name:'TESTER', 
+	list: ['Fluency'],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: ['Fluency_TEST'],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: ['FaCE'],
+	//Instructions: ['Default'],
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	ButtonName: [
+    	'Fluidity',
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©Test 2023'
+})

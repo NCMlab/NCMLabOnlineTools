@@ -192,7 +192,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           var trial_data = {
               rt: this.rt,
               stimulus: trial.stimulus,
-              response: this.response,
+              AudioResponse: this.response,
               estimated_stimulus_onset: Math.round(this.stimulus_start_time - this.recorder_start_time),
           };
           if (trial.save_audio_url) {
