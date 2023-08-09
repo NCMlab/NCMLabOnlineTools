@@ -45,7 +45,20 @@ var enter_fullscreen = {
   fullscreen_mode: FullScreenMode
 }
 
-
+var SetupSpeechRecognition = {
+  type: jsPsychCallFunction,
+  func: function() {
+    const commands01 = {'*search': FindRecalledWords01};
+      annyang.addCommands(commands01);
+      annyang.setLanguage(LANG)
+      annyang.addCallback('result', function(userSaid) {
+        // userSaid contains multiple possibilities for what was heard
+        userSaidWords += userSaid
+        userSaidWords += ';'
+        console.log(userSaidWords)
+      });
+  }
+}
 
 
 // preload audio
@@ -190,6 +203,15 @@ var MakeWordListB = {
   }
 }
 
+var if_Spoken = {
+  timeline: [SetupSpeechRecognition],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Spoken' )
+    { return true }
+    else { return false }
+  }
+}
+
 var if_Spoken_RecallA = {
   timeline: [SpokenRecallA],
   conditional_function: function() {
@@ -218,7 +240,6 @@ var if_Manual_UpdateRecallA = {
     }
   }
 }
-
 
 var if_Spoken_RecallB = {
   timeline: [SpokenRecallB],
@@ -614,7 +635,8 @@ var if_Notes = {
 }
 // ======================================================================= 
 // Add procedures to the timeline
-
+timeline.push(IntializeMicrophone)
+timeline.push(if_Spoken)
 timeline.push(if_Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(DelayedRecallNo)

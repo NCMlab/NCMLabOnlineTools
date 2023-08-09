@@ -2,33 +2,44 @@ Fluency_Animals = {
 	Category: 'Animals',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
-	ShowWelcome: false,
+	ShowInstructions: true,
+    ShowWelcome: false,
 	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: false,
 }
 
 Fluency_FruitsVegetable = {
 	Category: 'FruitsVegetables',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
-	ShowWelcome: false,
-	ShowThankYou: false
+	ShowInstructions: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: false,
 }
 
 Fluency_F = {
 	Category: 'LetterF',
 	TimeLimit: 60, // seconds
 	RecallType: 'Manual',
-	ShowWelcome: false,
-	ShowThankYou: false
+	ShowInstructions: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: false,
 }
 
 Fluency_TEST = {
 	Category: 'LetterF',
 	TimeLimit: 10, // seconds
 	RecallType: 'Spoken',
-	ShowWelcome: false,
+	ShowInstructions: true,
+    ShowWelcome: true,
 	ShowThankYou: true,
-	AskForNotes: true,
+    AskForNotes: true,
+    RecordAUDIO: true,
 }
 
 

@@ -211,15 +211,21 @@ var ManualRecallB = {
 };
 // ==========================================================================
 var SpokenRecallA = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
+    //type: jsPsychHtmlButtonResponseTouchscreen,
+    type: jsPsychHtmlAudioResponse,
+    
     stimulus: function() {
       return Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
     },
-    choices: function() {return [LabelNames.Next]}, 
+    //choices: function() {return [LabelNames.Next]}, 
+    show_done_button: true,
+    done_button_label: 'Done',//function() {return [LabelNames.Next]},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
+    recording_duration: 60000,
+    //prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
     on_start: function(SimpleList) {
+      console.log("Entering on_start")
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
       HeardList = []
@@ -230,17 +236,17 @@ var SpokenRecallA = {
 
       // Add a flag for the type of recall
       
-      const commands01 = {'*search': FindRecalledWords01};
-      annyang.addCommands(commands01);
-      annyang.setLanguage(LANG)
+      // const commands01 = {'*search': FindRecalledWords01};
+      // annyang.addCommands(commands01);
+      // annyang.setLanguage(LANG)
       annyang.start({autorestart: true, continuous: true});
-
-      annyang.addCallback('result', function(userSaid) {
-        // userSaid contains multiple possibilities for what was heard
-        userSaidWords += userSaid
-        userSaidWords += ';'
-        console.log(userSaidWords)
-      });
+      
+      // annyang.addCallback('result', function(userSaid) {
+      //   // userSaid contains multiple possibilities for what was heard
+      //   userSaidWords += userSaid
+      //   userSaidWords += ';'
+      //   console.log(userSaidWords)
+      // });
     },
     on_finish: function(data){
       data.RecallList = WordListIndex

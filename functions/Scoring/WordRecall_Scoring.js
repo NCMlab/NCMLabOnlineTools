@@ -34,9 +34,10 @@ function WordRecall_Scoring(data, ResponseArray, IntrusionList, WordList) {
 	Results.AllResults['Response Array'] = ResponseArray
 	Results.AllResults['Intrusions'] = IntrusionList
 	Results.AllResults['WordList'] = WordList
+	Results.AllResults['Word Recall User Said'] = []
     for ( var i = 0; i < TrialData.trials.length; i++ )
 	  {
-		  Results.AllResults['Word Recall Block'+String(i+1).padStart(2, '0')] = TrialData.trials[i].userSaid  
+		  Results.AllResults['Word Recall User Said'].push(TrialData.trials[i].userSaid)  
 	  }
 	console.log(Results)
 	return Results
