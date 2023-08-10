@@ -10,8 +10,8 @@ function ImageCopy_Scoring(data) {
 
 	// resize the image
 	//var smallPNG = drawImage(trialData.png, 0, 0, 100, 100)
-	Results.AllResults['Image'] = trialData.png
-	Results.AllResults['GIF'] = trialData.gif
+	//Results.AllResults['Image'] = trialData.png
+	//Results.AllResults['GIF'] = trialData.gif
 	Results.AllResults['Response Time (ms)'] = trialData.rt
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
