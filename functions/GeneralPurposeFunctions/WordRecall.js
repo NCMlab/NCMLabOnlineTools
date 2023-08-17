@@ -1,5 +1,6 @@
 console.log("LOADING WORD RECALL")
 var userSaidWords = []
+
 // Manual Recall Trial
 var ManualRecallA = {
   type: jsPsychSurvey,
@@ -104,6 +105,7 @@ var ManualRecallA = {
       
   },
 };
+
 // ==========================================================================
 var ManualRecallB = {
   type: jsPsychSurvey,
@@ -209,6 +211,7 @@ var ManualRecallB = {
       
   },
 };
+
 // ==========================================================================
 var SpokenRecallA = {
     //type: jsPsychHtmlButtonResponseTouchscreen,

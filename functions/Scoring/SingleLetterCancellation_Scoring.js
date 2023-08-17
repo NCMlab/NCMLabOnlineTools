@@ -36,7 +36,7 @@ function SingleLetterCancellation_Scoring(data) {
   Results.AllResults['Right Score'] = RightScore
   Results.AllResults['Left Max Score'] = LeftMaxScore
   Results.AllResults['Right Max Score'] = RightMaxScore
-  Results.AllResults['GIF'] = trial.gif
+  //Results.AllResults['GIF'] = trial.gif
   if ( Notes.trials.length > 0 )
     { Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
   else { Results.AllResults['Notes'] = '' }
