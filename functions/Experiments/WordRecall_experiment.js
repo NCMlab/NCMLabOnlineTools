@@ -60,6 +60,11 @@ var SetupSpeechRecognition = {
   }
 }
 
+var if_IntializeMicrophone = {
+  timeline: [IntializeMicrophone],
+  conditional_function: function(){
+    return  ( WordRecall_parameters.RecordAUDIO ) }
+}
 
 // preload audio
 // There will always be an A list
@@ -68,6 +73,7 @@ var preload_audioA = {
   audio: function(){return AudioFileListA},
   on_start: function() {}
 };
+
 var preload_audioB = {
   type: jsPsychPreload,
   audio: AudioFileListB,
@@ -79,6 +85,8 @@ var if_BList_preload = {
     console.log(WordRecall_parameters.BListFlag)
     return  WordRecall_parameters.BListFlag}
 }
+
+
 // Update Number of blocks variable
 var HowManyBlocks = {
   type: jsPsychCallFunction,
@@ -140,12 +148,12 @@ var ResetCounter = {
   }
 }
 
-ItemCount
 var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(WordRecall_parameters)
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
+    SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
     AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListA))
     // Make a full list the words and thier alternative pronunciations
@@ -164,6 +172,7 @@ var MakeWordListA = {
     WordListAForRecall = {
       'WordList': WordRecallLists.WordListA,
       'SimpleWordList': SimpleWordListA,
+      'SimpleRecogWordList': SimpleRecogWordList,
       'FullWordList': FullWordListA,
       'WordListIndex': WordListIndexA,
       'FullListIndex': FullListIndexA,
@@ -285,7 +294,16 @@ var AudioStimulus = {
         console.log(Stim)
         return Stim
       },
-      prompt:'<p class="Fixation">+</p>',
+      prompt: function() {
+        if ( WordRecall_parameters.VisualPresentation )
+        { 
+          return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+        }
+        else 
+        {
+          return '<p class="Fixation">+</p>'
+        }
+      },
     choices: [],  
     trial_duration: function(){return WordRecall_parameters.TimePerWord},
     on_finish: function(data) {
@@ -294,40 +312,18 @@ var AudioStimulus = {
       TrialCount++
     },
   };
-// NOT IMPLEMEMTED
+
 var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        // find what trial index this is
-        ind = (TrialCount) % NWords
-        // check to see if this trial was recalled in the previous block
-        if (WordListIndex[ind] > -99) {
-          // if NOT, then present the word
-          Stim = jsPsych.timelineVariable('Word')
-        }
-        else {
-          // if YES, then present the fixation cross
-          Stim = '<p class="Fixation">+</p>'
-        }
-        // return the chosen stimulus
-        console.log(Stim)        
-        Stim = '<p  class="Fixation">' +Stim+'</p>'
-        return Stim
+        return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
     choices: [], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    trial_duration: function() {
-      // if this word was recalled previously change the duration to 0 seconds also
-      if (WordListIndex[ind] > -99) {
-        return TimePerWord
-      }
-      else {
-        return 0
-      }
-    },
-    prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
+    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -480,6 +476,35 @@ var LoopAudioFiles = {
   }
 }
 
+var LoopVisual = {
+  timeline: [VisualStimulus],
+  loop_function: function(){
+    if ( ItemCount < AudioFileDictListA.length-1 ) {
+      ItemCount += 1
+      return true
+    }
+    else { return false}
+  }
+}
+
+var if_AudioStimuli = {
+  timeline: [LoopAudioFiles],
+  conditional_function: function() {
+    if ( WordRecall_parameters.AudioPresentation )
+    { return true }
+    else { return false }
+  }
+}    
+
+var if_VisualStimuli = {
+  timeline: [LoopVisual],
+  conditional_function: function() {
+    if ( (WordRecall_parameters.VisualPresentation) & (~WordRecall_parameters.AudioPresentation) )  
+    { return true }
+    else { return false }
+  }
+}    
+
 var PresentListOfWordsB = {
     timeline: [fixation, AudioStimulus],
     timeline_variables: AudioFileDictListB,
@@ -488,13 +513,13 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+      timeline: [Instructions01_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
       randomize_order: false,
       repetitions: 1
   } 
 
 var AfterFirstBlockLoop = {
-  timeline: [Instructions02_loop, LoopAudioFiles, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [Instructions02_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
   randomize_order: false,
   loop_function: function(data) {
     // reset count for instructions
@@ -541,7 +566,6 @@ var DelayedRecallYes = {
     else { return false }
   }
 }      
-
 
 var welcome = {
   type: jsPsychHtmlButtonResponseTouchscreen,

@@ -124,17 +124,22 @@ add('EN_RAVLT', function(){ WordRecallLists = EN_RAVLT});
 // === TEST ===========================================================================
 var EN_TEST = {}
 EN_TEST.WordListA = [
-	{'Word':"Leg"},		    // 0
-	{'Word':'Wool'}, 	    // 1
-	{'Word':'Castle'}, 		// 2
+	{'Word':'Pencil'},
+	{'Word':'Church'},
+	{'Word':'Fish'},
 	]
 
 	EN_TEST.AlternatePronunciationsWordListA = []
 	EN_TEST.WordListB = []
-	EN_TEST.RecognitionWordList = []
+	EN_TEST.RecognitionWordList = [
+		{'Word':'Pencil'},
+		{'Word':'Church'},
+		{'Word':'Fish'},
+		{'Word':'Children'},
+		{'Word':'Broomstick'},
+		{'Word':'Gun'}
+	]
 	EN_TEST.AlternatePronunciationsWordListB = []
-	EN_TEST.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
-	EN_TEST.FileExtension = '.wav'
 	EN_TEST.NWords = EN_FaCE.WordListA.length
 // The number of immediate recall blocks 
 EN_TEST.NBlocks = 1

@@ -160,20 +160,22 @@ var FaCE_Spoken_FR = {
 }
 
 var TEST_Spoken = {
-	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	FolderName: 'RAVLTSet001/',
 	WordList: 'TEST',
 	FileExtension: '.wav',
 	NBlocks: 4,
 	BListFlag: false,
+	AudioPresentation: true,
+	VisualPresentation: true,
 	RecallType:'Spoken',
-	RecallDuration: 120, // seconds
-	TimePerWord: 500, // milliseconds
+	RecallDuration: 60, // seconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
-	RecordAUDIO: false,
+	RecordAUDIO: true,
 }
 
 
