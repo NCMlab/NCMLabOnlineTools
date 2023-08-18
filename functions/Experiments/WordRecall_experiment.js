@@ -317,12 +317,33 @@ var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+        console.log(jsPsych.timelineVariable('Word'))
+        return jsPsych.timelineVariable('Word')
+        //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
     choices: [], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
+    on_finish: function(data) {
+      data.task = 'word'
+      // updatethe trial counter
+      TrialCount++
+    }
+  };
+
+  var VisualRecogStimulus = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+      {
+
+        return '<p class="Fixation">'+SimpleRecogWordList[ItemCount]+'</p>'
+      },
+    choices: ['Yes','No'], 
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    //trial_duration: function(){return WordRecall_parameters.TimePerWord},
     //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
@@ -480,6 +501,17 @@ var LoopVisual = {
   timeline: [VisualStimulus],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListA.length-1 ) {
+      ItemCount += 1
+      return true
+    }
+    else { return false}
+  }
+}
+
+var LoopRecogVisual = {
+  timeline: [VisualRecogStimulus],
+  loop_function: function(){
+    if ( ItemCount < SimpleRecogWordList.length - 1 ) {
       ItemCount += 1
       return true
     }
@@ -656,6 +688,16 @@ var if_Notes = {
     { return true }
     else { return false }
   }
+}
+
+var PresentRecognitionWords = {
+  timeline: [MakeWordListA,  LoopRecogVisual],
+  timeline_variables: function() {
+    console.log(WordListAForRecall.WordList)
+    return WordListAForRecall.WordList
+  },
+  repetitions: 1,
+  randomize_order: false      
 }
 // ======================================================================= 
 // Add procedures to the timeline
