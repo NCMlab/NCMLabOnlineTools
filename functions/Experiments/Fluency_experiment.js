@@ -6,6 +6,8 @@ var category
 var itemCount = 0
 var count = 0
 var HasCounterStarted = false
+var userSaidWords = []
+var HeardList = []
 
 const sleep = async (milliseconds) => {
   await new Promise(resolve => {
@@ -30,6 +32,21 @@ var InitializeMicrophone = {
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
+}
+
+var SetupSpeechRecognition = {
+  type: jsPsychCallFunction,
+  func: function() {
+      const commands01 = {'*search': RecordSpeechRecognition};
+      annyang.addCommands(commands01);
+      annyang.setLanguage(LANG)
+      annyang.addCallback('result', function(userSaid) {
+        // userSaid contains multiple possibilities for what was heard
+        userSaidWords += userSaid
+        userSaidWords += ';'
+        console.log(userSaidWords)
+      });
+  }
 }
 
 var GetCategory = {
@@ -110,15 +127,16 @@ var FluencyOLD = {
       annyang.start({autorestart: true, continuous: true});      
       */
       annyang.start({autorestart: false, continuous: true});
-      WaitForWords()
+      //WaitForWords()
     },
     on_finish: function(data){
       //data.HeardList = TotalList
       data.SimpleList = SimpleList
       data.task = 'Recall'
       clearInterval(interval);
-      annyang.abort()
       console.log(data.HeardList)
+      annyang.abort()
+      
     },
     on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
@@ -159,16 +177,22 @@ var FluencyOLD = {
       annyang.addCommands(commands02);
       annyang.start({autorestart: true, continuous: true});      
       */
-      annyang.start({autorestart: false, continuous: true});
-      WaitForWords()
+      userSaidWords = []
+      annyang.start({autorestart: true, continuous: true});
+      //WaitForWords()
     },
     on_finish: function(data){
       //data.HeardList = TotalList
       data.SimpleList = SimpleList
+      data.HeardList = HeardList
       data.task = 'Recall'
+      
+      
+      console.log(data.HeardList)
+      console.log(userSaidWords)
+      data.userSaid = userSaidWords
       clearInterval(interval);
       annyang.abort()
-      console.log(data.HeardList)
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
@@ -277,7 +301,7 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 var if_SpokenResponse = {
-  timeline: [InitializeMicrophone, Fluency],
+  timeline: [InitializeMicrophone, SetupSpeechRecognition, Fluency],
   conditional_function: function() {
     if ( Fluency_parameters.RecallType == 'Spoken' )
     { return true }

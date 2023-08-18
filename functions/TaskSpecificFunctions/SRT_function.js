@@ -111,6 +111,17 @@ var FindRecalledWords01 = function(tag) {
   }
 }
 
+var RecordSpeechRecognition = function(tag) {
+    console.log(tag)
+    // record multipel words at once and cycle through the list
+    var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+    // See if this item is in the word list
+    for (var i = 0; i < response.length; i++) {
+		HeardList.push(response[i])
+	}
+}
+
+
 var FindWordListLength = function(WordList) {
 	var NWords = 0
 	for (var i = 0; i < WordList.length; i++) {

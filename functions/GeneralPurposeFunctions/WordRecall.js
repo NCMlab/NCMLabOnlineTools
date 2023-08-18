@@ -264,10 +264,10 @@ var SpokenRecallA = {
       annyang.abort()
     },
     on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
+      var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
+      var start_time = performance.now();
+      interval = setInterval(function(){
+      time_left = wait_time - (performance.now() - start_time);
       var minutes = Math.floor(time_left / 1000 / 60);
       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
       var seconds_str = seconds.toString().padStart(2,'0');
