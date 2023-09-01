@@ -60,6 +60,28 @@ var SetupSpeechRecognition = {
   }
 }
 
+var SetupYesNoSpeechRecognition = {
+  type: jsPsychCallFunction,
+  func: function() {
+    const YesCommand = {
+      'yes': () => 
+          { $("#jspsych-html-button-response-button-0").click() }
+    };
+    const NoCommand = {
+        'no': () => 
+            { $("#jspsych-html-button-response-button-1").click() }
+    };  
+    annyang.addCommands(YesCommand);
+    annyang.addCommands(NoCommand);
+    annyang.setLanguage(LANG)
+    annyang.addCallback('result', function(userSaid) {
+      // userSaid contains multiple possibilities for what was heard
+      userSaidWords += userSaid
+      userSaidWords += ';'
+    });
+  }
+}
+
 var if_IntializeMicrophone = {
   timeline: [IntializeMicrophone],
   conditional_function: function(){
@@ -212,14 +234,7 @@ var MakeWordListB = {
   }
 }
 
-var if_Spoken = {
-  timeline: [SetupSpeechRecognition],
-  conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Spoken' )
-    { return true }
-    else { return false }
-  }
-}
+
 
 var if_Spoken_RecallA = {
   timeline: [SpokenRecallA],
@@ -325,25 +340,6 @@ var VisualStimulus = {
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     trial_duration: function(){return WordRecall_parameters.TimePerWord},
-    //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
-    on_finish: function(data) {
-      data.task = 'word'
-      // updatethe trial counter
-      TrialCount++
-    }
-  };
-
-  var VisualRecogStimulus = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function()
-      {
-
-        return '<p class="Fixation">'+SimpleRecogWordList[ItemCount]+'</p>'
-      },
-    choices: ['Yes','No'], 
-    margin_horizontal: GapBetweenButtons,
-    post_trial_gap: 0,
-    //trial_duration: function(){return WordRecall_parameters.TimePerWord},
     //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
@@ -508,16 +504,6 @@ var LoopVisual = {
   }
 }
 
-var LoopRecogVisual = {
-  timeline: [VisualRecogStimulus],
-  loop_function: function(){
-    if ( ItemCount < SimpleRecogWordList.length - 1 ) {
-      ItemCount += 1
-      return true
-    }
-    else { return false}
-  }
-}
 
 var if_AudioStimuli = {
   timeline: [LoopAudioFiles],
@@ -690,15 +676,6 @@ var if_Notes = {
   }
 }
 
-var PresentRecognitionWords = {
-  timeline: [MakeWordListA,  LoopRecogVisual],
-  timeline_variables: function() {
-    console.log(WordListAForRecall.WordList)
-    return WordListAForRecall.WordList
-  },
-  repetitions: 1,
-  randomize_order: false      
-}
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(IntializeMicrophone)

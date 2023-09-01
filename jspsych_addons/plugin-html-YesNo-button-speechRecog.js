@@ -72,20 +72,7 @@ var jsPsychHtmlButtonYesNoSpeechRecog = (function (jspsych) {
           }
       },
   };
-  const YesCommand = {
-    'yes': () => 
-        { 
-            console.log("I heard YES"); 
-            end_trial();
-        }
-  };
-  const NoCommand = {
-    'no': () => 
-        { 
-            console.log("I heard NO"); 
-            end_trial();
-        }
-  };
+
   
   /**
    * html-button-response
@@ -97,10 +84,10 @@ var jsPsychHtmlButtonYesNoSpeechRecog = (function (jspsych) {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
       }
+      
+      
       trial(display_element, trial) {
-        annyang.addCommands(YesCommand);
-        annyang.addCommands(NoCommand);
-        annyang.setLanguage(LANG)
+
           // display stimulus
           //show prompt if there is one
 
@@ -167,26 +154,31 @@ var jsPsychHtmlButtonYesNoSpeechRecog = (function (jspsych) {
               rt: null,
               button: null,
           };
-          // function to end trial when it is time
-          const end_trial = () => {
-              // kill any remaining setTimeout handlers
-              this.jsPsych.pluginAPI.clearAllTimeouts();
-              // gather the data to store for the trial
-              var trial_data = {
-                  rt: response.rt,
-                  stimulus: trial.stimulus,
-                  response: response.button,
-              };
-              // clear the display
-              display_element.innerHTML = "";
-              // move on to the next trial
-              this.jsPsych.finishTrial(trial_data);
-          };
+
+           // function to end trial when it is time
+           const end_trial = () => {
+            // kill any remaining setTimeout handlers
+            this.jsPsych.pluginAPI.clearAllTimeouts();
+            // gather the data to store for the trial
+            var trial_data = {
+                rt: response.rt,
+                stimulus: trial.stimulus,
+                response: response.button,
+            };
+            console.log(trial_data)
+            // clear the display
+            display_element.innerHTML = "";
+            // move on to the next trial
+            this.jsPsych.finishTrial(trial_data);
+        };
+
           // function to handle responses by the subject
           function after_response(choice) {
               // measure rt
               var end_time = performance.now();
               var rt = Math.round(end_time - start_time);
+              console.log(choice)
+              console.log(parseInt(choice))
               response.button = parseInt(choice);
               response.rt = rt;
               // after a valid response, the stimulus will have the CSS class 'responded'
@@ -211,7 +203,7 @@ var jsPsychHtmlButtonYesNoSpeechRecog = (function (jspsych) {
           }
           // end trial if time limit is set
           if (trial.trial_duration !== null) {
-              this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration);
+              this.jsPsych.pluginAPI.setTimeout(this.end_trial, trial.trial_duration);
           }
       }
       simulate(trial, simulation_mode, simulation_options, load_callback) {

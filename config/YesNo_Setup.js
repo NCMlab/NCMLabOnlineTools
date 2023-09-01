@@ -4,8 +4,8 @@ YesNo_TEST = {
 	RecallType: 'Spoken',
 	ShowInstructions: false,
     ShowWelcome: false,
-	ShowThankYou: false,
-    AskForNotes: false,
+	ShowThankYou: true,
+    AskForNotes: true,
     RecordAUDIO: false,
 }
 

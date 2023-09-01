@@ -171,6 +171,7 @@ var TEST_Spoken = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
+	RecognitionFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: true,
 	ShowInstructions: true,

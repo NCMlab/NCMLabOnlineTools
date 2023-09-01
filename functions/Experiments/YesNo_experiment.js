@@ -38,13 +38,22 @@ var enter_fullscreen = {
 var SetupSpeechRecognition = {
   type: jsPsychCallFunction,
   func: function() {
-    
-      annyang.addCallback('result', function(userSaid) {
-        // userSaid contains multiple possibilities for what was heard
-        userSaidWords += userSaid
-        userSaidWords += ';'
-        console.log(userSaidWords)
-      });
+    const YesCommand = {
+      'yes': () => 
+          { $("#jspsych-html-button-response-button-0").click() }
+    };
+    const NoCommand = {
+        'no': () => 
+            { $("#jspsych-html-button-response-button-1").click() }
+    };  
+    annyang.addCommands(YesCommand);
+    annyang.addCommands(NoCommand);
+    annyang.setLanguage(LANG)
+    annyang.addCallback('result', function(userSaid) {
+      // userSaid contains multiple possibilities for what was heard
+      userSaidWords += userSaid
+      userSaidWords += ';'
+    });
   }
 }
 
@@ -69,10 +78,9 @@ function ThisGetRow(Input, Row) {
   }
 
 var YesNo = {
-    //type: jsPsychHtmlButtonResponseTouchscreen,
-    type: jsPsychHtmlButtonYesNoSpeechRecog,
+  // This is a single trial
+    type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-
       var stim = 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'
       return stim 
     },
@@ -83,42 +91,18 @@ var YesNo = {
     response_ends_trial: true,
     trial_duration: 10000,
     on_start: function() {
-      /* HeardList = []
-      const commands01 = {'*search': RecordSpokenWords};
-      const commands02 = {'result': RecordUserSaid};
-      annyang.addCommands(commands02);
-      annyang.start({autorestart: true, continuous: true});      
-      */
+      // Move this
       annyang.start({autorestart: false, continuous: true});
-      //WaitForWords()
     },
     on_finish: function(data){
       //data.HeardList = TotalList
       data.SimpleList = SimpleList
       data.task = 'Recall'
-      clearInterval(interval);
-      console.log(data.HeardList)
+      console.log(data)
+      console.log(data)
+      // Move this
       annyang.abort()
-      
     },
-    on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = YesNo_parameters.TimeLimit * 1000; // in milliseconds
-    var start_time = performance.now();
-    document.querySelector('button').disabled = false;
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-    }
   }
 
 // Define instructions
@@ -208,7 +192,7 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 var if_SpokenResponse = {
-  timeline: [InitializeMicrophone, YesNo],
+  timeline: [InitializeMicrophone, SetupSpeechRecognition],
   conditional_function: function() {
     if ( YesNo_parameters.RecallType == 'Spoken' )
     { return true }
@@ -312,12 +296,13 @@ var Instructions_loop = {
 // ======================================================================= 
 // Add procedures to the timeline
 
-timeline.push(if_Welcome)
-timeline.push(enter_fullscreen)
-timeline.push(Instructions_loop)
-timeline.push(GetCategory)
-timeline.push(if_ManualResponse)
+//timeline.push(if_Welcome)
+//timeline.push(enter_fullscreen)
+//timeline.push(Instructions_loop)
+//timeline.push(GetCategory)
+//timeline.push(if_ManualResponse)
 timeline.push(if_SpokenResponse)
-timeline.push(if_Notes)
-timeline.push(if_ThankYou)
-timeline.push(SendData)
+timeline.push(YesNo)
+//timeline.push(if_Notes)
+//timeline.push(if_ThankYou)
+//timeline.push(SendData)

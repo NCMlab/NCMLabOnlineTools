@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="description" content="jsPsych Word Recognition">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Fluency Test</title>
+    <title>NCMLab: Word Recognition</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
@@ -34,14 +34,16 @@
     <script src="jspsych_addons/plugin-html-YesNo-button-speechRecog.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
-
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/SetupSpeechRecognition.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/Fluency_Instructions.js"></script>
-    <script src="functions/Scoring/Fluency_Scoring.js"></script>
-    <script src="functions/TaskSpecificFunctions/AFT_function.js"></script>
-    <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
-    <script src="config/YesNo_Setup.js"></script>
+    <script src="InstructionsAndStimuli/EN/Stimuli/WordRecall_Lists.js"></script>
+    
+    <script src="config/WordRecog_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
+    <script src="functions/Scoring/WordRecall_Scoring.js"></script>
+    <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
+    <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
     <script>
       // check what URL is calling this file and load the config file accordingly
       let url_running = window.location.href
@@ -57,28 +59,38 @@
       }
     </script>
     <script>
-      var YesNo_parameters = 'empty'
+      var WordRecall_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
+        var Language = jatos.studySessionData.Language
+        console.log(Language)
         if (typeof BatteryHtmlID === 'undefined') {
-          parameters = 'YesNo_TEST'
+          parameters = 'TEST_Spoken'
           InstructionsToUse = 'Default'
         }
         else {
           parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }
+        console.log(parameters)
         pseudoSwitch(parameters)      
-        console.log(YesNo_parameters)
+        console.log(WordRecall_parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+        // Load language specific stimuli
+        console.log(LANG+'_'+WordRecall_parameters.WordList)
+        pseudoSwitch(LANG+'_'+WordRecall_parameters.WordList)
+        console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
       })
     </script>  
-    <script src="functions/Experiments/YesNo_experiment.js"></script>
+    <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
+    <script src="functions/GeneralPurposeFunctions/PrepareWordLists.js"></script>
+
+    <script src="functions/Experiments/WordRecognition_experiment.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   <script>
@@ -102,7 +114,7 @@ var jsPsych = initJsPsych({
     on_finish: function() {
       jatos.endStudy(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','Fluency_data.csv');
+        jsPsych.data.get().localSave('csv','WordRecognition_data.csv');
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
