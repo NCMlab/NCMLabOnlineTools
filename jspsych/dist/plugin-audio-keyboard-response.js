@@ -148,6 +148,7 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
               // clear the display
               display_element.innerHTML = "";
               // move on to the next trial
+              console.log(trial_data)
               this.jsPsych.finishTrial(trial_data);
               trial_complete();
           };

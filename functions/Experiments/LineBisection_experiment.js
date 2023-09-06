@@ -186,7 +186,7 @@ var if_Test_Instructions = {
   timeline.push(if_Test_Instructions)
   timeline.push(loop_node)
   ///timeline.push(trials)
-  timeline.push(Notes)
+  timeline.push(if_Notes)
   timeline.push(SendData)
   timeline.push(if_ThankYou)
   

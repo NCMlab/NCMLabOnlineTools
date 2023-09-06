@@ -28,6 +28,14 @@ var CreateSimpleWordList = function(WordList) {
 	return SimpleList
 }
 
+var CreateRecognitionAnswerKey = function(WordList) {
+	var RecogAnswerKey = []
+	for (var i = 0; i < WordList.length; i++) {
+		RecogAnswerKey.push(WordList[i]['Answer'])
+	}
+	return RecogAnswerKey
+}
+
 var MakeAllWordsUpperCase = function(WordList) {
 	var outList = []
 	for ( var i = 0; i < WordList.length; i++ ) {

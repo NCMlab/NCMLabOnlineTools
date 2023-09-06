@@ -88,36 +88,36 @@ EN_RAVLT.WordListB = [
 EN_RAVLT.AlternatePronunciationsWordListB = []
 EN_RAVLT.NWords = EN_RAVLT.WordListA.length
 EN_RAVLT.RecognitionWordList = [
-	{'Word':'Teacher'},
-	{'Word':'River'},
-	{'Word':'Bridge'},
-	{'Word':'Farmer'},
-	{'Word':'Pen'},
-	{'Word':'Forehead'},
-	{'Word':'Kerchief'},
-	{'Word':'House'},
-	{'Word':'Moon'},
-	{'Word':'Color'},
-	{'Word':'Beet'},
-	{'Word':'Curtain'},
-	{'Word':'Floor'},
-	{'Word':'Soldier'},
-	{'Word':'Drum'},
-	{'Word':'Coffee'},
-	{'Word':'Road'},
-	{'Word':'Hat'},
-	{'Word':'Turkey'},
-	{'Word':'Minute'},
-	{'Word':'Nose'},
-	{'Word':'School'},
-	{'Word':'Bell'},
-	{'Word':'Face'},
-	{'Word':'Garden'},
-	{'Word':'Classroom'},
-	{'Word':'Parent'},
-	{'Word':'Children'},
-	{'Word':'Broomstick'},
-	{'Word':'Gun'}
+	{'Word':'Teacher','Answer':false},
+	{'Word':'River','Answer':true},
+	{'Word':'Bridge','Answer':false},
+	{'Word':'Farmer','Answer':true},
+	{'Word':'Pen','Answer':false},
+	{'Word':'Forehead','Answer':false},
+	{'Word':'Kerchief','Answer':false},
+	{'Word':'House','Answer':true},
+	{'Word':'Moon','Answer':true},
+	{'Word':'Color','Answer':true},
+	{'Word':'Beet','Answer':false},
+	{'Word':'Curtain','Answer':true},
+	{'Word':'Floor','Answer':false},
+	{'Word':'Soldier','Answer':false},
+	{'Word':'Drum','Answer':true},
+	{'Word':'Coffee','Answer':true},
+	{'Word':'Road','Answer':false},
+	{'Word':'Hat','Answer':true},
+	{'Word':'Turkey','Answer':true},
+	{'Word':'Minute','Answer':false},
+	{'Word':'Nose','Answer':true},
+	{'Word':'School','Answer':true},
+	{'Word':'Bell','Answer':true},
+	{'Word':'Face','Answer':false},
+	{'Word':'Garden','Answer':true},
+	{'Word':'Classroom','Answer':false},
+	{'Word':'Parent','Answer':true},
+	{'Word':'Children','Answer':false},
+	{'Word':'Broomstick','Answer':false},
+	{'Word':'Gun','Answer':false}
 ]
 add('EN_RAVLT', function(){ WordRecallLists = EN_RAVLT});
 
@@ -134,10 +134,7 @@ EN_TEST.WordListA = [
 	EN_TEST.RecognitionWordList = [
 		{'Word':'Pencil'},
 		{'Word':'Church'},
-		{'Word':'Fish'},
-		{'Word':'Children'},
-		{'Word':'Broomstick'},
-		{'Word':'Gun'}
+		{'Word':'Fish'}
 	]
 	EN_TEST.AlternatePronunciationsWordListB = []
 	EN_TEST.NWords = EN_FaCE.WordListA.length

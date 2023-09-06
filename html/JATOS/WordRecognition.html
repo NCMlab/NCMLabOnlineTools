@@ -30,19 +30,21 @@
     <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-YesNo-button-speechRecog.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/SetupSpeechRecognition.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/EN/Stimuli/WordRecall_Lists.js"></script>
-    
+    <script src="InstructionsAndStimuli/Instructions/WordRecog_Instructions.js"></script>
     <script src="config/WordRecog_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
-    <script src="functions/Scoring/WordRecall_Scoring.js"></script>
-    <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
+    <script src="functions/Scoring/WordRecog_Scoring.js"></script>
+    
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
     <script>
       // check what URL is calling this file and load the config file accordingly
@@ -59,7 +61,7 @@
       }
     </script>
     <script>
-      var WordRecall_parameters = 'empty'
+      var WordRecog_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
         var Language = jatos.studySessionData.Language
@@ -74,14 +76,15 @@
         }
         console.log(parameters)
         pseudoSwitch(parameters)      
-        console.log(WordRecall_parameters)
+        console.log(WordRecog_parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
-        console.log(LANG)
+        console.log(LANG+'_Instructions_'+InstructionsToUse)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+        console.log(Instructions)
         // Load language specific stimuli
-        console.log(LANG+'_'+WordRecall_parameters.WordList)
-        pseudoSwitch(LANG+'_'+WordRecall_parameters.WordList)
+        console.log(LANG+'_'+WordRecog_parameters.WordList)
+        pseudoSwitch(LANG+'_'+WordRecog_parameters.WordList)
         console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
