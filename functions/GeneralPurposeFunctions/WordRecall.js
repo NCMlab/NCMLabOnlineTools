@@ -262,6 +262,7 @@ var SpokenRecallA = {
       BlockCount++
       clearInterval(interval);
       annyang.abort()
+      console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds

@@ -27,19 +27,18 @@ var RAVLT_Spoken_Immediate = {
 	FolderName: 'RAVLT_en_US-Neural2-F_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 1, // There need to be at least two recall blocks
+	NBlocks: 6, 
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	ShowThankYou: true,
-	ShowInstructions: false, // not implemented
+	ShowInstructions: true, // not implemented
 	AskForNotes: true,
-	RecordAUDIO: false,
 }
 
 var RAVLT_Manual_Delayed = {
@@ -57,6 +56,22 @@ var RAVLT_Manual_Delayed = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	RecordAUDIO: false,
+}
+
+var RAVLT_Spoken_Delayed = {
+	FolderName: 'RAVLT_en_US-Neural2-F_Speed70/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: true, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: true,
+	AskForNotes: true,
 }
 
 var RAVLT_001 = {
@@ -185,6 +200,8 @@ var TEST_Spoken = {
 add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_Immediate});
 add('RAVLT_Spoken_Immediate', function(){ WordRecall_parameters = RAVLT_Spoken_Immediate});
 add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
+add('RAVLT_Spoken_Delayed', function(){ WordRecall_parameters = RAVLT_Spoken_Delayed});
+
 add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});
 add('FaCE_Default_FR', function(){ WordRecall_parameters = FaCE_Default_FR});

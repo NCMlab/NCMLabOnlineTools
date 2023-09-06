@@ -172,7 +172,8 @@ var MakeWordListB = {
     }
   }
 }
- 
+
+
 // =======================================================================
 // DEFINE FUNCTIONS
 var UpdateManualResponseArray = {
@@ -244,7 +245,6 @@ var AudioStimulus = {
         //Stim = jsPsych.timelineVariable('Word')
         Stim = AudioFileDictListA[ItemCount].Word
         // return the chosen stimulus
-        console.log(Stim)
         return Stim
       },
       prompt: function() {
@@ -265,17 +265,6 @@ var AudioStimulus = {
       TrialCount++
     },
   };
-
-
-  var if_AudioStimuli = {
-    timeline: [LoopAudioFiles],
-    conditional_function: function() {
-      if ( WordRecall_parameters.AudioPresentation )
-      { return true }
-      else { return false }
-    }
-  }   
-  
 
 var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -435,6 +424,8 @@ var thank_you = {
 
 // =======================================================================    
 // LOOPS
+
+
 var Instructions01_loop = {
   timeline: [Instructions01],
   loop_function: function(data){
@@ -485,7 +476,6 @@ var LoopAudioFiles = {
   timeline: [AudioStimulus],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListA.length-1 ) {
-      console.log("Audio Item")
       ItemCount += 1
       return true
     }
@@ -504,20 +494,17 @@ var LoopVisual = {
   }
 }
 
-var AfterFirstBlockLoop = {
-  timeline: [Instructions02_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
-  randomize_order: false,
-  loop_function: function(data) {
-    // reset count for instructions
-    countInstr02 = 0
-    console.log("Block Count (in loop): " + (BlockCount)/2)
-    if ( ((BlockCount)/2) < NumberBlocks )
+
+// ======================================================================= 
+// CONDITIONALS
+var if_AudioStimuli = {
+  timeline: [LoopAudioFiles],
+  conditional_function: function() {
+    if ( WordRecall_parameters.AudioPresentation )
     { return true }
     else { return false }
   }
-}
-// ======================================================================= 
-// CONDITIONALS
+}   
 
 var if_Spoken = {
   timeline: [IntializeMicrophone, SetupSpeechRecognition],
@@ -611,40 +598,6 @@ var if_ThankYou = {
   }
 }
 
-var if_Instructions01 = {
-  timeline: [Instructions01_loop],
-  conditional_function: function() {
-        if ( WordRecall_parameters.ShowInstructions)
-        { console.log('Instruct Decide 01')
-        return true }
-        else { return false }
-  }
-}
-var if_Instructions02 = {
-  timeline: [Instructions02_loop],
-  conditional_function: function() {
-        if ( WordRecall_parameters.ShowInstructions)
-        { return true }
-        else { return false }
-  }
-}
-var if_Instructions03 = {
-  timeline: [Instructions03_loop],
-  conditional_function: function() {
-        if ( WordRecall_parameters.ShowInstructions)
-        { return true }
-        else { return false }
-  }
-}
-var if_Instructions04 = {
-  timeline: [Instructions04_loop],
-  conditional_function: function() {
-        if ( WordRecall_parameters.ShowInstructions)
-        { return true }
-        else { return false }
-  }
-}
-
 var if_Notes = {
   timeline: [Notes],
   conditional_function: function() {
@@ -653,6 +606,30 @@ var if_Notes = {
     else { return false }
   }
 }
+
+// =======================================================================    
+// PROCEDURES
+// Define the test procedure which does NOT provide feedback
+
+
+var AfterFirstBlockProcedure = {
+  timeline: [Instructions02_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  repetitions: 1,
+  randomize_order: false      
+}
+
+var AfterFirstBlockLoop = {
+  timeline: [AfterFirstBlockProcedure],
+  randomize_order: false,
+  loop_function: function(data) {
+    // reset count for instructions
+    countInstr02 = 0
+    console.log("Block Count (in loop): " + (BlockCount)/2)
+    if ( ((BlockCount)/2) < NumberBlocks )
+    { return true }
+    else { return false }
+  }
+}  
 var if_MoreThanOneBlock = {
   timeline: [AfterFirstBlockLoop],
   conditional_function: function() {
@@ -661,10 +638,6 @@ var if_MoreThanOneBlock = {
     else {return false}
   }
 }
-// =======================================================================    
-// PROCEDURES
-// Define the test procedure which does NOT provide feedback
-
 var PresentListOfWordsA = {
     timeline: [fixation, AudioStimulus],
     timeline_variables: AudioFileDictListA,
@@ -684,6 +657,7 @@ var FirstBlock = {
       repetitions: 1,
       randomize_order: false
   } 
+
 
 var BlockB = {
     timeline: [Instructions03_loop, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
@@ -712,6 +686,8 @@ var DelayedRecallNo = {
     else { return true }
   }
 }    
+
+
 var DelayedRecallYes = {
   timeline: [MakeWordListA, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
@@ -720,6 +696,8 @@ var DelayedRecallYes = {
     else { return false }
   }
 }      
+
+
 
 //parent
 //turkey 

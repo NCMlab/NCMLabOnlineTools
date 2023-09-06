@@ -208,18 +208,19 @@ BatteryList.push({index: 101,
 
 BatteryList.push({index: 1001, 
 	name:'TESTER', 
-	list: ['Word Recall', 'Word Recall', 'Word Recognition',],
+	list: ['Word Recall', 'Word Recall', 'Word Recognition','Fluency'],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: ['RAVLT_Spoken_Immediate', 'TEST_Spoken', 'TEST_Spoken'],
+	ParameterLists: ['RAVLT_Spoken_Immediate', 'RAVLT_Spoken_Delayed', 'TEST_Spoken','Fluency_TEST'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['Default','Default', 'Default'],
+	Instructions: ['Default','Default', 'Default','Default'],
 	//Instructions: ['Default'],
 	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
 	ButtonName: [
     	'Immediate',
 		'Delayed',
-		'Recognition'
+		'Recognition',
+		'Fluid'
 	],
 	Language:'EN',
 	RunAudioTest: true,
