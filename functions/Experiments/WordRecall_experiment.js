@@ -22,7 +22,8 @@ var SimpleWordList = []
 var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
-var TrialCount
+var TrialCount = 0
+var TrialCountB = 0
 var BlockCount = 0
 var RecallProcedureB
 var AudioFileListA
@@ -32,6 +33,7 @@ var WordListBForRecall
 var AudioFileDictListA
 var AudioFileDictListB
 var ResponseArray
+var ResponseArrayB
 var NumberBlocks
 var ItemCount = 0
 var countInstr01 = 0
@@ -51,7 +53,7 @@ var enter_fullscreen = {
 var SetupSpeechRecognition = {
   type: jsPsychCallFunction,
   func: function() {
-    const commands01 = {'*search': FindRecalledWords01};
+      const commands01 = {'*search': FindRecalledWords01};
       annyang.addCommands(commands01);
       annyang.setLanguage(LANG)
       annyang.addCallback('result', function(userSaid) {
@@ -62,7 +64,20 @@ var SetupSpeechRecognition = {
       });
   }
 }
-
+var SetupSpeechRecognitionB = {
+  type: jsPsychCallFunction,
+  func: function() {
+      const commands01 = {'*search': FindRecalledWords02};
+      annyang.addCommands(commands01);
+      annyang.setLanguage(LANG)
+      annyang.addCallback('result', function(userSaid) {
+        // userSaid contains multiple possibilities for what was heard
+        userSaidWords += userSaid
+        userSaidWords += ';'
+        console.log(userSaidWords)
+      });
+  }
+}
 // preload audio
 // There will always be an A list
 var preload_audioA = {
@@ -109,6 +124,14 @@ var MakeDelayedResponseArray = {
   }
 }
 
+var MakeResponseArrayB = {
+  type: jsPsychCallFunction,
+  func: function() {
+    ResponseArrayB = Array.from(Array(WordRecallLists.WordListB.length), _ => Array(1).fill(-99))
+    console.log(ResponseArray)
+  }
+}
+
 var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
@@ -138,7 +161,7 @@ var MakeWordListA = {
       'WordListIndex': WordListIndexA,
       'FullListIndex': FullListIndexA,
     }
-    console.log(WordListAForRecall)
+    console.log(AudioFileDictListA)
   }
 }
 
@@ -170,6 +193,8 @@ var MakeWordListB = {
       'WordListIndex': WordListIndexB,
       'FullListIndex': FullListIndexB,
     }
+    console.log(WordListBForRecall)
+    console.log(AudioFileDictListB)
   }
 }
 
@@ -221,6 +246,8 @@ var SendData = {
   }
 }
 
+
+
 // =======================================================================
 // DEFINE ALL THE STIMULI
 
@@ -244,6 +271,7 @@ var AudioStimulus = {
         ind = (TrialCount) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
         Stim = AudioFileDictListA[ItemCount].Word
+        
         // return the chosen stimulus
         return Stim
       },
@@ -266,7 +294,57 @@ var AudioStimulus = {
     },
   };
 
+  var AudioStimulusB = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: function()
+      {
+        Stim = '+'
+        // find what trial index this is
+        ind = (TrialCountB) % WordRecallLists.NWords
+        //Stim = jsPsych.timelineVariable('Word')
+        Stim = AudioFileDictListB[ItemCount].Word
+        // return the chosen stimulus
+        return Stim
+      },
+      prompt: function() {
+        if ( WordRecall_parameters.VisualPresentation )
+        { 
+          return '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
+        }
+        else 
+        {
+          return '<p class="Fixation">+</p>'
+        }
+      },
+    choices: [],  
+    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    on_finish: function(data) {
+      data.task = 'word'
+      // updatethe trial counter
+      TrialCount++
+    },
+  };  
 var VisualStimulus = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function()
+      {
+        console.log(jsPsych.timelineVariable('Word'))
+        return jsPsych.timelineVariable('Word')
+        //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+      },
+    choices: [], 
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
+    on_finish: function(data) {
+      data.task = 'word'
+      // updatethe trial counter
+      TrialCount++
+    }
+  };
+
+  var VisualStimulusB = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
@@ -425,7 +503,6 @@ var thank_you = {
 // =======================================================================    
 // LOOPS
 
-
 var Instructions01_loop = {
   timeline: [Instructions01],
   loop_function: function(data){
@@ -482,6 +559,16 @@ var LoopAudioFiles = {
     else { return false}
   }
 }
+var LoopAudioFilesB = {
+  timeline: [AudioStimulusB],
+  loop_function: function(){
+    if ( ItemCount < AudioFileDictListB.length-1 ) {
+      ItemCount += 1
+      return true
+    }
+    else { return false}
+  }
+}
 
 var LoopVisual = {
   timeline: [VisualStimulus],
@@ -493,7 +580,16 @@ var LoopVisual = {
     else { return false}
   }
 }
-
+var LoopVisualB = {
+  timeline: [VisualStimulusB],
+  loop_function: function(){
+    if ( ItemCount < AudioFileDictListA.length-1 ) {
+      ItemCount += 1
+      return true
+    }
+    else { return false}
+  }
+}
 
 // ======================================================================= 
 // CONDITIONALS
@@ -505,7 +601,14 @@ var if_AudioStimuli = {
     else { return false }
   }
 }   
-
+var if_AudioStimuliB = {
+  timeline: [LoopAudioFilesB],
+  conditional_function: function() {
+    if ( WordRecall_parameters.AudioPresentation )
+    { return true }
+    else { return false }
+  }
+}   
 var if_Spoken = {
   timeline: [IntializeMicrophone, SetupSpeechRecognition],
   conditional_function: function() {
@@ -533,6 +636,24 @@ var if_Manual_RecallA = {
   }
 }
 
+var if_Spoken_RecallB = {
+  timeline: [SpokenRecallB],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Spoken' )
+    { console.log("if_Spoken_RecallA")
+      return true }
+    else { return false }
+  }
+}
+var if_Manual_RecallB = {
+  timeline: [ManualRecallB],
+  conditional_function: function() {
+    if ( WordRecall_parameters.RecallType == 'Manual' )
+    { return true }
+    else { return false }
+  }
+}
+
 var if_Manual_UpdateRecallA = {
   timeline: [UpdateManualResponseArray],
   conditional_function: function() {
@@ -545,31 +666,10 @@ var if_Manual_UpdateRecallA = {
   }
 }
 
-var if_Spoken_RecallB = {
-  timeline: [SpokenRecallB],
-  conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Spoken' && WordRecall_parameters.BListFlag)
-    { return true }
-    else { return false }
-  }
-}
-var if_Manual_RecallB = {
-  timeline: [ManualRecallB],
-  conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Manual' && WordRecall_parameters.BListFlag)
-    { return true }
-    else { return false }
-  }
-}
 
-var if_AudioStimuli = {
-  timeline: [LoopAudioFiles],
-  conditional_function: function() {
-    if ( WordRecall_parameters.AudioPresentation )
-    { return true }
-    else { return false }
-  }
-}    
+
+
+
 
 var if_VisualStimuli = {
   timeline: [LoopVisual],
@@ -579,7 +679,14 @@ var if_VisualStimuli = {
     else { return false }
   }
 }    
-
+var if_VisualStimuliB = {
+  timeline: [LoopVisualB],
+  conditional_function: function() {
+    if ( (WordRecall_parameters.VisualPresentation) & ( ! WordRecall_parameters.AudioPresentation) )  
+    { return true }
+    else { return false }
+  }
+}    
 var if_Welcome = {
   timeline: [welcome],
   conditional_function: function() {
@@ -645,8 +752,9 @@ var PresentListOfWordsA = {
     randomize_order: false      
 }
 
+
 var PresentListOfWordsB = {
-    timeline: [fixation, AudioStimulus],
+    timeline: [fixation, AudioStimulusB],
     timeline_variables: AudioFileDictListB,
     repetitions: 1,
     randomize_order: false      
@@ -657,13 +765,6 @@ var FirstBlock = {
       repetitions: 1,
       randomize_order: false
   } 
-
-
-var BlockB = {
-    timeline: [Instructions03_loop, PresentListOfWordsB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
-    randomize_order: false,
-    repetitions: 1,
-} 
 
 var FinalRecalBlockA = {
     timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
@@ -687,6 +788,7 @@ var DelayedRecallNo = {
   }
 }    
 
+ 
 
 var DelayedRecallYes = {
   timeline: [MakeWordListA, MakeDelayedResponseArray, DelayedRecalBlockA],
@@ -697,6 +799,28 @@ var DelayedRecallYes = {
   }
 }      
 
+var BlockB = {
+  timeline: [MakeResponseArrayB, Instructions03_loop, if_AudioStimuliB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
+  randomize_order: false,
+  repetitions: 1,
+}
+
+var if_RecallB = {
+  timeline: [BlockB],
+  conditional_function: function() {
+    if (WordRecall_parameters.BListFlag)
+    { return true }
+    else { return false }
+  }
+}
+var if_FinalRecallA = {
+  timeline: [FinalRecalBlockA],
+  conditional_function: function() {
+    if (WordRecall_parameters.BListFlag)
+    { return true }
+    else { return false }
+  }
+}
 
 
 //parent
@@ -710,8 +834,12 @@ var DelayedRecallYes = {
 timeline.push(if_Welcome)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)
+
 timeline.push(DelayedRecallNo)
 timeline.push(DelayedRecallYes)
+timeline.push(if_RecallB)
+timeline.push(if_FinalRecallA)
+
 timeline.push(if_Notes)
 timeline.push(if_ThankYou)
 timeline.push(SendData)

@@ -287,52 +287,64 @@ var IntializeMicrophone = {
     type: jsPsychInitializeMicrophone
 };
 
-var XXXSpokenRecallA = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: `
-    <p style="font-size:48px; color:red;">GREEN</p>
-    <p>Speak the color of the ink.</p>`,
-    recording_duration: 3500,
-};
 
 // ==========================================================================
 var SpokenRecallB = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: 'Please, recall the full list.<p><span id="clock">1:00</span></p>',
-  choices: ['Next'], 
+  //type: jsPsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlAudioResponse,
+  
+  stimulus: function() {
+    return Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+  },
+  //choices: function() {return [LabelNames.Next]}, 
+  show_done_button: true,
+  done_button_label: 'Done',//function() {return [LabelNames.Next]},
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
+  recording_duration: 60000,
+  //prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
   on_start: function(SimpleList) {
+    console.log("Entering on_start")
     // reset the list of indices
     // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
     HeardList = []
+    userSaidWords = []
+    userSaid = []
     BlockRecallCount = 0
     BlockIntrusionCount = 0
 
     // Add a flag for the type of recall
     
-    const commands01 = {'*search': FindRecalledWords01};
-    annyang.addCommands(commands01);
+    // const commands01 = {'*search': FindRecalledWords01};
+    // annyang.addCommands(commands01);
+    // annyang.setLanguage(LANG)
     annyang.start({autorestart: true, continuous: true});
     
-    //console.log('Started')
+    // annyang.addCallback('result', function(userSaid) {
+    //   // userSaid contains multiple possibilities for what was heard
+    //   userSaidWords += userSaid
+    //   userSaidWords += ';'
+    //   console.log(userSaidWords)
+    // });
   },
   on_finish: function(data){
     data.RecallList = WordListIndex
     data.HeardList = HeardList
+    data.IntrusionList = IntrusionList
     data.RecallCount = BlockRecallCount
     data.NIntrusions = BlockIntrusionCount
-    data.task = 'Recall'
+    data.task = 'RecallB'
+    data.userSaid = userSaidWords
     BlockCount++
     clearInterval(interval);
     annyang.abort()
+    console.log("Ended recall")
   },
   on_load: function(){ // This inserts a timer on the recall duration
-  var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
-  var start_time = performance.now();
-  interval = setInterval(function(){
-  time_left = wait_time - (performance.now() - start_time);
+    var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
     var minutes = Math.floor(time_left / 1000 / 60);
     var seconds = Math.floor((time_left - minutes*1000*60)/1000);
     var seconds_str = seconds.toString().padStart(2,'0');
@@ -346,5 +358,3 @@ var SpokenRecallB = {
   }, 250)
   }
 }
-
-

@@ -27,7 +27,7 @@ var RAVLT_Spoken_Immediate = {
 	FolderName: 'RAVLT_en_US-Neural2-F_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 6, 
+	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
@@ -35,10 +35,10 @@ var RAVLT_Spoken_Immediate = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true, // not implemented
-	AskForNotes: true,
+	AskForNotes: false,
 }
 
 var RAVLT_Manual_Delayed = {

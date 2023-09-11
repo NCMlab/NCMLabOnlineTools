@@ -118,6 +118,38 @@ var FindRecalledWords01 = function(tag) {
 	    }
   }
 }
+var FindRecalledWords02 = function(tag) {
+    console.log(tag)
+    console.log(WordListBForRecall.FullWordList)
+    // record multipel words at once and cycle through the list
+    var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+    // See if this item is in the word list
+    for (var i = 0; i < response.length; i++) {
+    	var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(response[i].toUpperCase())
+    	console.log(IndexOfWordRecalled)
+	    if (IndexOfWordRecalled > -1) 
+	    {
+	      // find the words index in the list
+	      console.log('Found One')
+	      // remove the item
+	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
+	      //WordListIndex[IndexOfWordRecalled]=-99
+		  WordListIndex[WordListBForRecall.FullListIndex[IndexOfWordRecalled]]=-99
+	      HeardList.push(response[i])
+	      // record this response in the response array with index starting at 1
+		  
+	      ResponseArrayB[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+		  console.log(ResponseArrayB)
+	      BlockRecallCount++
+	    }
+	    else {
+	    	// The spoken word mut be an intrusion
+	    	HeardList.push(response[i])
+			IntrusionList.push(response[i])
+	    	BlockIntrusionCount++
+	    }
+  }
+}
 
 var RecordSpeechRecognition = function(tag) {
     console.log(tag)
