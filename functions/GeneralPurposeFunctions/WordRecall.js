@@ -328,9 +328,9 @@ var SpokenRecallB = {
     // });
   },
   on_finish: function(data){
-    data.RecallList = WordListIndex
-    data.HeardList = HeardList
-    data.IntrusionList = IntrusionList
+    data.RecallListB = WordListIndex
+    data.HeardListB = HeardList
+    data.IntrusionListB = IntrusionList
     data.RecallCount = BlockRecallCount
     data.NIntrusions = BlockIntrusionCount
     data.task = 'RecallB'

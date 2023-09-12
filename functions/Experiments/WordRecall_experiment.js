@@ -244,7 +244,7 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
     console.log(data)
-    Results = WordRecall_Scoring(data, ResponseArrayA, ResponseArrayB, ResponseArrayApostB, IntrusionListA, IntrusionListB, SimpleWordListA, SimpleWordListB)
+    Results = WordRecall_Scoring(data, ResponseArrayA, ResponseArrayB, ResponseArrayApostB, IntrusionListA, IntrusionListB, IntrusionListApostB, SimpleWordListA, SimpleWordListB)
     jsPsych.finishTrial(Results)
   }
 }
@@ -485,7 +485,7 @@ var welcome = {
 var thank_you = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
-    Results = {}
+    /* Results = {}
     Results.AllResults = {}
     data = jsPsych.data.get()
     TrialData = data.filter({task:'Recall'})
@@ -494,7 +494,7 @@ var thank_you = {
 	  {
 		  Results.AllResults['Block'+String(i).padStart(2, '0')] = TrialData.trials[i].userSaid  
 	  }
-    console.log(Results)
+    console.log(Results) */
     return Instructions.ThankYouText[0].page
   },
   post_trial_gap: 0,
@@ -630,6 +630,7 @@ var if_Spoken_RecallA = {
     else { return false }
   }
 }
+
 var if_Manual_RecallA = {
   timeline: [ManualRecallA],
   conditional_function: function() {
@@ -769,7 +770,7 @@ var FirstBlock = {
       randomize_order: false
   } 
 
-var FinalRecalBlockA = {
+var FinalRecallBlockA = {
     timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
     randomize_order: false,
     repetitions: 1,
@@ -817,7 +818,7 @@ var if_RecallB = {
   }
 }
 var if_FinalRecallA = {
-  timeline: [FinalRecalBlockA],
+  timeline: [FinalRecallBlockA],
   conditional_function: function() {
     if (WordRecall_parameters.BListFlag)
     { return true }

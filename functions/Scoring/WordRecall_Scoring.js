@@ -1,4 +1,5 @@
-function WordRecall_Scoring(data, ResponseArrayA, ResponseArrayApostB, ResponseArrayB, IntrusionListA, IntrusionListB, WordListA, WordListB) {
+function WordRecall_Scoring(data, ResponseArrayA, ResponseArrayApostB, ResponseArrayB, IntrusionListA, IntrusionListB, IntrusionListApostB, WordListA, WordListB) {
+	console.log(data)
 	console.log(ResponseArrayA)
 	console.log(WordListA)
 	console.log(ResponseArrayB)
@@ -34,8 +35,13 @@ function WordRecall_Scoring(data, ResponseArrayA, ResponseArrayApostB, ResponseA
 	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlockA
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array A'] = ResponseArrayA
+	Results.AllResults['Response Array B'] = ResponseArrayB
+	Results.AllResults['Response Array A, post B'] = ResponseArrayApostB
 	Results.AllResults['IntrusionsA'] = IntrusionListA
+	Results.AllResults['IntrusionsB'] = IntrusionListB
+	Results.AllResults['IntrusionsApostB'] = IntrusionListApostB
 	Results.AllResults['WordListA'] = WordListA
+	Results.AllResults['WordListB'] = WordListB
 	Results.AllResults['User Said'] = []
     for ( var i = 0; i < TrialData.trials.length; i++ )
 	  {
