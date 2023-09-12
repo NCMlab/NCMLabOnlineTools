@@ -1,20 +1,22 @@
-function WordRecall_Scoring(data, ResponseArray, IntrusionList, WordList) {
-	console.log(ResponseArray)
-	console.log(WordList)
+function WordRecall_Scoring(data, ResponseArrayA, ResponseArrayApostB, ResponseArrayB, IntrusionListA, IntrusionListB, WordListA, WordListB) {
+	console.log(ResponseArrayA)
+	console.log(WordListA)
+	console.log(ResponseArrayB)
+	console.log(WordListB)
 	// Words recalled per block
-	var WordsRecalledPerBlock = Array(ResponseArray[0].length)
-	console.log(WordsRecalledPerBlock)
-	for (var i = 0; i < ResponseArray[0].length; i++)
+	var WordsRecalledPerBlockA = Array(ResponseArrayA[0].length)
+	console.log(WordsRecalledPerBlockA)
+	for (var i = 0; i < ResponseArrayA[0].length; i++)
 	{
-		currentCol = GetColumn(ResponseArray, i)	
+		currentCol = GetColumn(ResponseArrayA, i)	
 		var count = 0;
 		for(var j = 0; j < currentCol.length; ++j){
 			if(currentCol[j] != -99)
 				count++;
 		}
-		WordsRecalledPerBlock[i] = count
-		TotalWordsRecalled = WordsRecalledPerBlock.reduce((a, b) => a + b, 0)
-		TotalWords = ResponseArray.length*ResponseArray[0].length
+		WordsRecalledPerBlockA[i] = count
+		TotalWordsRecalled = WordsRecalledPerBlockA.reduce((a, b) => a + b, 0)
+		TotalWords = ResponseArrayA.length*ResponseArrayA[0].length
 	}
 	// Extract the user said information for each block
 	// Filter data
@@ -29,11 +31,11 @@ function WordRecall_Scoring(data, ResponseArray, IntrusionList, WordList) {
 	Results.AllResults['Accuracy'] = TotalWordsRecalled
 	Results.AllResults['ScoreName'] = 'Total words recalled'
 	Results.AllResults['Total Words Recalled'] = TotalWordsRecalled
-	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlock
+	Results.AllResults['Words Recalled Per Block'] = WordsRecalledPerBlockA
 	Results.AllResults['Total Words'] = TotalWords
-	Results.AllResults['Response Array'] = ResponseArray
-	Results.AllResults['Intrusions'] = IntrusionList
-	Results.AllResults['WordList'] = WordList
+	Results.AllResults['Response Array A'] = ResponseArrayA
+	Results.AllResults['IntrusionsA'] = IntrusionListA
+	Results.AllResults['WordListA'] = WordListA
 	Results.AllResults['User Said'] = []
     for ( var i = 0; i < TrialData.trials.length; i++ )
 	  {

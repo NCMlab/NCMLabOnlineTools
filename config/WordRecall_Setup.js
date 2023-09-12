@@ -36,9 +36,9 @@ var RAVLT_Spoken_Immediate = {
 	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, // not implemented
-	AskForNotes: false,
+	AskForNotes: true,
 }
 
 var RAVLT_Manual_Delayed = {

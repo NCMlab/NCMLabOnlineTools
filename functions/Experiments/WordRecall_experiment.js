@@ -18,6 +18,7 @@ var interval
 var time_left
 var WordList = []
 var WordListA
+var WordListB
 var SimpleWordList = []
 var FullWordList = []
 var WordListIndex = []
@@ -32,8 +33,9 @@ var WordListAForRecall = 'empty'
 var WordListBForRecall
 var AudioFileDictListA
 var AudioFileDictListB
-var ResponseArray
+var ResponseArrayA
 var ResponseArrayB
+var ResponseArrayApostB
 var NumberBlocks
 var ItemCount = 0
 var countInstr01 = 0
@@ -41,7 +43,8 @@ var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
 var countInstrDelay = 0
-var IntrusionList = []
+var IntrusionListA = []
+var IntrusionListB = []
 
 // =======================================================================
 // INITIAL SETUP
@@ -108,19 +111,19 @@ var HowManyBlocks = {
 }
 
 // Make response array
-var MakeResponseArray = {
+var MakeResponseArrayA = {
   type: jsPsychCallFunction,
   func: function() {
-    ResponseArray = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
-    console.log(ResponseArray)
+    ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
+    console.log(ResponseArrayA)
   }
 }
 
 var MakeDelayedResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
-    ResponseArray = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(1).fill(-99))
-    console.log(ResponseArray)
+    ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(1).fill(-99))
+    console.log(ResponseArrayA)
   }
 }
 
@@ -128,7 +131,7 @@ var MakeResponseArrayB = {
   type: jsPsychCallFunction,
   func: function() {
     ResponseArrayB = Array.from(Array(WordRecallLists.WordListB.length), _ => Array(1).fill(-99))
-    console.log(ResponseArray)
+    console.log(ResponseArrayB)
   }
 }
 
@@ -201,7 +204,7 @@ var MakeWordListB = {
 
 // =======================================================================
 // DEFINE FUNCTIONS
-var UpdateManualResponseArray = {
+var UpdateManualResponseArrayA = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(WordRecall_parameters.NBlocks)
@@ -214,16 +217,16 @@ var UpdateManualResponseArray = {
     for ( var i = 0; i < data.trials[0].RecallList.length; i++ )
     {
       currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
-      console.log(ResponseArray)
+      console.log(ResponseArrayA)
       console.log("Current index: " + currentIndex)
       if ( currentIndex == -1 )
       {
         // Intrusion
-        IntrusionList.push(data.trials[0].RecallList[i])
+        IntrusionListA.push(data.trials[0].RecallList[i])
       }
-      else { ResponseArray[currentIndex][(BlockCount-1)/2] = i }
+      else { ResponseArrayA[currentIndex][(BlockCount-1)/2] = i }
     }
-    console.log(ResponseArray)
+    console.log(ResponseArrayA)
     BlockCount = BlockCount + 1
   }
 }
@@ -240,8 +243,8 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-
-    Results = WordRecall_Scoring(data, ResponseArray, IntrusionList, SimpleWordListA)
+    console.log(data)
+    Results = WordRecall_Scoring(data, ResponseArrayA, ResponseArrayB, ResponseArrayApostB, IntrusionListA, IntrusionListB, SimpleWordListA, SimpleWordListB)
     jsPsych.finishTrial(Results)
   }
 }
@@ -655,7 +658,7 @@ var if_Manual_RecallB = {
 }
 
 var if_Manual_UpdateRecallA = {
-  timeline: [UpdateManualResponseArray],
+  timeline: [UpdateManualResponseArrayA],
   conditional_function: function() {
     if ( WordRecall_parameters.RecallType == 'Manual' )
     { return true }
@@ -779,7 +782,7 @@ var DelayedRecalBlockA = {
 } 
 
 var DelayedRecallNo = {
-  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArray, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
+  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArrayA, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
     console.log(WordRecall_parameters)
     if ( WordRecall_parameters.DelayedRecallFlag)
@@ -840,10 +843,11 @@ timeline.push(DelayedRecallYes)
 timeline.push(if_RecallB)
 timeline.push(if_FinalRecallA)
 
+//timeline.push(if_Notes)
+//timeline.push(if_ThankYou)
+timeline.push(SendData)
 timeline.push(if_Notes)
 timeline.push(if_ThankYou)
-timeline.push(SendData)
-
 
 
 /* 
