@@ -39,6 +39,7 @@ var RAVLT_Spoken_Immediate = {
 	ShowThankYou: true,
 	ShowInstructions: true, // not implemented
 	AskForNotes: true,
+	RecordAUDIO: true,
 }
 
 var RAVLT_Manual_Delayed = {

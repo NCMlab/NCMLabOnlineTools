@@ -73,6 +73,24 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	console.log(TotalRecallCount)
 	
 	// transpose ResponseArrayA
+	var tResponseArrayA = create2DArray(NWordsA,ResponseArrayA.length)
+	for ( var i = 0; i < NWordsA; i++ )
+	{
+		for ( var j = 0; j < ResponseArrayA.length; j++ )
+		{
+			tResponseArrayA[i][j] = ResponseArrayA[j][i]
+		}
+	}
+	var tResponseArrayB = create2DArray(NWordsB,ResponseArrayB.length)
+	for ( var i = 0; i < NWordsB; i++ )
+	{
+		for ( var j = 0; j < ResponseArrayB.length; j++ )
+		{
+			tResponseArrayB[i][j] = ResponseArrayB[j][i]
+		}
+	}
+	ResponseArrayA = tResponseArrayA
+	ResponseArrayB = tResponseArrayB
 /* 
 
 	// Words recalled per block
