@@ -236,7 +236,8 @@ var SpokenRecallA = {
       userSaid = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
-
+      IntrusionList = []
+      TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
       // Add a flag for the type of recall
       
       // const commands01 = {'*search': FindRecalledWords01};
@@ -252,12 +253,13 @@ var SpokenRecallA = {
       // });
     },
     on_finish: function(data){
-      data.RecallList = WordListIndex
+      data.RecallBlock = TempRecall
       data.HeardList = HeardList
       data.IntrusionList = IntrusionList
       data.RecallCount = BlockRecallCount
       data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
+      data.type = 'A'
       data.userSaid = userSaidWords
       BlockCount++
       clearInterval(interval);
@@ -310,9 +312,10 @@ var SpokenRecallB = {
     HeardList = []
     userSaidWords = []
     userSaid = []
+    IntrusionList = []
     BlockRecallCount = 0
     BlockIntrusionCount = 0
-
+    TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => Array(1).fill(-99))
     // Add a flag for the type of recall
     
     // const commands01 = {'*search': FindRecalledWords01};
@@ -328,12 +331,13 @@ var SpokenRecallB = {
     // });
   },
   on_finish: function(data){
-    data.RecallListB = WordListIndex
-    data.HeardListB = HeardList
-    data.IntrusionListB = IntrusionList
+    data.RecallBlock = TempRecall
+    data.HeardList = HeardList
+    data.IntrusionList = IntrusionList
     data.RecallCount = BlockRecallCount
     data.NIntrusions = BlockIntrusionCount
-    data.task = 'RecallB'
+    data.task = 'Recall'
+    data.type = 'B'
     data.userSaid = userSaidWords
     BlockCount++
     clearInterval(interval);

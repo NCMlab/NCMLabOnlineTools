@@ -33,9 +33,7 @@ var WordListAForRecall = 'empty'
 var WordListBForRecall
 var AudioFileDictListA
 var AudioFileDictListB
-var ResponseArrayA
-var ResponseArrayB
-var ResponseArrayApostB
+var TempRecall
 var NumberBlocks
 var ItemCount = 0
 var countInstr01 = 0
@@ -56,6 +54,7 @@ var enter_fullscreen = {
 var SetupSpeechRecognition = {
   type: jsPsychCallFunction,
   func: function() {
+      annyang.removeCommands()
       const commands01 = {'*search': FindRecalledWords01};
       annyang.addCommands(commands01);
       annyang.setLanguage(LANG)
@@ -67,9 +66,11 @@ var SetupSpeechRecognition = {
       });
   }
 }
+
 var SetupSpeechRecognitionB = {
   type: jsPsychCallFunction,
   func: function() {
+      annyang.removeCommands()
       const commands01 = {'*search': FindRecalledWords02};
       annyang.addCommands(commands01);
       annyang.setLanguage(LANG)
@@ -244,7 +245,7 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
     console.log(data)
-    Results = WordRecall_Scoring(data, ResponseArrayA, ResponseArrayB, ResponseArrayApostB, IntrusionListA, IntrusionListB, IntrusionListApostB, SimpleWordListA, SimpleWordListB)
+    Results = WordRecall_Scoring(data, SimpleWordListA, SimpleWordListB)
     jsPsych.finishTrial(Results)
   }
 }
@@ -641,7 +642,7 @@ var if_Manual_RecallA = {
 }
 
 var if_Spoken_RecallB = {
-  timeline: [SpokenRecallB],
+  timeline: [SetupSpeechRecognitionB, SpokenRecallB],
   conditional_function: function() {
     if ( WordRecall_parameters.RecallType == 'Spoken' )
     { console.log("if_Spoken_RecallA")
@@ -771,7 +772,7 @@ var FirstBlock = {
   } 
 
 var FinalRecallBlockA = {
-    timeline: [Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+    timeline: [SetupSpeechRecognition, Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
     randomize_order: false,
     repetitions: 1,
 } 
@@ -783,7 +784,7 @@ var DelayedRecalBlockA = {
 } 
 
 var DelayedRecallNo = {
-  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, MakeResponseArrayA, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
+  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
     console.log(WordRecall_parameters)
     if ( WordRecall_parameters.DelayedRecallFlag)
@@ -804,7 +805,7 @@ var DelayedRecallYes = {
 }      
 
 var BlockB = {
-  timeline: [MakeResponseArrayB, Instructions03_loop, if_AudioStimuliB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
+  timeline: [Instructions03_loop, if_AudioStimuliB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
   randomize_order: false,
   repetitions: 1,
 }
@@ -846,10 +847,9 @@ timeline.push(if_FinalRecallA)
 
 //timeline.push(if_Notes)
 //timeline.push(if_ThankYou)
-timeline.push(SendData)
 timeline.push(if_Notes)
 timeline.push(if_ThankYou)
-
+timeline.push(SendData)
 
 /* 
 timeline.push(MakeWordListA)

@@ -106,8 +106,8 @@ var FindRecalledWords01 = function(tag) {
 	      HeardList.push(response[i])
 	      // record this response in the response array with index starting at 1
 		  console.log("Block Count: "+BlockCount/2)
-	      ResponseArrayA[WordListAForRecall.FullListIndex[IndexOfWordRecalled]][BlockCount/2] = BlockRecallCount
-		  console.log(ResponseArray)
+		  TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+		  
 	      BlockRecallCount++
 	    }
 	    else {
@@ -137,9 +137,7 @@ var FindRecalledWords02 = function(tag) {
 		  WordListIndex[WordListBForRecall.FullListIndex[IndexOfWordRecalled]]=-99
 	      HeardList.push(response[i])
 	      // record this response in the response array with index starting at 1
-		  
-	      ResponseArrayB[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
-		  console.log(ResponseArrayB)
+		  TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
 	      BlockRecallCount++
 	    }
 	    else {
@@ -215,8 +213,8 @@ function SumArray(input) {
 function CreateWordCountPerTrial(data) 
   {
     const dimensions = [ data.length, data[0].length ];
-    RecallCount = Array(dimensions[1]).fill(0)
-    for ( var i = 0; i < dimensions[1]; i ++ )
+    RecallCount = Array(dimensions[0]).fill(0)
+    for ( var i = 0; i < dimensions[0]; i ++ )
       {
         RecallCount[i] = CountNonZeroWords(GetColumn(data, i))
       }
@@ -314,3 +312,71 @@ def CalcLongTermStorage(ResponseArray):
     LTS = sum(LTSList)
     return LTS, LTSarray
     */
+
+// Written by ChatGPT
+	function findEmptyColumns(matrix) {
+		const numRows = matrix.length;
+		const numCols = matrix[0].length;
+		const emptyColumns = [];
+	  
+		for (let col = 0; col < numCols; col++) {
+		  let isEmpty = true;
+	  
+		  for (let row = 0; row < numRows; row++) {
+			if (matrix[row][col] !== null && matrix[row][col] !== undefined && matrix[row][col] !== '') {
+			  isEmpty = false;
+			  break; // No need to check further if not empty
+			}
+		  }
+	  
+		  if (isEmpty) {
+			emptyColumns.push(col);
+		  }
+		}
+	  
+		return emptyColumns;
+	  }
+
+	  function getColumnsBeforeAndAfter(matrix, columnIndex) {
+		const columnsBefore = [];
+		const columnsAfter = [];
+	  
+		if (columnIndex >= 0 && columnIndex < matrix[0].length) {
+		  for (let col = 0; col < matrix[0].length; col++) {
+			if (col < columnIndex) {
+			  // Columns before the provided column
+			  columnsBefore.push(matrix.map(row => row[col]));
+			} else if (col > columnIndex) {
+			  // Columns after the provided column
+			  columnsAfter.push(matrix.map(row => row[col]));
+			}
+		  }
+		} else {
+		  console.error("Invalid column index.");
+		}
+	  
+		return { columnsBefore, columnsAfter };
+	  }
+	  
+	  
+	  function calculateColumnSumsAndTotal(matrix) {
+		const numRows = matrix.length;
+		const numCols = matrix[0].length;
+		const columnSums = Array(numCols).fill(0); // Initialize an array to store column sums
+		let totalSum = 0; // Initialize the total sum
+	  
+		// Iterate through each row and column to calculate sums
+		for (let row = 0; row < numRows; row++) {
+		  for (let col = 0; col < numCols; col++) {
+			const value = matrix[row][col];
+			if (!isNaN(value)) {
+			  // Check if the value is a number (not NaN)
+			  columnSums[col] += value; // Add the value to the column sum
+			  totalSum += value; // Add the value to the total sum
+			}
+		  }
+		}
+	  
+		return { columnSums, totalSum };
+	  } 
+	  
