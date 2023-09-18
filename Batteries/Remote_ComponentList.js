@@ -18,6 +18,9 @@ ComponentList.push({name:'Verbal DMS', iconFileName:'VerbalDMS.png'})
 ComponentList.push({name:'Cancellation Task', iconFileName:'Cancellation.png'})
 ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
 ComponentList.push({name:'Questionnaire', iconFileName:'MultiChoice.png'})
+ComponentList.push({name:'Word Recognition', iconFileName:'WordRecog.png'})
+ComponentList.push({name:'Consent Form', iconFileName:'ConsentForm.png'})
+
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -38,6 +41,9 @@ add('Verbal DMS',function(){jatos.startComponent(26)});
 add('Cancellation Task',function(){jatos.startComponent(13)});
 add('Spatial DMS',function(){jatos.startComponent(28)});
 add('Questionnaire',function(){jatos.startComponent(30)});
+add('Word Recognition',function(){jatos.startComponent(31)});
+add('Consent Form',function(){jatos.startComponent(32)});
+
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 25
 const UsageManagerHtmlID = 27
