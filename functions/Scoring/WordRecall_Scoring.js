@@ -26,13 +26,26 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	// Make Response Array For A
 	var ResponseArrayA = [] // = CreateResponseArray(NWordsA, Acount + Bcount)
 	var ResponseArrayB = [] // = CreateResponseArray(NWordsB, Bcount)
+	var IntrusionArrayA = []
+	var IntrusionArrayB = []
+	var userSaidA = []
+	var userSaidB = []
 	for ( var i = 0; i < Acount + Bcount; i++ )
 	{
 		if ( temp.trials[i].type == 'A' ) 
-			{ ResponseArrayA.push(temp.trials[i].RecallBlock) }
+			{ 
+				ResponseArrayA.push(temp.trials[i].RecallBlock) 
+				IntrusionArrayA.push(temp.trials[i].IntrusionList)
+				userSaidA.push(temp.trials[i].userSaid)
+			}
+
 		else { 
 			ResponseArrayA.push(Array(NWordsA).fill(0)) 
+			IntrusionArrayA.push([])
 			ResponseArrayB.push(temp.trials[i].RecallBlock) 
+			IntrusionArrayB.push(temp.trials[i].IntrusionList)
+			userSaidA.push([])
+			userSaidB.push(temp.trials[i].userSaid)
 		}
 	}
 	console.log(ResponseArrayA)
@@ -91,6 +104,8 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	}
 	ResponseArrayA = tResponseArrayA
 	ResponseArrayB = tResponseArrayB
+	
+
 /* 
 
 	// Words recalled per block
@@ -125,11 +140,14 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	Results.AllResults['Response Array A'] = ResponseArrayA
 	Results.AllResults['Response Array B'] = ResponseArrayB
 	//Results.AllResults['Response Array A, post B'] = ResponseArrayApostB
-	//Results.AllResults['IntrusionsA'] = IntrusionListA
+	Results.AllResults['Intrusions A'] = IntrusionArrayA
+	Results.AllResults['Intrusions B'] = IntrusionArrayB
 	//Results.AllResults['IntrusionsB'] = IntrusionListB
 	//Results.AllResults['IntrusionsApostB'] = IntrusionListApostB
 	Results.AllResults['WordListA'] = WordListA
 	Results.AllResults['WordListB'] = WordListB
+	Results.AllResults['User Said A'] = userSaidA
+	Results.AllResults['User Said B'] = userSaidB
 	/*Results.AllResults['User Said'] = []
     for ( var i = 0; i < TrialData.trials.length; i++ )
 	  {
