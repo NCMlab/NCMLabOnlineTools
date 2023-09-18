@@ -226,5 +226,5 @@ BatteryList.push({index: 1001,
 	],
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©Test 2023'
+	Footer: '©NCM Lab 2023'
 })
