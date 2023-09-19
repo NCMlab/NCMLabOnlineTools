@@ -208,12 +208,12 @@ BatteryList.push({index: 101,
 
 BatteryList.push({index: 1001, 
 	name:'TESTER', 
-	list: ['Consent Form','Questionnaire','Word Recall', 'Word Recall', 'Word Recognition','Fluency'],
+	list: ['Consent Form','Questionnaire','Word Recall', 'Word Recall', 'Word Recognition'],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: ['EN_ConsentForm_uOttawa_Steffener','EN_IntakeForm_Generic','RAVLT_Spoken_Immediate', 'RAVLT_Spoken_Delayed', 'TEST_Spoken','Fluency_TEST'],
+	ParameterLists: ['EN_ConsentForm_uOttawa_Steffener','EN_IntakeForm_Generic','RAVLT_Spoken_Immediate', 'RAVLT_Spoken_Delayed', 'TEST_Spoken'],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['','','Default','Default', 'Default','Default'],
+	Instructions: ['','','Default','Default', 'Default'],
 	//Instructions: ['Default'],
 	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
 	ButtonName: [
@@ -221,10 +221,9 @@ BatteryList.push({index: 1001,
 		'Intake',
     	'Immediate',
 		'Delayed',
-		'Recognition',
-		'Fluid'
+		'Recognition'
 	],
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©NCM Lab 2023'
+	Footer: '©NCMLab 2023'
 })
