@@ -796,7 +796,7 @@ var DelayedRecallNo = {
  
 
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, MakeDelayedResponseArray, DelayedRecalBlockA],
+  timeline: [MakeWordListA, MakeWordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
     if ( WordRecall_parameters.DelayedRecallFlag)
     { return true }

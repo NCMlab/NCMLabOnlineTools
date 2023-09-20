@@ -7,7 +7,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	temp = data.filter({task: 'Recall'})
 	console.log(temp)
 	console.log(temp.trials)
-	console.log(temp.trials[1].type)
+	console.log(temp.trials[0].type)
 	// How many trials per block
 	var NWordsA = WordListA.length
 	var NWordsB = WordListB.length

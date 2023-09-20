@@ -64,7 +64,7 @@ var RAVLT_Spoken_Delayed = {
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 1,
-	BListFlag: true, // Check to see if there is a second set of words
+	BListFlag: false, // Check to see if there is a second set of words
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
