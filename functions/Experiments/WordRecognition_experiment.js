@@ -161,7 +161,7 @@ var SendData = {
       var data = jsPsych.data.get()
       Results = WordRecog_Scoring(data)
       console.log(Results)
-      //jsPsych.finishTrial(Results)
+      jsPsych.finishTrial(Results)
     }
 }
   
@@ -285,7 +285,8 @@ timeline.push(if_Spoken)
 timeline.push(if_Audio)
 timeline.push(if_Visual)
 timeline.push(if_Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou)
+timeline.push(SendData)
+
   
 

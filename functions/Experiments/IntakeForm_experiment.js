@@ -15,6 +15,12 @@ var trial = {
   on_finish: function(data) {
     data.trial = "Questionnaire"
     data.title = IntakeFormParameters.title
+    var NAV = navigator;
+    var ComputerInfo = {}
+    ComputerInfo.CurrentLanguage = NAV.language
+    ComputerInfo.AvailableLanguage = NAV.languages
+    ComputerInfo.appVersion = NAV.appVersion
+    data.ComputerInfo = ComputerInfo
   }
 };
 
@@ -39,7 +45,22 @@ var SendData = {
   }
 }
 
+
+var Notes = {
+  type: jsPsychSurvey, 
+  pages: [[{
+        type: 'text',
+        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        textbox_rows: 10,
+        name: 'Notes', 
+        required: false,
+      }]],
+  on_finish: function(data)
+  { data.trial = "Notes" },
+}
+
+
+
 timeline.push(trial)
 timeline.push(SendData)
-//timeline.push(thank_you)
   

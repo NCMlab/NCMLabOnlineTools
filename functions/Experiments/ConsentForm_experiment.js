@@ -20,5 +20,14 @@ var trial = {
     }
 };
   
+
+var SendData = {
+    type: jsPsychCallFunction,
+    func: function() {
+          Results = ConsentForm_Scoring()
+          jsPsych.finishTrial(Results)
+    },
+  }
 var timeline = []
 timeline.push(trial)
+timeline.push(SendData)
