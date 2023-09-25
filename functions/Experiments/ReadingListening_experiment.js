@@ -1,4 +1,12 @@
 var timeline = []
+var HeardSentence = ''
+
+var WhatWasSaid = function(tag) {
+    
+    HeardSentence = tag
+    console.log(HeardSentence)
+    return HeardSentence
+}
 // https://en.wikipedia.org/wiki/Harvard_sentences
 var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -36,27 +44,41 @@ function ThisGetRow(Input, Row) {
   }
 
 var WaitForWords = function() {
+      annyang.removeCommands()
+      const commands01 = {'*search': WhatWasSaid};
+      annyang.addCommands(commands01);
       annyang.addCallback('result', function(userSaid) {
-        console.log('sound stopped');
+        console.log('sound stopped')
+        console.log(document.getElementById("id_sent_heard").style.color="blue")
+        document.getElementById("id_sent_heard").innerHTML = userSaid[0]
+        document.getElementById("jspsych-html-button-response-button-0").disabled = true;
+      CompareReadAndHeard(ReadSentence, userSaid[0])
+    });  
+      
+        
         // userSaid contains multiple possibilities for what was heard
-        console.log(userSaid)
+      //  console.log(userSaid)
         // Parse userSaid. It provides five possibilities for what it heard for each word
         // Make a table of rows for eahc unique word and columns for each possibility
-        
-        // i is the columns
+
+
+    
+    }
+
+        /* // i is the columns
         var NWords = -99
         for ( var i = 0; i < userSaid.length; i++ ) { // cycle over possible pronunciations
           HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
           if ( NWords < 0 ) {NWords = HeardWords.length} // cycle over words 
         }
         var Words = create2DArray(NWords,userSaid.length)
-        console.log(Words)
+      //  console.log(Words)
         for ( var i = 0; i < userSaid.length; i++ ) { // number of words
           HeardWords = userSaid[i].split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-          console.log(HeardWords)
+      //    console.log(HeardWords)
           for ( var j = 0; j < HeardWords.length; j++ ) // number of pronunciations
           {
-            console.log('i: '+i+" j: "+j+"Word: "+HeardWords[j])
+            //console.log('i: '+i+" j: "+j+"Word: "+HeardWords[j])
             Words[j][i] = HeardWords[j]
           }
         }
@@ -64,25 +86,29 @@ var WaitForWords = function() {
         for ( var i = 0; i < NWords; i++ ) {
           TotalList.push(ThisGetRow(Words,i))
         }
-        console.log(TotalList)
-        console.log(userSaid.length)
-        console.log(ReadSentence)
+        //console.log(TotalList)
+        //console.log(userSaid.length)
+        //console.log(ReadSentence)
         //jsPsych.finishTrial();
-        console.log(document.getElementById("JASON").style.color="blue")
+        //console.log(document.getElementById("JASON").style.color="blue")
         document.getElementById("JASON").innerHTML = userSaid
         document.getElementById("jspsych-html-button-response-button-0").disabled = true;
-        console.log(document.getElementById("jspsych-html-button-response-button-0"))
+    //    console.log(document.getElementById("jspsych-html-button-response-button-0"))
        });
       
-}
+} */
 
 var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
-	ReadSentenceWords = ReadSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+	
+  ReadSentenceWords = ReadSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
 	HeardSentenceWords = HeardSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-	console.log(ReadSentenceWords)
-	console.log(HeardSentenceWords)
+	//console.log(ReadSentenceWords)
+	//console.log(HeardSentenceWords)
 	// compare sentences
 	var NWords = ReadSentenceWords.length
+  console.log('The read sentence has '+NWords+' words in it')
+  console.log('I heard the sentence: ')
+  console.log(HeardSentence)
 	var MatchedWords = 0
 	for (var i = 0; i < NWords; i++ ) {
 		for (var j = 0; j < HeardSentenceWords.length; j++ ){
@@ -91,8 +117,9 @@ var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
 			}
 		}
 	}
+  console.log('There is a match for '+MatchedWords+' words')
 	Score = MatchedWords/NWords
-	console.log(Score)
+	console.log('Score: '+Score)
 }
 var ReadSentence = ''
 var RecallRequest01 = {
@@ -100,7 +127,7 @@ var RecallRequest01 = {
     stimulus: function() {
       ReadSentence = jsPsych.timelineVariable('stim')
       console.log(ReadSentence)
-      var stim = 'Please read the following sentence out load: <div id="JASON">'+ReadSentence+'</div>Then press next when you are done.'
+      var stim = 'Please read the following sentence out load: <div id="id_sent_to_read">'+ReadSentence+'</div><div id="id_sent_heard">'+'-'+'</div>Then press next when you are done.'
       return stim
     },
     choices: ['Next'], 

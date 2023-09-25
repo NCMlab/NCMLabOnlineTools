@@ -2,7 +2,7 @@
 var BatteryList = []
 
 BatteryList.push({index: 15, 
-	name:'FaCE Battery', 
+	name:'NCM Battery', 
 	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
 	//list: ['Intake Form'],
 	description: 'A web-based version of the FaCE',
@@ -10,10 +10,10 @@ BatteryList.push({index: 15,
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
 	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©GagnonBruno 2016'
+	Footer: '©NCM Lab 2023'
 })
 BatteryList.push({index: 99, 
 	name:'FaCE Battery', 
@@ -135,9 +135,9 @@ BatteryList.push({index: 202,
 		'Verbal DMS',
         'Spatial DMS'//20
 	],
-    BatteryInstructions:"This is the NCMLab Evaluation",
+    BatteryInstructions:"The 3C Platform",
 	Language:'EN',
-	Footer: "NCM Lab"
+	Footer: "©NCM Lab 2023"
 })
 /*
 // ========================================================================

@@ -2,10 +2,13 @@
 // Define internal variables
 
 var timeline = []
-const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','X1','X2','X3','X4']
+const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine']
+
+
 //const AudioTestList = ['X1','X2','X3','X4','X5','X6','X7','X8','X9']
 var randomElement
 var List = []
+var ButtonList = []
 var NumberOfTrials = 8
 var NumberCorrect = 0
 
@@ -17,7 +20,9 @@ var preload_audio = {
       
       for ( var i = 0; i  < AudioTestList.length; i++ ) {
         List.push(FolderOfAudioFiles + AudioTestList[i] + AudioFileType)
+        ButtonList.push(AudioTestList[i])
       }
+      ButtonList.push('SKIP')
       console.log(List)
       console.log("PRELOADING AUDIO")
       return List
@@ -59,7 +64,7 @@ var AudioStim = {
       console.log('Planning to present element: '+randomElement)
       return List[randomElement]
     },
-    choices: AudioTestList,
+    choices: ButtonList,
     trial_ends_after_audio: false,
     prompt: '<p class="Fixation">Press the letter or number you heard</p>',
     on_finish: function(data) {
