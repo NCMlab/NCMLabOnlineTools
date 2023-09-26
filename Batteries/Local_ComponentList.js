@@ -20,6 +20,7 @@ ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
 ComponentList.push({name:'Questionnaire', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Word Recognition', iconFileName:'WordRecog.png'})
 ComponentList.push({name:'Consent Form', iconFileName:'ConsentForm.png'})
+ComponentList.push({name:'Reading Test', iconFileName:'ConsentForm.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
@@ -30,6 +31,7 @@ add('Trail Making', function(){jatos.startComponent(17)});
 add('Word Recall', function(){jatos.startComponent(6)});
 add('Matrix Reasoning', function(){jatos.startComponent(12)});
 add('Image Copy', function(){jatos.startComponent(11)});
+add('Reading Test',function(){jatos.startComponent(14)});
 add('Likert',function(){jatos.startComponent(15)});
 add('Digit Span',function(){jatos.startComponent(16)});
 add('Serial Subtraction',function(){jatos.startComponent(18)});
