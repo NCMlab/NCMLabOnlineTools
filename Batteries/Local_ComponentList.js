@@ -20,7 +20,7 @@ ComponentList.push({name:'Spatial DMS', iconFileName:'SpatialDMS.png'})
 ComponentList.push({name:'Questionnaire', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Word Recognition', iconFileName:'WordRecog.png'})
 ComponentList.push({name:'Consent Form', iconFileName:'ConsentForm.png'})
-ComponentList.push({name:'Reading Test', iconFileName:'ConsentForm.png'})
+ComponentList.push({name:'Reading Test', iconFileName:'ReadingTest.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index

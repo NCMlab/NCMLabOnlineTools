@@ -1,5 +1,10 @@
 var timeline = []
 var HeardSentence = ''
+var HeardSentence01 = ''
+var HeardSentence02 = ''
+var userSaid
+var Score
+var count = 0
 
 var WhatWasSaid = function(tag) {
     
@@ -22,16 +27,33 @@ var VisualStimulus = {
 var TotalList = []
 var InputSentences = []
 
-InputSentences.push({'stim':"Rice is often served in round bowls"})
-InputSentences.push({'stim':"The birch canoe slid on the smooth planks"})
-InputSentences.push({'stim':"Glue the sheet to the dark blue background"})
-InputSentences.push({'stim':"It's easy to tell the depth of a well"})
-InputSentences.push({'stim':"These days a chicken leg is a rare dish"})
-InputSentences.push({'stim':"The juice of lemons makes fine punch"})
-InputSentences.push({'stim':"The box was thrown beside the parked truck"})
-InputSentences.push({'stim':"The hogs were fed chopped corn and garbage"})
-InputSentences.push({'stim':"4 hours of steady work faced us"})
-InputSentences.push({'stim':"A large size in stockings is hard to sell"})
+InputSentences.push({'stim':"Rice is often served in round bowls."})
+InputSentences.push({'stim':"The birch canoe slid on the smooth planks."})
+InputSentences.push({'stim':"Glue the sheet to the dark blue background."})
+InputSentences.push({'stim':"It's easy to tell the depth of a well."})
+InputSentences.push({'stim':"These days a chicken leg is a rare dish."})
+InputSentences.push({'stim':"The juice of lemons makes fine punch."})
+InputSentences.push({'stim':"The box was thrown beside the parked truck."})
+InputSentences.push({'stim':"The hogs were fed chopped corn and garbage."})
+InputSentences.push({'stim':"4 hours of steady work faced us."})
+InputSentences.push({'stim':"A large size in stockings is hard to sell."})
+InputSentences.push({'stim':"The boy was there when the sun rose."})
+InputSentences.push({'stim':"A rod is used to catch pink salmon."})
+InputSentences.push({'stim':"The source of the huge river is the clear spring."})
+InputSentences.push({'stim':"Kick the ball straight and follow through."})
+InputSentences.push({'stim':"Help the woman get back to her feet."})
+InputSentences.push({'stim':"A pot of tea helps to pass the evening."})
+InputSentences.push({'stim':"Smoky fires lack flame and heat."})
+InputSentences.push({'stim':"The soft cushion broke the man's fall."})
+InputSentences.push({'stim':"The salt breeze came across from the sea."})
+InputSentences.push({'stim':"The girl at the booth sold fifty bonds."})
+ 
+var GetList = {
+  type: jsPsychCallFunction,
+  func: function() {
+    InputSentences = ReadingListening_parameters.Input
+  },
+}    
 
 function ThisGetRow(Input, Row) {
   // extract the data for a single block
@@ -44,7 +66,7 @@ function ThisGetRow(Input, Row) {
   }
 
 var WaitForWords = function() {
-  var Output = {}
+      var Output = {}
       annyang.removeCommands()
       const commands01 = {'*search': WhatWasSaid};
       annyang.addCommands(commands01);
@@ -57,12 +79,18 @@ var WaitForWords = function() {
       if ( Score > ReadingListening_parameters.ScoreNeeded )
       { console.log("GOOD JOB")
       document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/GreenCheck.png" width="30" height="30"></img>'
+      document.getElementById("id_next").innerHTML = 'Press next to continue'
+      var x = document.getElementById("jspsych-html-button-response-button-0")
+      x.style.display = 'block'
       }  
       else {document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/redX.png" width="30" height="30"></img>'}
       document.getElementById("id_sent_heard").style.color="blue"
-      Output.ReadSentence = ReadSentence
-      Output.HeardSentence = userSaid[0]
-      Output.HeardSentence02 = userSaid[1]
+      document.getElementById("id_next").innerHTML = 'Press next to continue'
+      var x = document.getElementById("jspsych-html-button-response-button-0")
+      x.style.display = 'block'
+
+      HeardSentence01 = userSaid[0]
+      HeardSentence02 = userSaid[1]
     });  
       
         
@@ -138,7 +166,8 @@ var RecallRequest01 = {
     stimulus: function() {
       ReadSentence = jsPsych.timelineVariable('stim')
       //console.log(ReadSentence)
-      var stim = 'Please read the following sentence out load: <div id="id_sent_to_read">'+ReadSentence+'</div><div id="id_sent_heard">'+'-'+'</div>Then press next when you are done.'
+      var stim = 
+      '<div><p>Please read the following sentence out loud:</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
       return stim
     },
     choices: ['Next'], 
@@ -147,21 +176,31 @@ var RecallRequest01 = {
     prompt: '', //Add this to config file
     on_start: function(data) {
       console.log('================================')
-      
+      Output = WaitForWords()
+      console.log(Output)
       
 
       // start listening
       annyang.start({autorestart: false, continuous: true});
       //console.log('Started')
       // perform this when the sound stops
-      Output = WaitForWords()
-      console.log(Output)
+      
+      
       
     },
+    on_load: function() {
+      var x = document.getElementById("jspsych-html-button-response-button-0")
+      x.style.display = 'none'
+    },
     on_finish: function(data){  
+      console.log(HeardSentence01)
+      console.log(Score)
       data.task = 'read'
       data.Results = {}
-      data.Results = Output
+      data.Results.ReadSentence = ReadSentence
+      data.Results.HeardSentence01 = HeardSentence01
+      data.Results.HeardSentence02 = HeardSentence02
+      data.Results.Score = Score
       annyang.abort()
     },
   }
@@ -173,7 +212,32 @@ var RecallRequest01 = {
       repetitions: 1,
       sample: {
         type: 'without-replacement',
-        size: 3 
+        size: 5
+    }
+  }
+
+  var Instruct = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      return Instructions.Instructions[0].page
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices:  function() {return [LabelNames.Next]}, 
+  }
+  
+  var Instructions_loop_node = {
+    timeline: [Instruct],
+    loop_function: function(data){
+      console.log(count)
+      count+=1
+      if ( count < Instructions.Instructions.length){
+          
+          return true;
+        } else {
+            return false;
+        }
     }
   }
 
@@ -240,9 +304,28 @@ var if_Welcome = {
   }
 }
 
-timeline.push(if_Welcome)
-timeline.push(trials)
-timeline.push(SendData)
-timeline.push(Notes)
-timeline.push(if_ThankYou);
+var if_Instructions = {
+  timeline: [Instructions_loop_node],
+  conditional_function: function() {
+        if ( ReadingListening_parameters.ShowInstructions)
+        { return true }
+        else { return false }
+  }
+}
 
+var if_Notes = {
+  timeline: [Notes],
+  conditional_function: function() {
+    if ( ReadingListening_parameters.AskForNotes)
+    { return true }
+    else { return false }
+  }
+}
+
+timeline.push(if_Welcome)
+timeline.push(GetList)
+timeline.push(if_Instructions)
+timeline.push(trials)
+timeline.push(if_Notes)
+timeline.push(if_ThankYou);
+timeline.push(SendData)

@@ -84,3 +84,24 @@ var RecognitionWordList = [
 	{'Word':'Broomstick'},
 	{'Word':'Gun'}
 ]
+
+
+/*
+
+Tambour Bureau
+Rideau Garde forestier
+Sonnette Oiseau
+Café Chaussure
+Ecole Poêle
+Parent Montagne
+Lune Lunettes
+Jardin Serviette
+Chapeau Nuage
+Paysan Bateau
+Nez Agneau
+Dindon Fusil
+Couleur Crayon
+Maison Eglise
+Rivière Poisson
+
+*/

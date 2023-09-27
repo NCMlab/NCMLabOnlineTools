@@ -563,6 +563,7 @@ var LoopAudioFiles = {
     else { return false}
   }
 }
+
 var LoopAudioFilesB = {
   timeline: [AudioStimulusB],
   loop_function: function(){
