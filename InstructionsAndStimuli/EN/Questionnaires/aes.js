@@ -8,11 +8,12 @@ var scale01 = [
     "Somewhat",
     "A lot"
 ]
-
+valuesForward = [1,2,3,4];
+valuesReverse = [4,3,2,1];
 var ReverseScoreDirection = [false, false, false, false, false, true, false, false, false, true, true, false,false, false, false, false, false, false]
 
 var items = [
-    {prompt: "I am interested in things.", labels: scale01},
+    {prompt: "I am interested in things.", name: 'interest', options: scale01, values: valuesForward, required: true},
     {prompt: "I get things done during the day.", labels: scale01},
     {prompt: "Getting things started on my own is important to me.", labels: scale01},
     {prompt: "I am interested in having new experiences.", labels: scale01},

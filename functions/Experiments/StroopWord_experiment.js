@@ -371,5 +371,5 @@ timeline.push(test_loop_node);
 // If there is a timer, stop it
 timeline.push(timer_stop);
 timeline.push(Notes)
-timeline.push(SendData)
 timeline.push(if_ThankYou);
+timeline.push(SendData)

@@ -23,19 +23,14 @@
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
     
+    <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
 
-    <script src="../jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
-    <script src="../InstructionsAndStimuli/Instructions/TrailMaking_Instructions.js"></script>
-    <script src="../functions/Scoring/TrailMaking_Scoring.js"></script>
-    <script src="../config/TrailMaking_Setup.js"></script>
     <script>
         var LANG = 'EN'
         LabelNames = EN_LabelNames
-        TrailMaking_parameters = TrailMakingA_Default
-        TrailMaking_Instructions = EN_Instructions
+
     </script>
-    <script src="../functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
-    <script src="../functions/Experiments/Trailmaking_experiment.js"></script>    
+      
 
 
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
@@ -44,8 +39,12 @@
         
         jsPsych = initJsPsych({
         display_element: 'jspsych-target',
+        on_finish: function() {
+          jsPsych.data.get().localSave('csv','TEST.csv');
+      }
+    })
         
-      });
+      
       jsPsych.run(timeline)
       </script>
 </body>
