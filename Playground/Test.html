@@ -23,7 +23,12 @@
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
     
-    <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
+    <script> 
+      // Based on the language set in the Language Config, the correct code is loaded up
+      var task = "Questionnaire"
+      var url = "../../functions/Experiments/"+task+"_experiment.js"
+        document.write("\<script src='" + url + "'\>\</script\>");  
+      </script>
 
     <script>
         var LANG = 'EN'
@@ -36,7 +41,8 @@
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
   
     <script>
-        
+      var timeline = []
+      timeline.push(QuestionnaireTrial)
         jsPsych = initJsPsych({
         display_element: 'jspsych-target',
         on_finish: function() {

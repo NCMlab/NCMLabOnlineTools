@@ -1,5 +1,5 @@
 function IntakeForm_Scoring(data) {
-	
+	console.log(data)
 	trialData = data.filter({trial: 'Questionnaire'}).trials[0]
 	var keys = Object.keys(trialData.response)
 	
@@ -15,8 +15,9 @@ function IntakeForm_Scoring(data) {
 			Results.AllResults[keys[i]] = trialData.response[keys[i]]
 		}
 
-	Results.AllResults['Computer Information'] = trialData.ComputerInfo.appVersion
-	Results.AllResults['Current Language'] = trialData.ComputerInfo.CurrentLanguage
-	Results.AllResults['Available Language'] = trialData.ComputerInfo.AvailableLanguage
+	//Results.AllResults['Computer Information'] = trialData.ComputerInfo.appVersion
+	//Results.AllResults['Current Language'] = trialData.ComputerInfo.CurrentLanguage
+	//Results.AllResults['Available Language'] = trialData.ComputerInfo.AvailableLanguage
+	console.log(Results)
 	return Results
 }

@@ -29,7 +29,7 @@ var ReadingListeningList01 = {
 	ShowThankYou: true,
 	AskForNotes: false,
 	RecordAUDIO: true,
-	ScoreNeeded: 0.8,
+	ScoreNeeded: 0.7,
 	SentencesToRepeat: 5.
 }
 

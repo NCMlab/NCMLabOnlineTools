@@ -63,4 +63,3 @@ var Notes = {
 
 timeline.push(trial)
 timeline.push(SendData)
-  
