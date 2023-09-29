@@ -39,7 +39,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = IntakeForm_Scoring(data)
+    Results = IntakeForm_Scoring(data, IntakeFormParameters.ScoringMethod)
     console.log(Results)
     jsPsych.finishTrial(Results)
   }
@@ -63,3 +63,4 @@ var Notes = {
 
 timeline.push(trial)
 timeline.push(SendData)
+
