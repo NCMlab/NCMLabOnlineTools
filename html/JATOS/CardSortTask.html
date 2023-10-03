@@ -8,50 +8,98 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Card Sorting Task</title>
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" />
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+    </script> 
   </head>    
   <body>
+    <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-image-button-response-CST.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="config/CardSort_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
-    <script> 
-    // Based on the language set in the Language Config, the correct code is loaded up
-        var url = "InstructionsAndStimuli/"+Language+"/Instructions/CardSortTask_Instructions.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-      </script>
+    <script src='InstructionsAndStimuli/Instructions/CardSortTask_Instructions.js'>//Load language</script>
       <script>
         var ImageFolder = "assets/Images/CardSortTaskItems/"
       </script>
     <script src="functions/TaskSpecificFunctions/CardSortTask_functions.js"></script>
     <script src="functions/Experiments/CardSortTask_experiment.js"></script>
     <script src="functions/Scoring/CardSort_Scoring.js"></script>
-    <div class="btn-group-header">
-      <button title="Return to home screen" onclick="returnToUsageManager()">Home</button>
-      <button title="Restart this task" onclick="restartTask()">Restart</button>
-      <button title="End the experiment" onclick="endExperiment()">End</button>
-      <button title="Remove yourself from the experiment" onclick="quitExperiment()">Quit</button>
-    </div>
-    <div id="jspsych-target"  style="overflow:hidden; height:100%" class='center'></div>
-  </body>
-  <script>
+    <script>
+      // check what URL is calling this file and load the config file accordingly
+      let url_running = window.location.href
+      let position = url_running.search("localhost")
+      if ( position >= 0 ) {
+        console.log("Running USAGE MANAGER on localhost")
+        var url = "Batteries/Local_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>");
+      } else {
+        console.log("Running on remote host")
+        var url = "Batteries/Remote_ComponentList.js"
+        document.write("\<script src='" + url + "'\>\</script\>"); 
+      }
+    </script>
 
-    var jsPsych = initJsPsych({
+    <script>
+      var CardSort_parameters = 'empty'
+      var parameters = 'empty'      
+      jatos.onLoad(() => {
+        Language = jatos.studySessionData.Language
+            if (typeof BatteryHtmlID === 'undefined') {
+              parameters = 'CardSort_001'
+              InstructionsToUse = 'Default'
+            }
+            else {
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+            }
+          console.log(parameters)
+          pseudoSwitch(parameters)
+          console.log(CardSort_parameters)
+          LANG = jatos.studySessionData.Language
+          console.log(LANG)
+          pseudoSwitch(LANG+'_CardSortTask_Instructions_'+InstructionsToUse)
+          
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
+          console.log(Instructions)
+      })
+    </script>
+
+
+
+
+
+<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+
+
+<script>
+var setup = []
+// var TrialCount = 1;
+var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      console.log(jatos.urlQueryParameters);
+//      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
-      console.log(input.a);
+      console.log(TrialCount)
+      //TrialCount += 1
       // Add jatos info to the data file
       jsPsych.data.addProperties({assignedURLID: input.a});
       jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
@@ -64,21 +112,40 @@
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','CardSort_data.csv');
       }    
-      jatos.startNextComponent();
+      // update session data
+      JATOSSessionData = jatos.studySessionData
+      JATOSSessionData.CurrentIndex += 1
+      jatos.studySessionData = JATOSSessionData
+      
+      // Go back to battery management on JATOS
+      if (typeof UsageManagerHtmlID != 'undefined') {
+        jatos.startComponent(UsageManagerHtmlID);
+      }
     }
   });
-
-
-
-
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
-
       console.log(JATOSID)
+
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jsPsych.run(timeline);
+      
     });
   </script>
+  
+  <div id="footerText"></div>
+  <script>
+    jatos.onLoad(() => {
+    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+    document.getElementById('header-end-button').textContent = LabelNames.End;
+    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+    })
+  </script>
+
+</body>
+
 </html>

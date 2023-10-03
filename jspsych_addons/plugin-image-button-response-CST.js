@@ -255,17 +255,21 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               html += "</div><p>";
               html += '</td></tr>'
               // Second row for the prompt/feedback
-              html += '<tr height="200px"><td colspan="2">'+trial.prompt+'</td></tr>'
+              html += '<tr height="200px"><td colspan="2">'+trial.prompt
+              html += '</td></tr>'
               // Third row for discard pile
               var Rotation = 0//(Math.random() * 10) - 5;
               html += '<tr><td>'
               html += '<img src="' + trial.discardPile + '" id="jspsych-image-button-response-discard"  style="transform:rotate('+Rotation+'deg)";>';
-              html += '<p></td><td width="70%" align="left"> &#8592; Discard Pile</td></tr>'
+              html += '<p></td><td width="70%" align="left"> &#8592; Discard Pile'
+              html += '</td></tr>'
               // Fourth row for the stimulus card
               html += '<tr><td colspan="2">'
               // display stimulus as an image element
               html += '<img src="' + trial.stimulus + '" id="jspsych-image-button-response-stimulus">';
               html += '</td></tr></table>'
+
+
 
               // update the page content
               display_element.innerHTML = html;

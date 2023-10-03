@@ -1,4 +1,5 @@
-var InstructionText = [
+var EN_Instructions = {}
+EN_Instructions.InstructionText = [
 	{'page': '<p class="Instructions"> Select one of the four cards displayed at the top of the screen such'
                               +'that the selected card matches the card displayed at the bottom of the screen. '
                               +'The cards can be matched based on three dimensions - color, number of objects '
@@ -8,6 +9,7 @@ var InstructionText = [
                               +'targeted dimension may change from time to time without notice.</p>'},
                               ]
 
-var ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
+EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 
-var WelcomeText = [{'page': 'This is the Card Sort Task.<br>Press Next to Continue'}]
+EN_Instructions.WelcomeText = [{'page': 'This is the Card Sort Task.<br>Press Next to Continue'}]
+add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instructions});

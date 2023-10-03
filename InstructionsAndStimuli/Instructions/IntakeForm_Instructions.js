@@ -291,26 +291,11 @@ var pages = [
       [
         {
           type: 'text',
-          prompt: "Participant ID", 
-          placeholder: '00000000',
-          name: 'ParticipantID', 
-          required: true,
-        }, 
-
-        {
-          type: 'drop-down',
-          prompt: "In what month were you born?", 
-          name: 'MonthOfBirth', 
-          options: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+          prompt: "In what month and year were you born?", 
+          name: 'MonthOfBirth02', 
+          input_type: "month",
           required: false,
         },
-        {
-            type: 'text',
-            prompt: "What is your year of birth?", 
-            placeholder: '1900',
-            name: 'YearOfBirth', 
-            required: false,
-          }, 
         {
           type: 'multi-choice',
           prompt: "What sex were assigned at birth, on your original birth certificate?", 

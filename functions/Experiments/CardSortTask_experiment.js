@@ -3,7 +3,9 @@
 // Define internal variables
 var count = 0
 var PracticeCount = 0
-
+var countInstr = 0
+var t
+var tPrac
 var PracticeCurrentRuleCount = 0
 var Accuracy = ''
 
@@ -16,36 +18,68 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 }
+// Calculate the number of practice trials
+
+
+// Calculate the number of trials
+var NTrials = 0
+var CalculateNumberofTrials = {
+  type: jsPsychCallFunction,
+  func: function() {
+    NTrials = CardSort_parameters.RuleChangeCount*CardSort_parameters.RuleList.length
+    var flag = true
+    var temp = [...Array(FileNames.length).keys()]
+    t = shuffle(temp)
+
+    if ( t.length <= NTrials )
+      { t = t.concat(shuffle(temp)) }
+      if ( t.length <= NTrials )
+      { t = t.concat(shuffle(temp)) }
+  }
+}
+
+
 // =======================================================================
 // Define all of the different the stimuli 
+
+
 
 var trial = {
     type: jsPsychImageButtonResponseCST,
     render_on_canvas: false,
-    stimulus_height: StimCardHeight,
-    
+    stimulus_height: function() { 
+      return CardSort_parameters.StimCardHeight 
+    },
     stimulus: function()
     {
+      console.log('Got Here. Trial count '+ TrialCount)
       var stim = ImageFolder+jsPsych.timelineVariable('stim')
+      console.log("The stimulus is: "+stim)
       return stim
     },
     discardPile: function()
     {
-      if ( TrialCount > 0 ) {
+      
+      if ( TrialCount > 0 ) {//
+        //var discard = ImageFolder+jsPsych.timelineVariable('stim')
         var temp = jsPsych.data.get().last(2)
+        console.log("DISCARD PILE: "+TrialCount+'   '+temp.select('stimulus').values)
+
         var discard = temp.select('stimulus').values[0]
+        console.log('Discard: '+ discard)
       }
       else {
+        console.log(PreviousCard)
         discard = PreviousCard 
       }
       return discard
     },
     choices: function()
     {
-      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardSort_parameters.CardHeight+'>']
       return stim
     },
     prompt: '+',
@@ -55,7 +89,7 @@ var trial = {
         var response = data.response
         console.log("RESPONSE: "+response)
         var correct = jsPsych.timelineVariable('FactorMapping') 
-        if ( response == correct[0][RuleList[CurrentRuleCount]])
+        if ( response == correct[0][CardSort_parameters.RuleList[CurrentRuleCount]])
           {
             console.log("CORRECT")
             Accuracy = "Correct"
@@ -73,7 +107,7 @@ var trial = {
 var trialBlank = {
     type: jsPsychImageButtonResponseCST,
     render_on_canvas: false,
-    stimulus_height: StimCardHeight,
+    stimulus_height:  function() { return CardSort_parameters.StimCardHeight },
     stimulus: function()
     {
       var stim = ImageFolder+'Blank.png'
@@ -92,19 +126,19 @@ var trialBlank = {
     },
     choices: function()
     {
-      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardHeight+'>',
-        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardHeight+'>']
+      var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'2-red-cross.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardSort_parameters.CardHeight+'>',
+        '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardSort_parameters.CardHeight+'>']
       return stim
     },
     prompt: function(data)
     {
       var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
         if(last_trial_correct){
-          return '<p style="font-size:'+FeedbackSize+'vh">Correct!</p>'; // the parameter value has to be returned from the function
+          return '<p style="font-size:'+CardSort_parameters.FeedbackSize+'vh">Correct!</p>'; // the parameter value has to be returned from the function
         } else {
-          return '<p style="font-size:'+FeedbackSize+'vh">Incorrect!</p>'; // the parameter value has to be returned from the function
+          return '<p style="font-size:'+CardSort_parameters.FeedbackSize+'vh">Incorrect!</p>'; // the parameter value has to be returned from the function
         }
     },
     trial_duration:500
@@ -125,18 +159,7 @@ var debrief_block = {
       }
     };
 
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-       stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-  }
+
 // =======================================================================
 // This is used for labelling trials in the output data
 var prac_stimulus = Object.assign({}, trial)
@@ -181,14 +204,28 @@ var Practice_procedure = {
       randomize_order: true,
       repetitions: 1,
       sample: {
-        type: 'without-replacement',
-        size: PracticeRuleChangeCount*PracticeRuleList.length
-      },
+        type: 'custom',
+        fn: function(tPrac){ 
+          NPracTrials = CardSort_parameters.PracticeRuleChangeCount*CardSort_parameters.PracticeRuleList.length
+          var flag = true
+          var temp = [...Array(FileNames.length).keys()]
+          tPrac = shuffle(temp)
+
+          if ( tPrac.length <= NPracTrials )
+            { tPrac = tPrac.concat(shuffle(temp)) }
+            if ( tPrac.length <= NPracTrials )
+            { tPrac = tPrac.concat(shuffle(temp)) }
+          tPrac = tPrac.slice(0,NPracTrials)
+          console.log('Running '+tPrac.length+" trials")
+          return tPrac
+
+       }
+    },
       on_finish: function() {
         PracticeCount++
 
-        console.log("Trial count: "+PracticeCount+", Rule count: "+PracticeRuleList[PracticeCurrentRuleCount])
-        if ( (PracticeCount % PracticeRuleChangeCount) == 0 )
+        console.log("Trial count: "+PracticeCount+", Rule count: "+CardSort_parameters.PracticeRuleList[PracticeCurrentRuleCount])
+        if ( (PracticeCount % CardSort_parameters.PracticeRuleChangeCount) == 0 )
         {
           CurrentRuleCount++
         }
@@ -196,19 +233,32 @@ var Practice_procedure = {
     }
 
 var trial_procedure = {
-      timeline: [test_stimulus, trialBlank],
+      timeline: [test_stimulus, trialBlank ],
       timeline_variables: FileNames,
-      randomize_order: true,
-      repetitions: 1,
+      //randomize_order: true,
+      //repetitions: 1,
       sample: {
-        type: 'without-replacement',
-        size: RuleChangeCount*RuleList.length
+        type: 'custom',
+        fn: function(t){ 
+              NTrials = CardSort_parameters.RuleChangeCount*CardSort_parameters.RuleList.length
+              var flag = true
+              var temp = [...Array(FileNames.length).keys()]
+              t = shuffle(temp)
+          
+              if ( t.length <= NTrials )
+                { t = t.concat(shuffle(temp)) }
+                if ( t.length <= NTrials )
+                { t = t.concat(shuffle(temp)) }
+                t = t.slice(0,NTrials)
+                console.log("Will do "+t.length+" trials")
+            return t
+        }     
       },
       on_finish: function() {
         count++
 
-        console.log("Trial count: "+count+", Rule count: "+RuleList[CurrentRuleCount])
-        if ( (count % RuleChangeCount) == 0 )
+        console.log("Trial count: "+count+", Rule count: "+CardSort_parameters.RuleList[CurrentRuleCount])
+        if ( (count % CardSort_parameters.RuleChangeCount) == 0 )
         {
           CurrentRuleCount++
         }
@@ -216,34 +266,74 @@ var trial_procedure = {
     }
 
 
-var welcome = {
-      timeline: [Instructions],
-      timeline_variables: WelcomeText,
-      randomize_order: false,
-      repetitions: 1,
+    var welcome = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function() {
+        console.log(Instructions)
+        return Instructions.WelcomeText[0].page},
+      post_trial_gap: 0,
+      margin_horizontal: GapBetweenButtons,
+      prompt: 'PROMPT',
+      choices: function() {return [LabelNames.Next]}, 
     }
-  
-  var instructions = {
-      timeline: [Instructions],
-      timeline_variables: InstructionText,
-      randomize_order: false,
-      repetitions: 1,
-    }
-  
-  var thank_you = {
-      timeline: [SendData],
-      timeline_variables: ThankYouText,
-      randomize_order: false,
-      repetitions: 1,
-    }    
+
+var if_Welcome = {
+  timeline: [welcome],
+  conditional_function: function() {
+        if ( CardSort_parameters.ShowWelcome)
+        { console.log("SHOWING WELCOME")
+          return true }
+        else { return false }
+  }
+}  
+ 
+
+var Instructions_Procedure = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.Instructions[countInstr].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+
+var instr_procedure_loop_node = {
+  timeline: [Instructions_Procedure],
+  loop_function: function(data){
+    console.log("Instructional Loop Count is: "+countInstr)
+    countInstr+=1
+    if ( countInstr < Instructions.Instructions.length){
+        return true} else { return false}
+  }
+}
+var thank_you = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.ThankYouText[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: 'PROMPT',
+  choices: function() {return [LabelNames.Next]}, 
+}
+var if_ThankYou = {
+  timeline: [thank_you],
+  conditional_function: function() {
+        if ( CardSort_parameters.ShowThankYou)
+        { return true }
+        else { return false }
+  }
+}
 // =======================================================================    
   //timeline.push()
-timeline.push(welcome)
-timeline.push(instructions)    
+timeline.push(if_Welcome)
+
+
+
 var CurrentRuleCount = 0
-//timeline.push(Practice_procedure)
-//timeline.push(debrief_block);
-//timeline.push(welcome)
+timeline.push(Practice_procedure)
+timeline.push(debrief_block);
+
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
 timeline.push(thank_you)

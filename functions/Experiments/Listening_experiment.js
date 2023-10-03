@@ -22,15 +22,16 @@ var preload_audio = {
         List.push(FolderOfAudioFiles + AudioTestList[i] + AudioFileType)
         ButtonList.push(AudioTestList[i])
       }
-      ButtonList.push('SKIP')
       console.log(List)
       console.log("PRELOADING AUDIO")
       return List
     },
   };
-var Instructions = {
+var Instruct = {
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: "You will hear a series of letters and numbers.<p> Make sure that your sound is turned on and that you can hear. ",
+      stimulus: function() { 
+        console.log(Instructions)
+        return Instructions.Instructions }, 
       post_trial_gap: 0,
       margin_horizontal: GapBetweenButtons,
       prompt: '',
@@ -88,6 +89,6 @@ var present_audio= {
   }
 
 timeline.push(preload_audio)
-timeline.push(Instructions)
+timeline.push(Instruct)
 timeline.push(present_audio)
 timeline.push(thank_you)
