@@ -1,7 +1,7 @@
 var CardSort_001 = {}
 // How many cards before the rules change
 CardSort_001.PracticeRuleChangeCount = 4
-CardSort_001.RuleChangeCount = 10
+CardSort_001.RuleChangeCount = 2
 
 // What is the order of rules?
 CardSort_001.PracticeRuleList = [2,0,1] // Number, Color, Shape

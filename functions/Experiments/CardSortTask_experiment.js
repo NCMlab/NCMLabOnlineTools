@@ -10,15 +10,28 @@ var PracticeCurrentRuleCount = 0
 var Accuracy = ''
 
 var PreviousCard = ImageFolder+'Blank.png'
+const BlankCard = ImageFolder+'Blank.png'
 var TrialCount = 0
-FileNames = MakeCSTFileNames()
+Output = MakeCSTFileNames(ImageFolder)
+console.log(Output)
+FileNames = Output.CST_List
+ImagePaths = Output.FileNames
+FactorMapping = Output.FactorMapping
+
+
 var timeline = [];
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 }
-// Calculate the number of practice trials
+// pre load image
+var preload_images = {
+  type: jsPsychPreload,
+  images: function(){
+    return ImagePaths
+  },
+}
 
 
 // Calculate the number of trials
@@ -103,6 +116,74 @@ var trial = {
           }
     }
   };
+
+// ===================================================
+
+
+var TESTtrial = {
+  type: jsPsychImageButtonResponseCST,
+  render_on_canvas: false,
+  stimulus_height: function() { 
+    return CardSort_parameters.StimCardHeight 
+  },
+  stimulus: function()
+  {
+    NTrials = CardSort_parameters.RuleChangeCount*CardSort_parameters.RuleList.length
+    var flag = true
+    var temp = [...Array(FileNames.length).keys()]
+    t = shuffle(temp)
+
+    if ( t.length <= NTrials )
+      { t = t.concat(shuffle(temp)) }
+      if ( t.length <= NTrials )
+      { t = t.concat(shuffle(temp)) }
+      t = t.slice(0,NTrials)
+    
+    var stim = ImageFolder+'1-blue-circle.png'
+    console.log(ImagePaths)
+    var ShuffledImages = []
+    var ShuffledFactors = []
+    for ( var i = 0; i < NTrials; i++ )
+    { 
+      ShuffledImages.push(ImagePaths[t[i]]) 
+      ShuffledFactors.push(FactorMapping[t[i]]) 
+    }
+    console.log(ShuffledFactors)
+    return Output//ShuffledImages
+  },
+  discardPile: function()
+  {
+    if ( TrialCount > 0 ) {//
+      //var discard = ImageFolder+jsPsych.timelineVariable('stim')
+      var temp = jsPsych.data.get().last(2)
+      console.log("DISCARD PILE: "+TrialCount+'   '+temp.select('stimulus').values)
+
+      var discard = temp.select('stimulus').values[0]
+      console.log('Discard: '+ discard)
+    }
+    else {
+      console.log(PreviousCard)
+      discard = PreviousCard 
+    }
+    return discard
+  },
+  choices: function()
+  {
+    var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardSort_parameters.CardHeight+'>',
+      '<img src="'+ImageFolder+'2-red-cross.png" height='+CardSort_parameters.CardHeight+'>',
+      '<img src="'+ImageFolder+'3-yellow-star.png" height='+CardSort_parameters.CardHeight+'>',
+      '<img src="'+ImageFolder+'4-green-triangle.png" height='+CardSort_parameters.CardHeight+'>']
+    return stim
+  },
+  prompt: '+',
+  BlankCard: BlankCard,
+  feedback_duration: function() { return CardSort_parameters.FeedbackDuration },
+  response_ends_trial: false,
+  rule_change_count: 2, // how many trials between rule changes
+  rule_list: [2,0,1],   // the order of rules
+};
+
+// ===================================================
 
 var trialBlank = {
     type: jsPsychImageButtonResponseCST,
@@ -341,7 +422,9 @@ var if_Test_Instructions = {
   //timeline.push()
 timeline.push(if_Welcome)
 
+timeline.push(preload_images)
 
+timeline.push(TESTtrial)
 timeline.push(if_Test_Instructions)
 var CurrentRuleCount = 0
 timeline.push(Practice_procedure)

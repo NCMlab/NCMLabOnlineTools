@@ -53,12 +53,33 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               pretty_name: "Prompt",
               default: null,
           },
+          BlankCard: {
+            type: jspsych.ParameterType.HTML_STRING,
+            pretty_name: "Prompt",
+            default: null,
+        },
           /** How long to show the stimulus. */
           stimulus_duration: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Stimulus duration",
               default: null,
           },
+          feedback_duration: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: "Feedback duration",
+            default: null,
+        },
+        rule_change_count: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: "Rule Change Count",
+            default: 10,
+        },
+        rule_list: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: "Rule List",
+            default: [0],
+        },
+
           /** How long to show the trial. */
           trial_duration: {
               type: jspsych.ParameterType.INT,
@@ -102,14 +123,51 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
    * @author Josh de Leeuw
    * @see {@link https://www.jspsych.org/plugins/jspsych-image-button-response/ image-button-response plugin documentation on jspsych.org}
    */
+  
+    
+
   class ImageButtonResponsePlugin {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
+
       }
+    make_shuffle(trial) {
+        var NTrials = trial.rule_change_count*trial.rule_list.length
+        
+        var flag = true
+        var temp = [...Array(trial.stimulus.FileNames.length).keys()]
+        var t = shuffle(temp)
+        
+        if ( t.length <= NTrials )
+            { t = t.concat(shuffle(temp)) }
+            if ( t.length <= NTrials )
+            { t = t.concat(shuffle(temp)) }
+            t = t.slice(0,NTrials)
+        trial.t = t
+        
+        var ShuffledImages = []
+        var ShuffledFactors = []
+        for ( var i = 0; i < NTrials; i++ )
+        {   
+            ShuffledImages.push(trial.stimulus.FileNames[t[i]]) 
+            ShuffledFactors.push(trial.stimulus.FactorMapping[t[i]]) 
+        }
+
+        
+        trial.ShuffledImages = ShuffledImages
+        trial.ShuffledFactors = ShuffledFactors
+        console.log(trial)
+
+    }
+
       trial(display_element, trial) {
           var height, width;
+          var correct
+          // make the trial shuffle list
+          this.make_shuffle(trial)
           var html;
-
+            var count = 0
+            var CurrentRuleCount = 0
           if (trial.render_on_canvas) {
             console.log("RENDER ON CANVAS")
               var image_drawn = false;
@@ -255,8 +313,8 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               html += "</div><p>";
               html += '</td></tr>'
               // Second row for the prompt/feedback
-              html += '<tr height="100px"><td colspan="2">'+trial.prompt
-              html += '</td></tr>'
+              html += '<tr height="100px"><td colspan="2"><div id="id_feedback">'+'<h1>'+trial.prompt+'</h1>'
+              html += '</div></td></tr>'
               // Third row for discard pile
               var Rotation = 0//(Math.random() * 10) - 5;
               html += '<tr><td>'
@@ -266,7 +324,9 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               // Fourth row for the stimulus card
               html += '<tr><td colspan="2">'
               // display stimulus as an image element
-              html += '<img src="' + trial.stimulus + '" id="jspsych-image-button-response-stimulus">';
+              
+              // MODIFIED STUFF
+              html += '<img src="' + trial.ShuffledImages[count] + '" id="jspsych-image-button-response-stimulus">';
               html += '</td></tr></table>'
 
 
@@ -334,6 +394,32 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
           };
           // function to handle responses by the subject
           function after_response(choice) {
+              // NEW STUFF
+              
+                correct = trial.ShuffledFactors[count]
+                //console.log("The choice was: "+choice)
+                //console.log("Current Rule Count is: "+CurrentRuleCount)
+                //console.log('Correct response is :'+correct[0][trial.rule_list[CurrentRuleCount]])
+                //correct[0][CardSort_parameters.RuleList[CurrentRuleCount]])
+                
+                document.getElementById("jspsych-image-button-response-stimulus").src = trial.BlankCard;
+                document.getElementById("jspsych-image-button-response-discard").src = trial.ShuffledImages[count];
+                if ( choice == correct[0][trial.rule_list[CurrentRuleCount]] )
+                { document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'}
+                else { document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' }
+                
+                count++
+                // Check for accuracy
+                if ( ( count % trial.rule_change_count ) == 0 )
+                { CurrentRuleCount++ }
+        
+        
+                setTimeout(function(){
+                    document.getElementById("id_feedback").innerHTML = '<h1>'+trial.prompt+'</h1>'
+                    document.getElementById("jspsych-image-button-response-stimulus").src = trial.ShuffledImages[count];
+                }, trial.feedback_duration);
+                // END NEW STUFF
+
               // measure rt
               var end_time = performance.now();
               var rt = Math.round(end_time - start_time);
@@ -345,10 +431,12 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                   " responded";
               // disable all the buttons after a response
               var btns = document.querySelectorAll(".jspsych-image-button-response-button button");
+              /*
               for (var i = 0; i < btns.length; i++) {
                   //btns[i].removeEventListener('click');
                   btns[i].setAttribute("disabled", "disabled");
               }
+              */
               if (trial.response_ends_trial) {
                   end_trial();
               }
