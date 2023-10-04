@@ -255,7 +255,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               html += "</div><p>";
               html += '</td></tr>'
               // Second row for the prompt/feedback
-              html += '<tr height="200px"><td colspan="2">'+trial.prompt
+              html += '<tr height="100px"><td colspan="2">'+trial.prompt
               html += '</td></tr>'
               // Third row for discard pile
               var Rotation = 0//(Math.random() * 10) - 5;

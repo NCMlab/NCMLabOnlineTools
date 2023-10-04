@@ -12,9 +12,10 @@ CardSort_001.RuleList = [0,1,2,1,2,0] // Number, Color, Shape
 // Card sizes
 CardSort_001.CardHeight = '150vh' // this is in elem
 CardSort_001.StimCardHeight = '150' // this is in pixels
-CardSort_001.FeedbackSize = 5 // this isn in elem
+CardSort_001.FeedbackSize = 4 // this isn in elem
+CardSort_001.FeedbackDuration = '750' // millisecond
 CardSort_001.ShowWelcome = true,
-CardSort_001.ShowThankYou = false,
-CardSort_001.ShowInstructions = false, 
+CardSort_001.ShowThankYou = true,
+CardSort_001.ShowInstructions = true, 
 
 add('CardSort_001', function(){ CardSort_parameters = CardSort_001});

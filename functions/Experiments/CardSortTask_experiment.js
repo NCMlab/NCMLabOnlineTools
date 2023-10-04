@@ -141,7 +141,7 @@ var trialBlank = {
           return '<p style="font-size:'+CardSort_parameters.FeedbackSize+'vh">Incorrect!</p>'; // the parameter value has to be returned from the function
         }
     },
-    trial_duration:500
+    trial_duration: function() { return CardSort_parameters.FeedbackDuration },
   };
 
 var debrief_block = {
@@ -290,7 +290,7 @@ var if_Welcome = {
 
 var Instructions_Procedure = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions[countInstr].page},
+  stimulus: function (){return Instructions.InstructionText[countInstr].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -302,10 +302,12 @@ var instr_procedure_loop_node = {
   loop_function: function(data){
     console.log("Instructional Loop Count is: "+countInstr)
     countInstr+=1
-    if ( countInstr < Instructions.Instructions.length){
+    if ( countInstr < Instructions.InstructionText.length){
         return true} else { return false}
   }
 }
+
+
 var thank_you = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
@@ -324,18 +326,29 @@ var if_ThankYou = {
         else { return false }
   }
 }
+
+var if_Test_Instructions = {
+  timeline: [instr_procedure_loop_node],
+  conditional_function: function() {
+        if ( CardSort_parameters.ShowInstructions)
+        { 
+          return true }
+        else { return false }
+  }
+}
+
 // =======================================================================    
   //timeline.push()
 timeline.push(if_Welcome)
 
 
-
+timeline.push(if_Test_Instructions)
 var CurrentRuleCount = 0
 timeline.push(Practice_procedure)
 timeline.push(debrief_block);
 
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
-timeline.push(thank_you)
+timeline.push(if_ThankYou)
 
 
