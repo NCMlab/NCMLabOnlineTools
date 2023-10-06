@@ -132,22 +132,24 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
 
       }
     make_shuffle(trial) {
-        var NTrials = trial.rule_change_count*trial.rule_list.length
-        
+        trial.NTrials = trial.rule_change_count*trial.rule_list.length
+        console.log(trial)
+        console.log("NTrials is: "+trial.NTrials)
         var flag = true
+        
         var temp = [...Array(trial.stimulus.FileNames.length).keys()]
         var t = shuffle(temp)
         
-        if ( t.length <= NTrials )
+        if ( t.length <= trial.NTrials )
             { t = t.concat(shuffle(temp)) }
-            if ( t.length <= NTrials )
+            if ( t.length <= trial.NTrials )
             { t = t.concat(shuffle(temp)) }
-            t = t.slice(0,NTrials)
+            t = t.slice(0,trial.NTrials)
         trial.t = t
         
         var ShuffledImages = []
         var ShuffledFactors = []
-        for ( var i = 0; i < NTrials; i++ )
+        for ( var i = 0; i < trial.NTrials; i++ )
         {   
             ShuffledImages.push(trial.stimulus.FileNames[t[i]]) 
             ShuffledFactors.push(trial.stimulus.FactorMapping[t[i]]) 
@@ -163,8 +165,12 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
       trial(display_element, trial) {
           var height, width;
           var correct
+
+          var end_time = 0
+            var rt = 0
           // make the trial shuffle list
           this.make_shuffle(trial)
+          console.log(trial)
           var html;
             var count = 0
             var CurrentRuleCount = 0
@@ -374,8 +380,9 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
           }
           // store response
           var response = {
-              rt: null,
-              button: null,
+              rt: [],
+              button: [],
+              accuracy: [],
           };
           // function to end trial when it is time
           const end_trial = () => {
@@ -384,8 +391,9 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
-                  stimulus: trial.stimulus,
+                  //stimulus: trial.stimulus,
                   response: response.button,
+                  accuracy: response.accuracy,
               };
               // clear the display
               display_element.innerHTML = "";
@@ -395,7 +403,11 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
           // function to handle responses by the subject
           function after_response(choice) {
               // NEW STUFF
-              
+              end_time = performance.now();
+              rt = Math.round(end_time - start_time);
+              response.button.push(parseInt(choice));
+              response.rt.push(rt);
+
                 correct = trial.ShuffledFactors[count]
                 //console.log("The choice was: "+choice)
                 //console.log("Current Rule Count is: "+CurrentRuleCount)
@@ -405,8 +417,14 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                 document.getElementById("jspsych-image-button-response-stimulus").src = trial.BlankCard;
                 document.getElementById("jspsych-image-button-response-discard").src = trial.ShuffledImages[count];
                 if ( choice == correct[0][trial.rule_list[CurrentRuleCount]] )
-                { document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'}
-                else { document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' }
+                { 
+                    document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'
+                    response.accuracy.push(1)
+                }
+                else { 
+                    document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' 
+                    response.accuracy.push(0)
+                }
                 
                 count++
                 // Check for accuracy
@@ -417,19 +435,24 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                 setTimeout(function(){
                     document.getElementById("id_feedback").innerHTML = '<h1>'+trial.prompt+'</h1>'
                     document.getElementById("jspsych-image-button-response-stimulus").src = trial.ShuffledImages[count];
+                    if ( count == trial.NTrials ) 
+                    { end_trial() }
                 }, trial.feedback_duration);
+                start_time = performance.now();
+                console.log("Count is: "+count)
+                console.log("NTrials is: " + trial.NTrials)
+                
                 // END NEW STUFF
 
               // measure rt
-              var end_time = performance.now();
-              var rt = Math.round(end_time - start_time);
-              response.button = parseInt(choice);
-              response.rt = rt;
+              
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
-              display_element.querySelector("#jspsych-image-button-response-stimulus").className +=
-                  " responded";
+              
+              //display_element.querySelector("#jspsych-image-button-response-stimulus").className +=
+              //    " responded";
               // disable all the buttons after a response
+              
               var btns = document.querySelectorAll(".jspsych-image-button-response-button button");
               /*
               for (var i = 0; i < btns.length; i++) {

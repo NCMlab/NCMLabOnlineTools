@@ -127,46 +127,8 @@ var TESTtrial = {
     return CardSort_parameters.StimCardHeight 
   },
   stimulus: function()
-  {
-    NTrials = CardSort_parameters.RuleChangeCount*CardSort_parameters.RuleList.length
-    var flag = true
-    var temp = [...Array(FileNames.length).keys()]
-    t = shuffle(temp)
-
-    if ( t.length <= NTrials )
-      { t = t.concat(shuffle(temp)) }
-      if ( t.length <= NTrials )
-      { t = t.concat(shuffle(temp)) }
-      t = t.slice(0,NTrials)
-    
-    var stim = ImageFolder+'1-blue-circle.png'
-    console.log(ImagePaths)
-    var ShuffledImages = []
-    var ShuffledFactors = []
-    for ( var i = 0; i < NTrials; i++ )
-    { 
-      ShuffledImages.push(ImagePaths[t[i]]) 
-      ShuffledFactors.push(FactorMapping[t[i]]) 
-    }
-    console.log(ShuffledFactors)
-    return Output//ShuffledImages
-  },
-  discardPile: function()
-  {
-    if ( TrialCount > 0 ) {//
-      //var discard = ImageFolder+jsPsych.timelineVariable('stim')
-      var temp = jsPsych.data.get().last(2)
-      console.log("DISCARD PILE: "+TrialCount+'   '+temp.select('stimulus').values)
-
-      var discard = temp.select('stimulus').values[0]
-      console.log('Discard: '+ discard)
-    }
-    else {
-      console.log(PreviousCard)
-      discard = PreviousCard 
-    }
-    return discard
-  },
+  { return Output },
+  discardPile: BlankCard,
   choices: function()
   {
     var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+CardSort_parameters.CardHeight+'>',
@@ -179,8 +141,11 @@ var TESTtrial = {
   BlankCard: BlankCard,
   feedback_duration: function() { return CardSort_parameters.FeedbackDuration },
   response_ends_trial: false,
-  rule_change_count: 2, // how many trials between rule changes
-  rule_list: [2,0,1],   // the order of rules
+  rule_change_count: function() { return CardSort_parameters.PracticeRuleChangeCount }, // how many trials between rule changes
+  rule_list: function() { return CardSort_parameters.PracticeRuleList},   // the order of rules`
+  on_finish: function(data) {
+    console.log(data)
+  }
 };
 
 // ===================================================
@@ -425,6 +390,7 @@ timeline.push(if_Welcome)
 timeline.push(preload_images)
 
 timeline.push(TESTtrial)
+/*
 timeline.push(if_Test_Instructions)
 var CurrentRuleCount = 0
 timeline.push(Practice_procedure)
@@ -432,6 +398,7 @@ timeline.push(debrief_block);
 
 var CurrentRuleCount = 0
 timeline.push(trial_procedure)
-timeline.push(if_ThankYou)
+*/
+//timeline.push(if_ThankYou)
 
 
