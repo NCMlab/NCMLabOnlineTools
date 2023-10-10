@@ -48,92 +48,108 @@ BatteryList.push({index: 16,
 BatteryList.push({index: 202, 
 	name:'NCM Lab Demonstration', 
 	list: [
-        'Questionnaire', //1 
+        'Questionnaire',//1
+		'Consent Form',
+		'Questionnaire',
         'Stroop Color',
 		'Stroop Word',
-		'Stroop Color/Word',
+		'Stroop Color/Word',//6
 		'Word Recall',
-		'Word Recall', //6
+		'Word Recall', 
 		'Cancellation Task',
-		'Image Copy',
+		'Image Copy',//10
 		'Clock Drawing',
-		'Matrix Reasoning', //10 
+		'Matrix Reasoning', // 
 		'Digit Span',
 		'Digit Span', 
-		'Trail Making',
+		'Trail Making',//15
 		'Trail Making', 
-        'Serial Subtraction',//15
+        'Serial Subtraction',//
 		'Fluency',
 		'Line Bisection',
-        'Word Recall', 
+        'Word Recall', //20
 		'Verbal DMS',
-        'Spatial DMS' //20
+        'Spatial DMS', //
+		'Card Sort',
+		'Questionnaire'
 	], 
 	Instructions: ['', //1
+		'',
+		'',
 		'Default', 
+		'Default', //5
+		'Default',	//
 		'Default', 
-		'Default',	
-		'Default', 
-		'Default',  //6
-		'Default',
-		'Default', 
+		'Default',  
 		'Default',
 		'Default', //10
-		'Default', 
 		'Default',
+		'Default', //
 		'Default', 
 		'Default',
 		'Default', //15
+		'Default',
+		'Default', //
 		'Default', 
 		'Default',
-		'Default', 
+		'Default', //20
 		'Default',
-		'Default' //20
+		'Default', //
+		'Default', //
+		''
 	],
 	description: '',
 	ParameterLists: [
-        'EN_IntakeForm_Generic', //1
+        'EN_BriefScreening',
+		'EN_ConsentForm_uOttawa_Steffener',
+		'EN_IntakeForm_Generic',
         'Stroop_Default',
 		'Stroop_Default',
-		'Stroop_Default',
+		'Stroop_Default',//6
         'RAVLT_Manual_Immediate',
-		'RAVLT_Spoken_Immediate',//6
+		'RAVLT_Spoken_Immediate',
 		'Cancellation_001',
-		'ImageCopy_Default',
+		'ImageCopy_Default',//10
 		'ClockDrawing_001',
-		'MatrixReasoning_ICAR',//10
+		'MatrixReasoning_ICAR',//
 		'DigitSpan_Audio_Forward_TwoErrors',
 		'DigitSpan_Audio_Backward_TwoErrors',
-        'TrailMakingA_003',
+        'TrailMakingA_003',//15
 		'TrailMakingB_003',
-		'SerialSubtract_Default',//15
+		'SerialSubtract_Default',//
 		'Fluency_Animals',
 		'LineBisection_001',
-        'RAVLT_Manual_Delayed',
+        'RAVLT_Manual_Delayed',//20
         'vDMS_Adaptive',
-		'SpatialDMS_Adaptive'//20
+		'SpatialDMS_Adaptive',//
+		'CardSort_001',
+		'aes'
 	],
 	ButtonName: [
-        'Intake Form', //1
+		'Screening',//1
+		'Consent',
+		'Intake',
         'Color',
 		'Word',
-		'Color/Word',
+		'Color/Word',//6
 		'Recall, Imm (Manual)',
-		'Recall, Imm (Spoken)',//6
+		'Recall, Imm (Spoken)',
 		'Cancellation', 
-		'Cube Copy',
+		'Cube Copy',//10
 		'Clock Draw',
-		'ICAR',//10
+		'ICAR',//
 		'DS, Forward',
 		'DS, Backward',
-		'Trails A',
+		'Trails A',//15
 		'Trails B',
-        'Subtract',//15
+        'Subtract',//
 		'Fluency',
         'Line Bisect',
-		'Word Recall, Delay',
+		'Word Recall, Delay',//20
 		'Verbal DMS',
-        'Spatial DMS'//20
+        'Spatial DMS',//
+		'Card Sort',
+		'AES'
 	],
     BatteryInstructions:"The 3C Platform",
 	Language:'EN',

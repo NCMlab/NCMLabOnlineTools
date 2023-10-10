@@ -7,8 +7,8 @@ EN_Instructions.InstructionText = [
                               +'selected card was RIGHT or WRONG. Use the feedback to determine which '
                               +'dimension is targeted by feedback and based on it select the right card. The '
                               +'targeted dimension may change from time to time without notice.</p>'},
-                              ]
-
+    {'page': '<img src=assets/InstructionalImages/CardSortInstructions.png></img>'}
+],
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.<br>Press Next to Continue'}]

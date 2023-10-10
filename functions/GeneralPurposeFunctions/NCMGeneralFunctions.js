@@ -159,14 +159,20 @@ function returnToUsageManager() {
 
 function restartTask() {
   TaskList = jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]
-  jatos.startComponentByTitle(TaskList) 
+  let text = "This will restart the current task. Are you sure?"
+  if (confirm(text) == true)
+  {   jatos.startComponentByTitle(TaskList)  }
+
 }
 
 function endExperiment() {
-  jatos.endStudy()
+  let text = "This will end the study but not remove your data. Are you sure?"
+  if (confirm(text) == true)
+  { jatos.endStudy() }
 }
 
 function quitExperiment() {
-  alert("This will remove all data collected so far. Are you sure?")
-  jatos.abortStudy()
+  let text = "This will remove all data collected so far. Are you sure?"
+  if (confirm(text) == true)
+  { jatos.abortStudy() }
 }

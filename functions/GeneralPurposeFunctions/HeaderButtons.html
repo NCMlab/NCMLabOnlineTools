@@ -22,9 +22,11 @@
     var button = document.createElement('button');
     button.textContent = buttonText;
     button.setAttribute('id', 'header-end-button');
+    button.setAttribute('title','tooltip');
     button.setAttribute('type', 'button');
     button.setAttribute('onclick',"endExperiment()")
     document.getElementById('header-btn-group').appendChild(button);
+    
   </script>
   <script>
     var buttonText = "Quit";
