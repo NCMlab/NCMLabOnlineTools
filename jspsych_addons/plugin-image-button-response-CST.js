@@ -383,6 +383,8 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               rt: [],
               button: [],
               accuracy: [],
+              correct: [],
+              current_rule: []
           };
           // function to end trial when it is time
           const end_trial = () => {
@@ -394,6 +396,8 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                   //stimulus: trial.stimulus,
                   response: response.button,
                   accuracy: response.accuracy,
+                  correct: response.correct,
+                  current_rule: response.current_rule
               };
               // clear the display
               display_element.innerHTML = "";
@@ -407,8 +411,10 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               rt = Math.round(end_time - start_time);
               response.button.push(parseInt(choice));
               response.rt.push(rt);
-
+            
                 correct = trial.ShuffledFactors[count]
+                response.correct.push(Number(correct[0][trial.rule_list[CurrentRuleCount]]))
+                response.current_rule.push(Number(trial.rule_list[CurrentRuleCount]))
                 //console.log("The choice was: "+choice)
                 //console.log("Current Rule Count is: "+CurrentRuleCount)
                 //console.log('Correct response is :'+correct[0][trial.rule_list[CurrentRuleCount]])

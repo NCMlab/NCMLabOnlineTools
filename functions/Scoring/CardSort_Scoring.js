@@ -1,17 +1,30 @@
 function CardSort_Scoring(data) {
+	var trials = jsPsych.data.get().filter({trial: 'Test'});
 	
-	var trials = jsPsych.data.get().filter({task: 'test trial'});
 	var NTrials = trials.count()
-	var correct_trials = trials.filter({correct: true});
-	var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-	var rt = Math.round(correct_trials.select('rt').mean());
 
-	data.PrimaryResults = {}
-	data.PrimaryResults['Acc'] = accuracy
-	data.AllResults = {}
-	data.AllResults['Acc'] = accuracy
-	data.AllResults['RT'] = rt
-	data.AllResults['NCorrect'] = correct_trials.count()
-	data.AllResults['NTrials'] = NTrials
-	return data
+
+	var correct_trials = trials.trials[0].accuracy;
+	var rt_trials = trials.trials[0].rt;
+	var sum = correct_trials.reduce((a, b) => a + b, 0);
+	const avg = Math.round(100*(sum / correct_trials.length) || 0);
+	
+	var accuracy = avg;
+	var sum = rt_trials.reduce((a, b) => a + b, 0);
+	const AvgRT = Math.round((sum / rt_trials.length) || 0);
+	Results = {}
+	Results.PrimaryResults = {}
+	Results.PrimaryResults['ScoreName'] = 'Accuracy'
+	Results.PrimaryResults['Accuracy'] = accuracy
+
+	Results.AllResults = {}
+	Results.AllResults['Acc'] = accuracy
+	Results.AllResults['RT'] = AvgRT
+	Results.AllResults['NTrials'] = NTrials
+	Results.AllResults['RuleList'] = trials.trials[0].current_rule
+	Results.AllResults['CorrectList'] = trials.trials[0].correct
+	Results.AllResults['ResponseList'] = trials.trials[0].response
+	Results.AllResults['RTList'] = trials.trials[0].rt
+	Results.AllResults['AccuracyList'] = trials.trials[0].accuracy
+	return Results
 }

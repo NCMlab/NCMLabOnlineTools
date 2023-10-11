@@ -93,6 +93,7 @@ var TestTrial = {
   rule_change_count: function() { return CardSort_parameters.RuleChangeCount }, // how many trials between rule changes
   rule_list: function() { return CardSort_parameters.RuleList},   // the order of rules`
   on_finish: function(data) {
+    data.trial = "Test"
     console.log(data)
   }
 };
@@ -101,7 +102,7 @@ var TestTrial = {
 
 
 var debrief_block = {
-      type: jsPsychHtmlKeyboardResponse,
+      type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function() {
 
         var trials = jsPsych.data.get().filter({trial: 'Practice'});
@@ -119,9 +120,9 @@ var debrief_block = {
         console.log(rt)
         return `<p>You responded correctly on ${accuracy}% of the trials.</p>
           <p> with an average response time of ${rt} ms</p>
-          <p>Press any key to perform the experiment.</p>`;
-
-      }
+          <p>Press any key to continue.</p>`;
+      },
+      choices: ['Next'], 
     };
 
 
@@ -131,25 +132,16 @@ var debrief_block = {
 // Define procedures using the stimuli
 
 // Add scoring procedures to the Thank you screen
-var SendData = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-      on_finish: function(data){
-        data = CardSort_Scoring(data)
-        console.log(data)
-        data.task = 'Sending Data'
-        
-      }
-    }  
 
+    var SendData = {
+      type: jsPsychCallFunction,
+      func: function() {
+        var data = jsPsych.data.get() 
+        console.log(data)
+        Results = CardSort_Scoring(data)
+        jsPsych.finishTrial(Results)
+      }
+    }
 
     var welcome = {
       type: jsPsychHtmlButtonResponseTouchscreen,
@@ -192,6 +184,22 @@ var instr_procedure_loop_node = {
   }
 }
 
+var Instructions_PracticeGetReady = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.PracticeInstructions[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
+var Instructions_TestGetReady = {
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  stimulus: function (){return Instructions.TestInstructions[0].page},
+  post_trial_gap: 0,
+  margin_horizontal: GapBetweenButtons,
+  prompt: '',
+  choices: function() {return [LabelNames.Next]}, 
+}
 
 var thank_you = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -227,13 +235,17 @@ var if_Test_Instructions = {
 timeline.push(if_Welcome)
 
 timeline.push(preload_images)
-timeline.push(if_Test_Instructions)
 
+timeline.push(if_Test_Instructions)
+timeline.push(Instructions_PracticeGetReady)
 
 timeline.push(PracticeTrial)
 timeline.push(debrief_block)
+timeline.push(Instructions_TestGetReady)
 timeline.push(TestTrial)
+
 timeline.push(if_ThankYou)
+timeline.push(SendData)
 /*
 timeline.push(if_Test_Instructions)
 var CurrentRuleCount = 0

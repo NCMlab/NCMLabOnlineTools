@@ -9,6 +9,13 @@ EN_Instructions.InstructionText = [
                               +'targeted dimension may change from time to time without notice.</p>'},
     {'page': '<img src=assets/InstructionalImages/CardSortInstructions.png></img>'}
 ],
+EN_Instructions.PracticeInstructions = [
+    {'page': '<p class="Instructions">You will now perform a few practice trials. Press next to continue.'}
+]
+EN_Instructions.TestInstructions = [
+    {'page': '<p class="Instructions">Press next to continue to the test.'}
+]
+
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.<br>Press Next to Continue'}]
