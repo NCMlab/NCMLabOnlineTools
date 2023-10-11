@@ -10,28 +10,13 @@ var PatternComparison_Default = {
 	Image: 'NeckerCube.png',
 	RecordGIF: true,
 }
-var ImageCopy_CBprotocol = {
-	canvas_width:"400vw",
-	canvas_height:"400vh",
-	ShowWelcome: true,
-	ShowThankYou: false,
-	ShowInstructions: false,
-	AskForNotes: false,
-	Image: 'NeckerCube.png',
-	RecordGIF: true,
-}
-var ImageCopy_FaCE = {
-	canvas_width:"400vw",
-	canvas_height:"400vh",
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	Image: 'NeckerCube.png',
-	RecordGIF: true,
-}
 
-
+PatternComparisonSetup = [
+	['AFig8a.bmp','AFig8b.bmp','right','1'],
+	['AFig7a.bmp','AFig7b.bmp','right','1'],
+	['AFig6a.bmp','AFig6b.bmp','right','1'],
+	['AFig5a.bmp','AFig5b.bmp','right','1'],
+]
 
 add('PatternComparison_Default', function(){ ImageCopy_parameters = PatternComparison_Default});
 add('ImageCopy_CBprotocol', function(){ ImageCopy_parameters = ImageCopy_CBprotocol});
