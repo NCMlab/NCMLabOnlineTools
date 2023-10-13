@@ -41,19 +41,11 @@
     <script src="InstructionsAndStimuli/Instructions/Cancellation_Instructions.js"></script>
     <script src="config/Cancellation_Setup.js"></script>
     <script src="functions/TaskSpecificFunctions/Cancellation_functions.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
     <script>
       // check what URL is calling this file and load the config file accordingly
       let url_running = window.location.href
       let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
     </script>
     <script>
       var Cancellation_parameters = 'empty'
@@ -113,17 +105,17 @@
           JATOSSessionData = jatos.studySessionData
           JATOSSessionData.CurrentIndex += 1
           jatos.studySessionData = JATOSSessionData
-          // Go back to battery management on JATOS
-          if (typeof UsageManagerHtmlID != 'undefined') {
-            jatos.startComponent(UsageManagerHtmlID);
-          }
+      // If this a la carte or the end of the battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
         }
       });
       jatos.onLoad(() => {
           var JATOSID = jatos.workerId;
           console.log(jatos)
           console.log(JATOSID)
-
           var resultsData = {'name':'JASON'};
           jatos.addJatosIds(resultsData);
           jsPsych.run(timeline);

@@ -39,20 +39,11 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    
+    <script src="Batteries/ComponentList.js"></script>
     <script>
       // check what URL is calling this file and load the config file accordingly
       let url_running = window.location.href
       let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
     </script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src="Batteries/Batteries.js"></script>

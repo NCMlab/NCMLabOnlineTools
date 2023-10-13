@@ -34,6 +34,7 @@
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Listening_Instructions.js">//Load language</script>
     <script src="config/Listening_Setup.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
     
     <script> 
       //var FolderOfAudioFiles = 'assets/SoundFiles/AudioTest/'
@@ -43,31 +44,20 @@
     <script src="functions/Experiments/Listening_experiment.js"></script>
 
     <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
-    <script>
       var Listening_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        if (typeof BatteryHtmlID === 'undefined') {
-          parameters = 'Listening_001'
-          InstructionsToUse = 'Default'
+        
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        { parameters = 'Listening_001'
+            InstructionsToUse = 'Default' 
         }
-        else {
-          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+        else 
+        { 
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }
+
         console.log(parameters)
         pseudoSwitch(parameters)      
         console.log(Listening_parameters)
@@ -111,10 +101,9 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of teh battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
-
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
     }
   });
   jatos.onLoad(() => {

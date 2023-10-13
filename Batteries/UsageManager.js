@@ -58,8 +58,6 @@ var SetupBattery = {
           console.log(TaskCompleted)
           JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList} 
           // add the ID to return to the JATOS battery
-          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-          JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.Language = Language
           JATOSSessionData.TaskCompleted = TaskCompleted
           JATOSSessionData.FooterText = FooterText
@@ -84,7 +82,7 @@ var if_node_ALaCarte = {
         if (Number(data.trials[0].Battery) > 100 ) {
             JATOSSessionData.UsageType = 'ALaCarte'
             jatos.studySessionData = JATOSSessionData
-            jatos.startComponent(UserChoiceHtmlID)
+            jatos.startComponentByTitle("User Choice")
         }
     }
 }
@@ -97,7 +95,7 @@ var if_node_Battery = {
         if (Number(data.trials[0].Battery) < 100 ) {
             JATOSSessionData.UsageType = 'Battery'
             jatos.studySessionData = JATOSSessionData
-           jatos.startComponent(BatteryHtmlID)
+           jatos.startComponentByTitle("Batteries")
         }
     }
 }

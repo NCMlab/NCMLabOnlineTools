@@ -29,17 +29,17 @@ ComponentList.push({name:'Pattern Comparison', iconFileName:'MultiChoice.png'})
 // What battery was passed?
 
 // I think I can use the name instead of the index
-add('Stroop Color', function(){jatos.startComponent(3)});
-add('Stroop Word', function(){jatos.startComponent(4)});
-add('Stroop Color/Word', function(){jatos.startComponent(5)});
-add('Trail Making', function(){jatos.startComponent(17)});
-add('Word Recall', function(){jatos.startComponent(6)});
-add('Image Copy', function(){jatos.startComponent(11)});
-add('Matrix Reasoning', function(){jatos.startComponent(12)});
-add('Card Sort', function(){jatos.startComponent(13)});
-add('Reading Test',function(){jatos.startComponent(14)});
-add('Likert',function(){jatos.startComponent(15)});
-add('Digit Span',function(){jatos.startComponent(16)});
+/*add('Stroop Color', function(){jatos.startComponentByTitle(3)});
+add('Stroop Word', function(){jatos.startComponentByTitle(4)});
+add('Stroop Color/Word', function(){jatos.startComponentByTitle(5)});
+add('Trail Making', function(){jatos.startComponentByTitle(17)});
+add('Word Recall', function(){jatos.startComponentByTitle(6)});
+add('Image Copy', function(){jatos.startComponentByTitle(11)});
+add('Matrix Reasoning', function(){jatos.startComponentByTitle(12)});
+add('Card Sort', function(){jatos.startComponentByTitle(13)});
+add('Reading Test',function(){jatos.startComponentByTitle(14)});
+add('Likert',function(){jatos.startComponentByTitle(15)});
+add('Digit Span',function(){jatos.startComponentByTitle(16)});
 add('Serial Subtraction',function(){jatos.startComponent(18)});
 add('Fluency',function(){jatos.startComponent(19)});
 add('Line Bisection',function(){jatos.startComponent(20)});
@@ -52,7 +52,7 @@ add('Questionnaire',function(){jatos.startComponent(26)});
 add('Word Recognition',function(){jatos.startComponent(28)});
 add('Consent Form',function(){jatos.startComponent(29)});
 add('Questionnaire AES',function(){jatos.startComponent(31)});
-add('Pattern Comparison',function(){jatos.startComponent(32)});
+add('Pattern Comparison',function(){jatos.startComponent(32)});*/
 const BatteryHtmlID = 1
 const UserChoiceHtmlID = 21
 const UsageManagerHtmlID = 23

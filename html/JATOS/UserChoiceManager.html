@@ -31,18 +31,10 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
     <script>
       let url_running = window.location.href;
       let position = url_running.search("localhost");
-      var script = document.createElement('script');
-      if ( position >= 0) {
-        console.log("Loading Local")
-        script.src = 'Batteries/Local_ComponentList.js';
-      } else {
-        console.log("Loading Remote")
-        script.src = 'Batteries/Remote_ComponentList.js';
-      }
-      document.body.appendChild(script);
     </script>
     <script>
       jatos.onLoad(() => {

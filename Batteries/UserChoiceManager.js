@@ -55,7 +55,7 @@ var trial2 = {
       
       JATOSSessionData.CurrentIndex = response
       jatos.studySessionData = JATOSSessionData
-      pseudoSwitch(TaskList[response])
+      jatos.startComponentByTitle(TaskList[response])
   }
 };
 
@@ -80,6 +80,7 @@ var SetupBattery = {
       console.log(BatteryInstructions)
         // Make a task list of the components of the battery
       for ( var i = 0; i < TaskList.length; i ++ ) {
+        console.log(i)
         TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
       }
       console.log(TaskIconList)

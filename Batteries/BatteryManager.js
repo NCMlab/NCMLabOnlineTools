@@ -118,7 +118,7 @@ var trial1 = {
       JATOSSessionData = jatos.studySessionData
       // This is the function that starts the JATOS component for the next item in the battery
       // The pseudoswitch should receive a task name using the JATOS currentIndex value
-      pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
+      jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
     	// Need to shorten the task list and save it as jatos session variable
     }
   };
@@ -134,7 +134,7 @@ var LandingPage = {
     JATOSSessionData = jatos.studySessionData
     // This is the function that starts the JATOS component for the next item in the battery
     // The pseudoswitch should receive a task name using the JATOS currentIndex value
-    pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
+    jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
     // Need to shorten the task list and save it as jatos session variable
   }
 }
@@ -143,7 +143,7 @@ var LandingPage = {
 var trial2 = {
   type: jsPsychCallFunction,
   func: function() {
-    pseudoSwitch(TaskList[JATOSSessionData.CurrentIndex])
+    jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
   }
 }
 

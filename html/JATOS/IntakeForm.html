@@ -39,33 +39,15 @@
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
+    <script src="Batteries/ComponentList.js"></script>
     <script>
       var IntakeFormParameters = 'empty'
       var parameters = 'empty'
-      //var BatteryHtmlID
+      
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-            Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {
-              parameters = 'EN_IntakeForm_Generic'
-            }
-            else {
-              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
-            }
+            if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+            { parameters = 'EN_IntakeForm_Generic' }
+            else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
             // load the parameters
             pseudoSwitch(parameters)
             console.log(IntakeFormParameters)
@@ -117,9 +99,10 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of the battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      
     }
   });
   jatos.onLoad(() => {

@@ -154,7 +154,7 @@ function ReturnElementsFromPermute(count, N) {
 }
 // Buttons added to the top of each task page for navigation and ending the experiment  
 function returnToUsageManager() {
-  jatos.startComponent(UsageManagerHtmlID);
+  jatos.startComponentByTitle("Usage Manager");
 }
 
 function restartTask() {
