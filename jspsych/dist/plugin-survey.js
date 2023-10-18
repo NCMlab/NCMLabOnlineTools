@@ -62674,6 +62674,11 @@ var jsPsychSurvey = (function (jspsych) {
 	            pretty_name: "Title",
 	            default: null,
 	        },
+			description: {
+	            type: jspsych.ParameterType.STRING,
+	            pretty_name: "Description",
+	            default: null,
+	        },
 	        /** Text to display if a required answer is not responded to. */
 	        required_error_text: {
 	            type: jspsych.ParameterType.STRING,
@@ -62979,6 +62984,7 @@ var jsPsychSurvey = (function (jspsych) {
 	        // survey title
 	        if (trial.title !== null) {
 	            this.survey.title = trial.title;
+				this.survey.description = trial.description
 	        }
 	        // required question label
 	        this.survey.requiredText = trial.required_question_label;

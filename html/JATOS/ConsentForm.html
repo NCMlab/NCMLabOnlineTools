@@ -91,7 +91,7 @@ var jsPsych = initJsPsych({
       console.log(jatos.studySessionData.UsageType == 'Battery')
     },
     on_finish: function() {
-      jatos.endStudy(jsPsych.data.get().json())
+      jatos.submitResultData(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
       }    

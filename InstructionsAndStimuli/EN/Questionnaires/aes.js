@@ -1,7 +1,7 @@
 
 var title = "Apathy Evaluation Scale (AES)"
 
-var instructions = 'For each statement, choose the answer that best describes the your thoughts, feelings, and activity in the past 4 weeks.'
+var description = 'For each statement, choose the answer that best describes the your thoughts, feelings, and activity in the past 4 weeks.'
 
 var AESlikert_scale_valuesFORWARD = [
     {value:1, text: "Not at all"}, 
@@ -158,5 +158,7 @@ var pages = [
 var aes = {}
 aes.title = title
 aes.pages = pages
-  add('aes', function(){ IntakeFormParameters = aes });
+aes.description = description
+
+
  

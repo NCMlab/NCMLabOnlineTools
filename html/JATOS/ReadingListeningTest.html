@@ -87,7 +87,7 @@
         jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
       },
       on_finish: function() {
-        jatos.endStudy(jsPsych.data.get().json())
+        jatos.submitResultData(jsPsych.data.get().json())
 
         if ( SaveLocalFile ) {
           jsPsych.data.get().localSave('csv','WordRecall_data.csv');
