@@ -44,29 +44,15 @@
     <script src="config/WordRecog_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <script src="functions/Scoring/WordRecog_Scoring.js"></script>
-    
+    <script src="Batteries/ComponentList.js"></script>
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
+    
     <script>
       var WordRecog_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        var Language = jatos.studySessionData.Language
-        console.log(Language)
-        if (typeof BatteryHtmlID === 'undefined') {
+
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined') {
           parameters = 'TEST_Spoken'
           InstructionsToUse = 'Default'
         }
@@ -125,9 +111,9 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of teh battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
 
     }
   });

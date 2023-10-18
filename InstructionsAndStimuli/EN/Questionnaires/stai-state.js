@@ -19,42 +19,42 @@ var pages = [
               [
                 {
                   type: 'likert',
-                  prompt: "I feel pleasant.",
-                  name: 'stai01',
+                  prompt: "I feel calm.",
+                  name: 'stais01',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel nervous and restless.",
-                  name: 'stai02',
+                  prompt: "I feel secure.",
+                  name: 'stais02',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel satisfied with myself.",
-                  name: 'stai03',
+                  prompt: "I am tense.",
+                  name: 'stais03',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I wish I could be as happy as others seem to be.",
+                  prompt: "I am regretful.",
                   name: 'stai04',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel like a failure.",
+                  prompt: "I feel at ease.",
                   name: 'stai05',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel rested.",
+                  prompt: "I feel upset.",
                   name: 'stai06',
                   likert_scale_values: scale01BACKWARD,
                   required: true

@@ -39,27 +39,13 @@
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/Instructions/PatternComparison_Instructions.js"></script>
     <script src="config/PatternComparison_Setup.js"></script>    
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
-    <script> var ImageFolder = 'assets/Images/ImageCopy/' </script>
-    
+    <script src="Batteries/ComponentList.js"></script>
+    <script> var ImageFolder = 'assets/Images/ImageCopy/' </script>    
     <script>
       var PatternComparison_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        if (typeof BatteryHtmlID === 'undefined') {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined'){
           console.log("UNDEFINED BATTERY!")
           parameters = 'ImageCopy_Default'
           InstructionsToUse = 'EN_Instructions_Default'
@@ -106,10 +92,9 @@
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of teh battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
-    }
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }    }
   });
 
   jatos.onLoad(() => {

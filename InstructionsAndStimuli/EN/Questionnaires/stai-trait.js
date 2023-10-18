@@ -20,140 +20,140 @@ var pages = [
                 {
                   type: 'likert',
                   prompt: "I feel fine.",
-                  name: 'stai01',
+                  name: 'stait01',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I tire quickly.",
-                  name: 'stai02',
+                  name: 'stait02',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I feel like crying.",
-                  name: 'stai03',
+                  name: 'stait03',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I wish I could be as happy as others seem to be.",
-                  name: 'stai04',
+                  name: 'stait04',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel like a failure.",
-                  name: 'stai05',
+                  prompt: "I am losing opportunities because I cannot make decisions fast.",
+                  name: 'stait05',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I feel rested.",
-                  name: 'stai06',
+                  name: 'stait06',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: 'I am "calm, cool, and collected".',
-                  name: 'stai07',
+                  prompt: 'I am calm.',
+                  name: 'stait07',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I feel that difficulties are piling up so that I cannot overcome them.",
-                  name: 'stai08',
+                  name: 'stait08',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I worry too much over something that doesn't really matter.",
-                  name: 'stai09',
+                  prompt: "I worry too much about things that do not really matter.",
+                  name: 'stait09',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I am happy.",
-                  name: 'stai10',
+                  name: 'stait10',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I have disturbing thoughts.",
-                  name: 'stai11',
+                  prompt: "I am inclined to take things hard.",
+                  name: 'stait11',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I lack self-confidence.",
-                  name: 'stai12',
+                  name: 'stait12',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I feel secure.",
-                  name: 'stai13',
+                  name: 'stait13',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I make decisions easily.",
-                  name: 'stai14',
-                  likert_scale_values: scale01BACKWARD,
+                  prompt: "I try to avoid facing a crisis or difficulty.",
+                  name: 'stait14',
+                  likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel inadequate.",
-                  name: 'stai15',
+                  prompt: "I feel blue.",
+                  name: 'stait15',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I am content.",
-                  name: 'stai16',
+                  name: 'stait16',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "Some unimportant thought runs through my mind and bothers me.",
-                  name: 'stai17',
+                  prompt: "Some unimportant thoughts run through my mind and bother me.",
+                  name: 'stait17',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I take disappointments so keenly that I can't put them out of my mind.",
-                  name: 'stai18',
+                  prompt: "I take disappointments so keenly that I cannot get them out of my mind.",
+                  name: 'stait18',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
                 {
                   type: 'likert',
                   prompt: "I am a steady person.",
-                  name: 'stai19',
+                  name: 'stait19',
                   likert_scale_values: scale01BACKWARD,
                   required: true
                 },
                 {
                   type: 'likert',
-                  prompt: "I get in a state of tension or turmoil as I think over my recent concerns and interest.",
-                  name: 'stai20',
+                  prompt: "I become tense and upset when I think about my current concerns.",
+                  name: 'stait20',
                   likert_scale_values: scale01FORWARD,
                   required: true
                 },
