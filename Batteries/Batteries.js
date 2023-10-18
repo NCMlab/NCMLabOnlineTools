@@ -252,7 +252,7 @@ BatteryList.push({index: 1001,
 						'RAVLT_Spoken_Delayed', 
 						'TEST_Spoken',
 						'AES_001',
-						'STAI_001'
+						'STAI_T_001'
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: [	'',
