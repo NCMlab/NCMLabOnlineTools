@@ -36,6 +36,7 @@
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/Instructions/WordRecall_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Stimuli/WordRecall_Lists.js"></script>
@@ -49,7 +50,7 @@
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
  
     <script>
-      var WordRecall_parameters = 'empty'
+      
       var parameters = 'empty'
       jatos.onLoad(() => {
         if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
@@ -63,14 +64,15 @@
         }
         console.log(parameters)
         pseudoSwitch(parameters)      
-        console.log(WordRecall_parameters)
+        console.log(parameters)
+        //parameters = WordRecall_parameters
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         // Load language specific stimuli
-        console.log(LANG+'_'+WordRecall_parameters.WordList)
-        pseudoSwitch(LANG+'_'+WordRecall_parameters.WordList)
+        console.log(LANG+'_'+parameters.WordList)
+        pseudoSwitch(LANG+'_'+parameters.WordList)
         console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')

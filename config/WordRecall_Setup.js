@@ -199,14 +199,14 @@ var TEST_Spoken = {
 }
 
 
-add('RAVLT_Manual_Immediate', function(){ WordRecall_parameters = RAVLT_Manual_Immediate});
-add('RAVLT_Spoken_Immediate', function(){ WordRecall_parameters = RAVLT_Spoken_Immediate});
-add('RAVLT_Manual_Delayed', function(){ WordRecall_parameters = RAVLT_Manual_Delayed});
-add('RAVLT_Spoken_Delayed', function(){ WordRecall_parameters = RAVLT_Spoken_Delayed});
+add('RAVLT_Manual_Immediate', function(){ parameters = RAVLT_Manual_Immediate});
+add('RAVLT_Spoken_Immediate', function(){ parameters = RAVLT_Spoken_Immediate});
+add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
+add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
 
-add('FaCE_Default', function(){ WordRecall_parameters = FaCE_Default});
-add('FaCE_Default_Delayed', function(){ WordRecall_parameters = FaCE_Default_Delayed});
-add('FaCE_Default_FR', function(){ WordRecall_parameters = FaCE_Default_FR});
-add('FaCE_Spoken', function(){ WordRecall_parameters = FaCE_Spoken});
-add('FaCE_Spoken_FR', function(){ WordRecall_parameters = FaCE_Spoken_FR});
-add('TEST_Spoken', function(){ WordRecall_parameters = TEST_Spoken});
+add('FaCE_Default', function(){ parameters = FaCE_Default});
+add('FaCE_Default_Delayed', function(){ parameters = FaCE_Default_Delayed});
+add('FaCE_Default_FR', function(){ parameters = FaCE_Default_FR});
+add('FaCE_Spoken', function(){ parameters = FaCE_Spoken});
+add('FaCE_Spoken_FR', function(){ parameters = FaCE_Spoken_FR});
+add('TEST_Spoken', function(){ parameters = TEST_Spoken});

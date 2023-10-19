@@ -43,7 +43,6 @@ var countInstr04 = 0
 var countInstrDelay = 0
 var IntrusionListA = []
 var IntrusionListB = []
-
 // =======================================================================
 // INITIAL SETUP
 var enter_fullscreen = {
@@ -98,15 +97,15 @@ var preload_audioB = {
 var if_BList_preload = {
   timeline: [preload_audioB],
   conditional_function: function(){
-    console.log(WordRecall_parameters.BListFlag)
-    return  WordRecall_parameters.BListFlag}
+    console.log(parameters.BListFlag)
+    return  parameters.BListFlag}
 }
 
 // Update Number of blocks variable
 var HowManyBlocks = {
   type: jsPsychCallFunction,
   func: function() {
-    NumberBlocks = WordRecall_parameters.NBlocks
+    NumberBlocks = parameters.NBlocks
     console.log("This task will run for "+NumberBlocks+ " blocks")
   }
 }
@@ -115,7 +114,7 @@ var HowManyBlocks = {
 var MakeResponseArrayA = {
   type: jsPsychCallFunction,
   func: function() {
-    ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(WordRecall_parameters.NBlocks).fill(-99))
+    ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(parameters.NBlocks).fill(-99))
     console.log(ResponseArrayA)
   }
 }
@@ -139,7 +138,7 @@ var MakeResponseArrayB = {
 var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(WordRecall_parameters)
+    console.log(parameters)
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
     SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
@@ -151,7 +150,7 @@ var MakeWordListA = {
     // indices for the world list containing the alternatives
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
-    AudioFileListA = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListA, WordRecall_parameters.FileExtension)
+    AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListA = AudioFileListA.map(function(e) {
       return {Word: e}
@@ -184,7 +183,7 @@ var MakeWordListB = {
     // indices for the world list containing the alternatives
     FullListIndexB = CreateSimpleIndexList(WordRecallLists.WordListB, WordRecallLists.AlternatePronunciationsWordListB)
     // convert WordList to a list of filenames for teh audio files for each word
-    AudioFileListB = CreateAudioFileList(BaseFolderName+WordRecall_parameters.FolderName, SimpleWordListB, WordRecall_parameters.FileExtension)
+    AudioFileListB = CreateAudioFileList(BaseFolderName+parameters.FolderName, SimpleWordListB, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListB = AudioFileListB.map(function(e) {
       return {Word: e}
@@ -208,7 +207,7 @@ var MakeWordListB = {
 var UpdateManualResponseArrayA = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(WordRecall_parameters.NBlocks)
+    console.log(parameters.NBlocks)
     var data = jsPsych.data.get().filter({task: 'Recall'}).last()
     console.log(data)
     console.log(WordListAForRecall.SimpleWordList)
@@ -280,7 +279,7 @@ var AudioStimulus = {
         return Stim
       },
       prompt: function() {
-        if ( WordRecall_parameters.VisualPresentation )
+        if ( parameters.VisualPresentation )
         { 
           return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
         }
@@ -290,7 +289,7 @@ var AudioStimulus = {
         }
       },
     choices: [],  
-    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    trial_duration: function(){return parameters.TimePerWord},
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -311,7 +310,7 @@ var AudioStimulus = {
         return Stim
       },
       prompt: function() {
-        if ( WordRecall_parameters.VisualPresentation )
+        if ( parameters.VisualPresentation )
         { 
           return '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
         }
@@ -321,7 +320,7 @@ var AudioStimulus = {
         }
       },
     choices: [],  
-    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    trial_duration: function(){return parameters.TimePerWord},
     on_finish: function(data) {
       data.task = 'word'
       // updatethe trial counter
@@ -339,7 +338,7 @@ var VisualStimulus = {
     choices: [], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    trial_duration: function(){return parameters.TimePerWord},
     //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
@@ -359,7 +358,7 @@ var VisualStimulus = {
     choices: [], 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    trial_duration: function(){return parameters.TimePerWord},
     //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
     on_finish: function(data) {
       data.task = 'word'
@@ -387,7 +386,7 @@ var VisualStimulus = {
         },
         // If there is to be audio AND visual 
         prompt: function() {
-        if ( WordRecall_parameters.VisualPresentation )
+        if ( parameters.VisualPresentation )
         { 
             return '<p class="Fixation">'+WordList[ItemCount]+'</p>'
         }
@@ -398,7 +397,7 @@ var VisualStimulus = {
     },
     margin_horizontal: GapBetweenButtons,
     choices: ['Yes','No'],  
-    trial_duration: function(){return WordRecall_parameters.TimePerWord},
+    trial_duration: function(){return parameters.TimePerWord},
     on_finish: function(data) {
         data.task = 'Recall'
       
@@ -411,44 +410,6 @@ var VisualStimulus = {
 };    
 // Define instructions
 
-var Instructions01 = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions01[countInstr01].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var Instructions02 = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){
-    console.log("Instr02 count: "+countInstr02)
-    return Instructions.Instructions02[countInstr02].page
-  },
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var Instructions03 = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions03[countInstr03].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var Instructions04 = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions04[countInstr04].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
 
 var InstructionsDelayed = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -460,90 +421,9 @@ var InstructionsDelayed = {
 }
 
 
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
-}
-
-
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var thank_you = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    /* Results = {}
-    Results.AllResults = {}
-    data = jsPsych.data.get()
-    TrialData = data.filter({task:'Recall'})
-    console.log(TrialData.trials)
-    for ( var i = 0; i < TrialData.trials.length; i++ )
-	  {
-		  Results.AllResults['Block'+String(i).padStart(2, '0')] = TrialData.trials[i].userSaid  
-	  }
-    console.log(Results) */
-    return Instructions.ThankYouText[0].page
-  },
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
 // =======================================================================    
 // LOOPS
 
-var Instructions01_loop = {
-  timeline: [Instructions01],
-  loop_function: function(data){
-    console.log(countInstr01)
-    countInstr01+=1
-    if ( countInstr01 < Instructions.Instructions01.length) 
-    { return true} else { return false}
-  }
-}
-
-var Instructions02_loop = {
-  timeline: [Instructions02],
-  loop_function: function(data){
-    console.log(countInstr02)
-    countInstr02+=1
-    if ( countInstr02 < Instructions.Instructions02.length){
-        return true} else { return false}
-  }
-}
-var Instructions03_loop = {
-  timeline: [Instructions03],
-  loop_function: function(data){
-    console.log(countInstr03)
-    countInstr03+=1
-    if ( countInstr03 < Instructions.Instructions03.length){
-        return true} else { return false}
-  }
-}
-var Instructions04_loop = {
-  timeline: [Instructions04],
-  loop_function: function(data){
-    console.log(countInstr03)
-    countInstr04+=1
-    if ( countInstr04 < Instructions.Instructions04.length){
-        return true} else { return false}
-  }
-}
 var InstructionsDelayed_loop = {
   timeline: [InstructionsDelayed],
   loop_function: function(data){
@@ -601,7 +481,7 @@ var LoopVisualB = {
 var if_AudioStimuli = {
   timeline: [LoopAudioFiles],
   conditional_function: function() {
-    if ( WordRecall_parameters.AudioPresentation )
+    if ( parameters.AudioPresentation )
     { return true }
     else { return false }
   }
@@ -609,7 +489,7 @@ var if_AudioStimuli = {
 var if_AudioStimuliB = {
   timeline: [LoopAudioFilesB],
   conditional_function: function() {
-    if ( WordRecall_parameters.AudioPresentation )
+    if ( parameters.AudioPresentation )
     { return true }
     else { return false }
   }
@@ -617,7 +497,7 @@ var if_AudioStimuliB = {
 var if_Spoken = {
   timeline: [IntializeMicrophone, SetupSpeechRecognition],
   conditional_function: function() {
-      if ( WordRecall_parameters.RecallType == 'Spoken' )
+      if ( parameters.RecallType == 'Spoken' )
       { return true }
       else { return false }
   }
@@ -626,7 +506,7 @@ var if_Spoken = {
 var if_Spoken_RecallA = {
   timeline: [SpokenRecallA],
   conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Spoken' )
+    if ( parameters.RecallType == 'Spoken' )
     { console.log("if_Spoken_RecallA")
       return true }
     else { return false }
@@ -636,7 +516,7 @@ var if_Spoken_RecallA = {
 var if_Manual_RecallA = {
   timeline: [ManualRecallA],
   conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Manual' )
+    if ( parameters.RecallType == 'Manual' )
     { return true }
     else { return false }
   }
@@ -645,7 +525,7 @@ var if_Manual_RecallA = {
 var if_Spoken_RecallB = {
   timeline: [SetupSpeechRecognitionB, SpokenRecallB],
   conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Spoken' )
+    if ( parameters.RecallType == 'Spoken' )
     { console.log("if_Spoken_RecallA")
       return true }
     else { return false }
@@ -654,7 +534,7 @@ var if_Spoken_RecallB = {
 var if_Manual_RecallB = {
   timeline: [ManualRecallB],
   conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Manual' )
+    if ( parameters.RecallType == 'Manual' )
     { return true }
     else { return false }
   }
@@ -663,7 +543,7 @@ var if_Manual_RecallB = {
 var if_Manual_UpdateRecallA = {
   timeline: [UpdateManualResponseArrayA],
   conditional_function: function() {
-    if ( WordRecall_parameters.RecallType == 'Manual' )
+    if ( parameters.RecallType == 'Manual' )
     { return true }
     else { 
       BlockCount = BlockCount + 1
@@ -680,7 +560,7 @@ var if_Manual_UpdateRecallA = {
 var if_VisualStimuli = {
   timeline: [LoopVisual],
   conditional_function: function() {
-    if ( (WordRecall_parameters.VisualPresentation) & ( ! WordRecall_parameters.AudioPresentation) )  
+    if ( (parameters.VisualPresentation) & ( ! parameters.AudioPresentation) )  
     { return true }
     else { return false }
   }
@@ -688,37 +568,12 @@ var if_VisualStimuli = {
 var if_VisualStimuliB = {
   timeline: [LoopVisualB],
   conditional_function: function() {
-    if ( (WordRecall_parameters.VisualPresentation) & ( ! WordRecall_parameters.AudioPresentation) )  
+    if ( (parameters.VisualPresentation) & ( ! parameters.AudioPresentation) )  
     { return true }
     else { return false }
   }
 }    
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    if ( WordRecall_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
-}
 
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-    if ( WordRecall_parameters.ShowThankYou )
-    { return true }
-    else { return false }
-  }
-}
-
-var if_Notes = {
-  timeline: [Notes],
-  conditional_function: function() {
-    if ( WordRecall_parameters.AskForNotes)
-    { return true }
-    else { return false }
-  }
-}
 
 // =======================================================================    
 // PROCEDURES
@@ -746,7 +601,7 @@ var AfterFirstBlockLoop = {
 var if_MoreThanOneBlock = {
   timeline: [AfterFirstBlockLoop],
   conditional_function: function() {
-    if ( WordRecall_parameters.NBlocks > 1 ) 
+    if ( parameters.NBlocks > 1 ) 
     { return true}
     else {return false}
   }
@@ -787,8 +642,8 @@ var DelayedRecalBlockA = {
 var DelayedRecallNo = {
   timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
-    console.log(WordRecall_parameters)
-    if ( WordRecall_parameters.DelayedRecallFlag)
+    console.log(parameters)
+    if ( parameters.DelayedRecallFlag)
     { return false }
     else { return true }
   }
@@ -799,7 +654,7 @@ var DelayedRecallNo = {
 var DelayedRecallYes = {
   timeline: [MakeWordListA, MakeWordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
-    if ( WordRecall_parameters.DelayedRecallFlag)
+    if ( parameters.DelayedRecallFlag)
     { return true }
     else { return false }
   }
@@ -814,7 +669,7 @@ var BlockB = {
 var if_RecallB = {
   timeline: [BlockB],
   conditional_function: function() {
-    if (WordRecall_parameters.BListFlag)
+    if (parameters.BListFlag)
     { return true }
     else { return false }
   }
@@ -822,7 +677,7 @@ var if_RecallB = {
 var if_FinalRecallA = {
   timeline: [FinalRecallBlockA],
   conditional_function: function() {
-    if (WordRecall_parameters.BListFlag)
+    if (parameters.BListFlag)
     { return true }
     else { return false }
   }
