@@ -64,7 +64,10 @@ var if_ThankYou = {
 }
 // ================ INSTRUCTIONS ===================
 
-
+var countInstr01 = 0
+var countInstr02 = 0
+var countInstr03 = 0
+var countInstr04 = 0
 var Instructions01 = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){return Instructions.Instructions01[countInstr01].page},
@@ -144,14 +147,41 @@ var Instructions04_loop = {
 }
 
 
-var if_Instructions = {
+var if_Instructions01 = {
     timeline: [Instructions01_loop],
     conditional_function: function() {
           if ( parameters.ShowInstructions)
           { return true }
           else { return false }
     }
-  }
+}
+
+var if_Instructions02 = {
+    timeline: [Instructions02_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions03 = {
+    timeline: [Instructions03_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions04 = {
+    timeline: [Instructions04_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions)
+          { return true }
+          else { return false }
+    }
+}
 
 // ================ GIF RECORDING ===================
 var StartGIFRecorder = {
@@ -174,3 +204,7 @@ var if_GIFRecorder = {
 }
 
 // ================ FULL SCREEN ===================
+var enter_fullscreen = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true
+  }

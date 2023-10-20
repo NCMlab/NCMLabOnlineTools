@@ -28,34 +28,24 @@
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-sketchpad.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-image-button-response-CST.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="config/CardSort_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src='InstructionsAndStimuli/Instructions/CardSortTask_Instructions.js'>//Load language</script>
+    <script src="Batteries/ComponentList.js"></script>
       <script>
         var ImageFolder = "assets/Images/CardSortTaskItems/"
       </script>
     <script src="functions/TaskSpecificFunctions/CardSortTask_functions.js"></script>
     <script src="functions/Experiments/CardSortTask_experiment.js"></script>
     <script src="functions/Scoring/CardSort_Scoring.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
+
 
     <script>
       var CardSort_parameters = 'empty'

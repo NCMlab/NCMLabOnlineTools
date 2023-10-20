@@ -6,6 +6,7 @@ var Cancellation_Default = {
     target_labels: "H",
 	ShowWelcome: true,
 	ShowThankYou: true,
+    AskForNotes: true, 
     RecordGIF: true,
 }
 
@@ -18,6 +19,7 @@ var Cancellation_001 = {
     target_labels: "H",
     ShowWelcome: true,
     ShowThankYou: false,
+    AskForNotes: true, 
     RecordGIF: true,
 }
 

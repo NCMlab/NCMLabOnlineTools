@@ -1,15 +1,19 @@
 
 
 var ClockDrawing_001 = {
-	ShowWelcome: true,
-	ShowThankYou: true,
-	ShowInstructions: true, 
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: false, 
 	RecordGIF: true,
+	AskForNotes: false,
 }
 var ClockDrawing_CBprotocol = {
 	ShowWelcome: true,
+	ShowInstructions: false, 
 	ShowThankYou: false,
 	ShowInstructions: false, 
+	RecordGIF: true,
+	AskForNotes: true,
 }
-add('ClockDrawing_001', function(){ ClockDrawing_parameters = ClockDrawing_001});
-add('ClockDrawing_CBprotocol', function(){ ClockDrawing_parameters = ClockDrawing_CBprotocol});
+add('ClockDrawing_001', function(){ parameters = ClockDrawing_001});
+add('ClockDrawing_CBprotocol', function(){ parameters = ClockDrawing_CBprotocol});

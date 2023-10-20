@@ -6,7 +6,7 @@ var PatternComparison_Default = {
 	ShowWelcome: true,
 	ShowThankYou: true,
 	ShowInstructions: true,
-	AskForNotes: true,
+	AskForNotes: true, 
 	Image: 'NeckerCube.png',
 	RecordGIF: true,
 }
@@ -18,7 +18,5 @@ PatternComparisonSetup = [
 	['AFig5a.bmp','AFig5b.bmp','right','1'],
 ]
 
-add('PatternComparison_Default', function(){ ImageCopy_parameters = PatternComparison_Default});
-add('ImageCopy_CBprotocol', function(){ ImageCopy_parameters = ImageCopy_CBprotocol});
-add('ImageCopy_FaCE', function(){ ImageCopy_parameters = ImageCopy_FaCE});
+add('PatternComparison_Default', function(){ parameters = PatternComparison_Default});
 

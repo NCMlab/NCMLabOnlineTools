@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.InstructionText = [
+EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions"> Select one of the four cards displayed at the top of the screen such '
                               +'that the selected card matches the card displayed at the bottom of the screen. '
                               +'The cards can be matched based on three dimensions - color, number of objects '
@@ -9,10 +9,10 @@ EN_Instructions.InstructionText = [
                               +'targeted dimension may change from time to time without notice.</p>'},
     {'page': '<img src=assets/InstructionalImages/CardSortInstructions.png></img>'}
 ],
-EN_Instructions.PracticeInstructions = [
+EN_Instructions.Instructions02 = [
     {'page': '<p class="Instructions">You will now perform a few practice trials. Press next to continue.'}
 ]
-EN_Instructions.TestInstructions = [
+EN_Instructions.Instructions03 = [
     {'page': '<p class="Instructions">Press next to continue to the test.'}
 ]
 

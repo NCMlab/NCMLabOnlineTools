@@ -18,4 +18,4 @@ CardSort_001.ShowWelcome = true,
 CardSort_001.ShowThankYou = true,
 CardSort_001.ShowInstructions = true, 
 
-add('CardSort_001', function(){ CardSort_parameters = CardSort_001});
+add('CardSort_001', function(){ parameters = CardSort_001});

@@ -35,6 +35,7 @@
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js"></script>
     <script src="config/ClockDrawing_Setup.js"></script>
@@ -46,7 +47,6 @@
     </script>
 
     <script>
-      var ClockDrawing_parameters = 'empty'
       var parameters = 'empty'      
       jatos.onLoad(() => {
         Language = jatos.studySessionData.Language
@@ -60,7 +60,7 @@
             }
           console.log(parameters)
           pseudoSwitch(parameters)
-          console.log(ClockDrawing_parameters)
+          console.log(parameters)
           LANG = jatos.studySessionData.Language
           console.log(LANG)
           pseudoSwitch(LANG+'_ClockDrawing_Instructions_'+InstructionsToUse)
@@ -72,8 +72,7 @@
 
 
 <script src="functions/Scoring/ClockDrawing_Scoring.js"></script>
-
-
+<script src="functions/Experiments/ClockDrawing_experiment.js"></script>
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
 
@@ -122,7 +121,7 @@ var jsPsych = initJsPsych({
       
     });
   </script>
-  <script src="functions/Experiments/ClockDrawing_experiment.js"></script>
+  
   <div id="footerText"></div>
   <script>
     jatos.onLoad(() => {
