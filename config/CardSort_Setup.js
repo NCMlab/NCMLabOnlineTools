@@ -18,6 +18,12 @@ CardSort_001.ShowWelcome = true,
 CardSort_001.WelcomeSpoken = true,
 CardSort_001.WelcomeAudio = 'assets/SoundFiles/Instructions/WCST/WCST_Welcome.wav',
 CardSort_001.ShowThankYou = true,
-CardSort_001.ShowInstructions = false, 
-
+CardSort_001.ShowInstructions = true, 
+CardSort_001.InstructionsSpoken = true
+CardSort_001.InstructionsAudio = []
+CardSort_001.InstructionsAudio.push('assets/SoundFiles/Instructions/WCST/WCST_Instructions01.wav'),
+CardSort_001.InstructionsAudio.push('assets/SoundFiles/Instructions/WCST/WCST_Instructions02.wav'),
+CardSort_001.Instructions01Time = []
+CardSort_001.Instructions01Time.push(30000)
+CardSort_001.Instructions01Time.push(20000)
 add('CardSort_001', function(){ parameters = CardSort_001});

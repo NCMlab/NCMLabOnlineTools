@@ -149,9 +149,7 @@ var SendData = {
 timeline.push(Welcome)
 
 timeline.push(preload_images)
-
-timeline.push(if_Instructions01)
-timeline.push(if_Instructions02)
+timeline.push(Instructions01)
 
 timeline.push(PracticeTrial)
 timeline.push(debrief_block)

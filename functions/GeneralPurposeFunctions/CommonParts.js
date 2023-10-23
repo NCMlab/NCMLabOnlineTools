@@ -47,9 +47,6 @@ var WelcomeSpoken = {
     response_allowed_while_playing: false,
     response_ends_trial: true,
     trial_duration: WelcomeTime,
-    on_load: function() {
-        jsPsych.show_progress_bar = false
-    }
 };
 
 // add a repeat button to the spoken welcome so the user can replay the welcome before the progress bar runs out
@@ -137,7 +134,27 @@ var countInstr01 = 0
 var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
-var Instructions01 = {
+
+var Instructions01_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        timer_progress_bar(parameters.Instructions01Time[countInstr01]) }
+    }
+}
+
+var Instructions01_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions01Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){return Instructions.Instructions01[countInstr01].page},
     post_trial_gap: 0,
@@ -145,7 +162,72 @@ var Instructions01 = {
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
 }
-  
+
+var Instructions01Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.InstructionsAudio[countInstr01] },
+    choices: ['Repeat?'],
+    prompt: function() { return Instructions.Instructions01[countInstr01].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions01Time[countInstr01] },
+};
+
+// This loop allows the user to repeat the instructions
+var Instructions01SpokenRepeat_loop = {
+    timeline: [Instructions01_progress_bar_timer_start, Instructions01Spoken, Instructions01_progress_bar_timer_stop],
+    loop_function: function(data){
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions01Spoken_loop = {
+    timeline: [Instructions01SpokenRepeat_loop],
+    loop_function: function(data){
+      console.log(countInstr01)
+      countInstr01+=1
+      if ( countInstr01 < Instructions.Instructions01.length) 
+      { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions01Written_loop = {
+    timeline: [Instructions01Written],
+    loop_function: function(data){
+      console.log(countInstr01)
+      countInstr01+=1
+      if ( countInstr01 < Instructions.Instructions01.length) 
+      { return true} else { return false}
+    }
+}
+
+var if_Instructions01Written = {
+    timeline: [Instructions01Written_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions01Spoken = {
+    timeline: [Instructions01Spoken_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
+          { return true }
+          else { return false }
+    }
+}
+var Instructions01 = {
+    timeline: [if_Instructions01Written, if_Instructions01Spoken]
+}
+
+
+
+
   var Instructions02 = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
@@ -177,15 +259,6 @@ var Instructions01 = {
 }
   
 
-var Instructions01_loop = {
-    timeline: [Instructions01],
-    loop_function: function(data){
-      console.log(countInstr01)
-      countInstr01+=1
-      if ( countInstr01 < Instructions.Instructions01.length) 
-      { return true} else { return false}
-    }
-}
 
 var Instructions02_loop = {
     timeline: [Instructions02],
@@ -216,14 +289,7 @@ var Instructions04_loop = {
 }
 
 
-var if_Instructions01 = {
-    timeline: [Instructions01_loop],
-    conditional_function: function() {
-          if ( parameters.ShowInstructions)
-          { return true }
-          else { return false }
-    }
-}
+
 
 var if_Instructions02 = {
     timeline: [Instructions02_loop],
