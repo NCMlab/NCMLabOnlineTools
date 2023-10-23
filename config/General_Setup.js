@@ -8,6 +8,8 @@ var StimulusFontSize = '60px';
 var GIFDisplayTime = 100; // milliseconds
 var GIFRecorderTime = 500; // milliseconds
 
+var WelcomeTime = 4000; // milliseconds
+
 var SaveLocalFile = false
 
 var EN_LabelNames = {}
@@ -25,6 +27,7 @@ EN_LabelNames.Submit = 'Submit'
 EN_LabelNames.CurrentAnswer = 'Current Answer'
 EN_LabelNames.Correct = 'Correct'
 EN_LabelNames.Incorrect = 'Incorrect'
+EN_LabelNames.PressNext = 'Press Next to Continue'
 EN_LabelNames.NoteInputBox = "Please, type in any notes or feedback you have about this task. (Optional)"
 
 var FR_LabelNames = {}

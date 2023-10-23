@@ -178,6 +178,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               else {
                   this.audio.play();
               }
+              
               // end trial if time limit is set
               if (trial.trial_duration !== null) {
                   this.jsPsych.pluginAPI.setTimeout(() => {
@@ -185,9 +186,11 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   }, trial.trial_duration);
               }
               on_load();
+              
           };
           // function to handle responses by the subject
           function after_response(choice) {
+            console.log("Finished Audio")
               // measure rt
               var endTime = performance.now();
               var rt = Math.round(endTime - startTime);
@@ -197,6 +200,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               }
               response.button = parseInt(choice);
               response.rt = rt;
+              
               // disable all the buttons after a response
               disable_buttons();
               if (trial.response_ends_trial) {
@@ -205,6 +209,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           }
           // function to end trial when it is time
           const end_trial = () => {
+            
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
               // stop the audio file if it is playing

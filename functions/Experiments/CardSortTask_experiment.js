@@ -144,7 +144,9 @@ var SendData = {
 
 // =======================================================================    
   //timeline.push()
-timeline.push(if_Welcome)
+//timeline.push(if_WelcomeSpoken)
+//timeline.push(if_WelcomeWritten)
+timeline.push(Welcome)
 
 timeline.push(preload_images)
 

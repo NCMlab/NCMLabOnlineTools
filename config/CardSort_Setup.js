@@ -15,7 +15,9 @@ CardSort_001.StimCardHeight = '150' // this is in pixels
 CardSort_001.FeedbackSize = 4 // this isn in elem
 CardSort_001.FeedbackDuration = '750' // millisecond
 CardSort_001.ShowWelcome = true,
+CardSort_001.WelcomeSpoken = true,
+CardSort_001.WelcomeAudio = 'assets/SoundFiles/Instructions/WCST/WCST_Welcome.wav',
 CardSort_001.ShowThankYou = true,
-CardSort_001.ShowInstructions = true, 
+CardSort_001.ShowInstructions = false, 
 
 add('CardSort_001', function(){ parameters = CardSort_001});

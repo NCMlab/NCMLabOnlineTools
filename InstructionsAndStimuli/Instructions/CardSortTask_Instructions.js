@@ -18,5 +18,5 @@ EN_Instructions.Instructions03 = [
 
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 
-EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.<br>Press Next to Continue'}]
+EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.</p>'}]
 add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instructions});

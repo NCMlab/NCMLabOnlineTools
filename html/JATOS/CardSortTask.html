@@ -30,11 +30,13 @@
     <script src="jspsych/dist/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-image-button-response-CST.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+  
     <script src="config/CardSort_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src='InstructionsAndStimuli/Instructions/CardSortTask_Instructions.js'>//Load language</script>
@@ -85,6 +87,7 @@ var setup = []
 // var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);

@@ -1,22 +1,91 @@
-  
 // ============== WELCOME ==============
-var welcome = {
+
+// ============== TIMER ================
+// This turns on a progress bar timer when spoken instructions are provided
+var Welcome_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.WelcomeSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        timer_progress_bar(WelcomeTime) }
+    }
+}
+
+var Welcome_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.WelcomeSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+// Welcome can be presented as written or as written with voice over.
+// If voice over is provided then there is a progress bar showing when the next screen will be shown.
+
+// present the written welcome to the task
+var WelcomeWritten = {
     type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() { return Instructions.WelcomeText[0].page},
+    stimulus: function() { 
+        var Str = Instructions.WelcomeText[0].page
+        Str += "<p>"+LabelNames.PressNext+"</p>"
+        return Str
+    },
     post_trial_gap: 0,
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
 }
 
+// present the spoken and written welcome to the task
+var WelcomeSpoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.WelcomeAudio },
+    choices: ['Repeat?'],
+    prompt: function() { return Instructions.WelcomeText[0].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: WelcomeTime,
+    on_load: function() {
+        jsPsych.show_progress_bar = false
+    }
+};
 
-var if_Welcome = {
-    timeline: [welcome],
+// add a repeat button to the spoken welcome so the user can replay the welcome before the progress bar runs out
+var WelcomeSpoken_loop = {
+    timeline: [Welcome_progress_bar_timer_start, WelcomeSpoken, Welcome_progress_bar_timer_stop],
+    loop_function: function(data){
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// If the welcome is shown and NOT spoken then present the written welcome
+var if_WelcomeWritten = {
+    timeline: [WelcomeWritten],
     conditional_function: function() {
-      if ( parameters.ShowWelcome)
+      if ( parameters.ShowWelcome & ! parameters.WelcomeSpoken)
       { return true }
       else { return false }
     }
+}
+
+// if the welcome is shown AND spoken then present the spoken
+var if_WelcomeSpoken = {
+    timeline: [WelcomeSpoken_loop],
+    conditional_function: function() {
+    document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+      if ( parameters.ShowWelcome & parameters.WelcomeSpoken)
+      { return true }
+      else { return false }
+    }
+}
+
+// make a time line checking the two welcome conditions
+// This makes the import a single line
+var Welcome = {
+    timeline: [if_WelcomeSpoken, if_WelcomeWritten]
 }
 
 // ============== NOTES ==============

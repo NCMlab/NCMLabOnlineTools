@@ -32,7 +32,15 @@ var timer_function = function(wait_time){
         if ( time_left  < 0 ) {document.querySelector('#clock').innerHTML = '0:00'}
       }, 200
     )
+}
 
+var timer_progress_bar = function(wait_time){
+  var start_time = performance.now();
+  interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+    percentage_time_left = time_left / wait_time
+    jsPsych.setProgressBar( 1 - percentage_time_left )
+  },500)
 }
 
 
