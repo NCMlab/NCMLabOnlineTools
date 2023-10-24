@@ -581,7 +581,7 @@ var if_VisualStimuliB = {
 
 
 var AfterFirstBlockProcedure = {
-  timeline: [Instructions02_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [Instructions02, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
   repetitions: 1,
   randomize_order: false      
 }
@@ -622,13 +622,13 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01_loop, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
       repetitions: 1,
       randomize_order: false
   } 
 
 var FinalRecallBlockA = {
-    timeline: [SetupSpeechRecognition, Instructions04_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+    timeline: [SetupSpeechRecognition, Instructions04, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
     randomize_order: false,
     repetitions: 1,
 } 
@@ -661,7 +661,7 @@ var DelayedRecallYes = {
 }      
 
 var BlockB = {
-  timeline: [Instructions03_loop, if_AudioStimuliB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
+  timeline: [Instructions03, if_AudioStimuliB, ResetCounter, if_Manual_RecallB, if_Spoken_RecallB],
   randomize_order: false,
   repetitions: 1,
 }
@@ -692,7 +692,7 @@ var if_FinalRecallA = {
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)
 

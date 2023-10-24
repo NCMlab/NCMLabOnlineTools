@@ -151,9 +151,11 @@ timeline.push(Welcome)
 timeline.push(preload_images)
 timeline.push(Instructions01)
 
+timeline.push(Instructions02)
 timeline.push(PracticeTrial)
 timeline.push(debrief_block)
-timeline.push(if_Instructions03)
+
+timeline.push(Instructions03)
 timeline.push(TestTrial)
 
 timeline.push(if_ThankYou)

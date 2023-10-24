@@ -10,13 +10,13 @@ EN_Instructions.Instructions01 = [
     {'page': '<img src=assets/InstructionalImages/CardSortInstructions.png></img>'}
 ],
 EN_Instructions.Instructions02 = [
-    {'page': '<p class="Instructions">You will now perform a few practice trials. Press next to continue.'}
+    {'page': '<p class="Instructions">You will now perform a few practice trials.'}
 ]
 EN_Instructions.Instructions03 = [
-    {'page': '<p class="Instructions">Press next to continue to the test.'}
+    {'page': '<p class="Instructions">You will now perform the actual task.'}
 ]
 
-EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
+EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.</p>'}]
 add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instructions});

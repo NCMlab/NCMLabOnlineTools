@@ -42,7 +42,7 @@ var WelcomeWritten = {
 var WelcomeSpoken = {
     type: jsPsychAudioButtonResponse,
     stimulus: function() { return parameters.WelcomeAudio },
-    choices: ['Repeat?'],
+    choices: function() { return [LabelNames.Repeat] },
     prompt: function() { return Instructions.WelcomeText[0].page},
     response_allowed_while_playing: false,
     response_ends_trial: true,
@@ -156,7 +156,11 @@ var Instructions01_progress_bar_timer_stop = {
 
 var Instructions01Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function (){return Instructions.Instructions01[countInstr01].page},
+    stimulus: function (){
+        var Str = Instructions.Instructions01[countInstr01].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
+    },
     post_trial_gap: 0,
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
@@ -165,8 +169,8 @@ var Instructions01Written = {
 
 var Instructions01Spoken = {
     type: jsPsychAudioButtonResponse,
-    stimulus: function() { return parameters.InstructionsAudio[countInstr01] },
-    choices: ['Repeat?'],
+    stimulus: function() { return parameters.Instructions01Audio[countInstr01] },
+    choices: function() { return [LabelNames.Repeat] },
     prompt: function() { return Instructions.Instructions01[countInstr01].page},
     response_allowed_while_playing: false,
     response_ends_trial: true,
@@ -227,96 +231,285 @@ var Instructions01 = {
 
 
 
+var Instructions02_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        timer_progress_bar(parameters.Instructions02Time[countInstr02]) }
+    }
+}
 
-  var Instructions02 = {
+var Instructions02_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions02Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
-      console.log("Instr02 count: "+countInstr02)
-      return Instructions.Instructions02[countInstr02].page
+        var Str = Instructions.Instructions02[countInstr02].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
     },
     post_trial_gap: 0,
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
 }
-  
-  var Instructions03 = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function (){return Instructions.Instructions03[countInstr03].page},
-    post_trial_gap: 0,
-    margin_horizontal: function() { return GapBetweenButtons },
-    prompt: '',
-    choices: function() {return [LabelNames.Next]}, 
-}
-  
-  var Instructions04 = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function (){return Instructions.Instructions04[countInstr04].page},
-    post_trial_gap: 0,
-    margin_horizontal: function() { return GapBetweenButtons },
-    prompt: '',
-    choices: function() {return [LabelNames.Next]}, 
-}
-  
 
+var Instructions02Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.Instructions02Audio[countInstr02] },
+    choices: function() { return [LabelNames.Repeat] },
+    prompt: function() { return Instructions.Instructions02[countInstr02].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions02Time[countInstr02] },
+};
 
-var Instructions02_loop = {
-    timeline: [Instructions02],
+// This loop allows the user to repeat the instructions
+var Instructions02SpokenRepeat_loop = {
+    timeline: [Instructions02_progress_bar_timer_start, Instructions02Spoken, Instructions02_progress_bar_timer_stop],
     loop_function: function(data){
-      console.log(countInstr02)
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions02Spoken_loop = {
+    timeline: [Instructions02SpokenRepeat_loop],
+    loop_function: function(data){
+      countInstr02 += 1
+      if ( countInstr02 < Instructions.Instructions02.length) 
+      { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions02Written_loop = {
+    timeline: [Instructions02Written],
+    loop_function: function(data){
       countInstr02+=1
-      if ( countInstr02 < Instructions.Instructions02.length){
-          return true} else { return false}
+      if ( countInstr02 < Instructions.Instructions01.length) 
+      { return true} else { return false}
     }
 }
-var Instructions03_loop = {
-    timeline: [Instructions03],
+
+var if_Instructions02Written = {
+    timeline: [Instructions02Written_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions02Spoken = {
+    timeline: [Instructions02Spoken_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
+          { return true }
+          else { return false }
+    }
+}
+var Instructions02 = {
+    timeline: [if_Instructions02Written, if_Instructions02Spoken]
+}
+
+
+var Instructions03_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        timer_progress_bar(parameters.Instructions03Time[countInstr03]) }
+    }
+}
+
+var Instructions03_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions03Written = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function (){
+        var Str = Instructions.Instructions03[countInstr03].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
+    },
+    post_trial_gap: 0,
+    margin_horizontal: function() { return GapBetweenButtons },
+    prompt: '',
+    choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions03Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.Instructions03Audio[countInstr03] },
+    choices: function() { return [LabelNames.Repeat] },
+    prompt: function() { return Instructions.Instructions03[countInstr03].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions03Time[countInstr03] },
+};
+
+// This loop allows the user to repeat the instructions
+var Instructions03SpokenRepeat_loop = {
+    timeline: [Instructions03_progress_bar_timer_start, Instructions03Spoken, Instructions03_progress_bar_timer_stop],
     loop_function: function(data){
-        console.log(countInstr03)
-        countInstr03+=1
-        if ( countInstr03 < Instructions.Instructions03.length){
-            return true} else { return false}
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
     }
 }
-var Instructions04_loop = {
-    timeline: [Instructions04],
+
+// This loops over multiple pages of the instructions
+var Instructions03Spoken_loop = {
+    timeline: [Instructions03SpokenRepeat_loop],
     loop_function: function(data){
-        console.log(countInstr03)
-        countInstr04+=1
-        if ( countInstr04 < Instructions.Instructions04.length){
-            return true} else { return false}
+      countInstr03 += 1
+      if ( countInstr03 < Instructions.Instructions03.length) 
+      { return true} else { return false}
     }
 }
 
+// This loops over multiple pages of the instructions
+var Instructions03Written_loop = {
+    timeline: [Instructions03Written],
+    loop_function: function(data){
+      countInstr03+=1
+      if ( countInstr03 < Instructions.Instructions01.length) 
+      { return true} else { return false}
+    }
+}
 
-
-
-var if_Instructions02 = {
-    timeline: [Instructions02_loop],
+var if_Instructions03Written = {
+    timeline: [Instructions03Written_loop],
     conditional_function: function() {
-          if ( parameters.ShowInstructions)
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }
     }
 }
 
-var if_Instructions03 = {
-    timeline: [Instructions03_loop],
+var if_Instructions03Spoken = {
+    timeline: [Instructions03Spoken_loop],
     conditional_function: function() {
-          if ( parameters.ShowInstructions)
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
+          { return true }
+          else { return false }
+    }
+}
+var Instructions03 = {
+    timeline: [if_Instructions03Written, if_Instructions03Spoken]
+}
+
+
+
+var Instructions04_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        timer_progress_bar(parameters.Instructions04Time[countInstr04]) }
+    }
+}
+
+var Instructions04_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions04Written = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function (){
+        var Str = Instructions.Instructions04[countInstr04].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
+    },
+    post_trial_gap: 0,
+    margin_horizontal: function() { return GapBetweenButtons },
+    prompt: '',
+    choices: function() {return [LabelNames.Next]}, 
+}
+
+var Instructions04Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.Instructions04Audio[countInstr04] },
+    choices: function() { return [LabelNames.Repeat] },
+    prompt: function() { return Instructions.Instructions04[countInstr04].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions04Time[countInstr04] },
+};
+
+// This loop allows the user to repeat the instructions
+var Instructions04SpokenRepeat_loop = {
+    timeline: [Instructions04_progress_bar_timer_start, Instructions04Spoken, Instructions04_progress_bar_timer_stop],
+    loop_function: function(data){
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions04Spoken_loop = {
+    timeline: [Instructions04SpokenRepeat_loop],
+    loop_function: function(data){
+      countInstr04 += 1
+      if ( countInstr04 < Instructions.Instructions04.length) 
+      { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions04Written_loop = {
+    timeline: [Instructions04Written],
+    loop_function: function(data){
+      countInstr04+=1
+      if ( countInstr04 < Instructions.Instructions01.length) 
+      { return true} else { return false}
+    }
+}
+
+var if_Instructions04Written = {
+    timeline: [Instructions04Written_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }
     }
 }
 
-var if_Instructions04 = {
-    timeline: [Instructions04_loop],
+var if_Instructions04Spoken = {
+    timeline: [Instructions04Spoken_loop],
     conditional_function: function() {
-          if ( parameters.ShowInstructions)
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
           { return true }
           else { return false }
     }
 }
+var Instructions04 = {
+    timeline: [if_Instructions04Written, if_Instructions04Spoken]
+}
+
 
 // ================ GIF RECORDING ===================
 var StartGIFRecorder = {

@@ -267,7 +267,7 @@ var SpokenRecallA = {
       console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
-      var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
+      var wait_time = parameters.RecallDuration * 1000; // in milliseconds
       var start_time = performance.now();
       interval = setInterval(function(){
       time_left = wait_time - (performance.now() - start_time);
@@ -345,7 +345,7 @@ var SpokenRecallB = {
     console.log("Ended recall")
   },
   on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = WordRecall_parameters.RecallDuration * 1000; // in milliseconds
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
     var start_time = performance.now();
     interval = setInterval(function(){
     time_left = wait_time - (performance.now() - start_time);

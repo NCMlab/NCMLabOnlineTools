@@ -16,14 +16,26 @@ CardSort_001.FeedbackSize = 4 // this isn in elem
 CardSort_001.FeedbackDuration = '750' // millisecond
 CardSort_001.ShowWelcome = true,
 CardSort_001.WelcomeSpoken = true,
-CardSort_001.WelcomeAudio = 'assets/SoundFiles/Instructions/WCST/WCST_Welcome.wav',
+CardSort_001.WelcomeAudio = 'assets/SoundFiles/Instructions/WCST_Welcome.wav',
 CardSort_001.ShowThankYou = true,
 CardSort_001.ShowInstructions = true, 
 CardSort_001.InstructionsSpoken = true
-CardSort_001.InstructionsAudio = []
-CardSort_001.InstructionsAudio.push('assets/SoundFiles/Instructions/WCST/WCST_Instructions01.wav'),
-CardSort_001.InstructionsAudio.push('assets/SoundFiles/Instructions/WCST/WCST_Instructions02.wav'),
+// Overall task instructions
+CardSort_001.Instructions01Audio = []
+CardSort_001.Instructions01Audio.push('assets/SoundFiles/Instructions/WCST_Instructions01.wav'),
+CardSort_001.Instructions01Audio.push('assets/SoundFiles/Instructions/WCST_Instructions02.wav'),
 CardSort_001.Instructions01Time = []
 CardSort_001.Instructions01Time.push(30000)
 CardSort_001.Instructions01Time.push(20000)
+// Gte ready for practice
+CardSort_001.Instructions02Audio = []
+CardSort_001.Instructions02Audio.push('assets/SoundFiles/Instructions/WCST_Practice.wav'),
+CardSort_001.Instructions02Time = []
+CardSort_001.Instructions02Time.push(5000)
+// Get ready for real task
+CardSort_001.Instructions03Audio = []
+CardSort_001.Instructions03Audio.push('assets/SoundFiles/Instructions/WCST_Test.wav'),
+CardSort_001.Instructions03Time = []
+CardSort_001.Instructions03Time.push(5000)
+
 add('CardSort_001', function(){ parameters = CardSort_001});
