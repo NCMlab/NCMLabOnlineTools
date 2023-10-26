@@ -184,3 +184,22 @@ function quitExperiment() {
   if (confirm(text) == true)
   { jatos.abortStudy() }
 }
+function openInfo() {
+  const openBtn = document.getElementById("header-info-button");
+  const modal = document.getElementById("modal");  
+  modal.classList.add("open");  
+}
+
+function closeInfo() {
+  const closeBtn = document.getElementById("closeModal");
+  const modal = document.getElementById("modal");
+  modal.classList.remove("open");
+}
+/*openBtn.addEventListener("click", () => {
+  modal.classList.add("open");
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("open");
+});
+*/

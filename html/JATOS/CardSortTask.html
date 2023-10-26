@@ -20,7 +20,16 @@
     </script> 
   </head>    
   <body>
+    
+
+    
+    
+
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <div id="headerButtons"></div>
+    
+    
+
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -36,7 +45,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-  
+    <script src="BackgroundMaterial/CardSort.js"></script>
     <script src="config/CardSort_Setup.js"></script>
     <script src='InstructionsAndStimuli/Language_Config.js'>//Load language</script>
     <script src='InstructionsAndStimuli/Instructions/CardSortTask_Instructions.js'>//Load language</script>
@@ -124,7 +133,9 @@ var jsPsych = initJsPsych({
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-
+      // The background information may be modified here.
+      document.getElementById('task-background-title').textContent = TitleDescription
+      document.getElementById('task-background-info').textContent = ShortDescription
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jsPsych.run(timeline);
@@ -135,11 +146,11 @@ var jsPsych = initJsPsych({
   <div id="footerText"></div>
   <script>
     jatos.onLoad(() => {
-    document.getElementById('header-home-button').textContent = LabelNames.Home;
-    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-    document.getElementById('header-end-button').textContent = LabelNames.End;
-    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      document.getElementById('header-home-button').textContent = LabelNames.Home;
+      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
     })
   </script>
 

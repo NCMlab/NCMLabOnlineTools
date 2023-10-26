@@ -37,7 +37,33 @@
     button.setAttribute('onclick',"quitExperiment()")
     document.getElementById('header-btn-group').appendChild(button);
   </script>
-  <script>
-    console.log(document.getElementById('header-restart-button'))
-  </script>
+<script>
+    var buttonText = "?";
+    var button = document.createElement('button');
+    button.textContent = buttonText;
+    button.setAttribute('id', 'header-info-button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('onclick',"openInfo()")
+    document.getElementById('header-btn-group').appendChild(button);
+//<button id="header-info-button">?</button>
+
+</script>
+</div>
+
+<div class="modal" id = "modal">
+  <div class="modal-inner" id = "inner-modal">
+    <h2 id="task-background-title">Cool tutorial</h2>
+    <p id="task-background-info">Here is some information</p>
+      <script>
+        var buttonText = "Close";
+        var button = document.createElement('button');
+        button.textContent = buttonText;
+        button.setAttribute('id', 'close-info-button');
+        button.setAttribute('type', 'button');
+        button.setAttribute('onclick',"closeInfo()")
+        document.getElementById('inner-modal').appendChild(button);
+      </script>
+    
+    <script> console.log("HELLO FROM CLOSE")</script>    
+  </div>
 </div>
