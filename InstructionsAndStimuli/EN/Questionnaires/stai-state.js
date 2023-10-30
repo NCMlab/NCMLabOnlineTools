@@ -22,7 +22,8 @@ var pages = [
                   prompt: "I feel calm.",
                   name: 'stais01',
                   likert_scale_values: scale01BACKWARD,
-                  required: true
+                  required: true,
+                  alert: "Almost always",
                 },
                 {
                   type: 'likert',
@@ -30,7 +31,7 @@ var pages = [
                   name: 'stais02',
                   likert_scale_values: scale01FORWARD,
                   required: true
-                },
+                }/*,
                 {
                   type: 'likert',
                   prompt: "I am tense.",
@@ -156,7 +157,7 @@ var pages = [
                   name: 'stai20',
                   likert_scale_values: scale01FORWARD,
                   required: true
-                },
+                },*/
               ]
 ]
 

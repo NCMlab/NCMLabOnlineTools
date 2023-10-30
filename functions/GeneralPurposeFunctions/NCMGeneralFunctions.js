@@ -190,6 +190,16 @@ function openInfo() {
   modal.classList.add("open");  
 }
 
+function openResources() {
+  document.getElementById('task-background-title').textContent = MentalHealthResources.title
+  document.getElementById('task-background-info').textContent = MentalHealthResources.text
+      
+  const openBtn = document.getElementById("header-info-button");
+  const modal = document.getElementById("modal");  
+  modal.classList.add("open");  
+}
+
+
 function copyInfo() {
   var copyText = document.getElementById("task-background-info");  
      // Copy the text inside the text field
