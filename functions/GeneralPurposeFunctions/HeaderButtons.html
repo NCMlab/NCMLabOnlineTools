@@ -63,7 +63,15 @@
         button.setAttribute('onclick',"closeInfo()")
         document.getElementById('inner-modal').appendChild(button);
       </script>
-    
+    <script>
+      var buttonText = "Copy";
+      var button = document.createElement('button');
+      button.textContent = buttonText;
+      button.setAttribute('id', 'copy-info-button');
+      button.setAttribute('type', 'button');
+      button.setAttribute('onclick',"copyInfo()")
+      document.getElementById('inner-modal').appendChild(button);
+    </script>
     <script> console.log("HELLO FROM CLOSE")</script>    
   </div>
 </div>

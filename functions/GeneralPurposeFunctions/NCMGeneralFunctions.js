@@ -190,6 +190,27 @@ function openInfo() {
   modal.classList.add("open");  
 }
 
+function copyInfo() {
+  var copyText = document.getElementById("task-background-info");  
+     // Copy the text inside the text field
+     
+     var text = copyText.innerText || copyText.textContent;
+     copyText.innerHTML = text;
+     console.log(copyText.innerHTML)
+    //navigator.clipboard.writeText("JASONJASON");
+    navigator.clipboard.writeText(copyText.innerHTML).then(
+      () => {
+        /* clipboard successfully set */
+        console.log("Success")
+        alert('Information copied to clipboard. Paste the text (e.g. ctrl-V) in a different window')
+      },
+      () => {
+        /* clipboard write failed */
+        console.log("Failed")
+      },
+    );
+}
+
 function closeInfo() {
   const closeBtn = document.getElementById("closeModal");
   const modal = document.getElementById("modal");
