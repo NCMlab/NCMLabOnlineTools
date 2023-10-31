@@ -191,9 +191,10 @@ function openInfo() {
 }
 
 function openResources() {
+  console.log(document.getElementById('task-background-info'))
   document.getElementById('task-background-title').textContent = MentalHealthResources.title
-  document.getElementById('task-background-info').textContent = MentalHealthResources.text
-      
+  document.getElementById('task-background-info').innerHTML = MentalHealthResources.text
+  console.log(document.getElementById('task-background-info')) 
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  
   modal.classList.add("open");  
@@ -206,7 +207,7 @@ function copyInfo() {
      
      var text = copyText.innerText || copyText.textContent;
      copyText.innerHTML = text;
-     console.log(copyText.innerHTML)
+
     //navigator.clipboard.writeText("JASONJASON");
     navigator.clipboard.writeText(copyText.innerHTML).then(
       () => {

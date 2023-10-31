@@ -2,8 +2,7 @@ function IntakeForm_Scoring(data, method) {
 	console.log(data)
 	
 	trialData = data.filter({trial: 'Questionnaire'}).trials[0]
-	console.log(trialData)
-	console.log(trialData.response.Age)
+
 	var keys = Object.keys(trialData.response)
 	var InclusionFlag = true
 	if ( method == "screening") 
@@ -20,25 +19,63 @@ function IntakeForm_Scoring(data, method) {
 			if ( ! trialData.accuracy[i][fieldName] )
 			{ InclusionFlag = false }
 		}
-	
+		
 		if ( ! InclusionFlag ) 
 		{ alert(" I am sorry to say that you are not eligible for this study.")}
 	}
-	Results = {}
-	Results.PrimaryResults = {}
 
-	
+	Results = {}	
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = trialData.title
 	Results.AllResults['Accuracy'] = ''
-	for ( var i = 0; i < Object.keys(trialData.response).length; i++ )
+	var TotalScore = 0
+	if ( trialData.QuestionnaireType == 'likert' )
+	{
+		for ( var i = 0; i < Object.keys(trialData.response).length; i++ )
 		{
-			Results.AllResults[keys[i]] = trialData.response[keys[i]]
+			var prompt = trialData.pages[0][i].prompt
+			var TextAnswer = trialData.pages[0][i].likert_scale_values[trialData.response[keys[i]]].text
+			//Results.AllResults[keys[i]] = trialData.response[keys[i]]
+			var NumericScore = trialData.response[keys[i]] // Numeric score
+			TotalScore += NumericScore
+			Results.AllResults[prompt] = TextAnswer
 		}
-
-	Results.AllResults['Computer Information'] = trialData.ComputerInfo.appVersion
-	Results.AllResults['Current Language'] = trialData.ComputerInfo.CurrentLanguage
-	Results.AllResults['Available Language'] = trialData.ComputerInfo.AvailableLanguage
+	}
+	if ( trialData.QuestionnaireType == 'multi-choice' )
+	{
+		for ( var i = 0; i < Object.keys(trialData.response).length; i++ )
+		{
+			
+			var TextAnswer = trialData.response[keys[i]]
+			//Results.AllResults[keys[i]] = trialData.response[keys[i]]
+			//var NumericScore = trialData.response[keys[i]] // Numeric score
+			//TotalScore += NumericScore
+			Results.AllResults[keys[i]] = TextAnswer
+			var Score
+			for ( var j = 0; j < trialData.pages[0][i].options.length; j++ )
+			{
+				if ( trialData.pages[0][i].options[j] == TextAnswer ) 
+				{ 
+					Score = j 
+					TotalScore += Score
+				}
+				
+			}
+		}
+	}
+	Results.AllResults['Accuracy'] = TotalScore
+	Results.AllResults['Total Score'] = TotalScore
+	if ( trialData.AlertLimit !== undefined ) 
+	{
+		if ( TotalScore > trialData.AlertLimit )
+		{ openResources() }
+	}
+	if ( method == "screening") 
+	{
+		Results.AllResults['Computer Information'] = trialData.ComputerInfo.appVersion
+		Results.AllResults['Current Language'] = trialData.ComputerInfo.CurrentLanguage
+		Results.AllResults['Available Language'] = trialData.ComputerInfo.AvailableLanguage
+	}
 	console.log(Results)
 
 

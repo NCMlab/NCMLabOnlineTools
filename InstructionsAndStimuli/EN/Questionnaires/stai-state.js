@@ -1,19 +1,19 @@
 var title = "Stait-Trait Anxiety Index - State"
 
-var instructions = 'Read each statement and then choose the answer to indicate how you generally feel.'
-
 var scale01FORWARD = [
-    "Almost never",
-    "Sometimes",
-    "Often",
-    "Almost always"
-  ]
-  var scale01BACKWARD = [
-    "Almost always",
-    "Often",
-    "Sometimes",
-    "Almost never"
-  ]
+  {value:0, text: "Almost never"},
+  {value:1, text:"Sometimes"},
+  {value:2, text:"Often"},
+  {value:3, text:"Almost always"}
+]
+var scale01BACKWARD = [
+  {value:3, text: "Almost never"},
+  {value:2, text:"Sometimes"},
+  {value:1, text:"Often"},
+  {value:0, text:"Almost always"}
+]
+
+var instructions = 'Read each statement and then choose the answer to indicate how you generally feel.'
 
 var pages = [
               [
@@ -157,7 +157,7 @@ var pages = [
                   name: 'stai20',
                   likert_scale_values: scale01FORWARD,
                   required: true
-                },*/
+                }*/
               ]
 ]
 
@@ -165,3 +165,4 @@ var stai_state = {}
 stai_state.title = title
 stai_state.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the response option to the right to indicate how you feel right now, that is, at this moment. Do not spend too much time on any one statement, but give the answer which seems to describe your present feelings best."
 stai_state.pages = pages
+stai_state.QuestionnaireType = 'likert'

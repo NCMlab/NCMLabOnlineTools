@@ -62867,6 +62867,7 @@ var jsPsychSurvey = (function (jspsych) {
 	            question.rows = params.statements.map((stmt) => ({
 	                value: stmt.name,
 	                text: stmt.prompt,
+					alert: stmt.alert
 	            }));
 	            question.rowsOrder = params.randomize_statement_order ? "random" : "initial";
 	            if (params.correct_response !== null) {
@@ -63017,6 +63018,7 @@ var jsPsychSurvey = (function (jspsych) {
 	        const score_response = (sender, options) => {
 	            var _a;
 				console.log("JASON VALUE CHANGED")
+				console.log(options)
 				if ( options.question.alert === options.value )
 				{
 					console.log("ALERT!!!")		

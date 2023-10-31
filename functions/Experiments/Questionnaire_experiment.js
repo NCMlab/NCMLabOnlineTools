@@ -22,13 +22,24 @@ var trial = {
   },
   on_finish: function(data) {
     data.trial = "Questionnaire"
+    data.QuestionnaireType = Questionnaire.QuestionnaireType
+    data.AlertLimit = Questionnaire.AlertLimit
     data.title = Questionnaire.title
+    data.pages = Questionnaire.pages
+    console.log(Questionnaire)
+    data.values = Questionnaire.values
     var NAV = navigator;
     var ComputerInfo = {}
     ComputerInfo.CurrentLanguage = NAV.language
     ComputerInfo.AvailableLanguage = NAV.languages
     ComputerInfo.appVersion = NAV.appVersion
     data.ComputerInfo = ComputerInfo
+
+
+    var TTT = jsPsych.data.get()
+    console.log(TTT)
+    trialData = TTT.filter({trial: 'Questionnaire'}).trials[0]
+    console.log(Object.keys(trialData.response))
   }
 };
 
@@ -37,6 +48,7 @@ var thank_you = {
   stimulus: function() {
     return "Thanks!"},
   post_trial_gap: 0,
+  duration:30000,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
   choices: function() {return [LabelNames.Next]}, 
@@ -70,5 +82,9 @@ var Notes = {
 
 
 timeline.push(trial)
-//timeline.push(SendData)
+
+timeline.push(Notes)
+timeline.push(SendData)
+//timeline.push(thank_Xyou)
+
 

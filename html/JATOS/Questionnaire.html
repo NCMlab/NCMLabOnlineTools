@@ -32,11 +32,14 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
+    
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-state.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/bdi.js"></script>
     <script src="config/Questionnaire_Setup.js"></script>
     <script src="functions/Experiments/Questionnaire_experiment.js"></script>
+    <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
     <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
     <script>
       var Questionnaire_parameters = 'empty'
@@ -98,9 +101,13 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       
       // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // If this a la carte or the end of the battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      
+      
     }
   });
   jatos.onLoad(() => {
