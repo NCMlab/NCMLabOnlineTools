@@ -25,4 +25,36 @@ Tel-aide Outaouais (FR) : 613-741-6433
 Centre de détresse d'Ottawa et la région (ANG) : 613-238-3311 
 Pour en savoir plus sur les ressources offertes à Ottawa, veuillez consulter la liste de ressources sur la santé mentale et la consommation de substances.  
 
+
+
+If you or someone you know is in crisis
+If you're in immediate danger or need urgent medical support, call 911.
+
+If you or someone you know is thinking about suicide, call Talk Suicide Canada at 1-833-456-4566. Support is available 24 hours a day, 7 days a week.
+
+For residents of Quebec, call 1-866-277-3553 or visit suicide.ca.
+
+Visit Talk Suicide Canada for the distress centres and crisis organizations nearest you. If you're experiencing gender-based violence, you can access a crisis line in your province or territory.
+
+
+Wellness Together Canada
+To connect with a mental health professional one-on-one:
+
+call 1-888-668-6810 or text WELLNESS to 686868 for youth
+call 1-866-585-0445 or text WELLNESS to 741741 for adults
+You can also visit Wellness Together Canada to access different levels of support, including:
+
+one-on-one counselling
+credible articles and information
+self-guided courses and programs
+peer support and coaching
+
+For First Nations, Inuit, and Métis Peoples
+Hope for Wellness Help Line
+Call 1-855-242-3310 (toll-free) or connect to the online Hope for Wellness chat.
+
+Available 24 hours a day, 7 days a week to First Nations, Inuit, and Métis Peoples seeking emotional support, crisis intervention, or referrals to community-based services.
+
+Support is available in English and French and, by request, in Cree, Ojibway, and Inuktitut.
+
 */

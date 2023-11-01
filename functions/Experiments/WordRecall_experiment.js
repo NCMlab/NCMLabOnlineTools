@@ -703,8 +703,8 @@ timeline.push(if_FinalRecallA)
 
 //timeline.push(if_Notes)
 //timeline.push(if_ThankYou)
-timeline.push(if_Notes)
-timeline.push(if_ThankYou)
+timeline.push(Notes)
+timeline.push(ThankYou)
 timeline.push(SendData)
 
 /* 

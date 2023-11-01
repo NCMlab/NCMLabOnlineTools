@@ -13,6 +13,7 @@ var WelcomeTime = 4000; // milliseconds
 var SaveLocalFile = false
 
 var EN_LabelNames = {}
+EN_LabelNames.YesNo = ['Yes','No']
 EN_LabelNames.Home = 'Home'
 EN_LabelNames.Restart = 'Restart'
 EN_LabelNames.End = 'End'
@@ -30,8 +31,10 @@ EN_LabelNames.Correct = 'Correct'
 EN_LabelNames.Incorrect = 'Incorrect'
 EN_LabelNames.PressNext = 'Press Next to Continue'
 EN_LabelNames.NoteInputBox = "Please, type in any notes or feedback you have about this task. (Optional)"
+EN_LabelNames.NonEligible = (" I am sorry to say that you are not eligible for this study.")
 
 var FR_LabelNames = {}
+FR_LabelNames.YesNo = ['Oui','No']
 FR_LabelNames.Home = "Page d'accueil"
 FR_LabelNames.Restart = 'Recommencer'
 FR_LabelNames.End = 'Fin'
@@ -47,7 +50,7 @@ FR_LabelNames.CurrentAnswer = 'Réponse Actuelle'
 FR_LabelNames.Correct = 'Correct'
 FR_LabelNames.Incorrect = 'Incorrect'
 FR_LabelNames.NoteInputBox = "FR: Please, type in any notes or feedback you have about this task. (Optional)"
-
+FR_LabelNames.NonEligible = ("(FR) I am sorry to say that you are not eligible for this study.")
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

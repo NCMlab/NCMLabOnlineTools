@@ -1,4 +1,4 @@
-// ============== WELCOME ==============
+
 
 // ============== TIMER ================
 // This turns on a progress bar timer when spoken instructions are provided
@@ -21,6 +21,7 @@ var Welcome_progress_bar_timer_stop = {
     }
 }
 
+// ============== WELCOME ==============
 // Welcome can be presented as written or as written with voice over.
 // If voice over is provided then there is a progress bar showing when the next screen will be shown.
 
@@ -108,6 +109,10 @@ var if_Notes = {
     }
 }
 
+var Notes = {
+    timeline: [if_Notes]
+}
+
   // ============== THANK YOU ==============
 var thank_you = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -120,7 +125,7 @@ var thank_you = {
     choices: function() {return [LabelNames.Next]}, 
 }
 
-var if_ThankYou = {
+var if_thank_you = {
     timeline: [thank_you],
     conditional_function: function() {
         if ( parameters.ShowThankYou )
@@ -128,6 +133,11 @@ var if_ThankYou = {
         else { return false }
     }
 }
+
+var ThankYou = {
+    timeline: [if_thank_you]
+}
+
 // ================ INSTRUCTIONS ===================
 
 var countInstr01 = 0

@@ -306,7 +306,7 @@ var pages = [
         {
           type: 'multi-choice',
           prompt: 'What is your gender?', 
-          options: ['Woman','Man','Trans Woman','Trans Man','Non-Binary','Other'],
+          options: ['Woman','Man','Trans Woman','Trans Man','Non-Binary','You don\’t have an option that applies to me. I identify as (please specify)'],
           name: 'Gender', 
           required: false,
         },
@@ -342,3 +342,61 @@ var pages = [
     EN_IntakeForm_Generic.title = FormTitle
     EN_IntakeForm_Generic.pages = pages  
   add('EN_IntakeForm_Generic', function(){ IntakeFormParameters = EN_IntakeForm_Generic });
+
+  // ============================================
+var FormTitle = 'Formulaire d\'admission'
+var pages = [
+      [
+        {
+          type: 'text',
+          prompt: "En quel mois et quelle année êtes-vous né ?", 
+          name: 'MonthOfBirth02', 
+          input_type: "month",
+          required: false,
+        },
+        {
+          type: 'multi-choice',
+          prompt: "Quel sexe a été attribué à la naissance, sur votre acte de naissance original?", 
+          options: ['Femelle', 'Mâle'],
+          name: 'Sex', 
+          required: false,
+        }, 
+        {
+          type: 'multi-choice',
+          prompt: 'Quel est votre gender?', 
+          options: ['Femme','Homme','Femme trans','Homme trans','Non binaire','Vous n’avez pas d’option qui s’applique à moi. Je m\'identifie comme (veuillez préciser)'],
+          name: 'Gender', 
+          required: false,
+        },
+        {
+            type: 'drop-down',
+            prompt: "Combien d'années d'études avez-vous complétées ? (par exemple, terminer ses études secondaires est de 12 ans, terminer un BA/BS est de 16 ans, terminer une MA/MS est de 18 ans, terminer un doctorat est de 21 ans.", 
+            name: 'YearsEdu', 
+            options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','other'],
+            required: false,
+          },
+        {
+          type: 'multi-choice',
+          prompt: 'Quelle main préférez-vous utiliser?', 
+          options: ['Gauche','Aucune préférence','Droite','Je ne sais pas','Je préfère ne pas répondre'],
+          name: 'Handedness', 
+          required: false,
+        }
+        
+          /*{
+            type: 'likert-table',
+            prompt: 'What hand do you prefer to use when:',
+            name: "Handedness",
+            statements: [{name:'Writing'},{name:'Drawing'},
+            {name:'Throwing'},{name:'Using scissors'},{name:'Using a toothbrush'},
+            {name:'Using a knife (without a fork)'},{name:'Using a spoon'},
+            {name:'Striking a match'},{name:'Using a broom (upper hand)'},
+            {name:'Opening a box (lid)'}],
+            options: ['Left','No preference','Right',"I don't know",'Prefer not to answer'],
+          }*/
+      ]
+    ]
+    var FR_IntakeForm_Generic = {}
+    FR_IntakeForm_Generic.title = FormTitle
+    FR_IntakeForm_Generic.pages = pages  
+  add('FR_IntakeForm_Generic', function(){ IntakeFormParameters = FR_IntakeForm_Generic });

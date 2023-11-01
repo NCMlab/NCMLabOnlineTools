@@ -48,12 +48,15 @@
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
             { parameters = 'EN_IntakeForm_Generic' }
             else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
-            // load the parameters
-            pseudoSwitch(parameters)
-            console.log(IntakeFormParameters)
-            // load the language specific instructions
+            console.log(parameters)
             LANG = jatos.studySessionData.Language
             console.log(LANG)
+            // load the parameters
+            pseudoSwitch(LANG+"_"+parameters)
+            console.log(IntakeFormParameters)
+            // load the language specific instructions
+            
+            
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
             console.log(IntakeFormParameters)

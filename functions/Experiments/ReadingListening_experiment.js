@@ -47,7 +47,30 @@ InputSentences.push({'stim':"Smoky fires lack flame and heat."})
 InputSentences.push({'stim':"The soft cushion broke the man's fall."})
 InputSentences.push({'stim':"The salt breeze came across from the sea."})
 InputSentences.push({'stim':"The girl at the booth sold fifty bonds."})
- 
+
+/*
+. La lampe de néon rouge irise ses cheveux.
+2. La nacelle du ballon tire sa souplesse de l’osier.
+3. Devine qui a volé le précieux collier de jade.
+4. C’est facile d’atteindre la branche en sautant du muret.
+5. Ne collez jamais d’affiche sur le mur de la poste.
+6. Découpe de fines lamelles de cette truffe noire.
+7. Une croisière dans un grand bateau, c’est un bonheur parfait.
+8. Une brèche dans le mur laissait entrer de l’air.
+9. Le groupe d’amis s’est quitté devant le kiosque.
+10. La voiture de course partit en trombe sur la piste.
+1. Note sur le papier le poids de la bonbonne de gaz.
+2. Prends ce chiffon pour enlever la graisse de ton visage.
+3. La source de la rivière boueuse est un ruisseau clair.
+4. Tire la fléchette et inscris tes points sur le tableau.
+5. Aide la femme à monter à l’arrière du tramway.
+6. Ils ont enfin trouvé une place à la crèche publique.
+7. L’affaire reste étrange pour les vieux et les sages.
+8. Il a un cou propre sur un col net et soigné.
+9. Son dernier congé dura deux semaines.
+10. L’idée est de coudre ensemble ces morceaux de tissus.
+*/
+
 var GetList = {
   type: jsPsychCallFunction,
   func: function() {

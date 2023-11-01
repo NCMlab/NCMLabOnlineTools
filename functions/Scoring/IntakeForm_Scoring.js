@@ -21,7 +21,7 @@ function IntakeForm_Scoring(data, method) {
 		}
 		
 		if ( ! InclusionFlag ) 
-		{ alert(" I am sorry to say that you are not eligible for this study.")}
+		{ alert(LabelNames.NonEligible)}
 	}
 
 	Results = {}	

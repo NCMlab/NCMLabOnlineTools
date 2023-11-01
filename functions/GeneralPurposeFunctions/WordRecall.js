@@ -218,7 +218,9 @@ var SpokenRecallA = {
     type: jsPsychHtmlAudioResponse,
     
     stimulus: function() {
-      return Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+      Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+        Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+      return Str
     },
     //choices: function() {return [LabelNames.Next]}, 
     show_done_button: true,
@@ -296,7 +298,9 @@ var SpokenRecallB = {
   type: jsPsychHtmlAudioResponse,
   
   stimulus: function() {
-    return Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+    Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+    Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+    return Str  
   },
   //choices: function() {return [LabelNames.Next]}, 
   show_done_button: true,

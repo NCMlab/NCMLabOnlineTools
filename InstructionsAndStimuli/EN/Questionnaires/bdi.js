@@ -400,3 +400,4 @@ Nom:______________________________ Date:_________________
 1 Le sexe m'intéresse moins qu'avant.
 2 Le sexe m'intéresse beaucoup moins maintenant.
 3 J'ai perdu tout intérêt pour le sexe.
+*/
