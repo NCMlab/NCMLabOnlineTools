@@ -20,3 +20,10 @@ EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.</p>'}]
 add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instructions});
+
+
+In this task, you will see four stimulus cards at the top of the screen. The cards will differ on three dimensions: color 
+(red, green, blue, yellow), shape (circle, star, triangle, cross), and number of shapes (one, two, three, or four). 
+You will see a single response card at the bottom of the screen, which also has a color, shape, and number. You are 
+to the response card to the correct card at the top of the screen based on a specific dimension (e.g. shape), or matching rule. 
+There will also be a discard pil on the left of the screen showing you the previous card you saw.  
