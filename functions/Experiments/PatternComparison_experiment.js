@@ -111,10 +111,7 @@ var ImageFolder = 'assets/Images/PatternComparison/'
 
 var timeline = [];
 // =======================================================================
-var enter_fullscreen = {
-  type: jsPsychFullscreen,
-  fullscreen_mode: true
-}
+
 // pre load image
 var preload_imagesA = {
   type: jsPsychPreload,
@@ -165,11 +162,11 @@ var TestTrial = {
     console.log(data)
   }
 };
-
+timeline.push(Welcome)
 timeline.push(preload_imagesA)
 timeline.push(preload_imagesB)
 
 timeline.push(PracticeTrial)
 timeline.push(TestTrial)
-
+timeline.push(ThankYou)
 

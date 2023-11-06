@@ -44,7 +44,10 @@ var WelcomeSpoken = {
     type: jsPsychAudioButtonResponse,
     stimulus: function() { return parameters.WelcomeAudio },
     choices: function() { return [LabelNames.Repeat] },
-    prompt: function() { return Instructions.WelcomeText[0].page},
+    prompt: function() { 
+        console.log("HELLO FROM WELCOME")
+        return Instructions.WelcomeText[0].page
+    },
     response_allowed_while_playing: false,
     response_ends_trial: true,
     trial_duration: WelcomeTime,
@@ -63,7 +66,7 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
-      if ( parameters.ShowWelcome & ! parameters.WelcomeSpoken)
+      if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
       { return true }
       else { return false }
     }
@@ -211,7 +214,6 @@ var Instructions01Spoken_loop = {
 var Instructions01Written_loop = {
     timeline: [Instructions01Written],
     loop_function: function(data){
-      console.log(countInstr01)
       countInstr01+=1
       if ( countInstr01 < Instructions.Instructions01.length) 
       { return true} else { return false}

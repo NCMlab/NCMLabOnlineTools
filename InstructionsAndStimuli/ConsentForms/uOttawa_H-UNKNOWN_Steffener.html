@@ -98,5 +98,19 @@ research study. I will be given a copy of this informed consent form to keep for
     <input type="checkbox" id="consent_checkbox" />
     I agree to take part in this study.
   </p>
+  <button type="button" id="download_consent">Download Consent form</button>
   <button type="button" id="start">Start Experiment</button>
 </div>
+
+<script>
+    const element = document.getElementById('download_consent');
+    element.addEventListener('click', download_consent);
+    function download_consent() {
+        console.log("DOWNLOADING CONSENT...")
+        console.log(jatos.studySessionData.Language)
+        var link = document.createElement('a');
+        link.href = 'InstructionsAndStimuli/ConsentForms/EN_Test.pdf';
+        link.download = 'TEST.pdf'
+        link.dispatchEvent(new MouseEvent('click'))
+    }
+</script>

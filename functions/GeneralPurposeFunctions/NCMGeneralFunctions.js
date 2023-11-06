@@ -192,7 +192,7 @@ function openInfo() {
 
 function openResources() {
   console.log(document.getElementById('task-background-info'))
-  document.getElementById('task-background-title').textContent = MentalHealthResources.title
+  //document.getElementById('task-background-title').textContent = MentalHealthResources.title
   document.getElementById('task-background-info').innerHTML = MentalHealthResources.text
   console.log(document.getElementById('task-background-info')) 
   const openBtn = document.getElementById("header-info-button");

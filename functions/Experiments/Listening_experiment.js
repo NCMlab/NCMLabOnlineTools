@@ -22,31 +22,11 @@ var preload_audio = {
         List.push(FolderOfAudioFiles + AudioTestList[i] + AudioFileType)
         ButtonList.push(AudioTestList[i])
       }
-      console.log(List)
       console.log("PRELOADING AUDIO")
       return List
     },
   };
-var Instruct = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function() { 
-        console.log(Instructions)
-        return Instructions.Instructions }, 
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-}
-
-var thank_you = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: "Thank you",
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    trial_duration: 500,
-    prompt: '', 
-    choices:''
-}
+  
 var fixation = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: '<p class="Fixation">+</p>',
@@ -56,6 +36,7 @@ var fixation = {
     prompt: '',
     trial_duration: 500
   }
+
 var AudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
@@ -88,7 +69,10 @@ var present_audio= {
     }
   }
 
+
+
 timeline.push(preload_audio)
-timeline.push(Instruct)
+timeline.push(Welcome)
+timeline.push(Instructions01)
 timeline.push(present_audio)
-timeline.push(thank_you)
+timeline.push(ThankYou)
