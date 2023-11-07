@@ -88,7 +88,9 @@ var present_audio= {
     }
   }
 
+timeline.push(Welcome)
 timeline.push(preload_audio)
-timeline.push(Instruct)
+timeline.push(Instructions01)
 timeline.push(present_audio)
-timeline.push(thank_you)
+timeline.push(Notes)
+timeline.push(ThankYou)

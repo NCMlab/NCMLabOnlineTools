@@ -165,11 +165,14 @@ var TestTrial = {
     console.log(data)
   }
 };
-
+timeline.push(Welcome)
+timeline.push(Instructions01)
 timeline.push(preload_imagesA)
 timeline.push(preload_imagesB)
-
+timeline.push(Instructions02)
 timeline.push(PracticeTrial)
+timeline.push(Instructions03)
 timeline.push(TestTrial)
+timeline.push(ThankYou)
 
 

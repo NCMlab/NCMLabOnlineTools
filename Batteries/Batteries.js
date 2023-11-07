@@ -248,7 +248,7 @@ BatteryList.push({index: 1001,
 						'ReadingListeningList01',
 						'RAVLT_Spoken_Immediate',
 						'CardSort_001',
-						'PatternComparison_Default', 
+						'PatternComparison_001', 
 						'SpatialDMS_Adaptive',
 						'RAVLT_Spoken_Delayed', 
 						'TEST_Spoken',
@@ -290,7 +290,7 @@ BatteryList.push({index: 1001,
 		'STAI-S',
 		'BDI'
 	],
-	Language:'FR',
+	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })

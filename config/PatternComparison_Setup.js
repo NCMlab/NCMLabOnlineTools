@@ -1,22 +1,15 @@
 
 
-var PatternComparison_Default = {
-	canvas_width:400,
-	canvas_height:400,
+var PatternComparison_001 = {
 	ShowWelcome: true,
 	ShowThankYou: true,
-	ShowInstructions: true,
-	AskForNotes: true, 
-	Image: 'NeckerCube.png',
-	RecordGIF: true,
+	ShowInstructions: true, 
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	AskForNotes: true,
+	InstructionsSpoken: false
 }
 
-PatternComparisonSetup = [
-	['AFig8a.bmp','AFig8b.bmp','right','1'],
-	['AFig7a.bmp','AFig7b.bmp','right','1'],
-	['AFig6a.bmp','AFig6b.bmp','right','1'],
-	['AFig5a.bmp','AFig5b.bmp','right','1'],
-]
 
-add('PatternComparison_Default', function(){ parameters = PatternComparison_Default});
+add('PatternComparison_001', function(){ parameters = PatternComparison_001});
 
