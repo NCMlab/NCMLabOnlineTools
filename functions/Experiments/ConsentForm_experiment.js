@@ -1,4 +1,5 @@
 var check_consent = function(elem) {
+    console.log("HELLO CONSENT BUTTON")
     if (document.getElementById('consent_checkbox').checked) {
         return true;
     }
@@ -9,12 +10,14 @@ var check_consent = function(elem) {
     return false;
 };
 
+
 // declare the block.
 var trial = {
     type: jsPsychExternalHtml,
     url: function() {return ConsentForm.Text},
     cont_btn: "start",
     check_fn: check_consent,
+    execute_script: true,
     on_finish: function(data){
         console.log(data)
     }
