@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.Instructions = [
+EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of short-term memory. You will see one through nine letters on the screen that you will need to remember.'+
 	'They will be removed from the screen. After a few seconds you will see a single blue letter. '+
 	'You need to decide whether or not the blue letter was one of the set you studied.'},

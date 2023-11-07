@@ -40,9 +40,11 @@
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
     <script src="Batteries/ComponentList.js"></script>
+    <script src="InstructionsAndStimuli/BackgroundMaterial/IntakeAndScreening.js"></script>
     <script>
       var IntakeFormParameters = 'empty'
       var parameters = 'empty'
+      var BackgroundText = ''
       
       jatos.onLoad(() => {
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
@@ -61,6 +63,7 @@
             pseudoSwitch(LANG+'_LabelNames')
             console.log(IntakeFormParameters)
             console.log(LabelNames)
+            BackgroundText = eval(LANG+'_BackgroundText');
       })
       
     </script> 
@@ -125,6 +128,7 @@ var jsPsych = initJsPsych({
       document.getElementById('header-end-button').textContent = LabelNames.End;
       document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      document.getElementById('task-background-info').innerHTML = BackgroundText
       })
     </script>
     </body>

@@ -290,7 +290,7 @@ BatteryList.push({index: 1001,
 		'STAI-S',
 		'BDI'
 	],
-	Language:'EN',
+	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })

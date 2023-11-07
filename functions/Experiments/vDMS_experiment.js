@@ -231,13 +231,13 @@ var if_Instructions = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(enter_fullscreen)
-timeline.push(if_Welcome)
-timeline.push(if_Instructions)
+timeline.push(Welcome)
+timeline.push(Instructions01)
 timeline.push(WaitTime)
 timeline.push(loop_node)
 //timeline.push(debrief_block)
 timeline.push(Notes)
 timeline.push(SendData)
-timeline.push(if_ThankYou)
+timeline.push(ThankYou)
 
 
