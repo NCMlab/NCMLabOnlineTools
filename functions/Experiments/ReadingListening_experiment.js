@@ -18,7 +18,6 @@ List01.push({stim:"The hogs were fed chopped corn and garbage."})
 InputSentences = List01
 
 var WhatWasSaid = function(tag) {
-    
     HeardSentence = tag
     // console.log(HeardSentence)
     return HeardSentence
@@ -68,7 +67,9 @@ var WaitForWords = function() {
         //document.getElementById("jspsych-html-button-response-button-0").disabled = true;
       Score = CompareReadAndHeard(ReadSentence, userSaid[0])
       Output.Score = Score
-      if ( Score > ReadingListening_parameters.ScoreNeeded )
+      console.log(Score)
+      console.log(parameters.ScoreNeeded)
+      if ( Score > parameters.ScoreNeeded )
       { console.log("GOOD JOB")
       document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/GreenCheck.png" width="30" height="30"></img>'
       document.getElementById("id_next").innerHTML = 'Press next to continue'
@@ -129,7 +130,7 @@ var RecallRequest01 = {
       ReadSentence = jsPsych.timelineVariable('stim')
       console.log(ReadSentence)
       var stim = 
-      '<div><p>Please read the following sentence out loud:</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
+      '<div><p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p><p>Please read the following sentence out loud:</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
       return stim
     },
     choices: ['Next'], 

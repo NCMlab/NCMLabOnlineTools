@@ -42,6 +42,31 @@ var mentalHealthFeedback = {
     }
   }
 
+  // ============== SCREENING ==============
+var EligibilityCheck = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      return LabelNames.NonEligible
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+    on_finish: function() {
+        jatos.abortStudy()
+    }
+  }
+  
+  var if_Eligibile = {
+    timeline: [EligibilityCheck],
+    conditional_function: function(){
+      if ( Results.Eligible )
+      { return false }
+      else { return true }
+    }
+  }
+
+
 // ============== WELCOME ==============
 // Welcome can be presented as written or as written with voice over.
 // If voice over is provided then there is a progress bar showing when the next screen will be shown.

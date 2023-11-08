@@ -76,6 +76,7 @@ var CheckForAlert = {
     Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
   }
 }
+
 timeline.push(trial)
 timeline.push(CheckForAlert)
 timeline.push(if_MentalHealthAlert)

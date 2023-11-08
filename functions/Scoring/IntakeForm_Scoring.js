@@ -1,6 +1,7 @@
 function IntakeForm_Scoring(data, method) {
 	console.log(data)
-	
+	Results = {}	
+	Results.Eligible = true
 	trialData = data.filter({trial: 'Questionnaire'}).trials[0]
 
 	var keys = Object.keys(trialData.response)
@@ -21,10 +22,12 @@ function IntakeForm_Scoring(data, method) {
 		}
 		
 		if ( ! InclusionFlag ) 
-		{ alert(LabelNames.NonEligible)}
+		{ 
+			Results.Eligible = false
+		}
 	}
 
-	Results = {}	
+	
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = trialData.title
 	Results.AllResults['Accuracy'] = ''

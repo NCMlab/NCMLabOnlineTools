@@ -495,7 +495,7 @@ var if_AudioStimuliB = {
   }
 }   
 var if_Spoken = {
-  timeline: [IntializeMicrophone, SetupSpeechRecognition],
+  timeline: [SetupSpeechRecognition],
   conditional_function: function() {
       if ( parameters.RecallType == 'Spoken' )
       { return true }

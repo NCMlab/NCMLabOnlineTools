@@ -214,15 +214,14 @@ var ManualRecallB = {
 
 // ==========================================================================
 var SpokenRecallA = {
-    //type: jsPsychHtmlButtonResponseTouchscreen,
-    type: jsPsychHtmlAudioResponse,
-    
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    //type: jsPsychHtmlAudioResponse,
     stimulus: function() {
-      Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+      var Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
         Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
       return Str
     },
-    //choices: function() {return [LabelNames.Next]}, 
+    choices: function() {return [LabelNames.Next]}, 
     show_done_button: true,
     done_button_label: 'Done',//function() {return [LabelNames.Next]},
     margin_horizontal: GapBetweenButtons,
@@ -294,15 +293,15 @@ var IntializeMicrophone = {
 
 // ==========================================================================
 var SpokenRecallB = {
-  //type: jsPsychHtmlButtonResponseTouchscreen,
-  type: jsPsychHtmlAudioResponse,
+  type: jsPsychHtmlButtonResponseTouchscreen,
+  //type: jsPsychHtmlAudioResponse,
   
   stimulus: function() {
     Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
     Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
     return Str  
   },
-  //choices: function() {return [LabelNames.Next]}, 
+  choices: function() {return [LabelNames.Next]}, 
   show_done_button: true,
   done_button_label: 'Done',//function() {return [LabelNames.Next]},
   margin_horizontal: GapBetweenButtons,

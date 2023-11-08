@@ -34,14 +34,14 @@ var RAVLT_Spoken_Immediate = {
 	VisualPresentation: true,
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
-	WelcomeSpoken: true,
+	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: true,
 	ShowInstructions: true, 
-	InstructionsSpoken: true,
+	InstructionsSpoken: false,
 	AskForNotes: true,
 	RecordAUDIO: true
 }
