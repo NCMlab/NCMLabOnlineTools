@@ -187,19 +187,28 @@ function quitExperiment() {
 function openInfo() {
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  
+  // hide the copy button
+  const copyButton = document.getElementById("copy-info-button")
+  copyButton.setAttribute('hidden', 'hidden');
   modal.classList.add("open");  
 }
 
-function openResources() {
+function openResourcesShort() {
   console.log(document.getElementById('task-background-info'))
   //document.getElementById('task-background-title').textContent = MentalHealthResources.title
-  document.getElementById('task-background-info').innerHTML = MentalHealthResources.text
+  document.getElementById('task-background-info').innerHTML = MentalHealthResourcesShort.text
   console.log(document.getElementById('task-background-info')) 
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  
   modal.classList.add("open");  
 }
 
+function openResourcesLong() {
+  document.getElementById('task-background-info').innerHTML = MentalHealthResourcesLong.text;
+//  const openBtn = document.getElementById("header-info-button");
+  const modal = document.getElementById("modal");  
+  setTimeout(modal.classList.add("open"),60000);  
+}
 
 function copyInfo() {
   var copyText = document.getElementById("task-background-info");  
@@ -207,9 +216,7 @@ function copyInfo() {
      
      var text = copyText.innerText || copyText.textContent;
      copyText.innerHTML = text;
-
-    //navigator.clipboard.writeText("JASONJASON");
-    navigator.clipboard.writeText(copyText.innerHTML).then(
+     navigator.clipboard.writeText(copyText.innerHTML).then(
       () => {
         /* clipboard successfully set */
         console.log("Success")
@@ -226,6 +233,7 @@ function closeInfo() {
   const closeBtn = document.getElementById("closeModal");
   const modal = document.getElementById("modal");
   modal.classList.remove("open");
+
 }
 /*openBtn.addEventListener("click", () => {
   modal.classList.add("open");

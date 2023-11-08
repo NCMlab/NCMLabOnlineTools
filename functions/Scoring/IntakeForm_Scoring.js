@@ -65,10 +65,13 @@ function IntakeForm_Scoring(data, method) {
 	}
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
+	Results.Alert = false
 	if ( trialData.AlertLimit !== undefined ) 
 	{
 		if ( TotalScore > trialData.AlertLimit )
-		{ openResources() }
+		{ 
+			Results.Alert = true	
+		}
 	}
 	if ( method == "screening") 
 	{

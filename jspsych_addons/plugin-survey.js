@@ -63022,7 +63022,7 @@ var jsPsychSurvey = (function (jspsych) {
 				if ( options.question.alert === options.value )
 				{
 					console.log("ALERT!!!")		
-					openResources() 		
+					openResourcesShort() 		
 				}
 	            if ((_a = options.question) === null || _a === void 0 ? void 0 : _a.correctAnswer) {
 	                

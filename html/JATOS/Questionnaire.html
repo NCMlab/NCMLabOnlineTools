@@ -28,11 +28,12 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych_addons/plugin-sketchpad.js"></script>
     <script src="jspsych_addons/plugin-survey.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-state.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
@@ -77,6 +78,7 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);

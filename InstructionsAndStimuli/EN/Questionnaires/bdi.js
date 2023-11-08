@@ -27,7 +27,7 @@ var pages = [
 							"I feel the future is hopeless and that things cannot improve."], 
 						required: false,
 						alert: "I feel the future is hopeless and that things cannot improve."
-					},
+					},/*
 					{
 						type: 'multi-choice',
 						prompt: ' ', 
@@ -238,7 +238,7 @@ var pages = [
 							"I have almost no interest in sex.",
 							"I have lost interest in sex completely."], 
 						required: false,
-					},
+					},*/
 				]
 			]	
 
@@ -248,7 +248,7 @@ bdi.description = "Some statements that people have used to describe their feeli
 bdi.pages = pages
 bdi.values = values
 bdi.QuestionnaireType = 'multi-choice'
-bdi.AlertLimit = 17
+bdi.AlertLimit = 3
 // Notes:
 //  1-10____________________These ups and downs are considered normal
 //  11-16___________________ Mild mood disturbance

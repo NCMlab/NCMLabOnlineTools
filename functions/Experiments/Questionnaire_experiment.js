@@ -54,6 +54,9 @@ var thank_you = {
   choices: function() {return [LabelNames.Next]}, 
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 var SendData = {
   type: jsPsychCallFunction,
@@ -61,30 +64,40 @@ var SendData = {
     var data = jsPsych.data.get()
     Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
     console.log(Results)
-    jsPsych.finishTrial(Results)
+    //sleep(60000).then(() => {jsPsych.finishTrial(Results)})
+    
   }
 }
 
 
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
+
+var if_trial = {
+  type: jsPsychCallFunction,
+  func: function() { 
+    openResourcesLong()
+  }
 }
 
-
+var if_node = {
+  timeline: [if_trial],
+  conditional_function: function(){
+    var data = jsPsych.data.get()
+    Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
+    if ( Results.Alert )
+    { return true }
+    else { return false }
+  }
+}
 
 timeline.push(trial)
-
+timeline.push(if_node)
 timeline.push(Notes)
 timeline.push(SendData)
+
+
+//timeline.push(SendData)
 //timeline.push(thank_Xyou)
+
+
 
 
