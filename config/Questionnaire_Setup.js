@@ -20,7 +20,13 @@ var STAI_T_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
-var BDI_001 = { questionnaire: 'bdi', AskForNotes: false }
+var BDI_001 = { 
+    questionnaire: 'bdi', 
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 add('AES_001', function(){ Questionnaire_Parameters = AES_001});
 add('STAI_S_001', function(){ Questionnaire_Parameters = STAI_S_001});
 add('STAI_T_001', function(){ Questionnaire_Parameters = STAI_T_001});

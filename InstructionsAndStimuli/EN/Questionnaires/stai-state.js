@@ -31,7 +31,7 @@ var pages = [
                   name: 'stais02',
                   likert_scale_values: scale01FORWARD,
                   required: false
-                }/*,
+                },
                 {
                   type: 'likert',
                   prompt: "I am tense.",
@@ -157,7 +157,7 @@ var pages = [
                   name: 'stai20',
                   likert_scale_values: scale01FORWARD,
                   required: false
-                }*/
+                }
               ]
 ]
 

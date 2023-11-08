@@ -27,7 +27,7 @@ var pages = [
 							"I feel the future is hopeless and that things cannot improve."], 
 						required: false,
 						alert: "I feel the future is hopeless and that things cannot improve."
-					},/*
+					},
 					{
 						type: 'multi-choice',
 						prompt: ' ', 
@@ -238,7 +238,7 @@ var pages = [
 							"I have almost no interest in sex.",
 							"I have lost interest in sex completely."], 
 						required: false,
-					},*/
+					},
 				]
 			]	
 

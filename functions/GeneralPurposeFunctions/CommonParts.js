@@ -112,6 +112,7 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
+        console.log("HELLO WORLDS")
       if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
       { return true }
       else { return false }

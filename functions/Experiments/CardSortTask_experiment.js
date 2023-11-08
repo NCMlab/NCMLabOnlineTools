@@ -32,7 +32,6 @@ var preload_images = {
 }
 
 
-
 // =======================================================================
 // Define all of the different the stimuli 
 
@@ -158,7 +157,7 @@ timeline.push(debrief_block)
 timeline.push(Instructions03)
 timeline.push(TestTrial)
 
-timeline.push(if_ThankYou)
+timeline.push(ThankYou)
 timeline.push(SendData)
 /*
 timeline.push(if_Test_Instructions)

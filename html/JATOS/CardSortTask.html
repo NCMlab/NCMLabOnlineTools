@@ -73,7 +73,7 @@
             }
           console.log(parameters)
           pseudoSwitch(parameters)
-          console.log(CardSort_parameters)
+          console.log(parameters)
           LANG = jatos.studySessionData.Language
           console.log(LANG)
           pseudoSwitch(LANG+'_CardSortTask_Instructions_'+InstructionsToUse)
@@ -134,7 +134,7 @@ var jsPsych = initJsPsych({
       console.log(jatos)
       console.log(JATOSID)
       // The background information may be modified here.
-      document.getElementById('task-background-title').textContent = TitleDescription
+      //document.getElementById('task-background-title').textContent = TitleDescription
       document.getElementById('task-background-info').textContent = ShortDescription
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
