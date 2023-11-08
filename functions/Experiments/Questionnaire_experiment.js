@@ -17,6 +17,7 @@ var trial = {
   show_question_numbers: 'onPage',
   description: function() { return Questionnaire.description },
   on_load: function() {
+    document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     console.log("Hello World")
     console.log(document.getElementById('jspsych-content'))
   },
@@ -61,42 +62,27 @@ function sleep(ms) {
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var data = jsPsych.data.get()
-    Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
-    console.log(Results)
-    //sleep(60000).then(() => {jsPsych.finishTrial(Results)})
-    
+    jsPsych.finishTrial(Results)    
   }
 }
 
 
 
-var if_trial = {
+
+var CheckForAlert = {
   type: jsPsychCallFunction,
-  func: function() { 
-    openResourcesLong()
-  }
-}
-
-var if_node = {
-  timeline: [if_trial],
-  conditional_function: function(){
+  func: function() {
     var data = jsPsych.data.get()
     Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
-    if ( Results.Alert )
-    { return true }
-    else { return false }
   }
 }
-
 timeline.push(trial)
-timeline.push(if_node)
+timeline.push(CheckForAlert)
+timeline.push(if_MentalHealthAlert)
 timeline.push(Notes)
 timeline.push(SendData)
 
 
-//timeline.push(SendData)
-//timeline.push(thank_Xyou)
 
 
 

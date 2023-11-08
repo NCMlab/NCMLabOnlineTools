@@ -1,5 +1,5 @@
 
-
+var Results
 // ============== TIMER ================
 // This turns on a progress bar timer when spoken instructions are provided
 var Welcome_progress_bar_timer_start = {
@@ -20,6 +20,27 @@ var Welcome_progress_bar_timer_stop = {
          }
     }
 }
+
+// ============== MENTAL HEALTH ALERT ==============
+var mentalHealthFeedback = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      return MentalHealthResourcesLong.text },
+    post_trial_gap: 0,
+    duration:30000,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+  }
+  
+  var if_MentalHealthAlert = {
+    timeline: [mentalHealthFeedback],
+    conditional_function: function(){
+      if ( Results.Alert )
+      { return true }
+      else { return false }
+    }
+  }
 
 // ============== WELCOME ==============
 // Welcome can be presented as written or as written with voice over.
