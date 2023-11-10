@@ -5,6 +5,7 @@ var countInstr = 0
 var Current = 4
 DMSFontSize = 36
 var count = 0
+var stair1
 const GridCountX = 6
 const GridCountY = 6
 const NumberLocations = GridCountX*GridCountY
@@ -21,7 +22,26 @@ var enter_fullscreen = {
   fullscreen_mode: FullScreenMode
 }
 // =======================================================================
-let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
+var setupPractice = {
+  type: jsPsychCallFunction,
+  func: function() {
+    stair1 = new Stair(parameters.StartValue, parameters.MinValue, 
+        parameters.MaxValue, parameters.MaxReversals, 2,
+        parameters.StepSize, parameters.NUp, parameters.NDown, 
+        parameters.FastStart);
+    }
+  }
+
+var setupTest = {
+  type: jsPsychCallFunction,
+  func: function() {
+    stair1 = new Stair(parameters.StartValue, parameters.MinValue, 
+        parameters.MaxValue, parameters.MaxReversals, parameters.MaxTrials,
+        parameters.StepSize, parameters.NUp, parameters.NDown, 
+        parameters.FastStart);
+    }
+  }
+
 // =======================================================================
 
 var VisualStimulus = {
@@ -134,59 +154,17 @@ var Fix = {
   // }
 } 
 
-// test instructions
-var Instructions_Procedure = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions[countInstr].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
 
-var instr_procedure_loop_node = {
-  timeline: [Instructions_Procedure],
-  loop_function: function(data){
-    console.log("Instructional Loop Count is: "+countInstr)
-    countInstr+=1
-    if ( countInstr < Instructions.Instructions.length){
-        return true} else { return false}
-  }
-}
-
-var SendData = {
-  type: jsPsychCallFunction,
-  func: function() {
-    var data = jsPsych.data.get()
-    console.log(data)
-    console.log(stair1)
-    Results = DMS_Scoring(stair1)    
-    jsPsych.finishTrial(Results)
-    console.log(Results)
-  }
-}
   // =========================================
 // Define any logic used 
 
 var loop_node = {
   timeline: [VisualStimulus, VisualMask, RetentionCanvas, VisualProbe, Fix],
   loop_function: function(data){
+    console.log(stair1)
     return (! stair1.Finished)
  }
 };
-
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: function() {return LabelNames.NoteInputBox},
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
-}
 
 var SendData = {
   type: jsPsychCallFunction,
@@ -198,59 +176,21 @@ var SendData = {
   },
 }    
 
-var thank_you = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    return Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-        if ( Stroop_parameters.ShowThankYou)
-        { return true }
-        else { return false }
-  }
-}
 
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    return Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-        if ( SpatialDMS_parameters.ShowWelcome)
-        { return true }
-        else { return false }
-  }
-}
-
-var if_Instructions = {
-  timeline: [instr_procedure_loop_node],
-  conditional_function: function() {
-        if ( SpatialDMS_parameters.ShowInstructions)
-        { return true }
-        else { return false }
-  }
-}
 
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(if_Welcome)
+timeline.push(setupPractice)
+timeline.push(Welcome)
 timeline.push(enter_fullscreen)
-timeline.push(if_Instructions)
+timeline.push(Instructions01)
+timeline.push(setupPractice)
+timeline.push(loop_node)
+
+timeline.push(Instructions01)
+timeline.push(setupTest)
 timeline.push(loop_node)
 timeline.push(Notes)
 timeline.push(SendData)
-timeline.push(if_ThankYou)
+timeline.push(ThankYou)
