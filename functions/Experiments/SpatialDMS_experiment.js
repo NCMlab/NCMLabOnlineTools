@@ -6,6 +6,8 @@ var Current = 4
 DMSFontSize = 36
 var count = 0
 var stair1
+var FeedbackFlag = false
+var FeedbackText
 const GridCountX = 6
 const GridCountY = 6
 const NumberLocations = GridCountX*GridCountY
@@ -29,6 +31,7 @@ var setupPractice = {
         parameters.MaxValue, parameters.MaxReversals, 2,
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
+    FeedbackFlag = true
     }
   }
 
@@ -39,6 +42,7 @@ var setupTest = {
         parameters.MaxValue, parameters.MaxReversals, parameters.MaxTrials,
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
+    FeedbackFlag = false
     }
   }
 
@@ -90,16 +94,19 @@ var VisualProbe = {
     if ( Probe == 1 && ResponseMapping[ResponseIndex] == 1) 
     { 
       data.correct = 1
+      FeedbackText = LabelNames.Correct
       stair1.Decide(true)
     }
     else if ( Probe == 0 && ResponseMapping[ResponseIndex] == 0) 
     { 
       data.correct = 1
+      FeedbackText = LabelNames.Correct
       stair1.Decide(true)
     } 
     else 
     {
       data.correct = 0
+      FeedbackText = LabelNames.Incorrect
       stair1.Decide(false)
     }
     data.CurrentLocations = CurrentLocations
@@ -142,7 +149,10 @@ var RetentionCanvas = {
 var Fix = {
   type: jsPsychCanvasButtonResponse,
   stimulus: function(c) {
-    CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, "+", 'red')
+    if ( FeedbackFlag )
+    { CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, FeedbackText, 'black') }
+    else
+    { CanvasText(c, CanvasWidth/2+0, CanvasWidth/2+0, "+", 'red') }
     document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
   canvas_size: [CanvasWidth, CanvasHeight],
@@ -185,10 +195,10 @@ timeline.push(setupPractice)
 timeline.push(Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(Instructions01)
+timeline.push(Instructions02)
 timeline.push(setupPractice)
 timeline.push(loop_node)
-
-timeline.push(Instructions01)
+timeline.push(Instructions03)
 timeline.push(setupTest)
 timeline.push(loop_node)
 timeline.push(Notes)

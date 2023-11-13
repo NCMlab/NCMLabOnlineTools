@@ -8,6 +8,12 @@ EN_Instructions.Instructions01 = [
 	//{'page': '<p class="Instructions">You will NOT receive feedback after each trial.</p>'},
 	{'page': '<p class="Instructions">Try to respond as quickly and as accurately as possible. Press next to begin.</p>'},
 	]
+EN_Instructions.Instructions02 = [
+	{'page': '<p class="Instructions">First, there will be some practice trials with feedback.'},
+]	
+EN_Instructions.Instructions03 = [
+	{'page': '<p class="Instructions">Now you will perfom the test with no feedback.'},
+]	
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Spatial Delayed Match to Sample  Task.</p>'},
