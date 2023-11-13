@@ -31,6 +31,7 @@
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-canvas-button-response.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script> 
       // used for the image used during the instructions
         var BaseFolderName = 'assets/InstructionalImages/'
@@ -48,26 +49,14 @@
       </style>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
-
+    <script src="Batteries/ComponentList.js"></script>
     <script src="config/SpatialDMS_setup.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
+
     <script>
       var SpatialDMS_parameters = 'empty'
       var parameters = 'empty'
@@ -83,10 +72,10 @@
               InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
             }
         pseudoSwitch(parameters)
-        console.log(SpatialDMS_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_SpatialDMS_Instructions_'+InstructionsToUse)
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
       })
@@ -100,6 +89,7 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
@@ -132,7 +122,7 @@ var jsPsych = initJsPsych({
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-
+      
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);
       jsPsych.run(timeline);

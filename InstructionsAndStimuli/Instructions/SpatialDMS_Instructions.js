@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.Instructions = [
+EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of short-term memory. You will see one or more dots on the screen and you will need to remember where they are. '+
 	'They will be removed from the screen. After a few seconds you will see a single blue dot. '+
 	'You need to decide whether or not the blue dot is in one of the locations you studied. '},
@@ -8,11 +8,17 @@ EN_Instructions.Instructions = [
 	//{'page': '<p class="Instructions">You will NOT receive feedback after each trial.</p>'},
 	{'page': '<p class="Instructions">Try to respond as quickly and as accurately as possible. Press next to begin.</p>'},
 	]
+EN_Instructions.Instructions02 = [
+	{'page': '<p class="Instructions">First, there will be some practice trials with feedback.'},
+]	
+EN_Instructions.Instructions03 = [
+	{'page': '<p class="Instructions">Now you will perfom the test with no feedback.'},
+]	
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Spatial Delayed Match to Sample  Task.</p>'},
 ]
-add('EN_SpatialDMS_Instructions_Default', function(){ Instructions = EN_Instructions});
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}
