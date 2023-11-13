@@ -40,18 +40,6 @@ var ProbeColor = 'blue'
 var NTrialsPerBlock = 6
 // The number of blocks to run
 var NumberOfBlocks = 5
-// ===================================================
-// ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 40
-var MaxReversals = 15
-var StartValue = 1
-var MinValue = 1
-var MaxValue = 20
-var StepSize = 1
-var NUp = 3
-var NDown = 1
-var FastStart = true
-// ===================================================
 
 /* This is for rapid testing
 MaxTrials = 15
@@ -65,8 +53,23 @@ RetOnTime = 500
 
 SpatialDMS_Adaptive = {
 	ShowWelcome: true,
+	WelcomeSpoken: false,
 	ShowThankYou: true,
-	ShowInstructions: true
+	ShowInstructions: true,
+	MaxTrials: 4,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 20,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	StimOnTime: 2500,
+	RetOnTime: 3500,
+	ProbeOnTime: 5000,
+// This is the intertrial interval. 
+	ITITime: 1000,
 }
 
-add('SpatialDMS_Adaptive', function(){ SpatialDMS_parameters = SpatialDMS_Adaptive});
+add('SpatialDMS_Adaptive', function(){ parameters = SpatialDMS_Adaptive});
