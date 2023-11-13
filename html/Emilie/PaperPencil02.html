@@ -12,15 +12,8 @@
     <link rel="stylesheet" type='text/css' href='../../css/survey.css'>
     <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
     <script src="../../ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-      // use jquery to load up the header button html content 
-      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
   </head>    
   <body>
-    <div id="headerButtons"></div>
     
     <script src="../../jspsych/dist/jspsych.js"></script>
     <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
@@ -37,7 +30,7 @@
     <script src="../../config/General_Setup.js"></script>
     <script src="../../functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="PaperPencil_Instructions.js">//Load language</script>
-    <script src="../../config/Listening_Setup.js"></script>
+    <script src="PaperPencil_Setup.js"></script>
     <script src="../../Batteries/ComponentList.js"></script>
     
     
@@ -45,7 +38,8 @@
 
     <script>
         const InstructionsToUse = 'Default'
-        pseudoSwitch('PaperPencil_001')      
+        pseudoSwitch('PaperPencil_001')   
+        console.log(parameters)   
         LANG = 'EN'
         // Load language specific instructions
         console.log(LANG)
@@ -53,6 +47,7 @@
         console.log(Instructions)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
+        console.log(LabelNames)
     </script>  
 
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
@@ -65,7 +60,7 @@ var jsPsych = initJsPsych({
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
-      var input = jatos.urlQueryParameters;
+      //var input = jatos.urlQueryParameters;
       console.log(TrialCount)
       TrialCount += 1
       // Add jatos info to the data file
@@ -101,14 +96,6 @@ var jsPsych = initJsPsych({
     jsPsych.run(timeline);
   </script>
     <div id="footerText"></div>
-    <script>
-     
-      document.getElementById('header-home-button').textContent = LabelNames.Home;
-      document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-      document.getElementById('header-end-button').textContent = LabelNames.End;
-      document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-      document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
-     
-    </script>
+
   </body>
 </html>
