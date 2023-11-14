@@ -173,8 +173,8 @@ function restartTask() {
 
 }
 
-function endExperiment() {
-  let text = "This will end the study but not remove your data. Are you sure?"
+function stopExperiment() {
+  let text = "This will stop the study but not remove your data. Are you sure?"
   if (confirm(text) == true)
   { jatos.endStudy() }
 }

@@ -221,7 +221,8 @@ BatteryList.push({index: 101,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
-
+// =================================================================================
+// =================================================================================
 BatteryList.push({index: 1001, 
 	name:'TESTER', 
 	list: [	'Intake Form',
@@ -291,7 +292,7 @@ BatteryList.push({index: 1001,
 		'Recognition',
 		'STAI-T',
 		'STAI-S',
-		'BDI',
+		'BDI/GDS',
 		'AES'
 	],
 	Language:'EN',
