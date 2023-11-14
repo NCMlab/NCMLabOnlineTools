@@ -41,7 +41,7 @@ var NumberOfBlocks = 5
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
 var MaxTrials = 5
-var MaxReversals = 15
+//var MaxReversals = 15
 var StartValue = 1
 var MinValue = 1
 var MaxValue = 9

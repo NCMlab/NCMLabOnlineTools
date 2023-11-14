@@ -356,7 +356,7 @@ var Instructions02Written_loop = {
     timeline: [Instructions02Written],
     loop_function: function(data){
       countInstr02+=1
-      if ( countInstr02 < Instructions.Instructions01.length) 
+      if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
 }
@@ -449,7 +449,7 @@ var Instructions03Written_loop = {
     timeline: [Instructions03Written],
     loop_function: function(data){
       countInstr03+=1
-      if ( countInstr03 < Instructions.Instructions01.length) 
+      if ( countInstr03 < Instructions.Instructions03.length) 
       { return true} else { return false}
     }
 }
@@ -543,7 +543,7 @@ var Instructions04Written_loop = {
     timeline: [Instructions04Written],
     loop_function: function(data){
       countInstr04+=1
-      if ( countInstr04 < Instructions.Instructions01.length) 
+      if ( countInstr04 < Instructions.Instructions04.length) 
       { return true} else { return false}
     }
 }
