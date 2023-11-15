@@ -21,15 +21,18 @@ var MakeWordList = {
         console.log(BaseFolderName)
         WordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
         RecogAnswerKey = CreateRecognitionAnswerKey(WordRecallLists.RecognitionWordList)
-        AudioFileList = CreateAudioFileList(BaseFolderName+WordRecog_parameters.FolderName, WordList, WordRecog_parameters.FileExtension)
-        console.log(WordList)
-        console.log(RecogAnswerKey)
+        AudioFileList = CreateAudioFileList(BaseFolderName+parameters.FolderName, WordList, parameters.FileExtension)
+        console.log(AudioFileList)
     }
 }
 
 var preload_audio = {
     type: jsPsychPreload,
-    audio: function(){return AudioFileList}
+    audio: function(){
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        jsPsych.setProgressBar(0)
+        return AudioFileList
+    }
 };
 // =======================================================================  
 // Define the stimuli
@@ -51,7 +54,7 @@ var AudioStimulus = {
         },
         // If there is to be audio AND visual 
         prompt: function() {
-        if ( WordRecog_parameters.VisualPresentation )
+        if ( parameters.VisualPresentation )
         { 
             return '<p class="Fixation">'+WordList[ItemCount]+'</p>'
         }
@@ -62,7 +65,7 @@ var AudioStimulus = {
     },
     margin_horizontal: GapBetweenButtons,
     choices: ['Yes','No'],  
-    trial_duration: function(){return WordRecog_parameters.RecogDuration*1000},
+    trial_duration: function(){return parameters.RecogDuration*1000},
     on_finish: function(data) {
         data.task = 'Recognition'
         // Check response for accuracy
@@ -113,7 +116,7 @@ var VisualStimulus = {
     post_trial_gap: 0,
     //trial_duration: function(){return WordRecall_parameters.TimePerWord},
     //prompt: function() {return Instructions.WordRecallPrompt}, //Add this to config file
-    trial_duration: function(){return WordRecog_parameters.RecogDuration*1000},
+    trial_duration: function(){return parameters.RecogDuration*1000},
     on_finish: function(data) {
         data.task = 'Recognition'
         console.log(data)
@@ -124,36 +127,6 @@ var VisualStimulus = {
     }
   };
 // =======================================================================
-var welcome = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {return Instructions.WelcomeText[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-  }
-  
-var Instructions_Procedure = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function (){return Instructions.InstructionText[countInstr].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: '',
-    choices: function() {return [LabelNames.Next]}, 
-}  
-
-var Notes = {
-    type: jsPsychSurvey, 
-    pages: [[{
-          type: 'text',
-          prompt: function() {return LabelNames.NoteInputBox},
-          textbox_rows: 10,
-          name: 'Notes', 
-          required: false,
-        }]],
-    on_finish: function(data)
-    { data.trial = "Notes" },
-}
 
 var SendData = {
     type: jsPsychCallFunction,
@@ -165,22 +138,13 @@ var SendData = {
     }
 }
   
-var thank_you = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {
-        console.log(Instructions)
-        return Instructions.ThankYouText[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-}
 // =======================================================================
 
 var LoopVisual = {
     timeline: [VisualStimulus],
     loop_function: function(){
       if ( ItemCount < WordList.length - 1 ) {
+        jsPsych.setProgressBar((ItemCount+1)/(AudioFileList.length-1))
         ItemCount += 1
         return true
       }
@@ -192,28 +156,20 @@ var LoopAudio = {
     timeline: [AudioStimulus ],
     loop_function: function(){
         if ( ItemCount < AudioFileList.length-1 ) {
-        ItemCount += 1
-        return true
+            jsPsych.setProgressBar((ItemCount+1)/(AudioFileList.length-1))
+            ItemCount += 1
+            return true
         }
         else { return false}
     }
 }
 
-var instr_procedure_loop_node = {
-    timeline: [Instructions_Procedure],
-    loop_function: function(data){
-      console.log("Instructional Loop Count is: "+countInstr)
-      countInstr+=1
-      if ( countInstr < Instructions.InstructionText.length){
-          return true} else { return false}
-    }
-  }
 
 // =======================================================================
 var if_Spoken = {
     timeline: [IntializeMicrophone, SetupSpeechRecognition],
     conditional_function: function() {
-        if ( WordRecog_parameters.RecallType == 'Spoken' )
+        if ( parameters.RecallType == 'Spoken' )
         { return true }
         else { return false }
     }
@@ -223,7 +179,7 @@ var if_Spoken = {
 var if_Audio = {
     timeline: [LoopAudio],
     conditional_function: function() {
-        if ( WordRecog_parameters.AudioPresentation )
+        if ( parameters.AudioPresentation )
         { return true }
         else { return false }
     }
@@ -233,59 +189,23 @@ var if_Audio = {
 var if_Visual = {
     timeline: [LoopVisual],
     conditional_function: function() {
-        if ( WordRecog_parameters.AudioPresentation )
+        if ( parameters.AudioPresentation )
         { return false }
         else { return true }
     }
 }
-
-var if_Welcome = {
-    timeline: [welcome],
-    conditional_function: function() {
-      if ( WordRecog_parameters.ShowWelcome)
-      { return true }
-      else { return false }
-    }
-}
   
-var if_Test_Instructions = {
-    timeline: [instr_procedure_loop_node],
-    conditional_function: function() {
-            if ( WordRecog_parameters.ShowInstructions)
-            { 
-            return true }
-            else { return false }
-    }
-}
-
-var if_ThankYou = {
-    timeline: [thank_you],
-    conditional_function: function() {
-        if ( WordRecog_parameters.ShowThankYou )
-        { return true }
-        else { return false }
-    }
-}
-  
-var if_Notes = {
-    timeline: [Notes],
-    conditional_function: function() {
-      if ( WordRecog_parameters.AskForNotes)
-      { return true }
-      else { return false }
-    }
-  }
 // =======================================================================
 // Add procedures to the timeline
-timeline.push(if_Welcome)
-timeline.push(if_Test_Instructions)
+timeline.push(Welcome)
+timeline.push(Instructions01)
 timeline.push(MakeWordList)
 timeline.push(preload_audio)
 timeline.push(if_Spoken)
 timeline.push(if_Audio)
 timeline.push(if_Visual)
 timeline.push(if_Notes)
-timeline.push(if_ThankYou)
+timeline.push(ThankYou)
 timeline.push(SendData)
 
   

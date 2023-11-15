@@ -39,6 +39,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/SetupSpeechRecognition.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/EN/Stimuli/WordRecall_Lists.js"></script>
     <script src="InstructionsAndStimuli/Instructions/WordRecog_Instructions.js"></script>
     <script src="config/WordRecog_Setup.js"></script>
@@ -62,15 +63,15 @@
         }
         console.log(parameters)
         pseudoSwitch(parameters)      
-        console.log(WordRecog_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG+'_Instructions_'+InstructionsToUse)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         console.log(Instructions)
         // Load language specific stimuli
-        console.log(LANG+'_'+WordRecog_parameters.WordList)
-        pseudoSwitch(LANG+'_'+WordRecog_parameters.WordList)
+        console.log(LANG+'_'+parameters.WordList)
+        pseudoSwitch(LANG+'_'+parameters.WordList)
         console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
@@ -87,6 +88,8 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
+    auto_update_progress_bar: false,
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);

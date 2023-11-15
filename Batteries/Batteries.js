@@ -295,7 +295,7 @@ BatteryList.push({index: 1001,
 		'BDI/GDS',
 		'AES'
 	],
-	Language:'FR',
+	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })

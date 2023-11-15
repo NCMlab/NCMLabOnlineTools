@@ -48,7 +48,9 @@ var AudioStim = {
     },
     choices: ButtonList,
     trial_ends_after_audio: false,
-    prompt: '<p class="Instructions">Press the letter or number you heard</p>',
+    prompt: function() {
+      return '<p class="Instructions">'+Instructions.TrialText + '</p>'
+    },
     on_finish: function(data) {
         if (randomElement == data.response) {
             NumberCorrect++
