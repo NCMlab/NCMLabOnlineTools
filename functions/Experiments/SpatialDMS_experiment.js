@@ -31,6 +31,8 @@ var setupPractice = {
         parameters.MaxValue, parameters.MaxReversals, 2,
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
+      document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+      jsPsych.setProgressBar(0)
     FeedbackFlag = true
     }
   }
@@ -42,6 +44,8 @@ var setupTest = {
         parameters.MaxValue, parameters.MaxReversals, parameters.MaxTrials,
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        jsPsych.setProgressBar(0)
     FeedbackFlag = false
     }
   }
@@ -171,7 +175,8 @@ var Fix = {
 var loop_node = {
   timeline: [VisualStimulus, VisualMask, RetentionCanvas, VisualProbe, Fix],
   loop_function: function(data){
-    console.log(stair1)
+    console.log((stair1.TrialCount)/(stair1.MaxTrials))
+    jsPsych.setProgressBar((stair1.TrialCount)/(stair1.MaxTrials))
     return (! stair1.Finished)
  }
 };
@@ -191,7 +196,7 @@ var SendData = {
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(setupPractice)
+
 timeline.push(Welcome)
 timeline.push(enter_fullscreen)
 timeline.push(Instructions01)

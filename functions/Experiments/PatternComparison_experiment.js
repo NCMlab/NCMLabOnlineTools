@@ -116,6 +116,8 @@ var timeline = [];
 var preload_imagesA = {
   type: jsPsychPreload,
   images: function(){
+    document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+    jsPsych.setProgressBar(0)
     return LeftFileNames
   },
 }
@@ -141,6 +143,7 @@ var PracticeTrial = {
   
   on_finish: function(data) {
     data.trial = "Practice"
+    jsPsych.setProgressBar(0)
     console.log(data)
   }
 };
@@ -159,6 +162,7 @@ var TestTrial = {
   
   on_finish: function(data) {
     data.trial = "Test"
+    jsPsych.setProgressBar(0)
     console.log(data)
   }
 };
