@@ -27,7 +27,7 @@ var BDI_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
-add('AES_001', function(){ Questionnaire_Parameters = AES_001});
-add('STAI_S_001', function(){ Questionnaire_Parameters = STAI_S_001});
-add('STAI_T_001', function(){ Questionnaire_Parameters = STAI_T_001});
-add('BDI_001', function(){ Questionnaire_Parameters = BDI_001});
+add('AES_001', function(){ parameters = AES_001});
+add('STAI_S_001', function(){ parameters = STAI_S_001});
+add('STAI_T_001', function(){ parameters = STAI_T_001});
+add('BDI_001', function(){ parameters = BDI_001});

@@ -3,7 +3,7 @@ var timeline = []
 var trial = {
   type: jsPsychSurvey,
   pages: function() { 
-    text = 'Questionnaire = '+Questionnaire_Parameters.questionnaire
+    text = 'Questionnaire = '+parameters.questionnaire
     eval(text)
     console.log(Questionnaire)
     return Questionnaire.pages

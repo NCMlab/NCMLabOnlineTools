@@ -244,7 +244,7 @@ BatteryList.push({index: 1001,
 	//list: ['Intake Form'],
 	description: 'Test',
 	ParameterLists: [	'BriefScreening',
-						'EN_ConsentForm_uOttawa_Steffener',
+						'ConsentForm_uOttawa_Steffener',
 						'IntakeForm_Generic',
 						'Listening_001',
 						'ReadingListeningList01',
@@ -295,7 +295,7 @@ BatteryList.push({index: 1001,
 		'BDI/GDS',
 		'AES'
 	],
-	Language:'EN',
+	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })
