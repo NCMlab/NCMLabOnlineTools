@@ -3,7 +3,28 @@ var timeline = []
 var trial = {
   type: jsPsychSurvey,
   pages: function() { 
-    text = 'Questionnaire = '+parameters.questionnaire
+
+    console.log(parameters)
+    // Are there more than one criteria?
+    if ( DepressionQuestionnairesCriteria.length > 1 )
+      {
+        
+        // get the criteria variable value
+        var Str =  'var ' + parameters.variable + ' = jatos.studySessionData.ScreeningData.trials[0].response.' + parameters.variable 
+        console.log(Str)
+        eval(Str)
+        // If the value does not meet any of the criteria, use the first option
+        var CriteriaToUse = 0
+        for ( var i = 0; i < DepressionQuestionnairesCriteria.length; i++ )
+        {
+          // check the criteria
+          if ( eval(parameters.criteria[i].replaceAll("XXX", parameters.variable)))
+          {CriteriaToUse = i}
+          
+      }
+    }
+    console.log(parameters.questionnaire[CriteriaToUse])
+    text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     eval(text)
     console.log(Questionnaire)
     return Questionnaire.pages

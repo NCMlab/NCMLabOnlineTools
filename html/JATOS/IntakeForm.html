@@ -99,12 +99,16 @@ var jsPsych = initJsPsych({
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
+      
+      
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
+      // update session data with the screening information
+      JATOSSessionData.ScreeningData = jsPsych.data.get()
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of the battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       

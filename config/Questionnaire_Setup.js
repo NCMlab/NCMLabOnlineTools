@@ -20,8 +20,14 @@ var STAI_T_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+
+const DepressionQuestionnaires = ['bdi', 'gds']
+const DepressionQuestionnaireVariable = 'Age'
+const DepressionQuestionnairesCriteria = ['( XXX > 17 ) && ( XXX < 31 )', '( XXX > 59 )']
 var BDI_001 = { 
-    questionnaire: 'bdi', 
+    questionnaire: DepressionQuestionnaires, 
+    criteria: DepressionQuestionnairesCriteria,
+    variable: DepressionQuestionnaireVariable,
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,

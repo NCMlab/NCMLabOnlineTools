@@ -43,8 +43,7 @@ var SendData = {
   func: function() {
     var data = jsPsych.data.get()
     Results = IntakeForm_Scoring(data, IntakeFormParameters.ScoringMethod)
-    console.log(Results)
-    //jsPsych.finishTrial(Results)
+    jsPsych.finishTrial(Results)
   }
 }
 
@@ -83,6 +82,7 @@ var fixation = {
 
 timeline.push(trial)
 timeline.push(CheckForEligibility)
-timeline.push(SendData)
 timeline.push(if_Eligibile)
+timeline.push(SendData)
+
 

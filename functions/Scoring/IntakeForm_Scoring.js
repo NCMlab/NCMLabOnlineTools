@@ -10,21 +10,15 @@ function IntakeForm_Scoring(data, method) {
 	{
 		// check all answers
 		if (( trialData.response.Age < 18 ) || 	(( trialData.response.Age > 30 ) && ( trialData.response.Age < 60 )))
-		{
-			InclusionFlag = false
-		}
-				
+		{ InclusionFlag = false }
 		for ( var i = 0; i < trialData.accuracy.length; i++ )
 		{
 			var fieldName = Object.keys(trialData.accuracy[i])
 			if ( ! trialData.accuracy[i][fieldName] )
 			{ InclusionFlag = false }
 		}
-		
 		if ( ! InclusionFlag ) 
-		{ 
-			Results.Eligible = false
-		}
+		{ Results.Eligible = false }
 	}
 
 	
@@ -48,7 +42,6 @@ function IntakeForm_Scoring(data, method) {
 	{
 		for ( var i = 0; i < Object.keys(trialData.response).length; i++ )
 		{
-			
 			var TextAnswer = trialData.response[keys[i]]
 			//Results.AllResults[keys[i]] = trialData.response[keys[i]]
 			//var NumericScore = trialData.response[keys[i]] // Numeric score
@@ -62,19 +55,17 @@ function IntakeForm_Scoring(data, method) {
 					Score = j 
 					TotalScore += Score
 				}
-				
 			}
 		}
 	}
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
+	Results.parameters = parameters
 	Results.Alert = false
 	if ( trialData.AlertLimit !== undefined ) 
 	{
 		if ( TotalScore > trialData.AlertLimit )
-		{ 
-			Results.Alert = true	
-		}
+		{ Results.Alert = true }
 	}
 	if ( method == "screening") 
 	{
@@ -83,8 +74,5 @@ function IntakeForm_Scoring(data, method) {
 		Results.AllResults['Available Language'] = trialData.ComputerInfo.AvailableLanguage
 	}
 	console.log(Results)
-
-
-
 	return Results
-}
+} 
