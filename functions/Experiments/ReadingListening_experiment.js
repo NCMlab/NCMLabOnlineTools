@@ -6,6 +6,7 @@ var userSaid
 var Score
 var count = 0
 var InputSentences
+var count = 1
 var List01 = []
 List01.push({stim:"Rice is often served in round bowls."})
 List01.push({stim:"The birch canoe slid on the smooth planks."})
@@ -40,7 +41,8 @@ var GetList = {
   type: jsPsychCallFunction,
   func: function() {
     //InputSentences = Instructions.List
-    
+    document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+    jsPsych.setProgressBar(0)
     console.log(List01)
     console.log(InputSentences)
   },
@@ -156,6 +158,8 @@ var RecallRequest01 = {
       x.style.display = 'none'
     },
     on_finish: function(data){  
+      jsPsych.setProgressBar(count/parameters.SentencesToRepeat)
+      count += 1
       console.log(HeardSentence01)
       console.log(Score)
       data.task = 'read'
@@ -175,7 +179,7 @@ var trials = {
     repetitions: 1,
     sample: {
       type: 'without-replacement',
-      size: 5
+      size: parameters.SentencesToRepeat
   }
 }
 
