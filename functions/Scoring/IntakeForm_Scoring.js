@@ -23,4 +23,4 @@ function IntakeForm_Scoring(data, method) {
 	console.log(Results)
 	Results.AllResults['Notes'] = ''
 	return Results
-} 
+}   

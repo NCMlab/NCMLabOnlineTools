@@ -50,18 +50,6 @@ var trial = {
       data.pages = Questionnaire.pages
       console.log(Questionnaire)
       data.values = Questionnaire.values
-      var NAV = navigator;
-      var ComputerInfo = {}
-      ComputerInfo.CurrentLanguage = NAV.language
-      ComputerInfo.AvailableLanguage = NAV.languages
-      ComputerInfo.appVersion = NAV.appVersion
-      data.ComputerInfo = ComputerInfo
-
-
-      var TTT = jsPsych.data.get()
-      console.log(TTT)
-      trialData = TTT.filter({trial: 'Questionnaire'}).trials[0]
-      console.log(Object.keys(trialData.response))
     }
 };
 
@@ -75,8 +63,10 @@ var SendData = {
 var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
-    var data = jsPsych.data.get()
-    Results = IntakeForm_Scoring(data, Questionnaire.ScoringMethod)
+    var data = jsPsych.data.get().trials[0]
+    Results = Questionnaire_Scoring(data)
+    console.log(data)
+    //console.log(Results)
   }
 }
 
