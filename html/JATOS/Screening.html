@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="description" content="jsPsych NCMLab Screening">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Intake Form</title>
+    <title>NCMLab: Screening</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link href="css/LikertQuestionnaires.css" rel="stylesheet">
@@ -38,40 +38,34 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-    <script src="InstructionsAndStimuli/BackgroundMaterial/IntakeAndScreening.js"></script>
     <script>
-      var IntakeFormParameters = 'empty'
       var parameters = 'empty'
       var BackgroundText = ''
-      
       jatos.onLoad(() => {
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
-            { parameters = 'EN_IntakeForm_Generic' }
+            { parameters = 'EN_Screening_Generic' }
             else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
             console.log(parameters)
             LANG = jatos.studySessionData.Language
             console.log(LANG)
             // load the parameters
             pseudoSwitch(LANG+"_"+parameters)
-            console.log(IntakeFormParameters)
+
             // load the language specific instructions
             
             
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
-            console.log(IntakeFormParameters)
             console.log(LabelNames)
             BackgroundText = eval(LANG+'_BackgroundText');
       })
       
     </script> 
-   <script src="functions/Experiments/IntakeForm_experiment.js"></script>
-   <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
+   <script src="functions/Experiments/Screening_experiment.js"></script>
+   <script src="functions/Scoring/Screening_Scoring.js"></script>
   <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
-
-
 
 <script>
 var setup = []

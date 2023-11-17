@@ -225,7 +225,7 @@ BatteryList.push({index: 101,
 // =================================================================================
 BatteryList.push({index: 1001, 
 	name:'TESTER', 
-	list: [	'Intake Form',
+	list: [	'Screening',
 			'Consent Form',
 			'Intake Form',
 			'Listening',

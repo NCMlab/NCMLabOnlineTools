@@ -292,7 +292,7 @@ var pages = [
         {
           type: 'text',
           prompt: "In what month and year were you born?", 
-          name: 'MonthOfBirth02', 
+          name: 'Year-Month of Birth', 
           input_type: "month",
           required: false,
         },

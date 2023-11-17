@@ -33,7 +33,7 @@ var mentalHealthFeedback = {
     choices: function() {return [LabelNames.Next]}, 
   }
   
-  var if_MentalHealthAlert = {
+  var MentalHealthCheck = {
     timeline: [mentalHealthFeedback],
     conditional_function: function(){
       if ( Results.Alert )
@@ -53,14 +53,15 @@ var EligibilityCheck = {
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
     on_finish: function() {
-        jatos.abortStudy()
+        //jsPsych.finishTrial(Results)    
+        //jatos.endStudyAndRedirect("https://ncmlab.github.io/", Results);
     }
   }
   
   var if_Eligibile = {
     timeline: [EligibilityCheck],
     conditional_function: function(){
-      if ( Results.Eligible )
+      if ( Results.AllResults['Accuracy'] )
       { return false }
       else { return true }
     }

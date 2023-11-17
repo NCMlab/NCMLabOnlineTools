@@ -49,8 +49,7 @@ var pages = [
 var EN_BriefScreening = {}
 EN_BriefScreening.title = "Screening"
 EN_BriefScreening.pages = pages
-EN_BriefScreening.ScoringMethod = 'screening'
-add('EN_BriefScreening', function(){ IntakeFormParameters = EN_BriefScreening });
+add('EN_BriefScreening', function(){ parameters = EN_BriefScreening });
 // =====================================================
 var pages = [
     [
@@ -102,5 +101,4 @@ var pages = [
 var FR_BriefScreening = {}
 FR_BriefScreening.title = "Dépistage"
 FR_BriefScreening.pages = pages
-FR_BriefScreening.ScoringMethod = 'screening'
-add('FR_BriefScreening', function(){ IntakeFormParameters = FR_BriefScreening });
+add('FR_BriefScreening', function(){ parameters = FR_BriefScreening });
