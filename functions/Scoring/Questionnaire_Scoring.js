@@ -7,14 +7,31 @@ function Questionnaire_Scoring(data) {
 	Results.AllResults['ScoreName'] = data.title
 	Results.AllResults['Accuracy'] = ''
 	var TotalScore = 0
+	var TextAnswer
+	var NumericScore
+	var prompt
+	var resp
 	if ( data.QuestionnaireType == 'likert' )
 	{
-		for ( var i = 0; i < Object.keys(data.response).length; i++ )
+		const keys = Object.keys(data.response)
+        console.log(keys)
+		for ( var i = 0; i < keys.length; i++ )
 		{
-			var prompt = data.pages[0][i].prompt
-			var TextAnswer = data.pages[0][i].likert_scale_values[data.response[keys[i]]].text
-			//Results.AllResults[keys[i]] = data.response[keys[i]]
-			var NumericScore = data.response[keys[i]] // Numeric score
+			prompt = data.pages[0][i].prompt
+			resp = data.response[keys[i]]
+			console.log(resp === null)
+			// Check to see if the person answers
+			if ( resp === null )
+			{ NumericScore = 0; TextAnswer = ''}
+			else
+			{
+				console.log("FOUND ACTUAL RESPONSE")
+				TextAnswer = data.pages[0][i].likert_scale_values[data.response[keys[i]]].text
+				//Results.AllResults[keys[i]] = data.response[keys[i]]
+				NumericScore = data.response[keys[i]] // Numeric score
+			}
+			 
+
 			TotalScore += NumericScore
 			Results.AllResults[prompt] = TextAnswer
 		}

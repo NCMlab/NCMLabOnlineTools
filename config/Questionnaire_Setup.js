@@ -1,20 +1,22 @@
 
+/* Making the questionnaire as a list allows the use of criteria 
+to define which questionnaire in the list to use */
 var AES_001 = { 
-    questionnaire: 'aes', 
+    questionnaire: ['aes'], 
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false,
  }
 var STAI_S_001 = { 
-    questionnaire: 'stai_state', 
+    questionnaire: ['stai_state'], 
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false, 
 }
 var STAI_T_001 = { 
-    questionnaire: 'stai_trait', 
+    questionnaire: ['stai_trait'], 
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
@@ -28,7 +30,7 @@ var BDI_001 = {
     questionnaire: DepressionQuestionnaires, 
     criteria: DepressionQuestionnairesCriteria,
     variable: DepressionQuestionnaireVariable,
-    AskForNotes: true,
+    AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false,  

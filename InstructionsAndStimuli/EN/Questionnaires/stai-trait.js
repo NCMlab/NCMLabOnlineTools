@@ -159,9 +159,9 @@ var pages = [
               ]
 ]
 
-var stai_trait = {}
-stai_trait.title = title
-stai_trait.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
-stai_trait.pages = pages
+var EN_stai_trait = {}
+EN_stai_trait.title = title
+EN_stai_trait.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
+EN_stai_trait.pages = pages
 // This is used for scoring
-stai_trait.QuestionnaireType = 'likert'
+EN_stai_trait.QuestionnaireType = 'likert'
