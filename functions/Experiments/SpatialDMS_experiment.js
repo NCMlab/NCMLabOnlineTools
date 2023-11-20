@@ -13,8 +13,8 @@ const GridCountY = 6
 const NumberLocations = GridCountX*GridCountY
 var CurrentLocations
 const CircleColor = 'black'
-const CanvasWidth = 600
-const CanvasHeight = 600
+const CanvasWidth = 500
+const CanvasHeight = 500
 // Decide circle radius based on the canvas size
 const CircleRadius = CalculateRadius(CanvasWidth, CanvasHeight)
 
@@ -185,8 +185,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = DMS_Scoring(stair1)    
-
+    Results = DMS_Scoring(stair1, data)    
     jsPsych.finishTrial(Results)
   },
 }    

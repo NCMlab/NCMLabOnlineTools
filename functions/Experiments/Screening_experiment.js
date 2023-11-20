@@ -39,6 +39,7 @@ var CheckEligibilityData = {
     func: function() {
         console.log(jatos)
       var data = jsPsych.data.get()
+      console.log(data)
       Results = Screening_Scoring(data)
       console.log(Results)
     }

@@ -22,7 +22,6 @@
   <body>
     <div id="headerButtons"></div>
     <script src="jatos.js"></script>
-    <script src="ImportedModules/jquery-3.6.4.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
@@ -32,45 +31,31 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-canvas-button-response.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+    <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
+
+    <script src="Batteries/ComponentList.js"></script>
+    <script src="config/SpatialDMS_setup.js"></script>
     <script> 
       // used for the image used during the instructions
         var BaseFolderName = 'assets/InstructionalImages/'
     </script>
-    <style>
-        .stimulus { font-size: 45; }
-        .background {color:  [150, 150, 150]}
-        .instruct {font-size:  20;}
-        .jspsych-html-keyboard-response-stimulus {font-size: 45;}
-        .jspsych-display-element {
-          font-family: 'Open Sans', 'Arial', sans-serif;
-          font-size: 36px;
-          line-height: 0.85em;
-        }
-      </style>
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="config/General_Setup.js"></script>
-    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js"></script>
-    <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
-    <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
-    <script src="Batteries/ComponentList.js"></script>
-    <script src="config/SpatialDMS_setup.js"></script>
-
+        <script src="InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js"></script>
     <script>
       var SpatialDMS_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-        Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {
+        if (typeof BatteryHtmlID === 'undefined') {
               parameters = 'SpatialDMS_Adaptive'
               InstructionsToUse = 'Default'
-            }
-            else {
+        }
+        else {
               parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
               InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
-            }
+        }
         pseudoSwitch(parameters)
         console.log(parameters)
         LANG = jatos.studySessionData.Language
@@ -113,10 +98,12 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // If this a la carte or the end of the battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+
     }
   });
   jatos.onLoad(() => {

@@ -7,34 +7,38 @@ function Screening_Scoring(data) {
 	var InclusionFlag = true
 	
 	
-	// check all answers
-	if (( trialData.response.Age < 18 ) || 	(( trialData.response.Age > 30 ) && ( trialData.response.Age < 60 )))
-	{ InclusionFlag = false }
-	for ( var i = 0; i < trialData.accuracy.length; i++ )
-	{
-		var fieldName = Object.keys(trialData.accuracy[i])
-		if ( ! trialData.accuracy[i][fieldName] )
-		{ InclusionFlag = false }
-	}
-	if ( ! InclusionFlag ) 
-	{ Eligible = false }
+
 	
+
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['ScoreName'] = 'Eligible'
-	Results.PrimaryResults['Accuracy'] = Eligible
 	
 	Results.AllResults = {}
-	Results.AllResults['ScoreName'] = 'Eligible'
-	Results.AllResults['Accuracy'] = Eligible
 	
 	console.log(trialData.response)
-	const keys = Object.keys(trialData.response)
-	console.log(keys[1])
-
+	keys = Object.keys(trialData.response)
+	console.log(keys)
+	InclusionFlag = true
+	if (( trialData.response.Age < 18 ) || 	(( trialData.response.Age > 30 ) && ( trialData.response.Age < 60 )))
+	{ InclusionFlag = false }
+	
 	for ( var i = 0; i < keys.length; i++ )
 	{	
+
 		Results.AllResults[keys[i]] = trialData.response[keys[i]]
+		if ( keys[i] != 'Age' ) {
+			if ( !trialData.pages[0][i].correct_response === trialData.response[keys[i]] )
+			{ InclusionFlag = false }
+		}
+		
 	}
+	console.log(InclusionFlag)
+	if ( ! InclusionFlag ) 
+	{ Eligible = false }
+	Results.PrimaryResults['ScoreName'] = 'Eligible'
+	Results.PrimaryResults['Accuracy'] = Eligible
+	Results.AllResults['ScoreName'] = 'Eligible'
+	Results.AllResults['Accuracy'] = Eligible
+
 
 	var NAV = navigator;
     var ComputerInfo = {}

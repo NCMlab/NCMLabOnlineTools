@@ -49,7 +49,7 @@ SpatialDMS_Adaptive = {
 	WelcomeSpoken: false,
 	ShowThankYou: true,
 	ShowInstructions: true,
-	MaxTrials: 4,
+	MaxTrials: 40,
 	MaxReversals: 15,
 	StartValue: 1,
 	MinValue: 1,
@@ -58,10 +58,10 @@ SpatialDMS_Adaptive = {
 	NUp: 3,
 	NDown: 1,
 	FastStart: true,
-	MaskOnTime: 500,
-	StimOnTime: 500,
-	RetOnTime: 500,
-	ProbeOnTime: 5000,
+	MaskOnTime: 300,
+	StimOnTime: 2500,
+	RetOnTime: 3200,
+	ProbeOnTime: 2500,
 // This is the intertrial interval. 
 	ITITime: 1000,
 }
