@@ -17,13 +17,6 @@ var KeyboardChoices = ['No', 'Yes'];
 // This response mapping correspopnds to the order of the above KeyboardChoices
 var ResponseMapping = [0, 1];
 
-// Timings of the different trial phases in MILLISECONDS
-var StimOnTime = 2500
-var RetOnTime = 3500
-var ProbeOnTime = 5000
-// This is the intertrial interval. 
-var ITITime = 1000
-
 // This is the time between blocks. Note that between each block of trials there
 // is also the 3-2-1 countdown. Therefore, the full interblock interval is this value PLUS 
 // the countdown time, which is 3 seconds.
@@ -65,8 +58,9 @@ SpatialDMS_Adaptive = {
 	NUp: 3,
 	NDown: 1,
 	FastStart: true,
-	StimOnTime: 2500,
-	RetOnTime: 3500,
+	MaskOnTime: 500,
+	StimOnTime: 500,
+	RetOnTime: 500,
 	ProbeOnTime: 5000,
 // This is the intertrial interval. 
 	ITITime: 1000,

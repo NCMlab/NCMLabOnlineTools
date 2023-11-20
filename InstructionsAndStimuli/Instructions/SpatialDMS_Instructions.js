@@ -16,8 +16,7 @@ EN_Instructions.Instructions03 = [
 ]	
 EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to continue.'}]
 EN_Instructions.WelcomeText = [
-    {'page': '<p class="Instructions">Welcome to the Spatial Delayed Match to Sample  Task.</p>'},
-]
+    {'page': '<p class="Instructions">This is the Spatial Delayed Match to Sample Task.</p>'}]
 add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 

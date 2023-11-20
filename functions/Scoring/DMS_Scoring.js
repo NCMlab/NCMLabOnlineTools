@@ -1,4 +1,4 @@
-function DMS_Scoring(Stair) {
+function DMS_Scoring(Stair, data) {
 	Notes = data.filter({trial: 'Notes'})
 	console.log(Stair)	
 	var NTrials = Stair.TrialCount

@@ -63,7 +63,7 @@ var VisualStimulus = {
   canvas_size: [CanvasWidth, CanvasHeight],
   choices: ['dummy'],
   prompt: '',
-  trial_duration: StimOnTime,
+  trial_duration: function() { return parameters.StimOnTime },
 };
 
 var VisualProbe = {
@@ -87,7 +87,7 @@ var VisualProbe = {
   canvas_size: [CanvasWidth, CanvasHeight],
   choices: [],
   prompt: '',
-  trial_duration: ProbeOnTime,
+  trial_duration: function() { return parameters.ProbeOnTime },
   choices: KeyboardChoices,
   on_finish: function(data){
     var ResponseIndex = ResponseMapping.indexOf(data.response)
@@ -131,7 +131,7 @@ var VisualMask = {
   canvas_size: [CanvasWidth, CanvasHeight],
   choices: ['dummy'],
   prompt: '',
-  trial_duration: StimOnTime,
+  trial_duration: function() { return parameters.MaskOnTime },
 };
 
 var RetentionCanvas = {
@@ -143,7 +143,7 @@ var RetentionCanvas = {
   canvas_size: [CanvasWidth, CanvasHeight],
   choices: ['dummy'],
   prompt: '',
-  trial_duration: StimOnTime,
+  trial_duration: function() { return parameters.RetOnTime },
 }
 
 var Fix = {
@@ -158,7 +158,7 @@ var Fix = {
   canvas_size: [CanvasWidth, CanvasHeight],
   choices: ['dummy'],
   prompt: '',
-  trial_duration: ITITime,
+  trial_duration: function() { return parameters.ITITime },
   // on_finish: function(data){
   //   data.trialType = "fixation"
   // }
@@ -179,9 +179,8 @@ var loop_node = {
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var trialData = jsPsych.data.get()//.filter({task:'Trial'})
-    console.log(trialData)
-    Results = SpatialDMS_Scoring(trialData) 
+    var data = jsPsych.data.get()
+    Results = DMS_Scoring(stair1, data)    
     jsPsych.finishTrial(Results)
   },
 }    
@@ -201,6 +200,6 @@ timeline.push(loop_node)
 timeline.push(Instructions03)
 timeline.push(setupTest)
 timeline.push(loop_node)
-timeline.push(Notes)
-timeline.push(SendData)
-timeline.push(ThankYou)
+//timeline.push(Notes)
+//timeline.push(ThankYou)
+//timeline.push(SendData)
