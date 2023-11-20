@@ -186,7 +186,7 @@ var SendData = {
   func: function() {
     var trialData = jsPsych.data.get()//.filter({task:'Trial'})
     console.log(trialData)
-    Results = SpatialDMS_Scoring(trialData) 
+    Results = DMS_Scoring(trialData) 
     jsPsych.finishTrial(Results)
   },
 }    
