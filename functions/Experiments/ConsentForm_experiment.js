@@ -1,6 +1,6 @@
 var check_consent = function(elem) {
     console.log("HELLO CONSENT BUTTON")
-    if (document.getElementById('consent_checkbox').checked) {
+    if (document.getElementById('consent_checkbox').checked) {    
         return true;
     }
     else {
@@ -20,6 +20,8 @@ var trial = {
     execute_script: true,
     on_finish: function(data){
         console.log(data)
+        data.trial = "Consent"
+        data.response = ["Yes"]
     }
 };
   
@@ -27,10 +29,13 @@ var trial = {
 var SendData = {
     type: jsPsychCallFunction,
     func: function() {
-          Results = ConsentForm_Scoring()
+        var data = jsPsych.data.get()
+          Results = ConsentForm_Scoring(data)
+          console.log(Results)
           jsPsych.finishTrial(Results)
     },
   }
 var timeline = []
 timeline.push(trial)
 timeline.push(SendData)
+//timeline.push(trial)

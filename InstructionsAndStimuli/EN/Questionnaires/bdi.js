@@ -242,13 +242,13 @@ var pages = [
 				]
 			]	
 
-var bdi = {}
-bdi.title = title
-bdi.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
-bdi.pages = pages
-bdi.values = values
-bdi.QuestionnaireType = 'multi-choice'
-bdi.AlertLimit = 3
+var EN_bdi = {}
+EN_bdi.title = title
+EN_bdi.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
+EN_bdi.pages = pages
+EN_bdi.values = values
+EN_bdi.QuestionnaireType = 'multi-choice'
+EN_bdi.AlertLimit = 21
 // Notes:
 //  1-10____________________These ups and downs are considered normal
 //  11-16___________________ Mild mood disturbance
@@ -257,147 +257,281 @@ bdi.AlertLimit = 3
 //  31-40___________________Severe depression
 //  over 40__________________Extreme depression 
 
+// ==========================================================================================
 
-// =================================================
-/*
-Nom:______________________________ Date:_________________
-d'énoncés, vous en trouvez plusieurs qui semblent décrire également bien ce que vous
-ressentez, choisissez celui qui a le chiffre le plus élevé et encerclez ce chiffre. Assurez-vous
-bien de ne choisir qu'un seul énoncé dans chaque groupe, y compris le groupe #16 et #18.
-{
-	type: 'multi-choice',
-	prompt: ' ', 
-	name: 'bdi01_sadness',
-	options: 
-		['Je ne me sens pas triste.',
-		'Je me sens très souvent triste.',
-		'Je suis tout le temps triste.',
-		'Je suis si triste ou si malheureux(se) que ce n\'est pas supportable.'],
-		required: true,
-},
-{
-	type: 'multi-choice',
-	prompt: ' ', 
-	name: 'bdi02_pessimism',
-	options: 
-		[
-			'Je ne suis pas découragé(e) face à mon avenir.',
-			'Je me sens plus découragé(e) qu'avant face à mon avenir.',
-			'Je ne m'attends pas à ce que les choses s'arrangent pour moi.',
-			'J\'ai le sentiment que mon avenir est sans espoir et qu'il ne peut qu'empirer.'
-		]
-},
-0 Je ne suis pas découragé(e) face à mon avenir.
-1 Je me sens plus découragé(e) qu'avant face à mon avenir.
-2 Je ne m'attends pas à ce que les choses s'arrangent pour moi.
-3 J'ai le sentiment que mon avenir est sans espoir et qu'il ne peut qu'empirer.
-3 Échecs dans le passé
-0 Je n'ai pas le sentiment d'avoir échoué dans la vie, d'être un(e) raté(e).
-1 J'ai échoué plus souvent que je n'aurais dû.
-2 Quand je pense à mon passé, je constate un grand nombre d'échecs.
-3 J'ai le sentiment d'avoir complètement raté ma vie.
-4 Perte de plaisir
-0 J'éprouve toujours autant de plaisir qu'avant aux choses qui me plaisent.
-1 Je n'éprouve pas autant de plaisir aux choses qu'avant.
-2 J'éprouve très peu de plaisir aux choses qui me plaisaient habituellement.
-3 Je n'éprouve aucun plaisir aux choses qui me plaisaient habituellement.
-5 Sentiments de culpabilité
-0 Je ne me sens pas particulièrement coupable.
-1 Je me sens coupable pour bien des choses que j'ai faites ou que j'aurais dû faire.
-2 Je me sens coupable la plupart du temps.
-3 Je me sens tout le temps coupable.
-Encerclez alors le chiffre placé devant l'énoncé que vous avez choisi. Si, dans un groupe
-BDI-II
-Ce questionnaire comporte 21 groupes d'énoncés. Veuillez lire avec soin chacun de ces
-groupes puis, dans chaque groupe, choisissez l'énoncé qui décrit le mieux comment vous
-vous êtes senti(e) au cours des deux dernières semaines, incluant aujourd'hui.
-Nom:______________________________ Date:_________________
-6 Sentiment d'être puni(e)
-0 Je n'ai pas le sentiment d'être puni(e).
-1 Je sens que je pourrais être puni(e).
-2 Je m'attends à être puni(e).
-3 J'ai le sentiment d'être puni(e).
-7 Sentiments négatifs envers soi-même
-0 Mes sentiments envers moi-même n'ont pas changé.
-1 J'ai perdu confiance en moi.
-2 Je suis déçu(e) par moi-même.
-3 Je ne m'aime pas du tout.
-8 Attitude critique envers soi
-0 Je ne me blâme pas ou ne me critique pas plus que d'habitude.
-1 Je suis plus critique envers moi-même que je ne l'étais.
-2 Je me reproche tous mes défauts.
-3 Je me reproche tous les malheurs qui arrivent.
-9 Pensées ou désirs de suicide
-0 Je ne pense pas du tout à me suicider.
-1 Il m'arrive de penser à me suicider, mais je ne le ferai pas.
-2 J'aimerais me suicider.
-3 Je me suiciderais si l'occasion se présentait.
-10 Pleurs
-0 Je ne pleure pas plus qu'avant.
-1 Je pleure plus qu'avant.
-2 Je pleure pour la moindre petite chose.
-3 Je voudrais pleurer mais je ne suis pas capable.
-11 Agitation
-0 Je ne suis pas plus agité(e) ou plus tendu(e) que d'habitude.
-1 Je me sens plus agité(e) ou plus tendu(e) que d'habitude.
-2 Je suis si agité(e) ou tendu(e) que j'ai du mal à rester tranquille.
-3 Je suis si agité(e) ou tendu(e) que je dois continuellement bouger ou faire quelque chose.
-12 Perte d'intérêt
-0 Je n'ai pas perdu d'intérêt pour les gens ou pour les activités.
-1 Je m'intéresse moins qu'avant aux gens et aux choses.
-2 Je ne m'intéresse presque plus aux gens et aux choses.
-3 J'ai du mal à m'intéresser à quoique ce soit.
-Nom:______________________________ Date:_________________
-13 Indécision
-0 Je prends des décisions toujours aussi bien qu'avant.
-1 Il m'est plus difficile que d'habitude de prendre des décisions.
-2 J'ai beaucoup plus de mal qu'avant à prendre des décisions.
-3 J'ai du mal à prendre n'importe quelle décision.
-14 Dévalorisation
-0 Je pense être quelqu'un de valable.
-1 Je ne crois pas avoir autant de valeur ni être aussi utile qu'avant.
-2 Je me sens moins valable que les autres.
-3 Je sens que je ne vaux absolument rien.
-15 Perte d'énergie
-0 J'ai toujours autant d'énergie qu'avant.
-1 J'ai moins d'énergie qu'avant.
-2 Je n'ai pas assez d'énergie pour pouvoir faire grand-chose.
-3 J'ai trop peu d'énergie pour faire quoi que ce soit.
-16 Modifications dans les habitudes de sommeil
-0 Mes habitudes de sommeil n'ont pas changé.
-1a Je dors un peu plus que d'habitude.
-1a Je dors un peu moins que d'habitude.
-2b Je dors beaucoup plus que d'habitude.
-2b Je dors beaucoup moins que d'habitude.
-3c Je dors presque toute la journée.
-3c Je me réveille une ou deux heures plus tôt et je suis incapable de me rendormir.
-17 Irritabilité
-0 Je ne suis pas plus irritable que d'habitude.
-1 Je suis plus irritable que d'habitude.
-2 Je suis beaucoup plus irritable que d'habitude.
-3 Je suis constamment irritable.
-18 Modifications de l'appétit
-0 Mon appétit n'a pas changé.
-1a J'ai un peu moins d'appétit que d'habitude.
-1b J'ai un peu plus d'appétit que d'habitude.
-2a J'ai beaucoup moins d'appétit que d'habitude.
-2b J'ai beaucoup plus d'appétit que d'habitude.
-3a Je n'ai pas d'appétit du tout.
-3b J'ai constamment envie de manger.
-Nom:______________________________ Date:_________________
-19 Difficulté à se concentrer
-0 Je parviens à me concentrer toujours aussi bien qu'avant.
-1 Je ne parviens pas à me concentrer aussi bien que d'habitude.
-2 J'ai du mal à me concentrer longtemps sur quoi que ce soit.
-3 Je me trouve incapable de me concentrer sur quoi que ce soit.
-20 Fatigue
-0 Je ne suis pas plus fatiqué(e) que d'habitude.
-1 Je me fatigue plus facilement que d'habitude.
-2 Je suis trop fatigué(e) pour faire un grand nombre de choses que je faisais avant.
-3 Je suis trop fatigué(e) pour faire la plupart des choses que je faisais avant.
-21 Perte d'intérêt pour le sexe
-0 Je n'ai pas noté de changement récent dans mon intérêt pour le sexe.
-1 Le sexe m'intéresse moins qu'avant.
-2 Le sexe m'intéresse beaucoup moins maintenant.
-3 J'ai perdu tout intérêt pour le sexe.
-*/
+var reference = ""
+var values = [0, 1, 2, 3]
+var pages = [
+				[
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi01_sadness',
+						options: 
+							['Je ne me sens pas triste.',
+							'Je me sens très souvent triste.',
+							'Je suis tout le temps triste.',
+							'Je suis si triste ou si malheureux(se) que ce n\'est pas supportable.'
+						],
+							required: false,
+							alert: 'Je suis si triste ou si malheureux(se) que ce n\'est pas supportable.'
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi02_pessimism',
+						options: 
+							[
+								'Je ne suis pas découragé(e) face à mon avenir.',
+								'Je me sens plus découragé(e) qu\'avant face à mon avenir.',
+								'Je ne m\'attends pas à ce que les choses s\'arrangent pour moi.',
+								'J\'ai le sentiment que mon avenir est sans espoir et qu\'il ne peut qu\'empirer.'
+							],
+							alert: 'J\'ai le sentiment que mon avenir est sans espoir et qu\'il ne peut qu\'empirer.'
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi03_Échecs_dans_le_passé',
+						options: 
+							[
+								'Je n\'ai pas le sentiment d\'avoir échoué dans la vie, d\'être un(e) raté(e).',
+								'J\'ai échoué plus souvent que je n\'aurais dû.',
+								'Quand je pense à mon passé, je constate un grand nombre d\'échecs.',
+								'J\'ai le sentiment d\'avoir complètement raté ma vie.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi04_Perte_de_plaisir',
+						options: 
+							[
+								'J\'éprouve toujours autant de plaisir qu\'avant aux choses qui me plaisent.',
+								'Je n\'éprouve pas autant de plaisir aux choses qu\'avant.',
+								'J\'éprouve très peu de plaisir aux choses qui me plaisaient habituellement.',
+								'Je n\'éprouve aucun plaisir aux choses qui me plaisaient habituellement.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi05_Sentiments_culpabilité',
+						options: 
+							[
+								'Je ne me sens pas particulièrement coupable.',
+								'Je me sens coupable pour bien des choses que j\'ai faites ou que j\'aurais dû faire.',
+								'Je me sens coupable la plupart du temps.',
+								'Je me sens tout le temps coupable.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi06_Sentiment_puni',
+						options: 
+							[
+								'Je n\'ai pas le sentiment d\'être puni(e).',
+								'Je sens que je pourrais être puni(e).',
+								'Je m\'attends à être puni(e).',
+								'J\'ai le sentiment d\'être puni(e).',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi07_Sentiments_négatifs_envers_soi-même',
+						options: 
+							[
+								'Mes sentiments envers moi-même n\'ont pas changé.',
+								'J\'ai perdu confiance en moi.',
+								'Je suis déçu(e) par moi-même.',
+								'Je ne m\'aime pas du tout.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi08_Attitude_critique_envers_soi',
+						options: 
+							[
+								'Je ne me blâme pas ou ne me critique pas plus que d\'habitude.',
+								'Je suis plus critique envers moi-même que je ne l\'étais.',
+								'Je me reproche tous mes défauts.',
+								'Je me reproche tous les malheurs qui arrivent.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi09_Pensées_suicide',
+						options: 
+							[
+								'Je ne pense pas du tout à me suicider.',
+								'Il m\'arrive de penser à me suicider, mais je ne le ferai pas.',
+								'J\'aimerais me suicider.',
+								'Je me suiciderais si l\'occasion se présentait.',
+							],
+							alert: 'Je me suiciderais si l\'occasion se présentait.',
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi10_Pleurs',
+						options: 
+							[
+								'Je ne pleure pas plus qu\'avant.',
+								'Je pleure plus qu\'avant.',
+								'Je pleure pour la moindre petite chose.',
+								'Je voudrais pleurer mais je ne suis pas capable.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi11_Agitation',
+						options: 
+							[
+								'Je ne suis pas plus agité(e) ou plus tendu(e) que d\'habitude.',
+								'Je me sens plus agité(e) ou plus tendu(e) que d\'habitude.',
+								'Je suis si agité(e) ou tendu(e) que j\'ai du mal à rester tranquille.',
+								'Je suis si agité(e) ou tendu(e) que je dois continuellement bouger ou faire quelque chose.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi12_Perte_dintérêt',
+						options: 
+							[
+								'Je n\'ai pas perdu d\'intérêt pour les gens ou pour les activités.',
+								'Je m\'intéresse moins qu\'avant aux gens et aux choses.',
+								'Je ne m\'intéresse presque plus aux gens et aux choses.',
+								'J\'ai du mal à m\'intéresser à quoique ce soit.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi13_Indécision',
+						options: 
+							[
+								'Je prends des décisions toujours aussi bien qu\'avant.',
+								'Il m\'est plus difficile que d\'habitude de prendre des décisions.',
+								'J\'ai beaucoup plus de mal qu\'avant à prendre des décisions.',
+								'J\'ai du mal à prendre n\'importe quelle décision.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi14_Dévalorisation',
+						options: 
+							[
+								'Je pense être quelqu\'un de valable.',
+								'Je ne crois pas avoir autant de valeur ni être aussi utile qu\'avant.',
+								'Je me sens moins valable que les autres.',
+								'Je sens que je ne vaux absolument rien.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi15_Perte_d\'énergie',
+						options: 
+							[
+								'J\'ai toujours autant d\'énergie qu\'avant.',
+								'J\'ai moins d\'énergie qu\'avant.',
+								'Je n\'ai pas assez d\'énergie pour pouvoir faire grand-chose.',
+								'J\'ai trop peu d\'énergie pour faire quoi que ce soit.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi16_Modifications_sommeil',
+						options: 
+							[
+								'Mes habitudes de sommeil n\'ont pas changé.',
+								'Je dors un peu plus que d\'habitude.',
+								'Je dors un peu moins que d\'habitude.',
+								'Je dors beaucoup plus que d\'habitude.',
+								'Je dors beaucoup moins que d\'habitude.',
+								'Je dors presque toute la journée.',
+								'Je me réveille une ou deux heures plus tôt et je suis incapable de me rendormir.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi17_Irritabilité',
+						options: 
+							[
+								'Je ne suis pas plus irritable que d\'habitude.',
+								'Je suis plus irritable que d\'habitude.',
+								'Je suis beaucoup plus irritable que d\'habitude.',
+								'Je suis constamment irritable.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi18_Modifications_appétit',
+						options: 
+							[
+								'J\'ai un peu moins d\'appétit que d\'habitude.',
+								'J\'ai un peu plus d\'appétit que d\'habitude.',
+								'J\'ai beaucoup moins d\'appétit que d\'habitude.',
+								'J\'ai beaucoup plus d\'appétit que d\'habitude.',
+								'Je n\'ai pas d\'appétit du tout.',
+								'J\'ai constamment envie de manger.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi19_Difficulté_concentrer',
+						options: 
+							[
+								'Je parviens à me concentrer toujours aussi bien qu\'avant.',
+								'Je ne parviens pas à me concentrer aussi bien que d\'habitude.',
+								'J\'ai du mal à me concentrer longtemps sur quoi que ce soit.',
+								'Je me trouve incapable de me concentrer sur quoi que ce soit.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi20_Fatigue',
+						options: 
+							[
+
+								'Je ne suis pas plus fatiqué(e) que d\'habitude.',
+								'Je me fatigue plus facilement que d\'habitude.',
+								'Je suis trop fatigué(e) pour faire un grand nombre de choses que je faisais avant.',
+								'Je suis trop fatigué(e) pour faire la plupart des choses que je faisais avant.',
+							]
+					},
+					{
+						type: 'multi-choice',
+						prompt: ' ', 
+						name: 'bdi21_Perte_dintérêt_pour_le_sexe',
+						options: 
+							[
+								'Je n\'ai pas noté de changement récent dans mon intérêt pour le sexe.',
+								'Le sexe m\'intéresse moins qu\'avant.',
+								'Le sexe m\'intéresse beaucoup moins maintenant.',
+								'J\'ai perdu tout intérêt pour le sexe.',
+					]
+					},
+				]
+			]
+
+
+var FR_bdi = {}
+FR_bdi.title = title
+FR_bdi.pages = pages
+FR_bdi.values = values
+FR_bdi.QuestionnaireType = 'multi-choice'
+FR_bdi.AlertLimit = 21
+FR_bdi.description = "Ce questionnaire comporte 21 groupes d'énoncés. Veuillez lire avec soin chacun de ces groupes puis, dans chaque groupe, choisissez l'énoncé qui décrit le mieux comment vous vous êtes senti(e) au cours des deux dernières semaines, incluant aujourd'hui. Encerclez alors le chiffre placé devant l'énoncé que vous avez choisi. Si, dans un groupe d'énoncés, vous en trouvez plusieurs qui semblent décrire également bien ce que vous ressentez, choisissez celui qui a le chiffre le plus élevé et encerclez ce chiffre. Assurez-vous bien de ne choisir qu'un seul énoncé dans chaque groupe, y compris le groupe #16 et #18."

@@ -387,6 +387,7 @@ var jsPsychImageButtonResponsePatternComp = (function (jspsych) {
                     { end_trial() }
                 }, trial.feedback_duration);
                 start_time = performance.now();
+                jsPsych.setProgressBar(count/trial.NTrials)
                 console.log("Count is: "+count)
                 console.log("NTrials is: " + trial.NTrials)
                 

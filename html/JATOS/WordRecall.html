@@ -91,6 +91,7 @@
     var setup = []
     var jsPsych = initJsPsych({
       display_element: 'jspsych-target',
+      auto_update_progress_bar: false,
       show_progress_bar: true,    
       on_trial_start: function() {
         //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -137,7 +138,7 @@
     jatos.onLoad(() => {
     document.getElementById('header-home-button').textContent = LabelNames.Home;
     document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-    document.getElementById('header-end-button').textContent = LabelNames.End;
+    document.getElementById('header-stop-button').textContent = LabelNames.Stop;
     document.getElementById('header-quit-button').textContent = LabelNames.Quit;
     document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
     })

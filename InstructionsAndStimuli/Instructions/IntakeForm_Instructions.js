@@ -61,7 +61,7 @@ var pages = [
   var EN_IntakeForm_FaCE = {}
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
-  add('EN_IntakeForm_FaCE', function(){ IntakeFormParameters = EN_IntakeForm_FaCE });
+  add('EN_IntakeForm_FaCE', function(){ parameters = EN_IntakeForm_FaCE });
   
   // ====== ENGLISH =========
 var FormTitle = 'FaCE Intake Form'
@@ -125,7 +125,7 @@ var pages = [
   var EN_IntakeForm_FaCE = {}
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
-  add('EN_IntakeForm_FaCETEST', function(){ IntakeFormParameters = EN_IntakeForm_FaCE });
+  add('EN_IntakeForm_FaCETEST', function(){ parameters = EN_IntakeForm_FaCE });
   
 
   // ============================================
@@ -190,7 +190,7 @@ var pages = [
   var FR_IntakeForm_FaCE = {}
   FR_IntakeForm_FaCE.title = FormTitle
   FR_IntakeForm_FaCE.pages = pages
-  add('FR_IntakeForm_FaCE', function(){ IntakeFormParameters = FR_IntakeForm_FaCE });
+  add('FR_IntakeForm_FaCE', function(){ parameters = FR_IntakeForm_FaCE });
 // ============================================
 // ======= ENGLISH ============
 // FaCE Getting started questions
@@ -237,7 +237,7 @@ var EN_pages = [
 var EN_Orient_parameters = {}
 EN_Orient_parameters.title = FormTitle
 EN_Orient_parameters.pages = EN_pages
-add('EN_OrientationForm_FaCE', function(){ IntakeFormParameters = EN_Orient_parameters });
+add('EN_OrientationForm_FaCE', function(){ parameters = EN_Orient_parameters });
 // ============================================
 // ======= FRENCH ============
 // FaCE Getting started questions
@@ -284,7 +284,7 @@ var FR_pages = [
 var FR_Orient_parameters = {}
 FR_Orient_parameters.title = FormTitle
 FR_Orient_parameters.pages = FR_pages
-add('FR_OrientationForm_FaCE', function(){ IntakeFormParameters = FR_Orient_parameters });
+add('FR_OrientationForm_FaCE', function(){ parameters = FR_Orient_parameters });
 // ============================================
 var FormTitle = 'Intake Form'
 var pages = [
@@ -292,7 +292,7 @@ var pages = [
         {
           type: 'text',
           prompt: "In what month and year were you born?", 
-          name: 'MonthOfBirth02', 
+          name: 'Year-Month of Birth', 
           input_type: "month",
           required: false,
         },
@@ -345,7 +345,8 @@ var pages = [
     var EN_IntakeForm_Generic = {}
     EN_IntakeForm_Generic.title = FormTitle
     EN_IntakeForm_Generic.pages = pages  
-  add('EN_IntakeForm_Generic', function(){ IntakeFormParameters = EN_IntakeForm_Generic });
+    EN_IntakeForm_Generic.ScoringMethod
+  add('EN_IntakeForm_Generic', function(){ parameters = EN_IntakeForm_Generic });
 
   // ============================================
 var FormTitle = 'Formulaire d\'admission'
@@ -408,4 +409,4 @@ var pages = [
     var FR_IntakeForm_Generic = {}
     FR_IntakeForm_Generic.title = FormTitle
     FR_IntakeForm_Generic.pages = pages  
-  add('FR_IntakeForm_Generic', function(){ IntakeFormParameters = FR_IntakeForm_Generic });
+  add('FR_IntakeForm_Generic', function(){ parameters = FR_IntakeForm_Generic });

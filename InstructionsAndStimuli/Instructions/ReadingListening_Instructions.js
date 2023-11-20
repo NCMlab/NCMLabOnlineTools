@@ -24,7 +24,7 @@ List01.push({stim:"The salt breeze came across from the sea."})
 List01.push({stim:"The girl at the booth sold fifty bonds."})*/
 EN_Instructions.List = List01
 EN_Instructions.Instructions01 = [
-    {'page':'<p class="Instructions">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens. <p>Press next to start</p>'},
+    {'page':'<p class="Instructions">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.'},
 ]
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is a Reading Test Task.</p>'}]
 EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]

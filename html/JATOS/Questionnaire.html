@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Clock Drawing">
+    <meta name="description" content="jsPsych Questionnaire">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Clock Drawing</title>
+    <title>NCMLab:  Questionnaire</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
@@ -38,9 +38,10 @@
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-state.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/bdi.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/gds.js"></script>
     <script src="config/Questionnaire_Setup.js"></script>
     <script src="functions/Experiments/Questionnaire_experiment.js"></script>
-    <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
+    <script src="functions/Scoring/Questionnaire_Scoring.js"></script>
     <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
     <script>
       var Questionnaire_parameters = 'empty'
@@ -56,19 +57,17 @@
             }
           console.log(parameters)
           pseudoSwitch(parameters)
-          console.log(Questionnaire_Parameters)
+          console.log(parameters)
           LANG = jatos.studySessionData.Language
+          //parameters.questionnaire = LANG + "_" + parameters.questionnaire
+          parameters.Language = LANG
           console.log(LANG)
-          
+          console.log(parameters)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
           
       })
     </script>
-
-
-
-
 
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
@@ -127,9 +126,10 @@ var jsPsych = initJsPsych({
   <div id="footerText"></div>
   <script>
     jatos.onLoad(() => {
-    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    
     document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-    document.getElementById('header-end-button').textContent = LabelNames.End;
+    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    document.getElementById('header-stop-button').textContent = LabelNames.Stop;
     document.getElementById('header-quit-button').textContent = LabelNames.Quit;
     document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
     })

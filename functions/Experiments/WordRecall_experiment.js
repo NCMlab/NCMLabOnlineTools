@@ -86,7 +86,10 @@ var SetupSpeechRecognitionB = {
 var preload_audioA = {
   type: jsPsychPreload,
   audio: function(){return AudioFileListA},
-  on_start: function() {}
+  on_start: function() {
+    document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+    jsPsych.setProgressBar(0)
+  }
 };
 
 var preload_audioB = {
@@ -437,10 +440,13 @@ var LoopAudioFiles = {
   timeline: [AudioStimulus],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListA.length-1 ) {
+      jsPsych.setProgressBar((ItemCount+1)/(AudioFileDictListA.length-1))
       ItemCount += 1
       return true
     }
-    else { return false}
+    else { 
+      jsPsych.setProgressBar(0)
+      return false}
   }
 }
 
@@ -448,10 +454,13 @@ var LoopAudioFilesB = {
   timeline: [AudioStimulusB],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListB.length-1 ) {
+      jsPsych.setProgressBar((ItemCount+1)/(AudioFileDictListB.length-1))
       ItemCount += 1
       return true
     }
-    else { return false}
+    else { 
+      jsPsych.setProgressBar(0)
+      return false}
   }
 }
 
@@ -459,20 +468,26 @@ var LoopVisual = {
   timeline: [VisualStimulus],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListA.length-1 ) {
+      jsPsych.setProgressBar((ItemCount+1)/(AudioFileDictListA.length-1))
       ItemCount += 1
       return true
     }
-    else { return false}
+    else { 
+      jsPsych.setProgressBar(0)
+      return false}
   }
 }
 var LoopVisualB = {
   timeline: [VisualStimulusB],
   loop_function: function(){
     if ( ItemCount < AudioFileDictListA.length-1 ) {
+      jsPsych.setProgressBar((ItemCount+1)/(AudioFileDictListA.length-1))
       ItemCount += 1
       return true
     }
-    else { return false}
+    else { 
+      jsPsych.setProgressBar(0)
+      return false}
   }
 }
 

@@ -27,6 +27,8 @@ var timeline = [];
 var preload_images = {
   type: jsPsychPreload,
   images: function(){
+    document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+    jsPsych.setProgressBar(0)
     return ImagePaths
   },
 }
@@ -63,6 +65,7 @@ var PracticeTrial = {
   on_finish: function(data) {
     data.trial = "Practice"
     console.log(data)
+    jsPsych.setProgressBar(0)
   }
 };
 
@@ -92,6 +95,7 @@ var TestTrial = {
   on_finish: function(data) {
     data.trial = "Test"
     console.log(data)
+    jsPsych.setProgressBar(0)
   }
 };
 

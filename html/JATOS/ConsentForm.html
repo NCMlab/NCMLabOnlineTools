@@ -51,13 +51,15 @@
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
             { parameters = 'EN_ConsentForm_uOttawa_Steffener' }
             else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
-
-            // load the parameters
-            pseudoSwitch(parameters)
-            console.log(IntakeFormParameters)
-            // load the language specific instructions
-            LANG = jatos.studySessionData.Language
+          // load the language specific instructions
+          LANG = jatos.studySessionData.Language
             console.log(LANG)
+            // load the parameters
+            console.log(LANG+"_"+parameters)
+            pseudoSwitch(LANG + "_" + parameters)
+            console.log(parameters)
+            console.log(IntakeFormParameters)
+            
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
             console.log(IntakeFormParameters)
@@ -122,7 +124,7 @@ var jsPsych = initJsPsych({
       jatos.onLoad(() => {
       document.getElementById('header-home-button').textContent = LabelNames.Home;
       document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-stop-button').textContent = LabelNames.Stop;
       document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
       })

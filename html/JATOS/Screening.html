@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="description" content="jsPsych NCMLab Screening">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Spatial DMS</title>
+    <title>NCMLab: Screening</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link href="css/LikertQuestionnaires.css" rel="stylesheet">
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
@@ -17,80 +17,62 @@
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
       $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
       $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
-  </head>    
+    </script>    
+    <style>
+      input[type="radio"] {height: 20px; width: 20px; vertical-align: middle;}
+      .jspsych-content {max-width:90%}
+    </style>     
+  </head>
   <body>
     <div id="headerButtons"></div>
     <script src="jatos.js"></script>
-    <script src="ImportedModules/jquery-3.6.4.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
-    <script src="jspsych/dist/plugin-instructions.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="jspsych/dist/plugin-canvas-button-response.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>    
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
-    <script> 
-      // used for the image used during the instructions
-        var BaseFolderName = 'assets/InstructionalImages/'
-    </script>
-    <style>
-        .stimulus { font-size: 45; }
-        .background {color:  [150, 150, 150]}
-        .instruct {font-size:  20;}
-        .jspsych-html-keyboard-response-stimulus {font-size: 45;}
-        .jspsych-display-element {
-          font-family: 'Open Sans', 'Arial', sans-serif;
-          font-size: 36px;
-          line-height: 0.85em;
-        }
-      </style>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js"></script>
-    <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
-    <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
-    <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-    <script src="config/SpatialDMS_setup.js"></script>
-
     <script>
-      var SpatialDMS_parameters = 'empty'
       var parameters = 'empty'
+      var BackgroundText = ''
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-        Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {
-              parameters = 'SpatialDMS_Adaptive'
-              InstructionsToUse = 'Default'
-            }
-            else {
-              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
-              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
-            }
-        pseudoSwitch(parameters)
-        console.log(parameters)
-        LANG = jatos.studySessionData.Language
-        console.log(LANG)
-        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
-        //load general label names
-        pseudoSwitch(LANG+'_LabelNames')
+            if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+            { parameters = 'EN_Screening_Generic' }
+            else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
+            console.log(parameters)
+            LANG = jatos.studySessionData.Language
+            console.log(LANG)
+            // load the parameters
+            pseudoSwitch(LANG+"_"+parameters)
+
+            // load the language specific instructions
+            
+            
+            //load general label names
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(LabelNames)
+            BackgroundText = eval(LANG+'_BackgroundText');
       })
+      
     </script> 
-    <script src="functions/Experiments/SpatialDMS_experiment.js"></script>
-    <script src="functions/Scoring/DMS_Scoring.js"></script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  
-  <script>
+   <script src="functions/Experiments/Screening_experiment.js"></script>
+   <script src="functions/Scoring/Screening_Scoring.js"></script>
+  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
+
+<script>
 var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     show_progress_bar: true,    
-    auto_update_progress_bar: false,
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
@@ -103,29 +85,37 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      console.log(jatos.studySessionData)
+      console.log(jatos.studySessionData.TaskNameList[2])
+      console.log(jatos.studySessionData.UsageType == 'Battery')
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
+      
+      
       if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','SpatialDMS_data.csv');
+        jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
+      // update session data with the screening information
+      JATOSSessionData.ScreeningData = jsPsych.data.get()
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // If this a la carte or the end of the battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      
     }
   });
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
-      
       var resultsData = {'name':'JASON'};
-      jatos.addJatosIds(resultsData);
+      jatos.addJatosIds(resultsData);     
       jsPsych.run(timeline);
     });
   </script>
@@ -137,7 +127,8 @@ var jsPsych = initJsPsych({
       document.getElementById('header-stop-button').textContent = LabelNames.Stop;
       document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      document.getElementById('task-background-info').innerHTML = BackgroundText
       })
     </script>
-  </body>
+    </body>
 </html>

@@ -317,4 +317,8 @@ span:hover + div {
   line-height: 24px;
   margin: 10px 0;
 }
-
+/* Modify the survey description text */
+.sv-string-viewer {
+  font-size: 1.4em;  
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

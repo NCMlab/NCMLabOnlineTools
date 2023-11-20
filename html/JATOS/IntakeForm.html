@@ -39,8 +39,6 @@
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="InstructionsAndStimuli/BackgroundMaterial/IntakeAndScreening.js"></script>
     <script>
@@ -99,12 +97,16 @@ var jsPsych = initJsPsych({
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
+      
+      
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
+      // update session data with the screening information
+      JATOSSessionData.ScreeningData = jsPsych.data.get()
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of the battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
@@ -128,7 +130,7 @@ var jsPsych = initJsPsych({
       jatos.onLoad(() => {
       document.getElementById('header-home-button').textContent = LabelNames.Home;
       document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-      document.getElementById('header-end-button').textContent = LabelNames.End;
+      document.getElementById('header-stop-button').textContent = LabelNames.Stop;
       document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
       document.getElementById('task-background-info').innerHTML = BackgroundText
