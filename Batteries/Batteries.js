@@ -274,7 +274,7 @@ BatteryList.push({index: 1001,
 					''
 					],
 	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
+	BatteryInstructions: "Welcome to the Neural Cognitive Mapping Laboratory at University of Ottawa's <h1>Cognitive Evaluation</h1>",
 	ButtonName: [
 		'Screening',
 		'Consent',
@@ -347,7 +347,7 @@ BatteryList.push({index: 11,
 					''
 					],
 	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
+	BatteryInstructions: "Welcome to the Neural Cognitive Mapping Laboratory at University of Ottawa's <h1>Cognitive Evaluation</h1>",
 	ButtonName: [
 		'Screening',
 		'Consent',
