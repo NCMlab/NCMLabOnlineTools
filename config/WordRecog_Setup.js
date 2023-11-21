@@ -4,15 +4,15 @@ var TEST_Spoken = {
 	FileExtension: '.wav',
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType:'Spoken',
+	RecallType:'Manual',
 	RecogDuration: 10, // seconds
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
-	ShowThankYou: true,
+	ShowThankYou: false,
 	ShowInstructions: true,
 	InstructionsSpoken: false,
-	AskForNotes: true,
-	RecordAUDIO: true,
+	AskForNotes: false,
+	RecordAUDIO: false,
 }
 
 

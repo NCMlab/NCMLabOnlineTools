@@ -1,12 +1,11 @@
 
 
 var PatternComparison_001 = {
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true, 
-	ShowWelcome: true,
 	WelcomeSpoken: false,
-	AskForNotes: true,
+	AskForNotes: false,
 	InstructionsSpoken: false
 }
 

@@ -14,7 +14,7 @@ var check_consent = function(elem) {
 // declare the block.
 var trial = {
     type: jsPsychExternalHtml,
-    url: function() {return ConsentForm.Text},
+    url: function() {return parameters.Text},
     cont_btn: "start",
     check_fn: check_consent,
     execute_script: true,
@@ -36,6 +36,7 @@ var SendData = {
     },
   }
 var timeline = []
+timeline.push(Welcome)
 timeline.push(trial)
 timeline.push(SendData)
 //timeline.push(trial)

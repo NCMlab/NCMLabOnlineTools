@@ -8,7 +8,7 @@ var trial = {
       // Are there more than one criteria?
       // If the value does not meet any of the criteria, use the first option
       var CriteriaToUse = 0
-      if ( DepressionQuestionnairesCriteria.length > 1 )
+      if ( parameters.criteria.length > 1 )
         {
           
           // get the criteria variable value
@@ -23,7 +23,7 @@ var trial = {
             console.log(Age)
           
           
-            for ( var i = 0; i < DepressionQuestionnairesCriteria.length; i++ )
+            for ( var i = 0; i < parameters.criteria.length; i++ )
             {
               // check the criteria
               if ( eval(parameters.criteria[i].replaceAll("XXX", parameters.variable)))
@@ -79,11 +79,12 @@ var CheckForAlert = {
     //console.log(Results)
   }
 }
-
+timeline.push(Welcome)
 timeline.push(trial)
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
+timeline.push(ThankYou)
 timeline.push(SendData)
 
 

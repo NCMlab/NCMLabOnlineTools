@@ -1,12 +1,12 @@
 
 var Listening_001 = {
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true, 
-	ShowWelcome: true,
 	WelcomeSpoken: false,
-	AskForNotes: true,
-	InstructionsSpoken: false
+	AskForNotes: false,
+	InstructionsSpoken: false,
+	NumberOfTrials: 8
 }
 
 add('Listening_001', function(){ parameters = Listening_001});

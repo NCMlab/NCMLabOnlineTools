@@ -6,7 +6,7 @@ EN_Instructions_Default.WelcomeText = [
 
 EN_Instructions_Default.Instructions01 = [
     {'page':'<p class="Instructions">You are going to hear a list that contains the words from the first list, the one you studied several times.'},
-    {'page':'<p class="Instructions">If the word was on that first list, say <em>yes</em>, and if it was not on the first list, then say <em>no</em>.'}
+    {'page':'<p class="Instructions">If the word was on that first list, press <em>yes</em>, and if it was not on the first list, then press <em>no</em>.'}
 ]
 
 EN_Instructions_Default.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]

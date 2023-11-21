@@ -16,10 +16,10 @@ var RAVLT_Manual_Immediate = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true, // not implemented
-	AskForNotes: true,
+	AskForNotes: false,
 	RecordAUDIO: false,
 }
 
@@ -36,13 +36,13 @@ var RAVLT_Spoken_Immediate = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: true,
+	ShowThankYou: false,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
-	AskForNotes: true,
+	AskForNotes: false,
 	RecordAUDIO: true
 }
 
@@ -100,10 +100,10 @@ var RAVLT_Spoken_Delayed = {
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true,
-	AskForNotes: true,
+	AskForNotes: false,
 }
 
 var RAVLT_001 = {
