@@ -45,9 +45,9 @@ RetOnTime = 500
 // previous trials
 
 SpatialDMS_Adaptive = {
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
-	ShowThankYou: true,
+	ShowThankYou: false,
 	ShowInstructions: true,
 	MaxTrials: 40,
 	MaxReversals: 15,

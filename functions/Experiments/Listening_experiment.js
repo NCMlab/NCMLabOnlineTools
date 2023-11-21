@@ -9,15 +9,15 @@ const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','
 var randomElement
 var List = []
 var ButtonList = []
-var NumberOfTrials = 8
-var NumberCorrect = 0
 
+var NumberCorrect = 0
+var Count = 0
 // =======================================================================
 // preload audio
 var preload_audio = {
     type: jsPsychPreload,
     audio: function() {
-      
+      document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
       for ( var i = 0; i  < AudioTestList.length; i++ ) {
         List.push(FolderOfAudioFiles + AudioTestList[i] + AudioFileType)
         ButtonList.push(AudioTestList[i])
@@ -52,19 +52,20 @@ var AudioStim = {
       return '<p class="Instructions">'+Instructions.TrialText + '</p>'
     },
     on_finish: function(data) {
+      jsPsych.setProgressBar(Count/parameters.NumberOfTrials)
         if (randomElement == data.response) {
             NumberCorrect++
             data.correct = 1
         }
         else {data.correct = 0}
-        console.log(NumberCorrect/NumberOfTrials)
+        console.log(NumberCorrect/parameters.NumberOfTrials)
     }
 };
-var Count = 0
+
 var present_audio= {
     timeline: [fixation, AudioStim],
     loop_function: function(){
-      if ( Count < NumberOfTrials ){ 
+      if ( Count < parameters.NumberOfTrials ){ 
         Count++
         return true }
       else { return false }

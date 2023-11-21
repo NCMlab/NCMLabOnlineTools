@@ -3,11 +3,11 @@
 
 
 var ReadingListeningList01 = {} 
-ReadingListeningList01.ShowWelcome = true,
+ReadingListeningList01.ShowWelcome = false,
 ReadingListeningList01.WelcomeSpoken = false,
 ReadingListeningList01.ShowInstructions = true,
 ReadingListeningList01.InstructionsSpoken = false,
-ReadingListeningList01.ShowThankYou = true,
+ReadingListeningList01.ShowThankYou = false,
 ReadingListeningList01.AskForNotes = false,
 ReadingListeningList01.RecordAUDIO = true,
 ReadingListeningList01.ScoreNeeded = 0.7,
