@@ -151,12 +151,12 @@ var SendData = {
   //timeline.push()
 //timeline.push(if_WelcomeSpoken)
 //timeline.push(if_WelcomeWritten)
-//timeline.push(Welcome)
+timeline.push(Welcome)
 
 timeline.push(preload_images)
-//timeline.push(Instructions01)
+timeline.push(Instructions01)
 
-//timeline.push(Instructions02)
+timeline.push(Instructions02)
 timeline.push(PracticeTrial)
 timeline.push(debrief_block)
 
