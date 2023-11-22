@@ -62,6 +62,7 @@ var PracticeTrial = {
   response_ends_trial: false,
   rule_change_count: function() { return parameters.PracticeRuleChangeCount }, // how many trials between rule changes
   rule_list: function() { return parameters.PracticeRuleList},   // the order of rules`
+  number_of_cards: function() { return parameters.PracticeNumberOfCards },
   on_finish: function(data) {
     data.trial = "Practice"
     console.log(data)
@@ -92,6 +93,7 @@ var TestTrial = {
   response_ends_trial: false,
   rule_change_count: function() { return parameters.RuleChangeCount }, // how many trials between rule changes
   rule_list: function() { return parameters.RuleList},   // the order of rules`
+  number_of_cards: function() { return parameters.NumberOfCards },
   on_finish: function(data) {
     data.trial = "Test"
     console.log(data)
