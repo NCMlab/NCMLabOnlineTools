@@ -113,7 +113,7 @@ Go to home directory and get new app files:
 ```
 cd ~ &&
 sudo rm -r NeuroClinic || true &&
-git clone https://github.com/chrisvenczel/NeuroClinic &&
+git clone https://github.com/NCMLab/NeuroClinic &&
 cd NeuroClinic
 ```
 

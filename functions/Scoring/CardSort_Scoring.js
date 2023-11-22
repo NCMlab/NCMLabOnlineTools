@@ -18,6 +18,9 @@ function CardSort_Scoring(data) {
 	Results.PrimaryResults['Accuracy'] = accuracy
 
 	Results.AllResults = {}
+	Results.AllResults['ScoreName'] = 'Accuracy'
+	Results.AllResults['Accuracy'] = accuracy
+
 	Results.AllResults['Acc'] = accuracy
 	Results.AllResults['RT'] = AvgRT
 	Results.AllResults['NTrials'] = NTrials
