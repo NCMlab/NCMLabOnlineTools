@@ -1,7 +1,7 @@
 function CardSort_Scoring(data) {
 	var trials = jsPsych.data.get().filter({trial: 'Test'});
 	
-	var NTrials = trials.count()
+	
 
 
 	var correct_trials = trials.trials[0].accuracy;
@@ -9,8 +9,8 @@ function CardSort_Scoring(data) {
 	var rt_trials = trials.trials[0].rt;
 	var sumCorrect = correct_trials.reduce((a, b) => a + b, 0);
 	var sumPErrors = pe_trials.reduce((a, b) => a + b, 0);
-	const avg = Math.round(100*(sum / correct_trials.length) || 0);
-	
+	const avg = Math.round(100*(sumCorrect / correct_trials.length) || 0);
+	var NTrials = correct_trials.length
 	
 	var accuracy = avg;
 	var sum = rt_trials.reduce((a, b) => a + b, 0);
