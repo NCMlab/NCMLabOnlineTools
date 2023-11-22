@@ -74,11 +74,17 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
             pretty_name: "Rule Change Count",
             default: 10,
         },
+        number_of_cards: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: "Number of Cards",
+            default: 64,
+        },
         rule_list: {
             type: jspsych.ParameterType.INT,
             pretty_name: "Rule List",
             default: [0],
         },
+        
 
           /** How long to show the trial. */
           trial_duration: {
@@ -132,24 +138,24 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
 
       }
     make_shuffle(trial) {
-        trial.NTrials = trial.rule_change_count*trial.rule_list.length
+        
         console.log(trial)
-        console.log("NTrials is: "+trial.NTrials)
+        console.log("NTrials is: " + trial.number_of_cards ) 
         var flag = true
         
         var temp = [...Array(trial.stimulus.FileNames.length).keys()]
         var t = shuffle(temp)
         
-        if ( t.length <= trial.NTrials )
+        if ( t.length <= trial.number_of_cards )
             { t = t.concat(shuffle(temp)) }
-            if ( t.length <= trial.NTrials )
+            if ( t.length <= trial.number_of_cards )
             { t = t.concat(shuffle(temp)) }
-            t = t.slice(0,trial.NTrials)
+            t = t.slice(0, trial.number_of_cards)
         trial.t = t
         
         var ShuffledImages = []
         var ShuffledFactors = []
-        for ( var i = 0; i < trial.NTrials; i++ )
+        for ( var i = 0; i < trial.number_of_cards; i++ )
         {   
             ShuffledImages.push(trial.stimulus.FileNames[t[i]]) 
             ShuffledFactors.push(trial.stimulus.FactorMapping[t[i]]) 
@@ -164,16 +170,17 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
 
       trial(display_element, trial) {
           var height, width;
-          var correct
-
+          var correct_pile
+            var CorrectInRowCount = 0
           var end_time = 0
             var rt = 0
           // make the trial shuffle list
           this.make_shuffle(trial)
           console.log(trial)
           var html;
-            var count = 0
-            var CurrentRuleCount = 0
+          var count = 0
+          var CurrentRuleCount = 0
+          var PreviousRule = 2
           if (trial.render_on_canvas) {
             console.log("RENDER ON CANVAS")
               var image_drawn = false;
@@ -383,8 +390,9 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               rt: [],
               button: [],
               accuracy: [],
-              correct: [],
-              current_rule: []
+              correct_pile: [],
+              current_rule: [],
+              perseverative_error: []
           };
           // function to end trial when it is time
           const end_trial = () => {
@@ -396,8 +404,9 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                   //stimulus: trial.stimulus,
                   response: response.button,
                   accuracy: response.accuracy,
-                  correct: response.correct,
-                  current_rule: response.current_rule
+                  correct_pile: response.correct_pile,
+                  current_rule: response.current_rule,
+                  perseverative_error: response.perseverative_error
               };
               // clear the display
               display_element.innerHTML = "";
@@ -407,13 +416,15 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
           // function to handle responses by the subject
           function after_response(choice) {
               // NEW STUFF
+
+              var previous_rule = 2
               end_time = performance.now();
               rt = Math.round(end_time - start_time);
               response.button.push(parseInt(choice));
               response.rt.push(rt);
             
-                correct = trial.ShuffledFactors[count]
-                response.correct.push(Number(correct[0][trial.rule_list[CurrentRuleCount]]))
+                correct_pile = trial.ShuffledFactors[count]
+                response.correct_pile.push(Number(correct_pile[0][trial.rule_list[CurrentRuleCount]]))
                 response.current_rule.push(Number(trial.rule_list[CurrentRuleCount]))
                 //console.log("The choice was: "+choice)
                 //console.log("Current Rule Count is: "+CurrentRuleCount)
@@ -422,32 +433,57 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                 
                 document.getElementById("jspsych-image-button-response-stimulus").src = trial.BlankCard;
                 document.getElementById("jspsych-image-button-response-discard").src = trial.ShuffledImages[count];
-                if ( choice == correct[0][trial.rule_list[CurrentRuleCount]] )
+                if ( choice == correct_pile[0][trial.rule_list[CurrentRuleCount]] )
                 { 
+                    // Correct response
                     document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'
                     response.accuracy.push(1)
+                    // Increase the correct responses in a row counter
+                    CorrectInRowCount += 1
+                    response.perseverative_error.push(0)
                 }
                 else { 
+                    // Incorrect response
                     document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' 
                     response.accuracy.push(0)
-                }
-                
+                    CorrectInRowCount = 0
+//                    console.log("Choice: "+choice)
+  //                  console.log("Correct Pile: "+correct_pile[0])
+    //                console.log("Previous Rule: "+PreviousRule)
+                    // what type of error is this?
+                    if ( choice == correct_pile[0][PreviousRule] )
+                    {   
+                        response.perseverative_error.push(1)
+                    }
+                    else { response.perseverative_error.push(0) }
+                }          
                 count++
                 // Check for accuracy
-                if ( ( count % trial.rule_change_count ) == 0 )
-                { CurrentRuleCount++ }
+                if ( ( CorrectInRowCount == trial.rule_change_count ))
+                { 
+                    PreviousRule = trial.rule_list[CurrentRuleCount]
+                    CurrentRuleCount++ 
+                }
         
         
                 setTimeout(function(){
                     document.getElementById("id_feedback").innerHTML = '<h1>'+trial.prompt+'</h1>'
                     document.getElementById("jspsych-image-button-response-stimulus").src = trial.ShuffledImages[count];
-                    if ( count == trial.NTrials ) 
+                    if ( count == trial.number_of_cards ) 
                     { end_trial() }
                 }, trial.feedback_duration);
                 start_time = performance.now();
-                jsPsych.setProgressBar(count/trial.NTrials)
+                jsPsych.setProgressBar(count/trial.number_of_cards)
+                console.log('============================')
                 console.log("Count is: "+count)
-                console.log("NTrials is: " + trial.NTrials)
+                console.log("Response: "+parseInt(choice))
+                console.log("CurrentRuleCount: "+CurrentRuleCount)
+                console.log("Check for rule change: "+( CorrectInRowCount % trial.rule_change_count ))
+                console.log("Correct Pile is: "+Number(correct_pile[0][trial.rule_list[CurrentRuleCount]]))
+                console.log("Current rule is: " + Number(trial.rule_list[CurrentRuleCount]))
+                console.log("NTrials is: " + trial.number_of_cards)
+                console.log("Correct in a row: "+CorrectInRowCount)
+                console.log("PreviousRule: "+PreviousRule)
                 
                 // END NEW STUFF
 

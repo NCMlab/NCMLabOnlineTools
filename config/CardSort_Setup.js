@@ -1,14 +1,19 @@
 var CardSort_001 = {}
 // How many cards before the rules change
-CardSort_001.PracticeRuleChangeCount = 6
+CardSort_001.PracticeRuleChangeCount = 4
+// Change rul after this many CORRECT
 CardSort_001.RuleChangeCount = 10
-
+CardSort_001.PracticeNumberOfCards = 10
+CardSort_001.NumberOfCards = 64
 // What is the order of rules?
-CardSort_001.PracticeRuleList = [2,0] // Number, Color, Shape
+CardSort_001.PracticeRuleList = [0,2,0,2,0,2,0,2,0] // Number, Color, Shape
 
 // Even though the list of rules is quite long, only 64 trials are performed. This is 
 // based off of the variable FileNames.
-CardSort_001.RuleList = [0,1,2,1,2,0] // Number, Color, Shape
+// 0 - Number
+// 1 - Color
+// 2 - Shape/Form
+CardSort_001.RuleList = [1,2,0,1,2,0,1,2,0,1,2,0]
 // Card sizes
 CardSort_001.CardHeight = '150vh' // this is in elem
 CardSort_001.StimCardHeight = '150' // this is in pixels
