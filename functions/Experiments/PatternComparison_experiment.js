@@ -128,6 +128,8 @@ var preload_imagesB = {
   },
 }
 
+
+
 var PracticeTrial = {
   type: jsPsychImageButtonResponsePatternComp,
   render_on_canvas: false,
@@ -144,7 +146,7 @@ var PracticeTrial = {
   on_finish: function(data) {
     data.trial = "Practice"
     jsPsych.setProgressBar(0)
-    console.log(data)
+    console.log(PatternComparison_Scoring(data))
   }
 };
 
@@ -166,6 +168,17 @@ var TestTrial = {
     console.log(data)
   }
 };
+
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get().filter({trial: "Test"}).trials[0] 
+    console.log(data)
+    Results = PatternComparison_Scoring(data)
+    jsPsych.finishTrial(Results)
+  }
+}
+
 timeline.push(Welcome)
 timeline.push(Instructions01)
 timeline.push(preload_imagesA)
@@ -175,4 +188,4 @@ timeline.push(PracticeTrial)
 timeline.push(Instructions03)
 timeline.push(TestTrial)
 timeline.push(ThankYou)
-
+timeline.push(SendData)

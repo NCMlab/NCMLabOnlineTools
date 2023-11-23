@@ -214,8 +214,8 @@ var ManualRecallB = {
 
 // ==========================================================================
 var SpokenRecallA = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    //type: jsPsychHtmlAudioResponse,
+    //type: jsPsychHtmlButtonResponseTouchscreen,
+    type: jsPsychHtmlAudioResponse,
     stimulus: function() {
       var Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
         Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
@@ -293,8 +293,8 @@ var IntializeMicrophone = {
 
 // ==========================================================================
 var SpokenRecallB = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  //type: jsPsychHtmlAudioResponse,
+  //type: jsPsychHtmlButtonResponseTouchscreen,
+  type: jsPsychHtmlAudioResponse,
   
   stimulus: function() {
     Str = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+

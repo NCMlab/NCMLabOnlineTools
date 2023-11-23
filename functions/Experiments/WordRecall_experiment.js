@@ -708,6 +708,7 @@ var if_FinalRecallA = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(Welcome)
+timeline.push(IntializeMicrophone)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)
 
