@@ -36,7 +36,7 @@ var BDI_001 = {
     questionnaire: DepressionQuestionnaires, 
     criteria: DepressionQuestionnairesCriteria,
     variable: DepressionQuestionnaireVariable,
-    AskForNotes: false,
+    AskForNotes: true,
     ShowWelcome: false,
     ShowThankYou: true,
     ShowInstructions: false,  
