@@ -178,6 +178,7 @@ var trial2 = {
       {
           console.log("FINISHED")
           jatos.endStudy(data)
+          
       }
     }
   }
