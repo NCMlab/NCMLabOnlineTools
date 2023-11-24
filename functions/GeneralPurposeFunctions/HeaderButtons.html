@@ -1,23 +1,5 @@
 <div class="btn-group-header" id = "header-btn-group">
   <script>
-    var buttonText = "Home";
-    var button = document.createElement('button');
-    button.textContent = buttonText;
-    button.setAttribute('id', 'header-home-button');
-    button.setAttribute('type', 'button');
-    button.setAttribute('onclick',"returnToUsageManager()")
-    document.getElementById('header-btn-group').appendChild(button);
-  </script>
-  <script>
-    var buttonText = "Restart";
-    var button = document.createElement('button');
-    button.textContent = buttonText;
-    button.setAttribute('id', 'header-restart-button');
-    button.setAttribute('type', 'button');
-    button.setAttribute('onclick',"restartTask()")
-    document.getElementById('header-btn-group').appendChild(button);
-  </script>
-  <script>
     var buttonText = "Stop";
     var button = document.createElement('button');
     button.textContent = buttonText;
@@ -26,7 +8,6 @@
     button.setAttribute('type', 'button');
     button.setAttribute('onclick',"stopExperiment()")
     document.getElementById('header-btn-group').appendChild(button);
-    
   </script>
   <script>
     var buttonText = "Quit";
@@ -48,6 +29,26 @@
 //<button id="header-info-button">?</button>
 
 </script>
+
+<script>
+/*  var buttonText = "Home";
+  var button = document.createElement('button');
+  button.textContent = buttonText;
+  button.setAttribute('id', 'header-home-button');
+  button.setAttribute('type', 'button');
+  button.setAttribute('onclick',"returnToUsageManager()")
+  document.getElementById('header-btn-group').appendChild(button);*/
+</script>
+<script>
+  /*var buttonText = "Restart";
+  var button = document.createElement('button');
+  button.textContent = buttonText;
+  button.setAttribute('id', 'header-restart-button');
+  button.setAttribute('type', 'button');
+  button.setAttribute('onclick',"restartTask()")
+  document.getElementById('header-btn-group').appendChild(button);*/
+</script>
+
 </div>
 
 
