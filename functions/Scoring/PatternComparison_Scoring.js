@@ -46,7 +46,7 @@ function PatternComparison_Scoring(data) {
     Results.AllResults['Overall'] = average(data.accuracy)
     Results.AllResults['Loads'] = loads
     Results.AllResults['mean RT'] = meanRT
-    Results.AllResults['Accuracy'] = meanAcc
+    Results.AllResults['Load Accuracy'] = meanAcc
     Results.AllResults['Number Trials'] = Ntrials
 
     return Results
