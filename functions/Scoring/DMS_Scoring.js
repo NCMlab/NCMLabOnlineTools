@@ -9,6 +9,8 @@ function DMS_Scoring(Stair, data) {
 	Results.PrimaryResults['Score Name'] = 'Threshold'
 	Results.PrimaryResults['Accuracy'] = Threshold
 	Results.AllResults = {}
+	Results.AllResults['Score Name'] = 'Threshold'
+	Results.AllResults['Accuracy'] = Threshold
 	Results.AllResults['Threshold'] = Threshold
 	Results.AllResults['Number of Reversal'] = NReversal
 	Results.AllResults['Number of Trials'] = NTrials

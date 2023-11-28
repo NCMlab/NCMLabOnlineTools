@@ -52,29 +52,41 @@ var AudioStim = {
       return '<p class="Instructions">'+Instructions.TrialText + '</p>'
     },
     on_finish: function(data) {
+      data.trial = "test"
       jsPsych.setProgressBar(Count/parameters.NumberOfTrials)
         if (randomElement == data.response) {
             NumberCorrect++
             data.correct = 1
         }
         else {data.correct = 0}
-        console.log(NumberCorrect/parameters.NumberOfTrials)
+        console.log((NumberCorrect-1)/parameters.NumberOfTrials)
     }
 };
 
 var present_audio= {
     timeline: [fixation, AudioStim],
     loop_function: function(){
-      if ( Count < parameters.NumberOfTrials ){ 
+      if ( Count < (parameters.NumberOfTrials -1 )){ 
         Count++
         return true }
       else { return false }
     }
   }
 
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    console.log(data)
+    Results = Listening_Scoring(data)
+    jsPsych.finishTrial(Results)
+  }
+}
+  
 timeline.push(Welcome)
 timeline.push(preload_audio)
 timeline.push(Instructions01)
 timeline.push(present_audio)
 timeline.push(Notes)
 timeline.push(ThankYou)
+timeline.push(SendData)
