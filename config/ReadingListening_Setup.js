@@ -11,7 +11,7 @@ ReadingListeningList01.ShowThankYou = false,
 ReadingListeningList01.AskForNotes = false,
 ReadingListeningList01.RecordAUDIO = true,
 ReadingListeningList01.ScoreNeeded = 0.7,
-ReadingListeningList01.SentencesToRepeat = 4
+ReadingListeningList01.SentencesToRepeat = 3
 
 add('ReadingListeningList01', function(){ parameters = ReadingListeningList01});
 // ===================================================================================

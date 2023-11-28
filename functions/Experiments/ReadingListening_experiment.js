@@ -18,6 +18,17 @@ List01.push({stim:"The box was thrown beside the parked truck."})
 List01.push({stim:"The hogs were fed chopped corn and garbage."})
 InputSentences = List01
 
+var SentencesToRepeat
+
+var GetSentenceCount = {
+  type: jsPsychCallFunction,
+  func: function() {
+    SentencesToRepeat = parameters.SentencesToRepeat
+    console.log(SentencesToRepeat)
+  }
+}
+
+
 var WhatWasSaid = function(tag) {
     HeardSentence = tag
     // console.log(HeardSentence)
@@ -176,12 +187,13 @@ var trials = {
     timeline: [RecallRequest01],
     timeline_variables: InputSentences,
     randomize_order: true,
-    repetitions: 1,
     sample: {
-      type: 'without-replacement',
-      size: parameters.SentencesToRepeat
+      type: 'custom',
+      fn: function(t) {
+        return ReturnElementsFromPermute(parameters.SentencesToRepeat, List01.length)
+      }
+    }  
   }
-}
 
 
 var SendData = {
@@ -196,6 +208,7 @@ var SendData = {
 
 timeline.push(Welcome)
 timeline.push(GetList)
+timeline.push(GetSentenceCount)
 timeline.push(Instructions01)
 timeline.push(trials)
 timeline.push(Notes)
