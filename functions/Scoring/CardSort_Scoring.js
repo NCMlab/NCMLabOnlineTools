@@ -21,20 +21,41 @@ function CardSort_Scoring(data) {
 	Results.PrimaryResults['Accuracy'] = accuracy
 
 	Results.AllResults = {}
-	Results.AllResults['ScoreName'] = 'Accuracy'
-	Results.AllResults['Accuracy'] = accuracy
-
-	Results.AllResults['Acc'] = accuracy
+	Results.AllResults['ScoreName'] = 'Total Correct'
+	Results.AllResults['Accuracy'] = sumCorrect
+	Results.AllResults['Trials Administered'] = NTrials
 	Results.AllResults['Total Correct'] = sumCorrect
 	Results.AllResults['Total Errors'] = NTrials - sumCorrect
+	Results.AllResults['Percent Errors'] = Math.round(100*(NTrials - sumCorrect)/NTrials)
 	Results.AllResults['Number Perseverative Errors'] = sumPErrors
-	Results.AllResults['RT'] = AvgRT
-	Results.AllResults['NTrials'] = NTrials
-	Results.AllResults['RuleList'] = trials.trials[0].current_rule
+	Results.AllResults['Percent Perseverative Errors'] = Math.round(100*(sumPErrors/NTrials))
+	Results.AllResults['Nonperseverative Errors'] = NTrials - sumCorrect - sumPErrors
+	Results.AllResults['Percent Nonperseverative Errors'] = Math.round(100*((NTrials - sumCorrect - sumPErrors)/NTrials))
+	Results.AllResults['Conceptial Level Responses'] = sumCorrect
+	Results.AllResults['Percent Conceptual Level Responses'] = Math.round(100*(sumCorrect/NTrials))
+	Results.AllResults['Average Response Time'] = AvgRT
+
+	/*Results.AllResults['Current Rule'] = trials.trials[0].current_rule
 	Results.AllResults['CorrectList'] = trials.trials[0].correct
-	Results.AllResults['ResponseList'] = trials.trials[0].response
+	Results.AllResults['Response Pile'] = trials.trials[0].response
 	Results.AllResults['RTList'] = trials.trials[0].rt
 	Results.AllResults['AccuracyList'] = trials.trials[0].accuracy
-
+	Results.AllResults['Previous Rule'] = trials.trials[0].PreviousRule
+	Results.AllResults['CardNumber'] = trials.trials[0].CardNumber
+	Results.AllResults['correctInRow'] = trials.trials[0].correctInRow
+	Results.AllResults['perseverative_error'] = trials.trials[0].perseverative_error
+	Results.AllResults['current_rule'] = trials.trials[0].current_rule
+	*/
+	console.log(Results)
+	var ResultsTable = [[]]
+	var ColNames = ['Current Rule','Correct Sequence','Trial Number','Column Sorted To','Perseverative Principle','Perseverative Error','Response Time']
+	for ( let i = 0; i < NTrials; i++ )
+	{	console.log('Index= '+i)
+		console.log(trials.trials[0].current_rule[i])
+		ResultsTable[i] = [trials.trials[0].current_rule[i], trials.trials[0].correctInRow[i],	trials.trials[0].CardNumber[i], trials.trials[0].response[i], trials.trials[0].PreviousRule[i], trials.trials[0].perseverative_error[i], trials.trials[0].rt[i]]
+		
+	}
+	Results.AllResults['CardSortColNames'] = ColNames
+	Results.AllResults['Card Sort Table'] = ResultsTable
 	return Results
 }
