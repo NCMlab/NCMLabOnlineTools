@@ -73,10 +73,12 @@ var SendData = {
 var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
-    var data = jsPsych.data.get().trials[0]
-    Results = Questionnaire_Scoring(data)
+    
+    var data = jsPsych.data.get().filter({trial: 'Questionnaire'});
+    console.log(data.trials[0])
+    Results = Questionnaire_Scoring(data.trials[0])
     console.log(data)
-    //console.log(Results)
+    console.log(Results)
   }
 }
 timeline.push(Welcome)
