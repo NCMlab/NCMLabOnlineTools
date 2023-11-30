@@ -350,7 +350,7 @@ BatteryList.push({index: 11,
 					''
 					],
 	//Instructions: ['Default'],
-	BatteryInstructions: "Welcome to the University of Ottawa's Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>",
+	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
 	ButtonName: [
 		'Screening',
 		'Consent',
