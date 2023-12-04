@@ -62,27 +62,19 @@ function Questionnaire_Scoring(data) {
 	{
         // Need to account for null responses
         const keys = Object.keys(data.response.P0_Q0)
-        console.log(keys)
 		for ( var i = 0; i < keys.length; i++ )
 		{
-			var TextAnswer = data.response[keys[i]]
-			//Results.AllResults[keys[i]] = data.response[keys[i]]
-			//var NumericScore = data.response[keys[i]] // Numeric score
-			//TotalScore += NumericScore
-			Results.AllResults[keys[i]] = TextAnswer
-			var Score
-			for ( var j = 0; j < data.pages[0][i].options.length; j++ )
-			{
-				if ( data.pages[0][i].options[j] == TextAnswer ) 
-				{ 
-					Score = j 
-					TotalScore += Score
-				}
-			}
+			// What the response was
+			currentResponse = data.response.P0_Q0[keys[i]]
+			// what question is this key?
+			currentQ = Number(keys[i].substr(keys[i].length-3,3)-1)
+			correctResponse = data.pages[0][0].accuracy[currentQ]
+			if ( currentResponse != correctResponse ) 
+			{ TotalScore += 1 }
+			Results.AllResults[data.pages[0][0].statements[currentQ].prompt] = data.pages[0][0].options[currentResponse]		
 		}
+		
 	}
-
-
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
 	Results.parameters = parameters
@@ -92,6 +84,5 @@ function Questionnaire_Scoring(data) {
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
-
     return Results
 }
