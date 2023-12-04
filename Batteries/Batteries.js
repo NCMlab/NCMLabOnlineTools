@@ -138,21 +138,21 @@ BatteryList.push({index: 202,
 		'SpatialDMS_Adaptive',//
 	],
 	ButtonName: [
-		'Screening',//1
-		'Intake',
-		'Listening',
-		'Reading',
-		'STAI-T',
-		'STAI-S',
-		'BDI/GDS',
+		'Screening*',//1
+		'Intake*',
+		'Listening*',
+		'Reading*',
+		'STAI-T*',
+		'STAI-S*',
+		'BDI/GDS*',
         'Color',
 		'Word',
 		'Color/Word',//6
-		'RAVLT, Imm (Spoken)',
-		'RAVLT, Del (Spoken)',
-		'RAVLT, Recog',
-		'Card Sort',
-		'Pattern Comparison',
+		'RAVLT, Imm (Spoken)*',
+		'RAVLT, Del (Spoken)*',
+		'RAVLT, Recog*',
+		'Card Sort*',
+		'Pattern Comparison*',
 		'Cancellation', 
 		'Cube Copy',//10
 		'Clock Draw',
@@ -164,9 +164,8 @@ BatteryList.push({index: 202,
         'Subtract',//
 		'Fluency',
         'Line Bisect',
-		'Word Recall, Delay',//20
 		'Verbal DMS',
-        'Spatial DMS',//
+        'Spatial DMS*',//
 	],
     BatteryInstructions:"The 3C Platform",
 	Language:'EN',
