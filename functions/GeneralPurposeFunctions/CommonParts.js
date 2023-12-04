@@ -1,5 +1,35 @@
 
 var Results
+// ============== UPDATE HEADER ELEMENTS  ================
+function UpdateHeader() {
+    //hide  the information button for now
+    document.getElementById('header-info-button').style.visibility = "hidden"
+    // set the header button language
+    document.getElementById('header-home-button').textContent = LabelNames.Home;
+    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+    document.getElementById('header-stop-button').textContent = LabelNames.Stop;
+    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+    
+    // Check to see if we are in the User Choice screen, if so turn off restart and home
+    var HomeScreenFlag = false
+    if ( jatos.componentList[jatos.componentPos-1].title == "User Choice" )
+    { HomeScreenFlag = true }
+    
+    if ( jatos.urlQueryParameters.Battery < 100 )
+    {
+        // this is a battery and we need to turn off the home/restart buttons
+        document.getElementById('header-home-button').style.visibility = "hidden"
+        document.getElementById('header-restart-button').style.visibility = "hidden"
+    }
+    if ( HomeScreenFlag )
+    {
+        document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
+        document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
+    }
+    // add the footer text
+    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+}
+
 // ============== TIMER ================
 // This turns on a progress bar timer when spoken instructions are provided
 var Welcome_progress_bar_timer_start = {

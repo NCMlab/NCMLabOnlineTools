@@ -28,9 +28,12 @@
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
       let url_running = window.location.href;
@@ -85,18 +88,8 @@
     <div id="footerText"></div>
     <script>
       jatos.onLoad(() => {
-              // update the header button labels
-              console.log(document.getElementById('header-home-button'))
-              document.getElementById('header-home-button').textContent = LabelNames.Home;
-              document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-              document.getElementById('header-end-button').textContent = LabelNames.End;
-              document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-              document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
-              document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
-
-              console.log(jatos.studySessionData.FooterText)
-              document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
-              
+        // update the header button labels
+        UpdateHeader()
       })
     </script>
   
