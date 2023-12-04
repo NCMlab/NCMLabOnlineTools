@@ -371,3 +371,29 @@ BatteryList.push({index: 11,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })
+
+
+BatteryList.push({index: 12, 
+	name:'TESTER', 
+	list: [	'Screening',
+			'Questionnaire'
+		],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: [	'BriefScreening',
+						'BDI_001',
+						],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [	'',
+					''
+					],
+	//Instructions: ['Default'],
+	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+	ButtonName: [
+		'Screening',
+		'BDI/GDS',
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2023'
+})
