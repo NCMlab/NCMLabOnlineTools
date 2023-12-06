@@ -1,16 +1,16 @@
 var title = "Stait-Trait Anxiety Index - Trait"
 
 var scale01FORWARD = [
-    {value:0, text: "Almost never"},
-    {value:1, text:"Sometimes"},
-    {value:2, text:"Often"},
-    {value:3, text:"Almost always"}
+    {value:1, text: "Almost never"},
+    {value:2, text:"Sometimes"},
+    {value:3, text:"Often"},
+    {value:4, text:"Almost always"}
   ]
   var scale01BACKWARD = [
-    {value:3, text: "Almost never"},
-    {value:2, text:"Sometimes"},
-    {value:1, text:"Often"},
-    {value:0, text:"Almost always"}
+    {value:4, text: "Almost never"},
+    {value:3, text:"Sometimes"},
+    {value:2, text:"Often"},
+    {value:1, text:"Almost always"}
   ]
 
 var pages = [
@@ -67,7 +67,7 @@ var pages = [
                 },
                 {
                   type: 'likert',
-                  prompt: "I feel that difficulties are piling up so that I cannot overcome them.",
+                  prompt: "I feel that difficulties are piling up in such a way that cannot overcome them.",
                   name: 'stait08',
                   likert_scale_values: scale01FORWARD,
                   required: false
