@@ -286,11 +286,6 @@ var SpokenRecallA = {
     }
   }
 
-var IntializeMicrophone = {
-    type: jsPsychInitializeMicrophone
-};
-
-
 // ==========================================================================
 var SpokenRecallB = {
   //type: jsPsychHtmlButtonResponseTouchscreen,
