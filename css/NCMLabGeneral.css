@@ -196,7 +196,7 @@ span:hover + div {
   background-color: transparent;/*#04AA6D; /* Green background */
   border: 0px;/*1px solid green; /* Green border */
   /*color: white; /* White text */
-  padding: 5vw 2vw; /* Some padding */
+  padding: 2vw 2vw; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
   
@@ -321,4 +321,25 @@ span:hover + div {
 .sv-string-viewer {
   font-size: 1.2em;  
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.CardSortTable {
+  border: 1;
+  background-color: white;
+  max-width:600px;
+  white-space: nowrap;
+  table-layout:fixed;
+  
+}
+.CardSortTable.td { 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+  height: 20px;
+}
+.CardSortTable.tr { 
+  height: 20px;
+  overflow: hidden;
+}
+.CardSortImage {
+  max-width: 100%
 }
