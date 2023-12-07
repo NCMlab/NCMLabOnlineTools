@@ -31,6 +31,7 @@ function UpdateHeader() {
 }
 
 // ============== INITIAL MICROPHONE IF NEEDED ================
+/*
 var IntializeMicrophone = {
     type: jsPsychInitializeMicrophone
 };
@@ -44,7 +45,7 @@ var if_MicrophoneInitialized = {
         }
     }
 }
-
+*/
 // ============== TIMER ================
 // This turns on a progress bar timer when spoken instructions are provided
 var Welcome_progress_bar_timer_start = {
