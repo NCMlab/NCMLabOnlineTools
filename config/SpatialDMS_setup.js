@@ -48,7 +48,7 @@ SpatialDMS_Adaptive = {
 	ShowWelcome: false,
 	WelcomeSpoken: false,
 	ShowThankYou: false,
-	ShowInstructions: true,
+	ShowInstructions: false,
 	MaxTrials: 40,
 	MaxReversals: 15,
 	StartValue: 1,

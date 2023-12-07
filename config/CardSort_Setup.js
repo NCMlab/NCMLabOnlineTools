@@ -15,8 +15,8 @@ CardSort_001.PracticeRuleList = [0,2,0,2,0,2,0,2,0] // Number, Color, Shape
 // 2 - Shape/Form
 CardSort_001.RuleList = [1,2,0,1,2,0,1,2,0,1,2,0]
 // Card sizes
-CardSort_001.CardHeight = '100vh' // this is in elem
-CardSort_001.StimCardHeight = '100' // this is in pixels
+CardSort_001.CardHeight = '60vh' // this is in elem
+CardSort_001.StimCardHeight = '120' // this is in pixels
 CardSort_001.FeedbackSize = 4 // this isn in elem
 CardSort_001.FeedbackDuration = '750' // millisecond
 CardSort_001.ShowWelcome = false,

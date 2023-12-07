@@ -13,9 +13,18 @@ const GridCountY = 6
 const NumberLocations = GridCountX*GridCountY
 var CurrentLocations
 const CircleColor = 'black'
-const CanvasWidth = window.innerWidth
-const CanvasHeight = window.innerHeight
-const CanvasScale = 0.5
+console.log(window)
+if ( window.innerWidth < window.innerHeight )
+  { 
+     CanvasHeight = window.innerWidth
+     CanvasWidth = window.innerWidth
+  }
+else
+  { 
+     CanvasHeight = window.innerHeight
+     CanvasWidth = window.innerHeight
+  }
+const CanvasScale = 0.65
 
 
 // Decide circle radius based on the canvas size
@@ -57,10 +66,6 @@ var setupTest = {
 
 var VisualStimulus = {
   type: jsPsychCanvasButtonResponse,
-  on_start: function() {
-    console.log(CanvasWidth)
-    console.log(document.getElementById("jspsych-target"))
-  },
   stimulus: function(c) {
     CurrentLoad = stair1.Current
     CurrentLocations = ReturnElementsFromPermute(CurrentLoad, NumberLocations)
@@ -68,10 +73,10 @@ var VisualStimulus = {
       var temp = mapLinearIndexToGridIndex(CurrentLocations[i] ,GridCountX, GridCountY)
       filledCirc(c, CircleRadius+(temp[0]*2*CircleRadius),CircleRadius+(temp[1]*2*CircleRadius),CircleRadius, CircleColor);
     }
-    CanvasText(c, (CanvasScale*CanvasWidth)/2+0, (CanvasScale*CanvasWidth)/2+0, "+")
+    CanvasText(c, (CanvasScale*CanvasWidth)/2+0, (CanvasScale*CanvasHeight)/2+0, "+")
     document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
-  canvas_size: [CanvasScale*CanvasWidth, CanvasScale*CanvasHeight],
+  canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
   prompt: '',
   trial_duration: function() { return parameters.StimOnTime },
@@ -93,9 +98,9 @@ var VisualProbe = {
     }
     var temp = mapLinearIndexToGridIndex(Loc ,GridCountX, GridCountY)
     filledCirc(c, CircleRadius+(temp[0]*2*CircleRadius),CircleRadius+(temp[1]*2*CircleRadius),CircleRadius, ProbeColor);
-    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasWidth/2+0, "+")
+    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+")
   },
-  canvas_size: [CanvasScale*CanvasWidth, CanvasScale*CanvasHeight],
+  canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth ],
   choices: [],
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
@@ -136,10 +141,10 @@ var VisualMask = {
         filledCirc(c, CircleRadius+(i*2*CircleRadius),CircleRadius+(j*2*CircleRadius),CircleRadius, CircleColor);
       }
     }
-    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasWidth/2+0, "+")
+    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+")
     document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
-  canvas_size: [CanvasScale*CanvasWidth, CanvasScale*CanvasHeight],
+  canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
   prompt: '',
   trial_duration: function() { return parameters.MaskOnTime },
@@ -148,10 +153,10 @@ var VisualMask = {
 var RetentionCanvas = {
   type: jsPsychCanvasButtonResponse,
   stimulus: function(c) {
-    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasWidth/2+0, "+", 'black')
+    CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+", 'black')
     document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
-  canvas_size: [CanvasScale*CanvasWidth, CanvasScale*CanvasHeight],
+  canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
   prompt: '',
   trial_duration: function() { return parameters.RetOnTime },
@@ -161,12 +166,12 @@ var Fix = {
   type: jsPsychCanvasButtonResponse,
   stimulus: function(c) {
     if ( FeedbackFlag )
-    { CanvasText(c,CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasWidth/2+0, FeedbackText, 'black') }
+    { CanvasText(c,CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, FeedbackText, 'black') }
     else
-    { CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasWidth/2+0, "+", 'red') }
+    { CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+", 'red') }
     document.getElementById('jspsych-canvas-button-response-button-0').style.visibility = 'hidden';
   },
-  canvas_size: [CanvasScale*CanvasWidth, CanvasScale*CanvasHeight],
+  canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
   prompt: '',
   trial_duration: function() { return parameters.ITITime },

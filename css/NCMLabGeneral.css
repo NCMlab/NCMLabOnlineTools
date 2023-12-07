@@ -343,3 +343,13 @@ span:hover + div {
 .CardSortImage {
   max-width: 100%
 }
+
+.Instruct {
+  height: 50%;
+}
+.InstructImage img{
+  max-height: 500px;
+  max-width: 500px;
+  height: 100%;
+  width: 100%;
+}
