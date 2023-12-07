@@ -323,7 +323,7 @@ span:hover + div {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .CardSortTable {
-  border: 0;
+  border: 1;
   background-color: white;
   max-width:600px;
   white-space: nowrap;
@@ -334,8 +334,12 @@ span:hover + div {
   overflow: hidden; 
   text-overflow: ellipsis; 
   word-wrap: break-word;
+  height: 20px;
+}
+.CardSortTable.tr { 
+  height: 20px;
+  overflow: hidden;
 }
 .CardSortImage {
   max-width: 100%
 }
-

@@ -91,6 +91,10 @@ var TestTrial = {
       '<img src="'+ImageFolder+'2-red-cross.png" height='+parameters.CardHeight+'>',
       '<img src="'+ImageFolder+'3-yellow-star.png" height='+parameters.CardHeight+'>',
       '<img src="'+ImageFolder+'4-green-triangle.png" height='+parameters.CardHeight+'>']
+    var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" class="CardSortImage">',
+      '<img src="'+ImageFolder+'2-red-cross.png" class="CardSortImage">',
+      '<img src="'+ImageFolder+'3-yellow-star.png" class="CardSortImage">',
+      '<img src="'+ImageFolder+'4-green-triangle.png" class="CardSortImage">']    
     return stim
   },
   prompt: '+',

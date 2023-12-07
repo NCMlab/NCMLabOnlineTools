@@ -313,13 +313,13 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
 
               
               // Make row for the stimuli at the top
-              html += '<table class="CardSortTable"><tr>'
+              html += '<table class="CardSortTable" id="CSTtable"><tr>'
               html += '<div id="jspsych-image-button-response-btngroup">';
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                   console.log(str)
                   html +=
-                      '<td><div class="jspsych-image-button-response-button" style="display: inline-block; margin:' +
+                      '<td><div class="jspsych-image-button-response-button" style="display: inline-block; ' +
                           
                           '" id="jspsych-image-button-response-button-' +
                           i +
@@ -343,9 +343,15 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               // Fourth row for the stimulus card
               html += '<tr><td colspan="4">'
               // display stimulus as an image element
+              console.log(document.getElementById("jspsych-image-button-response-stimulus"))
               
               // MODIFIED STUFF
-              html += '<img  src="' + trial.ShuffledImages[count] + '" id="jspsych-image-button-response-stimulus">';
+              console.log(trial.ShuffledImages[count])
+              html += '<img  src="' + trial.ShuffledImages[count] + '"style="height:25%" id="jspsych-image-button-response-stimulus" >';
+
+              //html += '<img  src="' + trial.ShuffledImages[count] + 'class="CardSortTable">';
+
+
               html += '</td></tr></table>'
 
 
