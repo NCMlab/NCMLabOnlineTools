@@ -353,3 +353,14 @@ span:hover + div {
   height: 100%;
   width: 100%;
 }
+
+.PatternCompTable {
+  background-color: white;
+  max-width:600px;
+  white-space: nowrap;
+  table-layout:fixed;
+}
+
+.PatternCompImage {
+  max-width: 100%
+}

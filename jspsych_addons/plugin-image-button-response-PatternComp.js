@@ -249,10 +249,13 @@ var jsPsychImageButtonResponsePatternComp = (function (jspsych) {
               }
               // Make row for the stimuli at the top
               
-              html += '<table border = "0"><tr><td>'
-              html += '<img src="' + trial.stimulus[0][count] + '" id="jspsych-image-button-response-stimulus-0" height=200vh>';
+              html += '<table class="PatternCompTable"><tr><td>'
+              html += '<div  style="display: inline-block">'
+                          
+              html += '<img src="' + trial.stimulus[0][count] + '" id="jspsych-image-button-response-stimulus-0" class="PatternCompImage">';
+              html += '</div>'
               html += '</td><td>'
-              html += '<img src="' + trial.stimulus[1][count] + '" id="jspsych-image-button-response-stimulus-1" height=200vh>';
+              html += '<img src="' + trial.stimulus[1][count] + '" id="jspsych-image-button-response-stimulus-1" class="PatternCompImage">';
               html += '</td></tr>'
               html += '<tr height="100px"><td colspan="2"><div id="id_feedback">'+'<h1>'+trial.prompt+'</h1>'
               html += '</div></td></tr>'

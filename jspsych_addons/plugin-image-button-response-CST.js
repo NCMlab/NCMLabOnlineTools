@@ -327,7 +327,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                           i +
                           '">' +
                           str +
-                          "</td></div>";
+                          "</div></td>";
               }
               html += "</div><p>";
               html += '</tr>'
