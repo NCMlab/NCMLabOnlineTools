@@ -4,7 +4,7 @@ EN_Instructions.Instructions01 = [
         'For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: '+
         'color, number of objects, shape of objects. '+
         'You will also see a card at the bottom of the screen which you will match to one of the four cards at the top.'},
-    {'page': '<img src=assets/InstructionalImages/CardSortInstructions.png height=500vh></img>'},
+    {'page': '<div class="InstructImage"><img src=assets/InstructionalImages/CardSortInstructions.png max-width="600px"></img></div>'},
     {'page': '<p class="Instructions"> Select one of the four cards displayed at the top of the screen such '+
     'that the selected card matches the card displayed at the bottom of the screen. '},
     {'page': '<p class="Instructions"> You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice.'}
