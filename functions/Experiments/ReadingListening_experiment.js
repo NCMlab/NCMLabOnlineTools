@@ -19,7 +19,7 @@ List01.push({stim:"The hogs were fed chopped corn and garbage."})
 InputSentences = List01
 
 var SentencesToRepeat
-
+/*
 var InitializeMicrophone = {
   type: jsPsychInitializeMicrophone,
   on_finish: function() {
@@ -53,7 +53,7 @@ var CheckMicrophone = {
   };
   return false }
 }
-
+*/
 var GetSentenceCount = {
   type: jsPsychCallFunction,
   func: function() {
@@ -240,7 +240,7 @@ var SendData = {
   },
 }    
 
-timeline.push(CheckMicrophone)
+//timeline.push(CheckMicrophone)
 timeline.push(Welcome)
 timeline.push(GetList)
 timeline.push(GetSentenceCount)
