@@ -12,15 +12,15 @@ function WordRecog_Scoring(data) {
     var NMiss = temp.filter({DetectionTheory: 'Miss'}).count()
     var NFA = temp.filter({DetectionTheory: 'False Alarm'}).count()
     var NCR = temp.filter({DetectionTheory: 'Correct Rejection'}).count()
-    var Accuracy = NumberCorrect/total_trials
+    var Acc = NumberCorrect/total_trials
 
     var Results = {}
     Results.PrimaryResults = {}
-    Results.PrimaryResults['Accuracy'] = Accuracy
+    Results.PrimaryResults['Accuracy'] = Acc
     Results.PrimaryResults['ScoreName'] = 'Accuracy'
     Results.AllResults = {}
     Results.AllResults['Number of Trials'] = total_trials
-    Results.AllResults['Accuracy '] = Accuracy
+    Results.AllResults['Accuracy '] = Acc
     Results.AllResults['ScoreName'] = 'Accuracy'
     Results.AllResults['Number Correct'] = NumberCorrect
     Results.AllResults['Number Incorrect'] = NumberIncorrect
