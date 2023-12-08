@@ -49,9 +49,43 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
 }
-var IntializeMicrophone = {
-  type: jsPsychInitializeMicrophone
+
+var InitializeMicrophone = {
+  type: jsPsychInitializeMicrophone,
+  on_finish: function() {
+    // after choice and initialization, save the microphone info to the jatos session data
+    recorder = jsPsych.pluginAPI.getMicrophoneRecorder();
+    MicrophoneInfo = jsPsych.pluginAPI.getMicrophoneRecorder()
+    // jatos cannot store the microphone object, so just save the microphone ID
+     jatos.studySessionData.Microphone = MicrophoneInfo.stream.id
+  }
 };
+
+var CheckMicrophone = {
+  timeline: [InitializeMicrophone],
+  conditional_function: function() {
+    // if there is no microphone stored in the jatos session data
+    // then initialize it
+    if ( jatos.studySessionData.Microphone == null )
+    { return true }
+    // get the jatos session data and give it to the current jspsych task
+    else { 
+      console.log("INITIAL MICRO")
+      console.log(jatos.studySessionData)
+      // recreate the microphone object
+      const stream = window.navigator.mediaDevices.getUserMedia({ audio: { deviceId: jatos.studySessionData.Microphone} });
+      stream.then(function(result) {
+      // initialize the microphone
+      jsPsych.pluginAPI.initializeMicrophoneRecorder(result)
+      console.log(result)
+    })
+
+  };
+  return false }
+}
+
+
+
 
 var SetupSpeechRecognition = {
   type: jsPsychCallFunction,
@@ -723,7 +757,7 @@ var if_FinalRecallA = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(Welcome)
-timeline.push(IntializeMicrophone)
+timeline.push(CheckMicrophone)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)
 

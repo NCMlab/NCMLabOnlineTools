@@ -32,6 +32,10 @@ function UpdateHeader() {
 
 // ============== INITIAL MICROPHONE IF NEEDED ================
 
+
+
+ 
+  
 /*
 var if_MicrophoneInitialized = {
     timeline: [IntializeMicrophone],
