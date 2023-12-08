@@ -6,7 +6,7 @@ EN_Instructions_Default.WelcomeText = [
 EN_Instructions_Default.RecallInstructions = 'Please repeat the entire word list'
 EN_Instructions_Default.GetReadyInstructions = 'Get ready for the next trial'
 EN_Instructions_Default.Instructions01 = [
-	{'page': '<p class="Instructions">You are going to hear a list of words. Listen carefully. At the end of the list you are to repeat back as many words as you can recall.</p>'},
+	{'page': '<p class="Instructions">You are going to hear a list of words, this is <b>List A</b>. Listen carefully. At the end of the list you are to repeat back as many words as you can recall.</p>'},
 	{'page': '<p class="Instructions">It does not matter in what order you repeat them, just try to recall as many as you can.</p>'},
 	]
 EN_Instructions_Default.Instructions02 = [
@@ -14,15 +14,15 @@ EN_Instructions_Default.Instructions02 = [
 	{'page': '<p class="Instructions">It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before.</p>'},
 	]
 EN_Instructions_Default.Instructions03 = [
-	{'page': '<p class="Instructions">Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. </p>'},
+	{'page': '<p class="Instructions">Now you will hear a second list of words, this is <b>List B</b>. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. </p>'},
 	{'page': '<p class="Instructions">It does not matter in what order you repeat them, just try to remember as many as you can.</p>'},
 	]
 EN_Instructions_Default.Instructions04 = [
-	{'page': '<p class="Instructions">Now repeat back all the words you can recall from the first list, the list you heard a number of times.</p>'},
+	{'page': '<p class="Instructions">Now repeat back all the words you can recall from <b>List A</b>, the list you heard a number of times.</p>'},
 	]
 
 EN_Instructions_Default.InstructionsDelayed = [
-	{'page': '<p class="Instructions">Recall all the words you can remember from the list you heard a number of times.</p>'},
+	{'page': '<p class="Instructions">Recall all the words you can remember from the list you heard a number of times, <b>List A</b>.</p>'},
 	]	
 
 EN_Instructions_Default.WordPrompt = 'empty'

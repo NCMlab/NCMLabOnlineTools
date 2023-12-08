@@ -197,11 +197,20 @@ function openResourcesShort() {
   console.log(document.getElementById('task-background-info'))
   //document.getElementById('task-background-title').textContent = MentalHealthResources.title
   document.getElementById('task-background-info').innerHTML = MentalHealthResourcesShort.text
+  document.getElementById('task-background-info').style.overflow = "auto"
+  document.getElementById('task-background-info').style.height = "100%"
+  document.getElementById('inner-modal').style.overflow = "auto"
+  document.getElementById('inner-modal').style.height = "100%"
+  //document.getElementById('modal').style.overflow = "auto"
+  //document.getElementById('modal').style.height = "100%"
   console.log(document.getElementById('task-background-info')) 
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  
   modal.classList.add("open");  
+
 }
+
+
 
 function openResourcesLong() {
   document.getElementById('task-background-info').innerHTML = MentalHealthResourcesLong.text;

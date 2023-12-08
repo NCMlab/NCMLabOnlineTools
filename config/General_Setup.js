@@ -32,6 +32,8 @@ EN_LabelNames.CurrentAnswer = 'Current Answer'
 EN_LabelNames.Correct = 'Correct'
 EN_LabelNames.Incorrect = 'Incorrect'
 EN_LabelNames.PressNext = 'Press Next to Continue'
+EN_LabelNames.WordListA = 'List A'
+EN_LabelNames.WordListB = 'List B'
 EN_LabelNames.NoteInputBox = "Please, type in any notes or feedback you have about this task. (Optional)"
 EN_LabelNames.NonEligible = (" I am sorry to say that you are not eligible for this study.")
 

@@ -49,6 +49,9 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
 }
+var IntializeMicrophone = {
+  type: jsPsychInitializeMicrophone
+};
 
 var SetupSpeechRecognition = {
   type: jsPsychCallFunction,
@@ -284,11 +287,15 @@ var AudioStimulus = {
       prompt: function() {
         if ( parameters.VisualPresentation )
         { 
-          return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+          var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
+            '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+          return Str
         }
         else 
         {
-          return '<p class="Fixation">+</p>'
+          var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
+            '<p class="Fixation">+</p>'
+          return Str
         }
       },
     choices: [],  
@@ -315,11 +322,15 @@ var AudioStimulus = {
       prompt: function() {
         if ( parameters.VisualPresentation )
         { 
-          return '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
+          var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
+          '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
+          return Str
         }
         else 
         {
-          return '<p class="Fixation">+</p>'
+          var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
+            '<p class="Fixation">+</p>'
+          return Str
         }
       },
     choices: [],  
@@ -335,7 +346,9 @@ var VisualStimulus = {
     stimulus: function()
       {
         console.log(jsPsych.timelineVariable('Word'))
-        return jsPsych.timelineVariable('Word')
+        var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
+          jsPsych.timelineVariable('Word') + '</p>'
+        return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
     choices: [], 
@@ -355,7 +368,9 @@ var VisualStimulus = {
     stimulus: function()
       {
         console.log(jsPsych.timelineVariable('Word'))
-        return jsPsych.timelineVariable('Word')
+        var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
+          jsPsych.timelineVariable('Word') + '</p>'
+        return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
     choices: [], 

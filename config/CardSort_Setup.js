@@ -23,7 +23,7 @@ CardSort_001.ShowWelcome = false,
 CardSort_001.WelcomeSpoken = false,
 CardSort_001.WelcomeAudio = 'assets/SoundFiles/Instructions/WCST_Welcome.wav',
 CardSort_001.ShowThankYou = false,
-CardSort_001.ShowInstructions = false, 
+CardSort_001.ShowInstructions = true, 
 CardSort_001.InstructionsSpoken = false
 // Overall task instructions
 CardSort_001.Instructions01Audio = []
