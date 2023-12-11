@@ -35,7 +35,7 @@ var RAVLT_Spoken_Immediate = {
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 200, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	WelcomeSpoken: false,
