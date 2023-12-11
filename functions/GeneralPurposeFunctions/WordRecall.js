@@ -215,6 +215,7 @@ var ManualRecallB = {
 // ==========================================================================
 var SpokenRecallA = {
     //type: jsPsychHtmlButtonResponseTouchscreen,
+    
     type: jsPsychHtmlAudioResponse,
     stimulus: function() {
       var Str = 
@@ -223,6 +224,7 @@ var SpokenRecallA = {
       return Str
     },
     choices: function() {return [LabelNames.Next]}, 
+    
     show_done_button: true,
     done_button_label: 'Done',//function() {return [LabelNames.Next]},
     margin_horizontal: GapBetweenButtons,
@@ -230,6 +232,7 @@ var SpokenRecallA = {
     recording_duration: 60000,
     //prompt: function(){return Instructions.WordRecallPrompt}, //Add this to config file
     on_start: function(SimpleList) {
+      
       console.log("Entering on_start")
       // reset the list of indices
       // HOW TO USE TIMELINE VARIABLES TO REUSE THE RECALL FUNCTION FOR LISTS A AND B?
@@ -276,7 +279,16 @@ var SpokenRecallA = {
       var minutes = Math.floor(time_left / 1000 / 60);
       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
       var seconds_str = seconds.toString().padStart(2,'0');
+      
       document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= (parameters.RecallDuration - parameters.DelayBeforeShowingDoneButton)*1000)
+      {
+        document.getElementById("finish-trial").style.display='inline-block'
+      }
+      else 
+      {
+        document.getElementById("finish-trial").style.display='none'
+      }
       if(time_left <= 0){
         document.querySelector('#clock').innerHTML = "0:00";
         document.querySelector('button').disabled = false;

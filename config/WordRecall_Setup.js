@@ -14,7 +14,7 @@ var RAVLT_Manual_Immediate = {
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 200, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -34,7 +34,8 @@ var RAVLT_Spoken_Immediate = {
 	VisualPresentation: true,
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	WelcomeSpoken: false,
@@ -98,6 +99,7 @@ var RAVLT_Spoken_Delayed = {
 	BListFlag: false, // Check to see if there is a second set of words
 	RecallType: 'Spoken',
 	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
@@ -114,6 +116,7 @@ var RAVLT_001 = {
 	BListFlag: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -131,6 +134,7 @@ var FaCE_Default = {
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -148,6 +152,7 @@ var FaCE_Default_FR = {
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -166,6 +171,7 @@ var FaCE_Default_Delayed = {
 	BListFlag: false,
 	RecallType:'Manual',
 	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
@@ -183,6 +189,7 @@ var FaCE_Spoken = {
 	BListFlag: false,
 	RecallType:'Spoken',
 	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -199,6 +206,7 @@ var FaCE_Spoken_FR = {
 	BListFlag: false,
 	RecallType:'Spoken',
 	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -218,6 +226,7 @@ var TEST_Spoken = {
 	VisualPresentation: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	RecognitionFlag: true,
