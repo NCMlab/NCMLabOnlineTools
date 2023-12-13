@@ -41,9 +41,9 @@ var SendData = {
 }
 
 timeline.push(if_GIFRecorder)
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 timeline.push(trial)
-timeline.push(if_Notes)
-timeline.push(if_ThankYou)
+timeline.push(Notes)
+timeline.push(ThankYou)
 timeline.push(SendData)
 

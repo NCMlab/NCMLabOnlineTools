@@ -6,7 +6,7 @@ var ImageCopy_Default = {
 	ShowWelcome: true,
 	ShowThankYou: true,
 	ShowInstructions: true,
-	AskForNotes: true,
+	AskForNotes: false,
 	Image: 'NeckerCube.png',
 	RecordGIF: true,
 }

@@ -47,6 +47,31 @@ var RAVLT_Spoken_Immediate = {
 	RecordAUDIO: true
 }
 
+var RAVLT_Spoken_Immediate_002 = {
+	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 5,
+	BListFlag: true, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+
+
 RAVLT_Spoken_Immediate.Instructions01Audio = []
 RAVLT_Spoken_Immediate.Instructions01Audio.push('assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav')
 RAVLT_Spoken_Immediate.Instructions01Audio.push('assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav')
@@ -104,6 +129,23 @@ var RAVLT_Spoken_Delayed = {
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
 	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+}
+
+var RAVLT_Spoken_Delayed_002 = {
+	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: true,
+	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
 }
@@ -240,8 +282,10 @@ var TEST_Spoken = {
 
 add('RAVLT_Manual_Immediate', function(){ parameters = RAVLT_Manual_Immediate});
 add('RAVLT_Spoken_Immediate', function(){ parameters = RAVLT_Spoken_Immediate});
+add('RAVLT_Spoken_Immediate_002', function(){ parameters = RAVLT_Spoken_Immediate_002});
 add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
 add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
+add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_002});
 
 add('FaCE_Default', function(){ parameters = FaCE_Default});
 add('FaCE_Default_Delayed', function(){ parameters = FaCE_Default_Delayed});

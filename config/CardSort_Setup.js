@@ -44,3 +44,8 @@ CardSort_001.Instructions03Time = []
 CardSort_001.Instructions03Time.push(5000)
 
 add('CardSort_001', function(){ parameters = CardSort_001});
+
+CardSort_002 = CardSort_001
+CardSort_001.ShowWelcome = true
+CardSort_001.ShowThankYou = true
+add('CardSort_002', function(){ parameters = CardSort_002});

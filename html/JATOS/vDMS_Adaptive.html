@@ -30,10 +30,12 @@
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>    
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     
     <script> 
       // used for the image used during the instructions
@@ -49,29 +51,17 @@
         }
       }
     </style>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
-    <script src="InstructionsAndStimuli/Instructions/vDMS_Instructions.js"></script>
     
+    <script src="InstructionsAndStimuli/Instructions/vDMS_Instructions.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
     
     <script>
       var vDMS_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
         console.log(jatos.studySessionData)        
-        if (typeof BatteryHtmlID === 'undefined') {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
           parameters = 'vDMS_Adaptive'
           InstructionsToUse = 'Default'
         }
@@ -84,7 +74,7 @@
         console.log(vDMS_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_vDMS_Instructions_'+InstructionsToUse)
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
       })
@@ -97,6 +87,9 @@
   var TrialCount = 1;
   var jsPsych = initJsPsych({
       display_element: 'jspsych-target',
+      auto_update_progress_bar: false,
+      show_progress_bar: true,    
+
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);

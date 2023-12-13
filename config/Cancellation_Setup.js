@@ -19,10 +19,13 @@ var Cancellation_001 = {
     target_labels: "H",
     ShowWelcome: true,
     ShowThankYou: false,
-    AskForNotes: true, 
+    AskForNotes: false, 
     RecordGIF: true,
 }
-
+Cancellation_002 = Cancellation_001
+Cancellation_002.ShowWelcome = true
+Cancellation_002.ShowThankYou = true
 
   add('Cancellation_Default', function(){ Cancellation_parameters = Cancellation_Default});
   add('Cancellation_001', function(){ Cancellation_parameters = Cancellation_001});
+  add('Cancellation_002', function(){ Cancellation_parameters = Cancellation_002});

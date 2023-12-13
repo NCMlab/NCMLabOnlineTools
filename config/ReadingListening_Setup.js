@@ -14,4 +14,18 @@ ReadingListeningList01.ScoreNeeded = 0.7,
 ReadingListeningList01.SentencesToRepeat = 3
 
 add('ReadingListeningList01', function(){ parameters = ReadingListeningList01});
+
+var ReadingListeningList02 = {} 
+ReadingListeningList02.ShowWelcome = true,
+ReadingListeningList02.WelcomeSpoken = false,
+ReadingListeningList02.ShowInstructions = true,
+ReadingListeningList02.InstructionsSpoken = false,
+ReadingListeningList02.ShowThankYou = true,
+ReadingListeningList02.AskForNotes = false,
+ReadingListeningList02.RecordAUDIO = true,
+ReadingListeningList02.ScoreNeeded = 0.7,
+ReadingListeningList02.SentencesToRepeat = 5
+
+add('ReadingListeningList02', function(){ parameters = ReadingListeningList02});
+
 // ===================================================================================

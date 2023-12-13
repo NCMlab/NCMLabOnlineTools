@@ -1,9 +1,9 @@
 
 
 var ClockDrawing_001 = {
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: false, 
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: true, 
 	RecordGIF: true,
 	AskForNotes: false,
 }

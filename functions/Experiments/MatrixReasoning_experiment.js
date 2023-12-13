@@ -9,6 +9,8 @@ var MatrixReasoningSetup = {
     type: jsPsychCallFunction,
     func: function() 
     {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        jsPsych.setProgressBar(1)
         for ( var i = 0; i < MatrixReasoning_parameters.StimList.length; i++ ){
   //  MakeMatrxiReasoningStim(StimulusID, BaseFolderName, StimulusFolderName ) 
             ImageFileList.push(MakeMatrxiReasoningStim(MatrixReasoning_parameters.StimList[i]['stim'], BaseFolderName, MatrixReasoning_parameters.StimulusFolderName))
@@ -26,6 +28,7 @@ var CalculateWaitTime = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function(){
+    
     if ( MatrixReasoning_parameters.AllowedTime > 0 ) {
       wait_time = MatrixReasoning_parameters.AllowedTime * 1000; // in milliseconds
       console.log("The wait time is set to: "+wait_time)
@@ -171,33 +174,6 @@ var timer_stop = {
       choices: function() {return [LabelNames.Next]}, 
     }
 
-    var if_ThankYou = {
-      timeline: [thank_you],
-      conditional_function: function() {
-            if ( MatrixReasoning_parameters.ShowThankYou)
-            { return true }
-            else { return false }
-      }
-    }
-    
-    var welcome = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function() {
-        return Instructions.WelcomeText[0].page},
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: 'PROMPT',
-      choices: function() {return [LabelNames.Next]}, 
-    }
-    
-    var if_Welcome = {
-      timeline: [welcome],
-      conditional_function: function() {
-            if ( MatrixReasoning_parameters.ShowWelcome)
-            { return true }
-            else { return false }
-      }
-    }
     
     var if_Instructions = {
       timeline: [instr_procedure_loop_node],
@@ -212,7 +188,7 @@ var timer_stop = {
 // ======================================================================= 
 timeline.push(CalculateWaitTime) // works
 timeline.push(enter_fullscreen)
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 timeline.push(MatrixReasoningSetup)
 timeline.push(preload)
 timeline.push(if_Instructions)
@@ -221,4 +197,4 @@ timeline.push(trial_procedure)
 timeline.push(timer_stop)
 timeline.push(Notes)
 timeline.push(SendData)
-timeline.push(if_ThankYou);
+timeline.push(ThankYou);

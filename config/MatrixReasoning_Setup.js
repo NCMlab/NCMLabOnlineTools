@@ -23,7 +23,7 @@ var MatrixReasoning_ICAR = {
   OptionMapping: '123456', // used for scoring
   AllowedTime: 10*60, // seconds
   ShowWelcome: true,
-	ShowThankYou: false,
+	ShowThankYou: true,
   ShowInstructions: true,
 }
 

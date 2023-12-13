@@ -299,4 +299,4 @@ vDMS_Adaptive = {
 	InstructionsSpoken: false
 }
 
-add('vDMS_Adaptive', function(){ vDMS_parameters = vDMS_Adaptive});
+add('vDMS_Adaptive', function(){ parameters = vDMS_Adaptive});

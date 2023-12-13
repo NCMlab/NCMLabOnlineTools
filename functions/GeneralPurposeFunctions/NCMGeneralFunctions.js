@@ -24,7 +24,9 @@ var timer_function = function(wait_time){
     // This checks the time every 250 milliseconds
     // The html ID #clock is updated
     interval = setInterval(function(){
+        
         time_left = wait_time - (performance.now() - start_time);
+        jsPsych.setProgressBar(time_left/wait_time)
         var minutes = Math.floor(time_left / 1000 / 60);
         var seconds = Math.floor((time_left - minutes*1000*60)/1000);
         var seconds_str = seconds.toString().padStart(2,'0');

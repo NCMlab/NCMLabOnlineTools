@@ -1,7 +1,7 @@
 
 // Define Table size
 // Need to add conditional style based on portrait or landscape orientation
-console.log(screen.orientation)
+console.log(parameters)
 
 
 // =======================================================================

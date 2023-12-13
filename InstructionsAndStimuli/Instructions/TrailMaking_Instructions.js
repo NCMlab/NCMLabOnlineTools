@@ -18,7 +18,7 @@ EN_Instructions.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a l
 EN_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
-add('EN_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = EN_Instructions});
+add('EN_Instructions_Default', function(){ TrailMaking_Instructions = EN_Instructions});
 // ==================================================================================
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">C\'est la tâche de Sentiers.</p>'}]
@@ -39,7 +39,7 @@ FR_Instructions.InstructionsShownWithPracticeB = 'Commencez au numéro 1 et trac
 FR_Instructions.ThankYouText = [{'page':'<p class="Instructions">Merci'}]
 FR_Instructions.NotesForResultsPage = 'FR: The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
-add('FR_TrailMaking_Instructions_Default', function(){ TrailMaking_Instructions = FR_Instructions});
+add('FR_Instructions_Default', function(){ TrailMaking_Instructions = FR_Instructions});
 // ==================================================================================
 var EN_Instructions = {}
 EN_Instructions.FirstCircleLabel = 'begin'
@@ -56,7 +56,7 @@ EN_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a li
 EN_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 EN_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
-add('EN_TrailMaking_Instructions_FaCE', function(){ TrailMaking_Instructions = EN_Instructions});
+add('EN_Instructions_FaCE', function(){ TrailMaking_Instructions = EN_Instructions});
 // ==================================================================================
 var FR_Instructions = {}
 FR_Instructions.FirstCircleLabel = 'Début'
@@ -73,4 +73,4 @@ FR_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a li
 FR_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]
 FR_Instructions.NotesForResultsPage = 'The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.'
 
-add('FR_TrailMaking_Instructions_FaCE', function(){ TrailMaking_Instructions = FR_Instructions});
+add('FR_Instructions_FaCE', function(){ TrailMaking_Instructions = FR_Instructions});

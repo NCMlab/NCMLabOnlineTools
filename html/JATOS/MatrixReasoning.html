@@ -32,30 +32,17 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script> 
       var BaseFolderName = 'assets/Images/MatrixReasoning/'
     </script>
 
     <script src="InstructionsAndStimuli/Instructions/MatrixReasoning_Instructions.js"></script>
     <script src="config/MatrixReasoning_Setup.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
-
+    <script src="Batteries/ComponentList.js"></script>
     <script>
       var MatrixReasoning_parameters = 'empty'
       var parameters = 'empty'
@@ -75,16 +62,11 @@
         console.log(MatrixReasoning_parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
-        pseudoSwitch(LANG+'_MatrixReasoning_Instructions_'+InstructionsToUse)
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(LabelNames)
         console.log(Instructions)
-        // update the header button labels
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-end-button').textContent = LabelNames.End;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
       })
     </script> 
 
@@ -104,6 +86,8 @@
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    auto_update_progress_bar: false,
+    show_progress_bar: true,    
     on_trial_start: function() {
       // http://127.0.0.1:9000/publix/fNTRhuguK1x
       // console.log(jatos.urlQueryParameters);
@@ -127,9 +111,10 @@ var jsPsych = initJsPsych({
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
       // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
     }
   });
   jatos.onLoad(() => {
@@ -142,4 +127,12 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+  <div id="footerText"></div>
+<script>
+    jatos.onLoad(() => {
+      // update the header button labels
+      UpdateHeader()
+    })
+</script>
+
 </html>

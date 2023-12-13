@@ -24,7 +24,7 @@ SerialSubtract_Default = {
     ShowInstructions: true,
     ShowWelcome: true,
 	ShowThankYou: true,
-    AskForNotes: true,
+    AskForNotes: false,
 }
 
 

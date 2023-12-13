@@ -34,23 +34,21 @@
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js"></script>
     <script src="config/ClockDrawing_Setup.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-    </script>
+    
 
     <script>
       var parameters = 'empty'      
       jatos.onLoad(() => {
         Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+             {
               parameters = 'ClockDrawing_001'
               InstructionsToUse = 'Default'
             }
@@ -63,7 +61,7 @@
           console.log(parameters)
           LANG = jatos.studySessionData.Language
           console.log(LANG)
-          pseudoSwitch(LANG+'_ClockDrawing_Instructions_'+InstructionsToUse)
+          pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
           console.log(Instructions)
@@ -81,6 +79,9 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    auto_update_progress_bar: false,
+      show_progress_bar: true,    
+
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
