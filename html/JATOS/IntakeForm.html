@@ -40,28 +40,34 @@
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-    <script src="InstructionsAndStimuli/BackgroundMaterial/IntakeAndScreening.js"></script>
+    
     <script>
       var IntakeFormParameters = 'empty'
       var parameters = 'empty'
       var BackgroundText = ''
       
       jatos.onLoad(() => {
+        console.log(jatos.studySessionData.InstructionList)
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
-            { parameters = 'EN_IntakeForm_Generic' }
-            else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
+            { 
+              parameters = 'EN_IntakeForm_Generic' 
+              InstructionsToUse = 'Default'
+            }
+            else { 
+              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]
+              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+            }
             console.log(parameters)
             LANG = jatos.studySessionData.Language
             console.log(LANG)
             // load the parameters
             pseudoSwitch(LANG+"_"+parameters)
-            console.log(IntakeFormParameters)
             // load the language specific instructions
-            
+            console.log(LANG+'_Instructions_'+InstructionsToUse)
+            pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
             
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
-            console.log(IntakeFormParameters)
             console.log(LabelNames)
             BackgroundText = eval(LANG+'_BackgroundText');
       })

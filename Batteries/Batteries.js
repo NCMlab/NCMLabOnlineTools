@@ -78,7 +78,7 @@ BatteryList.push({index: 202,
         'Spatial DMS', 
 	], 
 	Instructions: ['', //1
-		'',
+		'Default',
 		'Default',
 		'Default',
 		'',//5

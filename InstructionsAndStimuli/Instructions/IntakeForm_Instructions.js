@@ -1,4 +1,11 @@
 // ============================================
+var EN_Instructions = {}
+EN_Instructions.Instructions01 = [
+  {'page': '<p class="Instructions"> Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
+    'If you want to finish the experiment early, press the Stop button in the top left. If you want to remove yourself '+
+    'from the experiment press the Quit button. Please, do not press your browser\'s back or reload buttons.'}
+]
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 // ====== ENGLISH =========
 var FormTitle = 'FaCE Intake Form'
 var pages = [
@@ -61,6 +68,7 @@ var pages = [
   var EN_IntakeForm_FaCE = {}
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
+  
   add('EN_IntakeForm_FaCE', function(){ parameters = EN_IntakeForm_FaCE });
   
   // ====== ENGLISH =========
@@ -345,7 +353,14 @@ var pages = [
     var EN_IntakeForm_Generic = {}
     EN_IntakeForm_Generic.title = FormTitle
     EN_IntakeForm_Generic.pages = pages  
-    EN_IntakeForm_Generic.ScoringMethod
+    EN_IntakeForm_Generic.ShowWelcome = false,
+    EN_IntakeForm_Generic.WelcomeSpoken = false,
+    EN_IntakeForm_Generic.WelcomeAudio = '',
+    EN_IntakeForm_Generic.ShowThankYou = false,
+    EN_IntakeForm_Generic.ShowInstructions = true, 
+    EN_IntakeForm_Generic.InstructionsSpoken = false,
+    EN_IntakeForm_Generic.AskForNotes = false,
+    EN_IntakeForm_Generic.RecordAUDIO = false
   add('EN_IntakeForm_Generic', function(){ parameters = EN_IntakeForm_Generic });
 
   // ============================================
