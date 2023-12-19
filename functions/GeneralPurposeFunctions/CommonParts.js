@@ -3,13 +3,13 @@ var Results
 // ============== UPDATE HEADER ELEMENTS  ================
 function UpdateHeader() {
     //hide  the information button for now
-    document.getElementById('header-info-button').style.visibility = "hidden"
+    //
     // set the header button language
     document.getElementById('header-home-button').textContent = LabelNames.Home;
     document.getElementById('header-restart-button').textContent = LabelNames.Restart;
     document.getElementById('header-stop-button').textContent = LabelNames.Stop;
     document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-    
+    document.getElementById('header-info-button').style.visibility = "hidden"
     // Check to see if we are in the User Choice screen, if so turn off restart and home
     var HomeScreenFlag = false
     if ( jatos.componentList[jatos.componentPos-1].title == "User Choice" )
