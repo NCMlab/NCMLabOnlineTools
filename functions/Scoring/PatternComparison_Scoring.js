@@ -1,5 +1,5 @@
 function PatternComparison_Scoring(data) {
-
+    Notes = data.filter({trial: 'Notes'})
     const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
     function getAllIndexes(arr, val) {
         var indexes = [], i = -1;
@@ -48,6 +48,9 @@ function PatternComparison_Scoring(data) {
     Results.AllResults['mean RT'] = meanRT
     Results.AllResults['Load Accuracy'] = meanAcc
     Results.AllResults['Number Trials'] = Ntrials
-
+    if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+    Results.parameters = parameters
     return Results
 }

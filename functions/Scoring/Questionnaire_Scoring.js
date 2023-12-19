@@ -1,5 +1,6 @@
 function Questionnaire_Scoring(data) {
 	console.log(data)
+	Notes = data.filter({trial: 'Notes'})
 	Results = {}	
     
 
@@ -30,8 +31,6 @@ function Questionnaire_Scoring(data) {
 				//Results.AllResults[keys[i]] = data.response[keys[i]]
 				NumericScore = data.response[keys[i]] // Numeric score
 			}
-			 
-
 			TotalScore += NumericScore
 			Results.AllResults[prompt] = TextAnswer
 		}
@@ -77,6 +76,9 @@ function Questionnaire_Scoring(data) {
 	}
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
 	Results.parameters = parameters
 	Results.Alert = false
 	if ( data.AlertLimit !== undefined ) 

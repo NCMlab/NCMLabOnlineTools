@@ -1,6 +1,6 @@
 function CardSort_Scoring(data) {
 	var trials = jsPsych.data.get().filter({trial: 'Test'});
-	
+	Notes = data.filter({trial: 'Notes'})
 	
 
 
@@ -57,5 +57,9 @@ function CardSort_Scoring(data) {
 	}
 	Results.AllResults['CardSortColNames'] = ColNames
 	Results.AllResults['Card Sort Table'] = ResultsTable
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+	Results.parameters = parameters
 	return Results
 }

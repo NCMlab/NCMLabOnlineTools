@@ -1,5 +1,5 @@
 function WordRecall_Scoring(data, WordListA, WordListB) {
-
+	Notes = data.filter({trial: 'Notes'})
 	console.log(data)
 	console.log(WordListA)
 	console.log(WordListB)
@@ -155,7 +155,11 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 		  Results.AllResults['User Said'].push(TrialData.trials[i].userSaid)  
 	  }
 	  */
-	console.log(Results)
+	
+	if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+	Results.parameters = parameters
 	return Results
 }
 

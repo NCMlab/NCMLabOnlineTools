@@ -1,5 +1,6 @@
 function WordRecog_Scoring(data) {
     temp = data.filter({task: 'Recognition'})
+    Notes = data.filter({trial: 'Notes'})
     console.log(temp)
     for ( var i = 0; i < temp.length; i++ )
     {
@@ -28,6 +29,11 @@ function WordRecog_Scoring(data) {
     Results.AllResults['Number of Miss'] = NMiss
     Results.AllResults['Number of False Alarm'] = NFA
     Results.AllResults['Number of Correct Rejection'] = NCR
+    if ( Notes.trials.length > 0 )
+		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+    Results.parameters = parameters
+    
 	return Results
 }
 
