@@ -172,7 +172,7 @@ var TestTrial = {
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    var data = jsPsych.data.get().filter({trial: "Test"}).trials[0] 
+    var data = jsPsych.data.get()
     console.log(data)
     Results = PatternComparison_Scoring(data)
     jsPsych.finishTrial(Results)

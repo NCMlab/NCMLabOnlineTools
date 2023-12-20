@@ -1,5 +1,7 @@
 function PatternComparison_Scoring(data) {
     Notes = data.filter({trial: 'Notes'})
+
+    data = data.filter({trial: "Test"}).trials[0] 
     const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
     function getAllIndexes(arr, val) {
         var indexes = [], i = -1;
