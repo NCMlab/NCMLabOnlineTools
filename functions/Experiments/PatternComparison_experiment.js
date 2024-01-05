@@ -146,7 +146,6 @@ var PracticeTrial = {
   on_finish: function(data) {
     data.trial = "Practice"
     jsPsych.setProgressBar(0)
-    console.log(PatternComparison_Scoring(data))
   }
 };
 
