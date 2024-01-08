@@ -19,6 +19,16 @@ var STAI_S_001 = {
     ShowThankYou: false,
     ShowInstructions: false, 
 }
+
+var STAI_S_002 = { 
+    questionnaire: ['stai_state'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: true,
+    ShowWelcome: false,
+    ShowThankYou: true,
+    ShowInstructions: false, 
+}
 var STAI_T_001 = { 
     questionnaire: ['stai_trait'], 
     criteria: [],
@@ -44,6 +54,7 @@ var BDI_001 = {
 
 add('AES_001', function(){ parameters = AES_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
+add('STAI_S_002', function(){ parameters = STAI_S_002});
 add('STAI_T_001', function(){ parameters = STAI_T_001});
 add('BDI_001', function(){ parameters = BDI_001});
 

@@ -76,7 +76,7 @@ var CheckForAlert = {
     
     var data = jsPsych.data.get().filter({trial: 'Questionnaire'});
     console.log(data.trials[0])
-    Results = Questionnaire_Scoring(data.trials[0])
+    Results = Questionnaire_Scoring(data)
     console.log(data)
     console.log(Results)
   }
@@ -88,6 +88,7 @@ timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)
+
 
 
 

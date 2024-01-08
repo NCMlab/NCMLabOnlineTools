@@ -1,6 +1,8 @@
 function Questionnaire_Scoring(data) {
 	console.log(data)
-	Notes = data.filter({trial: 'Notes'})
+	AllTrials = data
+	data = data.trials[0]
+	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
     
 
@@ -20,6 +22,8 @@ function Questionnaire_Scoring(data) {
 		{
 			prompt = data.pages[0][i].prompt
 			resp = data.response[keys[i]]
+			console.log("Prompt: "+prompt)
+			console.log("Resp: "+resp)
 			console.log(resp === null)
 			// Check to see if the person answers
 			if ( resp === null )
@@ -27,7 +31,9 @@ function Questionnaire_Scoring(data) {
 			else
 			{
 				console.log("FOUND ACTUAL RESPONSE")
-				TextAnswer = data.pages[0][i].likert_scale_values[data.response[keys[i]]].text
+				console.log(data.response[keys[i]])
+				console.log(data.pages[0][i])
+				TextAnswer = data.pages[0][i].likert_scale_values[data.response[keys[i]]-1].text
 				//Results.AllResults[keys[i]] = data.response[keys[i]]
 				NumericScore = data.response[keys[i]] // Numeric score
 			}
