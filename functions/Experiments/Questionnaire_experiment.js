@@ -17,7 +17,7 @@ var trial = {
           if ( typeof jatos.studySessionData.ScreeningData !== 'undefined' )
           {
             console.log(jatos.studySessionData.ScreeningData)
-            var Str =  'var ' + parameters.variable + ' = jatos.studySessionData.ScreeningData.trials[0].response.' + parameters.variable 
+            var Str =  'var ' + parameters.variable + ' = jatos.studySessionData.ScreeningData.trials[1].response.' + parameters.variable 
             console.log(Str)
             eval(Str)
             console.log(Age)
