@@ -13,9 +13,9 @@ function UpdateHeader() {
     //hide  the information button for now
     //
     // set the header button language
-    console.log(document.getElementById('header-home-button'))
+    //console.log(document.getElementById('header-home-button'))
     try {
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
+        //document.getElementById('header-home-button').textContent = LabelNames.Home;
         document.getElementById('header-restart-button').textContent = LabelNames.Restart;
         document.getElementById('header-stop-button').textContent = LabelNames.Stop;
         document.getElementById('header-quit-button').textContent = LabelNames.Quit;
@@ -30,14 +30,19 @@ function UpdateHeader() {
     
     if ( jatos.urlQueryParameters.Battery < 100 )
     {
-        // this is a battery and we need to turn off the home/restart buttons
-        document.getElementById('header-home-button').style.visibility = "hidden"
-        document.getElementById('header-info-button').style.visibility = "hidden"
+        try {
+            // this is a battery and we need to turn off the home/restart buttons
+      //      document.getElementById('header-home-button').style.visibility = "hidden"
+            document.getElementById('header-info-button').style.visibility = "hidden"
+        } catch (error) {
+            console.log(error);
+        }
+        }
         //document.getElementById('header-restart-button').style.visibility = "hidden"
     }
     if ( HomeScreenFlag )
     {
-        document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
+      //  document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
         document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
         document.getElementById('header-info-button').style.visibility = "hidden"
     }
