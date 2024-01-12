@@ -126,9 +126,11 @@ var jsPsych = initJsPsych({
     <div id="footerText"></div>
     <script>
       jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
-    </script>
+        document.getElementById('header-home-button').style.visibility = "hidden"
+      document.getElementById('header-info-button').style.visibility = "hidden"
+      document.getElementById('header-skip-button').style.visibility = "hidden"
+      document.getElementById('header-restart-button').style.visibility = "hidden"
+      });
+  </script>
     </body>
 </html>

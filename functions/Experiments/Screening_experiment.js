@@ -54,7 +54,7 @@ var SendData = {
     
   }
 }
-
+timeline.push(UpdateHeaderCall)  
 timeline.push(trial)
 timeline.push(Notes)
 timeline.push(CheckEligibilityData)

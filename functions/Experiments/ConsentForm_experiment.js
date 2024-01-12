@@ -36,6 +36,7 @@ var SendData = {
     },
   }
 var timeline = []
+timeline.push(UpdateHeaderCall)  
 timeline.push(Welcome)
 timeline.push(trial)
 timeline.push(SendData)

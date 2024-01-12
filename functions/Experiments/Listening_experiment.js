@@ -13,6 +13,7 @@ var ButtonList = []
 var NumberCorrect = 0
 var Count = 0
 // =======================================================================
+
 // preload audio
 var preload_audio = {
     type: jsPsychPreload,
@@ -82,7 +83,7 @@ var SendData = {
     jsPsych.finishTrial(Results)
   }
 }
-  
+timeline.push(UpdateHeaderCall)  
 timeline.push(Welcome)
 timeline.push(preload_audio)
 timeline.push(Instructions01)

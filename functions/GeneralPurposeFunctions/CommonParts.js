@@ -1,6 +1,14 @@
 
 var Results
 // ============== UPDATE HEADER ELEMENTS  ================
+var UpdateHeaderCall = {
+    type: jsPsychCallFunction,
+    func: function() {
+        UpdateHeader()
+    }
+  }
+  
+
 function UpdateHeader() {
     //hide  the information button for now
     //
@@ -20,12 +28,14 @@ function UpdateHeader() {
     {
         // this is a battery and we need to turn off the home/restart buttons
         document.getElementById('header-home-button').style.visibility = "hidden"
-        document.getElementById('header-restart-button').style.visibility = "hidden"
+        document.getElementById('header-info-button').style.visibility = "hidden"
+        //document.getElementById('header-restart-button').style.visibility = "hidden"
     }
     if ( HomeScreenFlag )
     {
         document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
         document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
+        document.getElementById('header-info-button').style.visibility = "hidden"
     }
     // add the footer text
     document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;

@@ -172,7 +172,19 @@ function restartTask() {
   let text = "This will restart the current task. Are you sure?"
   if (confirm(text) == true)
   {   jatos.startComponentByTitle(TaskList)  }
+}
 
+
+function skipTask() {
+  console.log(jatos.studySessionData)
+  JATOSSessionData = jatos.studySessionData
+  JATOSSessionData.CurrentIndex += 1
+  jatos.studySessionData = JATOSSessionData
+  console.log(jatos.studySessionData)
+  TaskList = jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex ]
+  let text = "This will SKIP the current task. Are you sure?"
+  if (confirm(text) == true)
+  {   jatos.startComponentByTitle(TaskList)  }
 }
 
 function stopExperiment() {
