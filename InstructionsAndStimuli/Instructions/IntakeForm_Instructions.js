@@ -2,8 +2,10 @@
 var EN_Instructions = {}
 EN_Instructions.Instructions01 = [
   {'page': '<p class="Instructions"> Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
-    'If you want to finish the experiment early, press the Stop button in the top left. If you want to remove yourself '+
-    'from the experiment press the Quit button. Please, do not press your browser\'s back or reload buttons.'}
+    'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
+    'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
+    {'page': '<p class="Instructions">If a task freezes on you you can press the <em>Skip</em> button. If you have feedback you would like to share '+
+    'with us, there will be a text box at the end where you can type in comments.'}
 ]
 add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 // ====== ENGLISH =========
