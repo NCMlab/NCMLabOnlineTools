@@ -37,7 +37,7 @@ function UpdateHeader() {
         } catch (error) {
             console.log(error);
         }
-        }
+        
         //document.getElementById('header-restart-button').style.visibility = "hidden"
     }
     if ( HomeScreenFlag )
@@ -52,8 +52,6 @@ function UpdateHeader() {
       } catch (error) {
         console.error(error);
       }
-      
-    
 }
 
 // ============== INITIAL MICROPHONE IF NEEDED ================
