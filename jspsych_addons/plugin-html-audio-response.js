@@ -117,11 +117,15 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.stop_event_handler = () => {
               const data = new Blob(this.recorded_data_chunks, { type: "audio/webm" });
               this.audio_url = URL.createObjectURL(data);
+              console.log(this)
+              
+
               const reader = new FileReader();
+              console.log(reader)
               reader.addEventListener("load", () => {
                   const base64 = reader.result.split(",")[1];
                   this.response = base64;
-                  this.load_resolver();
+                  //this.load_resolver();
               });
               reader.readAsDataURL(data);
           };
@@ -166,7 +170,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
       stopRecording() {
           this.recorder.stop();
           return new Promise((resolve) => {
-              this.load_resolver = resolve;
+              this.load_resolverJASON = resolve;
           });
       }
       showPlaybackControls(display_element, trial) {
