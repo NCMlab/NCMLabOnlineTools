@@ -14,12 +14,16 @@ function UpdateHeader() {
     //
     // set the header button language
     console.log(document.getElementById('header-home-button'))
-    document.getElementById('header-home-button').textContent = LabelNames.Home;
-    document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-    document.getElementById('header-stop-button').textContent = LabelNames.Stop;
-    document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-    document.getElementById('header-info-button').style.visibility = "hidden"
-    // Check to see if we are in the User Choice screen, if so turn off restart and home
+    try {
+        document.getElementById('header-home-button').textContent = LabelNames.Home;
+        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+        document.getElementById('header-stop-button').textContent = LabelNames.Stop;
+        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+        document.getElementById('header-info-button').style.visibility = "hidden"
+    } catch (error) {
+        console.log(error);
+    }
+        // Check to see if we are in the User Choice screen, if so turn off restart and home
     var HomeScreenFlag = false
     if ( jatos.componentList[jatos.componentPos-1].title == "User Choice" )
     { HomeScreenFlag = true }
@@ -38,7 +42,13 @@ function UpdateHeader() {
         document.getElementById('header-info-button').style.visibility = "hidden"
     }
     // add the footer text
-    document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+    try {
+        document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      } catch (error) {
+        console.error(error);
+      }
+      
+    
 }
 
 // ============== INITIAL MICROPHONE IF NEEDED ================
