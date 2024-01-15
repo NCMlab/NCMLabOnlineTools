@@ -165,7 +165,7 @@ var EligibilityCheck = {
     timeline: [BrowserEligibilityCheck],
     conditional_function: function(){
     let chromeAgent = Results.AllResults['Computer Information'].indexOf("Chrome") > -1; 
-      if ( chromeAgent === -1 )
+      if ( chromeAgent )
       { return false }
       else { return true }
     }
