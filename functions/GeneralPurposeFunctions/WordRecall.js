@@ -214,6 +214,74 @@ var ManualRecallB = {
 
 // ==========================================================================
 var SpokenRecallA = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: function() {
+      var Str = 
+        '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+        Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>'
+      return Str
+    },
+    choices: function() {return [LabelNames.Next]}, 
+    show_done_button: true,
+    done_button_label: 'Done',//function() {return [LabelNames.Next]},
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    recording_duration: 60000,
+
+    on_start: function(SimpleList) {
+      console.log("Entering on_start")
+      HeardList = []
+      userSaidWords = []
+      userSaid = []
+      BlockRecallCount = 0
+      BlockIntrusionCount = 0
+      IntrusionList = []
+      TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
+      annyang.start({autorestart: true, continuous: true});
+    },
+    on_finish: function(data){
+      data.RecallBlock = TempRecall
+      data.HeardList = HeardList
+      data.IntrusionList = IntrusionList
+      data.RecallCount = BlockRecallCount
+      data.NIntrusions = BlockIntrusionCount
+      data.task = 'Recall'
+      data.type = 'A'
+      data.userSaid = userSaidWords
+      BlockCount++
+      clearInterval(interval);
+      annyang.abort()
+      console.log("Ended recall")
+    },
+    on_load: function(){ // This inserts a timer on the recall duration
+      var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+      var start_time = performance.now();
+      interval = setInterval(function(){
+      time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= (parameters.RecallDuration - parameters.DelayBeforeShowingDoneButton)*1000)
+      {
+        document.getElementById("finish-trial").style.display='inline-block'
+      }
+      else 
+      {
+        document.getElementById("finish-trial").style.display='none'
+      }
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+      }, 250)
+    }
+};
+
+var OLDSpokenRecallA = {
     //type: jsPsychHtmlButtonResponseTouchscreen,
     
     type: jsPsychHtmlAudioResponse,
@@ -295,7 +363,7 @@ var SpokenRecallA = {
         clearInterval(interval);
         // STOP VOICE RECORDING!!!
       }
-    }, 250)
+      }, 250)
     }
   }
 
