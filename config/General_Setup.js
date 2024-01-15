@@ -36,7 +36,7 @@ EN_LabelNames.WordListA = 'List A'
 EN_LabelNames.WordListB = 'List B'
 EN_LabelNames.NoteInputBox = "Please, type in any notes or feedback you have about this task. (Optional)"
 EN_LabelNames.NonEligible = (" I am sorry to say that you are not eligible for this study.")
-
+EN_LabelNames.BroswerNonEligible = ("You are eligible, but our software does not work your browser yet. Please try again using the Chrome browser on a laptop computer.")
 var FR_LabelNames = {}
 FR_LabelNames.YesNo = ['Oui','No']
 FR_LabelNames.Home = "Page d'accueil"

@@ -121,6 +121,7 @@ var mentalHealthFeedback = {
 var EligibilityCheck = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
+        console.log(Results.AllResults['Computer Information'].indexOf("Chrome"))
       return LabelNames.NonEligible
     },
     post_trial_gap: 0,
@@ -128,6 +129,7 @@ var EligibilityCheck = {
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
     on_finish: function() {
+        console.log(Results.AllResults['Computer Information'].indexOf("Chrome"))
         //jsPsych.finishTrial(Results)    
         //jatos.endStudyAndRedirect("https://ncmlab.github.io/", Results);
     }
@@ -137,6 +139,32 @@ var EligibilityCheck = {
     timeline: [EligibilityCheck],
     conditional_function: function(){
       if ( Results.AllResults['Accuracy'] )
+      { return false }
+      else { return true }
+    }
+  }
+
+  var BrowserEligibilityCheck = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      return LabelNames.BroswerNonEligible
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+    on_finish: function() {
+        jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results])
+        //jsPsych.finishTrial(Results)    
+        //jatos.endStudyAndRedirect("https://ncmlab.github.io/", Results);
+    }
+  }
+  
+  var if_BrowserEligibile = {
+    timeline: [BrowserEligibilityCheck],
+    conditional_function: function(){
+    let chromeAgent = Results.AllResults['Computer Information'].indexOf("Chrome") > -1; 
+      if ( chromeAgent === -1 )
       { return false }
       else { return true }
     }
@@ -213,7 +241,7 @@ var Welcome = {
 }
 
 // ============== NOTES ==============
-var Notes = {
+var notes = {
     type: jsPsychSurvey, 
     pages: [[{
         type: 'text',
@@ -227,7 +255,7 @@ var Notes = {
 }
 
 var if_Notes = {
-    timeline: [Notes],
+    timeline: [notes],
     conditional_function: function() {
         if ( parameters.AskForNotes )
         { return true }
