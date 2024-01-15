@@ -138,6 +138,7 @@ var EligibilityCheck = {
   var if_Eligibile = {
     timeline: [EligibilityCheck],
     conditional_function: function(){
+        console.log(Results.AllResults['Computer Information'].indexOf("Chrome"))
       if ( Results.AllResults['Accuracy'] )
       { return false }
       else { return true }
