@@ -5,8 +5,8 @@ var trial = {
   on_load: function() {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
   },
-  pages: function() { return parameters.pages},
-  title: function() {return parameters.title},
+  pages: function() { return Instructions.pages},
+  title: function() {return Instructions.title},
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: function() {
@@ -17,7 +17,7 @@ var trial = {
   show_question_numbers: 'onPage',
   on_finish: function(data) {
     data.trial = "Intake"
-    data.title = parameters.title
+    data.title = Instructions.title
   }
 };
 

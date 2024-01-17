@@ -39,6 +39,7 @@
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
+    <script src="config/IntakeForm_Setup.js"></script>  
     <script src="Batteries/ComponentList.js"></script>
     
     <script>
@@ -50,7 +51,7 @@
         console.log(jatos.studySessionData.InstructionList)
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
             { 
-              parameters = 'EN_IntakeForm_Generic' 
+              parameters = 'IntakeForm_EN' 
               InstructionsToUse = 'Default'
             }
             else { 
@@ -61,7 +62,7 @@
             LANG = jatos.studySessionData.Language
             console.log(LANG)
             // load the parameters
-            pseudoSwitch(LANG+"_"+parameters)
+            pseudoSwitch(parameters)
             // load the language specific instructions
             console.log(LANG+'_Instructions_'+InstructionsToUse)
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)

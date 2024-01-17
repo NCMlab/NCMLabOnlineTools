@@ -391,25 +391,25 @@ BatteryList.push({index: 11,
 
 BatteryList.push({index: 12, 
 	name:'TESTER', 
-	list: [	'Screening',
+	list: [	
 			'Intake Form',
 			'Questionnaire'
 		],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: [	'BriefScreening',
-						'IntakeForm_Generic',
+	ParameterLists: [
+						'IntakeForm_EN',
 						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: [	'',
-					'',
+	Instructions: [	
+					'Default',
 					''
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
 	ButtonName: [
-		'Screening',
+		
 		'Intake',
 		'BDI/GDS',
 	],

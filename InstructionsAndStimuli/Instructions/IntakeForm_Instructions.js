@@ -1,13 +1,5 @@
 // ============================================
-var EN_Instructions = {}
-EN_Instructions.Instructions01 = [
-  {'page': '<p class="Instructions"> Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
-    'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
-    'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
-    {'page': '<p class="Instructions">If a task freezes on you you can press the <em>Skip</em> button. If you have feedback you would like to share '+
-    'with us, there will be a text box at the end where you can type in comments.'}
-]
-add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
+
 // ====== ENGLISH =========
 var FormTitle = 'FaCE Intake Form'
 var pages = [
@@ -355,15 +347,16 @@ var pages = [
     var EN_IntakeForm_Generic = {}
     EN_IntakeForm_Generic.title = FormTitle
     EN_IntakeForm_Generic.pages = pages  
-    EN_IntakeForm_Generic.ShowWelcome = false,
-    EN_IntakeForm_Generic.WelcomeSpoken = false,
-    EN_IntakeForm_Generic.WelcomeAudio = '',
-    EN_IntakeForm_Generic.ShowThankYou = false,
-    EN_IntakeForm_Generic.ShowInstructions = true, 
-    EN_IntakeForm_Generic.InstructionsSpoken = false,
-    EN_IntakeForm_Generic.AskForNotes = false,
-    EN_IntakeForm_Generic.RecordAUDIO = false
-  add('EN_IntakeForm_Generic', function(){ parameters = EN_IntakeForm_Generic });
+    
+    EN_IntakeForm_Generic.Instructions01 = [
+      {'page': '<p class="Instructions"> Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
+        'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
+        'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
+        {'page': '<p class="Instructions">If a task freezes on you, you can press the <em>Skip</em> button. If you have feedback you would like to share '+
+        'with us, there will be a text box at the end where you can type in comments.'}
+    ]
+
+  add('EN_Instructions_Default', function(){ Instructions = EN_IntakeForm_Generic });
 
   // ============================================
 var FormTitle = 'Formulaire d\'admission'
