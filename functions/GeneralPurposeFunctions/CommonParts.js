@@ -16,7 +16,7 @@ function UpdateHeader() {
     //console.log(document.getElementById('header-home-button'))
     try {
         //document.getElementById('header-home-button').textContent = LabelNames.Home;
-        document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+        //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
         document.getElementById('header-stop-button').textContent = LabelNames.Stop;
         document.getElementById('header-quit-button').textContent = LabelNames.Quit;
         document.getElementById('header-info-button').style.visibility = "hidden"
@@ -35,7 +35,7 @@ function UpdateHeader() {
       //      document.getElementById('header-home-button').style.visibility = "hidden"
 
             document.getElementById('header-info-button').style.visibility = "hidden"
-            document.getElementById('header-restart-button').style.visibility = "hidden"
+            //document.getElementById('header-restart-button').style.visibility = "hidden"
         } catch (error) {
             console.log(error);
         }
