@@ -35,11 +35,12 @@ function UpdateHeader() {
       //      document.getElementById('header-home-button').style.visibility = "hidden"
 
             document.getElementById('header-info-button').style.visibility = "hidden"
+            document.getElementById('header-restart-button').style.visibility = "hidden"
         } catch (error) {
             console.log(error);
         }
         
-        document.getElementById('header-restart-button').style.visibility = "hidden"
+        
     }
     if ( HomeScreenFlag )
     {
