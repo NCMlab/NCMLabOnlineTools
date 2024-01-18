@@ -315,8 +315,9 @@ BatteryList.push({index: 1001,
 	Footer: '©NCMLab 2023'
 })
 // =================================================================================
+// =================================================================================
 BatteryList.push({index: 11, 
-	name:'TESTER', 
+	name:'H-10-23-9755', 
 	list: [	'Screening',
 			'Consent Form',
 			'Intake Form',
@@ -336,7 +337,7 @@ BatteryList.push({index: 11,
 	description: 'Test',
 	ParameterLists: [	'BriefScreening',
 						'ConsentForm_uOttawa_Steffener',
-						'IntakeForm_Generic',
+						'IntakeForm_EN',
 						'Listening_001',
 						'ReadingListeningList01',
 						'RAVLT_Spoken_Immediate',

@@ -33,12 +33,13 @@ function UpdateHeader() {
         try {
             // this is a battery and we need to turn off the home/restart buttons
       //      document.getElementById('header-home-button').style.visibility = "hidden"
+
             document.getElementById('header-info-button').style.visibility = "hidden"
         } catch (error) {
             console.log(error);
         }
         
-        //document.getElementById('header-restart-button').style.visibility = "hidden"
+        document.getElementById('header-restart-button').style.visibility = "hidden"
     }
     if ( HomeScreenFlag )
     {
