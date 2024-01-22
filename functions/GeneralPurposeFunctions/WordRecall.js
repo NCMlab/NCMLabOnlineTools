@@ -238,7 +238,7 @@ var SpokenRecallA = {
       IntrusionList = []
       TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
 
-      //annyang.start({autorestart: true, continuous: true});
+      annyang.start({autorestart: true, continuous: true});
     },
     on_finish: function(data){
       data.RecallBlock = TempRecall
