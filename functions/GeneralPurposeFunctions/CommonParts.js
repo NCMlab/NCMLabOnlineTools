@@ -19,7 +19,9 @@ function UpdateHeader() {
         //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
         document.getElementById('header-stop-button').textContent = LabelNames.Stop;
         document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+        document.getElementById('header-skip-button').textContent = LabelNames.Skip;
         document.getElementById('header-info-button').style.visibility = "hidden"
+        console.log(document.getElementById('jspsych-progressbar-container'))
     } catch (error) {
         console.log(error);
     }
@@ -248,7 +250,7 @@ var notes = {
     type: jsPsychSurvey, 
     pages: [[{
         type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
+        prompt: function() { return LabelNames.NoteInputBox },
         textbox_rows: 10,
         name: 'Notes', 
         required: false,
@@ -307,6 +309,7 @@ var Instructions01_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        console.log(document.getElementById("jspsych-progressbar-container"))
         timer_progress_bar(parameters.Instructions01Time[countInstr01]) }
     }
 }

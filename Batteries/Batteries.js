@@ -1,34 +1,7 @@
 
 var BatteryList = []
 
-BatteryList.push({index: 15, 
-	name:'NCM Battery', 
-	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
-	//list: ['Intake Form'],
-	description: 'A web-based version of the FaCE',
-	ParameterLists: ['EN_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
-	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Cognitive Evaluation</h1>",
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCM Lab 2023'
-})
-BatteryList.push({index: 99, 
-	name:'FaCE Battery', 
-	list: ['Word Recall'],
-	//list: ['Intake Form'],
-	description: 'A web-based version of the FaCE',
-	ParameterLists: ['FaCE_Spoken'],
-	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['FaCE'],
-	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©GagnonBruno 2016'
-})
+
 BatteryList.push({index: 16, 
 	name:'FaCE Battery', 
 	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
@@ -315,7 +288,7 @@ BatteryList.push({index: 1001,
 	Footer: '©NCMLab 2023'
 })
 // =================================================================================
-// =================================================================================
+// ===== ENGLISH ======
 BatteryList.push({index: 11, 
 	name:'H-10-23-9755', 
 	list: [	'Screening',
@@ -389,6 +362,80 @@ BatteryList.push({index: 11,
 	Footer: '©NCMLab 2023'
 })
 
+// =================================================================================
+// ===== FRENCH =========
+BatteryList.push({index: 51, 
+	name:'H-10-23-9755', 
+	list: [	'Screening',
+			'Consent Form',
+			'Intake Form',
+			'Listening',
+			'Reading Test',
+			'Word Recall', 
+			'Card Sort',
+			'Pattern Comparison',
+			'Spatial DMS',
+			'Word Recall', 
+			'Word Recognition',
+			'Questionnaire',
+			'Questionnaire',
+			'Questionnaire'
+		],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: [	'BriefScreening',
+						'ConsentForm_uOttawa_Steffener',
+						'IntakeForm',
+						'Listening_001',
+						'ReadingListeningList01',
+						'RAVLT_Spoken_Immediate',
+						'CardSort_001',
+						'PatternComparison_001', 
+						'SpatialDMS_Adaptive',
+						'RAVLT_Spoken_Delayed', 
+						'WordRecog_Spoken',
+						'STAI_T_001',
+						'STAI_S_001',
+						'BDI_001',
+						],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [	'',
+					'',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default', 
+					'Default',
+					'',
+					'',
+					''
+					],
+	//Instructions: ['Default'],
+	BatteryInstructions: '<p class="Instructions">Bienvenue au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
+	ButtonName: [
+		'Screening',
+		'Consent',
+		'Intake',
+		'Listening',
+		'Reading',
+    	'Immediate',
+		'Card Sort',
+		'Patt Compare',
+		'Dots',
+		'Delayed',
+		'Recognition',
+		'STAI-T',
+		'STAI-S',
+		'BDI/GDS',
+	],
+	Language:'FR',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2023'
+})
 
 BatteryList.push({index: 12, 
 	name:'TESTER', 
@@ -399,7 +446,7 @@ BatteryList.push({index: 12,
 	//list: ['Intake Form'],
 	description: 'Test',
 	ParameterLists: [
-						'IntakeForm_EN',
+						'IntakeForm',
 						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
@@ -408,13 +455,12 @@ BatteryList.push({index: 12,
 					''
 					],
 	//Instructions: ['Default'],
-	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+	BatteryInstructions: '<p class="Instructions">FR: Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
 	ButtonName: [
-		
 		'Intake',
 		'BDI/GDS',
 	],
-	Language:'EN',
+	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })

@@ -62,11 +62,12 @@
             LANG = jatos.studySessionData.Language
             console.log(LANG)
             // load the parameters
-            pseudoSwitch(parameters)
+            pseudoSwitch(parameters+'_'+LANG)
+            console.log(parameters)
             // load the language specific instructions
             console.log(LANG+'_Instructions_'+InstructionsToUse)
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
-            
+            console.log(Instructions)
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
             console.log(LabelNames)

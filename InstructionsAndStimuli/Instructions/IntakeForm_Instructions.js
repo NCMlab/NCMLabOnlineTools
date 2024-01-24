@@ -1,5 +1,4 @@
 // ============================================
-
 // ====== ENGLISH =========
 var FormTitle = 'FaCE Intake Form'
 var pages = [
@@ -62,7 +61,6 @@ var pages = [
   var EN_IntakeForm_FaCE = {}
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
-  
   add('EN_IntakeForm_FaCE', function(){ parameters = EN_IntakeForm_FaCE });
   
   // ====== ENGLISH =========
@@ -287,6 +285,8 @@ var FR_Orient_parameters = {}
 FR_Orient_parameters.title = FormTitle
 FR_Orient_parameters.pages = FR_pages
 add('FR_OrientationForm_FaCE', function(){ parameters = FR_Orient_parameters });
+
+// ============================================
 // ============================================
 var FormTitle = 'Intake Form'
 var pages = [
@@ -419,4 +419,12 @@ var pages = [
     var FR_IntakeForm_Generic = {}
     FR_IntakeForm_Generic.title = FormTitle
     FR_IntakeForm_Generic.pages = pages  
-  add('FR_IntakeForm_Generic', function(){ parameters = FR_IntakeForm_Generic });
+
+    FR_IntakeForm_Generic.Instructions01 = [
+      {'page': '<p class="Instructions"> Veuillez vous assurer que votre microphone et vos haut-parleurs sont allumés et que le volume est réglé pour que vous puissiez entendre les tâches. '+
+        'Si vous souhaitez terminer l\'expérience plus tôt, appuyez sur le bouton <em>Arrêt</em> en haut à gauche. Si vous souhaitez vous supprimer '+
+        'Depuis l\'expérience, appuyez sur le bouton <em>Quitter</em>. S\'il vous plaît, n\'appuyez pas sur les boutons de retour ou de rechargement de votre navigateur.'},
+        {'page': '<p class="Instructions">Si une tâche se bloque, vous pouvez appuyer sur le bouton <em>Passer</em>. Si vous avez des commentaires, vous aimeriez les partager '+
+        'avec nous, il y aura une zone de texte à la fin où vous pourrez saisir des commentaires.'}
+    ]
+  add('FR_Instructions_Default', function(){ console.log("Loading Instructions"); Instructions = FR_IntakeForm_Generic });

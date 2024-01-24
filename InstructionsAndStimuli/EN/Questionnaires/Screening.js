@@ -45,7 +45,6 @@ var pages = [
         
     ]
 ]
-    
 var EN_BriefScreening = {}
 EN_BriefScreening.title = "Screening"
 EN_BriefScreening.pages = pages
