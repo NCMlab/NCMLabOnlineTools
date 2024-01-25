@@ -464,3 +464,49 @@ BatteryList.push({index: 12,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })
+
+
+
+// ============================
+
+// ===== ENGLISH ======
+BatteryList.push({index: 10, 
+	name:'H-10-23-9755', 
+	list: [	'Screening',
+			'Consent Form',
+			'Intake Form',
+			'Questionnaire',
+			'Questionnaire',
+			'Questionnaire'
+		],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: [	'BriefScreening',
+						'ConsentForm_uOttawa_Steffener',
+						'IntakeForm_EN',
+						'STAI_T_001',
+						'STAI_S_001',
+						'BDI_001',
+						],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [	'',
+					'',
+					'Default',
+					'',
+					'',
+					''
+					],
+	//Instructions: ['Default'],
+	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+	ButtonName: [
+		'Screening',
+		'Consent',
+		'Intake',
+		'STAI-T',
+		'STAI-S',
+		'BDI/GDS',
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2023'
+})
