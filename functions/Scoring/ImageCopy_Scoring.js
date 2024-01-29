@@ -42,25 +42,27 @@ function analyzeDrawing(){
      // Draw the cube on the canvas
      drawCube();
 
-     // Get the image data of the drawn cube
-     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
- 
-     // Placeholder logic for scoring
-     let score = 0;
- 
-     // Example: Check if the drawing has a minimum number of pixels
-     const minPixelCount = 100;
-     const pixelCount = getNonTransparentPixelCount(imageData);
-     if (pixelCount >= minPixelCount) {
-         // Additional scoring criteria can be added here
-         score++;
-     }
- 
-     // Remove the canvas from the document body
-     document.body.removeChild(canvas);
 
-     return score; 
-}
+	   // Get the image data of the drawn cube
+	   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+	   // Count non-transparent pixels
+	   const nonTransparentPixelCount = getNonTransparentPixelCount(imageData);
+   
+	   // Define scoring criteria
+	   const minPixelCount = 100; // Adjust this value based on your criteria
+   
+	   // Calculate the score
+	   let score = 0;
+	   if (nonTransparentPixelCount >= minPixelCount) {
+		   score = 1; // You can customize the scoring logic here
+	   }
+   
+	   // Remove the canvas from the document body
+	   document.body.removeChild(canvas);
+   
+	   return score;
+   }
 // Helper function to count non-transparent pixels in the image data
 function getNonTransparentPixelCount(imageData) {
     const data = imageData.data;
