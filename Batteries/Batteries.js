@@ -474,9 +474,8 @@ BatteryList.push({index: 10,
 	name:'H-10-23-9755', 
 	list: [	'Screening',
 			'Consent Form',
-			
-			'Questionnaire',
 			'Intake Form',
+			'Questionnaire',
 			'Questionnaire',
 			'Questionnaire'
 		],
@@ -484,18 +483,17 @@ BatteryList.push({index: 10,
 	description: 'Test',
 	ParameterLists: [	'BriefScreening',
 						'ConsentForm_uOttawa_Steffener',
-						
-						'STAI_S_001',
 						'IntakeForm_EN',
+						'STAI_S_001',
+						
 						'STAI_S_001',
 						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: [	'',
 					'',
-					
+					'Default',					
 					'',
-					'Default',
 					'',
 					''
 					],
