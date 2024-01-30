@@ -485,7 +485,7 @@ BatteryList.push({index: 10,
 	ParameterLists: [	'BriefScreening',
 						'ConsentForm_uOttawa_Steffener',
 						
-						'STAI_T_001',
+						'STAI_S_001',
 						'IntakeForm_EN',
 						'STAI_S_001',
 						'BDI_001',
