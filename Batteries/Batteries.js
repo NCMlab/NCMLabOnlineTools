@@ -472,25 +472,42 @@ BatteryList.push({index: 12,
 // ===== ENGLISH ======
 BatteryList.push({index: 10, 
 	name:'H-10-23-9755', 
-	list: [
-			'Questionnaire',
+	list: [	'Screening',
+			'Consent Form',
 			
+			'Questionnaire',
+			'Intake Form',
+			'Questionnaire',
+			'Questionnaire'
 		],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: [	
+	ParameterLists: [	'BriefScreening',
+						'ConsentForm_uOttawa_Steffener',
+						
 						'STAI_S_001',
-					
+						'IntakeForm_EN',
+						'STAI_S_001',
+						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: [	'',
+					'',
 					
+					'',
+					'Default',
+					'',
+					''
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
 	ButtonName: [
+		'Screening',
+		'Consent',
 		'STAI-T',
-		
+		'Intake',
+		'BDI/GDS',
+		'STAI-S',
 	],
 	Language:'EN',
 	RunAudioTest: true,
