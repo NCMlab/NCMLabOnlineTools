@@ -11,7 +11,7 @@
 	*/
 	
 
-function calculateCubeScore(data) {
+function ImageCopy_Scoring(data) {
 	let score = 0;
 	  
 		// Hypothetical scoring based on cube features
@@ -24,13 +24,13 @@ function calculateCubeScore(data) {
 			}
 		  }
 		}
-		console.log(score)
+		
 	  
 		return score;
 	  }
 	  
 	  // Calculate and display the score for the cube image
-	  const cubeScore = calculateCubeScore(cubeImage);
+	  const cubeScore = ImageCopy_Scoring(cubeImage);
 	  console.log(`Cube Score: ${cubeScore}`);
 
 
