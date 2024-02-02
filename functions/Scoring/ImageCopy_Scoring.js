@@ -25,7 +25,7 @@ function ImageCopy_Scoring(data) {
 		  }
 		}
 		
-	  
+		console.log(score)
 		return score;
 	  }
 	  
