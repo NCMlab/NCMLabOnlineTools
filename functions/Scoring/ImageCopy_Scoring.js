@@ -9,7 +9,8 @@ function ImageCopy_Scoring(data) {
 	Results.AllResults['Accuracy'] = -99
 
     //analyze the drawing accuracy and get the score 
-    const score = analyzeDrawing();
+    //const score = analyzeDrawing();
+	score = -99
     Results.PrimaryResults['Accuracy'] = score; 
     Results.AllResults['Accuracy'] = score; 
 
@@ -29,7 +30,7 @@ function ImageCopy_Scoring(data) {
 
 // function to analyze cube drawing 
 
-function analyzeDrawing(){
+/*function analyzeDrawing(){
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
 
@@ -62,7 +63,7 @@ function analyzeDrawing(){
 	   document.body.removeChild(canvas);
    
 	   return score;
-   }
+   }*/
 // Helper function to count non-transparent pixels in the image data
 function getNonTransparentPixelCount(imageData) {
     const data = imageData.data;
