@@ -24,6 +24,7 @@ function ImageCopy_Scoring(data) {
 	else { Results.AllResults['Notes'] = '' }
 
 	//Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	console.log("THIS IS A TEST 1 FROM HAMZA")
 	return Results
 }
 
@@ -61,6 +62,8 @@ function analyzeDrawing(){
 	   // Remove the canvas from the document body
 	   document.body.removeChild(canvas);
    
+	   console.log("THIS IS A TEST 2 FROM HAMZA")
+
 	   return score;
    }
 // Helper function to count non-transparent pixels in the image data
@@ -74,6 +77,7 @@ function getNonTransparentPixelCount(imageData) {
             count++;
         }
     }
+	console.log("THIS IS A TEST 3 FROM HAMZA")
 
     return count;
 }
