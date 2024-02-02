@@ -8,7 +8,7 @@ var ImageCopy_Default = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: true,
+	RecordGIF: false,
 }
 var ImageCopy_CBprotocol = {
 	canvas_width:"400vw",
