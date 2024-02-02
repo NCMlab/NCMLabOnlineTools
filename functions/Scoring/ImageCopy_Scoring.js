@@ -14,6 +14,7 @@ function ImageCopy_Scoring(data) {
     Results.PrimaryResults['Accuracy'] = score; 
     Results.AllResults['Accuracy'] = score; 
 
+
 	// resize the image
 	//var smallPNG = drawImage(trialData.png, 0, 0, 100, 100)
 	//Results.AllResults['Image'] = trialData.png
@@ -24,7 +25,7 @@ function ImageCopy_Scoring(data) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 
-	//Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
 	return Results
 }
 
@@ -78,3 +79,5 @@ function getNonTransparentPixelCount(imageData) {
 
     return count;
 }
+
+
