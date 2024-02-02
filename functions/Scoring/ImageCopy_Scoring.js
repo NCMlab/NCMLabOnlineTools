@@ -41,7 +41,7 @@ function analyzeDrawing(){
     //appending canvas to the document (not visible to user)
     document.body.appendChild(canvas);
      // Draw the cube on the canvas
-     drawCube();
+    //  drawCube();
 
 
 	   // Get the image data of the drawn cube
