@@ -20,6 +20,7 @@ function ImageCopy_Scoring(data) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 
-	//Results.AllResults['Notes'] = Notes.trials[0].response.Notes
+	Results.AllResults['Notes'] = Notes.trials[0].response.Notes
 	return Results
+
 }
