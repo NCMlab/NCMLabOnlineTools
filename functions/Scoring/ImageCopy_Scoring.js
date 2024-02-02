@@ -8,10 +8,11 @@ function ImageCopy_Scoring(data) {
 	Results.AllResults = {}
 	Results.AllResults['Accuracy'] = -99
 
-    //analyze the drawing accuracy and get the score 
+    /*analyze the drawing accuracy and get the score 
     const score = analyzeDrawing();
     Results.PrimaryResults['Accuracy'] = score; 
-    Results.AllResults['Accuracy'] = score; 
+    Results.AllResults['Accuracy'] = score;
+	*/ 
 
 	// resize the image
 	//var smallPNG = drawImage(trialData.png, 0, 0, 100, 100)
@@ -28,7 +29,7 @@ function ImageCopy_Scoring(data) {
 	return Results
 }
 
-// function to analyze cube drawing 
+ /* function to analyze cube drawing 
 
 function analyzeDrawing(){
     const canvas = document.createElement("canvas");
@@ -79,4 +80,4 @@ function getNonTransparentPixelCount(imageData) {
     }
 
     return count;
-}
+} */
