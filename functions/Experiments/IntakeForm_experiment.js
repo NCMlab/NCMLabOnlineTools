@@ -4,6 +4,7 @@ var trial = {
   type: jsPsychSurvey,
   on_load: function() {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+    
   },
   pages: function() { return Instructions.pages},
   title: function() {return Instructions.title},

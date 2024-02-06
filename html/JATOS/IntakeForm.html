@@ -71,6 +71,7 @@
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
             console.log(LabelNames)
+            initJsPsych({message_progress_bar: LabelNames.ProgressBar})
             BackgroundText = eval(LANG+'_BackgroundText');
       })
       
@@ -84,6 +85,7 @@
 <script>
 var setup = []
 var TrialCount = 1;
+
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     show_progress_bar: true,    
@@ -121,6 +123,7 @@ var jsPsych = initJsPsych({
       
     }
   });
+
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
@@ -136,6 +139,7 @@ var jsPsych = initJsPsych({
         // update the header button labels
         UpdateHeader()
       })
+    
     </script>
   </body>
 </html>

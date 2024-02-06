@@ -50,6 +50,7 @@ FR_LabelNames.Finished = 'Fini'
 FR_LabelNames.Clear = 'Effacer'
 FR_LabelNames.Undo = 'Dénouer'
 FR_LabelNames.Redo = 'Refaire'
+FR_LabelNames.Repeat = 'Répéter'
 FR_LabelNames.Next = 'Suivant'
 FR_LabelNames.Continue = 'FR: Continue'
 FR_LabelNames.Previous = 'FR: Previous'
@@ -59,7 +60,7 @@ FR_LabelNames.CurrentAnswer = 'Réponse Actuelle'
 FR_LabelNames.Correct = 'Correct'
 FR_LabelNames.Incorrect = 'Incorrect'
 FR_LabelNames.PressNext = 'Appuyez sur Suivant pour continuer'
-FR_LabelNames.ProgressBar = 'FR: Completion Progress'
+FR_LabelNames.ProgressBar = 'Progrès'
 FR_LabelNames.NoteInputBox = "FR: Please, type in any notes or feedback you have about this task. (Optional)"
 FR_LabelNames.NonEligible = ("(FR) I am sorry to say that you are not eligible for this study.")
 

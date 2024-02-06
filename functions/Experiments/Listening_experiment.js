@@ -2,7 +2,7 @@
 // Define internal variables
 
 var timeline = []
-const AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine']
+
 
 
 //const AudioTestList = ['X1','X2','X3','X4','X5','X6','X7','X8','X9']
@@ -19,9 +19,9 @@ var preload_audio = {
     type: jsPsychPreload,
     audio: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
-      for ( var i = 0; i  < AudioTestList.length; i++ ) {
-        List.push(FolderOfAudioFiles + AudioTestList[i] + AudioFileType)
-        ButtonList.push(AudioTestList[i])
+      for ( var i = 0; i  < Instructions.AudioTestList.length; i++ ) {
+        List.push(FolderOfAudioFiles + Instructions.AudioTestList[i] + AudioFileType)
+        ButtonList.push(Instructions.AudioTestList[i])
       }
       console.log("PRELOADING AUDIO")
       return List
@@ -41,8 +41,8 @@ var fixation = {
 var AudioStim = {
     type: jsPsychAudioButtonResponse,
     stimulus: function(){
-      console.log("Audio List length is: "+AudioTestList.length)
-      randomElement = ReturnElementsFromPermute(1,AudioTestList.length)  
+      console.log("Audio List length is: "+Instructions.AudioTestList.length)
+      randomElement = ReturnElementsFromPermute(1,Instructions.AudioTestList.length)  
       //randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
       console.log('Planning to present element: '+randomElement)
       return List[randomElement]

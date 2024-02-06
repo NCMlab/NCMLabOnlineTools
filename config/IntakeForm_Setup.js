@@ -4,7 +4,7 @@ var IntakeForm = {
 	WelcomeAudio: '',
 	ShowThankYou: false,
 	ShowInstructions: true, 
-	InstructionsSpoken: false,
+	InstructionsSpoken: true,
 	AskForNotes: false,
 	RecordAUDIO: false
 }

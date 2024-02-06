@@ -21,7 +21,6 @@ function UpdateHeader() {
         document.getElementById('header-quit-button').textContent = LabelNames.Quit;
         document.getElementById('header-skip-button').textContent = LabelNames.Skip;
         document.getElementById('header-info-button').style.visibility = "hidden"
-        console.log(document.getElementById('jspsych-progressbar-container'))
     } catch (error) {
         console.log(error);
     }
@@ -86,6 +85,7 @@ var Welcome_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.WelcomeSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(WelcomeTime) }
     }
 }
@@ -309,7 +309,8 @@ var Instructions01_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
-        console.log(document.getElementById("jspsych-progressbar-container"))
+        console.log(LabelNames.ProgressBar)
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(parameters.Instructions01Time[countInstr01]) }
     }
 }
@@ -380,6 +381,7 @@ var Instructions01Written_loop = {
 var if_Instructions01Written = {
     timeline: [Instructions01Written_loop],
     conditional_function: function() {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
           if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }
@@ -405,6 +407,7 @@ var Instructions02_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(parameters.Instructions02Time[countInstr02]) }
     }
 }
@@ -498,6 +501,7 @@ var Instructions03_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(parameters.Instructions03Time[countInstr03]) }
     }
 }
@@ -592,6 +596,7 @@ var Instructions04_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(parameters.Instructions04Time[countInstr04]) }
     }
 }

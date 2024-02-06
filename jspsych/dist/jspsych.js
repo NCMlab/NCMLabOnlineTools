@@ -3271,7 +3271,7 @@ var jsPsychModule = (function (exports) {
             document
                 .querySelector(".jspsych-display-element")
                 .insertAdjacentHTML("afterbegin", '<div id="jspsych-progressbar-container">' +
-                "<span>" +
+                "<span id='progress-bar-text'>" +
                 msg +
                 "</span>" +
                 '<div id="jspsych-progressbar-outer">' +

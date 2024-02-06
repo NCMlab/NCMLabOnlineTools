@@ -366,9 +366,8 @@ BatteryList.push({index: 11,
 // ===== FRENCH =========
 BatteryList.push({index: 51, 
 	name:'H-10-23-9755', 
-	list: [	'Screening',
-			'Consent Form',
-			'Intake Form',
+	list: [	
+			
 			'Listening',
 			'Reading Test',
 			'Word Recall', 
@@ -383,9 +382,8 @@ BatteryList.push({index: 51,
 		],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: [	'BriefScreening',
-						'ConsentForm_uOttawa_Steffener',
-						'IntakeForm',
+	ParameterLists: [	
+						
 						'Listening_001',
 						'ReadingListeningList01',
 						'RAVLT_Spoken_Immediate',
@@ -399,9 +397,9 @@ BatteryList.push({index: 51,
 						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: [	'',
-					'',
-					'Default',
+	Instructions: [	
+					
+
 					'Default',
 					'Default',
 					'Default',
@@ -417,9 +415,8 @@ BatteryList.push({index: 51,
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Bienvenue au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
 	ButtonName: [
-		'Screening',
-		'Consent',
-		'Intake',
+		
+
 		'Listening',
 		'Reading',
     	'Immediate',
