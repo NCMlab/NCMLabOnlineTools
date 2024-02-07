@@ -1,44 +1,41 @@
 // Rey auditory verbal learning test
 
 var WordListA = [
-	{'Word':'Drum'}, 		// 0
-	{'Word':'Curtain'}, 	// 1
-	{'Word':'Bell'},		// 2
-	{'Word':'Coffee'},		// 3
-	{'Word':'School'},		// 4
+	{'Word':'Tambour'}, 		// 0
+	{'Word':'Rideau'}, 	// 1
+	{'Word':'Sonnette'},		// 2
+	{'Word':'Café'},		// 3
+	{'Word':'Ecole'},		// 4
 	{'Word':'Parent'},		// 5
-	{'Word':'Moon'},		// 6
-	{'Word':'Garden'},		// 7
-	{'Word':'Hat'},			// 8 
-	{'Word':'Farmer'},		// 9
-	{'Word':'Nose'},		// 10
-	{'Word':'Turkey'},		// 11
-	{'Word':'Color'},		// 12
-	{'Word':'House'},		// 13
-	{'Word':'River'},		// 14
+	{'Word':'Lune'},		// 6
+	{'Word':'Jardin'},		// 7
+	{'Word':'Chapeau'},			// 8 
+	{'Word':'Paysan'},		// 9
+	{'Word':'Nez'},		// 10
+	{'Word':'Dindon'},		// 11
+	{'Word':'Couleur'},		// 12
+	{'Word':'Maison'},		// 13
+	{'Word':'Rivère'},		// 14
 	]
 
-var AlternatePronunciationsWordListA = [
-	{'Word':'COLOUR','index':12},
-	{'Word':'KNOWS','index':10}
-	]
+var AlternatePronunciationsWordListA = []
 
 var WordListB = [
-	{'Word':'Desk'},
-	{'Word':'Ranger'},
-	{'Word':'Bird'},
-	{'Word':'Shoe'},
-	{'Word':'Stove'},
-	{'Word':'Mountain'},
-	{'Word':'Glasses'},
-	{'Word':'Towel'},
-	{'Word':'Cloud'},
-	{'Word':'Boat'},
-	{'Word':'Lamb'},
-	{'Word':'Gun'},
-	{'Word':'Pencil'},
-	{'Word':'Church'},
-	{'Word':'Fish'},
+	{'Word':'Bureau'},
+	{'Word':'Garde forestier'},
+	{'Word':'Oiseau'},
+	{'Word':'Chaussure'},
+	{'Word':'Poêle'},
+	{'Word':'Montagne'},
+	{'Word':'Lunettes'},
+	{'Word':'Serviette'},
+	{'Word':'Nuage'},
+	{'Word':'Bateau'},
+	{'Word':'Agneau'},
+	{'Word':'Fusil'},
+	{'Word':'Crayon'},
+	{'Word':'Eglise'},
+	{'Word':'Poisson'},
 	]
 var AlternatePronunciationsWordListB = []
 

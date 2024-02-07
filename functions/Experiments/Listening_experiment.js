@@ -20,7 +20,7 @@ var preload_audio = {
     audio: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
       for ( var i = 0; i  < Instructions.AudioTestList.length; i++ ) {
-        List.push(FolderOfAudioFiles + Instructions.AudioTestList[i] + AudioFileType)
+        List.push(parameters.FolderOfAudioFiles + Instructions.AudioTestList[i] + parameters.AudioFileType)
         ButtonList.push(Instructions.AudioTestList[i])
       }
       console.log("PRELOADING AUDIO")
