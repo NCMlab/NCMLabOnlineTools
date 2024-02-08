@@ -48,11 +48,11 @@ var RAVLT_Spoken_Immediate = {
 }
 
 var RAVLT_Spoken_Immediate_002 = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,

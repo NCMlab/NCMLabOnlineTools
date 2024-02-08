@@ -52,6 +52,8 @@ var enter_fullscreen = {
 
 var InitializeMicrophone = {
   type: jsPsychInitializeMicrophone,
+  device_select_message: function() { return LabelNames.SelectMicrophone },
+  button_label: function() { return LabelNames.UseThisMicrophone },
   on_finish: function() {
     // after choice and initialization, save the microphone info to the jatos session data
     recorder = jsPsych.pluginAPI.getMicrophoneRecorder();

@@ -121,6 +121,79 @@ EN_RAVLT.RecognitionWordList = [
 ]
 add('EN_RAVLT', function(){ WordRecallLists = EN_RAVLT});
 
+// ===============================================================
+var FR_RAVLT = {}
+FR_RAVLT.WordListA = [
+	{'Word':'Tambour'}, 	// 0
+	{'Word':'Rideau'}, 		// 1
+	{'Word':'Sonnette'},	// 2
+	{'Word':'Café'},		// 3
+	{'Word':'Ecole'},		// 4
+	{'Word':'Parent'},		// 5
+	{'Word':'Lune'},		// 6
+	{'Word':'Jardin'},		// 7
+	{'Word':'Chapeau'},		// 8 
+	{'Word':'Paysan'},		// 9
+	{'Word':'Nez'},			// 10
+	{'Word':'Dindon'},		// 11
+	{'Word':'Couleur'},		// 12
+	{'Word':'Maison'},		// 13
+	{'Word':'Rivère'},		// 14
+	]
+FR_RAVLT.AlternatePronunciationsWordListA = [
+	]
+FR_RAVLT.WordListB = [
+	{'Word':'Bureau'},
+	{'Word':'Garde forestier'},
+	{'Word':'Oiseau'},
+	{'Word':'Chaussure'},
+	{'Word':'Poêle'},
+	{'Word':'Montagne'},
+	{'Word':'Lunettes'},
+	{'Word':'Serviette'},
+	{'Word':'Nuage'},
+	{'Word':'Bateau'},
+	{'Word':'Agneau'},
+	{'Word':'Fusil'},
+	{'Word':'Crayon'},
+	{'Word':'Eglise'},
+	{'Word':'Poisson'},
+	]
+FR_RAVLT.AlternatePronunciationsWordListB = []
+FR_RAVLT.NWords = FR_RAVLT.WordListA.length
+FR_RAVLT.RecognitionWordList = [
+	{'Word':'Teacher','Answer':false},
+	{'Word':'River','Answer':true},
+	{'Word':'Bridge','Answer':false},
+	{'Word':'Farmer','Answer':true},
+	{'Word':'Pen','Answer':false},
+	{'Word':'Forehead','Answer':false},
+	{'Word':'Kerchief','Answer':false},
+	{'Word':'House','Answer':true},
+	{'Word':'Moon','Answer':true},
+	{'Word':'Color','Answer':true},
+	{'Word':'Beet','Answer':false},
+	{'Word':'Curtain','Answer':true},
+	{'Word':'Floor','Answer':false},
+	{'Word':'Soldier','Answer':false},
+	{'Word':'Drum','Answer':true},
+	{'Word':'Coffee','Answer':true},
+	{'Word':'Road','Answer':false},
+	{'Word':'Hat','Answer':true},
+	{'Word':'Turkey','Answer':true},
+	{'Word':'Minute','Answer':false},
+	{'Word':'Nose','Answer':true},
+	{'Word':'School','Answer':true},
+	{'Word':'Bell','Answer':true},
+	{'Word':'Face','Answer':false},
+	{'Word':'Garden','Answer':true},
+	{'Word':'Classroom','Answer':false},
+	{'Word':'Parent','Answer':true},
+	{'Word':'Children','Answer':false},
+	{'Word':'Broomstick','Answer':false},
+	{'Word':'Gun','Answer':false}
+]
+add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
 // === TEST ===========================================================================
 var EN_TEST = {}
 EN_TEST.WordListA = [

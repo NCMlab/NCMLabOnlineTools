@@ -295,7 +295,7 @@ var OLDSpokenRecallA = {
     choices: function() {return [LabelNames.Next]}, 
     
     show_done_button: true,
-    done_button_label: 'Done',//function() {return [LabelNames.Next]},
+    done_button_label: function() {return [LabelNames.Done]},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     recording_duration: 60000,

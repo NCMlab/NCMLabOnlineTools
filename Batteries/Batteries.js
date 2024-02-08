@@ -369,7 +369,7 @@ BatteryList.push({index: 51,
 	list: [	
 			
 			
-			'Reading Test',
+			
 			'Word Recall', 
 			'Card Sort',
 			'Pattern Comparison',
@@ -385,8 +385,8 @@ BatteryList.push({index: 51,
 	ParameterLists: [	
 						
 						
-						'ReadingListeningList01',
-						'RAVLT_Spoken_Immediate',
+						
+						'RAVLT_Spoken_Immediate_002',
 						'CardSort_001',
 						'PatternComparison_001', 
 						'SpatialDMS_Adaptive',
@@ -401,7 +401,7 @@ BatteryList.push({index: 51,
 					
 
 					
-					'Default',
+					
 					'Default',
 					'Default',
 					'Default',
@@ -418,7 +418,7 @@ BatteryList.push({index: 51,
 		
 
 		
-		'Reading',
+		
     	'Immediate',
 		'Card Sort',
 		'Patt Compare',
