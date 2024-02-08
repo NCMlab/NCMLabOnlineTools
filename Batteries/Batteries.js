@@ -368,7 +368,7 @@ BatteryList.push({index: 51,
 	name:'H-10-23-9755', 
 	list: [	
 			
-			'Listening',
+			
 			'Reading Test',
 			'Word Recall', 
 			'Card Sort',
@@ -384,7 +384,7 @@ BatteryList.push({index: 51,
 	description: 'Test',
 	ParameterLists: [	
 						
-						'Listening_002',
+						
 						'ReadingListeningList01',
 						'RAVLT_Spoken_Immediate',
 						'CardSort_001',
@@ -400,7 +400,7 @@ BatteryList.push({index: 51,
 	Instructions: [	
 					
 
-					'Default',
+					
 					'Default',
 					'Default',
 					'Default',
@@ -417,7 +417,7 @@ BatteryList.push({index: 51,
 	ButtonName: [
 		
 
-		'Listening',
+		
 		'Reading',
     	'Immediate',
 		'Card Sort',

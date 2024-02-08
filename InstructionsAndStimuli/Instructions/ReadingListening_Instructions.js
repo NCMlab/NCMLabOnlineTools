@@ -10,7 +10,7 @@ List01.push({stim:"The juice of lemons makes fine punch."})
 List01.push({stim:"The box was thrown beside the parked truck."})
 List01.push({stim:"The hogs were fed chopped corn and garbage."})
 List01.push({stim:"4 hours of steady work faced us."})
-/*
+
 List01.push({stim:"A large size in stockings is hard to sell."})
 List01.push({stim:"The boy was there when the sun rose."})
 List01.push({stim:"A rod is used to catch pink salmon."})
@@ -21,7 +21,7 @@ List01.push({stim:"A pot of tea helps to pass the evening."})
 List01.push({stim:"Smoky fires lack flame and heat."})
 List01.push({stim:"The soft cushion broke the man's fall."})
 List01.push({stim:"The salt breeze came across from the sea."})
-List01.push({stim:"The girl at the booth sold fifty bonds."})*/
+List01.push({stim:"The girl at the booth sold fifty bonds."})
 EN_Instructions.List = List01
 EN_Instructions.Instructions01 = [
     {'page':'<p class="Instructions">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.'},
@@ -29,8 +29,9 @@ EN_Instructions.Instructions01 = [
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is a Reading Test Task.</p>'}]
 EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]
 add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
-/*
+
 // ===================================================================================
+var List01 = []
 List01.push({'stim':"La lampe de néon rouge irise ses cheveux."})
 List01.push({'stim':"La nacelle du ballon tire sa souplesse de l’osier."})
 List01.push({'stim':"Devine qui a volé le précieux collier de jade."})
@@ -55,9 +56,8 @@ List01.push({'stim':"L’idée est de coudre ensemble ces morceaux de tissus."})
 var FR_Instructions_Default = {}
 FR_Instructions_Default.List = List01
 FR_Instructions_Default.Instructions01 = [
-    {'page':'<p class="Instructions">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens. <p>Press next to start</p>'},
+    {'page':'<p class="Instructions">Pour vous assurer que l\'ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur les écrans suivants.'},
 ]
-FR_Instructions_Default.WelcomeText = [{'page': '<p class="Instructions">This is a Reading Test Task.</p>'}]
-FR_Instructions_Default.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]
+FR_Instructions_Default.WelcomeText = [{'page': '<p class="Instructions">Il s\'agit d\'une tâche de test de lecture.</p>'}]
+FR_Instructions_Default.ThankYouText = [{'page': '<p class="Instructions">Merci'}]
 add('FR_Instructions_Default', function(){ Instructions = FR_Instructions_Default});
-*/

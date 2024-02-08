@@ -7,16 +7,10 @@ var Score
 var count = 0
 var InputSentences
 var count = 1
-var List01 = []
-List01.push({stim:"Rice is often served in round bowls."})
-List01.push({stim:"The birch canoe slid on the smooth planks."})
-List01.push({stim:"Glue the sheet to the dark blue background."})
-List01.push({stim:"It's easy to tell the depth of a well."})
-List01.push({stim:"These days a chicken leg is a rare dish."})
-List01.push({stim:"The juice of lemons makes fine punch."})
-List01.push({stim:"The box was thrown beside the parked truck."})
-List01.push({stim:"The hogs were fed chopped corn and garbage."})
-InputSentences = List01
+var ReadSentence 
+var SentenceOrder
+var SentenceCount = 0
+
 
 var SentencesToRepeat
 /*
@@ -59,6 +53,9 @@ var GetSentenceCount = {
   func: function() {
     SentencesToRepeat = parameters.SentencesToRepeat
     console.log(SentencesToRepeat)
+    SentenceOrder = ReturnElementsFromPermute(parameters.SentencesToRepeat, Instructions.List.length)
+    ReadSentence = InputSentences[SentenceOrder[SentenceCount]].stim
+    console.log("Sentence Order: " + SentenceOrder)
   }
 }
 
@@ -85,11 +82,15 @@ var TotalList = []
 var GetList = {
   type: jsPsychCallFunction,
   func: function() {
-    //InputSentences = Instructions.List
+    console.log("Get List")
+    var NAV = navigator;
+    var ComputerInfo = {}
+    console.log("COMPUTER LANGUAGE: "+NAV.languages)
+
+    InputSentences = Instructions.List
+    console.log(InputSentences)
     document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
     jsPsych.setProgressBar(0)
-    console.log(List01)
-    console.log(InputSentences)
   },
 }    
 
@@ -132,14 +133,6 @@ var WaitForWords = function() {
       HeardSentence01 = userSaid[0]
       HeardSentence02 = userSaid[1]
     });  
-      
-        
-        // userSaid contains multiple possibilities for what was heard
-      //  console.log(userSaid)
-        // Parse userSaid. It provides five possibilities for what it heard for each word
-        // Make a table of rows for eahc unique word and columns for each possibility
-
-
     return Output  
   }
 
@@ -148,13 +141,7 @@ var WaitForWords = function() {
 var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
   ReadSentenceWords = ReadSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
 	HeardSentenceWords = HeardSentence.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-	//console.log(ReadSentenceWords)
-	//console.log(HeardSentenceWords)
-	// compare sentences
 	var NWords = ReadSentenceWords.length
-  //console.log('The read sentence has '+NWords+' words in it')
-  //console.log('I heard the sentence: ')
-  //console.log(HeardSentence)
 	var MatchedWords = 0
 	for (var i = 0; i < NWords; i++ ) {
 		for (var j = 0; j < HeardSentenceWords.length; j++ ){
@@ -168,16 +155,16 @@ var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
 	console.log('Score: '+Score)
   return Score
 }
-var ReadSentence = ''
+
 
 var RecallRequest01 = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-      console.log(jsPsych.timelineVariable('stim'))
-      ReadSentence = jsPsych.timelineVariable('stim')
+      //console.log(jsPsych.timelineVariable('stim'))
+      //ReadSentence = jsPsych.timelineVariable('stim')
       console.log(ReadSentence)
       var stim = 
-      '<div><p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p><p>Please read the following sentence out loud:</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
+      '<div><p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p><p>'+LabelNames.PleaseRead+'</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
       return stim
     },
     choices: ['Next'], 
@@ -188,15 +175,12 @@ var RecallRequest01 = {
       console.log('================================')
       Output = WaitForWords()
       console.log(Output)
-      
-
+    
       // start listening
-      annyang.start({autorestart: false, continuous: true});
-      //console.log('Started')
-      // perform this when the sound stops
-      
-      
-      
+      // Set the listening langueg to the battery language
+      annyang.setLanguage(jatos.studySessionData.Language);
+      annyang.start({autorestart: false, continuous: true})
+
     },
     on_load: function() {
       var x = document.getElementById("jspsych-html-button-response-button-0")
@@ -217,19 +201,21 @@ var RecallRequest01 = {
     },
   }
 
-var trials = {
-    timeline: [RecallRequest01],
-    timeline_variables: InputSentences,
-    randomize_order: true,
-    sample: {
-      type: 'custom',
-      fn: function(t) {
-        return ReturnElementsFromPermute(parameters.SentencesToRepeat, List01.length)
-      }
-    }  
+var SentenceLoop = {
+  timeline: [RecallRequest01],
+  loop_function: function(data){
+    console.log("In sentence loop")
+    console.log(SentenceCount)
+    if ( SentenceCount < SentencesToRepeat - 1 )
+    { 
+      SentenceCount+=1
+      ReadSentence = InputSentences[SentenceOrder[SentenceCount]].stim
+      console.log(ReadSentence)
+      
+      return true }
+    else { return false }
   }
-
-
+}
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -246,7 +232,7 @@ timeline.push(Welcome)
 timeline.push(GetList)
 timeline.push(GetSentenceCount)
 timeline.push(Instructions01)
-timeline.push(trials)
+timeline.push(SentenceLoop)
 timeline.push(Notes)
 timeline.push(ThankYou);
 timeline.push(SendData)
