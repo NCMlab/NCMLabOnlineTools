@@ -24,6 +24,7 @@ function ImageCopy_Scoring(data) {
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
+	console.log("THIS IS A TEST FROM HAMZA")
 	return Results
 }
 
