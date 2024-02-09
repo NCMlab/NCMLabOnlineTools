@@ -370,10 +370,10 @@ BatteryList.push({index: 51,
 			
 			
 			
-			'Word Recall', 
-			'Card Sort',
-			'Pattern Comparison',
-			'Spatial DMS',
+			
+			
+			
+			
 			'Word Recall', 
 			'Word Recognition',
 			'Questionnaire',
@@ -386,10 +386,10 @@ BatteryList.push({index: 51,
 						
 						
 						
-						'RAVLT_Spoken_Immediate_002',
-						'CardSort_001',
-						'PatternComparison_001', 
-						'SpatialDMS_Adaptive',
+						
+						
+						
+						
 						'RAVLT_Spoken_Delayed', 
 						'WordRecog_Spoken',
 						'STAI_T_001',
@@ -402,10 +402,10 @@ BatteryList.push({index: 51,
 
 					
 					
-					'Default',
-					'Default',
-					'Default',
-					'Default',
+					
+					
+					
+					
 					'Default', 
 					'Default',
 					'',
@@ -419,7 +419,7 @@ BatteryList.push({index: 51,
 
 		
 		
-    	'Immediate',
+    	
 		'Card Sort',
 		'Patt Compare',
 		'Dots',

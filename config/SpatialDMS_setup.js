@@ -12,7 +12,7 @@ var CircleSize = (GridSize*2)/GridCount // The circle size so that they are all 
 //var OffSet = range(-GridSize+int(CircleSize/2),GridSize-int(CircleSize/2),int(CircleSize))
 var MaskLocations
 
-var KeyboardChoices = ['No', 'Yes'];
+
 // the following is used for scoring and allows the keyboard choices to be whatever you would like
 // This response mapping correspopnds to the order of the above KeyboardChoices
 var ResponseMapping = [0, 1];

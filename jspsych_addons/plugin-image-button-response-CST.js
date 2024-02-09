@@ -40,6 +40,12 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               default: undefined,
               array: true,
           },
+          feedback: {
+            type: jspsych.ParameterType.STRING,
+            pretty_name: "Feedback",
+            default: ['Correct','Incorrect'],
+            array: true,
+          },
           /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
@@ -52,6 +58,11 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Prompt",
               default: null,
+          },
+          discardPileText: {
+            type: jspsych.ParameterType.HTML_STRING,
+            pretty_name: "Prompt",
+            default: 'Discard Pile',
           },
           BlankCard: {
             type: jspsych.ParameterType.HTML_STRING,
@@ -338,7 +349,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               var Rotation = 0//(Math.random() * 10) - 5;
               html += '<tr><td>'
               html += '<img src="' + trial.discardPile + '" id="jspsych-image-button-response-discard"  style="transform:rotate('+Rotation+'deg)";>';
-              html += '<p></td><td width="70%" align="left"> &#8592; Discard Pile'
+              html += '<p></td><td width="70%" align="left"> &#8592; '+trial.discardPileText
               html += '</td></tr>'
               // Fourth row for the stimulus card
               html += '<tr><td colspan="4">'
@@ -455,7 +466,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                 if ( choice == correct_pile[0][trial.rule_list[CurrentRuleCount]] )
                 { 
                     // Correct response
-                    document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'
+                    document.getElementById("id_feedback").innerHTML = '<h1>'+trial.feedback[0]+'</h1>'
                     response.accuracy.push(1)
                     // Increase the correct responses in a row counter
                     CorrectInRowCount += 1
@@ -465,7 +476,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                 }
                 else { 
                     // Incorrect response
-                    document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' 
+                    document.getElementById("id_feedback").innerHTML = '<h1>'+trial.feedback[1]+'</h1>' 
                     response.accuracy.push(0)
                     CorrectInRowCount = 0
                     response.correctInRow.push(CorrectInRowCount)

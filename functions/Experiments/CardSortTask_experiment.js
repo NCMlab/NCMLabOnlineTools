@@ -48,6 +48,8 @@ var PracticeTrial = {
   stimulus: function()
   { return Output },
   discardPile: BlankCard,
+  discardPileText: function() { return Instructions.DiscardPileText },
+  feedback: function() {return [LabelNames.Correct, LabelNames.Incorrect]},
   choices: function()
   {
     var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+parameters.CardHeight+'>',
@@ -85,6 +87,8 @@ var TestTrial = {
   stimulus: function()
   { return Output },
   discardPile: BlankCard,
+  discardPileText: function() { return Instructions.DiscardPileText },
+  feedback: function() {return [LabelNames.Correct, LabelNames.Incorrect]},
   choices: function()
   {
     var stim = ['<img src="'+ImageFolder+'1-blue-circle.png" height='+parameters.CardHeight+'>',
@@ -131,9 +135,10 @@ var debrief_block = {
         
         console.log(accuracy)
         console.log(rt)
-        return `<p>You responded correctly on ${accuracy}% of the trials.</p>
-          <p> with an average response time of ${rt} ms</p>
-          <p>Press any key to continue.</p>`;
+        Str = Instructions.Debrief[0] + accuracy + Instructions.Debrief[1] + 
+          rt + Instructions.Debrief[2]
+        return Str
+
       },
       choices: ['Next'], 
     };

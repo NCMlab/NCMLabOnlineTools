@@ -35,6 +35,12 @@ var jsPsychImageButtonResponsePatternComp = (function (jspsych) {
               default: undefined,
               array: true,
           },
+          feedback: {
+            type: jspsych.ParameterType.STRING,
+            pretty_name: "Feedback",
+            default: ['Correct','Incorrect'],
+            array: true,
+          },
           /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
@@ -366,18 +372,18 @@ var jsPsychImageButtonResponsePatternComp = (function (jspsych) {
                 if ( choice == 0 & trial.stimulus[2][count] == 'left')
                 { 
                     if ( trial.feedback_duration > 0 )
-                    { document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>'}
+                    { document.getElementById("id_feedback").innerHTML = '<h1>'+trial.feedback[0]+'</h1>'}
                     response.accuracy.push(1)
                 }
                 else if ( choice == 1 & trial.stimulus[2][count] == 'right')
                 { 
                     if ( trial.feedback_duration > 0 )
-                    { document.getElementById("id_feedback").innerHTML = '<h1>CORRECT</h1>' }
+                    { document.getElementById("id_feedback").innerHTML = '<h1>'+trial.feedback[0]+'</h1>' }
                     response.accuracy.push(1)
                 }
                 else { 
                     if ( trial.feedback_duration > 0 )
-                    { document.getElementById("id_feedback").innerHTML = '<h1>INCORRECT</h1>' } 
+                    { document.getElementById("id_feedback").innerHTML = '<h1>'+trial.feedback[1]+'</h1>' } 
                     response.accuracy.push(0)
                 }
                 count++

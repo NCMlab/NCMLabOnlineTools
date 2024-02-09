@@ -44,6 +44,7 @@ var setupPractice = {
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
       document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+      document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
       jsPsych.setProgressBar(0)
     FeedbackFlag = true
     }
@@ -57,6 +58,7 @@ var setupTest = {
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         jsPsych.setProgressBar(0)
     FeedbackFlag = false
     }
@@ -104,7 +106,7 @@ var VisualProbe = {
   choices: [],
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
-  choices: KeyboardChoices,
+  choices: function() { return LabelNames.YesNo},
   on_finish: function(data){
     var ResponseIndex = ResponseMapping.indexOf(data.response)
     if ( Probe == 1 && ResponseMapping[ResponseIndex] == 1) 

@@ -117,6 +117,7 @@ var preload_imagesA = {
   type: jsPsychPreload,
   images: function(){
     document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+    document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
     jsPsych.setProgressBar(0)
     return LeftFileNames
   },
@@ -138,7 +139,7 @@ var PracticeTrial = {
   stimulus: function()
   { return [PracticeLeftFileNames, PracticeRightFileNames, PracticeCorrect, PracticeLoadLevel]},
   
-  choices:  ['Same','Different'],
+  choices:  function() { return [LabelNames.Same, LabelNames.Different]},
   prompt: '+',
   feedback_duration: 1000,
   response_ends_trial: false,
@@ -157,7 +158,7 @@ var TestTrial = {
   stimulus_width: 200,
   stimulus: function()
   { return [LeftFileNames, RightFileNames, Correct, LoadLevel]},
-  choices:  ['Same','Different'],
+  choices:  function() { return [LabelNames.Same, LabelNames.Different]},
   prompt: '+',
   response_ends_trial: false,
   

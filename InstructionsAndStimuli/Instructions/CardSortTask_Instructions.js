@@ -4,7 +4,7 @@ EN_Instructions.Instructions01 = [
         'For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: '+
         'color, number of objects, shape of objects. '+
         'You will also see a card at the bottom of the screen which you will match to one of the four cards at the top.'},
-    {'page': '<div class="InstructImage"><img src=assets/InstructionalImages/CardSortInstructions.png max-width="600px"></img></div>'},
+    {'page': '<div class="InstructImage"><img src=assets/InstructionalImages/EN_CardSortInstructions.png max-width="600px"></img></div>'},
     {'page': '<p class="Instructions"> Select one of the four cards displayed at the top of the screen such '+
     'that the selected card matches the card displayed at the bottom of the screen. '},
     {'page': '<p class="Instructions"> You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice.'}
@@ -15,11 +15,44 @@ EN_Instructions.Instructions02 = [
 EN_Instructions.Instructions03 = [
     {'page': '<p class="Instructions">You will now perform the actual task.'}
 ]
-
+EN_Instructions.Debrief = '<p>You responded correctly on ${accuracy}% of the trials.</p>'+
+    '<p> with an average response time of ${rt} ms</p>'+
+    '<p>Press any key to continue.</p>'
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
-
+EN_Instructions.DiscardPileText = 'Discard Pile'
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.</p>'}]
 add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instructions});
+
+// =============================================================================
+
+var FR_Instructions = {}
+FR_Instructions.Instructions01 = [
+	{'page': '<p class="Instructions"> '+
+        'FR:For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: '+
+        'color, number of objects, shape of objects. '+
+        'You will also see a card at the bottom of the screen which you will match to one of the four cards at the top.'},
+    {'page': '<div class="InstructImage"><img src=assets/InstructionalImages/FR_CardSortInstructions.png max-width="600px"></img></div>'},
+    {'page': '<p class="Instructions">FR: Select one of the four cards displayed at the top of the screen such '+
+    'that the selected card matches the card displayed at the bottom of the screen. '},
+    {'page': '<p class="Instructions">FR: You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice.'}
+],
+FR_Instructions.Instructions02 = [
+    {'page': '<p class="Instructions">FR: You will now perform a few practice trials.'}
+]
+FR_Instructions.Instructions03 = [
+    {'page': '<p class="Instructions">FR: You will now perform the actual task.'}
+]
+FR_Instructions.Debrief = [
+    '<p>FR: You responded correctly on ',
+    '% of the trials.</p><p> with an average response time of ',
+    ' ms</p><p>Press next to continue.</p>']
+FR_Instructions.ThankYouText = [{'page':'Merci.'}]
+FR_Instructions.DiscardPileText = 'Cartes Précédentes'
+FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">FR: This is the Card Sort Task.</p>'}]
+add('FR_CardSortTask_Instructions_Default', function(){ Instructions = FR_Instructions});
+
+
+
 /*
 
 In this task, you will see four stimulus cards at the top of the screen. The cards will differ on three dimensions: color 
