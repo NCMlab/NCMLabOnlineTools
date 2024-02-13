@@ -182,19 +182,19 @@ function skipTask() {
   jatos.studySessionData = JATOSSessionData
   console.log(jatos.studySessionData)
   TaskList = jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex ]
-  let text = "This will SKIP the current task. Are you sure?"
+  let text = LabelNames.SkipTask
   if (confirm(text) == true)
   {   jatos.startComponentByTitle(TaskList)  }
 }
 
 function stopExperiment() {
-  let text = "This will stop the study but not remove your data. Are you sure?"
+  let text = LabelNames.StopStudy
   if (confirm(text) == true)
   { jatos.endStudy() }
 }
 
 function quitExperiment() {
-  let text = "This will remove all data collected so far. Are you sure?"
+  let text = LabelNames.ExitStudy
   if (confirm(text) == true)
   { jatos.abortStudy() }
 }

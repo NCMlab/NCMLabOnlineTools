@@ -364,14 +364,14 @@ var pages = [
       [
         {
           type: 'text',
-          prompt: "En quel mois et quelle année êtes-vous né ?", 
+          prompt: "En quel mois et en quelle année êtes-vous né?", 
           name: 'MonthOfBirth02', 
           input_type: "month",
           required: false,
         },
         {
           type: 'multi-choice',
-          prompt: "Quel sexe a été attribué à la naissance, sur votre acte de naissance original?", 
+          prompt: "Quel sexe vous a été attribué à la naissance, sur votre acte de naissance original?", 
           options: ['Femelle', 'Mâle'],
           add_other_option: true,
           other_option_text: 'Vous n’avez pas d’option qui s’applique à moi. Je m\'identifie comme (veuillez préciser)',
@@ -381,10 +381,10 @@ var pages = [
         
         {
           type: 'multi-choice',
-          prompt: 'Quel est votre gender?', 
+          prompt: 'Quel est votre genre?', 
           options: ['Femme','Homme','Femme trans','Homme trans','Non binaire'],
           add_other_option: true,
-          other_option_text: 'Vous n’avez pas d’option qui s’applique à moi. Je m\'identifie comme (veuillez préciser)',
+          other_option_text: 'Vous n\'avez pas d’option qui s’applique à moi. Je m\'identifie comme (veuillez préciser)',
           name: 'Gender', 
           required: false,
         },
@@ -392,7 +392,7 @@ var pages = [
             type: 'drop-down',
             prompt: "Combien d'années d'études avez-vous complétées ? (par exemple, terminer ses études secondaires est de 12 ans, terminer un BA/BS est de 16 ans, terminer une MA/MS est de 18 ans, terminer un doctorat est de 21 ans.", 
             name: 'YearsEdu', 
-            options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','other'],
+            options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','autre'],
             required: false,
           },
         {
@@ -421,10 +421,10 @@ var pages = [
     FR_IntakeForm_Generic.pages = pages  
 
     FR_IntakeForm_Generic.Instructions01 = [
-      {'page': '<p class="Instructions"> Veuillez vous assurer que votre microphone et vos haut-parleurs sont allumés et que le volume est réglé pour que vous puissiez entendre les tâches. '+
-        'Si vous souhaitez terminer l\'expérience plus tôt, appuyez sur le bouton <em>Arrêt</em> en haut à gauche. Si vous souhaitez vous supprimer '+
-        'Depuis l\'expérience, appuyez sur le bouton <em>Quitter</em>. S\'il vous plaît, n\'appuyez pas sur les boutons de retour ou de rechargement de votre navigateur.'},
-        {'page': '<p class="Instructions">Si une tâche se bloque, vous pouvez appuyer sur le bouton <em>Passer</em>. Si vous avez des commentaires, vous aimeriez les partager '+
-        'avec nous, il y aura une zone de texte à la fin où vous pourrez saisir des commentaires.'}
+      {'page': '<p class="Instructions"> Veuillez-vous assurer que votre microphone et vos haut-parleurs sont allumés et que le volume est réglé pour que vous puissiez entendre les tâches. '+
+        'Si vous souhaitez terminer la tâche plus tôt, appuyez sur le bouton <em>Arrêt</em> en haut à gauche. Si vous souhaitez vous supprimer '+
+        'de la tâche, appuyez sur le bouton <em>Quitter</em>. S\'il vous plaît, n\'appuyez pas sur les boutons de retour ou de rechargement de votre navigateur.'},
+        {'page': '<p class="Instructions">Si une tâche se bloque, vous pouvez appuyer sur le bouton <em>Passer</em>. Si vous avez des commentaires, et que vous aimeriez les partager '+
+        'avec nous, il y aura une zone de texte à la fin où vous pourrez écrire des commentaires.'}
     ]
   add('FR_Instructions_Default', function(){ console.log("Loading Instructions"); Instructions = FR_IntakeForm_Generic });

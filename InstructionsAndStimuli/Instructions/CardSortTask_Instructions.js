@@ -28,27 +28,24 @@ add('EN_CardSortTask_Instructions_Default', function(){ Instructions = EN_Instru
 var FR_Instructions = {}
 FR_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions"> '+
-        'FR:For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: '+
-        'color, number of objects, shape of objects. '+
-        'You will also see a card at the bottom of the screen which you will match to one of the four cards at the top.'},
+        'Pour cette tâche, vous verrez quatre cartes en haut de l\'écran. Ce qu\'ils affichent différera en fonction de trois critères: la couleur, le nombre d\'objets, la forme des objets. Vous verrez également une carte en bas de l\'écran que vous associerez à l\'une des quatre cartes en haut.'},
     {'page': '<div class="InstructImage"><img src=assets/InstructionalImages/FR_CardSortInstructions.png max-width="600px"></img></div>'},
-    {'page': '<p class="Instructions">FR: Select one of the four cards displayed at the top of the screen such '+
-    'that the selected card matches the card displayed at the bottom of the screen. '},
-    {'page': '<p class="Instructions">FR: You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice.'}
+    {'page': '<p class="Instructions">Sélectionnez l\'une des quatre cartes affichées en haut de l\'écran de telle sorte que la carte sélectionnée corresponde à la carte affichée en bas de l\'écran.'},
+    {'page': '<p class="Instructions">Vous recevrez un retour indiquant si la carte sélectionnée était VRAIE ou FAUSSE. À l’aide de ces commentaires, déterminez quelle critères est ciblée et sélectionnez la carte en conséquence. Le critère ciblé peut changer de temps à autre sans préavis.'}
 ],
 FR_Instructions.Instructions02 = [
-    {'page': '<p class="Instructions">FR: You will now perform a few practice trials.'}
+    {'page': '<p class="Instructions">Vous allez maintenant effectuer quelques essais pratiques.'}
 ]
 FR_Instructions.Instructions03 = [
-    {'page': '<p class="Instructions">FR: You will now perform the actual task.'}
+    {'page': '<p class="Instructions">Vous allez maintenant effectuer la tâche réelle.'}
 ]
 FR_Instructions.Debrief = [
-    '<p>FR: You responded correctly on ',
-    '% of the trials.</p><p> with an average response time of ',
-    ' ms</p><p>Press next to continue.</p>']
+    '<p>FR: Vous avez  correctement répondu sur ',
+    '% des essais.</p><p> avec un temps de réponse moyen de ',
+    ' ms</p>']
 FR_Instructions.ThankYouText = [{'page':'Merci.'}]
-FR_Instructions.DiscardPileText = 'Cartes Précédentes'
-FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">FR: This is the Card Sort Task.</p>'}]
+FR_Instructions.DiscardPileText = 'La défausse'
+FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">Bienvenu(e) au test de tri de cartes multi-dimensionnelles.</p>'}]
 add('FR_CardSortTask_Instructions_Default', function(){ Instructions = FR_Instructions});
 
 

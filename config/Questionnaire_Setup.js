@@ -57,8 +57,3 @@ add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
 add('STAI_T_001', function(){ parameters = STAI_T_001});
 add('BDI_001', function(){ parameters = BDI_001});
-
-var Instructions = {}
-Instructions.WelcomeText = [{'page': '<p class="Instructions">Please fill out the following surveys.</p>'}]
-Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you.</p>'}]
-

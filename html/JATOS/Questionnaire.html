@@ -34,6 +34,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-state.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
@@ -50,6 +51,7 @@
 
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined') {
               parameters = 'aes'  
+              InstructionsToUse = 'EN_Instructions_Default'
             }
             else {
               parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
@@ -63,6 +65,7 @@
           parameters.Language = LANG
           console.log(LANG)
           console.log(parameters)
+          pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
           

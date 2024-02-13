@@ -13,11 +13,11 @@ add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 var FR_Instructions = {}
 FR_Instructions.AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Un','Deux','Trois','Quatre','Cinq','Six','Sept','Huit','Neuf']
 FR_Instructions.Instructions01 = [
-    {'page': '<p class="Instructions"> Cela permet de vérifier que le son de l\'ordinateur est correct et que vous entendez bien.</p>'},
+    {'page': '<p class="Instructions">Cela permet de vérifier que le son de l\'ordinateur est correct et que vous entendez bien.</p>'},
     {'page': '<p class="Instructions">Vous entendrez des séries de lettres et de chiffres. Cliquez sur la lettre ou le chiffre correspondant à l\'écran. N\'utilisez pas votre clavier.</p>'}
 ]
 FR_Instructions.TrialText = 'Appuyez sur la lettre ou le chiffre que vous avez entendu'
-FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">Bienvenue dans la tâche d\'écoute.'}]
+FR_Instructions.WelcomeText = [{'page': '<p class="Instructions">Bienvenu(e) dans la tâche d\'écoute.'}]
 FR_Instructions.ThankYouText = [{'page': '<p class="Instructions">Merci'}]
 
 add('FR_Instructions_Default', function(){ Instructions = FR_Instructions});

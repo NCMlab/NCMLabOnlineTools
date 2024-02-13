@@ -93,7 +93,7 @@ BatteryList.push({index: 202,
 		'Stroop_Default',//6
 		'RAVLT_Spoken_Immediate_002',
 		'RAVLT_Spoken_Delayed_002', 
-		'WordRecog_Spoken_002',
+		'WordRecog_Spoken_003',
 		'CardSort_002',
 		'PatternComparison_002', 
 		'Cancellation_002',
@@ -363,19 +363,16 @@ BatteryList.push({index: 11,
 })
 
 // =================================================================================
-// ===== FRENCH =========
+// ===== FRENCH TESTING =========
 BatteryList.push({index: 51, 
 	name:'H-10-23-9755', 
-	list: [	
+	list: [
 			
 			
 			
 			
 			
-			
-			
-			'Word Recall', 
-			'Word Recognition',
+		'Spatial DMS',
 			'Questionnaire',
 			'Questionnaire',
 			'Questionnaire'
@@ -388,10 +385,7 @@ BatteryList.push({index: 51,
 						
 						
 						
-						
-						
-						'RAVLT_Spoken_Delayed', 
-						'WordRecog_Spoken',
+		'SpatialDMS_Adaptive',
 						'STAI_T_001',
 						'STAI_S_001',
 						'BDI_001',
@@ -399,13 +393,79 @@ BatteryList.push({index: 51,
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: [	
 					
-
 					
 					
 					
 					
-					
-					
+					'Default',
+					'Default',
+					'',
+					''
+					],
+	//Instructions: ['Default'],
+	BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
+	ButtonName: [
+		
+    	
+		
+		
+		
+		'Dots',
+		'Recognition',
+		'STAI-T',
+		'STAI-S',
+		'BDI/GDS',
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2023'
+})
+// =================================================================================
+// === FRENCH ===
+BatteryList.push({index: XX51XX, 
+	name:'H-10-23-9755', 
+	list: [	'Screening',
+			'Consent Form',
+			'Intake Form',
+			'Listening',
+			'Reading Test',
+			'Word Recall', 
+			'Card Sort',
+			'Pattern Comparison',
+			'Spatial DMS',
+			'Word Recall', 
+			'Word Recognition',
+			'Questionnaire',
+			'Questionnaire',
+			'Questionnaire'
+		],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: [	'BriefScreening',
+						'ConsentForm_uOttawa_Steffener',
+						'IntakeForm_FR',
+						'Listening_002',
+						'ReadingListeningList01',
+						'RAVLT_Spoken_Immediate',
+						'CardSort_001',
+						'PatternComparison_001', 
+						'SpatialDMS_Adaptive',
+						'RAVLT_Spoken_Delayed', 
+						'WordRecog_Spoken',
+						'STAI_T_001',
+						'STAI_S_001',
+						'BDI_001',
+						],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [	'',
+					'',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
+					'Default',
 					'Default', 
 					'Default',
 					'',
@@ -413,13 +473,14 @@ BatteryList.push({index: 51,
 					''
 					],
 	//Instructions: ['Default'],
-	BatteryInstructions: '<p class="Instructions">Bienvenue au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
+	BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
 	ButtonName: [
-		
-
-		
-		
-    	
+		'Screening',
+		'Consent',
+		'Intake',
+		'Listening',
+		'Reading',
+    	'Immediate',
 		'Card Sort',
 		'Patt Compare',
 		'Dots',
@@ -434,6 +495,7 @@ BatteryList.push({index: 51,
 	Footer: '©NCMLab 2023'
 })
 
+// =====================================================================================================
 BatteryList.push({index: 12, 
 	name:'TESTER', 
 	list: [	

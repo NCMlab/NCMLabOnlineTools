@@ -134,7 +134,7 @@ var RAVLT_Spoken_Delayed = {
 }
 
 var RAVLT_Spoken_Delayed_002 = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 1,
@@ -144,8 +144,8 @@ var RAVLT_Spoken_Delayed_002 = {
 	DelayBeforeShowingDoneButton: 10,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
 }

@@ -40,7 +40,7 @@ var setupPractice = {
   type: jsPsychCallFunction,
   func: function() {
     stair1 = new Stair(parameters.StartValue, parameters.MinValue, 
-        parameters.MaxValue, parameters.MaxReversals, 2,
+        parameters.MaxValue, parameters.MaxReversals, parameters.NPracticeTrials,
         parameters.StepSize, parameters.NUp, parameters.NDown, 
         parameters.FastStart);
       document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
@@ -106,9 +106,13 @@ var VisualProbe = {
   choices: [],
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
-  choices: function() { return LabelNames.YesNo},
+  choices: function() { return LabelNames.NoYes},
   on_finish: function(data){
     var ResponseIndex = ResponseMapping.indexOf(data.response)
+    console.log("Response: "+data.response)
+    console.log("Response Mapping: "+ResponseMapping)
+    console.log("Mapped Response: "+ResponseMapping[ResponseIndex])
+    console.log("Probe: "+Probe)
     if ( Probe == 1 && ResponseMapping[ResponseIndex] == 1) 
     { 
       data.correct = 1

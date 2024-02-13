@@ -128,7 +128,7 @@ FR_RAVLT.WordListA = [
 	{'Word':'Rideau'}, 		// 1
 	{'Word':'Sonnette'},	// 2
 	{'Word':'Café'},		// 3
-	{'Word':'Ecole'},		// 4
+	{'Word':'École'},		// 4
 	{'Word':'Parent'},		// 5
 	{'Word':'Lune'},		// 6
 	{'Word':'Jardin'},		// 7
@@ -162,36 +162,36 @@ FR_RAVLT.WordListB = [
 FR_RAVLT.AlternatePronunciationsWordListB = []
 FR_RAVLT.NWords = FR_RAVLT.WordListA.length
 FR_RAVLT.RecognitionWordList = [
-	{'Word':'Teacher','Answer':false},
-	{'Word':'River','Answer':true},
-	{'Word':'Bridge','Answer':false},
-	{'Word':'Farmer','Answer':true},
-	{'Word':'Pen','Answer':false},
-	{'Word':'Forehead','Answer':false},
-	{'Word':'Kerchief','Answer':false},
-	{'Word':'House','Answer':true},
-	{'Word':'Moon','Answer':true},
-	{'Word':'Color','Answer':true},
-	{'Word':'Beet','Answer':false},
-	{'Word':'Curtain','Answer':true},
-	{'Word':'Floor','Answer':false},
-	{'Word':'Soldier','Answer':false},
-	{'Word':'Drum','Answer':true},
-	{'Word':'Coffee','Answer':true},
-	{'Word':'Road','Answer':false},
-	{'Word':'Hat','Answer':true},
-	{'Word':'Turkey','Answer':true},
-	{'Word':'Minute','Answer':false},
-	{'Word':'Nose','Answer':true},
-	{'Word':'School','Answer':true},
-	{'Word':'Bell','Answer':true},
-	{'Word':'Face','Answer':false},
-	{'Word':'Garden','Answer':true},
-	{'Word':'Classroom','Answer':false},
+	{'Word':'Enseignant','Answer':false},
+	{'Word':'Rivère','Answer':true},
+	{'Word':'Pont','Answer':false},
+	{'Word':'Paysan','Answer':true},
+	{'Word':'Stylo','Answer':false},
+	{'Word':'Front','Answer':false},
+	{'Word':'Mouchoir','Answer':false},
+	{'Word':'Maison','Answer':true},
+	{'Word':'Lune','Answer':true},
+	{'Word':'Couleur','Answer':true},
+	{'Word':'Betterave','Answer':false},
+	{'Word':'Rideau','Answer':true},
+	{'Word':'Sol','Answer':false},
+	{'Word':'Soldat','Answer':false},
+	{'Word':'Tambour','Answer':true},
+	{'Word':'Café','Answer':true},
+	{'Word':'Route','Answer':false},
+	{'Word':'Chapeau','Answer':true},
+	{'Word':'Dindon','Answer':true},
+	{'Word':'Minuscule','Answer':false},
+	{'Word':'Nez','Answer':true},
+	{'Word':'École','Answer':true},
+	{'Word':'Sonnette','Answer':true},
+	{'Word':'Visage','Answer':false},
+	{'Word':'Jardin','Answer':true},
+	{'Word':'Salle de Classe','Answer':false},
 	{'Word':'Parent','Answer':true},
-	{'Word':'Children','Answer':false},
-	{'Word':'Broomstick','Answer':false},
-	{'Word':'Gun','Answer':false}
+	{'Word':'Enfants','Answer':false},
+	{'Word':'Balais','Answer':false},
+	{'Word':'Fusil','Answer':false}
 ]
 add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
 // === TEST ===========================================================================

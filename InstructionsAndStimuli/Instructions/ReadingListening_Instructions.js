@@ -56,8 +56,8 @@ List01.push({'stim':"L’idée est de coudre ensemble ces morceaux de tissus."})
 var FR_Instructions_Default = {}
 FR_Instructions_Default.List = List01
 FR_Instructions_Default.Instructions01 = [
-    {'page':'<p class="Instructions">Pour vous assurer que l\'ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur les écrans suivants.'},
+    {'page':'<p class="Instructions">Pour vous assurer que l\'ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur l\'écran suivant.'},
 ]
-FR_Instructions_Default.WelcomeText = [{'page': '<p class="Instructions">Il s\'agit d\'une tâche de test de lecture.</p>'}]
+FR_Instructions_Default.WelcomeText = [{'page': '<p class="Instructions">Bienvenu(e) à la tâche de lecture.</p>'}]
 FR_Instructions_Default.ThankYouText = [{'page': '<p class="Instructions">Merci'}]
 add('FR_Instructions_Default', function(){ Instructions = FR_Instructions_Default});

@@ -36,13 +36,13 @@ add('EN_Instructions_Default', function(){ Instructions = EN_Instructions_Defaul
 
 var FR_Instructions_Default = {}
 FR_Instructions_Default.WelcomeText = [
-    {'page': '<p class="Instructions">Bienvenue dans la tâche de rappel de mots.</p>'},
+    {'page': '<p class="Instructions">Bienvenu(e) dans la tâche de rappel de mots.</p>'},
 ]
 FR_Instructions_Default.RecallInstructions = 'Veuillez répéter toute la liste de mots'
 FR_Instructions_Default.GetReadyInstructions = 'Préparez-vous pour le prochain essai'
 FR_Instructions_Default.Instructions01 = [
 	{'page': '<p class="Instructions">Vous entendrez une liste de mots. Ecoutez attentivement, en fin de liste vous devrez répéter tous les mots dont vous vous souviendrez. </p>'},
-	{'page': '<p class="Instructions">Peu importe l\'ordre dans lequel vous les répétez, essayez juste de vous souvenir autant que vous le pouvez.</p>'},
+	{'page': '<p class="Instructions">Peu importe l\'ordre dans lequel vous les répétez, essayez juste de vous souvenir d\'autant que vous le pouvez.</p>'},
 	]
 	FR_Instructions_Default.Instructions02 = [
 	{'page': '<p class="Instructions">Maintenant vous entendrez les mêmes mots, et encore une fois en fin de liste vous dites autant de mots dont vous vous souvenez, y compris les mots que vous avez dits la première fois. </p>'},
@@ -55,8 +55,13 @@ FR_Instructions_Default.Instructions01 = [
 
 	]
 	FR_Instructions_Default.Instructions04 = [
-	{'page': '<p class="Instructions">Dites tous les mots dont vous vous souvenez parmi cette liste.</p>'},
+	{'page': '<p class="Instructions">Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises.</p>'},
 	]
+
+	FR_Instructions_Default.InstructionsDelayed = [
+		{'page': '<p class="Instructions">Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises.</p>'},
+		]	
+	
 	FR_Instructions_Default.WordPrompt = 'empty'
 	FR_Instructions_Default.ThankYouText = [{'page': 'Merci'}]
 
