@@ -335,9 +335,9 @@ BatteryList.push({index: 11,
 					'Default',
 					'Default', 
 					'Default',
-					'',
-					'',
-					''
+					'Default',
+					'Default',
+					'Default'
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
@@ -368,39 +368,38 @@ BatteryList.push({index: 51,
 	name:'H-10-23-9755', 
 	list: [
 			
+		'Screening',
 			
 			
 			
-			
-		'Spatial DMS',
+		
 			'Questionnaire',
-			'Questionnaire',
+			
 			'Questionnaire'
 		],
 	//list: ['Intake Form'],
 	description: 'Test',
 	ParameterLists: [	
 						
+		'BriefScreening',
 						
 						
 						
-						
-		'SpatialDMS_Adaptive',
+		
 						'STAI_T_001',
-						'STAI_S_001',
+						
 						'BDI_001',
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
 	Instructions: [	
 					
 					
-					
-					
-					
-					'Default',
-					'Default',
 					'',
-					''
+					
+					
+					
+					'Default',
+					'Default'
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
@@ -409,11 +408,11 @@ BatteryList.push({index: 51,
     	
 		
 		
+		'SC',
 		
-		'Dots',
 		'Recognition',
-		'STAI-T',
 		'STAI-S',
+		
 		'BDI/GDS',
 	],
 	Language:'EN',

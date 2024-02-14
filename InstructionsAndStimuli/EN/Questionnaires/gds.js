@@ -1,4 +1,4 @@
-var pages = [
+var EN_pages = [
         [
             {
                 type: 'likert-table',
@@ -45,10 +45,49 @@ var pages = [
 var EN_gds = {}
 EN_gds.title = 'Geriatric Depression Scale'
 EN_gds.description = "Choose the best answer for how you felt over the past week."
-EN_gds.pages = pages
+EN_gds.pages = EN_pages
 EN_gds.QuestionnaireType = 'YesNoLikertTable'
 // Yes = 0, No = 1
 // Add one point for answers equal to the following responses
 EN_gds.values = [1,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,1,1]
 
+// ===================================================================
+var FR_pages = [
+    [
+        {
+            type: 'likert-table',
+            prompt: ' ',
+            accuracy: [0,1,1,1,0,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,0],
+            statements: [
+                {prompt: 'Vous inquiétez-vous souvent à propos de l\’avenir?',name: 'dgs013'},
+                {prompt: 'Sentez-vous que vous avez plus de problèmes demémoire que la majorité des gens?',name: 'dgs014'},
+                {prompt: 'Pensez-vous qu\’il est merveilleux de vivre actuellement?',name: 'dgs015'},
+                {prompt: 'Vous sentez-vous découragé et triste?',name: 'dgs016'},
+                {prompt: 'Sentez-vous que vous ne valez pas grand chose comme vous êtes présentement?',name: 'dgs017'},
+                {prompt: 'Vous inquiétez-vous beaucoup à propos du passé?',name: 'dgs018'},
+                {prompt: 'Trouvez-vous la vie excitante?',name: 'dgs019'},
+                {prompt: 'Est-ce difficile pour vous de vous lancer dans de nouveaux projets?',name: 'dgs020'},
+                {prompt: 'Vous sentez-vous plein d\’énergie?',name: 'dgs021'},
+                {prompt: 'Sentez-vous que votre situation est sans espoir?',name: 'dgs022'},
+                {prompt: 'Pensez-vous que la majorité des gens est mieux que vous?',name: 'dgs023'},
+                {prompt: 'Êtes-vous souvent bouleversé à propos de petites choses?',name: 'dgs024'},
+                {prompt: 'Avez-vous souvent envie de pleurer?',name: 'dgs025'},
+                {prompt: 'Avez-vous de la difficulté à vous concentrer?',name: 'dgs026'},
+                {prompt: 'Avez-vous du plaisir à vous lever le matin?',name: 'dgs027'},
+                {prompt: 'Préférez-vous éviter les rencontres sociales?',name: 'dgs028'},
+                {prompt: 'Est-ce facile pour vous de prendre des décisions?',name: 'dgs029'},
+                {prompt: 'Avez-vous les idées aussi claires qu\’avant?',name: 'dgs030'},
+            ],
+            options: ['Oui', 'No'],
+        }
+    ]
+]
 
+var FR_gds = {}
+FR_gds.title = 'ÉCHELLE GÉRIATRIQUE DE DÉPRESSION (Yesavage)'
+FR_gds.description = "Choisissez la meilleure réponse pour décrire comment vous vous sentiez au cours de la dernière semaine."
+FR_gds.pages = FR_pages
+FR_gds.QuestionnaireType = 'YesNoLikertTable'
+// Yes = 0, No = 1
+// Add one point for answers equal to the following responses
+FR_gds.values = [1,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,1,1]

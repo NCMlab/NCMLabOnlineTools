@@ -1,7 +1,8 @@
 function Questionnaire_Scoring(data) {
-	console.log(data)
+	
 	AllTrials = data
 	data = data.trials[0]
+	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
     
@@ -43,8 +44,7 @@ function Questionnaire_Scoring(data) {
 	}
 	if ( data.QuestionnaireType == 'multi-choice' )
 	{
-        const keys = Object.keys(data.response)
-        console.log(keys)
+		const keys = Object.keys(data.response)
 		for ( var i = 0; i < keys.length; i++ )
 		{
 			var TextAnswer = data.response[keys[i]]
@@ -66,19 +66,24 @@ function Questionnaire_Scoring(data) {
 	if ( data.QuestionnaireType == 'YesNoLikertTable' )
 	{
         // Need to account for null responses
-        const keys = Object.keys(data.response.P0_Q0)
-		for ( var i = 0; i < keys.length; i++ )
-		{
-			// What the response was
-			currentResponse = data.response.P0_Q0[keys[i]]
-			// what question is this key?
-			currentQ = Number(keys[i].substr(keys[i].length-3,3)-1)
-			correctResponse = data.pages[0][0].accuracy[currentQ]
-			if ( currentResponse != correctResponse ) 
-			{ TotalScore += 1 }
-			Results.AllResults[data.pages[0][0].statements[currentQ].prompt] = data.pages[0][0].options[currentResponse]		
-		}
+		console.log("P0Q0 ARRAY: "+Object.is(data.response.P0_Q0,null))
 		
+        
+		if ( ! Object.is(data.response.P0_Q0,null)) 
+		{
+			const keys = Object.keys(data.response.P0_Q0)
+			for ( var i = 0; i < keys.length; i++ )
+			{
+				// What the response was
+				currentResponse = data.response.P0_Q0[keys[i]]
+				// what question is this key?
+				currentQ = Number(keys[i].substr(keys[i].length-3,3)-1)
+				correctResponse = data.pages[0][0].accuracy[currentQ]
+				if ( currentResponse != correctResponse ) 
+				{ TotalScore += 1 }
+				Results.AllResults[data.pages[0][0].statements[currentQ].prompt] = data.pages[0][0].options[currentResponse]		
+			}
+		}
 	}
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
