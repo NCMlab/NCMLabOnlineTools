@@ -40,7 +40,7 @@ FR_Instructions.Instructions03 = [
     {'page': '<p class="Instructions">Vous allez maintenant effectuer la tâche réelle.'}
 ]
 FR_Instructions.Debrief = [
-    '<p>FR: Vous avez  correctement répondu sur ',
+    '<p>Vous avez  correctement répondu sur ',
     '% des essais.</p><p> avec un temps de réponse moyen de ',
     ' ms</p>']
 FR_Instructions.ThankYouText = [{'page':'Merci.'}]

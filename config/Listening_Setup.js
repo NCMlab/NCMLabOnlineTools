@@ -12,8 +12,8 @@ var Listening_001 = {
 }
 
 var Listening_002 = {
-	ShowWelcome: true,
-	ShowThankYou: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
 	ShowInstructions: true, 
 	WelcomeSpoken: false,
 	AskForNotes: false,

@@ -81,7 +81,12 @@ function Questionnaire_Scoring(data) {
 				correctResponse = data.pages[0][0].accuracy[currentQ]
 				if ( currentResponse != correctResponse ) 
 				{ TotalScore += 1 }
-				Results.AllResults[data.pages[0][0].statements[currentQ].prompt] = data.pages[0][0].options[currentResponse]		
+				try {
+					Results.AllResults[data.pages[0][0].statements[currentQ].prompt] = data.pages[0][0].options[currentResponse]		
+				}
+				catch (error) {
+					console.error(error);
+				  }
 			}
 		}
 	}

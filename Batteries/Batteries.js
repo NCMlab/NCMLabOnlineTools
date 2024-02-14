@@ -364,64 +364,10 @@ BatteryList.push({index: 11,
 
 // =================================================================================
 // ===== FRENCH TESTING =========
-BatteryList.push({index: 51, 
-	name:'H-10-23-9755', 
-	list: [
-			
-		'Screening',
-			
-			
-			
-		
-			'Questionnaire',
-			
-			'Questionnaire'
-		],
-	//list: ['Intake Form'],
-	description: 'Test',
-	ParameterLists: [	
-						
-		'BriefScreening',
-						
-						
-						
-		
-						'STAI_T_001',
-						
-						'BDI_001',
-						],
-	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: [	
-					
-					
-					'',
-					
-					
-					
-					'Default',
-					'Default'
-					],
-	//Instructions: ['Default'],
-	BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
-	ButtonName: [
-		
-    	
-		
-		
-		'SC',
-		
-		'Recognition',
-		'STAI-S',
-		
-		'BDI/GDS',
-	],
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCMLab 2023'
-})
+
 // =================================================================================
 // === FRENCH ===
-BatteryList.push({index: XX51XX, 
+BatteryList.push({index: 51, 
 	name:'H-10-23-9755', 
 	list: [	'Screening',
 			'Consent Form',
@@ -445,12 +391,12 @@ BatteryList.push({index: XX51XX,
 						'IntakeForm_FR',
 						'Listening_002',
 						'ReadingListeningList01',
-						'RAVLT_Spoken_Immediate',
+						'RAVLT_Spoken_Immediate_002',
 						'CardSort_001',
 						'PatternComparison_001', 
 						'SpatialDMS_Adaptive',
-						'RAVLT_Spoken_Delayed', 
-						'WordRecog_Spoken',
+						'RAVLT_Spoken_Delayed_002', 
+						'WordRecog_Spoken_002',
 						'STAI_T_001',
 						'STAI_S_001',
 						'BDI_001',
@@ -467,9 +413,9 @@ BatteryList.push({index: XX51XX,
 					'Default',
 					'Default', 
 					'Default',
-					'',
-					'',
-					''
+					'Default',
+					'Default',
+					'Default'
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
@@ -493,7 +439,6 @@ BatteryList.push({index: XX51XX,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })
-
 // =====================================================================================================
 BatteryList.push({index: 12, 
 	name:'TESTER', 
