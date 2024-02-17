@@ -65,14 +65,14 @@ var Notes = {
       },
     }
     
-   /* var SendData = {
+      var SendData = {
       type: jsPsychCallFunction,
       func: function() {
             var data = jsPsych.data.get()
             Results = ImageCopy_Scoring(data)
             jsPsych.finishTrial(Results)
       },
-    } */
+    } 
     var SendData = {
       type: jsPyschCallFunction,
       func: function(){
