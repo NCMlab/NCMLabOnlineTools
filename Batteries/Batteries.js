@@ -481,6 +481,11 @@ BatteryList.push({index: 12,
 // ============================
 
 // ===== ENGLISH ======
+
+// I would like to edit the task lists to be as follows. I think it would be easier to handle and is more intuitive
+
+
+
 BatteryList.push({index: 10, 
 	name:'H-10-23-9755', 
 	list: [	'Fluency',
