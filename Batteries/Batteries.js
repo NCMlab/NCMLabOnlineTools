@@ -1,5 +1,10 @@
 
 var BatteryList = []
+// =================================================================================
+// ====== FACE ==========
+// ====== FRENCH ========
+// ====== ENGLISH ========
+// ====== AD-HOC ========
 
 
 BatteryList.push({index: 16, 
@@ -16,7 +21,34 @@ BatteryList.push({index: 16,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
+// ====== BATTERY  ========
 
+// =================================================================================
+BatteryList.push({index: 101, 
+	name:'FaCE Battery', 
+	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
+	//list: ['Intake Form'],
+	description: 'A web-based version of the FaCE',
+	ParameterLists: ['EN_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
+	//Instructions: ['Default'],
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	ButtonName: [
+        'Intake Form',
+        'Orientation',
+		'Immediate Recall',
+		'Trail Making',
+		'Cube Copy',
+		'Serial Subtraction',
+		'Fluidity',
+		'Delayed Recall'
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
+})
+// =================================================================================
 // ========================================================================
 BatteryList.push({index: 202, 
 	name:'NCM Lab Demonstration', 
@@ -185,32 +217,6 @@ BatteryList.push({index: 102,
 }) */
 // ========================================================================
 
-
-BatteryList.push({index: 101, 
-	name:'FaCE Battery', 
-	list: ['Questionnaire','Questionnaire','Word Recall','Trail Making','Image Copy','Serial Subtraction','Fluency','Word Recall'],
-	//list: ['Intake Form'],
-	description: 'A web-based version of the FaCE',
-	ParameterLists: ['EN_IntakeForm_FaCE','EN_OrientationForm_FaCE','FaCE_Default','TrailMaking_FaCE','ImageCopy_FaCE','SerialSubtract_FaCE','Fluency_FruitsVegetable','FaCE_Default_Delayed'],
-	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: ['','','FaCE','FaCE','FaCE','FaCE','FaCE','FaCE'],
-	//Instructions: ['Default'],
-	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-	ButtonName: [
-        'Intake Form',
-        'Orientation',
-		'Immediate Recall',
-		'Trail Making',
-		'Cube Copy',
-		'Serial Subtraction',
-		'Fluidity',
-		'Delayed Recall'
-	],
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©GagnonBruno 2016'
-})
-// =================================================================================
 // =================================================================================
 BatteryList.push({index: 1001, 
 	name:'TESTER', 
@@ -366,6 +372,8 @@ BatteryList.push({index: 11,
 // ===== FRENCH TESTING =========
 
 // =================================================================================
+//<a href="https://jatos.ncmlab.ca/publix/TL1DU7CIL5r?Battery=51"><img src="FR.png" alt="French"><h2>Participer en français</h2></a> (Ce lien vous mènera directement à la tâche qui prendra entre 30 et 45 minutes.)
+
 // === FRENCH ===
 BatteryList.push({index: 51, 
 	name:'H-10-23-9755', 
@@ -475,40 +483,21 @@ BatteryList.push({index: 12,
 // ===== ENGLISH ======
 BatteryList.push({index: 10, 
 	name:'H-10-23-9755', 
-	list: [	'Screening',
-			'Consent Form',
-			'Intake Form',
-			'Questionnaire',
-			'Questionnaire',
-			'Questionnaire'
+	list: [	'Fluency',
+			
 		],
 	//list: ['Intake Form'],
 	description: 'Test',
-	ParameterLists: [	'BriefScreening',
-						'ConsentForm_uOttawa_Steffener',
-						'IntakeForm_EN',
-						'STAI_S_001',
-						
-						'STAI_S_001',
-						'BDI_001',
+	ParameterLists: [	'Fluency_TEST'
 						],
 	//ParameterLists: ['EN_IntakeForm_FaCE'],
-	Instructions: [	'',
-					'',
-					'Default',					
-					'',
-					'',
-					''
+	Instructions: [	'Default',
 					],
 	//Instructions: ['Default'],
 	BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
 	ButtonName: [
-		'Screening',
-		'Consent',
-		'STAI-T',
-		'Intake',
-		'BDI/GDS',
-		'STAI-S',
+		
+		'FLUENCY',
 	],
 	Language:'EN',
 	RunAudioTest: true,

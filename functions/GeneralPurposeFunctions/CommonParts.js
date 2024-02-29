@@ -61,23 +61,6 @@ function UpdateHeader() {
 
 
 
- 
-  
-/*
-var if_MicrophoneInitialized = {
-    timeline: [IntializeMicrophone],
-    conditional_function: function() {
-        
-        const recorder = jsPsych.pluginAPI.getMicrophoneRecorder()
-        if ( recorder !== null ){
-            console.log("MICROPHONE IS ALREADY INITIALIZED")
-        }
-    }
-}
-var IntializeMicrophone = {
-    type: jsPsychInitializeMicrophone
-};*/
-
 // ============== TIMER ================
 // This turns on a progress bar timer when spoken instructions are provided
 var Welcome_progress_bar_timer_start = {

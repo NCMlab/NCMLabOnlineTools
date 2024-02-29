@@ -52,8 +52,8 @@ var SetupSpeechRecognition = {
 var GetCategory = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(Fluency_parameters)
-    category = eval('Instructions.'+Fluency_parameters.Category)
+    console.log(parameters)
+    category = eval('Instructions.'+parameters.Category)
   }
 }
 
@@ -139,7 +139,7 @@ var FluencyOLD = {
       
     },
     on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
+    var wait_time = parameters.TimeLimit * 1000; // in milliseconds
     var start_time = performance.now();
     document.querySelector('button').disabled = false;
     interval = setInterval(function(){
@@ -161,8 +161,9 @@ var FluencyOLD = {
   var Fluency = {
     type: jsPsychHtmlAudioResponse,
     stimulus: function() {
-
-      var stim = 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'
+      var stim = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+      'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'
+      
       return stim 
     },
     show_done_button: true,
@@ -195,7 +196,7 @@ var FluencyOLD = {
       annyang.abort()
     },
     on_load: function(){ // This inserts a timer on the recall duration
-      var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
+      var wait_time = parameters.TimeLimit * 1000; // in milliseconds
       var start_time = performance.now();
       document.querySelector('button').disabled = false;
       interval = setInterval(function(){
@@ -214,21 +215,6 @@ var FluencyOLD = {
     }
 }
 
-// Define instructions
-var Instructions = {
-      type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: function()
-      {
-        var stim = jsPsych.timelineVariable('page') // Variable in the config file
-        return stim
-      },
-      post_trial_gap: 0,
-      margin_horizontal: GapBetweenButtons,
-      prompt: '',
-      choices: ['Next'], 
-    }  
-
-
 var Counter = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function()
@@ -246,7 +232,7 @@ var Counter = {
   choices: function() { return [LabelNames.Next] }, 
   on_load: function(){ // This inserts a timer on the recall duration
     if ( ! HasCounterStarted ) {
-      var wait_time = Fluency_parameters.TimeLimit * 1000; // in milliseconds
+      var wait_time = parameters.TimeLimit * 1000; // in milliseconds
       var start_time = performance.now();
       document.querySelector('button').disabled = false;
       interval = setInterval(function(){
@@ -301,10 +287,12 @@ var SendData = {
 // =======================================================================    
 // Define procedures using the stimuli
 var if_SpokenResponse = {
-  timeline: [InitializeMicrophone, SetupSpeechRecognition, Fluency],
+  timeline: [if_MicrophoneInitialized, SetupSpeechRecognition, Fluency],
   conditional_function: function() {
-    if ( Fluency_parameters.RecallType == 'Spoken' )
-    { return true }
+    if ( parameters.RecallType == 'Spoken' )
+    { 
+      console.log("SPOKEN RESPONSES")
+      return true }
     else { return false }
   }
 }
@@ -312,105 +300,25 @@ var if_SpokenResponse = {
 var if_ManualResponse = {
   timeline: [CountResponses],
   conditional_function: function() {
-    if ( Fluency_parameters.RecallType == 'Manual' )
-    { return true }
+    if ( parameters.RecallType == 'Manual' )
+    { 
+      console.log("MANUAL!!!")
+      return true 
+    }
     else { return false }
   }
 }
 
 
-
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_start: function(data)
-    {
-      DD = jsPsych.data.get()
-      console.log(DD)
-      console.log(DD.filter({task: 'Recall'}))
-    },
-  on_finish: function(data)
-  { data.trial = "Notes" },
-}
-
-var Instructions = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return Instructions.Instructions[count].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var Instructions_loop = {
-  timeline: [Instructions],
-  loop_function: function(data){
-    console.log(count)
-    count+=1
-    if ( count < Instructions.Instructions.length){
-        return true} else { return false}
-  }
-}
-
-
-  var welcome = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {return Instructions.WelcomeText[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-  }
-  
-  var thank_you = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {return Instructions.ThankYouText[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-  }
-  
-  var if_Welcome = {
-    timeline: [welcome],
-    conditional_function: function() {
-      if ( Instructions.ShowWelcome)
-      { return true }
-      else { return false }
-    }
-  }
-  
-  var if_ThankYou = {
-    timeline: [thank_you],
-    conditional_function: function() {
-      if ( Instructions.ShowThankYou)
-      { return true }
-      else { return false }
-    }
-  }
-  var if_Notes = {
-    timeline: [Notes],
-    conditional_function: function() {
-      if ( Fluency_parameters.AskForNotes)
-      { return true }
-      else { return false }
-    }
-  }
 // ======================================================================= 
 // Add procedures to the timeline
 
-timeline.push(if_Welcome)
-timeline.push(enter_fullscreen)
-timeline.push(Instructions_loop)
+
+timeline.push(Welcome)
+
 timeline.push(GetCategory)
 timeline.push(if_ManualResponse)
 timeline.push(if_SpokenResponse)
-timeline.push(if_Notes)
-timeline.push(if_ThankYou)
+timeline.push(Notes)
+timeline.push(ThankYou)
 timeline.push(SendData)

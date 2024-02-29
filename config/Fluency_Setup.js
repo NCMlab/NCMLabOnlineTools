@@ -32,18 +32,18 @@ Fluency_F = {
 }
 
 Fluency_TEST = {
-	Category: 'LetterF',
-	TimeLimit: 10, // seconds
+	Category: 'FruitsVegetables',
+	TimeLimit: 60, // seconds
 	RecallType: 'Spoken',
 	ShowInstructions: true,
-    ShowWelcome: true,
-	ShowThankYou: true,
-    AskForNotes: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
     RecordAUDIO: true,
 }
 
 
-add('Fluency_Animals', function(){ Fluency_parameters = Fluency_Animals});
-add('Fluency_FruitsVegetable', function(){ Fluency_parameters = Fluency_FruitsVegetable});
-add('Fluency_F', function(){ Fluency_parameters = Fluency_F});
-add('Fluency_TEST', function(){ Fluency_parameters = Fluency_TEST});
+add('Fluency_Animals', function(){ parameters = Fluency_Animals});
+add('Fluency_FruitsVegetable', function(){ parameters = Fluency_FruitsVegetable});
+add('Fluency_F', function(){ parameters = Fluency_F});
+add('Fluency_TEST', function(){ parameters = Fluency_TEST});

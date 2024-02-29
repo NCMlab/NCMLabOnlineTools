@@ -30,45 +30,42 @@
     <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
-
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/MicrophoneParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Fluency_Instructions.js"></script>
     <script src="functions/Scoring/Fluency_Scoring.js"></script>
     <script src="functions/TaskSpecificFunctions/AFT_function.js"></script>
     <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
+
     <script src="config/Fluency_Setup.js"></script>
-    <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-      if ( position >= 0 ) {
-        console.log("Running USAGE MANAGER on localhost")
-        var url = "Batteries/Local_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>");
-      } else {
-        console.log("Running on remote host")
-        var url = "Batteries/Remote_ComponentList.js"
-        document.write("\<script src='" + url + "'\>\</script\>"); 
-      }
-    </script>
+
     <script>
       var Fluency_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        if (typeof BatteryHtmlID === 'undefined') {
+        console.log(jatos.studySessionData.ComponentParameterLists)
+        console.log(jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] )
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
           parameters = 'Fluency_F'
           InstructionsToUse = 'Default'
         }
         else {
+          console.log(jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] )
           parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }
+        console.log(parameters)
         pseudoSwitch(parameters)      
-        console.log(Fluency_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
@@ -85,6 +82,9 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
+    auto_update_progress_bar: false,
+
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
@@ -109,9 +109,9 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of teh battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
 
     }
   });

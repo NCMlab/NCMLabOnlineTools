@@ -63,24 +63,25 @@
       var parameters = 'empty'      
       jatos.onLoad(() => {
         Language = jatos.studySessionData.Language
-            if (typeof BatteryHtmlID === 'undefined') {
-              parameters = 'CardSort_001'
-              InstructionsToUse = 'Default'
-            }
-            else {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
+            parameters = 'CardSort_001'
+            InstructionsToUse = 'Default'
+        }
+        else {
               parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
               InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
-            }
-          console.log(parameters)
-          pseudoSwitch(parameters)
-          console.log(parameters)
-          LANG = jatos.studySessionData.Language
-          console.log(LANG)
-          pseudoSwitch(LANG+'_CardSortTask_Instructions_'+InstructionsToUse)
-          
-          //load general label names
-          pseudoSwitch(LANG+'_LabelNames')
-          console.log(Instructions)
+        }
+        console.log(parameters)
+        pseudoSwitch(parameters)
+        console.log(parameters)
+        LANG = jatos.studySessionData.Language
+        console.log(LANG)
+        pseudoSwitch(LANG+'_CardSortTask_Instructions_'+InstructionsToUse)
+        
+        //load general label names
+        pseudoSwitch(LANG+'_LabelNames')
+        console.log(Instructions)
       })
     </script>
 

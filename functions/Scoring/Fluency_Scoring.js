@@ -12,6 +12,7 @@ function Fluency_Scoring(data) {
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = 'Number of Words'
 	Results.AllResults['Accuracy'] = -99
+	Results.AllResults['Total Words'] = -99
 	// The audio recording, if there is one, is NOT added again,. It already exists and the clinic_app will find it and display it
 	//Results.AllResults['Words spoken'] = -99
 	Results.AllResults['Spoken Words'] = temp.trials[0].HeardList

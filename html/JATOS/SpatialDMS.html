@@ -48,7 +48,8 @@
       var SpatialDMS_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        if (typeof BatteryHtmlID === 'undefined') {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
               parameters = 'SpatialDMS_Adaptive'
               InstructionsToUse = 'Default'
         }
