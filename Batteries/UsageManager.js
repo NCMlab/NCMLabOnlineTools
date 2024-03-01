@@ -27,29 +27,24 @@ var SetupBattery = {
     type: jsPsychCallFunction,
     func: function() {
         console.log(ComponentList)
-
-        // read the data for this trial
         var all_data = jsPsych.data.get();
-        console.log(all_data)
-        // find the battery selected and extract its list of components
-        var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-        console.log(ParameterList)
-        var Language = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Language
-        console.log(Language)
-        TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-        console.log(TaskList)
+
+        CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
+        // read the data for this trial
         
-        InstructionList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Instructions
+        // find the battery selected and extract its list of components
+        let ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
+        let TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
+        let TaskIconList = CurrentBattery.TaskList.map(({ IconName }) => IconName)
+        let InstructionList = CurrentBattery.TaskList.map(({ Instructions }) => Instructions)
+
+        var Language = CurrentBattery.Language
         
         // Extract the battery instructions
-        BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
+        BatteryInstructions = CurrentBattery.BatteryInstructions
         console.log(BatteryInstructions)
-        FooterText = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Footer
-          // Make a task list of the components of the battery
-        for ( var i = 0; i < TaskList.length; i ++ ) {
-          TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
-        }
-        console.log(TaskIconList)
+        FooterText = CurrentBattery.Footer
+
         // Check the session data to see if it is empty, if so add to it. If not, leave it alone
         JATOSSessionData = jatos.studySessionData
         if ( isEmpty(JATOSSessionData) ) {

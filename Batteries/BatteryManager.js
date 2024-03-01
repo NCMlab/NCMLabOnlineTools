@@ -34,18 +34,23 @@ var SetupBattery = {
       var all_data = jsPsych.data.get();
       console.log(all_data)
       // find the battery selected and extract its list of components
-      var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      //var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+      let ParameterList = TaskList.map(({ Parameters }) => Parameters)
+      let TaskList = TaskList.map(({ Task }) => Task)
+      let TaskIconList = TaskList.map(({ IconName }) => IconName)
+      let BatteryInstructions = TaskList.map(({ Instructions }) => Instructions)
+
       console.log(ParameterList)
-      TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
+      //TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
       console.log(TaskList)
       // Extract the battery instructions
-      BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
+      //BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
       FooterText = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Footer
       console.log(FooterText)
         // Make a task list of the components of the battery
-      for ( var i = 0; i < TaskList.length; i ++ ) {
-        TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
-      }
+      //for ( var i = 0; i < TaskList.length; i ++ ) {
+      //  TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
+      //}
       console.log(TaskIconList)
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData

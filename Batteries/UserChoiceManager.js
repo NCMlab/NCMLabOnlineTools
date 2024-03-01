@@ -7,7 +7,7 @@ var enter_fullscreen = {
   fullscreen_mode: FullScreenMode
 }
 // List of the names of the different tasks
-var TaskNameList = []
+
 var TaskIconList = []
 var TaskButtonNameList
 var ComponentIDList = []
@@ -16,7 +16,7 @@ var ComponentParameterLists = []
 var DisplayBatteryInstructionsFlag
 var BatteryInstructions
 var TaskList = []
-
+var IconImgFileList = []
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
@@ -36,9 +36,9 @@ var trial2 = {
   stimulus: function() {return '<h2>'+BatteryInstructions+'</h2>'},
   choices: function(){ 
       var stim = []
-      console.log(TaskButtonNameList)
+      console.log(TaskIconList)
       for ( var i = 0; i < TaskIconList.length; i++ ) {
-          stim.push(`<span><img src="assets/Icons/${TaskIconList[i]}" alt="${TaskList[i]}"></br>${TaskButtonNameList[i]}</span>
+          stim.push(`<span><img src="assets/Icons/${IconImgFileList[i]}" alt="${TaskList[i]}"></br>${TaskIconList[i]}</span>
           `)
       }
       return stim
@@ -66,24 +66,23 @@ var SetupBattery = {
 
       // read the data for this trial
       var all_data = jsPsych.data.get();
-      console.log(all_data)
-      // find the battery selected and extract its list of components
-      var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      TaskButtonNameList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ButtonName
-      TaskButtonDescriptionList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ButtonDescription
 
-      console.log(ParameterList)
-      TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
-      console.log(TaskList)
+      CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
+      console.log(CurrentBattery)
+      
+      // find the battery selected and extract its list of components
+      ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
+      TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
+      TaskIconList = CurrentBattery.TaskList.map(({ IconName }) => IconName)
+      InstructionList = CurrentBattery.TaskList.map(({ Instructions }) => Instructions)
+
       // Extract the battery instructions
-      BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
-      console.log(BatteryInstructions)
-        // Make a task list of the components of the battery
+      BatteryInstructions = CurrentBattery.BatteryInstructions
+
       for ( var i = 0; i < TaskList.length; i ++ ) {
         console.log(i)
-        TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
+        IconImgFileList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
       }
-      console.log(TaskIconList)
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
       console.log(JATOSSessionData)
