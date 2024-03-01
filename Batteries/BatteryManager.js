@@ -33,19 +33,21 @@ var SetupBattery = {
       // read the data for this trial
       var all_data = jsPsych.data.get();
       console.log(all_data)
+      CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
+      console.log(CurrentBattery)
       // find the battery selected and extract its list of components
       //var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
-      let ParameterList = TaskList.map(({ Parameters }) => Parameters)
-      let TaskList = TaskList.map(({ Task }) => Task)
-      let TaskIconList = TaskList.map(({ IconName }) => IconName)
-      let BatteryInstructions = TaskList.map(({ Instructions }) => Instructions)
+      ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
+      TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
+      TaskIconList = CurrentBattery.TaskList.map(({ IconName }) => IconName)
+      InstructionList = CurrentBattery.TaskList.map(({ Instructions }) => Instructions)
 
       console.log(ParameterList)
       //TaskList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).list
       console.log(TaskList)
       // Extract the battery instructions
-      //BatteryInstructions = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).BatteryInstructions
-      FooterText = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).Footer
+      BatteryInstructions = CurrentBattery.BatteryInstructions
+      FooterText = CurrentBattery.Footer
       console.log(FooterText)
         // Make a task list of the components of the battery
       //for ( var i = 0; i < TaskList.length; i ++ ) {
@@ -131,12 +133,15 @@ var trial1 = {
 var LandingPage = {
   type: jsPsychHtmlButtonResponse,
   stimulus: function() {
+    console.log(TaskList)
     return BatteryInstructions
   },
   choices: function() {return [LabelNames.Next]}, 
   response_ends_trial: true,
   on_finish: function() {
     JATOSSessionData = jatos.studySessionData
+    console.log(TaskList)
+    console.log(JATOSSessionData.CurrentIndex)
     // This is the function that starts the JATOS component for the next item in the battery
     // The pseudoswitch should receive a task name using the JATOS currentIndex value
     jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
@@ -148,6 +153,8 @@ var LandingPage = {
 var trial2 = {
   type: jsPsychCallFunction,
   func: function() {
+    console.log(TaskList)
+    console.log(JATOSSessionData.CurrentIndex)
     jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
   }
 }
@@ -158,6 +165,7 @@ var trial2 = {
       if ( JATOSSessionData.CurrentIndex == 0)
       {
         console.log("FIRST TIME THROUGH")
+        console.log(TaskList)
         return true
       }
       else { return false }
