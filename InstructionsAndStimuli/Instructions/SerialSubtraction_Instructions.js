@@ -2,7 +2,7 @@ var EN_Instructions = {}
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Serial Subtraction Task.</p>'},
 ]
-EN_Instructions.Instructions = [
+EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.</p>'},
 	]
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
@@ -16,7 +16,7 @@ var EN_Instructions = {}
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Serial Subtraction Task.</p>'},
 ]
-EN_Instructions.Instructions = [
+EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.</p>'},
 	]
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
@@ -30,7 +30,7 @@ var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Serial Subtraction Task.</p>'},
 ]
-FR_Instructions.Instructions = [
+FR_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.</p>'},
 	]
 FR_Instructions.ThankYouText = [{'page':'Thank you.'}]

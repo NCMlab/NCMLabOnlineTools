@@ -61,72 +61,18 @@ var pages = [
   var EN_IntakeForm_FaCE = {}
   EN_IntakeForm_FaCE.title = FormTitle
   EN_IntakeForm_FaCE.pages = pages
-  add('EN_IntakeForm_FaCE', function(){ parameters = EN_IntakeForm_FaCE });
   
-  // ====== ENGLISH =========
-var FormTitle = 'FaCE Intake Form'
-var pages = [
-      [
-        {
-          type: 'text',
-          prompt: "Participant ID", 
-          placeholder: '00000000',
-          name: 'Participant ID', 
-          required: true,
-        }, 
-        {
-            type: 'drop-down',
-            prompt: "How many years of education have you completed? (completed elementary school: 6 years; completed high school : 5 years; CEGEP and university depending on the program studied)", 
-            name: 'Years of Edu', 
-            options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','other'],
-            required: false,
-          },
-
-        {
-          type: 'drop-down',
-          prompt: "In what MONTH were you born?", 
-          name: 'Month of Birth', 
-          options: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-          required: false,
-        },
-        {
-            type: 'text',
-            prompt: "What is your DAY of birth?", 
-            placeholder: '1',
-            name: 'Day of Birth', 
-            required: false,
-          }, 
-        {
-            type: 'text',
-            prompt: "What is your YEAR of birth?", 
-            placeholder: '1900',
-            name: 'Year of Birth', 
-            required: false,
-          }, 
-          
-        {
-          type: 'multi-choice',
-          prompt: "What is your sex?", 
-          options: ['Female', 'Male', 'Other', 'Do not want to answer'],
-          name: 'Sex', 
-          required: false,
-        }, 
-        
-        {
-          type: 'multi-choice',
-          prompt: "Which hand is your dominant one?", 
-          options: ['Left', 'Right'],
-          name: 'Handedness', 
-          required: false,
-        }, 
-    ]
+  EN_IntakeForm_FaCE.Instructions01 = [
+    {'page': '<p class="Instructions"> Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
+      'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
+      'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
+      {'page': '<p class="Instructions">If a task freezes on you, you can press the <em>Skip</em> button. If you have feedback you would like to share '+
+      'with us, there will be a text box at the end where you can type in comments.'}
   ]
-  
-  var EN_IntakeForm_FaCE = {}
-  EN_IntakeForm_FaCE.title = FormTitle
-  EN_IntakeForm_FaCE.pages = pages
-  add('EN_IntakeForm_FaCETEST', function(){ parameters = EN_IntakeForm_FaCE });
-  
+
+add('EN_Instructions_IntakeFaCE', function(){ Instructions = EN_IntakeForm_FaCE });
+
+
 
   // ============================================
   // ====== FRENCH =========
@@ -237,7 +183,8 @@ var EN_pages = [
 var EN_Orient_parameters = {}
 EN_Orient_parameters.title = FormTitle
 EN_Orient_parameters.pages = EN_pages
-add('EN_OrientationForm_FaCE', function(){ parameters = EN_Orient_parameters });
+add('EN_Instructions_OrientationFaCE', function(){ Instructions = EN_Orient_parameters });
+
 // ============================================
 // ======= FRENCH ============
 // FaCE Getting started questions

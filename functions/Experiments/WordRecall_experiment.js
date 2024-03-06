@@ -49,7 +49,7 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
 }
-
+/*
 var InitializeMicrophone = {
   type: jsPsychInitializeMicrophone,
   device_select_message: function() { return LabelNames.SelectMicrophone },
@@ -85,7 +85,7 @@ var CheckMicrophone = {
   };
   return false }
 }
-
+*/
 
 
 

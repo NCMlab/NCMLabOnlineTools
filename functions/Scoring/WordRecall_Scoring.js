@@ -138,16 +138,23 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	Results.AllResults['Words Recalled After B'] = PostBRecall
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array A'] = ResponseArrayA
-	Results.AllResults['Response Array B'] = ResponseArrayB
+	// Only add response array B if there actually was one
+	if ( ResponseArrayB.length > 0 )
+	{
+		Results.AllResults['Response Array B'] = ResponseArrayB
+		Results.AllResults['Intrusions B'] = IntrusionArrayB
+		Results.AllResults['WordListB'] = WordListB
+		Results.AllResults['User Said B'] = userSaidB
+	}
 	//Results.AllResults['Response Array A, post B'] = ResponseArrayApostB
 	Results.AllResults['Intrusions A'] = IntrusionArrayA
-	Results.AllResults['Intrusions B'] = IntrusionArrayB
+	
 	//Results.AllResults['IntrusionsB'] = IntrusionListB
 	//Results.AllResults['IntrusionsApostB'] = IntrusionListApostB
 	Results.AllResults['WordListA'] = WordListA
-	Results.AllResults['WordListB'] = WordListB
+	
 	Results.AllResults['User Said A'] = userSaidA
-	Results.AllResults['User Said B'] = userSaidB
+	
 	/*Results.AllResults['User Said'] = []
     for ( var i = 0; i < TrialData.trials.length; i++ )
 	  {

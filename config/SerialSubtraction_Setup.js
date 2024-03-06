@@ -22,12 +22,15 @@ SerialSubtract_Default = {
 	StepValue: 7,
     StopValue: 65,
     ShowInstructions: true,
-    ShowWelcome: true,
-	ShowThankYou: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
     AskForNotes: false,
+    ResponseType: 'Spoken',
+    ResponseDuration: 120, // seconds
+    RecordAUDIO: true,
 }
 
 
-add('SerialSubtract_FaCE', function(){ SerialSubtract_parameters = SerialSubtract_FaCE});
-add('SerialSubtract_FaCE_02', function(){ SerialSubtract_parameters = SerialSubtract_FaCE});
-add('SerialSubtract_Default', function(){ SerialSubtract_parameters = SerialSubtract_Default});
+add('SerialSubtract_FaCE', function(){ parameters = SerialSubtract_FaCE});
+add('SerialSubtract_FaCE_02', function(){ parameters = SerialSubtract_FaCE});
+add('SerialSubtract_Default', function(){ parameters = SerialSubtract_Default});

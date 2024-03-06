@@ -31,6 +31,7 @@ function handleScoring(data){
 }
 
 //updating send data component to include scoring information
+/*
 var SendData = {
 	type: jsPyschCallFunction,
 	func: function(){
@@ -41,3 +42,22 @@ var SendData = {
 		jsPysch.finishTrial(scoringResults);
 	},
 };
+*/
+function ImageCopy_Scoring(data) {
+	Notes = data.filter({trial: 'Notes'})
+	console.log(data)
+	temp = data.filter({task: 'Image Copy'})
+	Results = {}
+	Results.PrimaryResults = {}
+	Results.PrimaryResults['ScoreName'] = 'Accuracy'
+	Results.PrimaryResults['Accuracy'] = -99
+	Results.AllResults = {}
+	Results.AllResults['ScoreName'] = 'Accuracy'
+	Results.AllResults['Accuracy'] = -99
+
+	if ( Notes.trials.length > 0 )
+	{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+	else { Results.AllResults['Notes'] = '' }
+
+	return Results
+}

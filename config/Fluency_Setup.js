@@ -12,12 +12,13 @@ Fluency_Animals = {
 Fluency_FruitsVegetable = {
 	Category: 'FruitsVegetables',
 	TimeLimit: 60, // seconds
-	RecallType: 'Manual',
+	RecallType: 'Spoken',
 	ShowInstructions: true,
-    ShowWelcome: false,
-	ShowThankYou: false,
+    ShowWelcome: true,
+	ShowThankYou: true,
     AskForNotes: false,
-    RecordAUDIO: false,
+    RecordAUDIO: true,
+	DelayBeforeShowingDoneButton: 10,
 }
 
 Fluency_F = {
@@ -36,7 +37,7 @@ Fluency_TEST = {
 	TimeLimit: 60, // seconds
 	RecallType: 'Spoken',
 	ShowInstructions: true,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
     AskForNotes: false,
     RecordAUDIO: true,

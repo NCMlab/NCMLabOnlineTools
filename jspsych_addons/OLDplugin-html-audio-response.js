@@ -49,6 +49,10 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
               type: jspsych.ParameterType.BOOL,
               default: false,
           },
+          delay_before_showing_choice_buttons: {
+            type: jspsych.ParameterType.INT,
+            default: 0,
+          }
       },
   };
   /**
@@ -64,8 +68,9 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.recorded_data_chunks = [];
       }
       trial(display_element, trial) {
-          
-        this.recorder = this.jsPsych.pluginAPI.getMicrophoneRecorder();
+          this.recorder = this.jsPsych.pluginAPI.getMicrophoneRecorder();
+          console.log("RECORDER FROM AUDIO RESPONSE: ")
+          console.log(this.recorder)
           this.setupRecordingEvents(display_element, trial);
           this.startRecording();
       }
@@ -114,15 +119,20 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.stop_event_handler = () => {
               const data = new Blob(this.recorded_data_chunks, { type: "audio/webm" });
               this.audio_url = URL.createObjectURL(data);
+              console.log(this)
+              
+
               const reader = new FileReader();
+              console.log(reader)
               reader.addEventListener("load", () => {
                   const base64 = reader.result.split(",")[1];
                   this.response = base64;
-                  this.load_resolver();
+                  //this.load_resolver();
               });
               reader.readAsDataURL(data);
           };
           this.start_event_handler = (e) => {
+          
               // resets the recorded data
               this.recorded_data_chunks.length = 0;
               this.recorder_start_time = e.timeStamp;
@@ -162,7 +172,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
       stopRecording() {
           this.recorder.stop();
           return new Promise((resolve) => {
-              this.load_resolver = resolve;
+              this.load_resolverJASON = resolve;
           });
       }
       showPlaybackControls(display_element, trial) {

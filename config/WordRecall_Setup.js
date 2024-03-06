@@ -170,21 +170,29 @@ var RAVLT_001 = {
 
 var FaCE_Default = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'FaCE',
 	FileExtension: '.wav',
-	NBlocks: 2,
-	BListFlag: false,
-	RecallType:'Manual',
+	NBlocks: 1,// CHANGED FROM 2
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Spoken',
 	RecallDuration: 120, // seconds
-	DelayBeforeShowingDoneButton: 10,
+	DelayBeforeShowingDoneButton: 8, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
-	ShowThankYou: true,
-	ShowInstructions: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: false,
+	RecordAUDIO: true
 }
+
+
 
 var FaCE_Default_FR = {
 	FolderName: 'FaCE_fr-FR-Neural2-A_Speed70/',

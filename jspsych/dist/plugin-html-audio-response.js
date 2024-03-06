@@ -62,8 +62,6 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.jsPsych = jsPsych;
           this.rt = null;
           this.recorded_data_chunks = [];
-          console.log("CREATOR")
-          console.log(this)
       }
       trial(display_element, trial) {
           this.recorder = this.jsPsych.pluginAPI.getMicrophoneRecorder();

@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Animal Fluency Test</title>
+    <title>NCMLab: Serial Subtraction</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
@@ -27,18 +27,23 @@
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
+        
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
-    <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/MicrophoneParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/SerialSubtraction_Instructions.js"></script>
     <script src="config/SerialSubtraction_Setup.js"></script>
     <script src="functions/Scoring/SerialSubtraction_Scoring.js"></script>
+    <script src="functions/TaskSpecificFunctions/AFT_function.js"></script>
+    <script src="functions/TaskSpecificFunctions/SRT_function.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
       var SerialSubtract_parameters = 'empty'
@@ -62,6 +67,7 @@
       })
     </script> 
     <script src="functions/Experiments/SerialSubtraction_experiment.js"></script>
+    <script src="functions/GeneralPurposeFunctions/annyang.min.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   
   <script>
@@ -95,9 +101,10 @@ var jsPsych = initJsPsych({
       jatos.studySessionData = JATOSSessionData
       // If this a la carte or the end of teh battery go to the usage manager
       if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponent(UsageManagerHtmlID) }
+      { jatos.startComponentByTitle("Usage Manager")}
       else // otherwise start the next component in the battery
-      { pseudoSwitch(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+
     }
   });
   jatos.onLoad(() => {
