@@ -22,11 +22,12 @@ SerialSubtract_Default = {
 	StepValue: 7,
     StopValue: 65,
     ShowInstructions: true,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
-    ResponseDuration: 120, // seconds
+    TimeLimit: 120, // seconds
+    DelayBeforeShowingDoneButton: 10,
     RecordAUDIO: true,
 }
 
