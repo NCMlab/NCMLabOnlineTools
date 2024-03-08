@@ -168,12 +168,12 @@ var RAVLT_001 = {
 	RecordAUDIO: true,
 }
 
-var FaCE_Default = {
+var FaCE_Immediate_EN = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'FaCE',
 	FileExtension: '.wav',
-	NBlocks: 1,// CHANGED FROM 2
+	NBlocks: 2,// CHANGED FROM 2
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
@@ -192,6 +192,23 @@ var FaCE_Default = {
 	RecordAUDIO: true
 }
 
+var FaCE_Delayed_EN = {
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	WordList: 'FaCE',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
 
 
 var FaCE_Default_FR = {
@@ -295,9 +312,5 @@ add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
 add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
 add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_002});
 
-add('FaCE_Default', function(){ parameters = FaCE_Default});
-add('FaCE_Default_Delayed', function(){ parameters = FaCE_Default_Delayed});
-add('FaCE_Default_FR', function(){ parameters = FaCE_Default_FR});
-add('FaCE_Spoken', function(){ parameters = FaCE_Spoken});
-add('FaCE_Spoken_FR', function(){ parameters = FaCE_Spoken_FR});
-add('TEST_Spoken', function(){ parameters = TEST_Spoken});
+add('FaCE_Immediate_EN', function(){ parameters = FaCE_Immediate_EN});
+add('FaCE_Delayed_EN', function(){ parameters = FaCE_Delayed_EN});

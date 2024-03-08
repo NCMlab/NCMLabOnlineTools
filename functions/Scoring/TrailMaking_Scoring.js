@@ -40,6 +40,6 @@ function TrailMaking_Scoring(data) {
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
-	Results.AllResults['Scoring Notes'] = TrailMaking_Instructions.NotesForResultsPage
+	Results.AllResults['Scoring Notes'] = Instructions.NotesForResultsPage
 	return Results
 }

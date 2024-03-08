@@ -6,6 +6,10 @@ SerialSubtract_FaCE = {
     ShowWelcome: false,
 	ShowThankYou: false,
     AskForNotes: false,
+    ResponseType: 'Spoken',
+    TimeLimit: 120, // seconds
+    DelayBeforeShowingDoneButton: 10,
+    RecordAUDIO: true,
 }
 
 SerialSubtract_FaCE_02 = {

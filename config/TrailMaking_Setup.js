@@ -217,6 +217,7 @@ var TrailMakingA_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     ShowInstructions: false,
+    InstructionsSpoken: false,
     ShowWelcome: true,
 	ShowThankYou: true,
     AskForNotes: false,
@@ -234,6 +235,7 @@ var TrailMakingB_Default = {
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     ShowInstructions: false,
+    InstructionsSpoken: false,
     ShowWelcome: true,
 	ShowThankYou: true,
     AskForNotes: false,
@@ -251,6 +253,7 @@ var TrailMakingA_003 = {
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     ShowInstructions: true,
+    InstructionsSpoken: false,
     ShowWelcome: true,
 	ShowThankYou: true,
     AskForNotes: true,
@@ -268,6 +271,7 @@ var TrailMakingB_003 = {
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     ShowInstructions: true,
+    InstructionsSpoken: false,
     ShowWelcome: true,
 	ShowThankYou: true,
     AskForNotes: true,
@@ -285,6 +289,7 @@ var TrailMaking_FaCE = {
     PracticeSuggestedWidth: null,
     PracticeSuggestedHeight: null,
     ShowInstructions: true,
+    InstructionsSpoken: false,
     ShowWelcome: false,
 	ShowThankYou: false,
     AskForNotes: false,
@@ -292,10 +297,10 @@ var TrailMaking_FaCE = {
     RecordGIF: true,
 }
 
-add('TrailMakingA_Default', function(){ TrailMaking_parameters = TrailMakingA_Default});
-add('TrailMakingB_Default', function(){ TrailMaking_parameters = TrailMakingB_Default});
-add('TrailMakingA_001', function(){ TrailMaking_parameters = TrailMakingA_001});
-add('TrailMakingB_001', function(){ TrailMaking_parameters = TrailMakingB_001});
-add('TrailMakingA_003', function(){ TrailMaking_parameters = TrailMakingA_003});
-add('TrailMakingB_003', function(){ TrailMaking_parameters = TrailMakingB_003});
-add('TrailMaking_FaCE', function(){ TrailMaking_parameters = TrailMaking_FaCE});
+add('TrailMakingA_Default', function(){ parameters = TrailMakingA_Default});
+add('TrailMakingB_Default', function(){ parameters = TrailMakingB_Default});
+add('TrailMakingA_001', function(){ parameters = TrailMakingA_001});
+add('TrailMakingB_001', function(){ parameters = TrailMakingB_001});
+add('TrailMakingA_003', function(){ parameters = TrailMakingA_003});
+add('TrailMakingB_003', function(){ parameters = TrailMakingB_003});
+add('TrailMaking_FaCE', function(){ parameters = TrailMaking_FaCE});

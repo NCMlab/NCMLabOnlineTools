@@ -1,4 +1,27 @@
+// size of each circle
+var radius = 15;
+// color of circle
+var CircleColor = 'white'
+// color of circle if correct
+var CorrectCircleColor = 'yellow'
+// size of text inside each circle
+var TextFont = "20px Verdana";
+var CircleBorderWidth = 2
 
+
+
+// how close to each circle the cursor needs to be
+var tolerance = 15;
+// width of the pen
+var pen_width = 2;
+
+// This adjust the height so there is room for the Finished button and the timer
+var HeightAdj = 400;
+
+//Whether or not to change the color of the circle when response is correct
+var GiveFeedback = true;          
+// How are the circle locations specified?
+var LocationsAsProportions = true;
 
 var ImageCopy_Default = {
 	canvas_width:400,
@@ -8,7 +31,7 @@ var ImageCopy_Default = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: true,
+	RecordGIF: false,
 }
 var ImageCopy_CBprotocol = {
 	canvas_width:"400vw",
@@ -18,7 +41,7 @@ var ImageCopy_CBprotocol = {
 	ShowInstructions: false,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: true,
+	RecordGIF: false,
 }
 var ImageCopy_FaCE = {
 	canvas_width:"400vw",
@@ -28,12 +51,12 @@ var ImageCopy_FaCE = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: true,
+	RecordGIF: false,
 }
 
 
 
-add('ImageCopy_Default', function(){ ImageCopy_parameters = ImageCopy_Default});
-add('ImageCopy_CBprotocol', function(){ ImageCopy_parameters = ImageCopy_CBprotocol});
-add('ImageCopy_FaCE', function(){ ImageCopy_parameters = ImageCopy_FaCE});
+add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
+add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
+add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
 

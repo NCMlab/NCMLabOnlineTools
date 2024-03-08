@@ -578,6 +578,7 @@ var context
       capture_frame() {
         //capture a frame
         console.log("Capturing Frame")
+        console.log(this.ctx)
         this.capture_frame_interval = setInterval(() => { this.enc.addFrame(this.ctx) }, 500)
       }
       set_trial_duration_timer() {

@@ -31,6 +31,7 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-sketchpad-trailmaking.js"></script>
@@ -42,11 +43,9 @@
     <script src="config/TrailMaking_Setup.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
-        var TrailMaking_parameters = 'empty'
+        
         var parameters = 'empty'      
         jatos.onLoad(() => {
-            console.log(jatos.studySessionData)
-            Language = jatos.studySessionData.Language
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
             {
               parameters = 'TrailMakingB_Default'
@@ -58,7 +57,7 @@
             }
             // load the parameters
             pseudoSwitch(parameters)
-            console.log(TrailMaking_parameters)
+            console.log(parameters)
             // load the language specific instructions
             LANG = jatos.studySessionData.Language
             console.log(LANG)
@@ -66,7 +65,7 @@
             
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
-            console.log(TrailMaking_Instructions)         
+            console.log(Instructions)         
         })
     </script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>

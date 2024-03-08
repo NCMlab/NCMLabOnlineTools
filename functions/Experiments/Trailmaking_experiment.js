@@ -23,7 +23,7 @@ var StartGIFRecorder = {
 var if_GIFRecorder = {
   timeline: [StartGIFRecorder],
   conditional_function: function() {
-        if ( TrailMaking_parameters.RecordGIF )
+        if ( parameters.RecordGIF )
         { return true }
         else { return false }
   }
@@ -34,13 +34,13 @@ var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
-      sizes = FindCanvasSize(TrailMaking_parameters.SuggestedWidth, TrailMaking_parameters.SuggestedHeight, 0.7, 0.75) 
+      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, 0.7, 0.75) 
        CanvasWidth = sizes.CanvasWidth
        CanvasHeight = sizes.CanvasHeight
       console.log(CanvasWidth)
       console.log(CanvasHeight)
       console.log('==============================')
-      console.log(TrailMaking_Instructions)
+      console.log(Instructions)
   }
 }
 
@@ -48,7 +48,7 @@ var FindCanvasSizePractice = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
-      sizes = FindCanvasSize(TrailMaking_parameters.PracticeSuggestedWidth, TrailMaking_parameters.PracticeSuggestedHeight, 0.95, 0.75) 
+      sizes = FindCanvasSize(parameters.PracticeSuggestedWidth, parameters.PracticeSuggestedHeight, 0.95, 0.75) 
       const PracticeCanvasWidth = sizes.CanvasWidth
       const PracticeCanvasHeight = sizes.CanvasHeight
       console.log('==============================')
@@ -62,8 +62,8 @@ var CheckPracticeFlag = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function(){
-    Circles = TrailMaking_parameters.Circles
-    if ( TrailMaking_parameters.ShowPractice ) {
+    Circles = parameters.Circles
+    if ( parameters.ShowPractice ) {
       ShowPractice = true
       console.log("Practice is turned on")
     }
@@ -79,7 +79,7 @@ var enter_fullscreen = {
 // Define all of the different the stimuli 
   var trial_Practice = {
       type: jsPsychSketchpadTrailMaking,   
-      Circles: function(){return TrailMaking_parameters.PracticeCircles}, 
+      Circles: function(){return parameters.PracticeCircles}, 
       canvas_width: PracticeCanvasWidth,
       canvas_height: PracticeCanvasHeight,
       canvas_border_width: 1,
@@ -89,19 +89,19 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      change_circle_color_only_when_correct: TrailMaking_parameters.change_circle_color_only_when_correct,
-      prompt: TrailMaking_parameters.InstructionsShownWithPractice,
-      show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
+      change_circle_color_only_when_correct: parameters.change_circle_color_only_when_correct,
+      prompt: parameters.InstructionsShownWithPractice,
+      show_countdown_trial_duration: parameters.ShowTimer,
       finished_button_label: function() {return LabelNames.Finished},
     }
   
   var trials = {
       type: jsPsychSketchpadTrailMaking,   
       Circles: function(){ 
-        return TrailMaking_parameters.Circles}, 
+        return parameters.Circles}, 
       canvas_width: function(){return CanvasWidth},
       canvas_height: function(){return CanvasHeight},
-      GIFRecord: function() { return TrailMaking_parameters.RecordGIF },
+      GIFRecord: function() { return parameters.RecordGIF },
       canvas_border_width: 1,
       stroke_width: pen_width,
       save_final_image: true,
@@ -109,11 +109,11 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      change_circle_color_only_when_correct: function() {return TrailMaking_parameters.change_circle_color_only_when_correct},
-      show_countdown_trial_duration: TrailMaking_parameters.ShowTimer,
-      trial_duration: TrailMaking_parameters.Duration,
-      first_circle_label: function() {return TrailMaking_Instructions.FirstCircleLabel},
-      last_circle_label: function() {return TrailMaking_Instructions.LastCircleLabel},
+      change_circle_color_only_when_correct: function() {return parameters.change_circle_color_only_when_correct},
+      show_countdown_trial_duration: parameters.ShowTimer,
+      trial_duration: parameters.Duration,
+      first_circle_label: function() {return Instructions.FirstCircleLabel},
+      last_circle_label: function() {return Instructions.LastCircleLabel},
       finished_button_label: function() {return LabelNames.Finished},
       // on_finish: function() {
       //   // download the drawing as a file
@@ -133,7 +133,7 @@ var enter_fullscreen = {
 
 var Instruct = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.Instructions[count].page},
+  stimulus: function() {return Instructions.Instructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
@@ -145,26 +145,13 @@ var Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < TrailMaking_Instructions.Instructions.length){
+    if ( count < Instructions.Instructions.length){
         
         return true;
       } else {
           return false;
       }
   }
-}
-
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
 }
 
 var SendData = {
@@ -178,27 +165,9 @@ var SendData = {
   }
 }
 
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var thankyou = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
 var practicePrompt = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.PracticePrompt[0].page},
+  stimulus: function() {return Instructions.PracticePrompt[0].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
@@ -207,37 +176,18 @@ var practicePrompt = {
 
 var taskPrompt = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return TrailMaking_Instructions.RealTaskPrompt[0].page},
+  stimulus: function() {return Instructions.RealTaskPrompt[0].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
   choices: function() {return [LabelNames.Next]}, 
 }
 
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    console.log(TrailMaking_Instructions)
-    if ( TrailMaking_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
-}
-
-var if_ThankYou = {
-  timeline: [thankyou],
-  conditional_function: function() {
-    console.log(TrailMaking_Instructions)
-    if ( TrailMaking_parameters.ShowThankYou)
-    { return true }
-    else { return false }
-  }
-}
 
 var if_Practice = {
   timeline: [practicePrompt, trial_Practice],
   conditional_function: function(){
-    if ( TrailMaking_parameters.ShowPractice )
+    if ( parameters.ShowPractice )
       {return true}
     else {return false}
   }
@@ -246,20 +196,12 @@ var if_Practice = {
 var if_Instructions = {
   timeline: [Instructions_loop_node],
   conditional_function: function() {
-        if ( TrailMaking_parameters.ShowInstructions)
+        if ( parameters.ShowInstructions)
         { return true }
         else { return false }
   }
 }
 
-var if_Notes = {
-  timeline: [Notes],
-  conditional_function: function() {
-    if ( TrailMaking_parameters.AskForNotes)
-    { return true }
-    else { return false }
-  }
-}
 // ======================================================================= 
 // Add procedures to the timeline
 
@@ -268,13 +210,13 @@ timeline.push(FindCanvasSizePractice)
 timeline.push(CheckPracticeFlag)
 
 timeline.push(if_GIFRecorder)
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 timeline.push(if_Instructions)
 timeline.push(if_Practice)
 //timeline.push(taskPrompt)
 timeline.push(trials)
 
 
-timeline.push(if_Notes)
-timeline.push(if_ThankYou)
+timeline.push(Notes)
+timeline.push(ThankYou)
 timeline.push(SendData)
