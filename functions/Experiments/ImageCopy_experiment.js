@@ -64,7 +64,7 @@ var Notes = {
       console.log(jsPsych.data.get())
       },
     }
-    
+    /*
       var SendData = {
       type: jsPsychCallFunction,
       func: function() {
@@ -72,12 +72,13 @@ var Notes = {
             Results = ImageCopy_Scoring(data)
             jsPsych.finishTrial(Results)
       },
-    } 
+    } */
     var SendData = {
-      type: jsPyschCallFunction,
+      
+      type: jsPsychCallFunction,
       func: function(){
-        var data = jsPysch.data.get();
-    
+        var data = jsPsych.data.get();
+        console.log(data.trials[3].strokes)
         var scoringResults = handleScoring(data);
     
         jsPysch.finishTrial(scoringResults);
@@ -137,5 +138,5 @@ timeline.push(enter_fullscreen)
 timeline.push(if_Welcome)
 timeline.push(trial)
 timeline.push(if_Notes)
-timeline.push(if_ThankYou)
 timeline.push(SendData)
+timeline.push(if_ThankYou)

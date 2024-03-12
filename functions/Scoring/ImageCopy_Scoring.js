@@ -5,6 +5,11 @@ function calculateScore(drawingData){
 	const maxLines = 12; // max lines allowed for perfect score
 	const perfectScore = 10; //perfect score value
 
+	const symmetryWeight = 2;
+    const proportionalityWeight = 2;
+    const completenessWeight = 2;
+    const placementWeight = 2;
+
 	//calculation of scores based on number of lines
 	//assigns a score if number of lines is within the limit 
 	let score; 
@@ -16,6 +21,11 @@ function calculateScore(drawingData){
 	}
 
 	//might add more criteria here..... TBD
+		score += symmetryCheck(drawingData) * symmetryWeight;
+   		score += proportionalityCheck(drawingData) * proportionalityWeight;
+    	score += completenessCheck(drawingData) * completenessWeight;
+		score += placementCheck(drawingData) * placementWeight;
+
 	return score
 }
 
@@ -24,13 +34,15 @@ function calculateScore(drawingData){
 function handleScoring(data){
 	//capture drawing data from experiment
 	const drawingData = data.values().next().value;
-
+console.log(drawingData)
 	//calculation of score based on drawing data
 	const score = calculateScore(drawingData)
+	console.log("SCORE: "+score)
 	return {score: score};
 }
 
 //updating send data component to include scoring information
+/*
 var SendData = {
 	type: jsPyschCallFunction,
 	func: function(){
@@ -40,4 +52,4 @@ var SendData = {
 
 		jsPysch.finishTrial(scoringResults);
 	},
-};
+};*/
