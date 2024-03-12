@@ -78,6 +78,7 @@ var Notes = {
       type: jsPsychCallFunction,
       func: function(){
         var data = jsPsych.data.get();
+        console.log(data);
         console.log(data.trials[3].strokes)
         var scoringResults = handleScoring(data);
     

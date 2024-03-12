@@ -1,9 +1,9 @@
 function calculateScore(drawingData){
-	const numLines = drawingData.lines.length;
+	const numLines = drawingData.length;
 
 	//defining scoring criteria 
 	const maxLines = 12; // max lines allowed for perfect score
-	const perfectScore = 10; //perfect score value
+	const perfectScore = 12; //perfect score value
 
 	const symmetryWeight = 2;
     const proportionalityWeight = 2;
@@ -20,11 +20,11 @@ function calculateScore(drawingData){
 		score =0 
 	}
 
-	//might add more criteria here..... TBD
-		score += symmetryCheck(drawingData) * symmetryWeight;
-   		score += proportionalityCheck(drawingData) * proportionalityWeight;
-    	score += completenessCheck(drawingData) * completenessWeight;
-		score += placementCheck(drawingData) * placementWeight;
+	// //might add more criteria here..... TBD
+	// 	score += symmetryCheck(drawingData) * symmetryWeight;
+   	// 	score += proportionalityCheck(drawingData) * proportionalityWeight;
+    // 	score += completenessCheck(drawingData) * completenessWeight;
+	// 	score += placementCheck(drawingData) * placementWeight;
 
 	return score
 }
@@ -32,9 +32,12 @@ function calculateScore(drawingData){
 //function to handle scoring at the end of the exeperiment 
 
 function handleScoring(data){
+	console.log("THIS IS A TEST FROM HAMZA")
 	//capture drawing data from experiment
-	const drawingData = data.values().next().value;
-console.log(drawingData)
+	// const drawingData = data.values().next().value;
+	// console.log(drawingData)
+	const drawingData = data.trials[3].strokes
+
 	//calculation of score based on drawing data
 	const score = calculateScore(drawingData)
 	console.log("SCORE: "+score)
