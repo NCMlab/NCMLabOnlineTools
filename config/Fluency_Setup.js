@@ -43,8 +43,21 @@ Fluency_TEST = {
     RecordAUDIO: true,
 }
 
+Fluency_FaCE_Training = {
+	Category: 'DinnerTable',
+	TimeLimit: 15, // seconds
+	RecallType: 'Spoken',
+	ShowInstructions: true,
+    ShowWelcome: true,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: true,
+	DelayBeforeShowingDoneButton: 0,
+}
+
 
 add('Fluency_Animals', function(){ parameters = Fluency_Animals});
 add('Fluency_FruitsVegetable', function(){ parameters = Fluency_FruitsVegetable});
 add('Fluency_F', function(){ parameters = Fluency_F});
 add('Fluency_TEST', function(){ parameters = Fluency_TEST});
+add('Fluency_FaCE_Training', function(){ parameters = Fluency_FaCE_Training});

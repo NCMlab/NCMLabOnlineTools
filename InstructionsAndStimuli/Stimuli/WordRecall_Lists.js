@@ -23,6 +23,27 @@ EN_FaCE.NBlocks = 3
 
 add('EN_FaCE', function(){ WordRecallLists = EN_FaCE});
 // ====================================================================================
+// ====== TRAINING FaCE Word List
+var EN_FaCE_Training = {}
+EN_FaCE_Training.WordListA = [
+	{'Word':"Arm"},		    // 0 
+	{'Word':'Cotton'}, 	    // 1
+	{'Word':'House'}, 		// 2
+	]
+
+EN_FaCE_Training.AlternatePronunciationsWordListA = []
+EN_FaCE_Training.WordListB = []
+EN_FaCE_Training.RecognitionWordList = []
+EN_FaCE_Training.AlternatePronunciationsWordListB = []
+EN_FaCE_Training.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+EN_FaCE_Training.FileExtension = '.wav'
+EN_FaCE_Training.NWords = EN_FaCE_Training.WordListA.length
+// The number of immediate recall blocks 
+EN_FaCE_Training.NBlocks = 2
+
+add('EN_FaCE_Training', function(){ WordRecallLists = EN_FaCE_Training});
+
+// ====================================================================================
 var FR_FaCE = {}
 FR_FaCE.WordListA = [
 	{'Word':"Jambe"},		    // 0

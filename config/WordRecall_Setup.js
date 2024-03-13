@@ -192,9 +192,54 @@ var FaCE_Immediate_EN = {
 	RecordAUDIO: true
 }
 
+
+var FaCE_Immediate_Training_EN = {
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'FaCE_Training',
+	FileExtension: '.wav',
+	NBlocks: 2,// CHANGED FROM 2
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Spoken',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+
+
 var FaCE_Delayed_EN = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
 	WordList: 'FaCE',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+
+
+var FaCE_Delayed_Training_EN = {
+	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
+	WordList: 'FaCE_Training',
 	FileExtension: '.wav',
 	NBlocks: 1,
 	BListFlag: false, // Check to see if there is a second set of words
@@ -314,3 +359,6 @@ add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_00
 
 add('FaCE_Immediate_EN', function(){ parameters = FaCE_Immediate_EN});
 add('FaCE_Delayed_EN', function(){ parameters = FaCE_Delayed_EN});
+
+add('FaCE_Immediate_Training_EN', function(){ parameters = FaCE_Immediate_Training_EN});
+add('FaCE_Delayed_Training_EN', function(){ parameters = FaCE_Delayed_Training_EN});

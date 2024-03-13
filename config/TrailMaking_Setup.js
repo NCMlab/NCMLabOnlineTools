@@ -297,6 +297,36 @@ var TrailMaking_FaCE = {
     RecordGIF: true,
 }
 
+var FaCE_Training = [
+    {centerX:0.2, centerY:0.2, radius:radius,label: '1'},
+    {centerX:0.8, centerY:0.2, radius:radius,label: 'A'},
+    {centerX:0.8, centerY:0.5, radius:radius,label: '2'},
+    {centerX:0.2, centerY:0.5, radius:radius,label: 'B'},
+    {centerX:0.2, centerY:0.8, radius:radius,label: '3'},
+    {centerX:0.8, centerY:0.8, radius:radius,label: 'C'},
+]
+
+var TrailMaking_FaCE_Training = {
+    Circles: FaCE_Training,
+    SuggestedWidth: 450,
+    SuggestedHeight: 700,
+    ShowTimer: false,
+    Duration: DurationFaCE,
+    ShowPractice: false,
+    PracticeCircles: null,
+    PracticeSuggestedWidth: null,
+    PracticeSuggestedHeight: null,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    AskForNotes: false,
+    change_circle_color_only_when_correct: false,
+    RecordGIF: true,
+}
+
+
+
 add('TrailMakingA_Default', function(){ parameters = TrailMakingA_Default});
 add('TrailMakingB_Default', function(){ parameters = TrailMakingB_Default});
 add('TrailMakingA_001', function(){ parameters = TrailMakingA_001});
@@ -304,3 +334,4 @@ add('TrailMakingB_001', function(){ parameters = TrailMakingB_001});
 add('TrailMakingA_003', function(){ parameters = TrailMakingA_003});
 add('TrailMakingB_003', function(){ parameters = TrailMakingB_003});
 add('TrailMaking_FaCE', function(){ parameters = TrailMaking_FaCE});
+add('TrailMaking_FaCE_Training', function(){ parameters = TrailMaking_FaCE_Training});

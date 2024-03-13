@@ -76,6 +76,27 @@ BatteryList.push({index: 1,
 	Footer: '©GagnonBruno 2016'
 })
 
+// ======= ENGLISH - TRAINING =================
+List = []
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_EN', Instructions: 'FaCE', IconName: ''})
+BatteryList.push({index: 1, 
+	name:'FaCE Battery', 
+	description: 'A web-based version of the FaCE',
+    TaskList: List,
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
+})
+
+
 
 
 
@@ -88,14 +109,14 @@ var List = []
 
 
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default_Delayed', Instructions: 'FaCE', IconName: ''})

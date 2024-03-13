@@ -54,9 +54,21 @@ var ImageCopy_FaCE = {
 	RecordGIF: false,
 }
 
+var ImageCopy_FaCE_Training = {
+	canvas_width:"400vw",
+	canvas_height:"400vh",
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	Image: 'TwoCircles.png',
+	RecordGIF: false,
+}
+
 
 
 add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
 add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
 add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
+add('ImageCopy_FaCE_Training', function(){ parameters = ImageCopy_FaCE_Training});
 

@@ -74,7 +74,7 @@ var SpokenRecallA = {
     done_button_label: 'Done',//function() {return [LabelNames.Next]},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    recording_duration: 60000,
+    recording_duration: function() { return parameters.TimeLimit * 1000 },
 
     on_start: function(SimpleList) {
       console.log("Entering on_start")
