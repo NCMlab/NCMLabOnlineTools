@@ -41,37 +41,6 @@ function calculateAccuracy(responseData) {
     } else {
         return 0; // Minimum accuracy
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*function ClockDrawing_Scoring(data) {
