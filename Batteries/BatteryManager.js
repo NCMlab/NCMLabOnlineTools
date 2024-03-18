@@ -71,6 +71,10 @@ var SetupBattery = {
       console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
       jatos.studySessionData = JATOSSessionData
   },
+  on_finish: function(data) {
+    data.trial = 'Battery Manager'
+    
+  }
 }
 var trial0a = {
   type: jsPsychHtmlButtonResponse,
@@ -190,7 +194,9 @@ var trial2 = {
       if ( JATOSSessionData.CurrentIndex >= JATOSSessionData.TaskNameList.length )
       {
           console.log("FINISHED")
-          jatos.endStudy(data)
+          jsPsych.data.addProperties(JATOSSessionData)
+          console.log(data)
+          jatos.endStudy(data,true, "everything worked fine")
           
       }
     }

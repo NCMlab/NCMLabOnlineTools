@@ -54,7 +54,7 @@ function ImageCopy_Scoring(data) {
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = 'Accuracy'
 	Results.AllResults['Accuracy'] = -99
-
+	Results.AllResults['Score'] = -99
 	if ( Notes.trials.length > 0 )
 	{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }

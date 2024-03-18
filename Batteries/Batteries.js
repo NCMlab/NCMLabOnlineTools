@@ -113,16 +113,16 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instru
 List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default_Delayed', Instructions: 'FaCE', IconName: ''})
 
-BatteryList.push({index: 116, 
-	name:'FaCE Battery', 
+BatteryList.push({index: 6, 
+	name:'FaCE Battery: Training', 
 	description: 'A web-based version of the FaCE',
     TaskList: List,
 	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
