@@ -32,8 +32,8 @@ var SendData = {
         Results = ClockDrawing_Scoring(data)
         
         // Once the images are added to the output data they can be removed so there are not multiple copies stored.
-        //jsPsych.data.allData.trials[1].png = 0
-        //jsPsych.data.allData.trials[1].gif = 0
+        jsPsych.data.allData.trials[1].png = 0
+        jsPsych.data.allData.trials[1].gif = 0
         console.log(jsPsych.data)
         jsPsych.finishTrial(Results)
 
