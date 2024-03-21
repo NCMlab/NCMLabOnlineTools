@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Stroop Color</title>
+    <title>NCMLab: Stroop Color/Word</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
@@ -29,9 +29,11 @@
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Stroop_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Stimuli/Stroop.js"></script>
     <script src="config/Stroop_Setup.js"></script>
@@ -46,11 +48,15 @@
       var Stroop_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {parameters = 'Stroop_Default'}
-        else {parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] }
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
+          parameters = 'Stroop_Default'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)
         console.log(Stroop_parameters)
         LANG = jatos.studySessionData.Language
@@ -75,9 +81,9 @@ var setup = []
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
+    show_progress_bar: true,    
+    auto_update_progress_bar: false,
     on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-//      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
       TrialCount += 1
       // Add jatos info to the data file
@@ -96,10 +102,11 @@ var jsPsych = initJsPsych({
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // If this a la carte or the end of teh battery go to the usage manager
+      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+      else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
     }
   });
   jatos.onLoad(() => {
@@ -120,5 +127,4 @@ var jsPsych = initJsPsych({
         UpdateHeader()
         })
       </script>
-  
 </html>

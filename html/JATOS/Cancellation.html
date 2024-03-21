@@ -33,38 +33,32 @@
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-cancellation-mouse.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Cancellation_Instructions.js"></script>
     <script src="config/Cancellation_Setup.js"></script>
     <script src="functions/TaskSpecificFunctions/Cancellation_functions.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
-      // check what URL is calling this file and load the config file accordingly
-      let url_running = window.location.href
-      let position = url_running.search("localhost")
-    </script>
-    <script>
-      var Cancellation_parameters = 'empty'
+      var parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-        Language = jatos.studySessionData.Language
-        
-
-        if (typeof BatteryHtmlID === 'undefined') {
-              parameters = 'Cancellation_Default'
-              InstructionsToUse = 'Default'
-            }
-            else {
-              parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
-              InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
-            }
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {  
+          parameters = 'Cancellation_Default'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
         pseudoSwitch(parameters)
-        console.log(Cancellation_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
         pseudoSwitch(LANG+'_Cancellation_Instructions_'+InstructionsToUse)
@@ -83,6 +77,9 @@
         var TrialCount = 1;
         var jsPsych = initJsPsych({
         display_element: 'jspsych-target',
+        show_progress_bar: true,    
+        auto_update_progress_bar: false,
+
         on_trial_start: function() {
           //http://127.0.0.1:9000/publix/fNTRhuguK1x
     //      console.log(jatos.urlQueryParameters);

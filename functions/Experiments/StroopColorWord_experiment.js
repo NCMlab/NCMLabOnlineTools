@@ -10,12 +10,20 @@ var StopFlag
 var wait_time 
 var RunPracticeFlag = -9999
 
+
+var setup = {
+  type: jsPsychCallFunction,
+  func: function(){ 
+    Instructions.WelcomeText = Instructions.ColorWordWelcomeText
+  }
+}
+
 var CalculateWaitTime = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function(){
-    if ( Stroop_parameters.AllowedTime > 0 ) {
-      wait_time = Stroop_parameters.AllowedTime * 1000; // in milliseconds
+    if ( parameters.AllowedTime > 0 ) {
+      wait_time = parameters.AllowedTime * 1000; // in milliseconds
       console.log("The wiat time is set to: "+wait_time)
     }
   }
@@ -42,9 +50,9 @@ var fixation = {
   margin_horizontal: GapBetweenButtons,
   prompt: function() {return Instructions.StroopColorWordPrompt},
   trial_duration: function() {
-    if (Stroop_parameters.ITI_Duration > 0 ) {return  Stroop_parameters.ITI_Duration}
+    if (parameters.ITI_Duration > 0 ) {return  parameters.ITI_Duration}
       else {
-        return jsPsych.randomization.sampleWithoutReplacement(Stroop_parameters.ITI_Range, 1)[0]
+        return jsPsych.randomization.sampleWithoutReplacement(parameters.ITI_Range, 1)[0]
       }
   },
 }
@@ -196,8 +204,8 @@ var practice_loop_node = {
   timeline_variables: StroopColorWordList,
   randomize_order: true,
   loop_function: function(data){
-      console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(Stroop_parameters.ColorWordPracticeRepeats))
-      if (PracticeLoopCount < parseInt(Stroop_parameters.ColorWordPracticeRepeats)){
+      console.log('Working on loop: '+PracticeLoopCount+" of "+parseInt(parameters.ColorWordPracticeRepeats))
+      if (PracticeLoopCount < parseInt(parameters.ColorWordPracticeRepeats)){
           PracticeLoopCount += 1
           return true;
       } else {
@@ -217,8 +225,8 @@ var test_loop_node = {
     // This is why there is an if/then check below in case the number of practice repeats is set to 0
     loop_function: function(data){
         // is the stopping condition number of trials or time
-        if ( Stroop_parameters.AllowedTime < 0 ) {
-          if (TestLoopCount < parseInt(Stroop_parameters.ColorWordTestRepeats)){
+        if ( parameters.AllowedTime < 0 ) {
+          if (TestLoopCount < parseInt(parameters.ColorWordTestRepeats)){
               TestLoopCount += 1
               StopFlag = true;
           } else {
@@ -234,7 +242,7 @@ var test_loop_node = {
 var timer_start = {
     type: jsPsychCallFunction,
     func: function(){ 
-      if ( Stroop_parameters.AllowedTime > 0 ) {
+      if ( parameters.AllowedTime > 0 ) {
         timer_function(wait_time) }
     }
 }
@@ -243,7 +251,7 @@ var timer_stop = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function(){
-    if ( Stroop_parameters.AllowedTime > 0 ) {
+    if ( parameters.AllowedTime > 0 ) {
       clearInterval(interval);
       document.querySelector('#clock').innerHTML = '00:00'
     }
@@ -254,26 +262,13 @@ var CheckNumberRepeats = {
     type: jsPsychCallFunction,
     func: function(){
      console.log("The practice flag is set to (should be empty): "+RunPracticeFlag)
-     RunPracticeFlag = Stroop_parameters.ColorWordPracticeRepeats > 0 
+     RunPracticeFlag = parameters.ColorWordPracticeRepeats > 0 
      console.log("The practice flag is set to (should have a value: "+RunPracticeFlag)
      return RunPracticeFlag
     }
 }
 
 
-
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: function() {return LabelNames.NoteInputBox},
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
-}
 // =======================================================================
 // Add scoring procedures to the Thank you screen
 var SendData = {
@@ -286,47 +281,6 @@ var SendData = {
   },
 }    
 
-
-var thank_you = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    console.log(Instructions)
-    return Instructions.ColorWordThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    console.log(Instructions)
-    return Instructions.ColorWordWelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-        if ( Stroop_parameters.ShowWelcome)
-        { console.log(Stroop_parameters)
-          return true }
-        else { return false }
-  }
-}
-
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-        if ( Stroop_parameters.ShowThankYou)
-        { return true }
-        else { return false }
-  }
-}
 
 var if_Practice_Instructions = {
   timeline: [instr_practice_procedure_loop_node],
@@ -350,11 +304,12 @@ var if_Test_Instructions = {
 
 // ======================================================================= 
   // Add procedures to the timeline
+timeline.push(setup)
 timeline.push(CalculateWaitTime) // works
 timeline.push(CheckNumberRepeats) // works
 timeline.push(enter_fullscreen)
 
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 timeline.push(if_Practice_Instructions);
 timeline.push(practice_loop_node);
 
@@ -365,5 +320,5 @@ timeline.push(timer_start);
 timeline.push(test_loop_node);
 // If there is a timer, stop it
 timeline.push(timer_stop);
+timeline.push(ThankYou);
 timeline.push(SendData)
-timeline.push(if_ThankYou);
