@@ -20,12 +20,20 @@ function calculateScore(drawingData){
 		score =0 
 	}
 	    // adding the score from the defined criteria
-	score += symmetryCheck(drawingData) * symmetryWeight;
-	score += proportionalityCheck(drawingData) * proportionalityWeight;
-	score += completenessCheck(drawingData) * completenessWeight;
-	score += placementCheck(drawingData) * placementWeight;
+		const symmetryScore = symmetryCheck(drawingData) * symmetryWeight;
+		const proportionalityScore = proportionalityCheck(drawingData) * proportionalityWeight;
+		const completenessScore = completenessCheck(drawingData) * completenessWeight;
+		const placementScore = placementCheck(drawingData) * placementWeight;
 	
-	return score;
+		console.log("Symmetry Score: " + symmetryScore);
+		console.log("Proportionality Score: " + proportionalityScore);
+		console.log("Completeness Score: " + completenessScore);
+		console.log("Placement Score: " + placementScore);
+	
+		// adding the score from the defined criteria
+		score += symmetryScore + proportionalityScore + completenessScore + placementScore;
+	
+		return score;
 	}
 
 function symmetryCheck(drawingData) {
@@ -116,9 +124,9 @@ function completenessCheck(drawingData) {
    }
    
    function calculateDrawnArea(drawingData) {
-	let drawnArea = 0;
+    let drawnArea = 0;
 
-    // formula to calculate the area of a polygon
+    // formula to calculate the area of a polygon using the shoelace formula
     for (let i = 0; i < drawingData.length - 1; i++) {
         const [x1, y1] = drawingData[i];
         const [x2, y2] = drawingData[i + 1];
