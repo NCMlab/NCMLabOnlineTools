@@ -82,7 +82,7 @@ var Notes = {
         console.log(data.trials[3].strokes)
         var scoringResults = handleScoring(data);
     
-        jsPsych.finishTrial(scoringResults); // Corrected function name
+        jsPsych.finishTrial(scoringResults); 
       },
     };
     

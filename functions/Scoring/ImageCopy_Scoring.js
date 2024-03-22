@@ -130,7 +130,7 @@ function completenessCheck(drawingData) {
     const [x2, y2] = drawingData[0];
     drawnArea += x1 * y2 - x2 * y1;
 
-    drawnArea = Math.abs(area) / 2;
+    drawnArea = Math.abs(drawnArea) / 2;
 
     return drawnArea;
 }
