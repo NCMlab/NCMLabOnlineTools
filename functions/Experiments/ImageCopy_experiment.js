@@ -73,8 +73,8 @@ var Notes = {
             jsPsych.finishTrial(Results)
       },
     } */
+
     var SendData = {
-      
       type: jsPsychCallFunction,
       func: function(){
         var data = jsPsych.data.get();
@@ -82,7 +82,7 @@ var Notes = {
         console.log(data.trials[3].strokes)
         var scoringResults = handleScoring(data);
     
-        jsPysch.finishTrial(scoringResults);
+        jsPsych.finishTrial(scoringResults); // Corrected function name
       },
     };
     

@@ -29,34 +29,37 @@ function calculateScore(drawingData){
 	}
 
 function symmetryCheck(drawingData) {
-		const numPoints = drawingData.length;
+	const numPoints = drawingData.length;
 
-		if (numPoints < 2) {
-			return 0;
-		}
-		// finds the midpoint of the drawing
-		const midPoint = drawingData.reduce((acc, curr) => [acc[0] + curr[0], acc[1] + curr[1]], [0, 0]);
-		midPoint[0] /= numPoints;
-		midPoint[1] /= numPoints;
-	
-		// calculates the sum of distances between each point
-		let sumDistances = 0;
-		for (let i = 0; i < numPoints; i++) {
-			const point = drawingData[i];
-			const reflectedPoint = [2 * midPoint[0] - point[0], 2 * midPoint[1] - point[1]];
-	
-			// calculates Euclidean distance
-			sumDistances += Math.sqrt((reflectedPoint[0] - point[0]) ** 2 + (reflectedPoint[1] - point[1]) ** 2);
-		}
-	
-		// calculates the average distance
-		const averageDistance = sumDistances / numPoints;
-	
+    if (numPoints < 2) {
+        return 0;
+    }
+    // finds the midpoint of the drawing
+    const midPoint = drawingData.reduce((acc, curr) => [acc[0] + curr[0], acc[1] + curr[1]], [0, 0]);
+    midPoint[0] /= numPoints;
+    midPoint[1] /= numPoints;
 
-		const symmetryScore = Math.max(0, 1 - averageDistance / threshold) * scalingFactor;
-	
-		return symmetryScore;
-	}
+    const threshold = 10;
+
+    // calculates the sum of distances between each point
+    let sumDistances = 0;
+    for (let i = 0; i < numPoints; i++) {
+        const point = drawingData[i];
+        const reflectedPoint = [2 * midPoint[0] - point[0], 2 * midPoint[1] - point[1]];
+
+        // calculates Euclidean distance
+        sumDistances += Math.sqrt((reflectedPoint[0] - point[0]) ** 2 + (reflectedPoint[1] - point[1]) ** 2);
+    }
+
+    // calculates the average distance
+    const averageDistance = sumDistances / numPoints;
+
+    const scalingFactor = 2;
+
+    const symmetryScore = Math.max(0, 1 - averageDistance / threshold) * scalingFactor;
+
+    return symmetryScore;
+}
 
 function proportionalityCheck(drawingData) {
 	const numPoints = drawingData.length;
