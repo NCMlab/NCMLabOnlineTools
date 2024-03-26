@@ -15,9 +15,10 @@ EN_Instructions.Instructions02 = [
 EN_Instructions.Instructions03 = [
     {'page': '<p class="Instructions">You will now perform the actual task.'}
 ]
-EN_Instructions.Debrief = '<p>You responded correctly on ${accuracy}% of the trials.</p>'+
-    '<p> with an average response time of ${rt} ms</p>'+
-    '<p>Press any key to continue.</p>'
+EN_Instructions.Debrief = [
+    '<p>You responded correctly on ',
+    '% of the trials.</p><p> with an average response time of ',
+    ' ms</p>']
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 EN_Instructions.DiscardPileText = 'Discard Pile'
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is the Card Sort Task.</p>'}]
