@@ -169,6 +169,7 @@ var trial2 = {
       if ( JATOSSessionData.CurrentIndex == 0)
       {
         console.log("FIRST TIME THROUGH")
+        jsPsych.data.addProperties(JATOSSessionData)
         console.log(TaskList)
         return true
       }
