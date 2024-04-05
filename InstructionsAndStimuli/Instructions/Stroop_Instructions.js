@@ -43,9 +43,8 @@ EN_Instructions.ColorWordInstrPoorPerformanceText = [
 EN_Instructions.ColorWordTestInstrText = [
       {'page': '<p class="Instructions">You will now respond without any feedback. Try to respond as quickly and accurately as possible. </p>'}
       ];
-EN_Instructions.ColorThankYouText = [{'page':'Thank you. Press any key to end the experiment.'}]
-EN_Instructions.WordThankYouText = [{'page': 'Thank you. Press Next to end the experiment.'}]
-EN_Instructions.ColorWordThankYouText = [{'page': 'Thank you. Press any key to end the experiment.'}]
+EN_Instructions.ThankYouText = [{'page':'Thank you. Press any key to end the experiment.'}]
+
 EN_Instructions.StroopWordPrompt = "<p class='PromptText'>What word is shown below?</p>";
 EN_Instructions.StroopColorPrompt = "<p class='PromptText'>What color is shown below?</p>";
 EN_Instructions.StroopColorWordPrompt = "<p class='PromptText'>What color is the word written in?</p>";

@@ -135,6 +135,7 @@ var debrief_block = {
         
         console.log(accuracy)
         console.log(rt)
+        console.log(Instructions)
         Str = Instructions.Debrief[0] + accuracy + Instructions.Debrief[1] + 
           rt + Instructions.Debrief[2]
         return Str

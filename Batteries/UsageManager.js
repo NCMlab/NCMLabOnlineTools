@@ -56,6 +56,8 @@ var SetupBattery = {
           JATOSSessionData.Language = Language
           JATOSSessionData.TaskCompleted = TaskCompleted
           JATOSSessionData.FooterText = FooterText
+          JATOSSessionData.BatteryName = CurrentBattery.name
+          JATOSSessionData.BatteryScore = -99
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true
           

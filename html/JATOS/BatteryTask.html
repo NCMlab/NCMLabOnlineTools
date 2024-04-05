@@ -93,6 +93,9 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
+    on_finish() {
+      jatos.submitResultData(jsPsych.data.get().json())
+    }
   });
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
@@ -106,5 +109,12 @@ var jsPsych = initJsPsych({
   </script>
   
   <div id="footerText"></div>
+  <script>
+    jatos.onLoad(() => {
+      // update the header button labels
+      UpdateHeader()
+    })
+  </script>
+
 </body>
 </html>

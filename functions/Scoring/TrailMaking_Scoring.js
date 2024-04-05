@@ -32,7 +32,7 @@ function TrailMaking_Scoring(data) {
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = 'Number of Errors'
 	Results.AllResults['Accuracy'] = trialData.ErrorCount 
-	Results.AllResults['Manual Score'] = -99
+	Results.AllResults['Score'] = -99
 	Results.AllResults['Number of Errors'] = trialData.ErrorCount 
 	//Results.AllResults['Image'] = trialData.png
 	//Results.AllResults['GIF'] = trialData.gif
