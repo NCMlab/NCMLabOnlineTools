@@ -88,6 +88,7 @@ var SpokenRecallA = {
       annyang.start({autorestart: true, continuous: true});
     },
     on_finish: function(data){
+      console.log("FINISH BUTTON PRESSED")
       data.RecallBlock = TempRecall
       data.HeardList = HeardList
       data.IntrusionList = IntrusionList
@@ -97,6 +98,7 @@ var SpokenRecallA = {
       data.type = 'A'
       data.userSaid = userSaidWords
       BlockCount++
+      setTimeout(function(){console.log("Waiting...")},2000)
       clearInterval(interval);
       annyang.abort()
       console.log("Ended recall")
