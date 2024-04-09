@@ -329,16 +329,16 @@ var FaCE_Spoken_FR = {
 }
 
 var TEST_Spoken = {
-	FolderName: 'RAVLTSet001/',
+	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
 	WordList: 'TEST',
 	FileExtension: '.wav',
-	NBlocks: 4,
+	NBlocks: 1,
 	BListFlag: false,
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType:'Spoken',
 	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
+	DelayBeforeShowingDoneButton: 2,
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	RecognitionFlag: true,
@@ -362,3 +362,6 @@ add('FaCE_Delayed_EN', function(){ parameters = FaCE_Delayed_EN});
 
 add('FaCE_Immediate_Training_EN', function(){ parameters = FaCE_Immediate_Training_EN});
 add('FaCE_Delayed_Training_EN', function(){ parameters = FaCE_Delayed_Training_EN});
+
+
+add('TEST_Spoken', function(){ parameters = TEST_Spoken});

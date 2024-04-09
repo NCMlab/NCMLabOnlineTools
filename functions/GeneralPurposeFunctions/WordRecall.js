@@ -1,6 +1,6 @@
 console.log("LOADING WORD RECALL")
 var userSaidWords = []
-
+var ListeningFlag = false
 // Manual Recall Trial
 var ManualRecallA = {
   type: jsPsychSurvey,
@@ -223,7 +223,7 @@ var SpokenRecallA = {
     },
     choices: function() {return [LabelNames.Next]}, 
     show_done_button: true,
-    done_button_label: 'Done',//function() {return [LabelNames.Next]},
+    done_button_label: function() {return [LabelNames.Finished]},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     recording_duration: 60000,
@@ -237,8 +237,7 @@ var SpokenRecallA = {
       BlockIntrusionCount = 0
       IntrusionList = []
       TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
-
-      annyang.start({autorestart: true, continuous: true});
+      annyang.start({autorestart: true, continuous: false});
     },
     on_finish: function(data){
       data.RecallBlock = TempRecall
@@ -264,9 +263,30 @@ var SpokenRecallA = {
       var seconds_str = seconds.toString().padStart(2,'0');
       
       document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      
+      annyang.addCallback('soundstart', function() {
+        ListeningFlag = true
+      })
+      annyang.addCallback('result', function() {
+        ListeningFlag = false
+      })
+      annyang.addCallback('end', function() {
+        ListeningFlag = false        
+      })
+
       if(time_left <= (parameters.RecallDuration - parameters.DelayBeforeShowingDoneButton)*1000)
       {
         document.getElementById("finish-trial").style.display='inline-block'
+        if ( ListeningFlag === true )
+        { 
+          document.getElementById("finish-trial").innerText = LabelNames.ProcessSpeech
+          document.getElementById("finish-trial").disabled = true
+        }
+        else 
+        {
+          document.getElementById("finish-trial").innerText = LabelNames.Finished
+          document.getElementById("finish-trial").disabled = false
+        }
       }
       else 
       {

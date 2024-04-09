@@ -96,6 +96,17 @@ var SetupSpeechRecognition = {
       const commands01 = {'*search': FindRecalledWords01};
       annyang.addCommands(commands01);
       annyang.setLanguage(LANG)
+
+      annyang.addCallback('start', function() {
+        console.log('Started Speech Recognition')
+      })
+      annyang.addCallback('result', function() {
+        console.log('Received Speech Recognition Result')
+      })
+      annyang.addCallback('end', function() {
+        
+        console.log('Ended Speech Recognition')
+      })
       annyang.addCallback('result', function(userSaid) {
         // userSaid contains multiple possibilities for what was heard
         userSaidWords += userSaid

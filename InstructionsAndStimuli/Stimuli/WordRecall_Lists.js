@@ -1,4 +1,20 @@
 // ====================================================================================
+// === TEST RECALL ===========================================================================
+var EN_Test = {}
+EN_Test.WordListA = [
+	{'Word':"Leg"},		    // 0
+	]
+EN_Test.AlternatePronunciationsWordListA = []
+EN_Test.WordListB = []
+EN_Test.RecognitionWordList = []
+EN_Test.AlternatePronunciationsWordListB = []
+EN_Test.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+EN_Test.FileExtension = '.wav'
+EN_Test.NWords = EN_Test.WordListA.length
+// The number of immediate recall blocks 
+EN_Test.NBlocks = 1
+add('EN_Test', function(){ WordRecallLists = EN_Test});
+// ====================================================================================
 // === FaCE ===========================================================================
 var EN_FaCE = {}
 EN_FaCE.WordListA = [
@@ -20,7 +36,6 @@ EN_FaCE.FileExtension = '.wav'
 EN_FaCE.NWords = EN_FaCE.WordListA.length
 // The number of immediate recall blocks 
 EN_FaCE.NBlocks = 3
-
 add('EN_FaCE', function(){ WordRecallLists = EN_FaCE});
 // ====================================================================================
 // ====== TRAINING FaCE Word List
@@ -218,17 +233,13 @@ add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
 // === TEST ===========================================================================
 var EN_TEST = {}
 EN_TEST.WordListA = [
-	{'Word':'Pencil'},
-	{'Word':'Church'},
-	{'Word':'Fish'},
+	{'Word':'Drum'},
 	]
 
 	EN_TEST.AlternatePronunciationsWordListA = []
 	EN_TEST.WordListB = []
 	EN_TEST.RecognitionWordList = [
 		{'Word':'Pencil'},
-		{'Word':'Church'},
-		{'Word':'Fish'}
 	]
 	EN_TEST.AlternatePronunciationsWordListB = []
 	EN_TEST.NWords = EN_FaCE.WordListA.length

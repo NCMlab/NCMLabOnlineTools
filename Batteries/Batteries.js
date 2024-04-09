@@ -95,6 +95,7 @@ BatteryList.push({index: 1,
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
+
 // ====== DEMONSTRATION OF ALL AVAILABLE TASKS ==============================
 List = []
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
@@ -102,8 +103,8 @@ List.push({Task: 'Intake Form', Parameters: 'IntakeForm_Generic', Instructions: 
 List.push({Task: 'Stroop Color', Parameters: 'Stroop_Default', Instructions: 'Default', IconName: 'Color'})
 List.push({Task: 'Stroop Word', Parameters: 'Stroop_Default', Instructions: 'Default', IconName: 'Word'})
 List.push({Task: 'Stroop Color/Word', Parameters: 'Stroop_Default', Instructions: 'Default', IconName: 'Color/Word'})
-List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Immediate_002', Instructions: 'Default', IconName: 'RAVLT, Imm (Spoken)'})
-List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Delayed_002', Instructions: 'Default', IconName: 'RAVLT, Del (Spoken)'})
+List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Immediate', Instructions: 'Default', IconName: 'RAVLT, Imm (Spoken)'})
+List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Delayed', Instructions: 'Default', IconName: 'RAVLT, Del (Spoken)'})
 List.push({Task: 'Word Recognition', Parameters: 'WordRecog_Spoken_003', Instructions: 'Default', IconName: 'RAVLT, Recog'})
 List.push({Task: 'Card Sort', Parameters: 'CardSort_002', Instructions: 'Default', IconName: 'Card Sort'})
 List.push({Task: 'Pattern Comparison', Parameters: 'PatternComparison_002', Instructions: 'Default', IconName: 'Pattern Comparison'})
@@ -143,10 +144,10 @@ var List = []
 
 
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'TEST_Spoken', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
