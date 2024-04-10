@@ -125,8 +125,9 @@
       { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
       }
     });
-
+    jatos.waitSendDataOverlayConfig = { text: "Sending data. Please wait. This may take a minute or two depending on the internet conection." };
     jatos.onLoad(() => {
+
         var JATOSID = jatos.workerId;
         console.log(jatos)
         console.log(JATOSID)
