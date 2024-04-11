@@ -31,7 +31,7 @@ var ImageCopy_Default = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: false,
+	RecordGIF: true,
 }
 var ImageCopy_CBprotocol = {
 	canvas_width:"400vw",
@@ -41,7 +41,7 @@ var ImageCopy_CBprotocol = {
 	ShowInstructions: false,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: false,
+	RecordGIF: true,
 }
 var ImageCopy_FaCE = {
 	canvas_width:"400vw",
@@ -51,7 +51,7 @@ var ImageCopy_FaCE = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'NeckerCube.png',
-	RecordGIF: false,
+	RecordGIF: true,
 }
 
 var ImageCopy_FaCE_Training = {
