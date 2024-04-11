@@ -62,7 +62,7 @@ var ImageCopy_FaCE_Training = {
 	ShowInstructions: true,
 	AskForNotes: false,
 	Image: 'TwoCircles.png',
-	RecordGIF: false,
+	RecordGIF: true,
 }
 
 
