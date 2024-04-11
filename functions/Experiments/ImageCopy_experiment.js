@@ -3,30 +3,13 @@ var timeline = []
 var encoder // needs to be global so sketchpad can use it
 
 
-var StartGIFRecorder = {
-  type: jsPsychCallFunction,
-  func: function() {
-    encoder = new GIFEncoder();
-    encoder.setRepeat(1000); //0  -> loop forever
-    //1+ -> loop n times then stop
-    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
-  }
-}
-var if_GIFRecorder = {
-  timeline: [StartGIFRecorder],
-  conditional_function: function() {
-        if ( parameters.RecordGIF )
-        { return true }
-        else { return false }
-  }
-}
 var enter_fullscreen = {
       type: jsPsychFullscreen,
       fullscreen_mode: FullScreenMode
     }
     
 var trial = {
-      type: jsPsychSketchpadTrailMaking,
+      type: jsPsychSketchpad,
       prompt: function() {
         console.log(parameters)
         const ImageToUse = parameters.Image
@@ -45,10 +28,10 @@ var trial = {
       show_redo_button: false,
       
       prompt_location: 'abovecanvas',
-      canvas_width: function(){return parameters.canvas_width},
-      canvas_height: function(){return parameters.canvas_height},
-      //canvas_width: 400,
-      //canvas_height: 400,
+      //canvas_width: function(){return parameters.canvas_width},
+      //canvas_height: function(){return parameters.canvas_height},
+      canvas_width: 400,
+      canvas_height: 400,
       canvas_border_width: 2,
       finished_button_label: function() {return LabelNames.Finished},
       clear_button_label: function() {return LabelNames.Clear},
