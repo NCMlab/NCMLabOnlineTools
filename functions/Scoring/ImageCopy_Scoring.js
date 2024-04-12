@@ -1,5 +1,8 @@
+const { rawListeners } = require("process");
+
 function calculateScore(drawingData) {
   const numLines = drawingData.length;
+
 
   //defining scoring criteria
   const maxLines = 12; // max lines allowed for perfect score
@@ -58,8 +61,6 @@ function symmetryCheck(drawingData) {
   const threshold = 10;
 
   // calculates the sum of distances between each point
-  //THIS CODE MESSES UP HERE
-  //LOOK INTO IT
   let sumDistances = 0;
   for (let i = 0; i < numPoints; i++) {
     const point = drawingData[i];
@@ -74,6 +75,11 @@ function symmetryCheck(drawingData) {
     );
   }
 
+  // handles edge case avoid division by zero if numPoints is zero
+  if (numPoints === 0) {
+    return 0;
+  }
+
   // calculates the average distance
   const averageDistance = sumDistances / numPoints;
 
@@ -83,6 +89,7 @@ function symmetryCheck(drawingData) {
     Math.max(0, 1 - averageDistance / threshold) * scalingFactor;
   return symmetryScore;
 }
+
 
 function proportionalityCheck(drawingData) {
   const numPoints = drawingData.length;
@@ -178,13 +185,25 @@ function placementCheck(drawingData) {
   // centroid of the drawing
   const centroid = calculateCentroid(drawingData);
 
+  // Check if centroid calculation returns valid coordinates
+  if (isNaN(centroid[0]) || isNaN(centroid[1])) {
+    return 0;
+  }
+
   // distance between the centroid and the reference area
   const referenceAreaCenterX = (referenceArea.minX + referenceArea.maxX) / 2;
   const referenceAreaCenterY = (referenceArea.minY + referenceArea.maxY) / 2;
+
+  // Calculate distance to center
   const distanceToCenter = Math.sqrt(
     (centroid[0] - referenceAreaCenterX) ** 2 +
       (centroid[1] - referenceAreaCenterY) ** 2
   );
+
+  // Check if distance calculation returns a valid number
+  if (isNaN(distanceToCenter)) {
+    return 0;
+  }
 
   // maximum possible distance from the reference area center
   const maxDistance = Math.sqrt(
@@ -192,11 +211,17 @@ function placementCheck(drawingData) {
       (referenceArea.maxY - referenceAreaCenterY) ** 2
   );
 
+  // Check if maxDistance calculation returns a valid number
+  if (isNaN(maxDistance) || maxDistance === 0) {
+    return 0;
+  }
+
   // placement score as the ratio of distance to the maximum distance
   const placementScore = 1 - distanceToCenter / maxDistance;
 
   return placementScore;
 }
+
 
 function calculateCentroid(drawingData) {
   // the centroid of a set of points
@@ -213,17 +238,35 @@ function calculateCentroid(drawingData) {
 
 //function to handle scoring at the end of the exeperiment
 
-function handleScoring(data) {
-  //capture drawing data from experiment
-  // const drawingData = data.values().next().value;
-  // console.log(drawingData)
-  const drawingData = data.trials[3].strokes;
 
-  //calculation of score based on drawing data
+
+function handleScoring(data) {
+  const drawingData = data.trials[3].strokes;
+  console.log("Drawing Data:", drawingData);
+
   const score = calculateScore(drawingData);
-  console.log("SCORE: " + score);
-  return { score: score };
+  console.log("Score:", score);
+
+  const Results = {};
+
+  Results.PrimaryResults = {};
+  Results.PrimaryResults['ScoreName'] = 'Drawing Score';
+  Results.PrimaryResults['Accuracy'] = score;
+
+  Results.AllResults = {};
+  Results.AllResults['Accuracy'] = score;
+  Results.AllResults['ScoreName'] = 'Drawing Score';
+  Results.AllResults['Symmetry Score'] = symmetryCheck(drawingData) * 2;
+  Results.AllResults['Proportionality Score'] = proportionalityCheck(drawingData) * 2;
+  Results.AllResults['Completeness Score'] = completenessCheck(drawingData) * 2;
+  Results.AllResults['Placement Score'] = placementCheck(drawingData) * 2;
+
+  Results.parameters = {};
+  console.log("r" , Results);
+
+  return Results;
+  
 }
 
-const score = handleScoring(data);
-console.log("Final Score: " + score);
+
+

@@ -64,15 +64,16 @@ var Notes = {
       console.log(jsPsych.data.get())
       },
     }
-    /*
-      var SendData = {
+    
+    /*  var SendData = {
       type: jsPsychCallFunction,
       func: function() {
             var data = jsPsych.data.get()
-            Results = ImageCopy_Scoring(data)
+            Results = hand(data)
             jsPsych.finishTrial(Results)
       },
     } */
+
 
     var SendData = {
       type: jsPsychCallFunction,
