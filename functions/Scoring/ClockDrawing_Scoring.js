@@ -1,73 +1,104 @@
-function ClockDrawing_Scoring(data) {
-    var drawings = data.filter({trial: 'Clock Drawing'}).values();
+// Function to load the reference clock image from a file
+function loadImageFromFile() {
+    var img = new Image();
+    img.src = '/Users/yara/Desktop/CSI4900/NCMLabOnlineTools/reference_clock.jpg';
+    return img;
+}
+
+// Function to load the drawn clock image from data
+function loadImageFromData(data) {
+    // Extract the drawn image data from the experiment data
+    var imageData = data.drawnImage; // Assuming 'drawnImage' is the key where you stored the drawn image data
     
-    var scores = [];
+    // Create a new Image object
+    var img = new Image();
     
-    // Load reference GIF images
-    var referenceImages = []; 
+    img.src = imageData;
     
-    // Loop through each drawing
-    for (var i = 0; i < drawings.length; i++) {
-        var drawing = drawings[i];
-        var participantGIF = drawing.gif; 
-        
-        // Compare participant's GIF with reference images
-        var similarityScores = [];
-        for (var j = 0; j < referenceImages.length; j++) {
-            var referenceImage = referenceImages[j];
-            var similarity = calculateSimilarity(participantGIF, referenceImage);
-            similarityScores.push(similarity);
+    return img;
+}
+
+
+
+// Function to compare the drawn clock image with a reference image
+function compareClockImages(drawnClockImage, referenceClockImage) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+
+    // Wait for both images to load before proceeding
+    if (drawnClockImage.complete && referenceClockImage.complete) {
+        // Set canvas dimensions to the size of the reference clock image
+        canvas.width = referenceClockImage.width;
+        canvas.height = referenceClockImage.height;
+
+        // Draw the reference clock image onto the canvas
+        context.drawImage(referenceClockImage, 0, 0);
+
+        // Get the reference clock image data
+        var referenceImageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
+        // Draw the drawn clock image onto the canvas
+        context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        context.drawImage(drawnClockImage, 0, 0);
+
+        // Get the drawn clock image data
+        var drawnImageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
+        // Compare pixel values of the two images
+        var similaritySum = 0;
+        for (var i = 0; i < referenceImageData.length; i += 4) {
+            // Calculate the absolute difference between corresponding pixel values (R, G, B, A)
+            var diffR = Math.abs(referenceImageData[i] - drawnImageData[i]);
+            var diffG = Math.abs(referenceImageData[i + 1] - drawnImageData[i + 1]);
+            var diffB = Math.abs(referenceImageData[i + 2] - drawnImageData[i + 2]);
+            var diffA = Math.abs(referenceImageData[i + 3] - drawnImageData[i + 3]);
+
+            // Calculate the average difference for each pixel
+            var averageDiff = (diffR + diffG + diffB + diffA) / 4;
+
+            // Add the average difference to the similarity sum
+            similaritySum += averageDiff;
         }
-        
-        // calculate average similarity score
-        var totalSimilarity = similarityScores.reduce((acc, cur) => acc + cur, 0);
-        var averageSimilarity = totalSimilarity / similarityScores.length;
-        
-        // convert similarity score to a scale of 0 to 100 (percentage)
-        var score = averageSimilarity * 100;
-        scores.push(score);
+
+        // Calculate the similarity score (normalized average difference)
+        var similarityScore = 1 - (similaritySum / (referenceImageData.length / 4 * 255));
+
+        return similarityScore;
+    } else {
+        // If either image hasn't loaded yet, return a default similarity score
+        return 0;
     }
-    
-    // calculate average score
-    var totalScore = scores.reduce((acc, cur) => acc + cur, 0);
-    var averageScore = totalScore / scores.length;
-    
-    
-    return {
-        scores: scores,
-        averageScore: averageScore
-    };
-}
-
-// function to calculate similarity between two GIF images
-function calculateSimilarity(imageData1, imageData2) {
-    // Check if image dimensions match
-    if (imageData1.width !== imageData2.width || imageData1.height !== imageData2.height) {
-        throw new Error('Image dimensions do not match');
-    }
-
-    // Get pixel data of both images
-    var pixels1 = imageData1.data;
-    var pixels2 = imageData2.data;
-
-    // Calculate squared difference for each pixel
-    var sumSquaredDiff = 0;
-    for (var i = 0; i < pixels1.length; i += 4) { // Each pixel has 4 values (RGBA)
-        var diffR = pixels1[i] - pixels2[i];
-        var diffG = pixels1[i + 1] - pixels2[i + 1];
-        var diffB = pixels1[i + 2] - pixels2[i + 2];
-        var diffA = pixels1[i + 3] - pixels2[i + 3]; // Alpha channel (transparency)
-        sumSquaredDiff += diffR * diffR + diffG * diffG + diffB * diffB + diffA * diffA;
-    }
-
-    // Calculate mean squared difference (MSD)
-    var meanSquaredDiff = sumSquaredDiff / (pixels1.length / 4);
-
-    // Calculate similarity (1 - MSD)
-    var similarity = 1 - (meanSquaredDiff / 255 * 255); // Normalize MSD to range [0, 1]
-
-    return similarity;
 }
 
 
+// Function to assign a score based on the similarity score
+function assignScore(similarityScore) {
+    var score = 0;
+    
+    // Map similarity score to the provided scoring ranges
+    if (similarityScore >= 0.8) {
+        score = 10;
+    } else if (similarityScore >= 0.6) {
+        score = 8;
+    } else if (similarityScore >= 0.4) {
+        score = 5;
+    } else {
+        score = 0;
+    }
+    
+    return score;
+}
 
+function ClockDrawing_Scoring(data) {
+    var score = 0;
+    
+    // Perform image comparison
+    var drawnClockImage = loadImageFromData(data); // Implement this function to load the drawn clock image from data
+    var referenceClockImage = loadImageFromFile(); // Load the reference clock image
+    var similarityScore = compareClockImages(drawnClockImage, referenceClockImage); // Compare the two images
+    
+    // Assign score based on similarity score
+    score = assignScore(similarityScore);
+    
+    return { score: score };
+}
