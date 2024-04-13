@@ -1,4 +1,4 @@
-const { rawListeners } = require("process");
+
 
 function calculateScore(drawingData) {
   const numLines = drawingData.length;

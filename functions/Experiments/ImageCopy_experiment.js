@@ -78,14 +78,25 @@ var Notes = {
     var SendData = {
       type: jsPsychCallFunction,
       func: function(){
-        var data = jsPsych.data.get();
-        console.log(data);
-        console.log(data.trials[3].strokes)
-        var scoringResults = handleScoring(data);
+          var data = jsPsych.data.get();
+          console.log(data);
+          console.log(data.trials[3].strokes);
+          var scoringResults = handleScoring(data);
+          console.log(scoringResults);
+          
+          var scoreHTML = '<p>Your Score:</p>';
+          scoreHTML += '<ul>';
+          scoreHTML += '<li>Accuracy: ' + scoringResults.PrimaryResults.Accuracy + '</li>';
+          scoreHTML += '<li>Symmetry Score: ' + scoringResults.AllResults['Symmetry Score'] + '</li>';
+          scoreHTML += '<li>Proportionality Score: ' + scoringResults.AllResults['Proportionality Score'] + '</li>';
+          scoreHTML += '<li>Completeness Score: ' + scoringResults.AllResults['Completeness Score'] + '</li>';
+          scoreHTML += '<li>Placement Score: ' + scoringResults.AllResults['Placement Score'] + '</li>';
+          scoreHTML += '</ul>';
+          
     
-        jsPsych.finishTrial(scoringResults); 
+          jsPsych.endExperiment(scoreHTML); 
       },
-    };
+  };
     
     var thank_you = {
       type: jsPsychHtmlButtonResponseTouchscreen,
