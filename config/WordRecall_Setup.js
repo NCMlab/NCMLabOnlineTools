@@ -105,7 +105,7 @@ var RAVLT_Manual_Delayed = {
 	FileExtension: '.wav',
 	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual',
+	RecallType: 'Manual', // Spoken
 	RecallDuration: 60, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,

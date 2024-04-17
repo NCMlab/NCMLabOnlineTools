@@ -104,8 +104,8 @@ EN_RAVLT.AlternatePronunciationsWordListA = [
 	{'Word':'COLOUR','index':12},
 	{'Word':'KNOWS','index':10},
 	{'Word':'NEWS','index':10},
-	{'Word':'PARENTS','index':5}
-	{'Word':'BELLE','index':2}
+	{'Word':'PARENTS','index':5},
+	{'Word':'BELLE','index':2},
 	]
 EN_RAVLT.WordListB = [
 	{'Word':'Desk'},
