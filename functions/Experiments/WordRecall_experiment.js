@@ -658,7 +658,7 @@ var if_VisualStimuliB = {
 
 
 var AfterFirstBlockProcedure = {
-  timeline: [Instructions02, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [Instructions02, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
   repetitions: 1,
   randomize_order: false      
 }
@@ -669,8 +669,8 @@ var AfterFirstBlockLoop = {
   loop_function: function(data) {
     // reset count for instructions
     countInstr02 = 0
-    console.log("Block Count (in loop): " + (BlockCount)/2)
-    if ( ((BlockCount)/2) < NumberBlocks )
+    console.log("Block Count (in loop): " + (BlockCount))
+    if ( ((BlockCount)) < NumberBlocks )
     { return true }
     else { return false }
   }
@@ -699,19 +699,19 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
       repetitions: 1,
       randomize_order: false
   } 
 
 var FinalRecallBlockA = {
-    timeline: [SetupSpeechRecognition, Instructions04, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+    timeline: [SetupSpeechRecognition, Instructions04, if_Manual_RecallA, if_Spoken_RecallA],
     randomize_order: false,
     repetitions: 1,
 } 
 
 var DelayedRecalBlockA = {
-  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA],
   randomize_order: false,
   repetitions: 1,
 } 
@@ -782,6 +782,7 @@ timeline.push(if_FinalRecallA)
 
 //timeline.push(if_Notes)
 //timeline.push(if_ThankYou)
+
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)

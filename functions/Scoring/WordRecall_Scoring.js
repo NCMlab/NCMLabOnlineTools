@@ -167,6 +167,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 	Results.parameters = parameters
+	console.log(Results)
 	return Results
 }
 

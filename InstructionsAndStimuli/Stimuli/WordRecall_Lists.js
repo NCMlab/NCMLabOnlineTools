@@ -26,17 +26,53 @@ EN_FaCE.WordListA = [
 	{'Word':'Horse'},		// 5
 	{'Word':'Potato'},		// 6
 	]
-
 EN_FaCE.AlternatePronunciationsWordListA = []
 EN_FaCE.WordListB = []
-EN_FaCE.RecognitionWordList = []
 EN_FaCE.AlternatePronunciationsWordListB = []
-EN_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+EN_FaCE.RecognitionWordList = []
 EN_FaCE.FileExtension = '.wav'
-EN_FaCE.NWords = EN_FaCE.WordListA.length
+//EN_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+//EN_FaCE.NWords = EN_FaCE.VersionA.length
 // The number of immediate recall blocks 
-EN_FaCE.NBlocks = 3
-add('EN_FaCE', function(){ WordRecallLists = EN_FaCE});
+add('EN_FaCE_VersionA', function(){ WordRecallLists = EN_FaCE});
+
+var EN_FaCE = {}
+EN_FaCE.WordListA = [
+	{'Word':"Neck"},		    // 0
+	{'Word':'Wax'}, 	    // 1
+	{'Word':'Cable'}, 		// 2
+	{'Word':'Turnip'},		// 3
+	{'Word':'Red'},	    // 4
+	{'Word':'Fish'},		// 5
+	{'Word':'Violin'},		// 6
+	]
+EN_FaCE.AlternatePronunciationsWordListA = []
+EN_FaCE.WordListB = []
+EN_FaCE.AlternatePronunciationsWordListB = []
+EN_FaCE.RecognitionWordList = []
+EN_FaCE.FileExtension = '.wav'
+//EN_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+//EN_FaCE.NWords = EN_FaCE.VersionA.length
+// The number of immediate recall blocks 
+add('EN_FaCE_VersionB', function(){ WordRecallLists = EN_FaCE});
+
+var EN_FaCE = {}
+EN_FaCE.WordListA = [
+	{'Word':'Arm'},		    // 0
+	{'Word':'Cotton'}, 	    // 1
+	{'Word':'House'}, 		// 2
+	]
+EN_FaCE.AlternatePronunciationsWordListA = []
+EN_FaCE.WordListB = []
+EN_FaCE.AlternatePronunciationsWordListB = []
+EN_FaCE.RecognitionWordList = []
+EN_FaCE.FileExtension = '.wav'
+//EN_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+//EN_FaCE.NWords = EN_FaCE.VersionA.length
+// The number of immediate recall blocks 
+add('EN_FaCE_Training', function(){ WordRecallLists = EN_FaCE});
+
+
 // ====================================================================================
 // ====== TRAINING FaCE Word List
 var EN_FaCE_Training = {}

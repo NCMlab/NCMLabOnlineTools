@@ -90,3 +90,22 @@ six <break time="600ms"/>
 sept <break time="600ms"/>
 huit <break time="600ms"/>
 neuf <break time="600ms"/>
+
+// FACE WORDS
+Blue <break time="600ms"/>
+Castle <break time="600ms"/>
+Horse <break time="600ms"/>
+Leg <break time="600ms"/>
+Potato <break time="600ms"/>
+Tulip <break time="600ms"/>
+Wool <break time="600ms"/>
+Neck <break time="600ms"/>
+Wax <break time="600ms"/>
+Cable <break time="600ms"/>
+Turnip <break time="600ms"/>
+Red <break time="600ms"/>
+Fish <break time="600ms"/>
+Violin <break time="600ms"/>
+Arm <break time="600ms"/>
+Cotton <break time="600ms"/>
+House <break time="600ms"/>

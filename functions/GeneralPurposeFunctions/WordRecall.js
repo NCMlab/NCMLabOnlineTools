@@ -73,6 +73,7 @@ var ManualRecallA = {
   on_finish: function(data) {
       const RecallList = data.response.ListRecall
       data.RecallList = RecallList
+      data.RecallBlock = RecallList
 
       const HeardList = data.response.ListRecall
       data.RecallCount = RecallList.length
@@ -98,6 +99,7 @@ var ManualRecallA = {
       //data.RecallCount = BlockRecallCount
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
+      data.type = 'A'
       BlockCount++
       // reset the timer
       clearInterval(interval);
@@ -108,32 +110,13 @@ var ManualRecallA = {
 
 // ==========================================================================
 var ManualRecallB = {
-  type: jsPsychSurvey,
-/*   on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-  },*/
-  
+  type: jsPsychSurvey,  
   on_start: function() {
       // reset the list of indices
       HeardList = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
     },
-
   pages: [
     [
       {
@@ -204,6 +187,7 @@ var ManualRecallB = {
       //data.RecallCount = BlockRecallCount
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
+      data.type = 'B'
       BlockCount++
       // reset the timer
       clearInterval(interval);
