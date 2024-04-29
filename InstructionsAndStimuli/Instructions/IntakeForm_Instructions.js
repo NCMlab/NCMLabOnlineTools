@@ -375,3 +375,38 @@ var pages = [
         'avec nous, il y aura une zone de texte à la fin où vous pourrez écrire des commentaires.'}
     ]
   add('FR_Instructions_Default', function(){ console.log("Loading Instructions"); Instructions = FR_IntakeForm_Generic });
+
+// =============================
+// T and E Getting started questions
+var FormTitle = 'E et T Intake Form'
+var FR_pages = [
+  [
+    {
+      type: 'multi-choice',
+      prompt: "Quel sexe vous a été attribué à la naissance, sur votre acte de naissance original?", 
+      options: ['Femelle', 'Mâle'],
+      add_other_option: true,
+      other_option_text: 'Vous n’avez pas d’option qui s’applique à moi. Je m\'identifie comme (veuillez préciser)',
+      name: 'Sex', 
+      required: false,
+    }, 
+    {
+      type: 'drop-down',
+      prompt: "Combien d'heures de sommeil avez-vous eu hier soir?",
+      name: 'SleepLastNight', 
+      options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'],
+      required: false,
+    },
+    {
+      type: 'drop-down',
+      prompt: "Combien d'heures de sommeil avez vous eu au cours des derniers sept jours?",
+      name: 'SleepLastWeek', 
+      options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'],
+      required: false,
+    },
+  ]
+]
+var FR_IntakeForm_EetT = {}
+FR_IntakeForm_EetT.title = FormTitle
+FR_IntakeForm_EetT.pages = FR_pages
+add('FR_IntakeForm_EetT', function(){ parameters = FR_IntakeForm_EetT });

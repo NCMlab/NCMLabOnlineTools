@@ -46,7 +46,8 @@
       var DigitSpan_parameters = 'empty'
       var parameters = 'empty'
       jatos.onLoad(() => {
-        if (typeof BatteryHtmlID === 'undefined') {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
           parameters = 'DigitSpan_Audio_Forward_TwoErrors'
           InstructionsToUse = 'Default'
         }
@@ -74,6 +75,9 @@
 
       var jsPsych = initJsPsych({
           display_element: 'jspsych-target',
+          show_progress_bar: true,    
+          auto_update_progress_bar: false,
+
           use_webaudio: true,
           on_trial_start: function() {
             //http://127.0.0.1:9000/publix/fNTRhuguK1x

@@ -319,20 +319,7 @@ var get_response = {
     }
 };
 
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: "Please, type in any notes or feedback you have about this task. (Optional)",
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { 
-    data.trial = "Notes" 
-  },
-}
+
 
 // =======================================================================
 
@@ -405,6 +392,8 @@ var present_visual = {
 var if_audio_forward_instr = {
     timeline: [AudioForward_Instructions_loop_node],
     conditional_function: function() {
+      console.log("CHECKING FOR AUDIO FORWARD")
+      console.log(DigitSpan_parameters)
         if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='forward' )
             { return true }
         else { return false }
@@ -414,6 +403,7 @@ var if_audio_backward_instr = {
     timeline: [AudioBackward_Instructions_loop_node],
     timeline_variables: function() {return DigitSpan_Instructions.BackwardAudioInstructions},
     conditional_function: function() {
+      console.log("CHECKING FOR AUDIO BACKWARD")
         if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='backward' )
             { return true }
         else { return false }
@@ -423,6 +413,7 @@ var if_visual_forward_instr = {
     timeline: [VisualForward_Instructions_loop_node],
     timeline_variables: function() {return DigitSpan_Instructions.ForwardVisualInstructions},
     conditional_function: function() {
+      console.log("CHECKING FOR VISUAL FORWARD")
         if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='forward' )
             { return true }
         else { return false }
@@ -432,6 +423,7 @@ var if_visual_backward_instr = {
     timeline: [VisualBackward_Instructions_loop_node],
     timeline_variables: function() {return DigitSpan_Instructions.BackwardVisualInstructions},
     conditional_function: function() {
+      console.log("CHECKING FOR VISUAL BACKWARD")
         if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='backward' )
             { return true }
         else { return false }
@@ -463,44 +455,6 @@ var procedure = {
   }
 };
 
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return DigitSpan_Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var thank_you = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    console.log(DigitSpan_Instructions)
-    return DigitSpan_Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    if ( DigitSpan_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
-}
-
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-    if ( DigitSpan_parameters.ShowThankYou)
-    { return true }
-    else { return false }
-  }
-}
 var if_Test_Instructions = {
   timeline: [if_audio_forward_instr, if_visual_forward_instr, if_audio_backward_instr, if_visual_backward_instr],
   conditional_function: function() {
@@ -517,7 +471,7 @@ var if_Test_Instructions = {
 // ======================================================================= 
 // Add all procedures to the timeline
 
-timeline.push(if_Welcome)
+timeline.push(Welcome)
 
 timeline.push(if_node)
 timeline.push(ReadParametersAndSetup)
@@ -525,6 +479,6 @@ timeline.push(ReadParametersAndSetup)
 timeline.push(if_Test_Instructions)
 timeline.push(procedure)
 timeline.push(Notes)
-timeline.push(if_ThankYou)
+timeline.push(ThankYou)
 timeline.push(SendData)
 
