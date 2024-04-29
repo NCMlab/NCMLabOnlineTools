@@ -187,3 +187,17 @@ BatteryList.push({index: 6,
 })
 
 //https://jsfiddle.net/p6sg12e4/14/
+
+
+// ==================================================================
+var List = []
+List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Backward_TwoErrors', Instructions: 'Default', IconName: 'DS, Backward'})
+BatteryList.push({index: 57, 
+	name:'Theliau and Ella', 
+	description: 'Psychology project',
+    TaskList: List,
+	BatteryInstructions: "<h1>Ella and Theliau</h1>",
+	Language:'FR',
+	RunAudioTest: true,
+	Footer: '©Ella and Theliau 2024'
+})
