@@ -198,7 +198,7 @@ BatteryList.push({index: 57,
 	name:'Theliau and Ella', 
 	description: 'Psychology project',
     TaskList: List,
-	BatteryInstructions: "<h1>Ella and Theliau</h1>",
+	BatteryInstructions: "<h1>Une étude sur la mémoire fonctionnelle et le sommeil</h1>",
 	Language:'FR',
 	RunAudioTest: true,
 	Footer: '©Ella and Theliau 2024'
