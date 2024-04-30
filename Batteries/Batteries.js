@@ -192,7 +192,7 @@ BatteryList.push({index: 6,
 // ==================================================================
 var List = []
 
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_Generic', Instructions: 'Default', IconName:'Intake Form'})
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_Generic', Instructions: 'EetT', IconName:'Intake Form'})
 List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Backward_TwoErrors', Instructions: 'Default', IconName: 'DS, Backward'})
 BatteryList.push({index: 57, 
 	name:'Theliau and Ella', 

@@ -409,4 +409,4 @@ var FR_pages = [
 var FR_IntakeForm_EetT = {}
 FR_IntakeForm_EetT.title = FormTitle
 FR_IntakeForm_EetT.pages = FR_pages
-add('FR_IntakeForm_EetT', function(){ parameters = FR_IntakeForm_EetT });
+add('FR_Instructions_EetT', function(){ Instructions = FR_IntakeForm_EetT });

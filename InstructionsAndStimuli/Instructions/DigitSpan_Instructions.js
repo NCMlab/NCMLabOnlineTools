@@ -24,7 +24,7 @@ EN_Instructions.BackwardVisualInstructions = [
 EN_Instructions.GettingStartedText = [
 		{'page': '<p class="Instructions">To ensure high quality data, it is very important that you do not use any memory aid (e.g., pen and paper).<br>Please do the task solely in your head.</p>'},
 	];
-EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
+EN_Instructions.ThankYouText = [{'page':'Thank you'}]
 EN_Instructions.ForwardTrialQuestion = '<p class="Instructions">Enter the number list in the SAME order.</p>'
 EN_Instructions.BackwardTrialQuestion = '<p class="Instructions">Enter the number list <b>Backwards</b>.</p>'
 EN_Instructions.TrialNumber = 'Trial number'
