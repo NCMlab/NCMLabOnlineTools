@@ -1,4 +1,8 @@
 // ====================================================================================
+/* This file is used for specifying the word lists only. The config file will handle
+everything about the sound file locations and number of trials.
+*/
+
 // === TEST RECALL ===========================================================================
 var EN_Test = {}
 EN_Test.WordListA = [
@@ -14,10 +18,13 @@ EN_Test.NWords = EN_Test.WordListA.length
 // The number of immediate recall blocks 
 EN_Test.NBlocks = 1
 add('EN_Test', function(){ WordRecallLists = EN_Test});
+
+
 // ====================================================================================
 // === FaCE ===========================================================================
-var EN_FaCE = {}
-EN_FaCE.WordListA = [
+
+var EN_FaCE_VerA = {}
+EN_FaCE_VerA.WordListA = [
 	{'Word':"Leg"},		    // 0
 	{'Word':'Wool'}, 	    // 1
 	{'Word':'Castle'}, 		// 2
@@ -26,17 +33,30 @@ EN_FaCE.WordListA = [
 	{'Word':'Horse'},		// 5
 	{'Word':'Potato'},		// 6
 	]
+EN_FaCE_VerA.AlternatePronunciationsWordListA = []
+EN_FaCE_VerA.WordListB = []
+EN_FaCE_VerA.RecognitionWordList = []
+EN_FaCE_VerA.AlternatePronunciationsWordListB = []
+EN_FaCE_VerA.NWords = EN_FaCE_VerA.WordListA.length
+add('EN_FaCE_VerA', function(){ WordRecallLists = EN_FaCE_VerA});
 
-EN_FaCE.AlternatePronunciationsWordListA = []
-EN_FaCE.WordListB = []
-EN_FaCE.RecognitionWordList = []
-EN_FaCE.AlternatePronunciationsWordListB = []
-EN_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
-EN_FaCE.FileExtension = '.wav'
-EN_FaCE.NWords = EN_FaCE.WordListA.length
-// The number of immediate recall blocks 
-EN_FaCE.NBlocks = 3
-add('EN_FaCE', function(){ WordRecallLists = EN_FaCE});
+var EN_FaCE_VerB = {}
+EN_FaCE_VerB.WordListA = [
+	{'Word':"Neck"},		    // 0
+	{'Word':'Wax'}, 	    // 1
+	{'Word':'Cable'}, 		// 2
+	{'Word':'Turnip'},		// 3
+	{'Word':'Red'},	    // 4
+	{'Word':'Fish'},		// 5
+	{'Word':'Violin'},		// 6
+	]
+EN_FaCE_VerB.AlternatePronunciationsWordListA = []
+EN_FaCE_VerB.WordListB = []
+EN_FaCE_VerB.RecognitionWordList = []
+EN_FaCE_VerB.AlternatePronunciationsWordListB = []
+EN_FaCE_VerB.NWords = EN_FaCE_VerB.WordListA.length
+add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
+	
 // ====================================================================================
 // ====== TRAINING FaCE Word List
 var EN_FaCE_Training = {}
@@ -45,40 +65,17 @@ EN_FaCE_Training.WordListA = [
 	{'Word':'Cotton'}, 	    // 1
 	{'Word':'House'}, 		// 2
 	]
-
 EN_FaCE_Training.AlternatePronunciationsWordListA = []
 EN_FaCE_Training.WordListB = []
 EN_FaCE_Training.RecognitionWordList = []
 EN_FaCE_Training.AlternatePronunciationsWordListB = []
-EN_FaCE_Training.FolderName = '../../assets/SoundFiles/Words/FaCE_en-US-Neural2-F_Speed70/'
+EN_FaCE_Training.FolderName = '../../assets/SoundFiles/Words/FaCE/EN/EN-US-Neural2-F/'
 EN_FaCE_Training.FileExtension = '.wav'
 EN_FaCE_Training.NWords = EN_FaCE_Training.WordListA.length
-// The number of immediate recall blocks 
-EN_FaCE_Training.NBlocks = 2
-
 add('EN_FaCE_Training', function(){ WordRecallLists = EN_FaCE_Training});
 
 // ====================================================================================
-var FR_FaCE = {}
-FR_FaCE.WordListA = [
-	{'Word':"Jambe"},		    // 0
-	{'Word':'Laine'}, 	    // 1
-	{'Word':'Chateau'}, 		// 2
-	{'Word':'Tulipe'},		// 3
-	{'Word':'Bleu'},	    // 4
-	{'Word':'Cheval'},		// 5
-	{'Word':'Patate'},		// 6
-	]
-FR_FaCE.AlternatePronunciationsWordListA = []
-FR_FaCE.WordListB = []
-FR_FaCE.RecognitionWordList = []
-FR_FaCE.AlternatePronunciationsWordListB = []
-FR_FaCE.FolderName = '../../assets/SoundFiles/Words/FaCE_fr-FR-Neural2-A_Speed70/'
-FR_FaCE.FileExtension = '.wav'
-FR_FaCE.NWords = EN_FaCE.WordListA.length
-// The number of immediate recall blocks 
-FR_FaCE.NBlocks = 3
-add('FR_FaCE', function(){ WordRecallLists = FR_FaCE});
+
 // ====================================================================================
 // ===== RAVLT ========================================================================
 // Rey auditory verbal learning test
@@ -230,20 +227,3 @@ FR_RAVLT.RecognitionWordList = [
 	{'Word':'Fusil','Answer':false}
 ]
 add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
-// === TEST ===========================================================================
-var EN_TEST = {}
-EN_TEST.WordListA = [
-	{'Word':'Drum'},
-	]
-
-	EN_TEST.AlternatePronunciationsWordListA = []
-	EN_TEST.WordListB = []
-	EN_TEST.RecognitionWordList = [
-		{'Word':'Pencil'},
-	]
-	EN_TEST.AlternatePronunciationsWordListB = []
-	EN_TEST.NWords = EN_FaCE.WordListA.length
-// The number of immediate recall blocks 
-EN_TEST.NBlocks = 1
-
-add('EN_TEST', function(){ WordRecallLists = EN_TEST});
