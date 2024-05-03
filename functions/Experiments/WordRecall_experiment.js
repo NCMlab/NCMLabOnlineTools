@@ -270,16 +270,18 @@ var UpdateManualResponseArrayA = {
     for ( var i = 0; i < data.trials[0].RecallList.length; i++ )
     {
       currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
-      console.log(ResponseArrayA)
+      //console.log(ResponseArrayA)
       console.log("Current index: " + currentIndex)
       if ( currentIndex == -1 )
       {
         // Intrusion
-        IntrusionListA.push(data.trials[0].RecallList[i])
+        IntrusionList.push(data.trials[0].RecallList[i])
       }
-      else { ResponseArrayA[currentIndex][(BlockCount-1)/2] = i }
+      else { 
+        HeardList.push(data.trials[0].RecallList[i])
+      }
     }
-    console.log(ResponseArrayA)
+    //console.log(ResponseArrayA)
     BlockCount = BlockCount + 1
   }
 }
@@ -572,7 +574,7 @@ var if_AudioStimuliB = {
   }
 }   
 var if_Spoken = {
-  timeline: [SetupSpeechRecognition],
+  timeline: [CheckMicrophone, SetupSpeechRecognition],
   conditional_function: function() {
       if ( parameters.RecallType == 'Spoken' )
       { return true }
@@ -771,7 +773,6 @@ var if_FinalRecallA = {
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
 timeline.push(Welcome)
-timeline.push(CheckMicrophone)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)
 

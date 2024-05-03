@@ -1,6 +1,8 @@
 console.log("LOADING WORD RECALL")
 var userSaidWords = []
 var ListeningFlag = false
+
+
 // Manual Recall Trial
 var ManualRecallA = {
   type: jsPsychSurvey,
@@ -94,10 +96,12 @@ var ManualRecallA = {
             HeardList.push(data.response.Intrusion01)
       }
       //data.RecallList = WordListIndex
+      data.RecallBlock = HeardList
       data.HeardList = HeardList
       //data.RecallCount = BlockRecallCount
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
+      data.type = 'A'
       BlockCount++
       // reset the timer
       clearInterval(interval);
@@ -200,10 +204,12 @@ var ManualRecallB = {
             HeardList.push(data.response.Intrusion01)
       }
       //data.RecallList = WordListIndex
+      
       data.HeardList = HeardList
       //data.RecallCount = BlockRecallCount
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
+      data.type = 'B'
       BlockCount++
       // reset the timer
       clearInterval(interval);
@@ -236,6 +242,7 @@ var SpokenRecallA = {
       BlockRecallCount = 0
       BlockIntrusionCount = 0
       IntrusionList = []
+      // create an array for this block and fill it with -99
       TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
       annyang.start({autorestart: true, continuous: false});
     },
@@ -251,6 +258,7 @@ var SpokenRecallA = {
       BlockCount++
       clearInterval(interval);
       annyang.abort()
+      console.log(data)
       console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
@@ -347,6 +355,7 @@ var OLDSpokenRecallA = {
       // });
     },
     on_finish: function(data){
+      // TempRecall, HeardList, and IntrusionList get updated by the FinRecallWords01 in the SRT_functions.js file
       data.RecallBlock = TempRecall
       data.HeardList = HeardList
       data.IntrusionList = IntrusionList
@@ -359,6 +368,7 @@ var OLDSpokenRecallA = {
       clearInterval(interval);
       annyang.abort()
       console.log("Ended recall")
+      
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = parameters.RecallDuration * 1000; // in milliseconds

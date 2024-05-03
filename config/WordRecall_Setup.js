@@ -181,7 +181,7 @@ var FaCE_Immediate_Spoken_VerA_EN = {
 	VisualPresentation: true,
 	RecallType: 'Spoken',
 	RecallDuration: 120, // seconds
-	DelayBeforeShowingDoneButton: 8, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
@@ -198,14 +198,14 @@ FaCE_Immediate_Spoken_VerB_EN.WordList = 'EN_FaCE_VerB'
 
 let FaCE_Immediate_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 FaCE_Immediate_Spoken_Training_EN.WordList = 'EN_FaCE_Training'
-
+FaCE_Immediate_Spoken_Training_EN.AskForNotes = true
 let FaCE_Immediate_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 	FaCE_Immediate_Manual_VerA_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
 	FaCE_Immediate_Manual_VerB_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
 	FaCE_Immediate_Manual_Training_EN.RecallType = 'Manual'
-
+	FaCE_Immediate_Manual_Training_EN.AskForNotes = true
 
 var FaCE_Delayed_EN = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',

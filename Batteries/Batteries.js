@@ -143,9 +143,10 @@ var List = []
 //List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
 
 
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
+//List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
