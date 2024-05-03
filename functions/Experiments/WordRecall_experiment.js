@@ -257,34 +257,7 @@ var MakeWordListB = {
 
 // =======================================================================
 // DEFINE FUNCTIONS
-var UpdateManualResponseArrayA = {
-  type: jsPsychCallFunction,
-  func: function() {
-    console.log(parameters.NBlocks)
-    var data = jsPsych.data.get().filter({task: 'Recall'}).last()
-    console.log(data)
-    console.log(WordListAForRecall.SimpleWordList)
-    console.log(data.trials[0].RecallList)
-    console.log("Working on Block: " + (BlockCount-1)/2)
-    // find the index of each item recalled
-    for ( var i = 0; i < data.trials[0].RecallList.length; i++ )
-    {
-      currentIndex = (WordListAForRecall.SimpleWordList.indexOf(data.trials[0].RecallList[i]))
-      //console.log(ResponseArrayA)
-      console.log("Current index: " + currentIndex)
-      if ( currentIndex == -1 )
-      {
-        // Intrusion
-        IntrusionList.push(data.trials[0].RecallList[i])
-      }
-      else { 
-        HeardList.push(data.trials[0].RecallList[i])
-      }
-    }
-    //console.log(ResponseArrayA)
-    BlockCount = BlockCount + 1
-  }
-}
+
 
 var ResetCounter = {
   type: jsPsychCallFunction,
@@ -619,22 +592,6 @@ var if_Manual_RecallB = {
   }
 }
 
-var if_Manual_UpdateRecallA = {
-  timeline: [UpdateManualResponseArrayA],
-  conditional_function: function() {
-    if ( parameters.RecallType == 'Manual' )
-    { return true }
-    else { 
-      BlockCount = BlockCount + 1
-      return false 
-    }
-  }
-}
-
-
-
-
-
 
 var if_VisualStimuli = {
   timeline: [LoopVisual],
@@ -660,7 +617,7 @@ var if_VisualStimuliB = {
 
 
 var AfterFirstBlockProcedure = {
-  timeline: [Instructions02, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [Instructions02, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
   repetitions: 1,
   randomize_order: false      
 }
@@ -671,8 +628,8 @@ var AfterFirstBlockLoop = {
   loop_function: function(data) {
     // reset count for instructions
     countInstr02 = 0
-    console.log("Block Count (in loop): " + (BlockCount)/2)
-    if ( ((BlockCount)/2) < NumberBlocks )
+    console.log("Block Count (in loop): " + (BlockCount))
+    if ( ((BlockCount)) < NumberBlocks )
     { return true }
     else { return false }
   }
@@ -701,19 +658,19 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
       repetitions: 1,
       randomize_order: false
   } 
 
 var FinalRecallBlockA = {
-    timeline: [SetupSpeechRecognition, Instructions04, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+    timeline: [SetupSpeechRecognition, Instructions04, if_Manual_RecallA, if_Spoken_RecallA],
     randomize_order: false,
     repetitions: 1,
 } 
 
 var DelayedRecalBlockA = {
-  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA, if_Manual_UpdateRecallA],
+  timeline: [InstructionsDelayed_loop, if_Manual_RecallA, if_Spoken_RecallA],
   randomize_order: false,
   repetitions: 1,
 } 
