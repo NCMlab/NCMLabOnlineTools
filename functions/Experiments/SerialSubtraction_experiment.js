@@ -13,7 +13,7 @@ the computer.
 // DEFINE VARIABLES
 
 var timeline = [];
-
+var ResponseList
 var interval
 var time_left
 var PreviousResult
@@ -23,6 +23,24 @@ var TempRecall
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
+}
+
+
+// If manual make the array of expected answers
+var SetupExpectedAnswers = {
+  type: jsPsychCallFunction,
+  func: function() {
+    console.log("SETTING UP EXPECTED ANSWERS")
+    console.log(parameters)
+    var CurrentValue = parameters.StartValue
+    ResponseList = []
+    while ( CurrentValue > parameters.StopValue )
+    {
+      CurrentValue = CurrentValue - parameters.StepValue
+      ResponseList.push(CurrentValue)
+    }
+    console.log(ResponseList)
+  }
 }
 
 var SetupSpeechRecognition = {
@@ -41,7 +59,6 @@ var SetupSpeechRecognition = {
   }
 }
 
-
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
@@ -51,7 +68,6 @@ var SendData = {
     
   }
 }
-
 
 var GetPreviousResult = {
   type: jsPsychCallFunction,
@@ -64,10 +80,11 @@ var SpokenRecallA = {
     type: jsPsychHtmlAudioResponse,
     stimulus: function() {
       var prompt = 
-      Instructions.GetResponse01+PreviousResult+
-      Instructions.GetResponse02+parameters.StepValue+
+      Instructions.GetResponse01+parameters.StepValue+
+      Instructions.GetResponse02+parameters.StartValue+
       Instructions.GetResponse03+parameters.StepValue+
       Instructions.GetResponse04
+
       var stim = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
       prompt+'<p><span id="clock">1:00</span></p>'
       return stim 
@@ -90,11 +107,13 @@ var SpokenRecallA = {
       data.RecallCount = BlockRecallCount
       data.NIntrusions = BlockIntrusionCount
       data.task = 'SerialSubtract'
+      data.ExpectedResponse = ResponseList
       data.userSaid = userSaidWords
       BlockCount++
       clearInterval(interval);
       annyang.abort()
       console.log("Ended recall")
+      console.log(data)
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = parameters.TimeLimit * 1000; // in milliseconds
@@ -137,17 +156,100 @@ var SpokenRecallA = {
     }
 };
 
+var ManualSubtraction = {
+  type: jsPsychSurvey,
+/*   on_load: function(){ // This inserts a timer on the recall duration
+    var wait_time = RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+    }, 250)
+  },*/
+  on_load: function() {console.log("WORD RECALL SETUP")},
+  on_start: function() {
+      console.log("WORD RECALL SETUP")          
+      // reset the list of indices
+    },
+
+  pages: [
+    [
+      {
+        type: 'multi-select',
+        prompt: function() {
+          var prompt = 
+          Instructions.GetResponse01+parameters.StepValue+
+          Instructions.GetResponse02+parameters.StartValue+
+          Instructions.GetResponse03+parameters.StepValue+
+          Instructions.GetResponse04
+          console.log(prompt)
+          return prompt
+        },
+        options:  function() {
+          return ResponseList
+        },
+        columns: 3,
+        name: 'ListRecall', 
+      },
+      {
+        type: 'text',
+        prompt: function() { return "Other results"},
+        placeholder: '',
+        name: 'Intrusion01', 
+        required: false,
+      }, 
+    ]
+  ],
+  title: function() { return Instructions.title },//'Word Recall',
+  button_label_next: 'Continue',
+  button_label_back: 'Previous',
+  button_label_finish: function() { return LabelNames.Submit },
+  show_question_numbers: 'off',
+  on_finish: function(data) {
+    data.task = 'SerialSubtract'
+    data.ExpectedResponse = ResponseList
+    console.log(data)
+      
+  },
+};
+
+
+var if_SpokenResponse = {
+  timeline: [CheckMicrophone, SetupSpeechRecognition, SetupExpectedAnswers, SpokenRecallA],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+
+var if_ManualResponse = {
+  timeline: [SetupExpectedAnswers, ManualSubtraction],
+  conditional_function: function() {
+    console.log("MANUAL")
+      if ( parameters.ResponseType == 'Manual' )
+      { return true }
+      else { return false }
+  }
+}
 
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
 timeline.push(Welcome)
-timeline.push(CheckMicrophone)
-timeline.push(GetPreviousResult)
-timeline.push(SetupSpeechRecognition)
-timeline.push(enter_fullscreen)
-timeline.push(SpokenRecallA)
+timeline.push(if_SpokenResponse)
+timeline.push(if_ManualResponse)
+//timeline.push(enter_fullscreen)
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)
-

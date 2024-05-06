@@ -194,10 +194,16 @@ var FaCE_Immediate_Spoken_VerA_EN = {
 	RecordAUDIO: true
 }
 let FaCE_Immediate_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
-FaCE_Immediate_Spoken_VerB_EN.WordList = 'EN_FaCE_VerB'
-
+	FaCE_Immediate_Spoken_VerB_EN.WordList = 'EN_FaCE_VerB'
 let FaCE_Immediate_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 	FaCE_Immediate_Spoken_Training_EN.WordList = 'EN_FaCE_Training'
+let FaCE_Delayed_Spoken_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+	FaCE_Delayed_Spoken_VerA_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
+	FaCE_Delayed_Spoken_VerB_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
+	FaCE_Delayed_Spoken_Training_EN.DelayedRecallFlag = true
+
 let FaCE_Immediate_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 	FaCE_Immediate_Manual_VerA_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
@@ -351,14 +357,13 @@ add('FaCE_Immediate_Spoken_Training_EN', function(){ parameters = FaCE_Immediate
 add('FaCE_Immediate_Manual_VerA_EN', function(){ parameters = FaCE_Immediate_Manual_VerA_EN});
 add('FaCE_Immediate_Manual_VerB_EN', function(){ parameters = FaCE_Immediate_Manual_VerB_EN});
 add('FaCE_Immediate_Manual_Training_EN', function(){ parameters = FaCE_Immediate_Manual_Training_EN});
+add('FaCE_Delayed_Spoken_VerA_EN', function(){ parameters = FaCE_Delayed_Spoken_VerA_EN});
+add('FaCE_Delayed_Spoken_VerB_EN', function(){ parameters = FaCE_Delayed_Spoken_VerB_EN});
+add('FaCE_Delayed_Spoken_Training_EN', function(){ parameters = FaCE_Delayed_Spoken_Training_EN});
+add('FaCE_Delayed_Manual_VerA_EN', function(){ parameters = FaCE_Delayed_Manual_VerA_EN});
+add('FaCE_Delayed_Manual_VerB_EN', function(){ parameters = FaCE_Delayed_Manual_VerB_EN});
+add('FaCE_Delayed_Manual_Training_EN', function(){ parameters = FaCE_Delayed_Manual_Training_EN});
 
 
-add('FaCE_Delayed_EN', function(){ parameters = FaCE_Delayed_EN});
-
-add('FaCE_Immediate_Training_EN', function(){ parameters = FaCE_Immediate_Training_EN});
-add('FaCE_Delayed_Training_EN', function(){ parameters = FaCE_Delayed_Training_EN});
-
-
-add('TEST_Spoken', function(){ parameters = TEST_Spoken});
 
 // FIX THE MANUAL SCORING OF WORD RECALL
