@@ -170,7 +170,7 @@ var SpokenRecallA = {
         document.getElementById("finish-trial").style.display='none'
       }
       if(time_left <= 0){
-        
+        bell.play()
         document.querySelector('#clock').innerHTML = "0:00";
         document.querySelector('button').disabled = false;
         clearInterval(interval);
@@ -181,8 +181,17 @@ var SpokenRecallA = {
 };
 
 
-var if_SpokenResponse = {
-  timeline: [CheckMicrophone, SetupSpeechRecognition, SpokenRecallA],
+var if_SpokenResponse01 = {
+  timeline: [CheckMicrophone, SetupSpeechRecognition],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+var if_SpokenResponse02 = {
+  timeline: [SpokenRecallA],
   conditional_function: function() {
     console.log("SPOKEN")
       if ( parameters.ResponseType == 'Spoken' )
@@ -205,10 +214,12 @@ var if_ManualResponse = {
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
 timeline.push(enter_fullscreen)
+timeline.push(if_SpokenResponse01)
 timeline.push(Welcome)
+timeline.push(Instructions01)
 timeline.push(LoadBell)
 timeline.push(GetCategory)
-timeline.push(if_SpokenResponse)
+timeline.push(if_SpokenResponse02)
 timeline.push(if_ManualResponse)
 timeline.push(Notes)
 timeline.push(ThankYou)

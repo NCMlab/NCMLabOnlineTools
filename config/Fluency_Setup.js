@@ -47,7 +47,7 @@ Fluency_FaCE_Training = {
 	Category: 'DinnerTable',
 	TimeLimit: 5, // seconds
 	DelayBeforeShowingDoneButton: 5,
-	ResponseType: 'Manual',
+	ResponseType: 'Spoken',
 	ShowInstructions: true,
     ShowWelcome: true,
 	ShowThankYou: false,
