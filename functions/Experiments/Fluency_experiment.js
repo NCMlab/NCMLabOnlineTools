@@ -11,7 +11,6 @@ the computer.
 
 // =======================================================================
 // DEFINE VARIABLES
-
 var timeline = [];
 
 var interval
@@ -103,6 +102,7 @@ var ManualRecall = {
     document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
     if(time_left <= 0){
       bell.play()
+
       document.querySelector('#clock').innerHTML = "0:00";
       clearInterval(interval);
     }
@@ -126,7 +126,7 @@ var SpokenRecallA = {
     post_trial_gap: 0,
     recording_duration: function() { return parameters.TimeLimit * 1000 },
 
-    on_start: function(SimpleList) {
+    on_start: function() {
       console.log("Entering on_start")
       HeardList = []
       userSaidWords = []
@@ -170,7 +170,7 @@ var SpokenRecallA = {
         document.getElementById("finish-trial").style.display='none'
       }
       if(time_left <= 0){
-        bell.play()
+
         document.querySelector('#clock').innerHTML = "0:00";
         document.querySelector('button').disabled = false;
         clearInterval(interval);

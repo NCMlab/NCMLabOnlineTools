@@ -126,7 +126,7 @@ List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', Ic
 List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: '', IconName: 'BDI'})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
-BatteryList.push({index: 202, 
+BatteryList.push({index: 2002, 
 	name:'The 3C Platform', 
 	description: 'The 3C Platform',
     TaskList: List,
@@ -138,8 +138,60 @@ BatteryList.push({index: 202,
 
 
 // ==================================================================
+// FaCE
+// ==================================================================
+// 		ENGLISH
+// 			TRAINING
+// 				Spoken
+var FaCE_Training_Spoken_EN_List = []
+FaCE_Training_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_Training_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})	
+FaCE_Training_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+// 				Manual
+var FaCE_Training_Manual_EN_List = []
+FaCE_Training_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+FaCE_Training_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_Training_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
+FaCE_Training_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
+
+
+	BatteryList.push({index: 601, 
+		name:'FaCE Battery: Training', 
+		description: 'A web-based version of the FaCE',
+		TaskList: FaCE_Training_Spoken_EN_List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+
+	BatteryList.push({index: 602, 
+		name:'FaCE Battery: Training', 
+		description: 'A web-based version of the FaCE',
+		TaskList: FaCE_Training_Manual_EN_List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+
+	// VERSION A
+var FaCE_VerA_EN_List = []
+// VERSION B
+var FaCE_VerA_EN_List = []
+
+
 var List = []
-	List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
+List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
@@ -157,15 +209,7 @@ var List = []
 
 	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
 
-BatteryList.push({index: 6, 
-	name:'FaCE Battery: Training', 
-	description: 'A web-based version of the FaCE',
-    TaskList: List,
-	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©GagnonBruno 2016'
-})
+
 // --> FaCE Batteries <--
 // English, Training
 // English, Ver A

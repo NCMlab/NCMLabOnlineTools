@@ -43,9 +43,9 @@ Fluency_TEST = {
     RecordAUDIO: true,
 }
 
-Fluency_FaCE_Training = {
+Fluency_FaCE_Training_Spoken = {
 	Category: 'DinnerTable',
-	TimeLimit: 5, // seconds
+	TimeLimit: 15, // seconds
 	DelayBeforeShowingDoneButton: 5,
 	ResponseType: 'Spoken',
 	ShowInstructions: true,
@@ -53,7 +53,19 @@ Fluency_FaCE_Training = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordAUDIO: true,
-	DelayBeforeShowingDoneButton: 0,
+	DelayBeforeShowingDoneButton: 5,
+}
+Fluency_FaCE_Training_Manual = {
+	Category: 'DinnerTable',
+	TimeLimit: 15, // seconds
+	DelayBeforeShowingDoneButton: 5,
+	ResponseType: 'Manual',
+	ShowInstructions: true,
+    ShowWelcome: true,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: false,
+	DelayBeforeShowingDoneButton: 5,
 }
 
 
@@ -61,4 +73,5 @@ add('Fluency_Animals', function(){ parameters = Fluency_Animals});
 add('Fluency_FruitsVegetable', function(){ parameters = Fluency_FruitsVegetable});
 add('Fluency_F', function(){ parameters = Fluency_F});
 add('Fluency_TEST', function(){ parameters = Fluency_TEST});
-add('Fluency_FaCE_Training', function(){ parameters = Fluency_FaCE_Training});
+add('Fluency_FaCE_Training_Spoken', function(){ parameters = Fluency_FaCE_Training_Spoken});
+add('Fluency_FaCE_Training_Manual', function(){ parameters = Fluency_FaCE_Training_Manual});

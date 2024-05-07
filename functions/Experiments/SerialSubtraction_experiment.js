@@ -25,6 +25,21 @@ var enter_fullscreen = {
   fullscreen_mode: FullScreenMode
 }
 
+var SetupSpeechRecognition = {
+  type: jsPsychCallFunction,
+  func: function() {
+      annyang.removeCommands()
+      const commands01 = {'*search': RecordSpeechRecognition};
+      annyang.addCommands(commands01);
+      annyang.setLanguage(LANG)
+      annyang.addCallback('result', function(userSaid) {
+        // userSaid contains multiple possibilities for what was heard
+        userSaidWords += userSaid
+        userSaidWords += ';'
+        console.log(userSaidWords)
+      });
+  }
+}
 
 // If manual make the array of expected answers
 var SetupExpectedAnswers = {
@@ -43,21 +58,6 @@ var SetupExpectedAnswers = {
   }
 }
 
-var SetupSpeechRecognition = {
-  type: jsPsychCallFunction,
-  func: function() {
-      annyang.removeCommands()
-      const commands01 = {'*search': RecordSpeechRecognition};
-      annyang.addCommands(commands01);
-      annyang.setLanguage(LANG)
-      annyang.addCallback('result', function(userSaid) {
-        // userSaid contains multiple possibilities for what was heard
-        userSaidWords += userSaid
-        userSaidWords += ';'
-        console.log(userSaidWords)
-      });
-  }
-}
 
 var SendData = {
   type: jsPsychCallFunction,
@@ -79,14 +79,15 @@ var GetPreviousResult = {
 var SpokenRecallA = {
     type: jsPsychHtmlAudioResponse,
     stimulus: function() {
-      var prompt = 
+      console.log("Hello from prompt setup")
+      
+      var stim = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
       Instructions.GetResponse01+parameters.StepValue+
       Instructions.GetResponse02+parameters.StartValue+
       Instructions.GetResponse03+parameters.StepValue+
-      Instructions.GetResponse04
-
-      var stim = '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
-      prompt+'<p><span id="clock">1:00</span></p>'
+      Instructions.GetResponse04+
+      '<p><span id="clock">1:00</span></p>'
+      console.log(stim)
       return stim 
     },
     choices: function() {return [LabelNames.Next]}, 
@@ -94,13 +95,18 @@ var SpokenRecallA = {
     done_button_label: 'Done',//function() {return [LabelNames.Next]},
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
-    recording_duration: 60000,
+    recording_duration: function() { return parameters.TimeLimit * 1000 },
 
-    on_start: function(SimpleList) {
+    on_start: function() {
+      console.log("In the on start section...")
+      HeardList = []
       userSaidWords = []
+      userSaid = []
       annyang.start({autorestart: true, continuous: true});
+      console.log("Finished the on_start section")
     },
     on_finish: function(data){
+      console.log('In the on_finish block')
       data.RecallBlock = TempRecall
       data.HeardList = HeardList
       data.IntrusionList = IntrusionList
@@ -116,6 +122,7 @@ var SpokenRecallA = {
       console.log(data)
     },
     on_load: function(){ // This inserts a timer on the recall duration
+      console.log("Loading... Loading")
       var wait_time = parameters.TimeLimit * 1000; // in milliseconds
       var start_time = performance.now();
       interval = setInterval(function(){
@@ -154,6 +161,14 @@ var SpokenRecallA = {
       }
       }, 250)
     }
+};
+
+var trialSPOKEN = {
+  type: jsPsychHtmlAudioResponse,
+  stimulus: `
+  <p style="font-size:48px; color:red;">GREEN</p>
+  <p>Speak the color of the ink.</p>`,
+  recording_duration: 3500
 };
 
 var ManualSubtraction = {
@@ -199,8 +214,18 @@ var ManualSubtraction = {
 };
 
 
-var if_SpokenResponse = {
-  timeline: [CheckMicrophone, SetupSpeechRecognition, SetupExpectedAnswers, SpokenRecallA],
+var if_SpokenResponse01 = {
+  timeline: [CheckMicrophone, SetupSpeechRecognition, SetupExpectedAnswers],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+
+var if_SpokenResponse02 = {
+  timeline: [SpokenRecallA],
   conditional_function: function() {
     console.log("SPOKEN")
       if ( parameters.ResponseType == 'Spoken' )
@@ -222,8 +247,9 @@ var if_ManualResponse = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
+timeline.push(if_SpokenResponse01)
 timeline.push(Welcome)
-timeline.push(if_SpokenResponse)
+timeline.push(if_SpokenResponse02)
 timeline.push(if_ManualResponse)
 //timeline.push(enter_fullscreen)
 timeline.push(Notes)
