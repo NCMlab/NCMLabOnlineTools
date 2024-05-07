@@ -26,7 +26,7 @@ EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Fluency Task.</p>'},
 ]
-EN_Instructions.ResponsePage01 = 'Say as many <b>'
+EN_Instructions.ResponsePage01 = 'Name as many <b>'
 EN_Instructions.ResponsePage02 = '</b> as possible.<p><span id="clock">1:00</span></p> As the administrator: Press Next for every correct response made. <p /><div>'
 EN_Instructions.ResponsePage03 = '</div>When the timer runs out, press Next again to finish.'     
 

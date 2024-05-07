@@ -21,7 +21,7 @@ SerialSubtract_FaCE_Training = {
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
-    TimeLimit: 120, // seconds
+    TimeLimit: 10, // seconds
     DelayBeforeShowingDoneButton: 0,
     RecordAUDIO: true,
 }

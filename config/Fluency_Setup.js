@@ -1,7 +1,7 @@
 Fluency_Animals = {
 	Category: 'Animals',
 	TimeLimit: 60, // seconds
-	RecallType: 'Manual',
+	ResponseType: 'Manual',
 	ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
@@ -12,7 +12,7 @@ Fluency_Animals = {
 Fluency_FruitsVegetable = {
 	Category: 'FruitsVegetables',
 	TimeLimit: 60, // seconds
-	RecallType: 'Spoken',
+	ResponseType: 'Spoken',
 	ShowInstructions: true,
     ShowWelcome: true,
 	ShowThankYou: true,
@@ -24,7 +24,7 @@ Fluency_FruitsVegetable = {
 Fluency_F = {
 	Category: 'LetterF',
 	TimeLimit: 60, // seconds
-	RecallType: 'Manual',
+	ResponseType: 'Manual',
 	ShowInstructions: true,
     ShowWelcome: false,
 	ShowThankYou: false,
@@ -35,7 +35,7 @@ Fluency_F = {
 Fluency_TEST = {
 	Category: 'FruitsVegetables',
 	TimeLimit: 60, // seconds
-	RecallType: 'Spoken',
+	ResponseType: 'Spoken',
 	ShowInstructions: true,
     ShowWelcome: true,
 	ShowThankYou: false,
@@ -45,8 +45,9 @@ Fluency_TEST = {
 
 Fluency_FaCE_Training = {
 	Category: 'DinnerTable',
-	TimeLimit: 15, // seconds
-	RecallType: 'Spoken',
+	TimeLimit: 5, // seconds
+	DelayBeforeShowingDoneButton: 5,
+	ResponseType: 'Manual',
 	ShowInstructions: true,
     ShowWelcome: true,
 	ShowThankYou: false,

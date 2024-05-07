@@ -18,11 +18,18 @@ var interval
 var time_left
 var category
 var TempRecall
+var bell
 // =======================================================================
 // INITIAL SETUP
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
+}
+var LoadBell = {
+  type: jsPsychCallFunction,
+  func: function() {
+    bell = new Audio('assets/SoundFiles/AudioTest/bell.mp3');
+  } 
 }
 
 var SetupSpeechRecognition = {
@@ -60,6 +67,49 @@ var GetCategory = {
     category = eval('Instructions.'+parameters.Category)
   }
 }
+
+var ManualRecall = {
+  type: jsPsychSurvey,
+  pages: [
+    [
+      {
+        type: 'html',
+        prompt: function() { 
+            return 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'  
+          },
+        name: 'fluidityText',
+        textbox_rows: 10,
+        required: false,
+      },
+      {
+        type: 'text',
+        prompt: " ",
+        textbox_rows: 10,
+      }
+    ]
+  ],
+  button_label_next: function() { return LabelNames.Continue },
+  button_label_back: function() { return LabelNames.Back },
+  button_label_finish: function() { return LabelNames.Submit },
+  on_load: function(){ // This inserts a timer on the recall duration
+    var wait_time = parameters.TimeLimit * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+    var minutes = Math.floor(time_left / 1000 / 60);
+    var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+    var seconds_str = seconds.toString().padStart(2,'0');
+    
+    document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+    if(time_left <= 0){
+      bell.play()
+      document.querySelector('#clock').innerHTML = "0:00";
+      clearInterval(interval);
+    }
+    }, 250)
+  }
+};
+
 
 var SpokenRecallA = {
     type: jsPsychHtmlAudioResponse,
@@ -120,6 +170,7 @@ var SpokenRecallA = {
         document.getElementById("finish-trial").style.display='none'
       }
       if(time_left <= 0){
+        
         document.querySelector('#clock').innerHTML = "0:00";
         document.querySelector('button').disabled = false;
         clearInterval(interval);
@@ -130,15 +181,35 @@ var SpokenRecallA = {
 };
 
 
+var if_SpokenResponse = {
+  timeline: [CheckMicrophone, SetupSpeechRecognition, SpokenRecallA],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+
+var if_ManualResponse = {
+  timeline: [ManualRecall],
+  conditional_function: function() {
+    console.log("MANUAL")
+      if ( parameters.ResponseType == 'Manual' )
+      { return true }
+      else { return false }
+  }
+}
+
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
-timeline.push(Welcome)
-timeline.push(CheckMicrophone)
-timeline.push(GetCategory)
-timeline.push(SetupSpeechRecognition)
 timeline.push(enter_fullscreen)
-timeline.push(SpokenRecallA)
+timeline.push(Welcome)
+timeline.push(LoadBell)
+timeline.push(GetCategory)
+timeline.push(if_SpokenResponse)
+timeline.push(if_ManualResponse)
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)

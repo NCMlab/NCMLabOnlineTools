@@ -158,29 +158,6 @@ var SpokenRecallA = {
 
 var ManualSubtraction = {
   type: jsPsychSurvey,
-/*   on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-  },*/
-  on_load: function() {console.log("WORD RECALL SETUP")},
-  on_start: function() {
-      console.log("WORD RECALL SETUP")          
-      // reset the list of indices
-    },
-
   pages: [
     [
       {
@@ -197,7 +174,7 @@ var ManualSubtraction = {
         options:  function() {
           return ResponseList
         },
-        columns: 3,
+        columns: 4,
         name: 'ListRecall', 
       },
       {
@@ -218,7 +195,6 @@ var ManualSubtraction = {
     data.task = 'SerialSubtract'
     data.ExpectedResponse = ResponseList
     console.log(data)
-      
   },
 };
 
