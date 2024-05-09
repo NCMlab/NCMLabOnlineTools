@@ -510,3 +510,29 @@ BatteryList.push({index: 10,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2023'
 })
+
+
+BatteryList.push({index: 1, 
+	name:'TESTER', 
+	list: [	
+			
+			'Image Copy'
+		],
+	//list: ['Intake Form'],
+	description: 'Test',
+	ParameterLists: [
+						'ImageCopy_Default',
+						],
+	//ParameterLists: ['EN_IntakeForm_FaCE'],
+	Instructions: [	
+					'Default',
+					],
+	//Instructions: ['Default'],
+	BatteryInstructions: '<p class="Instructions">FR: Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+	ButtonName: [
+		'Image',
+	],
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2023'
+})
