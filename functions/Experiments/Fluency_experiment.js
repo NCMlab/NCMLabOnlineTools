@@ -111,7 +111,7 @@ var ManualRecall = {
     data.category = category
     data.RecallType = 'Manual'
     data.HeardList = data.response.P0_Q1
-    data.userSaid = [] 
+    data.userSaid = data.response.P0_Q1 
   }
 };
 

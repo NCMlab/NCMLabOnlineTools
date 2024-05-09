@@ -139,7 +139,7 @@ BatteryList.push({index: 2002,
 
 // ==================================================================
 // FaCE
-// TODO FIX FLUENCY SCORING
+// TODO FIX MANUAL DELAYED RECALL
 // ==================================================================
 // 		ENGLISH
 // 			TRAINING
