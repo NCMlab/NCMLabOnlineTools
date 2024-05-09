@@ -98,15 +98,20 @@ var ManualRecall = {
     var minutes = Math.floor(time_left / 1000 / 60);
     var seconds = Math.floor((time_left - minutes*1000*60)/1000);
     var seconds_str = seconds.toString().padStart(2,'0');
-    
     document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
     if(time_left <= 0){
       bell.play()
-
       document.querySelector('#clock').innerHTML = "0:00";
       clearInterval(interval);
     }
     }, 250)
+  },
+  on_finish: function(data){
+    data.task = 'Recall'
+    data.category = category
+    data.RecallType = 'Manual'
+    data.HeardList = data.response.P0_Q1
+    data.userSaid = [] 
   }
 };
 
@@ -131,25 +136,16 @@ var SpokenRecallA = {
       HeardList = []
       userSaidWords = []
       userSaid = []
-      BlockRecallCount = 0
-      BlockIntrusionCount = 0
-      IntrusionList = []
-
       annyang.start({autorestart: true, continuous: true});
     },
     on_finish: function(data){
-      data.RecallBlock = TempRecall
-      data.HeardList = HeardList
-      data.IntrusionList = IntrusionList
-      data.RecallCount = BlockRecallCount
-      data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
-      data.type = 'A'
+      data.category = category
+      data.RecallType = 'Spoken'
+      data.HeardList = HeardList
       data.userSaid = userSaidWords
-      BlockCount++
       clearInterval(interval);
       annyang.abort()
-      console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = parameters.TimeLimit * 1000; // in milliseconds
@@ -170,7 +166,6 @@ var SpokenRecallA = {
         document.getElementById("finish-trial").style.display='none'
       }
       if(time_left <= 0){
-
         document.querySelector('#clock').innerHTML = "0:00";
         document.querySelector('button').disabled = false;
         clearInterval(interval);
@@ -179,7 +174,6 @@ var SpokenRecallA = {
       }, 250)
     }
 };
-
 
 var if_SpokenResponse01 = {
   timeline: [CheckMicrophone, SetupSpeechRecognition],
@@ -190,6 +184,7 @@ var if_SpokenResponse01 = {
       else { return false }
   }
 }
+
 var if_SpokenResponse02 = {
   timeline: [SpokenRecallA],
   conditional_function: function() {

@@ -272,7 +272,8 @@ BatteryList.push({index: 622,
 
 
 var List = []
-List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
+List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
+List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})	
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
@@ -289,6 +290,18 @@ List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: '
 //List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
 
 	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+
+	BatteryList.push({index: 6, 
+		name:'FaCE Battery: Version B', 
+		description: 'A web-based version of the FaCE using manual scoring',
+		TaskList: List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+	
+
 
 
 // --> FaCE Batteries <--
