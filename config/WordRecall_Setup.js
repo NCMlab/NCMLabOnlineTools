@@ -193,6 +193,7 @@ var FaCE_Immediate_Spoken_VerA_EN = {
 	AskForNotes: false,
 	RecordAUDIO: true
 }
+
 let FaCE_Immediate_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 	FaCE_Immediate_Spoken_VerB_EN.WordList = 'EN_FaCE_VerB'
 let FaCE_Immediate_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
@@ -210,6 +211,8 @@ let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB
 	FaCE_Immediate_Manual_VerB_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
 	FaCE_Immediate_Manual_Training_EN.RecallType = 'Manual'
+let FaCE_Delayed_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Manual_Training_EN)
+	FaCE_Delayed_Manual_Training_EN.DelayedRecallFlag = true
 	
 
 var FaCE_Delayed_EN = {
@@ -351,18 +354,21 @@ add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
 add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
 add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_002});
 
+add('FaCE_Immediate_Spoken_Training_EN', function(){ parameters = FaCE_Immediate_Spoken_Training_EN});
 add('FaCE_Immediate_Spoken_VerA_EN', function(){ parameters = FaCE_Immediate_Spoken_VerA_EN});
 add('FaCE_Immediate_Spoken_VerB_EN', function(){ parameters = FaCE_Immediate_Spoken_VerB_EN});
-add('FaCE_Immediate_Spoken_Training_EN', function(){ parameters = FaCE_Immediate_Spoken_Training_EN});
+
+add('FaCE_Immediate_Manual_Training_EN', function(){ parameters = FaCE_Immediate_Manual_Training_EN});
 add('FaCE_Immediate_Manual_VerA_EN', function(){ parameters = FaCE_Immediate_Manual_VerA_EN});
 add('FaCE_Immediate_Manual_VerB_EN', function(){ parameters = FaCE_Immediate_Manual_VerB_EN});
-add('FaCE_Immediate_Manual_Training_EN', function(){ parameters = FaCE_Immediate_Manual_Training_EN});
+
+add('FaCE_Delayed_Spoken_Training_EN', function(){ parameters = FaCE_Delayed_Spoken_Training_EN});
 add('FaCE_Delayed_Spoken_VerA_EN', function(){ parameters = FaCE_Delayed_Spoken_VerA_EN});
 add('FaCE_Delayed_Spoken_VerB_EN', function(){ parameters = FaCE_Delayed_Spoken_VerB_EN});
-add('FaCE_Delayed_Spoken_Training_EN', function(){ parameters = FaCE_Delayed_Spoken_Training_EN});
+
+add('FaCE_Delayed_Manual_Training_EN', function(){ parameters = FaCE_Delayed_Manual_Training_EN});
 add('FaCE_Delayed_Manual_VerA_EN', function(){ parameters = FaCE_Delayed_Manual_VerA_EN});
 add('FaCE_Delayed_Manual_VerB_EN', function(){ parameters = FaCE_Delayed_Manual_VerB_EN});
-add('FaCE_Delayed_Manual_Training_EN', function(){ parameters = FaCE_Delayed_Manual_Training_EN});
 
 
 
