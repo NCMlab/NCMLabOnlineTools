@@ -66,7 +66,9 @@ EN_FaCE_Training.WordListA = [
 	{'Word':'House'}, 		// 2
 	]
 EN_FaCE_Training.AlternatePronunciationsWordListA = []
-EN_FaCE_Training.WordListB = []
+EN_FaCE_Training.WordListB = [{'Word':"Neck"},		    // 0
+{'Word':'Wax'}, 	    // 1
+{'Word':'Cable'}], 		// 2
 EN_FaCE_Training.RecognitionWordList = []
 EN_FaCE_Training.AlternatePronunciationsWordListB = []
 EN_FaCE_Training.FolderName = '../../assets/SoundFiles/Words/FaCE/EN/EN-US-Neural2-F/'

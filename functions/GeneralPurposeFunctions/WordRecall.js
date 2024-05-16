@@ -163,7 +163,7 @@ var ManualRecallB = {
           var stim = 'Which words were recalled?'
           return stim }, 
         options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB))
         },
         columns: 3,
         name: 'ListRecall', 

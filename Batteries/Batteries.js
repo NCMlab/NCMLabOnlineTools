@@ -272,13 +272,15 @@ BatteryList.push({index: 622,
 
 
 var List = []
-List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
+	List.push({Task: 'Word Recall', Parameters: 'RAVLT_Manual_Immediate', Instructions: 'FaCE', IconName: ''})
+/*
+	List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
 List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})	
 //List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})	
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 	List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
 	List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
-//	List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerA _EN', Instructions: 'FaCE', IconName: ''})
+
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
 //List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
 	List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
@@ -290,7 +292,7 @@ List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Spoken', Instruct
 //List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
 
 	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
-
+*/
 	BatteryList.push({index: 6, 
 		name:'FaCE Battery: Version B', 
 		description: 'A web-based version of the FaCE using manual scoring',

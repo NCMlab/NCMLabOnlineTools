@@ -10,11 +10,11 @@ var RAVLT_Manual_Immediate = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 6,
+	NBlocks: 2,
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 150, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -211,6 +211,8 @@ let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB
 	FaCE_Immediate_Manual_VerB_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
 	FaCE_Immediate_Manual_Training_EN.RecallType = 'Manual'
+	FaCE_Immediate_Manual_Training_EN.BListFlag = true
+
 let FaCE_Delayed_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Manual_Training_EN)
 	FaCE_Delayed_Manual_Training_EN.DelayedRecallFlag = true
 	
