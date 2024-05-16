@@ -272,7 +272,7 @@ BatteryList.push({index: 622,
 
 
 var List = []
-	List.push({Task: 'Word Recall', Parameters: 'RAVLT_Manual_Immediate', Instructions: 'FaCE', IconName: ''})
+	List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
 /*
 	List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
 List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})	

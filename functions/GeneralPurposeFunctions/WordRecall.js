@@ -198,12 +198,28 @@ var ManualRecallB = {
   button_label_finish: 'Submit',
   show_question_numbers: 'off',
   on_finish: function(data) {
-      const RecallList = data.response.ListRecall
-      data.RecallList = RecallList
+    HeardList = []
+    userSaidWords = []
+    userSaid = []
+    BlockRecallCount = 0
+    BlockIntrusionCount = 0
+    IntrusionList = []
 
-      const HeardList = data.response.ListRecall
-      data.RecallCount = RecallList.length
-      
+
+    // Make the output RecallBlock
+    TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
+    // Cycle over the selected words and put them in the correct spots
+    for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
+      var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(data.response.ListRecall[i])
+    	console.log(IndexOfWordRecalled)
+      HeardList.push(data.response.ListRecall[i])
+      TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+      BlockRecallCount++
+    }
+    console.log(BlockRecallCount)
+    data.RecallCount = BlockRecallCount
+    data.RecallBlock = TempRecall
+
       var NIntrustion = 0
       if ( data.response.Intrusion01 != "" )
       {
@@ -223,7 +239,9 @@ var ManualRecallB = {
       //data.RecallList = WordListIndex
       
       data.HeardList = HeardList
+      data.userSaid = ''
       //data.RecallCount = BlockRecallCount
+      data.IntrusionList = IntrusionList
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
       data.type = 'B'
