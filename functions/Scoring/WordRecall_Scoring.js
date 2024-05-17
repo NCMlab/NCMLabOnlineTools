@@ -139,6 +139,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	Results.AllResults['Words Recalled After B'] = PostBRecall
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array A'] = ResponseArrayA
+	Results.AllResults['Block Order'] = BlockOrder
 	if ( parameters.DelayedRecallFlag )
 	{ Results.AllResults['Recall Type'] = 'Delayed' }
 	else { Results.AllResults['Recall Type'] = 'Immediate' }
