@@ -3,7 +3,7 @@ SerialSubtract_FaCE_VerA_Spoken = {
 	StepValue: 7,
     StopValue: 67,
     ShowInstructions: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
@@ -31,7 +31,7 @@ SerialSubtract_FaCE_VerB_Spoken = {
 	StepValue: 7,
     StopValue: 67,
     ShowInstructions: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
@@ -59,7 +59,7 @@ SerialSubtract_FaCE_Training_Spoken = {
 	StepValue: 2,
     StopValue: 4,
     ShowInstructions: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
@@ -81,15 +81,7 @@ SerialSubtract_FaCE_Training_Manual = {
     RecordAUDIO: false,
 }
 
-SerialSubtract_FaCE_02 = {
-	StartValue: 103,
-	StepValue: 7,
-    StopValue: 67,
-    ShowInstructions: false,
-    ShowWelcome: false,
-	ShowThankYou: false,
-    AskForNotes: false,
-}
+
 SerialSubtract_Default = {
 	StartValue: 100,
 	StepValue: 7,

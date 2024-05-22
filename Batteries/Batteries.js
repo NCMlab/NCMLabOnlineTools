@@ -273,7 +273,9 @@ BatteryList.push({index: 622,
 
 var List = []
 	
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
