@@ -205,6 +205,7 @@ let FaCE_Delayed_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_E
 let FaCE_Delayed_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
 	FaCE_Delayed_Spoken_Training_EN.DelayedRecallFlag = true
 
+
 let FaCE_Immediate_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
 	FaCE_Immediate_Manual_VerA_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
@@ -215,6 +216,10 @@ let FaCE_Immediate_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_
 
 let FaCE_Delayed_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Manual_Training_EN)
 	FaCE_Delayed_Manual_Training_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Manual_VerA_EN)
+	FaCE_Delayed_Manual_VerA_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Manual_VerB_EN)
+	FaCE_Delayed_Manual_VerB_EN.DelayedRecallFlag = true
 	
 
 var FaCE_Delayed_EN = {

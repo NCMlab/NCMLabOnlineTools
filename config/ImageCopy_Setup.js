@@ -43,16 +43,6 @@ var ImageCopy_CBprotocol = {
 	Image: 'NeckerCube.png',
 	RecordGIF: true,
 }
-var ImageCopy_FaCE = {
-	canvas_width:"400vw",
-	canvas_height:"400vh",
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	Image: 'NeckerCube.png',
-	RecordGIF: true,
-}
 
 var ImageCopy_FaCE_Training = {
 	canvas_width:"400vw",
@@ -65,10 +55,33 @@ var ImageCopy_FaCE_Training = {
 	RecordGIF: true,
 }
 
+var ImageCopy_FaCE_VerA= {
+	canvas_width:"400vw",
+	canvas_height:"400vh",
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	Image: 'NeckerCube.png',
+	RecordGIF: true,
+}
+
+var ImageCopy_FaCE_VerB= {
+	canvas_width:"400vw",
+	canvas_height:"400vh",
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	Image: 'InverseNeckerCube.png',
+	RecordGIF: true,
+}
 
 
 add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
 add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
 add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
 add('ImageCopy_FaCE_Training', function(){ parameters = ImageCopy_FaCE_Training});
+add('ImageCopy_FaCE_VerA', function(){ parameters = ImageCopy_FaCE_VerA});
+add('ImageCopy_FaCE_VerB', function(){ parameters = ImageCopy_FaCE_VerB});
 
