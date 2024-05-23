@@ -1,6 +1,8 @@
 console.log("LOADING WORD RECALL")
 var userSaidWords = []
 var ListeningFlag = false
+
+
 // Manual Recall Trial
 var ManualRecallA = {
   type: jsPsychSurvey,
@@ -25,9 +27,6 @@ var ManualRecallA = {
   on_start: function() {
       console.log("WORD RECALL SETUP")          
       // reset the list of indices
-      HeardList = []
-      BlockRecallCount = 0
-      BlockIntrusionCount = 0
     },
 
   pages: [
@@ -71,39 +70,59 @@ var ManualRecallA = {
   button_label_finish: function() { return LabelNames.Submit },
   show_question_numbers: 'off',
   on_finish: function(data) {
-      const RecallList = data.response.ListRecall
-      data.RecallList = RecallList
-      data.RecallBlock = RecallList
+    HeardList = []
+    userSaidWords = []
+    userSaid = []
+    BlockRecallCount = 0
+    BlockIntrusionCount = 0
+    IntrusionList = []
 
-      const HeardList = data.response.ListRecall
-      data.RecallCount = RecallList.length
-      
-      var NIntrustion = 0
-      if ( data.response.Intrusion01 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      if ( data.response.Intrusion02 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      if ( data.response.Intrusion03 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      //data.RecallList = WordListIndex
-      data.HeardList = HeardList
-      //data.RecallCount = BlockRecallCount
-      data.NIntrusions = NIntrustion
-      data.task = 'Recall'
-      data.type = 'A'
-      BlockCount++
-      // reset the timer
-      clearInterval(interval);
-      console.log(data)
+
+    // Make the output RecallBlock
+    TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
+    // Cycle over the selected words and put them in the correct spots
+    for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
+      var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(data.response.ListRecall[i])
+    	console.log(IndexOfWordRecalled)
+      HeardList.push(data.response.ListRecall[i])
+      TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+      BlockRecallCount++
+    }
+    console.log(BlockRecallCount)
+    data.RecallCount = BlockRecallCount
+    data.RecallBlock = TempRecall
+
+    var NIntrustion = 0
+    if ( data.response.Intrusion01 != "" )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response.Intrusion01)
+          HeardList.push(data.response.Intrusion01)
+    }
+    if ( data.response.Intrusion02 != "" )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response.Intrusion01)
+          HeardList.push(data.response.Intrusion01)
+    }
+    if ( data.response.Intrusion03 != "" )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response.Intrusion01)
+          HeardList.push(data.response.Intrusion01)
+    }
+    data.HeardList = HeardList
+    data.userSaid = ''
+    //data.RecallCount = BlockRecallCount
+    data.IntrusionList = IntrusionList
+    data.NIntrusions = NIntrustion
+    data.task = 'Recall'
+    data.type = 'A'
+    BlockCount++
+    
+    // reset the timer
+    clearInterval(interval);
+    console.log(data)
       
   },
 };
@@ -125,7 +144,7 @@ var ManualRecallB = {
           var stim = 'Which words were recalled?'
           return stim }, 
         options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordListB))
+          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB))
         },
         columns: 3,
         name: 'ListRecall', 
@@ -160,12 +179,28 @@ var ManualRecallB = {
   button_label_finish: 'Submit',
   show_question_numbers: 'off',
   on_finish: function(data) {
-      const RecallList = data.response.ListRecall
-      data.RecallList = RecallList
+    HeardList = []
+    userSaidWords = []
+    userSaid = []
+    BlockRecallCount = 0
+    BlockIntrusionCount = 0
+    IntrusionList = []
 
-      const HeardList = data.response.ListRecall
-      data.RecallCount = RecallList.length
-      
+
+    // Make the output RecallBlock
+    TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
+    // Cycle over the selected words and put them in the correct spots
+    for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
+      var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(data.response.ListRecall[i])
+    	console.log(IndexOfWordRecalled)
+      HeardList.push(data.response.ListRecall[i])
+      TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+      BlockRecallCount++
+    }
+    console.log(BlockRecallCount)
+    data.RecallCount = BlockRecallCount
+    data.RecallBlock = TempRecall
+
       var NIntrustion = 0
       if ( data.response.Intrusion01 != "" )
       {
@@ -183,8 +218,11 @@ var ManualRecallB = {
             HeardList.push(data.response.Intrusion01)
       }
       //data.RecallList = WordListIndex
+      
       data.HeardList = HeardList
+      data.userSaid = ''
       //data.RecallCount = BlockRecallCount
+      data.IntrusionList = IntrusionList
       data.NIntrusions = NIntrustion
       data.task = 'Recall'
       data.type = 'B'
@@ -220,6 +258,7 @@ var SpokenRecallA = {
       BlockRecallCount = 0
       BlockIntrusionCount = 0
       IntrusionList = []
+      // create an array for this block and fill it with -99
       TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
       annyang.start({autorestart: true, continuous: false});
     },
@@ -235,6 +274,7 @@ var SpokenRecallA = {
       BlockCount++
       clearInterval(interval);
       annyang.abort()
+      console.log(data)
       console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
@@ -331,6 +371,7 @@ var OLDSpokenRecallA = {
       // });
     },
     on_finish: function(data){
+      // TempRecall, HeardList, and IntrusionList get updated by the FinRecallWords01 in the SRT_functions.js file
       data.RecallBlock = TempRecall
       data.HeardList = HeardList
       data.IntrusionList = IntrusionList
@@ -343,6 +384,7 @@ var OLDSpokenRecallA = {
       clearInterval(interval);
       annyang.abort()
       console.log("Ended recall")
+      
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = parameters.RecallDuration * 1000; // in milliseconds

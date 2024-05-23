@@ -94,6 +94,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 			tResponseArrayA[i][j] = ResponseArrayA[j][i]
 		}
 	}
+	
 	var tResponseArrayB = create2DArray(NWordsB,ResponseArrayB.length)
 	for ( var i = 0; i < NWordsB; i++ )
 	{
@@ -138,6 +139,11 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	Results.AllResults['Words Recalled After B'] = PostBRecall
 	Results.AllResults['Total Words'] = TotalWords
 	Results.AllResults['Response Array A'] = ResponseArrayA
+	Results.AllResults['Block Order'] = BlockOrder
+	if ( parameters.DelayedRecallFlag )
+	{ Results.AllResults['Recall Type'] = 'Delayed' }
+	else { Results.AllResults['Recall Type'] = 'Immediate' }
+	
 	// Only add response array B if there actually was one
 	if ( ResponseArrayB.length > 0 )
 	{

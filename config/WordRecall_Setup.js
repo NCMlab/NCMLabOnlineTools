@@ -10,11 +10,11 @@ var RAVLT_Manual_Immediate = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 6,
+	NBlocks: 2,
 	BListFlag: true, // Check to see if there is a second set of words
 	RecallType: 'Manual',
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 150, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -168,44 +168,59 @@ var RAVLT_001 = {
 	RecordAUDIO: true,
 }
 
-var FaCE_Immediate_VersionA_EN_Manual = {
+var FaCE_Immediate_Spoken_VerA_EN = {
+	// specify the word list to use
+	WordList: 'EN_FaCE_VerA',
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
 	FolderName: 'FaCE/EN/EN-US-Neural2-F/',
-	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
-	WordList: 'FaCE_VersionA',
 	FileExtension: '.wav',
-	NBlocks: 2,// CHANGED FROM 2
+	NBlocks: 2,
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType: 'Manual',//'Spoken',
+	RecallType: 'Spoken',
 	RecallDuration: 120, // seconds
-	DelayBeforeShowingDoneButton: 8, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: true,
+	ShowThankYou: false,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
 	RecordAUDIO: true
 }
-FaCE_Immediate_VersionB_EN_Manual = FaCE_Immediate_VersionA_EN_Manual
-FaCE_Immediate_VersionB_EN_Manual.WordList = 'FaCE_VerB'
 
-FaCE_Immediate_Training_EN_Manual = FaCE_Immediate_VersionA_EN_Manual
-FaCE_Immediate_Training_EN_Manual.WordList = 'FaCE_VerB'
-
-
-FaCE_Immediate_VersionA_EN_Spoken = FaCE_Immediate_VersionA_EN_Manual
-FaCE_Immediate_VersionA_EN_Spoken.RecallType = 'Spoken'
-
-FaCE_Immediate_VersionB_EN_Spoken = FaCE_Immediate_VersionA_EN_Spoken
-FaCE_Immediate_VersionB_EN_Spoken.WordList = 'FaCE_VerB'
-
+let FaCE_Immediate_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+	FaCE_Immediate_Spoken_VerB_EN.WordList = 'EN_FaCE_VerB'
+let FaCE_Immediate_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+	FaCE_Immediate_Spoken_Training_EN.WordList = 'EN_FaCE_Training'
+let FaCE_Delayed_Spoken_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+	FaCE_Delayed_Spoken_VerA_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Spoken_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
+	FaCE_Delayed_Spoken_VerB_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
+	FaCE_Delayed_Spoken_Training_EN.DelayedRecallFlag = true
 
 
+let FaCE_Immediate_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+	FaCE_Immediate_Manual_VerA_EN.RecallType = 'Manual'
+let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
+	FaCE_Immediate_Manual_VerB_EN.RecallType = 'Manual'
+let FaCE_Immediate_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Training_EN)
+	FaCE_Immediate_Manual_Training_EN.RecallType = 'Manual'
+	FaCE_Immediate_Manual_Training_EN.BListFlag = false
+
+let FaCE_Delayed_Manual_Training_EN = Object.assign({}, FaCE_Immediate_Manual_Training_EN)
+	FaCE_Delayed_Manual_Training_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Manual_VerA_EN)
+	FaCE_Delayed_Manual_VerA_EN.DelayedRecallFlag = true
+let FaCE_Delayed_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Manual_VerB_EN)
+	FaCE_Delayed_Manual_VerB_EN.DelayedRecallFlag = true
+	
 
 var FaCE_Delayed_EN = {
 	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
@@ -346,12 +361,22 @@ add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
 add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
 add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_002});
 
-add('FaCE_Immediate_EN_VersionA', function(){ parameters = FaCE_Immediate_VersionA_EN_Manual});
+add('FaCE_Immediate_Spoken_Training_EN', function(){ parameters = FaCE_Immediate_Spoken_Training_EN});
+add('FaCE_Immediate_Spoken_VerA_EN', function(){ parameters = FaCE_Immediate_Spoken_VerA_EN});
+add('FaCE_Immediate_Spoken_VerB_EN', function(){ parameters = FaCE_Immediate_Spoken_VerB_EN});
 
-add('FaCE_Delayed_EN', function(){ parameters = FaCE_Delayed_EN});
+add('FaCE_Immediate_Manual_Training_EN', function(){ parameters = FaCE_Immediate_Manual_Training_EN});
+add('FaCE_Immediate_Manual_VerA_EN', function(){ parameters = FaCE_Immediate_Manual_VerA_EN});
+add('FaCE_Immediate_Manual_VerB_EN', function(){ parameters = FaCE_Immediate_Manual_VerB_EN});
 
-add('FaCE_Immediate_Training_EN', function(){ parameters = FaCE_Immediate_Training_EN});
-add('FaCE_Delayed_Training_EN', function(){ parameters = FaCE_Delayed_Training_EN});
+add('FaCE_Delayed_Spoken_Training_EN', function(){ parameters = FaCE_Delayed_Spoken_Training_EN});
+add('FaCE_Delayed_Spoken_VerA_EN', function(){ parameters = FaCE_Delayed_Spoken_VerA_EN});
+add('FaCE_Delayed_Spoken_VerB_EN', function(){ parameters = FaCE_Delayed_Spoken_VerB_EN});
+
+add('FaCE_Delayed_Manual_Training_EN', function(){ parameters = FaCE_Delayed_Manual_Training_EN});
+add('FaCE_Delayed_Manual_VerA_EN', function(){ parameters = FaCE_Delayed_Manual_VerA_EN});
+add('FaCE_Delayed_Manual_VerB_EN', function(){ parameters = FaCE_Delayed_Manual_VerB_EN});
 
 
-add('TEST_Spoken', function(){ parameters = TEST_Spoken});
+
+// FIX THE MANUAL SCORING OF WORD RECALL

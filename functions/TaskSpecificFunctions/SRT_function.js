@@ -21,6 +21,7 @@ var CreateResponseArray = function(NWords, NBlocks) {
 }
 
 var CreateSimpleWordList = function(WordList) {
+	console.log(WordList)
 	var SimpleList = []
 	for (var i = 0; i < WordList.length; i++) {
 		SimpleList.push(WordList[i]['Word'])

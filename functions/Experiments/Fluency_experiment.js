@@ -11,18 +11,24 @@ the computer.
 
 // =======================================================================
 // DEFINE VARIABLES
-
 var timeline = [];
 
 var interval
 var time_left
 var category
 var TempRecall
+var bell
 // =======================================================================
 // INITIAL SETUP
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
+}
+var LoadBell = {
+  type: jsPsychCallFunction,
+  func: function() {
+    bell = new Audio('assets/SoundFiles/AudioTest/bell.mp3');
+  } 
 }
 
 var SetupSpeechRecognition = {
@@ -61,6 +67,55 @@ var GetCategory = {
   }
 }
 
+var ManualRecall = {
+  type: jsPsychSurvey,
+  pages: [
+    [
+      {
+        type: 'html',
+        prompt: function() { 
+            return 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'  
+          },
+        name: 'fluidityText',
+        textbox_rows: 10,
+        required: false,
+      },
+      {
+        type: 'text',
+        prompt: " ",
+        textbox_rows: 10,
+      }
+    ]
+  ],
+  button_label_next: function() { return LabelNames.Continue },
+  button_label_back: function() { return LabelNames.Back },
+  button_label_finish: function() { return LabelNames.Submit },
+  on_load: function(){ // This inserts a timer on the recall duration
+    var wait_time = parameters.TimeLimit * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+    var minutes = Math.floor(time_left / 1000 / 60);
+    var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+    var seconds_str = seconds.toString().padStart(2,'0');
+    document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+    if(time_left <= 0){
+      bell.play()
+      document.querySelector('#clock').innerHTML = "0:00";
+      clearInterval(interval);
+    }
+    }, 250)
+  },
+  on_finish: function(data){
+    data.task = 'Recall'
+    data.category = category
+    data.RecallType = 'Manual'
+    data.HeardList = data.response.P0_Q1
+    data.userSaid = data.response.P0_Q1 
+  }
+};
+
+
 var SpokenRecallA = {
     type: jsPsychHtmlAudioResponse,
     stimulus: function() {
@@ -76,32 +131,21 @@ var SpokenRecallA = {
     post_trial_gap: 0,
     recording_duration: function() { return parameters.TimeLimit * 1000 },
 
-    on_start: function(SimpleList) {
+    on_start: function() {
       console.log("Entering on_start")
       HeardList = []
       userSaidWords = []
       userSaid = []
-      BlockRecallCount = 0
-      BlockIntrusionCount = 0
-      IntrusionList = []
-
       annyang.start({autorestart: true, continuous: true});
     },
     on_finish: function(data){
-      console.log("FINISH BUTTON PRESSED")
-      data.RecallBlock = TempRecall
-      data.HeardList = HeardList
-      data.IntrusionList = IntrusionList
-      data.RecallCount = BlockRecallCount
-      data.NIntrusions = BlockIntrusionCount
       data.task = 'Recall'
-      data.type = 'A'
+      data.category = category
+      data.RecallType = 'Spoken'
+      data.HeardList = HeardList
       data.userSaid = userSaidWords
-      BlockCount++
-      setTimeout(function(){console.log("Waiting...")},2000)
       clearInterval(interval);
       annyang.abort()
-      console.log("Ended recall")
     },
     on_load: function(){ // This inserts a timer on the recall duration
       var wait_time = parameters.TimeLimit * 1000; // in milliseconds
@@ -131,16 +175,47 @@ var SpokenRecallA = {
     }
 };
 
+var if_SpokenResponse01 = {
+  timeline: [CheckMicrophone, SetupSpeechRecognition],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+
+var if_SpokenResponse02 = {
+  timeline: [SpokenRecallA],
+  conditional_function: function() {
+    console.log("SPOKEN")
+      if ( parameters.ResponseType == 'Spoken' )
+      { return true }
+      else { return false }
+  }
+}
+
+var if_ManualResponse = {
+  timeline: [ManualRecall],
+  conditional_function: function() {
+    console.log("MANUAL")
+      if ( parameters.ResponseType == 'Manual' )
+      { return true }
+      else { return false }
+  }
+}
 
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(UpdateHeaderCall)  
-timeline.push(Welcome)
-timeline.push(CheckMicrophone)
-timeline.push(GetCategory)
-timeline.push(SetupSpeechRecognition)
 timeline.push(enter_fullscreen)
-timeline.push(SpokenRecallA)
+timeline.push(if_SpokenResponse01)
+timeline.push(Welcome)
+timeline.push(Instructions01)
+timeline.push(LoadBell)
+timeline.push(GetCategory)
+timeline.push(if_SpokenResponse02)
+timeline.push(if_ManualResponse)
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)

@@ -11,7 +11,7 @@ List.push({Task: 'Reading Test', Parameters: 'ReadingListeningList01', Instructi
 List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Immediate', Instructions: 'Default', IconName: 'Immediate'})
 List.push({Task: 'Card Sort', Parameters: 'CardSort_001', Instructions: 'Default', IconName: 'Card Sort'})
 List.push({Task: 'Pattern Comparison', Parameters: 'PatternComparison_001', Instructions: 'Default', IconName: 'Patt Comparison'})
-List.push({Task: 'Spetial DMS', Parameters: 'SpatialDMS_Adaptive', Instructions: 'Default', IconName: 'Dots'})
+List.push({Task: 'Spatial DMS', Parameters: 'SpatialDMS_Adaptive', Instructions: 'Default', IconName: 'Dots'})
 List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Delayed', Instructions: 'Default', IconName: 'Delayed'})
 List.push({Task: 'Word Recognition', Parameters: 'WordRecog_Spoken', Instructions: 'Default', IconName: 'Recognition'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
@@ -146,7 +146,7 @@ List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', Ic
 List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: '', IconName: 'BDI'})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
-BatteryList.push({index: 202, 
+BatteryList.push({index: 2002, 
 	name:'The 3C Platform', 
 	description: 'The 3C Platform',
     TaskList: List,
@@ -158,48 +158,169 @@ BatteryList.push({index: 202,
 
 
 // ==================================================================
-var List = []
-//List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
-//List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
+// FaCE
+// TODO FIX MANUAL DELAYED RECALL
+// ==================================================================
+// 		ENGLISH
+// 			TRAINING
+// 				Spoken
+var FaCE_Training_Spoken_EN_List = []
+FaCE_Training_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_Training_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Spoken_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})	
+FaCE_Training_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+// 				Manual
+var FaCE_Training_Manual_EN_List = []
+FaCE_Training_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+FaCE_Training_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_Training_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})
+FaCE_Training_Manual_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_Training_Manual', Instructions: 'FaCE', IconName: ''})	
+FaCE_Training_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_Training_EN', Instructions: 'FaCE', IconName: ''})
+
+	BatteryList.push({index: 601, 
+		name:'FaCE Battery: Training', 
+		description: 'A web-based version of the FaCE using spoken recall',
+		TaskList: FaCE_Training_Spoken_EN_List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+
+	BatteryList.push({index: 602, 
+		name:'FaCE Battery: Training', 
+		description: 'A web-based version of the FaCE using manual scoring',
+		TaskList: FaCE_Training_Manual_EN_List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+
+// VERSION A
+// 				Spoken
+var FaCE_VerA_Spoken_EN_List = []
+//FaCE_VerA_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+//FaCE_VerA_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_VerA_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Spoken_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Spoken_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_VerA', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Spoken_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_VerA_Spoken', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Spoken_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_VerA_Spoken', Instructions: 'FaCE', IconName: ''})	
+FaCE_VerA_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+// 				Manual
+var FaCE_VerA_Manual_EN_List = []
+//FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+//FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_VerA_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Manual_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Manual_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_VerB', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Manual_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_VerA_Manual', Instructions: 'FaCE', IconName: ''})
+FaCE_VerA_Manual_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_VerA_Manual', Instructions: 'FaCE', IconName: ''})	
+FaCE_VerA_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerA_EN', Instructions: 'FaCE', IconName: ''})
 
 
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Word Recall', Parameters: 'TEST_Spoken', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Fluency', Parameters: 'Fluency_FaCE_Training', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Word Recall', Parameters: 'FaCE_Default', Instructions: 'FaCE', IconName: ''})
-//List.push({Task: 'Fluency', Parameters: 'Fluency_FruitsVegetable', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_EN', Instructions: 'FaCE', IconName: ''})
-
-BatteryList.push({index: 6, 
-	name:'FaCE Battery: Training', 
-	description: 'A web-based version of the FaCE',
-    TaskList: List,
+BatteryList.push({index: 611, 
+	name:'FaCE Battery: Version A', 
+	description: 'A web-based version of the FaCE using spoken recall',
+	TaskList: FaCE_VerA_Spoken_EN_List,
 	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©GagnonBruno 2016'
 })
 
-//https://jsfiddle.net/p6sg12e4/14/
-
-
-// ==================================================================
-var List = []
-
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_Generic', Instructions: 'EetT', IconName:'Intake Form'})
-List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Backward_TwoErrors', Instructions: 'Default', IconName: 'DS, Backward'})
-BatteryList.push({index: 57, 
-	name:'Theliau and Ella', 
-	description: 'Psychology project',
-    TaskList: List,
-	BatteryInstructions: "<h1>Une étude sur la mémoire fonctionnelle et le sommeil</h1>",
-	Language:'FR',
+BatteryList.push({index: 612, 
+	name:'FaCE Battery: Version A', 
+	description: 'A web-based version of the FaCE using manual scoring',
+	TaskList: FaCE_VerA_Manual_EN_List,
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©Ella and Theliau 2024'
+	Footer: '©GagnonBruno 2016'
 })
+
+// VERSION B
+// 				Spoken
+var FaCE_VerB_Spoken_EN_List = []
+//FaCE_VerB_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+//FaCE_VerB_Spoken_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_VerB_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Spoken_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Spoken_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_VerB', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Spoken_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_VerB_Spoken', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Spoken_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_VerB_Spoken', Instructions: 'FaCE', IconName: ''})	
+FaCE_VerB_Spoken_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
+// 				Manual
+var FaCE_VerB_Manual_EN_List = []
+//FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
+//FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+FaCE_VerB_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Immediate_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Manual_EN_List.push({Task: 'Trail Making', Parameters: 'TrailMaking_FaCE', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Manual_EN_List.push({Task: 'Image Copy', Parameters: 'ImageCopy_FaCE_VerB', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Manual_EN_List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_VerB_Manual', Instructions: 'FaCE', IconName: ''})
+FaCE_VerB_Manual_EN_List.push({Task: 'Fluency', Parameters: 'FaCE_VerB_Manual', Instructions: 'FaCE', IconName: ''})	
+FaCE_VerB_Manual_EN_List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
+
+
+BatteryList.push({index: 621, 
+	name:'FaCE Battery: Version B', 
+	description: 'A web-based version of the FaCE using spoken recall',
+	TaskList: FaCE_VerB_Spoken_EN_List,
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
+})
+
+BatteryList.push({index: 622, 
+	name:'FaCE Battery: Version B', 
+	description: 'A web-based version of the FaCE using manual scoring',
+	TaskList: FaCE_VerB_Manual_EN_List,
+	BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©GagnonBruno 2016'
+})
+
+
+var List = []
+	
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
+
+
+	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
+
+	BatteryList.push({index: 6, 
+		name:'FaCE Battery: Version B', 
+		description: 'A web-based version of the FaCE using manual scoring',
+		TaskList: List,
+		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©GagnonBruno 2016'
+	})
+	
+
+
+
+// --> FaCE Batteries <--
+// English, Training
+// English, Ver A
+// English, Ver B
+// French, Ver A
+// French, Ver B
+
+//https://jsfiddle.net/p6sg12e4/14/

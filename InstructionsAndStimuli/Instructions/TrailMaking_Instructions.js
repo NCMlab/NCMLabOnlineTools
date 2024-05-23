@@ -50,7 +50,7 @@ EN_Instructions.RealTaskPrompt = [{'page':'<p class="Instructions">Press <b>Next
 EN_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle'
 
 EN_Instructions.Instructions = [
-    {'page': '<p class="Instructions">You are to draw a line without lifting the pencil, alternating from a number to a letter, while respecting the ascending numerical order and the alphabetical order. Start at the <b>1</b> and draw the line to the letter <b>A</b>, then to the <b>2</b>, and so on. End at the <b>H</b>'}, 
+    {'page': '<p class="Instructions">You are to draw a line without lifting the pencil, alternating from a number to a letter, while respecting the ascending numerical order and the alphabetical order. Start at the <b>1</b> and draw the line to the letter <b>A</b>, then to the <b>2</b>, and so on. Stop at the circle marked  <b>End.</b>'}, 
 ] 
 EN_Instructions.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
 EN_Instructions.ThankYouText = [{'page':'<p class="Instructions">Thank you.'}]

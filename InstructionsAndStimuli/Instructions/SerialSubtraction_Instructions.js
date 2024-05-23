@@ -20,10 +20,10 @@ EN_Instructions.Instructions01 = [
 	{'page': '<p class="Instructions">This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.</p>'},
 	]
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
-EN_Instructions.GetResponse01 = '<p class="Instructions">Calculate '
-EN_Instructions.GetResponse02 = ' - '
-EN_Instructions.GetResponse03 = ', and then continue to subtract '
-EN_Instructions.GetResponse04 = ' from the result until you are stopped</p>'
+EN_Instructions.GetResponse01 = 'Subtract '
+EN_Instructions.GetResponse02 = ' from '
+EN_Instructions.GetResponse03 = ' and continue to subtract '
+EN_Instructions.GetResponse04 = ' from the result even if the result is wrong.'
 add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions});
 // =============================================================
 var FR_Instructions = {}
