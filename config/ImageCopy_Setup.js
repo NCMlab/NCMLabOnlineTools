@@ -33,6 +33,19 @@ var ImageCopy_Default = {
 	Image: 'NeckerCube.png',
 	RecordGIF: true,
 }
+
+var ImageCopy_Smile = {
+	canvas_width:"400vw",
+	canvas_height:"400vh",
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	Image: 'SmileFace.png',
+	RecordGIF: true,
+}
+
+
 var ImageCopy_CBprotocol = {
 	canvas_width:"400vw",
 	canvas_height:"400vh",
@@ -79,6 +92,7 @@ var ImageCopy_FaCE_VerB= {
 
 
 add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
+add('ImageCopy_Smile', function(){ parameters = ImageCopy_Smile});
 add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
 add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
 add('ImageCopy_FaCE_Training', function(){ parameters = ImageCopy_FaCE_Training});
