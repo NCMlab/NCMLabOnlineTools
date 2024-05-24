@@ -4,11 +4,11 @@ function IntakeForm_Scoring(data, method) {
 	Results = {}	
 
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['ScoreName'] = 'Intake'
+	Results.PrimaryResults['ScoreName'] = trialData.title
 	Results.PrimaryResults['Accuracy'] = 0
 	
 	Results.AllResults = {}
-	Results.AllResults['ScoreName'] = 'Intake'
+	Results.AllResults['ScoreName'] = trialData.title
 	Results.AllResults['Accuracy'] = 0
 	
 	console.log(trialData.response)
