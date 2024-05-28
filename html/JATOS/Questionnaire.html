@@ -18,6 +18,16 @@
       $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
       $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
+        <script>
+          // SOURCE
+          // https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file
+          function dynamicallyLoadScript(url) {
+              var script = document.createElement("script");  // create a script DOM node
+              script.src = url;  // set its src to the provided URL
+              document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+          }
+      </script>
+  
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -35,11 +45,6 @@
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/stai_state.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/stai_trait.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/bdi.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/gds.js"></script>
     <script src="config/Questionnaire_Setup.js"></script>
     <script src="functions/Experiments/Questionnaire_experiment.js"></script>
     <script src="functions/Scoring/Questionnaire_Scoring.js"></script>
@@ -69,7 +74,12 @@
           console.log(Instructions)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
-          
+          // Now what we want to do is to load the file named in parameters.questionnaire[0]
+          // and located in ../InstructionsAndStimuli/EN/Questionnaires/
+          var dirName = "InstructionsAndStimuli/EN/Questionnaires/"
+          fileName = dirName+parameters.questionnaire[0]+".js"
+          console.log(fileName)
+          dynamicallyLoadScript(fileName)
       })
     </script>
 
