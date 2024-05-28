@@ -292,7 +292,8 @@ BatteryList.push({index: 622,
 
 
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', IconName: 'STAI-S'})
+
+List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
@@ -326,3 +327,7 @@ List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instr
 // French, Ver B
 
 //https://jsfiddle.net/p6sg12e4/14/
+
+// DEMO OF PLATFORM
+// Image copy -- smile
+// trail making -- leverage

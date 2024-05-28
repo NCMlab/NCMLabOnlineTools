@@ -26,6 +26,22 @@
             script.src = url;  // set its src to the provided URL
             document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
         }
+        function loadScript(url, callback)
+        {
+            // Adding the script tag to the head as suggested before
+            var head = document.head;
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+
+            // Then bind the event to the callback function.
+            // There are several events for cross browser compatibility.
+            script.onreadystatechange = callback;
+            script.onload = callback;
+
+            // Fire the loading
+            head.appendChild(script);
+        }
     </script>
   </head>    
   <body>
@@ -50,7 +66,7 @@
     <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
     <script>
       var Questionnaire_parameters = 'empty'
-      pseudoSwitch('STAI_T_001')
+      pseudoSwitch('STAI_S_001')
       pseudoSwitch('EN'+'_Instructions_'+'Default')
       console.log(Instructions)
       parameters.Language = 'EN'
@@ -60,7 +76,7 @@
       var dirName = "../InstructionsAndStimuli/EN/Questionnaires/"
       fileName = dirName+parameters.questionnaire[0]+".js"
       console.log(fileName)
-        dynamicallyLoadScript(fileName)
+      dynamicallyLoadScript(fileName)
       pseudoSwitch('EN'+'_LabelNames')
     </script>
 

@@ -160,7 +160,7 @@ var SendData = {
     var data = jsPsych.data.get()
     console.log(data)
     Results = TrailMaking_Scoring(data)
-    jsPsych.finishTrial(Results)
+    //jsPsych.finishTrial(Results)
     console.log(Results)
   }
 }
@@ -216,7 +216,7 @@ timeline.push(if_Practice)
 //timeline.push(taskPrompt)
 timeline.push(trials)
 
-
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)
+timeline.push(ThankYou)

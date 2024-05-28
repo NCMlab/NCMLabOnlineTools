@@ -1,4 +1,19 @@
 var timeline = []
+var Questionnaire = []
+console.log('Loading experiment script...')
+console.log(parameters)
+
+var LoadQuestionnaire = {
+  type: jsPsychCallFunction,
+  func: function() {
+    text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
+      console.log(text)
+      eval(text)
+      console.log(Questionnaire)
+  }
+}
+
+
 var trial = {
     type: jsPsychSurvey,
     pages: function() { 
@@ -32,10 +47,7 @@ var trial = {
           else { console.log("SCREENING NOT PERFORMED")}
       }
       console.log(parameters.questionnaire[CriteriaToUse])
-      text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
-      console.log(text)
-      eval(text)
-      console.log(Questionnaire)
+      
       return Questionnaire.pages
     },
     title: function() { return ' ' },
@@ -81,6 +93,7 @@ var CheckForAlert = {
   }
 }
 timeline.push(Welcome)
+timeline.push(LoadQuestionnaire)
 timeline.push(trial)
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)

@@ -319,7 +319,7 @@ var TrailMaking_FaCE_Training = {
     ShowInstructions: true,
     InstructionsSpoken: false,
     ShowWelcome: false,
-    ShowThankYou: false,
+    ShowThankYou: true,
     AskForNotes: false,
     change_circle_color_only_when_correct: false,
     RecordGIF: true,

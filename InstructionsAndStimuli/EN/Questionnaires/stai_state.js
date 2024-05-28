@@ -1,5 +1,5 @@
 var title = "Stait-Trait Anxiety Index - State"
-
+console.log("Loading ... " +title)
 var scale01FORWARD = [
   {value:1, text: "Not at all"},
   {value:2, text:"Somewhat"},
@@ -331,3 +331,5 @@ FR_stai_state.description = "Vous trouverez c-dessous un certain nombre d'énonc
 
 FR_stai_state.pages = FR_pages
 FR_stai_state.QuestionnaireType = 'likert'
+
+console.log("Loading ... " +title)
