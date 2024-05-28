@@ -1,5 +1,5 @@
 var title = "Stait-Trait Anxiety Index - Trait"
-
+console.log("Loading... "+title)
 var scale01FORWARD = [
   {value:1, text: "Almost never"},
   {value:2, text: "Sometimes"},
@@ -338,3 +338,4 @@ FR_stai_trait.description = "Vous trouverez ci-dessous un certain nombre d'énoc
 FR_stai_trait.pages = FR_pages
 // This is used for scoring
 FR_stai_trait.QuestionnaireType = 'likert'
+

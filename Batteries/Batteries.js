@@ -141,9 +141,9 @@ List.push({Task: 'Fluency', Parameters: 'Fluency_Animals', Instructions: 'Defaul
 List.push({Task: 'Line Bisection', Parameters: 'LineBisection_001', Instructions: 'Default', IconName: 'Line Bisect'})
 List.push({Task: 'Verbal DMS', Parameters: 'vDMS_Adaptive', Instructions: 'Default', IconName: 'Verbal DMS'})
 List.push({Task: 'Spatial DMS', Parameters: 'SpatialDMS_Adaptive', Instructions: 'Default', IconName: 'Spatial DMS'})
-List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: '', IconName: 'STAI-T'})
-List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', IconName: 'STAI-S'})
-List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: '', IconName: 'BDI'})
+List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
+List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
+List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI'})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 BatteryList.push({index: 2002, 
@@ -292,6 +292,7 @@ BatteryList.push({index: 622,
 
 
 var List = []
+List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', IconName: 'STAI-S'})
 List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})

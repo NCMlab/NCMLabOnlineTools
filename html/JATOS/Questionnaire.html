@@ -36,8 +36,8 @@
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/aes.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/stai-state.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/stai-trait.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/stai_state.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/stai_trait.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/bdi.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/gds.js"></script>
     <script src="config/Questionnaire_Setup.js"></script>
@@ -51,7 +51,7 @@
 
             if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined') {
               parameters = 'aes'  
-              InstructionsToUse = 'EN_Instructions_Default'
+              InstructionsToUse = 'Default'
             }
             else {
               parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
@@ -66,6 +66,7 @@
           console.log(LANG)
           console.log(parameters)
           pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+          console.log(Instructions)
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
           

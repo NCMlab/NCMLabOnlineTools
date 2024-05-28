@@ -1,5 +1,4 @@
 var timeline = []
-
 var trial = {
     type: jsPsychSurvey,
     pages: function() { 
