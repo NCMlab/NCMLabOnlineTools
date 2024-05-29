@@ -16,7 +16,7 @@ var STAI_S_001 = {
     variable: [],
     AskForNotes: false,
     ShowWelcome: false,
-    ShowThankYou: false,
+    ShowThankYou: true,
     ShowInstructions: false, 
 }
 

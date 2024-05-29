@@ -1,12 +1,22 @@
 var timeline = []
+var Questionnaire = []
+var CriteriaToUse = 0
+
+var LoadQuestionnaire = {
+  type: jsPsychCallFunction,  
+  func: function() {
+    text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
+    eval(text)
+  }
+}
+
+
 var trial = {
     type: jsPsychSurvey,
     pages: function() { 
-
-      console.log(parameters)
       // Are there more than one criteria?
       // If the value does not meet any of the criteria, use the first option
-      var CriteriaToUse = 0
+      
       if ( parameters.criteria.length > 1 )
         {
           
@@ -32,9 +42,6 @@ var trial = {
           else { console.log("SCREENING NOT PERFORMED")}
       }
       console.log(parameters.questionnaire[CriteriaToUse])
-      text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
-      console.log(text)
-      eval(text)
       console.log(Questionnaire)
       return Questionnaire.pages
     },
@@ -80,7 +87,9 @@ var CheckForAlert = {
     console.log(Results)
   }
 }
+
 timeline.push(Welcome)
+timeline.push(LoadQuestionnaire)
 timeline.push(trial)
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)
