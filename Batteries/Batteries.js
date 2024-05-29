@@ -331,3 +331,7 @@ List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instr
 // French, Ver B
 
 //https://jsfiddle.net/p6sg12e4/14/
+
+
+//Dominos
+//https://www.htmlsymbols.xyz/unicode/U+1F08A
