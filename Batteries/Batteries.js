@@ -292,11 +292,16 @@ BatteryList.push({index: 622,
 
 
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: '', IconName: 'STAI-S'})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: ''})
 List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: ''})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
+
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
+List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
+
+List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+
 
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
@@ -306,13 +311,13 @@ List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instr
 	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
 
 	BatteryList.push({index: 6, 
-		name:'FaCE Battery: Version B', 
-		description: 'A web-based version of the FaCE using manual scoring',
+		name:'Demonstration Battery', 
+		description: 'A demonstration of cognitive and behavioral assessments',
 		TaskList: List,
-		BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+		BatteryInstructions: "<h1>Demonstration</h1>",
 		Language:'EN',
 		RunAudioTest: true,
-		Footer: '©GagnonBruno 2016'
+		Footer: '©NCMLab 2024'
 	})
 	
 

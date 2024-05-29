@@ -133,7 +133,9 @@ var enter_fullscreen = {
 
 var Instruct = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return Instructions.Instructions[count].page},
+  stimulus: function() {
+    console.log(Instructions)
+    return Instructions.Instructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',

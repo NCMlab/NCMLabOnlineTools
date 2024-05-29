@@ -380,3 +380,32 @@ add('FaCE_Delayed_Manual_VerB_EN', function(){ parameters = FaCE_Delayed_Manual_
 
 
 // FIX THE MANUAL SCORING OF WORD RECALL
+
+
+
+var DemoEN = {
+	// specify the word list to use
+	WordList: 'EN_Demo',
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'Demo/EN/EN-US-Neural2-F/',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Spoken',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+add('DemoEN', function(){ parameters = DemoEN});

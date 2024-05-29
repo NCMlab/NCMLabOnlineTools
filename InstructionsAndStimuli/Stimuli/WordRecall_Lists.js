@@ -232,3 +232,41 @@ FR_RAVLT.RecognitionWordList = [
 	{'Word':'Fusil','Answer':false}
 ]
 add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
+
+
+// === DEMO ===========================================================================
+
+var EN_Demo = {}
+EN_Demo.WordListA = [
+	{'Word':"River"},		    // 0
+	{'Word':'Flower'}, 	    // 1
+	{'Word':'Mountain'}, 		// 2
+	]
+	EN_Demo.AlternatePronunciationsWordListA = [
+		{'Word':'FLOUR','index':1},
+	]
+	EN_Demo.WordListB = []
+	EN_Demo.RecognitionWordList = []
+	EN_Demo.AlternatePronunciationsWordListB = []
+	EN_Demo.NWords = EN_Demo.WordListA.length
+add('EN_Demo', function(){ WordRecallLists = EN_Demo});
+
+
+
+var EN_FaCE_VerB = {}
+EN_FaCE_VerB.WordListA = [
+	{'Word':"Neck"},		    // 0
+	{'Word':'Wax'}, 	    // 1
+	{'Word':'Cable'}, 		// 2
+	{'Word':'Turnip'},		// 3
+	{'Word':'Red'},	    // 4
+	{'Word':'Fish'},		// 5
+	{'Word':'Violin'},		// 6
+	]
+EN_FaCE_VerB.AlternatePronunciationsWordListA = []
+EN_FaCE_VerB.WordListB = []
+EN_FaCE_VerB.RecognitionWordList = []
+EN_FaCE_VerB.AlternatePronunciationsWordListB = []
+EN_FaCE_VerB.NWords = EN_FaCE_VerB.WordListA.length
+add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
+	

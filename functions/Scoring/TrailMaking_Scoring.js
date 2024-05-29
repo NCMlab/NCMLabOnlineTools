@@ -34,6 +34,7 @@ function TrailMaking_Scoring(data) {
 	Results.AllResults['Accuracy'] = trialData.ErrorCount 
 	Results.AllResults['Score'] = -99
 	Results.AllResults['Number of Errors'] = trialData.ErrorCount 
+	Results.AllResults['Point by Point Data'] = trialData.OutData//[0].EnterLocTime
 	//Results.AllResults['Image'] = trialData.png
 	//Results.AllResults['GIF'] = trialData.gif
 	Results.AllResults['Response Time (ms)'] = trialData.rt
