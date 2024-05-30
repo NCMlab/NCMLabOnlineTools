@@ -75,7 +75,7 @@ The first step in both cases is to pull that latest changes from this repo.
 
 ### Run MySQL
 ```
-docker run --name NeuroClinicDB -e MYSQL_ROOT_PASSWORD=0swa1dC -d -p 3306:3306 mysql:latest
+docker run --name NeuroClinicDB -e MYSQL_ROOT_PASSWORD=xxxXXXxxx -d -p 3306:3306 mysql:latest
 ```
 Then follow these instructions: https://www.jatos.org/JATOS-with-MySQL.html
 
