@@ -348,7 +348,7 @@ var TrailMaking_Demonstration = {
     InstructionsSpoken: false,
     ShowWelcome: false,
     ShowThankYou: false,
-    AskForNotes: true,
+    AskForNotes: false,
     change_circle_color_only_when_correct: false,
     RecordGIF: true,
 }

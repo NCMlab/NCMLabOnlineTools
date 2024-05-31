@@ -241,6 +241,8 @@ EN_Demo.WordListA = [
 	{'Word':"River"},		    // 0
 	{'Word':'Flower'}, 	    // 1
 	{'Word':'Mountain'}, 		// 2
+	//{'Word': 'Garden'},
+	//{'Word': 'Bicycle'},
 	]
 	EN_Demo.AlternatePronunciationsWordListA = [
 		{'Word':'FLOUR','index':1},

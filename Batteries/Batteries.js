@@ -292,29 +292,21 @@ BatteryList.push({index: 622,
 
 
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: ''})
-List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '', IconName: 'Screening'})
 List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: ''})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: ''})
+List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_Demo', Instructions: 'Default', IconName: 'Cancellation'})
 List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
-
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
-List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
-
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: ''})
+List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
 
 
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
-
-
-	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
 
 	BatteryList.push({index: 6, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
 		TaskList: List,
-		BatteryInstructions: "<h1>Demonstration</h1>",
+		BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024'
