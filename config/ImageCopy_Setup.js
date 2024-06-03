@@ -45,6 +45,17 @@ var ImageCopy_Smile = {
 	RecordGIF: true,
 }
 
+var ImageCopy_TwoCircles = {
+	canvas_width:"400vw",
+	canvas_height:"400vh",
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	Image: 'TwoCircles.png',
+	RecordGIF: true,
+}
+
 
 var ImageCopy_CBprotocol = {
 	canvas_width:"400vw",
@@ -93,6 +104,7 @@ var ImageCopy_FaCE_VerB= {
 
 add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
 add('ImageCopy_Smile', function(){ parameters = ImageCopy_Smile});
+add('ImageCopy_TwoCircles', function(){ parameters = ImageCopy_TwoCircles});
 add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
 add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
 add('ImageCopy_FaCE_Training', function(){ parameters = ImageCopy_FaCE_Training});

@@ -31,6 +31,8 @@ function SingleLetterCancellation_Scoring(data) {
   Results.PrimaryResults['ScoreName'] = 'Total Score'
   Results.PrimaryResults['Accuracy'] = TotalScore
   Results.AllResults = {}
+  Results.AllResults['ScoreName'] = 'Total Score'
+  Results.AllResults['Accuracy'] = TotalScore
   Results.AllResults['Total Score'] = TotalScore
   Results.AllResults['Left Score'] = LeftScore
   Results.AllResults['Right Score'] = RightScore
