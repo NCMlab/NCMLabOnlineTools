@@ -44,27 +44,44 @@
     <script src="PencilPaper_experiment.js"></script>
 
     <script>
-        const InstructionsToUse = 'Default'
-        pseudoSwitch('PaperPencil_001')   
-        console.log(parameters)   
-        LANG = 'EN'
+      var parameters = 'empty'
+      jatos.onLoad(() => {
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
+          parameters = 'RAVLT_Manual_Immediate'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
+        console.log(parameters)
+        pseudoSwitch(parameters)      
+        console.log(parameters)
+        //parameters = WordRecall_parameters
+        LANG = jatos.studySessionData.Language
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
-        console.log(Instructions)
+        // Load language specific stimuli
+        console.log(parameters.WordList)
+        pseudoSwitch(parameters.WordList)
+        console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(LabelNames)
-    </script>  
+        console.log(Instructions)
+      })
+    </script> 
+
 
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   <script>
-var setup = []
-var TrialCount = 1;
-var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    show_progress_bar: true,    
-    on_trial_start: function() {
+    var setup = []
+    var TrialCount = 1;
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: true,    
+      on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
       //var input = jatos.urlQueryParameters;
