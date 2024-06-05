@@ -1,0 +1,103 @@
+<div>
+<table>
+<tr>
+    <td><img src="assets/Icons/uOttawaLogo.png" alt="uOttawa Logo" style="width:6vw"></td>
+    <td><h2>INFORMATION SHEET AND INFORMED CONSENT FORM</h2></td>
+    <td><img src="assets/Icons/3CLogo.png" alt="3C Logo" style="width:6vw"></td>
+</tr>
+</table>
+<h1>Study on Aging and Memory</h1>
+<p>
+    <address>
+        <strong>Principal Investigator:</strong> Dr. Jason Steffener, Ph.D. <br />
+        Associate Professor<br />
+        Interdisciplinary School of Health Sciences, Faculty of Health Sciences<br />
+        University of Ottawa, Ottawa, ON<br />
+        (613) 562-5800 ext. 4314<br />
+        jsteffen@uottawa.ca<br />
+    </address>
+</p>
+<p><strong>Co-Investigators:</strong> Students under Dr. Steffener’s supervision</p>
+                   
+You are invited to participate in a research study on cognition and aging. We ask that you read this form carefully. 
+
+<h3>PURPOSE OF STUDY</h3>
+The purpose of this study is to test and validate remotely administered tests of memory and cognitive function. All assessments will be administered via a web browser and automatically scored. Test results will be reviewed and compared against previously conducted studies performed in person. Successful demonstration of accurate remotely assessed tests of memory and cognitive function is an important step toward building telemedicine capabilities. The data will also be used in the context of student theses.
+
+<h3>NUMBER OF PEOPLE TAKING PART IN THE STUDY</h3>
+If you agree to be in the study, you will be one of 120 people taking part in this research.
+
+<h3>LOCATION OF THE STUDY</h3>
+You may perform this study at any location of your choice.
+
+<h3>PROCEDURES FOR THE STUDY</h3> 
+There will be a one-hour-long session. During this time, you will complete a  questionnaire about your date of birth, sex, education, and handedness. You will then complete a series of cognitive tasks requiring you to listen to spoken stimuli, view visual stimuli, and make spoken responses. Audio recordings will occur for your spoken responses. Finally, you will be asked to complete multiple questionnaires about mood, lifestyle, and behavior. Some of the questions are sensitive in nature (loneliness, depression).
+
+<h3>RISKS OF TAKING PART IN THE STUDY</h3>
+You may also feel uncomfortable answering some of the questions. While completing the forms at home, you can skip any questions you do not want to answer. You may skip answering certain questions if you feel uncomfortable at any point. 
+	
+<p>If you're in immediate danger or need urgent medical support, call 911. If you or someone you know is thinking about suicide, call Talk Suicide Canada at 1-833-456-4566 or visit https://talksuicide.ca/. Support is available 24 hours a day, 7 days a week. For residents of Quebec, call 1-866-277-3553 or visit suicide.ca.
+</p>
+<p>
+To connect with a mental health professional one-on-one:
+<ul>
+	<li>call 1-888-668-6810 or text WELLNESS to 686868 for youth
+	<li>call 1-866-585-0445 or text WELLNESS to 741741 for adults
+</ul>
+You can also visit Wellness Together Canada to access different levels of support.
+</p>
+<p>
+For First Nations, Inuit, and Métis Peoples
+	Hope for Wellness Help LineCall 1-855-242-3310 (toll-free) or connect to the online Hope for Wellness chat (https://www.hopeforwellness.ca/).
+</p>
+<h3>BENEFITS OF TAKING PART IN THE STUDY</h3>
+There are no direct benefits to taking part in this study. The results of this study will allow you to contribute to the growing knowledge in the field of age-related cognitive decline that may provide considerable benefit to future individuals and the greater scientific community.
+
+<h3>CONFIDENTIALITY</h3>
+We will do all that we can to keep your personal information confidential. Your data will be assigned a specific code for storage of your personal information in password-protected files on a computer stored in a locked room. Therefore, data will be stored by code, not by name. This data will be available only to Dr. Steffener and his trained research assistants. Study data may be looked at by the Research Ethics Board and/or the  Ontario Universities Council on Quality Assurance for quality assurance. Any publications or presentations based on this research will not use your name or identify you. All data will be destroyed after 15 years.
+
+<h3>PAYMENT</h3>
+All participants will be entered into a raffle for one of two $50 gift cards to a location of their choice. For entry into this raffle, you will be asked to enter your email address. Your email address will be stored in a separate database. Therefore, there will be no linkage between your email address and the data you entered as part of this study.
+
+<h3>CONTACTS FOR QUESTIONS OR PROBLEMS</h3>
+If you have any specific questions about this research or if a study-related emergency occurs, you should contact Dr. Jason Steffener, who can be reached by telephone at 613-501-8768, email: jsteffen@uottawa.ca. You can also contact the study coordinator at ncmlab@uottawa.ca.
+
+If you have any questions about the ethical conduct of this study, you can contact the Research Ethics Board of the University of Ottawa at (613) 562-5387 during business hours for more information or by email at ethics@uottawa.ca.
+<p>
+    <address>
+        Protocol Officer for Ethics in Research<br>
+        154-550 Cumberland Street<br>
+        Tabaret Hall, University of Ottawa<br>
+        Ottawa, ON, K1N 6N5<br>
+        Tel.: (613) 562-5387<br>
+        Email: ethics@uottawa.ca<br>
+    </address>
+</p>
+
+<h3>VOLUNTARY NATURE OF STUDY</h3>
+Taking part in this study is voluntary.  You may stop participation at any time by pressing the “Stop” button at the top of the screen. This will stop the study, but submit all completed data to our database. You may also withdraw consent and end participation at any time. If you decide to withdraw, you can press the “Quit” button at the top of the screen. If this occurs, all data pertaining to your participation will be destroyed before being entered into the database. 
+
+<h3>PARTICIPANT’S CONSENT</h3>
+I have read this consent form. I give my consent to participate in this research study. I may download a copy of this informed consent form to keep for my records.
+
+
+<p>
+    <input type="checkbox" id="consent_checkbox" />
+    I agree to take part in this study.
+  </p>
+  <button type="button" id="download_consent">Download Consent form</button>
+  <button type="button" id="start">Start Experiment</button>
+</div>
+
+<script>
+    const element = document.getElementById('download_consent');
+    element.addEventListener('click', download_consent);
+    function download_consent() {
+        console.log("DOWNLOADING CONSENT...")
+        console.log(jatos.studySessionData.Language)
+        var link = document.createElement('a');
+        link.href = 'InstructionsAndStimuli/ConsentForms/EN_ConsentForm_2023.pdf';
+        link.download = 'EN_ConsentForm_2023.pdf'
+        link.dispatchEvent(new MouseEvent('click'))
+    }
+</script>
