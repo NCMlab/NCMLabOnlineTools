@@ -325,6 +325,14 @@ var TrailMaking_FaCE_Training = {
     RecordGIF: true,
 }
 
+var DemonstrationPractice = [
+    {centerX:0.2, centerY:0.2, radius:radius,label: '1'},
+    {centerX:0.8, centerY:0.2, radius:radius,label: '2'},
+    {centerX:0.8, centerY:0.8, radius:radius,label: '3'},
+    {centerX:0.2, centerY:0.8, radius:radius,label: '4'},
+
+]
+
 var Demonstration = [
     {centerX:0.2, centerY:0.2, radius:radius,label: '1'},
     {centerX:0.8, centerY:0.2, radius:radius,label: '2'},
@@ -340,10 +348,10 @@ var TrailMaking_Demonstration = {
     SuggestedHeight: 450,
     ShowTimer: true,
     Duration: 2*60*1000,
-    ShowPractice: false,
-    PracticeCircles: null,
-    PracticeSuggestedWidth: null,
-    PracticeSuggestedHeight: null,
+    ShowPractice: true,
+    PracticeCircles: DemonstrationPractice,
+    PracticeSuggestedWidth: 450,
+    PracticeSuggestedHeight: 450,
     ShowInstructions: true,
     InstructionsSpoken: false,
     ShowWelcome: false,
