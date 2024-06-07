@@ -436,3 +436,32 @@ var DemoENDelayed = {
 	RecordAUDIO: true
 }
 add('DemoENDelayed', function(){ parameters = DemoENDelayed});
+
+
+var DemoENManual = {
+	// specify the word list to use
+	WordList: 'EN_Demo',
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'Demo/EN/EN-US-Neural2-F/',
+	FileExtension: '.wav',
+	NBlocks: 2,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: true,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	Instructions01Time: 10,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+add('DemoENManual', function(){ parameters = DemoENManual});

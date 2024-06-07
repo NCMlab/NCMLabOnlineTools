@@ -290,7 +290,7 @@ BatteryList.push({index: 622,
 	Footer: '©GagnonBruno 2016'
 })
 
-
+// =======================================
 var List = []
 List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '', IconName: 'Screening'})
 List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: ''})
@@ -300,9 +300,28 @@ List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaC
 List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: ''})
 List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
 
+BatteryList.push({index: 6, 
+	name:'Demonstration Battery', 
+	description: 'A demonstration of cognitive and behavioral assessments',
+	TaskList: List,
+	BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
 
+// =======================================
+var List = []
+List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '', IconName: 'Screening'})
+List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: 'Imm Recall (Spoken)'})
+List.push({Task: 'Word Recall', Parameters: 'DemoENManual', Instructions: 'Default', IconName: 'Imm Recall (Manual)'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'Trails'})
+List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_Demo', Instructions: 'Default', IconName: 'Cancellation'})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: 'Image Copy'})
+List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: 'Delayed Recall'})
+List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
 
-	BatteryList.push({index: 6, 
+	BatteryList.push({index: 1006, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
 		TaskList: List,
@@ -311,30 +330,23 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024'
 	})
-	
-	var List = []
-	List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '', IconName: 'Screening'})
-	List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: 'Imm Recall'})
-	List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'Trails'})
-	List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_Demo', Instructions: 'Default', IconName: 'Cancellation'})
-	List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: 'Image Copy'})
-	List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: 'Delayed Recall'})
-	List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
-	
-	
-	
-		BatteryList.push({index: 1006, 
-			name:'Demonstration Battery', 
-			description: 'A demonstration of cognitive and behavioral assessments',
-			TaskList: List,
-			BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
-			Language:'EN',
-			RunAudioTest: true,
-			Footer: '©NCMLab 2024'
-		})
-		
+// =======================================		
 	
 
+		var List = []
+		List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: 'Imm Recall (Spoken)'})
+		List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: 'Image Copy'})
+		List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
+		
+			BatteryList.push({index: 1007, 
+				name:'Demonstration Battery', 
+				description: 'Une démonstration d’évaluations cognitives et comportementales',
+				TaskList: List,
+				BatteryInstructions: "<h1>Une démonstration d’évaluations cognitives et comportementales</h1>",
+				Language:'FR',
+				RunAudioTest: true,
+				Footer: '©NCMLab 2024'
+			})
 
 // --> FaCE Batteries <--
 // English, Training
