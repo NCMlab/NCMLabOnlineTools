@@ -59,7 +59,7 @@ SerialSubtract_FaCE_Training_Spoken = {
 	StepValue: 2,
     StopValue: 4,
     ShowInstructions: false,
-    ShowWelcome: true,
+    ShowWelcome: false,
 	ShowThankYou: false,
     AskForNotes: false,
     ResponseType: 'Spoken',
