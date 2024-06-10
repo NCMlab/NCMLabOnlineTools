@@ -72,19 +72,15 @@ var trial = {
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    jsPsych.finishTrial(Results)    
+    this.type.jsPsych.finishTrial(Results)    
   }
 }
 
 var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
-    
-    var data = jsPsych.data.get().filter({trial: 'Questionnaire'});
-    console.log(data.trials[0])
+    var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
     Results = Questionnaire_Scoring(data)
-    console.log(data)
-    console.log(Results)
   }
 }
 

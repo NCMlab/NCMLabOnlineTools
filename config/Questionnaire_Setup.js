@@ -34,7 +34,7 @@ var STAI_T_001 = {
     criteria: [],
     variable: [],
     AskForNotes: false,
-    ShowWelcome: true,
+    ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false,  
 }

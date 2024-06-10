@@ -101,17 +101,6 @@ var List = []
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-S'})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})	
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_FaCE_Training_Spoken', Instructions: 'FaCE', IconName: ''})
-
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Manual_VerB_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerA_EN', Instructions: 'FaCE', IconName: ''})
-List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_VerB_EN', Instructions: 'FaCE', IconName: ''})
-
-
-	List.push({Task: 'Word Recall', Parameters: 'FaCE_Delayed_Spoken_Training_EN', Instructions: 'FaCE', IconName: ''})
 
 	BatteryList.push({index: 6, 
 		name:'FaCE Battery: Version B', 

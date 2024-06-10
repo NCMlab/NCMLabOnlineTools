@@ -27,7 +27,7 @@
               console.log('Dynamically loading...')
               var script = document.createElement("script");  // create a script DOM node
               script.src = url;  // set its src to the provided URL
-              script.async = false;
+              script.async = true;
               document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
           }
 
@@ -62,7 +62,7 @@
   </head>    
   <body>
     <div id="headerButtons"></div>
-    
+    <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
@@ -81,7 +81,8 @@
     <script src="functions/Scoring/Questionnaire_Scoring.js"></script>
     <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
     <script src="functions/Experiments/Questionnaire_experiment.js"></script>
-    <script src="jatos.js"></script>
+    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
     <script>
       var Questionnaire_parameters = 'empty'
       var parameters = 'empty'   
@@ -110,8 +111,11 @@
           //parameters.ShowWelcome = true
           pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
           console.log(Instructions)
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
           // Now what we want to do is to load the file named in parameters.questionnaire[0]
           // and located in ../InstructionsAndStimuli/EN/Questionnaires/
+          
           var dirName = "InstructionsAndStimuli/EN/Questionnaires/"
           fileName = dirName+parameters.questionnaire[0]+".js"
           console.log(fileName)
@@ -119,79 +123,66 @@
           promise1 = loadScript(fileName)
           .then( data  => {
             console.log("Script loaded successfully", data);
+            // POST PROMISE
+            // Once the promise finished loding the current questionnaire then continue.
+            UpdateHeader()
+            
+
+            var setup = []
+            var TrialCount = 1;
+            var jsPsych = initJsPsych({
+                display_element: 'jspsych-target',
+                show_progress_bar: true,    
+                on_trial_start: function() {
+                  //http://127.0.0.1:9000/publix/fNTRhuguK1x
+            //      console.log(jatos.urlQueryParameters);
+                  var input = jatos.urlQueryParameters;
+                  console.log(TrialCount)
+                  TrialCount += 1
+                  // Add jatos info to the data file
+                  jsPsych.data.addProperties({assignedURLID: input.a});
+                  jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+                  jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+                  jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+                  jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+                },
+                on_finish: function() {
+                  console.log("SUBMITTIGN DATA")
+                  jatos.submitResultData(jsPsych.data.get().json())
+                  if ( SaveLocalFile ) {
+                    jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
+                  }    
+                  // update session data
+                  JATOSSessionData = jatos.studySessionData
+                  JATOSSessionData.CurrentIndex += 1
+                  jatos.studySessionData = JATOSSessionData
+                  
+                  // Go back to battery management on JATOS
+                  // If this a la carte or the end of the battery go to the usage manager
+                  if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
+                  { jatos.startComponentByTitle("Usage Manager")}
+                  else // otherwise start the next component in the battery
+                  { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+                }
+              });
+              jatos.onLoad(() => {
+                  var JATOSID = jatos.workerId;
+                  console.log(jatos)
+                  console.log(JATOSID)
+                  var resultsData = {'name':'JASON'};
+                  jatos.addJatosIds(resultsData);
+                  jsPsych.run(timeline);
+                  
+                });
+                
+                    
           })
           .catch( err => {
             console.error(err);
           });
-          
-          //load general label names
-          pseudoSwitch(LANG+'_LabelNames')
-          dynamicallyLoadScript("functions/Experiments/Questionnaire_experiment.js")
       })
     </script>
-
-<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-
-
-<script>
-var setup = []
-var TrialCount = 1;
-var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    show_progress_bar: true,    
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-//      console.log(jatos.urlQueryParameters);
-      var input = jatos.urlQueryParameters;
-      console.log(TrialCount)
-      TrialCount += 1
-      // Add jatos info to the data file
-      jsPsych.data.addProperties({assignedURLID: input.a});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-    },
-    on_finish: function() {
-      jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      
-      // Go back to battery management on JATOS
-      // If this a la carte or the end of the battery go to the usage manager
-      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponentByTitle("Usage Manager")}
-      else // otherwise start the next component in the battery
-      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
-      
-      
-    }
-  });
-  jatos.onLoad(() => {
-      var JATOSID = jatos.workerId;
-      console.log(jatos)
-      console.log(JATOSID)
-
-      var resultsData = {'name':'JASON'};
-      jatos.addJatosIds(resultsData);
-      jsPsych.run(timeline);
-      
-    });
-  </script>
-  
-  <div id="footerText"></div>
-  <script>
-    jatos.onLoad(() => {
-      // update the header button labels
-      UpdateHeader()
-    })
-  </script>
-
+<div id="footerText"></div>
 </body>
 
 </html>
