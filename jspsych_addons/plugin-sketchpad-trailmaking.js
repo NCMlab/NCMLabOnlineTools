@@ -527,7 +527,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             h.actualBoundingBoxAscent + h.actualBoundingBoxDescent;
           // The labels are offset by half the height
           this.ctx.fillText(label, centerX, centerY+actualHeight/2);
-
       }
       add_line(centerX_start, centerY_start, centerX_stop, centerY_stop, radius) {
         // draw a line connecting circles
@@ -921,6 +920,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.end_trial(info.key);
       }
       end_trial(response = null) {
+        console.log("ENDING TRIAL")
         if ( this.params.GIFRecord )
         { 
             this.enc.finish();

@@ -170,8 +170,6 @@ var enter_fullscreen = {
       on_load: function(){
         var mouseMovements = jsPsych.data.get().last(1).values()[0].mouse_tracking_data;
         var targetRect = jsPsych.data.get().last(1).values()[0].mouse_tracking_targets['#target'];
-        console.log(mouseMovements)
-        console.log(targetRect)
         var startTime = performance.now();
     
         function draw_frame() {
