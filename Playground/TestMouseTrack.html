@@ -153,11 +153,13 @@ var DemonstrationPractice02 = [
           { 
             MouseDownFlag = true 
             MouseColor = MouseDownColor
+            html += `<div style="width: 15px; height: 15px; background-color: `+MouseColor+`; position: absolute; top: ${p.y - 1 - 6}px; left: ${p.x - 1}px;"></div>`
           }
           if ( p.event == 'mouseup' )
           { 
             MouseColor = MouseUpColor
             MouseDownFlag = false 
+            html += `<div style="width: 15px; height: 15px; background-color: `+MouseColor+`; position: absolute; top: ${p.y - 1 - 6}px; left: ${p.x - 1}px;"></div>`
           }
           //html += `<div style="width: 5px; height: 5px; background-color: blue; position: absolute; top: ${p.y - 1 - targetRect.top}px; left: ${p.x - 1 - targetRect.left}px;"></div>`
           html += `<div style="width: 5px; height: 5px; background-color: `+MouseColor+`; position: absolute; top: ${p.y - 1 - 6}px; left: ${p.x - 1}px;"></div>`
