@@ -716,7 +716,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                       {
                         console.log("CORRECT CIRCLE")
                         // record data 
-                        console.log(this)
                         this.OutData[this.CompletedCircle].Count = this.CompletedCircle;
                         this.OutData[this.CompletedCircle].EnterLocTime = performance.now();
                         this.OutData[this.CompletedCircle].Label = this.Circles[this.CompletedCircle].label;
@@ -727,10 +726,10 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                             var p1 = [this.Circles[this.CompletedCircle - 1].centerX, this.Circles[this.CompletedCircle - 1].centerY]
                             var p2 = [this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY]
                             var distance = this.measure_distance(p1,p2)
-                            console.log("DISTANCE: "+distance)
                             // calculate elapsed time since leaving last circle
                             var eTime = this.OutData[this.CompletedCircle].EnterLocTime - this.OutData[this.CompletedCircle - 1].LeaveLocTime
                             var speed = distance / eTime
+                            // add measures to output data
                             this.OutData[this.CompletedCircle].Distance = distance
                             this.OutData[this.CompletedCircle].eTime = eTime
                             this.OutData[this.CompletedCircle].speed = speed
