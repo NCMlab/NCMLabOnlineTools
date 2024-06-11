@@ -66,9 +66,12 @@ var DemonstrationPractice02 = [
       show_countdown_trial_duration: false,
       finished_button_label: 'DONE!',
       extensions: [
-      {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas']}}
+      {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
     ],
     on_finish: function() {
+      console.log("DATADATADATADATA")
+        console.log(jsPsych.data.get())
+        console.log(jsPsych.data.get().last(1).values()[0])
         }
     }
     var trial_Practice02 = {
@@ -88,7 +91,7 @@ var DemonstrationPractice02 = [
       show_countdown_trial_duration: false,
       finished_button_label: 'DONE!',
       extensions: [
-      {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas']}}
+      {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
     ],
     on_finish: function() {
         }
@@ -141,9 +144,23 @@ var DemonstrationPractice02 = [
         var timeElapsed = performance.now() - startTime;
         var points = mouseMovements.filter((x) => x.t <= timeElapsed);
         var html = ``;
+        var MouseDownFlag  = false
+        const MouseUpColor = 'red'
+        const MouseDownColor = 'blue'
+        var MouseColor = MouseUpColor
         for(var p of points){
+          if ( p.event == 'mousedown' )
+          { 
+            MouseDownFlag = true 
+            MouseColor = MouseDownColor
+          }
+          if ( p.event == 'mouseup' )
+          { 
+            MouseColor = MouseUpColor
+            MouseDownFlag = false 
+          }
           //html += `<div style="width: 5px; height: 5px; background-color: blue; position: absolute; top: ${p.y - 1 - targetRect.top}px; left: ${p.x - 1 - targetRect.left}px;"></div>`
-          html += `<div style="width: 5px; height: 5px; background-color: blue; position: absolute; top: ${p.y - 1 - 6}px; left: ${p.x - 1}px;"></div>`
+          html += `<div style="width: 5px; height: 5px; background-color: `+MouseColor+`; position: absolute; top: ${p.y - 1 - 6}px; left: ${p.x - 1}px;"></div>`
         }
         document.querySelector('#replay').innerHTML = html;
         if(points.length < mouseMovements.length) {
@@ -167,7 +184,7 @@ var DemonstrationPractice02 = [
   };
   var jsPsych = initJsPsych({
     extensions: [
-      { type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 50} }]
+      { type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10} }]
     });
     jsPsych.run([trial_Practice, replay, trial_Practice02, replay])
   
