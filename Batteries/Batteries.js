@@ -270,22 +270,6 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 		Footer: '©NCMLab 2024'
 	})
 // =======================================		
-	
-
-		var List = []
-		List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: 'Imm Recall (Spoken)'})
-		List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: 'Image Copy'})
-		List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
-		
-			BatteryList.push({index: 1007, 
-				name:'Demonstration Battery', 
-				description: 'Une démonstration d’évaluations cognitives et comportementales',
-				TaskList: List,
-				BatteryInstructions: "<h1>Une démonstration d’évaluations cognitives et comportementales</h1>",
-				Language:'FR',
-				RunAudioTest: true,
-				Footer: '©NCMLab 2024'
-			})
 
 // --> FaCE Batteries <--
 // English, Training
@@ -299,3 +283,27 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 
 //Dominos
 //https://www.htmlsymbols.xyz/unicode/U+1F08A
+
+
+
+// =======================================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
+List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
+List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
+List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
+
+
+
+	BatteryList.push({index: 1007, 
+		name:'Demonstration Battery', 
+		description: 'A demonstration of cognitive and behavioral assessments',
+		TaskList: List,
+		BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024'
+	})
+// ===========

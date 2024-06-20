@@ -16,7 +16,7 @@ var STAI_S_001 = {
     variable: [],
     AskForNotes: false,
     ShowWelcome: false,
-    ShowThankYou: true,
+    ShowThankYou: false,
     ShowInstructions: false, 
 }
 
@@ -52,8 +52,41 @@ var BDI_001 = {
     ShowInstructions: false,  
 }
 
+var BDI_002 = { 
+    questionnaire: ['bdi'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var GDS_001 = { 
+    questionnaire: ['gds'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var EQ5D_001 = { 
+    questionnaire: ['eq5d'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 add('AES_001', function(){ parameters = AES_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
 add('STAI_T_001', function(){ parameters = STAI_T_001});
 add('BDI_001', function(){ parameters = BDI_001});
+add('BDI_002', function(){ parameters = BDI_002});
+add('GDS_001', function(){ parameters = GDS_001});
+add('EQ5D_001', function(){ parameters = EQ5D_001});

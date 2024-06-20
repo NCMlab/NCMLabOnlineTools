@@ -155,10 +155,10 @@ var pages = [
 //}
 
 
-var aes = {}
-aes.title = title
-aes.pages = pages
-aes.description = description
+var EN_aes = {}
+EN_aes.title = title
+EN_aes.pages = pages
+EN_aes.description = description
 
 
  
