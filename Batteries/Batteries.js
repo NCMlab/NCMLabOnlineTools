@@ -274,6 +274,21 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 
 
 
+
+
+var List = []
+	List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'Trails'})
+	BatteryList.push({index: 1, 
+		name:'Demonstration Battery', 
+		description: 'TESTER',
+		TaskList: List,
+		BatteryInstructions: "<h1>Une démonstration d’évaluations cognitives et comportementales</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024'
+	})
+	
+
 // --> FaCE Batteries <--
 // English, Training
 // English, Ver A

@@ -1,4 +1,8 @@
-
+// NOTES:
+// Something about the "trials" makes it so no additional trial can be displayed afterwards.
+// The goal is to have trails be completed, then to show the trails along with the mouse capture overlay
+// Then to perform analyses and measurements on the mouse data
+//
 var timeline = []
 var encoder // needs to be global so sketchpad can use it
 
@@ -92,6 +96,9 @@ var enter_fullscreen = {
       change_circle_color_only_when_correct: parameters.change_circle_color_only_when_correct,
       prompt: parameters.InstructionsShownWithPractice,
       show_countdown_trial_duration: parameters.ShowTimer,
+      extensions: [
+        {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
+      ],
       finished_button_label: function() {return LabelNames.Finished},
     }
   
@@ -99,8 +106,14 @@ var enter_fullscreen = {
       type: jsPsychSketchpadTrailMaking,   
       Circles: function(){ 
         return parameters.Circles}, 
-      canvas_width: function(){return CanvasWidth},
-      canvas_height: function(){return CanvasHeight},
+      canvas_width: function(){
+        console.log("Canvas Width: "+CanvasWidth)
+        return CanvasWidth
+      },
+      canvas_height: function(){
+        console.log("Canvas Height: "+CanvasHeight)
+        return CanvasHeight
+      },
       GIFRecord: function() { return parameters.RecordGIF },
       canvas_border_width: 1,
       stroke_width: pen_width,
@@ -115,6 +128,9 @@ var enter_fullscreen = {
       first_circle_label: function() {return Instructions.FirstCircleLabel},
       last_circle_label: function() {return Instructions.LastCircleLabel},
       finished_button_label: function() {return LabelNames.Finished},
+      extensions: [
+        {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
+      ],
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
@@ -127,9 +143,9 @@ var enter_fullscreen = {
       // }
       on_finish: function(data) {
         data.trial = 'Trail Making'
-        console.log(jsPsych.data.get())
       }
     }
+
 
 var Instruct = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -214,11 +230,14 @@ timeline.push(CheckPracticeFlag)
 timeline.push(if_GIFRecorder)
 timeline.push(Welcome)
 timeline.push(if_Instructions)
+
 timeline.push(if_Practice)
+
 //timeline.push(taskPrompt)
 timeline.push(trials)
-
+//timeline.push(trialREPLAY)
 
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)
+

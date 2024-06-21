@@ -527,7 +527,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             h.actualBoundingBoxAscent + h.actualBoundingBoxDescent;
           // The labels are offset by half the height
           this.ctx.fillText(label, centerX, centerY+actualHeight/2);
-
       }
       add_line(centerX_start, centerY_start, centerX_stop, centerY_stop, radius) {
         // draw a line connecting circles
@@ -720,6 +719,29 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                         this.OutData[this.CompletedCircle].Count = this.CompletedCircle;
                         this.OutData[this.CompletedCircle].EnterLocTime = performance.now();
                         this.OutData[this.CompletedCircle].Label = this.Circles[this.CompletedCircle].label;
+                        this.OutData[this.CompletedCircle].centerX = this.Circles[this.CompletedCircle].centerX;
+                        this.OutData[this.CompletedCircle].centerY = this.Circles[this.CompletedCircle].centerY;
+                        if ( this.CompletedCircle > 0)
+                        {   // calculate distance from previous circle
+                            var p1 = [this.Circles[this.CompletedCircle - 1].centerX, this.Circles[this.CompletedCircle - 1].centerY]
+                            var p2 = [this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY]
+                            var distance = this.measure_distance(p1,p2)
+                            // calculate elapsed time since leaving last circle
+                            var eTime = this.OutData[this.CompletedCircle].EnterLocTime - this.OutData[this.CompletedCircle - 1].LeaveLocTime
+                            var speed = distance / eTime
+                            // add measures to output data
+                            this.OutData[this.CompletedCircle].Distance = distance
+                            this.OutData[this.CompletedCircle].eTime = eTime
+                            this.OutData[this.CompletedCircle].speed = speed
+                        }
+                        else 
+                        { 
+                            this.OutData[this.CompletedCircle].Distance = -99
+                            this.OutData[this.CompletedCircle].eTime = -99
+                            this.OutData[this.CompletedCircle].speed = -99
+                        }
+
+
                         if ( GiveFeedback ) 
                         {
                           this.add_circles(this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY, this.Circles[this.CompletedCircle].radius, CorrectCircleColor); 
@@ -755,7 +777,9 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                     // left the Correct circle
                     if (this.InsideWhichCircle == this.CompletedCircle)
                     {
-                      this.OutData[this.CompletedCircle].LeaveLocTime = performance.now();  
+                        this.OutData[this.CompletedCircle].LeaveLocTime = performance.now();  
+                        this.OutData[this.CompletedCircle].DwellTime = this.OutData[this.CompletedCircle].LeaveLocTime - this.OutData[this.CompletedCircle].EnterLocTime
+                      
                       this.CompletedCircle++;
                     }
                   }
@@ -921,6 +945,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           this.end_trial(info.key);
       }
       end_trial(response = null) {
+        console.log("ENDING TRIAL")
         if ( this.params.GIFRecord )
         { 
             this.enc.finish();
