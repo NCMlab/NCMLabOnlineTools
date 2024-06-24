@@ -235,7 +235,7 @@ List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '
 List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: ''})
 List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: ''})
 List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_Demo', Instructions: 'Default', IconName: 'Cancellation'})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: ''})
 List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
 
@@ -274,21 +274,6 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 
 
 
-
-
-var List = []
-	List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'Trails'})
-	BatteryList.push({index: 1, 
-		name:'Demonstration Battery', 
-		description: 'TESTER',
-		TaskList: List,
-		BatteryInstructions: "<h1>Une démonstration d’évaluations cognitives et comportementales</h1>",
-		Language:'EN',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024'
-	})
-	
-
 // --> FaCE Batteries <--
 // English, Training
 // English, Ver A
@@ -325,3 +310,15 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 		Footer: '©NCMLab 2024'
 	})
 // ===========
+
+var List = []
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Music', IconName:''})	
+BatteryList.push({index: 1, 
+	name:'Questionnaires', 
+	description: 'A demonstration of cognitive and behavioral assessments',
+	TaskList: List,
+	BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})

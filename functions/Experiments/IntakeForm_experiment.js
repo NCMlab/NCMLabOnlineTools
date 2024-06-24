@@ -22,7 +22,6 @@ var trial = {
   }
 };
 
-
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
