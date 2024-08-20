@@ -2,7 +2,7 @@ var EN_Instructions = {}
 EN_Instructions.AudioTestList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','One','Two','Three','Four','Five','Six','Seven','Eight','Nine']
 EN_Instructions.Instructions01 = [
     {'page': '<p class="Instructions">This verifies that the computer\'s sound is correct and that you can hear well.</p>'},
-    {'page': '<p class="Instructions">You will hear series of letters and numbers. Click on the corresponding letter or number on the screen. Do not use your keyboard.</p>'}
+    {'page': '<p class="Instructions">You will hear series of letters and numbers. Click on the corresponding letter or number on the screen. Do not use your keyboard. If you are not sure, just click any key.</p>'}
 ]
 EN_Instructions.TrialText = 'Press the letter or number you heard'
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">Welcome to the Listening Task.'}]
