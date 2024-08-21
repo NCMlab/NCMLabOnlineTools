@@ -242,6 +242,42 @@ var TrailMakingB_Default = {
     RecordGIF: true,
 }
 
+var TrailMakingA_Default_02 = {
+    Circles: CirclesA_001,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: true,
+}
+
+var TrailMakingB_Default_02 = {
+    Circles: CirclesB_001,
+    SuggestedWidth: SuggestedWidthB,
+    SuggestedHeight: SuggestedHeightB,
+    ShowTimer: true,
+    Duration: DurationB,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesB,
+    PracticeSuggestedWidth: SuggestedWidthSampleB,
+    PracticeSuggestedHeight: SuggestedHeightSampleB,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: true,
+}
+
 var TrailMakingA_003 = {
     Circles: CirclesA_003,
     SuggestedWidth: SuggestedWidthA,
@@ -363,6 +399,9 @@ var TrailMaking_Demonstration = {
 
 add('TrailMakingA_Default', function(){ parameters = TrailMakingA_Default});
 add('TrailMakingB_Default', function(){ parameters = TrailMakingB_Default});
+add('TrailMakingA_Default_02', function(){ parameters = TrailMakingA_Default_02});
+add('TrailMakingB_Default_02', function(){ parameters = TrailMakingB_Default_02});
+
 add('TrailMakingA_001', function(){ parameters = TrailMakingA_001});
 add('TrailMakingB_001', function(){ parameters = TrailMakingB_001});
 add('TrailMakingA_003', function(){ parameters = TrailMakingA_003});

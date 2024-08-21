@@ -58,8 +58,7 @@ BatteryList.push({index: 51,
 // =====  BARBADOS ============================
 // ------ ENGLISH --------------------------------
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
+
 List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
 List.push({Task: 'Listening', Parameters: 'Listening_001', Instructions: 'Default', IconName: 'Listening'})
 List.push({Task: 'Reading Test', Parameters: 'ReadingListeningList01', Instructions: 'Default', IconName: 'Reading'})
