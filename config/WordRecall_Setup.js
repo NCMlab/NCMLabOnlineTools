@@ -118,7 +118,7 @@ var RAVLT_Manual_Delayed = {
 
 var RAVLT_Spoken_Delayed = {
 	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
-	WordList: 'RAVLT',
+	WordList: 'EN_RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 1,
 	BListFlag: false, // Check to see if there is a second set of words
@@ -128,9 +128,12 @@ var RAVLT_Spoken_Delayed = {
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
+	RecordAUDIO: true
 }
 
 var RAVLT_Spoken_Delayed_002 = {

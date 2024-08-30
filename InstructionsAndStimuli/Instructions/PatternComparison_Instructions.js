@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.Instructions01 = [{'page': '<p class="Instructions">You will be presented with two figures. \nIf the figures are the same, press "Same". \nIf they are different, press "Different".The sets of images change quickly so please respond as quickly and accurately as possible.'}]
+EN_Instructions.Instructions01 = [{'page': '<p class="Instructions">You will be presented with two figures. \nIf the figures are the same, press "Same". \nIf they are different, press "Different". The sets of images change quickly so please respond as quickly and accurately as possible.'}]
 EN_Instructions.Instructions02 = [{'page': '<p class="Instructions">First, will be a few trials with feedback for practice.'}]
 EN_Instructions.Instructions03 = [{'page': '<p class="Instructions">You will now start the real experiment with no feedback.'}]
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">Welcome to the Pattern Comparison Task.'}]
