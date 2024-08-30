@@ -58,8 +58,6 @@ BatteryList.push({index: 51,
 // =====  BARBADOS ============================
 // ------ ENGLISH --------------------------------
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
 List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
 List.push({Task: 'Listening', Parameters: 'Listening_001', Instructions: 'Default', IconName: 'Listening'})
 List.push({Task: 'Reading Test', Parameters: 'ReadingListeningList01', Instructions: 'Default', IconName: 'Reading'})
@@ -74,8 +72,8 @@ List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Forward_TwoErrors', 
 List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Backward_TwoErrors', Instructions: 'Default', IconName: 'DS, Backward'})
 List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'Default', IconName: 'Subtract'})
 List.push({Task: 'Fluency', Parameters: 'Fluency_Animals', Instructions: 'Default', IconName: 'Fluency, Animals'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_003', Instructions: 'Default', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'Trails B'})
 
 BatteryList.push({index: 19, 
 	name:'H-10-23-9755', 
@@ -85,6 +83,8 @@ BatteryList.push({index: 19,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
     TaskList: List,
+	FullScreenMode: false,
+
 })
 
 // ====== DEMONSTRATION OF ALL AVAILABLE TASKS ==============================

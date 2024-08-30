@@ -44,7 +44,7 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
     else {
       // portrait
       console.log('portrait')
-      CanvasWidth = ScreenWidth*0.95
+      CanvasWidth = ScreenWidth*0.8
       CanvasHeight = ScreenWidth / ratio
     }
   }

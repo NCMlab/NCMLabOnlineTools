@@ -254,9 +254,9 @@ var TrailMakingA_003 = {
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: true,
-	ShowThankYou: true,
-    AskForNotes: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
     RecordGIF: true,
 }
 
@@ -272,9 +272,9 @@ var TrailMakingB_003 = {
     PracticeSuggestedHeight: SuggestedHeightSampleB,
     ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: true,
-	ShowThankYou: true,
-    AskForNotes: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
     RecordGIF: true,
 }
 
