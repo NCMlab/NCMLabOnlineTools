@@ -410,3 +410,48 @@ var FR_IntakeForm_EetT = {}
 FR_IntakeForm_EetT.title = FormTitle
 FR_IntakeForm_EetT.pages = FR_pages
 add('FR_Instructions_EetT', function(){ Instructions = FR_IntakeForm_EetT });
+
+
+// ==================================================
+
+var FormTitle = 'MHRI Intake Form'
+var pages = [
+    [
+        {
+            type: 'multi-choice',
+            prompt: 'Gender',
+            name: 'Gender',
+            options: ['Male', 'Female', 'Neutral'],
+            required: true,
+        },
+        {
+          type: 'text',
+          prompt: 'Age',
+          name: 'Age',
+          required: true,
+      },
+      {
+          type: 'text',
+          prompt: 'Height (cm or feet/inches)',
+          name: 'Height',
+          required: true,
+      },
+      {
+          type: 'text',
+          prompt: 'Weight (kg or lbs)',
+          name: 'Weight',
+          required: true,
+      },
+    ]
+]
+
+var EN_IntakeForm_Music = {}
+EN_IntakeForm_Music.title = FormTitle;
+EN_IntakeForm_Music.pages = pages;
+EN_IntakeForm_Music.Instructions01 = [
+    {
+        'page': '<p class="Instructions">Instructions are written here.',
+    }
+]
+add('EN_Instructions_Music', function(){ Instructions = EN_IntakeForm_Music });
+

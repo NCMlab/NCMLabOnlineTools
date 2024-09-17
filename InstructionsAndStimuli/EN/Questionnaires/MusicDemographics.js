@@ -1,31 +1,52 @@
 
+var FormTitle = 'MHRI Intake Form'
+var pages = [
+    [
+        {
+            type: 'text',
+            prompt: 'Gender',
+            name: 'Gender',
+            required: true,
+        },
+        {
+            type: 'text',
+            prompt: 'Age',
+            name: 'Age',
+            required: true,
+        },
+        {
+            type: 'text',
+            prompt: 'Height (cm or feet/inches)',
+            name: 'Height',
+            required: true,
+        },
+        {
+            type: 'text',
+            prompt: 'Weight (kg or lbs)',
+            name: 'Weight',
+            required: true,
+        },
+    ]
+]
 
-Investigating the effects of music-based interventions on the health and well-being
-Demographic Questionnaire
-Music and Health Research Institute
-University of Ottawa
-©
-2022 Music and Health Research Institute
-2
-GENERAL INFORMATION
-GENERAL INFORMATION
-Participant Name or ID#
-Email address
-Phone number
-Date
-PLEASE CHECK THE BOX NEXT TO, OR ENTER YOUR RESPONSES TO THE QUESTIONS PRESENTED BELOW.
-SECTION 1: DEMOGRAPHIC INFORMATION
-QUESTIONS
-YOUR RESPONSES
-1.1
+var EN_IntakeForm_Music = {}
+EN_IntakeForm_Music.title = FormTitle;
+EN_IntakeForm_Music.pages = pages;
+EN_IntakeForm_Music.Instructions01 = [
+    {
+        'page': '<p class="Instructions">Instructions are written here.',
+    }
+]
+add('EN_Instructions_Music', function(){ Instructions = EN_IntakeForm_Music });
+/*
 Gender
-1.2
+
 Age
-1.3
+
 Height (cm or feet/inches)
-1.4
+
 Weight (kg or lbs)
-1.5
+
 What is the highest level of education you have completed/
 No formal education
 High school diploma or equivalent
@@ -34,17 +55,16 @@ Bachelor’s degree
 Master’s degree
 Doctoral degree
 Other: __________________
-3
-1.6
+
 What is your employment status?
 Employed full-time
 Employed part-time
 Retired
 Unemployed
 Other: ___________________
-1.7
+
 What type of work do you do (or did you do before retirement)?
-1.8
+
 Do you live alone or with others?
 Alone
 With spouse / partner
@@ -52,9 +72,9 @@ With family members
 With caregivers
 In assisted living facility
 Other: ___________________
-1.9
+
 What is your primary language(s)?
-1.10
+
 Are there any language or communication challenges you have?
 Yes
 No

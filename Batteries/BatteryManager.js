@@ -4,7 +4,7 @@
 var timeline = []
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: FullScreenMode
+  fullscreen_mode: function() { return FullScreenMode }
 }
 // List of the names of the different tasks
 var TaskNameList = []
@@ -49,6 +49,8 @@ var SetupBattery = {
       BatteryInstructions = CurrentBattery.BatteryInstructions
       FooterText = CurrentBattery.Footer
       console.log(FooterText)
+      // Check for full screen
+      FullScreenMode = CurrentBattery.FullScreenMode
         // Make a task list of the components of the battery
       //for ( var i = 0; i < TaskList.length; i ++ ) {
       //  TaskIconList.push(ComponentList.find(item => item.name === TaskList[i]).iconFileName)
@@ -209,7 +211,7 @@ var trial2 = {
   timeline.push(trial0)
 timeline.push(if_node_BatteryInstructions)
 timeline.push(SetupBattery)
-//timeline.push(enter_fullscreen)
+timeline.push(enter_fullscreen)
 timeline.push(CheckFirstTimeThrough)
 
 timeline.push(CheckLaterTimeThrough)

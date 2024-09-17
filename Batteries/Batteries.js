@@ -66,6 +66,38 @@ BatteryList.push({index: 51,
 })
 
 
+// =====  BARBADOS ============================
+// ------ ENGLISH --------------------------------
+var List = []
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
+List.push({Task: 'Listening', Parameters: 'Listening_001', Instructions: 'Default', IconName: 'Listening'})
+List.push({Task: 'Reading Test', Parameters: 'ReadingListeningList01', Instructions: 'Default', IconName: 'Reading'})
+List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Immediate', Instructions: 'Default', IconName: 'Immediate'})
+List.push({Task: 'Card Sort', Parameters: 'CardSort_001', Instructions: 'Default', IconName: 'Card Sort'})
+List.push({Task: 'Pattern Comparison', Parameters: 'PatternComparison_001', Instructions: 'Default', IconName: 'Patt Comparison'})
+List.push({Task: 'Spatial DMS', Parameters: 'SpatialDMS_Adaptive', Instructions: 'Default', IconName: 'Dots'})
+List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_001', Instructions: 'Default', IconName: 'Cancellation'})
+List.push({Task: 'Word Recall', Parameters: 'RAVLT_Spoken_Delayed', Instructions: 'Default', IconName: 'Delayed'})
+List.push({Task: 'Word Recognition', Parameters: 'WordRecog_Spoken', Instructions: 'Default', IconName: 'Recognition'})
+List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Forward_TwoErrors', Instructions: 'Default', IconName: 'DS, Forward'})
+List.push({Task: 'Digit Span', Parameters: 'DigitSpan_Audio_Backward_TwoErrors', Instructions: 'Default', IconName: 'DS, Backward'})
+List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'Default', IconName: 'Subtract'})
+List.push({Task: 'Fluency', Parameters: 'Fluency_Animals', Instructions: 'Default', IconName: 'Fluency, Animals'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_003', Instructions: 'Default', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'Trails B'})
+
+BatteryList.push({index: 19, 
+	name:'H-10-23-9755', 
+    description: 'Test',
+    BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+    Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+    TaskList: List,
+	FullScreenMode: false,
+
+})
+
 // ====== DEMONSTRATION OF ALL AVAILABLE TASKS ==============================
 List = []
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
@@ -246,7 +278,7 @@ List.push({Task: 'Screening', Parameters: 'BriefScreening_DEMO', Instructions: '
 List.push({Task: 'Word Recall', Parameters: 'DemoEN', Instructions: 'Default', IconName: ''})
 List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: ''})
 List.push({Task: 'Cancellation Task', Parameters: 'Cancellation_Demo', Instructions: 'Default', IconName: 'Cancellation'})
-List.push({Task: 'Image Copy', Parameters: 'ImageCopy_Smile', Instructions: 'FaCE', IconName: ''})
+List.push({Task: 'Image Copy', Parameters: 'ImageCopy_TwoCircles', Instructions: 'FaCE', IconName: ''})
 List.push({Task: 'Word Recall', Parameters: 'DemoENDelayed', Instructions: 'Default', IconName: ''})
 List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default', IconName: 'BDI/GDS'})
 
@@ -285,21 +317,6 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 
 
 
-
-
-var List = []
-	List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'Trails'})
-	BatteryList.push({index: 1, 
-		name:'Demonstration Battery', 
-		description: 'TESTER',
-		TaskList: List,
-		BatteryInstructions: "<h1>Une démonstration d’évaluations cognitives et comportementales</h1>",
-		Language:'EN',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024'
-	})
-	
-
 // --> FaCE Batteries <--
 // English, Training
 // English, Ver A
@@ -317,12 +334,20 @@ var List = []
 
 // =======================================
 var List = []
+List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
 List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
 List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
+List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Default', IconName: 'GAS-10'})
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Questionnaire', Parameters: 'ESS_001', Instructions: 'Default', IconName: 'ESS'})
+List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default', IconName: 'DSSI'})
+
+
 
 
 
@@ -336,3 +361,15 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 		Footer: '©NCMLab 2024'
 	})
 // ===========
+
+var List = []
+List.push({Task: 'Survey', Parameters: 'Survey_EN', Instructions: 'Music', IconName:''})	
+BatteryList.push({index: 1, 
+	name:'Questionnaires', 
+	description: 'A demonstration of cognitive and behavioral assessments',
+	TaskList: List,
+	BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})

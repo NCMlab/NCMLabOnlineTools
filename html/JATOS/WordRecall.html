@@ -52,8 +52,12 @@
  
     <script>
       
+
+
+
       var parameters = 'empty'
       jatos.onLoad(() => {
+        
         if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
         {
           parameters = 'RAVLT_Manual_Immediate'
@@ -73,7 +77,9 @@
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         // Load language specific stimuli
         console.log(parameters.WordList)
+        // load up the word lists
         pseudoSwitch(parameters.WordList)
+        
         console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
