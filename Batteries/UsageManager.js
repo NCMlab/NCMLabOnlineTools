@@ -97,7 +97,7 @@ var if_node_Battery = {
     }
 }
 
-timeline.push(enter_fullscreen)
+//timeline.push(enter_fullscreen)
 timeline.push(trial0)
 timeline.push(SetupBattery)
 timeline.push(if_node_ALaCarte)
