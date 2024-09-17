@@ -106,7 +106,7 @@ var SetupBattery = {
 
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
-timeline.push(enter_fullscreen)
+//timeline.push(enter_fullscreen)
 timeline.push(trial0)
 timeline.push(SetupBattery)
 timeline.push(trial2)
