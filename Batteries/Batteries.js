@@ -65,6 +65,16 @@ BatteryList.push({index: 51,
     TaskList: List,
 })
 
+BatteryList.push({index: 1051, 
+	name:'H-10-23-9755', 
+    description: 'Test',
+    BatteryInstructions: '<p class="Instructions">Bienvenu(e) au Laboratoire de carte cognitive cerebrale de l\'Université d\'Ottawa - <b>Évaluation cognitive</b>',
+    Language:'FR',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+    TaskList: List,
+})
+
 
 // =====  BARBADOS ============================
 // ------ ENGLISH --------------------------------
