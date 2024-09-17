@@ -27,6 +27,17 @@ BatteryList.push({index: 16,
 	Footer: '©NCMLab 2024',
     TaskList: List,
 })
+
+BatteryList.push({index: 1016, 
+	name:'H-10-23-9755', 
+    description: 'Test',
+    BatteryInstructions: '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+    Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+    TaskList: List,
+})
+
 // ------ FRENCH --------------------------------
 var List = []
 List.push({Task: 'Screening', Parameters: 'BriefScreening', Instructions: '', IconName: 'Screening'})
