@@ -46,11 +46,10 @@ var RAVLT_Spoken_Immediate = {
 	AskForNotes: false,
 	RecordAUDIO: true
 }
-
 var RAVLT_Spoken_Immediate_002 = {
 	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
-	WordList: 'RAVLT',
+	WordList: 'FR_RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 5,
 	BListFlag: true, // Check to see if there is a second set of words
