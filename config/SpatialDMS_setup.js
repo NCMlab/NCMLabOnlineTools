@@ -44,6 +44,30 @@ RetOnTime = 500
 // probe type and to have six trials per block and minimal proactive interference from 
 // previous trials
 
+
+SpatialDMS_Default = {
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	MaxTrials: 40,
+	NPracticeTrials: 4,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 20,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	MaskOnTime: 300,
+	StimOnTime: 2500,
+	RetOnTime: 3200,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000,
+}
+
 SpatialDMS_Adaptive = {
 	ShowWelcome: false,
 	WelcomeSpoken: false,

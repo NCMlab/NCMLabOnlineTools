@@ -1,4 +1,11 @@
 
+var ClockDrawing_Default = {
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	RecordGIF: true,
+	AskForNotes: false,
+}
 
 var ClockDrawing_001 = {
 	ShowWelcome: true,

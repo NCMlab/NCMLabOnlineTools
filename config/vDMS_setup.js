@@ -289,6 +289,18 @@ var DMSLetterMRIList002 = [
 ]
 
 
+
+vDMS_Default = {
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	AskForNotes: false,
+	InstructionsSpoken: false
+}
+
+
 vDMS_Adaptive = {
 	ShowWelcome: true,
 	ShowThankYou: true,

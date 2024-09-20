@@ -1,3 +1,26 @@
+Parameters = {
+	Current: 3, // value to start at
+	MinValue: 1, // minimum value possible
+	MaxValue: 30, // maximum value possible
+	StepSize: 1, // step size
+	NUp: 2, // number of required correct answers in a row before increasing load
+	NDown: 1, // number of required incorrect answers in a row before decreasing load
+	FastStart: true, // At the bginning increase load after each correct response until the 
+	// first incorrect response is made
+	MaxReversals: 50, // Not implemented
+	MaxTime: 420, // Not implemented
+	MaxTrials: 14,
+}
+var DigitSpan_Default = {
+	direction: 'forward',
+	StimulusMode: 'audio', // 'visual',
+	DeliveryMethod: 'fixed',//'staircase','fixed','numberErrors'
+	Parameters: Parameters,
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true, 
+}
+
 // ===================================================
 var TimeGapBetweenAudioLetters = 500 // milliseconds
 var NumberDurationVisual = 1000 // milliseconds

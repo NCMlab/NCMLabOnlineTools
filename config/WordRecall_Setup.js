@@ -6,6 +6,24 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 
+var RAVLT_Default = {
+	FolderName: 'RAVLTSet001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 2,
+	BListFlag: true, // Check to see if there is a second set of words
+	RecallType: 'Manual',
+	RecallDuration: 60, // seconds
+	TimePerWord: 150, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true, // not implemented
+	AskForNotes: false,
+	RecordAUDIO: false,
+}
+
+
 var RAVLT_Manual_Immediate = {
 	FolderName: 'RAVLTSet001/',
 	WordList: 'RAVLT',

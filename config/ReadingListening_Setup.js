@@ -2,6 +2,18 @@
 // "IEEE Recommended Practice for Speech Quality Measurements."
 
 
+var ReadingListeningList_Default = {} 
+ReadingListeningList01.ShowWelcome = false,
+ReadingListeningList01.WelcomeSpoken = false,
+ReadingListeningList01.ShowInstructions = true,
+ReadingListeningList01.InstructionsSpoken = false,
+ReadingListeningList01.ShowThankYou = false,
+ReadingListeningList01.AskForNotes = false,
+ReadingListeningList01.RecordAUDIO = true,
+ReadingListeningList01.ScoreNeeded = 0.7,
+ReadingListeningList01.SentencesToRepeat = 3
+
+
 var ReadingListeningList01 = {} 
 ReadingListeningList01.ShowWelcome = false,
 ReadingListeningList01.WelcomeSpoken = false,

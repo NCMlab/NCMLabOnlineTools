@@ -206,6 +206,25 @@ var ShowTimerFaCE = false;
 // task duration
 var DurationFaCE = 1000*60*5
 
+
+var TrailMaking_Default = {
+    Circles: CirclesA_001,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    ShowInstructions: false,
+    InstructionsSpoken: false,
+    ShowWelcome: true,
+	ShowThankYou: true,
+    AskForNotes: false,
+    RecordGIF: true,
+}
+
 var TrailMakingA_Default = {
     Circles: CirclesA_001,
     SuggestedWidth: SuggestedWidthA,
