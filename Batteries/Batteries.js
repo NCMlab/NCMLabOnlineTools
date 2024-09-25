@@ -341,8 +341,8 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 //https://www.htmlsymbols.xyz/unicode/U+1F08A
 
 
-
-// =======================================
+// ============================================
+// ====== LIST OF QUESTIONNAIRES 1007 ==============
 var List = []
 List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
 List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
@@ -356,11 +356,6 @@ List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Defaul
 List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
 List.push({Task: 'Questionnaire', Parameters: 'ESS_001', Instructions: 'Default', IconName: 'ESS'})
 List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default', IconName: 'DSSI'})
-
-
-
-
-
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
@@ -370,7 +365,7 @@ List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024'
 	})
-// ===========
+// ============================================
 
 var List = []
 List.push({Task: 'Survey', Parameters: 'Survey_EN', Instructions: 'Music', IconName:''})	
