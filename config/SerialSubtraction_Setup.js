@@ -1,3 +1,17 @@
+SerialSubtract_Default = {
+	StartValue: 100,
+	StepValue: 7,
+    StopValue: 50,
+    ShowInstructions: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    ResponseType: 'Spoken',
+    TimeLimit: 120, // seconds
+    DelayBeforeShowingDoneButton: 10,
+    RecordAUDIO: true,
+}
+
 SerialSubtract_FaCE_VerA_Spoken = {
 	StartValue: 101,
 	StepValue: 7,

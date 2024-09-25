@@ -1,3 +1,14 @@
+Fluency_Default = {
+	Category: 'Animals',
+	TimeLimit: 60, // seconds
+	ResponseType: 'Spoken',
+	ShowInstructions: true,
+    ShowWelcome: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordAUDIO: true,
+}
+
 Fluency_Animals = {
 	Category: 'Animals',
 	TimeLimit: 60, // seconds

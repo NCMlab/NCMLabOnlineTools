@@ -14,6 +14,20 @@ var MatrixList = [
  ]
 
 
+ var MatrixReasoning_Default = {
+  StimulusFolderName: "ICAR",
+  StimList: MatrixList,
+  StimWidth: "70vw", // how large the options are
+  StimHeight: "70vh",
+  FixationTimeBetweenTrials: 2000,// milliseconds
+  OptionMapping: '123456', // used for scoring
+  AllowedTime: 10*60, // seconds
+  ShowWelcome: false,
+	ShowThankYou: false,
+  ShowInstructions: true,
+}
+
+
 var MatrixReasoning_ICAR = {
   StimulusFolderName: "ICAR",
   StimList: MatrixList,
