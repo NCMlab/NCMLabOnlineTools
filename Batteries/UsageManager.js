@@ -51,7 +51,7 @@ var SetupBattery = {
           // Add things to the jatos session data
           TaskCompleted = Array(TaskList.length).fill(0)
           console.log(TaskCompleted)
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList} 
+          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList} 
           // add the ID to return to the JATOS battery
           JATOSSessionData.Language = Language
           JATOSSessionData.TaskCompleted = TaskCompleted
