@@ -1,4 +1,5 @@
 var title = "Beck Depression Index"
+var shortTitle = 'BDI'
 var instructions = "This questionnaire consists of 21 groups of statements. Please read each group of statements carefully. And then pick out the one statement in each group that best describes the way you have been feeling during the past two weeks, including today. Circle the number beside the statement you have picked. If several statements in the group seem to apply equally well, circle the highest number for that group."
 var reference = ""
 var values = [0, 1, 2, 3]
@@ -244,6 +245,7 @@ var pages = [
 
 var EN_bdi = {}
 EN_bdi.title = title
+EN_bdi.shortTitle = shortTitle
 EN_bdi.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
 EN_bdi.pages = pages
 EN_bdi.values = values
@@ -530,6 +532,7 @@ var pages = [
 
 var FR_bdi = {}
 FR_bdi.title = title
+FR_bdi.shortTitle = shortTitle
 FR_bdi.pages = pages
 FR_bdi.values = values
 FR_bdi.QuestionnaireType = 'multi-choice'

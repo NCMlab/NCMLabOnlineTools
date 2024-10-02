@@ -31,7 +31,7 @@ var SetupBattery = {
 
         CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
         // read the data for this trial
-        
+        console.log(CurrentBattery)
         // find the battery selected and extract its list of components
         let ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
         let TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
@@ -67,6 +67,7 @@ var SetupBattery = {
         jatos.studySessionData = JATOSSessionData
         console.log(jatos.batchSession.getAll())
         console.log(jatos)
+        console.log(DDDDD)
     }
 }
 
