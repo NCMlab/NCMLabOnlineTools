@@ -223,6 +223,7 @@ var TrailMaking_Default = {
 	ShowThankYou: true,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsA'
 }
 
 var TrailMakingA_Default = {
@@ -241,6 +242,7 @@ var TrailMakingA_Default = {
 	ShowThankYou: true,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsA'
 }
 
 var TrailMakingB_Default = {
@@ -259,6 +261,7 @@ var TrailMakingB_Default = {
 	ShowThankYou: true,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsB'
 }
 
 var TrailMakingA_Default_02 = {
@@ -277,6 +280,7 @@ var TrailMakingA_Default_02 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsA'
 }
 
 var TrailMakingB_Default_02 = {
@@ -295,6 +299,7 @@ var TrailMakingB_Default_02 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsB'
 }
 
 var TrailMakingA_003 = {
@@ -313,6 +318,7 @@ var TrailMakingA_003 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsA'
 }
 
 var TrailMakingB_003 = {
@@ -331,6 +337,7 @@ var TrailMakingB_003 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
+    shortTitle: 'TrailsB'
 }
 
 var TrailMaking_FaCE = {
@@ -414,6 +421,7 @@ var TrailMaking_Demonstration = {
     AskForNotes: false,
     change_circle_color_only_when_correct: false,
     RecordGIF: true,
+    shortTitle: 'TrailsA'
 }
 
 add('TrailMakingA_Default', function(){ parameters = TrailMakingA_Default});

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>NCMLab</title>
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css">
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script> 
+        // use jquery to load up the header button html content 
+        // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+        $(function(){$("#footerButtons").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+    </script> 
+  </head>    
+  <body>
+    <div id="headerButtons"></div>
+    <div id="footerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
+    <script>
+      let url_running = window.location.href;
+      let position = url_running.search("localhost");
+    </script>
+    <script>
+      jatos.onLoad(() => {
+          console.log(jatos.studySessionData)
+          var BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
+          var UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
+          var Language = jatos.studySessionData.Language
+          // load the language specific instructions
+          LANG = jatos.studySessionData.Language
+          console.log(LANG)
+          
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
+          // The setup file decides which instruction set to provide. 
+          // In the setup file the decision is stated as a string which
+          // is evaluated here
+
+      })
+    </script>   
+    <script src="Batteries/Batteries.js"></script>
+    <script src="Batteries/RunSingleTask.js"></script>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  
+  <script>
+  var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      on_trial_start: function() {
+        //http://127.0.0.1:9000/publix/fNTRhuguK1x
+        // Add jatos info to the data file
+        URLParameters = jatos.urlQueryParameters
+        jsPsych.data.addProperties({Battery: URLParameters.Battery});
+        jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+        jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+        jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+        jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      }
+    });
+
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);
+      jsPsych.run(timeline);
+    });
+  </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => {
+        // update the header button labels
+        UpdateHeader()
+      })
+    </script>
+  
+  </body>
+</html>

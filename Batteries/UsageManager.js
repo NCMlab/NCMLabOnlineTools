@@ -97,9 +97,24 @@ var if_node_Battery = {
         }
     }
 }
+var if_node_SingleTask = {
+    type: jsPsychCallFunction,
+    func: function() {    
+        data = jsPsych.data.get()
+        
+        if (jatos.urlQueryParameters.TaskIndex != null ) 
+        {
+            JATOSSessionData.UsageType = 'SingleTask'
+            jatos.studySessionData = JATOSSessionData
+            jatos.startComponentByTitle("Run Single Task")
+        }
+    }
+}
+
 
 //timeline.push(enter_fullscreen)
 timeline.push(trial0)
 timeline.push(SetupBattery)
+timeline.push(if_node_SingleTask)
 timeline.push(if_node_ALaCarte)
 timeline.push(if_node_Battery)

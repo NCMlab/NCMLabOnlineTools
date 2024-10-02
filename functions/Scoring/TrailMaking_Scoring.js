@@ -43,5 +43,9 @@ function TrailMaking_Scoring(data) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 	Results.AllResults['Scoring Notes'] = Instructions.NotesForResultsPage
+	Results.AllResults['ShortTitle'] = '-99'
+	if ( data.ShortTitle !== 'undefined' ){
+		Results.AllResults['ShortTitle'] = data.shortTitle
+	}		
 	return Results
 }

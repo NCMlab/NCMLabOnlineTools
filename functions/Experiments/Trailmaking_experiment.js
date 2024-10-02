@@ -176,6 +176,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
+    data.shortTitle = parameters.shortTitle
     console.log(data)
     Results = TrailMaking_Scoring(data)
     jsPsych.finishTrial(Results)
