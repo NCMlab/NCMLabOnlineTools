@@ -1,4 +1,5 @@
 var title = "Stait-Trait Anxiety Index - Trait"
+var shortTitle = 'STAI-T'
 console.log("Loading... "+title)
 var scale01FORWARD = [
   {value:1, text: "Almost never"},
@@ -162,6 +163,7 @@ var pages = [
 
 var EN_stai_trait = {}
 EN_stai_trait.title = title
+EN_stai_trait.shortTitle = shortTitle
 EN_stai_trait.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then circle the appropriate response below the statement to indicate how you generally feel. There are no right or wrong answers. Do not spend too much time on a single statement, but give the answer that comes closest to how you generally feel."
 EN_stai_trait.pages = pages
 // This is used for scoring
@@ -334,6 +336,7 @@ var FR_pages = [
 
 var FR_stai_trait = {}
 FR_stai_trait.title = title
+FR_stai_trait.shortTitle = shortTitle
 FR_stai_trait.description = "Vous trouverez ci-dessous un certain nombre d'énocés qui ont déjà été utilisés par les gens pour se décrire. Lisez chaque énouncé, puis en select le réponse approprié ci-dessous de l'énouncé, indiquez comment vous vous sentez en général. Il n'y a pas de bonnes ou de mauvaises réponses. Ne vous attardez pas trop longtemps sur en énouncé ou l'autre mais donnez la réponse qui vous semble décrirw le mieux les sentiments que vous éprouvez en général."
 FR_stai_trait.pages = FR_pages
 // This is used for scoring

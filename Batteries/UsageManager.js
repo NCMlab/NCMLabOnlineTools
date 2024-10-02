@@ -67,7 +67,7 @@ var SetupBattery = {
         jatos.studySessionData = JATOSSessionData
         console.log(jatos.batchSession.getAll())
         console.log(jatos)
-        console.log(DDDDD)
+     //   console.log(DDDDD)
     }
 }
 

@@ -1,5 +1,6 @@
 
 var FormTitle = 'MHRI Intake Form'
+
 var pages = [
     [
         {

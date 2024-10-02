@@ -1,6 +1,6 @@
 
 var title = "Apathy Evaluation Scale (AES)"
-
+var shortTitle = 'AES'
 var description = 'For each statement, choose the answer that best describes the your thoughts, feelings, and activity in the past 4 weeks.'
 
 var AESlikert_scale_valuesFORWARD = [
@@ -157,6 +157,7 @@ var pages = [
 
 var EN_aes = {}
 EN_aes.title = title
+EN_aes.shortTitle = shortTitle
 EN_aes.pages = pages
 EN_aes.description = description
 

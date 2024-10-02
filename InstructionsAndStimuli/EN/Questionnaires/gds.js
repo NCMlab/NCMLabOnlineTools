@@ -44,6 +44,7 @@ var EN_pages = [
 
 var EN_gds = {}
 EN_gds.title = 'Geriatric Depression Scale'
+EN_gds.shortTitle = 'GDS'
 EN_gds.description = "Choose the best answer for how you felt over the past week."
 EN_gds.pages = EN_pages
 EN_gds.QuestionnaireType = 'YesNoLikertTable'

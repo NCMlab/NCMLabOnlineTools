@@ -1,5 +1,5 @@
 var title = "Stait-Trait Anxiety Index - State"
-
+var shortTitle = 'STAI-S'
 var scale01FORWARD = [
   {value:1, text: "Not at all"},
   {value:2, text:"Somewhat"},
@@ -162,6 +162,7 @@ var EN_pages = [
 
 var EN_stai_state = {}
 EN_stai_state.title = title
+EN_stai_state.shortTitle = shortTitle
 EN_stai_state.description = "Some statements that people have used to describe their feelings are given below. Read each statement and then select the response option below to indicate how you feel right now, that is, at this moment. Do not spend too much time on any one statement, but give the answer which seems to describe your present feelings best."
 EN_stai_state.pages = EN_pages
 EN_stai_state.QuestionnaireType = 'likert'
@@ -327,6 +328,7 @@ var FR_pages = [
 
 var FR_stai_state = {}
 FR_stai_state.title = title
+FR_stai_state.shortTitle = shortTitle
 FR_stai_state.description = "Vous trouverez c-dessous un certain nombre d'énoncés que les gens ont déjà utilisés pour se décrire. Lisez chaque énoncé, puis en sélect le réponse approprié ci-dessous  de l'énoncé, indiquez comment vous vous sentez maintenant, c'est-à-dire à ce moment précis. Il n'y a pas de bonnes ou de mauvaises réponses. Ne vous attardez pas trop longtemps sur un énoncé ou l'autre mais donnez la réponses qui vous semble décrire le mieux les sentiments que vous éprouvez présentement."
 
 FR_stai_state.pages = FR_pages

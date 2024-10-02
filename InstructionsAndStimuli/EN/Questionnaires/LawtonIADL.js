@@ -1,5 +1,5 @@
 var title = "Instrumental Activities of Daily Living Scale"
-
+var shortTitle = 'IADL'
 var instructions = ""
 
 var reference = ""

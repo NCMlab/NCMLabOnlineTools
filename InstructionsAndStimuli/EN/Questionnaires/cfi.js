@@ -1,4 +1,5 @@
 var title = "Cognitive Flexibility Index" 
+var shortTitle = "CFI" 
 
 var scale01 = [
 	"Strongly disagree",
@@ -44,6 +45,7 @@ var notes = ""
 
 var cfi = {}
 cfi.title = title
+cfi.shortTitle = shortTitle
 cfi.scale01 = scale01
 cfi.ReverseScoreDirection = ReverseScoreDirection
 cfi.items = items

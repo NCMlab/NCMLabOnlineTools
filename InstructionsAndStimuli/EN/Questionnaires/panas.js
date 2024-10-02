@@ -1,5 +1,5 @@
 var title = "Positive and Negative Affect Schedule (PANAS)"
-
+var shortTitle = 'PANAS'
 var scale01 = [
     "Very slightly or not at all",
     "A little",
@@ -42,6 +42,7 @@ var notes = ""
 
 var panas = {}
 panas.title = title
+panas.shortTitle = shortTitle
 panas.scale01 = scale01
 panas.ReverseScoreDirection = ReverseScoreDirection
 panas.items = items

@@ -368,19 +368,13 @@ List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default
 // ============================================
 var List = []
 List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
-List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
+
 List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
 
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
-List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Default', IconName: 'GAS-10'})
-List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
-List.push({Task: 'Questionnaire', Parameters: 'ESS_001', Instructions: 'Default', IconName: 'ESS'})
-List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default', IconName: 'DSSI'})
 	BatteryList.push({index: 7, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
