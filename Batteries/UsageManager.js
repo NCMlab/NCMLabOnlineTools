@@ -56,7 +56,8 @@ var SetupBattery = {
 
         // Check the session data to see if it is empty, if so add to it. If not, leave it alone
         JATOSSessionData = jatos.studySessionData
-        if ( isEmpty(JATOSSessionData) ) {
+        if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
+        {
           // Add things to the jatos session data
           TaskCompleted = Array(TaskList.length).fill(0)
           console.log(TaskCompleted)
@@ -68,14 +69,31 @@ var SetupBattery = {
           JATOSSessionData.BatteryName = CurrentBattery.name
           JATOSSessionData.BatteryScore = -99
           // If this is the first visit to this manager, display the battery instructions
-          DisplayBatteryInstructionsFlag = true
-          
+          DisplayBatteryInstructionsFlag = true 
         }
-        else {DisplayBatteryInstructionsFlag = false}
+        else if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) != 'undefined' )) 
+        { // This is a restart, remake the session data
+              // Add things to the jatos session data
+              var currentIndex = jatos.batchSession.get(jatos.workerId)
+              JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
+            // add the ID to return to the JATOS battery
+            JATOSSessionData.Language = Language
+            TaskCompleted = Array(TaskList.length).fill(0)
+            JATOSSessionData.TaskCompleted = TaskCompleted
+            JATOSSessionData.FooterText = FooterText
+            JATOSSessionData.BatteryName = CurrentBattery.name
+            JATOSSessionData.BatteryScore = -99
+            // If this is the first visit to this manager, display the battery instructions
+            DisplayBatteryInstructionsFlag = true         }
+        else 
+        {
+            DisplayBatteryInstructionsFlag = false
+        }
         console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
         jatos.studySessionData = JATOSSessionData
-        console.log(jatos.batchSession.getAll())
-        console.log(jatos)
+        //console.log(jatos.batchSession.getAll())
+        //console.log(jatos)
+        //console.log(DDDD)
         
     }
 }
