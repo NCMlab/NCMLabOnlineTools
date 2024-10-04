@@ -147,7 +147,7 @@
                   jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
                 },
                 on_finish: function() {
-                  console.log("SUBMITTIGN DATA")
+                  console.log("SUBMITTING DATA")
                   jatos.submitResultData(jsPsych.data.get().json())
                   if ( SaveLocalFile ) {
                     jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
@@ -156,7 +156,12 @@
                   JATOSSessionData = jatos.studySessionData
                   JATOSSessionData.CurrentIndex += 1
                   jatos.studySessionData = JATOSSessionData
-                  
+                  // Update the Batch Index
+                  // find the count 
+                  var c = jatos.batchSession.get(jatos.workerId)
+                  // update it
+                  jatos.batchSession.set(jatos.workerId, c + 1);
+                              
                   // Go back to battery management on JATOS
                   // If this a la carte or the end of the battery go to the usage manager
                   if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       

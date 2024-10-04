@@ -27,6 +27,15 @@ var SetupBattery = {
     type: jsPsychCallFunction,
     func: function() {
         console.log(ComponentList)
+
+        console.log(jatos)
+        console.log(jatos.workerId)
+
+        if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )
+        {
+            console.log("EMPTY")
+            jatos.batchSession.set(jatos.workerId, 0);
+        }        
         var all_data = jsPsych.data.get();
 
         CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
@@ -67,7 +76,7 @@ var SetupBattery = {
         jatos.studySessionData = JATOSSessionData
         console.log(jatos.batchSession.getAll())
         console.log(jatos)
-     //   console.log(DDDDD)
+        
     }
 }
 
