@@ -99,6 +99,7 @@ var SetupBattery = {
       else 
       {
         console.log('Continuing the SESSION')
+        console.log(jatos)
         DisplayBatteryInstructionsFlag = false
       }
       jatos.studySessionData = JATOSSessionData
@@ -209,6 +210,7 @@ var trial2 = {
         console.log("FIRST TIME THROUGH")
         jsPsych.data.addProperties(JATOSSessionData)
         console.log(TaskList)
+        console.log(jatos)
         return true
       }
       else { return false }
@@ -237,6 +239,7 @@ var trial2 = {
           console.log("FINISHED")
           jsPsych.data.addProperties(JATOSSessionData)
           console.log(data)
+          
           jatos.endStudy(data,true, "everything worked fine")
           
       }
@@ -247,13 +250,9 @@ var trial2 = {
   // Once the data is added, then it can be read and worked with.  
   timeline.push(UpdateHeaderCall)  
   timeline.push(trial0)
-//timeline.push(if_node_BatteryInstructions) << ONLY KEEP THIS ONE
+timeline.push(if_node_BatteryInstructions) //<< ONLY KEEP THIS ONE
 timeline.push(SetupBattery)
 //timeline.push(enter_fullscreen)
-//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckFirstTimeThrough)
-//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckLaterTimeThrough)
-//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckForBatteryCompletion)
-timeline.push(if_node_BatteryInstructions)

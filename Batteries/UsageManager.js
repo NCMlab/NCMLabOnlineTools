@@ -75,7 +75,7 @@ var SetupBattery = {
             // Add things to the jatos session data
             console.log("RESTART the BROSWER")
             var currentIndex = jatos.batchSession.get(jatos.workerId)
-            JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
+            JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList} 
             // add the ID to return to the JATOS battery
             JATOSSessionData.Language = Language
             TaskCompleted = Array(TaskList.length).fill(0)
