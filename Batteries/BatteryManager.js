@@ -28,8 +28,8 @@ var trial0 = {
 var SetupBattery = {
   type: jsPsychCallFunction,
   func: function() {
-      console.log(ComponentList)
 
+      console.log(ComponentList)
       // read the data for this trial
       var all_data = jsPsych.data.get();
       console.log(all_data)
@@ -66,38 +66,44 @@ var SetupBattery = {
       console.log(JATOSSessionData)
       
       // check both teh session and batch data
-      if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
+      var batchCount = jatos.batchSession.get(jatos.workerId)
+        
+        
+      if ( isEmpty(JATOSSessionData) && ( typeof batchCount == 'undefined' )) 
         {
-        // Add things to the jatos session data
-        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
-        // add the ID to return to the JATOS battery
-        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-        JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
-        JATOSSessionData.FooterText = FooterText
-        // If this is the first visit to this manager, display the battery instructions
-        DisplayBatteryInstructionsFlag = true 
+          console.log("FIRST TIME ")
+          // Add things to the jatos session data
+
+          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
+          // add the ID to return to the JATOS battery
+          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+          JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+          JATOSSessionData.FooterText = FooterText
+          // If this is the first visit to this manager, display the battery instructions
+          DisplayBatteryInstructionsFlag = true 
       }
       else if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) != 'undefined' )) 
       { // This is a restart, remake the session data
-        // Add things to the jatos session data
-        var currentIndex = jatos.batchSession.get(jatos.workerId)
-        JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
-        // add the ID to return to the JATOS battery
-        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-        JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
-        JATOSSessionData.FooterText = FooterText
-        // If this is the first visit to this manager, display the battery instructions
-        DisplayBatteryInstructionsFlag = true 
+          console.log("RESTART the BROSWER")
+          // Add things to the jatos session data
+          var currentIndex = jatos.batchSession.get(jatos.workerId)
+          JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
+          // add the ID to return to the JATOS battery
+          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+          JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+          JATOSSessionData.FooterText = FooterText
+          // If this is the first visit to this manager, display the battery instructions
+          DisplayBatteryInstructionsFlag = true 
       }
       
       else 
       {
+        console.log('Continuing the SESSION')
         DisplayBatteryInstructionsFlag = false
       }
-      
-      console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
       jatos.studySessionData = JATOSSessionData
       console.log(jatos)
+      
   },
   on_finish: function(data) {
     data.trial = 'Battery Manager'
@@ -165,6 +171,7 @@ var trial1 = {
 var LandingPage = {
   type: jsPsychHtmlButtonResponse,
   stimulus: function() {
+    
     console.log(TaskList)
     return BatteryInstructions
   },
@@ -173,10 +180,13 @@ var LandingPage = {
   on_finish: function() {
     JATOSSessionData = jatos.studySessionData
     console.log(TaskList)
+    console.log(jatos)
     console.log(JATOSSessionData.CurrentIndex)
     // This is the function that starts the JATOS component for the next item in the battery
     // The pseudoswitch should receive a task name using the JATOS currentIndex value
+    console.log(TaskList[JATOSSessionData.CurrentIndex])    
     jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
+    
     // Need to shorten the task list and save it as jatos session variable
   }
 }
@@ -208,6 +218,7 @@ var trial2 = {
   var CheckLaterTimeThrough = {
     timeline: [trial2],
     conditional_function: function() {
+      
       if ( JATOSSessionData.CurrentIndex > 0)
       {
         console.log("NOT FIRST TIME THROUGH")
@@ -220,6 +231,7 @@ var trial2 = {
    var CheckForBatteryCompletion = {
     type: jsPsychCallFunction,
     func: function(data) {
+      
       if ( JATOSSessionData.CurrentIndex >= JATOSSessionData.TaskNameList.length )
       {
           console.log("FINISHED")
@@ -235,10 +247,13 @@ var trial2 = {
   // Once the data is added, then it can be read and worked with.  
   timeline.push(UpdateHeaderCall)  
   timeline.push(trial0)
-timeline.push(if_node_BatteryInstructions)
+//timeline.push(if_node_BatteryInstructions) << ONLY KEEP THIS ONE
 timeline.push(SetupBattery)
-timeline.push(enter_fullscreen)
+//timeline.push(enter_fullscreen)
+//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckFirstTimeThrough)
-
+//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckLaterTimeThrough)
+//timeline.push(if_node_BatteryInstructions)
 timeline.push(CheckForBatteryCompletion)
+timeline.push(if_node_BatteryInstructions)

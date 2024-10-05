@@ -31,11 +31,7 @@ var SetupBattery = {
         console.log(jatos)
         console.log(jatos.workerId)
 
-        if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )
-        {
-            console.log("EMPTY")
-            jatos.batchSession.set(jatos.workerId, 0);
-        }        
+
         var all_data = jsPsych.data.get();
 
         CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
@@ -55,27 +51,31 @@ var SetupBattery = {
         FooterText = CurrentBattery.Footer
 
         // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+                // Is this worker in the Batch data?
         JATOSSessionData = jatos.studySessionData
         if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
         {
-          // Add things to the jatos session data
-          TaskCompleted = Array(TaskList.length).fill(0)
-          console.log(TaskCompleted)
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList} 
-          // add the ID to return to the JATOS battery
-          JATOSSessionData.Language = Language
-          JATOSSessionData.TaskCompleted = TaskCompleted
-          JATOSSessionData.FooterText = FooterText
-          JATOSSessionData.BatteryName = CurrentBattery.name
-          JATOSSessionData.BatteryScore = -99
-          // If this is the first visit to this manager, display the battery instructions
-          DisplayBatteryInstructionsFlag = true 
+            console.log("FIRST TIME")
+            jatos.batchSession.set(jatos.workerId, 0);
+            // Add things to the jatos session data
+            TaskCompleted = Array(TaskList.length).fill(0)
+            console.log(TaskCompleted)
+            JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList} 
+            // add the ID to return to the JATOS battery
+            JATOSSessionData.Language = Language
+            JATOSSessionData.TaskCompleted = TaskCompleted
+            JATOSSessionData.FooterText = FooterText
+            JATOSSessionData.BatteryName = CurrentBattery.name
+            JATOSSessionData.BatteryScore = -99
+            // If this is the first visit to this manager, display the battery instructions
+            DisplayBatteryInstructionsFlag = true 
         }
         else if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) != 'undefined' )) 
         { // This is a restart, remake the session data
-              // Add things to the jatos session data
-              var currentIndex = jatos.batchSession.get(jatos.workerId)
-              JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
+            // Add things to the jatos session data
+            console.log("RESTART the BROSWER")
+            var currentIndex = jatos.batchSession.get(jatos.workerId)
+            JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskNameList, ComponentParameterLists:ParameterList} 
             // add the ID to return to the JATOS battery
             JATOSSessionData.Language = Language
             TaskCompleted = Array(TaskList.length).fill(0)
@@ -87,9 +87,10 @@ var SetupBattery = {
             DisplayBatteryInstructionsFlag = true         }
         else 
         {
+            console.log('Continuing the SESSION')
             DisplayBatteryInstructionsFlag = false
         }
-        console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
+        
         jatos.studySessionData = JATOSSessionData
         //console.log(jatos.batchSession.getAll())
         //console.log(jatos)
@@ -97,7 +98,7 @@ var SetupBattery = {
         
     }
 }
-
+// http://127.0.0.1:9000/publix/uh1blCUqev2?Battery=7
 
 var if_node_ALaCarte = {
     type: jsPsychCallFunction,
@@ -144,4 +145,5 @@ timeline.push(trial0)
 timeline.push(SetupBattery)
 timeline.push(if_node_SingleTask)
 timeline.push(if_node_ALaCarte)
+
 timeline.push(if_node_Battery)
