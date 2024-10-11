@@ -17,7 +17,6 @@ function PutStimIntoTable(prompt, stim) {
 
 // ===========================================================================
 // timer functions
-
 var timer_function = function(wait_time){
     var start_time = performance.now();
     // Set up the interval to keep track of time. 
@@ -266,3 +265,16 @@ closeBtn.addEventListener("click", () => {
   modal.classList.remove("open");
 });
 */
+// ===============================================
+// Decide where to go next functionaility
+function whereToGoNext(SessionData, CurrentIndex){
+    // If this a la carte or the end of the battery go to the usage manager
+    if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
+      { jatos.startComponentByTitle("Usage Manager")}
+    else if ( SessionData.UsageType == 'SingleTask' )
+    { console.log(JJJ)}
+    else // otherwise start the next component in the battery
+      { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
+}
+
+  
