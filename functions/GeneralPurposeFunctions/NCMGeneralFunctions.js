@@ -272,7 +272,10 @@ function whereToGoNext(SessionData, CurrentIndex){
     if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
       { jatos.startComponentByTitle("Usage Manager")}
     else if ( SessionData.UsageType == 'SingleTask' )
-    { console.log(JJJ)}
+    { 
+      jatos.endStudy()
+      
+    }
     else // otherwise start the next component in the battery
       { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
 }

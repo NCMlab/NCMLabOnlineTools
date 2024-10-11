@@ -240,7 +240,7 @@ var trial2 = {
           jsPsych.data.addProperties(JATOSSessionData)
           console.log(data)
           
-          jatos.endStudy(data,true, "everything worked fine")
+          jatos.endStudy()
           
       }
     }
