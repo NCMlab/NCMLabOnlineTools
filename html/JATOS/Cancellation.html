@@ -102,11 +102,8 @@
           JATOSSessionData = jatos.studySessionData
           JATOSSessionData.CurrentIndex += 1
           jatos.studySessionData = JATOSSessionData
-      // If this a la carte or the end of the battery go to the usage manager
-      if ( JATOSSessionData.CurrentIndex == jatos.studySessionData.TaskNameList.length || jatos.studySessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponentByTitle("Usage Manager")}
-      else // otherwise start the next component in the battery
-      { jatos.startComponentByTitle(jatos.studySessionData.TaskNameList[jatos.studySessionData.CurrentIndex]) }
+          // Go back to usage management 
+          whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
         }
       });
       jatos.onLoad(() => {

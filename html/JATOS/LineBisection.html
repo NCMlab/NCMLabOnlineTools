@@ -97,8 +97,8 @@
         JATOSSessionData = jatos.studySessionData
         JATOSSessionData.CurrentIndex += 1
         jatos.studySessionData = JATOSSessionData
-        // Go back to battery management
-        jatos.startComponent(UsageManagerHtmlID)
+      // Go back to usage management 
+      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
 
         }
     });
