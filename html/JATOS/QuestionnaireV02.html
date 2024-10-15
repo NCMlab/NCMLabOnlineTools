@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
+    <script src="../../jspsych/dist/plugin-survey-text.js"></script>
+    <link rel="stylesheet" href="../../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/survey.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+
+  </head>
+  <body></body>
+  <script>
+    const jsPsych = initJsPsych();
+
+    const hello_trial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'Hello world!'
+    }
+
+    const trial = {
+      type: jsPsychSurvey,
+      survey_json: {
+        showQuestionNumbers: true,
+        elements:
+          [
+            {
+              type: 'radiogroup',
+              title: "Which of the following do you like the most?", 
+              name: 'vegetablesLike', 
+              choices: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas', 'Broccoli']
+            }, 
+            
+        ]
+      },
+    };
+
+
+    var trial2 = {
+  type: jsPsychSurveyText,
+  questions: [
+    {
+        prompt: 'How old are you?',
+        rows:5
+    }
+  ]
+}
+
+
+    const timeline = []
+    timeline.push(trial)
+    
+    jsPsych.run(timeline);
+  </script>
+</html>

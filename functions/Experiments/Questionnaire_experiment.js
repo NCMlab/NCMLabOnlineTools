@@ -41,8 +41,9 @@ var trial = {
           }
           else { console.log("SCREENING NOT PERFORMED")}
       }
-      console.log(parameters.questionnaire[CriteriaToUse])
+      
       console.log(Questionnaire)
+
       return Questionnaire.pages
     },
     title: function() { return ' ' },
@@ -56,6 +57,7 @@ var trial = {
     on_load: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
       console.log("Hello World")
+
       console.log(document.getElementById('jspsych-content'))
     },
     on_finish: function(data) {

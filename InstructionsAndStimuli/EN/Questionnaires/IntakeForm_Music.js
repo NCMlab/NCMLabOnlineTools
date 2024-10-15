@@ -62,6 +62,7 @@ var pages = [
             prompt: 'What type of work do you do (or did you do before retirement)?',
             name: 'WorkType',
             required: true,
+            textbox_rows: 3,
           },
           {
             type: 'drop-down',
@@ -89,25 +90,31 @@ var pages = [
             prompt: "Are there any language or communication challenges you have?", 
             name: 'LanguageProblems', 
             options: [
-                    'Yes',
                     'No'
                 ],
+            add_other_option: true,
+            other_option_text: 'Yes, please describe',
             required: false,
           },
           {
-            type: 'text',
-            prompt: 'What is your primary language(s)?',
-            name: 'Problem',
-            visibleIf: '{LanguageProblems} == "Yes"',
-            
-          },
-
+            type: 'multi-select',
+            prompt: "What is your ethnic background (you may select more than one)",
+            options: [
+                    'European (e.g., white)',
+                    'Asian (e.g., Chinese, Japanese, Korean, South-east Asian)',
+                    'East Indian, Pakistani',
+                    'African-American/Black/Caribbean',
+                    'Hispanic',
+                    'Middle-Eastern',
+                    'First Nations, Métis, Inuit',
+                    ],
+            add_other_option: true,                    
+            other_option_text: 'Other',
+            name: 'Ethinicity'
+            },
 
     ]
 ]
-
-
-
 
 var EN_IntakeForm_Music = {}
 EN_IntakeForm_Music.title = FormTitle;
