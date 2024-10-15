@@ -10,6 +10,18 @@ var AES_001 = {
     ShowThankYou: false,
     ShowInstructions: false,
  }
+
+ var MusicDemographics_001 = { 
+    questionnaire: ['IntakeForm_Music'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+ 
+
 var STAI_S_001 = { 
     questionnaire: ['stai_state'], 
     criteria: [],
@@ -90,3 +102,4 @@ add('BDI_001', function(){ parameters = BDI_001});
 add('BDI_002', function(){ parameters = BDI_002});
 add('GDS_001', function(){ parameters = GDS_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
+add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
