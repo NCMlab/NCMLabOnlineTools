@@ -350,7 +350,7 @@ List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Defau
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
 List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
+//List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
 List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Default', IconName: 'GAS-10'})
 List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})

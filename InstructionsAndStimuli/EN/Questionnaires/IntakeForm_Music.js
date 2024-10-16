@@ -155,12 +155,21 @@ var page2 = [
         prompt: 'Have you received a diagnosis of dementia or cognitive decline?',
         options: 
         [
+            "Yes",
             "No",
             "Not sure"
         ],
         name: 'CognDeclineDiagnosis',
-        add_other_option: true,                    
-        other_option_text: 'Yes, how long ago were you diagnosed?',
+        required: true,
+        //add_other_option: true,                    
+        //other_option_text: 'Yes, how long ago were you diagnosed?',
+    },
+    {
+      type: 'text',
+      prompt: 'If yes, how long ago were you diagnosed?',
+      name: 'DementiaTime',
+      required: false,
+      textbox_rows: 3,
     },
     {
         type: 'text',
@@ -169,57 +178,155 @@ var page2 = [
         required: false,
         textbox_rows: 3,
       },
-
-]
-page3 = [{
-    title: "Example of conditional questions",
-    elements: [{
-      name: "vegetables-score",
-      title: "I like vegetables.",
-      description: "Choose 'neutral' to skip the conditional question, and any other option to see a conditional question.",
-      type: "radiogroup",
-      choices: [
-        { value: 1, text: "Strongly Disagree" },
-        { value: 2, text: "Disagree" },
-        { value: 3, text: "Neutral" },
-        { value: 4, text: "Agree" },
-        { value: 5, text: "Strongly Agree" }
+      {
+        type: 'drop-down',
+        prompt: 'Do you have hearing loss?',
+        options: 
+        [
+            "Yes",
+            "No",
+            "Not sure"
+        ],
+        name: 'HearingLoss',
+        required: true,
+        //add_other_option: true,                    
+        //other_option_text: 'Yes, how long ago were you diagnosed?',
+    },
+    {
+      type: 'drop-down',
+      prompt: 'If you have hearing loss, is it ',
+      options: 
+      [
+          "Bilateral",
+          "Unilateral",
+          "Not sure"
       ],
-      isRequired: true
-    }]
-  }, {
-    elements: [{
-      name: "vegetables-like",
-      title: "You like vegetables! Which one is your favorite?",
-      description: "(You can go back and change your earlier answer to see the other conditional questions)",
-      type: "comment",
-      visibleIf: "{vegetables-score} >= 4"
-    }, {
-      name: "vegetables-eat",
-      title: "On a scale of zero to ten, how likely are you to eat broccoli today?",
-      type: "rating",
-      rateMin: 0,
-      rateMax: 10
-    }],
-    visibleIf: "{vegetables-score} >= 4"
-  }, {
-    elements: [{
-      name: "vegetables-dislike",
-      description: "(You can go back and change your earlier answer to see the other conditional questions)",
-      title: "You don't like vegetables! Please explain why.",
-      type: "comment"
-    }],
-    visibleIf: "{vegetables-score} =< 2"
-  }]
+      name: 'HearingLossType',
+      required: false,
+      //add_other_option: true,                    
+      //other_option_text: 'Yes, how long ago were you diagnosed?',
+  },
+  {
+    type: 'drop-down',
+    prompt: 'If you have hearing loss, what is your level of loss?',
+    options: 
+    [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not sure"
+    ],
+    name: 'HearingLossLevel',
+    required: false,
+    //add_other_option: true,                    
+    //other_option_text: 'Yes, how long ago were you diagnosed?',
+  },
+  {
+    type: 'drop-down',
+    prompt: 'Do you have any other health issues?',
+    options: 
+    [
+        "No",
+    ],
+    name: 'OtherHealthIssues',
+    required: true,
+    add_other_option: true,                    
+    other_option_text: 'Yes, please explain.',
+    textbox_rows: 5,
+},
+]
 
+page3 = [
+  {
+    type: 'text',
+    prompt: 'How often do you exercise per week?',
+    name: 'ExerciseFrequency',
+    required: true,
+    textbox_rows: 3,
+  },
+  {
+    type: 'drop-down',
+    prompt: 'Have you exercised in the last 24 hours?',
+    options: 
+    [
+      "Yes",
+        "No"
+    ],
+    name: 'Exercise24',
+    required: true,
+  },
+  {
+    type: 'drop-down',
+    prompt: 'Do you smoke, or have you smoked in the past?',
+    options: 
+    [
+      "Currently smoke",
+        "Haven't smoked for more than 1 year",
+        "Never",
+        "Unknown"
+    ],
+    name: 'Smoke',
+    required: true,
+  },
+  {
+    type: 'text',
+    prompt: 'If you smoke, what year did you start?',
+    name: 'SmokeStart',
+    required: false,
+    input_type: "number"
+  },
+  {
+    type: 'text',
+    prompt: 'If you have smoked regularly in the past, what year did you quit?',
+    name: 'SmokeQuit',
+    required: false,
+    input_type: "number"
+  },
+  {
+    type: 'text',
+    prompt: 'If you smoke, or have smoked regularly in the past, approximately how many packs per day?',
+    name: 'SmokePacks',
+    required: false,
+    input_type: "number"
+  },
+  {
+    type: 'drop-down',
+    prompt: 'Alcohol consumption',
+    options: 
+    [
+        "None",
+        "Less than 2 drinks per day",
+        "2 to 4 drinks per day",
+        "More than 4 drinks per day"
+    ],
+    name: 'Alcohol',
+    required: true,
+  },
+]
+page4 = [
+  {
+    type: 'drop-down',
+    prompt: 'Have you engaged in music and movement classes before?',
+    options: 
+    [
+        "No",
+    ],
+    name: 'MusicMovement',
+    required: true,
+    add_other_option: true,                    
+    other_option_text: 'Yes, please describe your previous experience (what type of class and for how long)',
+    textbox_rows: 5,
+},
+]
+pages.push(page1)
+pages.push(page2)
 pages.push(page3)
-
-
+pages.push(page4)
 
 var EN_IntakeForm_Music = {}
 EN_IntakeForm_Music.title = FormTitle;
 EN_IntakeForm_Music.pages = pages;
-EN_IntakeForm_Music.QuestionnaireType = 'JASON'
+EN_IntakeForm_Music.QuestionnaireType = 'Varied'
 EN_IntakeForm_Music.Instructions01 = [
     {
         'page': '<p class="Instructions">Instructions are written here.'

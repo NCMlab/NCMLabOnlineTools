@@ -94,6 +94,32 @@ function Questionnaire_Scoring(data) {
 			}
 		}
 	}
+
+	if ( data.QuestionnaireType == 'Varied' )
+	{
+		// This assumes there is not total score, so a score of one indicates that it was completed
+		TotalScore = 1
+		console.log(Results)
+		// cycle over pages
+		for ( var i = 0; i < data.pages.length; i++ )
+		{
+			console.log("Page: "+i)
+			for (var j = 0; j < data.pages[i].length; j++ )
+				{
+					console.log(data.pages[i][j].name)
+					console.log(data.response[data.pages[i][j].name])
+					console.log("Question: "+j)
+					if ( data.response[data.pages[i][j].name] == 'other' )
+					{
+						Results.AllResults[data.pages[i][j].name] = data.response[data.pages[i][j].name+"-Comment"]
+					}
+					else 
+					{
+						Results.AllResults[data.pages[i][j].name] = data.response[data.pages[i][j].name]
+					}
+				}
+		}
+	}
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
 	if ( Notes.trials.length > 0 )
