@@ -87,10 +87,63 @@ var CheckForAlert = {
 }
 
 
+page3 = [{
+  title: "Example of conditional questions",
+  elements: [{
+    name: "vegetables-score",
+    title: "I like vegetables.",
+    description: "Choose 'neutral' to skip the conditional question, and any other option to see a conditional question.",
+    type: "radiogroup",
+    choices: [
+      { value: 1, text: "Strongly Disagree" },
+      { value: 2, text: "Disagree" },
+      { value: 3, text: "Neutral" },
+      { value: 4, text: "Agree" },
+      { value: 5, text: "Strongly Agree" }
+    ],
+    isRequired: true
+  }]
+}, {
+  elements: [{
+    name: "vegetables-like",
+    title: "You like vegetables! Which one is your favorite?",
+    description: "(You can go back and change your earlier answer to see the other conditional questions)",
+    type: "comment",
+    visibleIf: "{vegetables-score} >= 4"
+  }, {
+    name: "vegetables-eat",
+    title: "On a scale of zero to ten, how likely are you to eat broccoli today?",
+    type: "rating",
+    rateMin: 0,
+    rateMax: 10
+  }],
+  visibleIf: "{vegetables-score} >= 4"
+}, {
+  elements: [{
+    name: "vegetables-dislike",
+    description: "(You can go back and change your earlier answer to see the other conditional questions)",
+    title: "You don't like vegetables! Please explain why.",
+    type: "comment"
+  }],
+  visibleIf: "{vegetables-score} =< 2"
+}]
 
+const veg = {
+  pages: page3
+}
+const vegetables_trial = {
+  type: jsPsychSurvey,
+  survey_json: veg
+};
+
+
+
+timeline.push(vegetables_trial)
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
+
 timeline.push(trial)
+
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)

@@ -41,7 +41,7 @@ var page1 = [
                 ],
             add_other_option: true,
             other_option_text: 'Other',
-            required: false,
+            required: true,
           },
           {
             type: 'drop-down',
@@ -55,7 +55,7 @@ var page1 = [
                 ],
             add_other_option: true,
             other_option_text: 'Other (please specify)',
-            required: false,
+            required: true,
           },
           {
             type: 'text',
@@ -77,7 +77,7 @@ var page1 = [
                 ],
             add_other_option: true,
             other_option_text: 'Other (please specify)',
-            required: false,
+            required: true,
           },
           {
             type: 'text',
@@ -94,7 +94,8 @@ var page1 = [
                 ],
             add_other_option: true,
             other_option_text: 'Yes, please describe',
-            required: false,
+            required: true,
+            textbox_rows: 3,
           },
           {
             type: 'multi-select',
@@ -110,7 +111,8 @@ var page1 = [
                     ],
             add_other_option: true,                    
             other_option_text: 'Other',
-            name: 'Ethinicity'
+            name: 'Ethinicity',
+            required: true
             },
             {
                 type: 'drop-down',
@@ -125,6 +127,7 @@ var page1 = [
                 name: 'martital',
                 add_other_option: true,                    
                 other_option_text: 'Other (please specify)',
+                required: true,
             },
             {
                 type: 'drop-down',
@@ -139,6 +142,7 @@ var page1 = [
                     "Above $100,000"
                 ],
                 name: 'Income',
+                required: true,
             }
             
 
@@ -149,7 +153,6 @@ var page2 = [
     {
         type: 'drop-down',
         prompt: 'Have you received a diagnosis of dementia or cognitive decline?',
-        alert: "true",
         options: 
         [
             "No",
@@ -158,10 +161,58 @@ var page2 = [
         name: 'CognDeclineDiagnosis',
         add_other_option: true,                    
         other_option_text: 'Yes, how long ago were you diagnosed?',
-    }
-]
+    },
+    {
+        type: 'text',
+        prompt: 'If yes, what type of dementia (or cognitive decline), if known?',
+        name: 'DementiaType',
+        required: false,
+        textbox_rows: 3,
+      },
 
-pages.push(page1)
+]
+page3 = [{
+    title: "Example of conditional questions",
+    elements: [{
+      name: "vegetables-score",
+      title: "I like vegetables.",
+      description: "Choose 'neutral' to skip the conditional question, and any other option to see a conditional question.",
+      type: "radiogroup",
+      choices: [
+        { value: 1, text: "Strongly Disagree" },
+        { value: 2, text: "Disagree" },
+        { value: 3, text: "Neutral" },
+        { value: 4, text: "Agree" },
+        { value: 5, text: "Strongly Agree" }
+      ],
+      isRequired: true
+    }]
+  }, {
+    elements: [{
+      name: "vegetables-like",
+      title: "You like vegetables! Which one is your favorite?",
+      description: "(You can go back and change your earlier answer to see the other conditional questions)",
+      type: "comment",
+      visibleIf: "{vegetables-score} >= 4"
+    }, {
+      name: "vegetables-eat",
+      title: "On a scale of zero to ten, how likely are you to eat broccoli today?",
+      type: "rating",
+      rateMin: 0,
+      rateMax: 10
+    }],
+    visibleIf: "{vegetables-score} >= 4"
+  }, {
+    elements: [{
+      name: "vegetables-dislike",
+      description: "(You can go back and change your earlier answer to see the other conditional questions)",
+      title: "You don't like vegetables! Please explain why.",
+      type: "comment"
+    }],
+    visibleIf: "{vegetables-score} =< 2"
+  }]
+
+pages.push(page3)
 
 
 
