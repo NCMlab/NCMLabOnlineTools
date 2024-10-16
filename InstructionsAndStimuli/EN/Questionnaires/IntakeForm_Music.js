@@ -1,8 +1,8 @@
 
 var FormTitle = 'MHRI Intake Form'
 
-var pages = [
-    [
+var pages = []
+var page1 = [
         {
             type: 'text',
             prompt: 'Gender',
@@ -54,7 +54,7 @@ var pages = [
                         'Unemployed'
                 ],
             add_other_option: true,
-            other_option_text: 'Other',
+            other_option_text: 'Other (please specify)',
             required: false,
           },
           {
@@ -76,7 +76,7 @@ var pages = [
                     'In assisted living facility'
                 ],
             add_other_option: true,
-            other_option_text: 'Other',
+            other_option_text: 'Other (please specify)',
             required: false,
           },
           {
@@ -112,9 +112,58 @@ var pages = [
             other_option_text: 'Other',
             name: 'Ethinicity'
             },
+            {
+                type: 'drop-down',
+                prompt: 'What is your marital status?',
+                options: 
+                [   
+                    'Single',
+                    'Married',
+                    'Divorced',
+                    'Widowed'
+                ],
+                name: 'martital',
+                add_other_option: true,                    
+                other_option_text: 'Other (please specify)',
+            },
+            {
+                type: 'drop-down',
+                prompt: 'What is your annual household income?',
+                options: 
+                [
+                    "Less than $20,000",
+                    "$20,000 - $40,000",
+                    "$40,001 - $60,000",
+                    "$60,001 - $80,000",
+                    "$80,001 - $100,000",
+                    "Above $100,000"
+                ],
+                name: 'Income',
+            }
+            
 
     ]
+
+
+var page2 = [
+    {
+        type: 'drop-down',
+        prompt: 'Have you received a diagnosis of dementia or cognitive decline?',
+        alert: "true",
+        options: 
+        [
+            "No",
+            "Not sure"
+        ],
+        name: 'CognDeclineDiagnosis',
+        add_other_option: true,                    
+        other_option_text: 'Yes, how long ago were you diagnosed?',
+    }
 ]
+
+pages.push(page1)
+
+
 
 var EN_IntakeForm_Music = {}
 EN_IntakeForm_Music.title = FormTitle;

@@ -63014,20 +63014,21 @@ var jsPsychSurvey = (function (jspsych) {
 	        // initialize trial data
 	        this.trial_data.accuracy = [];
 	        this.trial_data.question_order = [];
+			this.trial_data.response = [];
 	        // response scoring function
 	        const score_response = (sender, options) => {
 	            var _a;
 				console.log("JASON VALUE CHANGED")
+				this.trial_data.response.push(options.value)
 				console.log(options)
+				console.log(this)
 				if ( options.question.alert === options.value )
 				{
 					console.log("ALERT!!!")		
 					openResourcesShort() 		
 				}
 	            if ((_a = options.question) === null || _a === void 0 ? void 0 : _a.correctAnswer) {
-	                
 					this.trial_data.accuracy.push({
-						
 	                    [options.name]: options.question.correctAnswer == options.value,
 	                });
 	            }

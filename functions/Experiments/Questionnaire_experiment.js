@@ -16,7 +16,7 @@ var trial = {
     pages: function() { 
       // Are there more than one criteria?
       // If the value does not meet any of the criteria, use the first option
-      
+      console.log("===== QUESTION =============")
       if ( parameters.criteria.length > 1 )
         {
           
@@ -43,7 +43,7 @@ var trial = {
       }
       
       console.log(Questionnaire)
-
+    
       return Questionnaire.pages
     },
     title: function() { return ' ' },
@@ -57,7 +57,6 @@ var trial = {
     on_load: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
       console.log("Hello World")
-
       console.log(document.getElementById('jspsych-content'))
     },
     on_finish: function(data) {
@@ -86,6 +85,8 @@ var CheckForAlert = {
     Results = Questionnaire_Scoring(data)
   }
 }
+
+
 
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
