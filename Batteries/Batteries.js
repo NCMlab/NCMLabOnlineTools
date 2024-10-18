@@ -356,6 +356,7 @@ List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Defaul
 List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
 List.push({Task: 'Questionnaire', Parameters: 'ESS_001', Instructions: 'Default', IconName: 'ESS'})
 List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default', IconName: 'DSSI'})
+List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
