@@ -112,10 +112,8 @@
       JATOSSessionData = jatos.studySessionData
       JATOSSessionData.CurrentIndex += 1
       jatos.studySessionData = JATOSSessionData
-      // Go back to battery management on JATOS
-      if (typeof UsageManagerHtmlID != 'undefined') {
-        jatos.startComponent(UsageManagerHtmlID);
-      }
+      // Go back to usage management 
+      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
     }
   });
   jatos.onLoad(() => {
