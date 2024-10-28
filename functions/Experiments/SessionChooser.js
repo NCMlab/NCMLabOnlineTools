@@ -3,9 +3,10 @@
 
 var timeline = [];
 var Choices = [
+    'Intake',
     'Baseline', 
-    'Weekly-Pre', 
-    'Weekly-Post', 
+    'Visit-Pre', 
+    'Visit-Post', 
     'Post-Intervention'
 ]
 
@@ -22,10 +23,20 @@ var PostChoice = {
     type: jsPsychCallFunction,
     func: function() {
         var data = jsPsych.data.get()
- 
         console.log(Choices[data.trials[0].response])
+        // Map the choices to the Batteries
+        var Battery 
+        if ( Choices[data.trials[0].response] === 'Intake' )
+        { Battery = '73'}
+        if ( Choices[data.trials[0].response] === 'Baseline' )
+            { Battery = '74'}
+        if ( Choices[data.trials[0].response] === 'Visit-Pre' )
+            { Battery = '75'}
+        if ( Choices[data.trials[0].response] === 'Visit-Post' )
+            { Battery = '76'}
+        if ( Choices[data.trials[0].response] === 'Post-Intervention' )
+            { Battery = '77'}
         var BasePath = "http://127.0.0.1:9000/publix/"
-        var Battery = "1007" //jatos.urlQueryParameters.Battery
         var URL = BasePath + jatos.studyCode+"?Battery="+Battery
         jatos.endStudyAndRedirect(URL)
     }

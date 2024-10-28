@@ -11,6 +11,17 @@ var AES_001 = {
     ShowInstructions: false,
  }
 
+ var WEMWBS_001 = { 
+    questionnaire: ['tempWEMWBS'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+
+
  var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_Music'], 
     criteria: [],
@@ -104,3 +115,5 @@ add('BDI_002', function(){ parameters = BDI_002});
 add('GDS_001', function(){ parameters = GDS_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
+add('WEMWBS_001', function(){ parameters = WEMWBS_001});
+

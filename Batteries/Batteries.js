@@ -344,18 +344,14 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 // ============================================
 // ====== LIST OF QUESTIONNAIRES 1007 ==============
 var List = []
-List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'Default', IconName: 'Intake'})
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
-List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
-List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'})
+
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 //List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
 List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Default', IconName: 'GAS-10'})
-List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
-List.push({Task: 'Questionnaire', Parameters: 'ESS_001', Instructions: 'Default', IconName: 'ESS'})
-List.push({Task: 'Questionnaire', Parameters: 'DSSI_001', Instructions: 'Default', IconName: 'DSSI'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 
@@ -373,7 +369,6 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instru
 List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
-
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
 	BatteryList.push({index: 7, 
@@ -395,6 +390,90 @@ BatteryList.push({index: 1,
 	description: 'A demonstration of cognitive and behavioral assessments',
 	TaskList: List,
 	BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+
+// ============================================
+// ============ MUSIC STUDY ==================
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 71, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "<h1>Music and Motion Study</h1>",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024'
+	})
+
+
+// ============ MUSIC STUDY -- INTAKE  ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Intake'})
+BatteryList.push({index: 73, 
+	name:'Music Motion Landing Page', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- BASELINE ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ5D'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'TrailsA'})
+BatteryList.push({index: 74, 
+	name:'Music Motion Landing Page', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- WEEKLY - PRE ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ5D'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+BatteryList.push({index: 75, 
+	name:'Music Motion Landing Page', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- WEEKLY - POST ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ5D'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+BatteryList.push({index: 76, 
+	name:'Music Motion Landing Page', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- POST - STUDY ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ5D'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+BatteryList.push({index: 77, 
+	name:'Music Motion Landing Page', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024'
