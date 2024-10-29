@@ -273,8 +273,10 @@ function whereToGoNext(SessionData, CurrentIndex){
       { jatos.startComponentByTitle("Usage Manager")}
     else if ( SessionData.UsageType == 'SingleTask' )
     { 
-      jatos.endStudy()
-      
+      //jatos.endStudy()
+      // For some reason this does not END the trailmaking task
+      window.open('https://www.uottawa.ca','_self')
+      console.log(BreakPoint)
     }
     else // otherwise start the next component in the battery
       { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
