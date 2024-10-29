@@ -238,9 +238,10 @@ var trial2 = {
       {
           console.log("FINISHED")
           jsPsych.data.addProperties(JATOSSessionData)
-          console.log(data)
-          
-          jatos.endStudy()
+          console.log(JATOSSessionData)
+          //console.log(BreakPoint)
+          window.open('https://www.uottawa.ca','_self')
+          //jatos.endStudy()
           
       }
     }

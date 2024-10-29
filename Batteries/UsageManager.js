@@ -30,10 +30,10 @@ var SetupBattery = {
 
         console.log(jatos)
         console.log(jatos.workerId)
-
+        
 
         var all_data = jsPsych.data.get();
-
+        console.log(all_data)
         CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
         // read the data for this trial
         console.log(CurrentBattery)
@@ -53,6 +53,7 @@ var SetupBattery = {
         // Check the session data to see if it is empty, if so add to it. If not, leave it alone
                 // Is this worker in the Batch data?
         JATOSSessionData = jatos.studySessionData
+
         if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
         {
             console.log("FIRST TIME")
@@ -117,7 +118,8 @@ var if_node_Battery = {
     type: jsPsychCallFunction,
     func: function() {    
         data = jsPsych.data.get()
-        console.log(data.trials[0].Battery)
+        console.log(data.trials[0])
+        
         if (Number(data.trials[0].Battery) < 1000 ) {
             JATOSSessionData.UsageType = 'Battery'
             jatos.studySessionData = JATOSSessionData
@@ -125,6 +127,7 @@ var if_node_Battery = {
         }
     }
 }
+
 var if_node_SingleTask = {
     type: jsPsychCallFunction,
     func: function() {    
@@ -139,11 +142,27 @@ var if_node_SingleTask = {
     }
 }
 
+var if_node_SessionChooser = {
+    type: jsPsychCallFunction,
+    func: function() {    
+        data = jsPsych.data.get()
+        
+        if (jatos.urlQueryParameters.Session != null ) 
+        {
+            JATOSSessionData.UsageType = 'SessionChooser'
+            jatos.studySessionData = JATOSSessionData
+            jatos.startComponentByTitle("Session Chooser")
+        }
+    }
+}
 
 //timeline.push(enter_fullscreen)
 timeline.push(trial0)
+
 timeline.push(SetupBattery)
+timeline.push(if_node_SessionChooser)
 timeline.push(if_node_SingleTask)
 timeline.push(if_node_ALaCarte)
+timeline.push(if_node_SessionChooser)
 
 timeline.push(if_node_Battery)
