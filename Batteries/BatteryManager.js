@@ -240,6 +240,8 @@ var trial2 = {
           jsPsych.data.addProperties(JATOSSessionData)
           console.log(JATOSSessionData)
           //console.log(BreakPoint)
+          // Once the battery is completed, reset the batch data so it can be completed again
+          jatos.batchSession.set(jatos.workerId, 0);
           window.open('https://www.uottawa.ca','_self')
           //jatos.endStudy()
           
