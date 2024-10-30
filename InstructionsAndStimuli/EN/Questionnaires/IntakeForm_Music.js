@@ -326,6 +326,7 @@ pages.push(page4)
 var EN_IntakeForm_Music = {}
 EN_IntakeForm_Music.title = FormTitle;
 EN_IntakeForm_Music.pages = pages;
+EN_IntakeForm_Music.shortTitle = 'Intake'
 EN_IntakeForm_Music.QuestionnaireType = 'Varied'
 EN_IntakeForm_Music.Instructions01 = [
     {

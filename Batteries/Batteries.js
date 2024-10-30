@@ -414,7 +414,7 @@ List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Defaul
 var List = []
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Intake'})
 BatteryList.push({index: 73, 
-	name:'Music Motion Landing Page', 
+	name:'Music Motion: Intake', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -428,7 +428,7 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'TrailsA'})
 BatteryList.push({index: 74, 
-	name:'Music Motion Landing Page', 
+	name:'Music Motion: Baseline', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -442,7 +442,7 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 75, 
-	name:'Music Motion Landing Page', 
+	name:'Music Motion: Weekly Pre', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -456,7 +456,7 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 76, 
-	name:'Music Motion Landing Page', 
+	name:'Music Motion: Weekly Post', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -470,7 +470,7 @@ List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 77, 
-	name:'Music Motion Landing Page', 
+	name:'Music Motion: Post-Study', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
