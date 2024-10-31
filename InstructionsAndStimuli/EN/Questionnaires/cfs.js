@@ -32,12 +32,12 @@ var reference = "Martin, M. M., & Rubin, R. B. (1995). A New Measure of Cognitiv
 
 var notes = ""
 
-var cfs = {}
-cfs.title = title
-cfs.shortTitle = shortTitle
-cfs.scale01 = scale01
-cfs.ReverseScoreDirection = ReverseScoreDirection
-cfs.items = items
-cfs.instructions = instructions
-cfs.references = references
-cfs.notes = notes
+var EN_cfs = {}
+EN_cfs.title = title
+EN_cfs.shortTitle = shortTitle
+EN_cfs.scale01 = scale01
+EN_cfs.ReverseScoreDirection = ReverseScoreDirection
+EN_cfs.items = items
+EN_cfs.instructions = instructions
+EN_cfs.references = reference
+EN_cfs.notes = notes

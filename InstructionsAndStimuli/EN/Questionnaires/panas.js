@@ -40,12 +40,14 @@ var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development a
 
 var notes = ""
 
-var panas = {}
-panas.title = title
-panas.shortTitle = shortTitle
-panas.scale01 = scale01
-panas.ReverseScoreDirection = ReverseScoreDirection
-panas.items = items
-panas.instructions = instructions
-panas.references = references
-panas.notes = notes
+var EN_panas = {}
+EN_panas.title = title
+EN_panas.shortTitle = shortTitle
+EN_panas.scale01 = scale01
+EN_panas.ReverseScoreDirection = ReverseScoreDirection
+EN_panas.pages = items
+EN_panas.instructions = instructions
+EN_panas.references = references
+EN_panas.notes = notes
+
+

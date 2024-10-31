@@ -350,7 +350,8 @@ List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Defau
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 //List.push({Task: 'Questionnaire', Parameters: 'GDS15_001', Instructions: 'Default', IconName: 'GDS-15'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
-List.push({Task: 'Questionnaire', Parameters: 'GAS10_001', Instructions: 'Default', IconName: 'GAS-10'})
+List.push({Task: 'Questionnaire', Parameters: 'CFS_001', Instructions: 'Default', IconName: 'CFS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
 	BatteryList.push({index: 1007, 
