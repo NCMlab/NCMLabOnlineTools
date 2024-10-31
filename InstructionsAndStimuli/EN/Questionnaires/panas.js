@@ -10,29 +10,37 @@ var scale01 = [
   
 // All questions use the same direction so enter that single flag as an array of size 1
 var ReverseScoreDirection = [false]
-
-var items = [
-    {prompt: "Interested", labels: scale01},
-    {prompt: "Distressed", labels: scale01},
-    {prompt: "Excited", labels: scale01},
-    {prompt: "Upset", labels: scale01},
-    {prompt: "Strong", labels: scale01},
-    {prompt: "Guilty", labels: scale01},
-    {prompt: "Scared", labels: scale01},
-    {prompt: "Hostile", labels: scale01},
-    {prompt: "Enthusiastic", labels: scale01},
-    {prompt: "Proud", labels: scale01},
-    {prompt: "Irritable", labels: scale01},
-    {prompt: "Alert", labels: scale01},
-    {prompt: "Ashamed", labels: scale01},
-    {prompt: "Inspired", labels: scale01},
-    {prompt: "Nervous", labels: scale01},
-    {prompt: "Determined", labels: scale01},
-    {prompt: "Attentive", labels: scale01},
-    {prompt: "Jittery", labels: scale01},
-    {prompt: "Active", labels: scale01},
-    {prompt: "Afraid", labels: scale01},
+var EN_pages = [
+  [
+    {
+      type: 'likert-table',
+      prompt: ' ',
+      statements: [
+        {prompt: "Interested",name: 'panas01'},
+        {prompt: "Distressed",},
+        {prompt: "Excited", },
+        {prompt: "Upset", },
+        {prompt: "Strong", },
+        {prompt: "Guilty", },
+        {prompt: "Scared", },
+        {prompt: "Hostile",},
+        {prompt: "Enthusiastic", },
+        {prompt: "Proud", },
+        {prompt: "Irritable",},
+        {prompt: "Alert", },
+        {prompt: "Ashamed",},
+        {prompt: "Inspired",},
+        {prompt: "Nervous", },
+        {prompt: "Determined",},
+        {prompt: "Attentive", },
+        {prompt: "Jittery", },
+        {prompt: "Active", },
+        {prompt: "Afraid", },
+      ],
+      options: scale01,
+    }
   ]
+]
 
 var instructions = 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.'
 
@@ -43,10 +51,9 @@ var notes = ""
 var EN_panas = {}
 EN_panas.title = title
 EN_panas.shortTitle = shortTitle
-EN_panas.scale01 = scale01
-EN_panas.ReverseScoreDirection = ReverseScoreDirection
-EN_panas.pages = items
-EN_panas.instructions = instructions
+EN_panas.pages = EN_pages
+EN_panas.description = instructions
+//EN_panas.QuestionnaireType
 EN_panas.references = references
 EN_panas.notes = notes
 
