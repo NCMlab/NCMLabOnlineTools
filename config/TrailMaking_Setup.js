@@ -429,8 +429,8 @@ add('TrailMakingB_Default', function(){ parameters = TrailMakingB_Default});
 add('TrailMakingA_Default_02', function(){ parameters = TrailMakingA_Default_02});
 add('TrailMakingB_Default_02', function(){ parameters = TrailMakingB_Default_02});
 
-add('TrailMakingA_001', function(){ parameters = TrailMakingA_001});
-add('TrailMakingB_001', function(){ parameters = TrailMakingB_001});
+//add('TrailMakingA_001', function(){ parameters = TrailMakingA_001});
+//add('TrailMakingB_001', function(){ parameters = TrailMakingB_001});
 add('TrailMakingA_003', function(){ parameters = TrailMakingA_003});
 add('TrailMakingB_003', function(){ parameters = TrailMakingB_003});
 add('TrailMaking_FaCE', function(){ parameters = TrailMaking_FaCE});

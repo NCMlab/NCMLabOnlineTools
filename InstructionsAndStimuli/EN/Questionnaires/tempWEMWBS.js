@@ -18,21 +18,21 @@ var EN_pages = [
                   prompt: "I’ve been feeling optimistic about the future:",
                   name: 'WEMWBS01',
                   likert_scale_values: scale01FORWARD,
-                  required: false,
+                  required: true,
                 },
                 {
                   type: 'likert',
                   prompt: "I’ve been feeling useful:",
                   name: 'WEMWBS02',
                   likert_scale_values: scale01FORWARD,
-                  required: false
+                  required: true,
                 },
                 {
                   type: 'likert',
                   prompt: "I’ve been feeling relaxed:",
                   name: 'WEMWBS03',
                   likert_scale_values: scale01FORWARD,
-                  required: false
+                  required: true,
                 },
                
               ]

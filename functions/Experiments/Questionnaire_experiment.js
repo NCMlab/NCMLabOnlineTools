@@ -10,6 +10,48 @@ var LoadQuestionnaire = {
   }
 }
 
+var trial02 = {
+  type: jsPsychSurvey,
+  survey_json:  { 
+    pages: [
+      {
+    elements: [
+      {
+        type: 'matrix',
+        name: 'panas',
+        title: "PANAS",
+        alternateRows: false,
+        isAllRowRequired: true,
+        rows: [
+          {value: 'panas01', text: "Interested"},
+          {value: 'panas02', text: "Distressed"}
+        ],
+        columns: [
+          {
+            "value": 0,
+            "text": 'Very slightly or not at all'
+          },
+          {
+            "value": 1,
+            "text": 'A little'
+          },
+          {
+            "value": 2,
+            "text": 'Moderately'
+          },
+          {
+            "value": 3,
+            "text": 'Quite a bit'
+          },
+          {
+            "value": 4,
+            "text": 'Extremely'
+          },
+        ],
+    }
+  ]
+}]
+  }}
 
 var trial = {
     type: jsPsychSurvey,

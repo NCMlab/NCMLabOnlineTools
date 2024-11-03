@@ -23,6 +23,7 @@ function Questionnaire_Scoring(data) {
 	{
 		const keys = Object.keys(data.response)
         console.log(keys)
+		//console.log(BreakPoint)
 		for ( var i = 0; i < keys.length; i++ )
 		{
 			prompt = data.pages[0][i].prompt

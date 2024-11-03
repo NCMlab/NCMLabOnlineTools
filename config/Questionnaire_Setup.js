@@ -95,6 +95,16 @@ var GDS_001 = {
     ShowInstructions: false,  
 }
 
+var GAS_001 = { 
+    questionnaire: ['gas'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 var CFS_001 = { 
     questionnaire: ['cfs'], 
     criteria: [],
@@ -132,6 +142,7 @@ add('STAI_T_001', function(){ parameters = STAI_T_001});
 add('BDI_001', function(){ parameters = BDI_001});
 add('BDI_002', function(){ parameters = BDI_002});
 add('CFS_001', function(){ parameters = CFS_001});
+add('GAS_001', function(){ parameters = GAS_001});
 add('GDS_001', function(){ parameters = GDS_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});

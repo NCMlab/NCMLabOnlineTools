@@ -83,7 +83,9 @@ var PostChoice = {
             { Battery = '76'}
         if ( Choices[data.trials[2].response] == 'Post-Intervention' )
             { Battery = '77'}
-        var BasePath = "http://127.0.0.1:9000/publix/"
+        console.log(window.location)
+        //console.log(BreakPoint)
+        var BasePath = window.location.origin +"/publix/" // "http://127.0.0.1:9000/publix/"
         var URL = BasePath + jatos.studyCode+"?Battery="+Battery
         console.log(URL)
         

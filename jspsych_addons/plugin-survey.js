@@ -63039,6 +63039,8 @@ var jsPsychSurvey = (function (jspsych) {
 	            if (trial.randomize_question_order) {
 	                page.questionsOrder = "random"; // TO DO: save question presentation order to data
 	            }
+				console.log(trial.pages)
+				console.log(questions)
 	            for (const [questionIndex, question_params] of questions.entries()) {
 	                let question_type = question_params.type;
 	                if (typeof question_type === "undefined") {
