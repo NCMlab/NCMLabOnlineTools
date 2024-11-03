@@ -1,8 +1,8 @@
 var scale01 = [
-    {value: 0, text: 'Not at all'},
-    {value: 1, text: 'Sometimes'},
-    {value: 2, text: 'Most of the time'},
-    {value: 3, text: 'All of the time'}
+    {value: 1, text: 'Not at all'},
+    {value: 2, text: 'Sometimes'},
+    {value: 3, text: 'Most of the time'},
+    {value: 4, text: 'All of the time'}
 ]
 var EN_pages = [
     [

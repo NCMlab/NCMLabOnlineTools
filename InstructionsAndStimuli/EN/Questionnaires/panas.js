@@ -1,11 +1,11 @@
 var title = "Positive and Negative Affect Schedule (PANAS)"
 var shortTitle = 'PANAS'
 var scale01 = [
-    {value: 0, text: "Very slightly or not at all"},
-    {value: 1, text: "A little"},
-    {value: 2, text: "Moderately"},
-    {value: 3, text: "Quite a bit"},
-    {value: 4, text: "Extremely"}
+    {value: 1, text: "Very slightly or not at all"},
+    {value: 2, text: "A little"},
+    {value: 3, text: "Moderately"},
+    {value: 4, text: "Quite a bit"},
+    {value: 5, text: "Extremely"}
   ]
 var instructions = 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.'  
 // All questions use the same direction so enter that single flag as an array of size 1
