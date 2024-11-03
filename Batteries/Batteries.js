@@ -425,8 +425,8 @@ BatteryList.push({index: 73,
 })
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_003', Instructions: 'Default', IconName: 'Trails-A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'Trails-B'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_003', Instructions: 'Default', IconName: 'TrailsA'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'TrailsB'})
 List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_004', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
