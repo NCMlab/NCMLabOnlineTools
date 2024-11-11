@@ -365,14 +365,13 @@ List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Defaul
 	})
 // ============================================
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'}) 
-List.push({Task: 'Trail Making', Parameters: 'TrailMaking_Demonstration', Instructions: 'Demo', IconName: 'TrailsA'})
-List.push({Task: 'Questionnaire', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
-List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
-List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
+List.push({Task: 'Questionnaire JSON', Parameters: 'BDI_002', Instructions: 'Default', IconName: 'BDI'}) 
+List.push({Task: 'Questionnaire JSON', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
+List.push({Task: 'Questionnaire JSON', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
+List.push({Task: 'Questionnaire JSON', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
-	BatteryList.push({index: 7, 
+List.push({Task: 'Questionnaire JSON', Parameters: 'PANAS_010', Instructions: 'Default', IconName: 'PANAS'})
+	BatteryList.push({index: 1009, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
 		TaskList: List,

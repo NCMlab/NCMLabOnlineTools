@@ -36,7 +36,7 @@
     <script src="../jspsych/dist/plugin-instructions.js"></script>
     <script src="../jspsych/dist/plugin-call-function.js"></script>
     <script src="../jspsych_addons/plugin-sketchpad.js"></script>
-    <script src="../jspsych_addons/plugin-survey.js"></script>
+    <script src="../jspsych/dist/plugin-survey.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -46,23 +46,9 @@
     <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="../config/Questionnaire_Setup.js"></script>
     <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
-    <script src="../InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
+    
     <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
-    <script>
-      var Questionnaire_parameters = 'empty'
-      pseudoSwitch('STAI_T_001')
-      pseudoSwitch('EN'+'_Instructions_'+'Default')
-      console.log(Instructions)
-      parameters.Language = 'EN'
-      console.log(parameters)
-      // Now what we want to do is to load the file named in parameters.questionnaire[0]
-      // and located in ../InstructionsAndStimuli/EN/Questionnaires/
-      var dirName = "../InstructionsAndStimuli/EN/Questionnaires/"
-      fileName = dirName+parameters.questionnaire[0]+".js"
-      console.log(fileName)
-        dynamicallyLoadScript(fileName)
-      pseudoSwitch('EN'+'_LabelNames')
-    </script>
+   
 
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
@@ -70,6 +56,63 @@
 var setup = []
 var TrialCount = 1;
 
+
+var trial02 = {
+  type: jsPsychSurvey,
+  survey_json:  { 
+    showQuestionNumbers: false,
+    
+    elements: 
+        [
+            {
+                
+              
+              type: 'matrix',
+                name: 'panas',
+                title: "PANAS",
+                alternateRows: false,
+                isAllRowRequired: true,
+                rows: [
+                {value: 'panas01', text: "Interested"},
+                {value: 'panas02', text: "Distressed"},
+                {value: 'panas01', text: "Interested"},
+                {value: 'panas02', text: "Distressed"},
+                {value: 'panas01', text: "Interested"},
+                {value: 'panas02', text: "Distressed"},
+                {value: 'panas01', text: "Interested"},
+                {value: 'panas02', text: "Distressed"}
+                ],
+                columns: [
+                {
+                    "value": 0,
+                    "text": 'Very slightly or not at all',
+                    "width":"10%"
+                },
+                {
+                    "value": 1,
+                    "text": 'A little',
+                    "width":"10%"
+                },
+                {
+                    "value": 2,
+                    "text": 'Moderately'
+                },
+                {
+                    "value": 3,
+                    "text": 'Quite a bit'
+                },
+                {
+                    "value": 4,
+                    "text": 'Extremely'
+                },
+                ],
+            }
+        ]
+    }
+}
+
+var timeline = []
+timeline.push(trial02)
 
 jsPsych = initJsPsych({
       display_element: 'jspsych-target',
