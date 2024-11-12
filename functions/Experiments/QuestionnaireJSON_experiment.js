@@ -5,38 +5,16 @@ var CriteriaToUse = 0
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
+    
+    var parameters = EN_panasJSON
+    console.log(parameters)
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     eval(text)
     console.log(text)
     console.log(Questionnaire)
   }
 }
-const trial03 = {
-    type: jsPsychSurvey,
-    survey_json: {
-      showQuestionNumbers: false,
-      elements:
-        [
-          {
-            type: 'radiogroup',
-            title: "Which of the following do you like the most?", 
-            name: 'vegetablesLike', 
-            choices: ['Tomato', 'Cucumber', 'Eggplant', 'Corn', 'Peas', 'Broccoli']
-          }, 
-          {
-            type: 'checkbox',
-            title: "Which of the following do you like?", 
-            name: 'fruitLike', 
-            description: "You can select as many as you want.",
-            choices: ['Apple', 'Banana', 'Orange', 'Grape', 'Strawberry', 'Kiwi', 'Mango'], 
-            showOtherItem: true,
-            showSelectAllItem: true,
-            showNoneItem: true,
-            required: true,
-          },
-      ]
-    },
-  };
+
 var trial02 = {
   type: jsPsychSurvey,
   survey_json:  { 
@@ -49,11 +27,20 @@ var trial02 = {
                 type: 'matrix',
                 name: 'panas',
                 title: "PANAS",
-                alternateRows: false,
+                alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
-                {value: 'panas01', text: "Interested"},
-                {value: 'panas02', text: "Distressed"}
+                  {value: 'panas01', text: "Interested"},
+                  {value: 'panas02', text: "Distressed"},
+                  {value: 'panas03', text: "Interested02"},
+                  {value: 'panas04', text: "Distressed"},
+                  {value: 'panas05', text: "Interested"},
+                  {value: 'panas06', text: "Distressed"},
+                  {value: 'panas07', text: "Interested"},
+                  {value: 'panas08', text: "Distressed"},
+                  {value: 'panas09', text: "Interested"},
+                  {value: 'panas10', text: "Distressed"}
+
                 ],
                 columns: [
                 {
@@ -82,13 +69,6 @@ var trial02 = {
     }
 }
 
-var trial = {
-    type: jsPsychSurvey,
-    survey_json:  { 
-        pages: Questionnaire.pages
-        }
-    }
- 
 
 var SendData = {
   type: jsPsychCallFunction,
