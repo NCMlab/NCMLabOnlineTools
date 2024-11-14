@@ -2,56 +2,27 @@ var timeline = []
 var Questionnaire = []
 var CriteriaToUse = 0
 
+
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     eval(text)
+    console.log(Questionnaire)
+    if ( typeof Questionnaire.survey_JSON !== 'undefined' )
+    { console.log('>>>> JSON <<<<<')}
+    if ( typeof Questionnaire.pages !== 'undefined' )
+      { console.log('>>>> PAGES <<<<<<')}
   }
 }
 
+
 var trial02 = {
   type: jsPsychSurvey,
-  survey_json:  { 
-    pages: [
-      {
-    elements: [
-      {
-        type: 'matrix',
-        name: 'panas',
-        title: "PANAS",
-        alternateRows: false,
-        isAllRowRequired: true,
-        rows: [
-          {value: 'panas01', text: "Interested"},
-          {value: 'panas02', text: "Distressed"}
-        ],
-        columns: [
-          {
-            "value": 0,
-            "text": 'Very slightly or not at all'
-          },
-          {
-            "value": 1,
-            "text": 'A little'
-          },
-          {
-            "value": 2,
-            "text": 'Moderately'
-          },
-          {
-            "value": 3,
-            "text": 'Quite a bit'
-          },
-          {
-            "value": 4,
-            "text": 'Extremely'
-          },
-        ],
-    }
-  ]
-}]
-  }}
+  survey_json:  function() { 
+    return Questionnaire.survey_JSON
+  }
+}
 
 var trial = {
     type: jsPsychSurvey,
@@ -99,7 +70,8 @@ var trial = {
     on_load: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
       console.log("Hello World")
-      console.log(document.getElementById('jspsych-content'))
+      console.log(parameters)
+      console.log(Questionnaire)
     },
     on_finish: function(data) {
       data.trial = "Questionnaire"
@@ -129,11 +101,32 @@ var CheckForAlert = {
   }
 }
 
+var if_JSON = {
+  timeline: [trial02],
+  conditional_function: function(){
+
+    if ( typeof Questionnaire.survey_JSON !== 'undefined' )
+    { return true }
+    else { return false }
+  }
+}
+
+var if_PAGES = {
+  timeline: [trial],
+  conditional_function: function(){
+
+    if ( typeof Questionnaire.pages !== 'undefined' )
+    { return true }
+    else { return false }
+  }
+}
+
 
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
 
-timeline.push(trial)
+timeline.push(if_JSON)
+timeline.push(if_PAGES)
 
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)

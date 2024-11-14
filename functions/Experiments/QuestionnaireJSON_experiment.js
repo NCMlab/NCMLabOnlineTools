@@ -5,7 +5,7 @@ var CriteriaToUse = 0
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
-    
+    console.log(parameters)
     var parameters = EN_panasJSON
     console.log(parameters)
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
