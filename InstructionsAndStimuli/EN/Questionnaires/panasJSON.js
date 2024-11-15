@@ -6,25 +6,17 @@ var ReverseScoreDirection = [false]
 
 var survey_JSON = 
     {
+        showQuestionNumbers: "off",
         elements: [
             {
                 type: 'matrix',
                 name: 'panas',
-                title: "PANAS-title",
+                title: instructions,
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
                     {value: 'panas01', text: "Interested"},
                     {value: 'panas02', text: "Distressed"},
-                    {value: 'panas03', text: "Interested"},
-                    {value: 'panas04', text: "Distressed"},
-                    {value: 'panas05', text: "Interested"},
-                    {value: 'panas06', text: "Distressed"},
-                    {value: 'panas07', text: "Interested"},
-                    {value: 'panas08', text: "Distressed"},
-                    {value: 'panas00', text: "Interested"},
-                    {value: 'panas10', text: "Distressed"}
-
                 ],
                 columns: [
                     {

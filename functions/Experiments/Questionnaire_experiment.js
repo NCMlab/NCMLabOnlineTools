@@ -7,10 +7,20 @@ var LoadQuestionnaire = {
   func: function() {
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     eval(text)
+    console.log(parameters)
+    console.log(Questionnaire)
   }
 }
 
 var trial02 = {
+  type: jsPsychSurvey,
+  survey_json:  function() 
+    {
+      return Questionnaire.survey_JSON
+    }
+}
+
+var trial01 = {
   type: jsPsychSurvey,
   survey_json:  { 
     pages: [
@@ -133,7 +143,7 @@ var CheckForAlert = {
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
 
-timeline.push(trial)
+timeline.push(trial02)
 
 timeline.push(CheckForAlert)
 timeline.push(MentalHealthCheck)
