@@ -50,6 +50,16 @@
     
     <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
    
+    <script src="https://unpkg.com/nouislider@14.6.0/distribute/nouislider.min.js"></script>
+    <script src="https://unpkg.com/survey-core@1.12.10/survey.core.min.js"></script>
+    <script src="https://unpkg.com/survey-core@1.12.10/survey.i18n.min.js"></script>
+    <script src="https://unpkg.com/survey-core@1.12.10/themes/index.min.js"></script>
+    <script src="https://unpkg.com/survey-js-ui@1.12.10/survey-js-ui.js"></script>
+    <script src="https://unpkg.com/surveyjs-widgets@1.12.10/surveyjs-widgets.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/survey-core@1.12.10/defaultV2.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/nouislider@14.6.0/distribute/nouislider.css" />
+
+
 
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
@@ -117,18 +127,54 @@ var trial03 = {
   type: jsPsychSurvey,
   survey_json:  { 
 
+    questions: [
+        {
+          type: "html",
+          name: "sliderQuestion",
+          title: "How satisfied are you with our service?",
+          html: "<div id='slider' style='width: 100%;'></div>",  // Place to render the slider
+          widget: "slider",
+          min: 0,
+          max: 10,
+          step: 1,
+          defaultValue: 5
+        }
+      ]
+  }
+}
+
+
+var trial04 = {
+  type: jsPsychSurvey,
+  survey_json:  { 
+
+    "elements": [
+    {
+      "type": "nouislider",
+      "name": "range",
+      "title": "Please range"
+    }
+  ]
+  }
+}
+
+var trial05 = {
+  type: jsPsychSurvey,
+  survey_json: {
     elements: [
-      {
-        type: "nouislider",
-        name: "range",
-        title: "Please range"
+        {
+        type: "bootstrapslider",
+        name: "bootstrapslider-widget",
+     
+
       }
     ]
   }
 }
 
+
 var timeline = []
-timeline.push(trial03)
+timeline.push(trial05)
 
 jsPsych = initJsPsych({
       display_element: 'jspsych-target',
@@ -141,6 +187,8 @@ jsPsych = initJsPsych({
       //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
     }
   });
+
+
 
     
     jsPsych.run(timeline);
