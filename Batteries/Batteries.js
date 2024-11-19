@@ -369,7 +369,11 @@ List.push({Task: 'Questionnaire JSON', Parameters: 'BDI_002', Instructions: 'Def
 List.push({Task: 'Questionnaire JSON', Parameters: 'AES_001', Instructions: 'Default', IconName: 'AES'})
 List.push({Task: 'Questionnaire JSON', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
 List.push({Task: 'Questionnaire JSON', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
+
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+
+List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Lone'})
+
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_010', Instructions: 'Default', IconName: 'PANAS'})
 	BatteryList.push({index: 1009, 
 		name:'Demonstration Battery', 

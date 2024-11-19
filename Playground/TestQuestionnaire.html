@@ -8,6 +8,7 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab:  Questionnaire</title>
+    <link rel="stylesheet" type='text/css' href='../css/defaultV2.min.css'>
     <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/survey.css'>
     <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
@@ -111,8 +112,23 @@ var trial02 = {
     }
 }
 
+
+var trial03 = {
+  type: jsPsychSurvey,
+  survey_json:  { 
+
+    elements: [
+      {
+        type: "nouislider",
+        name: "range",
+        title: "Please range"
+      }
+    ]
+  }
+}
+
 var timeline = []
-timeline.push(trial02)
+timeline.push(trial03)
 
 jsPsych = initJsPsych({
       display_element: 'jspsych-target',

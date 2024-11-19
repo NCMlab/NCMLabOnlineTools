@@ -8,11 +8,13 @@ var LoadQuestionnaire = {
   func: function() {
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     eval(text)
+
     console.log(Questionnaire)
     if ( typeof Questionnaire.survey_JSON !== 'undefined' )
     { console.log('>>>> JSON <<<<<')}
     if ( typeof Questionnaire.pages !== 'undefined' )
       { console.log('>>>> PAGES <<<<<<')}
+
   }
 }
 
@@ -124,6 +126,7 @@ var if_PAGES = {
 
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
+
 
 timeline.push(if_JSON)
 timeline.push(if_PAGES)

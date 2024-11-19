@@ -1,16 +1,14 @@
 var title = "Positive and Negative Affect Schedule (PANAS)"
 var shortTitle = 'PANAS'
-var instructions = 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.'  
 // All questions use the same direction so enter that single flag as an array of size 1
-var ReverseScoreDirection = [false]
-
 var survey_JSON = 
     {
+        showQuestionNumbers: "off",
         elements: [
             {
                 type: 'matrix',
                 name: 'panas',
-                title: "PANAS-title",
+                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
