@@ -28,6 +28,8 @@
             document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
         }
     </script>
+
+
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -40,6 +42,7 @@
     <script src="../jspsych/dist/plugin-survey.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
@@ -49,17 +52,12 @@
     <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
     
     <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
+    <script src="../jspsych/plugins/html-vas-response/index.js"></script>
    
-    <script src="https://unpkg.com/nouislider@14.6.0/distribute/nouislider.min.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/survey.core.min.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/survey.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/themes/index.min.js"></script>
-    <script src="https://unpkg.com/survey-js-ui@1.12.10/survey-js-ui.js"></script>
-    <script src="https://unpkg.com/surveyjs-widgets@1.12.10/surveyjs-widgets.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/survey-core@1.12.10/defaultV2.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/nouislider@14.6.0/distribute/nouislider.css" />
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
 
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
@@ -123,58 +121,74 @@ var trial02 = {
 }
 
 
+
+const surveyJson = {
+  pages: [{
+    name: "PersonalDetails",
+    elements: [{
+      type: "text",
+      name: "FirstName",
+      title: "Enter your first name:"
+    }, {
+      type: "text",
+      name: "LastName",
+      title: "Enter your last name:"
+    }, {
+      type: "panel",
+      name: "Contacts",
+      state: "collapsed",
+      title: "Contacts (optional)",
+      elements: [{
+        type: "text",
+        name: "Telegram",
+        title: "Telegram:"
+      }, {
+        type: "text",
+        name: "GitHub",
+        title: "GitHub username:"
+      }]
+    }]
+  }]
+};
+
+
 var trial03 = {
-  type: jsPsychSurvey,
-  survey_json:  { 
-
-    questions: [
-        {
-          type: "html",
-          name: "sliderQuestion",
-          title: "How satisfied are you with our service?",
-          html: "<div id='slider' style='width: 100%;'></div>",  // Place to render the slider
-          widget: "slider",
-          min: 0,
-          max: 10,
-          step: 1,
-          defaultValue: 5
-        }
-      ]
-  }
-}
-
+    type: jsPsychHtmlSliderResponse,
+    stimulus: 'Something',
+    require_movement: true,
+    labels: ['100% chance', '50% chance', '0% chance']
+};
 
 var trial04 = {
-  type: jsPsychSurvey,
-  survey_json:  { 
-
-    "elements": [
-    {
-      "type": "nouislider",
-      "name": "range",
-      "title": "Please range"
-    }
-  ]
-  }
-}
-
-var trial05 = {
-  type: jsPsychSurvey,
-  survey_json: {
-    elements: [
-        {
-        type: "bootstrapslider",
-        name: "bootstrapslider-widget",
-     
-
-      }
-    ]
-  }
-}
-
+  type: jsPsychHtmlVasResponse,
+  stimulus:
+    "Some people have the experience of finding themselves in a place and have no idea how they got there.<br>Select the number to show what percentage of the time this happens to you.",
+  prompt: '<span id="resp-disp"></span><br>',
+  ticks: true,
+  scale_width: 500,
+  scale_colour: "black",
+  labels: [
+    "0%<br>Never",
+    "10%",
+    "20%",
+    "30%",
+    "40%",
+    "50%",
+    "60%",
+    "70%",
+    "80%",
+    "90%",
+    "100%<br>Always",
+  ],
+  resp_fcn: function (ppn) {
+    var pct = Math.round(100 * ppn);
+    var resp_disp = document.getElementById("resp-disp");
+    resp_disp.textContent = pct + "% of the time";
+  },
+};
 
 var timeline = []
-timeline.push(trial05)
+timeline.push(trial04)
 
 jsPsych = initJsPsych({
       display_element: 'jspsych-target',
