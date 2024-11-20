@@ -369,3 +369,9 @@ span:hover + div {
   max-width:100%
  
 }
+
+.jspsych-slider {
+  writing-mode: vertical-lr;
+  width: 20px;
+  height: 400px
+}
