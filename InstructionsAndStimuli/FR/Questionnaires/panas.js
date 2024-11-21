@@ -8,7 +8,7 @@ var survey_JSON =
             {
                 type: 'matrix',
                 name: 'panas',
-                title: 'Comment vous sentez-vous au cours des semaines passées? ',
+                title: 'Comment vous sentez-vous au cours des semaines passées?',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
