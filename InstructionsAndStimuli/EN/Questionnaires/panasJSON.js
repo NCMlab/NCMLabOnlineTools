@@ -1,5 +1,5 @@
 var title = "Positive and Negative Affect Schedule (PANAS)"
-var shortTitle = 'PANAS'
+var shortTitle = 'PANAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
     {
@@ -14,6 +14,24 @@ var survey_JSON =
                 rows: [
                     {value: 'panas01', text: "Interested"},
                     {value: 'panas02', text: "Distressed"},
+                    {value: 'panas03', text: "Excited"},
+                    {value: 'panas04', text: "Upset"},
+                    {value: 'panas05', text: "Strong"},
+                    {value: 'panas06', text: "Guilty"},
+                    {value: 'panas07', text: "Scared"},
+                    {value: 'panas08', text: "Hostile"},
+                    {value: 'panas09', text: "Enthusiastic"},
+                    {value: 'panas10', text: "Proud"},
+                    {value: 'panas11', text: "Irritable"},
+                    {value: 'panas12', text: "Alert"},
+                    {value: 'panas13', text: "Ashamed"},
+                    {value: 'panas14', text: "Inspired"},
+                    {value: 'panas15', text: "Nervous"},
+                    {value: 'panas16', text: "Determined"},
+                    {value: 'panas17', text: "Attentive"},
+                    {value: 'panas18', text: "Jittery"},
+                    {value: 'panas19', text: "Active"},
+                    {value: 'panas20', text: "Afraid"},
                 ],
                 columns: [
                     {
