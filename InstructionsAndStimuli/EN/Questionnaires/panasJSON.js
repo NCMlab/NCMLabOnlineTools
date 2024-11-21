@@ -1,8 +1,9 @@
+
 var title = "Positive and Negative Affect Schedule (PANAS)"
 var shortTitle = 'PANAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
-    {
+    { 
         showQuestionNumbers: "off",
         elements: [
             {
