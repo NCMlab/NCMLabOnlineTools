@@ -137,7 +137,7 @@ var EQ5D_001 = {
 }
 
 var PANAS_001 = { 
-    questionnaire: ['panas'], 
+    questionnaire: ['panasJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
