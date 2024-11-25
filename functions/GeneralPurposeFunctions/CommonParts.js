@@ -231,16 +231,28 @@ var Welcome = {
 // ============== NOTES ==============
 var notes = {
     type: jsPsychSurvey, 
-    pages: [[{
-        type: 'text',
-        prompt: function() { return LabelNames.NoteInputBox },
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-    }]],
+    survey_json:  function() { 
+        
+        var survey_JSON = {
+            showQuestionNumbers: "off",
+            elements: [
+                {
+                  type: "comment",
+                  name: "suggestions-auto-grow",
+                  title: LabelNames.NoteInputBox,
+                  
+                  rows: 4,
+                  autoGrow: true,
+                  allowResize: false
+                },
+            ]
+        }
+        return survey_JSON
+    },
     on_finish: function(data)
         { data.trial = "Notes" },
 }
+
 
 var if_Notes = {
     timeline: [notes],

@@ -193,6 +193,7 @@ var if_Instructions = {
 // ======================================================================= 
 // Add procedures to the timeline
 timeline.push(enter_fullscreen)
+
 timeline.push(Welcome)
 timeline.push(SetupTask)
 timeline.push(Instructions01)

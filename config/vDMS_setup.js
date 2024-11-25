@@ -61,7 +61,7 @@ Stair04Parameters.StepSize = 1
 Stair04Parameters.NUp = 1
 Stair04Parameters.NDown = 1
 Stair04Parameters.FastStart = true
-Stair04Parameters.MaxTime = 30
+Stair04Parameters.MaxTime = 10
 
 
 
@@ -335,10 +335,10 @@ vDMS_Adaptive = {
 vDMS_Fixed04 = {
 	ShowWelcome: true,
 	ShowThankYou: true,
-	ShowInstructions: true, 
+	ShowInstructions: false, 
 	ShowWelcome: true,
 	WelcomeSpoken: false,
-	AskForNotes: false,
+	AskForNotes: true,
 	InstructionsSpoken: false,
 	AdaptiveLoad: true,
 	Parameters: Stair04Parameters
