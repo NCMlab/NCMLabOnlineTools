@@ -180,58 +180,7 @@ var SendData = {
     }
   }
   
-  var welcome = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {
-      console.log(Instructions)
-      return Instructions.WelcomeText[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-  }
 
-  var thank_you = {
-    type: jsPsychHtmlButtonResponseTouchscreen,
-    stimulus: function() {
-      console.log(Instructions)
-      return Instructions.Instructions[0].page},
-    post_trial_gap: 0,
-    margin_horizontal: GapBetweenButtons,
-    prompt: 'PROMPT',
-    choices: function() {return [LabelNames.Next]}, 
-  }  
-   // Define procedures using the stimuli
-   var Notes = {
-    type: jsPsychSurvey, 
-    pages: [[{
-          type: 'text',
-          prompt: function() {return LabelNames.NoteInputBox},
-          textbox_rows: 10,
-          name: 'Notes', 
-          required: false,
-        }]],
-    on_finish: function(data)
-    { data.trial = "Notes" },
-  }
-
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-    if ( vDMS_parameters.ShowWelcome)
-    { return true }
-    else { return false }
-  }
-}
-
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-    if ( vDMS_parameters.ShowThankYou)
-    { return true }
-    else { return false }
-  }
-}
 var if_Instructions = {
   timeline: [instr_procedure_loop_node],
   conditional_function: function() {
