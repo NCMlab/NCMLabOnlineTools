@@ -1,19 +1,29 @@
 
 // Define Table size
 // Need to add conditional style based on portrait or landscape orientation
-console.log(parameters)
+
 
 
 // =======================================================================
 // Define internal variables
 var timeline = [];
 var countInstr = 0
-let stair1 = new Stair(StartValue,MinValue,MaxValue,MaxReversals,MaxTrials,StepSize,NUp,NDown,FastStart);
-let stimList = new AdaptiveStimulusList();
+var count = 0;
+var stair1
+var stimList
+var SetupTask = {
+  type: jsPsychCallFunction,
+  func: function() {  
+    console.log(parameters)
+    stair1 = new Stair(parameters.Parameters.StartValue,parameters.Parameters.MinValue, parameters.Parameters.MaxValue,parameters.Parameters.MaxReversals,parameters.Parameters.MaxTrials,parameters.Parameters.StepSize,parameters.Parameters.NUp,parameters.Parameters.NDown,parameters.Parameters.FastStart, parameters.Parameters.MaxTime);
+    stimList = new AdaptiveStimulusList();
+    console.log(stair1)
+    console.log(stimList)
     // Keep track of how many trials have been presented.
     // After a certain count present a long duration ITI
-var count = 0;
-console.log(stair1)
+  }
+}
+
 // =======================================================================
 var enter_fullscreen = {
   type: jsPsychFullscreen,
@@ -28,7 +38,10 @@ var enter_fullscreen = {
         console.log("Current: "+stair1.Current)
         console.log("Last Stim: "+stimList.getLastStim())
         console.log("Last Probe: "+stimList.getLastProbe())
-        output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
+        if ( parameters.AdaptiveLoad == true )
+        {
+          output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
+        }
         console.log(output)
         return PutLettersInGrid(output[0],3,3,700,20,60)
         //return StimulusLetters
@@ -232,6 +245,7 @@ var if_Instructions = {
 // Add procedures to the timeline
 timeline.push(enter_fullscreen)
 timeline.push(Welcome)
+timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(WaitTime)
 timeline.push(loop_node)

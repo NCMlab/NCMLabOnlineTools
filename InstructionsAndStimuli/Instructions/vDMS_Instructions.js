@@ -16,7 +16,7 @@ EN_Instructions.WelcomeText = [
     {'page': '<p class="Instructions">Welcome to the Verbal Delayed Match to Sample  Task.</p>'},
 ]
 
-add('EN_vDMS_Instructions_Default', function(){ Instructions = EN_Instructions});
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 // =========================================================
 // FRENCH 
 var FR_Instructions = {}

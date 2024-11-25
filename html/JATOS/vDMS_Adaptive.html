@@ -71,12 +71,13 @@
         }
 
         pseudoSwitch(parameters)
-        console.log(vDMS_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
+        console.log(Instructions)
       })
   </script> 
   <script src="functions/Experiments/vDMS_experiment.js"></script>

@@ -40,15 +40,31 @@ var NTrialsPerBlock = 6
 var NumberOfBlocks = 5
 // ===================================================
 // ADAPTIVE VERSION PARAMETERS
-var MaxTrials = 5
+
 //var MaxReversals = 15
-var StartValue = 1
-var MinValue = 1
-var MaxValue = 9
-var StepSize = 1
-var NUp = 3
-var NDown = 1
-var FastStart = true
+var StairParameters = {}
+StairParameters.MaxTrials = 5
+StairParameters.StartValue = 1
+StairParameters.MinValue = 1
+StairParameters.MaxValue = 9
+StairParameters.StepSize = 1
+StairParameters.NUp = 3
+StairParameters.NDown = 1
+StairParameters.FastStart = true
+
+var Stair04Parameters = {}
+Stair04Parameters.MaxTrials = 5
+Stair04Parameters.StartValue = 4
+Stair04Parameters.MinValue = 4
+Stair04Parameters.MaxValue = 4
+Stair04Parameters.StepSize = 1
+Stair04Parameters.NUp = 1
+Stair04Parameters.NDown = 1
+Stair04Parameters.FastStart = true
+Stair04Parameters.MaxTime = 30
+
+
+
 // ===================================================
 
 /* This is for rapid testing
@@ -290,6 +306,7 @@ var DMSLetterMRIList002 = [
 
 
 
+
 vDMS_Default = {
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -304,11 +321,31 @@ vDMS_Default = {
 vDMS_Adaptive = {
 	ShowWelcome: true,
 	ShowThankYou: true,
-	ShowInstructions: true, 
+	ShowInstructions: false, 
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	AskForNotes: true,
-	InstructionsSpoken: false
+	InstructionsSpoken: false,
+	AdaptiveLoad: true,
+	Parameters: StairParameters
 }
 
+
+
+vDMS_Fixed04 = {
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	AskForNotes: false,
+	InstructionsSpoken: false,
+	AdaptiveLoad: true,
+	Parameters: Stair04Parameters
+}
+
+
+
+
 add('vDMS_Adaptive', function(){ parameters = vDMS_Adaptive});
+add('vDMS_Fixed04', function(){ parameters = vDMS_Fixed04});

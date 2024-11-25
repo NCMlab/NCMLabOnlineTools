@@ -131,7 +131,9 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instruction
 List.push({Task: 'Serial Subtraction', Parameters: 'SerialSubtract_Default', Instructions: 'Default', IconName: 'Subtract'})
 List.push({Task: 'Fluency', Parameters: 'Fluency_Animals', Instructions: 'Default', IconName: 'Fluency, Animals'})
 //List.push({Task: 'Line Bisection', Parameters: 'LineBisection_001', Instructions: 'Default', IconName: 'Line Bisect'})
-List.push({Task: 'Verbal DMS', Parameters: 'vDMS_Adaptive', Instructions: 'Default', IconName: 'Verbal DMS'})
+//List.push({Task: 'Verbal DMS', Parameters: 'vDMS_Adaptive', Instructions: 'Default', IconName: 'Verbal DMS'})
+List.push({Task: 'Verbal DMS', Parameters: 'vDMS_Fixed04', Instructions: 'Default', IconName: 'Verbal DMSXXX'})
+
 List.push({Task: 'Spatial DMS', Parameters: 'SpatialDMS_Adaptive', Instructions: 'Default', IconName: 'Spatial DMS'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_T_001', Instructions: 'Default', IconName: 'STAI-T'})
 List.push({Task: 'Questionnaire', Parameters: 'STAI_S_001', Instructions: 'Default', IconName: 'STAI-S'})
