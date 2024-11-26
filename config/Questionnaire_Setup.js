@@ -145,16 +145,16 @@ var PANAS_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
-
-var PANAS_010 = { 
-    questionnaire: ['panasJSON'], 
+var MusicDemographics_001 = { 
+    questionnaire: ['IntakeForm_MusicJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
-    ShowInstructions: false,  
-}
+    ShowInstructions: false,
+ }
+
 
 var UCLA_LONELINESS_001 = { 
     questionnaire: ['UCLAlonelinessJSON'], 
