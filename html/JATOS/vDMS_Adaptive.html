@@ -29,6 +29,14 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>    
+    <script src="jspsych/dist/plugin-webgazer-init-camera.js"></script>
+    <script src="jspsych/dist/plugin-webgazer-calibrate.js"></script>
+    <script src="jspsych/dist/plugin-webgazer-validate.js"></script>
+    <script src="jspsych/examples/js/webgazer/webgazer.js"></script>
+    <script src="jspsych/dist/extension-webgazer.js"></script>
+
+
+
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
@@ -90,7 +98,9 @@
       display_element: 'jspsych-target',
       auto_update_progress_bar: false,
       show_progress_bar: true,    
-
+      extensions: [
+        {type: jsPsychExtensionWebgazer}
+  ],
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);

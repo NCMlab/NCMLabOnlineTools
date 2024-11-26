@@ -33,40 +33,10 @@ class AdaptiveStimulusList {
 }
 
 
-class FixedStimulusList {
-	// This class is made to keep track of the stimuli and probes used in the previous trials
-	constructor(CurrentStim='', PreviousStim=[], CurrentProbe='', PreviousProbe=[], CurrentCorrect = false)
-	{
-	  // keep track of the current trial and make an array of all
-	  this.CurrentStim = CurrentStim;
-	  this.PreviousStim = [];
-	  this.CurrentProbe = CurrentProbe;
-	  this.PreviousProbe = [];
-	  this.CurrentCorrect = CurrentCorrect;
-	}
-	// return the current stimulus
-	getCurrentStim() {return this.CurrentStim}
-	// return the stimulus from teh previous trial
-	getLastStim() {return this.PreviousStim[this.PreviousStim.length - 1]}
-  
-	getLastProbe() {return this.PreviousProbe[this.PreviousProbe.length - 1]}
-  
-	getCurrentCorrect() {return this.CurrentCorrect}
-	// update the current stim and add it to the array of stimuli
-	addStim(newStim) {
-	  this.CurrentStim = newStim;
-	  this.PreviousStim.push(this.CurrentStim);
-	}
-  // update the current probe and add it to the array of probes
-	addProbe(newProbe) {
-	  this.CurrentProbe = newProbe;
-	  this.PreviousProbe.push(this.CurrentProbe);
-	}
-	addCorrect(newCorrect) {
-	  this.CurrentCorrect = newCorrect
-	}
-  }
-  
+function MakeFixedStimulusList(LoadLevels, TrialsPerLoad)
+{
+	
+}  
 
 function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', FontSize=40)
 	{

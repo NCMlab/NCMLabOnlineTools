@@ -333,6 +333,7 @@ vDMS_Adaptive = {
 
 
 vDMS_Fixed04 = {
+	RecordEyeTracking: true,
 	ShowWelcome: true,
 	ShowThankYou: true,
 	ShowInstructions: false, 

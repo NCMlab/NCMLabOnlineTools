@@ -250,7 +250,8 @@ var notes = {
         return survey_JSON
     },
     on_finish: function(data)
-        { data.trial = "Notes" },
+        { 
+            data.trial = "Notes" },
 }
 
 
@@ -705,3 +706,35 @@ var enter_fullscreen = {
     type: jsPsychFullscreen,
     fullscreen_mode: true
   }
+
+// ============ WEB GAZER ==================
+var init_camera = {
+    type: jsPsychWebgazerInitCamera
+  };
+
+var calibration_instructions = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: `
+      <p>Great! Now the eye tracker will be calibrated to translate the image of your eyes from the webcam to a location on your screen.</p>
+      <p>To do this, you need to click a series of dots.</p>
+      <p>Keep your head still, and click on each dot as it appears. Look at the dot as you click it.</p>
+    `,
+    choices: ['Click to begin'],
+    post_trial_gap: 1000
+};
+  
+var calibration = {
+    type: jsPsychWebgazerCalibrate,
+    calibration_points: [[25,25], [25,75], [75,25], [75,75]],
+    //calibration_points: [[10,10],[10,30],[10,50],[10,70],[10,90],[30,10],[30,30],[30,50],[30,70],[30,90],[50,10],[50,30],[50,50],[50,70],[50,90],[70,10],[70,30],[70,50],[70,70],[70,90],[90,10],[90,30],[90,50],[90,70],[90,90]],
+    // calibration_points: [
+    //   [10,10],[10,50],[10,90],
+    //   [30,10],[30,50],[30,90],
+    //   [40,10],[40,30],[40,40],[40,45],[40,50],[40,55],[40,60],[40,70],[40,90],
+    //   [50,10],[50,30],[50,40],[50,45],[50,50],[50,55],[50,60],[50,70],[50,90],
+    //   [60,10],[60,30],[60,40],[60,45],[60,50],[60,55],[60,60],[60,70],[60,90],
+    //   [70,10],[70,50],[70,90],
+    //   [90,10],[90,50],[90,90]],
+    repetitions_per_point: 2,
+    randomize_calibration_order: true,
+};
