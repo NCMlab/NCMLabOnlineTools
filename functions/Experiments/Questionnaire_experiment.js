@@ -23,7 +23,25 @@ var trial02 = {
   type: jsPsychSurvey,
   survey_json:  function() { 
     return Questionnaire.survey_JSON
+  },
+  description: function() { return Questionnaire.description },
+  on_load: function() {
+    document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+  },
+  on_finish: function(data) {
+    console.log(Questionnaire.survey_JSON.elements[0].rows)
+    data.trial = "Questionnaire"
+    data.rows = Questionnaire.survey_JSON.elements[0].rows
+    data.cols = Questionnaire.survey_JSON.elements[0].columns
+    data.QuestionnaireType = Questionnaire.QuestionnaireType
+    data.AlertLimit = Questionnaire.AlertLimit
+    data.title = Questionnaire.title
+    data.shortTitle = Questionnaire.shortTitle
+    data.pages = Questionnaire.pages
+    console.log(Questionnaire)
+    data.values = Questionnaire.values
   }
+
 }
 
 var trial = {

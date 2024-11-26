@@ -5,13 +5,15 @@ var shortTitle = 'PANAS'
 var survey_JSON = 
     { 
         showQuestionNumbers: "off",
+        showCompletedPage: false,
         elements: [
             { 
                 type: 'matrix',
                 name: 'panas',
                 title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: false,
+                
                 rows: [
                     {value: 'panas01', text: "Interested"},
                     {value: 'panas02', text: "Distressed"},
@@ -71,7 +73,7 @@ EN_panasJSON.title = title
 EN_panasJSON.shortTitle = shortTitle
 EN_panasJSON.survey_JSON = survey_JSON
 //EN_panasJSON.description = instructions
-EN_panasJSON.QuestionnaireType = 'likert'
+EN_panasJSON.QuestionnaireType = 'matrix'
 EN_panasJSON.references = references
 EN_panasJSON.notes = notes
 
