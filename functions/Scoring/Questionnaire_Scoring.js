@@ -19,6 +19,39 @@ function Questionnaire_Scoring(data) {
 	var NumericScore
 	var prompt
 	var resp
+	if ( data.QuestionnaireType == 'matrix' )
+	{
+		const surveyName = Object.keys(data.response)
+        console.log(surveyName)
+		const keys = Object.keys(data.response[surveyName])
+		console.log(keys)
+		const responses = data.response[surveyName]
+		console.log(responses)
+		// cycle over responses
+		for ( var i = 0; i < keys.length; i++ )
+		{
+			NumericScore = responses[keys[i]]
+			// cycle over ALL questions
+			for ( var j = 0; j < data.rows.length; j++ )
+			{
+				if ( data.rows[j].value == keys[i] )
+				{
+					TextAnswer = data.rows[j].text 
+					for ( var k = 0; k < data.cols.length; k++ )
+					{
+						if ( data.cols[k].value == NumericScore )
+						{
+							ResponseText = data.cols[k].text		
+						}
+					}
+				}
+			}
+			TotalScore += NumericScore
+			Results.AllResults[TextAnswer] = ResponseText
+			//console.log(BREAK)
+		}
+	}
+
 	if ( data.QuestionnaireType == 'likert' )
 	{
 		const keys = Object.keys(data.response)

@@ -16,40 +16,144 @@ var EN_pages = [
   [
     {
       type: 'likert',
-      prompt: "Excited",
+      prompt: "Interested",
       name: 'panas01',
       likert_scale_values: scale01,
       required: true,
     },
     {
       type: 'likert',
-      prompt: "Upset",
+      prompt: "Distressed",
       name: 'panas02',
       likert_scale_values: scale01,
-      required: true
+      required: true,
     },
     {
       type: 'likert',
-      prompt: "Strong",
+      prompt: "Excited",
       name: 'panas03',
       likert_scale_values: scale01,
-      required: true
+      required: true,
     },
     {
       type: 'likert',
-      prompt: "Guilty",
+      prompt: "Upset",
       name: 'panas04',
       likert_scale_values: scale01,
       required: true
     },
     {
       type: 'likert',
-      prompt: "Scared",
+      prompt: "Strong",
       name: 'panas05',
       likert_scale_values: scale01,
       required: true
     },
-   
+    {
+      type: 'likert',
+      prompt: "Guilty",
+      name: 'panas06',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Scared",
+      name: 'panas07',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Hostile",
+      name: 'panas08',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Enthusiastic",
+      name: 'panas09',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Proud",
+      name: 'panas10',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Irritable",
+      name: 'panas11',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Alert",
+      name: 'panas12',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Ashamed",
+      name: 'panas13',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Inspired",
+      name: 'panas14',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Nervous",
+      name: 'panas15',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Determined",
+      name: 'panas16',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Attentive",
+      name: 'panas17',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Jittery",
+      name: 'panas18',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Active",
+      name: 'panas19',
+      likert_scale_values: scale01,
+      required: true
+    },
+    {
+      type: 'likert',
+      prompt: "Afraid",
+      name: 'panas20',
+      likert_scale_values: scale01,
+      required: true
+    },
   ]
 ]
 
