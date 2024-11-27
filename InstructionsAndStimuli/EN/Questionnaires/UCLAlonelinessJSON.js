@@ -1,3 +1,5 @@
+var title = "UCLA 3-item Loneliness Scale"
+var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
@@ -16,7 +18,30 @@ const survey_JSON = {
         separateSpecialChoices: true,
         showClearButton: true
       },
-      
+      {
+        type: "radiogroup",
+        name: "loneliness002",
+        title: "How often do you feel left out?",
+        isRequired: true,
+        showNoneItem: false,
+        showOtherItem: false,
+        colCount: 1,
+        choices: [ "Hardly ever", "Some of the time", "Often" ],
+        separateSpecialChoices: true,
+        showClearButton: true
+      },
+      {
+        type: "radiogroup",
+        name: "loneliness003",
+        title: "How often do you feel isolated from others?",
+        isRequired: true,
+        showNoneItem: false,
+        showOtherItem: false,
+        colCount: 1,
+        choices: [ "Hardly ever", "Some of the time", "Often" ],
+        separateSpecialChoices: true,
+        showClearButton: true
+      },
     ],
     showQuestionNumbers: false,
     showCompletedPage: false
