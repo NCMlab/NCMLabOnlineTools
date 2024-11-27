@@ -86,7 +86,7 @@ var BDI_002 = {
 }
 
 var GDS_001 = { 
-    questionnaire: ['gds'], 
+    questionnaire: ['gdsJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -106,7 +106,7 @@ var GDS_004 = {
 }
 
 var GAS_001 = { 
-    questionnaire: ['gas'], 
+    questionnaire: ['gasJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -166,6 +166,17 @@ var UCLA_LONELINESS_001 = {
     ShowInstructions: false,  
 }
 
+
+var UCLA_LONELINESS_001 = { 
+    questionnaire: ['UCLAlonelinessJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 add('AES_001', function(){ parameters = AES_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
@@ -181,4 +192,4 @@ add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_001', function(){ parameters = PANAS_001});
 add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
-
+add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});

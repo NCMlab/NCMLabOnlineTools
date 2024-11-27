@@ -430,3 +430,7 @@ span:hover + div {
   cursor: pointer;
   -webkit-appearance: none;
 }
+
+.jspsych_content {
+  text-align: left;
+}
