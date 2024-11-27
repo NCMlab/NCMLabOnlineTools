@@ -369,3 +369,7 @@ span:hover + div {
   max-width:100%
  
 }
+
+.jspsych_content {
+  text-align: left;
+}
