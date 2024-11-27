@@ -5,6 +5,7 @@ var shortTitle = 'PANAS'
 var survey_JSON = 
     { 
         showQuestionNumbers: "off",
+        showCompletedPage: false,
         elements: [
             { 
                 type: 'matrix',

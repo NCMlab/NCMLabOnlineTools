@@ -86,7 +86,7 @@ var BDI_002 = {
 }
 
 var GDS_001 = { 
-    questionnaire: ['gds'], 
+    questionnaire: ['gdsJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -106,7 +106,7 @@ var GDS_004 = {
 }
 
 var GAS_001 = { 
-    questionnaire: ['gas'], 
+    questionnaire: ['gasJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
