@@ -5,6 +5,7 @@ var shortTitle = 'GDS'
 var survey_JSON = 
     { 
         showQuestionNumbers: "off",
+        showCompletedPage: false,
         elements: [
             { 
                 type: 'matrix',
@@ -51,7 +52,7 @@ var notes = ""
 
 var EN_gdsJSON = {}
 EN_gdsJSON.title = title
-EN_gdsSON.shortTitle = shortTitle
+EN_gdsJSON.shortTitle = shortTitle
 EN_gdsJSON.survey_JSON = survey_JSON
 //EN_gdsJSON.description = instructions
 EN_gdsJSON.QuestionnaireType = 'likert'
