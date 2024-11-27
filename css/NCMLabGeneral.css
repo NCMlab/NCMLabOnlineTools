@@ -430,7 +430,11 @@ span:hover + div {
   cursor: pointer;
   -webkit-appearance: none;
 }
-
-.jspsych_content {
+/* This is added so the radio button groups align to the left instead of the center */
+.jspsych-content {
+  max-width: 95%;
+  /* this is mainly an IE 10-11 fix */
   text-align: left;
+  margin: auto;
+  /* this is for overflowing content */
 }

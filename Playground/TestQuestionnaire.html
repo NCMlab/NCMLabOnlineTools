@@ -72,7 +72,19 @@ var trial02 = {
     
     elements: 
         [
-            {
+        {
+        type: "radiogroup",
+        name: "loneliness001",
+        title: "How often do you feel that you lack companionship?",
+        isRequired: true,
+        showNoneItem: false,
+        showOtherItem: false,
+        colCount: 1,
+        choices: [ "Hardly ever", "Some of the time", "Often" ],
+        separateSpecialChoices: true,
+        showClearButton: true
+      },    
+        {
                 
               
               type: 'matrix',
@@ -189,7 +201,7 @@ var trial04 = {
 };
 
 var timeline = []
-timeline.push(trial03)
+timeline.push(trial02)
 
 jsPsych = initJsPsych({
       display_element: 'jspsych-target',
