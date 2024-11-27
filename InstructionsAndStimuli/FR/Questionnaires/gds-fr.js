@@ -49,11 +49,11 @@ var references = ""
 
 var notes = ""
 
-var EN_gdsJSON = {}
-EN_gdsJSON.title = title
-EN_gdsSON.shortTitle = shortTitle
-EN_gdsJSON.survey_JSON = survey_JSON
-//EN_gdsJSON.description = instructions
-EN_gdsJSON.QuestionnaireType = 'likert'
-EN_gdsJSON.references = references
-EN_gdsJSON.notes = notes
+var FR_gdsJSON = {}
+FR_gds_gdsJSON.title = title
+FR_gdsSON.shortTitle = shortTitle
+FR_gdsJSON.survey_JSON = survey_JSON
+//FR_gdsJSON.description = instructions
+FR_gdsJSON.QuestionnaireType = 'likert'
+FR_gdsJSON.references = references
+FR_gdsJSON.notes = notes
