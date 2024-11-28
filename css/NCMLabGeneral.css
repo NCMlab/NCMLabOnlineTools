@@ -370,66 +370,7 @@ span:hover + div {
  
 }
 
-.jspsych-slider {
-  writing-mode: vertical-lr;
-  width: 20px;
-  height: 400px
-}
 
-#input {
-    width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-#input span {
-    position: relative;
-    margin: 15px -5px 0 -5px;
-    flex-basis: 0;
-    flex-grow: 1;
-    text-align: center;
-    font-size: 0.85em;
-    user-select: none;
-}
-#input span::after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: 8px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: -12px;
-    background-color: #ccc;
-}
-#input input {
-    width: 100%;
-    margin: 5px 10px;
-    position: relative;
-    background-color: #ccc;
-    border-radius: 99px;
-    z-index: 10;
-    height: 7px;
-    -webkit-appearance: none;
-}
-#input input::-moz-range-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 99px;
-    background: #35b0f2;
-    cursor: pointer;
-}
-#input input::-webkit-slider-thumb {
-  box-shadow: none;
-  border: none;
-  height: 16px;
-  width: 16px;
-  border-radius: 99px;
-  background-color: #35b0f2;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
 /* This is added so the radio button groups align to the left instead of the center */
 .jspsych-content {
   max-width: 95%;
@@ -438,3 +379,80 @@ span:hover + div {
   margin: auto;
   /* this is for overflowing content */
 }
+
+.JasonSlider {
+  appearance: none; /* removes browser-specific styling */
+  width: 300px; /* width of slider */
+  height: 25px; /* height of slider */
+  background: #FF5C35 ; /* orange background */
+  outline: none; /* remove outline */
+  border-radius: 50px; /* round corners */
+  margin-top: 40%;
+  
+}
+
+#JasonSliderID {
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  transform: rotate(270deg); /* rotate the element */  
+}
+
+#JasonSliderID span {
+  position: relative;
+  margin: 15px -5px 0 -5px;
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 0.85em;
+  user-select: none;
+  transform: rotate(-270deg); /* rotate the element */  
+}
+#JasonSliderID span::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  left: -40px; /* changed from 0*/
+  right: 0;
+  margin: auto;
+  top: 10px; /* changed from -12px */
+  background-color: #ccc;
+  transform: rotate(-270deg); /* rotate the element */  
+}
+#JasonSliderID input {
+  width: 100%;
+  margin: 5px 10px;
+  position: relative;
+  background-color: #ccc;
+  border-radius: 99px;
+  z-index: 10;
+  height: 7px;
+  -webkit-appearance: none;
+}
+#JasonSliderID input::-moz-range-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 99px;
+  background: #35b0f2;
+  cursor: pointer;
+}
+#JasonSliderID input::-webkit-slider-thumb {
+box-shadow: none
+border: none;
+height: 16px;
+width: 16px;
+border-radius: 99px;
+background-color: #35b0f2;
+cursor: pointer;
+-webkit-appearance: none;
+}
+
+/*.jspsych-slider {
+  writing-mode: vertical-lr;
+  width: 20px;
+  height: 400px
+}
+
