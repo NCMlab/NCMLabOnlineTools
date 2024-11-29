@@ -21,7 +21,7 @@ const survey_JSON = {
       {
         type: "radiogroup",
         name: "berksyme002",
-        title: "In a typical week, how many times do you talk on the telephone with family, friends, or neighbours?",
+        title: "How often do you get together with friends or relatives?",
         isRequired: true,
         showNoneItem: false,
         showOtherItem: false,
@@ -38,7 +38,7 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Less than once a week", "1 or 2 times a week", "3 or 4 times a week", "5 or more times a week" ],
+        choices: [ "Never or less than once a year", "1 to 3 times per year", "4 to 11 times per year", "12 or more times per year" ],
         separateSpecialChoices: true,
         showClearButton: true
       },
