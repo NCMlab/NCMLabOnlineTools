@@ -72,12 +72,12 @@ const survey_JSON = {
   };
 
 
-var EN_UCLAlonelinessJSON = {}
-EN_UCLAlonelinessJSON.title = "Which is the brand of your car?",
-EN_UCLAlonelinessJSON.shortTitle = "car"
-EN_UCLAlonelinessJSON.survey_JSON = survey_JSON
-EN_UCLAlonelinessJSON.description = ""
-EN_UCLAlonelinessJSON.QuestionnaireType = 'likert'
-EN_UCLAlonelinessJSON.references = "references"
-EN_UCLAlonelinessJSON.notes = ''
+var EN_berksymeJSON = {}
+EN_berksymeJSON.title = "Which is the brand of your car?",
+EN_berksymeJSON.shortTitle = "car"
+EN_berksymeJSON.survey_JSON = survey_JSON
+EN_berksymeJSON.description = ""
+EN_berksymeJSON.QuestionnaireType = 'likert'
+EN_berksymeJSON.references = "references"
+EN_berksymeJSON.notes = ''
 
