@@ -489,7 +489,7 @@ span:hover + div {
 
     .slider {
         position: relative;
-        width: 300px;
+        width:1000px;
         height: 30px;
         transform: rotate(-270deg); /* rotate the element */  
     }
@@ -506,19 +506,26 @@ span:hover + div {
         justify-content: space-between;
     }
     .tick {
+      display: flex;
         width: 1px;
         height: 16px;
-        margin: 8px 8px 0px 8px;
+        margin: 8px 0px 0px 0px;
         background: #b3b3b3;
-        
+        justify-content: space-between;
     }
     .tickWide {
       width: 4px;
       height: 32px;
       margin: 0px 8px 0px 8px;
-      background: #b3b3b3;
-      
+      background: #b3b3b3;  
   }
+    .tickLabel {
+      content: "";
+      position: absolute;
+      margin: 0px 8px 10px -8px; 
+      top: -30px;
+      transform: rotate(270deg); /* rotate the element */  
+    }
     .groove {
         height: 2px;
         background: #b3b3b3;

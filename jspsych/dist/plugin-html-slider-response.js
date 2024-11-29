@@ -120,16 +120,32 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                 html += '<div class="track">'
                     html += '<div class="groove"></div>'
                     html += '<div class="ticks">'
+                    var count = 0
+                    for ( var j = 0; j <= 100; j++) {
+                        if (count % 5 == 0) { html += '<span class="tickWide"><span class="tickLabel">'+count+'</span></span>' }
+                        else { html += '<span class="tick"></span>' }
+                        count += 1
+                        
+                    }
+
+                    /*
+                        html += '<span class="tick"></span>'
+                        html += '<span class="tick"></span>'
+                        html += '<span class="tickWide"><span class="tickLabel">70</span></span>'
                         html += '<span class="tick"></span>'
                         html += '<span class="tick"></span>'
                         html += '<span class="tick"></span>'
-                        html += '<span class="tickWide">XX</span>'
+                        html += '<span class="tickWide"><span class="tickLabel">50</span></span>'
                         html += '<span class="tick"></span>'
                         html += '<span class="tick"></span>'
+                        */
                     html += '</div>'
                 html += '</div>'
-                html += '<input type="range" min="1" max="5" bind:value> '
+                html += '<input type="range" min="1" max="100" id="myRange" bind:value> '
             html += '</div>'
+            html +=  '<p>Value: <span id="demo"></span></p>'
+
+
 
 
             
@@ -191,6 +207,9 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                 trial.button_label +
                 "</button>";
             display_element.innerHTML = html;
+
+
+
             var response = {
                 rt: null,
                 response: null,
@@ -235,6 +254,14 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                     else {
                         display_element.querySelector("#jspsych-html-slider-response-next").disabled = true;
                     }
+
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("demo");
+                    console.log("JASON")
+                    console.log(slider)
+                    console.log(output)
+        
+
                 });
             if (trial.stimulus_duration !== null) {
                 this.jsPsych.pluginAPI.setTimeout(() => {
