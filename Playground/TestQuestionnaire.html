@@ -8,10 +8,9 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab:  Questionnaire</title>
-    <link rel="stylesheet" type='text/css' href='../css/defaultV2.min.css'>
     <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='../css/survey.css'>
-    
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
     <script src="../ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
       // use jquery to load up the header button html content 
@@ -28,8 +27,6 @@
             document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
         }
     </script>
-
-
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -39,173 +36,40 @@
     <script src="../jspsych/dist/plugin-instructions.js"></script>
     <script src="../jspsych/dist/plugin-call-function.js"></script>
     <script src="../jspsych_addons/plugin-sketchpad.js"></script>
-    <script src="../jspsych/dist/plugin-survey.js"></script>
+    <script src="../jspsych_addons/plugin-survey.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    
-    <script src="../jspsych_addons/VerticalSlider.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
-    <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
-    <script src="../config/Questionnaire_Setup.js"></script>
-    <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
     
-    <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
-    <script src="../jspsych/plugins/html-vas-response/index.js"></script>
+    
+    <script src="../jspsych/dist/plugin-html-slider-response.js"></script>
+    
+    
+    
+    <script>
    
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-
-<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-
-<script>
-var setup = []
-var TrialCount = 1;
-
-
-var trial02 = {
-  type: jsPsychSurvey,
-  survey_json:  { 
-    showQuestionNumbers: false,
-    
-    elements: 
-        [
-            {
-                
-              
-              type: 'matrix',
-                name: 'panas',
-                title: "PANAS",
-                alternateRows: false,
-                isAllRowRequired: true,
-                rows: [
-                {value: 'panas01', text: "Interested"},
-                {value: 'panas02', text: "Distressed"},
-                {value: 'panas01', text: "Interested"},
-                {value: 'panas02', text: "Distressed"},
-                {value: 'panas01', text: "Interested"},
-                {value: 'panas02', text: "Distressed"},
-                {value: 'panas01', text: "Interested"},
-                {value: 'panas02', text: "Distressed"}
-                ],
-                columns: [
-                {
-                    "value": 0,
-                    "text": 'Very slightly or not at all',
-                    "width":"10%"
-                },
-                {
-                    "value": 1,
-                    "text": 'A little',
-                    "width":"10%"
-                },
-                {
-                    "value": 2,
-                    "text": 'Moderately'
-                },
-                {
-                    "value": 3,
-                    "text": 'Quite a bit'
-                },
-                {
-                    "value": 4,
-                    "text": 'Extremely'
-                },
-                ],
-            }
-        ]
-    }
-}
-
-
-
-const surveyJson = {
-  pages: [{
-    name: "PersonalDetails",
-    elements: [{
-      type: "text",
-      name: "FirstName",
-      title: "Enter your first name:"
-    }, {
-      type: "text",
-      name: "LastName",
-      title: "Enter your last name:"
-    }, {
-      type: "panel",
-      name: "Contacts",
-      state: "collapsed",
-      title: "Contacts (optional)",
-      elements: [{
-        type: "text",
-        name: "Telegram",
-        title: "Telegram:"
-      }, {
-        type: "text",
-        name: "GitHub",
-        title: "GitHub username:"
-      }]
-    }]
-  }]
-};
-
-
-var trial03 = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: 'Something',
-    
-    require_movement: true,
-    labels: ['100% chance', '50% chance', '0% chance']
-};
-
-var trial04 = {
-  type: jsPsychHtmlVasResponse,
-  stimulus:
-    "Some people have the experience of finding themselves in a place and have no idea how they got there.<br>Select the number to show what percentage of the time this happens to you.",
-  prompt: '<span id="resp-disp"></span><br>',
-  ticks: true,
-  scale_width: 200,
-  scale_height: 200,
-  scale_colour: "black",
-  labels: [
-    "0%<br>Never",
-    "10%",
-    "20%",
-    "30%",
-    "40%",
-    "50%",
-    "60%",
-    "70%",
-    "80%",
-    "90%",
-    "100%<br>Always",
-  ],
-  resp_fcn: function (ppn) {
-    var pct = Math.round(100 * ppn);
-    var resp_disp = document.getElementById("resp-disp");
-    resp_disp.textContent = pct + "% of the time";
-  },
-};
-
-var timeline = []
-timeline.push(trial03)
-
 jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
+      
       show_progress_bar: true,    
       on_interaction_data_update: function(data) {
           console.log(JSON.stringify(data))
       },
-      on_finish: function() {
-
-      //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
-    }
   });
 
-
-
     
-    jsPsych.run(timeline);
+  var trial_1 = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: 'HELLO',
+      labels: ['Purple', 'Blue'],
+      slider_width: 500,
+      require_movement: true,
+      prompt: '<p>Is this color closer to purple or blue? Use the slider above.</p>'
+    };
+
+    jsPsych.run([trial_1]);
+    
 
   
 
@@ -217,3 +81,13 @@ jsPsych = initJsPsych({
 </body>
 
 </html>
+<script>
+/* https://wsform.com/knowledgebase/vertical-range-sliders/
+
+
+<div class="wsf-extra-small-3 wsf-tile wsf-field-wrapper wsf-range-vertical" id="wsf-1-field-wrapper-17306" data-id="17306" data-type="range">
+  <label id="wsf-1-label-17306" for="wsf-1-field-17306" class="wsf-label">Tick Marks</label>
+  <input type="range" id="wsf-1-field-17306" name="field_17306" value="0" class="wsf-field" list="wsf-1-datagrid-17306-group-0" aria-describedby="wsf-1-help-17306" aria-labelledby="wsf-1-label-17306" data-init-help-value="" data-init-validate-real-time="">
+
+<datalist id="wsf-1-datagrid-17306-group-0"><option value="0" style="--wsf-position-tick-mark: 0%;" data-label="0%"></option><option value="25" style="--wsf-position-tick-mark: 25%;" data-label="25%"></option><option value="50" style="--wsf-position-tick-mark: 50%;" data-label="50%"></option><option value="75" style="--wsf-position-tick-mark: 75%;" data-label="75%"></option><option value="100" style="--wsf-position-tick-mark: 100%;" data-label="100%"></option></datalist><div id="wsf-1-invalid-feedback-17306" class="wsf-invalid-feedback" aria-hidden="true">This field is required.</div><small id="wsf-1-help-17306" class="wsf-help wsf-help-post">0%</small></div>
+</script>

@@ -1,14 +1,9 @@
 const survey_JSON = {
-  title: "How often do you feel that you lack companionship?",
+  showQuestionNumbers: "off",
+  showCompletedPage: false,
   elements: [
 
-    {
-      "type": "bootstrapslider",
-      "name": "bootstrapslider-widget",
-      "step": 50,
-      "rangeMin": 100,
-      "rangeMax": 1000
-    },
+
       {
         type: "radiogroup",
         name: "loneliness001",
@@ -21,18 +16,7 @@ const survey_JSON = {
         separateSpecialChoices: true,
         showClearButton: true
       },
-      {
-        type: "radiogroup",
-        name: "loneliness002",
-        title: "How often do you feel that you lack companionship?",
-        isRequired: true,
-        showNoneItem: false,
-        showOtherItem: false,
-        colCount: 1,
-        choices: [ "Hardly ever", "Some of the time", "Often" ],
-        separateSpecialChoices: true,
-        showClearButton: true
-      }
+      
     ],
     showQuestionNumbers: false,
     showCompletedPage: false
