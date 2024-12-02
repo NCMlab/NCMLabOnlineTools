@@ -103,101 +103,35 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
             var half_thumb_width = 7.5;
 
             var html
-            // JASON
-         /*   html += '<div class="JasonSliderID">'
-            html += '<input type="range" class="JasonSlider" ></input>'
-            var count = 0
-            for (var j = trial.min; j <= trial.max; j++) {
-                if (count % 10 == 0) { html += '<span id="WideTick">'+count+'</span>' }
-                else { html += '<span></span>' }
-                count += 1
-                
-            }
-
-            html += '</div>'
-            /*
+            var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
 /* https://stackoverflow.com/questions/20819694/how-can-i-style-two-spans-within-a-div-such-that-when-span-1s-width-increases-b */
-            html += '<div class="slider">'
-                html += '<div class="track">'
-                    html += '<div class="groove"></div>'
-                    html += '<div class="ticks">'
-                    var count = 0
-                    for ( var j = 0; j <= 100; j++) {
-                        if (count % 5 == 0) { html += '<span class="tickWide"><span class="tickLabel">'+count+'</span></span>' }
-                        else { html += '<span class="tick"></span>' }
-                        count += 1   
-                    }
+                html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            
+                html += '<div class="slider">'
+
+                    html += '<div class="track">'
+                        html += '<div class="groove">'
+                        html += '</div>'
+                        html += '<div class="ticks">'
+                            var count = 0
+                            for ( var j = trial.min; j <= trial.max; j += trial.step) {
+                                if (count % 5 == 0) { html += '<span class="tickWide"><span class="tickLabel">'+count+'</span></span>' }
+                                else { html += '<span class="tick"></span>' }
+                                count += 1   
+                            }
+                        html += '</div>'
                     html += '</div>'
+                    html += '<input type="range" value='+ trial.slider_start +' min='+ trial.min
+                    html += 'step='+ trial.step +' max='+ trial.max +' id="jspsych-html-slider-response-response" bind:value> '
                 html += '</div>'
-                html += '<input type="range" value="30" min="0" step="1" max="100" id="myRange" bind:value> '
-            html += '</div>'
-            html +=  '<p>Value: <span id="demo"></span></p>'
-
-
-
-
-            
-            // End Jason
-            /*
-            html += '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
-            html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";
-            
-            html +=
-                '<div class="jspsych-html-slider-response-container" style="position:relative; margin: 0 auto 3em auto; ';
-            if (trial.slider_width !== null) {
-                html += "width:" + trial.slider_width + "px;";
-            }
-            else {
-                html += "width:auto;";
-            }
-            html += '">';
-            html +=
-                '<input type="range" class="jspsych-slider" value="' +
-                trial.slider_start +
-                '" min="' +
-                trial.min +
-                '" max="' +
-                trial.max +
-                '" step="' +
-                trial.step +
-                '" id="jspsych-html-slider-response-response"></input>';
-            html += "<div>";
-            for (var j = 0; j < trial.labels.length; j++) {
-                var label_width_perc = 100 / (trial.labels.length - 1);
-                var percent_of_range = j * (100 / (trial.labels.length - 1));
-                var percent_dist_from_center = ((percent_of_range - 50) / 50) * 100;
-                var offset = (percent_dist_from_center * half_thumb_width) / 100;
                 html +=
-                    '<div style="border: 1px solid transparent; display: inline-block; position: absolute; ' +
-                    "left:calc(" +
-                    percent_of_range +
-                    "% - (" +
-                    label_width_perc +
-                    "% / 2) - " +
-                    offset +
-                    "px); text-align: center; width: " +
-                    label_width_perc +
-                    '%;">';
-                html += '<span style="text-align: center; font-size: 80%;">' + trial.labels[j] + "</span>";
-                html += "</div>";
-            }
-            html += "</div>";
-            
-            html += "</div>";
-            html += "</div>";
-            if (trial.prompt !== null) {
-                html += trial.prompt;
-            }*/
-            // add submit button
-            html +=
-                '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
-                (trial.require_movement ? "disabled" : "") +
-                ">" +
-                trial.button_label +
-                "</button>";
+                    '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
+                    (trial.require_movement ? "disabled" : "") +
+                    ">" +
+                    trial.button_label +
+                    "</button>";
+                html += '</div>'
+            html += '</div>'
             display_element.innerHTML = html;
-
-
 
             var response = {
                 rt: null,
@@ -243,12 +177,8 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                     else {
                         display_element.querySelector("#jspsych-html-slider-response-next").disabled = true;
                     }
-
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("demo");
-                    console.log("JASON")
-                    console.log(slider)
-                    console.log(output)
+                    console.log(response)
+                    
         
 
                 });

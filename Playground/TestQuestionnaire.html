@@ -44,7 +44,7 @@
     <script src="../config/General_Setup.js"></script>
     
     
-    <script src="../jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="../jspsych_addons/plugin-html-slider-response.js"></script>
     
     
     
@@ -62,6 +62,10 @@ jsPsych = initJsPsych({
   var trial_1 = {
       type: jsPsychHtmlSliderResponse,
       stimulus: 'HELLO',
+      min: 0,
+      max: 100,
+      slider_start: 0,
+      step: 1,   
       labels: ['Purple', 'Blue'],
       slider_width: 200,
       require_movement: true,
