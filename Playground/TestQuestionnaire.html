@@ -61,9 +61,20 @@ jsPsych = initJsPsych({
     
   var trial_1 = {
       type: jsPsychHtmlSliderResponse,
-      stimulus: 'HELLO',
+      stimulus: function() {
+        var html = ''
+          html += '<ul>'
+          html += '<li>We would like to know how good or bad your health is TODAY</li>'
+            html += '<li>This scale is numbered from 0 to 100.</li>'
+            html += '<li>100 means the best health you can imagine. 0 means the worst health you can imagine.</li>'
+            html += '<li>Indicate on the slider how your health is TODAY.</li>'
+            
+          html += '</ul>'
+            return html },
       min: 0,
       max: 100,
+      topText: "The best health you can imagine",
+      bottomText: "The worst health you can imagine",
       slider_start: 0,
       step: 1,   
       labels: ['Purple', 'Blue'],

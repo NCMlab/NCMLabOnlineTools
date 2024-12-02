@@ -381,19 +381,40 @@ span:hover + div {
 }
 
 
+#sliderTable {
+  /*transform: rotate(-270deg); /* rotate the element */  
+  /*position:fixed;*/
+  margin-left: 0px; /* half of width */
+  margin-top: 0px;  /* half of height */
+  top: 0%;
+  left: 0%; 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
     .slider {
-        position: relative;
-        width:600px;
+        position:relative;
+        width: 180%;
         height: 30px;
-        transform: rotate(270deg); /* rotate the element */  
+        display: table-cell;
+        vertical-align: middle
+    /*   transform: rotate(-270deg); /* rotate the element   */
+    }
+
+    #jspsych-html-slider-response-response{
+      width: 180%;
     }
     .track {
         margin: auto;
-        width: calc(100% - 30px + 36px);
+        /*width: calc(100% - 30px + 36px);*/
+        width: 180%;
         position: relative;
         padding: 0;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 0%;
+        right: 38.5%;
+        transform: translateY(50%);
+        transform: rotate(270deg);
     }
     .ticks {
       display: flex;
@@ -436,22 +457,30 @@ span:hover + div {
         transform: translateY(-50%);
     }
     input {
-        position: absolute;
+        position: relative;
         appearance: none;
         background: none;
-        width: 100%;
+        width: 97%;
         height: 100%;
         margin: 0;
         padding: 0;
-        top: 0;
-        left: 0;
+        top: -30px;
+        left: -34%;
         border: none;
+        transform: rotate(270deg); /* rotate the element */  
     }
     input::-webkit-slider-thumb {
         appearance: none;
-        width: 30px;
+        width: 20px;
         height: 30px;
         border-radius: 50%;
         background: yellowgreen;
+        transform: translateY(-50%);
+        
     }
-</style>
+    #topCell {
+      text-align: center;
+    }
+    #bottomCell {
+      text-align: center;
+    }

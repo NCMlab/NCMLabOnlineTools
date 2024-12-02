@@ -104,9 +104,15 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
 
             var html
             var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
+            
 /* https://stackoverflow.com/questions/20819694/how-can-i-style-two-spans-within-a-div-such-that-when-span-1s-width-increases-b */
-                html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            
+                /*html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            */
                 html += '<div class="slider">'
+            
+            html += '<table border="0px" id="sliderTable">'
+            html += '<tr><td></td><td id="topCell">'+trial.topText+'</td></tr>'
+            html += '<tr style="height:660px"><td style="width:40%">'+trial.stimulus+'</td><td>'
+
 
                     html += '<div class="track">'
                         html += '<div class="groove">'
@@ -120,9 +126,14 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                             }
                         html += '</div>'
                     html += '</div>'
+                    
                     html += '<input type="range" value='+ trial.slider_start +' min='+ trial.min
                     html += 'step='+ trial.step +' max='+ trial.max +' id="jspsych-html-slider-response-response" bind:value> '
+                html += '</td></tr>'
+                html += '<tr><td></td><td id="bottomCell">'+trial.bottomText+'</td></tr>'
+                html += '</table>'
                 html += '</div>'
+                
                 html +=
                     '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
                     (trial.require_movement ? "disabled" : "") +
