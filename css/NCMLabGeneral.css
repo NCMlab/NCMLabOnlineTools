@@ -388,11 +388,14 @@ span:hover + div {
   margin-top: 0px;  /* half of height */
   top: 0%;
   left: 0%; 
-  width: 80%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
-
+li span {
+  position: relative;
+  left: -10px;
+}
     .slider {
         position:relative;
         width: 180%;
