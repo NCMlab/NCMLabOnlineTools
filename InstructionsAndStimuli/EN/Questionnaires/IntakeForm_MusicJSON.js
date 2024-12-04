@@ -191,6 +191,7 @@ const json = {
        elements: [
         {
           type: 'dropdown',
+          name: 'CognDeclineDiagnosis',
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
@@ -198,29 +199,30 @@ const json = {
               "No",
               "Not sure"
           ],
-          name: 'CognDeclineDiagnosis',
           required: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'text',
-        prompt: 'If yes, how long ago were you diagnosed?',
+        type: 'comment',
+        title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
+        visibleIf: "{CognDeclineDiagnosis} == Yes",
         required: false,
         textbox_rows: 3,
       },
       {
-          type: 'text',
-          prompt: 'If yes, what type of dementia (or cognitive decline), if known?',
-          name: 'DementiaType',
-          required: false,
-          textbox_rows: 3,
-        },
-        {
-          type: 'drop-down',
-          prompt: 'Do you have hearing loss?',
-          options: 
+        type: 'comment',
+        title: 'If yes, what type of dementia (or cognitive decline), if known?',
+        name: 'DementiaType',
+        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        required: false,
+        textbox_rows: 3,
+      },
+      {
+          type: 'dropdown',
+          title: 'Do you have hearing loss?',
+          choices: 
           [
               "Yes",
               "No",
@@ -232,47 +234,55 @@ const json = {
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'drop-down',
-        prompt: 'If you have hearing loss, is it ',
-        options: 
+        type: 'dropdown',
+        title: 'What type of hearing loss do you have?',
+        choices: 
         [
             "Bilateral",
             "Unilateral",
             "Not sure"
         ],
         name: 'HearingLossType',
+        visibleIf: "{HearingLoss} == Yes",
         required: false,
         //add_other_option: true,                    
         //other_option_text: 'Yes, how long ago were you diagnosed?',
     },
     {
-      type: 'drop-down',
-      prompt: 'If you have hearing loss, what is your level of loss?',
-      options: 
+      type: 'dropdown',
+      title: 'What is your level of hearing loss?',
+      choices: 
       [
           "Mild",
           "Moderate",
           "Severe",
           "Not sure"
       ],
+      visibleIf: "{HearingLoss} == Yes",
       name: 'HearingLossLevel',
       required: false,
       //add_other_option: true,                    
       //other_option_text: 'Yes, how long ago were you diagnosed?',
     },
     {
-      type: 'drop-down',
-      prompt: 'Do you have any other health issues?',
-      options: 
+      type: 'dropdown',
+      title: 'Do you have any other health issues?',
+      choices: 
       [
-          "No",
+          "Yes",
+          "No"
       ],
       name: 'OtherHealthIssues',
       required: true,
-      add_other_option: true,                    
-      other_option_text: 'Yes, please explain.',
-      textbox_rows: 5,
-  },
+    },
+    {
+      type: 'comment',
+      title: 'Please explain your health issues.',
+      name: 'OtherHealthIssues',
+      visibleIf: "{OtherHealthIssues} == Yes",
+      required: false,
+      textbox_rows: 3,
+    },
        ]
      },
      {
@@ -280,10 +290,64 @@ const json = {
        title: "Habits",
        
        elements: [
-         {
-           type: "text",
-           name: "question4"
-         }
+        {
+          type: 'dropdown',
+          title: 'How many days do you exercise per week?',
+          choices: 
+          [
+              "0", "1","2","3","4","5","6","7"
+          ],
+          name: 'ExerciseFrequency',
+          required: true,
+        },
+        {
+          type: 'dropdown',
+          title: 'Have you exercised in the last 24 hours?',
+          choices: 
+          [
+            "Yes",
+            "No"
+          ],
+          name: 'Exercise24',
+          required: true,
+        },
+        {
+          type: 'dropdown',
+          title: 'Do you smoke, or have you smoked in the past?',
+          choices: 
+          [
+            "Currently smoke",
+              "Haven't smoked for more than 1 year",
+              "Never",
+              "Unknown"
+          ],
+          name: 'Smoke',
+          required: true,
+        },
+        {
+          type: 'dropdown',
+          prompt: 'If you smoke, what year did you start?',
+
+            choicesMin: 1920,
+            choicesMax: 2024,
+            choicesStep:1,
+          
+          name: 'SmokeStart',
+          required: false,
+          input_type: "number"
+        },
+        {
+          type: 'dropdown',
+          prompt: 'Year ',
+
+            choicesMin: 1920,
+            choicesMax: 2024,
+            choicesStep:1,
+          
+          name: 'SmokeStart',
+          required: false,
+          input_type: "number"
+        },
        ]
      },
      {
