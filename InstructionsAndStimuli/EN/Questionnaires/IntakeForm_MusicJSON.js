@@ -8,7 +8,7 @@ const json = {
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
-   
+   showCompletedPage: false,
    pages: [
      {
       
@@ -163,7 +163,7 @@ const json = {
               'Divorced',
               'Widowed'
           ],
-          name: 'martital',
+          name: 'marital',
           showOtherItem: true,                    
           required: true,
         },
@@ -317,7 +317,7 @@ const json = {
           choices: 
           [
             "Currently smoke",
-              "Haven't smoked for more than 1 year",
+              "Have not smoked for more than 1 year",
               "Never",
               "Unknown"
           ],
@@ -326,28 +326,50 @@ const json = {
         },
         {
           type: 'dropdown',
-          prompt: 'If you smoke, what year did you start?',
-
-            choicesMin: 1920,
-            choicesMax: 2024,
-            choicesStep:1,
-          
+          title: 'What year did you start smoking?',
+          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          choicesMin: 1920,
+          choicesMax: 2024,
+          choicesStep:1,
           name: 'SmokeStart',
           required: false,
           input_type: "number"
         },
         {
           type: 'dropdown',
-          prompt: 'Year ',
-
-            choicesMin: 1920,
-            choicesMax: 2024,
-            choicesStep:1,
-          
-          name: 'SmokeStart',
+          title: 'What year did you quit smoking?',
+          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          choicesMin: 1920,
+          choicesMax: 2024,
+          choicesStep:1,
+          name: 'SmokeQuit',
           required: false,
           input_type: "number"
         },
+        {
+          type: 'dropdown',
+          title: 'Approximately how many packs per day?',
+          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          choices: ["0","0.5","1","2","3","4","5","6",">6"],
+          name: 'SmokePacksPerDay',
+          required: false,
+          input_type: "number"
+        },
+        {
+          type: 'dropdown',
+          title: 'Alcohol consumption',
+          choices: 
+          [
+              "None",
+              "Less than 2 drinks per day",
+              "2 to 4 drinks per day",
+              "More than 4 drinks per day"
+          ],
+          name: 'Alcohol',
+          required: true,
+        },
+      
+  
        ]
      },
      {
@@ -355,295 +377,129 @@ const json = {
       title: "Music Experience",
       
       elements: [
+          {
+            type: 'dropdown',
+            title: 'Have you engaged in music and movement classes before?',
+            choices: 
+            [
+              "Yes",
+              "No",
+            ],
+            name: 'MusicMovement',
+            required: true,
+          },
+          {
+            type: 'comment',
+            title: 'Please describe your previous  music and movement experience (what type of class and for how long).',
+            name: 'MusicExperience',
+            visibleIf: "{MusicMovement} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'dropdown',
+            title: 'Have you participated in group music classess before?',
+            choices: 
+            [
+              "Yes",
+              "No",
+            ],
+            name: 'GroupMusic',
+            required: true,
+          },
+          {
+            type: 'comment',
+            title: 'Please describe your previous group music experience (what type of class and for how long).',
+            name: 'GroupMusicExperience',
+            visibleIf: "{GroupMusic} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'dropdown',
+            title: 'Have you been in a choir before?',
+            choices: 
+            [
+              "Yes",
+              "No",
+            ],
+            name: 'Choir',
+            required: true,
+          },
+          {
+            type: 'comment',
+            title: 'Please describe your previous choir experience (what type of choir and for how long).',
+            name: 'ChoirExperience',
+            visibleIf: "{Choir} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'dropdown',
+            title: 'Do you have any other music experience (i.e. have you played a musical instrument at any time in your life on a regular basis)?',
+            choices: 
+            [
+              "Yes",
+              "No",
+            ],
+            name: 'OtherMusic',
+            required: true,
+          },
+          {
+            type: 'comment',
+            title: 'Which instrument(s) did you play?',
+            name: 'WhichInstrument',
+            visibleIf: "{OtherMusic} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'comment',
+            title: 'At what age did you start playing the instrument(s)?',
+            name: 'AgeStartInstrument',
+            visibleIf: "{OtherMusic} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'comment',
+            title: 'For how long did you play this instrument (years)?',
+            name: 'YearsPlayInstrument',
+            visibleIf: "{OtherMusic} == Yes",
+            required: false,
+            textbox_rows: 3,
+          },
+          {
+            type: 'dropdown',
+            title: 'Do you still play the instrument(s)?',
+            choices: 
+            [
+              "Yes",
+              "No",
+            ],
+            visibleIf: "{OtherMusic} == Yes",
+            name: 'StillPlayInstrument',
+            required: true,
+          },
+      ]
+    },
+    {
+      name: "Additional Comments",
+      title: "Additional Comments",
+      
+      elements: [
         {
-          type: "text",
-          name: "question4"
+          type: 'comment',
+          title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
+          name: 'AdditionalCOmments',
+          required: false,
+          textbox_rows: 5,
         }
       ]
     }
- 
    ]
  }
 
-const survey_JSON2 = {
-  showProgressBar: "auto",
-  progressBarType: "pages",
-  progressBarShowPageNumbers: false,
-  progressBarShowPageTitles: false,
-  title: "General Information",
-  pages: [
-    {
-    navigationTitle: "Demographics",
-    title: "Demographic Information",
-    elements: [{
-      type: 'dropdown',
-      title: "Gender", 
-      name: 'Gender', 
-      choices: [
-                  'Male',
-                  'Female',
-          ],
-      showOtherItem: true,
-      required: true,
-    },]
-  }, {
-    navigationTitle: "Medical",
-    title: "Medical Information",
-    elements: [{
-      name: "Height",
-      type: "text",
-      title: "Enter your height in inches or centimeters",
-      inputType: "number",
-      min: 0,
-      max: 300,
-      defaultValue: 0,
-      isRequired: true
-    }]
-  }, {
-    navigationTitle: "Habits",
-    title: "Habits",
-    elements: [{
-      name: "Height",
-      type: "text",
-      title: "Enter your height in inches or centimeters",
-      inputType: "number",
-      min: 0,
-      max: 300,
-      defaultValue: 0,
-      isRequired: true
-    },
-  ]
-  },{
-    navigationTitle: "Music",
-    title: "Music Experience",
-    elements: [{
-      name: "Height",
-      type: "text",
-      title: "Enter your height in inches or centimeters",
-      inputType: "number",
-      min: 0,
-      max: 300,
-      defaultValue: 0,
-      isRequired: true
-    },
-  ] 
-  }],
-  showQuestionNumbers: false
-};
-
-var survey_JSON = 
-
-    { 
-      pages: [
-        {
-          elements: [
-            {
-              type: 'panel',
-              name: 'demog',
-            
-
-            elements: 
-            [
-              {
-                  type: 'dropdown',
-                  title: "Gender", 
-                  name: 'Gender', 
-                  choices: [
-                              'Male',
-                              'Female',
-                      ],
-                  showOtherItem: true,
-                  required: true,
-                },
-                {
-                  name: "Height",
-                  type: "text",
-                  title: "Enter your height in inches or centimeters",
-                  inputType: "number",
-                  min: 0,
-                  max: 300,
-                  defaultValue: 0,
-                  isRequired: true
-                },
-                {
-                  type: 'dropdown',
-                  title: "What units did you use for height?", 
-                  name: 'HeightUnits', 
-                  choices: [
-                              'Inches',
-                              'Centimeters',
-                      ],
-                  showOtherItem: false,
-                  required: true,
-                },
-                {
-                  name: "Weight",
-                  type: "text",
-                  title: "Enter your weight in pounds or kilograms",
-                  inputType: "number",
-                  min: 0,
-                  max: 1000,
-                  defaultValue: 0,
-                  isRequired: true
-                },
-                {
-                  type: 'dropdown',
-                  title: "What units did you use for weight?", 
-                  name: 'HeightUnits', 
-                  choices: [
-                              'Pounds',
-                              'Kilograms',
-                      ],
-                  showOtherItem: false,
-                  required: true,
-                },
-                {
-                  type: 'dropdown',
-                  title: "What is the highest level of education you have completed?", 
-                  name: 'Edu', 
-                  choices: [
-                              'No formal education',
-                              'High school diploma or equivalent',
-                              'College or Trade school',
-                              'Bachelor’s degree',
-                              'Master’s degree',
-                              'Doctoral degree'
-                      ],
-                  showOtherItem: true,
-                  required: true,
-                },
-                {
-                  type: 'dropdown',
-                  title: "What is your employment status?", 
-                  name: 'Employ', 
-                  choices: [
-                              'Employed full-time',
-                              'Employed part-time',
-                              'Retired',
-                              'Unemployed'
-                      ],
-                  showOtherItem: true,
-                  required: true,
-                },
-                {
-                  type: 'comment',
-                  title: 'What type of work do you do (or did you do before retirement)?',
-                  name: 'WorkType',
-                  rows: 2,
-                  required: true,
-                  autoGrow: true
-                },          
-                {
-                  type: 'dropdown',
-                  title: "Do you live alone or with others?", 
-                  name: 'Living', 
-                  choices: [
-                          'Alone',
-                          'With spouse / partner',
-                          'With family members',
-                          'With caregivers',
-                          'In assisted living facility'
-                      ],
-                  showOtherItem: true,
-                  required: true,
-                },
-                {
-                  type: 'text',
-                  title: 'What is your primary language(s)?',
-                  name: 'PrimaryLanguage',
-                  required: true,
-                },
-                {
-                  name: "LanguageProblem",
-                  type: "dropdown",
-                  title: "Are there any language or communication challenges you have?",
-                  choices: ["Yes", "No"]
-                }, 
-                {
-                  name: "LanguageProblemDescription",
-                  type: "comment",
-                  title: "Please specify your language or communication challenges.",
-                  visibleIf: "{LanguageProblem} == Yes",
-                  maxLength: 500
-                },
-                {
-                  type: "tagbox",
-                  isRequired: true,
-                  choices: [
-                      'European (e.g., white)',
-                      'Asian (e.g., Chinese, Japanese, Korean, South-east Asian)',
-                      'East Indian, Pakistani',
-                      'African-American/Black/Caribbean',
-                      'Hispanic',
-                      'Middle-Eastern',
-                      'First Nations, Métis, Inuit',
-                      ],
-                  name: 'Ethnicity',
-                  title: "What is your ethnic background (you may select more than one)",
-                  "description": "Please select all that apply."
-                },
-                {
-                  type: 'dropdown',
-                  title: 'What is your marital status?',
-                  choices: 
-                  [   
-                      'Single',
-                      'Married',
-                      'Divorced',
-                      'Widowed'
-                  ],
-                  name: 'martital',
-                  showOtherItem: true,                    
-                  required: true,
-                },
-                {
-                  type: 'dropdown',
-                  title: 'What is your annual household income?',
-                  choices: 
-                  [
-                      "Less than $20,000",
-                      "$20,000 - $40,000",
-                      "$40,001 - $60,000",
-                      "$60,001 - $80,000",
-                      "$80,001 - $100,000",
-                      "Above $100,000"
-                  ],
-                  name: 'Income',
-                  required: true,
-                }
-              ],
-              questionTitleLocation: 'bottom',
-              title: 'Demographic Information'
-            },
-    
-            {
-              type: 'panel',
-              name: 'demog2',
-              elements: 
-              [
-                 {
-                  type: 'dropdown',
-                  title: "Gender", 
-                  name: 'Gender', 
-                  choices: [
-                              'Male',
-                              'Female',
-                      ],
-                  showOtherItem: true,
-                  required: true,
-                },
-              ],
-              questionTitleLocation: 'bottom',
-              title: 'Demographic Information PART 2'
-            },
-          ],
-        showProgressBar: 'top',
-        title: 'General Information',  
-        showQuestionNumbers: "off",
-        showCompletedPage: false,
-    }
-  ]}
-  
 
 var EN_IntakeForm_MusicJSON = {}
 EN_IntakeForm_MusicJSON.title = 'FormTitle';
