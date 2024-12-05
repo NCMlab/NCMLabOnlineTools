@@ -351,6 +351,11 @@ List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instruction
 List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
 List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepi'})
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'Questionnaire', Parameters: 'PAES_001', Instructions: 'Default', IconName: 'PAES'})
+
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
@@ -430,6 +435,7 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: '
 List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_004', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
+
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 74, 
 	name:'Music Motion: Baseline', 
