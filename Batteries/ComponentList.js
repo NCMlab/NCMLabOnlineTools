@@ -30,3 +30,4 @@ ComponentList.push({name:'Pattern Comparison', iconFileName:'PatternComparison.p
 ComponentList.push({name:'Screening', iconFileName:'Screening.png'})
 ComponentList.push({name:'Email Entry', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Session Chooser', iconFileName:'MultiChoice.png'})
+ComponentList.push({name:'VAS Rating', iconFileName:'VASrating.png'})

@@ -1,4 +1,4 @@
-var jsPsychHtmlSliderResponse = (function (jspsych) {
+var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
     'use strict';
 
     const info = {
@@ -23,13 +23,13 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                 default: 100,
             },
             /** Sets the starting value of the slider */
-            slider_start: {
+            sliderStart: {
                 type: jspsych.ParameterType.INT,
                 pretty_name: "Slider starting value",
                 default: 50,
             },
             /** Sets the step of the slider */
-            step: {
+            sliderStepSize: {
                 type: jspsych.ParameterType.INT,
                 pretty_name: "Step",
                 default: 1,
@@ -64,6 +64,16 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
             prompt: {
                 type: jspsych.ParameterType.HTML_STRING,
                 pretty_name: "Prompt",
+                default: null,
+            },
+            textAboveSlider: {
+                type: jspsych.ParameterType.STRING,
+                pretty_name: "Text above slider",
+                default: null,
+            },
+            textBelowSlider: {
+                type: jspsych.ParameterType.STRING,
+                pretty_name: "Text below slider",
                 default: null,
             },
             /** How long to show the stimulus. */
@@ -101,7 +111,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
         trial(display_element, trial) {
             // half of the thumb width value from jspsych.css, used to adjust the label positions
             var half_thumb_width = 7.5;
-
+            console.log(trial)
             var html
             var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
             
@@ -110,7 +120,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                 html += '<div class="slider">'
             
             html += '<table border="0px" id="sliderTable">'
-            html += '<tr><td></td><td id="topCell">'+trial.topText+'</td></tr>'
+            html += '<tr><td></td><td id="topCell">'+trial.textAboveSlider+'</td></tr>'
             html += '<tr style="height:660px"><td style="width:40%">'+trial.stimulus+'</td><td>'
 
 
@@ -119,7 +129,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                         html += '</div>'
                         html += '<div class="ticks">'
                             var count = 0
-                            for ( var j = trial.min; j <= trial.max; j += trial.step) {
+                            for ( var j = trial.min; j <= trial.max; j += trial.sliderStepSize) {
                                 if (count % 5 == 0) { html += '<span class="tickWide"><span class="tickLabel">'+count+'</span></span>' }
                                 else { html += '<span class="tick"></span>' }
                                 count += 1   
@@ -127,10 +137,10 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                         html += '</div>'
                     html += '</div>'
                     
-                    html += '<input type="range" value='+ trial.slider_start +' min='+ trial.min
+                    html += '<input type="range" value='+ trial.sliderStart +' min='+ trial.min
                     html += 'step='+ trial.step +' max='+ trial.max +' id="jspsych-html-slider-response-response" bind:value> '
                 html += '</td></tr>'
-                html += '<tr><td></td><td id="bottomCell">'+trial.bottomText+'</td></tr>'
+                html += '<tr><td></td><td id="bottomCell">'+trial.textBelowSlider+'</td></tr>'
                 html += '</table>'
                 html += '</div>'
                 

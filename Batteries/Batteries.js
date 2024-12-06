@@ -354,6 +354,7 @@ List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instruction
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'Trails-B'})
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'VAS Rating', Parameters: 'WellnessRating_001', Instructions: 'Default', IconName: 'VASrating'})
 List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 
