@@ -18,7 +18,8 @@
     <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
@@ -124,6 +125,7 @@
           
           var dirName = "InstructionsAndStimuli/EN/Questionnaires/"
           
+          console.log(parameters)
           fileName = dirName+parameters.questionnaire[0]+".js"
           console.log(fileName)
           

@@ -1,7 +1,7 @@
 var timeline = []
 var Questionnaire = []
 var CriteriaToUse = 0
-
+var converter = new showdown.Converter();
 
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
@@ -29,15 +29,25 @@ var trial02 = {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
   },
   on_finish: function(data) {
-    console.log(Questionnaire.survey_JSON.elements[0].rows)
+    console.log(data)
+    console.log(Questionnaire)
     data.trial = "Questionnaire"
-    data.rows = Questionnaire.survey_JSON.elements[0].rows
-    data.cols = Questionnaire.survey_JSON.elements[0].columns
+    if ( typeof Questionnaire.survey_JSON.elements !== 'undefined' )
+    { 
+      data.rows = Questionnaire.survey_JSON.elements[0].rows 
+      data.cols = Questionnaire.survey_JSON.elements[0].cols
+    }
+    else { 
+      data.rows = []
+      data.cols = []
+    }
+    if ( typeof Questionnaire.survey_JSON.pages !== 'undefined' )
+    { data.pages = Questionnaire.survey_JSON.pages }
     data.QuestionnaireType = Questionnaire.QuestionnaireType
     data.AlertLimit = Questionnaire.AlertLimit
     data.title = Questionnaire.title
     data.shortTitle = Questionnaire.shortTitle
-    data.pages = Questionnaire.pages
+    
     console.log(Questionnaire)
     data.values = Questionnaire.values
   }
