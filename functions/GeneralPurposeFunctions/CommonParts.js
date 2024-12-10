@@ -217,7 +217,7 @@ var if_WelcomeWritten = {
 }
 
 // if the welcome is shown AND spoken then present the spoken
-var if_WelcomeSpoken = {
+ var if_WelcomeSpoken = {
     timeline: [WelcomeSpoken_loop],
     conditional_function: function() {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"

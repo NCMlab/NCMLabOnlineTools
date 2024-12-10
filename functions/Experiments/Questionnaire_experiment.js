@@ -32,8 +32,10 @@ var trial02 = {
     console.log(data)
     console.log(Questionnaire)
     data.trial = "Questionnaire"
+    // 
     if ( typeof Questionnaire.survey_JSON.elements !== 'undefined' )
     { 
+      // check to see if the elements are row/cols or am array
       data.rows = Questionnaire.survey_JSON.elements[0].rows 
       data.cols = Questionnaire.survey_JSON.elements[0].cols
     }
@@ -50,6 +52,8 @@ var trial02 = {
     
     console.log(Questionnaire)
     data.values = Questionnaire.values
+    console.log(data)
+    console.log(BREAK001)
   }
 
 }

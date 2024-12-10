@@ -24,8 +24,8 @@ const survey_JSON = {
     },
     {
         type: 'radiogroup',
-        title: 'I find it pleasurable',
         name: 'paes002',
+        title: 'I find it pleasurable',
         colCount: 0,
         choices:
             ['Strongly disagree', 
@@ -72,6 +72,6 @@ EN_paesJSON.title = title,
 EN_paesJSON.shortTitle = shortTitle,
 EN_paesJSON.survey_JSON = survey_JSON
 EN_paesJSON.description = ""
-EN_paesJSON.QuestionnaireType = 'likert'
+EN_paesJSON.QuestionnaireType = 'radiogroup'
 EN_paesJSON.references = "references"
 EN_paesJSON.notes = ''

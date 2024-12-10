@@ -427,19 +427,22 @@ span:hover+div {
 }
 
 :root {
-  --sliderHeight: 600px;
+  --sliderHeight: 50vh;
+  --thumbHeight: 20px;
+  --sliderShiftFromRightOfCell: 90px;
 } 
 
 #sliderTable {
   /*transform: rotate(-270deg); /* rotate the element */
   /*position:fixed;*/
+  position: relative;
   margin-left: 0px;
   /* half of width */
   margin-top: 0px;
   /* half of height */
   top: 0%;
   left: 0%;
-  width: 60%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -458,17 +461,25 @@ li span {
     /*   transform: rotate(-270deg); /* rotate the element   
 }
 */
+.VAScell {
+    position: relative;
+    
+}
 
-.track {
-  margin: auto;
+
+.track {  
   /*width: calc(100% - 30px + 36px);*/
   width: var(--sliderHeight);
-  position:fixed;
-  padding: 0;
   
-  right: 0%;
-  /* transform: translateY(50%); */
-  transform: rotate(270deg);
+  /* border: 3px solid #04AA6D; */
+  
+  /* transform-origin: left;*/
+  /* The following, along with the relative div cell above
+   FIXES the slider to the right hand side of the cell */
+  right: var(--sliderShiftFromRightOfCell);
+  position: absolute;
+  transform: translate(50%, 0%) rotate(270deg) ;
+  /* transform: rotate(270deg); */
 }
 
 .ticks {
@@ -506,51 +517,40 @@ li span {
 
 .groove {
   height: 2px;
+
   background: #b3b3b3;
   position: absolute;
   width: var(--sliderHeight); /*calc(100% - 16px);*/
   left: 0px;
   top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
 }
 
 #jspsych-html-slider-response-response {
-  /*position:absolute;
-  appearance: none;
-  background: none;
-  width: var(--sliderHeight);
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  top: 0px;
-  left: 0px;
-  border: none;
-  transform: rotate(270deg);
-*/
+  /* border: 3px solid #888888; */
   appearance: none;
   background: none;
   margin: auto;
   /*width: calc(100% - 30px + 36px);*/
-  width: var(--sliderHeight);
+  width: calc( var(--sliderHeight) + var(--thumbHeight) ); 
+  top: calc( var(--thumbHeight ) * (-0.25));
+  right: var(--sliderShiftFromRightOfCell);
   position:fixed;
   padding: 0;
-  
-  right: 0%;
   /* transform: translateY(50%); */
-  transform: rotate(270deg);
+  position: absolute;
+  transform: translate(50%, 0%) rotate(270deg) ;
 
-  
-  /* rotate the element */
+
 }
 
 #jspsych-html-slider-response-response::-webkit-slider-thumb {
+  
   appearance: none;
-  width: 20px;
+  width: var(--thumbHeight);
   height: 30px;
   border-radius: 50%;
   background: yellowgreen;
-  
-
 }
 
 #topCell {
@@ -563,4 +563,8 @@ li span {
 
 .sd-progress{
   height: 6px;
+}
+.jspsych-html-slider-response-wrapper{
+  
+    margin: 1px;
 }

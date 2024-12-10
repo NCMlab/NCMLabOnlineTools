@@ -113,7 +113,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             var half_thumb_width = 7.5;
             console.log(trial)
             var html
-            var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
+            var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 0px 0px;">';
             
 /* https://stackoverflow.com/questions/20819694/how-can-i-style-two-spans-within-a-div-such-that-when-span-1s-width-increases-b */
                 /*html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            */
@@ -121,12 +121,19 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             
             html += '<table border="0px" id="sliderTable">'
             html += '<tr><td></td><td id="topCell">'+trial.textAboveSlider+'</td></tr>'
-            html += '<tr style="height:660px"><td style="width:40%">'+trial.stimulus+'</td><td>'
+            html += '<tr style="height:60vh"><td style="width:70%"  >'+trial.stimulus
+            
+            html +=
+            '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
+            (trial.require_movement ? "disabled" : "") +
+            ">" +
+            trial.button_label +
+            "</button>";
+            html += '</td><td><div class="VAScell">'
 
 
                     html += '<div class="track">'
-                        html += '<div class="groove">'
-                        html += '</div>'
+                        html += '<div class="groove"></div>'
                         html += '<div class="ticks">'
                             var count = 0
                             for ( var j = trial.min; j <= trial.max; j += trial.sliderStepSize) {
@@ -139,17 +146,12 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
                     
                     html += '<input type="range" value='+ trial.sliderStart +' min='+ trial.min
                     html += 'step='+ trial.step +' max='+ trial.max +' id="jspsych-html-slider-response-response" bind:value> '
-                html += '</td></tr>'
+                html += '</div></td></tr>'
                 html += '<tr><td></td><td id="bottomCell">'+trial.textBelowSlider+'</td></tr>'
                 html += '</table>'
                 html += '</div>'
                 
-                html +=
-                    '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
-                    (trial.require_movement ? "disabled" : "") +
-                    ">" +
-                    trial.button_label +
-                    "</button>";
+
                 html += '</div>'
             html += '</div>'
             display_element.innerHTML = html;

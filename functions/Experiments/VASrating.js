@@ -28,4 +28,4 @@ timeline.push(Welcome)
 timeline.push(trial)
 timeline.push(Notes)
 timeline.push(ThankYou);
-timeline.push(SendData)
+//timeline.push(SendData)

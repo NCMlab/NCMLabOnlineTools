@@ -1,12 +1,18 @@
 function Questionnaire_Scoring(data) {
-	
+	// types:
+	// matrix
+	// radiogroup
+	// likert
+	// multi-choice
+	//
 	AllTrials = data
+	console.log(data)
 	data = data.trials[0]
 	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
     
-
+	
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.title
 	Results.AllResults['ShortTitle'] = '-99'
@@ -51,7 +57,12 @@ function Questionnaire_Scoring(data) {
 			//console.log(BREAK)
 		}
 	}
-
+	if ( data.QuestionnaireType == 'radiogroup' )
+	{
+		const keys = Object.keys(data.response)
+        console.log(keys)
+		console.log(BREAK)
+	}
 	if ( data.QuestionnaireType == 'likert' )
 	{
 		const keys = Object.keys(data.response)
