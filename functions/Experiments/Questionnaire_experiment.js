@@ -29,31 +29,15 @@ var trial02 = {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
   },
   on_finish: function(data) {
-    console.log(data)
-    console.log(Questionnaire)
+    
     data.trial = "Questionnaire"
-    // 
-    if ( typeof Questionnaire.survey_JSON.elements !== 'undefined' )
-    { 
-      // check to see if the elements are row/cols or am array
-      data.rows = Questionnaire.survey_JSON.elements[0].rows 
-      data.cols = Questionnaire.survey_JSON.elements[0].cols
-    }
-    else { 
-      data.rows = []
-      data.cols = []
-    }
-    if ( typeof Questionnaire.survey_JSON.pages !== 'undefined' )
-    { data.pages = Questionnaire.survey_JSON.pages }
+    data.response = data.response
     data.QuestionnaireType = Questionnaire.QuestionnaireType
+    data.Questionnaire = Questionnaire
     data.AlertLimit = Questionnaire.AlertLimit
     data.title = Questionnaire.title
     data.shortTitle = Questionnaire.shortTitle
     
-    console.log(Questionnaire)
-    data.values = Questionnaire.values
-    console.log(data)
-    console.log(BREAK001)
   }
 
 }

@@ -3,7 +3,8 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
-  elements: [
+  pages: [{
+    elements: [
 
 
       {
@@ -14,7 +15,12 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Less than once a week", "1 or 2 times a week", "3 or 4 times a week", "5 or more times a week" ],
+        choices: [ 
+          { value: 0, text: "Less than once a week" }, 
+          { value: 1, text: "1 or 2 times a week" }, 
+          { value: 2, text: "3 or 4 times a week" }, 
+          { value: 3, text: "5 or more times a week" } 
+        ],
         separateSpecialChoices: true,
         showClearButton: true
       },
@@ -26,7 +32,12 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Less than once a week", "1 or 2 times a week", "3 or 4 times a week", "5 or more times a week" ],
+        choices: [ 
+          { value: 0, text: "Less than once a week" }, 
+          { value: 1, text: "1 or 2 times a week" }, 
+          { value: 2, text: "3 or 4 times a week" }, 
+          { value: 3, text: "5 or more times a week" } 
+        ],
         separateSpecialChoices: true,
         showClearButton: true
       },
@@ -38,7 +49,12 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Never or less than once a year", "1 to 3 times per year", "4 to 11 times per year", "12 or more times per year" ],
+        choices: [ 
+          { value: 0, text: "Less than once a week" }, 
+          { value: 1, text: "1 or 2 times a week" }, 
+          { value: 2, text: "3 or 4 times a week" }, 
+          { value: 3, text: "5 or more times a week" } 
+        ],
         separateSpecialChoices: true,
         showClearButton: true
       },
@@ -50,7 +66,12 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Less than once a week", "1 or 2 times a week", "3 or 4 times a week", "5 or more times a week" ],
+        choices: [ 
+          { value: 0, text: "Less than once a week" }, 
+          { value: 1, text: "1 or 2 times a week" }, 
+          { value: 2, text: "3 or 4 times a week" }, 
+          { value: 3, text: "5 or more times a week" } 
+        ],
         separateSpecialChoices: true,
         showClearButton: true
       },
@@ -62,22 +83,24 @@ const survey_JSON = {
         showNoneItem: false,
         showOtherItem: false,
         colCount: 1,
-        choices: [ "Yes", "No" ],
+        choices: [
+          { value: 1, text: "Yes" },
+          { value: 0, text: "No" }
+        ],
         separateSpecialChoices: true,
         showClearButton: true
       },
     ],
-    showQuestionNumbers: false,
-    showCompletedPage: false
-  };
+  }]
+};
 
 
 var EN_berksymeJSON = {}
-EN_berksymeJSON.title = "Which is the brand of your car?",
-EN_berksymeJSON.shortTitle = "car"
+EN_berksymeJSON.title = "Berkman-Syme Social Network Index",
+EN_berksymeJSON.shortTitle = "Social"
 EN_berksymeJSON.survey_JSON = survey_JSON
 EN_berksymeJSON.description = ""
-EN_berksymeJSON.QuestionnaireType = 'likert'
+EN_berksymeJSON.QuestionnaireType = 'radiogroup'
 EN_berksymeJSON.references = "references"
 EN_berksymeJSON.notes = ''
 

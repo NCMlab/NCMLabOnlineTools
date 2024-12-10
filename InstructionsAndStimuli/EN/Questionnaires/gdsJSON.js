@@ -55,6 +55,6 @@ EN_gdsJSON.title = title
 EN_gdsJSON.shortTitle = shortTitle
 EN_gdsJSON.survey_JSON = survey_JSON
 //EN_gdsJSON.description = instructions
-EN_gdsJSON.QuestionnaireType = 'likert'
+EN_gdsJSON.QuestionnaireType = 'matrix'
 EN_gdsJSON.references = references
 EN_gdsJSON.notes = notes

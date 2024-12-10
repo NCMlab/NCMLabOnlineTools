@@ -58,6 +58,6 @@ EN_gasJSON.title = title
 EN_gasJSON.shortTitle = shortTitle
 EN_gasJSON.survey_JSON = survey_JSON
 //EN_gasJSON.description = instructions
-EN_gasJSON.QuestionnaireType = 'likert'
+EN_gasJSON.QuestionnaireType = 'matrix'
 EN_gasJSON.references = references
 EN_gasJSON.notes = notes

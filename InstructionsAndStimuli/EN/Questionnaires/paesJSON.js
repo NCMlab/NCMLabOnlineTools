@@ -1,8 +1,9 @@
 var title = "PAES"
 var shortTitle = "PAES"
 const survey_JSON = {
-  showQuestionNumbers: "off",
-  showCompletedPage: false,
+    showQuestionNumbers: false,
+    showCompletedPage: false,
+    pages: [{
     elements: [
     {
         type: "html",
@@ -15,11 +16,12 @@ const survey_JSON = {
         title: 'I enjoy it',
         colCount: 0,
         choices:
-            ['Strongly disagree', 
-            'Disagree',
-            'Neither agree nor disagree',
-            'Agree', 
-            'Strongly agree'
+            [
+                { value: 0, text: 'Strongly disagree' }, 
+                { value: 1, text: 'Disagree' },
+                { value: 2, text: 'Neither agree nor disagree' },
+                { value: 3, text: 'Agree' }, 
+                { value: 4, text: 'Strongly agree' } 
         ],
     },
     {
@@ -28,11 +30,12 @@ const survey_JSON = {
         title: 'I find it pleasurable',
         colCount: 0,
         choices:
-            ['Strongly disagree', 
-            'Disagree',
-            'Neither agree nor disagree',
-            'Agree', 
-            'Strongly agree'
+        [
+            { value: 0, text: 'Strongly disagree' }, 
+            { value: 1, text: 'Disagree' },
+            { value: 2, text: 'Neither agree nor disagree' },
+            { value: 3, text: 'Agree' }, 
+            { value: 4, text: 'Strongly agree' } 
         ],
     },
     {
@@ -41,11 +44,12 @@ const survey_JSON = {
         name: 'paes003',
         colCount: 0,
         choices:
-            ['Strongly disagree', 
-            'Disagree',
-            'Neither agree nor disagree',
-            'Agree', 
-            'Strongly agree'
+        [
+            { value: 0, text: 'Strongly disagree' }, 
+            { value: 1, text: 'Disagree' },
+            { value: 2, text: 'Neither agree nor disagree' },
+            { value: 3, text: 'Agree' }, 
+            { value: 4, text: 'Strongly agree' } 
         ],
     },
     {
@@ -54,17 +58,17 @@ const survey_JSON = {
         name: 'paes004',
         colCount: 0,
         choices:
-            ['Strongly disagree', 
-            'Disagree',
-            'Neither agree nor disagree',
-            'Agree', 
-            'Strongly agree'
+        [
+            { value: 0, text: 'Strongly disagree' }, 
+            { value: 1, text: 'Disagree' },
+            { value: 2, text: 'Neither agree nor disagree' },
+            { value: 3, text: 'Agree' }, 
+            { value: 4, text: 'Strongly agree' } 
         ],
     },
     ],
-    showQuestionNumbers: false,
-    showCompletedPage: false
-  };
+    }]
+};
 
 
 var EN_paesJSON = {}

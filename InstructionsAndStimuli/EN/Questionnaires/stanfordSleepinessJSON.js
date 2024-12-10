@@ -50,12 +50,12 @@ const survey_JSON = {
   
   
   var EN_stanfordSleepinessJSON = {}
-  EN_stanfordSleepinessJSON.title = "Which is the brand of your car?",
-  EN_stanfordSleepinessJSON.shortTitle = "car"
+  EN_stanfordSleepinessJSON.title = "The Stanford Sleepiness Scale",
+  EN_stanfordSleepinessJSON.shortTitle = "Sleepiness"
   EN_stanfordSleepinessJSON.survey_JSON = survey_JSON
   EN_stanfordSleepinessJSON.description = ""
-  EN_stanfordSleepinessJSON.QuestionnaireType = 'likert'
-  EN_stanfordSleepinessJSON.references = "references"
+  EN_stanfordSleepinessJSON.QuestionnaireType = 'Varied'
+  EN_stanfordSleepinessJSON.references = ""
   EN_stanfordSleepinessJSON.notes = ''
   
   

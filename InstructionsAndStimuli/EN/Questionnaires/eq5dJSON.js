@@ -1,8 +1,10 @@
 var title = "EQ-5D"
 var shortTitle = "EQ-5D"
 const survey_JSON = {
-  showQuestionNumbers: "off",
+
+  showQuestionNumbers: false,
   showCompletedPage: false,
+  pages: [{
     elements: [
     {
         type: "html",
@@ -12,61 +14,71 @@ const survey_JSON = {
     {
         type: 'radiogroup',
         title: 'MOBILITY',
+        name: 'mobility',
         choices:
-            ['I have no problems in walking about', 
-            'I have slight problems in walking about',
-            'I have moderate problems in walking about',
-            'I have severe problems in walking about', 
-            'I am unable to walk about'],
+        [
+            { value: 0, text: 'I have no problems in walking about'}, 
+            { value: 1, text: 'I have slight problems in walking about'},
+            { value: 2, text: 'I have moderate problems in walking about'},
+            { value: 3, text: 'I have severe problems in walking about'}, 
+            { value: 4, text: 'I am unable to walk about'}
+        ],
     },
     {
         type: 'radiogroup',
         title: 'SELF-CARE',
-        choices: [
-            'I have no problems washing or dressing myself',
-            'I have slight problems washing or dressing myself',
-            'I have moderate problems washing or dressing myself',
-            'I have severe problems washing or dressing myself',
-            'I am unable to wash or dress myself'
+        name: 'selfcare',
+        choices: 
+        [
+            { value: 0, text: 'I have no problems washing or dressing myself' },
+            { value: 1, text: 'I have slight problems washing or dressing myself' },
+            { value: 2, text: 'I have moderate problems washing or dressing myself' },
+            { value: 3, text: 'I have severe problems washing or dressing myself' },
+            { value: 4, text: 'I am unable to wash or dress myself' }
         ],
     },
     {
         type: 'radiogroup',
         title: 'USUAL ACTIVITIES (e.g. work, study, housework, family or leisure activities)',
-        choices: [    
-            'I have no problems doing my usual activities',
-            'I have slight problems doing my usual activities',
-            'I have moderate problems doing my usual activities',
-            'I have severe problems doing my usual activities', 
-            'I am unable to do my usual activities', 
+        name: 'usualactivities',
+        choices:     
+        [   
+            { value: 0, text: 'I have no problems doing my usual activities' },
+            { value: 1, text: 'I have slight problems doing my usual activities' },
+            { value: 2, text: 'I have moderate problems doing my usual activities' },
+            { value: 3, text: 'I have severe problems doing my usual activities' }, 
+            { value: 4, text: 'I am unable to do my usual activities' }, 
         ],
     },
     {
         type: 'radiogroup',
         title: 'PAIN / DISCOMFORT',
-        choices: [
-            'I have no pain or discomfort', 
-            'I have slight pain or discomfort',
-            'I have moderate pain or discomfort',
-            'I have severe pain or discomfort', 
-            'I have extreme pain or discomfort',
+        name: 'paindiscomfort',
+        choices: 
+        [
+            { value: 0, text: 'I have no pain or discomfort' }, 
+            { value: 1, text: 'I have slight pain or discomfort' },
+            { value: 2, text: 'I have moderate pain or discomfort' },
+            { value: 3, text: 'I have severe pain or discomfort' }, 
+            { value: 4, text: 'I have extreme pain or discomfort' },
         ],
     },
     {
         type: 'radiogroup',
         title: 'ANXIETY / DEPRESSION',
-        choices: [
-            'I am not anxious or depressed',
-            'I am slightly anxious or depressed',
-            'I am moderately anxious or depressed',
-            'I am severely anxious or depressed', 
-            'I am extremely anxious or depressed',
+        name: 'anxietydepression',
+        choices: 
+        [
+            { value: 0, text: 'I am not anxious or depressed' },
+            { value: 1, text: 'I am slightly anxious or depressed' },
+            { value: 2, text: 'I am moderately anxious or depressed' },
+            { value: 3, text: 'I am severely anxious or depressed' }, 
+            { value: 4, text: 'I am extremely anxious or depressed' },
         ],
     }
 
     ],
-    showQuestionNumbers: false,
-    showCompletedPage: false
+    }]
   };
 
 
@@ -75,6 +87,6 @@ EN_eq5dJSON.title = title,
 EN_eq5dJSON.shortTitle = shortTitle,
 EN_eq5dJSON.survey_JSON = survey_JSON
 EN_eq5dJSON.description = ""
-EN_eq5dJSON.QuestionnaireType = 'likert'
+EN_eq5dJSON.QuestionnaireType = 'radiogroup'
 EN_eq5dJSON.references = "references"
 EN_eq5dJSON.notes = ''

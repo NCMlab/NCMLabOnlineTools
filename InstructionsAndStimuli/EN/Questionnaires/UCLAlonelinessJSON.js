@@ -6,9 +6,7 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
-  
   pages: [{
-    
     elements: [                
       {
         type: "html",
@@ -28,7 +26,11 @@ const survey_JSON = {
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
-          choices: [ "Hardly ever", "Some of the time", "Often" ],
+          choices: [ 
+            { value: 0, text: "Hardly ever" }, 
+            { value: 1, text: "Some of the time"}, 
+            { value: 2, text: "Often"},
+           ],
           separateSpecialChoices: true,
           showClearButton: true
         },
@@ -40,7 +42,11 @@ const survey_JSON = {
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
-          choices: [ "Hardly ever", "Some of the time", "Often" ],
+          choices: [ 
+            { value: 0, text: "Hardly ever" }, 
+            { value: 1, text: "Some of the time"}, 
+            { value: 2, text: "Often"},
+           ],
           separateSpecialChoices: true,
           showClearButton: true
         },
@@ -52,7 +58,11 @@ const survey_JSON = {
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
-          choices: [ "Hardly ever", "Some of the time", "Often" ],
+          choices: [ 
+            { value: 0, text: "Hardly ever" }, 
+            { value: 1, text: "Some of the time"}, 
+            { value: 2, text: "Often"},
+           ],
           separateSpecialChoices: true,
           showClearButton: true
         },
@@ -62,11 +72,11 @@ const survey_JSON = {
 
 
 var EN_UCLAlonelinessJSON = {}
-EN_UCLAlonelinessJSON.title = "Which is the brand of your car?",
-EN_UCLAlonelinessJSON.shortTitle = "car"
+EN_UCLAlonelinessJSON.title = "UCLA 3-Item Loneliness Scale",
+EN_UCLAlonelinessJSON.shortTitle = "Loneliness"
 EN_UCLAlonelinessJSON.survey_JSON = survey_JSON
-EN_UCLAlonelinessJSON.description = "DESCR"
-EN_UCLAlonelinessJSON.QuestionnaireType = 'likert'
+EN_UCLAlonelinessJSON.description = ""
+EN_UCLAlonelinessJSON.QuestionnaireType = 'radiogroup'
 EN_UCLAlonelinessJSON.references = "references"
 EN_UCLAlonelinessJSON.notes = ''
 

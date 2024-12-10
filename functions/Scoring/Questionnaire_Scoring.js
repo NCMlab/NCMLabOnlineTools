@@ -6,8 +6,9 @@ function Questionnaire_Scoring(data) {
 	// multi-choice
 	//
 	AllTrials = data
-	console.log(data)
+	
 	data = data.trials[0]
+	console.log("DATA: ")
 	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
@@ -37,17 +38,23 @@ function Questionnaire_Scoring(data) {
 		for ( var i = 0; i < keys.length; i++ )
 		{
 			NumericScore = responses[keys[i]]
+			console.log(data.Questionnaire.survey_JSON)
+			console.log(data.Questionnaire.survey_JSON.elements)
+			console.log(data.Questionnaire.survey_JSON.elements[0])
+			console.log(data.Questionnaire.survey_JSON.elements[0].rows)
 			// cycle over ALL questions
-			for ( var j = 0; j < data.rows.length; j++ )
+			for ( var j = 0; j < data.Questionnaire.survey_JSON.elements[0].rows.length; j++ )
 			{
-				if ( data.rows[j].value == keys[i] )
+				if ( data.Questionnaire.survey_JSON.elements[0].rows[j].value == keys[i] )
 				{
-					TextAnswer = data.rows[j].text 
-					for ( var k = 0; k < data.cols.length; k++ )
+					// Find the STIMULUS/QUESTION in TEXT
+					TextAnswer = data.Questionnaire.survey_JSON.elements[0].rows[j].text 
+					for ( var k = 0; k < data.Questionnaire.survey_JSON.elements[0].columns.length; k++ )
 					{
-						if ( data.cols[k].value == NumericScore )
+						if ( data.Questionnaire.survey_JSON.elements[0].columns[k].value == NumericScore )
 						{
-							ResponseText = data.cols[k].text		
+							// Find the RESPONSE TEXT
+							ResponseText = data.Questionnaire.survey_JSON.elements[0].columns[k].text		
 						}
 					}
 				}
@@ -60,8 +67,42 @@ function Questionnaire_Scoring(data) {
 	if ( data.QuestionnaireType == 'radiogroup' )
 	{
 		const keys = Object.keys(data.response)
-        console.log(keys)
-		console.log(BREAK)
+		// cycle over EACH QUESTIONS 
+		for ( var i = 0; i < keys.length; i++ )
+		{
+			// make sure it is NOT an introduction text "question"
+			if ( keys[i] != 'introduction' )
+			{ 
+				// get the response value
+				NumericScore = data.response[keys[i]]
+				console.log("Numeric Score: " + NumericScore)
+				console.log(data.Questionnaire.survey_JSON.pages[0].elements[keys[i]])
+				// cycle over ALL questions
+				for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[0].elements.length; j++ )
+				{
+					console.log("j: "+j)
+					console.log(data.response[keys[i]])
+					if ( data.Questionnaire.survey_JSON.pages[0].elements[j].name == keys[i] )
+					{
+						// Find the STIMULUS/QUESTION in TEXT
+						TextAnswer = data.Questionnaire.survey_JSON.pages[0].elements[j].title
+						console.log(TextAnswer)
+						for ( var k = 0; k < data.Questionnaire.survey_JSON.pages[0].elements[j].choices.length; k++ )
+						{
+							console.log(data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k])
+							if ( data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].value == NumericScore )
+							{
+								// Find the RESPONSE TEXT
+								ResponseText = data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].text		
+								console.log("Response Text: "+ResponseText)
+							}
+						}
+					}
+				}
+				TotalScore += NumericScore
+				Results.AllResults[TextAnswer] = ResponseText
+			}
+		}
 	}
 	if ( data.QuestionnaireType == 'likert' )
 	{
