@@ -187,22 +187,25 @@ function Questionnaire_Scoring(data) {
 		TotalScore = 1
 		console.log(Results)
 		// cycle over pages
-		for ( var i = 0; i < data.pages.length; i++ )
+		for ( var i = 0; i < data.Questionnaire.survey_JSON.pages.length; i++ )
 		{
 			console.log("Page: "+i)
-			for (var j = 0; j < data.pages[i].length; j++ )
+			// cycle over elements on a page
+			for (var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
-					console.log(data.pages[i][j].name)
-					console.log(data.response[data.pages[i][j].name])
-					console.log("Question: "+j)
-					if ( data.response[data.pages[i][j].name] == 'other' )
-					{
-						Results.AllResults[data.pages[i][j].name] = data.response[data.pages[i][j].name+"-Comment"]
-					}
-					else 
-					{
-						Results.AllResults[data.pages[i][j].name] = data.response[data.pages[i][j].name]
-					}
+					console.log(data.Questionnaire.survey_JSON.pages[i].elements[j].title)
+					// Question text
+					TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
+					console.log(TextAnswer)
+					// Question Name 
+					QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
+					console.log(QuestionName)
+					// Response in text form
+					console.log(data.response)
+					ResponseText = data.response[QuestionName]
+					
+					console.log(ResponseText)
+					Results.AllResults[TextAnswer] = ResponseText
 				}
 		}
 	}
