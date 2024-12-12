@@ -21,11 +21,28 @@ var trial = {
 
     slider_width: 200,
     require_movement: true,
-    prompt: '<p>Is this color closer to purple or blue? Use the slider above.</p>'
+    prompt: '<p>Is this color closer to purple or blue? Use the slider above.</p>',
+    on_finish: function(data) {
+      data.trial = 'VAS'
+    }
   };
+
+var SendData = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = jsPsych.data.get()
+    
+    Results = VAS_Scoring(data)
+    jsPsych.finishTrial(Results)
+    console.log(Results)
+  }
+}
 
 timeline.push(Welcome)
 timeline.push(trial)
 timeline.push(Notes)
 timeline.push(ThankYou);
+timeline.push(SendData)
+
+
 //timeline.push(SendData)
