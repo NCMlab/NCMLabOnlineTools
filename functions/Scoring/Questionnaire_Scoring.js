@@ -15,7 +15,7 @@ function Questionnaire_Scoring(data) {
     
 	
     Results.AllResults = {}
-	Results.AllResults['ScoreName'] = data.title
+	Results.AllResults['ScoreName'] = data.shortTitle
 	Results.AllResults['ShortTitle'] = '-99'
 	if ( data.ShortTitle !== 'undefined' ){
 		Results.AllResults['ShortTitle'] = data.shortTitle

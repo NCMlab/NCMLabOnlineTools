@@ -209,6 +209,9 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
+    
+        console.log(BREAK)    
+
         console.log("HELLO WORLDS")
       if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
       { return true }

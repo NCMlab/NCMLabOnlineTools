@@ -9,7 +9,9 @@ function VAS_Scoring(data) {
 	Results.PrimaryResults['ScoreName'] = 'Response'
 	Results.PrimaryResults['Accuracy'] = trialData.response
 	Results.AllResults = {}
+	Results.AllResults['ScoreName'] = 'Response'
 	Results.AllResults['Accuracy'] = trialData.response
+	Results.AllResults['Response'] = trialData.response
 	//Results.AllResults['Image'] = trialData.png
 	//Results.AllResults['GIF'] = trialData.gif
 	//Results.AllResults['GIF'] = "JASON GIF"

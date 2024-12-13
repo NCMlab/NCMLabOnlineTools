@@ -344,18 +344,22 @@ List.push({Task: 'Questionnaire', Parameters: 'BDI_001', Instructions: 'Default'
 // ============================================
 // ====== LIST OF QUESTIONNAIRES 1007 ==============
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
 List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
 List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
-List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepi'})
 List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
-List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepi'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
-List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 List.push({Task: 'VAS Rating', Parameters: 'WellnessRating_001', Instructions: 'Default', IconName: 'VASrating'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 List.push({Task: 'Questionnaire', Parameters: 'PAES_001', Instructions: 'Default', IconName: 'PAES'})
+
+List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
+
 
 	BatteryList.push({index: 1007, 
 		name:'Demonstration Battery', 

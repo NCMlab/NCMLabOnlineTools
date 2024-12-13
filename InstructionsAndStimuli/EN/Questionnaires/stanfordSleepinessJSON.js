@@ -1,6 +1,7 @@
 const survey_JSON = {
-    showQuestionNumbers: "off",
+    showQuestionNumbers: false,
     showCompletedPage: false,
+    pages: [{
     elements: [
         {
             "name": "time",
@@ -44,8 +45,8 @@ const survey_JSON = {
         },
         
       ],
-      showQuestionNumbers: false,
-      showCompletedPage: false
+    }]
+      
     };
   
   
