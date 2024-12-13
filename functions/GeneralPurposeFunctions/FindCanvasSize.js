@@ -1,9 +1,14 @@
 function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffset) 
 {
-	
-	// find screen dimension
-	var ScreenHeight = screen.height
-	var ScreenWidth = screen.width
+	// Find dimensions of the jspsych target
+  
+  visualStage = document.getElementById("jspsych-target-TRAILMAKING").getBoundingClientRect();
+  console.log(document.getElementById("jspsych-content").getBoundingClientRect());
+  
+  
+  // find screen dimension
+	var ScreenHeight = visualStage.height
+	var ScreenWidth = visualStage.width
 
   // adjust the height and width
   ScreenHeight = ScreenHeight*HeightOffset

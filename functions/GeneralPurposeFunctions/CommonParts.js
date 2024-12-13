@@ -172,6 +172,7 @@ var EligibilityCheck = {
 var WelcomeWritten = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() { 
+        console.log("WELCOME WRITTEN")
         var Str = Instructions.WelcomeText[0].page
         Str += "<p>"+LabelNames.PressNext+"</p>"
         return Str
@@ -209,10 +210,8 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
-    
-        console.log(BREAK)    
 
-        console.log("HELLO WORLDS")
+      console.log("HELLO WORLDS")
       if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
       { return true }
       else { return false }

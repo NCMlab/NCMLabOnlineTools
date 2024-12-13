@@ -14,13 +14,14 @@ var CanvasHeight
 var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
-
+var WidthAdjustment = 0.8
+var HeightAdjustment = 0.8
 
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
-      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, 0.60, 0.75) 
+      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, HeightAdjustment, WidthAdjustment) 
        CanvasWidth = sizes.CanvasWidth
        CanvasHeight = sizes.CanvasHeight
       console.log(CanvasWidth)
