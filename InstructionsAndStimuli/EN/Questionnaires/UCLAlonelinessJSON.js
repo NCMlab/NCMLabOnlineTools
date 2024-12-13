@@ -1,6 +1,4 @@
 
-console.log(converter.makeHtml("###JASON 1. One 2. Two 3. Three"))
-
 var title = "UCLA 3-item Loneliness Scale"
 var shortTitle = ""
 const survey_JSON = {

@@ -154,7 +154,178 @@ const survey_JSON = {
         isRequired: true,
         showClearButton: true
       },
-
+      {
+        type: "dropdown",
+        name: "cesam012",
+        title: "Do you need help when using the telephone?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam013",
+        title: "Do you need assistance when taking public transportation?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam014",
+        title: "Do you need help for managing medications on your own?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam015",
+        title: "Do you need help to pay your bills and manage your finances?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam016",
+        title: "Are you incontinent (urine and/or stool)?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam017",
+        title: "How do you feel today?",
+        choices: [
+            "Happy",
+            "Unhappy",
+            "Neither one nor the other"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam018",
+        title: "Do you feel energetic?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam019",
+        title: "Do you do regular physical activity (walking, swimming, cycling, etc.) at least one hour per week in the past month?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam020",
+        title: "Have you fallen in the past year (at least one fall)?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam021",
+        title: "Have you received help to complete this questionnaire?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam021p1",
+        title: "Who helped you?",
+        choices: [
+            "Family",
+            "Friends",
+            "Professional"
+        ],
+        visibleIf: "{cesam021} == Yes",
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam021p2",
+        title: "Which family member helped you?",
+        choices: [
+            "Spouse",
+            "Partner",
+            "Child",
+            "Other"
+        ],
+        visibleIf: "{cesam021p1} == Family",
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam022",
+        title: "Did you answer this questionnaire for yourself or for someone else?",
+        choices: [
+            "Myself",
+            "Another person"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam023",
+        title: "Are you the caregiver to an individual who is suffering from a chronic illness?",
+        choices: [
+            "Yes",
+            "No"
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam023p1",
+        title: "What is his/her condition?",
+        choices: [
+            "Alzheimer's disease",
+            "Other"
+        ],
+        visibleIf: "{cesam023} == Yes",
+        isRequired: true,
+        showClearButton: true
+      },
     ],
   }]
 };
