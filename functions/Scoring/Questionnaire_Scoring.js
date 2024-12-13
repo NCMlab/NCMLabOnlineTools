@@ -186,6 +186,7 @@ function Questionnaire_Scoring(data) {
 		// This assumes there is not total score, so a score of one indicates that it was completed
 		TotalScore = 1
 		console.log(Results)
+
 		// cycle over pages
 		for ( var i = 0; i < data.Questionnaire.survey_JSON.pages.length; i++ )
 		{
@@ -193,19 +194,26 @@ function Questionnaire_Scoring(data) {
 			// cycle over elements on a page
 			for (var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
-					console.log(data.Questionnaire.survey_JSON.pages[i].elements[j].title)
-					// Question text
-					TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
-					console.log(TextAnswer)
-					// Question Name 
-					QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
-					console.log(QuestionName)
-					// Response in text form
-					console.log(data.response)
-					ResponseText = data.response[QuestionName]
-					
-					console.log(ResponseText)
-					Results.AllResults[TextAnswer] = ResponseText
+					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
+					{
+						console.log(data.Questionnaire.survey_JSON.pages[i].elements[j].title)
+						// Question text
+						TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
+						console.log(TextAnswer)
+						// Question Name 
+						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
+						console.log(QuestionName)
+						// Response in text form
+						console.log(data.response)
+						ResponseText = data.response[QuestionName]
+						
+						console.log(ResponseText)
+						if ( ResponseText == null )
+						{
+							ResponseText = 'null'
+						}
+						Results.AllResults[TextAnswer] = ResponseText
+					}
 				}
 		}
 	}
@@ -221,5 +229,6 @@ function Questionnaire_Scoring(data) {
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
+	
     return Results
 }
