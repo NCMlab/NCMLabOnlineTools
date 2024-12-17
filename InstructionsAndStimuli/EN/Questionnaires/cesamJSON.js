@@ -10,8 +10,8 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you unwillingly lost weight in the past year?",
         choices: [
-            "Yes",
-            "No"
+            { value: 2, text: 'Yes' },
+            { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -33,10 +33,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "How many different types of drugs do you take on a daily basis?",
         choices: [
-            "0",
-            "1 to 4",
-            "5 to 9",
-            "10 or more"
+          { value: 0, text: '0' },
+          { value: 0, text: '1 to 4' },
+          { value: 1, text: '5 to 9' },
+          { value: 2, text: '10 or more' },
         ],
         isRequired: true,
         showClearButton: true
@@ -46,8 +46,8 @@ const survey_JSON = {
         name: "cesam003",
         title: "Do you have vision problems?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -57,8 +57,8 @@ const survey_JSON = {
         name: "cesam004",
         title: "Do you have hearing problems?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -68,8 +68,8 @@ const survey_JSON = {
         name: "cesam005",
         title: "Has someone close to you expressed concern about your memory?",
         choices: [
-            "Yes",
-            "No"
+          { value: 2, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -104,8 +104,8 @@ const survey_JSON = {
         name: "cesam007",
         title: "Do you need help with your grooming (brushing teeth, hair, shaving, applying make up)?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -115,8 +115,8 @@ const survey_JSON = {
         name: "cesam008",
         title: "Do you need help with bathing or traking a shower?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -126,8 +126,8 @@ const survey_JSON = {
         name: "cesam009",
         title: "Do you need assistance when getting dressed?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -137,8 +137,8 @@ const survey_JSON = {
         name: "cesam010",
         title: "Do you use mobility aides for walking or transfering (cane, walker, wheelchair)?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -148,8 +148,8 @@ const survey_JSON = {
         name: "cesam011",
         title: "Do you need help with your meals: Shopping for food, meal preparation, assistamce in eating",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -159,8 +159,8 @@ const survey_JSON = {
         name: "cesam012",
         title: "Do you need help when using the telephone?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -170,8 +170,8 @@ const survey_JSON = {
         name: "cesam013",
         title: "Do you need assistance when taking public transportation?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -181,8 +181,8 @@ const survey_JSON = {
         name: "cesam014",
         title: "Do you need help for managing medications on your own?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -192,8 +192,8 @@ const survey_JSON = {
         name: "cesam015",
         title: "Do you need help to pay your bills and manage your finances?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -203,8 +203,8 @@ const survey_JSON = {
         name: "cesam016",
         title: "Are you incontinent (urine and/or stool)?",
         choices: [
-            "Yes",
-            "No"
+          { value: 2, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -214,9 +214,9 @@ const survey_JSON = {
         name: "cesam017",
         title: "How do you feel today?",
         choices: [
-            "Happy",
-            "Unhappy",
-            "Neither one nor the other"
+            { value: 2, text: "Happy" },
+            { value: 1, text: "Unhappy" },
+            { value: 0, text: "Neither one nor the other" },
         ],
         isRequired: true,
         showClearButton: true
@@ -226,8 +226,8 @@ const survey_JSON = {
         name: "cesam018",
         title: "Do you feel energetic?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -237,8 +237,8 @@ const survey_JSON = {
         name: "cesam019",
         title: "Do you do regular physical activity (walking, swimming, cycling, etc.) at least one hour per week in the past month?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -248,8 +248,8 @@ const survey_JSON = {
         name: "cesam020",
         title: "Have you fallen in the past year (at least one fall)?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -259,8 +259,8 @@ const survey_JSON = {
         name: "cesam021",
         title: "Have you received help to complete this questionnaire?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true

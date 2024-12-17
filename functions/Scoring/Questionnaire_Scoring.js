@@ -103,6 +103,7 @@ function Questionnaire_Scoring(data) {
 				Results.AllResults[TextAnswer] = ResponseText
 			}
 		}
+
 	}
 	if ( data.QuestionnaireType == 'likert' )
 	{
@@ -229,6 +230,5 @@ function Questionnaire_Scoring(data) {
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
-	
     return Results
 }

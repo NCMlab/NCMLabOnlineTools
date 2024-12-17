@@ -25,9 +25,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 0, text: "Hardly ever" }, 
-            { value: 1, text: "Some of the time"}, 
-            { value: 2, text: "Often"},
+            { value: 1, text: "Hardly ever" }, 
+            { value: 2, text: "Some of the time"}, 
+            { value: 3, text: "Often"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -41,9 +41,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 0, text: "Hardly ever" }, 
-            { value: 1, text: "Some of the time"}, 
-            { value: 2, text: "Often"},
+            { value: 1, text: "Hardly ever" }, 
+            { value: 2, text: "Some of the time"}, 
+            { value: 3, text: "Often"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -57,9 +57,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 0, text: "Hardly ever" }, 
-            { value: 1, text: "Some of the time"}, 
-            { value: 2, text: "Often"},
+            { value: 1, text: "Hardly ever" }, 
+            { value: 2, text: "Some of the time"}, 
+            { value: 3, text: "Often"},
            ],
           separateSpecialChoices: true,
           showClearButton: true

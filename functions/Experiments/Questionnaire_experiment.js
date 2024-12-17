@@ -1,6 +1,7 @@
 var timeline = []
 var Questionnaire = []
 var CriteriaToUse = 0
+var Results 
 var converter = new showdown.Converter();
 
 var LoadQuestionnaire = {
@@ -37,9 +38,7 @@ var trial02 = {
     data.AlertLimit = Questionnaire.AlertLimit
     data.title = Questionnaire.title
     data.shortTitle = Questionnaire.shortTitle
-    
   }
-
 }
 
 var trial = {
@@ -119,6 +118,117 @@ var CheckForAlert = {
   }
 }
 
+var SpecialtyScoring = {
+  type: jsPsychCallFunction,
+  func: function() {
+    var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
+    
+    switch ( data.trials[0].shortTitle ) {
+      case 'CESAM':
+        {
+          console.log(data)
+          console.log(Results)
+          Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
+          Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
+          Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
+          Results.AllResults['Cognition'] = data.trials[0].response['cesam005']
+          var sumADL = data.trials[0].response['cesam007'] + 
+                        data.trials[0].response['cesam008'] + 
+                        data.trials[0].response['cesam009']
+                        data.trials[0].response['cesam010']
+                        data.trials[0].response['cesam011']
+          switch ( sumADL ) {
+            case 0 : { Results.AllResults['ADL'] = 0 }
+            case 1 : { Results.AllResults['ADL'] = 0 }
+            case 2 : { Results.AllResults['ADL'] = 1 }
+            case 3 : { Results.AllResults['ADL'] = 1 }
+            case 4 : { Results.AllResults['ADL'] = 2 }
+            case 5 : { Results.AllResults['ADL'] = 2 }
+          }
+          var sumIADL = data.trials[0].response['cesam012'] + 
+          data.trials[0].response['cesam013'] + 
+          data.trials[0].response['cesam014']
+          data.trials[0].response['cesam015']
+          switch ( sumIADL ) {
+            case 0 : { Results.AllResults['IADL'] = 0 }
+            case 1 : { Results.AllResults['IADL'] = 1 }
+            case 2 : { Results.AllResults['IADL'] = 2 }
+            case 3 : { Results.AllResults['IADL'] = 2 }
+            case 4 : { Results.AllResults['IADL'] = 2 }
+          }
+          Results.AllResults['Continence'] = data.trials[0].response['cesam016']
+          if ( ( data.trials[0].response['cesam017'] == 2 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+            Results.AllResults['Mood'] = 0
+          }
+          if ( ( data.trials[0].response['cesam017'] == 0 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+            Results.AllResults['Mood'] = 1
+          }
+          if ( ( data.trials[0].response['cesam017'] == 1 ) || ( data.trials[0].response['cesam018'] == 0 ) ) {
+            Results.AllResults['Mood'] = 2
+          }
+          // Mobility
+          if ( ( data.trials[0].response['cesam019'] == 1 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+            Results.AllResults['Mobility'] = 0
+          }
+          if ( ( data.trials[0].response['cesam019'] == 0 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+            Results.AllResults['Mobility'] = 1
+          }
+          if ( data.trials[0].response['cesam020'] == 1 )  {
+            Results.AllResults['Mobility'] = 2
+          }
+          Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
+                                              Results.AllResults['Multimorbidity'] + 
+                                              Results.AllResults['Communication'] + 
+                                              Results.AllResults['Cognition'] + 
+                                              Results.AllResults['ADL'] + 
+                                              Results.AllResults['IADL'] + 
+                                              Results.AllResults['Continence'] + 
+                                              Results.AllResults['Mood'] + 
+                                              Results.AllResults['Mobility']
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                           
+          break;
+        }
+        case 'GDS':
+          {
+            var TotalScore = 0
+            if ( data.trials[0].response.gds['gds01'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds02'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds03'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds04'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds05'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds06'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds07'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds08'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds09'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds10'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds11'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds12'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds13'] == 0 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds14'] == 1 ) { TotalScore++ }
+            if ( data.trials[0].response.gds['gds15'] == 1 ) { TotalScore++ }
+            Results.AllResults['Total Score'] = TotalScore
+            Results.AllResults['Accuracy'] = TotalScore
+            break;
+          }
+          case 'PANASsf':
+            {
+              Results.AllResults['Positive'] = data.trials[0].response.panas['panas03']
+                                              + data.trials[0].response.panas['panas05']
+                                              + data.trials[0].response.panas['panas07']
+                                              + data.trials[0].response.panas['panas08']
+                                              + data.trials[0].response.panas['panas10']
+              Results.AllResults['Negative'] = data.trials[0].response.panas['panas01']
+                                              + data.trials[0].response.panas['panas02']
+                                              + data.trials[0].response.panas['panas04']
+                                              + data.trials[0].response.panas['panas06']
+                                              + data.trials[0].response.panas['panas09']                                              
+              break;                                              
+            }
+    }
+    
+  }
+}
+
 var if_JSON = {
   timeline: [trial02],
   conditional_function: function(){
@@ -148,6 +258,7 @@ timeline.push(if_JSON)
 timeline.push(if_PAGES)
 
 timeline.push(CheckForAlert)
+timeline.push(SpecialtyScoring)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)

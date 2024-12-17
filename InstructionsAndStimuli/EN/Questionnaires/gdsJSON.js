@@ -32,11 +32,11 @@ var survey_JSON =
                 ],
                 columns: [
                     {
-                    "value": 0,
+                    "value": 1,
                     "text": 'Yes'
                     },
                     {
-                    "value": 1,
+                    "value": 0,
                     "text": 'No'
                     },
                 ],

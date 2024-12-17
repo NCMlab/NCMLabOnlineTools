@@ -1,6 +1,6 @@
 
-var title = "Positive and Negative Affect Schedule (PANAS)"
-var shortTitle = 'PANAS'  
+var title = "Demographic Questionnaire "
+var shortTitle = 'Music Intake'  
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
@@ -502,9 +502,9 @@ const json = {
 
 
 var EN_IntakeForm_MusicJSON = {}
-EN_IntakeForm_MusicJSON.title = 'FormTitle';
+EN_IntakeForm_MusicJSON.title = title;
 EN_IntakeForm_MusicJSON.survey_JSON = json;
-EN_IntakeForm_MusicJSON.shortTitle = 'Intake'
+EN_IntakeForm_MusicJSON.shortTitle = shortTitle
 EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
 EN_IntakeForm_MusicJSON.Instructions01 = [
     {
