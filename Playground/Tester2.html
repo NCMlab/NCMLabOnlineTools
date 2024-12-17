@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurveyJS Range Slider</title>
+
+  <!-- SurveyJS CSS -->
+  <link href="https://unpkg.com/survey-core@1.9.66/survey-core.min.css" type="text/css" rel="stylesheet"/>
+
+  <!-- SurveyJS JavaScript -->
+  <script src="https://unpkg.com/survey-core@1.9.66/survey-core.min.js"></script>
+</head>
+<body>
+
+  <div id="surveyContainer"></div>
+
+  <script>
+    // Initialize SurveyJS when the page is loaded
+    window.addEventListener("load", function() {
+      var surveyJSON = {
+        questions: [
+          {
+            type: "rating",  // Rating question type (slider)
+            name: "sliderQuestion",
+            title: "How satisfied are you with our service?",
+            isRequired: true,
+            minRateDescription: "Not Satisfied",
+            maxRateDescription: "Very Satisfied",
+            rateValues: [
+              { value: 1, text: "1" },
+              { value: 2, text: "2" },
+              { value: 3, text: "3" },
+              { value: 4, text: "4" },
+              { value: 5, text: "5" }
+            ],
+            min: 1,  // Minimum value
+            max: 5,  // Maximum value
+            step: 1   // Step increment
+          }
+        ]
+      };
+
+      // Initialize SurveyJS
+      var survey = new Survey.Model(surveyJSON);
+
+      // Render the survey into the container div
+      survey.render("surveyContainer");
+    });
+  </script>
+
+</body>
+</html>

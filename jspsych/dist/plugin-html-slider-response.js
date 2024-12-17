@@ -161,6 +161,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
               response: null,
           };
           if (trial.require_movement) {
+            
               const enable_button = () => {
                   display_element.querySelector("#jspsych-html-slider-response-next").disabled = false;
               };

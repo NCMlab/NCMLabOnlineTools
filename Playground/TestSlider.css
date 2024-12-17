@@ -1,0 +1,92 @@
+//Tick width & range thumb width need to be in sync, that's why I'm using the $unit variable.
+$unit: 10px;
+
+
+//Some basic setup first
+* {box-sizing: border-box;}
+
+body {
+  font-family: sans-serif;
+  font-size: $unit * 2;
+  line-height: $unit * 2;
+  color: black;
+  background: white;
+}
+
+
+//Some range styling.
+//Using mixins because each major browser needs a separate selector to style parts of the range input, combining selectors would invalidate the whole selector on each browser
+@mixin range-track {
+  -webkit-appearance: none;
+  width: 100px;
+  height: $unit * 4;
+  color: transparent;
+  background: lightgray;
+  border-radius: 999px;
+  border: none;
+}
+@mixin range-thumb {
+  -webkit-appearance: none;
+  height: $unit * 4;
+  width: $unit * 4;
+  border-radius: 30px;
+  background: black;
+  box-shadow: 0px 2px 10px -2px black(1);
+}
+input[type=range] {
+  -webkit-appearance: none;
+  display: block;
+  margin: 0;
+  width: 100%;
+  background: transparent;
+  transform: rotate(-270deg)
+}
+input[type=range]::-webkit-slider-runnable-track {
+  @include range-track();
+
+}
+input[type=range]::-moz-range-track {
+  @include range-track();
+
+}
+input[type=range]::-ms-track {
+  @include range-track();
+}
+input[type=range]::-ms-fill-lower {
+  display: none;
+}
+input[type=range]::-ms-fill-upper {
+  display: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  @include range-thumb();
+}
+input[type=range]::-moz-range-thumb {
+  @include range-thumb();
+}
+input[type=range]::-ms-thumb {
+  @include range-thumb();
+}
+
+
+
+
+//And now the ticks
+.ticks {
+  display: flex;
+  justify-content: space-between;
+    transform: rotate(270deg);
+  //We need left & right padding that's half the width of the range thumb, so all ticks align with the center of the thumb
+  padding: 0 $unit*2;
+}
+.tick {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1px;
+  background: red;
+
+  //Cap the height of the tick & push text down, so the tick renders as a little line and the text doesn't overlap the line. Also add margin, so the container expands enough that the next element you'll add won't overlap the ticks.
+  height: 15px;
+  line-height: 50px;
+}

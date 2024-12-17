@@ -34,6 +34,48 @@ var EN_pages = [
             likert_scale_values: scale01,
             required: true,
         },
+        {
+            type: 'likert',
+            prompt: 'I could not control my worry.',
+            name: 'gas05',
+            likert_scale_values: scale01,
+            required: true,
+        },
+        {
+            type: 'likert',
+            prompt: 'I felt restless, keyed up, or on edge.',
+            name: 'gas06',
+            likert_scale_values: scale01,
+            required: true,
+        },
+        {
+            type: 'likert',
+            prompt: 'I felt tired.',
+            name: 'gas07',
+            likert_scale_values: scale01,
+            required: true,
+        },
+        {
+            type: 'likert',
+            prompt: 'My muscles were tense.',
+            name: 'gas08',
+            likert_scale_values: scale01,
+            required: true,
+        },
+        {
+            type: 'likert',
+            prompt: 'I felt like I had no control over my life.',
+            name: 'gas09',
+            likert_scale_values: scale01,
+            required: true,
+        },
+        {
+            type: 'likert',
+            prompt: 'I felt like something terrible was going to happen to me.',
+            name: 'gas10',
+            likert_scale_values: scale01,
+            required: true,
+        },
     ]
 ]
 

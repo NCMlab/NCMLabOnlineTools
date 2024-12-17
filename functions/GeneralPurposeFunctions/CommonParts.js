@@ -22,7 +22,7 @@ function UpdateHeader() {
         document.getElementById('header-skip-button').textContent = LabelNames.Skip;
         document.getElementById('header-info-button').style.visibility = "hidden"
         
-        document.getElementById('header-home-button').style.visibility = "hidden"
+        //document.getElementById('header-home-button').style.visibility = "hidden"
         document.getElementById('header-quit-button').style.visibility = "hidden"
         document.getElementById('header-skip-button').style.visibility = "hidden"
         document.getElementById('header-stop-button').style.visibility = "hidden"
@@ -172,6 +172,7 @@ var EligibilityCheck = {
 var WelcomeWritten = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() { 
+        console.log("WELCOME WRITTEN")
         var Str = Instructions.WelcomeText[0].page
         Str += "<p>"+LabelNames.PressNext+"</p>"
         return Str
@@ -209,7 +210,8 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
-        console.log("HELLO WORLDS")
+
+      console.log("HELLO WORLDS")
       if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
       { return true }
       else { return false }
@@ -217,7 +219,7 @@ var if_WelcomeWritten = {
 }
 
 // if the welcome is shown AND spoken then present the spoken
-var if_WelcomeSpoken = {
+ var if_WelcomeSpoken = {
     timeline: [WelcomeSpoken_loop],
     conditional_function: function() {
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"

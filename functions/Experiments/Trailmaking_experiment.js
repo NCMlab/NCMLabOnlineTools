@@ -14,31 +14,14 @@ var CanvasHeight
 var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
-
-var StartGIFRecorder = {
-  type: jsPsychCallFunction,
-  func: function() {
-    encoder = new GIFEncoder();
-    encoder.setRepeat(0); //0  -> loop forever
-    //1+ -> loop n times then stop
-    encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
-  }
-}
-var if_GIFRecorder = {
-  timeline: [StartGIFRecorder],
-  conditional_function: function() {
-        if ( parameters.RecordGIF )
-        { return true }
-        else { return false }
-  }
-}
-
+var WidthAdjustment = 0.8
+var HeightAdjustment = 0.8
 
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
-      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, 0.60, 0.75) 
+      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, HeightAdjustment, WidthAdjustment) 
        CanvasWidth = sizes.CanvasWidth
        CanvasHeight = sizes.CanvasHeight
       console.log(CanvasWidth)
@@ -231,6 +214,7 @@ timeline.push(CheckPracticeFlag)
 timeline.push(if_GIFRecorder)
 timeline.push(Welcome)
 timeline.push(if_Instructions)
+
 
 timeline.push(if_Practice)
 

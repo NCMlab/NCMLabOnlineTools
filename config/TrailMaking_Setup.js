@@ -223,7 +223,7 @@ var TrailMaking_Default = {
 	ShowThankYou: true,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsA'
+    shortTitle: 'Trails A'
 }
 
 var TrailMakingA_Default = {
@@ -236,13 +236,14 @@ var TrailMakingA_Default = {
     PracticeCircles: SampleCirclesA,
     PracticeSuggestedWidth: SuggestedWidthSampleA,
     PracticeSuggestedHeight: SuggestedHeightSampleA,
-    ShowInstructions: false,
+    ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: true,
-	ShowThankYou: true,
+    ShowWelcome: false,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsA'
+    shortTitle: 'Trails A'
 }
 
 var TrailMakingB_Default = {
@@ -255,13 +256,14 @@ var TrailMakingB_Default = {
     PracticeCircles: SampleCirclesB,
     PracticeSuggestedWidth: SuggestedWidthSampleB,
     PracticeSuggestedHeight: SuggestedHeightSampleB,
-    ShowInstructions: false,
+    ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: true,
-	ShowThankYou: true,
+    ShowWelcome: false,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsB'
+    shortTitle: 'Trails B'
 }
 
 var TrailMakingA_Default_02 = {
@@ -280,7 +282,7 @@ var TrailMakingA_Default_02 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsA'
+    shortTitle: 'Trails A'
 }
 
 var TrailMakingB_Default_02 = {
@@ -299,7 +301,7 @@ var TrailMakingB_Default_02 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsB'
+    shortTitle: 'Trails B'
 }
 
 var TrailMakingA_003 = {
@@ -337,7 +339,7 @@ var TrailMakingB_003 = {
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
-    shortTitle: 'TrailsB'
+    shortTitle: 'Trails B'
 }
 
 var TrailMaking_FaCE = {

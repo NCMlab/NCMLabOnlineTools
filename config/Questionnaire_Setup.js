@@ -86,7 +86,7 @@ var BDI_002 = {
 }
 
 var GDS_001 = { 
-    questionnaire: ['gds'], 
+    questionnaire: ['gdsJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -106,7 +106,7 @@ var GDS_004 = {
 }
 
 var GAS_001 = { 
-    questionnaire: ['gas'], 
+    questionnaire: ['gasJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -127,7 +127,7 @@ var CFS_001 = {
 
 
 var EQ5D_001 = { 
-    questionnaire: ['eq5d'], 
+    questionnaire: ['eq5dJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -137,7 +137,7 @@ var EQ5D_001 = {
 }
 
 var PANAS_001 = { 
-    questionnaire: ['panas'], 
+    questionnaire: ['panasJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -145,6 +145,100 @@ var PANAS_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+
+var PANAS_Short_001 = { 
+    questionnaire: ['panasShortJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var MusicDemographics_001 = { 
+    questionnaire: ['IntakeForm_MusicJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+
+
+var UCLA_LONELINESS_001 = { 
+    questionnaire: ['UCLAlonelinessJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+
+var UCLA_LONELINESS_001 = { 
+    questionnaire: ['UCLAlonelinessJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var BERKSYME_001 = { 
+    questionnaire: ['berksymeJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+
+var STANFORDSLEEPINESS_001 = { 
+    questionnaire: ['stanfordSleepinessJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var CESAM_001 = { 
+    questionnaire: ['cesamJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var WEMWBS_001 = { 
+    questionnaire: ['wemwbsJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var PAES_001 = { 
+    questionnaire: ['paesJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 add('AES_001', function(){ parameters = AES_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
@@ -159,4 +253,12 @@ add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_001', function(){ parameters = PANAS_001});
+add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
+add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
+add('BERKSYME_001', function(){ parameters = BERKSYME_001});
+add('STANFORDSLEEPINESS_001', function(){ parameters = STANFORDSLEEPINESS_001});
+add('CESAM_001', function(){ parameters = CESAM_001});
+add('WEMWBS_001', function(){ parameters = WEMWBS_001});
+add('PANAS_Short_001', function(){ parameters = PANAS_Short_001});
+add('PAES_001', function(){ parameters = PAES_001});
 

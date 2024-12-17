@@ -75,7 +75,7 @@ var SetupBattery = {
       TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
       TaskIconList = CurrentBattery.TaskList.map(({ IconName }) => IconName)
       InstructionList = CurrentBattery.TaskList.map(({ Instructions }) => Instructions)
-
+console.log(TaskList)
       // Extract the battery instructions
       BatteryInstructions = CurrentBattery.BatteryInstructions
 

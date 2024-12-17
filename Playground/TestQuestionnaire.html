@@ -42,49 +42,49 @@
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
-    <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
-    <script src="../config/Questionnaire_Setup.js"></script>
-    <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
-    <script src="../InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
-    <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
+    
+    
+    <script src="../jspsych_addons/plugin-html-slider-response2.js"></script>
+    
+    
+    
     <script>
-      var Questionnaire_parameters = 'empty'
-      pseudoSwitch('STAI_T_001')
-      pseudoSwitch('EN'+'_Instructions_'+'Default')
-      console.log(Instructions)
-      parameters.Language = 'EN'
-      console.log(parameters)
-      // Now what we want to do is to load the file named in parameters.questionnaire[0]
-      // and located in ../InstructionsAndStimuli/EN/Questionnaires/
-      var dirName = "../InstructionsAndStimuli/EN/Questionnaires/"
-      fileName = dirName+parameters.questionnaire[0]+".js"
-      console.log(fileName)
-        dynamicallyLoadScript(fileName)
-      pseudoSwitch('EN'+'_LabelNames')
-    </script>
-
-<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-
-<script>
-var setup = []
-var TrialCount = 1;
-
-
+   
 jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      show_progress_bar: true,    
+      
+      show_progress_bar: false,    
       on_interaction_data_update: function(data) {
           console.log(JSON.stringify(data))
       },
-      on_finish: function() {
-
-      //jsPsych.data.get().localSave('csv','StroopWordMydata.csv');
-    }
   });
 
     
-    jsPsych.run(timeline);
+  var trial_1 = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: function() {
+        var html = ''
+          html += '<ul>'
+          html += '<li><span>We would like to know how good or bad your health is TODAY</span></li>'
+            html += '<li><span>This scale is numbered from 0 to 100.</span></li>'
+            html += '<li><span>100 means the best health you can imagine. 0 means the worst health you can imagine.</span></li>'
+            html += '<li><span>Indicate on the slider how your health is TODAY</span>.</li>'
+            
+          html += '</ul>'
+            return html },
+      min: 0,
+      max: 100,
+      topText: "The best health you can imagine",
+      bottomText: "The worst health you can imagine",
+      slider_start: 0,
+      step: 1,   
+      labels: ['Purple', 'Blue'],
+      slider_width: 200,
+      require_movement: true,
+      prompt: '<p>Is this color closer to purple or blue? Use the slider above.</p>'
+    };
+
+    jsPsych.run([trial_1]);
+    
 
   
 
@@ -96,3 +96,13 @@ jsPsych = initJsPsych({
 </body>
 
 </html>
+<script>
+/* https://wsform.com/knowledgebase/vertical-range-sliders/
+
+
+<div class="wsf-extra-small-3 wsf-tile wsf-field-wrapper wsf-range-vertical" id="wsf-1-field-wrapper-17306" data-id="17306" data-type="range">
+  <label id="wsf-1-label-17306" for="wsf-1-field-17306" class="wsf-label">Tick Marks</label>
+  <input type="range" id="wsf-1-field-17306" name="field_17306" value="0" class="wsf-field" list="wsf-1-datagrid-17306-group-0" aria-describedby="wsf-1-help-17306" aria-labelledby="wsf-1-label-17306" data-init-help-value="" data-init-validate-real-time="">
+
+<datalist id="wsf-1-datagrid-17306-group-0"><option value="0" style="--wsf-position-tick-mark: 0%;" data-label="0%"></option><option value="25" style="--wsf-position-tick-mark: 25%;" data-label="25%"></option><option value="50" style="--wsf-position-tick-mark: 50%;" data-label="50%"></option><option value="75" style="--wsf-position-tick-mark: 75%;" data-label="75%"></option><option value="100" style="--wsf-position-tick-mark: 100%;" data-label="100%"></option></datalist><div id="wsf-1-invalid-feedback-17306" class="wsf-invalid-feedback" aria-hidden="true">This field is required.</div><small id="wsf-1-help-17306" class="wsf-help wsf-help-post">0%</small></div>
+</script>
