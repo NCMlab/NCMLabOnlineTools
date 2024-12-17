@@ -145,6 +145,17 @@ var PANAS_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+
+var PANAS_Short_001 = { 
+    questionnaire: ['panasShortJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_MusicJSON'], 
     criteria: [],
@@ -248,4 +259,5 @@ add('BERKSYME_001', function(){ parameters = BERKSYME_001});
 add('STANFORDSLEEPINESS_001', function(){ parameters = STANFORDSLEEPINESS_001});
 add('CESAM_001', function(){ parameters = CESAM_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
-add('PAES_001', function(){ parameters = PAES_001});
+add('PANAS_Short_001', function(){ parameters = PANAS_Short_001});
+

@@ -351,7 +351,7 @@ List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default'
 List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
 List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
 List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_Short_001', Instructions: 'Default', IconName: 'PANAS'})
 List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepi'})
 List.push({Task: 'Questionnaire', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
 List.push({Task: 'VAS Rating', Parameters: 'WellnessRating_001', Instructions: 'Default', IconName: 'VASrating'})
