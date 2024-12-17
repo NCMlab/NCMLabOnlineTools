@@ -31,7 +31,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    
+    data.shortTitle = parameters.shortTitle
     Results = VAS_Scoring(data)
     jsPsych.finishTrial(Results)
     console.log(Results)

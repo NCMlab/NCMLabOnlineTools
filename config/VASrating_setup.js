@@ -23,6 +23,7 @@ var WellnessRating_001 = {
     ShowThankYou: false,
     ShowInstructions: true,
     AskForNotes: false,
+    shortTitle: 'Health Rating'
 }
 
 add('WellnessRating_001', function(){ parameters = WellnessRating_001});

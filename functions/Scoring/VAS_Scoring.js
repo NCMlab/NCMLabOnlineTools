@@ -19,6 +19,9 @@ function VAS_Scoring(data) {
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
-
+	Results.AllResults['ShortTitle'] = '-99'
+	if ( data.ShortTitle !== 'undefined' ){
+		Results.AllResults['ShortTitle'] = data.shortTitle
+	}		
 	return Results
 }
