@@ -1,6 +1,8 @@
 function DMS_Scoring(Stair, data) {
-	Notes = data.filter({trial: 'Notes'})
+	console.log(data)
 	console.log(Stair)	
+	Notes = data.filter({trial: 'Notes'})
+	
 	var NTrials = Stair.TrialCount
 	var NReversal = Stair.ReversalCount
 	var Threshold = Stair.CalculateAverage()

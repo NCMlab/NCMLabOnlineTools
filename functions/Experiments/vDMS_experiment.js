@@ -71,7 +71,7 @@ var enter_fullscreen = {
     } 
 
     var Probe = {
-      type:jsPsychHtmlButtonResponseTouchscreen,
+      type:jsPsychHtmlButtonKeyboardResponseTouchscreen,
       stimulus: function() {
         return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
@@ -92,14 +92,15 @@ var enter_fullscreen = {
         console.log("Participant Response is:")
         console.log(data.response)
         // in the list of allowable key presses, what is the index of wehat was pressed?
-        var ResponseIndex = ResponseMapping.indexOf(data.response)
-        console.log(ResponseMapping)
+        var ResponseIndex = parameters.ResponseMapping.indexOf(data.response)
+        console.log(parameters.ResponseMapping)
         console.log(ResponseIndex)
         console.log("Program thinks this answer is:")
-        console.log(ResponseMapping[ResponseIndex])
+        console.log(parameters.ResponseMapping[ResponseIndex])
         console.log(data)
         console.log(stair1)
-        if (ResponseMapping[ResponseIndex] == correct) 
+        //console.log(BREAK)
+        if (parameters.ResponseMapping[ResponseIndex] == correct) 
           {
             data.correct = 1,
             stair1.Decide(true)

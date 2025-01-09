@@ -343,7 +343,9 @@ vDMS_Fixed04 = {
 	InstructionsSpoken: false,
 	AdaptiveLoad: true,
 	Parameters: Stair04Parameters,
-	choicesKeyboard: ['arrowleft','arrowright']
+	choicesKeyboard: ['arrowleft','arrowright'],
+	// This is for the button responses
+	ResponseMapping: [1,0]
 }
 
 
