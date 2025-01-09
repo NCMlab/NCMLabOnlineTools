@@ -52,18 +52,6 @@ StairParameters.NUp = 3
 StairParameters.NDown = 1
 StairParameters.FastStart = true
 
-var Stair04Parameters = {}
-Stair04Parameters.MaxTrials = 5
-Stair04Parameters.StartValue = 4
-Stair04Parameters.MinValue = 4
-Stair04Parameters.MaxValue = 4
-Stair04Parameters.StepSize = 1
-Stair04Parameters.NUp = 1
-Stair04Parameters.NDown = 1
-Stair04Parameters.FastStart = true
-Stair04Parameters.MaxTime = 10
-
-
 
 // ===================================================
 
@@ -332,17 +320,30 @@ vDMS_Adaptive = {
 
 
 
+var Stair04Parameters = {}
+Stair04Parameters.MaxTrials = 5
+Stair04Parameters.StartValue = 4
+Stair04Parameters.MinValue = 4
+Stair04Parameters.MaxValue = 4
+Stair04Parameters.StepSize = 1
+Stair04Parameters.NUp = 1
+Stair04Parameters.NDown = 1
+Stair04Parameters.FastStart = true
+Stair04Parameters.MaxTime = 10
+
+
+
 vDMS_Fixed04 = {
-	RecordEyeTracking: true,
+	RecordEyeTracking: false,
 	ShowWelcome: true,
 	ShowThankYou: true,
 	ShowInstructions: false, 
-	ShowWelcome: true,
 	WelcomeSpoken: false,
-	AskForNotes: true,
+	AskForNotes: false,
 	InstructionsSpoken: false,
 	AdaptiveLoad: true,
-	Parameters: Stair04Parameters
+	Parameters: Stair04Parameters,
+	choicesKeyboard: ['arrowleft','arrowright']
 }
 
 

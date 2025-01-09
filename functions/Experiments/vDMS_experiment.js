@@ -75,7 +75,8 @@ var enter_fullscreen = {
       stimulus: function() {
         return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
-      choices: KeyboardChoices,
+      choicesKeyboard: ['arrowleft','arrowright'],
+      choices: ['y', 'n'],
       trial_duration: ProbeOnTime,
       on_finish: function(data){
         // NEED TO UPDATE THIS BASED ON TEH ADAPTIVE NATURE OF THE TRIALS
@@ -197,9 +198,9 @@ timeline.push(enter_fullscreen)
 timeline.push(Welcome)
 timeline.push(SetupTask)
 timeline.push(Instructions01)
-timeline.push(init_camera)
-timeline.push(calibration_instructions)
-timeline.push(calibration)
+//timeline.push(init_camera)
+//timeline.push(calibration_instructions)
+//timeline.push(calibration)
   
 timeline.push(WaitTime)
 timeline.push(loop_node)

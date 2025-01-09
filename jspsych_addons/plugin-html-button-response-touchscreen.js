@@ -17,6 +17,14 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: undefined,
               array: true,
           },
+            /**
+           * Array containing the key(s) the subject is allowed to press to respond to the stimulus.
+           */
+            choicesKeyboard: {
+                type: jspsych.ParameterType.KEYS,
+                pretty_name: "Keyboard Choices",
+                default: "ALL_KEYS",
+            },
           /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
@@ -134,20 +142,42 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   after_response(choice);
               });
           }
+        // start the response listener
+
+        if (trial.choicesKeyboard != "NO_KEYS") {
+            console.log(" >>>>> KEYBOARD RESPONSE <<<< ")
+
+            console.log(trial.choicesKeyboard)
+            console.log("VALID KEYS: " + trial.choicesKeyboard)
+            var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
+                
+                callback_function: after_responseKeyboard,
+                valid_responses: trial.choicesKeyboard,
+                rt_method: "performance",
+                persist: false,
+                allow_held_key: false,
+            });
+            
+        }
+
           // store response
           var response = {
               rt: null,
               button: null,
+              key: null,
           };
           // function to end trial when it is time
           const end_trial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
+                console.log("RESPONSE >>> "+response.button)
+                console.log("RESPONSE >>> "+response.key)
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
                   stimulus: trial.stimulus,
                   response: response.button,
+                  responseKB: response.key,
               };
               // clear the display
               display_element.innerHTML = "";
@@ -175,6 +205,20 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   end_trial();
               }
           }
+          function after_responseKeyboard(info){
+            console.log("AFTER RESPONSE")
+            console.log(info)
+            // measure rt
+            var end_time = performance.now();
+            var rt = Math.round(end_time - start_time);
+            response.button = parseInt(choice);
+            response.rt = rt;
+            console.log(BREAK)
+            if (trial.response_ends_trial) {
+                end_trial();
+            }
+        }
+          
           // hide image if timing is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
