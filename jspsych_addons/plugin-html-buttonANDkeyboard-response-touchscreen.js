@@ -139,18 +139,16 @@ var jsPsychHtmlButtonKeyboardResponseTouchscreen = (function (jspsych) {
                   .addEventListener("click", (e) => {
                   var btn_el = e.currentTarget;
                   var choice = btn_el.getAttribute("data-choice"); // don't use dataset for jsdom compatibility
-                  after_response(choice);
+                  
+                  var responseData = {choice: choice, buttonLabel: btn_el.textContent}
+                  after_response(responseData)
+                  // after_response(choice);
               });
           }
         // start the response listener
 
         if (trial.choicesKeyboard != "NO_KEYS") {
-            console.log(" >>>>> KEYBOARD RESPONSE <<<< ")
-
-            console.log(trial.choicesKeyboard)
-            console.log("VALID KEYS: " + trial.choicesKeyboard)
-            var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
-                
+            var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({                
                 callback_function: after_responseKeyboard,
                 valid_responses: trial.choicesKeyboard,
                 rt_method: "performance",
@@ -165,18 +163,19 @@ var jsPsychHtmlButtonKeyboardResponseTouchscreen = (function (jspsych) {
               rt: null,
               button: null,
               key: null,
+              type: null
           };
           // function to end trial when it is time
           const end_trial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
-                console.log("RESPONSE >>> "+response.button)
-                console.log("RESPONSE >>> "+response.key)
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
                   stimulus: trial.stimulus,
                   response: response.button,
+                  key: response.key,
+                  type: response.type,
               };
               // clear the display
               display_element.innerHTML = "";
@@ -184,12 +183,17 @@ var jsPsychHtmlButtonKeyboardResponseTouchscreen = (function (jspsych) {
               this.jsPsych.finishTrial(trial_data);
           };
           // function to handle responses by the subject
-          function after_response(choice) {
+          
+          function after_response(responseData) {
               // measure rt
+              
               var end_time = performance.now();
               var rt = Math.round(end_time - start_time);
-              response.button = parseInt(choice);
+              
+              response.button = parseInt(responseData.choice);
               response.rt = rt;
+              response.key = responseData.buttonLabel;
+              response.type = 'button';
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
               // display_element.querySelector("#jspsych-html-button-response-stimulus").className +=
@@ -212,7 +216,7 @@ var jsPsychHtmlButtonKeyboardResponseTouchscreen = (function (jspsych) {
             var rt = Math.round(end_time - start_time);
             response.button = info.key;
             response.rt = info.rt;
-            
+            response.type = 'keyboard';
             if (trial.response_ends_trial) {
                 end_trial();
             }

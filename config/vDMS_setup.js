@@ -321,7 +321,7 @@ vDMS_Adaptive = {
 
 
 var Stair04Parameters = {}
-Stair04Parameters.MaxTrials = 5
+Stair04Parameters.MaxTrials = 2
 Stair04Parameters.StartValue = 4
 Stair04Parameters.MinValue = 4
 Stair04Parameters.MaxValue = 4
@@ -341,11 +341,15 @@ vDMS_Fixed04 = {
 	WelcomeSpoken: false,
 	AskForNotes: false,
 	InstructionsSpoken: false,
-	AdaptiveLoad: true,
+	AdaptiveLoad: false,
 	Parameters: Stair04Parameters,
 	choicesKeyboard: ['arrowleft','arrowright'],
 	// This is for the button responses
-	ResponseMapping: [1,0]
+	ResponseMappingButtons: [0, 1], //first entry in array is a YES/TRUE response, 1 is no 
+	
+	// If the buttons are used, they are numbered from 0 starting at the left.
+	// Therefore, "Yes" and "No" buttons are coded as [0, 1]
+	ResponseMappingKeyboard: [0, 1]
 }
 
 

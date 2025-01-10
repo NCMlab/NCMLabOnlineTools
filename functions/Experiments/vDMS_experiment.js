@@ -17,8 +17,6 @@ var SetupTask = {
     console.log(parameters)
     stair1 = new Stair(parameters.Parameters.StartValue,parameters.Parameters.MinValue, parameters.Parameters.MaxValue,parameters.Parameters.MaxReversals,parameters.Parameters.MaxTrials,parameters.Parameters.StepSize,parameters.Parameters.NUp,parameters.Parameters.NDown,parameters.Parameters.FastStart, parameters.Parameters.MaxTime);
     stimList = new AdaptiveStimulusList();
-    console.log(stair1)
-    console.log(stimList)
     // Keep track of how many trials have been presented.
     // After a certain count present a long duration ITI
   }
@@ -35,14 +33,14 @@ var enter_fullscreen = {
     var Stimulus = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function(){
-        console.log("Current: "+stair1.Current)
-        console.log("Last Stim: "+stimList.getLastStim())
-        console.log("Last Probe: "+stimList.getLastProbe())
-        if ( parameters.AdaptiveLoad == true )
-        {
+        // console.log("Current: "+stair1.Current)
+        // console.log("Last Stim: "+stimList.getLastStim())
+        // console.log("Last Probe: "+stimList.getLastProbe())
+        // if ( parameters.AdaptiveLoad == true )
+        // {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
-        }
-        console.log(output)
+        //}
+        // console.log(output)
         return PutLettersInGrid(output[0],3,3,700,20,60)
         //return StimulusLetters
       },
@@ -79,28 +77,21 @@ var enter_fullscreen = {
       choices: ['y', 'n'],
       trial_duration: ProbeOnTime,
       on_finish: function(data){
-        // NEED TO UPDATE THIS BASED ON TEH ADAPTIVE NATURE OF THE TRIALS
-        // This puts the stimulus letters on the same line as the trial response
+
         data.ProbeLetter = stimList.CurrentProbe
         // tag this trial
         data.trialType = "Probe"
         data.StimLetters = stimList.getCurrentStim()
         data.Load = data.StimLetters.length
         var correct = stimList.getCurrentCorrect() //jsPsych.timelineVariable("Correct", true)
-        console.log("Correct Answer is:")
-        console.log(correct)
-        console.log("Participant Response is:")
-        console.log(data.response)
-        // in the list of allowable key presses, what is the index of wehat was pressed?
-        var ResponseIndex = parameters.ResponseMapping.indexOf(data.response)
-        console.log(parameters.ResponseMapping)
-        console.log(ResponseIndex)
-        console.log("Program thinks this answer is:")
-        console.log(parameters.ResponseMapping[ResponseIndex])
-        console.log(data)
-        console.log(stair1)
-        //console.log(BREAK)
-        if (parameters.ResponseMapping[ResponseIndex] == correct) 
+        // is the participant response the first entry in the ResponseMapping array?
+        // in the list of allowable key presses, what is the index of what was pressed?
+        
+        if ( data.type == 'button' )
+        { var ResponseIndex = parameters.ResponseMappingButtons.indexOf(data.response) }
+        else { var ResponseIndex = parameters.choicesKeyboard.indexOf(data.response) }
+        
+        if ( (ResponseIndex == 0 ) == correct) 
           {
             data.correct = 1,
             stair1.Decide(true)
@@ -150,7 +141,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    Results = DMS_Scoring(stair1)    
+    Results = DMS_Scoring(stair1, data)    
     jsPsych.finishTrial(Results)
   }
 }
