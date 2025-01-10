@@ -190,7 +190,7 @@ timeline.push(enter_fullscreen)
 timeline.push(Welcome)
 timeline.push(SetupTask)
 timeline.push(Instructions01)
-//timeline.push(init_camera)
+timeline.push(init_camera)
 //timeline.push(calibration_instructions)
 //timeline.push(calibration)
   

@@ -709,7 +709,8 @@ var enter_fullscreen = {
 
 // ============ WEB GAZER ==================
 var init_camera = {
-    type: jsPsychWebgazerInitCamera
+    type: jsPsychWebgazerInitCamera,
+    instructions: "HELLO WORLD"
   };
 
 var calibration_instructions = {
