@@ -40,6 +40,8 @@ function MakeFixedStimulusList(LoadLevels, TrialsPerLoad)
 
 function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', FontSize=40)
 	{
+		console.log("LETTER LIST")
+		console.log(LetterList)
 		var count = 0;
 		var Table = '';
 		// create the html table and assign the class which is defined in the HTML file
@@ -47,7 +49,12 @@ function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', F
 		for (var i=0; i<NRows; i++) { // Cycle over rows
 			Table += '<tr>'
 			for (var j=0; j<NCols; j++) { // cycle over columns
-				Table += '<td style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>';
+				if ( LetterList[count] != '*')
+				{ Table += '<td style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>' }
+				else 
+				{
+					Table += '<td id="TrackingTarget_' + count + '" style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>'
+				}
 				count += 1;
 			}
 		}

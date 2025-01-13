@@ -47,7 +47,15 @@ var enter_fullscreen = {
       trial_duration: StimOnTime,
       choices: [],
       prompt: '',
+      data: {
+        trialType: "Stimulus"
+      },
+      extensions: [
+        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_1', '#TrackingTarget_3','#TrackingTarget_4','#TrackingTarget_5']}}  
+      ],
       on_finish: function(data){
+        console.log(data)
+        console.log(BREAK)
         stimList.addStim(output[2])
         stimList.addProbe(output[1][0])
         stimList.addCorrect(output[1][1])
@@ -76,6 +84,7 @@ var enter_fullscreen = {
       choicesKeyboard: ['arrowleft','arrowright'],
       choices: ['y', 'n'],
       trial_duration: ProbeOnTime,
+
       on_finish: function(data){
 
         data.ProbeLetter = stimList.CurrentProbe
