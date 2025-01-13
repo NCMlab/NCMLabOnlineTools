@@ -55,7 +55,7 @@ var enter_fullscreen = {
       ],
       on_finish: function(data){
         console.log(data)
-        console.log(BREAK)
+        
         stimList.addStim(output[2])
         stimList.addProbe(output[1][0])
         stimList.addCorrect(output[1][1])
@@ -200,8 +200,8 @@ timeline.push(Welcome)
 timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(init_camera)
-//timeline.push(calibration_instructions)
-//timeline.push(calibration)
+timeline.push(calibration_instructions)
+timeline.push(calibration)
   
 timeline.push(WaitTime)
 timeline.push(loop_node)
