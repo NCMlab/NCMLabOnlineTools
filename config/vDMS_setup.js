@@ -16,7 +16,7 @@ var KeyboardChoices = ['No', 'Yes'];
 var ResponseMapping = [0, 1];
 
 // Timings of the different trial phases in MILLISECONDS
-var StimOnTime = 2500
+var StimOnTime = 3500
 var RetOnTime = 3500
 var ProbeOnTime = 5000
 // This is the intertrial interval. 
@@ -321,7 +321,7 @@ vDMS_Adaptive = {
 
 
 var Stair04Parameters = {}
-Stair04Parameters.MaxTrials = 2
+Stair04Parameters.MaxTrials = 10
 Stair04Parameters.StartValue = 4
 Stair04Parameters.MinValue = 4
 Stair04Parameters.MaxValue = 4
