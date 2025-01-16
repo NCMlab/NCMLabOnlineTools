@@ -63,7 +63,7 @@ var enter_fullscreen = {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
         //}
         // console.log(output)
-        return PutLettersInGrid(output[0],3,3,700,20,60)
+        return PutLettersInGrid(output[0],3,3,700,200,60)
         //return StimulusLetters
       },
       trial_duration: StimOnTime,
@@ -75,7 +75,16 @@ var enter_fullscreen = {
       extensions: [
         {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_0', '#TrackingTarget_2','#TrackingTarget_6','#TrackingTarget_8']}}  
       ],
+      on_load: function(){
+        const element = document.getElementById('TrackingTarget_0')
+        const rect = element.getBoundingClientRect();
+        const x = rect.left + window.scrollX;
+        const y = rect.top + window.scrollY;
+        console.log("X >>>>>>>>>>>>>>"+x)
+        console.log("Y >>>>>>>>>>>>>>"+y)
+      },
       on_finish: function(data){
+        
         console.log(data)
         
         stimList.addStim(output[2])
@@ -223,8 +232,8 @@ timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(init_camera)
 timeline.push(calibration_instructions)
-timeline.push(calibration)
-timeline.push(validation)
+//timeline.push(calibration)
+//timeline.push(validation)
 timeline.push(WaitTime)
 timeline.push(loop_node)
 //timeline.push(debrief_block)

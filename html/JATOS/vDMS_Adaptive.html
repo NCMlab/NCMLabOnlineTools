@@ -103,6 +103,10 @@
         {type: jsPsychExtensionWebgazer}
       ],
     on_trial_start: function() {
+
+      //var filename="any_name_" + new Date().toJSON()
+      
+
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
@@ -117,8 +121,18 @@
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','vDMS_data.csv');
+      if ( true ) {
+        var today = new Date();
+        var y = today.getFullYear();     
+        // JavaScript months are 0-based.
+        var m = today.getMonth() + 1;
+        var d = today.getDate();
+        var h = today.getHours();
+        var mi = today.getMinutes();
+        var s = today.getSeconds();
+        var filename = 'vDMS_EyeTrack_' + y + "-" + m + "-" + d + "__" + h + "-" + mi + "-" + s + '.csv';
+        
+        jsPsych.data.get().localSave('csv', filename);
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
