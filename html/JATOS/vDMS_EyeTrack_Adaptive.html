@@ -29,7 +29,16 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>    
+    <script src="jspsych_addons/plugin-webgazer-init-camera.js"></script>
+    <script src="jspsych_addons/plugin-webgazer-calibrate.js"></script>
+    <script src="jspsych_addons/plugin-webgazer-validate.js"></script>
+    <script src="jspsych/examples/js/webgazer/webgazer.js"></script>
+    <script src="jspsych/dist/extension-webgazer.js"></script>
+
+
+
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-html-buttonANDkeyboard-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="functions/TaskSpecificFunctions/DMS_functions.js"></script>
@@ -71,15 +80,16 @@
         }
 
         pseudoSwitch(parameters)
-        console.log(vDMS_parameters)
+        console.log(parameters)
         LANG = jatos.studySessionData.Language
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
+        console.log(Instructions)
       })
   </script> 
-  <script src="functions/Experiments/vDMS_experiment.js"></script>
+  <script src="functions/Experiments/vDMS_EyeTrack_experiment.js"></script>
   <script src="functions/Scoring/DMS_Scoring.js"></script>  
   <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
   <script>
@@ -89,8 +99,14 @@
       display_element: 'jspsych-target',
       auto_update_progress_bar: false,
       show_progress_bar: true,    
-
+      extensions: [
+        {type: jsPsychExtensionWebgazer}
+      ],
     on_trial_start: function() {
+
+      //var filename="any_name_" + new Date().toJSON()
+      
+
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
       var input = jatos.urlQueryParameters;
@@ -105,8 +121,18 @@
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','vDMS_data.csv');
+      if ( true ) {
+        var today = new Date();
+        var y = today.getFullYear();     
+        // JavaScript months are 0-based.
+        var m = today.getMonth() + 1;
+        var d = today.getDate();
+        var h = today.getHours();
+        var mi = today.getMinutes();
+        var s = today.getSeconds();
+        var filename = 'vDMS_EyeTrack_' + y + "-" + m + "-" + d + "__" + h + "-" + mi + "-" + s + '.csv';
+        
+        jsPsych.data.get().localSave('csv', filename);
       }    
       // update session data
       JATOSSessionData = jatos.studySessionData
