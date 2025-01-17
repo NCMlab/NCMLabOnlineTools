@@ -119,7 +119,8 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
 
           html += '</tr>'
           html += '</table>'
-
+                  console.log(" >>>>>>>>>>>>>>>>>>>>>>> JASON <<<<<<<<<<<<<<<<<<<<<")
+                  console.log(trial)
          
           display_element.innerHTML = html;
           // start time

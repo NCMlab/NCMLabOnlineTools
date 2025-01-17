@@ -21,6 +21,28 @@ var SetupTask = {
     // After a certain count present a long duration ITI
   }
 }
+// =======================================================================
+var calibration = {
+  type: jsPsychWebgazerCalibrate,
+  calibration_points: [[33,22], [33,55], [72,22], [72,55]],
+  //calibration_points: [[10,10],[10,30],[10,50],[10,70],[10,90],[30,10],[30,30],[30,50],[30,70],[30,90],[50,10],[50,30],[50,50],[50,70],[50,90],[70,10],[70,30],[70,50],[70,70],[70,90],[90,10],[90,30],[90,50],[90,70],[90,90]],
+  // calibration_points: [
+  //   [10,10],[10,50],[10,90],
+  //   [30,10],[30,50],[30,90],
+  //   [40,10],[40,30],[40,40],[40,45],[40,50],[40,55],[40,60],[40,70],[40,90],
+  //   [50,10],[50,30],[50,40],[50,45],[50,50],[50,55],[50,60],[50,70],[50,90],
+  //   [60,10],[60,30],[60,40],[60,45],[60,50],[60,55],[60,60],[60,70],[60,90],
+  //   [70,10],[70,50],[70,90],
+  //   [90,10],[90,50],[90,90]],
+  repetitions_per_point: 4,
+  randomize_calibration_order: true,
+};
+
+var validation = {
+  type: jsPsychWebgazerValidate,
+  validation_points: [[33,22], [33,55], [72,22], [72,55]],
+  show_validation_data: true
+};
 
 // =======================================================================
 var enter_fullscreen = {
@@ -41,7 +63,7 @@ var enter_fullscreen = {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
         //}
         // console.log(output)
-        return PutLettersInGrid(output[0],3,3,700,20,60)
+        return PutLettersInGrid(output[0],3,3,700,200,60)
         //return StimulusLetters
       },
       trial_duration: StimOnTime,
@@ -51,9 +73,18 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_1', '#TrackingTarget_3','#TrackingTarget_4','#TrackingTarget_5']}}  
+        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_0', '#TrackingTarget_2','#TrackingTarget_6','#TrackingTarget_8']}}  
       ],
+      on_load: function(){
+        const element = document.getElementById('TrackingTarget_0')
+        const rect = element.getBoundingClientRect();
+        const x = rect.left + window.scrollX;
+        const y = rect.top + window.scrollY;
+        console.log("X >>>>>>>>>>>>>>"+x)
+        console.log("Y >>>>>>>>>>>>>>"+y)
+      },
       on_finish: function(data){
+        
         console.log(data)
         
         stimList.addStim(output[2])
@@ -201,8 +232,8 @@ timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(init_camera)
 timeline.push(calibration_instructions)
-timeline.push(calibration)
-  
+//timeline.push(calibration)
+//timeline.push(validation)
 timeline.push(WaitTime)
 timeline.push(loop_node)
 //timeline.push(debrief_block)

@@ -14,6 +14,8 @@ import numpy as np
 import pandas as pd
 
 fileName = 'Data2.txt'
+
+fileName = 'JASON.txt'
 with open(fileName) as f:
     d = json.load(f)
     f.close()

@@ -49,12 +49,12 @@ function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', F
 		for (var i=0; i<NRows; i++) { // Cycle over rows
 			Table += '<tr>'
 			for (var j=0; j<NCols; j++) { // cycle over columns
-				if ( LetterList[count] != '*')
-				{ Table += '<td style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>' }
-				else 
-				{
+				//if ( LetterList[count] != '*')
+				//{ Table += '<td style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>' }
+				//else 
+				//{
 					Table += '<td id="TrackingTarget_' + count + '" style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>'
-				}
+				//}
 				count += 1;
 			}
 		}
