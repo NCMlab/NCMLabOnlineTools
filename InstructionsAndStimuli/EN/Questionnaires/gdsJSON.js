@@ -24,7 +24,7 @@ var survey_JSON =
                     {value: 'gds08', text: "Do you often feel helpless?"},
                     {value: 'gds09', text: "Do you prefer to stay home, rather than going out and doing things?"},
                     {value: 'gds10', text: "Do you feel that you have more problems with memory than most?"},
-                    {value: 'gds11', text: "Do you think is it wonderful to be aline now?"},
+                    {value: 'gds11', text: "Do you think is it wonderful to be alive now?"},
                     {value: 'gds12', text: "Do you feel worthless the way you are now?"},
                     {value: 'gds13', text: "Do you feel full of energy?"},
                     {value: 'gds14', text: "Do you feel that your situation is hopeless?"},
