@@ -89,7 +89,7 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_0', '#TrackingTarget_2','#TrackingTarget_6','#TrackingTarget_8']}}  
+        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']}}  
       ],
       on_finish: function(data){
         console.log(data)
@@ -184,7 +184,11 @@ var enter_fullscreen = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
+      stimulus: function() {
+        var html = ''
+        html += '<div style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'
+        return html
+      },
       choices: [],
       trial_duration: WaitOnTime,
     } 

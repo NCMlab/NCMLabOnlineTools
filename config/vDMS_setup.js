@@ -7,9 +7,63 @@
 // to differentiate it from ONE and EYE.
 
 
+// The following is the size of the letters displayed
 var DMSFontSize = 72;
+
+// The following are distances in pixels from the center of the screen
 var WidthFromCenter = 150;
 var HeightFromCenter = 150;
+
+
+var Stair04Parameters = {}
+// =================================
+// The following is the number of task trials to show
+
+Stair04Parameters.MaxTrials = 10
+
+// =================================
+
+// Timings of the different trial phases in MILLISECONDS
+var StimOnTime = 3500
+var RetOnTime = 3500
+var ProbeOnTime = 5000
+// This is the intertrial interval. 
+var ITITime = 1000
+
+// =================================
+Stair04Parameters.StartValue = 4
+Stair04Parameters.MinValue = 4
+Stair04Parameters.MaxValue = 4
+Stair04Parameters.StepSize = 1
+Stair04Parameters.NUp = 1
+Stair04Parameters.NDown = 1
+Stair04Parameters.FastStart = true
+Stair04Parameters.MaxTime = 10
+
+
+
+vDMS_Fixed04 = {
+	RecordEyeTracking: false,
+	ShowWelcome: true,
+	ShowThankYou: true,
+	ShowInstructions: false, 
+	WelcomeSpoken: false,
+	AskForNotes: false,
+	InstructionsSpoken: false,
+	AdaptiveLoad: false,
+	Parameters: Stair04Parameters,
+	choicesKeyboard: ['arrowleft','arrowright'],
+	// This is for the button responses
+	ResponseMappingButtons: [0, 1], //first entry in array is a YES/TRUE response, 1 is no 
+	
+	// If the buttons are used, they are numbered from 0 starting at the left.
+	// Therefore, "Yes" and "No" buttons are coded as [0, 1]
+	ResponseMappingKeyboard: [0, 1]
+}
+
+
+
+
 
 var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
@@ -18,12 +72,6 @@ var KeyboardChoices = ['No', 'Yes'];
 // This response mapping correspopnds to the order of the above KeyboardChoices
 var ResponseMapping = [0, 1];
 
-// Timings of the different trial phases in MILLISECONDS
-var StimOnTime = 3500
-var RetOnTime = 3500
-var ProbeOnTime = 5000
-// This is the intertrial interval. 
-var ITITime = 1000
 
 // This is the time between blocks. Note that between each block of trials there
 // is also the 3-2-1 countdown. Therefore, the full interblock interval is this value PLUS 
@@ -319,40 +367,6 @@ vDMS_Adaptive = {
 	InstructionsSpoken: false,
 	AdaptiveLoad: true,
 	Parameters: StairParameters
-}
-
-
-
-var Stair04Parameters = {}
-Stair04Parameters.MaxTrials = 10
-Stair04Parameters.StartValue = 4
-Stair04Parameters.MinValue = 4
-Stair04Parameters.MaxValue = 4
-Stair04Parameters.StepSize = 1
-Stair04Parameters.NUp = 1
-Stair04Parameters.NDown = 1
-Stair04Parameters.FastStart = true
-Stair04Parameters.MaxTime = 10
-
-
-
-vDMS_Fixed04 = {
-	RecordEyeTracking: false,
-	ShowWelcome: true,
-	ShowThankYou: true,
-	ShowInstructions: false, 
-	WelcomeSpoken: false,
-	AskForNotes: false,
-	InstructionsSpoken: false,
-	AdaptiveLoad: false,
-	Parameters: Stair04Parameters,
-	choicesKeyboard: ['arrowleft','arrowright'],
-	// This is for the button responses
-	ResponseMappingButtons: [0, 1], //first entry in array is a YES/TRUE response, 1 is no 
-	
-	// If the buttons are used, they are numbered from 0 starting at the left.
-	// Therefore, "Yes" and "No" buttons are coded as [0, 1]
-	ResponseMappingKeyboard: [0, 1]
 }
 
 
