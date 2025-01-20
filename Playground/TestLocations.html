@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .container {
+                position: relative;
+            }
+            .TopLeftDMS {
+                background-color: yellow;
+                position: fixed;
+                bottom: 50%;
+                left: 50%;
+                margin-left: -250px;
+                margin-bottom: 250px;
+            }
+            .TopRightDMS {
+                background-color: yellow;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                margin-left: 250px;
+                margin-bottom: 250px;
+            }
+            .BotLeftDMS {
+                background-color: yellow;
+                position: fixed;
+                bottom: 50%;
+                left: 50%;
+                margin-left: -250px;
+                margin-bottom: -250px;
+            }
+            .BotRightDMS {
+                background-color: yellow;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                margin-left: 250px;
+                margin-bottom: -250px;
+            }
+            .CenterDMS {
+                background-color: yellow;
+                position: absolute;
+                bottom: 50%;
+                right: 50%;
+            }
+            
+</style>
+<script>
+    function Put4DMSOnScreen() //Letters, WidthFromCenter, HeightFromCenter)
+    {
+        var html = ''
+        html += '<container>'
+        html += '<div class="TopLeftDMSXXX" style="position: absolute;bottom: 50%;left: 50%;margin-left: -250px;margin-bottom: 250px;" id="TrackingTarget_TL">A</div>'
+        html += '<div class="TopRightDMS" id="TrackingTarget_TR">F</div>'
+        html += '<div class="CenterDMS">+</div>'
+        html += '<div class="BotLeftDMS" id="TrackingTarget_BL">G</div>'
+        html += '<div class="BotRightDMS" id="TrackingTarget_BR">D</div>'
+        html += '</container>'
+        return html
+    }
+</script>
+    </head>
+<body>
+    <container>
+        <div class="TopLeftDMSXXX" style="position: absolute;bottom: 50%;left: 50%;margin-left: -250px;margin-bottom: 250px;" id="TrackingTarget_TL">A</div>
+        <div class="TopRightDMS" id="TrackingTarget_TR">B</div>
+        <div class="CenterDMS">+</div>
+        <div class="BotLeftDMS" id="TrackingTarget_BL">C</div>
+        <div class="BotRightDMS" id="TrackingTarget_BR">D</div>
+    </container>
+    <div><script>PutInTable()</script></div>
+</body>
+
+</html>

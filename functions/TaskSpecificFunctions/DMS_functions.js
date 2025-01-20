@@ -38,6 +38,20 @@ function MakeFixedStimulusList(LoadLevels, TrialsPerLoad)
 	
 }  
 
+function Put4DMSOnScreen(Letters) //, WidthFromCenter, HeightFromCenter) //Letters, WidthFromCenter, HeightFromCenter)
+	{
+		console.log(Letters)
+		var html = ''
+		html += '<container>'
+		html += '<div  style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%;margin-left: -'+WidthFromCenter+'px;margin-bottom: '+HeightFromCenter+'px;" id="TrackingTarget_TL">'+Letters[0][0]+'</div>'
+		html += '<div  style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%;margin-left: '+WidthFromCenter+'px;margin-bottom: '+HeightFromCenter+'px;" id="TrackingTarget_TR">'+Letters[0][2]+'</div>'
+		html += '<div  style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%;margin-left: -'+WidthFromCenter+'px;margin-bottom: -'+HeightFromCenter+'px;" id="TrackingTarget_BL">'+Letters[0][6]+'</div>'
+		html += '<div  style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%;margin-left: '+WidthFromCenter+'px;margin-bottom: -'+HeightFromCenter+'px;" id="TrackingTarget_BR">'+Letters[0][8]+'</div>'
+		html += '<div style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'
+		html += '</container>'
+		return html
+	}
+
 function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', FontSize=40)
 	{
 		console.log("LETTER LIST")

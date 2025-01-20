@@ -6,9 +6,12 @@
 // there are simply not enough available letters. ELL is not allowed to be a probe leter because it is difficult 
 // to differentiate it from ONE and EYE.
 
-var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
 var DMSFontSize = 72;
+var WidthFromCenter = 150;
+var HeightFromCenter = 150;
+
+var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
 var KeyboardChoices = ['No', 'Yes'];
 // the following is used for scoring and allows the keyboard choices to be whatever you would like

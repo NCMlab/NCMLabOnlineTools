@@ -77,7 +77,9 @@ var enter_fullscreen = {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
         //}
         // console.log(output)
-        return PutLettersInGrid(output[0],3,3,700,200,60)
+        
+        //return PutLettersInGrid(output[0],3,3,700,200,60)
+        return Put4DMSOnScreen(output)
         //return StimulusLetters
       },
       trial_duration: StimOnTime,
@@ -91,7 +93,12 @@ var enter_fullscreen = {
       ],
       on_finish: function(data){
         console.log(data)
-        
+        console.log(document.documentElement.clientWidth)
+        let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+        let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+        console.log(vw)
+        data.ViewPortWidth = vw
+        data.ViewPortHeight = vh
         stimList.addStim(output[2])
         stimList.addProbe(output[1][0])
         stimList.addCorrect(output[1][1])
@@ -104,7 +111,12 @@ var enter_fullscreen = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
+      //stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black; position: absolute;bottom: 50%;left: 50%">+</p>',
+      stimulus: function() {
+        var html = ''
+        html += '<div style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'
+        return html
+      },
       choices: [],
       trial_duration: RetOnTime,
       //on_finish: function(data){
@@ -115,10 +127,13 @@ var enter_fullscreen = {
     var Probe = {
       type:jsPsychHtmlButtonKeyboardResponseTouchscreen,
       stimulus: function() {
-        return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
+        //return '<div style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">'+stimList.CurrentProbe+'</p>'
+        var html = ''
+        html += '<div style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">'+stimList.CurrentProbe+'</div>'
+        return html
       },
       choicesKeyboard: ['arrowleft','arrowright'],
-      choices: ['y', 'n'],
+      choices: ['Yes', 'No'],
       trial_duration: ProbeOnTime,
 
       on_finish: function(data){
@@ -153,7 +168,11 @@ var enter_fullscreen = {
 
     var Fix = {
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:'+ProbeColor+'">+</p>',
+      stimulus: function() {
+        var html = ''
+        html += '<div style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'
+        return html
+      },
       choices: [],
       trial_duration: ITITime,
      // on_finish: function(data){
