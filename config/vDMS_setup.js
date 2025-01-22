@@ -10,6 +10,9 @@
 var DMSFontSize = 72;
 var WidthFromCenter = 250;
 var HeightFromCenter = 200;
+var StairParameters = {}
+StairParameters.MaxTrials = 10
+
 
 var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 

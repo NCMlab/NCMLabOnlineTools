@@ -35,7 +35,7 @@ var calibration = {
             [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
             [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
   },
-  repetitions_per_point: 1,
+  repetitions_per_point: 3,
   randomize_calibration_order: true,
 };
 var calibration_instructions = {
@@ -101,7 +101,7 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_0', '#TrackingTarget_2','#TrackingTarget_6','#TrackingTarget_8']}}  
+        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']}}  
       ],
       on_finish: function(data){
         console.log(data)
