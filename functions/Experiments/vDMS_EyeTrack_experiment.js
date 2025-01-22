@@ -26,10 +26,16 @@ var init_camera = {
     type: jsPsychWebgazerInitCamera
   };
 
+  
 var calibration = {
   type: jsPsychWebgazerCalibrate,
-  calibration_points: [[33,22], [33,55], [72,22], [72,55]],
-  repetitions_per_point: 4,
+  calibration_points: function() {
+    return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+  },
+  repetitions_per_point: 1,
   randomize_calibration_order: true,
 };
 var calibration_instructions = {
@@ -45,8 +51,14 @@ var calibration_instructions = {
 
 var validation = {
   type: jsPsychWebgazerValidate,
-  validation_points: [[33,22], [33,55], [72,22], [72,55]],
-  show_validation_data: true
+  validation_points: function() {
+    return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+  },
+  show_validation_data: true,
+  validation_point_coordinates: "center-offset-pixels",
 };
 var validation_instructions = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -184,7 +196,11 @@ var enter_fullscreen = {
       // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
-      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
+      stimulus: function() {
+        var html = ''
+        html += '<div style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'
+        return html
+      },
       choices: [],
       trial_duration: WaitOnTime,
     } 

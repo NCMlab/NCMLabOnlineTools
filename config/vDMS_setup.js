@@ -8,8 +8,8 @@
 
 
 var DMSFontSize = 72;
-var WidthFromCenter = 150;
-var HeightFromCenter = 150;
+var WidthFromCenter = 250;
+var HeightFromCenter = 200;
 
 var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 
