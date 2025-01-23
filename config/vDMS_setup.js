@@ -9,10 +9,11 @@
 
 // The following is the size of the letters displayed
 var DMSFontSize = 72;
+var WidthFromCenter = 250;
+var HeightFromCenter = 200;
+var StairParameters = {}
+StairParameters.MaxTrials = 10
 
-// The following are distances in pixels from the center of the screen
-var WidthFromCenter = 150;
-var HeightFromCenter = 150;
 
 
 var Stair04Parameters = {}
