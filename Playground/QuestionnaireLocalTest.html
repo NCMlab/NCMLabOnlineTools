@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab:  Questionnaire</title>
+    <link rel="stylesheet" type='text/css' href='../css/defaultV2.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
+    
+    
+    
+    <link rel="stylesheet" type='text/css' href='../css/survey.css'>
+    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../css/defaultV2.min.css'>
+    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
+    <script src="../ImportedModules/jquery-3.6.4.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("../functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+      $(function(){$("#footerText").load("../functions/GeneralPurposeFunctions/FooterButtons.html");});
+    </script> 
+        <script>
+          // SOURCE
+          // https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file
+          function dynamicallyLoadScript(url) {
+              console.log('Dynamically loading...')
+              var script = document.createElement("script");  // create a script DOM node
+              script.src = url;  // set its src to the provided URL
+              script.async = true;
+              document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+          }
+
+          // https://www.educative.io/answers/how-to-dynamically-load-a-js-file-in-javascript
+          const loadScript = (FILE_URL, async = true, type = "text/javascript") => {
+            return new Promise((resolve, reject) => {
+                try {
+                    const scriptEle = document.createElement("script");
+                    scriptEle.type = type;
+                    scriptEle.async = false;
+                    scriptEle.src =FILE_URL;
+
+                    scriptEle.addEventListener("load", (ev) => {
+                        resolve({ status: true });
+                    });
+
+                    scriptEle.addEventListener("error", (ev) => {
+                        reject({
+                            status: false,
+                            message: `Failed to load the script ${FILE_URL}`
+                        });
+                    });
+
+                    document.body.appendChild(scriptEle);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        };
+      </script>
+  
+  </head>    
+  <body>
+    <div id="headerButtons"></div>
+    
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../jspsych_addons/plugin-sketchpad.js"></script>
+    <script src="../jspsych/dist/plugin-survey.js"></script>
+    
+    <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../config/General_Setup.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
+    <script src="../config/Questionnaire_Setup.js"></script>
+    
+    <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
+    <script src="../InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script>
+    <script src="../functions/Experiments/Questionnaire_experiment.js"></script>
+    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <script>
+      var Questionnaire_parameters = 'empty'
+      var parameters = 'empty'   
+      parameters = 'GAS_001'
+      pseudoSwitch(parameters)
+
+      InstructionsToUse = 'Default'
+          console.log(parameters)
+      
+          LANG = 'EN'
+      parameters.Language = LANG    
+          
+          pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+          console.log(Instructions)
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
+          // Now what we want to do is to load the file named in parameters.questionnaire[0]
+          // and located in ../InstructionsAndStimuli/EN/Questionnaires/
+          
+          var dirName = "../InstructionsAndStimuli/EN/Questionnaires/"
+          
+          console.log(parameters)
+          fileName = dirName+parameters.questionnaire[0]+".js"
+          console.log(fileName)
+          
+          promise1 = loadScript(fileName)
+          .then( data  => {
+            console.log("Script loaded successfully", data);
+            // POST PROMISE
+            // Once the promise finished loding the current questionnaire then continue.
+            console.log("POST PROMISE")
+            
+
+            var setup = []
+            var TrialCount = 1;
+            var jsPsych = initJsPsych({
+                display_element: 'jspsych-target',
+                show_progress_bar: true,    
+              });
+              console.log(timeline)
+            jsPsych.run(timeline);
+                  
+      })
+    </script>
+<div id="footerText"></div>
+
+</body>
+
+</html>

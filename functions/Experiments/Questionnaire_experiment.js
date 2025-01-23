@@ -8,6 +8,8 @@ var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
+    console.log(parameters)
+    console.log(text)
     eval(text)
 
     console.log(Questionnaire)
