@@ -39539,7 +39539,7 @@ var jsPsychSurvey = (function (jspsych) {
 		    };
 		    //IMatrixData
 		    QuestionMatrixModel.prototype.onMatrixRowChanged = function (row) {
-		        if (this.isRowChanging)
+				if (this.isRowChanging)
 		            return;
 		        this.isRowChanging = true;
 		        if (!this.hasRows) {
