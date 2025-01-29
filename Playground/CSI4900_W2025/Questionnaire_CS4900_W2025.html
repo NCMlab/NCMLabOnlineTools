@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab:  Questionnaire</title>
+    <link rel="stylesheet" type='text/css' href='Playground/CSI4900_W2025/defaultV2.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
+    
+    
+    
+    <link rel="stylesheet" type='text/css' href='Playground/CSI4900_W2025/survey.css'>
+    <link rel="stylesheet" href="Playground/CSI4900_W2025/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='Playground/CSI4900_W2025/defaultV2.min.css'>
+    <link rel="stylesheet" type='text/css' href='Playground/CSI4900_W2025/NCMLabGeneral.css'>
+    <script src="Playground/CSI4900_W2025/jquery-3.6.4.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+      $(function(){$("#headerButtons").load("Playground/CSI4900_W2025/HeaderButtons.html");}); 
+      $(function(){$("#footerText").load("Playground/CSI4900_W2025/FooterButtons.html");});
+    </script> 
+        <script>
+          // SOURCE
+          // https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file
+          function dynamicallyLoadScript(url) {
+              console.log('Dynamically loading...')
+              var script = document.createElement("script");  // create a script DOM node
+              script.src = url;  // set its src to the provided URL
+              script.async = true;
+              document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+          }
+
+          // https://www.educative.io/answers/how-to-dynamically-load-a-js-file-in-javascript
+          const loadScript = (FILE_URL, async = true, type = "text/javascript") => {
+            return new Promise((resolve, reject) => {
+                try {
+                    const scriptEle = document.createElement("script");
+                    scriptEle.type = type;
+                    scriptEle.async = false;
+                    scriptEle.src =FILE_URL;
+
+                    scriptEle.addEventListener("load", (ev) => {
+                        resolve({ status: true });
+                    });
+
+                    scriptEle.addEventListener("error", (ev) => {
+                        reject({
+                            status: false,
+                            message: `Failed to load the script ${FILE_URL}`
+                        });
+                    });
+
+                    document.body.appendChild(scriptEle);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        };
+      </script>
+  
+  </head>    
+  <body>
+    <div id="headerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="Playground/CSI4900_W2025/jspsych.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-fullscreen.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-instructions.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-call-function.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-sketchpad.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-survey.js"></script>
+    
+    <script src="Playground/CSI4900_W2025/plugin-audio-button-response.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-html-keyboard-response.js"></script>
+    <script src="Playground/CSI4900_W2025/plugin-html-button-response-touchscreen.js"></script>
+    <script src="Playground/CSI4900_W2025/NCMGeneralFunctions.js"></script>
+    <script src="Playground/CSI4900_W2025/General_Setup.js"></script>
+    <script src="Playground/CSI4900_W2025/CommonParts.js"></script>
+    <script src="Playground/CSI4900_W2025/Questionnaire_Instructions.js"></script>
+    <script src="Playground/CSI4900_W2025/Questionnaire_Setup.js"></script>
+    
+    <script src="Playground/CSI4900_W2025/Questionnaire_Scoring.js"></script>
+    <script src="Playground/CSI4900_W2025/MentalHealthResources.js"></script>
+    <script src="Playground/CSI4900_W2025/Questionnaire_experiment.js"></script>
+    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <script>
+      var Questionnaire_parameters = 'empty'
+      var parameters = 'empty'   
+      
+      jatos.onLoad(() => {
+        InstructionsToUse = 'Default'
+          parameters = 'GAS_001'
+          console.log(parameters)
+          pseudoSwitch(parameters)
+          console.log(parameters)
+          parameters.isPromiseResolved = false
+          LANG = 'EN'
+          //parameters.questionnaire = LANG + "_" + parameters.questionnaire
+          parameters.Language = LANG
+          console.log(LANG)
+          console.log(parameters)
+          // Hard code the welcome screen since promises are not always resolved
+          // and errors get occur
+          //parameters.ShowWelcome = true
+          pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+          console.log(Instructions)
+          //load general label names
+          pseudoSwitch(LANG+'_LabelNames')
+          // Now what we want to do is to load the file named in parameters.questionnaire[0]
+          // and located in ../InstructionsAndStimuli/EN/Questionnaires/
+          
+          var dirName = "Playground/CSI4900_W2025/Questionnaires/"
+          
+          console.log(parameters)
+          fileName = dirName+parameters.questionnaire[0]+".js"
+          console.log(fileName)
+          
+          promise1 = loadScript(fileName)
+          .then( data  => {
+            console.log("Script loaded successfully", data);
+            // POST PROMISE
+            // Once the promise finished loding the current questionnaire then continue.
+            UpdateHeader()
+            
+
+            var setup = []
+            var TrialCount = 1;
+            var jsPsych = initJsPsych({
+                display_element: 'jspsych-target',
+                show_progress_bar: true,    
+                on_trial_start: function() {
+                  //http://127.0.0.1:9000/publix/fNTRhuguK1x
+            //      console.log(jatos.urlQueryParameters);
+                  var input = jatos.urlQueryParameters;
+                  console.log(TrialCount)
+                  TrialCount += 1
+                  // Add jatos info to the data file
+                  jsPsych.data.addProperties({assignedURLID: input.a});
+                  jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+                  jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+                  jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+                  jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+                },
+                on_finish: function() {
+                  console.log("SUBMITTING DATA")
+                  jatos.submitResultData(jsPsych.data.get().json())
+                  if ( SaveLocalFile ) {
+                    jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
+                  }    
+                  // update session data
+                  JATOSSessionData = jatos.studySessionData
+                  JATOSSessionData.CurrentIndex += 1
+                  jatos.studySessionData = JATOSSessionData
+                  // Update the Batch Index
+                  // find the count 
+                  var c = jatos.batchSession.get(jatos.workerId)
+                  // update it
+                  jatos.batchSession.set(jatos.workerId, c + 1);
+                              
+                  // Go back to usage management 
+                  whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+                }
+              });
+              jatos.onLoad(() => {
+                  var JATOSID = jatos.workerId;
+                  console.log(jatos)
+                  console.log(JATOSID)
+                  var resultsData = {'name':'JASON'};
+                  jatos.addJatosIds(resultsData);
+                  jsPsych.run(timeline);
+                  
+                });
+                
+                    
+          })
+          .catch( err => {
+            console.error(err);
+          });
+      })
+    </script>
+<div id="footerText"></div>
+<script>
+  jatos.onLoad(() => {
+    // update the header button labels
+    UpdateHeader()
+  })
+</script>
+
+</body>
+
+</html>
