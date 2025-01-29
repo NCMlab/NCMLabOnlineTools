@@ -1,4 +1,4 @@
-var title = "Positive and Negative Affect Schedule (PANAS)"
+var title = "Échelle des affects positifs et négatifs (PANAS)"
 var shortTitle = 'PANAS-FR'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
