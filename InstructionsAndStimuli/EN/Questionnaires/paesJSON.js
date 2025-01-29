@@ -1,4 +1,4 @@
-var title = "PAES"
+var title = "Physical Activity Enjoyment Scale"
 var shortTitle = "PAES"
 const survey_JSON = {
     showQuestionNumbers: false,
