@@ -365,15 +365,18 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           canvas_html += sketchpad_controls;
           let finish_button_html = "";
           if (this.params.show_finished_button) {
-              finish_button_html = `<p id="finish-btn"><button class="jspsych-btn" id="sketchpad-end">${this.params.finished_button_label}</button></p>`;
-          }
-          let timer_html = "";
-          if (this.params.show_countdown_trial_duration && this.params.trial_duration) {
-              timer_html = `<p id="countdown-timer">${this.params.countdown_timer_html}</p>`;
-          }
+            finish_button_html = `<p id="finish-btn"><button class="jspsych-btn" id="sketchpad-end">${this.params.finished_button_label}</button></p>`;
+        }
+        let timer_html = "";
+        if (this.params.show_countdown_trial_duration && this.params.trial_duration) {
+            timer_html = `<p id="countdown-timer">${this.params.countdown_timer_html}</p>`;
+        }
+
+
           let display_html;
           if (this.params.prompt !== null) {
               if (this.params.prompt_location == "abovecanvas") {
+                console.log("ABOVE CANVAS")
                   display_html = this.params.prompt + canvas_html + '<table  style="width:50%"><tr><td text-align="right">'+finish_button_html+'</td><td style="text-align:left">' + timer_html +'</td></tr></table>';
               }
               if (this.params.prompt_location == "belowcanvas") {
@@ -391,7 +394,10 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
 
           }
           else {
-              display_html = canvas_html + '<table><tr><td>'+finish_button_html+'</td><td>' + timer_html +'</td></tr></table>';
+              //display_html = canvas_html + '<table><tr><td>'+finish_button_html+'</td><td>' + timer_html +'</td></tr></table>';
+              display_html = '<table style="border:0px;padding:0px;margin:0px;border-spacing:0px"><tr style="border:0px;padding:0px;margin:0px;border-spacing:0px"><td>'+finish_button_html+'</td><td style="text-align:left">' + timer_html +'</td></tr></table>'+canvas_html;
+              //display_html = finish_button_html + timer_html + canvas_html
+              
               console.log("ELSE")
           }
           this.display.innerHTML = display_html;
@@ -496,7 +502,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
         }
         #countdown-timer {
           width:${this.params.canvas_shape == "rectangle"
-            ? this.params.canvas_width + this.params.canvas_border_width * 2
+            ? this.params.canvas_width*0.5 + this.params.canvas_border_width * 0.5
             : this.params.canvas_diameter + this.params.canvas_border_width * 2}px; 
           text-align: right;
           font-size: 12px; 

@@ -105,6 +105,7 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
+      
       change_circle_color_only_when_correct: function() {return parameters.change_circle_color_only_when_correct},
       show_countdown_trial_duration: parameters.ShowTimer,
       trial_duration: parameters.Duration,
