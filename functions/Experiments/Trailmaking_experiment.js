@@ -14,8 +14,8 @@ var CanvasHeight
 var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
-var WidthAdjustment = 0.8
-var HeightAdjustment = 0.8
+var WidthAdjustment = 0.78
+var HeightAdjustment = 0.78
 
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
