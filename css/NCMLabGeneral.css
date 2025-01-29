@@ -588,7 +588,11 @@ body {
 .sd-question--complex { padding-left: 0px; }
 .sd-question--table { padding-left: 0px; }
 .sd-question--title-top { padding-left: 0px; }
-
+.sd-table__cell--header  { padding-left: 0px; }
+.sd-table__cell--header  { padding-right: 0px; }
+.sd-table__cell--header  { padding-right: 0px; }
+.sd-table__cell--header  { padding-top: 2px; }
+.sd-table__cell--header  { padding-bottom: 2px; }
 /* The following makes the header row of a matrix "sticky" */
 thead {
   display: block;
@@ -600,3 +604,4 @@ tbody {
   max-height: 500px;
   overflow-y: auto;
 }
+
