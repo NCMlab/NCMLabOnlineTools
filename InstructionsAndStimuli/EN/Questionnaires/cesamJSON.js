@@ -8,7 +8,7 @@ const survey_JSON = {
     {
         type: "dropdown",
         name: "cesam001",
-        title: "Have you unwillingly lost weight in the past year?",
+        title: "Have you willingly lost weight in the past year?",
         choices: [
             { value: 2, text: 'Yes' },
             { value: 0, text: 'No' },
@@ -113,7 +113,7 @@ const survey_JSON = {
       {
         type: "dropdown",
         name: "cesam008",
-        title: "Do you need help with bathing or traking a shower?",
+        title: "Do you need help with bathing or taking a shower?",
         choices: [
           { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },
@@ -146,7 +146,7 @@ const survey_JSON = {
       {
         type: "dropdown",
         name: "cesam011",
-        title: "Do you need help with your meals: Shopping for food, meal preparation, assistamce in eating",
+        title: "Do you need help with your meals: Shopping for food, meal preparation, assistance in eating",
         choices: [
           { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },

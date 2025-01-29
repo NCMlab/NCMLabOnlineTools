@@ -24,6 +24,7 @@ var survey_JSON =
                     {value: 'gas08', text: "My muscles were tense."},
                     {value: 'gas09', text: "I felt like I had no control over my life."},
                     {value: 'gas10', text: "I felt like something terrible was going to happen to me."},
+                    
                 ],
                 columns: [
                     {
@@ -43,7 +44,8 @@ var survey_JSON =
                     "text": 'All of the time'
                     },
                 ],
-            }
+            },
+
         ]
     }
 
