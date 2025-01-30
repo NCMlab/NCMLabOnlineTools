@@ -156,6 +156,25 @@ var PANAS_Short_001 = {
     ShowInstructions: false,  
 }
 
+var PANAS_ShortBaseline_001 = { 
+    questionnaire: ['panasShortBaselineJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var PANAS_ShortWeekly_001 = { 
+    questionnaire: ['panasShortWeeklyJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_MusicJSON'], 
     criteria: [],
