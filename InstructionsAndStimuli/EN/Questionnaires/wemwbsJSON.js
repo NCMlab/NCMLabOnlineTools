@@ -8,7 +8,7 @@ const survey_JSON = {
     {
         type: "html",
         name: "introduction",
-        html: "Under each heading, please select the box that best describes your health TODAY."
+        html: "Below are some statements about feelings and thoughts. Please tick the box that best describes your experience over the last 2 weeks."
        },
     {
         type: 'radiogroup',

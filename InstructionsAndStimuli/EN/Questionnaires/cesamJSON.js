@@ -24,7 +24,7 @@ const survey_JSON = {
             "Yes",
             "No"
         ],
-        visibleIf: "{cesam001} == Yes",
+        visibleIf: "{cesam001} == 2",
         isRequired: true,
         showClearButton: true
       },
@@ -274,7 +274,7 @@ const survey_JSON = {
             "Friends",
             "Professional"
         ],
-        visibleIf: "{cesam021} == Yes",
+        visibleIf: "{cesam021} == 1",
         isRequired: true,
         showClearButton: true
       },

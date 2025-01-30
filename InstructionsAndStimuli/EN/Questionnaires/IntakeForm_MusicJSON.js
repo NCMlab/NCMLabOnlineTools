@@ -167,7 +167,7 @@ const json = {
           showOtherItem: true,                    
           required: true,
         },
-        {
+        /*{
           type: 'dropdown',
           title: 'What is your annual household income?',
           choices: 
@@ -181,7 +181,35 @@ const json = {
           ],
           name: 'Income',
           required: true,
-        }
+        }*/
+       {
+          type: 'dropdown',
+          title: 'Which of the following statements best describes the extent to which your needs are met currently?',
+          choices: 
+          [
+            "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month",
+            "Food, housing, clothing and medical needs are met - you can not afford luxuries",
+            "One of the basic needs (food, housing, clothing or medical care) are not met",
+            "Two or more of the basic needs are not met",
+            "I don't know"
+          ],
+          name: 'CurrentNeeds',
+          required: true,
+       },
+       {
+          type: 'dropdown',
+          title: 'Which of the following statements best describes the extent to which your needs were met during the majority of your adult life?',
+          choices: 
+          [
+            "Food, housing, clothing and medical needs were met - you could afford luxuries",
+            "Food, housing, clothing and medical needs were met - you could not afford luxuries",
+            "One of the basic needs (food, housing, clothing or medical care) were not met",
+            "Two or more of the basic needs were not met",
+            "I don't know"
+          ],
+          name: 'PastNeeds',
+          required: true,
+       }
        ]
      },
      {
@@ -390,7 +418,7 @@ const json = {
           },
           {
             type: 'comment',
-            title: 'Please describe your previous  music and movement experience (what type of class and for how long).',
+            title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
             required: false,
