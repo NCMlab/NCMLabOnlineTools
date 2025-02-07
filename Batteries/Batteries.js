@@ -435,12 +435,10 @@ BatteryList.push({index: 73,
 })
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_003', Instructions: 'Default', IconName: 'TrailsA'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_003', Instructions: 'Default', IconName: 'TrailsB'})
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
 List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS_004', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
-
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortBaseline_001', Instructions: 'Default', IconName: 'PANAS, baseline'})
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 74, 
 	name:'Music Motion: Baseline', 
@@ -453,10 +451,7 @@ BatteryList.push({index: 74,
 })
 // ============ MUSIC STUDY -- WEEKLY - PRE ==================
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS_004', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
-List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortWeekly_001', Instructions: 'Default', IconName: 'PANAS'})
 BatteryList.push({index: 75, 
 	name:'Music Motion: Weekly Pre', 
 	description: '',
@@ -468,10 +463,8 @@ BatteryList.push({index: 75,
 })
 // ============ MUSIC STUDY -- WEEKLY - POST ==================
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS_004', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Default', IconName: 'PANAS'})
-List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortWeekly_001', Instructions: 'Default', IconName: 'PANAS'})
+List.push({Task: 'Questionnaire', Parameters: 'PAES_001', Instructions: 'Default', IconName: 'PAES'})
 BatteryList.push({index: 76, 
 	name:'Music Motion: Weekly Post', 
 	description: '',
@@ -491,6 +484,19 @@ List.push({Task: 'Questionnaire', Parameters: 'PANAS_001', Instructions: 'Defaul
 List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
 BatteryList.push({index: 77, 
 	name:'Music Motion: Post-Study', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- TRAILS ==================
+var List = []
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails-A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails-B'})
+BatteryList.push({index: 78, 
+	name:'Music Motion: Trails', 
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",

@@ -14,6 +14,7 @@ var TaskList = []
 var Choices = [
     'Intake',
     'Baseline', 
+    'Trails',
     'Visit-Pre', 
     'Visit-Post', 
     'Post-Intervention'
@@ -33,7 +34,7 @@ var SetupSessionData = {
         console.log(ComponentList)
         console.log(jatos)
         console.log(jatos.workerId)
-
+        console.log("CHOICES::: "+Choices)
 
         var all_data = jsPsych.data.get();
         console.log(BatteryList)
@@ -77,6 +78,8 @@ var PostChoice = {
         { Battery = '73'}
         if ( Choices[data.trials[2].response] == 'Baseline' )
             { Battery = '74'}
+        if ( Choices[data.trials[2].response] == 'Trails' )
+            { Battery = '78'}
         if ( Choices[data.trials[2].response] == 'Visit-Pre' )
             { Battery = '75'}
         if ( Choices[data.trials[2].response] == 'Visit-Post' )
