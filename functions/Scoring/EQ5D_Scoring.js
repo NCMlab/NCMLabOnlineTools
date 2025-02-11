@@ -7,11 +7,10 @@ function EQ5D_Scoring(data) {
     var Results = {}
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.shortTitle
-	Results.AllResults['ShortTitle'] = '-99'
-	if ( data.ShortTitle !== 'undefined' ){
-		Results.AllResults['ShortTitle'] = data.shortTitle
-	}		
-	Results.AllResults['Accuracy'] = ''
+	
+
+	Results.AllResults['ShortTitle'] = 'EQ-5D'
+    Results.AllResults['Accuracy'] = ''
 
     
     if ( QuestionnaireData.trials[0].response['mobility'] > 3 )

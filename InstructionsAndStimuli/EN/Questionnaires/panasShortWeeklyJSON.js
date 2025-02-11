@@ -1,6 +1,6 @@
 
 var title = "Positive and Negative Affect Schedule (PANAS)"
-var shortTitle = 'PANASsf'  
+var shortTitle = 'PANAS, weekly'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
     { 

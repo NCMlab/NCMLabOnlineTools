@@ -5,12 +5,12 @@ function IntakeForm_Scoring(data, method) {
 
 	Results.PrimaryResults = {}
 	Results.PrimaryResults['ScoreName'] = trialData.title
-	Results.PrimaryResults['Accuracy'] = 0
+	Results.PrimaryResults['Accuracy'] = 1
 	
 	Results.AllResults = {}
 	Results.AllResults['ScoreName'] = trialData.title
-	Results.AllResults['Accuracy'] = 0
-	
+	Results.AllResults['Accuracy'] = 1
+	Results.AllResults['ShortTitle'] = 'Music Intake'
 	console.log(trialData.response)
 	const keys = Object.keys(trialData.response)
 	console.log(keys[1])
