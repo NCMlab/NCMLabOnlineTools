@@ -10,7 +10,9 @@ var timeline = [];
 var countInstr = 0
 var count = 0;
 var stair1
+var RepeatCount = 0
 var stimList
+var FirstLoopCompletedFlag = false
 var SetupTask = {
   type: jsPsychCallFunction,
   func: function() {  
@@ -35,7 +37,18 @@ var calibration = {
             [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
             [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
   },
-  repetitions_per_point: 3,
+  repetitions_per_point: function() {
+    if ( ! FirstLoopCompletedFlag )
+    { 
+      console.log("This is the first loop")
+      FirstLoopCompletedFlag = true
+      console.log(parameters)
+      console.log(NumberStartingCalibrations)
+      return NumberStartingCalibrations }  
+    else { 
+      console.log("This is the SECOND loop")
+      return NumberRepeatCalibrations }
+  },
   randomize_calibration_order: true,
 };
 var calibration_instructions = {
@@ -228,12 +241,25 @@ var SendData = {
 }
 // =========================================
 // Define any logic used 
-    var loop_node = {
-      timeline: [Stimulus, Retention, Probe, Fix],
-      loop_function: function(data){
-        return (! stair1.Finished)
-     }
-    };
+
+var loop_node = {
+  timeline: [Stimulus, Retention, Probe, Fix],
+  repetitions:  TrialsPerRepeat 
+};
+
+var if_Repeat = {
+  timeline: [SetupTask, calibration_instructions, calibration, WaitTime, loop_node],
+  loop_function: function(){
+    if ( RepeatCount < (NumberOfRepeats - 1))
+    {
+      RepeatCount += 1
+      return true
+    }
+    else { return false }
+  }
+}
+   
+    
    // =======================================================================    
    var Instructions_Procedure = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -269,15 +295,15 @@ var if_Instructions = {
 timeline.push(enter_fullscreen)
 
 timeline.push(Welcome)
-timeline.push(SetupTask)
+//timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(init_camera)
-timeline.push(calibration_instructions)
-timeline.push(calibration)
-timeline.push(validation_instructions);
-timeline.push(validation) 
-timeline.push(WaitTime)
-timeline.push(loop_node)
+//timeline.push(calibration_instructions)
+//timeline.push(calibration)
+//timeline.push(validation_instructions);
+//imeline.push(validation) 
+//timeline.push(WaitTime)
+timeline.push(if_Repeat)
 //timeline.push(debrief_block)
 timeline.push(Notes)
 timeline.push(SendData)

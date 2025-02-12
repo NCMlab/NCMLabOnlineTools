@@ -6,21 +6,27 @@
 // there are simply not enough available letters. ELL is not allowed to be a probe leter because it is difficult 
 // to differentiate it from ONE and EYE.
 
-
+var Stair04Parameters = {}
 // The following is the size of the letters displayed
 var DMSFontSize = 72;
 var WidthFromCenter = 250;
 var HeightFromCenter = 200;
-var StairParameters = {}
-StairParameters.MaxTrials = 10
+
+// How many times to repeat the calibration/letter trials procedure?
+var NumberOfRepeats = 4
+// WHen calibrating by clicking on the dots, how many times should each location be
+// tested during the INITIAL calibration
+var NumberStartingCalibrations = 4
+// WHen calibrating by clicking on the dots, how many times should each location be
+// tested for each SUBSEQUENT calibration
+var NumberRepeatCalibrations = 2
+// How many letter task trials after each dot-clicking calibration
+var TrialsPerRepeat = 5
 
 
 
-var Stair04Parameters = {}
 // =================================
 // The following is the number of task trials to show
-
-Stair04Parameters.MaxTrials = 10
 
 // =================================
 
@@ -30,7 +36,7 @@ var RetOnTime = 3500
 var ProbeOnTime = 5000
 // This is the intertrial interval. 
 var ITITime = 1000
-
+Stair04Parameters.MaxTrials = 2
 // =================================
 Stair04Parameters.StartValue = 4
 Stair04Parameters.MinValue = 4
@@ -49,7 +55,7 @@ vDMS_Fixed04 = {
 	ShowThankYou: true,
 	ShowInstructions: false, 
 	WelcomeSpoken: false,
-	AskForNotes: false,
+	AskForNotes: true,
 	InstructionsSpoken: false,
 	AdaptiveLoad: false,
 	Parameters: Stair04Parameters,

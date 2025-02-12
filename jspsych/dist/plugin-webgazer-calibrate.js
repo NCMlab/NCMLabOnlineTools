@@ -116,7 +116,7 @@ var jsPsychWebgazerCalibrate = (function (jspsych) {
               if (trial.calibration_mode == "click") {
                   pt_dom.style.cursor = "pointer";
                   pt_dom.addEventListener("click", () => {
-                      next_calibration_point();
+                    next_calibration_point();
                   });
               }
               if (trial.calibration_mode == "view") {
