@@ -93,6 +93,12 @@ var enter_fullscreen = {
 
     var Stimulus = {
       type: jsPsychHtmlButtonResponseTouchscreen,
+      on_start: function() {
+        console.log(">>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<")
+        //jsPsych.extensions.webgazer.showVideo()
+        jsPsych.extensions.webgazer.resume()
+        
+      },
       stimulus: function(){
         // console.log("Current: "+stair1.Current)
         // console.log("Last Stim: "+stimList.getLastStim())
@@ -138,6 +144,10 @@ var enter_fullscreen = {
       // The cue itself is actually made in the setup file and not here. This could be changed if desired
       type: jsPsychHtmlButtonResponseTouchscreen,
       //stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black; position: absolute;bottom: 50%;left: 50%">+</p>',
+      on_start: function() {
+        jsPsych.extensions.webgazer.hideVideo()
+        jsPsych.extensions.webgazer.pause()
+      },
       stimulus: function() {
         var html = ''
         html += '<div style="font-size:'+DMSFontSize+'px; position: absolute;bottom: 50%;left: 50%">+</div>'

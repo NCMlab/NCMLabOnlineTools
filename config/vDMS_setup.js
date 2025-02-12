@@ -16,10 +16,10 @@ var HeightFromCenter = 200;
 var NumberOfRepeats = 4
 // WHen calibrating by clicking on the dots, how many times should each location be
 // tested during the INITIAL calibration
-var NumberStartingCalibrations = 4
+var NumberStartingCalibrations = 1
 // WHen calibrating by clicking on the dots, how many times should each location be
 // tested for each SUBSEQUENT calibration
-var NumberRepeatCalibrations = 2
+var NumberRepeatCalibrations = 1
 // How many letter task trials after each dot-clicking calibration
 var TrialsPerRepeat = 5
 
