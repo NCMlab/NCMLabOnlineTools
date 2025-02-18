@@ -66,6 +66,8 @@ var jsPsychExtensionWebgazer = (function () {
               this.currentTrialData = [];
               this.currentTrialTargets = {};
               this.currentTrialSelectors = params.targets;
+              console.log("THE TARGETS ARE:")
+              console.log(params.targets)
               this.domObserver.observe(this.jsPsych.getDisplayElement(), { childList: true });
           };
           this.on_load = () => {
@@ -209,7 +211,8 @@ var jsPsychExtensionWebgazer = (function () {
               }
           };
           this.mutationObserverCallback = (mutationsList, observer) => {
-              for (const selector of this.currentTrialSelectors) {
+            
+            for (const selector of this.currentTrialSelectors) {
                   if (!this.currentTrialTargets[selector]) {
                       if (this.jsPsych.getDisplayElement().querySelector(selector)) {
                           var coords = this.jsPsych

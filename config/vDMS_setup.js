@@ -13,7 +13,7 @@ var WidthFromCenter = 250;
 var HeightFromCenter = 200;
 
 // How many times to repeat the calibration/letter trials procedure?
-var NumberOfRepeats = 4
+var NumberOfRepeats = 1
 // WHen calibrating by clicking on the dots, how many times should each location be
 // tested during the INITIAL calibration
 var NumberStartingCalibrations = 1
@@ -21,9 +21,9 @@ var NumberStartingCalibrations = 1
 // tested for each SUBSEQUENT calibration
 var NumberRepeatCalibrations = 1
 // How many letter task trials after each dot-clicking calibration
-var TrialsPerRepeat = 5
+var TrialsPerRepeat = 2
 
-
+var MaxNumberOfLettersPerTrial = 6
 
 // =================================
 // The following is the number of task trials to show
@@ -38,9 +38,9 @@ var ProbeOnTime = 5000
 var ITITime = 1000
 Stair04Parameters.MaxTrials = 2
 // =================================
-Stair04Parameters.StartValue = 4
-Stair04Parameters.MinValue = 4
-Stair04Parameters.MaxValue = 4
+Stair04Parameters.StartValue = MaxNumberOfLettersPerTrial
+Stair04Parameters.MinValue = MaxNumberOfLettersPerTrial
+Stair04Parameters.MaxValue = MaxNumberOfLettersPerTrial
 Stair04Parameters.StepSize = 1
 Stair04Parameters.NUp = 1
 Stair04Parameters.NDown = 1

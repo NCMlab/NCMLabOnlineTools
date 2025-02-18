@@ -13,12 +13,17 @@ var stair1
 var RepeatCount = 0
 var stimList
 var FirstLoopCompletedFlag = false
+var CalibrationLocations
+var CalibrationTargets
+var LettersOnScreenHTML
+
 var SetupTask = {
   type: jsPsychCallFunction,
   func: function() {  
     console.log(parameters)
     stair1 = new Stair(parameters.Parameters.StartValue,parameters.Parameters.MinValue, parameters.Parameters.MaxValue,parameters.Parameters.MaxReversals,parameters.Parameters.MaxTrials,parameters.Parameters.StepSize,parameters.Parameters.NUp,parameters.Parameters.NDown,parameters.Parameters.FastStart, parameters.Parameters.MaxTime);
     stimList = new AdaptiveStimulusList();
+    console.log(stimList)
     // Keep track of how many trials have been presented.
     // After a certain count present a long duration ITI
   }
@@ -28,14 +33,49 @@ var init_camera = {
     type: jsPsychWebgazerInitCamera
   };
 
-  
-var calibration = {
-  type: jsPsychWebgazerCalibrate,
-  calibration_points: function() {
+
+var MakeCalibrationLocations = function(NumberOfLetters){
+  console.log("The input was: "+NumberOfLetters)
+  if ( NumberOfLetters == 4 ){
     return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
             [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
             [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
             [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+  }
+  else if ( NumberOfLetters == 6 ){
+    return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [0, (HeightFromCenter+DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+            [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
+            [0, -(HeightFromCenter-DMSFontSize/2)],
+            [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+  }
+}
+
+var MakeCalibrationTargets = function(NumberOfLetters){
+  console.log("The input was: "+NumberOfLetters)
+  if ( NumberOfLetters == 4 ){
+    return ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']
+  }
+  else if ( NumberOfLetters == 6 ){
+      return ['TrackingTarget_TL', 'TrackingTarget_TM', 'TrackingTarget_TR','TrackingTarget_BL','TrackingTarget_BM','TrackingTarget_BR']
+  }
+}
+
+var CallMakeCalibration = {
+  type: jsPsychCallFunction,
+  func: function(){ 
+    console.log(CalibrationLocations)
+    CalibrationLocations = MakeCalibrationLocations(MaxNumberOfLettersPerTrial) 
+    CalibrationTargets = MakeCalibrationTargets(MaxNumberOfLettersPerTrial) 
+    console.log(CalibrationTargets)
+  }
+}
+  
+var calibration = {
+  type: jsPsychWebgazerCalibrate,
+  calibration_points: function() {
+    return CalibrationLocations
   },
   repetitions_per_point: function() {
     if ( ! FirstLoopCompletedFlag )
@@ -51,6 +91,8 @@ var calibration = {
   },
   randomize_calibration_order: true,
 };
+
+
 var calibration_instructions = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: `
@@ -73,6 +115,7 @@ var validation = {
   show_validation_data: true,
   validation_point_coordinates: "center-offset-pixels",
 };
+
 var validation_instructions = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: `
@@ -95,23 +138,33 @@ var enter_fullscreen = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       on_start: function() {
         console.log(">>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<")
+        console.log(CalibrationTargets)
         //jsPsych.extensions.webgazer.showVideo()
         jsPsych.extensions.webgazer.resume()
         
       },
+      on_load: function(data){
+        console.log("LOADLOAD")
+        console.log(CalibrationTargets)
+        const elem = document.getElementById(CalibrationTargets[3])
+        console.log(elem)
+        var rect = elem.getBoundingClientRect();
+        console.log(rect)
+        data.rect = rect
+      },
       stimulus: function(){
-        // console.log("Current: "+stair1.Current)
-        // console.log("Last Stim: "+stimList.getLastStim())
-        // console.log("Last Probe: "+stimList.getLastProbe())
+         console.log("Current: "+stair1.Current)
+         console.log("Last Stim: "+stimList.getLastStim())
+         console.log("Last Probe: "+stimList.getLastProbe())
         // if ( parameters.AdaptiveLoad == true )
         // {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
         //}
-        // console.log(output)
+         console.log(output)
         
         //return PutLettersInGrid(output[0],3,3,700,200,60)
-        return Put4DMSOnScreen(output)
-        //return StimulusLetters
+        return PutLettersOnScreen(output, stair1.Current)
+        
       },
       trial_duration: StimOnTime,
       choices: [],
@@ -120,7 +173,9 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']}}  
+        {
+          type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL']}  
+        }  
           
       ],
       on_finish: function(data){
@@ -302,6 +357,8 @@ var if_Instructions = {
 }
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(CallMakeCalibration)
+timeline.push(SetupTask)
 timeline.push(enter_fullscreen)
 
 timeline.push(Welcome)
