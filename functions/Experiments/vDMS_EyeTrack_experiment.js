@@ -12,6 +12,7 @@ var count = 0;
 var stair1
 var RepeatCount = 0
 var stimList
+var Target = []
 var FirstLoopCompletedFlag = false
 var CalibrationLocations
 var CalibrationTargets
@@ -137,20 +138,22 @@ var enter_fullscreen = {
     var Stimulus = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       on_start: function() {
-        console.log(">>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<")
-        console.log(CalibrationTargets)
         //jsPsych.extensions.webgazer.showVideo()
         jsPsych.extensions.webgazer.resume()
         
       },
       on_load: function(data){
-        console.log("LOADLOAD")
-        console.log(CalibrationTargets)
-        const elem = document.getElementById(CalibrationTargets[3])
-        console.log(elem)
-        var rect = elem.getBoundingClientRect();
-        console.log(rect)
-        data.rect = rect
+        // after loading the screen, identify where the targets are to be saved into the data
+        Target = []
+        for ( var i = 0; i < CalibrationTargets.length; i++ )
+        {
+          const elem = document.getElementById(CalibrationTargets[i])
+          var rect = elem.getBoundingClientRect();
+          rect.name = CalibrationTargets[i]
+          var currentTarget = {}
+          currentTarget[CalibrationTargets[i]] = rect
+          Target.push(currentTarget)
+        }
       },
       stimulus: function(){
          console.log("Current: "+stair1.Current)
@@ -160,9 +163,6 @@ var enter_fullscreen = {
         // {
           output = MakeAdaptiveStimulus(stair1.Current, stimList.getLastStim(), stimList.getLastProbe())
         //}
-         console.log(output)
-        
-        //return PutLettersInGrid(output[0],3,3,700,200,60)
         return PutLettersOnScreen(output, stair1.Current)
         
       },
@@ -173,17 +173,12 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {
-          type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL']}  
-        }  
-          
+        { type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL']}  }  
       ],
       on_finish: function(data){
-        console.log(data)
-        console.log(document.documentElement.clientWidth)
+        data.Target = Target
         let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
         let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-        console.log(vw)
         data.ViewPortWidth = vw
         data.ViewPortHeight = vh
         stimList.addStim(output[2])
@@ -359,11 +354,13 @@ var if_Instructions = {
 // Add procedures to the timeline
 timeline.push(CallMakeCalibration)
 timeline.push(SetupTask)
+
 timeline.push(enter_fullscreen)
 
 timeline.push(Welcome)
 //timeline.push(SetupTask)
 timeline.push(Instructions01)
+
 timeline.push(init_camera)
 //timeline.push(calibration_instructions)
 //timeline.push(calibration)
