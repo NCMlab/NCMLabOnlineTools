@@ -379,6 +379,11 @@
   border-color: #ccc;
 }
 
+.jspsych-btn img {
+  height: 100px;
+  width: 100px;
+}
+
 /* only apply the hover style on devices with a mouse/pointer that can hover - issue #977 */
 @media (hover: hover) {
   .jspsych-btn:hover {
