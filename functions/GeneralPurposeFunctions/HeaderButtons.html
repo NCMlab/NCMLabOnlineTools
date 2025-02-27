@@ -1,46 +1,42 @@
-<div class="btn-group-header" id = "header-btn-group">
+<div class="btn-group-header" id="header-btn-group">
+  <script>
+    var buttonText = "Home";
+    var button = document.createElement("button");
+    button.textContent = buttonText;
+    button.setAttribute("id", "header-home-button");
+    button.setAttribute("type", "button");
+    button.setAttribute("onclick", "returnToUsageManager()");
+    document.getElementById("header-btn-group").appendChild(button);
+  </script>
   <script>
     var buttonText = "?";
-    var button = document.createElement('button');
+    var button = document.createElement("button");
     button.textContent = buttonText;
-    button.setAttribute('id', 'header-info-button');
-    button.setAttribute('type', 'button');
-    button.setAttribute('onclick',"openInfo()")
-    document.getElementById('header-btn-group').appendChild(button);
+    button.setAttribute("id", "header-info-button");
+    button.setAttribute("type", "button");
+    button.setAttribute("onclick", "openInfo()");
+    document.getElementById("header-btn-group").appendChild(button);
   </script>
-<script>
-  var buttonText = "Stop";
-  var button = document.createElement('button');
-  button.textContent = buttonText;
-  button.setAttribute('id', 'header-stop-button');
-  button.setAttribute('type', 'button');
-  button.setAttribute('onclick',"stopExperiment()")
-  document.getElementById('header-btn-group').appendChild(button);
-</script>
-<script>
-  var buttonText = "Quit";
-  var button = document.createElement('button');
-  button.textContent = buttonText;
-  button.setAttribute('id', 'header-quit-button');
-  button.setAttribute('type', 'button');
-  button.setAttribute('onclick',"quitExperiment()")
-  document.getElementById('header-btn-group').appendChild(button);
-</script>
-
-<script>
-  
-    var buttonText = "Home";
-    var button = document.createElement('button');
+  <script>
+    var buttonText = "Stop";
+    var button = document.createElement("button");
     button.textContent = buttonText;
-    button.setAttribute('id', 'header-home-button');
-    button.setAttribute('type', 'button');
-    button.setAttribute('onclick',"returnToUsageManager()")
-    document.getElementById('header-btn-group').appendChild(button);
-  
+    button.setAttribute("id", "header-stop-button");
+    button.setAttribute("type", "button");
+    button.setAttribute("onclick", "stopExperiment()");
+    document.getElementById("header-btn-group").appendChild(button);
   </script>
-
-<script>
-  /*
+  <script>
+    var buttonText = "Quit";
+    var button = document.createElement("button");
+    button.textContent = buttonText;
+    button.setAttribute("id", "header-quit-button");
+    button.setAttribute("type", "button");
+    button.setAttribute("onclick", "quitExperiment()");
+    document.getElementById("header-btn-group").appendChild(button);
+  </script>
+  <script>
+    /*
   var buttonText = "Restart";
   var button = document.createElement('button');
   button.textContent = buttonText;
@@ -49,43 +45,43 @@
   button.setAttribute('onclick',"restartTask()")
   document.getElementById('header-btn-group').appendChild(button);
   */
-</script>
+  </script>
 
-<script>
-  var buttonText = "Skip";
-  var button = document.createElement('button');
-  button.textContent = buttonText;
-  button.setAttribute('id', 'header-skip-button');
-  button.setAttribute('type', 'button');
-  button.setAttribute('onclick',"skipTask()")
-  document.getElementById('header-btn-group').appendChild(button);
-</script>
-
+  <script>
+    var buttonText = "Skip";
+    var button = document.createElement("button");
+    button.textContent = buttonText;
+    button.setAttribute("id", "header-skip-button");
+    button.setAttribute("type", "button");
+    button.setAttribute("onclick", "skipTask()");
+    document.getElementById("header-btn-group").appendChild(button);
+  </script>
 </div>
 
-
-<div class="modal" id = "modal">
-  <div class="modal-inner" id = "inner-modal">
+<div class="modal" id="modal">
+  <div class="modal-inner" id="inner-modal">
     <p id="task-background-info">Here is some information</p>
-      <script>
-        // This is the pop-up for displaying information
-        var buttonText = "Close";
-        var button = document.createElement('button');
-        button.textContent = buttonText;
-        button.setAttribute('id', 'close-info-button');
-        button.setAttribute('type', 'button');
-        button.setAttribute('onclick',"closeInfo()")
-        document.getElementById('inner-modal').appendChild(button);
-      </script>
+    <script>
+      // This is the pop-up for displaying information
+      var buttonText = "Close";
+      var button = document.createElement("button");
+      button.textContent = buttonText;
+      button.setAttribute("id", "close-info-button");
+      button.setAttribute("type", "button");
+      button.setAttribute("onclick", "closeInfo()");
+      document.getElementById("inner-modal").appendChild(button);
+    </script>
     <script>
       var buttonText = "Copy";
-      var button = document.createElement('button');
+      var button = document.createElement("button");
       button.textContent = buttonText;
-      button.setAttribute('id', 'copy-info-button');
-      button.setAttribute('type', 'button');
-      button.setAttribute('onclick',"copyInfo()")
-      document.getElementById('inner-modal').appendChild(button);
+      button.setAttribute("id", "copy-info-button");
+      button.setAttribute("type", "button");
+      button.setAttribute("onclick", "copyInfo()");
+      document.getElementById("inner-modal").appendChild(button);
     </script>
-    <script> console.log("HELLO FROM CLOSE")</script>    
+    <script>
+      console.log("HELLO FROM CLOSE");
+    </script>
   </div>
 </div>
