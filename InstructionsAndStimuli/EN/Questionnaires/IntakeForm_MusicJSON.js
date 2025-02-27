@@ -9,9 +9,23 @@ const json = {
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
-   pages: [
-     {
+   pages: 
+   [
+    {
+      name: "Name",
+      title: "Name",
       
+      elements: [
+        {
+          type: 'comment',
+          title: 'Enter first name and initial of last name',
+          name: 'Name',
+          required: false,
+          textbox_rows: 1,
+        }
+      ]
+    },
+    {      
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
