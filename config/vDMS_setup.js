@@ -21,7 +21,7 @@ var NumberStartingCalibrations = 2
 // tested for each SUBSEQUENT calibration
 var NumberRepeatCalibrations = 1
 // How many letter task trials after each dot-clicking calibration
-var TrialsPerRepeat = 4
+var TrialsPerRepeat = 2
 
 var MaxNumberOfLettersPerTrial = 6
 
