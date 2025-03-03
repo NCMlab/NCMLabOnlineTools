@@ -10,7 +10,13 @@ var timeline = [];
 var countInstr = 0
 var count = 0;
 var stair1
+var RepeatCount = 0
 var stimList
+var Target = []
+var FirstLoopCompletedFlag = false
+var CalibrationLocations
+var CalibrationTargets
+
 var SetupTask = {
   type: jsPsychCallFunction,
   func: function() {  
@@ -26,7 +32,46 @@ var init_camera = {
     type: jsPsychWebgazerInitCamera
   };
 
-  
+
+  var MakeCalibrationLocations = function(NumberOfLetters){
+    console.log("The input was: "+NumberOfLetters)
+    if ( NumberOfLetters == 4 ){
+      return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+              [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+    }
+    else if ( NumberOfLetters == 6 ){
+      return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+              [0, (HeightFromCenter+DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
+              [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
+              [0, -(HeightFromCenter-DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+    }
+  }
+
+var MakeCalibrationTargets = function(NumberOfLetters){
+    console.log("The input was: "+NumberOfLetters)
+    if ( NumberOfLetters == 4 ){
+        return ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']
+    }
+    else if ( NumberOfLetters == 6 ){
+        return ['TrackingTarget_TL', 'TrackingTarget_TM', 'TrackingTarget_TR','TrackingTarget_BL','TrackingTarget_BM','TrackingTarget_BR']
+    }
+}
+ 
+
+var CallMakeCalibration = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      console.log(CalibrationLocations)
+      CalibrationLocations = MakeCalibrationLocations(MaxNumberOfLettersPerTrial) 
+      CalibrationTargets = MakeCalibrationTargets(MaxNumberOfLettersPerTrial) 
+      console.log(CalibrationTargets)
+    }
+}
+
 var calibration = {
   type: jsPsychWebgazerCalibrate,
   calibration_points: function() {
@@ -35,7 +80,7 @@ var calibration = {
             [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
             [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
   },
-  repetitions_per_point: 3,
+  repetitions_per_point: 1,
   randomize_calibration_order: true,
 };
 var calibration_instructions = {
@@ -94,6 +139,19 @@ var enter_fullscreen = {
         return Put4DMSOnScreen(output)
         //return StimulusLetters
       },
+      on_load: function(data){
+        // after loading the screen, identify where the targets are to be saved into the data
+        Target = []
+        for ( var i = 0; i < CalibrationTargets.length; i++ )
+        {
+          const elem = document.getElementById(CalibrationTargets[i])
+          var rect = elem.getBoundingClientRect();
+          rect.name = CalibrationTargets[i]
+          var currentTarget = {}
+          currentTarget[CalibrationTargets[i]] = rect
+          Target.push(currentTarget)
+        }
+      },
       trial_duration: StimOnTime,
       choices: [],
       prompt: '',
@@ -101,11 +159,12 @@ var enter_fullscreen = {
         trialType: "Stimulus"
       },
       extensions: [
-        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']}}  
-          
+        //{type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']}}  
+        {type: jsPsychExtensionWebgazer, params: {targets: ['#TrackingTarget']}}  
       ],
       on_finish: function(data){
         console.log(data)
+        //data.Target = Target
         console.log(document.documentElement.clientWidth)
         let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
         let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -230,10 +289,9 @@ var SendData = {
 // Define any logic used 
     var loop_node = {
       timeline: [Stimulus, Retention, Probe, Fix],
-      loop_function: function(data){
-        return (! stair1.Finished)
-     }
+      repitions: TrialsPerRepeat
     };
+
    // =======================================================================    
    var Instructions_Procedure = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -264,20 +322,41 @@ var if_Instructions = {
         else { return false }
   }
 }
+
+
+var if_Repeat = {
+    timeline: [SetupTask, calibration_instructions, calibration, validation_instructions, validation, WaitTime, loop_node],
+    loop_function: function(){
+      if ( RepeatCount < (NumberOfRepeats - 1))
+      {
+        RepeatCount += 1
+        return true
+      }
+      else { return false }
+    }
+  }
+   
+  
 // ======================================================================= 
 // Add procedures to the timeline
+timeline.push(CallMakeCalibration)
+timeline.push(SetupTask)
 timeline.push(enter_fullscreen)
 
 timeline.push(Welcome)
-timeline.push(SetupTask)
+//timeline.push(SetupTask)
 timeline.push(Instructions01)
 timeline.push(init_camera)
+
+timeline.push(if_Repeat)
+/*
 timeline.push(calibration_instructions)
 timeline.push(calibration)
 timeline.push(validation_instructions);
 timeline.push(validation) 
 timeline.push(WaitTime)
 timeline.push(loop_node)
+*/
 //timeline.push(debrief_block)
 timeline.push(Notes)
 timeline.push(SendData)

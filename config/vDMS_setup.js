@@ -13,15 +13,15 @@ var WidthFromCenter = 250;
 var HeightFromCenter = 200;
 
 // How many times to repeat the calibration/letter trials procedure?
-var NumberOfRepeats = 2
+var NumberOfRepeats = 1
 // WHen calibrating by clicking on the dots, how many times should each location be
 // tested during the INITIAL calibration
-var NumberStartingCalibrations = 2
+var NumberStartingCalibrations = 1
 // WHen calibrating by clicking on the dots, how many times should each location be
 // tested for each SUBSEQUENT calibration
 var NumberRepeatCalibrations = 1
 // How many letter task trials after each dot-clicking calibration
-var TrialsPerRepeat = 2
+var TrialsPerRepeat = 1
 
 var MaxNumberOfLettersPerTrial = 6
 
