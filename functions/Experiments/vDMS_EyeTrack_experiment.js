@@ -54,7 +54,7 @@ var init_camera = {
 var MakeCalibrationTargets = function(NumberOfLetters){
     console.log("The input was: "+NumberOfLetters)
     if ( NumberOfLetters == 4 ){
-        return ['#TrackingTarget_TL', '#TrackingTarget_TR','#TrackingTarget_BL','#TrackingTarget_BR']
+        return ['TrackingTarget_TL', 'TrackingTarget_TR','TrackingTarget_BL','TrackingTarget_BR']
     }
     else if ( NumberOfLetters == 6 ){
         return ['TrackingTarget_TL', 'TrackingTarget_TM', 'TrackingTarget_TR','TrackingTarget_BL','TrackingTarget_BM','TrackingTarget_BR']
@@ -142,8 +142,12 @@ var enter_fullscreen = {
       on_load: function(data){
         // after loading the screen, identify where the targets are to be saved into the data
         Target = []
+
+        console.log(CalibrationTargets)
         for ( var i = 0; i < CalibrationTargets.length; i++ )
         {
+          console.log(CalibrationTargets[i])
+          console.log(document.getElementById("TrackingTarget_TL"))
           const elem = document.getElementById(CalibrationTargets[i])
           var rect = elem.getBoundingClientRect();
           rect.name = CalibrationTargets[i]
@@ -164,7 +168,7 @@ var enter_fullscreen = {
       ],
       on_finish: function(data){
         console.log(data)
-        //data.Target = Target
+        data.Target = Target
         console.log(document.documentElement.clientWidth)
         let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
         let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
