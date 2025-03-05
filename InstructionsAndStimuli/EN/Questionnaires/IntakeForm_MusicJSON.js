@@ -321,10 +321,10 @@ const json = {
     {
       type: 'comment',
       title: 'Please explain your health issues.',
-      name: 'OtherHealthIssues',
+      name: 'OtherHealthIssuesDesc',
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
-      textbox_rows: 3,
+      rows: 3,
     },
        ]
      },
