@@ -501,8 +501,8 @@ BatteryList.push({index: 77,
 })
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails-A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails-B'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
 BatteryList.push({index: 78, 
 	name:'Music Motion: Trails', 
 	description: '',
