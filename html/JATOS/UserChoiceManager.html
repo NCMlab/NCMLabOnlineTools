@@ -10,7 +10,7 @@
     
     <title>NCMLab</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css">
-    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <!--  <link rel="stylesheet" type='text/css' href='css/survey.css'> -->
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
@@ -23,6 +23,8 @@
   <body>
     <div id="headerButtons"></div>
     <div id="footerButtons"></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <div id="footerText"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -32,7 +34,7 @@
     <!-- <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script> -->
     <!-- <script src="jspsych_addons/plugin-audio-button-response.js"></script> -->
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="config/General_Setup.js"></script>
+    <script src="config/General_Setup.js" ></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
@@ -59,39 +61,36 @@
     </script>   
     <script src="Batteries/Batteries.js"></script>
     <script src="Batteries/UserChoiceManager.js"></script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-  
-  <script>
-  var jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      on_trial_start: function() {
-        //http://127.0.0.1:9000/publix/fNTRhuguK1x
-        // Add jatos info to the data file
-        URLParameters = jatos.urlQueryParameters
-        jsPsych.data.addProperties({
-          Battery: URLParameters.Battery,
-          jatosWorkerID: jatos.workerId,
-          jatosBatchID: jatos.batchId,
-          jatosStudyName: jatos.studyProperties.title,
-          jatosTaskName: jatos.componentProperties.title
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('img').forEach(img => img.setAttribute('loading', 'lazy'));
+      });
+      var jsPsych = initJsPsych({
+          display_element: 'jspsych-target',
+          on_trial_start: function() {
+            //http://127.0.0.1:9000/publix/fNTRhuguK1x
+            // Add jatos info to the data file
+            URLParameters = jatos.urlQueryParameters
+            jsPsych.data.addProperties({
+              Battery: URLParameters.Battery,
+              jatosWorkerID: jatos.workerId,
+              jatosBatchID: jatos.batchId,
+              jatosStudyName: jatos.studyProperties.title,
+              jatosTaskName: jatos.componentProperties.title
 
-        });
-        document.querySelectorAll('img').forEach(function(img) {
-          img.setAttribute('loading', 'lazy');
-        });
-      }
-    });
+            });
+          }
+      });
 
-  jatos.onLoad(() => {
-      var JATOSID = jatos.workerId;
-      console.log(jatos)
-      console.log(JATOSID)
-      var resultsData = {'name':'JASON'};
-      jatos.addJatosIds(resultsData);
-      jsPsych.run(timeline);
-    });
-  </script>
-    <div id="footerText"></div>
+    jatos.onLoad(() => {
+        var JATOSID = jatos.workerId;
+        console.log(jatos)
+        console.log(JATOSID)
+        var resultsData = {'name':'JASON'};
+        jatos.addJatosIds(resultsData);
+        jsPsych.run(timeline);
+      });
+    </script>
     <script>
       jatos.onLoad(() => {
         // update the header button labels
