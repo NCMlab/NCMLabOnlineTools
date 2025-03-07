@@ -480,14 +480,14 @@ BatteryList.push({index: 76,
 })
 // ============ MUSIC STUDY -- POST - STUDY ==================
 var List = []
-//ist.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
-//List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
-//List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
-// List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortBaseline_001', Instructions: 'Default', IconName: 'PANAS, baseline'})
-//List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
-//List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
-//List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
-//List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepiness'})
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortBaseline_001', Instructions: 'Default', IconName: 'PANAS, baseline'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
+List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
+List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepiness'})
 List.push({Task: 'EQ5D', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
 
 BatteryList.push({index: 77, 
