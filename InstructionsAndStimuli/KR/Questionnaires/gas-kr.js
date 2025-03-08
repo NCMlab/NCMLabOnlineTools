@@ -1,5 +1,5 @@
 
-var title = "노인불안척도)"
+var title = "노인불안척도"
 var shortTitle = 'GAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
