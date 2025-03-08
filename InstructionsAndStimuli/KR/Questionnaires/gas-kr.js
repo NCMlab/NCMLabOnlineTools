@@ -1,5 +1,5 @@
 
-var title = "Geriatric Anxiety Scale"
+var title = "노인불안척도)"
 var shortTitle = 'GAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -10,37 +10,37 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'gas',
-                title: 'Below is a list of common symptoms of anxiety or stress. Please read each item in the list carefully. Indicate how often you have experienced each symptom during the PAST WEEK, INCLUDING TODAY by checking under the corresponding answer.',
+                title: '아래는 불안과 스트레스로 인해 흔히 나타나는 증상입니다. 오늘을 포함해서 지난 1주일 간 아래의 증 상들을 얼마나 자주 경험했는지 작성해 주십시오.',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
-                    {value: 'gas01', text: "I was irritable."},
-                    {value: 'gas02', text: "I felt detached or isolated from others."},
-                    {value: 'gas03', text: "I felt like I was in a daze."},
-                    {value: 'gas04', text: "I had a hard time sitting still."},
-                    {value: 'gas05', text: "I could not control my worry."},
-                    {value: 'gas06', text: "I felt restless, keyed up, or on edge."},
-                    {value: 'gas07', text: "I felt tired."},
-                    {value: 'gas08', text: "My muscles were tense."},
-                    {value: 'gas09', text: "I felt like I had no control over my life."},
-                    {value: 'gas10', text: "I felt like something terrible was going to happen to me."},
+                    {value: 'gas01', text: "나는 짜증이 났다."},
+                    {value: 'gas02', text: "나는 다른 사람들로부터 분리되거나 고립된 느낌을 받았다."},
+                    {value: 'gas03', text: "나는 멍한 느낌이 들었다."},
+                    {value: 'gas04', text: "나는 가만히 앉아있는 것이 어려웠다."},
+                    {value: 'gas05', text: "나는 걱정을 제어할 수 없었다."},
+                    {value: 'gas06', text: "나는 초조하고, 긴장되어 있거나 신경이 곤두선 느낌 이었다."},
+                    {value: 'gas07', text: "나는 피로감을 느꼈다."},
+                    {value: 'gas08', text: "근육이 긴장되어 있었다."},
+                    {value: 'gas09', text: "내 인생에서 통제력을 잃은 듯한 느낌이 들었다."},
+                    {value: 'gas10', text: "왠지 나에게 매우 안 좋은 일이 생길 것 같은 느낌이 들었다."},
                 ],
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Not at all'
+                    "text": '전혀 아님'
                     },
                     {
                     "value": 1,
-                    "text": 'Sometimes'
+                    "text": '가끔'
                     },
                     {
                     "value": 2,
-                    "text": 'Most of the time'
+                    "text": '자주'
                     },
                     {
                     "value": 3,
-                    "text": 'All of the time'
+                    "text": '항상'
                     },
                 ],
             }
