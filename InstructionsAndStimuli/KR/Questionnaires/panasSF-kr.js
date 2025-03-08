@@ -1,4 +1,4 @@
-var title = "Positive and Negative Affect Schedule Short Form (PANAS-SF)"
+var title = "한국판 Positive and Negative Affect Schedule Short Form (PANAS-SF)"
 var shortTitle = 'PANAS-SF'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -8,7 +8,7 @@ var survey_JSON =
             {
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                title: '다음에 나오는 각 단어는 감정이나 기분을 기술한 것입니다.. 각 단어를 읽고, 현재를 포함한 지난 일주일 동안 당신이 느끼는 기분의 정도를 가장 잘 나타낸 곳에 “V”표시를 해 주십시오.',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
