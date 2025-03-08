@@ -37,23 +37,23 @@ var survey_JSON =
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Very slightly or not at all'
+                    "text": '전혀 그렇지 않다'
                     },
                     {
                     "value": 1,
-                    "text": 'A little'
+                    "text": '약간 그렇다'
                     },
                     {
                     "value": 2,
-                    "text": 'Moderately'
+                    "text": '보통 정도로 그렇다'
                     },
                     {
                     "value": 3,
-                    "text": 'Quite a bit'
+                    "text": '많이 그렇다'
                     },
                     {
                     "value": 4,
-                    "text": 'Extremely'
+                    "text": '매우 많이 그렇다'
                     },
                 ],
             }

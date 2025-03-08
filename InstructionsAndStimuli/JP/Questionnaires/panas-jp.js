@@ -9,7 +9,7 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                title: '情動や感情 を表す、20 個の言葉や表現が下にあげられています。それぞれの項目をよ く読み、あなた、あるいは、あなたの 気持ちが今どれ程、それらの項目の内容に該当 しているかを次にあげる5段階でお答えください。そして、その番号を各項目の横に 記入して下さい。',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
