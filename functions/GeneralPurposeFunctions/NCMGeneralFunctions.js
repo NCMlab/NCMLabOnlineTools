@@ -197,6 +197,25 @@ function quitExperiment() {
   if (confirm(text) == true)
   { jatos.abortStudy() }
 }
+
+function setLanguage(id, val) {    
+  console.log("========")
+  console.log("SetLanguage: "+val )
+  console.log("Id: "+id)
+  console.log(document.getElementById(id))
+  let element = document.getElementById(id);
+  element.value = val;
+}
+
+
+
+function LanguageSelection(sel) {
+  console.log(jatos.workerId)
+  jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+  alert(sel.options[sel.selectedIndex].text);
+
+}
+
 function openInfo() {
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  

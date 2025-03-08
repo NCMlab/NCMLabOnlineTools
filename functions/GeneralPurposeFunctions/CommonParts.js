@@ -17,10 +17,10 @@ function UpdateHeader() {
     try {
         document.getElementById('header-home-button').textContent = LabelNames.Home;
         //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-stop-button').textContent = LabelNames.Stop;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-        document.getElementById('header-skip-button').textContent = LabelNames.Skip;
-        document.getElementById('header-info-button').style.visibility = "hidden"
+        //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
+        //document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+        //document.getElementById('header-skip-button').textContent = LabelNames.Skip;
+        //document.getElementById('header-info-button').style.visibility = "hidden"
         
         //document.getElementById('header-home-button').style.visibility = "hidden"
         document.getElementById('header-quit-button').style.visibility = "hidden"
@@ -56,10 +56,23 @@ function UpdateHeader() {
     }
     // add the footer text
     try {
-        document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
+      //  document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
       } catch (error) {
         console.error(error);
       }
+
+        // Has the language already been selected?
+          var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
+        //jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+        console.log("LANGUAGE IS SET TO: "+LangIsSetTo) 
+        console.log("Current worker is: "+jatos.workerId)
+        console.log(jatos.batchSession.getAll())
+        let elem = document.getElementById('LanguageSelectPulldown')
+        console.log(elem)
+        console.log(elem.value)
+        elem.value = LangIsSetTo
+        console.log(elem.value)
+
 }
 
 // ============== INITIAL MICROPHONE IF NEEDED ================
