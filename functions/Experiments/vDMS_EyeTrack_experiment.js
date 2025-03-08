@@ -16,6 +16,7 @@ var Target = []
 var FirstLoopCompletedFlag = false
 var CalibrationLocations
 var CalibrationTargets
+var ValidationTargets
 
 var SetupTask = {
   type: jsPsychCallFunction,
@@ -51,6 +52,25 @@ var init_camera = {
     }
   }
 
+  var MakeValidationLocations = function(NumberOfLetters){
+    console.log("The input was: "+NumberOfLetters)
+    
+    if ( NumberOfLetters == 4 ){
+      return [[-(WidthFromCenter-DMSFontSize/4), ValidationVerticalAdjustment+(HeightFromCenter+DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4),ValidationVerticalAdjustment+ (HeightFromCenter+DMSFontSize/2)],
+              [-(WidthFromCenter-DMSFontSize/4), ValidationVerticalAdjustment+-(HeightFromCenter-DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4),ValidationVerticalAdjustment+ -(HeightFromCenter-DMSFontSize/2)]]
+    }
+    else if ( NumberOfLetters == 6 ){
+      return [[-(WidthFromCenter-DMSFontSize/4), ValidationVerticalAdjustment+(HeightFromCenter+DMSFontSize/2)],
+              [0, ValidationVerticalAdjustment+(HeightFromCenter+DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), ValidationVerticalAdjustment+(HeightFromCenter+DMSFontSize/2)],
+              [-(WidthFromCenter-DMSFontSize/4), ValidationVerticalAdjustment+-(HeightFromCenter-DMSFontSize/2)],
+              [0, ValidationVerticalAdjustment+-(HeightFromCenter-DMSFontSize/2)],
+              [(WidthFromCenter+DMSFontSize/4), ValidationVerticalAdjustment+-(HeightFromCenter-DMSFontSize/2)]]
+    }
+  }
+
 var MakeCalibrationTargets = function(NumberOfLetters){
     console.log("The input was: "+NumberOfLetters)
     if ( NumberOfLetters == 4 ){
@@ -68,6 +88,7 @@ var CallMakeCalibration = {
       console.log(CalibrationLocations)
       CalibrationLocations = MakeCalibrationLocations(MaxNumberOfLettersPerTrial) 
       CalibrationTargets = MakeCalibrationTargets(MaxNumberOfLettersPerTrial) 
+      ValidationTargets = MakeValidationLocations(MaxNumberOfLettersPerTrial) 
       console.log(CalibrationTargets)
     }
 }
@@ -75,10 +96,7 @@ var CallMakeCalibration = {
 var calibration = {
   type: jsPsychWebgazerCalibrate,
   calibration_points: function() {
-    return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
-            [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
-            [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
-            [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
+    return CalibrationLocations
   },
   repetitions_per_point: 1,
   randomize_calibration_order: true,
@@ -97,12 +115,10 @@ var calibration_instructions = {
 var validation = {
   type: jsPsychWebgazerValidate,
   validation_points: function() {
-    return [[-(WidthFromCenter-DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
-            [(WidthFromCenter+DMSFontSize/4), (HeightFromCenter+DMSFontSize/2)],
-            [-(WidthFromCenter-DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)],
-            [(WidthFromCenter+DMSFontSize/4), -(HeightFromCenter-DMSFontSize/2)]]
-  },
-  show_validation_data: true,
+    console.log(ValidationTargets)
+    return ValidationTargets
+    },
+  show_validation_data: false,
   validation_point_coordinates: "center-offset-pixels",
 };
 var validation_instructions = {
@@ -136,7 +152,10 @@ var enter_fullscreen = {
         // console.log(output)
         
         //return PutLettersInGrid(output[0],3,3,700,200,60)
-        return Put4DMSOnScreen(output)
+        if ( MaxNumberOfLettersPerTrial == 4 ) 
+          { return Put4DMSOnScreen(output) } 
+        if ( MaxNumberOfLettersPerTrial == 6 ) 
+        { return Put6DMSOnScreen(output) } 
         //return StimulusLetters
       },
       on_load: function(data){
@@ -293,7 +312,7 @@ var SendData = {
 // Define any logic used 
     var loop_node = {
       timeline: [Stimulus, Retention, Probe, Fix],
-      repitions: TrialsPerRepeat
+      repetitions: TrialsPerRepeat
     };
 
    // =======================================================================    
