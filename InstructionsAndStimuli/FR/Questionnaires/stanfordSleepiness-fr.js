@@ -3,17 +3,17 @@ const survey_JSON = {
     showCompletedPage: false,
     pages: [{
     elements: [
-        {
+      {
             "name": "time",
             "type": "text",
-            "title": "Last time asleep",
+            "title": "Dernière fois endormi(e)",
             "inputType": "time",
             "isRequired": true
           },
           {
             "name": "time",
             "type": "text",
-            "title": "Last time awoke",
+            "title": "Dernière fois réveillé(e)",
             "inputType": "time",
             "isRequired": true
           },
@@ -21,13 +21,13 @@ const survey_JSON = {
             type: "html",
             name: "introduction",
             html: "<p style=\"text-align: justify;\">"+
-            "<b>Instructions:</b> Select the scale rating that best describes how you feel <b>right now</b>"+
+            "<b>Instructions:</b> Sélectionnez la note sur l'échelle qui décrit le mieux ce que vous ressentez <b>actuellement</b>"+
             "</p>"
            },
         {
           type: "radiogroup",
           name: "sleepiness001",
-          title: "Degree of Sleepiness",
+          title: "Degré de somnolence",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
