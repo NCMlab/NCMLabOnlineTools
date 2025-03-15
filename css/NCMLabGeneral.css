@@ -16,6 +16,10 @@ body {
   padding-bottom: 100px;
 }
 
+h1 {
+  line-height: 1;
+}
+
 table {
   width: 100%;
 }
@@ -50,6 +54,18 @@ body {
   box-sizing: border-box;
   /* Opera/IE 8+ */
   overflow: auto;
+}
+
+/* Home Page Grid for Assessment Options */
+#jspsych-html-button-response-btngroup {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Creates even columns */
+  gap: 20px; /* Adjust spacing between buttons */
+  justify-content: center;
 }
 
 /* 
@@ -123,7 +139,7 @@ p.Instructions {
 
 .submit_button,
 .clear_button {
-  float: left;
+  /* float: left; */
   position: relative;
   width: 47%;
   height: 25%;
