@@ -1300,6 +1300,7 @@ BatteryList.push({
   Footer: "©NCMLab 2025",
 });
 // ============ MUSIC STUDY -- POST - STUDY ==================
+
 var List = [];
 List.push({
   Task: "Trail Making",
@@ -1347,3 +1348,38 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
 });
+
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
+List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
+List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortBaseline_001', Instructions: 'Default', IconName: 'PANAS, baseline'})
+List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
+List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
+List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
+List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepiness'})
+List.push({Task: 'EQ5D', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
+
+BatteryList.push({index: 77, 
+	name:'Music Motion: Post-Study', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study -- Post Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+// ============ MUSIC STUDY -- TRAILS ==================
+var List = []
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'Default', IconName: 'Trails B'})
+BatteryList.push({index: 78, 
+	name:'Music Motion: Trails', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+

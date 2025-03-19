@@ -56,8 +56,10 @@ var SetupBattery = {
 
         if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
         {
-            console.log("FIRST TIME")
+            console.log("USAGE MANAGER LINE 59: FIRST TIME")
+            jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
             jatos.batchSession.set(jatos.workerId, 0);
+            
             // Add things to the jatos session data
             TaskCompleted = Array(TaskList.length).fill(0)
             console.log(TaskCompleted)
@@ -89,6 +91,8 @@ var SetupBattery = {
         else 
         {
             console.log('Continuing the SESSION')
+            jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
+            jatos.batchSession.set(jatos.workerId, 0);
             DisplayBatteryInstructionsFlag = false
         }
         

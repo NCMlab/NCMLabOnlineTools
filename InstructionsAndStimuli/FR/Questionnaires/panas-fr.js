@@ -1,4 +1,4 @@
-var title = "Positive and Negative Affect Schedule (PANAS)"
+var title = "Échelle des affects positifs et négatifs (PANAS)"
 var shortTitle = 'PANAS-FR'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -8,7 +8,7 @@ var survey_JSON =
             {
                 type: 'matrix',
                 name: 'panas',
-                title: 'Comment vous sentez-vous au cours des semaines passées?',
+                title: 'Indiquez comment vous vous sentez en ce moment:',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
@@ -36,7 +36,7 @@ var survey_JSON =
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Jamais'
+                    "text": 'Très peu ou pas du tout'
                     },
                     {
                     "value": 1,
@@ -44,15 +44,15 @@ var survey_JSON =
                     },
                     {
                     "value": 2,
-                    "text": 'Modérément'
+                    "text": 'Moyennement'
                     },
                     {
                     "value": 3,
-                    "text": 'Assez souvent'
+                    "text": 'Beaucoup'
                     },
                     {
                     "value": 4,
-                    "text": 'Toujours'
+                    "text": 'Énormément'
                     },
                 ],
             }

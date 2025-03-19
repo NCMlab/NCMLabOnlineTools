@@ -113,7 +113,9 @@ var SetupBattery = {
 }
 var trial0a = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: function(){ return BatteryInstructions},
+  stimulus: function(){ 
+    return BatteryInstructions
+  },
   choices: function() {return [LabelNames.Next]}, 
 }
 
@@ -241,7 +243,7 @@ var trial2 = {
           console.log(JATOSSessionData)
           //console.log(BreakPoint)
           // Once the battery is completed, reset the batch data so it can be completed again
-          jatos.batchSession.set(jatos.workerId, 0);
+          jatos.batchSession.set(jatos.workerId, -98);
           window.open('https://www.uottawa.ca','_self')
           //jatos.endStudy()
           
