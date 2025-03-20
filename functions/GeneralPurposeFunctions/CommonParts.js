@@ -67,11 +67,11 @@ function UpdateHeader() {
         console.log("LANGUAGE IS SET TO: "+LangIsSetTo) 
         console.log("Current worker is: "+jatos.workerId)
         console.log(jatos.batchSession.getAll())
-        let elem = document.getElementById('LanguageSelectPulldown')
-        console.log(elem)
-        console.log(elem.value)
-        elem.value = LangIsSetTo
-        console.log(elem.value)
+        //let elem = document.getElementById('LanguageSelectPulldown')
+        //console.log(elem)
+        //console.log(elem.value)
+        //elem.value = LangIsSetTo
+        //console.log(elem.value)
 
 }
 
