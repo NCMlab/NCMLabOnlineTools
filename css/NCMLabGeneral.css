@@ -57,16 +57,15 @@ body {
 }
 
 /* Home Page Grid for Assessment Options */
-#jspsych-html-button-response-btngroup {
+/* #jspsych-html-button-response-btngroup {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
     minmax(150px, 1fr)
-  ); /* Creates even columns */
-  gap: 20px; /* Adjust spacing between buttons */
-  justify-content: center;
-}
+  ); 
+  gap: 20px;   justify-content: center;
+} */
 
 /* 
 Set the fixation size so it changes as the display size changes.
