@@ -26,3 +26,10 @@ tbody {
     max-height: 500px;
     overflow-y: auto;
   }
+
+
+  .sd-item__decorator {
+    width: calc(7*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    height: calc(7*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    border-radius: 5%;
+  }
