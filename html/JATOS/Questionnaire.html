@@ -112,6 +112,7 @@
           console.log(parameters)
           parameters.isPromiseResolved = false
           LANG = jatos.studySessionData.Language
+          LANG = jatos.batchSession.get(jatos.workerId+"_Language")
           //parameters.questionnaire = LANG + "_" + parameters.questionnaire
           parameters.Language = LANG
           console.log(LANG)

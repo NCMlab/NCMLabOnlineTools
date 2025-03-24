@@ -89,13 +89,13 @@ var SetupBattery = {
             // If this is the first visit to this manager, display the battery instructions
             DisplayBatteryInstructionsFlag = true         
             // Make sure to reset the language selection button
-            window.onload = function() {
+            /*window.onload = function() {
                 let elem = document.getElementById('LanguageSelectPulldown')
                 console.log(elem)
                 console.log(elem.value)
                 elem.value = LangIsSetTo
                 console.log(elem.value)
-            };
+            };*/
         }
         else 
         {
@@ -104,13 +104,13 @@ var SetupBattery = {
             jatos.batchSession.set(jatos.workerId, 0);
             DisplayBatteryInstructionsFlag = false
             // Make sure to reset the language selection button
-            window.onload = function() {
+            /*window.onload = function() {
                 let elem = document.getElementById('LanguageSelectPulldown')
                 console.log(elem)
                 console.log(elem.value)
                 elem.value = LangIsSetTo
                 console.log(elem.value)
-            };
+            };*/
             alert('Continuing the SESSION')
     
         }

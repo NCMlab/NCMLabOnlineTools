@@ -14,7 +14,10 @@ function UpdateHeader() {
     //
     // set the header button language
     //console.log(document.getElementById('header-home-button'))
-    window.onload = function() {
+    console.log("UpDATEHEADER FUNCTION")
+    console.log(LabelNames)
+    
+    //window.onload = function() {
         try {
             console.log(document.getElementById('header-home-button'))
             document.getElementById('header-home-button').textContent = LabelNames.Home;
@@ -65,7 +68,7 @@ function UpdateHeader() {
         }
 
             
-    }
+    
 }
 function SetLanguagePulldown() {
     //window.onload = function() {
