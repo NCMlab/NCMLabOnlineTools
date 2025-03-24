@@ -56,18 +56,6 @@ body {
   overflow: auto;
 }
 
-/* Home Page Grid for Assessment Options */
-#jspsych-html-button-response-btngroup {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  ); /* Creates even columns */
-  gap: 20px; /* Adjust spacing between buttons */
-  justify-content: center;
-}
-
 /* 
 Set the fixation size so it changes as the display size changes.
 Make sure to set the class everywhere a fixation cross is used.
@@ -177,12 +165,6 @@ p.Instructions {
   color: red;
 }
 
-/* Change the size of the font in the buttons */
-
-.jspsych-btn {
-  font-size: large;
-}
-
 /* https://www.w3schools.com/howto/howto_css_image_text.asp */
 /* Container holding the image and the text */
 .container {
@@ -232,6 +214,7 @@ span:hover + div {
   background-color: #f8f9fa; /* Light gray background for a clean look */
   border-radius: 8px;
   border: 2px;
+  color: red;
   margin-top: 1vw;
   margin-right: 1vw;
   margin-left: 1vw;
@@ -260,6 +243,10 @@ span:hover + div {
 .btn-group-header button:hover {
   background-color: #ada9a9;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.jspsych-btn {
+  font-size: large;
 }
 
 /* Tooltip container */
