@@ -56,7 +56,7 @@ var SetupBattery = {
 
         if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
         {
-            console.log("USAGE MANAGER LINE 59: FIRST TIME")
+            alert("USAGE MANAGER LINE 59: FIRST TIME")
             jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
             jatos.batchSession.set(jatos.workerId, 0);
             
@@ -76,7 +76,7 @@ var SetupBattery = {
         else if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) != 'undefined' )) 
         { // This is a restart, remake the session data
             // Add things to the jatos session data
-            console.log("RESTART the BROSWER")
+            alert("RESTART the BROSWER")
             var currentIndex = jatos.batchSession.get(jatos.workerId)
             JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList} 
             // add the ID to return to the JATOS battery
@@ -87,13 +87,32 @@ var SetupBattery = {
             JATOSSessionData.BatteryName = CurrentBattery.name
             JATOSSessionData.BatteryScore = -99
             // If this is the first visit to this manager, display the battery instructions
-            DisplayBatteryInstructionsFlag = true         }
+            DisplayBatteryInstructionsFlag = true         
+            // Make sure to reset the language selection button
+            window.onload = function() {
+                let elem = document.getElementById('LanguageSelectPulldown')
+                console.log(elem)
+                console.log(elem.value)
+                elem.value = LangIsSetTo
+                console.log(elem.value)
+            };
+        }
         else 
         {
-            console.log('Continuing the SESSION')
-            jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
+            
+            //jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
             jatos.batchSession.set(jatos.workerId, 0);
             DisplayBatteryInstructionsFlag = false
+            // Make sure to reset the language selection button
+            window.onload = function() {
+                let elem = document.getElementById('LanguageSelectPulldown')
+                console.log(elem)
+                console.log(elem.value)
+                elem.value = LangIsSetTo
+                console.log(elem.value)
+            };
+            alert('Continuing the SESSION')
+    
         }
         
         jatos.studySessionData = JATOSSessionData

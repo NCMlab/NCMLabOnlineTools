@@ -1,6 +1,6 @@
 <div class="btn-group-header" id = "header-btn-group">
 <script>
-/*
+
     
    //Create array of options to be added
     var array = ["EN","FR"];
@@ -20,7 +20,10 @@
   selectList.setAttribute('onchange',"LanguageSelection(this)")
   selectList.setAttribute('id', "LanguageSelectPulldown")
   document.getElementById('header-btn-group').appendChild(selectList);
-*/
+  // Has the language already been selected?
+  var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
+  //jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+  console.log("LANGUAGE IS SET TO: "+LangIsSetTo) 
 </script>
 <script>
     var buttonText = "?";
