@@ -1,4 +1,4 @@
-var title = "Physical Activity Enjoyment Scale"
+var title = "⾝体活動の楽しさ尺度(短縮版)"
 var shortTitle = "PAES"
 const survey_JSON = {
     showQuestionNumbers: false,
