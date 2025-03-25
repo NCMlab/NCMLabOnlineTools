@@ -27,9 +27,10 @@ tbody {
     overflow-y: auto;
   }
 
-
+/* This makes the radio buttons big and square-ish */
   .sd-item__decorator {
     width: calc(7*(var(--sjs-base-unit, var(--base-unit, 8px))));
     height: calc(7*(var(--sjs-base-unit, var(--base-unit, 8px))));
     border-radius: 5%;
   }
+
