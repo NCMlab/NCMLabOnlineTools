@@ -16,6 +16,10 @@ body {
   padding-bottom: 100px;
 }
 
+h1 {
+  line-height: 1;
+}
+
 table {
   width: 100%;
 }
@@ -213,18 +217,20 @@ span:hover + div {
 }
 
 .btn-group-header button {
-  background-color: transparent;
-  /*#04AA6D; /* Green background */
-  border: 0px;
-  /*1px solid green; /* Green border */
-  /*color: white; /* White text */
-  padding: 1vw 1vw;
-  /* Some padding */
-
+  background-color: #f8f9fa; /* Light gray background for a clean look */
+  border-radius: 8px;
+  border: 2px;
+  color: red;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  margin-bottom: 1vw;
+  padding: 0.8vw 1.5vw; /* Adjusted padding for better spacing */
+  font-size: 1rem;
+  color: #000000; /* Matching text color */
   cursor: pointer;
-  /* Pointer/hand icon */
-  float: left;
-  /* Float the buttons side by side */
+  transition: all 0.3s ease-in-out; /* Smooth transition effect */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
 }
 
 .btn-group-header button:not(:last-child) {
