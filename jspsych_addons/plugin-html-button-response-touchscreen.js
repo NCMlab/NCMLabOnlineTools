@@ -93,18 +93,14 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
       }
 
       var html = "";
-      html += '<div style="height: 75vh; overflow: auto;">'; // Make the parent div scrollable if needed
-      html += '<table style="height:100%; width:100%;">';
-      html += "<tr>"; // Adjusted height of the top section
+      html += '<table style="height:75vh">';
+      html += "<tr>";
       html += "<td>";
       html += trial.stimulus;
-      html += "</td>";
       html += "</tr>";
-      html += "</table>";
-      html += "</div>";
-
-      html +=
-        '<div id="jspsych-html-button-response-btngroup" style="position: fixed; bottom: 30%; left: 0; margin-left: 25px; width: 90%; text-align: center; background-color: white; padding: 10px;">';
+      html += '<tr style="height:25%; text-align:center">';
+      html += "<td>";
+      html += '<div id="jspsych-html-button-response-btngroup">';
       for (var i = 0; i < trial.choices.length; i++) {
         var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
         html +=
@@ -120,7 +116,9 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           str +
           "</div>";
       }
-      html += "</div>";
+
+      html += "</tr>";
+      html += "</table>";
 
       display_element.innerHTML = html;
       // start time
