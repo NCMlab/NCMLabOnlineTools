@@ -1,4 +1,4 @@
-var title = "Positive and Negative Affect Schedule Short Form (PANAS-SF)"
+var title = "⽇本語版 PANAS (短縮版)"
 var shortTitle = 'PANAS-SF'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -26,15 +26,15 @@ var survey_JSON =
                 columns: [
                     {
                     "value": 0,
-                    "text": '全く当てはまらない/当てはまらない'
+                    "text": '全く 当てはまらない'
                     },
                     {
                     "value": 1,
-                    "text": 'どちらかといえば当てはまらない'
+                    "text": 'どちらかといえば 当てはまらない'
                     },
                     {
                     "value": 2,
-                    "text": 'どちらかといえば当てはまる'
+                    "text": 'どちらかといえば 当てはまる'
                     },
                     {
                     "value": 3,
@@ -42,7 +42,7 @@ var survey_JSON =
                     },
                     {
                     "value": 4,
-                    "text": '非常によく当てはまる'
+                    "text": '非常によく 当てはまる'
                     },                
                 ],
             }
