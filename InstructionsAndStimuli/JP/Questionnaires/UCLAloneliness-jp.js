@@ -1,5 +1,5 @@
 
-var title = "UCLA 3-item Loneliness Scale"
+var title = "UCLA 孤独感尺度"
 var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
@@ -9,7 +9,7 @@ const survey_JSON = {
       {
         type: "html",
         name: "introduction",
-        html: "それぞれの項目について、あなたはどのくらいの頻度で感じているか お答えください"
+        html: "それぞれの項目について、あなたはどのくらいの頻度で感じているかお答えください"
        },
         {
           type: "radiogroup",
