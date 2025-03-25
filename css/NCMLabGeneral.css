@@ -245,9 +245,9 @@ span:hover + div {
   display: table;
 }
 
-/* Add a background color on hover */
 .btn-group-header button:hover {
-  background-color: #04aa6d;
+  background-color: #ada9a9;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
 }
 
 /* Tooltip container */
