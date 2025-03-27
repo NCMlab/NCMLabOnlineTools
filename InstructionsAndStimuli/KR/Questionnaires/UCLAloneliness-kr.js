@@ -1,5 +1,5 @@
 
-var title = "ÉCHELLE DE SOLITUDE DE L’UNIVERSITÉ DE LAVAL (ESUL)"
+var title = "UCLA 외로움 척도"
 var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
@@ -9,21 +9,21 @@ const survey_JSON = {
       {
         type: "html",
         name: "introduction",
-        html: "Indiquez la fréquence avec laquelle chacun des énoncés décrit bien ce que vous ressentez. Encerclez un chiffre pour chaque énoncé."
+        html: "다음 각 진술에 설명된 방식을 얼마나 자주 느끼는지 표시하세요."
        },
         {
           type: "radiogroup",
           name: "loneliness001",
-          title: "Je n’ai pas assez de compagnons (compagnes)",
+          title: "얼마나 자주 사람들과의 교제가 부족하다고 느낍니 까?",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "Jamais" }, 
-            { value: 2, text: "Rarement"}, 
-            { value: 3, text: "Quelquefois"},
-            { value: 4, text: "Souvent"},
+            { value: 1, text: "전혀아니다" }, 
+            { value: 2, text: "드 물 지 만 있다"}, 
+            { value: 3, text: "가끔있다"},
+            { value: 4, text:"항 상그 렇다"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -31,16 +31,16 @@ const survey_JSON = {
         {
           type: "radiogroup",
           name: "loneliness002",
-          title: "Je me sens exclu(e)",
+          title: "얼마나 자주 혼자 남겨졌다고 느낍니까?",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "Jamais" }, 
-            { value: 2, text: "Rarement"}, 
-            { value: 3, text: "Quelquefois"},
-            { value: 4, text: "Souvent"},
+            { value: 1, text: "전혀아니다" }, 
+            { value: 2, text: "드 물 지 만 있다"}, 
+            { value: 3, text: "가끔있다"},
+            { value: 4, text:"항 상그 렇다"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -48,16 +48,16 @@ const survey_JSON = {
         {
           type: "radiogroup",
           name: "loneliness003",
-          title: "Je me sens isolé(e) des autres",
+          title: "얼마나 자주 다른 사람들로부터 고립되어 있다고 느 낍니까?",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "Jamais" }, 
-            { value: 2, text: "Rarement"}, 
-            { value: 3, text: "Quelquefois"},
-            { value: 4, text: "Souvent"},
+            { value: 1, text: "전혀아니다" }, 
+            { value: 2, text: "드 물 지 만 있다"}, 
+            { value: 3, text: "가끔있다"},
+            { value: 4, text:"항 상그 렇다"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -75,3 +75,4 @@ EN_UCLAlonelinessJSON.description = ""
 EN_UCLAlonelinessJSON.QuestionnaireType = 'radiogroup'
 EN_UCLAlonelinessJSON.references = "references"
 EN_UCLAlonelinessJSON.notes = ''
+
