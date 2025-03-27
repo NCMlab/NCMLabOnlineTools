@@ -61,7 +61,9 @@
             pseudoSwitch(parameters)
             console.log(parameters)
             // load the language specific instructions
-            LANG = jatos.studySessionData.Language
+//            LANG = jatos.studySessionData.Language
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+
             console.log(LANG)
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
             console.log(Instructions)
