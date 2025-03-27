@@ -82,13 +82,13 @@ const survey_JSON = {
   };
 
 
-var EN_eq5dJSON = {}
-EN_eq5dJSON.title = title,
-EN_eq5dJSON.shortTitle = shortTitle,
-EN_eq5dJSON.survey_JSON = survey_JSON
-EN_eq5dJSON.description = ""
-EN_eq5dJSON.QuestionnaireType = 'radiogroup'
-EN_eq5dJSON.references = "references"
-EN_eq5dJSON.notes = ''
+var FR_eq5dJSON = {}
+FR_eq5dJSON.title = title,
+FR_eq5dJSON.shortTitle = shortTitle,
+FR_eq5dJSON.survey_JSON = survey_JSON
+FR_eq5dJSON.description = ""
+FR_eq5dJSON.QuestionnaireType = 'radiogroup'
+FR_eq5dJSON.references = "references"
+FR_eq5dJSON.notes = ''
 
-add('EN_eq5dJSON', function(){ Questionnaire = EN_eq5dJSON});
+add('FR_eq5dJSON', function(){ Questionnaire = FR_eq5dJSON});

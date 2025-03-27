@@ -213,11 +213,11 @@ const survey_JSON = {
   }]
 }
 
-var EN_wemwbsJSON = {}
-EN_wemwbsJSON.title = title,
-EN_wemwbsJSON.shortTitle = shortTitle,
-EN_wemwbsJSON.survey_JSON = survey_JSON
-EN_wemwbsJSON.description = ""
-EN_wemwbsJSON.QuestionnaireType = 'radiogroup'
-EN_wemwbsJSON.references = "references"
-EN_wemwbsJSON.notes = ''
+var FR_wemwbsJSON = {}
+FR_wemwbsJSON.title = title,
+FR_wemwbsJSON.shortTitle = shortTitle,
+FR_wemwbsJSON.survey_JSON = survey_JSON
+FR_wemwbsJSON.description = ""
+FR_wemwbsJSON.QuestionnaireType = 'radiogroup'
+FR_wemwbsJSON.references = "references"
+FR_wemwbsJSON.notes = ''

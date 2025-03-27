@@ -71,11 +71,11 @@ const survey_JSON = {
 };
 
 
-var EN_paesJSON = {}
-EN_paesJSON.title = title,
-EN_paesJSON.shortTitle = shortTitle,
-EN_paesJSON.survey_JSON = survey_JSON
-EN_paesJSON.description = ""
-EN_paesJSON.QuestionnaireType = 'radiogroup'
-EN_paesJSON.references = "references"
-EN_paesJSON.notes = ''
+var FR_paesJSON = {}
+FR_paesJSON.title = title,
+FR_paesJSON.shortTitle = shortTitle,
+FR_paesJSON.survey_JSON = survey_JSON
+FR_paesJSON.description = ""
+FR_paesJSON.QuestionnaireType = 'radiogroup'
+FR_paesJSON.references = "references"
+FR_paesJSON.notes = ''
