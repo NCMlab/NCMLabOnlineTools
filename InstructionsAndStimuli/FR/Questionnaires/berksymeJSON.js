@@ -149,12 +149,12 @@ const survey_JSON = {
 };
 
 
-var EN_berksymeJSON = {}
-EN_berksymeJSON.title = "Berkman-Syme Social Network Index",
-EN_berksymeJSON.shortTitle = "Social"
-EN_berksymeJSON.survey_JSON = survey_JSON
-EN_berksymeJSON.description = ""
-EN_berksymeJSON.QuestionnaireType = 'radiogroup'
-EN_berksymeJSON.references = "references"
-EN_berksymeJSON.notes = ''
+var FR_berksymeJSON = {}
+FR_berksymeJSON.title = "Berkman-Syme Social Network Index",
+FR_berksymeJSON.shortTitle = "Social"
+FR_berksymeJSON.survey_JSON = survey_JSON
+FR_berksymeJSON.description = ""
+FR_berksymeJSON.QuestionnaireType = 'radiogroup'
+FR_berksymeJSON.references = "references"
+FR_berksymeJSON.notes = ''
 
