@@ -1,5 +1,5 @@
 
-var title = "Positive and Negative Affect Schedule (PANAS)"
+var title = "한국판 Positive and Negative Affect Schedule (PANAS)"
 var shortTitle = 'PANAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -9,51 +9,51 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                title: '다음에 나오는 각 단어는 감정이나 기분을 기술한 것입니다. 각 단어를 읽고, 현재를 포함한 지난 일주일 동안 당신이 느끼는 기분의 정도를 가장 잘 나타낸 곳에 “V”표시를 해 주십시오.',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
-                    {value: 'panas01', text: "興味のある"},
-                    {value: 'panas02', text: "苦悩した"},
-                    {value: 'panas03', text: "興奮した"},
-                    {value: 'panas04', text: "うろたえた"},
-                    {value: 'panas05', text: "強気な"},
-                    {value: 'panas06', text: "うしろめたい"},
-                    {value: 'panas07', text: "おびえた"},
-                    {value: 'panas08', text: "敵意をもった"},
-                    {value: 'panas09', text: "熱狂した"},
-                    {value: 'panas10', text: "誇らしい"},
-                    {value: 'panas11', text: "イライラした"},
-                    {value: 'panas12', text: "機敏な"},
-                    {value: 'panas13', text: "恥ずかしい"},
-                    {value: 'panas14', text: "やる気がわいた"},
-                    {value: 'panas15', text: "びりびりした"},
-                    {value: 'panas16', text: "決心した"},
-                    {value: 'panas17', text: "注意深い"},
-                    {value: 'panas18', text: "神経質な"},
-                    {value: 'panas19', text: "活気のある"},
-                    {value: 'panas20', text: "恐れた"},
+                    {value: 'panas01', text: "흥미진진한"},
+                    {value: 'panas02', text: "괴로운"},
+                    {value: 'panas03', text: "흥분된"},
+                    {value: 'panas04', text: "마음이 상한"},
+                    {value: 'panas05', text: "강한"},
+                    {value: 'panas06', text: "죄책감 드는"},
+                    {value: 'panas07', text: "겁에 질린"},
+                    {value: 'panas08', text: "적대적인"},
+                    {value: 'panas09', text: "열정적인"},
+                    {value: 'panas10', text: "자랑스러운"},
+                    {value: 'panas11', text: "과민한"},
+                    {value: 'panas12', text: "기민한"},
+                    {value: 'panas13', text: "부끄러운"},
+                    {value: 'panas14', text: "원기왕성한"},
+                    {value: 'panas15', text: "신경질적인"},
+                    {value: 'panas16', text: "단호한"},
+                    {value: 'panas17', text: "주의 깊은"},
+                    {value: 'panas18', text: "조바심 나는"},
+                    {value: 'panas19', text: "활기찬"},
+                    {value: 'panas20', text: "두려운"},
                 ],
                 columns: [
                     {
                     "value": 0,
-                    "text": 'ほとんどまたは'
+                    "text": '전혀 그렇지 않다'
                     },
                     {
                     "value": 1,
-                    "text": '少ししか'
+                    "text": '약간 그렇다'
                     },
                     {
                     "value": 2,
-                    "text": 'まあまあ'
+                    "text": '보통 정도로 그렇다'
                     },
                     {
                     "value": 3,
-                    "text": 'かなり'
+                    "text": '많이 그렇다'
                     },
                     {
                     "value": 4,
-                    "text": '極めて'
+                    "text": '매우 많이 그렇다'
                     },
                 ],
             }

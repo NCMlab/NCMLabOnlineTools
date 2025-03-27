@@ -8,19 +8,20 @@
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab:  Questionnaire</title>
-    <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
     
-    
-    
+    <script>
+      /* 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
+      */
+      </script>
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <link rel="stylesheet" type='text/css' href='css/QuestionnaireWideBody.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+
     <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
@@ -110,6 +111,7 @@
           console.log(parameters)
           parameters.isPromiseResolved = false
           LANG = jatos.studySessionData.Language
+          LANG = jatos.batchSession.get(jatos.workerId+"_Language")
           //parameters.questionnaire = LANG + "_" + parameters.questionnaire
           parameters.Language = LANG
           console.log(LANG)
@@ -124,7 +126,7 @@
           // Now what we want to do is to load the file named in parameters.questionnaire[0]
           // and located in ../InstructionsAndStimuli/EN/Questionnaires/
           
-          var dirName = "InstructionsAndStimuli/EN/Questionnaires/"
+          var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"
           
           console.log(parameters)
           fileName = dirName+parameters.questionnaire[0]+".js"
@@ -198,6 +200,7 @@
   jatos.onLoad(() => {
     // update the header button labels
     UpdateHeader()
+    SetLanguagePulldown()
   })
 </script>
 

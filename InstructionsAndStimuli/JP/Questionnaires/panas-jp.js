@@ -9,51 +9,51 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                title: '情動や感情 を表す、20 個の言葉や表現が下にあげられています。それぞれの項目をよ く読み、あなた、あるいは、あなたの 気持ちが今どれ程、それらの項目の内容に該当 しているかを次にあげる5段階でお答えください。そして、その番号を各項目の横に 記入して下さい。',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
-                    {value: 'panas01', text: "흥미진진한"},
-                    {value: 'panas02', text: "괴로운"},
-                    {value: 'panas03', text: "흥분된"},
-                    {value: 'panas04', text: "마음이 상한"},
-                    {value: 'panas05', text: "강한"},
-                    {value: 'panas06', text: "죄책감 드는"},
-                    {value: 'panas07', text: "겁에 질린"},
-                    {value: 'panas08', text: "적대적인"},
-                    {value: 'panas09', text: "열정적인"},
-                    {value: 'panas10', text: "자랑스러운"},
-                    {value: 'panas11', text: "과민한"},
-                    {value: 'panas12', text: "기민한"},
-                    {value: 'panas13', text: "부끄러운"},
-                    {value: 'panas14', text: "원기왕성한"},
-                    {value: 'panas15', text: "신경질적인"},
-                    {value: 'panas16', text: "단호한"},
-                    {value: 'panas17', text: "주의 깊은"},
-                    {value: 'panas18', text: "조바심 나는"},
-                    {value: 'panas19', text: "활기찬"},
-                    {value: 'panas20', text: "두려운"},
+                    {value: 'panas01', text: "興味のある"},
+                    {value: 'panas02', text: "苦悩した"},
+                    {value: 'panas03', text: "興奮した"},
+                    {value: 'panas04', text: "うろたえた"},
+                    {value: 'panas05', text: "強気な"},
+                    {value: 'panas06', text: "うしろめたい"},
+                    {value: 'panas07', text: "おびえた"},
+                    {value: 'panas08', text: "敵意をもった"},
+                    {value: 'panas09', text: "熱狂した"},
+                    {value: 'panas10', text: "誇らしい"},
+                    {value: 'panas11', text: "イライラした"},
+                    {value: 'panas12', text: "機敏な"},
+                    {value: 'panas13', text: "恥ずかしい"},
+                    {value: 'panas14', text: "やる気がわいた"},
+                    {value: 'panas15', text: "びりびりした"},
+                    {value: 'panas16', text: "決心した"},
+                    {value: 'panas17', text: "注意深い"},
+                    {value: 'panas18', text: "神経質な"},
+                    {value: 'panas19', text: "活気のある"},
+                    {value: 'panas20', text: "恐れた"},
                 ],
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Very slightly or not at all'
+                    "text": '全く当てはまらない/当てはまらない'
                     },
                     {
                     "value": 1,
-                    "text": 'A little'
+                    "text": 'どちらかといえば当てはまらない'
                     },
                     {
                     "value": 2,
-                    "text": 'Moderately'
+                    "text": 'どちらかといえば当てはまる'
                     },
                     {
                     "value": 3,
-                    "text": 'Quite a bit'
+                    "text": 'てはまる'
                     },
                     {
                     "value": 4,
-                    "text": 'Extremely'
+                    "text": '非常によく当てはまる'
                     },
                 ],
             }

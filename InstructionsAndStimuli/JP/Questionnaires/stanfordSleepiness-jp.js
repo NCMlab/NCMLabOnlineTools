@@ -6,14 +6,14 @@ const survey_JSON = {
       {
             "name": "time",
             "type": "text",
-            "title": "Dernière fois endormi(e)",
+            "title": "最後の眠り",
             "inputType": "time",
             "isRequired": true
           },
           {
             "name": "time",
             "type": "text",
-            "title": "Dernière fois réveillé(e)",
+            "title": "前回の目覚め",
             "inputType": "time",
             "isRequired": true
           },
@@ -21,25 +21,24 @@ const survey_JSON = {
             type: "html",
             name: "introduction",
             html: "<p style=\"text-align: justify;\">"+
-            "<b>Instructions:</b> Sélectionnez la note sur l'échelle qui décrit le mieux ce que vous ressentez <b>actuellement</b>"+
+            "<b>Instructions:</b> 現在のあなたの眠気について、最も近いものを一つ選び番号に丸をつけて下さい"+
             "</p>"
            },
         {
           type: "radiogroup",
           name: "sleepiness001",
-          title: "Degré de somnolence",
+          title: "眠気度",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
           colCount: 1,
-          choices: [ "En pleine forme et plein de vitalité, alerte, très bien éveillé", 
-            "En très bonne forme mais pas en pleine forme ; capable de se concentrer", 
-            "Détendu, éveillé ; pas pleinement alerte, apte à réagir",
-            "Un peu nébuleux, pas en pleine forme, tendance à se laisser aller",
-            "Nébuleux ; commence à ne pas chercher à rester éveillé; ralenti",
-            "Somnolence ; préfère demeurer allongé, combat le sommeil, engourdi",
-            "Presque en train de rever, sommeil imminent, ne lutte plus pour rester éveillé",
-            "Endormi" ],
+          choices: [ "やる気があり、活発で、頭がさえていて、眠くない感じ", 
+            "最高とはいえないまでも、頭の働きが活発、集中していられる", 
+            "くつろいで起きている、しかしどちらかというとすこし頭がぼんやりし反応が悪い",
+            "すこしぼんやりしていて、何かしたいと思わない",
+            "ぼんやりしている、集中していられない、起きているのが困難",
+            "眠いので横になりたい、ぼおっとしている",
+            "まどろんでいる、起きていられない、すぐにねむってしまいそうだ", ],
           separateSpecialChoices: true,
           showClearButton: true
         },
@@ -51,7 +50,7 @@ const survey_JSON = {
   
   
   var EN_stanfordSleepinessJSON = {}
-  EN_stanfordSleepinessJSON.title = "Échelle de somnolence de Stanford",
+  EN_stanfordSleepinessJSON.title = "スタンフォード眠気尺度日本語版",
   EN_stanfordSleepinessJSON.shortTitle = "Sleepiness"
   EN_stanfordSleepinessJSON.survey_JSON = survey_JSON
   EN_stanfordSleepinessJSON.description = ""

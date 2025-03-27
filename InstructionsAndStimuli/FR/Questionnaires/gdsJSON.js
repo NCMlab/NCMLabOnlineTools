@@ -50,8 +50,8 @@ var references = ""
 var notes = ""
 
 var FR_gdsJSON = {}
-FR_gds_gdsJSON.title = title
-FR_gdsSON.shortTitle = shortTitle
+FR_gdsJSON.title = title
+FR_gdsJSON.shortTitle = shortTitle
 FR_gdsJSON.survey_JSON = survey_JSON
 //FR_gdsJSON.description = instructions
 FR_gdsJSON.QuestionnaireType = 'likert'

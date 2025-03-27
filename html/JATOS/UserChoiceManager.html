@@ -49,8 +49,13 @@
           LANG = jatos.studySessionData.Language
           console.log(LANG)
           
+          LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+          //jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+          console.log("LANGUAGE IS SET TO: "+LANG) 
+
           //load general label names
           pseudoSwitch(LANG+'_LabelNames')
+          console.log(LabelNames)
           // The setup file decides which instruction set to provide. 
           // In the setup file the decision is stated as a string which
           // is evaluated here
@@ -90,6 +95,7 @@
       jatos.onLoad(() => {
         // update the header button labels
         UpdateHeader()
+        SetLanguagePulldown()
       })
     </script>
   
