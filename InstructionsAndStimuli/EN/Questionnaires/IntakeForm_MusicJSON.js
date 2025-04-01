@@ -549,8 +549,3 @@ EN_IntakeForm_MusicJSON.title = title;
 EN_IntakeForm_MusicJSON.survey_JSON = json;
 EN_IntakeForm_MusicJSON.shortTitle = shortTitle
 EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
-EN_IntakeForm_MusicJSON.Instructions01 = [
-    {
-        'page': '<p class="Instructions">Instructions are written here.'
-    }
-]
