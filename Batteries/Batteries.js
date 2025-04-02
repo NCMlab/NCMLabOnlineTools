@@ -365,7 +365,7 @@ List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructi
 		name:'Demonstration Battery', 
 		description: 'A demonstration of cognitive and behavioral assessments',
 		TaskList: List,
-		BatteryInstructions: "<h1>A demonstration of cognitive and behavioral assessments</h1>",
+		BatteryInstructions: "A demonstration of cognitive and behavioral assessments",
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024'
