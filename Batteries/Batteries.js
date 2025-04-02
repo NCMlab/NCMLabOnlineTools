@@ -414,7 +414,7 @@ List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Defaul
 		name:'Music Motion Landing Page', 
 		description: '',
 		TaskList: List,
-		BatteryInstructions: "<h1>Music and Motion Study -- Session Chooser</h1>",
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024'
@@ -428,7 +428,7 @@ BatteryList.push({index: 73,
 	name:'Music Motion: Intake', 
 	description: '',
 	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study -- Intake</h1>",
+	BatteryInstructions: "Music and Motion Study -- Intake",
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024'

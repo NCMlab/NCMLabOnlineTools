@@ -198,8 +198,18 @@
 <script>
   jatos.onLoad(() => {
     // update the header button labels
-    UpdateHeader()
-    SetLanguagePulldown()
+    console.log("GREETINGS FROM QUESTIONAIRE TASK")
+      console.log(jatos.workerId)
+      console.log(jatos.batchSession.getAll())
+
+    
+
+    window.addEventListener("load", (event) => {
+      UpdateHeader()
+      SetLanguagePulldown()
+    });
+
+
   })
 </script>
 

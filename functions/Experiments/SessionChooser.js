@@ -89,7 +89,7 @@ var PostChoice = {
         console.log(window.location)
         //console.log(BreakPoint)
         var BasePath = window.location.origin +"/publix/" // "http://127.0.0.1:9000/publix/"
-        var URL = BasePath + jatos.studyCode+"?Battery="+Battery
+        var URL = BasePath + jatos.studyCode+"?Battery="+Battery+"&Usage=Battery"
         console.log(URL)
         
         jatos.endStudyAndRedirect(URL)

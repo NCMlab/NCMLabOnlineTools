@@ -73,7 +73,9 @@ var jsPsych = initJsPsych({
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       URLParameters = jatos.urlQueryParameters
+      //alert(URLParameters.Battery+', '+URLParameters.Usage)
       jsPsych.data.addProperties({Battery: URLParameters.Battery});
+      jsPsych.data.addProperties({Usage: URLParameters.Usage});
       BatteryNumber = URLParameters.Battery
       console.log(jsPsych.data)
       jatos.addJatosIds(resultsData);
