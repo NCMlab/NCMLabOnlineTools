@@ -112,15 +112,19 @@ var jsPsychWebgazerInitCamera = (function (jspsych) {
           }
           function is_face_detect_green() {
               if (document.querySelector("#webgazerFaceFeedbackBox")) {
+                
                   return (document.querySelector("#webgazerFaceFeedbackBox").style.borderColor ==
+                    
                       "green");
               }
               else {
+                console.log("OUT")
                   return false;
               }
           }
           function face_detect_event_observer(mutationsList, observer) {
               if (mutationsList[0].target == document.querySelector("#webgazerFaceFeedbackBox")) {
+                console.log("IN")
                   if (mutationsList[0].type == "attributes" &&
                       mutationsList[0].target.style.borderColor == "green") {
                       document.querySelector("#jspsych-wg-cont").disabled = false;
