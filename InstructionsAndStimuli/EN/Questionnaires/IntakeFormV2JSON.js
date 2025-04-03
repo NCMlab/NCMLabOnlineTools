@@ -411,7 +411,7 @@ const json = {
           },
           {
             type: 'dropdown',
-            title: 'Have you participated in group music classess before?',
+            title: 'Have you participated in group music classes before?',
             choices: 
             [
               "Yes",
