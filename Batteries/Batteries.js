@@ -409,7 +409,7 @@ BatteryList.push({index: 1,
 // ============================================
 // ============ MUSIC STUDY ==================
 var List = []
-List.push({Task: 'Session Chooser', Parameters: 'Default', Instructions: 'Default', IconName: 'Chooser'})
+List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Default', IconName: 'Chooser'})
 	BatteryList.push({index: 71, 
 		name:'Music Motion Landing Page', 
 		description: '',
