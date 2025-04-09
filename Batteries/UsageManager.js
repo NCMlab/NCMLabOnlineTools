@@ -194,7 +194,7 @@ var if_node_NoUsageTypeProvided = {
             ( jatos.urlQueryParameters.Usage != 'ALaCarte' )
             ) 
         {
-            alert("NO USAGE TYPE PROVIDED")
+            //alert("NO USAGE TYPE PROVIDED")
             JATOSSessionData.UsageType = 'ALaCarte'
             jatos.studySessionData = JATOSSessionData
             jatos.startComponentByTitle("User Choice")
