@@ -56,18 +56,6 @@ body {
   overflow: auto;
 }
 
-/* Home Page Grid for Assessment Options */
-#jspsych-html-button-response-btngroup {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  ); /* Creates even columns */
-  gap: 20px; /* Adjust spacing between buttons */
-  justify-content: center;
-}
-
 /* 
 Set the fixation size so it changes as the display size changes.
 Make sure to set the class everywhere a fixation cross is used.
@@ -228,38 +216,69 @@ span:hover + div {
   word-wrap: break-word;
 }
 
-.btn-group-header button {
-  background-color: #f8f9fa; /* Light gray background for a clean look */
+#header-btn-group {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+#header-btn-group > button {
+  background-color: #f8f9fa;
   border-radius: 8px;
-  border: 2px;
-  margin-top: 1vw;
-  margin-right: 1vw;
-  margin-left: 1vw;
-  margin-bottom: 1vw;
-  padding: 0.8vw 1.5vw; /* Adjusted padding for better spacing */
-  font-size: 1rem;
-  color: #000000; /* Matching text color */
+  margin-top: 15px;
+  border: 2px solid #ccc;
+  padding: 0.8vw 1.5vw;
+  font-size: 1.2rem;
+  color: #000000;
   cursor: pointer;
-  transition: all 0.3s ease-in-out; /* Smooth transition effect */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-left: 15px;
 }
 
-.btn-group-header button:not(:last-child) {
-  border-right: none;
-  /* Prevent double borders */
+#language-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 15px;
 }
 
-/* Clear floats (clearfix hack) */
-.btn-group-header:after {
-  content: "";
-  clear: both;
-  display: table;
+#LanguageSelectPulldown {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  padding: 0.8vw 1.5vw;
+  font-size: 1.2rem;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Add a background color on hover */
-.btn-group-header button:hover {
+#header-btn-group button:hover,
+#header-btn-group #LanguageSelectPulldown:hover {
   background-color: #ada9a9;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.sd-btn:last-child {
+  background-color: rgb(56, 97, 56);
+  color: white;
+  margin-right: 10px;
+}
+
+.sd-btn:hover {
+  background-color: rgb(9, 48, 9);
+  color: rgb(255, 255, 255);
+}
+
+.sd-html {
+  font-size: 1.5rem;
 }
 
 /* Tooltip container */
@@ -625,9 +644,9 @@ thead {
   display: block;
   margin-left: 15vw;
 }
-
 tbody {
   display: block;
-  max-height: 500px;
   overflow-y: auto;
+  font-size: xx-large;
+  line-height: 1.6;
 }
