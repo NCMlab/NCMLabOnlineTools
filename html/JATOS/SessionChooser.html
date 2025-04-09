@@ -48,16 +48,22 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
+
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="Batteries/Batteries.js"></script>
+    <script src="config/SessionChooser_config.js"></script>    
     <script>
       let url_running = window.location.href;
       let position = url_running.search("localhost");
   </script>
     <script>
+      var parameters = 'empty'
         jatos.onLoad(() => {
-            console.log(jatos.studySessionData)
+          console.log(jatos.studySessionData)  
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          console.log(parameters)
+            
             var Language = jatos.studySessionData.Language
             // load the language specific instructions
 //            LANG = jatos.studySessionData.Language
@@ -70,7 +76,8 @@
             // The setup file decides which instruction set to provide. 
             // In the setup file the decision is stated as a string which
             // is evaluated here
-
+            pseudoSwitch(parameters)
+            console.log(parameters)
         })
     </script>
     <script src="functions/Experiments/SessionChooser.js"></script>

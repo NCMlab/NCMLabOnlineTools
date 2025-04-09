@@ -50,13 +50,13 @@ const survey_JSON = {
     };
   
   
-  var EN_stanfordSleepinessJSON = {}
-  EN_stanfordSleepinessJSON.title = "Échelle de somnolence de Stanford",
-  EN_stanfordSleepinessJSON.shortTitle = "Sleepiness"
-  EN_stanfordSleepinessJSON.survey_JSON = survey_JSON
-  EN_stanfordSleepinessJSON.description = ""
-  EN_stanfordSleepinessJSON.QuestionnaireType = 'Varied'
-  EN_stanfordSleepinessJSON.references = ""
-  EN_stanfordSleepinessJSON.notes = ''
+  var FR_stanfordSleepinessJSON = {}
+  FR_stanfordSleepinessJSON.title = "Échelle de somnolence de Stanford",
+  FR_stanfordSleepinessJSON.shortTitle = "Sleepiness"
+  FR_stanfordSleepinessJSON.survey_JSON = survey_JSON
+  FR_stanfordSleepinessJSON.description = ""
+  FR_stanfordSleepinessJSON.QuestionnaireType = 'Varied'
+  FR_stanfordSleepinessJSON.references = ""
+  FR_stanfordSleepinessJSON.notes = ''
   
   

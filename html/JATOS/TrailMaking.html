@@ -82,9 +82,9 @@ var jsPsych = initJsPsych({
     display_element: 'jspsych-target-TRAILMAKING',
     auto_update_progress_bar: false,
     show_progress_bar: true,    
-  extensions: [
-    {type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10}}
-  ],
+    extensions: [
+      {type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10}}
+    ],
     on_trial_start: function() {
       // http://127.0.0.1:9000/publix/fNTRhuguK1x
       // console.log(jatos.urlQueryParameters);
@@ -130,9 +130,11 @@ var jsPsych = initJsPsych({
   <div id="footerText"></div>
 <script>
   jatos.onLoad(() => {
+    window.addEventListener("load", (event) => {
     // update the header button labels
-    UpdateHeader()
-    SetLanguagePulldown()
+      UpdateHeader()
+      SetLanguagePulldown()
+    });
   })
 </script>
 </body>

@@ -135,7 +135,8 @@ var Instruct = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function() {
     console.log(Instructions)
-    return Instructions.Instructions[count].page},
+    return Instructions.Instructions[count].page
+  },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
@@ -170,7 +171,9 @@ var SendData = {
 
 var practicePrompt = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {return Instructions.PracticePrompt[0].page},
+  stimulus: function() {
+    return Instructions.PracticePrompt[0].page
+  },
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: 'PROMPT',
