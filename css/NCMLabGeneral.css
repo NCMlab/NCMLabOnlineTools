@@ -277,10 +277,6 @@ span:hover + div {
   color: rgb(255, 255, 255);
 }
 
-.gns-matrix .sd-table th {
-  color: red;
-}
-
 .sd-html {
   font-size: 1.5rem;
 }
