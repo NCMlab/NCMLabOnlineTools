@@ -25,14 +25,14 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
        */
       canvas_width: {
         type: jspsych.ParameterType.INT,
-        default: 500,
+        default: 800,
       },
       /**
        * Width of the canvas in pixels.
        */
       canvas_height: {
         type: jspsych.ParameterType.INT,
-        default: 500,
+        default: 800,
       },
       /**
        * Diameter of the canvas (when `canvas_shape` is `'circle'`) in pixels.
