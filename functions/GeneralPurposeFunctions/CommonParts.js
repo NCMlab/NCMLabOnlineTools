@@ -218,7 +218,9 @@ var if_WelcomeWritten = {
  var if_WelcomeSpoken = {
     timeline: [WelcomeSpoken_loop],
     conditional_function: function() {
-    document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        try {
+            document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        } catch (err) {}
       if ( parameters.ShowWelcome & parameters.WelcomeSpoken)
       { return true }
       else { return false }

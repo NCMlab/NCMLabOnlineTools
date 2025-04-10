@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="jspsych/dist/jspsych.css">
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='css/TrailMaking.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
       // use jquery to load up the header button html content 
@@ -74,14 +75,14 @@
     </script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
     <script src="functions/Experiments/Trailmaking_experiment.js"></script>    
-    <div id="jspsych-target-TRAILMAKING"  style="overflow:auto; height:100%" class='center'></div>  
+    <div id="jspsych-target-TRAILMAKING"  style="overflow:auto; height:90%" class='center'></div>  
   
   <script>
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target-TRAILMAKING',
     auto_update_progress_bar: false,
-    show_progress_bar: true,    
+    //show_progress_bar: false,    
     extensions: [
       {type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10}}
     ],

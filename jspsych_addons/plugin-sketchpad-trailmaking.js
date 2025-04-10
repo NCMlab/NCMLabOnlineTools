@@ -450,7 +450,8 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       } else {
         //display_html = canvas_html + '<table><tr><td>'+finish_button_html+'</td><td>' + timer_html +'</td></tr></table>';
         display_html =
-          '<table style="border:0px;padding:0px;margin:0px;border-spacing:0px"><tr style="width:100%;border:0px;padding:0px;margin:0px;border-spacing:0px"><td>' +
+          '<table style="border:0px;padding:0px;margin:0px;border-spacing:0px"><tr style="width:100%;border:0px;padding:0px;margin:0px;border-spacing:0px">'+
+          '<td>' +
           finish_button_html +
           '</td><td style="text-align:left">' +
           timer_html +
