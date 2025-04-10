@@ -14,7 +14,7 @@ var CanvasHeight
 var CanvasWidth
 var PracticeCanvasHeight
 var PracticeCanvasWidth
-var WidthAdjustment = 0.76
+var WidthAdjustment = 0.7
 var HeightAdjustment = 0.76
 
 var FindCanvasSizeTest = {
