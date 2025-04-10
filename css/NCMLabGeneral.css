@@ -446,7 +446,7 @@ span:hover + div {
 .jspsych-content {
   max-width: 85%;
   /* this is mainly an IE 10-11 fix */
-  text-align: center;
+  text-align: left;
   margin: auto;
   /* this is for overflowing content */
   font-size: 4vmin;
@@ -650,3 +650,8 @@ tbody {
   font-size: xx-large;
   line-height: 1.6;
 }
+
+/* This was aded to make the five columns of the PANAS show up on one screen 
+without scrolling on the iPad Air */
+.sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
+  min-width: calc(10 * (var(--sjs-base-unit, var(--base-unit, 8px))));
