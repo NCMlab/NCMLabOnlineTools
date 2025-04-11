@@ -3,24 +3,25 @@
   <head>
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/survey.core.min.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/survey.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-core@1.12.10/themes/index.min.js"></script>
-    <script src="https://unpkg.com/survey-js-ui@1.12.10/survey-js-ui.js"></script>
-    <script src="https://unpkg.com/surveyjs-widgets@1.12.10/surveyjs-widgets.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/survey-core@1.12.10/defaultV2.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
-    
   </head>
   <body>
-    <script src="./json.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <script>const survey = new Survey.Model(json);</script>
-    <div id="surveyElement" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; height:100%"></div>
-     
-    
-    <script>survey.render(document.getElementById("surveyElement"));</script>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    Hello
+    <script>
+      console.log("Hello JASON")
+      
+      var jsPsych = initJsPsych({
+          display_element: 'jspsych-target',
+        })
+      jatos.onLoad(() => {
+        console.log(jatos)
+        console.log(jatos.workerId)
+      });
+      
+      console.log(jatos.batchID)
+      
+    </script>
   </body>
 </html>

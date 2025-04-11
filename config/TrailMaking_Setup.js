@@ -238,7 +238,7 @@ var TrailMakingA_Default = {
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
     WelcomeSpoken: false,
 	ShowThankYou: false,
     AskForNotes: false,

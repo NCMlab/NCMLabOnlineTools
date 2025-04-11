@@ -6,4 +6,4 @@ var MatrixReasoning_Instructions = [
 
 var ThankYouText = [{'page': 'Thank you. Press Next to Continue'}]
 
-var OptionsPrompt = "<p>Please indicate which is the best answer to complete the figure.</p>"
+var OptionsPrompt = "Please indicate which is the best answer to complete the figure."

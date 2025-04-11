@@ -1,4 +1,4 @@
-var title = "Positive and Negative Affect Schedule Short Form (PANAS-SF)"
+var title = "⽇本語版 PANAS (短縮版)"
 var shortTitle = 'PANAS-SF'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -8,42 +8,42 @@ var survey_JSON =
             {
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                title: '情動や感情 を表す、10 個の言葉や表現が下にあげられています。それぞれの項目をよ く読み、あなた、あるいは、あなたの 気持ちが今どれ程、それらの項目の内容に該当 しているかを次にあげる5段階でお答えください。そして、その番号を各項目の横に 記入して下さい。',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
-                    {value: 'panas01', text: "마음이 상한"},
-                    {value: 'panas02', text: "적대적인"},
-                    {value: 'panas03', text: "기민한"},
-                    {value: 'panas04', text: "부끄러운"},
-                    {value: 'panas05', text: "원기왕성한"},
-                    {value: 'panas06', text: "신경질적인"},
-                    {value: 'panas07', text: "단호한"},
-                    {value: 'panas08', text: "주의 깊은"},
-                    {value: 'panas09', text: "두려운"},
-                    {value: 'panas10', text: "활기찬"},
+                    {value: 'panas01', text: "うろたえた"},
+                    {value: 'panas02', text: "敵意をもった"},
+                    {value: 'panas03', text: "機敏な"},
+                    {value: 'panas04', text: "恥ずかしい"},
+                    {value: 'panas05', text: "やる気がわいた"},
+                    {value: 'panas06', text: "びりびりした"},
+                    {value: 'panas07', text: "決心した"},
+                    {value: 'panas08', text: "注意深い"},
+                    {value: 'panas09', text: "恐れた"},
+                    {value: 'panas10', text: "活気のある"},
                 ],
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Very slightly or not at all'
+                    "text": '全く 当てはまらない'
                     },
                     {
                     "value": 1,
-                    "text": 'A little'
+                    "text": 'どちらかといえば 当てはまらない'
                     },
                     {
                     "value": 2,
-                    "text": 'Moderately'
+                    "text": 'どちらかといえば 当てはまる'
                     },
                     {
                     "value": 3,
-                    "text": 'Quite a bit'
+                    "text": '当てはまる'
                     },
                     {
                     "value": 4,
-                    "text": 'Extremely'
-                    },
+                    "text": '非常によく 当てはまる'
+                    },                
                 ],
             }
         ]

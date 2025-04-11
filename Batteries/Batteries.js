@@ -1050,6 +1050,7 @@ List.push({
   IconName: "Music Intake",
 });
 
+
 BatteryList.push({
   index: 1007,
   name: "Demonstration Battery",
@@ -1061,7 +1062,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
 });
-// ============================================
+
 var List = [];
 List.push({
   Task: "Questionnaire JSON",
@@ -1142,42 +1143,33 @@ BatteryList.push({
 
 // ============================================
 // ============ MUSIC STUDY ==================
-var List = [];
-List.push({
-  Task: "Session Chooser",
-  Parameters: "Default",
-  Instructions: "Default",
-  IconName: "Chooser",
-});
-BatteryList.push({
-  index: 71,
-  name: "Music Motion Landing Page",
-  description: "",
-  TaskList: List,
-  BatteryInstructions: "<h1>Music and Motion Study</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©NCMLab 2025",
-});
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 71, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024'
+	})
+
 
 // ============ MUSIC STUDY -- INTAKE  ==================
-var List = [];
-List.push({
-  Task: "Questionnaire",
-  Parameters: "MusicDemographics_001",
-  Instructions: "Default",
-  IconName: "Intake",
-});
-BatteryList.push({
-  index: 73,
-  name: "Music Motion: Intake",
-  description: "",
-  TaskList: List,
-  BatteryInstructions: "<h1>Music and Motion Study</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©NCMLab 2025",
-});
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
+BatteryList.push({index: 73, 
+	name:'Music Motion: Intake', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "Music and Motion Study -- Intake",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = [];
 List.push({

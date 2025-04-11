@@ -330,11 +330,11 @@ const survey_JSON = {
 };
 
 
-var EN_cesamJSON = {}
-EN_cesamJSON.title = title,
-EN_cesamJSON.shortTitle = shortTitle,
-EN_cesamJSON.survey_JSON = survey_JSON
-EN_cesamJSON.description = ""
-EN_cesamJSON.QuestionnaireType = 'Varied'
-EN_cesamJSON.references = "references"
-EN_cesamJSON.notes = ''
+var FR_cesamJSON = {}
+FR_cesamJSON.title = title,
+FR_cesamJSON.shortTitle = shortTitle,
+FR_cesamJSON.survey_JSON = survey_JSON
+FR_cesamJSON.description = ""
+FR_cesamJSON.QuestionnaireType = 'Varied'
+FR_cesamJSON.references = "references"
+FR_cesamJSON.notes = ''

@@ -39,39 +39,13 @@ thead {
 
 tbody {
   display: block;
-  max-height: 500px;
+  max-height: 800px;
   overflow-y: auto;
 }
 
-.sd-root {
-  margin-bottom: 40px;
-}
-
-.sd_table {
-  height: 90%;
-}
-
-.sd-table td {
-  padding: 0 0;
-}
-
-.sd-btn {
-  background-color: #008000;
-  padding: 20px;
-  border-radius: 3px;
-  right: 0;
-
-  color: white;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.sd-btn:hover {
-  background-color: #026002;
-}
-
-#sq_ {
-  margin-left: 10px;
-  padding: 10px;
+/* This makes the radio buttons big and square-ish */
+.sd-item__decorator {
+  width: calc(7 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  height: calc(7 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  border-radius: 5%;
 }

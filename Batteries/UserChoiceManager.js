@@ -31,9 +31,11 @@ var trial0 = {
 var trial2 = {
   on_start: function() {
       console.log(TaskList)
+      console.log(jatos)
+      console.log(jatos.db)
   },
   type: jsPsychHtmlButtonResponse,
-  stimulus: function() {return '<h2>'+BatteryInstructions+'</h2>'},
+  stimulus: function() {return '<b>'+BatteryInstructions+'</b>'},
   choices: function(){ 
       var stim = []
       console.log(TaskIconList)

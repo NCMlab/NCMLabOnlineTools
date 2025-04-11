@@ -29,4 +29,45 @@
     <script src="jatos.js"></script>
     <script src="Batteries/UsageManager.js"></script>
   </body>
+<<<<<<< HEAD
 </html>
+=======
+
+
+  <script>
+      jatos.onLoad(() => {
+        console.log("Hello World in in MAIN SCRIPT")
+        console.log(jatos.studySessionData)
+      });
+var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    on_trial_start: function() {
+      //http://127.0.0.1:9000/publix/fNTRhuguK1x
+      // Add jatos info to the data file
+      URLParameters = jatos.urlQueryParameters
+      
+      jsPsych.data.addProperties({Battery: URLParameters.Battery});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+    },
+  });
+
+  jatos.onLoad(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+      var resultsData = {'name':'JASON'};
+      URLParameters = jatos.urlQueryParameters
+      //alert(URLParameters.Battery+', '+URLParameters.Usage)
+      jsPsych.data.addProperties({Battery: URLParameters.Battery});
+      jsPsych.data.addProperties({Usage: URLParameters.Usage});
+      BatteryNumber = URLParameters.Battery
+      console.log(jsPsych.data)
+      jatos.addJatosIds(resultsData);
+      jsPsych.run(timeline);
+    });
+  </script>
+</html>
+>>>>>>> 225e9f2553165d8e9b2e56df642c8ff695a82234
