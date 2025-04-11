@@ -75,9 +75,20 @@ var SetupBattery = {
       TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
       TaskIconList = CurrentBattery.TaskList.map(({ IconName }) => IconName)
       InstructionList = CurrentBattery.TaskList.map(({ Instructions }) => Instructions)
-console.log(TaskList)
+      /*
+      console.log("TaskList: ")
+      console.log(TaskList)
+
+      console.log("InstructionsList: ")
+      console.log(InstructionList)*/
+
+      var Language = CurrentBattery.Language
+
+      var FooterText = CurrentBattery.Footer
+
       // Extract the battery instructions
       BatteryInstructions = CurrentBattery.BatteryInstructions
+      console.log(BatteryInstructions)
 
       for ( var i = 0; i < TaskList.length; i ++ ) {
         console.log(i)
@@ -90,10 +101,13 @@ console.log(TaskList)
         // Add things to the jatos session data
         JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
         // add the ID to return to the JATOS battery
-        JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+        //JATOSSessionData.BatteryHtmlID = BatteryHtmlID
         // If this is the first visit to this manager, display the battery instructions
         DisplayBatteryInstructionsFlag = true
         JATOSSessionData.TaskList = TaskList
+        JATOSSessionData.InstructionList = InstructionList
+        JATOSSessionData.Language = Language
+        JATOSSessionData.FooterText = FooterText
         JATOSSessionData.CompletedTaskList 
       }
       else {DisplayBatteryInstructionsFlag = false}
@@ -110,4 +124,3 @@ console.log(TaskList)
 timeline.push(trial0)
 timeline.push(SetupBattery)
 timeline.push(trial2)
-
