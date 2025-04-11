@@ -25,6 +25,8 @@ var TrialsPerRepeat = 4
 
 var MaxNumberOfLettersPerTrial = 6
 
+
+var ValidationVerticalAdjustment = -90
 // =================================
 // The following is the number of task trials to show
 
