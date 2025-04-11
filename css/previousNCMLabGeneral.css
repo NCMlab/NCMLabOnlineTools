@@ -1,0 +1,366 @@
+/* body-stage
+From Experiment Factory
+*/
+
+/* 
+The following are variables that are used below in the CSS.
+*/
+:root {
+  --FixationSize:  5vw;
+  --CueSize:  5vw;
+  --ANTArrowSize:  5vw;
+  --PromptSize:  4vw;
+}
+body {
+  padding-bottom: 100px;
+}
+table {
+  width: 100%;
+}
+/* set a style for the DMS table */
+#vDMSTable {
+  width: 50vw;
+  height: 50vh;
+}
+
+html { background-color: rgb(213, 241, 255); }
+body {
+  background-color: white;
+  border-radius: 10px;
+    position: relative;
+  left: 5vw;
+  top: 3vh;
+  height: 90vh;
+  width: 90vw;
+  box-shadow: 4px 4px 6px #888888/*#999*/;
+  border-radius: 10px;
+  z-index: 0;
+  
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  overflow: auto;
+}
+
+
+/* 
+Set the fixation size so it changes as the display size changes.
+Make sure to set the class everywhere a fixation cross is used.
+This allows for universal change of teh fixation cross, for instance, if it needs to be made bigger.
+*/
+
+.touchscreen {
+    /* size of the upper panel */
+    height: 85%;
+}
+
+p.Fixation {
+  text-align:  center;
+  font-size: var(--FixationSize);
+  color:  black;
+}
+p.AntCue {
+  text-align:  center;
+  font-size: var(--CueSize);
+  color:  black;
+}
+p.ANTArrowSize {
+  text-align:  center;
+  font-size: var(--ANTArrowSize);
+  color:  black;
+}
+p.PromptText {
+  font-size: var(--PromptSize);
+}
+p.Instructions {
+  text-align:  center;
+  font-size:  4vmin;
+  line-height:  1.6;
+}
+
+.button {
+    font-size:4vmin;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 1vmin 2vmin 1vmin 2vmin;
+    color: white;
+    background-color:cornflowerblue;
+    cursor: pointer;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid transparent;
+    border-rad
+}
+/* css for numpad */
+.square {
+    float:left;
+    position: relative;
+    width: 30%;
+    height: 30%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    background-color:#fff;
+    overflow:hidden;
+    color: #000;
+    border-radius:10px;
+  border: 2px solid black;
+}
+
+.submit_button, .clear_button {
+    float:left;
+    position: relative;
+    width: 47%;
+    height: 25%; /* = width for a 1:1 aspect ratio */
+    margin:1.5%;
+    background-color:#fff;
+    overflow:hidden;
+    color: #000;
+    border-radius:10px;
+    font-size: 2vh;
+  border: 2px solid black;
+}
+
+.square:hover, .submit_button:hover, .clear_button:hover {
+  color: blue;
+}
+
+.square:active, .submit_button:active, .clear_button:active {
+  background-color: #505050;
+}
+
+.numbers{
+    font-weight:900;
+    text-align: center;
+    font-size: 4vh;
+    position: relative;
+    top: 50%; 
+}
+
+
+
+.REDCross {color:red}
+/* Change the size of the font in the buttons */
+
+.jspsych-btn {
+  font-size: large;
+}
+
+/* https://www.w3schools.com/howto/howto_css_image_text.asp */
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  color: blue;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform:rotate(-25deg);
+}
+
+
+div.numbox {
+  max-width: 300px;
+  
+  margin: auto;
+
+}
+/*.numbox {
+  
+  position:absolute;
+  top:40%;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%,-50%);
+}*/
+
+
+div.HoverALaCarte {
+  background-color: rgb(247, 247, 210);
+  padding: 2px;
+  display: none;
+ 
+  word-wrap: break-word;
+}
+span:hover + div {
+  display: block;
+ 
+  word-wrap: break-word;
+}
+
+.btn-group-header button {
+  background-color: transparent;/*#04AA6D; /* Green background */
+  border: 0px;/*1px solid green; /* Green border */
+  /*color: white; /* White text */
+  padding: 1vw 1vw; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  
+}
+
+.btn-group-header button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group-header:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group-header button:hover {
+  background-color: #04AA6D;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.strikethrough-diagonal {
+  position: relative;
+}
+.strikethrough-diagonal:before {
+  position: absolute;
+  content: "";
+  left: 10%;
+  top: 50%;
+  right: 10%;
+  border-top: 2px solid;
+  border-color: #F00;
+    z-index: -1;
+
+  -webkit-transform:rotate(-70deg);
+  -moz-transform:rotate(-70deg);
+  -ms-transform:rotate(-70deg);
+  -o-transform:rotate(-70deg);
+  transform:rotate(-70deg);
+}
+
+.strikethrough-diagonal:after {
+  content: "";
+}
+.sv-string-viewer {
+  font-size: 1.0em
+}
+
+
+  .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     color: rgb(0, 0, 0);
+     text-align: center;
+  }
+
+.modal {
+  background-color: rgba(0,0,0,0.3);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.modal.open {
+  opacity: 1;
+  z-index: 999;
+}
+
+.modal-inner {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  padding: 15px 25px;
+  text-align: center;
+  width: 540px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.model-inner h2 {
+  margin: 0;
+}
+
+.modal-inner p {
+  line-height: 24px;
+  margin: 10px 0;
+}
+/* Modify the survey description text */
+.sv-string-viewer {
+  font-size: 1.2em;  
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.CardSortTable {
+  border: 1;
+  background-color: white;
+  max-width:600px;
+  white-space: nowrap;
+  table-layout:fixed;
+  
+}
+.CardSortTable.td { 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+  height: 20px;
+}
+.CardSortTable.tr { 
+  height: 20px;
+  overflow: hidden;
+}
+.CardSortImage {
+  max-width: 100%
+}
+
+.Instruct {
+  height: 50%;
+}
+.InstructImage img{
+  max-height: 500px;
+  max-width: 500px;
+  height: 100%;
+  width: 100%;
+}
+
+.PatternCompTable {
+  background-color: white;
+  max-width:600px;
+  white-space: nowrap;
+  table-layout:fixed;
+}
+
+.PatternCompImage {
+  max-width: 100%
+}

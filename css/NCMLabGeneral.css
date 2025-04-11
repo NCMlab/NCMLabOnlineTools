@@ -31,17 +31,16 @@ table {
 }
 
 html {
-  background-color: rgb(213, 241, 255);
+  /* background-color: rgb(213, 241, 255); */
+  background-color: rgb(244, 247, 250);
 }
 
 body {
   background-color: white;
   border-radius: 10px;
-  position: relative;
-  left: 5vw;
-  top: 3vh;
-  height: 90vh;
-  width: 90vw;
+  height: 92vh;
+  width: 90%;
+  margin: 2vh auto; /* vertical margin top/bottom, auto horizontal center */
 
   box-shadow: 4px 4px 6px #888888 /*#999*/;
   border-radius: 10px;
@@ -54,6 +53,42 @@ body {
   box-sizing: border-box;
   /* Opera/IE 8+ */
   overflow: auto;
+}
+
+.jspsych-content-wrapper {
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+thead {
+  display: block;
+  margin-left: 15vw;
+}
+tbody {
+  display: block;
+  overflow-y: auto;
+  font-size: x-large;
+  line-height: 1.6;
+}
+
+/* iPad portrait (most models) */
+@media (min-width: 768px) and (max-width: 834px) and (orientation: portrait) {
+  tbody {
+    font-size: medium;
+  }
+
+  /* body {
+    width: 98%;
+  } */
 }
 
 /* 
@@ -220,6 +255,7 @@ span:hover + div {
   display: flex;
   align-items: center;
   flex-grow: 1;
+  margin-bottom: 15px;
   justify-content: flex-start;
   width: 100%;
   position: relative;
@@ -335,15 +371,6 @@ span:hover + div {
 
 .sv-string-viewer {
   font-size: 1em;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 20px;
-  width: 100%;
-  color: rgb(0, 0, 0);
-  text-align: center;
 }
 
 .modal {
@@ -589,14 +616,6 @@ li span {
 }
 /* TRAIL MAKING CONFIGURATION */
 
-/* The follopwing is to have a wider body of the "stage" on the screen */
-body {
-  left: 0vw;
-  top: 0vh;
-  height: 98vh;
-  width: 98vw;
-}
-
 .sd-element--with-frame {
   padding-left: 0px;
   padding-right: 0px;
@@ -637,14 +656,18 @@ body {
 .sd-table__cell--header {
   padding-bottom: 2px;
 }
-/* The following makes the header row of a matrix "sticky" */
-thead {
-  display: block;
-  margin-left: 15vw;
+
+.sd-table__cell--header span {
+  padding: 0 0;
+  margin: 0;
 }
-tbody {
-  display: block;
-  overflow-y: auto;
-  font-size: x-large;
-  line-height: 1.6;
+
+.sd-table td {
+  padding: 0 0;
+  width: 30px;
+}
+
+.sd-table th {
+  padding: 0 0 0 0;
+  width: 20px;
 }
