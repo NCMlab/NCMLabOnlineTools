@@ -17,7 +17,7 @@ var FirstLoopCompletedFlag = false
 var CalibrationLocations
 var CalibrationTargets
 var ValidationTargets
-
+var pngUrl
 var SetupTask = {
   type: jsPsychCallFunction,
   func: function() {  
@@ -30,7 +30,18 @@ var SetupTask = {
 }
 // =======================================================================
 var init_camera = {
-    type: jsPsychWebgazerInitCamera
+    type: jsPsychWebgazerInitCamera,
+    on_finish: function(data) {
+      // getthe green face outline and save it to the data
+      var Can = document.getElementById("webgazerFaceOverlay")
+      data.GreenDotOutline = Can.toDataURL(); // PNG is the default
+      // also save to a file
+      Can.toBlob(function(blob) {
+        saveAs(blob, "GreenOutline.png");
+    // https://medium.com/@susanne.thierfelder/create-your-own-depth-measuring-tool-with-mediapipe-facemesh-in-javascript-ae90abae2362        
+    });
+
+    },
   };
 
 
@@ -371,7 +382,7 @@ timeline.push(Welcome)
 timeline.push(Instructions01)
 timeline.push(init_camera)
 
-timeline.push(if_Repeat)
+// timeline.push(if_Repeat)
 /*
 timeline.push(calibration_instructions)
 timeline.push(calibration)
@@ -381,6 +392,6 @@ timeline.push(WaitTime)
 timeline.push(loop_node)
 */
 //timeline.push(debrief_block)
-timeline.push(Notes)
-timeline.push(SendData)
-timeline.push(ThankYou)
+// timeline.push(Notes)
+// timeline.push(SendData)
+// timeline.push(ThankYou)
