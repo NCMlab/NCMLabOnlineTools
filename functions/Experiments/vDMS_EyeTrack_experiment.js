@@ -34,11 +34,14 @@ var init_camera = {
     on_finish: function(data) {
       // getthe green face outline and save it to the data
       var Can = document.getElementById("webgazerFaceOverlay")
+      console.log(Can)
+      console.log(BREAK)
       data.GreenDotOutline = Can.toDataURL(); // PNG is the default
       // also save to a file
       Can.toBlob(function(blob) {
         saveAs(blob, "GreenOutline.png");
-    // https://medium.com/@susanne.thierfelder/create-your-own-depth-measuring-tool-with-mediapipe-facemesh-in-javascript-ae90abae2362        
+        // https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/iris.md
+        // https://medium.com/@susanne.thierfelder/create-your-own-depth-measuring-tool-with-mediapipe-facemesh-in-javascript-ae90abae2362        
     });
 
     },
