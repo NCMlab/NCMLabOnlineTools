@@ -1,5 +1,5 @@
 
-var title = "Geriatric Anxiety Scale"
+var title = "Geriatric Anxiety Scal 日体語版"
 var shortTitle = 'GAS'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
@@ -10,7 +10,7 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'gas',
-                title: 'Below is a list of common symptoms of anxiety or stress. Please read each item in the list carefully. Indicate how often you have experienced each symptom during the PAST WEEK, INCLUDING TODAY by checking under the corresponding answer.',
+                title: '下記の項目は、不安やストしスに共通してみられる症状のリストです。リストにある各項目を よく読んでください。今日も含め、この一週間であなたが各症状をどのくらいの頻度で体験し たかを教えてください。1番から順番に、あなたに当てはまる数字に〇印をつけてください。',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [

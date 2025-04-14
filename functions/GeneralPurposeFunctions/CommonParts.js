@@ -14,54 +14,50 @@ function UpdateHeader() {
     //
     // set the header button language
     //console.log(document.getElementById('header-home-button'))
-    try {
-        document.getElementById('header-home-button').textContent = LabelNames.Home;
-        //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-        document.getElementById('header-stop-button').textContent = LabelNames.Stop;
-        document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-        document.getElementById('header-skip-button').textContent = LabelNames.Skip;
-        document.getElementById('header-info-button').style.visibility = "hidden"
-        
-        //document.getElementById('header-home-button').style.visibility = "hidden"
-        document.getElementById('header-quit-button').style.visibility = "hidden"
-        document.getElementById('header-skip-button').style.visibility = "hidden"
-        document.getElementById('header-stop-button').style.visibility = "hidden"
-    } catch (error) {
-        console.log(error);
-    }
-        // Check to see if we are in the User Choice screen, if so turn off restart and home
-    var HomeScreenFlag = false
-    if ( jatos.componentList[jatos.componentPos-1].title == "User Choice" )
-    { HomeScreenFlag = true }
+    console.log("UpDATEHEADER FUNCTION")
+    console.log(LabelNames)
     
-    if ( jatos.urlQueryParameters.Battery < 100 )
-    {
+   // window.onload = function() {
         try {
-            // this is a battery and we need to turn off the home/restart buttons
-      //      document.getElementById('header-home-button').style.visibility = "hidden"
-
-            document.getElementById('header-info-button').style.visibility = "hidden"
-            //document.getElementById('header-restart-button').style.visibility = "hidden"
+            console.log(document.getElementById('header-home-button'))
+            document.getElementById('header-home-button').textContent = LabelNames.Home;
+            //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+            //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
+            //document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+            //document.getElementById('header-skip-button').textContent = LabelNames.Skip;
+            //document.getElementById('header-info-button').style.visibility = "hidden"
+            
+            //document.getElementById('header-home-button').style.visibility = "hidden"
+            document.getElementById('header-quit-button').style.visibility = "hidden"
+            document.getElementById('header-skip-button').style.visibility = "hidden"
+            document.getElementById('header-stop-button').style.visibility = "hidden"
         } catch (error) {
             console.log(error);
         }
-        
-        
-    }
-    if ( HomeScreenFlag )
-    {
-      //  document.getElementById('header-home-button').setAttribute('disabled', 'disabled');
-        document.getElementById('header-restart-button').setAttribute('disabled', 'disabled');
-        document.getElementById('header-info-button').style.visibility = "hidden"
-    }
-    // add the footer text
-    try {
-        document.getElementById('footer-btn-group').textContent = jatos.studySessionData.FooterText;
-      } catch (error) {
-        console.error(error);
-      }
-}
+            // Check to see if we are in the User Choice screen, if so turn off restart and home
 
+        
+   // }
+
+            
+    
+}
+function SetLanguagePulldown() {
+    //window.onload = function() {
+        // Has the language already been selected?
+        console.log(jatos.batchSession.getAll())
+        var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
+        //jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+        console.log("LANGUAGE IS SET TO: "+LangIsSetTo) 
+        console.log("Current worker is: "+jatos.workerId)
+        console.log(jatos.batchSession.getAll())
+        let elem = document.getElementById('LanguageSelectPulldown')
+        console.log(elem)
+        console.log(elem.value)
+        elem.value = LangIsSetTo
+        console.log(elem.value)
+   // }
+}
 // ============== INITIAL MICROPHONE IF NEEDED ================
 
 
@@ -222,7 +218,9 @@ var if_WelcomeWritten = {
  var if_WelcomeSpoken = {
     timeline: [WelcomeSpoken_loop],
     conditional_function: function() {
-    document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        try {
+            document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        } catch (err) {}
       if ( parameters.ShowWelcome & parameters.WelcomeSpoken)
       { return true }
       else { return false }

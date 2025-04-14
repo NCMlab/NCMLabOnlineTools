@@ -1,9 +1,9 @@
 var EN_Instructions = {}
 EN_Instructions.WelcomeText = [
-    {'page': '<p class="Instructions">Welcome to the Line Bisection Task.</p>'},
+    {'page': 'Welcome to the Line Bisection Task.'},
 ]
 EN_Instructions.InstructionText = [
-    {'page': '<p class="Instructions">For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.</p>'},
+    {'page': 'For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.'},
 ]
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 // The following notes show up on teh results page
@@ -13,10 +13,10 @@ add('EN_LineBisection_Instructions_Default', function(){ Instructions = EN_Instr
 // FRENCH 
 var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
-    {'page': '<p class="Instructions">FR: Welcome to the Line Bisection Task.</p>'},
+    {'page': 'FR: Welcome to the Line Bisection Task.'},
 ]
 FR_Instructions.InstructionText = [
-    {'page': '<p class="Instructions">FR: For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.</p>'},
+    {'page': 'FR: For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.'},
 ]
 FR_Instructions.ThankYouText = [{'page':'FR: Thank you.'}]
 // The following notes show up on teh results page

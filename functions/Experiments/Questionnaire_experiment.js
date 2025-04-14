@@ -2,7 +2,7 @@ var timeline = []
 var Questionnaire = []
 var CriteriaToUse = 0
 var Results 
-var converter = new showdown.Converter();
+// var converter = new showdown.Converter();
 
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  

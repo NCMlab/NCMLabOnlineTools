@@ -9,9 +9,23 @@ const json = {
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
-   pages: [
-     {
+   pages: 
+   [
+    {
+      name: "Name",
+      title: "Name",
       
+      elements: [
+        {
+          type: 'comment',
+          title: 'Enter first name and initial of last name',
+          name: 'Name',
+          required: true,
+          textbox_rows: 1,
+        }
+      ]
+    },
+    {      
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
@@ -24,7 +38,7 @@ const json = {
                       'Female',
               ],
           showOtherItem: true,
-          required: true,
+          isRequired: true
         },
         {
           name: "Height",
@@ -45,7 +59,7 @@ const json = {
                       'Centimeters',
               ],
           showOtherItem: false,
-          required: true,
+          isRequired: true
         },
         {
           name: "Weight",
@@ -66,7 +80,7 @@ const json = {
                       'Kilograms',
               ],
           showOtherItem: false,
-          required: true,
+          isRequired: true
         },
         {
           type: 'dropdown',
@@ -81,7 +95,7 @@ const json = {
                       'Doctoral degree'
               ],
           showOtherItem: true,
-          required: true,
+          isRequired: true
         },
         {
           type: 'dropdown',
@@ -94,14 +108,14 @@ const json = {
                       'Unemployed'
               ],
           showOtherItem: true,
-          required: true,
+          isRequired: true
         },
         {
           type: 'comment',
           title: 'What type of work do you do (or did you do before retirement)?',
           name: 'WorkType',
           rows: 2,
-          required: true,
+          isRequired: true,
           autoGrow: true
         },          
         {
@@ -116,19 +130,20 @@ const json = {
                   'In assisted living facility'
               ],
           showOtherItem: true,
-          required: true,
+          isRequired: true,
         },
         {
           type: 'text',
           title: 'What is your primary language(s)?',
           name: 'PrimaryLanguage',
-          required: true,
+          isRequired: true,
         },
         {
           name: "LanguageProblem",
           type: "dropdown",
           title: "Are there any language or communication challenges you have?",
-          choices: ["Yes", "No"]
+          choices: ["Yes", "No"],
+          isRequired: true,
         }, 
         {
           name: "LanguageProblemDescription",
@@ -165,7 +180,7 @@ const json = {
           ],
           name: 'marital',
           showOtherItem: true,                    
-          required: true,
+          isRequired: true,
         },
         /*{
           type: 'dropdown',
@@ -194,7 +209,7 @@ const json = {
             "I don't know"
           ],
           name: 'CurrentNeeds',
-          required: true,
+          isRequired: true,
        },
        {
           type: 'dropdown',
@@ -208,7 +223,7 @@ const json = {
             "I don't know"
           ],
           name: 'PastNeeds',
-          required: true,
+          isRequired: true,
        }
        ]
      },
@@ -227,7 +242,7 @@ const json = {
               "No",
               "Not sure"
           ],
-          required: true,
+          isRequired: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
@@ -236,7 +251,7 @@ const json = {
         title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
-        required: false,
+        isRequired: true,
         textbox_rows: 3,
       },
       {
@@ -257,7 +272,7 @@ const json = {
               "Not sure"
           ],
           name: 'HearingLoss',
-          required: true,
+          isRequired: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
@@ -301,15 +316,15 @@ const json = {
           "No"
       ],
       name: 'OtherHealthIssues',
-      required: true,
+      isRequired: true,
     },
     {
       type: 'comment',
       title: 'Please explain your health issues.',
-      name: 'OtherHealthIssues',
+      name: 'OtherHealthIssuesDesc',
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
-      textbox_rows: 3,
+      rows: 3,
     },
        ]
      },
@@ -326,7 +341,7 @@ const json = {
               "0", "1","2","3","4","5","6","7"
           ],
           name: 'ExerciseFrequency',
-          required: true,
+          isRequired: true,
         },
         {
           type: 'dropdown',
@@ -337,7 +352,7 @@ const json = {
             "No"
           ],
           name: 'Exercise24',
-          required: true,
+          isRequired: true,
         },
         {
           type: 'dropdown',
@@ -350,7 +365,7 @@ const json = {
               "Unknown"
           ],
           name: 'Smoke',
-          required: true,
+          isRequired: true,
         },
         {
           type: 'dropdown',
@@ -360,7 +375,7 @@ const json = {
           choicesMax: 2024,
           choicesStep:1,
           name: 'SmokeStart',
-          required: false,
+          isRequired: true,
           input_type: "number"
         },
         {
@@ -371,7 +386,7 @@ const json = {
           choicesMax: 2024,
           choicesStep:1,
           name: 'SmokeQuit',
-          required: false,
+          isRequired: true,
           input_type: "number"
         },
         {
@@ -380,7 +395,7 @@ const json = {
           visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
           choices: ["0","0.5","1","2","3","4","5","6",">6"],
           name: 'SmokePacksPerDay',
-          required: false,
+          isRequired: true,
           input_type: "number"
         },
         {
@@ -394,7 +409,7 @@ const json = {
               "More than 4 drinks per day"
           ],
           name: 'Alcohol',
-          required: true,
+          isRequired: true,
         },
       
   
@@ -414,14 +429,14 @@ const json = {
               "No",
             ],
             name: 'MusicMovement',
-            required: true,
+            isRequired: true,
           },
           {
             type: 'comment',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
-            required: false,
+            isRequired: true,
             textbox_rows: 3,
           },
           {
@@ -433,14 +448,14 @@ const json = {
               "No",
             ],
             name: 'GroupMusic',
-            required: true,
+            isRequired: true,
           },
           {
             type: 'comment',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
             name: 'GroupMusicExperience',
             visibleIf: "{GroupMusic} == Yes",
-            required: false,
+            isRequired: true,
             textbox_rows: 3,
           },
           {
@@ -452,14 +467,14 @@ const json = {
               "No",
             ],
             name: 'Choir',
-            required: true,
+            isRequired: true,
           },
           {
             type: 'comment',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
             name: 'ChoirExperience',
             visibleIf: "{Choir} == Yes",
-            required: false,
+            isRequired: true,
             textbox_rows: 3,
           },
           {
@@ -471,7 +486,7 @@ const json = {
               "No",
             ],
             name: 'OtherMusic',
-            required: true,
+            isRequired: true,
           },
           {
             type: 'comment',
@@ -534,8 +549,3 @@ EN_IntakeForm_MusicJSON.title = title;
 EN_IntakeForm_MusicJSON.survey_JSON = json;
 EN_IntakeForm_MusicJSON.shortTitle = shortTitle
 EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
-EN_IntakeForm_MusicJSON.Instructions01 = [
-    {
-        'page': '<p class="Instructions">Instructions are written here.'
-    }
-]

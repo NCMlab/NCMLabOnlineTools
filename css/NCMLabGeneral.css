@@ -16,6 +16,10 @@ body {
   padding-bottom: 100px;
 }
 
+h1 {
+  line-height: 1;
+}
+
 table {
   width: 100%;
 }
@@ -38,10 +42,8 @@ body {
   top: 3vh;
   height: 90vh;
   width: 90vw;
-  
-  box-shadow: 4px 4px 6px #888888
-    /*#999*/
-  ;
+
+  box-shadow: 4px 4px 6px #888888 /*#999*/;
   border-radius: 10px;
   z-index: 0;
 
@@ -53,7 +55,6 @@ body {
   /* Opera/IE 8+ */
   overflow: auto;
 }
-
 
 /* 
 Set the fixation size so it changes as the display size changes.
@@ -107,7 +108,6 @@ p.Instructions {
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  border-rad
 }
 
 /* css for numpad */
@@ -127,7 +127,7 @@ p.Instructions {
 
 .submit_button,
 .clear_button {
-  float: left;
+  /* float: left; */
   position: relative;
   width: 47%;
   height: 25%;
@@ -161,10 +161,8 @@ p.Instructions {
   top: 50%;
 }
 
-
-
 .REDCross {
-  color: red
+  color: red;
 }
 
 /* Change the size of the font in the buttons */
@@ -189,12 +187,10 @@ p.Instructions {
   transform: rotate(-25deg);
 }
 
-
 div.numbox {
   max-width: 300px;
 
   margin: auto;
-
 }
 
 /*.numbox {
@@ -206,7 +202,6 @@ div.numbox {
   transform: translate(-50%,-50%);
 }*/
 
-
 div.HoverALaCarte {
   background-color: rgb(247, 247, 210);
   padding: 2px;
@@ -215,42 +210,75 @@ div.HoverALaCarte {
   word-wrap: break-word;
 }
 
-span:hover+div {
+span:hover + div {
   display: block;
 
   word-wrap: break-word;
 }
 
-.btn-group-header button {
-  background-color: transparent;
-  /*#04AA6D; /* Green background */
-  border: 0px;
-  /*1px solid green; /* Green border */
-  /*color: white; /* White text */
-  padding: 1vw 1vw;
-  /* Some padding */
+#header-btn-group {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+#header-btn-group > button {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 2px solid #ccc;
+  padding: 0.8vw 1.5vw;
+  font-size: 1.2rem;
+  color: #000000;
   cursor: pointer;
-  /* Pointer/hand icon */
-  float: left;
-  /* Float the buttons side by side */
-
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-left: 15px;
 }
 
-.btn-group-header button:not(:last-child) {
-  border-right: none;
-  /* Prevent double borders */
+#language-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 15px;
 }
 
-/* Clear floats (clearfix hack) */
-.btn-group-header:after {
-  content: "";
-  clear: both;
-  display: table;
+#LanguageSelectPulldown {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  padding: 0.8vw 1.5vw;
+  font-size: 1.2rem;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Add a background color on hover */
-.btn-group-header button:hover {
-  background-color: #04AA6D;
+#header-btn-group button:hover,
+#header-btn-group #LanguageSelectPulldown:hover {
+  background-color: #ada9a9;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.sd-btn:last-child {
+  background-color: rgb(56, 97, 56);
+  color: white;
+  margin-right: 10px;
+}
+
+.sd-btn:hover {
+  background-color: rgb(9, 48, 9);
+  color: rgb(255, 255, 255);
+}
+
+.sd-html {
+  font-size: 1.5rem;
 }
 
 /* Tooltip container */
@@ -291,7 +319,7 @@ span:hover+div {
   top: 50%;
   right: 10%;
   border-top: 2px solid;
-  border-color: #F00;
+  border-color: #f00;
   z-index: -1;
 
   -webkit-transform: rotate(-70deg);
@@ -306,14 +334,13 @@ span:hover+div {
 }
 
 .sv-string-viewer {
-  font-size: 1.0em
+  font-size: 1em;
 }
-
 
 .footer {
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 20px;
   width: 100%;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -333,7 +360,6 @@ span:hover+div {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .modal.open {
@@ -372,7 +398,6 @@ span:hover+div {
   max-width: 600px;
   white-space: nowrap;
   table-layout: fixed;
-
 }
 
 .CardSortTable.td {
@@ -388,7 +413,7 @@ span:hover+div {
 }
 
 .CardSortImage {
-  max-width: 100%
+  max-width: 100%;
 }
 
 .Instruct {
@@ -410,28 +435,29 @@ span:hover+div {
 }
 
 .PatternCompImage {
-  max-width: 100%
+  max-width: 100%;
 }
 
 .sv_p_root {
-  max-width: 100%
+  max-width: 100%;
 }
-
 
 /* This is added so the radio button groups align to the left instead of the center */
 .jspsych-content {
-  max-width: 95%;
+  max-width: 85%;
   /* this is mainly an IE 10-11 fix */
   text-align: left;
   margin: auto;
   /* this is for overflowing content */
+  font-size: 4vmin;
+  line-height: 1.6;
 }
 
 :root {
   --sliderHeight: 50vh;
   --thumbHeight: 20px;
   --sliderShiftFromRightOfCell: 90px;
-} 
+}
 
 #sliderTable {
   /*transform: rotate(-270deg); /* rotate the element */
@@ -463,23 +489,21 @@ li span {
 }
 */
 .VAScell {
-    position: relative;
-    
+  position: relative;
 }
 
-
-.track {  
+.track {
   /*width: calc(100% - 30px + 36px);*/
   width: var(--sliderHeight);
-  
+
   /* border: 3px solid #04AA6D; */
-  
+
   /* transform-origin: left;*/
   /* The following, along with the relative div cell above
    FIXES the slider to the right hand side of the cell */
   right: var(--sliderShiftFromRightOfCell);
   position: absolute;
-  transform: translate(50%, 0%) rotate(270deg) ;
+  transform: translate(50%, 0%) rotate(270deg);
   /* transform: rotate(270deg); */
 }
 
@@ -533,20 +557,17 @@ li span {
   background: none;
   margin: auto;
   /*width: calc(100% - 30px + 36px);*/
-  width: calc( var(--sliderHeight) + var(--thumbHeight) ); 
-  top: calc( var(--thumbHeight ) * (-0.25));
+  width: calc(var(--sliderHeight) + var(--thumbHeight));
+  top: calc(var(--thumbHeight) * (-0.25));
   right: var(--sliderShiftFromRightOfCell);
-  position:fixed;
+  position: fixed;
   padding: 0;
   /* transform: translateY(50%); */
   position: absolute;
-  transform: translate(50%, 0%) rotate(270deg) ;
-
-
+  transform: translate(50%, 0%) rotate(270deg);
 }
 
 #jspsych-html-slider-response-response::-webkit-slider-thumb {
-  
   appearance: none;
   width: var(--thumbHeight);
   height: 30px;
@@ -562,12 +583,11 @@ li span {
   text-align: center;
 }
 
-.sd-progress{
+.sd-progress {
   height: 6px;
 }
-.jspsych-html-slider-response-wrapper{
-  
-    margin: 1px;
+.jspsych-html-slider-response-wrapper {
+  margin: 1px;
 }
 /* TRAIL MAKING CONFIGURATION */
 
@@ -579,29 +599,60 @@ body {
   width: 98vw;
 }
 
-
-.sd-element--with-frame { padding-left: 0px; padding-right: 0px; }
-.sd-element { padding-left: 0px; }
-.sd-question { padding-left: 0px; }
-.sd-row__question { padding-left: 0px; }
-.sd-element--complex { padding-left: 0px; }
-.sd-question--complex { padding-left: 0px; }
-.sd-question--table { padding-left: 0px; }
-.sd-question--title-top { padding-left: 0px; }
-.sd-table__cell--header  { padding-left: 0px; }
-.sd-table__cell--header  { padding-right: 0px; }
-.sd-table__cell--header  { padding-right: 0px; }
-.sd-table__cell--header  { padding-top: 2px; }
-.sd-table__cell--header  { padding-bottom: 2px; }
+.sd-element--with-frame {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.sd-element {
+  padding-left: 0px;
+}
+.sd-question {
+  padding-left: 0px;
+}
+.sd-row__question {
+  padding-left: 0px;
+}
+.sd-element--complex {
+  padding-left: 0px;
+}
+.sd-question--complex {
+  padding-left: 0px;
+}
+.sd-question--table {
+  padding-left: 0px;
+}
+.sd-question--title-top {
+  padding-left: 0px;
+}
+.sd-table__cell--header {
+  padding-left: 0px;
+}
+.sd-table__cell--header {
+  padding-right: 0px;
+}
+.sd-table__cell--header {
+  padding-right: 0px;
+}
+.sd-table__cell--header {
+  padding-top: 2px;
+}
+.sd-table__cell--header {
+  padding-bottom: 2px;
+}
 /* The following makes the header row of a matrix "sticky" */
 thead {
   display: block;
   margin-left: 15vw;
 }
-
 tbody {
   display: block;
-  max-height: 500px;
   overflow-y: auto;
+  font-size: xx-large;
+  line-height: 1.6;
 }
+
+/* This was aded to make the five columns of the PANAS show up on one screen 
+without scrolling on the iPad Air */
+.sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
+  min-width: calc(10 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 

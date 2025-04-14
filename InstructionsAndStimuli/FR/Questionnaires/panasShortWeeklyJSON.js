@@ -1,5 +1,5 @@
-var title = "Positive and Negative Affect Schedule Short Form (PANAS-SF)"
-var shortTitle = 'PANAS-SF-FR'  
+var title = "Échelle des affects positifs et négatifs (PANAS-SF)"
+var shortTitle = 'PANAS, weekly'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
     { 
@@ -8,7 +8,7 @@ var survey_JSON =
             {
                 type: 'matrix',
                 name: 'panas',
-                title: 'Comment vous sentez-vous au cours des semaines passées?',
+                title: 'Indiquez comment vous vous sentez en ce momment:',
                 alternateRows: true,
                 isAllRowRequired: true,
                 rows: [
@@ -26,7 +26,7 @@ var survey_JSON =
                 columns: [
                     {
                     "value": 0,
-                    "text": 'Jamais'
+                    "text": 'Très peu ou pas du tout'
                     },
                     {
                     "value": 1,
@@ -34,15 +34,15 @@ var survey_JSON =
                     },
                     {
                     "value": 2,
-                    "text": 'Modérément'
+                    "text": 'Moyennement'
                     },
                     {
                     "value": 3,
-                    "text": 'Assez souvent'
+                    "text": 'Beaucoup'
                     },
                     {
                     "value": 4,
-                    "text": 'Toujours'
+                    "text": 'Énormément'
                     },
                 ],
             }
@@ -55,14 +55,14 @@ var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development a
 
 var notes = ""
 
-var EN_panasJSON = {}
-EN_panasJSON.title = title
-EN_panasJSON.shortTitle = shortTitle
-EN_panasJSON.survey_JSON = survey_JSON
-EN_panasJSON.description = instructions
-EN_panasJSON.QuestionnaireType = 'likert'
-EN_panasJSON.references = references
-EN_panasJSON.notes = notes
+var FR_panasJSON = {}
+FR_panasJSON.title = title
+FR_panasJSON.shortTitle = shortTitle
+FR_panasJSON.survey_JSON = survey_JSON
+FR_panasJSON.description = instructions
+FR_panasJSON.QuestionnaireType = 'likert'
+FR_panasJSON.references = references
+FR_panasJSON.notes = notes
 
 
 
