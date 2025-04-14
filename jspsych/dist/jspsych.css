@@ -426,6 +426,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.jspsych-btn img {
+  height: 100px;
+  width: 100px;
+}
+
 /* only apply the hover style on devices with a mouse/pointer that can hover - issue #977 */
 @media (hover: hover) {
   .jspsych-btn:hover {
