@@ -170,10 +170,14 @@
                   // Update the Batch Index
                   // find the count 
                   var c = jatos.batchSession.get(jatos.workerId)
+                  
                   // update it
                   jatos.batchSession.set(jatos.workerId, c + 1);
                               
                   // Go back to usage management 
+                  console.log(jatos.studySessionData)
+                  console.log(JATOSSessionData.CurrentIndex)
+                  //alert("Yo")
                   whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
                 }
               });

@@ -1173,16 +1173,10 @@ BatteryList.push({index: 73,
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = [];
 List.push({
-  Task: "Trail Making",
-  Parameters: "TrailMakingA_003",
+  Task: "Questionnaire",
+  Parameters: "CESAM_001",
   Instructions: "Default",
-  IconName: "TrailsA",
-});
-List.push({
-  Task: "Trail Making",
-  Parameters: "TrailMakingB_003",
-  Instructions: "Default",
-  IconName: "TrailsB",
+  IconName: "CESAM",
 });
 List.push({
   Task: "Questionnaire",
@@ -1192,22 +1186,45 @@ List.push({
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "GDS_004",
+  Parameters: "GDS_001",
   Instructions: "Default",
   IconName: "GDS",
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "PANAS_001",
+  Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
-  IconName: "PANAS",
+  IconName: "PANAS, baseline",
 });
-
 List.push({
   Task: "Questionnaire",
   Parameters: "WEMWBS_001",
   Instructions: "Default",
   IconName: "WEMWBS",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "BERKSYME_001",
+  Instructions: "Default",
+  IconName: "Social",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "STANFORDSLEEPINESS_001",
+  Instructions: "Default",
+  IconName: "Sleepiness",
+});
+List.push({
+  Task: "EQ5D",
+  Parameters: "EQ5D_001",
+  Instructions: "Default",
+  IconName: "EQ-5D",
 });
 BatteryList.push({
   index: 74,
@@ -1223,28 +1240,11 @@ BatteryList.push({
 var List = [];
 List.push({
   Task: "Questionnaire",
-  Parameters: "GAS_001",
+  Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
-  IconName: "GAS",
+  IconName: "PANAS, weekly",
 });
-List.push({
-  Task: "Questionnaire",
-  Parameters: "GDS_004",
-  Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "PANAS_001",
-  Instructions: "Default",
-  IconName: "PANAS",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
+
 BatteryList.push({
   index: 75,
   name: "Music Motion: Weekly Pre",
@@ -1259,27 +1259,15 @@ BatteryList.push({
 var List = [];
 List.push({
   Task: "Questionnaire",
-  Parameters: "GAS_001",
+  Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
-  IconName: "GAS",
+  IconName: "PANAS, weekly",
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "GDS_004",
+  Parameters: "PAES_001",
   Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "PANAS_001",
-  Instructions: "Default",
-  IconName: "PANAS",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
+  IconName: "PAES",
 });
 BatteryList.push({
   index: 76,
@@ -1295,16 +1283,10 @@ BatteryList.push({
 
 var List = [];
 List.push({
-  Task: "Trail Making",
-  Parameters: "TrailMakingA_003",
+  Task: "Questionnaire",
+  Parameters: "CESAM_001",
   Instructions: "Default",
-  IconName: "Trails-A",
-});
-List.push({
-  Task: "Trail Making",
-  Parameters: "TrailMakingB_003",
-  Instructions: "Default",
-  IconName: "Trails-B",
+  IconName: "CESAM",
 });
 List.push({
   Task: "Questionnaire",
@@ -1314,21 +1296,45 @@ List.push({
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "GDS_004",
+  Parameters: "GDS_001",
   Instructions: "Default",
   IconName: "GDS",
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "PANAS_001",
+  Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
-  IconName: "PANAS",
+  IconName: "PANAS, baseline",
 });
 List.push({
   Task: "Questionnaire",
   Parameters: "WEMWBS_001",
   Instructions: "Default",
   IconName: "WEMWBS",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "BERKSYME_001",
+  Instructions: "Default",
+  IconName: "Social",
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "STANFORDSLEEPINESS_001",
+  Instructions: "Default",
+  IconName: "Sleepiness",
+});
+List.push({
+  Task: "EQ5D",
+  Parameters: "EQ5D_001",
+  Instructions: "Default",
+  IconName: "EQ-5D",
 });
 BatteryList.push({
   index: 77,
@@ -1341,26 +1347,6 @@ BatteryList.push({
   Footer: "©NCMLab 2025",
 });
 
-var List = []
-List.push({Task: 'Questionnaire', Parameters: 'CESAM_001', Instructions: 'Default', IconName: 'CESAM'})
-List.push({Task: 'Questionnaire', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'GAS'})
-List.push({Task: 'Questionnaire', Parameters: 'GDS_001', Instructions: 'Default', IconName: 'GDS'})
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_ShortBaseline_001', Instructions: 'Default', IconName: 'PANAS, baseline'})
-List.push({Task: 'Questionnaire', Parameters: 'WEMWBS_001', Instructions: 'Default', IconName: 'WEMWBS'})
-List.push({Task: 'Questionnaire', Parameters: 'UCLA_LONELINESS_001', Instructions: 'Default', IconName: 'Loneliness'})
-List.push({Task: 'Questionnaire', Parameters: 'BERKSYME_001', Instructions: 'Default', IconName: 'Social'})
-List.push({Task: 'Questionnaire', Parameters: 'STANFORDSLEEPINESS_001', Instructions: 'Default', IconName: 'Sleepiness'})
-List.push({Task: 'EQ5D', Parameters: 'EQ5D_001', Instructions: 'Default', IconName: 'EQ-5D'})
-
-BatteryList.push({index: 77, 
-	name:'Music Motion: Post-Study', 
-	description: '',
-	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study -- Post Study</h1>",
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCMLab 2024'
-})
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'Default', IconName: 'Trails A'})

@@ -109,6 +109,7 @@ function Questionnaire_Scoring(data) {
 	{
 		const keys = Object.keys(data.response)
         console.log(keys)
+		console.log(data)
 		//console.log(BreakPoint)
 		for ( var i = 0; i < keys.length; i++ )
 		{
