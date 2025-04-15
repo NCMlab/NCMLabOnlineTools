@@ -7,6 +7,7 @@ jatos.onLoad(function() {
     const battery = jatos_params["Battery"];
     const taskIndex = jatos_params["Taskindex"];
     const session = jatos_params["Session"];
+    const UsageType = jatos_params["UsageType"];
 
     console.log("Hi Mom!");
 
@@ -41,7 +42,18 @@ jatos.onLoad(function() {
 
     const htmlFilePath = 'html/JATOS/'
 
-
+    if ( UsageType == 'SingleTask' ) {
+        jatos.startComponentByTitle("Run Single Task")
+    } else if ( UsageType == 'Battery' ) {
+        jatos.startComponentByTitle("Batteries")
+    } else if ( UsageType == 'Session' ) {
+        jatos.startComponentByTitle("Session Chooser")
+    } else if ( UsageType == 'ALaCarte' ) {
+        jatos.startComponentByTitle("User Choice")
+    } else {
+        jatos.startComponentByTitle("User Choice")
+    }
+/*
     if (taskIndex != null) {
         //window.location.href = htmlFilePath + `single-task.html?taskindex=${taskIndex}` + jatos_params.toString();
         jatos.startComponentByTitle("Run Single Task")
@@ -57,6 +69,7 @@ jatos.onLoad(function() {
         jatos.startComponentByTitle("User Choice")
 
     }
+        */
 });
 
 
