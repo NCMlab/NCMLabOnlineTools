@@ -78,11 +78,15 @@ var enter_fullscreen = {
       show_redo_button: false,
       change_circle_color_only_when_correct: parameters.change_circle_color_only_when_correct,
       prompt: parameters.InstructionsShownWithPractice,
+
       show_countdown_trial_duration: parameters.ShowTimer,
       extensions: [
         {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
       ],
-      finished_button_label: function() {return LabelNames.Finished},
+      first_circle_label: function() {return Instructions.FirstCircleLabel},
+      last_circle_label: function() {return Instructions.LastCircleLabel},
+      finished_button_label: function() {return Instructions.FinishedLabel},
+      countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
     }
   
   var trials = {
@@ -111,7 +115,8 @@ var enter_fullscreen = {
       trial_duration: parameters.Duration,
       first_circle_label: function() {return Instructions.FirstCircleLabel},
       last_circle_label: function() {return Instructions.LastCircleLabel},
-      finished_button_label: function() {return LabelNames.Finished},
+      finished_button_label: function() {return Instructions.FinishedLabel},
+      countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
       extensions: [
         {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
       ],

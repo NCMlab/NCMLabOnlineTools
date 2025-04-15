@@ -14,9 +14,7 @@ function UpdateHeader() {
     //
     // set the header button language
     //console.log(document.getElementById('header-home-button'))
-    console.log("UpDATEHEADER FUNCTION")
-    console.log(LabelNames)
-    
+   
    // window.onload = function() {
         try {
             console.log(document.getElementById('header-home-button'))

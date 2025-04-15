@@ -60,7 +60,8 @@
             console.log(jatos.studySessionData)
             var Language = jatos.studySessionData.Language
             // load the language specific instructions
-            LANG = jatos.studySessionData.Language
+            //LANG = jatos.studySessionData.Language
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language")
             console.log(LANG)
             
             //load general label names
@@ -116,6 +117,7 @@ var jsPsych = initJsPsych({
       console.log(jatos.workerId)
       console.log(jatos.batchSession.getAll())
       UpdateHeader()
+      SetLanguagePulldown()
     })
   </script>
 

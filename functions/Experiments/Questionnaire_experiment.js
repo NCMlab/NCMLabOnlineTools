@@ -25,14 +25,15 @@ var LoadQuestionnaire = {
 var trial02 = {
   type: jsPsychSurvey,
   survey_json:  function() { 
+    
     return Questionnaire.survey_JSON
   },
   description: function() { return Questionnaire.description },
   on_load: function() {
+    console.log(document.getElementById("jspsych-progressbar-container"))
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
   },
   on_finish: function(data) {
-    
     data.trial = "Questionnaire"
     data.response = data.response
     data.QuestionnaireType = Questionnaire.QuestionnaireType

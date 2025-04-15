@@ -208,9 +208,9 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       /**
        * The html for the countdown timer.
        */
-      countdown_timer_html: {
+      countdown_timer_label: {
         type: jspsych.ParameterType.HTML_STRING,
-        default: `<span id="sketchpad-timer"></span> remaining`,
+        default: `remaining`,
       },
       /* Change circle color ONLY when correct or when entering ANY circle
        */
@@ -411,7 +411,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
         this.params.show_countdown_trial_duration &&
         this.params.trial_duration
       ) {
-        timer_html = `<p id="countdown-timer">${this.params.countdown_timer_html}</p>`;
+        timer_html = `<p id="countdown-timer"><span id="sketchpad-timer"></span> ${this.params.countdown_timer_label}</p>`;
       }
 
       let display_html;

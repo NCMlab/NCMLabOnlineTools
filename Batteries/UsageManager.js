@@ -1,8 +1,4 @@
 var timeline = []
-var enter_fullscreen = {
-  type: jsPsychFullscreen,
-  fullscreen_mode: FullScreenMode
-}
 // List of the names of the different tasks
 var TaskNameList = []
 var TaskIconList = []
