@@ -234,6 +234,7 @@ var Welcome = {
 }
 
 // ============== NOTES ==============
+/*
 var notes = {
     type: jsPsychSurvey, 
     pages: [[{
@@ -259,7 +260,7 @@ var if_Notes = {
 var Notes = {
     timeline: [if_Notes]
 }
-
+*/
   // ============== THANK YOU ==============
 var thank_you = {
     type: jsPsychHtmlButtonResponseTouchscreen,

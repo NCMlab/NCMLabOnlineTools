@@ -1,3 +1,7 @@
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
 jatos.onLoad(function() {
     const jatos_params = jatos.urlQueryParameters;
     const battery = jatos_params["Battery"];
@@ -11,7 +15,23 @@ jatos.onLoad(function() {
 
     console.log(jatos_params,battery,taskIndex,session);
     
-   /* var trial0 = {
+    // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+    // Is this worker in the Batch data?
+    JATOSSessionData = jatos.studySessionData
+
+    if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
+    {
+        alert("USAGE MANAGER LINE 59: FIRST TIME")
+        jatos.batchSession.set(jatos.workerId+"_Language", "EN")  // This is the default language
+        jatos.batchSession.set(jatos.workerId, 0);
+        // transfer the language to teh session information
+    }
+    else 
+    {
+        //jatos.batchSession.set(jatos.workerId+"_Language", "EN") 
+        jatos.batchSession.set(jatos.workerId, 0);
+    }
+    /* var trial0 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: "",
         choices: "",
