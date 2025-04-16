@@ -514,13 +514,11 @@ const json = {
  }
 
 
-var EN_IntakeForm_MusicJSON = {}
-EN_IntakeForm_MusicJSON.title = title;
-EN_IntakeForm_MusicJSON.survey_JSON = json;
-EN_IntakeForm_MusicJSON.shortTitle = shortTitle
-EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
-EN_IntakeForm_MusicJSON.Instructions01 = [
-    {
-        'page': '<p class="Instructions">Instructions are written here.'
-    }
-]
+var FR_IntakeForm_MusicJSON = {}
+FR_IntakeForm_MusicJSON.title = title;
+FR_IntakeForm_MusicJSON.survey_JSON = json;
+FR_IntakeForm_MusicJSON.shortTitle = shortTitle
+FR_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
+//FR_IntakeForm_MusicJSON.Instructions01 = [
+//    {        'page': '<p class="Instructions">Instructions are written here.'   }
+//]
