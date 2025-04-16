@@ -61,9 +61,10 @@ FR_panasShortBaselineJSON.title = title
 FR_panasShortBaselineJSON.shortTitle = shortTitle
 FR_panasShortBaselineJSON.survey_JSON = survey_JSON
 //FR_panasShortBaselineJSON.description = instructions
-FR_panasShortBaselineJSON.QuestionnaireType = 'likert'
+FR_panasShortBaselineJSON.QuestionnaireType = 'matrix'
 FR_panasShortBaselineJSON.references = references
 FR_panasShortBaselineJSON.notes = notes
+
 
 
 
