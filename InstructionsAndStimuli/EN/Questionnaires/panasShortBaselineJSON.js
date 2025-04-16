@@ -12,7 +12,7 @@ var survey_JSON =
                 name: 'panas',
                 title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way the extent you have felt this way this over the past few days.',
                 alternateRows: true,
-                isAllRowRequired: false,
+                isAllRowRequired: true,
                 
                 rows: [
                     //{value: 'panas01', text: "Interested"},

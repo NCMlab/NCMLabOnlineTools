@@ -4,6 +4,7 @@ var shortTitle = 'PANAS, baseline'
 var survey_JSON = 
     { 
         showQuestionNumbers: "off",
+        showCompletedPage: false,
         elements: [
             {
                 type: 'matrix',
@@ -55,14 +56,14 @@ var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development a
 
 var notes = ""
 
-var FR_panasJSON = {}
-FR_panasJSON.title = title
-FR_panasJSON.shortTitle = shortTitle
-FR_panasJSON.survey_JSON = survey_JSON
-FR_panasJSON.description = instructions
-FR_panasJSON.QuestionnaireType = 'likert'
-FR_panasJSON.references = references
-FR_panasJSON.notes = notes
+var FR_panasShortBaselineJSON = {}
+FR_panasShortBaselineJSON.title = title
+FR_panasShortBaselineJSON.shortTitle = shortTitle
+FR_panasShortBaselineJSON.survey_JSON = survey_JSON
+//FR_panasShortBaselineJSON.description = instructions
+FR_panasShortBaselineJSON.QuestionnaireType = 'likert'
+FR_panasShortBaselineJSON.references = references
+FR_paFR_panasShortBaselineJSONasJSON.notes = notes
 
 
 
