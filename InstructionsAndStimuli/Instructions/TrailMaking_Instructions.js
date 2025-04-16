@@ -92,7 +92,7 @@ FR_InstructionsB.FirstCircleLabel = "commencer"
 FR_InstructionsB.LastCircleLabel = "fin"
 FR_InstructionsB.FinishedLabel = "Fini"
 FR_InstructionsB.TimeRemainingLabel = "restant"
-add('FR_Instructions_Default', function(){ Instructions = FR_InstructionsB});
+add('FR_Instructions_DefaultB', function(){ Instructions = FR_InstructionsB});
 // ==================================================================================
 
 /*
