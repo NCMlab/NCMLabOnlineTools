@@ -5,12 +5,14 @@ var shortTitle = 'GDS'
 var survey_JSON = 
     { 
         showQuestionNumbers: "off",
+        showCompletedPage: false,
         elements: [
             { 
                 type: 'matrix',
                 name: 'gds',
                 title: 'Cocher la réponse qui convient',
                 alternateRows: true,
+                className: "gds-matrix",
                 isAllRowRequired: true,
                 rows: [
                     {value: 'gds01', text: "Êtes-vous dans l'ensemble satisfait de votre vie ?"},
@@ -54,6 +56,6 @@ FR_gdsJSON.title = title
 FR_gdsJSON.shortTitle = shortTitle
 FR_gdsJSON.survey_JSON = survey_JSON
 //FR_gdsJSON.description = instructions
-FR_gdsJSON.QuestionnaireType = 'likert'
+FR_gdsJSON.QuestionnaireType = 'matrix'
 FR_gdsJSON.references = references
 FR_gdsJSON.notes = notes
