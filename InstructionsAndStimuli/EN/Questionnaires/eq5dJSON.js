@@ -91,4 +91,3 @@ EN_eq5dJSON.QuestionnaireType = 'radiogroup'
 EN_eq5dJSON.references = "references"
 EN_eq5dJSON.notes = ''
 
-add('EN_eq5dJSON', function(){ Questionnaire = EN_eq5dJSON});

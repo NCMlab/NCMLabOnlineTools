@@ -258,7 +258,18 @@ var PAES_001 = {
     ShowInstructions: false,  
 }
 
+var EQ5D_001 = { 
+    questionnaire: ['eq5dJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 add('AES_001', function(){ parameters = AES_001});
+add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
 add('STAI_T_001', function(){ parameters = STAI_T_001});

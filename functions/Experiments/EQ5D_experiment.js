@@ -1,5 +1,25 @@
 var timeline = []
 
+var Questionnaire = []
+var CriteriaToUse = 0
+
+var LoadQuestionnaire = {
+  type: jsPsychCallFunction,  
+  func: function() {
+    console.log(parameters)
+    text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
+    console.log(parameters)
+    console.log(text)
+    eval(text)
+
+    console.log(Questionnaire)
+    if ( typeof Questionnaire.survey_JSON !== 'undefined' )
+    { console.log('>>>> JSON <<<<<')}
+    if ( typeof Questionnaire.pages !== 'undefined' )
+      { console.log('>>>> PAGES <<<<<<')}
+
+  }
+}
 
 
 var VAStrial = {
@@ -28,6 +48,7 @@ var VAStrial = {
 var SURVEYtrial = {
     type: jsPsychSurvey,
     survey_json:  function() { 
+      
       return Questionnaire.survey_JSON
     },
     description: function() { return Questionnaire.description },
@@ -55,6 +76,7 @@ var SURVEYtrial = {
     }
   }
 timeline.push(Welcome)
+timeline.push(LoadQuestionnaire)
 timeline.push(SURVEYtrial)
 timeline.push(VAStrial)
 timeline.push(Notes)
