@@ -85,7 +85,7 @@ var trial = {
       return LabelNames.Submit
     },
     show_question_numbers: 'onPage',
-    description: function() { return Questionnaire.description },
+    //description: function() { return Questionnaire.description },
     on_load: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
       console.log("Hello World")

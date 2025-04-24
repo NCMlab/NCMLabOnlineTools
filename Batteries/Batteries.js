@@ -1198,7 +1198,7 @@ List.push({
 });
 List.push({
   Task: "Questionnaire",
-  Parameters: "PANAS_001",
+  Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS",
 });

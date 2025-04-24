@@ -234,19 +234,14 @@ var Welcome = {
 }
 
 // ============== NOTES ==============
-/*
+
 var notes = {
-    type: jsPsychSurvey, 
-    pages: [[{
-        type: 'text',
-        prompt: function() { return LabelNames.NoteInputBox },
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-    }]],
-    on_finish: function(data)
-        { data.trial = "Notes" },
-}
+    type: jsPsychSurveyText,
+    questions: [
+      {prompt: function() { return LabelNames.NoteInputBox }},
+    ],
+    randomize_question_order: true
+  };
 
 var if_Notes = {
     timeline: [notes],
@@ -260,7 +255,7 @@ var if_Notes = {
 var Notes = {
     timeline: [if_Notes]
 }
-*/
+
   // ============== THANK YOU ==============
 var thank_you = {
     type: jsPsychHtmlButtonResponseTouchscreen,
