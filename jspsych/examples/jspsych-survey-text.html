@@ -2,12 +2,15 @@
 <html>
   <head>
     <script src="../dist/jspsych.js"></script>
+    <script src="../dist/plugin-call-function.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="../dist/plugin-survey-text.js"></script>
     <link rel="stylesheet" href="../dist/jspsych.css">
   </head>
   <body></body>
   <script>
-
+    LabelNames = {}
+    LabelNames.NoteInputBox = "JASON"
     var jsPsych = initJsPsych({
       on_finish: function() {
         jsPsych.data.displayData();
@@ -17,8 +20,7 @@
     var survey_page1 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'How old are you?', columns: 3, required: true, name: 'Age'},
-        {prompt: 'Where were you born?', placeholder: 'City, State/Province, Country', columns: 50, name: 'BirthLocation'}
+        {prompt: 'How old are you?', columns: 80, rows: 10, required: true, name: 'Age'},
       ],
       randomize_question_order: true
     };

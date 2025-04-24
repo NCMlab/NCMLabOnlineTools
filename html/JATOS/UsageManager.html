@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <script>
-//http://localhost:9000/publix/MvEwRA6kh0q?Battery=1&ID=987654
-//https://jatos.ncmlab.ca/publix/pP0UjrbsZdt?Battery=1&ID=987654
-</script>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <meta name="description" content="jsPsych Attention Network Test">
@@ -26,43 +22,7 @@
     <script src="config/General_Setup.js"></script>
     <script src="Batteries/Batteries.js"></script>
     <script src="Batteries/UsageManager.js"></script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
   </body>
 
-
-  <script>
-      jatos.onLoad(() => {
-        console.log("Hello World in in MAIN SCRIPT")
-        console.log(jatos.studySessionData)
-      });
-var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    on_trial_start: function() {
-      //http://127.0.0.1:9000/publix/fNTRhuguK1x
-      // Add jatos info to the data file
-      URLParameters = jatos.urlQueryParameters
-      
-      jsPsych.data.addProperties({Battery: URLParameters.Battery});
-      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-    },
-  });
-
-  jatos.onLoad(() => {
-      var JATOSID = jatos.workerId;
-      console.log(jatos)
-      console.log(JATOSID)
-      var resultsData = {'name':'JASON'};
-      URLParameters = jatos.urlQueryParameters
-      //alert(URLParameters.Battery+', '+URLParameters.Usage)
-      jsPsych.data.addProperties({Battery: URLParameters.Battery});
-      jsPsych.data.addProperties({Usage: URLParameters.Usage});
-      BatteryNumber = URLParameters.Battery
-      console.log(jsPsych.data)
-      jatos.addJatosIds(resultsData);
-      jsPsych.run(timeline);
-    });
-  </script>
 </html>
+

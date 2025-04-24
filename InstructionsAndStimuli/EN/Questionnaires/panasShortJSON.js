@@ -10,7 +10,7 @@ var survey_JSON =
             { 
                 type: 'matrix',
                 name: 'panas',
-                title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
+                //title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
                 alternateRows: true,
                 isAllRowRequired: false,
                 
