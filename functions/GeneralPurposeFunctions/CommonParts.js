@@ -238,7 +238,10 @@ var Welcome = {
 var notes = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: function() { return LabelNames.NoteInputBox }},
+      {prompt: function() { return LabelNames.NoteInputBox },
+      columns: 80,
+      rows: 20,
+    },
     ],
     randomize_question_order: true
   };
