@@ -22,7 +22,7 @@ jatos.onLoad(function() {
 
     if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
     {
-        alert("USAGE MANAGER LINE 59: FIRST TIME")
+        //alert("USAGE MANAGER LINE 59: FIRST TIME")
         jatos.batchSession.set(jatos.workerId+"_Language", "EN")  // This is the default language
         jatos.batchSession.set(jatos.workerId, 0);
         // transfer the language to teh session information
