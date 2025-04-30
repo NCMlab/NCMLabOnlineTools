@@ -193,7 +193,7 @@
     line-height: var(--sjs-font-size, 16px);
     font-size: calc(0.75*(var(--sjs-font-size, 16px)));
     font-weight: 600;
-    text-align: left;
+    text-align: center;
     color: var(--sjs-special-red, var(--red, #e60a3e));
     white-space: normal;
     width: 100%;
@@ -491,7 +491,7 @@
     width: var(--sjs-base-unit, var(--base-unit, 8px));
     height: var(--sjs-base-unit, var(--base-unit, 8px));
     border-radius: 50%;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(153, 6, 6, 0);
     transition: background-color var(--sjs-transition-duration, 150ms)
 }
 
