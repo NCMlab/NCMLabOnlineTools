@@ -1,58 +1,5 @@
-/* Container holding jsPsych content */
-.jspsych-display-element {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
 
 
-.jspsych-content-wrapper {
-    display: flex;
-    margin: auto;
-    flex: 1 1 100%;
-    width: 100%;
-}
-
-.jspsych-content {
-    max-width: 95%;
-    /* this is mainly an IE 10-11 fix */
-    text-align: center;
-    margin: auto;
-    /* this is for overflowing content */
-}
-/* fonts and type */
-.jspsych-display-element {
-    font-family: "Open Sans", "Arial", sans-serif;
-    font-size: 18px;
-    line-height: 1.6em;
-}
-/* borrowing Bootstrap style for btn elements, but combining styles a bit */
-.jspsych-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    margin: 4px;
-    background-color: #ffffff;
-    border-radius: 6px;
-    border: none;
-    transition: background 0.3s ease, transform 0.1s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.jspsych-btn img {
-    height: 100px;
-    width: 100px;
-}
-
-.jspsych-btn img {
-    height: 100px;
-    width: 100px;
-}
-/* ================================================== */
-/* FROM BOOTSTRAP */
 :root {
     --font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
@@ -193,7 +140,7 @@
     line-height: var(--sjs-font-size, 16px);
     font-size: calc(0.75*(var(--sjs-font-size, 16px)));
     font-weight: 600;
-    text-align: left;
+    text-align: center;
     color: var(--sjs-special-red, var(--red, #e60a3e));
     white-space: normal;
     width: 100%;
@@ -491,15 +438,15 @@
     width: var(--sjs-base-unit, var(--base-unit, 8px));
     height: var(--sjs-base-unit, var(--base-unit, 8px));
     border-radius: 50%;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(153, 6, 6, 0);
     transition: background-color var(--sjs-transition-duration, 150ms)
 }
 
 .sd-radio--checked .sd-radio__decorator:after {
     content: " ";
     display: block;
-    width: var(--sjs-base-unit, var(--base-unit, 18px));
-    height: var(--sjs-base-unit, var(--base-unit, 18px));
+    width: var(--sjs-base-unit, var(--base-unit, 8px));
+    height: var(--sjs-base-unit, var(--base-unit, 8px));
     border-radius: 50%;
     background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff))
 }

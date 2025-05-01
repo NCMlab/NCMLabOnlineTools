@@ -267,7 +267,17 @@ var EQ5D_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+var PANAS_TEST = { 
+    questionnaire: ['panas'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 
+add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});

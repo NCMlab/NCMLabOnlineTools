@@ -1361,3 +1361,18 @@ BatteryList.push({index: 78,
 	Footer: '©NCMLab 2024'
 })
 
+
+// ============ MUSIC STUDY -- TRAILS ==================
+var List = []
+List.push({Task: 'Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
+
+BatteryList.push({index: 71234, 
+	name:'Music Motion: Trails', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024'
+})
+
