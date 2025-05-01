@@ -74,10 +74,10 @@ var SetupBattery = {
           console.log("FIRST TIME ")
           // Add things to the jatos session data
 
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
+          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList} 
           // add the ID to return to the JATOS battery
-          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-          JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+          //JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+          //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
@@ -87,10 +87,10 @@ var SetupBattery = {
           console.log("RESTART the BROSWER")
           // Add things to the jatos session data
           var currentIndex = jatos.batchSession.get(jatos.workerId)
-          JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList} 
+          JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList} 
           // add the ID to return to the JATOS battery
-          JATOSSessionData.BatteryHtmlID = BatteryHtmlID
-          JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
+          //JATOSSessionData.BatteryHtmlID = BatteryHtmlID
+          //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 

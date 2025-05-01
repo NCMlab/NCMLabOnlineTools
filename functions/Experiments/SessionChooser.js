@@ -8,18 +8,28 @@ var ComponentIDList = []
 var ComponentParameterLists = []
 var DisplayBatteryInstructionsFlag
 var BatteryInstructions
-var TaskList = []
+var SessionList = []
 var Choices = []
-var BatteryList = []
+var SessionsBatteryList = []
 
 var SetupChoices = {
     type: jsPsychCallFunction,
     func: function() {
+        // read the data for this trial
+        var all_data = jsPsych.data.get();
+        CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
+        console.log(CurrentBattery)
+        // find the battery selected and extract its list of components
+        //var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+        ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
+        console.log(ParameterList)
+        console.log(LANG)
+        pseudoSwitch(LANG+"_"+ParameterList)
         console.log(parameters)
         for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
-            BatteryList.push( parameters[0].List[i].battery )
+            SessionsBatteryList.push( parameters[0].List[i].battery )
         }
     }
 }
@@ -60,10 +70,15 @@ var PostChoice = {
         // Map the choices to the Batteries
         var Battery 
         // Note: the 3 in the next line refers to the third component in the timeline
-        Battery = BatteryList[Choices.indexOf(Choices[data.trials[3].response])]
+        Battery = SessionsBatteryList[Choices.indexOf(Choices[data.trials[3].response])]
+        console.log(SessionsBatteryList)
+        console.log(Choices)
+        console.log(Choices[data.trials[3].response])
+        console.log(Battery)
         var BasePath = window.location.origin +"/publix/" // "http://127.0.0.1:9000/publix/"
-        var URL = BasePath + jatos.studyCode+"?Battery="+Battery+"&Usage=Battery"
-        
+        var URL = BasePath + jatos.studyCode+"?Battery="+Battery+"&UsageType=Battery"
+        alert("Going to URL: "+URL)
+        console.log(URL)
         jatos.endStudyAndRedirect(URL)
         
         //window.open(URL, '_self')

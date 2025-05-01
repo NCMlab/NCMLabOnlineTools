@@ -41,7 +41,7 @@ jatos.onLoad(function() {
     }*/
 
     const htmlFilePath = 'html/JATOS/'
-
+    alert("UsageType= "+UsageType)
     if ( UsageType == 'SingleTask' ) {
         jatos.startComponentByTitle("Run Single Task")
     } else if ( UsageType == 'Battery' ) {
