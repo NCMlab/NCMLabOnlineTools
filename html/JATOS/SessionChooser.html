@@ -46,6 +46,7 @@
     <!--<script src="jspsych_addons/plugin-survey.js"></script>-->
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
@@ -62,8 +63,8 @@
       var parameters = 'empty'
         jatos.onLoad(() => {
           console.log(jatos.studySessionData)  
-          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
-          console.log(parameters)
+          //parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          //console.log(parameters)
             
             var Language = jatos.studySessionData.Language
             // load the language specific instructions
