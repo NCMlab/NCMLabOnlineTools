@@ -23,7 +23,7 @@ function UpdateHeader() {
             //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
             //document.getElementById('header-quit-button').textContent = LabelNames.Quit;
             //document.getElementById('header-skip-button').textContent = LabelNames.Skip;
-            //document.getElementById('header-info-button').style.visibility = "hidden"
+            document.getElementById('header-info-button').style.visibility = "hidden"
             
             //document.getElementById('header-home-button').style.visibility = "hidden"
             document.getElementById('header-quit-button').style.visibility = "hidden"
