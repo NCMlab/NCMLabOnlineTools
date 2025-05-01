@@ -77,7 +77,6 @@ var PostChoice = {
         console.log(Battery)
         var BasePath = window.location.origin +"/publix/" // "http://127.0.0.1:9000/publix/"
         var URL = BasePath + jatos.studyCode+"?Battery="+Battery+"&UsageType=Battery"
-        alert("Going to URL: "+URL)
         console.log(URL)
         jatos.endStudyAndRedirect(URL)
         

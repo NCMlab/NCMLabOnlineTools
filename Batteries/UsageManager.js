@@ -9,8 +9,6 @@ jatos.onLoad(function() {
     const session = jatos_params["Session"];
     const UsageType = jatos_params["UsageType"];
 
-    console.log("Hi Mom!");
-
     console.log("Current URL:", window.location.href);
     console.log("Current URL jatos_params:", window.location.search);
 
@@ -41,7 +39,6 @@ jatos.onLoad(function() {
     }*/
 
     const htmlFilePath = 'html/JATOS/'
-    alert("UsageType= "+UsageType)
     if ( UsageType == 'SingleTask' ) {
         jatos.startComponentByTitle("Run Single Task")
     } else if ( UsageType == 'Battery' ) {
