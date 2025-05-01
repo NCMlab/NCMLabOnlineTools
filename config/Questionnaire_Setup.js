@@ -284,7 +284,6 @@ add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_001', function(){ parameters = PANAS_001});
 add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
-add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
 add('BERKSYME_001', function(){ parameters = BERKSYME_001});
 add('STANFORDSLEEPINESS_001', function(){ parameters = STANFORDSLEEPINESS_001});
 add('CESAM_001', function(){ parameters = CESAM_001});

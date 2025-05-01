@@ -47,7 +47,7 @@ const json = {
           inputType: "number",
           min: 0,
           max: 300,
-          defaultValue: 0,
+          defaultValue: '',
           isRequired: true
         },
         {
@@ -68,7 +68,7 @@ const json = {
           inputType: "number",
           min: 0,
           max: 1000,
-          defaultValue: 0,
+          defaultValue: '',
           isRequired: true
         },
         {
