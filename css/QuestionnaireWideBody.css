@@ -49,3 +49,7 @@ tbody {
   height: calc(7 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   border-radius: 5%;
 }
+
+.sd-error {
+  text-align: center;
+}
