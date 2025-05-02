@@ -1355,7 +1355,7 @@ BatteryList.push({index: 78,
 	name:'Music Motion: Trails', 
 	description: '',
 	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study</h1>",
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024'

@@ -14,11 +14,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" />
       */
       </script>
-    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'> 
     
-    <link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <link rel="stylesheet" type='text/css' href='css/QuestionnaireWideBody.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
@@ -72,6 +72,7 @@
   </head>    
   <body>
     <div id="headerButtons"></div>
+    <div id="footerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -140,77 +141,72 @@
             console.log("Script loaded successfully", data);
             // POST PROMISE
             // Once the promise finished loding the current questionnaire then continue.
-            
-
-            var setup = []
-            var TrialCount = 1;
-            var jsPsych = initJsPsych({
-                display_element: 'jspsych-target',
-                show_progress_bar: true,    
-                on_trial_start: function() {
-                  //http://127.0.0.1:9000/publix/fNTRhuguK1x
-            //      console.log(jatos.urlQueryParameters);
-                  var input = jatos.urlQueryParameters;
-                  console.log(TrialCount)
-                  TrialCount += 1
-                  // Add jatos info to the data file
-                  jsPsych.data.addProperties({assignedURLID: input.a});
-                  jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
-                  jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
-                  jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
-                  jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-                },
-                on_finish: function() {
-                  console.log("SUBMITTING DATA")
-                  jatos.submitResultData(jsPsych.data.get().json())
-                  if ( SaveLocalFile ) {
-                    jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
-                  }    
-                  // update session data
-                  JATOSSessionData = jatos.studySessionData
-                  JATOSSessionData.CurrentIndex += 1
-                  jatos.studySessionData = JATOSSessionData
-                  // Update the Batch Index
-                  // find the count 
-                  var c = jatos.batchSession.get(jatos.workerId)
-                  
-                  // update it
-                  jatos.batchSession.set(jatos.workerId, c + 1);
-                              
-                  // Go back to usage management 
-                  console.log(jatos.studySessionData)
-                  console.log(JATOSSessionData.CurrentIndex)
-                  //alert("Yo")
-                  whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
-                }
-              });
-              jatos.onLoad(() => {
-                  var JATOSID = jatos.workerId;
-                  console.log(jatos)
-                  console.log(JATOSID)
-                  var resultsData = {'name':'JASON'};
-                  jatos.addJatosIds(resultsData);
-                  jsPsych.run(timeline);
-                  
-                });
-                
-                    
           })
-          .catch( err => {
-            console.error(err);
-          });
-      })
+        })
+
+      var setup = []
+      var TrialCount = 1;
+      var jsPsych = initJsPsych({
+          display_element: 'jspsych-target',
+          show_progress_bar: true,    
+          on_trial_start: function() {
+            //http://127.0.0.1:9000/publix/fNTRhuguK1x
+      //      console.log(jatos.urlQueryParameters);
+            var input = jatos.urlQueryParameters;
+            console.log(TrialCount)
+            TrialCount += 1
+            // Add jatos info to the data file
+            jsPsych.data.addProperties({assignedURLID: input.a});
+            jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+            jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+            jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+            jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+          },
+          on_finish: function() {
+            console.log("SUBMITTING DATA")
+            jatos.submitResultData(jsPsych.data.get().json())
+            if ( SaveLocalFile ) {
+              jsPsych.data.get().localSave('csv','ClockDrawing_data.csv');
+            }    
+            // update session data
+            JATOSSessionData = jatos.studySessionData
+            JATOSSessionData.CurrentIndex += 1
+            jatos.studySessionData = JATOSSessionData
+            // Update the Batch Index
+            // find the count 
+            var c = jatos.batchSession.get(jatos.workerId)
+            
+            // update it
+            jatos.batchSession.set(jatos.workerId, c + 1);
+                        
+            // Go back to usage management 
+            console.log(jatos.studySessionData)
+            console.log(JATOSSessionData.CurrentIndex)
+            //alert("Yo")
+            whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+          }
+        });
+      jatos.onLoad(() => {
+        var JATOSID = jatos.workerId;
+        console.log(jatos)
+        console.log(JATOSID)
+        var resultsData = {'name':'JASON'};
+        jatos.addJatosIds(resultsData);
+        jsPsych.run(timeline);
+      });
     </script>
 <div id="footerText"></div>
 <script>
   jatos.onLoad(() => {
     // update the header button labels
-    console.log("GREETINGS FROM QUESTIONAIRE TASK")
-      console.log(jatos.workerId)
-      console.log(jatos.batchSession.getAll())
+    
       UpdateHeader()
-      SetLanguagePulldown()
-  })
+      //https://stackoverflow.com/questions/26107125/cannot-read-property-addeventlistener-of-null
+        
+        //SetLanguagePulldown() 
+      //}
+    }
+  )
 </script>
 
 </body>

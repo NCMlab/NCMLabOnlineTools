@@ -17,8 +17,10 @@ function UpdateHeader() {
    
    // window.onload = function() {
         try {
-            console.log(document.getElementById('header-home-button'))
-            document.getElementById('header-home-button').textContent = LabelNames.Home;
+            
+                console.log(document.getElementById('header-home-button'))
+                document.getElementById('header-home-button').textContent = LabelNames.Home;
+            
             //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
             //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
             //document.getElementById('header-quit-button').textContent = LabelNames.Quit;
