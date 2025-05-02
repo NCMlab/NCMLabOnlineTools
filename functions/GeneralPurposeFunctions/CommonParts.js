@@ -18,8 +18,8 @@ function UpdateHeader() {
    // window.onload = function() {
         try {
             
-                console.log(document.getElementById('header-home-button'))
-                document.getElementById('header-home-button').textContent = LabelNames.Home;
+            console.log(document.getElementById('header-home-button'))
+            document.getElementById('header-home-button').textContent = LabelNames.Home;
             
             //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
             //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
@@ -51,12 +51,12 @@ function SetLanguagePulldown() {
         console.log("LANGUAGE IS SET TO: "+LangIsSetTo) 
         console.log("Current worker is: "+jatos.workerId)
         console.log(jatos.batchSession.getAll())
-        let elem = document.getElementById('LanguageSelectPulldown')
+        var elem = document.getElementById('LanguageSelectPulldown')
         console.log(elem)
         console.log(elem.value)
         elem.value = LangIsSetTo
         console.log(elem.value)
-   // }
+    //}
 }
 // ============== INITIAL MICROPHONE IF NEEDED ================
 
