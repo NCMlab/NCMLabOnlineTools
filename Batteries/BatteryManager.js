@@ -253,7 +253,7 @@ var trial2 = {
 // The first trial is needed to get the data that jatos has added. Adding data in
 // jspsych adds data to all trials. So if no trials have occured there is nowhere to add data.
   // Once the data is added, then it can be read and worked with.  
-  timeline.push(UpdateHeaderCall)  
+  
   timeline.push(trial0)
 timeline.push(if_node_BatteryInstructions) //<< ONLY KEEP THIS ONE
 timeline.push(SetupBattery)

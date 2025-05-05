@@ -7,6 +7,7 @@ var Results
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
+    console.log(parameters)
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     console.log(parameters)
     console.log(text)

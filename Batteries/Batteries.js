@@ -1159,6 +1159,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 
 // ============ MUSIC STUDY -- INTAKE  ==================
 var List = []
+List.push({Task: 'TestQuestJATOS', Parameters: 'GAS_001', Instructions: 'Default', IconName: 'Music Intake'})
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
 BatteryList.push({index: 73, 
 	name:'Music Motion: Intake', 

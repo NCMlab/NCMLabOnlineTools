@@ -9,7 +9,7 @@ var UpdateHeaderCall = {
   }
   
 
-function UpdateHeader() {
+function OLDUpdateHeader() {
     //hide  the information button for now
     //
     // set the header button language
@@ -20,11 +20,10 @@ function UpdateHeader() {
             
             console.log(document.getElementById('header-home-button'))
             document.getElementById('header-home-button').textContent = LabelNames.Home;
-            
-            //document.getElementById('header-restart-button').textContent = LabelNames.Restart;
-            //document.getElementById('header-stop-button').textContent = LabelNames.Stop;
-            //document.getElementById('header-quit-button').textContent = LabelNames.Quit;
-            //document.getElementById('header-skip-button').textContent = LabelNames.Skip;
+            document.getElementById('header-restart-button').textContent = LabelNames.Restart;
+            document.getElementById('header-stop-button').textContent = LabelNames.Stop;
+            document.getElementById('header-quit-button').textContent = LabelNames.Quit;
+            document.getElementById('header-skip-button').textContent = LabelNames.Skip;
             //document.getElementById('header-info-button').style.visibility = "hidden"
             
             //document.getElementById('header-home-button').style.visibility = "hidden"
@@ -58,6 +57,16 @@ function SetLanguagePulldown() {
         console.log(elem.value)
     //}
 }
+function GetLanguagePulldown() {
+    //window.onload = function() {
+        var elem = document.getElementById('LanguageSelectPulldown')
+        console.log(elem)
+        console.log(elem.value)
+
+    //}
+}
+
+
 // ============== INITIAL MICROPHONE IF NEEDED ================
 
 
