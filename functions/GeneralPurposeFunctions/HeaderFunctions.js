@@ -18,6 +18,7 @@ function UpdateHeader() {
             
             // set the language pulldown button             
             var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
+            
             //jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
             var elem = document.getElementById('LanguageSelectPulldown')
             elem.value = LangIsSetTo
