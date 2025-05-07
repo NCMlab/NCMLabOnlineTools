@@ -185,6 +185,16 @@ var MusicDemographics_001 = {
     ShowInstructions: false,
  }
 
+ var MusicEnterName_001 = { 
+    questionnaire: ['EnterName_MusicJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+
 
 var UCLA_LONELINESS_001 = { 
     questionnaire: ['UCLAlonelinessJSON'], 
@@ -303,4 +313,6 @@ add('PAES_001', function(){ parameters = PAES_001});
 
 add('PANAS_ShortWeekly_001', function(){ parameters = PANAS_ShortWeekly_001});
 add('PANAS_ShortBaseline_001', function(){ parameters = PANAS_ShortBaseline_001});
+
+add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
 

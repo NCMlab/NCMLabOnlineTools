@@ -1156,6 +1156,17 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		Footer: '©NCMLab 2024'
 	})
 
+  var List = []  
+  List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'Music Intake'})
+  BatteryList.push({index: 72, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Enter Name",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024'
+	})
 
 // ============ MUSIC STUDY -- INTAKE  ==================
 var List = []

@@ -2,6 +2,8 @@
 var parameters001 = []
 // =======================================
 var List = []
+
+List.push({name: 'Enter Name', battery: '72'})
 List.push({name: 'Intake', battery: '73'})
 List.push({name: 'Baseline', battery: '74'})
 List.push({name: 'Trails', battery: '78'})
