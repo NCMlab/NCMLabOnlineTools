@@ -212,7 +212,7 @@ function setLanguage(id, val) {
 function LanguageSelection(sel) {
   console.log(jatos.workerId)
   jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
-  alert(sel.options[sel.selectedIndex].text);
+  //alert(sel.options[sel.selectedIndex].text);
 
 }
 
