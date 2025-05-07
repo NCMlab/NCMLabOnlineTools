@@ -11,7 +11,7 @@ const json = {
    showCompletedPage: false,
    pages: 
    [
-    {
+    /*{
       name: "Name",
       title: "Name",
       
@@ -24,7 +24,7 @@ const json = {
           textbox_rows: 1,
         }
       ]
-    },
+    },*/
     {      
       name: "Demographic Information",
       title: "Demographic Information",

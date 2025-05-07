@@ -128,6 +128,11 @@ var SpecialtyScoring = {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
     
     switch ( data.trials[0].shortTitle ) {
+      case 'FirstName':
+        // This is here to have a language independent location to store the first name of a participant
+        {
+          Results.AllResults['FirstName'] = data.trials[0].response['Name']
+        }
       case 'CESAM':
         {
           console.log(data)

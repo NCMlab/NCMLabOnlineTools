@@ -17,6 +17,8 @@ jatos.onLoad(function() {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
     // Is this worker in the Batch data?
     JATOSSessionData = jatos.studySessionData
+    console.log(JATOSSessionData)
+
 
     if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )) 
     {
@@ -37,7 +39,7 @@ jatos.onLoad(function() {
         trial_duration: 10
         
     }*/
-
+    
     const htmlFilePath = 'html/JATOS/'
     if ( UsageType == 'SingleTask' ) {
         jatos.startComponentByTitle("Run Single Task")

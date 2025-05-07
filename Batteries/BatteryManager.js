@@ -58,6 +58,7 @@ var SetupBattery = {
       console.log(TaskIconList)
       // Check the session data to see if it is empty, if so add to it. If not, leave it alone
       JATOSSessionData = jatos.studySessionData
+      
       // Check to see if this worker is in the Batch data. It may be that the worker closed their 
       // session and is trying to restart it.
       console.log(jatos.batchSession.get(jatos.workerId))
@@ -73,12 +74,13 @@ var SetupBattery = {
         {
           console.log("FIRST TIME ")
           // Add things to the jatos session data
-
-          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList} 
+          //JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList:InstructionList, TaskIconList: TaskIconList}
+          JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
           // add the ID to return to the JATOS battery
           //JATOSSessionData.BatteryHtmlID = BatteryHtmlID
           //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
+          JATOSSessionData.BatteryName = CurrentBattery.name
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
       }
@@ -87,11 +89,12 @@ var SetupBattery = {
           console.log("RESTART the BROSWER")
           // Add things to the jatos session data
           var currentIndex = jatos.batchSession.get(jatos.workerId)
-          JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList} 
+          JATOSSessionData = {CurrentIndex: currentIndex, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
           // add the ID to return to the JATOS battery
           //JATOSSessionData.BatteryHtmlID = BatteryHtmlID
           //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
+          JATOSSessionData.BatteryName = CurrentBattery.name
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
       }
@@ -235,7 +238,7 @@ var trial2 = {
    var CheckForBatteryCompletion = {
     type: jsPsychCallFunction,
     func: function(data) {
-      
+      console.log(JATOSSessionData)
       if ( JATOSSessionData.CurrentIndex >= JATOSSessionData.TaskNameList.length )
       {
           console.log("FINISHED")
