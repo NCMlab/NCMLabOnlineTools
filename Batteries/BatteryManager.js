@@ -247,8 +247,14 @@ var trial2 = {
           //console.log(BreakPoint)
           // Once the battery is completed, reset the batch data so it can be completed again
           jatos.batchSession.set(jatos.workerId, 0);
-          window.open('https://www.uottawa.ca','_self')
-          //jatos.endStudy()
+          //console.log(jatos)
+          //console.log(BREAK)
+          //console.log(window.location)
+          //console.log(BREAK)
+          //window.open(window.location.origin+"../../html/JATOS/EndOfStudyPage.html",'_self')
+          
+          //window.open('https://www.uottawa.ca','_self')
+          jatos.endStudy()
           
       }
     }
