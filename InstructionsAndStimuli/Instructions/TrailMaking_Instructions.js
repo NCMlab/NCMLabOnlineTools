@@ -23,7 +23,7 @@ EN_Instructions_DefaultB.PracticePrompt = [{'page':'First, you will perform a pr
 EN_Instructions_DefaultB.RealTaskPrompt = [{'page':'Press <b>Next</b> to begin the task.'}];
 
 EN_Instructions_DefaultB.Instructions = [
-    {'page': 'For this task you will see  numbers and letters in circles. Please, draw a line switching in order between numbers and lettters. Start at number 1, then go to lettter A, then go to number 2, and then the next letter B, and so on. Continue in order, until you reach the letter labeled end.'},
+    {'page': 'For this task you will see  numbers and letters in circles. Please, draw a line switching in order between numbers and letters. Start at number 1, then go to letter A, then go to number 2, and then the next letter B, and so on. Continue in order, until you reach the letter labeled end.'},
     {'page': 'Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}   
 ] 
 EN_Instructions_DefaultB.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
@@ -46,7 +46,7 @@ EN_Instructions_Demo.Instructions = [
 EN_Instructions_Demo.InstructionsShownWithPractice = 'Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle'
 
 EN_Instructions_Demo.InstructionsB = [
-    {'page': 'For this task you will see  numbers and letters in circles. Please, draw a line switching in order between numbers and lettters. Start at number 1, then go to lettter A, then go to number 2, and then the next letter B, and so on. Continue in order, until you reach the letter labeled end.'},
+    {'page': 'For this task you will see  numbers and letters in circles. Please, draw a line switching in order between numbers and letters. Start at number 1, then go to letter A, then go to number 2, and then the next letter B, and so on. Continue in order, until you reach the letter labeled end.'},
     {'page': 'Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'}   
 ] 
 EN_Instructions_Demo.InstructionsShownWithPracticeB = 'Begin at number 1 and draw a line from 1 to A, A to 2, 2 to B and so on, in order, until you reach the letter labeled end.<br/>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle.'
