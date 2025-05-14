@@ -20,8 +20,7 @@ const survey_JSON = {
         {
             type: "html",
             name: "introduction",
-            html: "<p style=\"text-align: justify;\">"+
-            "<b>Instructions:</b> Select the scale rating that best describes how you feel <b>right now</b>"+
+            html:  "<b>Instructions:</b> Select the scale rating that best describes how you feel <b>right now</b>"+
             "</p>"
            },
         {
