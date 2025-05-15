@@ -46,10 +46,16 @@ List.push({
   IconName: "Card Sort",
 });
 List.push({
-  Task: "Pattern Comparison",
-  Parameters: "PatternComparison_001",
-  Instructions: "Default",
-  IconName: "Patt Comparison",
+  Task: "Trail Making",
+  Parameters: "TrailMakingA_003",
+  Instructions: "DefaultA",
+  IconName: "Trails A",
+});
+List.push({
+  Task: "Trail Making",
+  Parameters: "TrailMakingB_003",
+  Instructions: "DefaultB",
+  IconName: "Trails B",
 });
 List.push({
   Task: "Spatial DMS",
@@ -69,24 +75,7 @@ List.push({
   Instructions: "Default",
   IconName: "Recognition",
 });
-List.push({
-  Task: "Questionnaire",
-  Parameters: "STAI_T_001",
-  Instructions: "Default",
-  IconName: "STAI-T",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "STAI_S_001",
-  Instructions: "Default",
-  IconName: "STAI_S",
-});
-List.push({
-  Task: "Questionnaire",
-  Parameters: "BDI_001",
-  Instructions: "Default",
-  IconName: "BDI/GDS",
-});
+
 
 BatteryList.push({
   index: 16,

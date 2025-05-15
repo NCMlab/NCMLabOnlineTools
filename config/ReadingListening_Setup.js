@@ -3,15 +3,15 @@
 
 
 var ReadingListeningList_Default = {} 
-ReadingListeningList01.ShowWelcome = false,
-ReadingListeningList01.WelcomeSpoken = false,
-ReadingListeningList01.ShowInstructions = true,
-ReadingListeningList01.InstructionsSpoken = false,
-ReadingListeningList01.ShowThankYou = false,
-ReadingListeningList01.AskForNotes = false,
-ReadingListeningList01.RecordAUDIO = true,
-ReadingListeningList01.ScoreNeeded = 0.7,
-ReadingListeningList01.SentencesToRepeat = 3
+ReadingListeningList_Default.ShowWelcome = false,
+ReadingListeningList_Default.WelcomeSpoken = false,
+ReadingListeningList_Default.ShowInstructions = true,
+ReadingListeningList_Default.InstructionsSpoken = false,
+ReadingListeningList_Default.ShowThankYou = false,
+ReadingListeningList_Default.AskForNotes = false,
+ReadingListeningList_Default.RecordAUDIO = true,
+ReadingListeningList_Default.ScoreNeeded = 0.7,
+ReadingListeningList_Default.SentencesToRepeat = 3
 
 
 var ReadingListeningList01 = {} 

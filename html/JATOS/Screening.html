@@ -34,6 +34,7 @@
     <script src="jspsych/dist/plugin-instructions.js"></script>    
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
@@ -59,8 +60,8 @@
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
             console.log(LabelNames)
-            initJsPsych({message_progress_bar: LabelNames.ProgressBar})
-            BackgroundText = eval(LANG+'_BackgroundText');
+            //BackgroundText = eval(LANG+'_BackgroundText');
+            console.log(parameters)
       })
       
     </script> 
@@ -88,9 +89,6 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      console.log(jatos.studySessionData)
-      console.log(jatos.studySessionData.TaskNameList[2])
-      console.log(jatos.studySessionData.UsageType == 'Battery')
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
