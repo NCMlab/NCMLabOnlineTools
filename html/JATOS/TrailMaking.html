@@ -66,8 +66,10 @@
 //            LANG = jatos.studySessionData.Language
             LANG = jatos.batchSession.get(jatos.workerId+"_Language")
 
-            console.log(LANG)
+            console.log(LANG+'_Instructions_'+InstructionsToUse)
+            
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+            
             console.log(Instructions)
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
@@ -116,6 +118,8 @@ var jsPsych = initJsPsych({
       jatos.batchSession.set(jatos.workerId, c + 1);
 
       // Go back to usage management 
+      console.log(jatos.studySessionData)
+      console.log(JATOSSessionData)
       whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
     }
   });
@@ -129,7 +133,7 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
-  <div id="footerText"></div>
+  <!--<div id="footerText"></div>-->
 <script>
   jatos.onLoad(() => {
     // update the header button labels
