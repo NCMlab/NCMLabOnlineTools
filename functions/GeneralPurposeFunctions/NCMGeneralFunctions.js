@@ -291,14 +291,15 @@ function whereToGoNext(SessionData, CurrentIndex){
     if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
       { jatos.startComponentByTitle("Usage Manager")}
     else if ( SessionData.UsageType == 'SingleTask' )
-    { 
-      //jatos.endStudy()
-      // For some reason this does not END the trailmaking task
-      window.open('https://www.uottawa.ca','_self')
-      console.log(BreakPoint)
-    }
-    else // otherwise start the next component in the battery
+      { 
+        // For some reason this does not END the trailmaking task
+        window.open('https://www.uottawa.ca','_self')
+        console.log(BreakPoint)
+      }
+    else if ( SessionData.UsageType == 'Battery' ) 
       { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
+    else 
+      { jatos.startComponentByTitle("Usage Manager")}
 }
 
   

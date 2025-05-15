@@ -34,6 +34,7 @@
     <script src="ImportedModules/kioskboard-aio-2.3.0.min.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Listening_Instructions.js">//Load language</script>
     <script src="functions/Scoring/Listening_Scoring.js"></script>
     <script src="config/Listening_Setup.js"></script>
@@ -105,6 +106,7 @@ var jsPsych = initJsPsych({
     }
   });
   jatos.onLoad(() => {
+      UpdateHeader()
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)

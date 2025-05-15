@@ -1,0 +1,12 @@
+thead {
+  display: contents;
+  margin-left: 0vw;
+  text-align: center;
+}
+tbody {
+  display: contents;
+  overflow-y: auto;
+  font-size: xx-large;
+  line-height: 1.6;
+  text-align: center;
+}

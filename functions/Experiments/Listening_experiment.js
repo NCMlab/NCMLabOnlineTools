@@ -83,7 +83,7 @@ var SendData = {
     jsPsych.finishTrial(Results)
   }
 }
-timeline.push(UpdateHeaderCall)  
+
 timeline.push(Welcome)
 timeline.push(preload_audio)
 timeline.push(Instructions01)

@@ -54,12 +54,12 @@ var SendData = {
     
   }
 }
-timeline.push(UpdateHeaderCall)  
+
 timeline.push(trial)
 timeline.push(Notes)
 timeline.push(CheckEligibilityData)
 timeline.push(if_Eligibile)
-timeline.push(if_BrowserEligibile)
+//timeline.push(if_BrowserEligibile)
 timeline.push(SendData)
 
 

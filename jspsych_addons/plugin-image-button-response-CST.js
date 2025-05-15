@@ -324,13 +324,14 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
 
               
               // Make row for the stimuli at the top
-              html += '<table class="CardSortTable" id="CSTtable"><tr>'
+
+              html += '<table border="0" class="CardSortTable" id="CSTtable"><thead><tr>'
               html += '<div id="jspsych-image-button-response-btngroup">';
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                   console.log(str)
                   html +=
-                      '<td><div class="jspsych-image-button-response-button" style="display: inline-block; ' +
+                      '<th><div class="jspsych-image-button-response-button" style="display: inline-block; ' +
                           
                           '" id="jspsych-image-button-response-button-' +
                           i +
@@ -338,18 +339,18 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
                           i +
                           '">' +
                           str +
-                          "</div></td>";
+                          "</div></th>";
               }
               html += "</div><p>";
-              html += '</tr>'
+              html += '</tr></thead><tbody>'
               // Second row for the prompt/feedback
-              html += '<tr max-height=50px><td colspan=4><div id="id_feedback">'+'<h1>'+trial.prompt+'</h1>'
-              html += '</div></td></tr>'
+              html += '<tr max-height="50px"><td colspan="4"><div id="id_feedback"><h2>'+trial.prompt
+              html += '</h2></div></td></tr>'
               // Third row for discard pile
               var Rotation = 0//(Math.random() * 10) - 5;
-              html += '<tr><td>'
+              html += '<tr><td colspan="1">'
               html += '<img src="' + trial.discardPile + '" id="jspsych-image-button-response-discard"  style="transform:rotate('+Rotation+'deg)";>';
-              html += '<p></td><td width="70%" align="left"> &#8592; '+trial.discardPileText
+              html += '<p></td><td width="70%" align="left"  colspan="1"> &#8592; '+trial.discardPileText
               html += '</td></tr>'
               // Fourth row for the stimulus card
               html += '<tr><td colspan="4">'
@@ -363,7 +364,7 @@ var jsPsychImageButtonResponseCST = (function (jspsych) {
               //html += '<img  src="' + trial.ShuffledImages[count] + 'class="CardSortTable">';
 
 
-              html += '</td></tr></table>'
+              html += '</td></tr></tbody></table>'
 
 
 

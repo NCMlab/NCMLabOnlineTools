@@ -227,7 +227,7 @@ var SendData = {
 }    
 
 //timeline.push(CheckMicrophone)
-timeline.push(UpdateHeaderCall)
+
 timeline.push(Welcome)
 timeline.push(GetList)
 timeline.push(GetSentenceCount)
