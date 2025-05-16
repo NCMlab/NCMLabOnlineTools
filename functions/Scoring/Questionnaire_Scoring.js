@@ -219,6 +219,12 @@ function Questionnaire_Scoring(data) {
 				}
 		}
 	}
+	if ( data.QuestionnaireType == 'FirstName' )
+	{ // Put this info into the Batch Data 
+		const FirstName = data.response.Name
+		jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 
+	}
+
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
 	if ( Notes.trials.length > 0 )
