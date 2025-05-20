@@ -258,6 +258,8 @@ var Instructions01_progress_bar_timer_stop = {
 var Instructions01Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
+        console.log("JASON")
+        console.log(Instructions)
         var Str = Instructions.Instructions01[countInstr01].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str

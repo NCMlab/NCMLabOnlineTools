@@ -12,12 +12,13 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
+        <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+     
     </script> 
+
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -34,6 +35,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
 
@@ -114,12 +116,12 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
-    <div id="footerText"></div>
     <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
-    </script>
+    jatos.onLoad(() => {
+      // update the header button labels
+      UpdateHeader()
+    })
+  </script>
+
   </body>
 </html>

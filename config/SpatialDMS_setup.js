@@ -15,7 +15,7 @@ var MaskLocations
 
 // the following is used for scoring and allows the keyboard choices to be whatever you would like
 // This response mapping correspopnds to the order of the above KeyboardChoices
-var ResponseMapping = [0, 1];
+var ResponseMapping = [1, 0];
 
 // This is the time between blocks. Note that between each block of trials there
 // is also the 3-2-1 countdown. Therefore, the full interblock interval is this value PLUS 
@@ -88,7 +88,7 @@ SpatialDMS_Adaptive = {
 	RetOnTime: 3200,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000,
+	ITITime: 1000
 }
 
 add('SpatialDMS_Adaptive', function(){ parameters = SpatialDMS_Adaptive});

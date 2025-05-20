@@ -75,8 +75,6 @@ List.push({
   Instructions: "Default",
   IconName: "Recognition",
 });
-
-
 BatteryList.push({
   index: 16,
   name: "H-10-23-9755",
@@ -87,6 +85,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
+  HeaderButtonsToShow: ['Home','Quit','Stop']
 });
 
 BatteryList.push({

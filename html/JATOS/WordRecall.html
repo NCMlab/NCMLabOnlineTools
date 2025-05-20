@@ -12,12 +12,7 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
+
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -39,6 +34,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/MicrophoneParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/WordRecall_Instructions.js"></script>
     <script src="InstructionsAndStimuli/Stimuli/WordRecall_Lists.js"></script>
@@ -49,7 +45,12 @@
     <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
- 
+     <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
     <script>
       
 
@@ -140,13 +141,8 @@
       });
   </script>
 
-<div id="footerText"></div>
-    <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
-    </script>
+  
+
 
 </body>
 </html>

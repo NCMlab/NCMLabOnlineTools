@@ -106,7 +106,7 @@ var VisualProbe = {
   choices: [],
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
-  choices: function() { return LabelNames.NoYes},
+  choices: function() { return LabelNames.YesNo},
   on_finish: function(data){
     var ResponseIndex = ResponseMapping.indexOf(data.response)
     console.log("Response: "+data.response)

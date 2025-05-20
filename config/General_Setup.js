@@ -14,6 +14,7 @@ var SaveLocalFile = false
 
 var EN_LabelNames = {}
 EN_LabelNames.NoYes = ['No','Yes']
+EN_LabelNames.YesNo = ['Yes','No']
 EN_LabelNames.Home = 'Home'
 EN_LabelNames.Restart = 'Restart'
 EN_LabelNames.Stop = 'Stop'
@@ -52,6 +53,7 @@ EN_LabelNames.SkipTask = "This will SKIP the current task. Are you sure?"
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
+FR_LabelNames.YesNo = ['Oui', 'No']
 FR_LabelNames.Home = "Page d'accueil"
 FR_LabelNames.Restart = 'Recommencer'
 FR_LabelNames.Stop = 'Arrêt'

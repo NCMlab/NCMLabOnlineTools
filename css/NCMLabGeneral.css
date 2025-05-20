@@ -446,7 +446,7 @@ span:hover + div {
 .jspsych-content {
   max-width: 85%;
   /* this is mainly an IE 10-11 fix */
-  text-align: left;
+  text-align: center;
   margin: auto;
   /* this is for overflowing content */
   font-size: 4vmin;
@@ -649,6 +649,7 @@ tbody {
   overflow-y: auto;
   font-size: xx-large;
   line-height: 1.6;
+  text-align: center;
 }
 
 /* This was aded to make the five columns of the PANAS show up on one screen 

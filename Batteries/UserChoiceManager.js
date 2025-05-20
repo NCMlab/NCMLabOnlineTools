@@ -90,7 +90,7 @@ var SetupBattery = {
 
       // Extract the battery instructions
       BatteryInstructions = CurrentBattery.BatteryInstructions
-      console.log(BatteryInstructions)
+      console.log(CurrentBattery)
 
       for ( var i = 0; i < TaskList.length; i ++ ) {
         console.log(i)
@@ -111,6 +111,9 @@ var SetupBattery = {
         JATOSSessionData.Language = Language
         JATOSSessionData.FooterText = FooterText
         JATOSSessionData.CompletedTaskList 
+        if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
+        { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
+        else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }
       }
       else {DisplayBatteryInstructionsFlag = false}
       console.log('FIRST TIME THROUGH: '+DisplayBatteryInstructionsFlag)
