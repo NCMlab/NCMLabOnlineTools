@@ -72,7 +72,7 @@
         pseudoSwitch(parameters)      
         console.log(parameters)
         //parameters = WordRecall_parameters
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
