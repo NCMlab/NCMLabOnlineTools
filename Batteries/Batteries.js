@@ -47,13 +47,13 @@ List.push({
 });
 List.push({
   Task: "Trail Making",
-  Parameters: "TrailMakingA_003",
+  Parameters: "TrailMakingA_Default",
   Instructions: "DefaultA",
   IconName: "Trails A",
 });
 List.push({
   Task: "Trail Making",
-  Parameters: "TrailMakingB_003",
+  Parameters: "TrailMakingB_Default",
   Instructions: "DefaultB",
   IconName: "Trails B",
 });
