@@ -48,6 +48,7 @@ var pages = [
 var EN_BriefScreening = {}
 EN_BriefScreening.title = "Screening"
 EN_BriefScreening.pages = pages
+EN_BriefScreening.ShowInstructions = true
 add('EN_BriefScreening', function(){ parameters = EN_BriefScreening });
 // =====================================================
 var pages = [

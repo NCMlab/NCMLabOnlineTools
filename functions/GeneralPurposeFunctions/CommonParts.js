@@ -313,6 +313,7 @@ var Instructions01Written_loop = {
 var if_Instructions01Written = {
     timeline: [Instructions01Written_loop],
     conditional_function: function() {
+        console.log("JASON"+parameters)
         document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
           if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }

@@ -6,7 +6,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCMLab: Screening</title>
+    <title>NCMLab: Language Selection</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link href="css/LikertQuestionnaires.css" rel="stylesheet">
@@ -29,10 +29,9 @@
     <script src="jspsych_addons/plugin-survey.js"></script>
     <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="InstructionsAndStimuli/EN/Questionnaires/Screening.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/Screening_Instructions.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/LanguageSelection_Instructions.js"></script>
+    <script src="functions/Experiments/LanguageSelection_experiment.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>
       var parameters = 'empty'
@@ -54,6 +53,11 @@
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
             console.log(Instructions)
             //BackgroundText = eval(LANG+'_BackgroundText');
+            var LanguageSelectionParameters = {
+                ShowInstructions: true,
+                InstructionsSpoken: false
+            }
+            parameters = LanguageSelectionParameters
             console.log(parameters)
             $(function(){
               $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
@@ -61,8 +65,7 @@
       })
       
     </script> 
-   <script src="functions/Experiments/Screening_experiment.js"></script>
-   <script src="functions/Scoring/Screening_Scoring.js"></script>
+
   <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
 
 <script>
@@ -72,7 +75,6 @@ var jsPsych = initJsPsych({
     display_element: 'jspsych-target',
     auto_update_progress_bar: false,
     show_progress_bar: true,    
-    
     on_trial_start: function() {
       //http://127.0.0.1:9000/publix/fNTRhuguK1x
 //      console.log(jatos.urlQueryParameters);
@@ -108,6 +110,7 @@ var jsPsych = initJsPsych({
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);     
+
       jsPsych.run(timeline);
     });
   </script>

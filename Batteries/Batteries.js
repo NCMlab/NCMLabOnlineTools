@@ -4,9 +4,15 @@ var BatteryList = [];
 // ------ ENGLISH --------------------------------
 var List = [];
 List.push({
+  Task: "Language Selection",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Language",
+});
+List.push({
   Task: "Screening",
   Parameters: "BriefScreening",
-  Instructions: "",
+  Instructions: "Default",
   IconName: "Screening",
 });
 List.push({
@@ -80,7 +86,7 @@ BatteryList.push({
   name: "H-10-23-9755",
   description: "Test",
   BatteryInstructions:
-    '<p class="Instructions">Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - <b>Cognitive Evaluation</b>',
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
