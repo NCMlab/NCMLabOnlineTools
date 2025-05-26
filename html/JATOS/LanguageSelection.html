@@ -12,6 +12,48 @@
     <link href="css/LikertQuestionnaires.css" rel="stylesheet">
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script>
+        // Load script (Questionnaire definition) javaScript file using a promise
+        function loadScriptSequentially(file, variableName) {
+            return new Promise((resolve, reject) => {
+            const newScript = document.createElement('script');
+            newScript.setAttribute('src', file);
+            newScript.setAttribute('async', 'true');
+              
+            newScript.onload = () => {
+                console.log('loaded successfully');
+                resolve(); // Resolve the promise
+            };
+            newScript.onerror = () => {
+                console.log('Error loading script');
+                reject(new Error(`Error loading script: ${file}`));
+            };
+            document.head.appendChild(newScript);
+            });
+        }
+    </script>
+    <script>
+      function loadIntoLocalStorage(file, variableName) {
+        localStorage.clear()
+        if ( typeof(Storage) !== 'undefined') {
+          if ( localStorage.variableName )
+          { 
+            console.log("Variable: "+variableName+" ALREADY loaded")
+            variableName = localStorage.variableName
+          }
+          else
+          { 
+            console.log("Variable: "+variableName+" NOT loaded")
+            loadScriptSequentially(file)
+            .then(() => {
+                  localStorage.variableName = variableName 
+                }
+              )
+          }
+        }
+      }
+    </script>
+    <script src="jspsych/dist/jspsych.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
@@ -21,8 +63,17 @@
     <script src="InstructionsAndStimuli/Instructions/LanguageSelection_Instructions.js"></script>
     
     <script src="jatos.js"></script>
-    <script src="jspsych/dist/jspsych.js"></script>
-    <script src="jspsych/dist/plugin-call-function.js"></script>
+    
+
+    
+    <script>
+      loadIntoLocalStorage('jspsych/dist/plugin-survey.js', 'jsPsychSurvey')
+      .then(()=> loadIntoLocalStorage('jspsych/dist/plugin-call-function.js','jsPsychCallFunction'))
+      </script>
+    
+    
+    
+    
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-survey-text.js"></script>
 
