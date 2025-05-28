@@ -89,10 +89,12 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             
             html += '<div>'
             
-            html += '<h2 id="tableInstructions"></h2>'
+            html += '<h2 id="tableInstructions">'
+            html += trial.JSONinput.elements[0].title
+            html += '</h2>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
-                html += '<table border="1" >'
+                html += '<table border="0" >'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
                     for ( let i =0; i < trial.JSONinput.elements[0].columns.length; i++ ) {
@@ -121,7 +123,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
           // add submit button
           html +=
-              '<table border="2"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="ValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn" value="' +
+              '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="ValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                   trial.button_label +
                   ' "></input>';
           html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";

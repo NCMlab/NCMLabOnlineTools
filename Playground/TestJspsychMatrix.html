@@ -9,8 +9,8 @@
   
     
     <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
-    
     <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
+    
 <script>
     /* This validate form will check the form to see if there are responses
     for each row. If not then the entire row will be changed to be pink.
@@ -53,11 +53,15 @@
        
     }
 </script>  
+<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 </head>
   <body></body>
   <script>
 
     var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: false,    
+      auto_update_progress_bar: false,
       on_finish: function() {
         jsPsych.data.displayData();
       }
@@ -66,11 +70,9 @@
     var matrix_trial = {
         type: jsPsychSurveyMatrix,
         JSONinput: survey_JSON,
-        button_label: "Odoyle Rules",
+        button_label: "Submit",
         required: true,
     };
-
-
     jsPsych.run([matrix_trial]);
     
   </script>
