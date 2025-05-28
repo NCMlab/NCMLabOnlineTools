@@ -88,7 +88,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           html += "</style>";
             
             html += '<div>'
-            
+            console.log(trial.JSONinput.elements[0].rows[1]['value'])
             html += '<h2 id="tableInstructions">'
             html += trial.JSONinput.elements[0].title
             html += '</h2>'
@@ -97,7 +97,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                 html += '<table border="0" >'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
-                    for ( let i =0; i < trial.JSONinput.elements[0].columns.length; i++ ) {
+                    for ( let i = 0; i < trial.JSONinput.elements[0].columns.length; i++ ) {
                     
                         html += '<th>'+trial.JSONinput.elements[0].columns[i]['text']+'</th>'
                     }
@@ -105,7 +105,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     html += '<tbody id = "tableBody">'
                     for ( let i =0; i < trial.JSONinput.elements[0].rows.length; i++ ) {
                         console.log(i)
-                        html += '<tr id="row_'+trial.JSONinput.elements[0].rows[i]['text']+'"><td class="item_label">' + trial.JSONinput.elements[0].rows[i]['text'] + '</td>'
+                        html += '<tr id="'+trial.JSONinput.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.JSONinput.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
                         for ( let j =0; j < trial.JSONinput.elements[0].columns.length; j++ ) {
                             html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.JSONinput.elements[0].rows[i]['text']+'"'
@@ -128,15 +128,49 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                   ' "></input>';
           html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
           display_element.innerHTML = html;
-        console.log(display_element)
+            console.log(display_element)
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
-            console.log(e)  
+            // Get responses
+
+            
             e.preventDefault();
               // measure response time
               var endTime = performance.now();
               var response_time = Math.round(endTime - startTime);
               // create object to hold responses
               var question_data = {};
+
+             var form = document.getElementById("jspsych-survey-matrix-form")
+             
+            var elmts = display_element.querySelectorAll("tr")
+            // how many columns
+            NCols = document.getElementsByTagName("th").length
+            console.log("NRows: "+NRows)
+            console.log("Ncols: "+NCols)
+            // how many rows
+            NRows = elmts.length;
+            // make a list of row names
+            var rowNames = []
+            var rowText = []
+            for ( var i = 0; i < NRows; i++ ) {
+                rowNames.push(elmts[i].id)
+
+            }
+
+            console.log(rowNames)
+            console.log(form[rowNames[1]])
+            for ( var i = 1; i < NRows-1; i++ ) {
+                var SelectionForThisRow = -99
+                for ( var j = 1; j < NCols-1; j++ ) {
+                    // check to see if a selection was made in this row 
+                    if ( form[rowNames[i]][j].checked ) {
+                        SelectionForThisRow = j
+                    }
+                }
+                console.log("Row "+i+" reponse: "+SelectionForThisRow)
+            }
+              
+              
               var matches = display_element.querySelectorAll("#jspsych-survey-matrix-form .jspsych-survey-matrix-opts");
               for (var index = 0; index < matches.length; index++) {
                   var id = matches[index].dataset["radioGroup"];

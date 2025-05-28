@@ -3,7 +3,7 @@
   <head>
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/panasShortBaselineJSON.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
     
 <!--    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />-->
   
@@ -17,6 +17,7 @@
     Right now it is not checking the actual values so the if statements needs
     to be completed. */
     function ValidateForm(form) {
+      console.log(form)
         cc = document.getElementById("rowJASON")
         console.log(cc)
         // get the row names
@@ -39,7 +40,7 @@
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {
                 // check to see if a selection was made in this row 
-                if ( form[rowNames[i].substr(4,)][j].checked ) {
+                if ( form[rowNames[i]][j].checked ) {
                     SelectionMadeInRow = true
                 }
             }
@@ -70,8 +71,11 @@
     var matrix_trial = {
         type: jsPsychSurveyMatrix,
         JSONinput: survey_JSON,
-        button_label: "Submit",
+        button_label: "X Submit X",
         required: true,
+        on_finish: function(data) {
+          console.log(data)
+        }
     };
     jsPsych.run([matrix_trial]);
     
