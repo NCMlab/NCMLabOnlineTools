@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/panasShortBaselineJSON.js"></script>
+    
+<!--    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />-->
+  
+    
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
+    
+    <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
+<script>
+    /* This validate form will check the form to see if there are responses
+    for each row. If not then the entire row will be changed to be pink.
+    Right now it is not checking the actual values so the if statements needs
+    to be completed. */
+    function ValidateForm(form) {
+        cc = document.getElementById("rowJASON")
+        console.log(cc)
+        // get the row names
+        elmts = document.getElementsByTagName("tr");
+        // how many columns
+        NCols = document.getElementsByTagName("th").length
+        console.log("Ncols: "+NCols)
+        // how many rows
+        NRows = elmts.length;
+        // make a list of row names
+        var rowNames = []
+        for ( var i = 0; i < NRows; i++ ) {
+            rowNames.push(elmts[i].id)
+        }
+        // cycle over rows, start from the second column, thereby ignoring the row labels
+        for ( var i = 1; i < NRows; i++ ) {
+            // Reset the background colors 
+            document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
+            var SelectionMadeInRow = false
+            // cycle over columns
+            for ( var j = 0; j < NCols-1; j++ ) {
+                // check to see if a selection was made in this row 
+                if ( form[rowNames[i].substr(4,)][j].checked ) {
+                    SelectionMadeInRow = true
+                }
+            }
+            // change the background color of any rows without a selection in them
+            if ( ! SelectionMadeInRow ) {
+                document.getElementById(rowNames[i]).style.backgroundColor = '#FFC0CB' 
+                document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+        }
+       
+    }
+</script>  
+</head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var matrix_trial = {
+        type: jsPsychSurveyMatrix,
+        JSONinput: survey_JSON,
+        button_label: "Odoyle Rules",
+        required: true,
+    };
+
+
+    jsPsych.run([matrix_trial]);
+    
+  </script>
+</html>
