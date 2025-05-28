@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="../InstructionsAndStimuli/EN/Questionnaires/panasShortBaselineJSON.js"></script>
+<script>
+    function makeHeader(input) {
+        var output = ''
+        output+= '<th></th>'
+        console.log(input)
+        for ( i in input.elements[0].columns ) {
+            output += '<th>'+input.elements[0].columns[i]['text']+'</th>'
+        }
+        return output
+    }
+</script>
+<script>
+    function makeBody(input) {
+        var output = ''
+        for ( i in input.elements[0].rows ) {
+            console.log(i)
+            output += '<tr><td>' + input.elements[0].rows[i]['text'] + '</td>'
+                for ( j in input.elements[0].columns ) {
+                    output += '<td><input type="radio"></td>'
+                }
+        }
+        return output
+    }
+// https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body    
+</script>
+<style>
+div {
+  height: 200px;
+  width: 100%;
+  border: 1px solid #4CAF50;
+  overflow: scroll
+}
+
+</style>
+</head>
+<body>
+    <div>
+        <h2 id = tableInstructions></h2>
+        <table border="1">
+            <thead id = 'tableHeader'>
+            </thead>
+            <tbody id = 'tableBody'>
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    console.log(survey_JSON.elements[0].title)
+    
+    const TableHeader = (makeHeader(survey_JSON))
+    const TableBody = (makeBody(survey_JSON))
+    document.getElementById('tableHeader').innerHTML = TableHeader
+    document.getElementById('tableBody').innerHTML = TableBody
+    document.getElementById('tableInstructions').innerHTML = survey_JSON.elements[0].title
+</script>
+</body>
+
+</html>
