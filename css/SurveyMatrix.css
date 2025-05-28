@@ -1,0 +1,60 @@
+/* .tableFixHead          { overflow: auto; height: 50px; } */
+
+thead { 
+    position: sticky; 
+    top: 0px; 
+    z-index: 1; 
+    background-color: white;
+    font-size: x-large;
+}
+
+/* Just common table stuff. Really. */
+/*
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+
+
+
+/* This makes the radio buttons big and square-ish */
+.sd-item__decorator {
+  width: calc(7 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  height: calc(7 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  border-radius: 5%;
+
+}
+
+table {
+    /* The following makes all columns the same width */
+    table-layout: fixed;
+    width: 100%;
+    height: 50%;
+    /* Center the table on the screen */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Open Sans", "Arial", sans-serif;
+}
+/* Alternate row colors */
+tr:nth-child(even) {
+    background-color: #d8d8d8;
+}
+/* Alignment of most cells in table */
+td {
+    text-align: center;
+}
+/* This applies to the row labels (the first column */
+.item_label {
+ text-align: left;   
+ font-size: x-large
+}
+
+.tableFixedHead {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #4CAF50;
+  overflow: scroll
+}
+h2 {
+    font-family: "Open Sans", "Arial", sans-serif;
+}
+
