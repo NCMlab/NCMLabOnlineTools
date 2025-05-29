@@ -17,31 +17,47 @@
     Right now it is not checking the actual values so the if statements needs
     to be completed. */
     function ValidateForm(form) {
+      // Initialize the object for holding the resulatnt data
+      var obje = {}
       console.log(form)
         cc = document.getElementById("rowJASON")
         console.log(cc)
         // get the row names
         elmts = document.getElementsByTagName("tr");
         // how many columns
-        NCols = document.getElementsByTagName("th").length
+        cols = document.getElementsByTagName("th")
+        
+        NCols = cols.length
         console.log("Ncols: "+NCols)
         // how many rows
         NRows = elmts.length;
         // make a list of row names
         var rowNames = []
-        for ( var i = 0; i < NRows; i++ ) {
+        var rowPrompts = []
+        labels = document.getElementsByClassName('item_label')
+        for ( var i = 0; i < NRows-2; i++ ) {
+          rowPrompts.push(labels[i].innerHTML)
+        }
+        for ( var i = 1; i < NRows-1; i++ ) {
             rowNames.push(elmts[i].id)
         }
+
+
+        console.log("Row Names: "+rowNames)
+        console.log("Row Prompts: "+rowPrompts)
         // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 1; i < NRows; i++ ) {
+        for ( var i = 0; i < NRows-2; i++ ) {
             // Reset the background colors 
             document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
             var SelectionMadeInRow = false
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {
                 // check to see if a selection was made in this row 
+                
                 if ( form[rowNames[i]][j].checked ) {
                     SelectionMadeInRow = true
+                    SelectionMade = j
+                    break
                 }
             }
             // change the background color of any rows without a selection in them
@@ -50,8 +66,15 @@
                 document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
+            console.log(cols[2].innerHTML)
+            console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
+            obje[rowNames[i]] = SelectionMade
+            obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+            var question_data = {}
+            Object.assign(question_data, obje)
         }
-       
+        console.log(obje)
+        return obje
     }
 </script>  
 <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>

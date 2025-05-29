@@ -99,7 +99,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     html += '<th></th>'
                     for ( let i = 0; i < trial.JSONinput.elements[0].columns.length; i++ ) {
                     
-                        html += '<th>'+trial.JSONinput.elements[0].columns[i]['text']+'</th>'
+                        html += '<th id=col_'+i+'>'+trial.JSONinput.elements[0].columns[i]['text']+'</th>'
                     }
                     html += '</thead>'
                     html += '<tbody id = "tableBody">'
@@ -108,7 +108,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                         html += '<tr id="'+trial.JSONinput.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.JSONinput.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
                         for ( let j =0; j < trial.JSONinput.elements[0].columns.length; j++ ) {
-                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.JSONinput.elements[0].rows[i]['text']+'"'
+                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.JSONinput.elements[0].rows[i]['value']+'"'
                             if (trial.required) {
                                html += ' required ';
                             }
@@ -122,53 +122,82 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
           // add submit button
+          
           html +=
+    //          '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
+
               '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="ValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                   trial.button_label +
                   ' "></input>';
           html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
           display_element.innerHTML = html;
             console.log(display_element)
+        
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
             // Get responses
 
-            
+
             e.preventDefault();
+
+            // I am seeing the validate code can go here instead
+            console.log(e)
+            console.log(display_element.querySelectorAll("th"))
+        // Initialize the object for holding the resulatnt data
+        var obje = {}    
+        // get the row names
+        var elmts = display_element.querySelectorAll("tr");
+        // how many columns
+        var cols = display_element.querySelectorAll("th")
+        
+        var NCols = cols.length
+        console.log("Ncols: "+NCols)
+        // how many rows
+        var NRows = elmts.length;
+        // make a list of row names
+        var rowNames = []
+        var rowPrompts = []
+        var labels = display_element.querySelectorAll('item_label')
+        var labels = document.getElementsByClassName('item_label')
+        console.log(labels)
+        for ( var i = 0; i < NRows-2; i++ ) {
+            console.log(labels[i])
+          rowPrompts.push(labels[i].innerHTML)
+        }
+        for ( var i = 1; i < NRows-1; i++ ) {
+            rowNames.push(elmts[i].id)
+        }
+        console.log("Row Names: "+rowNames)
+        console.log("Row Prompts: "+rowPrompts)
+        // cycle over rows, start from the second column, thereby ignoring the row labels
+        /*for ( var i = 0; i < NRows-2; i++ ) {
+            var SelectionMadeInRow = false
+            // cycle over columns
+            for ( var j = 0; j < NCols-1; j++ ) {
+                // check to see if a selection was made in this row 
+                
+                if ( form[rowNames[i]][j].checked ) {
+                    SelectionMadeInRow = true
+                    SelectionMade = j
+                    break
+                }
+            }
+            console.log(cols[2].innerHTML)
+            console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
+            obje[rowNames[i]] = SelectionMade
+            obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+            var question_data = {}
+            Object.assign(question_data, obje)
+        }*/
+        console.log("RESULTS RESULTS")
+        console.log(obje)
+
+            //console.log(BREAK)
               // measure response time
               var endTime = performance.now();
               var response_time = Math.round(endTime - startTime);
               // create object to hold responses
               var question_data = {};
 
-             var form = document.getElementById("jspsych-survey-matrix-form")
-             
-            var elmts = display_element.querySelectorAll("tr")
-            // how many columns
-            NCols = document.getElementsByTagName("th").length
-            console.log("NRows: "+NRows)
-            console.log("Ncols: "+NCols)
-            // how many rows
-            NRows = elmts.length;
-            // make a list of row names
-            var rowNames = []
-            var rowText = []
-            for ( var i = 0; i < NRows; i++ ) {
-                rowNames.push(elmts[i].id)
-
-            }
-
-            console.log(rowNames)
-            console.log(form[rowNames[1]])
-            for ( var i = 1; i < NRows-1; i++ ) {
-                var SelectionForThisRow = -99
-                for ( var j = 1; j < NCols-1; j++ ) {
-                    // check to see if a selection was made in this row 
-                    if ( form[rowNames[i]][j].checked ) {
-                        SelectionForThisRow = j
-                    }
-                }
-                console.log("Row "+i+" reponse: "+SelectionForThisRow)
-            }
               
               
               var matches = display_element.querySelectorAll("#jspsych-survey-matrix-form .jspsych-survey-matrix-opts");
@@ -203,6 +232,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           
           var startTime = performance.now();
       }
+      
       simulate(trial, simulation_mode, simulation_options, load_callback) {
           if (simulation_mode == "data-only") {
               load_callback();
