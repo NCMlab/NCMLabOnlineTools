@@ -4,6 +4,13 @@ var BatteryList = [];
 // ------ ENGLISH --------------------------------
 var List = [];
 List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Language",
+});
+
+List.push({
   Task: "Language Selection",
   Parameters: "",
   Instructions: "Default",

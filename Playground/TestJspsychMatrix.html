@@ -1,85 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="../ImportedModules/jquery-3.6.4.js"></script> 
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="../InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
-    
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/panasJSON.js"></script>
+    <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("../functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
 <!--    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />-->
   
     
     <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
     <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
-    
-<script>
-    /* This validate form will check the form to see if there are responses
-    for each row. If not then the entire row will be changed to be pink.
-    Right now it is not checking the actual values so the if statements needs
-    to be completed. */
-    function ValidateForm(form) {
-      // Initialize the object for holding the resulatnt data
-      var obje = {}
-      console.log(form)
-        cc = document.getElementById("rowJASON")
-        console.log(cc)
-        // get the row names
-        elmts = document.getElementsByTagName("tr");
-        // how many columns
-        cols = document.getElementsByTagName("th")
-        
-        NCols = cols.length
-        console.log("Ncols: "+NCols)
-        // how many rows
-        NRows = elmts.length;
-        // make a list of row names
-        var rowNames = []
-        var rowPrompts = []
-        labels = document.getElementsByClassName('item_label')
-        for ( var i = 0; i < NRows-2; i++ ) {
-          rowPrompts.push(labels[i].innerHTML)
-        }
-        for ( var i = 1; i < NRows-1; i++ ) {
-            rowNames.push(elmts[i].id)
-        }
-
-
-        console.log("Row Names: "+rowNames)
-        console.log("Row Prompts: "+rowPrompts)
-        // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 0; i < NRows-2; i++ ) {
-            // Reset the background colors 
-            document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
-            var SelectionMadeInRow = false
-            // cycle over columns
-            for ( var j = 0; j < NCols-1; j++ ) {
-                // check to see if a selection was made in this row 
-                
-                if ( form[rowNames[i]][j].checked ) {
-                    SelectionMadeInRow = true
-                    SelectionMade = j
-                    break
-                }
-            }
-            // change the background color of any rows without a selection in them
-            if ( ! SelectionMadeInRow ) {
-                document.getElementById(rowNames[i]).style.backgroundColor = '#FFC0CB' 
-                document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-            console.log(cols[2].innerHTML)
-            console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
-            obje[rowNames[i]] = SelectionMade
-            obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
-            var question_data = {}
-            Object.assign(question_data, obje)
-        }
-        console.log(obje)
-        return obje
-    }
-</script>  
-<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 </head>
-  <body></body>
+  <body>
   <script>
 
     var jsPsych = initJsPsych({
@@ -94,7 +34,7 @@
     var matrix_trial = {
         type: jsPsychSurveyMatrix,
         JSONinput: survey_JSON,
-        button_label: "X Submit X",
+        button_label: "Submit",
         required: true,
         on_finish: function(data) {
           console.log(data)
@@ -103,4 +43,8 @@
     jsPsych.run([matrix_trial]);
     
   </script>
+
+  <div id="headerButtons"></div>
+  <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+</html>body>
 </html>
