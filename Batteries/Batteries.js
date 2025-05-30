@@ -30,12 +30,6 @@ BatteryList.push({
 // ===== H-10-23-9755 ============================
 // ------ ENGLISH --------------------------------
 var List = [];
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortBaseline_001",
-  Instructions: "Default",
-  IconName: "PANAS, baseline"
-});
 
 List.push({
   Task: "Language Selection",
@@ -1006,13 +1000,13 @@ List.push({
   IconName: "Trails B",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GAS_001",
   Instructions: "Default",
   IconName: "GAS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GDS_001",
   Instructions: "Default",
   IconName: "GDS",
@@ -1030,7 +1024,7 @@ List.push({
   IconName: "Social",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_Short_001",
   Instructions: "Default",
   IconName: "PANASsf",
@@ -1121,7 +1115,7 @@ List.push({
 });
 
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_010",
   Instructions: "Default",
   IconName: "PANAS",
@@ -1207,19 +1201,19 @@ List.push({
   IconName: "CESAM",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GAS_001",
   Instructions: "Default",
   IconName: "GAS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GDS_001",
   Instructions: "Default",
   IconName: "GDS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
   IconName: "PANAS, baseline",
@@ -1268,7 +1262,7 @@ BatteryList.push({
 var List = [];
 
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
@@ -1287,7 +1281,7 @@ BatteryList.push({
 // ============ MUSIC STUDY -- WEEKLY - POST ==================
 var List = [];
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
@@ -1318,19 +1312,19 @@ List.push({
   IconName: "CESAM",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GAS_001",
   Instructions: "Default",
   IconName: "GAS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "GDS_001",
   Instructions: "Default",
   IconName: "GDS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
   IconName: "PANAS, baseline",
@@ -1393,7 +1387,7 @@ BatteryList.push({index: 78,
 
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
-List.push({Task: 'Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
+List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
 
 BatteryList.push({index: 71234, 
 	name:'Music Motion: Trails', 

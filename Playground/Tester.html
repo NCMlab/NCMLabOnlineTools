@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <script src="jatos.js"></script>
-    <script src="jspsych/dist/jspsych.js"></script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-    Hello
     <script>
-      console.log("Hello JASON")
       
-      var jsPsych = initJsPsych({
-          display_element: 'jspsych-target',
-        })
-      jatos.onLoad(() => {
-        console.log(jatos)
-        console.log(jatos.workerId)
-      });
+      var response = []
+      var obje = {}
+      obje.name = 'panas01'
+      obje.label = 'Upset'
+      obje.responseValue = 2
+      obje.responseLabel = 'Very'
+      response.push(obje)
       
-      console.log(jatos.batchID)
+      var obje = {}
+      obje.name = 'panas02'
+      obje.label = 'Mad'
+      obje.responseValue = 4
+      obje.responseLabel = 'Meh'
+      response.push(obje)
       
+      
+      
+
+      console.log(obje)
+      console.log(response)
     </script>
   </body>
 </html>

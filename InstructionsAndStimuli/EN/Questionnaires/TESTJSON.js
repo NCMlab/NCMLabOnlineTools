@@ -56,14 +56,14 @@ var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development a
 
 var notes = ""
 
-var EN_panasShortBaselineJSON = {}
-EN_panasShortBaselineJSON.title = title
-EN_panasShortBaselineJSON.shortTitle = shortTitle
-EN_panasShortBaselineJSON.survey_JSON = survey_JSON
+var EN_TESTJSON = {}
+EN_TESTJSON.title = title
+EN_TESTJSON.shortTitle = shortTitle
+EN_TESTJSON.survey_JSON = survey_JSON
 //EN_panasJSON.description = instructions
-EN_panasShortBaselineJSON.QuestionnaireType = 'matrix'
-EN_panasShortBaselineJSON.references = references
-EN_panasShortBaselineJSON.notes = notes
+EN_TESTJSON.QuestionnaireType = 'matrix'
+EN_TESTJSON.references = references
+EN_TESTJSON.notes = notes
 
 
 

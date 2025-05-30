@@ -160,11 +160,22 @@ var PANAS_ShortBaseline_001 = {
     questionnaire: ['panasShortBaselineJSON'], 
     criteria: [],
     variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var TESTJSON = { 
+    questionnaire: ['TESTJSON'], 
+    criteria: [],
+    variable: [],
     AskForNotes: true,
     ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+
 
 var PANAS_ShortWeekly_001 = { 
     questionnaire: ['panasShortWeeklyJSON'], 
@@ -315,4 +326,6 @@ add('PANAS_ShortWeekly_001', function(){ parameters = PANAS_ShortWeekly_001});
 add('PANAS_ShortBaseline_001', function(){ parameters = PANAS_ShortBaseline_001});
 
 add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
+
+add('TESTJSON', function(){ parameters = TESTJSON});
 

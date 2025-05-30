@@ -27,7 +27,22 @@ function Questionnaire_Scoring(data) {
 	var prompt
 	var resp
 	if ( data.QuestionnaireType == 'matrix' )
-	{
+	{	
+		const rowIndices = Object.keys(data.response)
+        console.log(rowIndices)
+		var NRows = rowIndices.length
+		// cycle over responses
+		for ( var i = 0; i < NRows; i++ )
+		{
+			NumericScore = data.response[i].responseValue			
+			TotalScore += NumericScore
+			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
+		}
+	}
+	if ( data.QuestionnaireType == 'OLDmatrix' )
+	{	
+		
+		console.log(data.response)
 		const surveyName = Object.keys(data.response)
         console.log(surveyName)
 		const keys = Object.keys(data.response[surveyName])

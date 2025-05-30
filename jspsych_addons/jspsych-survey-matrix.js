@@ -151,7 +151,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
         // Initialize the object for holding the resulatnt data
-        var obje = {}    
+        var question_data = []    
         // get the row names
         var elmts = display_element.querySelectorAll("tr");
         // how many columns
@@ -195,10 +195,15 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             }
             console.log(cols[2].innerHTML)
             console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
-            obje[rowNames[i]] = SelectionMade
-            obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
-            var question_data = {}
-            Object.assign(question_data, obje)
+//            obje[rowNames[i]] = SelectionMade
+ //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+            var this_question_data = {}
+            this_question_data.name = rowNames[i]
+            this_question_data.label = rowPrompts[i]
+            this_question_data.responseValue = SelectionMade
+            // The plus one is because the first column contains the prompts
+            this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+            question_data.push(this_question_data)
         }
               // measure response time
               var endTime = performance.now();
