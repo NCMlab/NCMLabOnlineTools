@@ -5,9 +5,9 @@ var BatteryList = [];
 var List = [];
 List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "",
+  Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
-  IconName: "Language",
+  IconName: "PANAS, baseline"
 });
 
 List.push({

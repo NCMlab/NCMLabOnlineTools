@@ -303,3 +303,21 @@ function whereToGoNext(SessionData, CurrentIndex){
 }
 
   
+// Load script (Questionnaire definition) javaScript file using a promise
+function loadScriptSequentially(file) {
+    return new Promise((resolve, reject) => {
+    const newScript = document.createElement('script');
+    newScript.setAttribute('src', file);
+    newScript.setAttribute('async', 'true');
+
+    newScript.onload = () => {
+        console.log('loaded successfully');
+        resolve(); // Resolve the promise
+    };
+    newScript.onerror = () => {
+        console.log('Error loading script');
+        reject(new Error(`Error loading script: ${file}`));
+    };
+    document.head.appendChild(newScript);
+    });
+}

@@ -160,7 +160,7 @@ var PANAS_ShortBaseline_001 = {
     questionnaire: ['panasShortBaselineJSON'], 
     criteria: [],
     variable: [],
-    AskForNotes: false,
+    AskForNotes: true,
     ShowWelcome: false,
     ShowThankYou: false,
     ShowInstructions: false,  

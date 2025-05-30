@@ -5,7 +5,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
       name: "survey-matrix",
       parameters: {
           /** Array containing one or more objects with parameters for the question(s) that should be shown on the page. */
-          JSONinput: {
+          survey_json: {
               type: jspsych.ParameterType.JSON,              
               pretty_name: "Questions",
              
@@ -67,7 +67,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               var w = "100%";
           }
 
-          console.log(trial.JSONinput)
+          console.log(trial.survey_json)
           var html = "";
           
           html += '<form id="jspsych-survey-matrix-form" autocomplete="off">';
@@ -88,27 +88,27 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           html += "</style>";
             
             html += '<div>'
-            console.log(trial.JSONinput.elements[0].rows[1]['value'])
+            console.log(trial.survey_json.elements[0].rows[1]['value'])
             html += '<div id="tableInstructions" class="QuestionnaireInstructions">'
-            html += trial.JSONinput.elements[0].title
+            html += trial.survey_json.elements[0].title
             html += '</div>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
                 html += '<table border="0" >'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
-                    for ( let i = 0; i < trial.JSONinput.elements[0].columns.length; i++ ) {
+                    for ( let i = 0; i < trial.survey_json.elements[0].columns.length; i++ ) {
                     
-                        html += '<th class="headerLabels" id=col_'+i+'>'+trial.JSONinput.elements[0].columns[i]['text']+'</th>'
+                        html += '<th class="headerLabels" id=col_'+i+'>'+trial.survey_json.elements[0].columns[i]['text']+'</th>'
                     }
                     html += '</thead>'
                     html += '<tbody id = "tableBody">'
-                    for ( let i =0; i < trial.JSONinput.elements[0].rows.length; i++ ) {
+                    for ( let i =0; i < trial.survey_json.elements[0].rows.length; i++ ) {
                         console.log(i)
-                        html += '<tr id="'+trial.JSONinput.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.JSONinput.elements[0].rows[i]['text'] + '</td>'
+                        html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
-                        for ( let j =0; j < trial.JSONinput.elements[0].columns.length; j++ ) {
-                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.JSONinput.elements[0].rows[i]['value']+'"'
+                        for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
+                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
                             if (trial.required) {
                                html += ' required ';
                             }
