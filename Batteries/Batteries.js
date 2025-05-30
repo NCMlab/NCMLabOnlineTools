@@ -1,5 +1,32 @@
 var BatteryList = [];
 
+
+var List = [];
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortBaseline_001",
+  Instructions: "Default",
+  IconName: "PANAS, Matrix"
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "PANAS_ShortBaseline_001",
+  Instructions: "Default",
+  IconName: "PANAS, Survey"
+});
+BatteryList.push({
+  index: 99,
+  name: "H-10-23-9755",
+  description: "Test",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  TaskList: List,
+  HeaderButtonsToShow: ['Home','Quit','Stop']
+});
+
 // ===== H-10-23-9755 ============================
 // ------ ENGLISH --------------------------------
 var List = [];
