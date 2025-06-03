@@ -9,8 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab:  Questionnaire</title>
     
-    
-    
     <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
     <link rel="stylesheet" type='text/css' href='css/SurveyMatrix.css'>
     
@@ -36,14 +34,14 @@
     <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
     
     
-    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    
     <script>
         function InitializejsPsych() {
             var setup = []
             var TrialCount = 1
             jsPsych = initJsPsych({
                 display_element: 'jspsych-target',
-                show_progress_bar: true,    
+                show_progress_bar: false,    
                 on_trial_start: function() {
                     var input = jatos.urlQueryParameters;
                     console.log(TrialCount)
@@ -98,7 +96,7 @@
                 // load the header buttons and update their visibility and language
                 pseudoSwitch(LANG+'_LabelNames')
             )
-            .then(() =>
+            /*.then(() =>
                 // import the header buttons and set their language and visibility
                 $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
                     function() {UpdateHeader()});}),
@@ -106,7 +104,7 @@
             .then(() => 
                 // setthe footer
                 $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");})
-            )
+            )*/
             .then(() => 
                 //  set up jsPsych 
                 InitializejsPsych(),
@@ -121,8 +119,8 @@
     </head>
     <body>
         <!-- The body contains the header buttons, the 'stage,' and the footer-->
-        <div id="headerButtons"></div>
+        <div class="btn-group-header" id="header-btn-group"></div>
         <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-        <div id="footerText"></div>
+        <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
     </body>
 </html>

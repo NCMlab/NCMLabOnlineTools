@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../ImportedModules/jquery-3.6.4.js"></script> 
+      <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="../InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/panasJSON.js"></script>
-    <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        $(function(){$("#headerButtons").load("../functions/GeneralPurposeFunctions/HeaderButtons.html",
-              function() {UpdateHeader()});})
-    </script> 
-<!--    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />-->
-  
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/wemwbsJSONmatrix.js"></script>
     
-    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
-    <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
-</head>
-  <body>
-  <script>
 
+  
+  <script>
+    console.log(EN_wemwbsJSONmatrix.survey_JSON)
     var jsPsych = initJsPsych({
       display_element: 'jspsych-target',
       show_progress_bar: false,    
@@ -33,7 +29,7 @@
 
     var matrix_trial = {
         type: jsPsychSurveyMatrix,
-        JSONinput: survey_JSON,
+        survey_json: function() { return EN_wemwbsJSONmatrix.survey_JSON},
         button_label: "Submit",
         required: true,
         on_finish: function(data) {
@@ -43,8 +39,11 @@
     jsPsych.run([matrix_trial]);
     
   </script>
-
-  <div id="headerButtons"></div>
-  <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-</html>body>
+  </head>
+<body>
+  <div class="btn-group-header" id="header-btn-group"></div>
+  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+  <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+  
+</body>
 </html>

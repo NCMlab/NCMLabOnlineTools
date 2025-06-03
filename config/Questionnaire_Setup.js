@@ -260,7 +260,7 @@ var CESAM_001 = {
 }
 
 var WEMWBS_001 = { 
-    questionnaire: ['wemwbsJSON'], 
+    questionnaire: ['wemwbsJSONmatrix'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -270,7 +270,7 @@ var WEMWBS_001 = {
 }
 
 var PAES_001 = { 
-    questionnaire: ['paesJSON'], 
+    questionnaire: ['paesJSONmatrix'], 
     criteria: [],
     variable: [],
     AskForNotes: false,

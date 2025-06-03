@@ -94,7 +94,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             html += '</div>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
-                html += '<table border="0" >'
+                html += '<table class="tableMatrix">'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
                     for ( let i = 0; i < trial.survey_json.elements[0].columns.length; i++ ) {
@@ -122,7 +122,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
           // add submit button
-          
+          html += '<div class="tableSubmitButton">'
           html +=
     //          '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
 
@@ -130,6 +130,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                   trial.button_label +
                   ' "></input>';
           html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
+          html += '</div>'
           display_element.innerHTML = html;
         
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {

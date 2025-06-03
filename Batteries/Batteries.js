@@ -1219,7 +1219,7 @@ List.push({
   IconName: "PANAS, baseline",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "WEMWBS_001",
   Instructions: "Default",
   IconName: "WEMWBS",
@@ -1287,7 +1287,7 @@ List.push({
   IconName: "PANAS, weekly",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "PAES_001",
   Instructions: "Default",
   IconName: "PAES",
