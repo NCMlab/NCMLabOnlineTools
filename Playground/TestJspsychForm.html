@@ -9,22 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
     <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="../jspsych_addons/plugin-survey-html-form.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/wemwbsJSONmatrix.js"></script>
-    
-<script>
-        var NAV = navigator;
-      var ComputerInfo = {}
-      ComputerInfo.CurrentLanguage = NAV.language
-      ComputerInfo.AvailableLanguage = NAV.languages
-      ComputerInfo.appVersion = NAV.appVersion
-    console.log(ComputerInfo)
-</script>
-  
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/cesamJSONform.js"></script>
+      
   <script>
-    console.log(EN_wemwbsJSONmatrix.survey_JSON)
+    
     var jsPsych = initJsPsych({
       display_element: 'jspsych-target',
       show_progress_bar: false,    
@@ -33,17 +23,20 @@
         jsPsych.data.displayData();
       }
     });
+    console.log(EN_cesamJSON.survey_JSON)
+    var form_trial = {
 
-    var matrix_trial = {
-        type: jsPsychSurveyMatrix,
-        survey_json: function() { return EN_wemwbsJSONmatrix.survey_JSON},
+    }
+    var form_trial = {
+        type: jsPsychSurveyHtmlForm,
+        survey_json: function() { return EN_cesamJSON.survey_JSON},
         button_label: "Submit",
         required: true,
         on_finish: function(data) {
           console.log(data)
         }
     };
-    jsPsych.run([matrix_trial]);
+    jsPsych.run([form_trial]);
     
   </script>
   </head>
