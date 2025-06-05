@@ -60,7 +60,18 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
       }
+        
+      CheckAllForAnyVisibleIf(trial) {
+        console.log(trial)
+        var NQuestions = trial.survey_json.pages[0].elements.length
+        for ( var i = 0; i < NQuestions; i++ ) {
+            console.log(trial.survey_json.pages[0].elements[i].visibleIf)
+        }
+        }
+        
+
       trial(display_element, trial) {
+
           var html = "";
           // show preamble text
           if (trial.preamble !== null) {
@@ -76,11 +87,53 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           else {
               html += '<form id="jspsych-survey-html-form" autocomplete="off">';
           }
+          
           // add form HTML / input elements
           // cycle over the JSON input data
           console.log(trial.survey_json)
           var NQuestions = trial.survey_json.pages[0].elements.length
           console.log("There are "+NQuestions+" questions")
+          
+          // Look for visible if questions and create the text to hide them
+          var VisibleIfConditions = []
+
+          for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQ = {}
+            var thisQuestion = trial.survey_json.pages[0].elements[i]
+            if ( thisQuestion.visibleIf ) {
+                console.log("VISIBLEIF")  
+                var Str = 'style="display: none"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                // decode the visible if condition
+                var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
+                var ThisQuestionIsConditionalOn = matches[1]
+                console.log(ThisQuestionIsConditionalOn)
+                // Find this question and edit it
+                let obj = VisibleIfConditions.find((o, index) => 
+                    {
+                        if (o.name === ThisQuestionIsConditionalOn) {
+                            console.log(VisibleIfConditions[index])
+                            // Now that we found the question that the current question is conditional ON
+                            // we need to find what the condition is. If that condition is met, then make the
+                            // set the onChange function to make this question visible.
+                            // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
+
+                            thisQ['onChange'] = ''
+                            return true;
+                        }
+                    })
+
+            } 
+            else {
+                var Str = 'style="display: visible"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+            }
+            VisibleIfConditions.push(thisQ)
+          }
+          //console.log(VisibleIfConditions[5])
+          //console.log(obj)
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQuestion = trial.survey_json.pages[0].elements[i]
             // process dropdown questions
@@ -88,20 +141,35 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 case 'dropdown':
                     //console.log("Question type: "+thisQuestion.type)
                     var Str = ''
-                    Str += '<select name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
+                    Str += '<div id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
+                    Str += '<label>'+thisQuestion.title+'</label>'
+                    
+                    Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
+                    //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
+                    // add default/blank option
+                     Str += '<option disabled selected value> -- </option>'
                     for ( var j = 0; j < NChoices; j++ ) {
-                        console.log("The choices are: "+thisQuestion.choices[j])
-                        Str += '<option value="'+thisQuestion.choices[j]+'">'+thisQuestion.choices[j].text+'</option>'
+                        //console.log("The choices are: "+thisQuestion.choices[j])
+                        Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
                     }
-                    Str += '</select>'
-                    console.log(Str)
+                    Str += '</select></div>'
+                    // after the element is made check to see if there is a visible If property and adjust the target question
+                    if ( thisQuestion.visibleIf ) {
+                        console.log("VISIBLEIF")
+                        
+                    } 
+                    //console.log(Str)
                     break;
                 default:
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
             }
+            
             html += Str
+            
           }
+          
+          
           
           html += trial.html;
 
@@ -109,11 +177,13 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
 
           // add submit button
+          
           html +=
               '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
                   trial.button_label +
                   '"></input>';
           html += "</form>";
+          
           display_element.innerHTML = html;
           if (trial.autofocus !== "") {
               var focus_elements = display_element.querySelectorAll("#" + trial.autofocus);
@@ -207,3 +277,17 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
   return SurveyHtmlFormPlugin;
 
 })(jsPsychModule);
+
+
+// if a visibleIf question is found when looping over the JSON          
+// then change the functionaility of the question or the onChange function
+
+// https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
+function ModifyOnChange(elm) {
+    console.log(elm)
+    
+    document.getElementById(elm.id).attributes.onchange.nodeValue = "JASON"
+    console.log(elm)
+    console.log(document.getElementById(elm.id))
+}
+
