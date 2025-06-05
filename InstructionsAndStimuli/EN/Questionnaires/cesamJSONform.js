@@ -10,8 +10,8 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
         choices: [
-            { value: 2, text: 'Yes' },
-            { value: 0, text: 'No' },
+            { value: 1, text: 'Yes' },
+            { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -21,10 +21,10 @@ const survey_JSON = {
         name: "cesam001p1",
         title: "Was the loss of weight above 3kg (6 lbs)?",
         choices: [
-            { text: "Yes"},
-            { text: "No"}
+            { value: 1, text: "Yes"},
+            { value: 2, text: "No"}
         ],
-        visibleIf: "{cesam001} == 2",
+        visibleIf: "{cesam001} == Yes",
         isRequired: true,
         showClearButton: true
       },
@@ -33,10 +33,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "How many different types of drugs do you take on a daily basis?",
         choices: [
-          { value: 0, text: '0' },
-          { value: 0, text: '1 to 4' },
-          { value: 1, text: '5 to 9' },
-          { value: 2, text: '10 or more' },
+          { value: 1, text: '0' },
+          { value: 2, text: '1 to 4' },
+          { value: 3, text: '5 to 9' },
+          { value: 4, text: '10 or more' },
         ],
         isRequired: true,
         showClearButton: true
@@ -47,7 +47,7 @@ const survey_JSON = {
         title: "Do you have vision problems?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -58,7 +58,7 @@ const survey_JSON = {
         title: "Do you have hearing problems?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -79,8 +79,8 @@ const survey_JSON = {
         name: "cesam006",
         title: "Do you receive home care support?",
         choices: [
-          { value: 2, text: 'Yes' },
-          { value: 0, text: 'No' },        ],
+          { value: 1, text: 'Yes' },
+          { value: 2, text: 'No' },        ],
         isRequired: true,
         showClearButton: true
       },
@@ -104,7 +104,7 @@ const survey_JSON = {
         title: "Do you need help with your grooming (brushing teeth, hair, shaving, applying make up)?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -115,7 +115,7 @@ const survey_JSON = {
         title: "Do you need help with bathing or taking a shower?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -126,7 +126,7 @@ const survey_JSON = {
         title: "Do you need assistance when getting dressed?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -137,7 +137,7 @@ const survey_JSON = {
         title: "Do you use mobility aides for walking or transfering (cane, walker, wheelchair)?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -148,7 +148,7 @@ const survey_JSON = {
         title: "Do you need help with your meals: Shopping for food, meal preparation, assistance in eating",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -159,7 +159,7 @@ const survey_JSON = {
         title: "Do you need help when using the telephone?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -170,7 +170,7 @@ const survey_JSON = {
         title: "Do you need assistance when taking public transportation?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 2, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -269,11 +269,11 @@ const survey_JSON = {
         name: "cesam021p1",
         title: "Who helped you?",
         choices: [
-            {text: "Family"},
-            {text: "Friends"},
-            {text: "Professional"}
+            {value: 1, text: "Family"},
+            {value: 2, text: "Friends"},
+            {value: 3, text: "Professional"}
         ],
-        visibleIf: "{cesam021} == 1",
+        visibleIf: "{cesam021} == Yes",
         isRequired: true,
         showClearButton: true
       },
@@ -282,10 +282,10 @@ const survey_JSON = {
         name: "cesam021p2",
         title: "Which family member helped you?",
         choices: [
-            {text: "Spouse"},
-            {text: "Partner"},
-            {text: "Child"},
-            {text: "Other"}
+            {value: 1, text: "Spouse"},
+            {value: 2, text: "Partner"},
+            {value: 3, text: "Child"},
+            {value: 4, text: "Other"}
         ],
         visibleIf: "{cesam021p1} == Family",
         isRequired: true,
@@ -296,8 +296,8 @@ const survey_JSON = {
         name: "cesam022",
         title: "Did you answer this questionnaire for yourself or for someone else?",
         choices: [
-            {text: "Myself"},
-            {text: "Another person"}
+            {value: 1, text: "Myself"},
+            {value: 2, text: "Another person"}
         ],
         isRequired: true,
         showClearButton: true
@@ -307,8 +307,8 @@ const survey_JSON = {
         name: "cesam023",
         title: "Are you the caregiver to an individual who is suffering from a chronic illness?",
         choices: [
-            {text: "Yes"},
-            {text: "No"}
+            {value:1, text: "Yes"},
+            {value:2, text: "No"}
         ],
         isRequired: true,
         showClearButton: true

@@ -101,7 +101,9 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             var thisQ = {}
             var thisQuestion = trial.survey_json.pages[0].elements[i]
             if ( thisQuestion.visibleIf ) {
-                console.log("VISIBLEIF")  
+                // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
+                var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
+                
                 var Str = 'style="display: none"'
                 thisQ['div'] = Str
                 thisQ['name'] = thisQuestion.name
@@ -109,17 +111,18 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
                 var ThisQuestionIsConditionalOn = matches[1]
                 console.log(ThisQuestionIsConditionalOn)
+                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
                 // Find this question and edit it
                 let obj = VisibleIfConditions.find((o, index) => 
                     {
                         if (o.name === ThisQuestionIsConditionalOn) {
-                            console.log(VisibleIfConditions[index])
+                            console.log("INEDX: "+index)
                             // Now that we found the question that the current question is conditional ON
                             // we need to find what the condition is. If that condition is met, then make the
                             // set the onChange function to make this question visible.
                             // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
-
-                            thisQ['onChange'] = ''
+                            VisibleIfConditions[index]['onChangeQuestion'] = thisQuestion.name
+                            VisibleIfConditions[index]['onChangeCondition'] = ConditionToMeet.trim()
                             return true;
                         }
                     })
@@ -132,19 +135,29 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             }
             VisibleIfConditions.push(thisQ)
           }
-          //console.log(VisibleIfConditions[5])
+          console.log(VisibleIfConditions)
           //console.log(obj)
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQuestion = trial.survey_json.pages[0].elements[i]
             // process dropdown questions
+
             switch(thisQuestion.type) {
                 case 'dropdown':
                     //console.log("Question type: "+thisQuestion.type)
                     var Str = ''
                     Str += '<div id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label>'+thisQuestion.title+'</label>'
-                    
-                    Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
+
+                    Str += '<select '
+                    if ( VisibleIfConditions[i].onChangeCondition ) {
+                        Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '
+                        //Str += 'onChange="ModifyOnChange(this)"'
+                        //var JJJ = "JASON"
+                        //Str += 'onChange="ModifyOnChange(\'JJJ\')" '
+                    }
+
+                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
+                    //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
                     // add default/blank option
@@ -155,10 +168,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     }
                     Str += '</select></div>'
                     // after the element is made check to see if there is a visible If property and adjust the target question
-                    if ( thisQuestion.visibleIf ) {
-                        console.log("VISIBLEIF")
-                        
-                    } 
+                    
                     //console.log(Str)
                     break;
                 default:
@@ -216,6 +226,12 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                   response: question_data,
               };
               display_element.innerHTML = "";
+
+
+
+
+
+
               // next trial
               this.jsPsych.finishTrial(trialdata);
           });
@@ -283,11 +299,27 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 // then change the functionaility of the question or the onChange function
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
-function ModifyOnChange(elm) {
-    console.log(elm)
+function ModifyOnChange(elementToChange) {
+    console.log("HELLO FROMN MODIFY")
+    console.log(elementToChange)
+    var splitInput = elementToChange.split('___')
+    console.log(splitInput)
+    //get current question
+    var e = document.getElementById(splitInput[0])
+    console.log(e.options[e.value].innerHTML)
+    console.log(splitInput[2])
+    if (e.options[e.value].innerHTML == splitInput[2]) {
+        console.log("TRUE")
+
+        f = document.getElementById("div-"+splitInput[1])
+        f.style="display: visible"
+        console.log(f)
+    }
     
-    document.getElementById(elm.id).attributes.onchange.nodeValue = "JASON"
-    console.log(elm)
-    console.log(document.getElementById(elm.id))
+    
+    //document.getElementById(elm.id).attributes.onchange.nodeValue = "JASON"
+    //console.log(elm)
+    //console.log(document.getElementById(elm.id))
+
 }
 
