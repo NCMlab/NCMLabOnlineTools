@@ -10,8 +10,8 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
         choices: [
-            { value: 1, text: 'Yes' },
-            { value: 2, text: 'No' },
+            { value: 16, text: 'Yes' },
+            { value: 42, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true

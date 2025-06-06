@@ -97,6 +97,11 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           // Look for visible if questions and create the text to hide them
           var VisibleIfConditions = []
 
+
+          // add submit button
+          html += '</div>'
+
+
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
             var thisQuestion = trial.survey_json.pages[0].elements[i]
@@ -145,7 +150,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 case 'dropdown':
                     //console.log("Question type: "+thisQuestion.type)
                     var Str = ''
-                    Str += '<div class="" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
+                    Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
                     Str += '<select class="surveyFormSelect"'
@@ -156,7 +161,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         //Str += 'onChange="ModifyOnChange(\'JJJ\')" '
                     }
 
-                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
+                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" required >'
                     //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
@@ -166,7 +171,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         //console.log("The choices are: "+thisQuestion.choices[j])
                         Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
                     }
-                    Str += '</select></div>'
+                    Str += '</select></div><hr>'
                     // after the element is made check to see if there is a visible If property and adjust the target question
                     
                     //console.log(Str)
@@ -181,17 +186,20 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           
           
           
-          html += trial.html;
+          
 
 
 
 
           // add submit button
+            html += '<div class="tableSubmitButton">'
+            html +=
+              '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
+                trial.button_label +
+                ' "></input>';
+            html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
+
           
-          html +=
-              '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
-                  trial.button_label +
-                  '"></input>';
           html += "</form>";
           
           display_element.innerHTML = html;
@@ -300,17 +308,12 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
-    console.log("HELLO FROMN MODIFY")
-    console.log(elementToChange)
     var splitInput = elementToChange.split('___')
-    console.log(splitInput)
     //get current question
     var e = document.getElementById(splitInput[0])
-    console.log(e.options[e.value].innerHTML)
-    console.log(splitInput[2])
-    if (e.options[e.value].innerHTML == splitInput[2]) {
-        console.log("TRUE")
-
+    // The values provided for each option should be arbitray form the code's point of view
+    // what is the option index for the selected option?
+    if (e.options[e.options.selectedIndex].innerHTML == splitInput[2]) {
         f = document.getElementById("div-"+splitInput[1])
         f.style="display: visible"
         console.log(f)
@@ -323,3 +326,24 @@ function ModifyOnChange(elementToChange) {
 
 }
 
+function InternalValidateForm(form) {
+    console.log("HELLO WORLD")
+    console.log(form)
+    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
+    var NQuestions = AllQuestions.length
+
+    for ( var i = 0; i < NQuestions; i++ ) {
+        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
+        // Add check to see if a question is visible or not before deciding if it needs to be answered.
+        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
+            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+            document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+            document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+
+        }
+        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
+        
+        console.log(AllQuestions[i])
+    }
+
+}
