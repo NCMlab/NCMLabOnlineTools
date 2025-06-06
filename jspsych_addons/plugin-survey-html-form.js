@@ -148,7 +148,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
             switch(thisQuestion.type) {
                 case 'dropdown':
-                    //console.log("Question type: "+thisQuestion.type)
+                    // console.log("Question type: "+thisQuestion.visibleIf)
                     var Str = ''
                     Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
@@ -158,10 +158,14 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '
                         //Str += 'onChange="ModifyOnChange(this)"'
                         //var JJJ = "JASON"
-                        //Str += 'onChange="ModifyOnChange(\'JJJ\')" '
+                        //Str += 'onChange="ModifyOnChange(\'JJJ\')" '                        
+                    }
+                    // only set the visible questions to be required
+                    if ( ! thisQuestion.visibleIf ) {
+                        Str += ' required '
                     }
 
-                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" required >'
+                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'"  >'
                     //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
@@ -316,7 +320,11 @@ function ModifyOnChange(elementToChange) {
     if (e.options[e.options.selectedIndex].innerHTML == splitInput[2]) {
         f = document.getElementById("div-"+splitInput[1])
         f.style="display: visible"
-        console.log(f)
+        s = document.getElementById("div-"+splitInput[1]).getElementsByClassName("surveyFormSelect")[0]
+        
+        //f.setAttribute('required','')
+        s.required = true;
+        console.log(s)
     }
     
     
@@ -333,16 +341,20 @@ function InternalValidateForm(form) {
     var NQuestions = AllQuestions.length
 
     for ( var i = 0; i < NQuestions; i++ ) {
+        console.log(AllQuestions[i].style.display != 'none')
         console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
         // Add check to see if a question is visible or not before deciding if it needs to be answered.
         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-            document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
-            document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-
+            if ( AllQuestions[i].style.display != 'none' ) {
+                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+        }
+        else { // reset the background color
+            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
         }
         console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
-        
         console.log(AllQuestions[i])
     }
 
