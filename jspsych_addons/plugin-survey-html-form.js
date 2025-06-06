@@ -145,10 +145,10 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 case 'dropdown':
                     //console.log("Question type: "+thisQuestion.type)
                     var Str = ''
-                    Str += '<div id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
-                    Str += '<label>'+thisQuestion.title+'</label>'
+                    Str += '<div class="" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
+                    Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
-                    Str += '<select '
+                    Str += '<select class="surveyFormSelect"'
                     if ( VisibleIfConditions[i].onChangeCondition ) {
                         Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '
                         //Str += 'onChange="ModifyOnChange(this)"'
