@@ -64,10 +64,9 @@ var pages = [
   
   EN_IntakeForm_FaCE.Instructions01 = [
     {'page': ' Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
-      'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
-      'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
-      {'page': 'If a task freezes on you, you can press the <em>Skip</em> button. If you have feedback you would like to share '+
-      'with us, there will be a text box at the end where you can type in comments.'}
+      'Please, do not press your browser\'s back or reload buttons.'},
+      {'page': 'If you have feedback you would like to share '+
+      'with us, there will be a text box at the very end of the experiment where you can type in comments.'}
   ]
 
 add('EN_Instructions_IntakeFaCE', function(){ Instructions = EN_IntakeForm_FaCE });
@@ -296,12 +295,10 @@ var pages = [
     EN_IntakeForm_Generic.pages = pages  
     
     EN_IntakeForm_Generic.Instructions01 = [
-      {'page': ' Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
-        'If you want to finish the experiment early, press the <em>Stop</em> button in the top left. If you want to remove yourself '+
-        'from the experiment press the <em>Quit</em> button. Please, do not press your browser\'s back or reload buttons.'},
-        {'page': 'If a task freezes on you, you can press the <em>Skip</em> button. If you have feedback you would like to share '+
-        'with us, there will be a text box at the end where you can type in comments.'}
-    ]
+    {'page': ' Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
+      'Please, do not press your browser\'s back or reload buttons.'},
+      {'page': 'If you have feedback you would like to share '+
+      'with us, there will be a text box at the very end of the experiment where you can type in comments.'}    ]
 
   add('EN_Instructions_Default', function(){ Instructions = EN_IntakeForm_Generic });
 

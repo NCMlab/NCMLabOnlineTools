@@ -12,7 +12,6 @@ var trial = {
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: function() {
-    
     console.log(parameters)
     return LabelNames.Submit
   },

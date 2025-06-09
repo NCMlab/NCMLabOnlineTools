@@ -164,14 +164,13 @@ var jsPsych = initJsPsych({
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);     
-
+UpdateHeader()
       jsPsych.run(timeline);
     });
   </script>
-          <div class="btn-group-header" id="header-btn-group"></div>
+        <div class="btn-group-header" id="header-btn-group"></div>
         <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
         <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
-        <script>UpdateHeader()</script>
 
     </body>
 </html>

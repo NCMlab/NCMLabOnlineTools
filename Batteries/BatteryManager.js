@@ -83,6 +83,10 @@ var SetupBattery = {
           JATOSSessionData.BatteryName = CurrentBattery.name
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
+          if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
+          { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
+          else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }
+
       }
       else if ( isEmpty(JATOSSessionData) && ( typeof jatos.batchSession.get(jatos.workerId) != 'undefined' )) 
       { // This is a restart, remake the session data

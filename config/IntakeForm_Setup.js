@@ -4,7 +4,7 @@ var IntakeForm = {
 	WelcomeAudio: '',
 	ShowThankYou: false,
 	ShowInstructions: true, 
-	InstructionsSpoken: true,
+	InstructionsSpoken: false,
 	AskForNotes: false,
 	RecordAUDIO: false
 }
@@ -15,7 +15,7 @@ IntakeForm.Instructions01Audio.push('assets/SoundFiles/Instructions/IntakeForm_I
 IntakeForm.Instructions01Time = []
 IntakeForm.Instructions01Time.push(24000)
 IntakeForm.Instructions01Time.push(15000)
-add('IntakeForm_EN', function(){ parameters = IntakeForm })
+add('EN_IntakeForm', function(){ parameters = IntakeForm })
 
 
 IntakeForm.Instructions01Audio = []
@@ -24,4 +24,4 @@ IntakeForm.Instructions01Audio.push('assets/SoundFiles/Instructions/IntakeForm_I
 IntakeForm.Instructions01Time = []
 IntakeForm.Instructions01Time.push(24000)
 IntakeForm.Instructions01Time.push(15000)
-add('IntakeForm_FR', function(){ parameters = IntakeForm })
+add('FR_IntakeForm', function(){ parameters = IntakeForm })

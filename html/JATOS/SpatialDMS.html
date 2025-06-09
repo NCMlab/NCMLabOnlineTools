@@ -61,7 +61,7 @@
         }
         pseudoSwitch(parameters)
         console.log(parameters)
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names

@@ -19,7 +19,7 @@
     </script> 
   </head>    
   <body>
-    <div id="headerButtons"></div>
+    <!--<div id="headerButtons"></div>-->
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
@@ -57,7 +57,7 @@
         console.log(parameters)
         pseudoSwitch(parameters)      
         console.log(parameters)
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
@@ -71,7 +71,7 @@
 
     
     <script src="functions/Experiments/ReadingListening_experiment.js"></script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <!--<div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>-->
   
   
   <script>
@@ -124,6 +124,9 @@
       UpdateHeader()
   })
 </script>
+        <div class="btn-group-header" id="header-btn-group"></div>
+        <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+        <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
 
 
 </body>
