@@ -21,8 +21,8 @@ const survey_JSON = {
         name: "cesam001p1",
         title: "Si oui, précisez si la perte de poids a été de plus de 3 kilos (plus de 6 livres) ?",
         choices: [
-            "Oui",
-            "Non"
+            { value: 2, text: 'Oui' },
+            { value: 0, text: 'Non' },
         ],
         visibleIf: "{cesam001} == Oui",
         isRequired: true,
@@ -79,8 +79,8 @@ const survey_JSON = {
         name: "cesam006",
         title: "Recevez-vous de l'aide pour accomplir les actes de vie de tous les jours ?",
         choices: [
-            "Oui",
-            "Non"
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -90,9 +90,9 @@ const survey_JSON = {
         name: "cesam006p1",
         title: "Si oui, précisez s'il s'agit d'un :",
         choices: [
-            "Parent",
-            "Amis",
-            "Professionel"
+            {text: "Parent"},
+            {text: "Amis"},
+            {text: "Professionel"}
         ],
         visibleIf: "{cesam006} == Oui",
         isRequired: true,
@@ -259,8 +259,8 @@ const survey_JSON = {
         name: "cesam021",
         title: "Avez-vous reçu de l'aide pour remplir ce questionnaire ?",
         choices: [
-          { value: 1, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -270,9 +270,9 @@ const survey_JSON = {
         name: "cesam021p1",
         title: "Si oui, qui vous a aidé ?",
         choices: [
-            "Famille",
-            "Amis",
-            "Professionel"
+            {text: "Famille"},
+            {text: "Amis"},
+            {text: "Professionel"}
         ],
         visibleIf: "{cesam021} == Oui",
         isRequired: true,
@@ -283,9 +283,9 @@ const survey_JSON = {
         name: "cesam021p2",
         title: "Quel membre de votre famille vous a aidé ?",
         choices: [
-            "Époux.se / Partenaire",
-            "Enfant",
-            "Autre"
+            {value: 1, text: "Époux.se / Partenaire"},
+            {value: 2, text: "Enfant"},
+            {value: 3, text: "Autre"}
         ],
         visibleIf: "{cesam021p1} == Famille",
         isRequired: true,
@@ -296,8 +296,8 @@ const survey_JSON = {
         name: "cesam022",
         title: "Les réponses que vous venez de donner sont-elles pour vous-même ou une autre personne ?",
         choices: [
-            "Moi-même",
-            "Autre personne"
+            {value: 1, text: "Moi-même"},
+            {value: 0, text: "Autre personne"}
         ],
         isRequired: true,
         showClearButton: true
@@ -307,8 +307,8 @@ const survey_JSON = {
         name: "cesam023",
         title: "Êtes-vous l'aidant d'une personne malade ? ",
         choices: [
-            "Oui",
-            "Non"
+            {value: 1, text: "Oui"},
+            {value: 0, text: "Non"}
         ],
         isRequired: true,
         showClearButton: true
@@ -318,8 +318,8 @@ const survey_JSON = {
         name: "cesam023p1",
         title: "De quelle maladie souffre-t-il/elle ?",
         choices: [
-            "Maladie d'Alzheimer",
-            "Autre"
+            {value: 1, text: "Maladie d'Alzheimer"},
+            {value: 0, text: "Autre"}
         ],
         visibleIf: "{cesam023} == Oui",
         isRequired: true,

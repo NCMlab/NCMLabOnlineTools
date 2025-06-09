@@ -10,8 +10,8 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
         choices: [
-            { value: 16, text: 'Yes' },
-            { value: 42, text: 'No' },
+            { value: 2, text: 'Yes' },
+            { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -33,10 +33,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "How many different types of drugs do you take on a daily basis?",
         choices: [
-          { value: 1, text: '0' },
-          { value: 2, text: '1 to 4' },
-          { value: 3, text: '5 to 9' },
-          { value: 4, text: '10 or more' },
+          { value: 0, text: '0' },
+          { value: 0, text: '1 to 4' },
+          { value: 1, text: '5 to 9' },
+          { value: 2, text: '10 or more' },
         ],
         isRequired: true,
         showClearButton: true
@@ -47,7 +47,7 @@ const survey_JSON = {
         title: "Do you have vision problems?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 2, text: 'No' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -58,7 +58,7 @@ const survey_JSON = {
         title: "Do you have hearing problems?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 2, text: 'No' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -80,7 +80,7 @@ const survey_JSON = {
         title: "Do you receive home care support?",
         choices: [
           { value: 1, text: 'Yes' },
-          { value: 2, text: 'No' },        ],
+          { value: 0, text: 'No' },        ],
         isRequired: true,
         showClearButton: true
       },

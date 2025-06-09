@@ -25,18 +25,18 @@ var LoadQuestionnaire = {
   }
 }
 
-var matrix_trial = {
-    type: jsPsychSurveyMatrix,
+var form_trial = {
+    type: jsPsychSurveyHtmlForm,
     survey_json: function() {
         return Questionnaire.survey_JSON
     },
     button_label: function() { return LabelNames.Submit},
-    missed_question_label: function() { return LabelNames.missed_question_label}, 
-    missed_question_text: function() { return LabelNames.missed_question_text}, 
+    missed_question_label: function() { return LabelNames.missed_question_label},
+    missed_question_text: function() { return LabelNames.missed_question_text},
     required: true,
     on_load: function() {
-        console.log(document.getElementById("jspsych-progressbar-container"))
-        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     },
     on_finish: function(data) {
         data.trial = "Questionnaire"
@@ -185,7 +185,7 @@ var SpecialtyScoring = {
 
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
-timeline.push(matrix_trial)
+timeline.push(form_trial)
 
 
 timeline.push(CheckForAlert)

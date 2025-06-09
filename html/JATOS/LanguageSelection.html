@@ -54,23 +54,25 @@
       }
     </script>
     <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src='jspsych/dist/plugin-call-function.js'></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
   </head>
   <body>
-    <div id="headerButtons"></div>
+    <!--<div id="headerButtons"></div>-->
     <script src="InstructionsAndStimuli/Instructions/LanguageSelection_Instructions.js"></script>
     
     <script src="jatos.js"></script>
     
 
     
-    <script>
+    <!--<script>
       loadIntoLocalStorage('jspsych/dist/plugin-survey.js', 'jsPsychSurvey')
       .then(()=> loadIntoLocalStorage('jspsych/dist/plugin-call-function.js','jsPsychCallFunction'))
       </script>
-    
+    -->
     
     
     
@@ -118,7 +120,7 @@
       
     </script> 
 
-  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
+  <!--<div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>-->
 
 <script>
 var setup = []
@@ -166,5 +168,10 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
+          <div class="btn-group-header" id="header-btn-group"></div>
+        <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+        <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+        <script>UpdateHeader()</script>
+
     </body>
 </html>

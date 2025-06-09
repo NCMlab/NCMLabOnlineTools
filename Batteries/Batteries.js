@@ -14,6 +14,20 @@ List.push({
   Instructions: "Default",
   IconName: "PANAS, Survey"
 });
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CESAM_001",
+  Instructions: "Default",
+  IconName: "CESAM, Form"
+});
+List.push({
+  Task: "Questionnaire",
+  Parameters: "CESAM_001",
+  Instructions: "Default",
+  IconName: "CESAM, Survey"
+});
+
+
 BatteryList.push({
   index: 99,
   name: "H-10-23-9755",

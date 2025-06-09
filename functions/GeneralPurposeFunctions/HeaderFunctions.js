@@ -9,7 +9,7 @@ function UpdateHeader() {
             document.getElementById('header-stop-button').style.visibility = "hidden"
             document.getElementById('header-info-button').style.visibility = "hidden"
 
-            
+            console.log(jatos)
             for ( item in jatos.studySessionData.HeaderButtonsToShow ) {
                 console.log( jatos.studySessionData.HeaderButtonsToShow[item] )
                 switch ( jatos.studySessionData.HeaderButtonsToShow[item] ) {

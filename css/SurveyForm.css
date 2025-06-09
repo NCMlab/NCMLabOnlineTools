@@ -6,7 +6,7 @@
   text-align: center;
   width: 50%;
 }
-.surveyFormLabel {
+.surveyFormLabel, .tableSubmitButton {
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.5rem;
   padding-top: 0.5rem;
@@ -17,4 +17,14 @@
 }
 .surveyFormDiv {
     text-align: center;
+}
+
+.tableSubmitButton {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: inline-flex;
+  text-align: center;
+    display: inline-flex; align-items : center; justify-content: center
 }

@@ -39,6 +39,19 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               pretty_name: "Button label",
               default: "Continue",
           },
+                    /** Label on the popup when a question is missed. */
+          missed_question_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Button label",
+              default: "Please select an item ",
+          },
+          /** Label next to submit button when a question is missed. */
+          missed_question_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Please answer all questions",
+          },
+
           /** Setting this to true will enable browser auto-complete or auto-fill for the form. */
           autocomplete: {
               type: jspsych.ParameterType.BOOL,
@@ -112,6 +125,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                             if (trial.required) {
                                html += ' required ';
                             }
+                            html += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                             html+= '></td>'
                         }
                     }
@@ -129,7 +143,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                   trial.button_label +
                   ' "></input>';
-          html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
+          html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
           html += '</div>'
           display_element.innerHTML = html;
         
@@ -315,7 +329,8 @@ function InternalValidateForm(form) {
             // change the background color of any rows without a selection in them
             if ( ! SelectionMadeInRow ) {
                 document.getElementById(rowNames[i]).style.backgroundColor = '#FFC0CB' 
-                document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                //document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                document.getElementById("tableMessageBox").style = "block"
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }

@@ -270,9 +270,9 @@ const survey_JSON = {
         name: "cesam021p1",
         title: "Who helped you?",
         choices: [
-            "Family",
-            "Friends",
-            "Professional"
+            {value: 1, text: "Family"},
+            {value: 2, text: "Friends"},
+            {value: 3, text: "Professional"}
         ],
         visibleIf: "{cesam021} == 1",
         isRequired: true,
@@ -283,10 +283,10 @@ const survey_JSON = {
         name: "cesam021p2",
         title: "Which family member helped you?",
         choices: [
-            "Spouse",
-            "Partner",
-            "Child",
-            "Other"
+            {value: 1, text: "Spouse"},
+            {value: 2, text: "Partner"},
+            {value: 3, text: "Child"},
+            {value: 4, text: "Other"}
         ],
         visibleIf: "{cesam021p1} == Family",
         isRequired: true,
@@ -297,8 +297,8 @@ const survey_JSON = {
         name: "cesam022",
         title: "Did you answer this questionnaire for yourself or for someone else?",
         choices: [
-            "Myself",
-            "Another person"
+            {value: 1, text: "Myself"},
+            {value: 0, text: "Another person"}
         ],
         isRequired: true,
         showClearButton: true
@@ -308,8 +308,8 @@ const survey_JSON = {
         name: "cesam023",
         title: "Are you the caregiver to an individual who is suffering from a chronic illness?",
         choices: [
-            "Yes",
-            "No"
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -319,8 +319,8 @@ const survey_JSON = {
         name: "cesam023p1",
         title: "What is his/her condition?",
         choices: [
-            "Alzheimer's disease",
-            "Other"
+            {value: 1, text: "Alzheimer's disease"},
+            {value: 0, text: "Other"}
         ],
         visibleIf: "{cesam023} == Yes",
         isRequired: true,

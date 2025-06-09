@@ -22,12 +22,25 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               pretty_name: "Preamble",
               default: null,
           },
-          /** The text that appears on the button to finish the trial. */
+          /** Label of the button to submit responses. */
           button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
               default: "Continue",
           },
+          /** Label on the popup when a question is missed. */
+          missed_question_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Please select an item",
+          },
+          /** Label next to submit button when a question is missed. */
+          missed_question_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Please answer all questions",
+          },
+
           /** The HTML element ID of a form field to autofocus on. */
           autofocus: {
               type: jspsych.ParameterType.STRING,
@@ -165,7 +178,12 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         Str += ' required '
                     }
 
-                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'"  >'
+                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
+                    
+                    Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                    Str += '>'
+// <select required  id="doc_type" oninvalid="this.setCustomValidity('Please select an item in the list')" oninput="setCustomValidity('')">
+
                     //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
@@ -201,7 +219,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                 trial.button_label +
                 ' "></input>';
-            html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'></td></tr></table>";
+            html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
 
           
           html += "</form>";
@@ -335,8 +353,6 @@ function ModifyOnChange(elementToChange) {
 }
 
 function InternalValidateForm(form) {
-    console.log("HELLO WORLD")
-    console.log(form)
     var AllQuestions = document.getElementsByClassName("surveyFormDiv")
     var NQuestions = AllQuestions.length
 
@@ -347,7 +363,7 @@ function InternalValidateForm(form) {
         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
             if ( AllQuestions[i].style.display != 'none' ) {
                 document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                document.getElementById("tableMessageBox").style = "block"
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
