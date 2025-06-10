@@ -1,6 +1,36 @@
 var BatteryList = [];
 
 
+
+// ===============================
+var List = []
+List.push({
+  Task: "Email Entry",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Email Entry",
+});
+List.push({
+  Task: "Ending Page",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Ending Page",
+});
+
+BatteryList.push({
+  index: 1116,
+  name: "H-10-23-9755",
+  description: "Test",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  TaskList: List,
+  HeaderButtonsToShow: ['Home','Quit','Stop']
+});
+
+// ===============================
 var List = [];
 List.push({
   Task: "Matrix Questionnaire",
