@@ -79,6 +79,7 @@ var SpecialtyScoring = {
         }
       case 'CESAM':
         {
+          // https://www.sciencedirect.com/science/article/pii/S1525861022005035
           Results.AllResults['Nutrition'] = data.trials[0].response.find(o => o.name === 'cesam001').responseValue
           Results.AllResults['Multimorbidity'] = data.trials[0].response.find(o => o.name === 'cesam002').responseValue
           Results.AllResults['Communication'] = data.trials[0].response.find(o => o.name === 'cesam003').responseValue + 
