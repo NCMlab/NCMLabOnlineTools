@@ -39,6 +39,24 @@ function Questionnaire_Scoring(data) {
 			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
 		}
 	}
+	if ( data.QuestionnaireType == 'form' )
+	{	
+		const rowIndices = Object.keys(data.response)
+        console.log(rowIndices)
+		var NRows = rowIndices.length
+		console.log(data)
+		//console.log(BREAK)
+		// cycle over responses
+		for ( var i = 0; i < NRows; i++ )
+		{
+			NumericScore = data.response[i].responseValue			
+			TotalScore += NumericScore
+			Results.AllResults[data.response[i].label] = data.response[i].responseText
+		}
+	}
+	
+	
+	
 	if ( data.QuestionnaireType == 'OLDmatrix' )
 	{	
 		

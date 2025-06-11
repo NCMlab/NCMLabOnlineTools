@@ -126,7 +126,9 @@ var SpecialtyScoring = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    
+    console.log(data)
+    console.log(BREAK)           
+
     switch ( data.trials[0].shortTitle ) {
       case 'FirstName':
         // This is here to have a language independent location to store the first name of a participant
@@ -137,6 +139,7 @@ var SpecialtyScoring = {
         {
           console.log(data)
           console.log(Results)
+          console.log(BREAK)
           Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
           Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
           Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
@@ -194,7 +197,8 @@ var SpecialtyScoring = {
                                               Results.AllResults['Continence'] + 
                                               Results.AllResults['Mood'] + 
                                               Results.AllResults['Mobility']
-          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                           
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']   
+          console.log(BREAK)                                        
           break;
         }
         case 'GDS':

@@ -258,6 +258,16 @@ var CESAM_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+var CESAM_001TEST = { 
+    questionnaire: ['cesamJSONformSHORT'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
 
 var WEMWBS_001 = { 
     questionnaire: ['wemwbsJSONmatrix'], 
@@ -329,3 +339,4 @@ add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
 
 add('TESTJSON', function(){ parameters = TESTJSON});
 
+add('CESAM_001TEST', function(){ parameters = CESAM_001TEST});
