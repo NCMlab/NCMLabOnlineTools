@@ -21,6 +21,8 @@ function Questionnaire_Scoring(data) {
 		Results.AllResults['ShortTitle'] = data.shortTitle
 	}		
 	Results.AllResults['Accuracy'] = ''
+	// This new object is used for extracting data for making spreadsheets
+	Results.NumericResults = {}
 	var TotalScore = 0
 	var TextAnswer
 	var NumericScore
@@ -29,7 +31,6 @@ function Questionnaire_Scoring(data) {
 	if ( data.QuestionnaireType == 'matrix' )
 	{	
 		const rowIndices = Object.keys(data.response)
-        console.log(rowIndices)
 		var NRows = rowIndices.length
 		// cycle over responses
 		for ( var i = 0; i < NRows; i++ )
@@ -37,8 +38,11 @@ function Questionnaire_Scoring(data) {
 			NumericScore = data.response[i].responseValue			
 			TotalScore += NumericScore
 			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
+			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
+			// Add the question name and its numeric score
 		}
 	}
+
 	if ( data.QuestionnaireType == 'form' )
 	{	
 		const rowIndices = Object.keys(data.response)
