@@ -46,12 +46,6 @@ List.push({
 });
 List.push({
   Task: "Form Questionnaire",
-  Parameters: "CESAM_001TEST",
-  Instructions: "Default",
-  IconName: "CESAM, Form"
-});
-List.push({
-  Task: "Questionnaire",
   Parameters: "CESAM_001",
   Instructions: "Default",
   IconName: "CESAM, Survey"
@@ -1239,7 +1233,7 @@ BatteryList.push({index: 73,
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = [];
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "CESAM_001",
   Instructions: "Default",
   IconName: "CESAM",
@@ -1350,7 +1344,7 @@ BatteryList.push({
 
 var List = [];
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "CESAM_001",
   Instructions: "Default",
   IconName: "CESAM",

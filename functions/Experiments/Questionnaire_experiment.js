@@ -126,9 +126,6 @@ var SpecialtyScoring = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    console.log(data)
-    console.log(BREAK)           
-
     switch ( data.trials[0].shortTitle ) {
       case 'FirstName':
         // This is here to have a language independent location to store the first name of a participant
