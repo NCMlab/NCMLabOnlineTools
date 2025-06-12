@@ -79,12 +79,13 @@ var SpecialtyScoring = {
         }
       case 'CESAM':
         {
-          console.log(data)
-          console.log(Results)
-          Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
-          Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
-          Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
-          Results.AllResults['Cognition'] = data.trials[0].response['cesam005']
+          // https://www.sciencedirect.com/science/article/pii/S1525861022005035
+          Results.AllResults['Nutrition'] = data.trials[0].response.find(o => o.name === 'cesam001').responseValue
+          Results.AllResults['Multimorbidity'] = data.trials[0].response.find(o => o.name === 'cesam002').responseValue
+          Results.AllResults['Communication'] = data.trials[0].response.find(o => o.name === 'cesam003').responseValue + 
+            data.trials[0].response.find(o => o.name === 'cesam004').responseValue
+          Results.AllResults['Cognition'] = data.trials[0].response.find(o => o.name === 'cesam005').responseValue
+
           var sumADL = data.trials[0].response['cesam007'] + 
                         data.trials[0].response['cesam008'] + 
                         data.trials[0].response['cesam009']
@@ -138,7 +139,8 @@ var SpecialtyScoring = {
                                               Results.AllResults['Continence'] + 
                                               Results.AllResults['Mood'] + 
                                               Results.AllResults['Mobility']
-          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                           
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']             
+                                        
           break;
         }
         case 'GDS':

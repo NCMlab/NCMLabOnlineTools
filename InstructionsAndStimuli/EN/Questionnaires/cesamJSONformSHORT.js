@@ -10,8 +10,8 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
         choices: [
-            { value: 16, text: 'Yes' },
-            { value: 42, text: 'No' },
+            { value: 2, text: 'Yes' },
+            { value: 0, text: 'No' },
         ],
         isRequired: true,
         showClearButton: true
@@ -41,17 +41,50 @@ const survey_JSON = {
         isRequired: true,
         showClearButton: true
       },
-      
+            {
+        type: "dropdown",
+        name: "cesam003",
+        title: "Do you have vision problems?",
+        choices: [
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam004",
+        title: "Do you have hearing problems?",
+        choices: [
+          { value: 1, text: 'Yes' },
+          { value: 0, text: 'No' },
+        ],
+        isRequired: true,
+        showClearButton: true
+      },
+      {
+        type: "dropdown",
+        name: "cesam005",
+        title: "Has someone close to you expressed concern about your memory?",
+        choices: [
+          { value: 2, text: 'Yes' },
+          { value: 0, text: 'No' },
+        ],
+        isRequired: true,
+        showClearButton: true
+      }
+
     ],
   }]
 };
 
 
-var EN_cesamJSON = {}
-EN_cesamJSON.title = title,
-EN_cesamJSON.shortTitle = shortTitle,
-EN_cesamJSON.survey_JSON = survey_JSON
-EN_cesamJSON.description = ""
-EN_cesamJSON.QuestionnaireType = 'Varied'
-EN_cesamJSON.references = "references"
-EN_cesamJSON.notes = ''
+var EN_cesamJSONformSHORT = {}
+EN_cesamJSONformSHORT.title = title,
+EN_cesamJSONformSHORT.shortTitle = shortTitle,
+EN_cesamJSONformSHORT.survey_JSON = survey_JSON
+EN_cesamJSONformSHORT.description = ""
+EN_cesamJSONformSHORT.QuestionnaireType = 'form'
+EN_cesamJSONformSHORT.references = "references"
+EN_cesamJSONformSHORT.notes = ''

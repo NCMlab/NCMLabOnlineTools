@@ -246,15 +246,35 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               var endTime = performance.now();
               var response_time = Math.round(endTime - startTime);
               var this_form = display_element.querySelector("#jspsych-survey-html-form");
-              var question_data = serializeArray(this_form);
-              if (!trial.dataAsArray) {
-                  question_data = objectifyForm(question_data);
-              }
+              // get response data
+              // Need each questions 
+              //    id
+              //    label innerHTML
+              //    selection innerHTML(text)
+              //    selection value
+              
+              // get all the div elements that contain the questions
+                var AllQuestions = document.getElementsByClassName("surveyFormDiv")
+                var NQuestions = AllQuestions.length
+
+                // Initialize the object for holding the resulatnt data
+                var question_data = []    
+                for ( var i = 0; i < NQuestions; i++ ) {
+                    var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
+                    var this_question_data = {}
+                    this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
+                    this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
+                    this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
+                    this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
+                    question_data.push(this_question_data)
+                }
+              
               // save data
               var trialdata = {
                   rt: response_time,
                   response: question_data,
               };
+              console.log(trialdata)
               display_element.innerHTML = "";
 
 
@@ -266,56 +286,8 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               this.jsPsych.finishTrial(trialdata);
           });
           var startTime = performance.now();
-          /**
-           * Serialize all form data into an array
-           * @copyright (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
-           * @param  {Node}   form The form to serialize
-           * @return {String}      The serialized form data
-           */
-          function serializeArray(form) {
-              // Setup our serialized data
-              var serialized = [];
-              // Loop through each field in the form
-              for (var i = 0; i < form.elements.length; i++) {
-                  var field = form.elements[i];
-                  // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
-                  if (!field.name ||
-                      field.disabled ||
-                      field.type === "file" ||
-                      field.type === "reset" ||
-                      field.type === "submit" ||
-                      field.type === "button")
-                      continue;
-                  // If a multi-select, get all selections
-                  if (field.type === "select-multiple") {
-                      for (var n = 0; n < field.options.length; n++) {
-                          if (!field.options[n].selected)
-                              continue;
-                          serialized.push({
-                              name: field.name,
-                              value: field.options[n].value,
-                          });
-                      }
-                  }
-                  // Convert field data to a query string
-                  else if ((field.type !== "checkbox" && field.type !== "radio") || field.checked) {
-                      serialized.push({
-                          name: field.name,
-                          value: field.value,
-                      });
-                  }
-              }
-              return serialized;
-          }
-          // from https://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery
-          function objectifyForm(formArray) {
-              //serialize data function
-              var returnArray = {};
-              for (var i = 0; i < formArray.length; i++) {
-                  returnArray[formArray[i]["name"]] = formArray[i]["value"];
-              }
-              return returnArray;
-          }
+
+      
       }
   }
   SurveyHtmlFormPlugin.info = info;
@@ -344,12 +316,6 @@ function ModifyOnChange(elementToChange) {
         s.required = true;
         console.log(s)
     }
-    
-    
-    //document.getElementById(elm.id).attributes.onchange.nodeValue = "JASON"
-    //console.log(elm)
-    //console.log(document.getElementById(elm.id))
-
 }
 
 function InternalValidateForm(form) {
