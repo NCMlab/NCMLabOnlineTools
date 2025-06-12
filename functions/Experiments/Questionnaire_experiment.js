@@ -134,9 +134,6 @@ var SpecialtyScoring = {
         }
       case 'CESAM':
         {
-          console.log(data)
-          console.log(Results)
-          console.log(BREAK)
           Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
           Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
           Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
@@ -194,8 +191,7 @@ var SpecialtyScoring = {
                                               Results.AllResults['Continence'] + 
                                               Results.AllResults['Mood'] + 
                                               Results.AllResults['Mobility']
-          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']   
-          console.log(BREAK)                                        
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                
           break;
         }
         case 'GDS':
