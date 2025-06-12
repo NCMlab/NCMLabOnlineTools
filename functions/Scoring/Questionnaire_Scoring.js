@@ -8,12 +8,8 @@ function Questionnaire_Scoring(data) {
 	AllTrials = data
 	
 	data = data.trials[0]
-	console.log("DATA: ")
-	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
-    
-	
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.shortTitle
 	Results.AllResults['ShortTitle'] = '-99'
@@ -38,9 +34,14 @@ function Questionnaire_Scoring(data) {
 			NumericScore = data.response[i].responseValue			
 			TotalScore += NumericScore
 			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
+			// The following version of data will be used for extracting data
+			// Add the question name/id and its numeric score
 			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
-			// Add the question name and its numeric score
+			
 		}
+		// Add the total score, Need to also add the specialty scores
+		var totalScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_total"
+		Results.NumericResults[totalScoreName] = TotalScore
 	}
 
 	if ( data.QuestionnaireType == 'form' )

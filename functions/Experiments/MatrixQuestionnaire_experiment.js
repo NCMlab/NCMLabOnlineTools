@@ -101,21 +101,40 @@ var SpecialtyScoring = {
             Results.AllResults['Accuracy'] = TotalScore
             break;
           }
-          case 'PANASsf':
+          case 'PANAS, weekly':
             {
               Results.AllResults['Positive'] = data.trials[0].response.find(o => o.name === 'panas03').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas05').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas07').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas08').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas10').responseValue
+              Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
 
               Results.AllResults['Negative'] = data.trials[0].response.find(o => o.name === 'panas01').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas02').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas04').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas06').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas09').responseValue
+              Results.NumericResults[+'panas_neg'] = Results.AllResults['Negative']
               break;                                              
             }
+          case 'PANAS, baseline':
+          {
+            Results.AllResults['Positive'] = data.trials[0].response.find(o => o.name === 'panas03').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas05').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas07').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas08').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas10').responseValue
+            Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
+
+            Results.AllResults['Negative'] = data.trials[0].response.find(o => o.name === 'panas01').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas02').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas04').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas06').responseValue + 
+              data.trials[0].response.find(o => o.name === 'panas09').responseValue
+            Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
+            break;                                              
+          }
     }
     
   }
