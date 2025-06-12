@@ -134,7 +134,7 @@ const survey_JSON = {
       {
         type: "dropdown",
         name: "cesam010",
-        title: "Do you use mobility aides for walking or transfering (cane, walker, wheelchair)?",
+        title: "Do you use mobility aides for walking or transferring (cane, walker, wheelchair)?",
         choices: [
           { value: 2, text: 'Yes' },
           { value: 0, text: 'No' },
@@ -330,11 +330,11 @@ const survey_JSON = {
 };
 
 
-var EN_cesamJSON = {}
-EN_cesamJSON.title = title,
-EN_cesamJSON.shortTitle = shortTitle,
-EN_cesamJSON.survey_JSON = survey_JSON
-EN_cesamJSON.description = ""
-EN_cesamJSON.QuestionnaireType = 'form'
-EN_cesamJSON.references = "references"
-EN_cesamJSON.notes = ''
+var EN_cesamJSONform = {}
+EN_cesamJSONform.title = title,
+EN_cesamJSONform.shortTitle = shortTitle,
+EN_cesamJSONform.survey_JSON = survey_JSON
+EN_cesamJSONform.description = ""
+EN_cesamJSONform.QuestionnaireType = 'form'
+EN_cesamJSONform.references = "references"
+EN_cesamJSONform.notes = ''

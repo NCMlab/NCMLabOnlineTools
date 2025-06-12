@@ -14,41 +14,20 @@ var survey_JSON = {
       isAllRowRequired: true,
       rows: [
         { value: "gds01", text: "Are you basically satisfied with your life?" },
-        {
-          value: "gds02",
-          text: "Have you dropped many of your activities and interests?",
-        },
+        { value: "gds02", text: "Have you dropped many of your activities and interests?" },
         { value: "gds03", text: "Do you feel that your life is empty?" },
         { value: "gds04", text: "Do you often get bored?" },
         { value: "gds05", text: "Are you in good spirits most of the time?" },
-        {
-          value: "gds06",
-          text: "Are you afraid that something bad is going to happen to you?",
-        },
+        { value: "gds06", text: "Are you afraid that something bad is going to happen to you?" },
         { value: "gds07", text: "Do you feel happy most of the time?" },
         { value: "gds08", text: "Do you often feel helpless?" },
-        {
-          value: "gds09",
-          text: "Do you prefer to stay home, rather than going out and doing things?",
-        },
-        {
-          value: "gds10",
-          text: "Do you feel that you have more problems with memory than most?",
-        },
-        {
-          value: "gds11",
-          text: "Do you think is it wonderful to be alive now?",
-        },
+        { value: "gds09", text: "Do you prefer to stay home, rather than going out and doing things?" },
+        { value: "gds10", text: "Do you feel that you have more problems with memory than most?" },
+        { value: "gds11", text: "Do you think is it wonderful to be alive now?" },
         { value: "gds12", text: "Do you feel worthless the way you are now?" },
         { value: "gds13", text: "Do you feel full of energy?" },
-        {
-          value: "gds14",
-          text: "Do you feel that your situation is hopeless?",
-        },
-        {
-          value: "gds15",
-          text: "Do you think that most people are better off than you are?",
-        },
+        { value: "gds14", text: "Do you feel that your situation is hopeless?" },
+        { value: "gds15", text: "Do you think that most people are better off than you are?" },
       ],
       columns: [
         {

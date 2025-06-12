@@ -207,7 +207,10 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     SelectionMade = j
                     break
                 }
+            
             }
+            
+            console.log(cols[1].text)
             console.log(cols[2].innerHTML)
             console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
 //            obje[rowNames[i]] = SelectionMade
@@ -215,7 +218,8 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             var this_question_data = {}
             this_question_data.name = rowNames[i]
             this_question_data.label = rowPrompts[i]
-            this_question_data.responseValue = SelectionMade
+            this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
+            
             // The plus one is because the first column contains the prompts
             this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
             question_data.push(this_question_data)

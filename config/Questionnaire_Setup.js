@@ -250,7 +250,7 @@ var STANFORDSLEEPINESS_001 = {
 }
 
 var CESAM_001 = { 
-    questionnaire: ['cesamJSON'], 
+    questionnaire: ['cesamJSONform'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
