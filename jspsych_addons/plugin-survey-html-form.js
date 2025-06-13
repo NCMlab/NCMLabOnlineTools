@@ -111,10 +111,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           var VisibleIfConditions = []
 
 
-          // add submit button
-          html += '</div>'
-
-
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
             var thisQuestion = trial.survey_json.pages[0].elements[i]
@@ -155,14 +151,23 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           }
           console.log(VisibleIfConditions)
           //console.log(obj)
+          console.log(html)
+          // reset the Str variable to be empty
+          Str = ''
+          // If there are overall instructions, add them.
+          Str += '<hr>'
+          if (Object.hasOwn(trial.survey_json,'Instructions')) {
+            Str += '<div class="surveyFormInstructions">'+trial.survey_json.Instructions+'</div>'
+          }
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQuestion = trial.survey_json.pages[0].elements[i]
             // process dropdown questions
 
             switch(thisQuestion.type) {
                 case 'dropdown':
+                    console.log("========= DROPDOWN QUESTION ==========")
                     // console.log("Question type: "+thisQuestion.visibleIf)
-                    var Str = ''
+                    Str = ''
                     Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
@@ -182,7 +187,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     
                     Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                     Str += '>'
-// <select required  id="doc_type" oninvalid="this.setCustomValidity('Please select an item in the list')" oninput="setCustomValidity('')">
+                    // <select required  id="doc_type" oninvalid="this.setCustomValidity('Please select an item in the list')" oninput="setCustomValidity('')">
 
                     //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
@@ -198,7 +203,26 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     
                     //console.log(Str)
                     break;
+                
+                case 'radiogroup':
+                    console.log("========= RADIO GROUP QUESTION ==========") 
+                    Str = ''
+                    
+                    console.log(thisQuestion)
+                    var Str = ''
+                    Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'">'
+                    Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
+                    Str += '<div class="radiogroup_alignment">'
+                    var NChoices = thisQuestion.choices.length
+                    for ( var j = 0; j < NChoices; j++ )
+                    {
+                     Str += '<input type="radio" class="sd-item__decorator" id = "'+thisQuestion.name+'_'+j+'" value="'+thisQuestion.choices[j].value+'">' 
+                     Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                    }
+                    Str += '</div></div><hr>'
+                    break;
                 default:
+                    console.log("========= DEFAULT ==========")
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
             }
             
@@ -206,12 +230,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             
           }
           
-          
-          
-          
-
-
-
 
           // add submit button
             html += '<div class="tableSubmitButton">'
@@ -323,8 +341,8 @@ function InternalValidateForm(form) {
     var NQuestions = AllQuestions.length
 
     for ( var i = 0; i < NQuestions; i++ ) {
-        console.log(AllQuestions[i].style.display != 'none')
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
+        //console.log(AllQuestions[i].style.display != 'none')
+        //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
         // Add check to see if a question is visible or not before deciding if it needs to be answered.
         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
             if ( AllQuestions[i].style.display != 'none' ) {

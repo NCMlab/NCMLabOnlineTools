@@ -1,3 +1,12 @@
+.surveyFormInstructions {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  display: inline-flex;
+  text-align: center;
+
+}
 .surveyFormSelect {
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.5rem;
@@ -27,4 +36,17 @@
   display: inline-flex;
   text-align: center;
     display: inline-flex; align-items : center; justify-content: center
+}
+
+
+/* This makes the radio buttons big and square-ish */
+.sd-item__decorator {
+  width: calc(5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  height: calc(5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  border-radius: 5%;
+}
+
+.radiogroup_alignment {
+ text-align: left;
+ padding-left: 10em;
 }
