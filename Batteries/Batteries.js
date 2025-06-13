@@ -1146,7 +1146,7 @@ List.push({
 });
 
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "UCLA_LONELINESS_001",
   Instructions: "Default",
   IconName: "Lone",
@@ -1222,6 +1222,7 @@ var List = []
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
 BatteryList.push({index: 73, 
 	name:'Music Motion: Intake', 
+  shortName: "Intake",
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "Music and Motion Study -- Intake",
@@ -1263,7 +1264,7 @@ List.push({
   IconName: "WEMWBS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "UCLA_LONELINESS_001",
   Instructions: "Default",
   IconName: "Loneliness",
@@ -1289,6 +1290,7 @@ List.push({
 BatteryList.push({
   index: 74,
   name: "Music Motion: Baseline",
+  shortName: "BL",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -1309,6 +1311,7 @@ List.push({
 BatteryList.push({
   index: 75,
   name: "Music Motion: Weekly Pre",
+  shortName: "weeklyPre",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -1333,6 +1336,7 @@ List.push({
 BatteryList.push({
   index: 76,
   name: "Music Motion: Weekly Post",
+  shortName: "weeklyPost",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -1374,7 +1378,7 @@ List.push({
   IconName: "WEMWBS",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "UCLA_LONELINESS_001",
   Instructions: "Default",
   IconName: "Loneliness",
@@ -1400,6 +1404,7 @@ List.push({
 BatteryList.push({
   index: 77,
   name: "Music Motion: Post-Study",
+  shortName: "Post",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -1414,6 +1419,7 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instruction
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
 BatteryList.push({index: 78, 
 	name:'Music Motion: Trails', 
+  shortName: "Trails",
 	description: '',
 	TaskList: List,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,

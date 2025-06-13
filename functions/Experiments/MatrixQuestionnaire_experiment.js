@@ -35,8 +35,8 @@ var matrix_trial = {
     missed_question_text: function() { return LabelNames.missed_question_text}, 
     required: true,
     on_load: function() {
-        console.log(document.getElementById("jspsych-progressbar-container"))
-        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     },
     on_finish: function(data) {
         data.trial = "Questionnaire"
@@ -115,7 +115,7 @@ var SpecialtyScoring = {
                 data.trials[0].response.find(o => o.name === 'panas04').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas06').responseValue + 
                 data.trials[0].response.find(o => o.name === 'panas09').responseValue
-              Results.NumericResults[+'panas_neg'] = Results.AllResults['Negative']
+              Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
               break;                                              
             }
           case 'PANAS, baseline':

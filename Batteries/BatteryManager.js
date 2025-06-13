@@ -81,6 +81,7 @@ var SetupBattery = {
           //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
           JATOSSessionData.BatteryName = CurrentBattery.name
+          JATOSSessionData.BatteryShortName = CurrentBattery.shortName
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
           if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
@@ -99,6 +100,7 @@ var SetupBattery = {
           //JATOSSessionData.UsageManagerHtmlID = UsageManagerHtmlID
           JATOSSessionData.FooterText = FooterText
           JATOSSessionData.BatteryName = CurrentBattery.name
+          JATOSSessionData.BatteryShortName = CurrentBattery.shortName
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
       }

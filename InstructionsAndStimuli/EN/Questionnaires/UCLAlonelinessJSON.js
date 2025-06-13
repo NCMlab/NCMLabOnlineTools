@@ -4,6 +4,12 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
+  Instructions: "When answering the questions, you could take account of the following:"+
+      "<ul>"+  
+      "<li>There are no right or wrong answers"+
+      "<li>We would like you to be completely honest"+
+      "<li>In answering the questions it is best to think of your life as it generally is now (we all have some good or bad days)"+
+      "</ul>",
   pages: [{
     elements: [                
       /*{

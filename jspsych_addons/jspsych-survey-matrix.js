@@ -122,9 +122,9 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
                         for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
                             html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
-                            if (trial.required) {
+                            /*if (trial.required) {
                                html += ' required ';
-                            }
+                            }*/
                             html += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                             html+= '></td>'
                         }
@@ -159,13 +159,10 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
             var matches = display_element.querySelectorAll(".sd-item__decorator")
-            matches.forEach((userItem) => {
-                console.log(userItem)
-            })            
-            
+            if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
+            { 
+                console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
 
-
-        // Initialize the object for holding the resulatnt data
         var question_data = []    
         // get the row names
         var elmts = display_element.querySelectorAll("tr");
@@ -237,6 +234,11 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               display_element.innerHTML = "";
               // next trial
               this.jsPsych.finishTrial(trial_data);
+            }
+            
+
+
+        // Initialize the object for holding the resulatnt data
           });
           
           var startTime = performance.now();
@@ -295,7 +297,8 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
 function InternalValidateForm(form) {
-        // get the row names
+    var CheckIfValid = true    
+    // get the row names
         elmts = document.getElementsByTagName("tr");
         // how many columns
         cols = document.getElementsByTagName("th")
@@ -332,10 +335,13 @@ function InternalValidateForm(form) {
             }
             // change the background color of any rows without a selection in them
             if ( ! SelectionMadeInRow ) {
+                CheckIfValid = false
                 document.getElementById(rowNames[i]).style.backgroundColor = '#FFC0CB' 
                 //document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
                 document.getElementById("tableMessageBox").style = "block"
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
+        document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
+
     }

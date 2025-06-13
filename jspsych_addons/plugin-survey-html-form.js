@@ -155,10 +155,11 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           // reset the Str variable to be empty
           Str = ''
           // If there are overall instructions, add them.
-          Str += '<hr>'
+          
           if (Object.hasOwn(trial.survey_json,'Instructions')) {
             Str += '<div class="surveyFormInstructions">'+trial.survey_json.Instructions+'</div>'
           }
+          Str += '<hr>'
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQuestion = trial.survey_json.pages[0].elements[i]
             // process dropdown questions
@@ -167,7 +168,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 case 'dropdown':
                     console.log("========= DROPDOWN QUESTION ==========")
                     // console.log("Question type: "+thisQuestion.visibleIf)
-                    Str = ''
+
                     Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
@@ -206,8 +207,8 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 
                 case 'radiogroup':
                     console.log("========= RADIO GROUP QUESTION ==========") 
-                    Str = ''
-                    var Str = ''
+                    
+                    
                     Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
                     Str += '<div class="radiogroup_alignment">'
@@ -225,11 +226,9 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     console.log("========= DEFAULT ==========")
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
             }
-            
-            html += Str
-            
+
           }
-          
+          html += Str
 
           // add submit button
             html += '<div class="tableSubmitButton">'
