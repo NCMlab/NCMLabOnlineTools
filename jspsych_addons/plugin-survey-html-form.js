@@ -109,7 +109,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           
           // Look for visible if questions and create the text to hide them
           var VisibleIfConditions = []
-
+          var AllQuestionsValid
 
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
@@ -207,17 +207,17 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 case 'radiogroup':
                     console.log("========= RADIO GROUP QUESTION ==========") 
                     Str = ''
-                    
-                    console.log(thisQuestion)
                     var Str = ''
-                    Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'">'
+                    Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
                     Str += '<div class="radiogroup_alignment">'
                     var NChoices = thisQuestion.choices.length
                     for ( var j = 0; j < NChoices; j++ )
                     {
-                     Str += '<input type="radio" class="sd-item__decorator" id = "'+thisQuestion.name+'_'+j+'" value="'+thisQuestion.choices[j].value+'">' 
-                     Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                     Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                     Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                     Str += '>' 
+                     Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
                     }
                     Str += '</div></div><hr>'
                     break;
@@ -258,6 +258,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           display_element
               .querySelector("#jspsych-survey-html-form")
               .addEventListener("submit", (event) => {
+                console.log("Have all questions been answered? " + AllQuestionsValid)
               // don't submit form
               event.preventDefault();
               // measure response time
@@ -275,16 +276,39 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                 var AllQuestions = document.getElementsByClassName("surveyFormDiv")
                 var NQuestions = AllQuestions.length
 
-                // Initialize the object for holding the resulatnt data
+                // Initialize the object for holding the resultant data
                 var question_data = []    
                 for ( var i = 0; i < NQuestions; i++ ) {
-                    var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
-                    var this_question_data = {}
-                    this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
-                    this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
-                    this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
-                    this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
-                    question_data.push(this_question_data)
+                    if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
+                    { // THIS IS A MATRIX QUESTION 
+                        var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
+                        var this_question_data = {}
+                        this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
+                        this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
+                        this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
+                        this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
+                        question_data.push(this_question_data)
+                    }
+                    else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+                    { // THIS IS A RADIO GROUP QUESTION 
+                        var this_question_data = {}
+                        var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
+                        var rates = document.getElementsByName(CurrentQuestionName)
+                        for ( var k = 0; k < rates.length; k++ )
+                        { 
+                            if ( rates[k].checked ) 
+                                {
+                                    if (rates[k].checked)
+                                        { 
+                                            this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormResponseLabel")[k].innerText
+                                        }
+                                    }
+                                }
+                        this_question_data.name = CurrentQuestionName
+                        this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
+                        this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
+                        question_data.push(this_question_data)
+                    }
                 }
               
               // save data
@@ -337,13 +361,61 @@ function ModifyOnChange(elementToChange) {
 }
 
 function InternalValidateForm(form) {
+    // Add a variable to determine if all questions are answered
+    AllQuestionsValid = true
+
     var AllQuestions = document.getElementsByClassName("surveyFormDiv")
     var NQuestions = AllQuestions.length
-
+    //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
     for ( var i = 0; i < NQuestions; i++ ) {
+        // get the name of each question
+        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
+        { // THIS IS A MATRIX QUESTION 
+             //console.log(AllQuestions[i].style.display != 'none')
+            //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
+            // Add check to see if a question is visible or not before deciding if it needs to be answered.
+
+            if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
+                AllQuestionsValid = false
+                if ( AllQuestions[i].style.display != 'none' ) {
+                    document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                    document.getElementById("tableMessageBox").style = "block"
+                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+                }
+            }
+            else { // reset the background color
+                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
+            }
+        }
+
+
+        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+        {
+            // THIS IS A RADIO GROUP QUESTION 
+            document.getElementById("tableMessageBox").style.backgroundColor = "#FFF"
+            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
+            //console.log(CurrentQuestionName+": "+document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
+            if (document.querySelector('input[name="'+CurrentQuestionName+'"]:checked'))
+            {
+                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
+            }
+            else {
+                AllQuestionsValid = false
+                // what os the DIV element for this question?
+                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
+                document.getElementById("tableMessageBox").style = "block"
+                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+        }
+    }
+
+    /* for ( var i = 0; i < NQuestions; i++ ) {
         //console.log(AllQuestions[i].style.display != 'none')
         //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
         // Add check to see if a question is visible or not before deciding if it needs to be answered.
+        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect"))
+        console.log(AllQuestions[i].getElementsByClassName("surveryFormRadioGroup"))
+
         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
             if ( AllQuestions[i].style.display != 'none' ) {
                 document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
@@ -356,6 +428,6 @@ function InternalValidateForm(form) {
         }
         console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
         console.log(AllQuestions[i])
-    }
+    }*/
 
 }

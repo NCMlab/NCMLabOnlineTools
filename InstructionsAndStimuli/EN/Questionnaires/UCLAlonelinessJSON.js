@@ -6,7 +6,7 @@ const survey_JSON = {
   showCompletedPage: false,
   pages: [{
     elements: [                
-      {
+      /*{
         type: "html",
         name: "introduction",
         html: "When answering the questions, you could take account of the following:"+
@@ -14,7 +14,7 @@ const survey_JSON = {
         "<li>We would like you to be completely honest</li>"+
         "<li>In answering the questions it is best to think of your life as it generally is now (we all have some good or bad days)</li>"+
         "</b></p>"
-       },
+       },*/
         {
           type: "radiogroup",
           name: "loneliness001",
