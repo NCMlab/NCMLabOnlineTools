@@ -4,14 +4,14 @@ const survey_JSON = {
     pages: [{
     elements: [
         {
-            "name": "time",
+            "name": "timeAsleep",
             "type": "text",
             "title": "Last time asleep",
             "inputType": "time",
             "isRequired": true
           },
           {
-            "name": "time",
+            "name": "timeAwoke",
             "type": "text",
             "title": "Last time awoke",
             "inputType": "time",

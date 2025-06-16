@@ -23,7 +23,7 @@
   padding-bottom: 0.5rem;
   display: inline-flex;
   text-align: center;
-    display: inline-flex; align-items : center; justify-content: center
+  display: inline-flex; align-items : center; justify-content: center
 }
 .surveyFormSubTitle{
   color: red ;
@@ -58,4 +58,9 @@
 }
 .radioGroupWrapper {
   display:flex;
+}
+.surveyFormTitle {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  display: flex; align-items : center; justify-content: center
 }

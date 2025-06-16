@@ -1,6 +1,8 @@
+var AllQuestionsValid = false
+
 var jsPsychSurveyHtmlForm = (function (jspsych) {
   'use strict';
-
+    
   const info = {
       name: "survey-html-form",
       parameters: {
@@ -59,6 +61,12 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               pretty_name: "Allow autocomplete",
               default: false,
           },
+          ValidSubmission: {
+              type: jspsych.ParameterType.BOOL,
+              pretty_name: "Valid form",
+              default: false,
+          
+          }
       },
   };
   /**
@@ -95,12 +103,13 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           }
           // start form
           if (trial.autocomplete) {
-              html += '<form id="jspsych-survey-html-form">';
+              html += '<form id="jspsych-survey-html-form" valid=false>';
           }
           else {
-              html += '<form id="jspsych-survey-html-form" autocomplete="off">';
+              html += '<form id="jspsych-survey-html-form" autocomplete="off" valid=false>';
           }
           
+
           // add form HTML / input elements
           // cycle over the JSON input data
           console.log(trial.survey_json)
@@ -109,7 +118,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           
           // Look for visible if questions and create the text to hide them
           var VisibleIfConditions = []
-          var AllQuestionsValid
+          //var AllQuestionsValid
 
           for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
@@ -216,19 +225,15 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     Str += '</div></div><hr>'
                     break;
                 case 'text':
-                    console.log("TEXTTEXTTEXT")
-                    Str += '<div class="surveyFormLabel">'
+                    console.log(thisQuestion.name)
+                    Str += '<div class="surveyFormTitle surveyFormDiv surveyFormTime" id="div-'+thisQuestion.name+'">'
                     Str += thisQuestion.title
-                    Str += '<p>'
-                    Str += '<input type="'+thisQuestion.inputType+'" />'
-                    Str += '</div><p>'
+                    Str += ':  <input class="timeInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                    Str += '</div><p><hr>'
                 default:
                     console.log("========= DEFAULT ==========")
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
             }
-            
-            
-            
           }
           html += Str
 
@@ -259,74 +264,91 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           display_element
               .querySelector("#jspsych-survey-html-form")
               .addEventListener("submit", (event) => {
+
                 console.log("Have all questions been answered? " + AllQuestionsValid)
+                
               // don't submit form
               event.preventDefault();
-              // measure response time
-              var endTime = performance.now();
-              var response_time = Math.round(endTime - startTime);
-              var this_form = display_element.querySelector("#jspsych-survey-html-form");
-              // get response data
-              // Need each questions 
-              //    id
-              //    label innerHTML
-              //    selection innerHTML(text)
-              //    selection value
-              
-              // get all the div elements that contain the questions
-                var AllQuestions = document.getElementsByClassName("surveyFormDiv")
-                var NQuestions = AllQuestions.length
-
-                // Initialize the object for holding the resultant data
-                var question_data = []    
-                for ( var i = 0; i < NQuestions; i++ ) {
-                    if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-                    { // THIS IS A MATRIX QUESTION 
-                        var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
-                        var this_question_data = {}
-                        this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
-                        this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
-                        this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
-                        this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
-                        question_data.push(this_question_data)
-                    }
-                    else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
-                    { // THIS IS A RADIO GROUP QUESTION 
-                        var this_question_data = {}
-                        var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
-                        var rates = document.getElementsByName(CurrentQuestionName)
-                        for ( var k = 0; k < rates.length; k++ )
-                        { 
-                            if ( rates[k].checked ) 
-                                {
-                                    if (rates[k].checked)
-                                        { 
-                                            this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormResponseLabel")[k].innerText
+              if ( AllQuestionsValid )
+              {
+                
+                
+                // measure response time
+                var endTime = performance.now();
+                var response_time = Math.round(endTime - startTime);
+                var this_form = display_element.querySelector("#jspsych-survey-html-form");
+                // get response data
+                // Need each questions 
+                //    id
+                //    label innerHTML
+                //    selection innerHTML(text)
+                //    selection value
+                
+                // get all the div elements that contain the questions
+                    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
+                    var NQuestions = AllQuestions.length
+                    
+                    // Initialize the object for holding the resultant data
+                    var question_data = []    
+                    for ( var i = 0; i < NQuestions; i++ ) {
+                        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
+                        { // THIS IS A MATRIX QUESTION 
+                            var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
+                            var this_question_data = {}
+                            this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
+                            this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
+                            this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
+                            this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
+                            question_data.push(this_question_data)
+                        }
+                        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+                        { // THIS IS A RADIO GROUP QUESTION 
+                            var this_question_data = {}
+                            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
+                            var rates = document.getElementsByName(CurrentQuestionName)
+                            for ( var k = 0; k < rates.length; k++ )
+                            { 
+                                if ( rates[k].checked ) 
+                                    {
+                                        if (rates[k].checked)
+                                            { 
+                                                this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormResponseLabel")[k].innerText
+                                            }
                                         }
                                     }
-                                }
-                        this_question_data.name = CurrentQuestionName
-                        this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
-                        this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
-                        question_data.push(this_question_data)
+                            this_question_data.name = CurrentQuestionName
+                            this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
+                            this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
+                            question_data.push(this_question_data)
+                        }
+                        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
+                        { 
+                            var this_question_data = {}
+                            this_question_data.label = AllQuestions[i].innerText
+                            this_question_data.responseValue = AllQuestions[i].getElementsByClassName("timeInput")[0].value
+                            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
+                            this_question_data.name = CurrentQuestionName
+                            question_data.push(this_question_data)
+
+                        }
                     }
-                }
-              
-              // save data
-              var trialdata = {
-                  rt: response_time,
-                  response: question_data,
-              };
-              console.log(trialdata)
-              display_element.innerHTML = "";
+                
+                // save data
+                var trialdata = {
+                    rt: response_time,
+                    response: question_data,
+                };
+                console.log(trialdata)
+                display_element.innerHTML = "";
 
 
 
 
 
 
-              // next trial
-              this.jsPsych.finishTrial(trialdata);
+                // next trial
+                this.jsPsych.finishTrial(trialdata);
+            }
           });
           var startTime = performance.now();
 
@@ -362,9 +384,10 @@ function ModifyOnChange(elementToChange) {
 }
 
 function InternalValidateForm(form) {
+    
     // Add a variable to determine if all questions are answered
     AllQuestionsValid = true
-
+    console.log(AllQuestionsValid)
     var AllQuestions = document.getElementsByClassName("surveyFormDiv")
     var NQuestions = AllQuestions.length
     //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
@@ -376,6 +399,7 @@ function InternalValidateForm(form) {
             //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
             // Add check to see if a question is visible or not before deciding if it needs to be answered.
 
+            // This is still checking to see if non needed questions are being answered or not
             if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
                 AllQuestionsValid = false
                 if ( AllQuestions[i].style.display != 'none' ) {
@@ -388,8 +412,6 @@ function InternalValidateForm(form) {
                 document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
             }
         }
-
-
         else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
         {
             // THIS IS A RADIO GROUP QUESTION 
@@ -407,6 +429,26 @@ function InternalValidateForm(form) {
                 document.getElementById("tableMessageBox").style = "block"
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
+        }
+        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
+        { 
+
+            console.log("FOUND TIME INPUT")
+            
+            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
+            if ( AllQuestions[i].getElementsByClassName("timeInput")[0].value == '' ) {
+                AllQuestionsValid = false
+                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
+                document.getElementById("tableMessageBox").style = "block"
+                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+            else { 
+                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
+            }
+
+            console.log(CurrentQuestionName)
+            console.log(AllQuestions[i].getElementsByClassName("surveyFormTime")) 
+
         }
     }
 
