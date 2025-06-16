@@ -229,7 +229,7 @@ var UCLA_LONELINESS_001 = {
 }
 
 var BERKSYME_001 = { 
-    questionnaire: ['berksymeJSON'], 
+    questionnaire: ['berksymeJSONform'], 
     criteria: [],
     variable: [],
     AskForNotes: false,

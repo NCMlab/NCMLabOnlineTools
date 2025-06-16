@@ -62,93 +62,86 @@ const survey_JSON = {
         separateSpecialChoices: true,
         showClearButton: true
       },
-      {
-        type: "panel",
-        name: "berksyme004_panel",
-        title: "In the past two weeks, how often have you attended religious, spiritual, or philosophical activities (e.g., services, meditation sessions, Mass, parish activities, prayer groups.)?",
-        elements: [
-          { 
+        { 
             type: "radiogroup",
             name: "berksyme004_inperson",
-            title: "In-person",
+            title: "In the past two weeks, how often have you attended religious, spiritual, or philosophical activities (e.g., services, meditation sessions, Mass, parish activities, prayer groups.)?",
+            subtitle: "In-person",
             isRequired: true,
             showNoneItem: false,
             showOtherItem: false,
             colCount: 1,
             choices: [
-              { value: 0, text: "Never" }, 
-              { value: 1, text: "Once" }, 
-              { value: 2, text: "Twice" }, 
-              { value: 3, text: "Three or more times" },
-              { value: 4, text: "I prefer not to answer"}
+                { value: 0, text: "Never" }, 
+                { value: 1, text: "Once" }, 
+                { value: 2, text: "Twice" }, 
+                { value: 3, text: "Three or more times" },
+                { value: 4, text: "I prefer not to answer"}
             ]
-          },
-          { type: "radiogroup",
+        },
+        { 
+            type: "radiogroup",
             name: "berksyme004_online",
-            title: "Online",
+            title: "In the past two weeks, how often have you attended religious, spiritual, or philosophical activities (e.g., services, meditation sessions, Mass, parish activities, prayer groups.)?",
+            subtitle: "Online",
             isRequired: true,
             showNoneItem: false,
             showOtherItem: false,
             colCount: 1,
             choices: [
-              { value: 0, text: "Never" }, 
-              { value: 1, text: "Once" }, 
-              { value: 2, text: "Twice" }, 
-              { value: 3, text: "Three or more times" },
-              { value: 4, text: "I prefer not to answer"}
+                { value: 0, text: "Never" }, 
+                { value: 1, text: "Once" }, 
+                { value: 2, text: "Twice" }, 
+                { value: 3, text: "Three or more times" },
+                { value: 4, text: "I prefer not to answer"}
             ]
-          }
-        ]
-      },
-      {
-        type: "panel",
-        name: "berksyme005_panel",
-        title: "In the past two weeks, how often have you attended events or activities of any groups, clubs or organizations you belong to (e.g., hobby or sports groups, community activities, forums, clubs)?",
-        elements: [
-          { 
+        },
+        { 
             type: "radiogroup",
             name: "berksyme005_inperson",
-            title: "In-person",
+            title: "In the past two weeks, how often have you attended events or activities of any groups, clubs or organizations you belong to (e.g., hobby or sports groups, community activities, forums, clubs)?",
+            subtitle: "In-person",
             isRequired: true,
             showNoneItem: false,
             showOtherItem: false,
             colCount: 1,
             choices: [
-              { value: 0, text: "Never or less than once a week" }, 
-              { value: 1, text: "1 to 2 times a week" }, 
-              { value: 2, text: "3 to 4 times a week" }, 
-              { value: 3, text: "5 or more times a week" },
-              { value: 4, text: "I prefer not to answer"}
+                { value: 0, text: "Never or less than once a week" }, 
+                { value: 1, text: "1 to 2 times a week" }, 
+                { value: 2, text: "3 to 4 times a week" }, 
+                { value: 3, text: "5 or more times a week" },
+                { value: 4, text: "I prefer not to answer"}
             ]
-          },
-          { type: "radiogroup",
+        },
+        { 
+            type: "radiogroup",
             name: "berksyme005_online",
-            title: "Online",
+            title: "In the past two weeks, how often have you attended events or activities of any groups, clubs or organizations you belong to (e.g., hobby or sports groups, community activities, forums, clubs)?",
+            subtitle: "Online",
             isRequired: true,
             showNoneItem: false,
             showOtherItem: false,
             colCount: 1,
             choices: [
-              { value: 0, text: "Never or less than once a week" }, 
-              { value: 1, text: "1 to 2 times a week" }, 
-              { value: 2, text: "3 to 4 times a week" }, 
-              { value: 3, text: "5 or more times a week" },
-              { value: 4, text: "I prefer not to answer"}
+                { value: 0, text: "Never or less than once a week" }, 
+                { value: 1, text: "1 to 2 times a week" }, 
+                { value: 2, text: "3 to 4 times a week" }, 
+                { value: 3, text: "5 or more times a week" },
+                { value: 4, text: "I prefer not to answer"}
             ]
-          }
-        ]
-      },
+        }
+        
     ],
   }]
 };
 
 
-var EN_berksymeJSON = {}
-EN_berksymeJSON.title = "Berkman-Syme Social Network Index",
-EN_berksymeJSON.shortTitle = "Social"
-EN_berksymeJSON.survey_JSON = survey_JSON
-EN_berksymeJSON.description = ""
-EN_berksymeJSON.QuestionnaireType = 'radiogroup'
-EN_berksymeJSON.references = "references"
-EN_berksymeJSON.notes = ''
+var EN_berksymeJSONform = {}
+EN_berksymeJSONform.title = "Berkman-Syme Social Network Index",
+EN_berksymeJSONform.shortTitle = "Social"
+EN_berksymeJSONform.survey_JSON = survey_JSON
+EN_berksymeJSONform.description = ""
+EN_berksymeJSONform.QuestionnaireType = 'radiogroup'
+EN_berksymeJSONform.references = "references"
+EN_berksymeJSONform.notes = ''
 

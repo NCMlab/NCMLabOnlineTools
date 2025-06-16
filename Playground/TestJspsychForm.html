@@ -13,7 +13,7 @@
     <script src="../jspsych_addons/plugin-survey-html-form.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/cesamJSONform.js"></script>-->
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/UCLAlonelinessJSON.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>
     
       
   <script>
@@ -26,13 +26,13 @@
         jsPsych.data.displayData();
       }
     });
-    console.log(EN_UCLAlonelinessJSON.survey_JSON)
+    console.log(EN_stanfordSleepinessJSON.survey_JSON)
     var form_trial = {
 
     }
     var form_trial = {
         type: jsPsychSurveyHtmlForm,
-        survey_json: function() { return EN_UCLAlonelinessJSON.survey_JSON},
+        survey_json: function() { return EN_stanfordSleepinessJSON.survey_JSON},
         button_label: "Submit",
 
         required: true,

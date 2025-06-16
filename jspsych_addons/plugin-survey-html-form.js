@@ -167,31 +167,20 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             switch(thisQuestion.type) {
                 case 'dropdown':
                     console.log("========= DROPDOWN QUESTION ==========")
-                    // console.log("Question type: "+thisQuestion.visibleIf)
-
                     Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
                     Str += '<select class="surveyFormSelect"'
                     if ( VisibleIfConditions[i].onChangeCondition ) {
-                        Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '
-                        //Str += 'onChange="ModifyOnChange(this)"'
-                        //var JJJ = "JASON"
-                        //Str += 'onChange="ModifyOnChange(\'JJJ\')" '                        
+                        Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '                     
                     }
                     // only set the visible questions to be required
                     if ( ! thisQuestion.visibleIf ) {
                         Str += ' required '
                     }
-
                     Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
-                    
                     Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                     Str += '>'
-                    // <select required  id="doc_type" oninvalid="this.setCustomValidity('Please select an item in the list')" oninput="setCustomValidity('')">
-
-                    //Str += '<select TagName="'+thisQuestion.visibleIf+'" onChange="ModifyOnChange(this)" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
-                    //Str += '<select onChange="testFunction()" name="'+thisQuestion.name+'" id="'+thisQuestion.name+'">'
                     var NChoices = thisQuestion.choices.length
                     // add default/blank option
                      Str += '<option disabled selected value> -- </option>'
@@ -200,33 +189,46 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
                     }
                     Str += '</select></div><hr>'
-                    // after the element is made check to see if there is a visible If property and adjust the target question
-                    
-                    //console.log(Str)
+
                     break;
                 
                 case 'radiogroup':
                     console.log("========= RADIO GROUP QUESTION ==========") 
-                    
-                    
                     Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
+                    
                     Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
+                    // if there is a subtitle add it
+                    if ( thisQuestion.subtitle != undefined ) {
+                        Str += '<label class="surveyFormSubTitle">'+thisQuestion.subtitle+'</label>'
+                    }
                     Str += '<div class="radiogroup_alignment">'
                     var NChoices = thisQuestion.choices.length
                     for ( var j = 0; j < NChoices; j++ )
                     {
-                     Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                        Str += '<div class radioGroupWrapper>'
+                        Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
                      Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                      Str += '>' 
                      Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                     Str += '</div>'
                     }
+                    
                     Str += '</div></div><hr>'
                     break;
+                case 'text':
+                    console.log("TEXTTEXTTEXT")
+                    Str += '<div class="surveyFormLabel">'
+                    Str += thisQuestion.title
+                    Str += '<p>'
+                    Str += '<input type="'+thisQuestion.inputType+'" />'
+                    Str += '</div><p>'
                 default:
                     console.log("========= DEFAULT ==========")
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
             }
-
+            
+            
+            
           }
           html += Str
 
