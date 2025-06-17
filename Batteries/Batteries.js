@@ -1068,7 +1068,7 @@ List.push({
   IconName: "PANASsf",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "STANFORDSLEEPINESS_001",
   Instructions: "Default",
   IconName: "Sleepiness",
@@ -1391,7 +1391,7 @@ List.push({
   IconName: "Social",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "STANFORDSLEEPINESS_001",
   Instructions: "Default",
   IconName: "Sleepiness",

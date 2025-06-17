@@ -112,6 +112,7 @@
             // Load the parameters as stored in the session data
             parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
             pseudoSwitch(parameters)
+            console.log(parameters)
             parameters.Language = LANG
             // prepare the questionnaire file name
             var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"

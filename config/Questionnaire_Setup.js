@@ -21,7 +21,16 @@ var AES_001 = {
     ShowInstructions: false,
  }
 
-
+var MusicDemographics_001SHORT = { 
+    questionnaire: ['IntakeForm_MusicJSONSHORT'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+ 
  var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_MusicJSON'], 
     criteria: [],
@@ -331,12 +340,9 @@ add('CESAM_001', function(){ parameters = CESAM_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_Short_001', function(){ parameters = PANAS_Short_001});
 add('PAES_001', function(){ parameters = PAES_001});
-
 add('PANAS_ShortWeekly_001', function(){ parameters = PANAS_ShortWeekly_001});
 add('PANAS_ShortBaseline_001', function(){ parameters = PANAS_ShortBaseline_001});
-
 add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
-
 add('TESTJSON', function(){ parameters = TESTJSON});
-
 add('CESAM_001TEST', function(){ parameters = CESAM_001TEST});
+add('MusicDemographics_001SHORT', function(){ parameters = MusicDemographics_001SHORT});
