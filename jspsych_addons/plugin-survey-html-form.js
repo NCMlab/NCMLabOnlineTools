@@ -184,9 +184,9 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                         Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '                     
                     }
                     // only set the visible questions to be required
-                    if ( ! thisQuestion.visibleIf ) {
-                        Str += ' required '
-                    }
+                    //if ( ! thisQuestion.visibleIf ) {
+                    //    Str += ' required '
+                    //}
                     Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
                     Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                     Str += '>'
@@ -292,7 +292,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     var question_data = []    
                     for ( var i = 0; i < NQuestions; i++ ) {
                         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-                        { // THIS IS A MATRIX QUESTION 
+                        { // THIS IS A DROPDOWN QUESTION 
                             var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
                             var this_question_data = {}
                             this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
@@ -329,7 +329,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                             var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
                             this_question_data.name = CurrentQuestionName
                             question_data.push(this_question_data)
-
                         }
                     }
                 
@@ -378,8 +377,8 @@ function ModifyOnChange(elementToChange) {
         s = document.getElementById("div-"+splitInput[1]).getElementsByClassName("surveyFormSelect")[0]
         
         //f.setAttribute('required','')
-        s.required = true;
-        console.log(s)
+        //s.required = true;
+        //console.log(s)
     }
 }
 
@@ -394,15 +393,15 @@ function InternalValidateForm(form) {
     for ( var i = 0; i < NQuestions; i++ ) {
         // get the name of each question
         if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-        { // THIS IS A MATRIX QUESTION 
+        { // THIS IS A DROPDOWN QUESTION 
              //console.log(AllQuestions[i].style.display != 'none')
             //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
             // Add check to see if a question is visible or not before deciding if it needs to be answered.
 
             // This is still checking to see if non needed questions are being answered or not
             if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-                AllQuestionsValid = false
                 if ( AllQuestions[i].style.display != 'none' ) {
+                    AllQuestionsValid = false
                     document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
                     document.getElementById("tableMessageBox").style = "block"
                     document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
@@ -472,5 +471,5 @@ function InternalValidateForm(form) {
         console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
         console.log(AllQuestions[i])
     }*/
-
+        console.log(AllQuestionsValid)
 }

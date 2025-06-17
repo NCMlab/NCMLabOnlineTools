@@ -1373,7 +1373,7 @@ List.push({
   IconName: "PANAS, baseline",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Matrix Questionnaire",
   Parameters: "WEMWBS_001",
   Instructions: "Default",
   IconName: "WEMWBS",
@@ -1385,7 +1385,7 @@ List.push({
   IconName: "Loneliness",
 });
 List.push({
-  Task: "Questionnaire",
+  Task: "Form Questionnaire",
   Parameters: "BERKSYME_001",
   Instructions: "Default",
   IconName: "Social",
