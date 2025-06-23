@@ -184,7 +184,6 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	else { Results.AllResults['Notes'] = '' }
 	Results.parameters = parameters
 	console.log(Results)
-	console.log(BREAK)
 	return Results
 }
 

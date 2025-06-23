@@ -17,6 +17,14 @@ function DMS_Scoring(Stair, data) {
 	Results.AllResults['Load List'] = stair1.ValueList
 	Results.AllResults['NDown'] = stair1.NDown
 	Results.AllResults['NUp'] = stair1.NUp
+	// NUMERIC SCORING
+	Results.NumericResults = {}
+	Results.NumericResults['sdms_thresh'] = Threshold
+	Results.AllResults['sdms_Nrev'] = NReversal
+	Results.AllResults['sdms_Ntrial'] = NTrials
+
+
+
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }

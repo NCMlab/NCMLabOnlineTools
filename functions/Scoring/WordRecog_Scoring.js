@@ -29,6 +29,16 @@ function WordRecog_Scoring(data) {
     Results.AllResults['Number of Miss'] = NMiss
     Results.AllResults['Number of False Alarm'] = NFA
     Results.AllResults['Number of Correct Rejection'] = NCR
+    // NUMERIC SCORING
+    Results.NumericResults = {}
+    Results.NumericResults['wordRecog_N'] = total_trials
+    Results.NumericResults['wordRecog_Acc '] = Acc
+    Results.NumericResults['wordRecog_Ncor'] = NumberCorrect
+    Results.NumericResults['wordRecog_Ninc'] = NumberIncorrect
+    Results.NumericResults['wordRecog_Nhit'] = NHit
+    Results.NumericResults['wordRecog_Nmiss'] = NMiss
+    Results.NumericResults['wordRecog_Nfa'] = NFA
+    Results.NumericResults['wordRecog_Ncr'] = NCR
     if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }

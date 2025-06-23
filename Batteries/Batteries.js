@@ -202,7 +202,7 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_ImmediateSHORT",
+  Parameters: "RAVLT_Spoken_Immediate",
   Instructions: "Default",
   IconName: "Immediate",
 });

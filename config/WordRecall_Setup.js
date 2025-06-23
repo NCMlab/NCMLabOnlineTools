@@ -46,7 +46,7 @@ var RAVLT_Spoken_Immediate = {
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'EN_RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 2,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,

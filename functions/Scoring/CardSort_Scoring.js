@@ -57,6 +57,18 @@ function CardSort_Scoring(data) {
 	}
 	Results.AllResults['CardSortColNames'] = ColNames
 	Results.AllResults['Card Sort Table'] = ResultsTable
+	
+	// NUMERIC RESULTS
+	Results.NumericResults = {}
+	Results.NumericResults['cs_Ntot'] = NTrials
+	Results.NumericResults['cs_Ncor'] = sumCorrect
+	Results.NumericResults['cs_Nerr'] = NTrials - sumCorrect
+
+	Results.NumericResults['cs_NperErr'] = sumPErrors
+	Results.NumericResults['cs_NnonperErr'] = NTrials - sumCorrect - sumPErrors
+	Results.NumericResults['cs_RT'] = AvgRT
+
+
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
