@@ -82,6 +82,7 @@ var SetupBattery = {
           JATOSSessionData.FooterText = FooterText
           JATOSSessionData.BatteryName = CurrentBattery.name
           JATOSSessionData.BatteryShortName = CurrentBattery.shortName
+          JATOSSessionData.Redirect = CurrentBattery.Redirect
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
           if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
@@ -101,6 +102,7 @@ var SetupBattery = {
           JATOSSessionData.FooterText = FooterText
           JATOSSessionData.BatteryName = CurrentBattery.name
           JATOSSessionData.BatteryShortName = CurrentBattery.shortName
+          JATOSSessionData.Redirect = CurrentBattery.Redirect
           // If this is the first visit to this manager, display the battery instructions
           DisplayBatteryInstructionsFlag = true 
       }
@@ -256,8 +258,12 @@ var trial2 = {
           console.log(jatos)
           //console.log(BREAK)
           console.log(window.location)
-          OutHTML = window.location.protocol+"//"+window.location.hostname+':5500/'+"/html/JATOS/EndOfStudyPage.html"
-          window.open(OutHTML,'_self')
+          //OutHTML = window.location.protocol+"//"+window.location.hostname+':5500/'+"/html/JATOS/EndOfStudyPage.html"
+          console.log(CurrentBattery.Redirect)
+          console.log( CurrentBattery.Redirect === undefined )
+          if ( CurrentBattery.Redirect === undefined )
+          { window.open('https://www.uottawa.ca','_self') }
+          else { window.open(CurrentBattery.Redirect,'_self')}
           //console.log(BREAK)
           //window.open(window.location.origin+"/html/JATOS/EndOfStudyPage.html",'_self')
           

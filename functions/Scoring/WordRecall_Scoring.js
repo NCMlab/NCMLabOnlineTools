@@ -132,7 +132,8 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	Results.PrimaryResults['Accuracy'] = TotalRecallCount
 
 	Results.AllResults = {}
-	Results.AllResults['Accuracy'] = TotalRecallCount
+	Results.NumericResults = {}
+	Results.AllResults['Accuracy'] = ResponseArrayA
 	Results.AllResults['ScoreName'] = 'Total words recalled'
 	Results.AllResults['Total Words Recalled'] = TotalRecallCount
 	Results.AllResults['Words Recalled Per Block'] = BlockRecallCount
@@ -158,22 +159,32 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	//Results.AllResults['IntrusionsB'] = IntrusionListB
 	//Results.AllResults['IntrusionsApostB'] = IntrusionListApostB
 	Results.AllResults['WordListA'] = WordListA
-	
 	Results.AllResults['User Said A'] = userSaidA
-	
-	/*Results.AllResults['User Said'] = []
-    for ( var i = 0; i < TrialData.trials.length; i++ )
-	  {
-			console.log(TrialData.trials[i])
-		  Results.AllResults['User Said'].push(TrialData.trials[i].userSaid)  
-	  }
-	  */
-	
+	// =================================================
+	// What results to add to a database of scores
+	// total score
+	Results.NumericResults['wordRecall_Tot'] = TotalRecallCount
+	Results.NumericResults['wordRecall_Max'] = TotalWords
+
+	// score for each block
+	var TotalIntrusions = 0
+	for ( var k = 0; k < BlockRecallCount.length; k++ )
+	{
+		var Blk = k+1
+		Blk = Blk.toString()
+		Results.NumericResults['wordRecall_Blk'+Blk.padStart(3,"0")] = BlockRecallCount[k]
+		Results.NumericResults['wordRecall_intru_Blk'+Blk.padStart(3,"0")] = IntrusionArrayA[k].length
+		TotalIntrusions += IntrusionArrayA[k].length
+	}
+	Results.NumericResults['wordRecall_TotInt'] = TotalIntrusions
+	Results.NumericResults['wordRecall_PostBrecall'] = PostBRecall
+	// =================================================
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 	Results.parameters = parameters
 	console.log(Results)
+	console.log(BREAK)
 	return Results
 }
 

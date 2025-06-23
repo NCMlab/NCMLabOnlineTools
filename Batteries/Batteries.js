@@ -38,7 +38,7 @@ List.push({
   Instructions: "Default",
   IconName: "PANAS, Matrix"
 });
-List.push({
+/*List.push({
   Task: "Questionnaire",
   Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
@@ -49,7 +49,7 @@ List.push({
   Parameters: "CESAM_001",
   Instructions: "Default",
   IconName: "CESAM, Survey"
-});
+});*/
 
 
 BatteryList.push({
@@ -62,7 +62,8 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
-  HeaderButtonsToShow: ['Home','Quit','Stop']
+  HeaderButtonsToShow: ['Home','Quit','Stop'],
+  Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
 
 // ===== H-10-23-9755 ============================
@@ -157,9 +158,103 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
-  HeaderButtonsToShow: ['Home','Quit','Stop']
+  HeaderButtonsToShow: ['Home','Quit','Stop'],
+  Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
 
+var List = [];
+
+/*List.push({
+  Task: "Language Selection",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Language",
+});
+List.push({
+  Task: "Screening",
+  Parameters: "BriefScreening",
+  Instructions: "Default",
+  IconName: "Screening",
+});
+List.push({
+  Task: "Consent Form",
+  Parameters: "ConsentForm_uOttawa_Steffener",
+  Instructions: "",
+  IconName: "Consent",
+});
+List.push({
+  Task: "Intake Form",
+  Parameters: "IntakeForm",
+  Instructions: "Default",
+  IconName: "Intake",
+});
+List.push({
+  Task: "Listening",
+  Parameters: "Listening_001",
+  Instructions: "Default",
+  IconName: "Listening",
+});
+List.push({
+  Task: "Reading Test",
+  Parameters: "ReadingListeningList01",
+  Instructions: "Default",
+  IconName: "Reading",
+});*/
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_ImmediateSHORT",
+  Instructions: "Default",
+  IconName: "Immediate",
+});
+List.push({
+  Task: "Card Sort",
+  Parameters: "CardSort_001SHORT",
+  Instructions: "Default",
+  IconName: "Card Sort",
+});
+List.push({
+  Task: "Trail Making",
+  Parameters: "TrailMakingA_Default",
+  Instructions: "DefaultA",
+  IconName: "Trails A",
+});
+List.push({
+  Task: "Trail Making",
+  Parameters: "TrailMakingB_Default",
+  Instructions: "DefaultB",
+  IconName: "Trails B",
+});
+List.push({
+  Task: "Spatial DMS",
+  Parameters: "SpatialDMS_AdaptiveSHORT",
+  Instructions: "Default",
+  IconName: "Dots",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Delayed",
+  Instructions: "Default",
+  IconName: "Delayed",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "Recognition",
+});
+BatteryList.push({
+  index: 9916,
+  name: "H-10-23-9755",
+  description: "Test",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  TaskList: List,
+  HeaderButtonsToShow: ['Home','Quit','Stop'],
+  Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
+});
 
 // ------ FRENCH --------------------------------
 var List = [];
