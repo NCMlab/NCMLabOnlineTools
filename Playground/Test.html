@@ -1,57 +1,18 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Trailmaking Task A">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Jason Steffener, NCMLab">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../jspsych/dist/jspsych.css">
-    <link rel="stylesheet" type='text/css' href='../css/survey.css'>
-    <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-  </head>    
   <body>
-    <script src="../jspsych/dist/jspsych.js"></script>
-    <script src="../jspsych/dist/plugin-fullscreen.js"></script>
-    <script src="../jspsych/dist/plugin-call-function.js"></script>
-    <script src="../jspsych/dist/plugin-instructions.js"></script>
-    <script src="../jspsych/dist/plugin-survey.js"></script>
-    <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    
-    <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="../config/General_Setup.js"></script>
-    
-    <script> 
-      // Based on the language set in the Language Config, the correct code is loaded up
-      var task = "Questionnaire"
-      var url = "../../functions/Experiments/"+task+"_experiment.js"
-        document.write("\<script src='" + url + "'\>\</script\>");  
-      </script>
+<table border="2px">
 
-    <script>
-        var LANG = 'EN'
-        LabelNames = EN_LabelNames
+  <tr>
+    <td rowspan="3">Phone</td>
+    <td>555-1234</td>
+  </tr>
+  <tr>
+    <td>555-8745</td>
+  </tr>
+  <tr>
+    <td>555-8745</td>
+  </tr>
 
-    </script>
-      
-
-
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>  
-  
-    <script>
-      var timeline = []
-      timeline.push(QuestionnaireTrial)
-        jsPsych = initJsPsych({
-        display_element: 'jspsych-target',
-        on_finish: function() {
-          jsPsych.data.get().localSave('csv','TEST.csv');
-      }
-    })
-        
-      
-      jsPsych.run(timeline)
-      </script>
-</body>
+</table>
+  </body>
 </html>

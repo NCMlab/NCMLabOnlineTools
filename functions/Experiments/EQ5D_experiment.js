@@ -76,8 +76,8 @@ var SURVEYtrial = {
     }
   }
 timeline.push(Welcome)
-timeline.push(LoadQuestionnaire)
-timeline.push(SURVEYtrial)
+//timeline.push(LoadQuestionnaire)
+//timeline.push(SURVEYtrial)
 timeline.push(VAStrial)
 timeline.push(Notes)
 timeline.push(ThankYou)
