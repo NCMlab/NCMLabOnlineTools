@@ -27,7 +27,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
-  HeaderButtonsToShow: ['Home','Quit','Stop']
+  HeaderButtonsToShow: ['Quit','Stop']
 });
 
 // ===============================
@@ -158,7 +158,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
-  HeaderButtonsToShow: ['Home','Quit','Stop'],
+  HeaderButtonsToShow: ['Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
 
