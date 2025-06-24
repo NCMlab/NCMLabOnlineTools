@@ -1,6 +1,17 @@
 
 
 
+.jspsych-html-slider-response-wrapper {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+/*  What is super confusing with the slider height is that it is based off the width of the cell
+it is in. This is because it is a horizontal aslider that has been rotated. */
+:root {
+  --sliderHeight: calc(50vh);
+  --thumbHeight: 20px;
+  --sliderShiftFromRightOfCell: 90px;
+}
 
 #sliderTable {
   /*transform: rotate(-270deg); /* rotate the element */
@@ -9,12 +20,23 @@
   margin-left: 0px;
   /* half of width */
   margin-top: 0px;
+  margin-bottom: 0px;
   /* half of height */
   top: 0%;
   left: 0%;
-  width: 70%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
+  
+}
+
+#topCell {
+  text-align: center;
+  height: 50px;
+}
+#bottomCell {
+  text-align: center;
+  height: 50px;
 }
 
 li span {
@@ -22,15 +44,6 @@ li span {
   left: -10px;
 }
 
-/*.slider {
-  position: relative;
-  
-  height: 3px;
-  display: table-cell;
-  vertical-align: middle
-    /*   transform: rotate(-270deg); /* rotate the element   
-}
-*/
 .VAScell {
   position: relative;
 }
@@ -81,11 +94,11 @@ li span {
   top: 40px;
   transform: rotate(-270deg);
   /* rotate the element */
+  font-size: 3.5vmin
 }
 
 .groove {
   height: 2px;
-
   background: #b3b3b3;
   position: absolute;
   width: var(--sliderHeight); /*calc(100% - 16px);*/
@@ -117,11 +130,33 @@ li span {
   border-radius: 50%;
   background: yellowgreen;
 }
-
-#topCell {
+/*
+tbody {
+  display: block;
+  overflow-y: auto;
+  font-size: xx-large;
+  line-height: 1.6;
   text-align: center;
 }
-
-#bottomCell {
+*/
+/* This is the element that determines the size of the area to display
+content in. All div and table elements need to be set to 100% height to fill
+this element */
+.jspsych-content {
+  max-width: 85%;
+  /* this is mainly an IE 10-11 fix */
   text-align: center;
+  margin: auto;
+  /* this is for overflowing content */
+  font-size: 4vmin;
+  line-height: 1.6;
+  height: 100%
+}
+.jspsych-content-wrapper {
+    height: 100%;
+}
+
+tbody {
+    height: 100%;
+    display: contents
 }
