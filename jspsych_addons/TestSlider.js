@@ -113,12 +113,14 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             var half_thumb_width = 7.5;
             console.log(trial)
             var html
-            
+            /*html += '<table border="2px" width="100%" height ="100%">'
+            html += '<tr><td>JASON</td></tr>'
+            html += '</table>'*/
 html += '<table border="0px" width="100%" height="100%">'
   html += '<tr>'
-    html += '<td rowspan="3" width="50%">'
+    html += '<td rowspan="3" width="50%" class="instructionsCell">'
     html += trial.stimulus
-    html += '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
+    html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn" ' +
             (trial.require_movement ? "disabled" : "") +
             ">" +
             trial.button_label +
