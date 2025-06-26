@@ -76,6 +76,11 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
                 pretty_name: "Text below slider",
                 default: null,
             },
+            textNextToScore: {
+                type: jspsych.ParameterType.STRING,
+                pretty_name: "Score",
+                default: "Value: ",
+            },
             /** How long to show the stimulus. */
             stimulus_duration: {
                 type: jspsych.ParameterType.INT,
@@ -110,21 +115,23 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
         }
         trial(display_element, trial) {
             // half of the thumb width value from jspsych.css, used to adjust the label positions
-            var half_thumb_width = 7.5;
-            console.log(trial)
-            var html
-            /*html += '<table border="2px" width="100%" height ="100%">'
-            html += '<tr><td>JASON</td></tr>'
-            html += '</table>'*/
+            var html = ""
+
+            html += '<div id="jspsych-html-slider-response-wrapper" style="margin: 5vh 0px;">';
+
+
+
 html += '<table border="0px" width="100%" height="100%">'
   html += '<tr>'
     html += '<td rowspan="3" width="50%" class="instructionsCell">'
     html += trial.stimulus
+    html += '<table><tr><td>'
     html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn" ' +
             (trial.require_movement ? "disabled" : "") +
             ">" +
             trial.button_label +
             "</button>";
+    html += '</td><td id = "ScoreCell" class="ScoreCell">'+trial.textNextToScore+'</td></tr></table>'
     html += '</td>'
     html += '<td id="topCell">'+trial.textAboveSlider+'</td>'
   html += '</tr>'
@@ -155,6 +162,7 @@ html += '<table border="0px" width="100%" height="100%">'
   html += '</tr>'
 
 html += '</table>'
+html += '</div>'
 
 
 
@@ -168,6 +176,8 @@ html += '</table>'
             if (trial.require_movement) {
                 const enable_button = () => {
                     display_element.querySelector("#jspsych-html-slider-response-next").disabled = false;
+                    // Display the score
+                    document.getElementById("ScoreCell").innerHTML = trial.textNextToScore+document.getElementById("jspsych-html-slider-response-response").value
                 };
                 display_element
                     .querySelector("#jspsych-html-slider-response-response")
@@ -178,10 +188,13 @@ html += '</table>'
                 display_element
                     .querySelector("#jspsych-html-slider-response-response")
                     .addEventListener("change", enable_button);
+                    
+                
             }
             const end_trial = () => {
                 this.jsPsych.pluginAPI.clearAllTimeouts();
                 // save data
+                console.log(response)
                 var trialdata = {
                     rt: response.rt,
                     stimulus: trial.stimulus,

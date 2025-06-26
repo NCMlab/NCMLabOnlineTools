@@ -110,15 +110,13 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
         }
         trial(display_element, trial) {
             // half of the thumb width value from jspsych.css, used to adjust the label positions
-            var half_thumb_width = 7.5;
-            console.log(trial)
-            var html
+            var html = ""
 
-            var html = '<p><div id="jspsych-html-slider-response-wrapper">';
+            html += '<div id="jspsych-html-slider-response-wrapper">';
             
 /* https://stackoverflow.com/questions/20819694/how-can-i-style-two-spans-within-a-div-such-that-when-span-1s-width-increases-b */
                 /*html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            */
-                html += '<div class="slider">'
+                
             
             html += '<table border="2px"  height="100%">'
             html += '<tr>'

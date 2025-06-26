@@ -1158,7 +1158,7 @@ List.push({
 });
 List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "PANAS_Short_001",
+  Parameters: "PANAS_ShortBaseline_001",
   Instructions: "Default",
   IconName: "PANASsf",
 });

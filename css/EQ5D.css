@@ -9,7 +9,8 @@
 it is in. This is because it is a horizontal aslider that has been rotated. */
 :root {
   --sliderHeight: calc(50vh);
-  --thumbHeight: 20px;
+  --thumbHeight: 3vh;
+  --thumbWidth: 5vh;
   --sliderShiftFromRightOfCell: 20vw;
 }
 
@@ -26,18 +27,25 @@ it is in. This is because it is a horizontal aslider that has been rotated. */
   left: 0%;
   width: 90%;
   margin-left: auto;
-  margin-right: auto;
-  
+  margin-right: auto;  
 }
 
 #topCell {
   text-align: center;
-  height: 50px;
+  padding-left: 2vh;
+  height: 5vh;
 }
 #bottomCell {
   text-align: center;
-  height: 50px;
+  padding-left: 1vh;
+  height: 5vh;
 }
+#ScoreCell {
+  text-align: center;
+  padding-left: 5vh;
+  vertical-align: bottom;
+}
+
 
 li span {
   position: relative;
@@ -92,7 +100,7 @@ li span {
 .tickLabel {
   content: "";
   position: absolute;
-  margin: 0px 8px 10px -8px;
+  margin: 0px 8px 10px -24px;
   top: 40px;
   transform: rotate(-270deg);
   /* rotate the element */
@@ -117,6 +125,7 @@ li span {
   /*width: calc(100% - 30px + 36px);*/
   width: calc(var(--sliderHeight) + var(--thumbHeight));
   top: calc(var(--thumbHeight) * (-0.25));
+  
   right: var(--sliderShiftFromRightOfCell);
   position: fixed;
   padding: 0;
@@ -128,7 +137,8 @@ li span {
 #jspsych-html-slider-response-response::-webkit-slider-thumb {
   appearance: none;
   width: var(--thumbHeight);
-  height: 30px;
+  height: var(--thumbWidth);
+  
   border-radius: 50%;
   background: yellowgreen;
 }
@@ -224,6 +234,7 @@ tbody {
     text-align: center;
     margin: 4px;
     background-color: #ffffff;
+    
     border-radius: 6px;
     border: none;
     transition: background 0.3s ease, transform 0.1s ease-in-out;
