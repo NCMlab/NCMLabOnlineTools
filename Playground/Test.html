@@ -1,24 +1,40 @@
 <html>
   <body>
-    <div>
-      <table border="2px" width="100%" height ="100%">
-        <tr><td>JASON</td></tr>
-      </table>
-</div>
-  </body>
+<script>
+  
+  function UrlExists(url)
+  {
+      var http = new XMLHttpRequest();
+      http.open('HEAD', url, false);
+      http.send();
+      return http.status!=404;
+  }
+
+    var InternalLocation = '../jspsych/'
+    var ExternalLocation = '/static/'
+    
+  function LoadIntExt(file) {
+    if (UrlExists(ExternalLocation + "dist/jspsych.js")) {
+      console.log("Trying External")
+      const newScript = document.createElement('script');
+      newScript.setAttribute('src', ExternalLocation + file);
+      newScript.setAttribute('async', 'true');    
+      document.head.appendChild(newScript);
+    }
+    else if (UrlExists(InternalLocation + "dist/jspsych.js")) {
+      console.log("Trying Internal")
+      const newScript = document.createElement('script');
+      newScript.setAttribute('src', InternalLocation + file);
+      newScript.setAttribute('async', 'true');    
+      document.head.appendChild(newScript);
+    }
+}
+</script>
+<script>
+  LoadIntExt('/dist/jspsych.js')    
+  LoadIntExt('/dist/plugin-survey.js')    
+</script>
+</body>
 </html>
 
-<!-- <table border="2px" height="100%">
-
-  <tr>
-    <td rowspan="3">Phone</td>
-    <td>555-1234</td>
-  </tr>
-  <tr>
-    <td>555-8745</td>
-  </tr>
-  <tr>
-    <td>555-8745</td>
-  </tr>
-
-</table>-->
+ht
