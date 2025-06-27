@@ -1377,12 +1377,12 @@ List.push({
   Instructions: "Default",
   IconName: "Sleepiness",
 });
-/*List.push({
+List.push({
   Task: "EQ5D",
   Parameters: "EQ5D_001",
   Instructions: "Default",
   IconName: "EQ-5D",
-});*/
+});
 BatteryList.push({
   index: 74,
   name: "Music Motion: Baseline",
@@ -1491,12 +1491,12 @@ List.push({
   Instructions: "Default",
   IconName: "Sleepiness",
 });
-/*List.push({
+List.push({
   Task: "EQ5D",
   Parameters: "EQ5D_001",
   Instructions: "Default",
   IconName: "EQ-5D",
-});*/
+});
 BatteryList.push({
   index: 77,
   name: "Music Motion: Post-Study",
