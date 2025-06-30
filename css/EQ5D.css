@@ -12,6 +12,7 @@ it is in. This is because it is a horizontal aslider that has been rotated. */
   --thumbHeight: 25px;
   --thumbWidth: 40px;
   --sliderShiftFromRightOfCell: 20vw;
+  --sliderCellHeight: 400px;
 }
 
 #sliderTable {
@@ -34,17 +35,20 @@ it is in. This is because it is a horizontal aslider that has been rotated. */
   text-align: center;
   padding-left: 2%;
   height: 10px;
+  vertical-align: top;
 }
 #bottomCell {
   text-align: center;
   padding-left: 1%;
   height: 10px;
+  vertical-align: bottom;
 }
 
 #ScoreCell {
   text-align: center;
   padding-left: 5%;
   vertical-align: bottom;
+  width: 100%
 }
 
 
@@ -57,7 +61,12 @@ li span {
   position: relative;
   margin-left: 0px;
   margin-right: 0px;
+  
 }
+#VAStableElement {
+  height: var(--sliderCellHeight)
+}
+
 
 .track {
   /*width: calc(100% - 30px + 36px);*/

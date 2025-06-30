@@ -33,9 +33,16 @@ var VAStrial = {
       // Set the height of teh slider based on the rendered size of the cell it is in        
         var r = document.querySelector(':root');
         var rs = getComputedStyle(r);
-        var VAScellHeight = 0.9*document.getElementById('VAStableElement').offsetHeight
+        console.log("JASONJASON")
+        console.log(document.getElementById('VASTable').offsetHeight)
+        console.log(document.getElementById('VAStableElement').offsetHeight)
+        var VAScellHeight = 1.1*document.getElementById('VAStableElement').offsetHeight
+        //VAScellHeight = document.getElementById('VASTable').offsetHeight - 20
+        console.log(VAScellHeight)
         var NewHeight = VAScellHeight + 'px'
         r.style.setProperty('--sliderHeight', NewHeight)
+        //r.style.setProperty('--sliderCellHeight', NewHeight)
+        
     },
     min: function() {return parameters.min},
     max: function() {return parameters.max},
