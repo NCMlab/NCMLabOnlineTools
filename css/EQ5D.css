@@ -8,9 +8,9 @@
 /*  What is super confusing with the slider height is that it is based off the width of the cell
 it is in. This is because it is a horizontal aslider that has been rotated. */
 :root {
-  --sliderHeight: 50vh;
-  --thumbHeight: 3vh;
-  --thumbWidth: 5vh;
+  --sliderHeight: 50%;
+  --thumbHeight: 25px;
+  --thumbWidth: 40px;
   --sliderShiftFromRightOfCell: 20vw;
 }
 
@@ -32,17 +32,18 @@ it is in. This is because it is a horizontal aslider that has been rotated. */
 
 #topCell {
   text-align: center;
-  padding-left: 2vh;
-  height: 5vh;
+  padding-left: 2%;
+  height: 10px;
 }
 #bottomCell {
   text-align: center;
-  padding-left: 1vh;
-  height: 5vh;
+  padding-left: 1%;
+  height: 10px;
 }
+
 #ScoreCell {
   text-align: center;
-  padding-left: 5vh;
+  padding-left: 5%;
   vertical-align: bottom;
 }
 
@@ -173,7 +174,7 @@ tbody {
     display: contents
 }
 .jspsych-display-element {
-    height: 80vh;
+    height: 80%;
 }
 
 .instructionsCell {
