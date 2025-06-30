@@ -121,7 +121,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
 
 
 
-html += '<table border="0px" width="100%" height="100%">'
+html += '<table border="1px" width="100%" height="100%" id="VASTable">'
   html += '<tr>'
     html += '<td rowspan="3" width="50%" class="instructionsCell">'
     html += trial.stimulus
@@ -136,8 +136,7 @@ html += '<table border="0px" width="100%" height="100%">'
     html += '<td id="topCell">'+trial.textAboveSlider+'</td>'
   html += '</tr>'
   html += '<tr>'
-    html += '<td>'
-    
+    html += '<td id = "VAStableElement">'
     html += '<div class="VAScell">'
         html += '<div class="track">'
             html += '<div class="groove"></div>'

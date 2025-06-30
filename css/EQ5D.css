@@ -8,7 +8,7 @@
 /*  What is super confusing with the slider height is that it is based off the width of the cell
 it is in. This is because it is a horizontal aslider that has been rotated. */
 :root {
-  --sliderHeight: calc(50vh);
+  --sliderHeight: 50vh;
   --thumbHeight: 3vh;
   --thumbWidth: 5vh;
   --sliderShiftFromRightOfCell: 20vw;

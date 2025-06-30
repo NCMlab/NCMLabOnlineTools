@@ -28,6 +28,15 @@ var VAStrial = {
         console.log(parameters)
           return parameters.Instructions 
     },
+    on_load: function() {
+
+      // Set the height of teh slider based on the rendered size of the cell it is in        
+        var r = document.querySelector(':root');
+        var rs = getComputedStyle(r);
+        var VAScellHeight = 0.9*document.getElementById('VAStableElement').offsetHeight
+        var NewHeight = VAScellHeight + 'px'
+        r.style.setProperty('--sliderHeight', NewHeight)
+    },
     min: function() {return parameters.min},
     max: function() {return parameters.max},
     sliderStart: function() {return parameters.sliderStart}, 
@@ -57,6 +66,7 @@ var form_trial = {
     missed_question_text: function() { return LabelNames.missed_question_text},
     required: true,
     on_load: function() {
+        
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     },
@@ -80,8 +90,8 @@ var form_trial = {
     }
   }
 timeline.push(Welcome)
-timeline.push(LoadQuestionnaire)
-timeline.push(form_trial)
+//timeline.push(LoadQuestionnaire)
+//timeline.push(form_trial)
 timeline.push(VAStrial)
 timeline.push(Notes)
 timeline.push(ThankYou)
