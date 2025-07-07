@@ -119,7 +119,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
 
             //html += '<div id="jspsych-html-slider-response-wrapper" style="margin: 0vh 0px;">';
 
-            html += '<table border="1px" class="TESTTABLE" height="100%" >'
+            html += '<table border="0px" class="TESTTABLE" height="100%" >'
             html += '<tr>'
             html += '<td rowspan="2" class="instructionsCell">'
             html += trial.stimulus
