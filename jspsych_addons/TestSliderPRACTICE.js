@@ -117,29 +117,20 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             // half of the thumb width value from jspsych.css, used to adjust the label positions
             var html = ""
 
-            html += '<div id="jspsych-html-slider-response-wrapper" style="margin: 5vh 0px;">';
+            //html += '<div id="jspsych-html-slider-response-wrapper" style="margin: 0vh 0px;">';
 
-
-
-html += '<table border="1px" width="100%" height="100%" id="VASTable">'
-  html += '<tr>'  
-  html += '<td rowspan="3" width="50%" class="instructionsCell">'
-    html += trial.stimulus
-    
-    html += '<table><tr><td>'
-    html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn" ' +
-            (trial.require_movement ? "disabled" : "") +
-            ">" +
-            trial.button_label +
-            "</button>";
-    html += '</td><td id = "ScoreCell" class="ScoreCell">'+trial.textNextToScore+'</td></tr></table>'
-    
-    
-    html += '</td>'
-    html += '<td id="topCell">'+trial.textAboveSlider+'</td>'
-  html += '</tr>'
-  html += '<tr>'
-    html += '<td id = "VAStableElement">'
+            html += '<table border="1px" class="TESTTABLE" height="100%" >'
+            html += '<tr>'
+            html += '<td rowspan="2" class="instructionsCell">'
+            html += trial.stimulus
+            
+            html += '<div class="ScoreCell" id = "ScoreCell">'+trial.textNextToScore+'</div>'
+            
+            html += '</td>'
+            html += '<td class="topCell">'+trial.textAboveSlider+'</td>'
+        html += '</tr>'
+        html += '<tr>'
+            html += '<td class="VAStableElement" id = "VAStableElement">'
     html += '<div class="VAScell">'
         html += '<div class="track">'
             html += '<div class="groove"></div>'
@@ -156,15 +147,23 @@ html += '<table border="1px" width="100%" height="100%" id="VASTable">'
         html += '<input type="range" value='+ trial.sliderStart +' min='+ trial.min
         html += 'step='+ trial.step +' max='+ trial.max +' id="jspsych-html-slider-response-response" bind:value> '
     html += '</div>'
-    
-    html += '</td>'
-  html += '</tr>'
-  html += '<tr>'
-    html += '<td id="bottomCell">'+trial.textBelowSlider+'</td>'
-  html += '</tr>'
 
-html += '</table>'
-html += '</div>'
+
+            html += '</td>'
+        html += '</tr>'
+        html += '<tr>'
+            html += '<td>'
+            html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn" ' +
+                (trial.require_movement ? "disabled" : "") +
+                ">" +
+                trial.button_label +
+                "</button>";
+            
+            html += '</td>'
+            html += '<td class="bottomCell">'+trial.textBelowSlider+'</td>'
+        html += '</tr>'
+    html += '</table>'
+            //html += '</div>'
 
 
 
