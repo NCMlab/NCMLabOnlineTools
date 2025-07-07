@@ -165,10 +165,10 @@ tbody {
     display: contents
 }
 .jspsych-display-element {
-  padding-top: 5vh;  
+  padding-top: 2vh;  
   height: 80vh;
   width: 100%;
-  display:flex;
+  display:block;
   margin: auto;
     
 }
@@ -177,6 +177,7 @@ tbody {
   width: 100%;
   display: compact;
   margin: auto;
+  table-layout: fixed
 }
 
 .instructionsCell {
@@ -266,3 +267,4 @@ tbody {
   vertical-align: bottom;
   width: 100%
 }
+
