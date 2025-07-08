@@ -457,13 +457,13 @@ List.push({
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingA_003",
-  Instructions: "Default",
+  Instructions: "DefaultA",
   IconName: "Trails A",
 });
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingB_003",
-  Instructions: "Default",
+  Instructions: "DefaultB",
   IconName: "Trails B",
 });
 
@@ -1123,13 +1123,13 @@ List.push({
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingA_Default",
-  Instructions: "Default",
+  Instructions: "DefaultA",
   IconName: "Trails A",
 });
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingB_Default",
-  Instructions: "Default",
+  Instructions: "DefaultB",
   IconName: "Trails B",
 });
 List.push({
