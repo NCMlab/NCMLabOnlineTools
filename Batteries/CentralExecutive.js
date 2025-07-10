@@ -1,5 +1,11 @@
 // The goal is to have a single component that can direct traffic
-
+// ===============================================================
+// Global variables
+var DisplayBatteryInstructionsFlag
+var BatteryInstructions
+var batchIndex = -99
+var sessionData = ''
+// ===============================================================
 // Functions used by the central execitive
 
 // Check to see if an object is emoty
@@ -7,29 +13,38 @@ function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-// Check to see if this worker has BATCH data in jatos already
+// Check to see if this worker has BATCH data in jatos 
 function UpdateBatchData() {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
     // Is this worker in the Batch data?
     if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )
     {
         jatos.batchSession.set(jatos.workerId, 0)
-            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => {
+                jatos.batchSession.set(jatos.workerId+"_Language", "EN")
+                console.log("Batch Session was successfully updated")
+                sessionData = jatos.studySessionData
+                batchIndex = jatos.batchSession.get(jatos.workerId)
+                console.log(batchIndex)
+            })
             .catch(() => console.log("Batch Session synchronization failed"));
     }
     else 
     {  // reset this worker to zero count (I am not sure why this is done)
         jatos.batchSession.set(jatos.workerId, 0)
-            .then(() => console.log("Batch Session was successfully updated"))
+            .then(() => {
+                console.log("Batch Session was successfully updated")
+                sessionData = jatos.studySessionData
+                batchIndex = jatos.batchSession.get(jatos.workerId)
+            })
             .catch(() => console.log("Batch Session synchronization failed"));
     }
+    
 }
 
-// Setup a Battery
-function SetupBattery(battery) {
-    // What is the Battery to use?
-    CurrentBattery = BatteryList.find(x => x.index === parseInt(battery))
-    
+// Create the session data
+function CreateSessionData(battery) {
+    CurrentBattery = BatteryList.find(x => x.index === parseInt(battery))  
     // Extract all the parameters/Instructions from the CurrentBattery object and make a separate list
     ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
     TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
@@ -41,33 +56,69 @@ function SetupBattery(battery) {
 
     // Extract footer text
     FooterText = CurrentBattery.Footer
-    
-    // Where IN a battery is the worker, based off a batch variable?
-    var batchCount = jatos.batchSession.get(jatos.workerId)
-    // Check to see if any session data has been set for this worker
-    JATOSSessionData = jatos.studySessionData
 
-    if ( isEmpty(JATOSSessionData) && ( typeof batchCount == 'undefined' )) 
-    {
-        console.log("FIRST TIME ")
-        // This is the first time that this worker has started a session. 
-        // Add needed information to the session
-        JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
-        JATOSSessionData.FooterText = FooterText
-        JATOSSessionData.BatteryName = CurrentBattery.name
-        JATOSSessionData.BatteryShortName = CurrentBattery.shortName
-        JATOSSessionData.Redirect = CurrentBattery.Redirect
-        // If this is the first visit to this manager, display the battery instructions
-        DisplayBatteryInstructionsFlag = true 
-        if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
-        { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
-        else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }
-        console.log(JATOSSessionData)
-    }
-    else {console.log("NOT first time")} 
+    // build the session data
+    JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
+    JATOSSessionData.FooterText = FooterText
+    JATOSSessionData.BatteryName = CurrentBattery.name
+    JATOSSessionData.BatteryShortName = CurrentBattery.shortName
+    JATOSSessionData.Redirect = CurrentBattery.Redirect
+    // send the session data to JATOS
+    jatos.studySessionData = JATOSSessionData
 }
 
-// =================================================
+// what is the status of this worker using session and batch data
+function WhatIsStatus(JATOSSessionData, batchCount) {
+    if ( isEmpty(JATOSSessionData) && ( typeof batchCount == 'undefined' )) 
+    { console.log("FIRST TIME THROUGH")
+        return 'firstTime'
+    }
+    else if ( isEmpty(JATOSSessionData) && ( typeof batchCount != 'undefined' )) 
+    { console.log("SESSION DATA WIPED, BUT THERE IS BATCH DATA")
+        return 'browserRestart'
+    }
+    else if ( !isEmpty(JATOSSessionData) && ( typeof batchCount != 'undefined' )) 
+    { console.log('Continuing session')
+        return 'continue'
+    }
+}
+
+function StartComponent(index) {
+    console.log("START: ")
+    // update the session data index
+    jatos.studySessionData.CurrentIndex = index
+    // what component to start?
+    console.log(jatos.studySessionData.TaskNameList[index])
+    console.log(jatos.studySessionData)
+    //jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
+}
+
+// =============================================================
+// DISPLAYED COMPONENTS
+/*var LandingPage = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: function() {
+    
+    
+    return BatteryInstructions
+  },
+  choices: function() {return [LabelNames.Next]}, 
+  response_ends_trial: true,
+  on_finish: function() {
+    JATOSSessionData = jatos.studySessionData
+    console.log(TaskList)
+    console.log(jatos)
+    console.log(JATOSSessionData.CurrentIndex)
+    // This is the function that starts the JATOS component for the next item in the battery
+    // The pseudoswitch should receive a task name using the JATOS currentIndex value
+    console.log(TaskList[JATOSSessionData.CurrentIndex])    
+    jatos.startComponentByTitle(TaskList[JATOSSessionData.CurrentIndex])
+    
+    // Need to shorten the task list and save it as jatos session variable
+  }
+}*/
+
+// =============================================================
 // Read URL
 jatos.onLoad(function() {
     const jatos_params = jatos.urlQueryParameters;
@@ -79,14 +130,19 @@ jatos.onLoad(function() {
     
     console.log(jatos_params,battery,taskIndex,session);
     // Update the batch data with this worker
+    console.log(batchIndex)
     UpdateBatchData()
+    console.log(batchIndex)
+    var workerStatus = WhatIsStatus('',) 
+    console.log(workerStatus)
     switch(UsageType) {
         case 'SingleTask':
             console.log("Single Task")
             break;
         case 'Battery':
             console.log("Batteries")
-            SetupBattery(battery)
+            CreateSessionData(battery)
+            
             break;
         case 'Session':
             console.log("Session")
@@ -97,7 +153,6 @@ jatos.onLoad(function() {
         default:
             console.log("No Choice Provided")
     }
-    console.log(jatos.batchSession.getAll())
 }
 
 )
