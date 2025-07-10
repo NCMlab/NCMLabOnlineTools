@@ -19,22 +19,19 @@ function UpdateBatchData() {
     // Is this worker in the Batch data?
     if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )
     {
-        jatos.batchSession.set(jatos.workerId, 0)
+        return jatos.batchSession.set(jatos.workerId, 0)
             .then(() => {
                 jatos.batchSession.set(jatos.workerId+"_Language", "EN")
                 console.log("Batch Session was successfully updated")
-                sessionData = jatos.studySessionData
                 batchIndex = jatos.batchSession.get(jatos.workerId)
-                console.log(batchIndex)
             })
             .catch(() => console.log("Batch Session synchronization failed"));
     }
     else 
     {  // reset this worker to zero count (I am not sure why this is done)
-        jatos.batchSession.set(jatos.workerId, 0)
+        return jatos.batchSession.set(jatos.workerId, 0)
             .then(() => {
                 console.log("Batch Session was successfully updated")
-                sessionData = jatos.studySessionData
                 batchIndex = jatos.batchSession.get(jatos.workerId)
             })
             .catch(() => console.log("Batch Session synchronization failed"));
@@ -58,26 +55,26 @@ function CreateSessionData(battery) {
     FooterText = CurrentBattery.Footer
 
     // build the session data
-    JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
-    JATOSSessionData.FooterText = FooterText
-    JATOSSessionData.BatteryName = CurrentBattery.name
-    JATOSSessionData.BatteryShortName = CurrentBattery.shortName
-    JATOSSessionData.Redirect = CurrentBattery.Redirect
+    sessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
+    sessionData.FooterText = FooterText
+    sessionData.BatteryName = CurrentBattery.name
+    sessionData.BatteryShortName = CurrentBattery.shortName
+    sessionData.Redirect = CurrentBattery.Redirect
     // send the session data to JATOS
-    jatos.studySessionData = JATOSSessionData
+    jatos.studySessionData = sessionData
 }
 
 // what is the status of this worker using session and batch data
-function WhatIsStatus(JATOSSessionData, batchCount) {
-    if ( isEmpty(JATOSSessionData) && ( typeof batchCount == 'undefined' )) 
+function WhatIsStatus(sessionData, batchCount) {
+    if ( isEmpty(sessionData) && ( typeof batchCount == 'undefined' )) 
     { console.log("FIRST TIME THROUGH")
         return 'firstTime'
     }
-    else if ( isEmpty(JATOSSessionData) && ( typeof batchCount != 'undefined' )) 
+    else if ( isEmpty(sessionData) && ( typeof batchCount != 'undefined' )) 
     { console.log("SESSION DATA WIPED, BUT THERE IS BATCH DATA")
         return 'browserRestart'
     }
-    else if ( !isEmpty(JATOSSessionData) && ( typeof batchCount != 'undefined' )) 
+    else if ( !isEmpty(sessionData) && ( typeof batchCount != 'undefined' )) 
     { console.log('Continuing session')
         return 'continue'
     }
@@ -131,8 +128,26 @@ jatos.onLoad(function() {
     console.log(jatos_params,battery,taskIndex,session);
     // Update the batch data with this worker
     console.log(batchIndex)
-    UpdateBatchData()
-    console.log(batchIndex)
+    // Update the batch uses a promise to help ensure the communication worked.
+    // It then returns a promise which is waited for here before retrieving the value
+    // that the update batch did.
+    // The batch data only contains language choice and index.
+    
+    var PR = UpdateBatchData()
+    sessionData = jatos.studySessionData
+    console.log(sessionData)
+    
+    PR.then(() => {
+        console.log(sessionData)
+        console.log(batchIndex)
+        console.log(WhatIsStatus(sessionData,batchIndex) )
+    }).then(() => {
+        CreateSessionData(battery)
+    }).then(()=>{
+        console.log(sessionData)
+        console.log(WhatIsStatus(sessionData,batchIndex) )
+    })
+    
     var workerStatus = WhatIsStatus('',) 
     console.log(workerStatus)
     switch(UsageType) {
@@ -141,7 +156,7 @@ jatos.onLoad(function() {
             break;
         case 'Battery':
             console.log("Batteries")
-            CreateSessionData(battery)
+            //CreateSessionData(battery)
             
             break;
         case 'Session':
