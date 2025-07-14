@@ -1329,12 +1329,12 @@ BatteryList.push({index: 73,
 
 // ============ MUSIC STUDY -- BASELINE ==================
 var List = [];
-List.push({
+/*List.push({
   Task: "Form Questionnaire",
   Parameters: "CESAM_001",
   Instructions: "Default",
   IconName: "CESAM",
-});
+});*/
 List.push({
   Task: "Matrix Questionnaire",
   Parameters: "GAS_001",

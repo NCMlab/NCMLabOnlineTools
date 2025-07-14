@@ -1,5 +1,5 @@
 // The goal is to have a single component that can direct traffic
-
+var JATOSSessionData = {}
 // Functions used by the central execitive
 
 // Check to see if an object is emoty
@@ -15,6 +15,7 @@ function UpdateBatchData() {
     {
         jatos.batchSession.set(jatos.workerId, 0)
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => console.log("Batch Session was successfully setup"))
             .catch(() => console.log("Batch Session synchronization failed"));
     }
     else 
@@ -29,7 +30,6 @@ function UpdateBatchData() {
 function SetupBattery(battery) {
     // What is the Battery to use?
     CurrentBattery = BatteryList.find(x => x.index === parseInt(battery))
-    
     // Extract all the parameters/Instructions from the CurrentBattery object and make a separate list
     ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
     TaskList = CurrentBattery.TaskList.map(({ Task }) => Task)
@@ -65,11 +65,39 @@ function SetupBattery(battery) {
         console.log(JATOSSessionData)
     }
     else {console.log("NOT first time")} 
+    jatos.studySessionData = JATOSSessionData
 }
 
+function CheckForSessiondata() {
+    const ExpectedKeysInSessionData = ['CurrentIndex', 'TaskNameList', 
+        'ComponentParameterLists', 'InstructionList', 'TaskIconList', 
+        'FooterText', 'BatteryName', 'BatteryShortName', 'Redirect', 
+        'HeaderButtonsToShow']
+    var CompleteSessionDataFlag = true        
+    if ( isEmpty(JATOSSessionData) ) {
+        SessionDataFlag = 'missing'
+        CompleteSessionDataFlag = false
+    }
+    else {
+        var keys = Object.keys(JATOSSessionData)        
+        // check to see if the session data appears complete
+        for ( var i = 0; i < ExpectedKeysInSessionData.length; i++ ) {
+            if (!( ExpectedKeysInSessionData[i] in JATOSSessionData )) {
+                console.log(ExpectedKeysInSessionData[i])
+                CompleteSessionDataFlag = false
+            }
+        }
+    }
+    return CompleteSessionDataFlag
+}
+function StartComponent(title) {
+ console.log("Starting component: "+title)
+ jatos.startComponentByTitle(title)
+}
 // =================================================
 // Read URL
 jatos.onLoad(function() {
+    
     const jatos_params = jatos.urlQueryParameters;
     const battery = jatos_params["Battery"];
     const taskIndex = jatos_params["Taskindex"];
@@ -79,14 +107,20 @@ jatos.onLoad(function() {
     
     console.log(jatos_params,battery,taskIndex,session);
     // Update the batch data with this worker
+    
     UpdateBatchData()
+    if ( !CheckForSessiondata() ) { SetupBattery(battery) }            
+    console.log("SESSION DATA COMPLETE? " + CheckForSessiondata())
+
     switch(UsageType) {
         case 'SingleTask':
             console.log("Single Task")
             break;
         case 'Battery':
             console.log("Batteries")
-            SetupBattery(battery)
+            console.log(JATOSSessionData)
+            var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+            StartComponent(TitleToStart)
             break;
         case 'Session':
             console.log("Session")
@@ -98,6 +132,7 @@ jatos.onLoad(function() {
             console.log("No Choice Provided")
     }
     console.log(jatos.batchSession.getAll())
+    console.log(JATOSSessionData)
 }
 
 )

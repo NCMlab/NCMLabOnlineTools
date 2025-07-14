@@ -288,8 +288,15 @@ closeBtn.addEventListener("click", () => {
 // Decide where to go next functionaility
 function whereToGoNext(SessionData, CurrentIndex){
     // If this a la carte or the end of the battery go to the usage manager
+    console.log(SessionData.TaskNameList)
+    console.log(SessionData.UsageType)
+    console.log(CurrentIndex)
+    
     if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponentByTitle("Usage Manager")}
+      { 
+        alert("A La Carte")
+        jatos.startComponentByTitle("Usage Manager")
+      }
     else if ( SessionData.UsageType == 'SingleTask' )
       { 
         // For some reason this does not END the trailmaking task
@@ -297,9 +304,15 @@ function whereToGoNext(SessionData, CurrentIndex){
         console.log(BreakPoint)
       }
     else if ( SessionData.UsageType == 'Battery' ) 
-      { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
+      { 
+        alert("BATTERY")
+        jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) 
+      }
     else 
-      { jatos.startComponentByTitle("Usage Manager")}
+      { 
+        alert("ELSE")
+        jatos.startComponentByTitle("Usage Manager")
+      }
 }
 
   
