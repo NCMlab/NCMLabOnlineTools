@@ -1,12 +1,14 @@
 // The goal is to have a single component that can direct traffic
 var JATOSSessionData = {}
 var timeline = []
+var CurrentLanguage
 // Functions used by the central execitive
 
 // Check to see if an object is emoty
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
+  
 
 // Check to see if this worker has BATCH data in jatos already
 function UpdateBatchData() {
@@ -16,13 +18,21 @@ function UpdateBatchData() {
     {
         jatos.batchSession.set(jatos.workerId, 0)
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
-            .then(() => console.log("Batch Session was successfully setup"))
+            .then(() => {
+                console.log("Batch Session was successfully setup")
+                CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+                console.log('LANGUGE: '+CurrentLanguage)
+    })
             .catch(() => console.log("Batch Session synchronization failed"));
     }
     else 
     {  // reset this worker to zero count (I am not sure why this is done)
         jatos.batchSession.set(jatos.workerId, 0)
-            .then(() => console.log("Batch Session was successfully updated"))
+            .then(() => {
+                CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+                console.log("Batch Session was successfully updated")
+                console.log('LANGUGE: '+CurrentLanguage)
+            })
             .catch(() => console.log("Batch Session synchronization failed"));
     }
 }
@@ -92,9 +102,37 @@ function CheckForSessiondata() {
     }
     return CompleteSessionDataFlag
 }
+
+// function to start a task
 function StartComponent(title) {
  console.log("Starting component: "+title)
  jatos.startComponentByTitle(title)
+}
+
+// The following is used by the user choice 
+function MakeIconList(TaskNameList, ComponentList) {
+    // create a list of image file names for the tasks in the battery
+    var IconImgFileList = []
+    for ( var i = 0; i < TaskNameList.length; i ++ ) {
+        console.log(i)
+        IconImgFileList.push(ComponentList.find(item => item.name === TaskNameList[i]).iconFileName)
+      }
+      return IconImgFileList
+}
+
+// Need function to setup the session. This info is stored in a parameter.
+function SetupSession() {
+    console.log("CURRENT LANGUAGE: "+CurrentLanguage) 
+    console.log(JATOSSessionData) 
+    console.log(SessionList)
+    var parameters = JATOSSessionData.ComponentParameterLists[0]
+    console.log(parameters)
+    let LANG = 'EN'
+    pseudoSwitch(LANG+"_"+parameters)
+    console.log(parameters)
+
+
+    
 }
 // =================================================
 // jsPsych elements to display.
@@ -111,38 +149,32 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeUserChoiceElement() {
 
+function MakeUserChoiceElement(JATOSSessionData) {
+    // This is the jsPsych task that display an icon for each task in a battery
+    IconImgFileList = MakeIconList(JATOSSessionData.TaskNameList, ComponentList)
     var UserChoicePage = {
-    on_start: function() {
-        console.log(TaskList)
-        console.log(jatos)
-        console.log(jatos.db)
-    },
     type: jsPsychHtmlButtonResponse,
     stimulus: function() {return '<b>'+BatteryInstructions+'</b>'},
     choices: function(){ 
         var stim = []
-        console.log(TaskIconList)
-        for ( var i = 0; i < TaskIconList.length; i++ ) {
+        console.log(JATOSSessionData.TaskIconList)
+        for ( var i = 0; i < JATOSSessionData.TaskIconList.length; i++ ) {
             stim.push(`<span><img src="assets/Icons/${IconImgFileList[i]}" alt="${TaskList[i]}"></br>${TaskIconList[i]}</span>
             `)
         }
         return stim
     },
     prompt: '',
-    on_finish: function() {
-        data = jsPsych.data.getLastTrialData().values()
-        response = data[0].response
-        
-        JATOSSessionData = jatos.studySessionData
+    on_finish: function(data) {
+        // what button was pressed?
+        response = data.response
         // This is the function that starts the JATOS component for the next item in the battery
         // The pseudoswitch should receive a task name using the JATOS currentIndex value
-        console.log(TaskList)
-        
         JATOSSessionData.CurrentIndex = response
         jatos.studySessionData = JATOSSessionData
-        jatos.startComponentByTitle(TaskList[response])
+        StartComponent(TaskList[response])
+
     }
     };
     return UserChoicePage
@@ -151,7 +183,46 @@ function MakeUserChoiceElement() {
 // =================================================
 
 // Read URL
-jatos.onLoad(function() {
+function CentralExecutive() {
+    const jatos_params = jatos.urlQueryParameters;
+    const battery = jatos_params["Battery"];
+    const taskIndex = jatos_params["Taskindex"];
+    const session = jatos_params["Session"];
+    const UsageType = jatos_params["UsageType"];
+
+    
+    
+    // Update the batch data with this worker
+    UpdateBatchData()
+    // check to see if the session data needs to be updated or not
+    if ( !CheckForSessiondata() ) { SetupBattery(battery, UsageType) }            
+    // determine what to do based on the usage type
+    switch(UsageType) {
+        case 'SingleTask':
+            console.log("Single Task")
+            break;
+        case 'Battery':
+            console.log("Batteries")
+            // get the title of the task to start next
+            var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+            StartComponent(TitleToStart)
+            break;
+        case 'Session':
+            console.log("Session")
+            SetupSession()
+            break;
+        case 'ALaCarte':
+            console.log("User Choice")
+            timeline.push(MakeUserChoiceElement(JATOSSessionData))
+            // once a choice is made start that title
+            break;
+        default:
+            console.log("No Choice Provided")
+            
+            timeline.push(MakeUserChoiceElement(JATOSSessionData))
+    }
+}
+/*jatos.onLoad(function() {
     
     const jatos_params = jatos.urlQueryParameters;
     const battery = jatos_params["Battery"];
@@ -190,5 +261,5 @@ jatos.onLoad(function() {
     }
 }
 
-)
+)*/
 

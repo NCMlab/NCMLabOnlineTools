@@ -18,41 +18,40 @@
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="Batteries/Batteries.js"></script>
+    <script src="config/SessionChooser_config.js"></script>    
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-    <script> loadScriptSequentially("Batteries/CentralExecutive.js").then(() =>
-    {
-      var jsPsych = initJsPsych({
-        display_element: 'jspsych-target',
-        })
-        console.log(timeline)
-        console.log(timeline.length === 0)
-        // if the central executive has added anything otthe timeline,
-        // then run it.
-        if ( timeline.length !== 0 )
-        { 
-          jsPsych.run(timeline); 
-        }          
-      }           
-    )
+    <script> 
+    // Once jatos is fully loaded, the the URL parameters can be checked.
+    jatos.onload(function() {
+      // first load the JS file for the central executive
+      loadScriptSequentially("Batteries/CentralExecutive.js")
+      .then(() =>
+          // then execute the switch statement decision maker
+          CentralExecutive()
+        )
+      .then(() => 
+      // once everything is setup, then proceed to displaying the jspsych timeline
+      {
+        console.log("I AM HERE")
+        var jsPsych = initJsPsych({
+          display_element: 'jspsych-target',
+          })
+          console.log(timeline)
+          console.log(timeline.length === 0)
+          // if the central executive has added anything otthe timeline,
+          // then run it.
+          if ( timeline.length !== 0 )
+          { 
+            jsPsych.run(timeline); 
+          }          
+        }           
+      )
+    })
 
             
     </script>
-    <script src="Batteries/CentralExecutive.js"></script>
     
-    <script>
-      var jsPsych = initJsPsych({
-        display_element: 'jspsych-target',
-      })
-      console.log(timeline)
-      console.log(timeline.length === 0)
-      // if the central executive has added anything otthe timeline,
-      // then run it.
-      if ( timeline.length !== 0 )
-      { 
-        jsPsych.run(timeline); 
-      }
-    </script>
   </body>
 
 </html>

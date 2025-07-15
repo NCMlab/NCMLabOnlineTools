@@ -276,14 +276,7 @@ function closeInfo() {
   modal.classList.remove("open");
 
 }
-/*openBtn.addEventListener("click", () => {
-  modal.classList.add("open");
-});
 
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("open");
-});
-*/
 // ===============================================
 // Decide where to go next functionaility
 function whereToGoNext(SessionData, CurrentIndex){
@@ -294,23 +287,20 @@ function whereToGoNext(SessionData, CurrentIndex){
     
     if ( SessionData.UsageType == 'ALaCarte' )       
       { 
-        alert("A La Carte")
-        jatos.startComponentByTitle("Usage Manager")
+        jatos.startComponentByTitle("Central Executive")
       }
     else if ( SessionData.UsageType == 'SingleTask' )
       { 
         // For some reason this does not END the trailmaking task
-        window.open('https://www.uottawa.ca','_self')
+
         console.log(BreakPoint)
       }
     else if ( SessionData.UsageType == 'Battery' ) 
       { 
-        alert("BATTERY")
         // Is the user done with the battry?
         if ( CurrentIndex == SessionData.TaskNameList.length )
         {
-          console.log(SessionData)
-          alert("Worker has completed the battery")
+          console.log("Worker has completed the battery")
           if ( SessionData["Redirect"] !== undefined )          
           { 
             window.open(SessionData.Redirect,'_self')
@@ -322,9 +312,8 @@ function whereToGoNext(SessionData, CurrentIndex){
         }
       }
     else 
-      { 
-        alert("ELSE")
-        jatos.startComponentByTitle("Usage Manager")
+      { // if no usage type is selected then do the same as a la carte/user choice
+        jatos.startComponentByTitle("Central Executive")
       }
 }
 
