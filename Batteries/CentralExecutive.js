@@ -11,6 +11,8 @@ function isEmpty(obj) {
   
 
 // Check to see if this worker has BATCH data in jatos already
+
+// SWITCH THIS ARROUND SO IT IS ONE PROMISE AND NOT TWO, PUT THE IF/ELSE INTHE FIRST THEN
 function UpdateBatchData(UsageType) {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
     // Is this worker in the Batch data?
@@ -209,6 +211,8 @@ function CentralExecutive() {
     
     
     // Update the batch data with this worker
+    // MOVE ALL THE UPDATE BATCH PROMISE BIT HERE SO THAT THE SWITCH IS CONNECTED TO 
+    // THE PROMISE.
     UpdateBatchData(UsageType)
     // check to see if the session data needs to be updated or not
     if ( !CheckForSessiondata() ) { SetupBattery(battery, UsageType) }            
