@@ -292,7 +292,7 @@ function whereToGoNext(SessionData, CurrentIndex){
     console.log(SessionData.UsageType)
     console.log(CurrentIndex)
     
-    if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
+    if ( SessionData.UsageType == 'ALaCarte' )       
       { 
         alert("A La Carte")
         jatos.startComponentByTitle("Usage Manager")
@@ -306,7 +306,20 @@ function whereToGoNext(SessionData, CurrentIndex){
     else if ( SessionData.UsageType == 'Battery' ) 
       { 
         alert("BATTERY")
-        jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) 
+        // Is the user done with the battry?
+        if ( CurrentIndex == SessionData.TaskNameList.length )
+        {
+          console.log(SessionData)
+          alert("Worker has completed the battery")
+          if ( SessionData["Redirect"] !== undefined )          
+          { 
+            window.open(SessionData.Redirect,'_self')
+          }
+          else { window.open('https://www.uottawa.ca','_self') }
+        }
+        else {
+          jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) 
+        }
       }
     else 
       { 

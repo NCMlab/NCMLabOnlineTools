@@ -1439,6 +1439,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: "https://www.uottawa.ca"
 });
 // ============ MUSIC STUDY -- POST - STUDY ==================
 

@@ -1,5 +1,6 @@
 // The goal is to have a single component that can direct traffic
 var JATOSSessionData = {}
+var timeline = []
 // Functions used by the central execitive
 
 // Check to see if an object is emoty
@@ -27,7 +28,7 @@ function UpdateBatchData() {
 }
 
 // Setup a Battery
-function SetupBattery(battery) {
+function SetupBattery(battery, UsageType) {
     // What is the Battery to use?
     CurrentBattery = BatteryList.find(x => x.index === parseInt(battery))
     // Extract all the parameters/Instructions from the CurrentBattery object and make a separate list
@@ -57,6 +58,7 @@ function SetupBattery(battery) {
         JATOSSessionData.BatteryName = CurrentBattery.name
         JATOSSessionData.BatteryShortName = CurrentBattery.shortName
         JATOSSessionData.Redirect = CurrentBattery.Redirect
+        JATOSSessionData.UsageType = UsageType
         // If this is the first visit to this manager, display the battery instructions
         DisplayBatteryInstructionsFlag = true 
         if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
@@ -72,7 +74,7 @@ function CheckForSessiondata() {
     const ExpectedKeysInSessionData = ['CurrentIndex', 'TaskNameList', 
         'ComponentParameterLists', 'InstructionList', 'TaskIconList', 
         'FooterText', 'BatteryName', 'BatteryShortName', 'Redirect', 
-        'HeaderButtonsToShow']
+        'HeaderButtonsToShow', 'UsageType']
     var CompleteSessionDataFlag = true        
     if ( isEmpty(JATOSSessionData) ) {
         SessionDataFlag = 'missing'
@@ -95,6 +97,59 @@ function StartComponent(title) {
  jatos.startComponentByTitle(title)
 }
 // =================================================
+// jsPsych elements to display.
+// These include: 
+//  - the welcome/splash page
+//  - the icons for user choice
+//  - the session manager page
+function MakeTestElement() {
+    var TestDisplay = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: "JASON",
+        choices: ['y','n']
+    }
+    return TestDisplay
+}
+
+function MakeUserChoiceElement() {
+
+    var UserChoicePage = {
+    on_start: function() {
+        console.log(TaskList)
+        console.log(jatos)
+        console.log(jatos.db)
+    },
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function() {return '<b>'+BatteryInstructions+'</b>'},
+    choices: function(){ 
+        var stim = []
+        console.log(TaskIconList)
+        for ( var i = 0; i < TaskIconList.length; i++ ) {
+            stim.push(`<span><img src="assets/Icons/${IconImgFileList[i]}" alt="${TaskList[i]}"></br>${TaskIconList[i]}</span>
+            `)
+        }
+        return stim
+    },
+    prompt: '',
+    on_finish: function() {
+        data = jsPsych.data.getLastTrialData().values()
+        response = data[0].response
+        
+        JATOSSessionData = jatos.studySessionData
+        // This is the function that starts the JATOS component for the next item in the battery
+        // The pseudoswitch should receive a task name using the JATOS currentIndex value
+        console.log(TaskList)
+        
+        JATOSSessionData.CurrentIndex = response
+        jatos.studySessionData = JATOSSessionData
+        jatos.startComponentByTitle(TaskList[response])
+    }
+    };
+    return UserChoicePage
+}
+
+// =================================================
+
 // Read URL
 jatos.onLoad(function() {
     
@@ -109,7 +164,7 @@ jatos.onLoad(function() {
     // Update the batch data with this worker
     
     UpdateBatchData()
-    if ( !CheckForSessiondata() ) { SetupBattery(battery) }            
+    if ( !CheckForSessiondata() ) { SetupBattery(battery, UsageType) }            
     console.log("SESSION DATA COMPLETE? " + CheckForSessiondata())
 
     switch(UsageType) {
@@ -130,9 +185,10 @@ jatos.onLoad(function() {
             break;
         default:
             console.log("No Choice Provided")
+            console.log(MakeTestElement())
+            timeline.push(MakeTestElement())
     }
-    console.log(jatos.batchSession.getAll())
-    console.log(JATOSSessionData)
 }
 
 )
+
