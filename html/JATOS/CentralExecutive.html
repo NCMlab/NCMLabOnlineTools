@@ -16,13 +16,16 @@
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="Batteries/Batteries.js"></script>
+    
     <script src="config/SessionChooser_config.js"></script>    
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
     <script> 
     // Once jatos is fully loaded, the the URL parameters can be checked.
+    
     jatos.onload(function() {
       // first load the JS file for the central executive
       loadScriptSequentially("Batteries/CentralExecutive.js")

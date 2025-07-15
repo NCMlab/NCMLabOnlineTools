@@ -11,18 +11,15 @@ function isEmpty(obj) {
   
 
 // Check to see if this worker has BATCH data in jatos already
-function UpdateBatchData() {
+function UpdateBatchData(UsageType) {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
     // Is this worker in the Batch data?
     if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' )
     {
         jatos.batchSession.set(jatos.workerId, 0)
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
-            .then(() => {
-                console.log("Batch Session was successfully setup")
-                CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
-                console.log('LANGUGE: '+CurrentLanguage)
-    })
+            .then(() => { CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")})
+            .then(() => { if ( UsageType === "Session" ) { SessionChoiceTrial = SetupSession()}})
             .catch(() => console.log("Batch Session synchronization failed"));
     }
     else 
@@ -31,6 +28,7 @@ function UpdateBatchData() {
             .then(() => {
                 CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
                 console.log("Batch Session was successfully updated")
+                console.log("USAGE TYEP IS: "+UsageType)
                 console.log('LANGUGE: '+CurrentLanguage)
             })
             .catch(() => console.log("Batch Session synchronization failed"));
@@ -122,18 +120,27 @@ function MakeIconList(TaskNameList, ComponentList) {
 
 // Need function to setup the session. This info is stored in a parameter.
 function SetupSession() {
-    console.log("CURRENT LANGUAGE: "+CurrentLanguage) 
-    console.log(JATOSSessionData) 
-    console.log(SessionList)
-    var parameters = JATOSSessionData.ComponentParameterLists[0]
-    console.log(parameters)
-    let LANG = 'EN'
-    pseudoSwitch(LANG+"_"+parameters)
-    console.log(parameters)
+    // This function is called from teh UpdatBatch promise. This is because it 
+    // requires the LANGUAGE value which is storedin the batch. Access the batch may 
+    // take time so a promise is used.
 
-
-    
+    let input = CurrentLanguage+"_"+JATOSSessionData.ComponentParameterLists[0]
+    pseudoSwitch(input)
+    console.log(parameters)    
+    var Choices = []
+    var SessionsBatteryList = []
+    for ( var i = 0; i < parameters[0].List.length; i++ )
+        { 
+            Choices.push( parameters[0].List[i].name ) 
+            SessionsBatteryList.push( parameters[0].List[i].battery )
+        }
+    console.log(Choices)
+    console.log(SessionsBatteryList)
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices)
+    return SessionChoiceTrial
+    //timeline.push()
 }
+
 // =================================================
 // jsPsych elements to display.
 // These include: 
@@ -149,6 +156,15 @@ function MakeTestElement() {
     return TestDisplay
 }
 
+function MakeSessionButtons(Title, Choices) {
+    var trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() { return Title },
+        choices: Choices,
+        prompt: ""
+    };
+    return trial
+}
 
 function MakeUserChoiceElement(JATOSSessionData) {
     // This is the jsPsych task that display an icon for each task in a battery
@@ -193,7 +209,7 @@ function CentralExecutive() {
     
     
     // Update the batch data with this worker
-    UpdateBatchData()
+    UpdateBatchData(UsageType)
     // check to see if the session data needs to be updated or not
     if ( !CheckForSessiondata() ) { SetupBattery(battery, UsageType) }            
     // determine what to do based on the usage type
@@ -209,7 +225,6 @@ function CentralExecutive() {
             break;
         case 'Session':
             console.log("Session")
-            SetupSession()
             break;
         case 'ALaCarte':
             console.log("User Choice")
@@ -222,44 +237,3 @@ function CentralExecutive() {
             timeline.push(MakeUserChoiceElement(JATOSSessionData))
     }
 }
-/*jatos.onLoad(function() {
-    
-    const jatos_params = jatos.urlQueryParameters;
-    const battery = jatos_params["Battery"];
-    const taskIndex = jatos_params["Taskindex"];
-    const session = jatos_params["Session"];
-    const UsageType = jatos_params["UsageType"];
-
-    
-    console.log(jatos_params,battery,taskIndex,session);
-    // Update the batch data with this worker
-    
-    UpdateBatchData()
-    if ( !CheckForSessiondata() ) { SetupBattery(battery, UsageType) }            
-    console.log("SESSION DATA COMPLETE? " + CheckForSessiondata())
-
-    switch(UsageType) {
-        case 'SingleTask':
-            console.log("Single Task")
-            break;
-        case 'Battery':
-            console.log("Batteries")
-            console.log(JATOSSessionData)
-            var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
-            StartComponent(TitleToStart)
-            break;
-        case 'Session':
-            console.log("Session")
-            break;
-        case 'ALaCarte':
-            console.log("User Choice")
-            break;
-        default:
-            console.log("No Choice Provided")
-            console.log(MakeTestElement())
-            timeline.push(MakeTestElement())
-    }
-}
-
-)*/
-
