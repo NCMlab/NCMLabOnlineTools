@@ -326,8 +326,7 @@ function loadScriptSequentially(file) {
     newScript.setAttribute('async', 'true');
 
     newScript.onload = () => {
-        console.log('loaded successfully');
-        resolve(); // Resolve the promise
+        resolve('loaded successfully'); // Resolve the promise
     };
     newScript.onerror = () => {
         console.log('Error loading script');

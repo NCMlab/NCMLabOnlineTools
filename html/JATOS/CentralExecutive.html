@@ -29,27 +29,11 @@
     jatos.onload(function() {
       // first load the JS file for the central executive
       loadScriptSequentially("Batteries/CentralExecutive.js")
-      .then(() =>
-          // then execute the switch statement decision maker
-          CentralExecutive()
-        )
-      .then(() => 
+      .then((result) => CentralExecutive() )
+      
       // once everything is setup, then proceed to displaying the jspsych timeline
-      {
-        console.log("I AM HERE")
-        var jsPsych = initJsPsych({
-          display_element: 'jspsych-target',
-          })
-          console.log(timeline)
-          console.log(timeline.length === 0)
-          // if the central executive has added anything otthe timeline,
-          // then run it.
-          if ( timeline.length !== 0 )
-          { 
-            jsPsych.run(timeline); 
-          }          
-        }           
-      )
+      
+      
     })
 
             
