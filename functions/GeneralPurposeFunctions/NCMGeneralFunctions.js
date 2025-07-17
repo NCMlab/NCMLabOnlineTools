@@ -163,7 +163,7 @@ function ReturnElementsFromPermute(count, N) {
 }
 // Buttons added to the top of each task page for navigation and ending the experiment  
 function returnToUsageManager() {
-  jatos.startComponentByTitle("Usage Manager");
+  jatos.startComponentByTitle("Central Executive");
 }
 
 function restartTask() {
@@ -286,15 +286,9 @@ function whereToGoNext(SessionData, CurrentIndex){
     console.log(CurrentIndex)
     
     if ( SessionData.UsageType == 'ALaCarte' )       
-      { 
-        jatos.startComponentByTitle("Central Executive")
-      }
+      { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
-      { 
-        // For some reason this does not END the trailmaking task
-
-        console.log(BreakPoint)
-      }
+      {  console.log(BreakPoint) }
     else if ( SessionData.UsageType == 'Battery' ) 
       { 
         // Is the user done with the battry?
@@ -302,14 +296,10 @@ function whereToGoNext(SessionData, CurrentIndex){
         {
           console.log("Worker has completed the battery")
           if ( SessionData["Redirect"] !== undefined )          
-          { 
-            window.open(SessionData.Redirect,'_self')
-          }
+          { window.open(SessionData.Redirect,'_self') }
           else { window.open('https://www.uottawa.ca','_self') }
         }
-        else {
-          jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) 
-        }
+        else { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
       }
     else 
       { // if no usage type is selected then do the same as a la carte/user choice

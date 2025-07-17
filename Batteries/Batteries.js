@@ -27,7 +27,8 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   TaskList: List,
-  HeaderButtonsToShow: ['Quit','Stop']
+  HeaderButtonsToShow: ['Quit','Stop'],
+  Redirect: '',
 });
 
 // ===============================
@@ -1263,6 +1264,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: '',
 });
 // ============================================
 
@@ -1283,6 +1285,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: '',
 });
 
 // ============================================
@@ -1297,7 +1300,8 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		BatteryInstructions: "Music and Motion Study -- Session Chooser",
 		Language:'EN',
 		RunAudioTest: true,
-		Footer: '©NCMLab 2024'
+		Footer: '©NCMLab 2024',
+    Redirect: '',
 	})
 
   var List = []  
@@ -1310,7 +1314,8 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
 		Language:'EN',
 		RunAudioTest: true,
-		Footer: '©NCMLab 2024'
+		Footer: '©NCMLab 2024',
+    Redirect: '',
 	})
 
 // ============ MUSIC STUDY -- INTAKE  ==================
@@ -1324,7 +1329,8 @@ BatteryList.push({index: 73,
 	BatteryInstructions: "Music and Motion Study -- Intake",
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©NCMLab 2024'
+	Footer: '©NCMLab 2024',
+  Redirect: '',
 })
 
 // ============ MUSIC STUDY -- BASELINE ==================
@@ -1393,6 +1399,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: '',
 });
 // ============ MUSIC STUDY -- WEEKLY - PRE ==================
 var List = [];
@@ -1414,6 +1421,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: '',
 });
 // ============ MUSIC STUDY -- WEEKLY - POST ==================
 var List = [];
@@ -1508,6 +1516,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  Redirect: '',
 });
 
 // ============ MUSIC STUDY -- TRAILS ==================
@@ -1522,7 +1531,8 @@ BatteryList.push({index: 78,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©NCMLab 2024'
+	Footer: '©NCMLab 2024',
+  Redirect: '',
 })
 
 
@@ -1537,6 +1547,7 @@ BatteryList.push({index: 71234,
 	BatteryInstructions: "<h1>Music and Motion Study</h1>",
 	Language:'EN',
 	RunAudioTest: true,
-	Footer: '©NCMLab 2024'
+	Footer: '©NCMLab 2024',
+  Redirect: '',
 })
 

@@ -1,5 +1,5 @@
 // The goal is to have a single component that can direct traffic
-var JATOSSessionData = {}
+var JATOSSessionData = -99
 var timeline = []
 var CurrentLanguage
 // Functions used by the central execitive
@@ -65,19 +65,25 @@ function CheckForSessiondata() {
         'ComponentParameterLists', 'InstructionList', 'TaskIconList', 
         'FooterText', 'BatteryName', 'BatteryShortName', 'Redirect', 
         'HeaderButtonsToShow', 'UsageType']
-    var CompleteSessionDataFlag = true        
+    var CompleteSessionDataFlag = true
+    JATOSSessionData = jatos.studySessionData
+    console.log(JATOSSessionData)        
     if ( isEmpty(JATOSSessionData) ) {
+        console.log("NO SESSION DATA AT ALL")
         SessionDataFlag = 'missing'
         CompleteSessionDataFlag = false
     }
     else {
+        console.log("FOUND SOME SESSION DATA")
         var keys = Object.keys(JATOSSessionData)        
         // check to see if the session data appears complete
         for ( var i = 0; i < ExpectedKeysInSessionData.length; i++ ) {
+            console.log("LOOKING FOR: "+ExpectedKeysInSessionData[i])
             if (!( ExpectedKeysInSessionData[i] in JATOSSessionData )) {
-                console.log(ExpectedKeysInSessionData[i])
+                console.log("DID NOT FIND: "+ExpectedKeysInSessionData[i])
                 CompleteSessionDataFlag = false
             }
+            else { console.log("FOund It")}
         }
     }
     resolve(CompleteSessionDataFlag)
@@ -108,6 +114,7 @@ function SetupSession() {
     // take time so a promise is used.
 
     let input = CurrentLanguage+"_"+JATOSSessionData.ComponentParameterLists[0]
+    console.log(input)
     pseudoSwitch(input)
     console.log(parameters)    
     var Choices = []
@@ -119,7 +126,7 @@ function SetupSession() {
         }
     console.log(Choices)
     console.log(SessionsBatteryList)
-    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices)
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
     return SessionChoiceTrial
     //timeline.push()
 }
@@ -139,12 +146,22 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeSessionButtons(Title, Choices) {
+function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
     var trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() { return Title },
         choices: Choices,
-        prompt: ""
+        prompt: "",
+        on_finish: function(data) {
+            // The user has selected a session to administer
+            // Load up the Battery that is associated with the selected session
+            SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
+            JATOSSessionData = jatos.studySessionData
+            // Start at the beginning of this battery
+            var TitleToStart = JATOSSessionData.TaskNameList[0]
+            // Start the battery
+            StartComponent(TitleToStart)
+        }
     };
     return trial
 }
@@ -208,8 +225,10 @@ function CentralExecutive() {
         .then((res) => {
             console.log("IS THERE SESSION DATA: "+res)
         })
-        .then(() => console.log(JATOSSessionData))
+        .then(() => {console.log(JATOSSessionData)})
+        
         .then(() => UsageTypeDecision(UsageType))
+        .then(() => alert("HELLO"))
         .then(() => SetupjsPsychAndRunTimeline())
         resolve("EVERYTHING IS SETUP")
     })
@@ -237,12 +256,15 @@ function UsageTypeDecision(UsageType) {
             case 'Battery':
                 console.log("Batteries")
                 // get the title of the task to start next
+                console.log(JATOSSessionData)
                 var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+                console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
                 console.log("TITLE: "+TitleToStart)
                 StartComponent(TitleToStart)
                 break;
             case 'Session':
                 console.log("Session")
+                timeline.push(SetupSession())
                 break;
             case 'ALaCarte':
                 console.log("User Choice")
@@ -264,13 +286,16 @@ function UpdateBatchDataV2() {
     return new Promise((resolve) => {
         if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' ) {
             // no batch data
+            CurrentLanguage = 'EN' // This is the default language setting
             // set the index for this worker
             jatos.batchSession.set(jatos.workerId, currentIndex)    
             // set the language
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            
         }
         else {
             currentIndex = jatos.batchSession.get(jatos.workerId) + 1
+            CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
             jatos.batchSession.set(jatos.workerId, currentIndex)    
         }
         resolve(currentIndex)
