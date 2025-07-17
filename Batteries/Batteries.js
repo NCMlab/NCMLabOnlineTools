@@ -1452,7 +1452,7 @@ BatteryList.push({
 // ============ MUSIC STUDY -- POST - STUDY ==================
 
 var List = [];
-List.push({
+/*List.push({
   Task: "Form Questionnaire",
   Parameters: "CESAM_001",
   Instructions: "Default",
@@ -1487,14 +1487,14 @@ List.push({
   Parameters: "UCLA_LONELINESS_001",
   Instructions: "Default",
   IconName: "Loneliness",
-});
+});*/
 List.push({
   Task: "Form Questionnaire",
   Parameters: "BERKSYME_001",
   Instructions: "Default",
   IconName: "Social",
 });
-List.push({
+/*List.push({
   Task: "Form Questionnaire",
   Parameters: "STANFORDSLEEPINESS_001",
   Instructions: "Default",
@@ -1505,7 +1505,7 @@ List.push({
   Parameters: "EQ5D_001",
   Instructions: "Default",
   IconName: "EQ-5D",
-});
+});*/
 BatteryList.push({
   index: 77,
   name: "Music Motion: Post-Study",

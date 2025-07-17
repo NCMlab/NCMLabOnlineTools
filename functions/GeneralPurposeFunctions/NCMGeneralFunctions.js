@@ -294,7 +294,6 @@ function whereToGoNext(SessionData, CurrentIndex){
         // Is the user done with the battry?
         if ( CurrentIndex == SessionData.TaskNameList.length )
         {
-          console.log("Worker has completed the battery")
         /*  console.log(SessionData)
           console.log("The redirect site is: "+SessionData.Redirect)
           if ( SessionData.Redirect === "" )

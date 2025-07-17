@@ -46,6 +46,8 @@
                 on_trial_start: function() {
                     var input = jatos.urlQueryParameters;
                     console.log(TrialCount)
+                    console.log("SESSION DATA")
+                    console.log(jatos.studySessionData)
                     TrialCount += 1
                     // Add jatos info to the data file
                     jsPsych.data.addProperties({assignedURLID: input.a});

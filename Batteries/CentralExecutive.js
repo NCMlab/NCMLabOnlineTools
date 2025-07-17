@@ -187,24 +187,18 @@ function UsageTypeDecision(UsageType) {
                 console.log("Single Task")
                 break;
             case 'Battery':
-                console.log("Batteries")
-                // get the title of the task to start next
-                console.log(JATOSSessionData)
+               // get the title of the task to start next
                 if ( !IsTheBatteryFinished() )
                 {
                     var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
-                    console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
-                    console.log("TITLE: "+TitleToStart)
                     StartComponent(TitleToStart)
                 }
                 else { timeline.push(MakeThankYouPage()) }
                 break;
             case 'Session':
-                console.log("Session")
                 timeline.push(SetupSession())
                 break;
             case 'UserChoice':
-                console.log("User Choice")
                 timeline.push(MakeUserChoiceElement(JATOSSessionData))
                 // once a choice is made start that title
                 break;
@@ -243,6 +237,7 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
             // Load up the Battery that is associated with the selected session
             SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
             JATOSSessionData = jatos.studySessionData
+            console.log(JATOSSessionData)
             // Start at the beginning of this battery
             var TitleToStart = JATOSSessionData.TaskNameList[0]
             // Start the battery
@@ -312,8 +307,12 @@ function CentralExecutive() {
             SessionDataFlag = res
             SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
         })        
-        .then(() => IsTheBatteryFinished())
-        .then(() => UsageTypeDecision(UsageType))
+        //.then(() => IsTheBatteryFinished())
+        // When starting the Session Chooser, a URL UsageType of Session is provided.
+        // The Session Chooser will start a battery. WHen the battery is complete the
+        // CE is returned to. At that point the URL UsageType is still Session; however,
+        // the Session usage type is changed to Battery
+        .then(() => UsageTypeDecision(jatos.studySessionData.UsageType))
         .then(() => SetupjsPsychAndRunTimeline())
         resolve("EVERYTHING IS SETUP")
     })
