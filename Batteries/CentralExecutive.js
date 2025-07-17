@@ -1,18 +1,27 @@
-// The goal is to have a single component that can direct traffic
+// These functions serve as the central executive for the platform and direct traffic.
+// This is the first component in JATOS and by default every visit will start here.
+// The majority of the action is done using promises. The reason for this is because the index
+// and language are stored as BATCH variables in JATOS. This means that these values are available 
+// across SESSIONS. In other words, a worker/participant may start a session, stop midway, and 
+// then restart. The BATCH information stores where in a battery (series of tasks) they were when
+// they left off. A worker may stop due to an internet connection, computer problem, or personal 
+// decision.
+// The use of promises is because the communication with the JATOS server may take time and it is 
+// necessary to wait until it responds before continuing. 
+// The basic order of steps are: check the BATCH to see if a worker exists there; check for SESSION data;
+// check the URL usage type. Based on these parameters, the next task to administer is served. 
+// ==============================================================
+// Global variables
 var JATOSSessionData = -99
 var timeline = []
 var CurrentLanguage
+// ==============================================================
 // Functions used by the central execitive
 
 // Check to see if an object is emoty
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
-  
-
-// Check to see if this worker has BATCH data in jatos already
-
-
 
 // Setup a Battery
 function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
@@ -59,6 +68,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
     })
 }
 
+// This checks to see if there is session data and it is complete
 function CheckForSessiondata() {
     return new Promise((resolve) =>{
     const ExpectedKeysInSessionData = ['CurrentIndex', 'TaskNameList', 
@@ -67,23 +77,17 @@ function CheckForSessiondata() {
         'HeaderButtonsToShow', 'UsageType']
     var CompleteSessionDataFlag = true
     JATOSSessionData = jatos.studySessionData
-    console.log(JATOSSessionData)        
     if ( isEmpty(JATOSSessionData) ) {
-        console.log("NO SESSION DATA AT ALL")
         SessionDataFlag = 'missing'
         CompleteSessionDataFlag = false
     }
     else {
-        console.log("FOUND SOME SESSION DATA")
         var keys = Object.keys(JATOSSessionData)        
         // check to see if the session data appears complete
         for ( var i = 0; i < ExpectedKeysInSessionData.length; i++ ) {
-            console.log("LOOKING FOR: "+ExpectedKeysInSessionData[i])
             if (!( ExpectedKeysInSessionData[i] in JATOSSessionData )) {
-                console.log("DID NOT FIND: "+ExpectedKeysInSessionData[i])
                 CompleteSessionDataFlag = false
             }
-            else { console.log("FOund It")}
         }
     }
     resolve(CompleteSessionDataFlag)
@@ -92,9 +96,21 @@ function CheckForSessiondata() {
 
 // function to start a task
 function StartComponent(title) {
- console.log("Starting component: "+title)
- jatos.startComponentByTitle(title)
+    console.log("Starting component: "+title)
+    jatos.startComponentByTitle(title)
 }
+
+function SetupjsPsychAndRunTimeline()  {
+    var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    })
+    // if the central executive has added anything otthe timeline,
+    // then run it.
+    if ( timeline.length !== 0 )
+    { 
+        jsPsych.run(timeline); 
+    }          
+}       
 
 // The following is used by the user choice 
 function MakeIconList(TaskNameList, ComponentList) {
@@ -114,9 +130,7 @@ function SetupSession() {
     // take time so a promise is used.
 
     let input = CurrentLanguage+"_"+JATOSSessionData.ComponentParameterLists[0]
-    console.log(input)
     pseudoSwitch(input)
-    console.log(parameters)    
     var Choices = []
     var SessionsBatteryList = []
     for ( var i = 0; i < parameters[0].List.length; i++ )
@@ -124,12 +138,69 @@ function SetupSession() {
             Choices.push( parameters[0].List[i].name ) 
             SessionsBatteryList.push( parameters[0].List[i].battery )
         }
-    console.log(Choices)
-    console.log(SessionsBatteryList)
     SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
     return SessionChoiceTrial
     //timeline.push()
 }
+
+
+function UpdateBatchData() {
+    // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+    // Is this worker in the Batch data?
+    var currentIndex = 0
+    return new Promise((resolve) => {
+        if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' ) {
+            // no batch data
+            CurrentLanguage = 'EN' // This is the default language setting
+            // set the index for this worker
+            jatos.batchSession.set(jatos.workerId, currentIndex)    
+            // set the language
+            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            
+        }
+        else {
+            currentIndex = jatos.batchSession.get(jatos.workerId) + 1
+            CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+            jatos.batchSession.set(jatos.workerId, currentIndex)    
+        }
+        resolve(currentIndex)
+    })
+}
+
+// These are the following usage types available.
+
+function UsageTypeDecision(UsageType) {
+    return new Promise((resolve) => {
+        switch(UsageType) {
+            case 'SingleTask':
+                console.log("Single Task")
+                break;
+            case 'Battery':
+                console.log("Batteries")
+                // get the title of the task to start next
+                console.log(JATOSSessionData)
+                var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+                console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
+                console.log("TITLE: "+TitleToStart)
+                StartComponent(TitleToStart)
+                break;
+            case 'Session':
+                console.log("Session")
+                timeline.push(SetupSession())
+                break;
+            case 'UserChoice':
+                console.log("User Choice")
+                timeline.push(MakeUserChoiceElement(JATOSSessionData))
+                // once a choice is made start that title
+                break;
+            default:
+                console.log("No Choice Provided")
+                timeline.push(MakeUserChoiceElement(JATOSSessionData))
+        }
+    resolve(UsageType)
+    })
+}
+
 
 // =================================================
 // jsPsych elements to display.
@@ -197,109 +268,29 @@ function MakeUserChoiceElement(JATOSSessionData) {
 }
 
 // =================================================
-
+// This is where all the pieces are put together
 
 function CentralExecutive() {
     return new Promise((resolve) => {
         const jatos_params = jatos.urlQueryParameters;
         const BatteryIndex = jatos_params["Battery"];
-        const taskIndex = jatos_params["Taskindex"];
-        const session = jatos_params["Session"];
         const UsageType = jatos_params["UsageType"];
-        var timeline = []
         var CurrentIndex = -99
         var SessionDataFlag = false
-        UpdateBatchDataV2()
+        UpdateBatchData()
         .then((res) => {
-            console.log("BATCH INDEX: " +res)
             CurrentIndex = res
         })
         .then(() => CheckForSessiondata())
         .then((res) => {
-            console.log("IS THERE SESSION DATA: "+res)
-            console.log("BATCH INDEX: " +CurrentIndex)
             SessionDataFlag = res
             SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
-        })
-        .then(() => CheckForSessiondata())
-        .then((res) => {
-            console.log("IS THERE SESSION DATA: "+res)
-        })
-        .then(() => {console.log(JATOSSessionData)})
-        
+        })        
         .then(() => UsageTypeDecision(UsageType))
-        .then(() => alert("HELLO"))
         .then(() => SetupjsPsychAndRunTimeline())
         resolve("EVERYTHING IS SETUP")
     })
 }
 
-function SetupjsPsychAndRunTimeline()  {
-    var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
-    })
-    // if the central executive has added anything otthe timeline,
-    // then run it.
-    if ( timeline.length !== 0 )
-    { 
-        jsPsych.run(timeline); 
-    }          
-}       
-
-
-function UsageTypeDecision(UsageType) {
-    return new Promise((resolve) => {
-        switch(UsageType) {
-            case 'SingleTask':
-                console.log("Single Task")
-                break;
-            case 'Battery':
-                console.log("Batteries")
-                // get the title of the task to start next
-                console.log(JATOSSessionData)
-                var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
-                console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
-                console.log("TITLE: "+TitleToStart)
-                StartComponent(TitleToStart)
-                break;
-            case 'Session':
-                console.log("Session")
-                timeline.push(SetupSession())
-                break;
-            case 'ALaCarte':
-                console.log("User Choice")
-                timeline.push(MakeUserChoiceElement(JATOSSessionData))
-                // once a choice is made start that title
-                break;
-            default:
-                console.log("No Choice Provided")
-                timeline.push(MakeUserChoiceElement(JATOSSessionData))
-        }
-    resolve(UsageType)
-    })
-}
-
-function UpdateBatchDataV2() {
-    // Check the session data to see if it is empty, if so add to it. If not, leave it alone
-    // Is this worker in the Batch data?
-    var currentIndex = 0
-    return new Promise((resolve) => {
-        if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' ) {
-            // no batch data
-            CurrentLanguage = 'EN' // This is the default language setting
-            // set the index for this worker
-            jatos.batchSession.set(jatos.workerId, currentIndex)    
-            // set the language
-            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
-            
-        }
-        else {
-            currentIndex = jatos.batchSession.get(jatos.workerId) + 1
-            CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
-            jatos.batchSession.set(jatos.workerId, currentIndex)    
-        }
-        resolve(currentIndex)
-    })
-}
 
 
