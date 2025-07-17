@@ -285,7 +285,7 @@ function whereToGoNext(SessionData, CurrentIndex){
     console.log(SessionData.UsageType)
     console.log(CurrentIndex)
     
-    if ( SessionData.UsageType == 'ALaCarte' )       
+    if ( SessionData.UsageType == 'UserChoice' )       
       { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
       {  console.log(BreakPoint) }
@@ -295,14 +295,15 @@ function whereToGoNext(SessionData, CurrentIndex){
         if ( CurrentIndex == SessionData.TaskNameList.length )
         {
           console.log("Worker has completed the battery")
-          console.log(SessionData)
+        /*  console.log(SessionData)
           console.log("The redirect site is: "+SessionData.Redirect)
           if ( SessionData.Redirect === "" )
             { window.open('https://www.uottawa.ca','_self') }
           else if ( SessionData["Redirect"] === undefined )
             { window.open('https://www.uottawa.ca','_self') }
           else { window.open(SessionData.Redirect,'_self') }
-          
+          */
+         jatos.startComponentByTitle("Central Executive")
         }
         else { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
       }

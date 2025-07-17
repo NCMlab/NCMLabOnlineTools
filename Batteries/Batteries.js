@@ -1341,7 +1341,7 @@ var List = [];
   Instructions: "Default",
   IconName: "CESAM",
 });*/
-List.push({
+/*List.push({
   Task: "Matrix Questionnaire",
   Parameters: "GAS_001",
   Instructions: "Default",
@@ -1382,7 +1382,7 @@ List.push({
   Parameters: "STANFORDSLEEPINESS_001",
   Instructions: "Default",
   IconName: "Sleepiness",
-});
+});*/
 List.push({
   Task: "EQ5D",
   Parameters: "EQ5D_001",
@@ -1399,7 +1399,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
-  Redirect: '',
+  Redirect: 'https://www.uottawa.ca',
 });
 // ============ MUSIC STUDY -- WEEKLY - PRE ==================
 var List = [];

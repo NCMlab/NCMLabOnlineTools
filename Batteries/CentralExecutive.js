@@ -52,6 +52,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             JATOSSessionData = {CurrentIndex: 0, TaskNameList:TaskList, ComponentParameterLists:ParameterList, InstructionList: InstructionList, TaskIconList: TaskIconList} 
             JATOSSessionData.FooterText = FooterText
             JATOSSessionData.BatteryName = CurrentBattery.name
+            JATOSSessionData.BatteryInstructions = CurrentBattery.BatteryInstructions
             JATOSSessionData.BatteryShortName = CurrentBattery.shortName
             JATOSSessionData.Redirect = CurrentBattery.Redirect
             JATOSSessionData.UsageType = UsageType
@@ -143,6 +144,16 @@ function SetupSession() {
     //timeline.push()
 }
 
+function IsTheBatteryFinished() {
+    var BatteryCompleteFlag = false
+    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length ) 
+    {
+        console.log("IT IS COMPLETE")
+        BatteryCompleteFlag = true
+        //timeline.push(MakeThankYouPage())
+    }
+    return BatteryCompleteFlag
+}
 
 function UpdateBatchData() {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
@@ -179,10 +190,14 @@ function UsageTypeDecision(UsageType) {
                 console.log("Batteries")
                 // get the title of the task to start next
                 console.log(JATOSSessionData)
-                var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
-                console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
-                console.log("TITLE: "+TitleToStart)
-                StartComponent(TitleToStart)
+                if ( !IsTheBatteryFinished() )
+                {
+                    var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+                    console.log("INDEX TO START: "+JATOSSessionData.CurrentIndex)
+                    console.log("TITLE: "+TitleToStart)
+                    StartComponent(TitleToStart)
+                }
+                else { timeline.push(MakeThankYouPage()) }
                 break;
             case 'Session':
                 console.log("Session")
@@ -241,32 +256,43 @@ function MakeUserChoiceElement(JATOSSessionData) {
     // This is the jsPsych task that display an icon for each task in a battery
     IconImgFileList = MakeIconList(JATOSSessionData.TaskNameList, ComponentList)
     var UserChoicePage = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: function() {return '<b>'+BatteryInstructions+'</b>'},
-    choices: function(){ 
-        var stim = []
-        console.log(JATOSSessionData.TaskIconList)
-        for ( var i = 0; i < JATOSSessionData.TaskIconList.length; i++ ) {
-            stim.push(`<span><img src="assets/Icons/${IconImgFileList[i]}" alt="${TaskList[i]}"></br>${TaskIconList[i]}</span>
-            `)
-        }
-        return stim
-    },
-    prompt: '',
-    on_finish: function(data) {
-        // what button was pressed?
-        response = data.response
-        // This is the function that starts the JATOS component for the next item in the battery
-        // The pseudoswitch should receive a task name using the JATOS currentIndex value
-        JATOSSessionData.CurrentIndex = response
-        jatos.studySessionData = JATOSSessionData
-        StartComponent(TaskList[response])
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() {return '<b>'+JATOSSessionData.BatteryInstructions+'</b>'},
+        choices: function(){ 
+            var stim = []
+            console.log(JATOSSessionData.TaskIconList)
+            for ( var i = 0; i < JATOSSessionData.TaskIconList.length; i++ ) {
+                stim.push(`<span><img src="assets/Icons/${IconImgFileList[i]}" alt="${JATOSSessionData.TaskNameList[i]}"></br>${JATOSSessionData.TaskIconList[i]}</span>
+                `)
+            }
+            return stim
+        },
+        prompt: '',
+        on_finish: function(data) {
+            // what button was pressed?
+            response = data.response
+            // This is the function that starts the JATOS component for the next item in the battery
+            // The pseudoswitch should receive a task name using the JATOS currentIndex value
+            JATOSSessionData.CurrentIndex = response
+            jatos.studySessionData = JATOSSessionData
+            StartComponent(JATOSSessionData.TaskNameList[response])
 
-    }
+        }
     };
     return UserChoicePage
 }
-
+function MakeThankYouPage() {
+    console.log("Making thank you page")
+    var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+    pseudoSwitch(LANG+'_LabelNames')
+    // This is the jsPsych task that display an icon for each task in a battery
+    var ThankYouPage = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() { return LabelNames.ThankYou},
+        choices: function() { return [LabelNames.Done]}
+    }
+    return ThankYouPage
+}
 // =================================================
 // This is where all the pieces are put together
 
@@ -286,6 +312,7 @@ function CentralExecutive() {
             SessionDataFlag = res
             SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
         })        
+        .then(() => IsTheBatteryFinished())
         .then(() => UsageTypeDecision(UsageType))
         .then(() => SetupjsPsychAndRunTimeline())
         resolve("EVERYTHING IS SETUP")
