@@ -110,11 +110,9 @@ var jsPsych = initJsPsych({
           JATOSSessionData = jatos.studySessionData
           JATOSSessionData.CurrentIndex += 1
           jatos.studySessionData = JATOSSessionData
-          // Update the Batch Index
-          // find the count 
-          var c = jatos.batchSession.get(jatos.workerId)    
+
       })
-      .then(() => jatos.batchSession.set(jatos.workerId, c + 1))
+      .then(() => jatos.batchSession.set(jatos.workerId, JATOSSessionData.CurrentIndex))
       .then(() => whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex))
     }
   });
