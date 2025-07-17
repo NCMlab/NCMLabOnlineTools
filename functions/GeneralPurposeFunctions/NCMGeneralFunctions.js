@@ -295,6 +295,8 @@ function whereToGoNext(SessionData, CurrentIndex){
         if ( CurrentIndex == SessionData.TaskNameList.length )
         {
           console.log("Worker has completed the battery")
+          console.log(SessionData)
+          console.log("The redirect site is: "+SessionData.Redirect)
           if ( SessionData["Redirect"] !== undefined )          
           { window.open(SessionData.Redirect,'_self') }
           else { window.open('https://www.uottawa.ca','_self') }
