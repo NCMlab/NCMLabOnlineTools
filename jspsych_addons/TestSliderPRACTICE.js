@@ -51,7 +51,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             button_label: {
                 type: jspsych.ParameterType.STRING,
                 pretty_name: "Button label",
-                default: "Continue",
+                default: "Submit",
                 array: false,
             },
             /** If true, the participant will have to move the slider before continuing. */
@@ -153,7 +153,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
         html += '</tr>'
         html += '<tr>'
             html += '<td>'
-            html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn" ' +
+            html += '<button id="jspsych-html-slider-response-next" type="button" class="jspsych-btn submit-btn" ' +
                 (trial.require_movement ? "disabled" : "") +
                 ">" +
                 trial.button_label +

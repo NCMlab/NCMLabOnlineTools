@@ -280,12 +280,14 @@ function MakeUserChoiceElement(JATOSSessionData) {
 }
 function MakeThankYouPage() {
     console.log("Making thank you page")
-    var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
-    pseudoSwitch(LANG+'_LabelNames')
     // This is the jsPsych task that display an icon for each task in a battery
     var ThankYouPage = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: function() { return LabelNames.ThankYou},
+        stimulus: function() { 
+            var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+            pseudoSwitch(LANG+'_LabelNames')
+            return LabelNames.ThankYou
+        },
         choices: function() { return [LabelNames.Done]}
     }
     return ThankYouPage
