@@ -279,8 +279,9 @@ function closeInfo() {
 
 // ===============================================
 // Decide where to go next functionaility
-function whereToGoNext(SessionData, CurrentIndex){
-    // If this a la carte or the end of the battery go to the usage manager
+function whereToGoNext(SessionData, ){
+    CurrentIndex = SessionData.CurrentIndex  
+  // If this a la carte or the end of the battery go to the usage manager
     console.log(SessionData.TaskNameList)
     console.log(SessionData.UsageType)
     console.log(CurrentIndex)
@@ -292,7 +293,9 @@ function whereToGoNext(SessionData, CurrentIndex){
     else if ( SessionData.UsageType == 'Battery' ) 
       { 
         // Is the user done with the battry?
-        if ( CurrentIndex == SessionData.TaskNameList.length )
+        // The minus one is because the index stars with zero and does not
+        // get updated until AFTER this check
+        if ( CurrentIndex == SessionData.TaskNameList.length - 1)
         {
         /*  console.log(SessionData)
           console.log("The redirect site is: "+SessionData.Redirect)
@@ -304,7 +307,12 @@ function whereToGoNext(SessionData, CurrentIndex){
           */
          jatos.startComponentByTitle("Central Executive")
         }
-        else { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
+        else { 
+          jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
+          jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1)
+          .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))
+
+        }
       }
     else 
       { // if no usage type is selected then do the same as a la carte/user choice

@@ -103,19 +103,12 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
     on_finish: function() {
-      console.log("SUBMITTING DATA")
-      jatos.submitResultData(jsPsych.data.get().json())
-      .then(() => {
-          // update session data
-          JATOSSessionData = jatos.studySessionData
-          JATOSSessionData.CurrentIndex += 1
-          jatos.studySessionData = JATOSSessionData
-
-      })
-      .then(() => jatos.batchSession.set(jatos.workerId, JATOSSessionData.CurrentIndex))
-      .then(() => whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex))
-    }
-  });
+        console.log("SUBMITTING DATA")
+        jatos.submitResultData(jsPsych.data.get().json())
+        .then(() => whereToGoNext(jatos.studySessionData))
+    } 
+   })
+   
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)

@@ -55,16 +55,11 @@
                 },
                 on_finish: function() {
                     console.log("SUBMITTING DATA")
+                    // The submitting data was put into a promise since sometimes it takes a 
+                    // bit of time for it to finish and redirects are sometimes quicker and
+                    // interrupt the data transfer.
                     jatos.submitResultData(jsPsych.data.get().json())
-                    .then(() => {
-                        // update session data
-                        JATOSSessionData = jatos.studySessionData
-                        JATOSSessionData.CurrentIndex += 1
-                        jatos.studySessionData = JATOSSessionData
-                    })
-                    .then(() => jatos.batchSession.set(jatos.workerId, JATOSSessionData.CurrentIndex))
-                    .then(() => whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex))                    
-                }
+                    .then(() => whereToGoNext(jatos.studySessionData))                }
             })
         }
     </script>

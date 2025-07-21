@@ -82,23 +82,8 @@
                 on_finish: function() {
                     console.log("SUBMITTING DATA")
                     jatos.submitResultData(jsPsych.data.get().json())
-                    // update session data
-                    JATOSSessionData = jatos.studySessionData
-                    JATOSSessionData.CurrentIndex += 1
-                    jatos.studySessionData = JATOSSessionData
-                    // Update the Batch Index
-                    // find the count 
-                    var c = jatos.batchSession.get(jatos.workerId)
-                    
-                    // update it
-                    jatos.batchSession.set(jatos.workerId, c + 1);
-                                
-                    // Go back to usage management 
-                    console.log(jatos.studySessionData)
-                    console.log(JATOSSessionData.CurrentIndex)
-                    //alert("Yo")
-                    whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
-                }
+                    .then(() => whereToGoNext(jatos.studySessionData)) 
+               }
             })
         }
     </script>

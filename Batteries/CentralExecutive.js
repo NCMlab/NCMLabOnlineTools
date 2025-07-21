@@ -146,7 +146,9 @@ function SetupSession() {
 
 function IsTheBatteryFinished() {
     var BatteryCompleteFlag = false
-    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length ) 
+    // The minus one is because the index starts with zero and does not
+    // get updated until AFTER this check
+    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length - 1) 
     {
         console.log("IT IS COMPLETE")
         BatteryCompleteFlag = true
@@ -301,6 +303,7 @@ function CentralExecutive() {
         UpdateBatchData()
         .then((res) => {
             CurrentIndex = res
+            
         })
         .then(() => CheckForSessiondata())
         .then((res) => {
