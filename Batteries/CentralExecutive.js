@@ -129,6 +129,18 @@ function SetupSession() {
     // This function is called from teh UpdatBatch promise. This is because it 
     // requires the LANGUAGE value which is storedin the batch. Access the batch may 
     // take time so a promise is used.
+    //
+    // NOTES FROM JULY 21, 2025
+    // Have session buttons be links to individual tasks or batteries. This can easily be done 
+    // with batteries comprising single tasks, but is there a more elegant way to do this?
+    // Arrange session buttons in a table with rows and columns. Each cell is a button.
+    // As tasks are performed and session buttons completed, the completed cells are marked as complete.
+    // Some tasks may be completed at any time while others have requirement conditions that need to 
+    // be met before they can be completed. There may also be conditions with respect to elapsed 
+    // time before something becomes available.
+    // In order, to see what has been completed the info needs to be stored in the batch data since 
+    // no front end scripts can access the back-end data stored in the database. 
+
 
     let input = CurrentLanguage+"_"+JATOSSessionData.ComponentParameterLists[0]
     pseudoSwitch(input)
