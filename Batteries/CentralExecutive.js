@@ -207,7 +207,10 @@ function UsageTypeDecision(UsageType) {
                     var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
                     StartComponent(TitleToStart)
                 }
-                else { timeline.push(MakeThankYouPage()) }
+                else { 
+                    console.log("The battery is finished.")
+                    timeline.push(MakeThankYouPage()) 
+                }
                 break;
             case 'Session':
                 timeline.push(SetupSession())
@@ -296,11 +299,13 @@ function MakeThankYouPage() {
     var ThankYouPage = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() { 
-            var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
-            pseudoSwitch(LANG+'_LabelNames')
+        // var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+        // console.log("The language is: "+LANG)
+        // pseudoSwitch(LANG+'_LabelNames')
             return LabelNames.ThankYou
         },
-        choices: function() { return [LabelNames.Done]}
+        choices: function() { return [LabelNames.Done]},
+        on_finish: function() {close()}
     }
     return ThankYouPage
 }

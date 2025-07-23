@@ -18,7 +18,7 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="functions/GeneralPurposeFunctions/pseudoSwitch.js"></script>
-    <script src="config/General_Setup.js"></script>
+    <!--<script src="config/General_Setup.js"></script>-->
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     
     <script src="Batteries/ComponentList.js"></script>
@@ -31,7 +31,19 @@
     
     jatos.onload(function() {
       // first load the JS file for the central executive
+
       loadScriptSequentially("Batteries/CentralExecutive.js")
+      .then(()=> loadScriptSequentially("config/General_Setup.js"))
+      .then(() => {
+            var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+            console.log("The language is: "+LANG)
+            if (LANG == null) {LANG = 'EN'}
+            console.log("The language is: "+LANG)
+            console.log(LANG+'_LabelNames')
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(LabelNames)
+
+      })
       .then((result) => CentralExecutive() )
       
       // once everything is setup, then proceed to displaying the jspsych timeline

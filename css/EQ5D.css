@@ -150,7 +150,7 @@ this element */
   text-align: center;
   margin: auto;
   /* this is for overflowing content */
-  font-size: 4vmin;
+  font-size: 2.5vmin;
   line-height: 1.6;
   height: 100%;
   width: 100%;
@@ -267,4 +267,7 @@ tbody {
   vertical-align: bottom;
   width: 100%
 }
-
+/* Make the font a little smaller for just the EQ-5D part */
+.surveyFormResponseLabel {
+  font-size: 1.3rem
+}
