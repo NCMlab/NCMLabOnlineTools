@@ -308,7 +308,24 @@ vDMS_Adaptive = {
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	AskForNotes: true,
-	InstructionsSpoken: false
+	InstructionsSpoken: false,
+	MaxTrials: 10,
+	NPracticeTrials: 4,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 20,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	WaitTime: 300,
+	StimOnTime: 3500,
+	RetOnTime: 3500,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000
+
 }
 
 add('vDMS_Adaptive', function(){ parameters = vDMS_Adaptive});

@@ -16,7 +16,7 @@
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
       $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});    
+      // $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});    
     </script> 
   </head>    
   <body>
@@ -36,6 +36,7 @@
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     
     <script> 
       // used for the image used during the instructions
@@ -71,10 +72,12 @@
         }
 
         pseudoSwitch(parameters)
-        console.log(vDMS_parameters)
-        LANG = jatos.studySessionData.Language
+        console.log(parameters)
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         console.log(LANG)
+        console.log(InstructionsToUse)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+        console.log(Instructions)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
       })

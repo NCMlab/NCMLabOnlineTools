@@ -5,12 +5,6 @@ From Experiment Factory
 /* 
 The following are variables that are used below in the CSS.
 */
-:root {
-  --FixationSize: 5vw;
-  --CueSize: 5vw;
-  --ANTArrowSize: 5vw;
-  --PromptSize: 4vw;
-}
 
 body {
   padding-bottom: 100px;
@@ -22,12 +16,6 @@ h1 {
 
 table {
   width: 100%;
-}
-
-/* set a style for the DMS table */
-#vDMSTable {
-  width: 50vw;
-  height: 50vh;
 }
 
 html {
@@ -516,21 +504,36 @@ body {
 .sd-table__cell--header {
   padding-bottom: 2px;
 }
-/* The following makes the header row of a matrix "sticky" */
-thead {
-  display: block;
-  margin-left: 15vw;
+
+
+.vdmstable {
+  /*border: 2px solid red;*/
+  display: 'inline-masonry';
+  width: 50vw;
+  height: 40vh;
+  
 }
-tbody {
-  display: block;
-  overflow-y: auto;
-  font-size: xx-large;
-  line-height: 1.6;
-  text-align: center;
+.vdmsTableDiv {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
+.vdmscell {
+    /*border: 2px solid red;*/
+    text-align: center;
+}
+
+/* Verbal DMS Formatting */
+
+/* set a style for the DMS table */
+
 
 /* This was aded to make the five columns of the PANAS show up on one screen 
 without scrolling on the iPad Air */
 .sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
   min-width: calc(10 * (var(--sjs-base-unit, var(--base-unit, 8px))));
-

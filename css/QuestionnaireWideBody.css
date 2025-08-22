@@ -53,3 +53,16 @@ tbody {
 .sd-error {
   text-align: center;
 }
+
+/* The following makes the header row of a matrix "sticky" */
+thead {
+  display: block;
+  margin-left: 15vw;
+}
+tbody {
+  display: block;
+  overflow-y: auto;
+  font-size: xx-large;
+  line-height: 1.6;
+  text-align: center;
+}

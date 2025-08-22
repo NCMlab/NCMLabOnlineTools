@@ -38,7 +38,7 @@ function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', F
 		var count = 0;
 		var Table = '';
 		// create the html table and assign the class which is defined in the HTML file
-		Table += '<table id=vDMSTable>'
+		Table += '<table class="vdmstable">'
 		for (var i=0; i<NRows; i++) { // Cycle over rows
 			Table += '<tr>'
 			for (var j=0; j<NCols; j++) { // cycle over columns
@@ -46,6 +46,27 @@ function PutLettersInGrid(LetterList,NRows,NCols, width='60vw', height='60vh', F
 				count += 1;
 			}
 		}
+		console.log(Table)
+		return Table
+	}
+
+function PutLettersInGridV2(LetterList,NRows,NCols, width='60vw', height='60vh', FontSize=40)
+	{
+		var count = 0;
+		var Table = '';
+		Table += '<div class="vdmsTableDiv">'
+		// create the html table and assign the class which is defined in the HTML file
+		Table += '<table class="vdmstable">'
+		for (var i=0; i<NRows; i++) { // Cycle over rows
+			Table += '<tr>'
+			for (var j=0; j<NCols; j++) { // cycle over columns
+				Table += '<td class="vdmscell" style="font-size:'+DMSFontSize+'px">'+LetterList[count]+'</td>'
+				count += 1;
+			}
+			Table += '</tr>'
+		}
+		Table += '</table>'
+		Table+= '</div>'
 		console.log(Table)
 		return Table
 	}

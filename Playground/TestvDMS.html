@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../../ImportedModules/jquery-3.6.4.js"></script> 
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <link rel="stylesheet" type='text/css' href='vDMS.css'>
+    <script src="../../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../functions/TaskSpecificFunctions/DMS_functions.js"></script>
+    
+    
+    
+</head>
+  <body>
+  <script>
+var DMSFontSize = 72;
+
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: false,    
+      auto_update_progress_bar: false,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+  var Stimulus = {
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: function(){
+        output=['ZQYA*CDHE',['c',true],'B']
+        console.log(output)
+        sss = PutLettersInGridV2(output[0],3,3,700,20,60)
+        console.log(sss)
+        return sss
+        //return StimulusLetters
+      },
+      trial_duration: function() { return 350000 },
+      choices: [],
+      prompt: '',
+    }
+  var Retention = {
+      // Each trial also has its own specific cue which occurs BEFORE the stimulus presentation
+      // The cue itself is actually made in the setup file and not here. This could be changed if desired
+      type: jsPsychHtmlButtonResponseTouchscreen,
+      stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
+      choices: [],
+      trial_duration: function() { return 3000},
+      //on_finish: function(data){
+              // data.trialType = "Retention"
+      //},
+    } 
+    var loop_node = {
+      timeline: [Stimulus, Retention],
+      loop_function: function(data){
+        return ( true )
+     }
+    };
+    /*jsPsych.run([loop_node]);*/
+    jsPsych.run([Stimulus])
+  </script>
+
+  <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  
+</html>
+</html>
