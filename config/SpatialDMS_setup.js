@@ -117,3 +117,53 @@ SpatialDMS_AdaptiveSHORT = {
 }
 
 add('SpatialDMS_AdaptiveSHORT', function(){ parameters = SpatialDMS_AdaptiveSHORT});
+
+SpatialDMS_Adaptive_002 = {
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	ShowThankYou: true,
+	ShowInstructions: true,
+	MaxTrials: 40,
+	NPracticeTrials: 4,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 20,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	MaskOnTime: 300,
+	StimOnTime: 2500,
+	RetOnTime: 3200,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000
+}
+
+add('SpatialDMS_Adaptive_002', function(){ parameters = SpatialDMS_Adaptive_002});
+
+SpatialDMS_Adaptive_002 = {
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	ShowThankYou: true,
+	ShowInstructions: true,
+	MaxTrials: 4,
+	NPracticeTrials: 1,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 20,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	MaskOnTime: 300,
+	StimOnTime: 2500,
+	RetOnTime: 3200,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000
+}
+
+add('SpatialDMS_Adaptive_003', function(){ parameters = SpatialDMS_Adaptive_003});

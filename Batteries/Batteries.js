@@ -1551,3 +1551,42 @@ BatteryList.push({index: 71234,
   Redirect: '',
 })
 
+// ============ ROYAL G.N. ==================
+var List = []
+
+List.push({
+  Task: "Verbal DMS",
+  Parameters: "vDMS_Adaptive_003",
+  Instructions: "Default",
+  IconName: "Letters (Short)",
+});
+List.push({
+  Task: "Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003",
+  Instructions: "Default",
+  IconName: "Dots (Short)",
+});
+
+List.push({
+  Task: "Verbal DMS",
+  Parameters: "vDMS_Adaptive_002",
+  Instructions: "Default",
+  IconName: "Letters",
+});
+List.push({
+  Task: "Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_002",
+  Instructions: "Default",
+  IconName: "Dots",
+});
+
+BatteryList.push({index: 121, 
+	name:'Royal G.N.', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Cogntive Testing</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})

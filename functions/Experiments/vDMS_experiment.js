@@ -195,9 +195,9 @@ var SendData = {
 timeline.push(enter_fullscreen)
 timeline.push(Welcome)
 timeline.push(Instructions01)
-//.  timeline.push(setupPractice)
+  timeline.push(setupPractice)
 //timeline.push(WaitTime)
-//.   timeline.push(loop_node)
+   timeline.push(loop_node)
 
 timeline.push(Instructions03)
 timeline.push(setupTest)

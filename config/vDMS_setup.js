@@ -329,3 +329,56 @@ vDMS_Adaptive = {
 }
 
 add('vDMS_Adaptive', function(){ parameters = vDMS_Adaptive});
+
+
+vDMS_Adaptive_002 = {
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	AskForNotes: false,
+	MaxTrials: 40,
+	NPracticeTrials: 4,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 9,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	WaitTime: 300,
+	StimOnTime: 3500,
+	RetOnTime: 3500,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000
+
+}
+add('vDMS_Adaptive_002', function(){ parameters = vDMS_Adaptive_002});
+
+vDMS_Adaptive_003 = {
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	AskForNotes: false,
+	MaxTrials: 4,
+	NPracticeTrials: 1,
+	MaxReversals: 15,
+	StartValue: 1,
+	MinValue: 1,
+	MaxValue: 9,
+	StepSize: 1,
+	NUp: 3,
+	NDown: 1,
+	FastStart: true,
+	WaitTime: 300,
+	StimOnTime: 3500,
+	RetOnTime: 3500,
+	ProbeOnTime: 2500,
+// This is the intertrial interval. 
+	ITITime: 1000
+
+}
+add('vDMS_Adaptive_003', function(){ parameters = vDMS_Adaptive_003});
