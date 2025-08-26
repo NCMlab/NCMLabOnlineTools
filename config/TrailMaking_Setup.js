@@ -78,6 +78,11 @@ var CirclesA_001 = [
 
 // SETUP FOR TRAILS A.
 //  This is a MIRRORED AROUND X Version. X = 1-X 
+
+// Wagner S, Helmreich I, Dahmen N, Lieb K, Tadic A. 
+// Reliability of three alternate forms of the trail making 
+// tests a and B. Arch Clin Neuropsychol. 2011;26(4):314-321.
+  
 var CirclesA_011 = [
     {centerX:0.46,  centerY:0.712727272727273,  radius, label:  '1'},
     {centerX:0.592,  centerY:0.825454545454545,  radius, label:  '2'},
