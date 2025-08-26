@@ -1522,6 +1522,9 @@ BatteryList.push({
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'DefaultA', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default011', Instructions: 'DefaultA', IconName: 'Trails A,x'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default021', Instructions: 'DefaultA', IconName: 'Trails A,y'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default031', Instructions: 'DefaultA', IconName: 'Trails A,xy'})
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
 BatteryList.push({index: 78, 
 	name:'Music Motion: Trails', 
@@ -1536,7 +1539,7 @@ BatteryList.push({index: 78,
 })
 
 
-// ============ MUSIC STUDY -- TRAILS ==================
+// ============ MUSIC STUDY -- TEST ==================
 var List = []
 List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
 
