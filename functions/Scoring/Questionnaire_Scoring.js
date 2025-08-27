@@ -280,8 +280,21 @@ function Questionnaire_Scoring(data) {
 	}
 	if ( data.QuestionnaireType == 'FirstName' )
 	{ // Put this info into the Batch Data 
+		console.log(data)
+		console.log(data.response)
+		
 		const FirstName = data.response.Name
-		jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 
+		const Email = data.response.email
+		console.log(Email)
+		if ( Email != null ) {
+			jatos.batchSession.set(jatos.workerId+"_Email", Email)
+			.then(() => {
+				jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
+			}) 
+		}
+		else {
+			jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 
+		}
 	}
 
 	Results.AllResults['Accuracy'] = TotalScore

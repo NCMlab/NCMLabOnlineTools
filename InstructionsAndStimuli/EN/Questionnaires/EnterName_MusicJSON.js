@@ -21,7 +21,17 @@ const json = {
           name: 'Name',// Keep this as Name (in English) it is used later to find the participant response
           required: true,
           textbox_rows: 1,
-        }
+       
+        },
+        {
+          name: "email",
+          type: "text",
+          title: "E-mail address",
+          inputType: "email",
+          placeholder: "joe@example.com",
+          isRequired: false,
+          autocomplete: "email"
+  }, 
       ]
     }
 ]

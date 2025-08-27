@@ -131,6 +131,7 @@ var SpecialtyScoring = {
         // This is here to have a language independent location to store the first name of a participant
         {
           Results.AllResults['FirstName'] = data.trials[0].response['Name']
+          Results.AllResults['EMail'] = data.trials[0].response['email']
         }
       case 'CESAM':
         {
