@@ -27,6 +27,7 @@ function isEmpty(obj) {
 function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
     return new Promise((resolve) => {
         if ( !SessionDataFlag ) {
+            console.log("NO SESSION DATA")
             // What is the Battery to use?
             CurrentBattery = BatteryList.find(x => x.index === parseInt(BatteryIndex))
             console.log(CurrentBattery)
@@ -65,6 +66,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             
             jatos.studySessionData = JATOSSessionData
         }
+        else {console.log("THERE IS SESSION DATA")}
         resolve("successfully setup session data")
     })
 }
@@ -160,7 +162,11 @@ function IsTheBatteryFinished() {
     var BatteryCompleteFlag = false
     // The minus one is because the index starts with zero and does not
     // get updated until AFTER this check
-    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length - 1) 
+    JATOSSessionData = jatos.studySessionData
+    console.log("Checking to see if battery is finised. Jatos session data is:")
+    console.log(JATOSSessionData)
+
+    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length) 
     {
         console.log("IT IS COMPLETE")
         BatteryCompleteFlag = true
@@ -175,6 +181,7 @@ function UpdateBatchData() {
     var currentIndex = 0
     return new Promise((resolve) => {
         if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' ) {
+            console.log("Setting the index to zero")
             // no batch data
             CurrentLanguage = 'EN' // This is the default language setting
             // set the index for this worker
@@ -184,11 +191,26 @@ function UpdateBatchData() {
             
         }
         else {
+            console.log("Incrementing the index")
             currentIndex = jatos.batchSession.get(jatos.workerId) + 1
             CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
             jatos.batchSession.set(jatos.workerId, currentIndex)    
+            // Need to also update the session index
+
         }
         resolve(currentIndex)
+    })
+}
+
+function UpdateSessionDataIndex(IsThereSessionData) {
+    return new Promise((resolve) => {
+        if ( IsThereSessionData )
+        { 
+            var SessionData = jatos.studySessionData 
+            SessionData.CurrentIndex = SessionData.CurrentIndex + 1
+            jatos.studySessionData = SessionData 
+        }
+        resolve("Successfuly updated session index")
     })
 }
 
@@ -202,8 +224,11 @@ function UsageTypeDecision(UsageType) {
                 break;
             case 'Battery':
                // get the title of the task to start next
-                if ( !IsTheBatteryFinished() )
+               console.log("THIS is a battery") 
+               console.log(JATOSSessionData)
+               if ( !IsTheBatteryFinished() )
                 {
+                    console.log("The battery is NOT finished")
                     var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
                     StartComponent(TitleToStart)
                 }
@@ -304,7 +329,7 @@ function MakeThankYouPage() {
         // pseudoSwitch(LANG+'_LabelNames')
             return LabelNames.ThankYou
         },
-        choices: function() { return [LabelNames.Done]},
+        choices: [],// function() { return [LabelNames.Done]},
         on_finish: function() {close()}
     }
     return ThankYouPage
@@ -322,13 +347,26 @@ function CentralExecutive() {
         UpdateBatchData()
         .then((res) => {
             CurrentIndex = res
-            
+            console.log("The current index is: " + res)
         })
         .then(() => CheckForSessiondata())
         .then((res) => {
+            UpdateSessionDataIndex(res)
             SessionDataFlag = res
+        })
+        .then(() => {
+            console.log(jatos.studySessionData)
+        // If we get here and there is NO session data than this is a fresh start
+        // If we get here and there IS session data then we have come to the CE from a 
+        // previous task that was just completed. 
+        // In that case update the session index. << Maybe
+        // There may be a problem if a browser window is closed.
+
+                console.log(jatos.studySessionData)
             SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
-        })        
+        })
+                
+
         //.then(() => IsTheBatteryFinished())
         // When starting the Session Chooser, a URL UsageType of Session is provided.
         // The Session Chooser will start a battery. WHen the battery is complete the

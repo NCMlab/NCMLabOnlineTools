@@ -52,7 +52,7 @@ EN_LabelNames.ExitStudy = 'This will remove all data collected so far. Are you s
 EN_LabelNames.SkipTask = "This will SKIP the current task. Are you sure?"
 EN_LabelNames.missed_question_label = "Please select an item"
 EN_LabelNames.missed_question_text = "Please answer all questions"
-EN_LabelNames.ThankYou = "Thank you for your participation."
+EN_LabelNames.ThankYou = "Thank you for your participation. You may close this window."
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
@@ -95,7 +95,7 @@ FR_LabelNames.ExitStudy = "Cela supprimera toutes les données collectées jusqu
 FR_LabelNames.SkipTask = "Cela va SAUTER la tâche en cours. Etes-vous sûr?"
 FR_LabelNames.missed_question_label = "Veuillez sélectionner un article"
 FR_LabelNames.missed_question_text = "Veuillez répondre à toutes les questions"
-FR_LabelNames.ThankYou = "Merci"
+FR_LabelNames.ThankYou = "Merci pour votre participation. Vous pouvez fermer cette fenêtre."
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

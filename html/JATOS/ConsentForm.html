@@ -96,16 +96,10 @@ var jsPsych = initJsPsych({
       console.log(jatos.studySessionData.UsageType == 'Battery')
     },
     on_finish: function() {
-      jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
+
       // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+      jatos.submitResultData(jsPsych.data.get().json())
+      .then(() => whereToGoNext(jatos.studySessionData))
     }
   });
   jatos.onLoad(() => {

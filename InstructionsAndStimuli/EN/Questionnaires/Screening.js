@@ -101,6 +101,7 @@ var pages = [
 var FR_BriefScreening = {}
 FR_BriefScreening.title = "Dépistage"
 FR_BriefScreening.pages = pages
+FR_BriefScreening.ShowInstructions = true
 add('FR_BriefScreening', function(){ parameters = FR_BriefScreening });
 
 // ========================= DEMO =============================

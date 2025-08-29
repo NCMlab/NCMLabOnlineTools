@@ -158,11 +158,47 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  shortName: "NCMLab",
+  TaskList: List,
+  HeaderButtonsToShow: ['Quit','Stop'],
+  Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
+});
+// ===============
+var List = [];
+List.push({
+  Task: "Language Selection",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "Language",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Immediate",
+  Instructions: "Default",
+  IconName: "Immediate",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "Recognition",
+});
+BatteryList.push({
+  index: 916,
+  name: "H-10-23-9755",
+  description: "Test",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  shortName: "NCMLab",
   TaskList: List,
   HeaderButtonsToShow: ['Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
 
+// ===============
 var List = [];
 
 /*List.push({

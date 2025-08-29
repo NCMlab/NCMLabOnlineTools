@@ -117,16 +117,7 @@
       },
       on_finish: function() {
         jatos.submitResultData(jsPsych.data.get().json())
-
-        if ( SaveLocalFile ) {
-          jsPsych.data.get().localSave('csv','WordRecall_data.csv');
-        }    
-        // update session data
-        JATOSSessionData = jatos.studySessionData
-        JATOSSessionData.CurrentIndex += 1
-        jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+        .then(() => whereToGoNext(jatos.studySessionData))
       }
     });
     jatos.waitSendDataOverlayConfig = { text: "Sending data. Please wait. This may take a minute or two depending on the internet connection." };

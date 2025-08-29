@@ -298,7 +298,9 @@ var pages = [
     {'page': ' Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
       'Please, do not press your browser\'s back or reload buttons.'},
       {'page': 'If you have feedback you would like to share '+
-      'with us, there will be a text box at the very end of the experiment where you can type in comments.'}    ]
+      'with us, there will be a text box at the very end of the experiment where you can type in comments.'} 
+    
+    ]
 
   add('EN_Instructions_Default', function(){ Instructions = EN_IntakeForm_Generic });
 
@@ -366,9 +368,8 @@ var pages = [
 
     FR_IntakeForm_Generic.Instructions01 = [
       {'page': ' Veuillez-vous assurer que votre microphone et vos haut-parleurs sont allumés et que le volume est réglé pour que vous puissiez entendre les tâches. '+
-        'Si vous souhaitez terminer la tâche plus tôt, appuyez sur le bouton <em>Arrêt</em> en haut à gauche. Si vous souhaitez vous supprimer '+
-        'de la tâche, appuyez sur le bouton <em>Quitter</em>. S\'il vous plaît, n\'appuyez pas sur les boutons de retour ou de rechargement de votre navigateur.'},
-        {'page': 'Si une tâche se bloque, vous pouvez appuyer sur le bouton <em>Passer</em>. Si vous avez des commentaires, et que vous aimeriez les partager '+
+        'S\'il vous plaît, n\'appuyez pas sur les boutons de retour ou de rechargement de votre navigateur.'},
+        {'page': 'Si vous avez des commentaires, et que vous aimeriez les partager '+
         'avec nous, il y aura une zone de texte à la fin où vous pourrez écrire des commentaires.'}
     ]
   add('FR_Instructions_Default', function(){ console.log("Loading Instructions"); Instructions = FR_IntakeForm_Generic });
