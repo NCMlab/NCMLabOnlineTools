@@ -171,12 +171,12 @@ List.push({
   Instructions: "Default",
   IconName: "Language",
 });
-List.push({
+/*List.push({
   Task: "Word Recall",
   Parameters: "RAVLT_Spoken_Immediate",
   Instructions: "Default",
   IconName: "Immediate",
-});
+});*/
 List.push({
   Task: "Word Recognition",
   Parameters: "WordRecog_Spoken",

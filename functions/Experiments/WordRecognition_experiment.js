@@ -22,6 +22,7 @@ var MakeWordList = {
         WordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
         RecogAnswerKey = CreateRecognitionAnswerKey(WordRecallLists.RecognitionWordList)
         AudioFileList = CreateAudioFileList(BaseFolderName+parameters.FolderName, WordList, parameters.FileExtension)
+        AudioFileList = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, WordList, parameters.FileExtension)
         console.log(AudioFileList)
     }
 }

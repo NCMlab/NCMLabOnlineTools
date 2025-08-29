@@ -42,9 +42,9 @@ var RAVLT_Manual_Immediate = {
 }
 
 var RAVLT_Spoken_Immediate = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	FolderName: 'Set001/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
-	WordList: 'EN_RAVLT',
+	WordList: 'RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 5,
 	BListFlag: true, // Check to see if there is a second set of words
