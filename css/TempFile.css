@@ -1,0 +1,601 @@
+
+
+:root {
+    --font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+:root {
+    --sjs-transition-duration: 150ms
+}
+
+
+.sv-action--hidden {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    visibility: hidden
+}
+
+.sv-action--hidden .sv-action__content {
+    min-width: fit-content
+}
+
+.sv-action__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.sv-action__content>* {
+    flex: 0 0 auto
+}
+:root {
+    --sjs-transition-duration: 150ms
+}
+
+
+.sv-hidden {
+    display: none !important
+}
+
+
+
+.sv-string-viewer.sv-string-viewer--multiline {
+    white-space: pre-wrap
+}
+
+
+.sd-element {
+    padding-left: var(--sv-element-add-padding-left, 0px);
+    padding-right: var(--sv-element-add-padding-right, 0px)
+}
+
+.sd-element__title {
+    outline: none
+}
+
+
+.sd-element__title {
+    font-size: 0;
+    line-height: 0;
+    position: static;
+    margin: 0
+}
+
+
+.sd-element__title span {
+    font-size: var(--sjs-font-questiontitle-size, var(--sjs-font-size, 16px));
+    line-height: calc(1.5*(var(--sjs-font-questiontitle-size, var(--sjs-font-size, 16px))))
+}
+
+
+.sd-element__title .sv-string-viewer {
+    white-space: normal
+}
+
+.sd-element__title .sv-string-viewer.sv-string-viewer--multiline {
+    white-space: pre-wrap
+}
+
+.sd-element--with-frame {
+    border-radius: var(--sjs-questionpanel-cornerRadius, var(--sjs-corner-radius, 4px));
+    box-sizing: border-box;
+    padding-top: var(--sd-base-padding);
+    padding-left: calc(var(--sd-base-padding) + var(--sv-element-add-padding-left, 0px));
+    padding-right: calc(var(--sd-base-padding) + var(--sv-element-add-padding-right, 0px));
+    padding-bottom: var(--sd-base-padding);
+    background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    box-shadow: var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15))
+}
+
+
+.sd-question {
+    position: relative
+}
+
+.sd-element__erbox--above-element {
+    margin-bottom: var(--sjs-base-unit, var(--base-unit, 8px))
+}
+
+.sd-question--title-top>.sd-question__erbox--above-question {
+    margin-bottom: calc(.5*var(--sd-base-vertical-padding))
+}
+
+.sd-element--with-frame>.sd-element__erbox--above-element {
+    margin-bottom: var(--sd-base-padding);
+    border-radius: var(--sjs-corner-radius, 4px) var(--sjs-corner-radius, 4px) 0 0
+}
+
+.sd-element--with-frame.sd-question--title-top>.sd-question__erbox--above-question {
+    margin-bottom: calc(.5*var(--sd-base-vertical-padding) + var(--sjs-base-unit, var(--base-unit, 8px)))
+}
+
+.sd-question__header {
+    width: 100%
+}
+
+.sd-question__header--location-top {
+    padding-bottom: calc(.5*var(--sd-base-vertical-padding))
+}
+
+
+.sd-element--with-frame.sd-question--title-top {
+    padding-top: var(--sd-base-vertical-padding)
+}
+
+.sd-element--with-frame.sd-question--error-top {
+    padding-top: 0
+}
+
+.sd-element--with-frame>.sd-element__erbox {
+    margin-left: calc(-1*var(--sd-base-padding));
+    margin-right: calc(-1*var(--sd-base-padding));
+    width: calc(100% + 2*var(--sd-base-padding))
+}
+
+.sd-error {
+    display: block;
+    padding: var(--sjs-base-unit, var(--base-unit, 8px)) calc(1.5*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    border-radius: var(--sjs-corner-radius, 4px);
+    line-height: var(--sjs-font-size, 16px);
+    font-size: calc(0.75*(var(--sjs-font-size, 16px)));
+    font-weight: 600;
+    text-align: center;
+    color: var(--sjs-special-red, var(--red, #e60a3e));
+    white-space: normal;
+    width: 100%;
+    background-color: var(--sjs-special-red-light, var(--red-light, rgba(230, 10, 62, 0.1)));
+    box-sizing: border-box
+}
+
+
+.sd-element--complex.sd-element--with-frame {
+    padding-top: 0
+}
+
+.sd-element--complex.sd-element--nested-with-borders>.sd-element__erbox,.sd-element--complex.sd-element--with-frame>.sd-element__erbox {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.sd-element--complex>.sd-element__header:after {
+    content: " ";
+    display: block;
+    height: 1px;
+    position: relative;
+    background: var(--sjs-border-light, var(--border-light, #eaeaea));
+    bottom: 0
+}
+
+.sd-element--complex.sd-element--with-frame>.sd-element__header {
+    padding-top: var(--sd-base-vertical-padding);
+    padding-bottom: var(--sd-base-vertical-padding)
+}
+
+.sd-element--nested-with-borders>.sd-element__header--location-top:after,.sd-element--complex.sd-element--with-frame>.sd-element__header--location-top:after {
+    bottom: calc(-1*var(--sd-base-vertical-padding));
+    inset-inline-start: calc(-1*var(--sd-base-padding));
+    width: calc(100% + 2*var(--sd-base-padding))
+}
+
+
+.sd-table {
+    width: 100%;
+    background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: normal
+}
+
+.sd-table>thead>tr>th {
+    border-top: 0;
+    border-bottom: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px)))) solid rgba(0,0,0,0)
+}
+
+.sd-table__cell {
+    border-top: var(--sjs-base-unit, var(--base-unit, 8px)) solid rgba(0,0,0,0);
+    border-bottom: var(--sjs-base-unit, var(--base-unit, 8px)) solid rgba(0,0,0,0);
+    border-left: none;
+    border-right: none;
+    background-clip: padding-box;
+    box-sizing: content-box
+}
+
+.sd-table.sd-table--columnsautowidth .sd-table__cell:not(.sd-table__cell--actions):not(.sd-table__cell--action):not(.sd-table__cell--empty.sd-table__cell--error) {
+    width: 10000px
+}
+
+.sd-table__row:first-of-type>.sd-table__cell {
+    border-top: 0
+}
+
+.sd-table__row:last-of-type>.sd-table__cell {
+    border-bottom: 0
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows {
+    margin-left: var(--sjs-base-unit, var(--base-unit, 8px));
+    margin-right: var(--sjs-base-unit, var(--base-unit, 8px));
+    width: calc(100% - 2*var(--sjs-base-unit, var(--base-unit, 8px)))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__cell:not(.sd-table__cell--header):first-of-type {
+    padding-left: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__cell:last-of-type {
+    padding-right: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:first-of-type>.sd-table__cell {
+    border-top: var(--sjs-base-unit, var(--base-unit, 8px)) solid rgba(0,0,0,0)
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:last-of-type>.sd-table__cell {
+    border-bottom: var(--sjs-base-unit, var(--base-unit, 8px)) solid rgba(0,0,0,0)
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd)>td.sd-table__cell:not(.sd-table__cell--actions),.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd) td:first-of-type {
+    border-top-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)));
+    border-bottom-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)));
+    background-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd)>td.sd-table__cell:not(.sd-table__cell--actions) .sd-item:not(.sd-item--error) .sd-item__decorator,.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd) td:first-of-type .sd-item:not(.sd-item--error) .sd-item__decorator {
+    background-color: var(--sjs-general-backcolor, var(--background, #fff))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd)>td.sd-table__cell:not(.sd-table__cell--actions) .sd-item:not(.sd-item--error).sd-item--checked .sd-item__decorator,.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd) td:first-of-type .sd-item:not(.sd-item--error).sd-item--checked .sd-item__decorator {
+    background-color: var(--sjs-primary-backcolor, var(--primary, #19b394))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd)>td.sd-table__cell:not(.sd-table__cell--actions) .sd-item:not(.sd-item--error).sd-item--checked .sd-item__control:focus+.sd-item__decorator,.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd) td:first-of-type .sd-item:not(.sd-item--error).sd-item--checked .sd-item__control:focus+.sd-item__decorator {
+    background-color: var(--sjs-general-backcolor, var(--background, #fff))
+}
+
+.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd)>td.sd-table__cell:not(.sd-table__cell--actions) .sd-item:not(.sd-item--error).sd-radio--checked .sd-radio__control:focus+.sd-radio__decorator:after,.sd-question:not(.sd-question--mobile) .sd-table--alternate-rows .sd-table__row:nth-of-type(odd) td:first-of-type .sd-item:not(.sd-item--error).sd-radio--checked .sd-radio__control:focus+.sd-radio__decorator:after {
+    background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff))
+}
+
+.sd-table__cell {
+    --sjs-internal-font-editorfont-size: var(--sjs-mobile-font-editorfont-size, var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px)));
+    font-weight: normal;
+    font-size: var(--sjs-internal-font-editorfont-size);
+    line-height: calc(1.5*(var(--sjs-internal-font-editorfont-size)));
+    padding: 0 var(--sjs-base-unit, var(--base-unit, 8px));
+    color: var(--sjs-general-forecolor, var(--foreground, #161616));
+    text-align: center
+}
+
+.sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
+    min-width: calc(15*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-table__cell .sd-item {
+    text-align: initial
+}
+
+.sd-table__cell--header .sv-vue-title-additional-div,.sd-table__cell--header {
+    font-size: 0;
+    line-height: 0
+}
+
+.sd-table__cell--header span {
+    --sjs-internal-font-editorfont-size: var(--sjs-mobile-font-editorfont-size, var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px)));
+    font-size: var(--sjs-internal-font-editorfont-size);
+    line-height: calc(1.5*(var(--sjs-internal-font-editorfont-size)));
+    font-weight: var(--sjs-font-questiontitle-weight, 600)
+}
+
+.sd-table__cell--header {
+    font-weight: 600;
+    color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
+    vertical-align: top;
+    padding: calc(1.5*(var(--sjs-base-unit, var(--base-unit, 8px)))) var(--sjs-base-unit, var(--base-unit, 8px))
+}
+
+.sd-table__cell--header:not(.sd-table__cell--empty) {
+    min-width: calc(15*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-table__cell--row-text {
+    font-weight: var(--sjs-font-questiontitle-weight, 600);
+    color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
+    text-align: start;
+    min-width: calc(12*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    padding: calc(1.5*(var(--sjs-base-unit, var(--base-unit, 8px)))) var(--sjs-base-unit, var(--base-unit, 8px))
+}
+
+.sd-table__cell--actions:not(.sd-table__cell--vertical),.sd-table__cell--empty,.sd-table__cell--row-text,.sd-table__cell--footer-total,.sd-matrix__cell:first-of-type,.sd-matrix tr>td:first-of-type {
+    position: sticky;
+    background-color: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    z-index: 12
+}
+
+.sd-table__cell--actions:not(.sd-table__cell--vertical):first-of-type,.sd-table__cell--empty:first-of-type,.sd-table__cell--row-text:first-of-type,.sd-table__cell--footer-total:first-of-type,.sd-matrix__cell:first-of-type:first-of-type,.sd-matrix tr>td:first-of-type:first-of-type {
+    left: calc(-1*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-table__cell--actions:not(.sd-table__cell--vertical):last-of-type,.sd-table__cell--empty:last-of-type,.sd-table__cell--row-text:last-of-type,.sd-table__cell--footer-total:last-of-type,.sd-matrix__cell:first-of-type:last-of-type,.sd-matrix tr>td:first-of-type:last-of-type {
+    right: calc(-1*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-question.sd-question--table {
+    position: relative;
+    overflow-x: auto
+}
+
+.sd-table-wrapper {
+    display: flex;
+    margin: 0 calc(-1*var(--sd-base-padding));
+    width: fit-content;
+    min-width: calc(100% + 2*var(--sd-base-padding))
+}
+
+.sd-table-wrapper:before,.sd-table-wrapper:after {
+    content: "";
+    display: block;
+    position: sticky;
+    min-height: 100%;
+    width: calc(var(--sd-base-padding) - var(--sjs-base-unit, var(--base-unit, 8px)));
+    flex-shrink: 0;
+    background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    z-index: 11
+}
+
+.sd-table-wrapper::before {
+    left: calc(-1*var(--sd-base-padding))
+}
+
+.sd-table-wrapper:after {
+    right: calc(-1*var(--sd-base-padding))
+}
+
+.sd-table-wrapper>* {
+    flex-basis: 100%
+}
+
+.sd-question--table>.sd-question__header,.sd-question--table .sd-question__description--under-input .sv-string-viewer {
+    position: sticky;
+    left: 0
+}
+
+.sd-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: var(--sd-base-vertical-padding)
+}
+
+.sd-row.sd-page__row {
+    margin-top: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px))))
+}
+
+.sd-row:first-of-type {
+    margin-top: 0
+}
+.sd-row__question {
+    box-sizing: border-box;
+    width: 100%;
+    white-space: nowrap
+}
+
+.sd-title {
+    display: block;
+    font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
+    font-style: normal;
+    color: var(--sjs-general-forecolor, var(--foreground, #161616));
+    flex-direction: row;
+    white-space: normal
+}
+
+.sd-item {
+    padding: calc(1.5*(var(--sjs-base-unit, var(--base-unit, 8px)))) 0
+}
+
+.sd-item--disabled.sd-item--disabled .sd-item__decorator,.sd-item__decorator {
+    --sjs-internal-font-editorfont-size: var(--sjs-mobile-font-editorfont-size, var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px)));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(3*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    height: calc(3*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    box-sizing: border-box;
+    background-color: var(--sjs-editorpanel-backcolor, var(--sjs-editor-background, var(--sjs-general-backcolor-dim-light, var(--background-dim-light, #f9f9f9))));
+    border: none;
+    flex-shrink: 0;
+    margin-top: calc((1.5*(var(--sjs-internal-font-editorfont-size)) - 3*(var(--sjs-base-unit, var(--base-unit, 8px))))/2);
+    box-shadow: var(--sjs-shadow-inner, inset 0px 1px 2px 0px rgba(0, 0, 0, 0.15)),0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #19b394));
+    transition: box-shadow var(--sjs-transition-duration, 150ms),background var(--sjs-transition-duration, 150ms)
+}
+
+.sd-item--checked .sd-item__decorator {
+    box-shadow: none
+}
+
+.sd-item__control:focus+.sd-item__decorator {
+    background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    outline: none;
+    box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)),0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394))
+}
+
+.sd-item--checked .sd-item__decorator {
+    background: var(--sjs-primary-backcolor, var(--primary, #19b394))
+}
+
+.sd-item--error .sd-item__decorator {
+    background: var(--sjs-special-red-light, var(--red-light, rgba(230, 10, 62, 0.1)))
+}
+
+.sd-radio__decorator {
+    border-radius: 50%
+}
+
+.sd-radio__decorator:after {
+    content: " ";
+    display: block;
+    width: var(--sjs-base-unit, var(--base-unit, 8px));
+    height: var(--sjs-base-unit, var(--base-unit, 8px));
+    border-radius: 50%;
+    background-color: rgba(153, 6, 6, 0);
+    transition: background-color var(--sjs-transition-duration, 150ms)
+}
+
+.sd-radio--checked .sd-radio__decorator:after {
+    content: " ";
+    display: block;
+    width: var(--sjs-base-unit, var(--base-unit, 8px));
+    height: var(--sjs-base-unit, var(--base-unit, 8px));
+    border-radius: 50%;
+    background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff))
+}
+
+.sd-radio--checked .sd-radio__control:focus+.sd-radio__decorator:after {
+    background-color: var(--sjs-primary-backcolor, var(--primary, #19b394))
+}
+
+.sd-visuallyhidden {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px)
+}
+
+.sd-matrix fieldset {
+    border: none;
+    padding: 0;
+    margin: 0
+}
+
+.sd-matrix__label {
+    display: flex;
+    position: relative;
+    justify-content: center
+}
+
+.sd-matrix__cell:first-of-type {
+    font-weight: var(--sjs-font-questiontitle-weight, 600);
+    text-align: start
+}
+
+:root {
+    --sd-rating-bad-color: var(--sjs-special-red, var(--red, #e60a3e));
+    --sd-rating-normal-color: var(--sjs-special-yellow, var(--yellow, #ff9814));
+    --sd-rating-good-color: var(--sjs-special-green, var(--green, #19b394));
+    --sd-rating-bad-color-light: var(--sjs-special-red-light, var(--red-light, rgba(230, 10, 62, 0.1)));
+    --sd-rating-normal-color-light: var(--sjs-special-yellow-light, var(--yellow-light, rgba(255, 152, 20, 0.1)));
+    --sd-rating-good-color-light: var(--sjs-special-green-light, var(--green-light, rgba(25, 179, 148, 0.1)))
+}
+
+:root {
+    --sjs-transition-duration: 150ms
+}
+
+.sd-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px)))) calc(6*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+    border-radius: var(--sjs-corner-radius, 4px);
+    cursor: pointer;
+    font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--sjs-font-size, 16px);
+    line-height: calc(1.5*(var(--sjs-font-size, 16px)));
+    text-align: center;
+    color: var(--sjs-primary-backcolor, var(--primary, #19b394));
+    border: none;
+    outline: none;
+    box-shadow: var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15)),0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #19b394));
+    transition: box-shadow var(--sjs-transition-duration, 150ms),background var(--sjs-transition-duration, 150ms)
+}
+
+.sd-btn:hover {
+    background-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)))
+}
+
+.sd-action-bar {
+    display: flex;
+    align-items: center
+}
+
+.sd-action-bar .sv-action:not(:last-child) .sv-action__content {
+    padding-right: 0
+}
+
+.sv-components-column {
+    display: flex;
+    flex-direction: column
+}
+
+.sv-components-column--expandable {
+    flex-grow: 1
+}
+
+.sd-root-modern {
+    --sd-base-padding: calc(5 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    --sd-base-vertical-padding: calc(4 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    --sd-page-vertical-padding: calc(3 * var(--sjs-base-unit, var(--base-unit, 8px)))
+}
+
+.sd-root-modern.sd-root-modern--mobile {
+    --sd-base-padding: calc(3 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    --sd-base-vertical-padding: calc(2 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    --sd-page-vertical-padding: calc(2 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    --sjs-mobile-font-editorfont-size: Max(16px, var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px)))
+}
+
+body {
+    --sv-defaultV2-mark: true
+}
+
+.sd-root-modern {
+    -webkit-font-smoothing: antialiased;
+    --sd-mobile-width: 600px;
+    --sd-timer-size: calc(18 * var(--sjs-base-unit, var(--base-unit, 8px)));
+    width: 100%;
+    font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
+    background-color: var(--sjs-general-backcolor-dim, var(--background-dim, #f3f3f3));
+    position: relative
+}
+
+.sd-root-modern::-webkit-scrollbar,.sd-root-modern *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0,0,0,0)
+}
+
+.sd-root-modern::-webkit-scrollbar-thumb,.sd-root-modern *::-webkit-scrollbar-thumb {
+    border: 4px solid rgba(0,0,0,0);
+    background-clip: padding-box;
+    border-radius: 32px;
+    background-color: var(--sjs-border-default, var(--border, #d6d6d6))
+}
+
+.sd-root-modern::-webkit-scrollbar-track,.sd-root-modern *::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0)
+}
+
+.sd-root-modern form {
+    position: relative
+}
+
+.sd-root-modern.sd-root-modern--full-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative
+}
+
+.sd-root-modern--mobile {
+    --sd-timer-size: calc(9 * var(--sjs-base-unit, var(--base-unit, 8px)))
+}
+
+.sd-root-modern__wrapper {
+    position: relative
+}

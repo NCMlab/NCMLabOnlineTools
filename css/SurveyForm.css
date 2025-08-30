@@ -1,0 +1,66 @@
+.surveyFormInstructions {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  display: block;
+  
+
+}
+.surveyFormSelect {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  width: 80%;
+}
+.surveyFormLabel, .tableSubmitButton, .surveyFormResponseLabel, .surveyFormSubTitle{
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: inline-flex;
+  text-align: center;
+  display: inline-flex; align-items : center; justify-content: center
+}
+.surveyFormSubTitle{
+  color: red ;
+}
+.surveyFormDiv {
+    text-align: center;
+    
+}
+
+.tableSubmitButton {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: inline-flex;
+  text-align: center;
+    display: inline-flex; align-items : center; justify-content: center
+}
+
+
+/* This makes the radio buttons big and square-ish */
+.sd-item__decorator {
+  width: calc(5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  height: calc(5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  border-radius: 5%;
+}
+
+.radiogroup_alignment {
+ text-align: left;
+ padding-left: 2em;
+ 
+}
+.radioGroupWrapper {
+  display:flex;
+}
+.surveyFormTitle {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  display: flex; align-items : center; justify-content: center
+}

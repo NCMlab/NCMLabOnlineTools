@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type='text/css' href='../css/SurveyForm.css'>
+  <link rel="stylesheet" type='text/css' href='../css/ButtonsHeaderBody.css'>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych_addons/plugin-survey-html-form.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/cesamJSONformSHORT.js"></script>-
+    <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
+    
+      
+  <script>
+    
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: false,    
+      auto_update_progress_bar: false,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+    console.log(EN_cesamJSONformSHORT.survey_JSON)
+    var form_trial = {
+
+    }
+    var form_trial = {
+        type: jsPsychSurveyHtmlForm,
+        survey_json: function() { return EN_cesamJSONformSHORT.survey_JSON},
+        button_label: "Submit",
+
+        required: true,
+        on_finish: function(data) {
+          console.log(data)
+        }
+    };
+    jsPsych.run([form_trial]);
+    
+  </script>
+  </head>
+<body>
+  <script>
+    var Blk = '1'
+    console.log("WM_"+Blk.padStart(2,"0"))</script>
+  
+	
+  <div class="btn-group-header" id="header-btn-group"></div>
+  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+  <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+
+  
+</body>
+</html>

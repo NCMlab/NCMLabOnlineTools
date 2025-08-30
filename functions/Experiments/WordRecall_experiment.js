@@ -203,7 +203,8 @@ var MakeWordListA = {
     // indices for the world list containing the alternatives
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
-    AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
+    console.log(parameters)
+    AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListA = AudioFileListA.map(function(e) {
       return {Word: e}
@@ -236,7 +237,7 @@ var MakeWordListB = {
     // indices for the world list containing the alternatives
     FullListIndexB = CreateSimpleIndexList(WordRecallLists.WordListB, WordRecallLists.AlternatePronunciationsWordListB)
     // convert WordList to a list of filenames for teh audio files for each word
-    AudioFileListB = CreateAudioFileList(BaseFolderName+parameters.FolderName, SimpleWordListB, parameters.FileExtension)
+    AudioFileListB = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, SimpleWordListB, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListB = AudioFileListB.map(function(e) {
       return {Word: e}
@@ -728,7 +729,7 @@ var if_FinalRecallA = {
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(UpdateHeaderCall)  
+
 timeline.push(Welcome)
 timeline.push(if_Spoken)
 timeline.push(enter_fullscreen)

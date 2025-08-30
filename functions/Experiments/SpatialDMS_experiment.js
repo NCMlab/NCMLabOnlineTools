@@ -106,20 +106,21 @@ var VisualProbe = {
   choices: [],
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
-  choices: function() { return LabelNames.NoYes},
+  choices: function() { return LabelNames.YesNo},
   on_finish: function(data){
+    console.log(data)
     var ResponseIndex = ResponseMapping.indexOf(data.response)
-    console.log("Response: "+data.response)
-    console.log("Response Mapping: "+ResponseMapping)
-    console.log("Mapped Response: "+ResponseMapping[ResponseIndex])
-    console.log("Probe: "+Probe)
-    if ( Probe == 1 && ResponseMapping[ResponseIndex] == 1) 
+    // Note that the response buttons are in the order of 0,1,2,3,4
+    // Therefore, the left button is a zero and the right button is a one
+    // Response mapping (using one and zero) indicates which values are yes (one)
+    // and which is no (zero)
+    if ( Probe == 1 && ResponseIndex == 1) 
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct
       stair1.Decide(true)
     }
-    else if ( Probe == 0 && ResponseMapping[ResponseIndex] == 0) 
+    else if ( Probe == 0 && ResponseIndex == 0) 
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct

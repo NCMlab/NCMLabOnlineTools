@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!--<script src="jatos.js"></script>-->
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych_addons/plugin-sketchpad.js"></script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
+    <script src="../../jspsych/dist/plugin-survey-text.js"></script>
+    <script src="../../jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../config/General_Setup.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="../../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
+    <script src="../../config/Questionnaire_Setup.js"></script>
+    <script src="../../functions/Scoring/Questionnaire_Scoring.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
+    <script src="../../functions/Experiments/Questionnaire_experiment.js"></script>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+
+    <script>
+        // https://www.educative.io/answers/how-to-dynamically-load-a-js-file-in-javascript
+        function loadScript(file) {
+            const newScript = document.createElement('script');
+            newScript.setAttribute('src', file);
+            newScript.setAttribute('async', 'true');
+
+            newScript.onload = () => {
+                console.log("LOADED")
+            };
+
+            newScript.onerror = () => {
+                console.log("ERROR")
+            };
+
+            document.head.appendChild(newScript);
+        }
+    </script>
+    <script src="../../ImportedModules/jquery-3.6.4.js"></script> 
+    
+    <script>
+        function loadScriptSequentially(file) {
+            return new Promise((resolve, reject) => {
+            const newScript = document.createElement('script');
+            newScript.setAttribute('src', file);
+            newScript.setAttribute('async', 'true');
+        
+            newScript.onload = () => {
+                console.log('loaded successfully');
+                resolve(); // Resolve the promise
+            };
+            newScript.onerror = () => {
+                console.log('Error loading script');
+                reject(new Error(`Error loading script: ${file}`));
+            };
+        
+            document.head.appendChild(newScript);
+            });
+        }
+    </script>
+    
+    
+    <script>
+        var LANG = 'EN'
+        pseudoSwitch(LANG+'_LabelNames')
+    </script>
+
+    <script>
+        $(function(){$("#headerButtons").load(
+            "../../functions/GeneralPurposeFunctions/HeaderButtons.html",
+            function() {
+                UpdateHeader()
+            }
+        );}); 
+    </script>
+    <script>
+        var fileName = "../../InstructionsAndStimuli/EN/Questionnaires/panasShortJSON.js"
+        var headerHTML = "../../functions/GeneralPurposeFunctions/HeaderButtons.html"
+        loadScript(fileName)
+        console.log(fileName)
+        loadScriptSequentially(fileName)
+        .then(() =>
+            console.log(EN_panasShortJSON)
+        
+        )
+    </script>
+    
+    </head>
+    <body>
+        <div id="headerButtons"></div>
+        Hello
+        
+    </body>
+</html>

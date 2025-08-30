@@ -11,7 +11,7 @@ const json = {
    showCompletedPage: false,
    pages: 
    [
-    {
+    /*{
       name: "Name",
       title: "Name",
       
@@ -24,7 +24,7 @@ const json = {
           textbox_rows: 1,
         }
       ]
-    },
+    },*/
     {      
       name: "Demographic Information",
       title: "Demographic Information",
@@ -47,7 +47,7 @@ const json = {
           inputType: "number",
           min: 0,
           max: 300,
-          defaultValue: 0,
+          defaultValue: '',
           isRequired: true
         },
         {
@@ -68,7 +68,7 @@ const json = {
           inputType: "number",
           min: 0,
           max: 1000,
-          defaultValue: 0,
+          defaultValue: '',
           isRequired: true
         },
         {
@@ -441,7 +441,7 @@ const json = {
           },
           {
             type: 'dropdown',
-            title: 'Have you participated in group music classess before?',
+            title: 'Have you participated in group music classes before?',
             choices: 
             [
               "Yes",
@@ -549,8 +549,3 @@ EN_IntakeForm_MusicJSON.title = title;
 EN_IntakeForm_MusicJSON.survey_JSON = json;
 EN_IntakeForm_MusicJSON.shortTitle = shortTitle
 EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
-EN_IntakeForm_MusicJSON.Instructions01 = [
-    {
-        'page': '<p class="Instructions">Instructions are written here.'
-    }
-]

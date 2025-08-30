@@ -12,12 +12,13 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
+        <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
+     
     </script> 
+
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -25,7 +26,7 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
@@ -34,6 +35,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="functions/TaskSpecificFunctions/SpatialDMS_functions.js"></script>
 
@@ -59,7 +61,7 @@
         }
         pseudoSwitch(parameters)
         console.log(parameters)
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
@@ -92,15 +94,7 @@ var jsPsych = initJsPsych({
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','SpatialDMS_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+      .then(() => whereToGoNext(jatos.studySessionData))
 
     }
   });
@@ -114,12 +108,12 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
-    <div id="footerText"></div>
     <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
-    </script>
+    jatos.onLoad(() => {
+      // update the header button labels
+      UpdateHeader()
+    })
+  </script>
+
   </body>
 </html>

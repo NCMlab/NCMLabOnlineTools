@@ -12,12 +12,7 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-    // use jquery to load up the header button html content 
-    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
+
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -30,7 +25,7 @@
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
-    
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
@@ -39,6 +34,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="functions/GeneralPurposeFunctions/MicrophoneParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/WordRecall_Instructions.js"></script>
     <script src="InstructionsAndStimuli/Stimuli/WordRecall_Lists.js"></script>
@@ -49,7 +45,12 @@
     <script src="functions/GeneralPurposeFunctions/WordRecall.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
- 
+     <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
     <script>
       
 
@@ -71,14 +72,14 @@
         pseudoSwitch(parameters)      
         console.log(parameters)
         //parameters = WordRecall_parameters
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         // Load language specific stimuli
-        console.log(parameters.WordList)
+        console.log(LANG+"_"+parameters.WordList)
         // load up the word lists
-        pseudoSwitch(parameters.WordList)
+        pseudoSwitch(LANG+"_"+parameters.WordList)
         
         console.log(WordRecallLists)
         //load general label names
@@ -116,16 +117,7 @@
       },
       on_finish: function() {
         jatos.submitResultData(jsPsych.data.get().json())
-
-        if ( SaveLocalFile ) {
-          jsPsych.data.get().localSave('csv','WordRecall_data.csv');
-        }    
-        // update session data
-        JATOSSessionData = jatos.studySessionData
-        JATOSSessionData.CurrentIndex += 1
-        jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+        .then(() => whereToGoNext(jatos.studySessionData))
       }
     });
     jatos.waitSendDataOverlayConfig = { text: "Sending data. Please wait. This may take a minute or two depending on the internet connection." };
@@ -140,13 +132,8 @@
       });
   </script>
 
-<div id="footerText"></div>
-    <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
-    </script>
+  
+
 
 </body>
 </html>

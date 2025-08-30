@@ -12,19 +12,17 @@
     <link href="css/LikertQuestionnaires.css" rel="stylesheet">
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-      // use jquery to load up the header button html content 
-      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");});
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script>    
-    <style>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+
+<!--    <style>
       input[type="radio"] {height: 20px; width: 20px; vertical-align: middle;}
       .jspsych-content {max-width:90%}
-    </style>     
+    </style>     -->
   </head>
   <body>
-    <div id="headerButtons"></div>
+    <!--<div id="headerButtons"></div>-->
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
@@ -33,12 +31,13 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>    
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    
     <script src="jspsych_addons/plugin-survey.js"></script>
-    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
-    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    <script src="config/General_Setup.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+        <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+
     <script src="InstructionsAndStimuli/Instructions/IntakeForm_Instructions.js"></script>
     <script src="config/IntakeForm_Setup.js"></script>  
     <script src="Batteries/ComponentList.js"></script>
@@ -60,10 +59,11 @@
               InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
             }
             console.log(parameters)
-            LANG = jatos.studySessionData.Language
+            //LANG = jatos.studySessionData.Language
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language")
             console.log(LANG)
             // load the parameters
-            pseudoSwitch(parameters+'_'+LANG)
+            pseudoSwitch(LANG+'_'+parameters)
             console.log(parameters)
             // load the language specific instructions
             console.log(LANG+'_Instructions_'+InstructionsToUse)
@@ -79,7 +79,8 @@
     </script> 
    <script src="functions/Experiments/IntakeForm_experiment.js"></script>
    <script src="functions/Scoring/IntakeForm_Scoring.js"></script>
-  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
+
+  <!--<div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>-->
 
 
 
@@ -103,41 +104,33 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
       jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-      console.log(jatos.studySessionData)
-      console.log(jatos.studySessionData.TaskNameList[2])
-      console.log(jatos.studySessionData.UsageType == 'Battery')
+
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','IntakeForm_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+      .then(() => whereToGoNext(jatos.studySessionData))
       
     }
   });
 
   jatos.onLoad(() => {
+      UpdateHeader()
       var JATOSID = jatos.workerId;
       console.log(jatos)
       console.log(JATOSID)
       var resultsData = {'name':'JASON'};
       jatos.addJatosIds(resultsData);     
+      console.log(timeline)
+      UpdateHeader()
       jsPsych.run(timeline);
     });
-  </script>
-    <div id="footerText"></div>
-    <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
+    </script>    
+
+    <div class="btn-group-header" id="header-btn-group"></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
     
-    </script>
+
+
   </body>
 </html>

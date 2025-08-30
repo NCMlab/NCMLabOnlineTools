@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="jspsych/dist/jspsych.css">
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='css/TrailMaking.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
     <script> 
       // use jquery to load up the header button html content 
@@ -30,7 +31,7 @@
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/extension-mouse-tracking.js"></script>
@@ -40,6 +41,7 @@
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="InstructionsAndStimuli/Instructions/TrailMaking_Instructions.js"></script>
     <script src="functions/Scoring/TrailMaking_Scoring.js"></script>
     <script src="config/TrailMaking_Setup.js"></script>
@@ -61,9 +63,13 @@
             pseudoSwitch(parameters)
             console.log(parameters)
             // load the language specific instructions
-            LANG = jatos.studySessionData.Language
-            console.log(LANG)
+//            LANG = jatos.studySessionData.Language
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+
+            console.log(LANG+'_Instructions_'+InstructionsToUse)
+            
             pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+            
             console.log(Instructions)
             //load general label names
             pseudoSwitch(LANG+'_LabelNames')
@@ -72,17 +78,17 @@
     </script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
     <script src="functions/Experiments/Trailmaking_experiment.js"></script>    
-    <div id="jspsych-target-TRAILMAKING"  style="overflow:auto; height:100%" class='center'></div>  
+    <div id="jspsych-target-TRAILMAKING"  style="overflow:auto; height:90%" class='center'></div>  
   
   <script>
 var TrialCount = 1;
 var jsPsych = initJsPsych({
     display_element: 'jspsych-target-TRAILMAKING',
     auto_update_progress_bar: false,
-    show_progress_bar: true,    
-  extensions: [
-    {type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10}}
-  ],
+    //show_progress_bar: false,    
+    extensions: [
+      {type: jsPsychExtensionMouseTracking, params: {minimum_sample_time: 10}}
+    ],
     on_trial_start: function() {
       // http://127.0.0.1:9000/publix/fNTRhuguK1x
       // console.log(jatos.urlQueryParameters);
@@ -97,24 +103,12 @@ var jsPsych = initJsPsych({
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
     on_finish: function() {
-      jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','Trailmaking_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Update the Batch Index
-      // find the count 
-      var c = jatos.batchSession.get(jatos.workerId)
-      // update it
-      jatos.batchSession.set(jatos.workerId, c + 1);
-
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
-    }
-  });
+        console.log("SUBMITTING DATA")
+        jatos.submitResultData(jsPsych.data.get().json())
+        .then(() => whereToGoNext(jatos.studySessionData))
+    } 
+   })
+   
   jatos.onLoad(() => {
       var JATOSID = jatos.workerId;
       console.log(jatos)
@@ -125,11 +119,11 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
-  <div id="footerText"></div>
+  <!--<div id="footerText"></div>-->
 <script>
   jatos.onLoad(() => {
     // update the header button labels
-    UpdateHeader()
+      UpdateHeader()
   })
 </script>
 </body>

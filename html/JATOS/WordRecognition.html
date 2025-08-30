@@ -16,7 +16,7 @@
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
       $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
+      //$(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
     </script> 
   </head>    
   <body>
@@ -28,7 +28,8 @@
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    <!--<script src="jspsych/dist/plugin-survey.js"></script>-->
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-YesNo-button-speechRecog.js"></script>
@@ -40,6 +41,7 @@
     <script src="functions/GeneralPurposeFunctions/SetupSpeechRecognition.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="InstructionsAndStimuli/Stimuli/WordRecall_Lists.js"></script>
     <script src="InstructionsAndStimuli/Instructions/WordRecog_Instructions.js"></script>
     <script src="config/WordRecog_Setup.js"></script>
@@ -64,7 +66,7 @@
         console.log(parameters)
         pseudoSwitch(parameters)      
         console.log(parameters)
-        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         // Load language specific instructions
         console.log(LANG+'_Instructions_'+InstructionsToUse)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
@@ -105,15 +107,7 @@ var jsPsych = initJsPsych({
     },
     on_finish: function() {
       jatos.submitResultData(jsPsych.data.get().json())
-      if ( SaveLocalFile ) {
-        jsPsych.data.get().localSave('csv','WordRecognition_data.csv');
-      }    
-      // update session data
-      JATOSSessionData = jatos.studySessionData
-      JATOSSessionData.CurrentIndex += 1
-      jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+      .then(() => whereToGoNext(jatos.studySessionData))
     }
   });
   jatos.onLoad(() => {
@@ -126,7 +120,7 @@ var jsPsych = initJsPsych({
       jsPsych.run(timeline);
     });
   </script>
-    <div id="footerText"></div>
+    //<div id="footerText"></div>
     <script>
       jatos.onLoad(() => {
         // update the header button labels

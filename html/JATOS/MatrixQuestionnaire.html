@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab:  Questionnaire</title>
+    
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
+    <link rel="stylesheet" type='text/css' href='css/SurveyMatrix.css'>
+    
+
+    <script src="jatos.js"></script>
+
+    
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="functions/Scoring/Questionnaire_Scoring.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
+    <script src="config/Questionnaire_Setup.js"></script>
+    <script src="functions/Experiments/MatrixQuestionnaire_experiment.js"></script>
+    <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
+    
+    
+    
+    <script>
+        function InitializejsPsych() {
+            var setup = []
+            var TrialCount = 1
+            jsPsych = initJsPsych({
+                display_element: 'jspsych-target',
+                show_progress_bar: false,    
+                on_trial_start: function() {
+                    var input = jatos.urlQueryParameters;
+                    console.log(TrialCount)
+                    TrialCount += 1
+                    // Add jatos info to the data file
+                    jsPsych.data.addProperties({assignedURLID: input.a});
+                    jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+                    jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+                    jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+                    jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+                },
+                on_finish: function() {
+                    console.log("SUBMITTING DATA")
+                    // The submitting data was put into a promise since sometimes it takes a 
+                    // bit of time for it to finish and redirects are sometimes quicker and
+                    // interrupt the data transfer.
+                    jatos.submitResultData(jsPsych.data.get().json())
+                    .then(() => whereToGoNext(jatos.studySessionData))                }
+            })
+        }
+    </script>
+    <script>
+        jatos.onLoad(() => {
+            // Once Jatos has been loaded
+            // What is the language?
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language"),
+            console.log(LANG),
+            
+            // Load the parameters as stored in the session data
+            console.log(jatos)
+            console.log(jatos.studySessionData)
+            parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+            pseudoSwitch(parameters)
+            parameters.Language = LANG
+            // prepare the questionnaire file name
+            var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"
+            fileName = dirName+parameters.questionnaire[0]+".js"         
+            // load the questionaire JS file
+            loadScriptSequentially(fileName)
+            .then(() =>
+                // load the header buttons and update their visibility and language
+                pseudoSwitch(LANG+'_LabelNames')
+            )
+            .then(() =>
+                // import the header buttons and set their language and visibility
+            //    $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+                    UpdateHeader()
+            )
+            /*.then(() => 
+                // setthe footer
+                $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");})
+            )*/
+            .then(() => 
+                //  set up jsPsych 
+                InitializejsPsych(),
+            )
+                // run jsPsych
+            .then(() =>
+                jsPsych.run(timeline)
+            )
+        })
+    </script>
+    
+    </head>
+    <body>
+        <!-- The body contains the header buttons, the 'stage,' and the footer-->
+        <div class="btn-group-header" id="header-btn-group"></div>
+        <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+        <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+    </body>
+</html>

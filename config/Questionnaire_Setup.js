@@ -21,9 +21,18 @@ var AES_001 = {
     ShowInstructions: false,
  }
 
-
+var MusicDemographics_001SHORT = { 
+    questionnaire: ['IntakeForm_MusicJSONSHORT'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+ 
  var MusicDemographics_001 = { 
-    questionnaire: ['IntakeForm_Music'], 
+    questionnaire: ['IntakeForm_MusicJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -166,6 +175,17 @@ var PANAS_ShortBaseline_001 = {
     ShowInstructions: false,  
 }
 
+var TESTJSON = { 
+    questionnaire: ['TESTJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: true,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+
 var PANAS_ShortWeekly_001 = { 
     questionnaire: ['panasShortWeeklyJSON'], 
     criteria: [],
@@ -177,6 +197,16 @@ var PANAS_ShortWeekly_001 = {
 }
 var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_MusicJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+
+ var MusicEnterName_001 = { 
+    questionnaire: ['EnterName_MusicJSON'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -208,7 +238,7 @@ var UCLA_LONELINESS_001 = {
 }
 
 var BERKSYME_001 = { 
-    questionnaire: ['berksymeJSON'], 
+    questionnaire: ['berksymeJSONform'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -229,7 +259,16 @@ var STANFORDSLEEPINESS_001 = {
 }
 
 var CESAM_001 = { 
-    questionnaire: ['cesamJSON'], 
+    questionnaire: ['cesamJSONform'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CESAM_001TEST = { 
+    questionnaire: ['cesamJSONformSHORT'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -238,8 +277,9 @@ var CESAM_001 = {
     ShowInstructions: false,  
 }
 
+
 var WEMWBS_001 = { 
-    questionnaire: ['wemwbsJSON'], 
+    questionnaire: ['wemwbsJSONmatrix'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -249,7 +289,7 @@ var WEMWBS_001 = {
 }
 
 var PAES_001 = { 
-    questionnaire: ['paesJSON'], 
+    questionnaire: ['paesJSONmatrix'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -258,7 +298,28 @@ var PAES_001 = {
     ShowInstructions: false,  
 }
 
+var EQ5D_001 = { 
+    questionnaire: ['eq5dJSON'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var PANAS_TEST = { 
+    questionnaire: ['panas'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
+add('EQ5D_001', function(){ parameters = EQ5D_001});
 add('STAI_S_001', function(){ parameters = STAI_S_001});
 add('STAI_S_002', function(){ parameters = STAI_S_002});
 add('STAI_T_001', function(){ parameters = STAI_T_001});
@@ -273,14 +334,15 @@ add('MusicDemographics_001', function(){ parameters = MusicDemographics_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_001', function(){ parameters = PANAS_001});
 add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
-add('UCLA_LONELINESS_001', function(){ parameters = UCLA_LONELINESS_001});
 add('BERKSYME_001', function(){ parameters = BERKSYME_001});
 add('STANFORDSLEEPINESS_001', function(){ parameters = STANFORDSLEEPINESS_001});
 add('CESAM_001', function(){ parameters = CESAM_001});
 add('WEMWBS_001', function(){ parameters = WEMWBS_001});
 add('PANAS_Short_001', function(){ parameters = PANAS_Short_001});
 add('PAES_001', function(){ parameters = PAES_001});
-
 add('PANAS_ShortWeekly_001', function(){ parameters = PANAS_ShortWeekly_001});
 add('PANAS_ShortBaseline_001', function(){ parameters = PANAS_ShortBaseline_001});
-
+add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
+add('TESTJSON', function(){ parameters = TESTJSON});
+add('CESAM_001TEST', function(){ parameters = CESAM_001TEST});
+add('MusicDemographics_001SHORT', function(){ parameters = MusicDemographics_001SHORT});

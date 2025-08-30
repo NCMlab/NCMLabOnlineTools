@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/wemwbsJSONmatrix.js"></script>
+    
+<script>
+        var NAV = navigator;
+      var ComputerInfo = {}
+      ComputerInfo.CurrentLanguage = NAV.language
+      ComputerInfo.AvailableLanguage = NAV.languages
+      ComputerInfo.appVersion = NAV.appVersion
+    console.log(ComputerInfo)
+</script>
+  
+  <script>
+    console.log(EN_wemwbsJSONmatrix.survey_JSON)
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: false,    
+      auto_update_progress_bar: false,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var matrix_trial = {
+        type: jsPsychSurveyMatrix,
+        survey_json: function() { return EN_wemwbsJSONmatrix.survey_JSON},
+        button_label: "Submit",
+        required: true,
+        on_finish: function(data) {
+          console.log(data)
+        }
+    };
+    jsPsych.run([matrix_trial]);
+    
+  </script>
+  </head>
+<body>
+  <div class="btn-group-header" id="header-btn-group"></div>
+  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+  <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+  
+</body>
+</html>

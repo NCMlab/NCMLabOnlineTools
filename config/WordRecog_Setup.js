@@ -16,7 +16,7 @@ var WordRecog_Default = {
 }
 
 var WordRecog_Spoken = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
+	FolderName: 'Set001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
 	AudioPresentation: true,

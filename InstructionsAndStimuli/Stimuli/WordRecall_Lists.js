@@ -159,6 +159,31 @@ EN_RAVLT.RecognitionWordList = [
 ]
 add('EN_RAVLT', function(){ WordRecallLists = EN_RAVLT});
 
+var EN_RAVLTSHORT = {}
+EN_RAVLTSHORT.WordListA = [
+	{'Word':'Drum'}, 		// 0
+	{'Word':'Curtain'}, 	// 1
+	{'Word':'Bell'},		// 2
+	{'Word':'Coffee'},		// 3
+]
+EN_RAVLTSHORT.AlternatePronunciationsWordListA = []
+EN_RAVLTSHORT.WordListB = [
+	{'Word':'Desk'},
+	{'Word':'Ranger'},
+	{'Word':'Bird'},
+	{'Word':'Shoe'},
+]
+EN_RAVLTSHORT.AlternatePronunciationsWordListB = []
+EN_RAVLTSHORT.NWords = EN_RAVLT.WordListA.length
+EN_RAVLTSHORT.RecognitionWordList = [
+	{'Word':'Teacher','Answer':false},
+	{'Word':'River','Answer':true},
+	{'Word':'Bridge','Answer':false},
+	{'Word':'Farmer','Answer':true},
+	{'Word':'Pen','Answer':false},
+]
+add('EN_RAVLTSHORT', function(){ WordRecallLists = EN_RAVLTSHORT});
+
 // ===============================================================
 var FR_RAVLT = {}
 FR_RAVLT.WordListA = [

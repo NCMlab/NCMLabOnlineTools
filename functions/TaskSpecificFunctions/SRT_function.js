@@ -69,6 +69,9 @@ var CreateWordListIndex = function(WordList) {
 
 var CreateAudioFileList = function(FolderName, WordList, FileExtension) {
 	var AudioFileList = []
+	console.log("MAKING AUDIO FILE NAMES")
+	console.log(FolderName)
+	console.log(WordList)
 	for ( var i = 0; i < WordList.length; i++ ) {
 		AudioFileList.push(FolderName + WordList[i] + FileExtension)
 	}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych_addons/jspsych-survey-matrix.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/TESTJSON.js"></script>
+    <script src="InstructionsAndStimuli/EN/Questionnaires/panasJSON.js"></script>
+    <script src="jatos.js"></script>
+    <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
+<!--    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />-->
+  
+    
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
+    
+    <link rel="stylesheet" type='text/css' href='css/SurveyMatrix.css'>
+</head>
+  <body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: false,    
+      auto_update_progress_bar: false,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var matrix_trial = {
+        type: jsPsychSurveyMatrix,
+        JSONinput: survey_JSON,
+        button_label: "X Submit X",
+        required: true,
+        on_finish: function(data) {
+          console.log(data)
+        }
+    };
+    jsPsych.run([matrix_trial]);
+    
+  </script>
+
+  <div id="headerButtons"></div>
+  <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+</html>body>
+</html>

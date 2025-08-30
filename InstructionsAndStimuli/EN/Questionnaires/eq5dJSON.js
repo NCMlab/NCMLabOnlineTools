@@ -1,16 +1,11 @@
 var title = "EQ-5D"
 var shortTitle = "EQ-5D"
 const survey_JSON = {
-
   showQuestionNumbers: false,
   showCompletedPage: false,
+  Instructions: "Under each heading, please select the box that best describes your health TODAY.",
   pages: [{
     elements: [
-    {
-        type: "html",
-        name: "introduction",
-        html: "Under each heading, please select the box that best describes your health TODAY."
-       },
     {
         type: 'radiogroup',
         title: 'MOBILITY',
@@ -91,4 +86,3 @@ EN_eq5dJSON.QuestionnaireType = 'radiogroup'
 EN_eq5dJSON.references = "references"
 EN_eq5dJSON.notes = ''
 
-add('EN_eq5dJSON', function(){ Questionnaire = EN_eq5dJSON});

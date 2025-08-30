@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-call-function.js"></script>
+    
+    <script src="../jspsych/dist/plugin-survey-text.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/Notes.js"></script>
+        <link rel="stylesheet" href="../jspsych/dist/jspsych.css">
+  </head>
+  <body></body>
+  <script>
+    LabelNames = {}
+    LabelNames.NoteInputBox = "JASON"
+    parameters = {}
+    parameters.AskForNotes = true
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var survey_page1 = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: 'How old are you?', columns: 80, rows: 10, required: true, name: 'Age'},
+      ],
+      randomize_question_order: true
+    };
+
+
+
+    jsPsych.run([Notes]);
+
+  </script>
+</html>

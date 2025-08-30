@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Attention Network Test">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab</title>
+    <!--<link rel="stylesheet" href="jspsych/dist/jspsych.css" />-->
+    <link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+  
+  </head>    
+  <body>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="functions/GeneralPurposeFunctions/pseudoSwitch.js"></script>
+    <!--<script src="config/General_Setup.js"></script>-->
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    
+    <script src="Batteries/ComponentList.js"></script>
+    <script src="Batteries/Batteries.js"></script>
+    
+    <script src="config/SessionChooser_config.js"></script>    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    <script> 
+    // Once jatos is fully loaded, the the URL parameters can be checked.
+    
+    jatos.onload(function() {
+      // first load the JS file for the central executive
+
+      loadScriptSequentially("Batteries/CentralExecutive.js")
+      .then(()=> loadScriptSequentially("config/General_Setup.js"))
+      .then(() => {
+            var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+            console.log("The language is: "+LANG)
+            if (LANG == null) {LANG = 'EN'}
+            console.log("The language is: "+LANG)
+            console.log(LANG+'_LabelNames')
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(LabelNames)
+
+      })
+      .then((result) => CentralExecutive() )
+      
+      // once everything is setup, then proceed to displaying the jspsych timeline
+      
+      
+    })
+
+            
+    </script>
+    
+  </body>
+
+</html>
+

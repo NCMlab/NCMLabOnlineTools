@@ -32,7 +32,7 @@
     <script src="jspsych/dist/plugin-preload.js"></script>
     <script src="jspsych_addons/plugin-sketchpad.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-image-button-response-PatternComp.js"></script>
@@ -62,7 +62,9 @@
         
         pseudoSwitch(parameters)      
         console.log(parameters)
-        LANG = jatos.studySessionData.Language
+//        LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+
         //pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
@@ -119,6 +121,7 @@
     jatos.onLoad(() => {
       // update the header button labels
       UpdateHeader()
+      SetLanguagePulldown()
     })
 </script>
   </body>

@@ -1,117 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab:  Questionnaire</title>
+    
+    <!--<link rel="stylesheet" href="../../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='../../css/survey.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/defaultV2.min.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='../../css/QuestionnaireWideBody.css'>
+  -->
+    
+    <link rel="stylesheet" type='text/css' href='../../css/EQ5D.css'>
 
+  
 
-<!doctype html>
-<html dir="LTR">
-
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
-<meta charset="utf-8">
-<meta name="description" content="">
-<meta name="keywords" content="" />
-<meta name="HandheldFriendly" content="True" />
-<meta name="MobileOptimized" content="320" />
-<meta name="msapplication-tap-highlight" content="no" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="cleartype" content="on" />
-
-        <link rel="stylesheet" href="style.css">
-        <title>app</title>
-    </head>
-
+  
+  </head>    
+  <body>
     
     
+    <script src="../../jspsych/dist/jspsych.js"></script>
+    <script src="../../jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-call-function.js"></script>
+    <script src="../../jspsych_addons/plugin-sketchpad.js"></script>
+    <script src="../../jspsych_addons/plugin-survey-html-form.js"></script>
+    <script src="../../jspsych/dist/plugin-survey-text.js"></script>
+    
+    <script src="../../jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="../../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="../../config/General_Setup.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="../../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="../../jspsych_addons/TestSliderPRACTICE.js"></script>
+    
+    <script src="../../InstructionsAndStimuli/Instructions/EQ5D_Instructions.js"></script>
+    <script src="../../config/EQ5D_Setup.js"></script>
+    <script src="../../functions/Scoring/EQ5D_Scoring.js"></script>
+    
+    <script src="../../functions/Experiments/EQ5D_experiment.js"></script>
+    
+    
+    <script>
+      var Questionnaire_parameters = 'empty'
+      var parameters = 'empty'
 
-    <body class="" >
-        <div class="wrapper app-3L">
-            <div id="main">
+      pseudoSwitch('EQ5D_001')
+      console.log(parameters)
+      parameters.Language = 'EN'
+          
+          // Hard code the welcome screen since promises are not always resolved
+          // and errors get occur
+          //parameters.ShowWelcome = true
+
+            
+
+          var setup = []
+          var TrialCount = 1;
+          var jsPsych = initJsPsych({
+              display_element: 'jspsych-target',
+              show_progress_bar: false,    
+          })
+        jsPsych.run(timeline);
                 
-<div class="kickoffscreen screen">
-    
-        <div class="alert alert-info">
-            *This screen is not part of the EQ-5D instrument, it has been added to this demo for information purposes
-        </div>
-        <h2>Welcome to the EQ-5D-3L Device-independent version demo</h2>
 
-        <p>Would you like to get to know our products better? Please try our EQ-5D Device-independent version demo.You can try this EQ-5D demo on our website without disclosing any personal data. When you try our EQ-5D demo, no scores on the EQ-5D dimensions or any other data will be stored on our servers.</p>
-
-        <a href="/disclaimer.cfm" target="_parent">Demo Disclaimer</a>
-    
-</div>
-
-<div class="screen vasscreen">
-
-    <div id="vas-information-wrapper">
-        <ul class="vas-information">
-            <li>We would like to know how good or bad your health is TODAY.</li>
-            <li>
-                You will see a scale numbered from 0 to 100. 
-            </li>
-            <li>100 means the <u>best</u> health you can imagine.<br>0 means the <u>worst</u> health you can imagine.</li>
-            
-                <li>
-                    Please indicate on the scale how your health is TODAY. 
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="vas-vas ">
-        <div class="vas" id="vas" data-scale-top="The best health you can imagine" data-scale-bottom="The worst health you can imagine"></div>
-    </div>
-
-    <div class="vas-score">
-        <div>YOUR HEALTH TODAY =<span id="score-result">&nbsp;</span></div>
-    </div>
-</div>
-
-<div class="savescreen screen">
-    
-        <div class="alert alert-info">
-            *This screen is not part of the EQ-5D instrument, it has been added to this demo for information purposes
-        </div>
-        <h2>You have now completed this questionnaire.</h2>
-
-        <p>If you would like to change any of your answers, you may do so by pressing the "Previous" button prior to finalizing the questionnaire.</p>
-        <p>Please finalize the questionnaire by pressing the ”Finalize" button. Once you press ”Finalize", you will not be able to go back to review or change your answers.</p>
-    
-</div>
-
-<div class="endscreen screen">
-    <div class="col">
-        <div class="alert alert-info">
-            *This screen is not part of the EQ-5D instrument, it has been added to this demo for information purposes
-        </div>
-    </div>
-    <div class="col">
-        <h2>Thank you for completing EQ-5D</h2>
-    </div>
-</div>
-
-            </div>
-            
-<footer class="footer">
-    <div class="copyright-wrapper">
-        <aside class="copyright">
-            <i>© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. UK (English) v1.0</i>
-        </aside>
-    </div>
-    <nav class="navigation">
-        <a class="c-btn c-btn--prev c-btn--disabled" id="goToPrev">Previous</a>
-        <a class="c-btn c-btn--next" id="goToNext">Next</a>
-        <a class="c-btn c-btn--save" id="goToSave">Finalize</a>
-        <a class="c-btn c-btn--close" id="goToClose">Back to start</a>
-    </nav>
-</footer>
- 
-        </div>
-
-        <input type="hidden" name="data" id="appData" value="&#x7b;&quot;app&quot;&#x3a;&quot;3&quot;,&quot;languageDirection&quot;&#x3a;&quot;LTR&quot;,&quot;isScreenshotMode&quot;&#x3a;false,&quot;device&quot;&#x3a;&quot;device-independent&quot;,&quot;level&quot;&#x3a;&quot;3L&quot;,&quot;value&quot;&#x3a;&quot;&quot;,&quot;RTL&quot;&#x3a;false,&quot;date&quot;&#x3a;&quot;&quot;,&quot;data&quot;&#x3a;&#x7b;&quot;questions&quot;&#x3a;&#x5b;&#x7b;&quot;title&quot;&#x3a;&quot;&lt;b&gt;MOBILITY&lt;&#x2f;b&gt;&quot;,&quot;id&quot;&#x3a;&quot;mobility&quot;,&quot;options&quot;&#x3a;&#x5b;&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;no&#x20;problems&#x20;in&#x20;walking&#x20;about&quot;,&quot;id&quot;&#x3a;&quot;mb1&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;some&#x20;problems&#x20;in&#x20;walking&#x20;about&quot;,&quot;id&quot;&#x3a;&quot;mb2&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;confined&#x20;to&#x20;bed&quot;,&quot;id&quot;&#x3a;&quot;mb3&quot;&#x7d;&#x5d;&#x7d;,&#x7b;&quot;title&quot;&#x3a;&quot;&lt;b&gt;SELF-CARE&lt;&#x2f;b&gt;&quot;,&quot;id&quot;&#x3a;&quot;self-care&quot;,&quot;options&quot;&#x3a;&#x5b;&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;no&#x20;problems&#x20;with&#x20;self-care&quot;,&quot;id&quot;&#x3a;&quot;sc1&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;some&#x20;problems&#x20;washing&#x20;or&#x20;dressing&#x20;myself&quot;,&quot;id&quot;&#x3a;&quot;sc2&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;unable&#x20;to&#x20;wash&#x20;or&#x20;dress&#x20;myself&quot;,&quot;id&quot;&#x3a;&quot;sc3&quot;&#x7d;&#x5d;&#x7d;,&#x7b;&quot;title&quot;&#x3a;&quot;&lt;b&gt;USUAL&#x20;ACTIVITIES&#x20;&lt;&#x2f;b&gt;&lt;i&gt;&#x28;e.g.&#x20;work,&#x20;study,&#x20;housework,&#x20;family&#x20;or&#x20;leisure&#x20;activities&#x29;&lt;&#x2f;i&gt;&quot;,&quot;id&quot;&#x3a;&quot;usual-activities&quot;,&quot;options&quot;&#x3a;&#x5b;&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;no&#x20;problems&#x20;with&#x20;performing&#x20;my&#x20;usual&#x20;activities&quot;,&quot;id&quot;&#x3a;&quot;ua1&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;some&#x20;problems&#x20;with&#x20;performing&#x20;my&#x20;usual&#x20;activities&quot;,&quot;id&quot;&#x3a;&quot;ua2&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;unable&#x20;to&#x20;perform&#x20;my&#x20;usual&#x20;activities&quot;,&quot;id&quot;&#x3a;&quot;ua3&quot;&#x7d;&#x5d;&#x7d;,&#x7b;&quot;title&quot;&#x3a;&quot;&lt;b&gt;PAIN&#x20;&#x2f;&#x20;DISCOMFORT&lt;&#x2f;b&gt;&quot;,&quot;id&quot;&#x3a;&quot;pain-discomfort&quot;,&quot;options&quot;&#x3a;&#x5b;&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;no&#x20;pain&#x20;or&#x20;discomfort&quot;,&quot;id&quot;&#x3a;&quot;pd1&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;moderate&#x20;pain&#x20;or&#x20;discomfort&quot;,&quot;id&quot;&#x3a;&quot;pd2&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;have&#x20;extreme&#x20;pain&#x20;or&#x20;discomfort&quot;,&quot;id&quot;&#x3a;&quot;pd3&quot;&#x7d;&#x5d;&#x7d;,&#x7b;&quot;title&quot;&#x3a;&quot;&lt;b&gt;ANXIETY&#x20;&#x2f;&#x20;DEPRESSION&lt;&#x2f;b&gt;&quot;,&quot;id&quot;&#x3a;&quot;anxiety-depression&quot;,&quot;options&quot;&#x3a;&#x5b;&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;not&#x20;anxious&#x20;or&#x20;depressed&quot;,&quot;id&quot;&#x3a;&quot;ad1&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;moderately&#x20;anxious&#x20;or&#x20;depressed&quot;,&quot;id&quot;&#x3a;&quot;ad2&quot;&#x7d;,&#x7b;&quot;label&quot;&#x3a;&quot;I&#x20;am&#x20;extremely&#x20;anxious&#x20;or&#x20;depressed&quot;,&quot;id&quot;&#x3a;&quot;ad3&quot;&#x7d;&#x5d;&#x7d;&#x5d;,&quot;notes&quot;&#x3a;&#x7b;&#x7d;,&quot;vas&quot;&#x3a;&#x7b;&quot;line5&quot;&#x3a;&quot;-&quot;,&quot;line4&quot;&#x3a;&quot;Please&#x20;indicate&#x20;on&#x20;the&#x20;scale&#x20;how&#x20;your&#x20;health&#x20;is&#x20;TODAY.&quot;,&quot;thermometer_bottom&quot;&#x3a;&quot;The&#x20;worst&#x20;health&#x20;you&#x20;can&#x20;imagine&quot;,&quot;thermometer_top&quot;&#x3a;&quot;The&#x20;best&#x20;health&#x20;you&#x20;can&#x20;imagine&quot;,&quot;healthbox&quot;&#x3a;&quot;YOUR&#x20;HEALTH&#x20;TODAY&#x20;&#x3d;&quot;,&quot;line3b&quot;&#x3a;&quot;0&#x20;means&#x20;the&#x20;&lt;u&gt;worst&lt;&#x2f;u&gt;&#x20;health&#x20;you&#x20;can&#x20;imagine.&quot;,&quot;line3a&quot;&#x3a;&quot;100&#x20;means&#x20;the&#x20;&lt;u&gt;best&lt;&#x2f;u&gt;&#x20;health&#x20;you&#x20;can&#x20;imagine.&quot;,&quot;line1&quot;&#x3a;&quot;We&#x20;would&#x20;like&#x20;to&#x20;know&#x20;how&#x20;good&#x20;or&#x20;bad&#x20;your&#x20;health&#x20;is&#x20;TODAY.&quot;,&quot;line2&quot;&#x3a;&quot;You&#x20;will&#x20;see&#x20;a&#x20;scale&#x20;numbered&#x20;from&#x20;0&#x20;to&#x20;100.&quot;&#x7d;,&quot;introduction&quot;&#x3a;&#x7b;&#x7d;,&quot;general&quot;&#x3a;&#x7b;&quot;instruction&quot;&#x3a;&quot;Please&#x20;select&#x20;the&#x20;ONE&#x20;box&#x20;that&#x20;best&#x20;describes&#x20;your&#x20;health&#x20;TODAY.&quot;,&quot;country&quot;&#x3a;&quot;UK&#x20;&#x28;English&#x29;&#x20;EQ-5D-3L&#x20;Digital&#x20;Self-Complete&#x20;Device-independent.xlsx&quot;,&quot;description&quot;&#x3a;&quot;&quot;,&quot;health_questionnaire&quot;&#x3a;&quot;&lt;b&gt;Health&#x20;Questionnaire&lt;&#x2f;b&gt;&quot;,&quot;subtitle2&quot;&#x3a;&quot;&quot;,&quot;title&quot;&#x3a;&quot;&lt;b&gt;English&#x20;version&#x20;for&#x20;the&#x20;UK&lt;&#x2f;b&gt;&quot;,&quot;copyright&quot;&#x3a;&quot;&lt;i&gt;&copy;&#x20;EuroQol&#x20;Research&#x20;Foundation.&#x20;EQ-5D&trade;&#x20;is&#x20;a&#x20;trade&#x20;mark&#x20;of&#x20;the&#x20;EuroQol&#x20;Research&#x20;Foundation.&#x20;UK&#x20;&#x28;English&#x29;&#x20;v1.0&lt;&#x2f;i&gt;&quot;,&quot;error&quot;&#x3a;&quot;This&#x20;item&#x20;is&#x20;blank,&#x20;please&#x20;complete&#x20;it.&quot;,&quot;subtitle&quot;&#x3a;&quot;&quot;&#x7d;,&quot;buttons&quot;&#x3a;&#x7b;&quot;finalize&quot;&#x3a;&quot;Finalize&quot;,&quot;next&quot;&#x3a;&quot;Next&quot;,&quot;restart&quot;&#x3a;&quot;Back&#x20;to&#x20;start&quot;,&quot;ok&quot;&#x3a;&quot;OK&quot;,&quot;previous&quot;&#x3a;&quot;Previous&quot;&#x7d;&#x7d;,&quot;languageId&quot;&#x3a;&quot;nl&quot;,&quot;label&quot;&#x3a;&quot;&quot;,&quot;id&quot;&#x3a;&quot;1D8B1F98-A990-EDD9-B5FB29E6E9DE3472&quot;,&quot;type&quot;&#x3a;&quot;general&quot;,&quot;dateFormatted&quot;&#x3a;&quot;&quot;&#x7d;">
-        <script src="jquery-1.10.2.js"></script>
-        <script src="plugins.js"></script>
-        <script src="script.js"></script>
-
-        
-
-    </body>
+    </script>
+        <div id="headerButtons"></div>
+        <!-- The body contains the header buttons, the 'stage,' and the footer-->
+        <div class="btn-group-header" id="header-btn-group"></div>
+        <div id="jspsych-target" class='center'></div>
+    <script src="../../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+</body>
 
 </html>

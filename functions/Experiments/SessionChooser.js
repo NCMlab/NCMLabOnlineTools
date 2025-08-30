@@ -8,17 +8,31 @@ var ComponentIDList = []
 var ComponentParameterLists = []
 var DisplayBatteryInstructionsFlag
 var BatteryInstructions
-var TaskList = []
+var SessionList = []
+var Choices = []
+var SessionsBatteryList = []
 
-
-var Choices = [
-    'Intake',
-    'Baseline', 
-    'Trails',
-    'Visit-Pre', 
-    'Visit-Post', 
-    'Post-Intervention'
-]
+var SetupChoices = {
+    type: jsPsychCallFunction,
+    func: function() {
+        // read the data for this trial
+        var all_data = jsPsych.data.get();
+        CurrentBattery = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery))
+        console.log(CurrentBattery)
+        // find the battery selected and extract its list of components
+        //var ParameterList = BatteryList.find(x => x.index === parseInt(all_data.trials[0].Battery)).ParameterLists
+        ParameterList = CurrentBattery.TaskList.map(({ Parameters }) => Parameters)
+        console.log(ParameterList)
+        console.log(LANG)
+        pseudoSwitch(LANG+"_"+ParameterList)
+        console.log(parameters)
+        for ( var i = 0; i < parameters[0].List.length; i++ )
+        { 
+            Choices.push( parameters[0].List[i].name ) 
+            SessionsBatteryList.push( parameters[0].List[i].battery )
+        }
+    }
+}
 
 var trial0 = {
     type: jsPsychHtmlButtonResponse,
@@ -31,36 +45,19 @@ var trial0 = {
 var SetupSessionData = {
     type: jsPsychCallFunction,
     func: function() {
-        console.log(ComponentList)
-        console.log(jatos)
-        console.log(jatos.workerId)
-        console.log("CHOICES::: "+Choices)
-
         var all_data = jsPsych.data.get();
-        console.log(BatteryList)
-        
-        // reset the index
-        
         JATOSSessionData = jatos.studySessionData
-        console.log(JATOSSessionData)
         
         JATOSSessionData.CurrentIndex = 0
-        console.log(JATOSSessionData)
         jatos.studySessionData = []
         // reset the batch current index
         jatos.batchSession.set(jatos.workerId, 0);
-        console.log(jatos.studySessionData)
-
-        //console.log(jatos.batchSession.getAll())
-        //console.log(jatos)
-        //console.log(BreakPoint)
-        
     }
 }
 
 var trial = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style="font-size:20px;">What session is this?</p>',
+    stimulus: function() { return parameters[0].Title },
     choices: Choices,
     prompt: ""
   };
@@ -70,35 +67,24 @@ var PostChoice = {
     type: jsPsychCallFunction,
     func: function() {
         var data = jsPsych.data.get()
-        console.log(data)
-        console.log(Choices[data.trials[2].response])
         // Map the choices to the Batteries
         var Battery 
-        if ( Choices[data.trials[2].response] == 'Intake' )
-        { Battery = '73'}
-        if ( Choices[data.trials[2].response] == 'Baseline' )
-            { Battery = '74'}
-        if ( Choices[data.trials[2].response] == 'Trails' )
-            { Battery = '78'}
-        if ( Choices[data.trials[2].response] == 'Visit-Pre' )
-            { Battery = '75'}
-        if ( Choices[data.trials[2].response] == 'Visit-Post' )
-            { Battery = '76'}
-        if ( Choices[data.trials[2].response] == 'Post-Intervention' )
-            { Battery = '77'}
-        console.log(window.location)
-        //console.log(BreakPoint)
+        // Note: the 3 in the next line refers to the third component in the timeline
+        Battery = SessionsBatteryList[Choices.indexOf(Choices[data.trials[3].response])]
+        console.log(SessionsBatteryList)
+        console.log(Choices)
+        console.log(Choices[data.trials[3].response])
+        console.log(Battery)
         var BasePath = window.location.origin +"/publix/" // "http://127.0.0.1:9000/publix/"
-        var URL = BasePath + jatos.studyCode+"?Battery="+Battery
+        var URL = BasePath + jatos.studyCode+"?Battery="+Battery+"&UsageType=Battery"
         console.log(URL)
-        
         jatos.endStudyAndRedirect(URL)
         
         //window.open(URL, '_self')
     }
 }
 timeline.push(trial0)
-
+timeline.push(SetupChoices)
 timeline.push(SetupSessionData)
 timeline.push(trial)
 timeline.push(PostChoice)

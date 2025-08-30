@@ -164,7 +164,11 @@ var RecallRequest01 = {
       //ReadSentence = jsPsych.timelineVariable('stim')
       console.log(ReadSentence)
       var stim = 
-      '<div><p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p><p>'+LabelNames.PleaseRead+'</p> <h1><div id="id_sent_to_read">'+ReadSentence+'</div></h1><br/><h1><div id="id_sent_heard">'+'-'+'</div></h1><p><div id="id_next">-</div></p></div>'
+      '<div><img src="assets/Icons/Recording.gif" alt="microphone" style="width:120px;height:120px;">'+
+      '<br/>'+LabelNames.PleaseRead+
+      '<h4><div id="id_sent_to_read">'+ReadSentence+'</div></h4>'+
+      '<h4><div id="id_sent_heard">'+'-'+'</div></h4>'+
+      '<div id="id_next">-</div></div>'
       return stim
     },
     choices: ['Next'], 
@@ -227,7 +231,7 @@ var SendData = {
 }    
 
 //timeline.push(CheckMicrophone)
-timeline.push(UpdateHeaderCall)
+
 timeline.push(Welcome)
 timeline.push(GetList)
 timeline.push(GetSentenceCount)

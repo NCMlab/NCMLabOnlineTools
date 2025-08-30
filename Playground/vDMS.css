@@ -1,0 +1,21 @@
+.vdmstable {
+  border: 2px solid red;
+  display: 'inline-masonry';
+  width: 50vw;
+  height: 40vh;
+  
+}
+.vdmsTableDiv {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.vdmscell {
+    border: 2px solid red;
+    text-align: center;
+}

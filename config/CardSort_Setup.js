@@ -42,8 +42,16 @@ CardSort_001.Instructions03Audio = []
 CardSort_001.Instructions03Audio.push('assets/SoundFiles/Instructions/WCST_Test.wav'),
 CardSort_001.Instructions03Time = []
 CardSort_001.Instructions03Time.push(5000)
-
 add('CardSort_001', function(){ parameters = CardSort_001});
+
+/*CardSort_001SHORT = CardSort_001;
+CardSort_001SHORT.PracticeRuleChangeCount = 2
+// Change rul after this many CORRECT
+CardSort_001SHORT.RuleChangeCount = 3
+CardSort_001SHORT.PracticeNumberOfCards = 4
+CardSort_001SHORT.NumberOfCards = 10
+// What is the order of rules?
+add('CardSort_001SHORT', function(){ parameters = CardSort_001SHORT});*/
 
 CardSort_002 = CardSort_001
 CardSort_001.ShowWelcome = false

@@ -8,12 +8,8 @@ function Questionnaire_Scoring(data) {
 	AllTrials = data
 	
 	data = data.trials[0]
-	console.log("DATA: ")
-	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
-    
-	
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.shortTitle
 	Results.AllResults['ShortTitle'] = '-99'
@@ -21,13 +17,70 @@ function Questionnaire_Scoring(data) {
 		Results.AllResults['ShortTitle'] = data.shortTitle
 	}		
 	Results.AllResults['Accuracy'] = ''
+	// This new object is used for extracting data for making spreadsheets
+	Results.NumericResults = {}
 	var TotalScore = 0
 	var TextAnswer
 	var NumericScore
 	var prompt
 	var resp
 	if ( data.QuestionnaireType == 'matrix' )
-	{
+	{	
+		const rowIndices = Object.keys(data.response)
+		var NRows = rowIndices.length
+		// cycle over responses
+		for ( var i = 0; i < NRows; i++ )
+		{
+			NumericScore = data.response[i].responseValue			
+			TotalScore += NumericScore
+			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
+			// The following version of data will be used for extracting data
+			// Add the question name/id and its numeric score
+			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
+			
+		}
+		// Add the total score, Need to also add the specialty scores
+		var totalScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_total"
+		Results.NumericResults[totalScoreName] = TotalScore
+	}
+
+	if ( data.QuestionnaireType == 'form' )
+	{	
+		const rowIndices = Object.keys(data.response)
+        console.log(rowIndices)
+		var NRows = rowIndices.length
+		console.log(data)
+		//console.log(BREAK)
+		// cycle over responses
+		for ( var i = 0; i < NRows; i++ )
+		{
+			NumericScore = data.response[i].responseValue			
+			TotalScore += NumericScore
+			Results.AllResults[data.response[i].label] = data.response[i].responseText
+		}
+	}
+	if ( data.QuestionnaireType == 'radiogroup' )
+	{	
+		const rowIndices = Object.keys(data.response)
+        console.log(rowIndices)
+		var NRows = rowIndices.length
+		console.log(data)
+		//console.log(BREAK)
+		// cycle over responses
+		for ( var i = 0; i < NRows; i++ )
+		{
+			NumericScore = data.response[i].responseValue			
+			TotalScore += NumericScore
+			Results.AllResults[data.response[i].label] = data.response[i].responseText
+			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
+		}
+	}	
+	
+	
+	if ( data.QuestionnaireType == 'OLDmatrix' )
+	{	
+		
+		console.log(data.response)
 		const surveyName = Object.keys(data.response)
         console.log(surveyName)
 		const keys = Object.keys(data.response[surveyName])
@@ -64,9 +117,12 @@ function Questionnaire_Scoring(data) {
 			//console.log(BREAK)
 		}
 	}
-	if ( data.QuestionnaireType == 'radiogroup' )
+	if ( data.QuestionnaireType == 'OLDradiogroup' )
 	{
+		console.log(data)
+		console.log(data.response)
 		const keys = Object.keys(data.response)
+		console.log(keys)
 		// cycle over EACH QUESTIONS 
 		for ( var i = 0; i < keys.length; i++ )
 		{
@@ -109,6 +165,7 @@ function Questionnaire_Scoring(data) {
 	{
 		const keys = Object.keys(data.response)
         console.log(keys)
+		console.log(data)
 		//console.log(BreakPoint)
 		for ( var i = 0; i < keys.length; i++ )
 		{
@@ -214,10 +271,32 @@ function Questionnaire_Scoring(data) {
 							ResponseText = 'null'
 						}
 						Results.AllResults[TextAnswer] = ResponseText
+						// add the data in numeric format
+						var NumQuestionFormatName = data.shortTitle.replaceAll(" ","") + "_" + QuestionName
+						Results.NumericResults[NumQuestionFormatName] = ResponseText
 					}
 				}
 		}
 	}
+	if ( data.QuestionnaireType == 'FirstName' )
+	{ // Put this info into the Batch Data 
+		console.log(data)
+		console.log(data.response)
+		
+		const FirstName = data.response.Name
+		const Email = data.response.email
+		console.log(Email)
+		if ( Email != null ) {
+			jatos.batchSession.set(jatos.workerId+"_Email", Email)
+			.then(() => {
+				jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
+			}) 
+		}
+		else {
+			jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 
+		}
+	}
+
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
 	if ( Notes.trials.length > 0 )

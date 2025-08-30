@@ -163,7 +163,7 @@ function ReturnElementsFromPermute(count, N) {
 }
 // Buttons added to the top of each task page for navigation and ending the experiment  
 function returnToUsageManager() {
-  jatos.startComponentByTitle("Usage Manager");
+  jatos.startComponentByTitle("Central Executive");
 }
 
 function restartTask() {
@@ -197,6 +197,25 @@ function quitExperiment() {
   if (confirm(text) == true)
   { jatos.abortStudy() }
 }
+
+function setLanguage(id, val) {    
+  console.log("========")
+  console.log("SetLanguage: "+val )
+  console.log("Id: "+id)
+  console.log(document.getElementById(id))
+  let element = document.getElementById(id);
+  element.value = val;
+}
+
+
+
+function LanguageSelection(sel) {
+  console.log(jatos.workerId)
+  jatos.batchSession.set(jatos.workerId+"_Language", sel.options[sel.selectedIndex].text) 
+  //alert(sel.options[sel.selectedIndex].text);
+
+}
+
 function openInfo() {
   const openBtn = document.getElementById("header-info-button");
   const modal = document.getElementById("modal");  
@@ -257,29 +276,65 @@ function closeInfo() {
   modal.classList.remove("open");
 
 }
-/*openBtn.addEventListener("click", () => {
-  modal.classList.add("open");
-});
 
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("open");
-});
-*/
 // ===============================================
 // Decide where to go next functionaility
-function whereToGoNext(SessionData, CurrentIndex){
-    // If this a la carte or the end of the battery go to the usage manager
-    if ( CurrentIndex == SessionData.TaskNameList.length || SessionData.UsageType == 'ALaCarte' )       
-      { jatos.startComponentByTitle("Usage Manager")}
+function whereToGoNext(SessionData, ){
+    CurrentIndex = SessionData.CurrentIndex  
+  // If this a la carte or the end of the battery go to the usage manager
+    console.log(SessionData.TaskNameList)
+    console.log(SessionData.UsageType)
+    console.log(CurrentIndex)
+    
+    if ( SessionData.UsageType == 'UserChoice' )       
+      { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
-    { 
-      //jatos.endStudy()
-      // For some reason this does not END the trailmaking task
-      window.open('https://www.uottawa.ca','_self')
-      console.log(BreakPoint)
-    }
-    else // otherwise start the next component in the battery
-      { jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]) }
+      {  console.log(BreakPoint) }
+    else if ( SessionData.UsageType == 'Battery' ) 
+      { 
+        // Is the user done with the battry?
+        // The minus one is because the index stars with zero and does not
+        // get updated until AFTER this check
+        if ( CurrentIndex == SessionData.TaskNameList.length - 1)
+        {
+        /*  console.log(SessionData)
+          console.log("The redirect site is: "+SessionData.Redirect)
+          if ( SessionData.Redirect === "" )
+            { window.open('https://www.uottawa.ca','_self') }
+          else if ( SessionData["Redirect"] === undefined )
+            { window.open('https://www.uottawa.ca','_self') }
+          else { window.open(SessionData.Redirect,'_self') }
+          */
+         jatos.startComponentByTitle("Central Executive")
+        }
+        else { 
+          jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
+          jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1)
+          .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))
+
+        }
+      }
+    else 
+      { // if no usage type is selected then do the same as a la carte/user choice
+        jatos.startComponentByTitle("Central Executive")
+      }
 }
 
   
+// Load script (Questionnaire definition) javaScript file using a promise
+function loadScriptSequentially(file) {
+    return new Promise((resolve, reject) => {
+    const newScript = document.createElement('script');
+    newScript.setAttribute('src', file);
+    newScript.setAttribute('async', 'true');
+
+    newScript.onload = () => {
+        resolve('loaded successfully'); // Resolve the promise
+    };
+    newScript.onerror = () => {
+        console.log('Error loading script');
+        reject(new Error(`Error loading script: ${file}`));
+    };
+    document.head.appendChild(newScript);
+    });
+}

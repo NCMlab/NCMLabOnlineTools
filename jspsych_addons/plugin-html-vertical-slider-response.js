@@ -113,7 +113,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             var half_thumb_width = 7.5;
             console.log(trial)
             var html
-            var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 0px 0px;">';
+            var html = '<div id="jspsych-html-slider-response-wrappeXXXr" style="margin: 0px 0px;">';
             
 /* https://stackoverflow.com/questions/20819694/how-can-i-style-two-spans-within-a-div-such-that-when-span-1s-width-increases-b */
                 /*html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + "</div>";            */
@@ -165,13 +165,13 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
                     display_element.querySelector("#jspsych-html-slider-response-next").disabled = false;
                 };
                 display_element
-                    .querySelector("#jspsych-html-slider-response-response")
+                    .querySelector("#jspsych-html-slider-response-responseXXX")
                     .addEventListener("mousedown", enable_button);
                 display_element
-                    .querySelector("#jspsych-html-slider-response-response")
+                    .querySelector("#jspsych-html-slider-response-responseXXX")
                     .addEventListener("touchstart", enable_button);
                 display_element
-                    .querySelector("#jspsych-html-slider-response-response")
+                    .querySelector("#jspsych-html-slider-response-responseXXX")
                     .addEventListener("change", enable_button);
             }
             const end_trial = () => {
@@ -188,17 +188,17 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
                 this.jsPsych.finishTrial(trialdata);
             };
             display_element
-                .querySelector("#jspsych-html-slider-response-next")
+                .querySelector("#jspsych-html-slider-response-nextXXX")
                 .addEventListener("click", () => {
                     // measure response time
                     var endTime = performance.now();
                     response.rt = Math.round(endTime - startTime);
-                    response.response = display_element.querySelector("#jspsych-html-slider-response-response").valueAsNumber;
+                    response.response = display_element.querySelector("#jspsych-html-slider-response-responseXXX").valueAsNumber;
                     if (trial.response_ends_trial) {
                         end_trial();
                     }
                     else {
-                        display_element.querySelector("#jspsych-html-slider-response-next").disabled = true;
+                        display_element.querySelector("#jspsych-html-slider-response-nextXXX").disabled = true;
                     }
                     console.log(response)
                     
@@ -207,7 +207,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
                 });
             if (trial.stimulus_duration !== null) {
                 this.jsPsych.pluginAPI.setTimeout(() => {
-                    display_element.querySelector("#jspsych-html-slider-response-stimulus").style.visibility = "hidden";
+                    display_element.querySelector("#jspsych-html-slider-response-stimuluXXXs").style.visibility = "hidden";
                 }, trial.stimulus_duration);
             }
             // end trial if trial_duration is set
@@ -216,44 +216,7 @@ var jsPsychHtmlVerticalSliderResponse = (function (jspsych) {
             }
             var startTime = performance.now();
         }
-        simulate(trial, simulation_mode, simulation_options, load_callback) {
-            if (simulation_mode == "data-only") {
-                load_callback();
-                this.simulate_data_only(trial, simulation_options);
-            }
-            if (simulation_mode == "visual") {
-                this.simulate_visual(trial, simulation_options, load_callback);
-            }
-        }
-        create_simulation_data(trial, simulation_options) {
-            const default_data = {
-                stimulus: trial.stimulus,
-                slider_start: trial.slider_start,
-                response: this.jsPsych.randomization.randomInt(trial.min, trial.max),
-                rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
-            };
-            const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
-            this.jsPsych.pluginAPI.ensureSimulationDataConsistency(trial, data);
-            return data;
-        }
-        simulate_data_only(trial, simulation_options) {
-            const data = this.create_simulation_data(trial, simulation_options);
-            this.jsPsych.finishTrial(data);
-        }
-        simulate_visual(trial, simulation_options, load_callback) {
-            const data = this.create_simulation_data(trial, simulation_options);
-            const display_element = this.jsPsych.getDisplayElement();
-            this.trial(display_element, trial);
-            load_callback();
-            if (data.rt !== null) {
-                const el = display_element.querySelector("input[type='range']");
-                setTimeout(() => {
-                    this.jsPsych.pluginAPI.clickTarget(el);
-                    el.valueAsNumber = data.response;
-                }, data.rt / 2);
-                this.jsPsych.pluginAPI.clickTarget(display_element.querySelector("button"), data.rt);
-            }
-        }
+
     }
     HtmlSliderResponsePlugin.info = info;
 

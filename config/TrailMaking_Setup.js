@@ -76,6 +76,100 @@ var CirclesA_001 = [
     {centerX:0.692, centerY:0.934545454545455, radius: radius, label: '25'},
 ]
 
+// SETUP FOR TRAILS A.
+//  This is a MIRRORED AROUND X Version. X = 1-X 
+
+// Wagner S, Helmreich I, Dahmen N, Lieb K, Tadic A. 
+// Reliability of three alternate forms of the trail making 
+// tests a and B. Arch Clin Neuropsychol. 2011;26(4):314-321.
+  
+var CirclesA_011 = [
+    {centerX:0.46,  centerY:0.712727272727273,  radius, label:  '1'},
+    {centerX:0.592,  centerY:0.825454545454545,  radius, label:  '2'},
+    {centerX:0.376,  centerY:0.832727272727273,  radius, label:  '3'},
+    {centerX:0.36,  centerY:0.378181818181818,  radius, label:  '4'},
+    {centerX:0.6,  centerY:0.490909090909091,  radius, label:  '5'},
+    {centerX:0.488,  centerY:0.589090909090909,  radius, label:  '6'},
+    {centerX:0.644,  centerY:0.650909090909091,  radius, label:  '7'},
+    {centerX:0.84,  centerY:0.814545454545455,  radius, label:  '8'},
+    {centerX:0.796,  centerY:0.905454545454545,  radius, label:  '9'},
+    {centerX:0.7,  centerY:0.814545454545455,  radius, label:  '10'},
+    {centerX:0.604,  centerY:0.934545454545455,  radius, label:  '11'},
+    {centerX:0.94,  centerY:0.941818181818182,  radius, label:  '12'},
+    {centerX:0.884,  centerY:0.527272727272727,  radius, label:  '13'},
+    {centerX:0.956,  centerY:0.614545454545455,  radius, label:  '14'},
+    {centerX:0.952,  centerY:0.123636363636364,  radius, label:  '15'},
+    {centerX:0.868,  centerY:0.290909090909091,  radius, label:  '16'},
+    {centerX:0.712,  centerY:0.0581818181818182,  radius, label:  '17'},
+    {centerX:0.656,  centerY:0.287272727272727,  radius, label:  '18'},
+    {centerX:0.444,  centerY:0.214545454545455,  radius, label:  '19'},
+    {centerX:0.6,  centerY:0.2,  radius, label:  '20'},
+    {centerX:0.544,  centerY:0.0509090909090909,  radius, label:  '21'},
+    {centerX:0.208,  centerY:0.152727272727273,  radius, label:  '22'},
+    {centerX:0.18,  centerY:0.909090909090909,  radius, label:  '23'},
+    {centerX:0.28,  centerY:0.516363636363636,  radius, label:  '24'},
+    {centerX:0.308,  centerY:0.934545454545455,  radius, label:  '25'},
+]
+
+// SETUP FOR TRAILS A
+//  This is a MIRRORED AROUND Y Version. Y = 1-Y
+var CirclesA_021 = [
+    {centerX:0.54,  centerY:0.287272727272727,  radius, label:  '1'},
+    {centerX:0.408,  centerY:0.174545454545455,  radius, label:  '2'},
+    {centerX:0.624,  centerY:0.167272727272727,  radius, label:  '3'},
+    {centerX:0.64,  centerY:0.621818181818182,  radius, label:  '4'},
+    {centerX:0.4,  centerY:0.509090909090909,  radius, label:  '5'},
+    {centerX:0.512,  centerY:0.410909090909091,  radius, label:  '6'},
+    {centerX:0.356,  centerY:0.349090909090909,  radius, label:  '7'},
+    {centerX:0.16,  centerY:0.185454545454545,  radius, label:  '8'},
+    {centerX:0.204,  centerY:0.094545454545455,  radius, label:  '9'},
+    {centerX:0.3,  centerY:0.185454545454545,  radius, label:  '10'},
+    {centerX:0.396,  centerY:0.065454545454545,  radius, label:  '11'},
+    {centerX:0.06,  centerY:0.058181818181818,  radius, label:  '12'},
+    {centerX:0.116,  centerY:0.472727272727273,  radius, label:  '13'},
+    {centerX:0.044,  centerY:0.385454545454545,  radius, label:  '14'},
+    {centerX:0.048,  centerY:0.876363636363636,  radius, label:  '15'},
+    {centerX:0.132,  centerY:0.709090909090909,  radius, label:  '16'},
+    {centerX:0.288,  centerY:0.941818181818182,  radius, label:  '17'},
+    {centerX:0.344,  centerY:0.712727272727273,  radius, label:  '18'},
+    {centerX:0.556,  centerY:0.785454545454545,  radius, label:  '19'},
+    {centerX:0.4,  centerY:0.8,  radius, label:  '20'},
+    {centerX:0.456,  centerY:0.949090909090909,  radius, label:  '21'},
+    {centerX:0.792,  centerY:0.847272727272727,  radius, label:  '22'},
+    {centerX:0.82,  centerY:0.0909090909090911,  radius, label:  '23'},
+    {centerX:0.72,  centerY:0.483636363636364,  radius, label:  '24'},
+    {centerX:0.692,  centerY:0.065454545454545,  radius, label:  '25'},
+]
+// SETUP FOR TRAILS A
+//  This is a MIRRORED AROUND X and Y Version. X = 1-X.  Y = 1-Y
+var CirclesA_031 = [
+    {centerX:0.46,  centerY:0.287272727272727,  radius, label:  '1'},
+    {centerX:0.592,  centerY:0.174545454545455,  radius, label:  '2'},
+    {centerX:0.376,  centerY:0.167272727272727,  radius, label:  '3'},
+    {centerX:0.36,  centerY:0.621818181818182,  radius, label:  '4'},
+    {centerX:0.6,  centerY:0.509090909090909,  radius, label:  '5'},
+    {centerX:0.488,  centerY:0.410909090909091,  radius, label:  '6'},
+    {centerX:0.644,  centerY:0.349090909090909,  radius, label:  '7'},
+    {centerX:0.84,  centerY:0.185454545454545,  radius, label:  '8'},
+    {centerX:0.796,  centerY:0.094545454545455,  radius, label:  '9'},
+    {centerX:0.7,  centerY:0.185454545454545,  radius, label:  '10'},
+    {centerX:0.604,  centerY:0.065454545454545,  radius, label:  '11'},
+    {centerX:0.94,  centerY:0.058181818181818,  radius, label:  '12'},
+    {centerX:0.884,  centerY:0.472727272727273,  radius, label:  '13'},
+    {centerX:0.956,  centerY:0.385454545454545,  radius, label:  '14'},
+    {centerX:0.952,  centerY:0.876363636363636,  radius, label:  '15'},
+    {centerX:0.868,  centerY:0.709090909090909,  radius, label:  '16'},
+    {centerX:0.712,  centerY:0.941818181818182,  radius, label:  '17'},
+    {centerX:0.656,  centerY:0.712727272727273,  radius, label:  '18'},
+    {centerX:0.444,  centerY:0.785454545454545,  radius, label:  '19'},
+    {centerX:0.6,  centerY:0.8,  radius, label:  '20'},
+    {centerX:0.544,  centerY:0.949090909090909,  radius, label:  '21'},
+    {centerX:0.208,  centerY:0.847272727272727,  radius, label:  '22'},
+    {centerX:0.18,  centerY:0.0909090909090911,  radius, label:  '23'},
+    {centerX:0.28,  centerY:0.483636363636364,  radius, label:  '24'},
+    {centerX:0.308,  centerY:0.065454545454545,  radius, label:  '25'},
+]
+
 var CirclesA_002 = [
     {centerX:0.54, centerY:0.712727272727273, radius: radius, label: '1'},
     {centerX:0.408, centerY:0.825454545454545, radius: radius, label: '2'},
@@ -155,7 +249,85 @@ var CirclesB_001 = [
     {centerX:0.0567765567765568,centerY:0.486404833836858, radius: radius, label: '12'},
     {centerX:0.168498168498169, centerY:0.741691842900302, radius: radius, label: 'L'},
 ]
-
+//  This is a MIRRORED AROUND X Version. X = 1-X.  
+var CirclesB_011 = [
+   {centerX:0.492673992673993,  centerY:0.436555891238671,  radius, label:  '1'},
+    {centerX:0.296703296703297,  centerY:0.743202416918429,  radius, label:  'A'},
+    {centerX:0.637362637362637,  centerY:0.712990936555891,  radius, label:  '2'},
+    {centerX:0.54029304029304,  centerY:0.18429003021148,  radius, label:  'B'},
+    {centerX:0.428571428571429,  centerY:0.302114803625378,  radius, label:  '3'},
+    {centerX:0.296703296703297,  centerY:0.516616314199396,  radius, label:  'C'},
+    {centerX:0.3003663003663,  centerY:0.134441087613293,  radius, label:  '4'},
+    {centerX:0.152014652014652,  centerY:0.151057401812689,  radius, label:  'D'},
+    {centerX:0.153846153846154,  centerY:0.580060422960725,  radius, label:  '5'},
+    {centerX:0.217948717948718,  centerY:0.823262839879154,  radius, label:  'E'},
+    {centerX:0.457875457875458,  centerY:0.793051359516616,  radius, label:  '6'},
+    {centerX:0.703296703296703,  centerY:0.889728096676737,  radius, label:  'F'},
+    {centerX:0.765567765567766,  centerY:0.442598187311178,  radius, label:  '7'},
+    {centerX:0.846153846153846,  centerY:0.566465256797583,  radius, label:  'G'},
+    {centerX:0.880952380952381,  centerY:0.0574018126888218,  radius, label:  '8'},
+    {centerX:0.732600732600733,  centerY:0.27190332326284,  radius, label:  'H'},
+    {centerX:0.734432234432234,  centerY:0.126888217522659,  radius, label:  '9'},
+    {centerX:0.382783882783883,  centerY:0.0438066465256798,  radius, label:  'I'},
+    {centerX:0.073260073260073,  centerY:0.0574018126888218,  radius, label:  '10'},
+    {centerX:0.122710622710623,  centerY:0.675226586102719,  radius, label:  'J'},
+    {centerX:0.0750915750915751,  centerY:0.913897280966767,  radius, label:  '11'},
+    {centerX:0.926739926739927, centerY:0.933534743202417,  radius, label:  'K'},
+    {centerX:0.943223443223443, centerY:0.486404833836858,  radius, label:  '12'},
+    {centerX:0.831501831501831,  centerY:0.741691842900302,  radius, label:  'L'},
+]
+//  This is a MIRRORED AROUND Y Version.  Y = 1-Y
+var CirclesB_021 = [
+    {centerX:0.507326007326007,  centerY:0.563444108761329,  radius, label:  '1'},
+    {centerX:0.703296703296703,  centerY:0.256797583081571,  radius, label:  'A'},
+    {centerX:0.362637362637363,  centerY:0.287009063444109,  radius, label:  '2'},
+    {centerX:0.45970695970696,  centerY:0.81570996978852,  radius, label:  'B'},
+    {centerX:0.571428571428571,  centerY:0.697885196374622,  radius, label:  '3'},
+    {centerX:0.703296703296703,  centerY:0.483383685800604,  radius, label:  'C'},
+    {centerX:0.6996336996337,  centerY:0.865558912386707,  radius, label:  '4'},
+    {centerX:0.847985347985348,  centerY:0.848942598187311,  radius, label:  'D'},
+    {centerX:0.846153846153846,  centerY:0.419939577039275,  radius, label:  '5'},
+    {centerX:0.782051282051282,  centerY:0.176737160120846,  radius, label:  'E'},
+    {centerX:0.542124542124542,  centerY:0.206948640483384,  radius, label:  '6'},
+    {centerX:0.296703296703297,  centerY:0.110271903323263,  radius, label:  'F'},
+    {centerX:0.234432234432234,  centerY:0.557401812688822,  radius, label:  '7'},
+    {centerX:0.153846153846154,  centerY:0.433534743202417,  radius, label:  'G'},
+    {centerX:0.119047619047619,  centerY:0.942598187311178,  radius, label:  '8'},
+    {centerX:0.267399267399267,  centerY:0.72809667673716,  radius, label:  'H'},
+    {centerX:0.265567765567766,  centerY:0.873111782477341,  radius, label:  '9'},
+    {centerX:0.617216117216117,  centerY:0.95619335347432,  radius, label:  'I'},
+    {centerX:0.926739926739927,  centerY:0.942598187311178,  radius, label:  '10'},
+    {centerX:0.877289377289377,  centerY:0.324773413897281,  radius, label:  'J'},
+    {centerX:0.924908424908425,  centerY:0.086102719033233,  radius, label:  '11'},
+    {centerX:0.0732600732600733, centerY:0.066465256797583,  radius, label:  'K'},
+    {centerX:0.0567765567765568, centerY:0.513595166163142,  radius, label:  '12'},
+    {centerX:0.168498168498169,  centerY:0.258308157099698,  radius, label:  'L'},
+]
+//  This is a MIRRORED AROUND X and Y Version. X = 1-X.  Y = 1-Y
+var CirclesB_031 = [
+   {centerX:0.492673992673993,  centerY:0.563444108761329,  radius, label:  '1'},
+    {centerX:0.296703296703297,  centerY:0.256797583081571,  radius, label:  'A'},
+    {centerX:0.637362637362637,  centerY:0.287009063444109,  radius, label:  '2'},
+    {centerX:0.54029304029304,  centerY:0.81570996978852,  radius, label:  'B'},
+    {centerX:0.428571428571429,  centerY:0.697885196374622,  radius, label:  '3'},
+    {centerX:0.296703296703297,  centerY:0.483383685800604,  radius, label:  'C'},
+    {centerX:0.3003663003663,  centerY:0.865558912386707,  radius, label:  '4'},
+    {centerX:0.152014652014652,  centerY:0.848942598187311,  radius, label:  'D'},
+    {centerX:0.153846153846154,  centerY:0.419939577039275,  radius, label:  '5'},
+    {centerX:0.217948717948718,  centerY:0.176737160120846,  radius, label:  'E'},
+    {centerX:0.457875457875458,  centerY:0.206948640483384,  radius, label:  '6'},
+    {centerX:0.703296703296703,  centerY:0.110271903323263,  radius, label:  'F'},
+    {centerX:0.765567765567766,  centerY:0.557401812688822,  radius, label:  '7'},
+    {centerX:0.846153846153846,  centerY:0.433534743202417,  radius, label:  'G'},
+    {centerX:0.880952380952381,  centerY:0.942598187311178,  radius, label:  '8'},
+    {centerX:0.732600732600733,  centerY:0.72809667673716,  radius, label:  'H'},
+    {centerX:0.734432234432234,  centerY:0.873111782477341,  radius, label:  '9'},
+    {centerX:0.382783882783883,  centerY:0.95619335347432,  radius, label:  'I'},
+    {centerX:0.073260073260073,  centerY:0.942598187311178,  radius, label:  '10'},
+    {centerX:0.122710622710623,  centerY:0.324773413897281,  radius, label:  'J'},
+    {centerX:0.0750915750915751,  centerY:0.086102719033233,  radius, label:  '11'},
+    {centerX:0.926739926739927, centerY:0.066465256797583,  radius, label:  'K'},
+]
 var CirclesB_003 = [
     {centerX:0.53808962264151, centerY:0.356519, radius: radius, label: '1'},
     {centerX:0.746108490566038, centerY:0.689199, radius: radius, label: 'A'},
@@ -238,14 +410,70 @@ var TrailMakingA_Default = {
     PracticeSuggestedHeight: SuggestedHeightSampleA,
     ShowInstructions: true,
     InstructionsSpoken: false,
-    ShowWelcome: false,
+    ShowWelcome: true,
     WelcomeSpoken: false,
 	ShowThankYou: false,
     AskForNotes: false,
     RecordGIF: true,
     shortTitle: 'Trails A'
 }
-
+var TrailMakingA_Default011 = {
+    Circles: CirclesA_011,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: true,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: true,
+    shortTitle: 'Trails A'
+}
+var TrailMakingA_Default021 = {
+    Circles: CirclesA_021,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: true,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: true,
+    shortTitle: 'Trails A'
+}
+var TrailMakingA_Default031 = {
+    Circles: CirclesA_031,
+    SuggestedWidth: SuggestedWidthA,
+    SuggestedHeight: SuggestedHeightA,
+    ShowTimer: true,
+    Duration: DurationA,
+    ShowPractice: true,
+    PracticeCircles: SampleCirclesA,
+    PracticeSuggestedWidth: SuggestedWidthSampleA,
+    PracticeSuggestedHeight: SuggestedHeightSampleA,
+    ShowInstructions: true,
+    InstructionsSpoken: false,
+    ShowWelcome: true,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: true,
+    shortTitle: 'Trails A'
+}
 var TrailMakingB_Default = {
     Circles: CirclesB_001,
     SuggestedWidth: SuggestedWidthB,
@@ -427,7 +655,14 @@ var TrailMaking_Demonstration = {
 }
 
 add('TrailMakingA_Default', function(){ parameters = TrailMakingA_Default});
+add('TrailMakingA_Default011', function(){ parameters = TrailMakingA_Default011});
+add('TrailMakingA_Default021', function(){ parameters = TrailMakingA_Default021});
+add('TrailMakingA_Default031', function(){ parameters = TrailMakingA_Default031});
 add('TrailMakingB_Default', function(){ parameters = TrailMakingB_Default});
+add('TrailMakingB_Default011', function(){ parameters = TrailMakingB_Default011});
+add('TrailMakingB_Default021', function(){ parameters = TrailMakingB_Default021});
+add('TrailMakingB_Default031', function(){ parameters = TrailMakingB_Default031});
+
 add('TrailMakingA_Default_02', function(){ parameters = TrailMakingA_Default_02});
 add('TrailMakingB_Default_02', function(){ parameters = TrailMakingB_Default_02});
 

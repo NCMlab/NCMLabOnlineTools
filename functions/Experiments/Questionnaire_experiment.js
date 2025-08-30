@@ -2,11 +2,12 @@ var timeline = []
 var Questionnaire = []
 var CriteriaToUse = 0
 var Results 
-var converter = new showdown.Converter();
+// var converter = new showdown.Converter();
 
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {
+    console.log(parameters)
     text = 'Questionnaire = ' + parameters.Language + "_" + parameters.questionnaire[CriteriaToUse]
     console.log(parameters)
     console.log(text)
@@ -25,14 +26,15 @@ var LoadQuestionnaire = {
 var trial02 = {
   type: jsPsychSurvey,
   survey_json:  function() { 
+    
     return Questionnaire.survey_JSON
   },
   description: function() { return Questionnaire.description },
   on_load: function() {
+    console.log(document.getElementById("jspsych-progressbar-container"))
     document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
   },
   on_finish: function(data) {
-    
     data.trial = "Questionnaire"
     data.response = data.response
     data.QuestionnaireType = Questionnaire.QuestionnaireType
@@ -85,7 +87,7 @@ var trial = {
       return LabelNames.Submit
     },
     show_question_numbers: 'onPage',
-    description: function() { return Questionnaire.description },
+    //description: function() { return Questionnaire.description },
     on_load: function() {
       document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
       console.log("Hello World")
@@ -124,12 +126,15 @@ var SpecialtyScoring = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    
     switch ( data.trials[0].shortTitle ) {
+      case 'FirstName':
+        // This is here to have a language independent location to store the first name of a participant
+        {
+          Results.AllResults['FirstName'] = data.trials[0].response['Name']
+          Results.AllResults['EMail'] = data.trials[0].response['email']
+        }
       case 'CESAM':
         {
-          console.log(data)
-          console.log(Results)
           Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
           Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
           Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
@@ -187,7 +192,7 @@ var SpecialtyScoring = {
                                               Results.AllResults['Continence'] + 
                                               Results.AllResults['Mood'] + 
                                               Results.AllResults['Mobility']
-          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                           
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                
           break;
         }
         case 'GDS':

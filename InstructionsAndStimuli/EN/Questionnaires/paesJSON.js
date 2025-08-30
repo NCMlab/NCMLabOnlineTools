@@ -1,4 +1,4 @@
-var title = "PAES"
+var title = "Physical Activity Enjoyment Scale"
 var shortTitle = "PAES"
 const survey_JSON = {
     showQuestionNumbers: false,
@@ -8,7 +8,7 @@ const survey_JSON = {
         {
             type: "html",
             name: "introduction",
-            html: "Please rate how you feel <em>at the moment</em> about the music and movement activity you have been doing"
+            html: "Please rate how you feel at the moment about the music and movement activity you have been doing"
         },
         {
             type: 'radiogroup',
