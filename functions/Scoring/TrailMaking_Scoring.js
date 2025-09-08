@@ -50,5 +50,18 @@ function TrailMaking_Scoring(data) {
 	if ( data.ShortTitle !== 'undefined' ){
 		Results.AllResults['ShortTitle'] = data.shortTitle
 	}		
+// Add computer information 
+		var NAV = navigator;
+		Results.AllResults['Computer Information'] = NAV.appVersion
+		Results.AllResults['Current Language'] = NAV.language
+		Results.AllResults['Available Language'] = NAV.languages
+        Results.AllResults['ScreenHeight'] = screen.height;
+        Results.AllResults['ScreenWidth'] = screen.width;
+        Results.AllResults['ScreenAvailHeight'] = screen.availHeight;
+        Results.AllResults['ScreenAvailWidth'] = screen.availWidth;
+		Results.AllResults['CanvasWidth'] = trialData.CanvasWidth;
+		Results.AllResults['CanvasHeight'] = trialData.CanvasHeight;
+		Results.AllResults['InnerHeight'] = window.innerHeight;
+		Results.AllResults['InnerWidth'] = window.innerWidth;
 	return Results
 }
