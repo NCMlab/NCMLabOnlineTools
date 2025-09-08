@@ -132,6 +132,16 @@ var enter_fullscreen = {
       // }
       on_finish: function(data) {
         data.trial = 'Trail Making'
+        var NAV = navigator;
+        var ComputerInfo = {};
+        ComputerInfo.CurrentLanguage = NAV.language;
+        ComputerInfo.AvailableLanguage = NAV.languages;
+        ComputerInfo.appVersion = NAV.appVersion;
+        ComputerInfo.ScreenHeight = screen.height;
+        ComputerInfo.ScreenWidth = screen.width;
+        ComputerInfo.ScreenAvailHeight = screen.availHeight;
+        ComputerInfo.ScreenAvailWidth = screen.availWidth;
+        data.ComputerInfo = ComputerInfo
       }
     }
 
