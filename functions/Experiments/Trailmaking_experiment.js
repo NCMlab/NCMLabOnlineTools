@@ -17,6 +17,10 @@ var PracticeCanvasWidth
 var WidthAdjustment = 0.76
 var HeightAdjustment = 0.76
 
+var WidthAdjustment = 0.95
+var HeightAdjustment = 0.95
+
+
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
@@ -91,6 +95,10 @@ var enter_fullscreen = {
   
   var trials = {
       type: jsPsychSketchpadTrailMaking,   
+      on_start: function(){
+        // The following line removes the header line from being displayed
+        document.getElementById("header-btn-group").style = 'display:none'
+      },
       Circles: function(){ 
         return parameters.Circles}, 
       canvas_width: function(){

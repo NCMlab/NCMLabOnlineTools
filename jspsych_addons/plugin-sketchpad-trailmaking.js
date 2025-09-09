@@ -404,7 +404,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       canvas_html += sketchpad_controls;
       let finish_button_html = "";
       if (this.params.show_finished_button) {
-        finish_button_html = `<p id="finish-btn"><button class="jspsych-btn" id="sketchpad-end">${this.params.finished_button_label}</button></p>`;
+        finish_button_html = `<p id="finish-btn" style="display:contents;"><button class="jspsych-btn" id="sketchpad-end">${this.params.finished_button_label}</button></p>`;
       }
       let timer_html = "";
       if (
@@ -421,7 +421,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           display_html =
             this.params.prompt +
             canvas_html +
-            '<table  style="width:50%"><tr><td text-align="right">' +
+            '<table  style="width:50%"><tr style="height: 0;"><td text-align="right">' +
             finish_button_html +
             '</td><td style="text-align:left">' +
             timer_html +
@@ -450,7 +450,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       } else {
         //display_html = canvas_html + '<table><tr><td>'+finish_button_html+'</td><td>' + timer_html +'</td></tr></table>';
         display_html =
-          '<table style="border:0px;padding:0px;margin:0px;border-spacing:0px"><tr style="width:100%;border:0px;padding:0px;margin:0px;border-spacing:0px">'+
+          '<table style="border:0px;padding:0px;margin:0px;border-spacing:0px"><tr style="width:100%; height:0; border:0px;padding:0px;margin:0px;border-spacing:0px">'+
           '<td>' +
           finish_button_html +
           '</td><td style="text-align:left">' +

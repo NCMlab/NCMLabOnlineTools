@@ -493,6 +493,28 @@ var TrailMakingB_Default = {
     RecordGIF: true,
     shortTitle: 'Trails B'
 }
+// ====== TESTER ===========
+var TrailMakingB_DefaultTEST = {
+    Circles: CirclesB_001,
+    SuggestedWidth: SuggestedWidthB,
+    SuggestedHeight: SuggestedHeightB,
+    ShowTimer: true,
+    Duration: DurationB,
+    ShowPractice: false,
+    PracticeCircles: SampleCirclesB,
+    PracticeSuggestedWidth: SuggestedWidthSampleB,
+    PracticeSuggestedHeight: SuggestedHeightSampleB,
+    ShowInstructions: false,
+    InstructionsSpoken: false,
+    ShowWelcome: false,
+    WelcomeSpoken: false,
+	ShowThankYou: false,
+    AskForNotes: false,
+    RecordGIF: false,
+    shortTitle: 'Trails B'
+}
+// =================
+
 
 var TrailMakingA_Default_02 = {
     Circles: CirclesA_001,
@@ -673,3 +695,4 @@ add('TrailMakingB_003', function(){ parameters = TrailMakingB_003});
 add('TrailMaking_FaCE', function(){ parameters = TrailMaking_FaCE});
 add('TrailMaking_FaCE_Training', function(){ parameters = TrailMaking_FaCE_Training});
 add('TrailMaking_Demonstration', function(){ parameters = TrailMaking_Demonstration});
+add('TrailMakingB_DefaultTEST', function(){ parameters = TrailMakingB_DefaultTEST});

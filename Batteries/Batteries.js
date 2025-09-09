@@ -1562,6 +1562,7 @@ List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instruction
 // List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default021', Instructions: 'DefaultA', IconName: 'Trails A,y'})
 // List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default031', Instructions: 'DefaultA', IconName: 'Trails A,xy'})
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultTEST', Instructions: 'DefaultB', IconName: 'Trails B'})
 BatteryList.push({index: 78, 
 	name:'Music Motion: Trails', 
   shortName: "Trails",
