@@ -17,6 +17,9 @@ var PracticeCanvasWidth
 var WidthAdjustment = 0.76
 var HeightAdjustment = 0.76
 
+var WidthAdjustment = 0.9
+var HeightAdjustment = 0.9
+
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
@@ -91,6 +94,10 @@ var enter_fullscreen = {
   
   var trials = {
       type: jsPsychSketchpadTrailMaking,   
+      on_start: function(){
+        // The following line removes the header line from being displayed
+        document.getElementById("header-btn-group").style = 'display:none'
+      },
       Circles: function(){ 
         return parameters.Circles}, 
       canvas_width: function(){
@@ -117,9 +124,9 @@ var enter_fullscreen = {
       last_circle_label: function() {return Instructions.LastCircleLabel},
       finished_button_label: function() {return Instructions.FinishedLabel},
       countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
-      extensions: [
+      /*extensions: [
         {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
-      ],
+      ],*/
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
