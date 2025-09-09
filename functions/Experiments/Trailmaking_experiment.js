@@ -17,9 +17,8 @@ var PracticeCanvasWidth
 var WidthAdjustment = 0.76
 var HeightAdjustment = 0.76
 
-var WidthAdjustment = 0.86
-var HeightAdjustment = 0.86
-
+var WidthAdjustment = 0.94
+var HeightAdjustment = 0.94
 
 var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
@@ -125,9 +124,9 @@ var enter_fullscreen = {
       last_circle_label: function() {return Instructions.LastCircleLabel},
       finished_button_label: function() {return Instructions.FinishedLabel},
       countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
-      extensions: [
+      /*extensions: [
         {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
-      ],
+      ],*/
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
