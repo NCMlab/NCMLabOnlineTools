@@ -148,12 +148,32 @@ function SetupSession() {
     pseudoSwitch(input)
     var Choices = []
     var SessionsBatteryList = []
+    var ButtonRow = []
+    var ButtonCol = []
+    var ButtonBit = []
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
             SessionsBatteryList.push( parameters[0].List[i].battery )
+            ButtonRow.push( parameters[0].List[i].row )
+            ButtonCol.push( parameters[0].List[i].col )
+            ButtonBit.push( parameters[0].List[i].BitIndex )
         }
-    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
+    
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit)
+    console.log(ButtonRow)
+    console.log(ButtonCol)
+    console.log(ButtonBit)
+
+    // The Where To Go Next functionality may read the current bit from batch data and update the 
+    // overall bit status of the session. The goal is to keep track of which battery in the entire 
+    // session has been completed. Therefore, there is one bit per button in the session, NOT one bit 
+    // per task/component. This Bit Location can be sent to the Session Data. This will allow the central 
+    // executive to keep track of it when it determins that a battery has been completed. 
+    // Therefore, it may be the central executuve that takes care of this.
+    // Whenever a battery (of a session) is finished batch data is updated with this information. 
+    // Therefore, there just needs to be a bit-string/bytes corresponding to the yes/no (1/0) status of 
+    // each battery in the session. The itemCount in the session config is one value per button/battery.
     return SessionChoiceTrial
     //timeline.push()
 }
@@ -201,7 +221,7 @@ function UpdateBatchData() {
         resolve(currentIndex)
     })
 }
-
+// This is the location within a bettery
 function UpdateSessionDataIndex(IsThereSessionData) {
     return new Promise((resolve) => {
         if ( IsThereSessionData )
@@ -268,13 +288,24 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
+function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList) {
     var trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() { return Title },
         choices: Choices,
         prompt: "",
+        on_start: function() {
+            // Is the BitList Empty?
+            console.log(BitList === undefined)
+        },
         on_finish: function(data) {
+            console.log(data)
+            console.log(data.response)
+            // This does not add what I expect.
+            // I expect 5 --> 10000
+            console.log(BitList[data.response + 1])
+            console.log("AMount to add to the bitstring of completion: "+(BitList[data.response + 1]).toString(2))
+            console.log(BREAK)
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
@@ -284,6 +315,7 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
             var TitleToStart = JATOSSessionData.TaskNameList[0]
             // Start the battery
             StartComponent(TitleToStart)
+            // Once a session is selected, add the Bit Index to the session data
         }
     };
     return trial
