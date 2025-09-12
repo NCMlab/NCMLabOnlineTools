@@ -208,6 +208,7 @@ function UpdateBatchData() {
             jatos.batchSession.set(jatos.workerId, currentIndex)    
             // set the language
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => jatos.batchSession.set(jatos.workerId+"_bitIndex", "0"))
             
         }
         else {
@@ -234,6 +235,15 @@ function UpdateSessionDataIndex(IsThereSessionData) {
     })
 }
 
+function UpdateSessionBitIndex(AddToCompletionCount) {
+    return new Promise((resolve) => {
+        var SessionData = jatos.studySessionData 
+        SessionData.AddToCompletionCount = AddToCompletionCount
+        jatos.studySessionData = SessionData 
+        resolve("Successfuly updated session bit index")
+    })
+}
+
 // These are the following usage types available.
 
 function UsageTypeDecision(UsageType) {
@@ -254,7 +264,18 @@ function UsageTypeDecision(UsageType) {
                 }
                 else { 
                     console.log("The battery is finished.")
-                    timeline.push(MakeThankYouPage()) 
+                    console.log(jatos.workerId)
+                    // Now that the battery is complete add the Completion information to the Batch
+                    console.log(jatos.studySessionData.AddToCompletionCount)
+                    console.log(jatos.batchSession.get(jatos.workerId+'_bitIndex'))
+          
+                    var NewValue = parseInt(jatos.studySessionData.AddToCompletionCount,10) + parseInt(jatos.batchSession.get(jatos.workerId+'_bitIndex'),10)
+                    console.log(NewValue)
+
+                    alert('JASON')
+                    jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
+                    //.then(() => timeline.push(MakeThankYouPage()))
+                    timeline.push(MakeThankYouPage())
                 }
                 break;
             case 'Session':
@@ -304,17 +325,26 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList) {
             // This does not add what I expect.
             // I expect 5 --> 10000
             console.log(BitList[data.response + 1])
-            console.log("AMount to add to the bitstring of completion: "+(BitList[data.response + 1]).toString(2))
-            console.log(BREAK)
+            // Make a bit version of this session
+            var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            // convert back to base10
+            AddToCompletionCount = parseInt(AddToCompletionCount, 2);
+            console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
+            
+//            console.log(BREAK)
+
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
+            console.log(SessionsBatteryList)
             SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
             JATOSSessionData = jatos.studySessionData
             console.log(JATOSSessionData)
             // Start at the beginning of this battery
             var TitleToStart = JATOSSessionData.TaskNameList[0]
             // Start the battery
-            StartComponent(TitleToStart)
+            console.log(TitleToStart)
+            UpdateSessionBitIndex(AddToCompletionCount)
+            .then(() => StartComponent(TitleToStart))
             // Once a session is selected, add the Bit Index to the session data
         }
     };

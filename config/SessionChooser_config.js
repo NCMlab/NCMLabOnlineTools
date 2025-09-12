@@ -43,13 +43,13 @@ List.push({name: 'CESAM', battery: '72', row: 1, col: 3, MaxCol: 3, BitIndex: 3}
 List.push({name: 'Baseline 1', battery: '72', row: 2, col: 1, MaxCol: 3, BitIndex: 4})
 List.push({name: 'Baseline 2', battery: '72', row: 2, col: 2, MaxCol: 3, BitIndex: 5})
 List.push({name: 'Baseline 3', battery: '72', row: 2, col: 3, MaxCol: 3, BitIndex: 6})
-List.push({name: 'Baseline Trails 1', battery: '72', row: 3, col: 1, MaxCol: 3, BitIndex: 7})
-List.push({name: 'Baseline Trails 2', battery: '72', row: 3, col: 2, MaxCol: 3, BitIndex: 8})
-List.push({name: 'Baseline Trails 3', battery: '72', row: 3, col: 3, MaxCol: 3, BitIndex: 9})
-List.push({name: 'Week 1, Pre', battery: '72', row: 4, col: 1, MaxCol: 2, BitIndex: 10})
-List.push({name: 'Week 1, Post', battery: '72', row: 4, col: 2, MaxCol: 2, BitIndex: 11})
-List.push({name: 'Week 2, Pre', battery: '72', row: 5, col: 1, MaxCol: 2, BitIndex: 12})
-List.push({name: 'Week 2, Post', battery: '72', row: 5, col: 2, MaxCol: 2, BitIndex: 13})
+List.push({name: 'Baseline Trails 1', battery: '78', row: 3, col: 1, MaxCol: 3, BitIndex: 7})
+List.push({name: 'Baseline Trails 2', battery: '78', row: 3, col: 2, MaxCol: 3, BitIndex: 8})
+List.push({name: 'Baseline Trails 3', battery: '78', row: 3, col: 3, MaxCol: 3, BitIndex: 9})
+List.push({name: 'Week 1, Pre', battery: '75', row: 4, col: 1, MaxCol: 2, BitIndex: 10})
+List.push({name: 'Week 1, Post', battery: '76', row: 4, col: 2, MaxCol: 2, BitIndex: 11})
+List.push({name: 'Week 2, Pre', battery: '75', row: 5, col: 1, MaxCol: 2, BitIndex: 12})
+List.push({name: 'Week 2, Post', battery: '76', row: 5, col: 2, MaxCol: 2, BitIndex: 13})
 parameters099.push({index: 3, 
     Title: "What session is this?",
     List: List
