@@ -338,3 +338,9 @@ function loadScriptSequentially(file) {
     document.head.appendChild(newScript);
     });
 }
+
+
+/* var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            console.log(AddToCompletionCount)
+            console.log("Amount to add to the bitstring of completion: " + AddToCompletionCount)
+            */
