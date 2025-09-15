@@ -149,14 +149,12 @@ function SetupSession() {
     var Choices = []
     var SessionsBatteryList = []
     var ButtonRow = []
-    var ButtonCol = []
     var ButtonBit = []
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
             SessionsBatteryList.push( parameters[0].List[i].battery )
             ButtonRow.push( parameters[0].List[i].row )
-            ButtonCol.push( parameters[0].List[i].col )
             ButtonBit.push( parameters[0].List[i].BitIndex )
         }
     
@@ -167,7 +165,6 @@ function SetupSession() {
     CompletedBits = parseInt(CompletedBits, 10).toString(2)
     console.log(CompletedBits)
     console.log(ButtonRow)
-    console.log(ButtonCol)
     console.log(ButtonBit)
     
     SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
@@ -332,15 +329,12 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList, Comple
             console.log(BitList === undefined)
         },
         on_finish: function(data) {
-            console.log(data)
-            console.log(data.response)
             // Make a bit version of this session
             var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
             // convert back to base10
             AddToCompletionCount = parseInt(AddToCompletionCount, 2);
             console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
-            
-
+        
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             console.log(SessionsBatteryList)

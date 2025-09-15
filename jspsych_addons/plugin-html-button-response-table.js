@@ -106,6 +106,8 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           html += '<div id="jspsych-html-button-response-btngroup">';
           console.log("BUTTON ROW")
           console.log(trial.completedBits)
+          // Reverse completedBits so it is read correctedly
+          trial.completedBits = trial.completedBits.split('').reverse().join('');
           console.log(trial.buttonRow)
           // currentRow is set to 1 so that the table starts with the first <tr>
           var currentRow = 1
@@ -113,8 +115,6 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           // Start the table
           html += '<table border="0"><tr>'
           for (var i = 0; i < trial.choices.length; i++) {
-                console.log(trial.buttonRow[i])
-                console.log(trial.completedBits[i])
                 if ( trial.buttonRow[i] > currentRow ) { 
                     newRow = true 
                     html += '</tr><tr>'
@@ -124,7 +124,10 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
                 // Making each button here
               var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                 if ( trial.completedBits[i] == 1 )
-                { html += '<td bgcolor="orange">' }
+                { 
+                    console.log('INDEX: '+i+', bit: '+trial.completedBits[i])
+                    html += '<td bgcolor="orange">' 
+                }
                 else { html += '<td>' }
               html +=
                     '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:' +
