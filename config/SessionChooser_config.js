@@ -50,6 +50,30 @@ List.push({name: 'Week 1, Pre', battery: '75', row: 4, col: 1, MaxCol: 2, BitInd
 List.push({name: 'Week 1, Post', battery: '76', row: 4, col: 2, MaxCol: 2, BitIndex: 11})
 List.push({name: 'Week 2, Pre', battery: '75', row: 5, col: 1, MaxCol: 2, BitIndex: 12})
 List.push({name: 'Week 2, Post', battery: '76', row: 5, col: 2, MaxCol: 2, BitIndex: 13})
+List.push({name: 'Week 3, Pre', battery: '75', row: 6, col: 1, MaxCol: 2, BitIndex: 14})
+List.push({name: 'Week 3, Post', battery: '76', row: 6, col: 2, MaxCol: 2, BitIndex: 15})
+List.push({name: 'Week 4, Pre', battery: '75', row: 7, col: 1, MaxCol: 2, BitIndex: 16})
+List.push({name: 'Week 4, Post', battery: '76', row: 7, col: 2, MaxCol: 2, BitIndex: 17})
+List.push({name: 'Week 5, Pre', battery: '75', row: 8, col: 1, MaxCol: 2, BitIndex: 18})
+List.push({name: 'Week 5, Post', battery: '76', row: 8, col: 2, MaxCol: 2, BitIndex: 19})
+List.push({name: 'Week 6, Pre', battery: '75', row: 9, col: 1, MaxCol: 2, BitIndex: 20})
+List.push({name: 'Week 6, Post', battery: '76', row: 9, col: 2, MaxCol: 2, BitIndex: 21})
+List.push({name: 'Week 7, Pre', battery: '75', row: 10, col: 1, MaxCol: 2, BitIndex: 22})
+List.push({name: 'Week 7, Post', battery: '76', row: 10, col: 2, MaxCol: 2, BitIndex: 23})
+List.push({name: 'Week 8, Pre', battery: '75', row: 11, col: 1, MaxCol: 2, BitIndex: 24})
+List.push({name: 'Week 8, Post', battery: '76', row: 11, col: 2, MaxCol: 2, BitIndex: 25})
+List.push({name: 'Week 9, Pre', battery: '75', row: 12, col: 1, MaxCol: 2, BitIndex: 26})
+List.push({name: 'Week 9, Post', battery: '76', row: 12, col: 2, MaxCol: 2, BitIndex: 27})
+List.push({name: 'Week 10, Pre', battery: '75', row: 13, col: 1, MaxCol: 2, BitIndex: 28})
+List.push({name: 'Week 10, Post', battery: '76', row: 13, col: 2, MaxCol: 2, BitIndex: 29})
+List.push({name: 'Post-intervention 1', battery: '72', row: 14, col: 1, MaxCol: 3, BitIndex: 30})
+List.push({name: 'Post-intervention 2', battery: '72', row: 14, col: 2, MaxCol: 3, BitIndex: 31})
+List.push({name: 'Post-intervention 3', battery: '72', row: 14, col: 3, MaxCol: 3, BitIndex: 32})
+List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, col: 1, MaxCol: 3, BitIndex: 33})
+List.push({name: 'Post-intervention Trails 2', battery: '78', row: 15, col: 2, MaxCol: 3, BitIndex: 34})
+List.push({name: 'Post-intervention Trails 3', battery: '78', row: 15, col: 3, MaxCol: 3, BitIndex: 35})
+
+
 parameters099.push({index: 3, 
     Title: "What session is this?",
     List: List

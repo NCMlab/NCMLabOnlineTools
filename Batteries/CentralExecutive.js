@@ -160,10 +160,21 @@ function SetupSession() {
             ButtonBit.push( parameters[0].List[i].BitIndex )
         }
     
-    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit)
+    console.log("Completed Sessions: ")
+    CompletedBits = jatos.batchSession.get(jatos.workerId+'_bitIndex')
+    // Convert this back to bits to centralize this code/decode into one script
+    console.log(CompletedBits)
+    CompletedBits = parseInt(CompletedBits, 10).toString(2)
+    console.log(CompletedBits)
     console.log(ButtonRow)
     console.log(ButtonCol)
     console.log(ButtonBit)
+    
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
+    
+    // Have different session been completed?
+    // Check the bit 
+    
 
     // The Where To Go Next functionality may read the current bit from batch data and update the 
     // overall bit status of the session. The goal is to keep track of which battery in the entire 
@@ -271,8 +282,7 @@ function UsageTypeDecision(UsageType) {
           
                     var NewValue = parseInt(jatos.studySessionData.AddToCompletionCount,10) + parseInt(jatos.batchSession.get(jatos.workerId+'_bitIndex'),10)
                     console.log(NewValue)
-
-                    alert('JASON')
+                    jatos.batchSessionVersioning = false;
                     jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
                     //.then(() => timeline.push(MakeThankYouPage()))
                     timeline.push(MakeThankYouPage())
@@ -309,11 +319,13 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList) {
+function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow) {
     var trial = {
-        type: jsPsychHtmlButtonResponse,
+        type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },
         choices: Choices,
+        completedBits: CompletedBitList,
+        buttonRow: ButtonRow,
         prompt: "",
         on_start: function() {
             // Is the BitList Empty?
@@ -322,16 +334,12 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList) {
         on_finish: function(data) {
             console.log(data)
             console.log(data.response)
-            // This does not add what I expect.
-            // I expect 5 --> 10000
-            console.log(BitList[data.response + 1])
             // Make a bit version of this session
             var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
             // convert back to base10
             AddToCompletionCount = parseInt(AddToCompletionCount, 2);
             console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
             
-//            console.log(BREAK)
 
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
