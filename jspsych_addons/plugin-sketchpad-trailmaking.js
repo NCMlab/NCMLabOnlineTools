@@ -1087,7 +1087,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
       console.log("Capturing Frame");
       this.capture_frame_interval = setInterval(() => {
         this.enc.addFrame(this.ctx);
-      }, 500);
+      }, 1000); // changed from 500
       //this.capture_frame_interval = setTimeout(this.enc.addFrame(this.ctx), 500)
     }
     set_trial_duration_timer() {
