@@ -17,6 +17,13 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: undefined,
               array: true,
           },
+          valid_choices: 
+          {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid Choices",
+              default: undefined,
+              array: true,
+          },
           /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
@@ -195,9 +202,11 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           // JASON NEW
                     // start the response listener
           if (trial.choices != "NO_KEYS") {
+            console.log("KEY PRESS")
+            console.log(trial)
               var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
                   callback_function: after_response,
-                  valid_responses: trial.choices,
+                  valid_responses: trial.valid_choices,
                   rt_method: "performance",
                   persist: false,
                   allow_held_key: false,

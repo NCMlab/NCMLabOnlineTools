@@ -66,6 +66,7 @@ var setupTest = {
       },
       trial_duration: function() { return parameters.StimOnTime },
       choices: [],
+      valid_choices: [],
       prompt: '',
       on_finish: function(data){
         stimList.addStim(output[2])
@@ -82,6 +83,7 @@ var setupTest = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
       choices: [],
+      valid_choices: [],
       trial_duration: function() { return parameters.RetOnTime},
       //on_finish: function(data){
               // data.trialType = "Retention"
@@ -90,14 +92,11 @@ var setupTest = {
 
     var Probe = {
       type:jsPsychHtmlButtonResponseTouchscreen,
-      on_start: function() {
-         console.log("IN PROBE")
-        console.log(KeyboardChoices)
-      },
       stimulus: function() {
         return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
       choices: function() { return parameters.ButtonLabels},
+      valid_choices: function() { return parameters.KeyboardValues },
       trial_duration: ProbeOnTime,
       on_finish: function(data){
         // NEED TO UPDATE THIS BASED ON TEH ADAPTIVE NATURE OF THE TRIALS
@@ -108,20 +107,13 @@ var setupTest = {
         data.StimLetters = stimList.getCurrentStim()
         data.Load = data.StimLetters.length
         var correct = stimList.getCurrentCorrect() //jsPsych.timelineVariable("Correct", true)
-        console.log("Correct Answer is:")
-        console.log(correct)
-        console.log("Participant Response is:")
-        console.log(data.response)
         // in the list of allowable key presses, what is the index of wehat was pressed?
-        alert(data.response)
+        var ResponseMapping = parameters.KeyboardValues
+        var KeyboardMappings = parameters.KeyboardMappings
+
         var ResponseIndex = ResponseMapping.indexOf(data.response)
-        console.log(ResponseMapping)
-        console.log(ResponseIndex)
-        console.log("Program thinks this answer is:")
-        console.log(ResponseMapping[ResponseIndex])
-        console.log(data)
-        console.log(stair1)
-        if (ResponseMapping[ResponseIndex] == correct) 
+
+        if ( KeyboardMappings[ResponseIndex] == correct) 
           {
             data.correct = 1,
             stair1.Decide(true)
@@ -200,9 +192,9 @@ var SendData = {
 timeline.push(enter_fullscreen)
 timeline.push(Welcome)
 timeline.push(Instructions01)
-  timeline.push(setupPractice)
+timeline.push(setupPractice)
 //timeline.push(WaitTime)
-   timeline.push(loop_node)
+timeline.push(loop_node)
 
 timeline.push(Instructions03)
 timeline.push(setupTest)
