@@ -11,6 +11,7 @@ var AllowableLetters = "BCDFGHJKLMNPQRSTVXYZ";
 var DMSFontSize = 72;
 
 var KeyboardChoices = ['No', 'Yes'];
+var KeyboardChoices = ['n', 'm']
 // the following is used for scoring and allows the keyboard choices to be whatever you would like
 // This response mapping correspopnds to the order of the above KeyboardChoices
 var ResponseMapping = [0, 1];
@@ -364,7 +365,7 @@ vDMS_Adaptive_003 = {
 	ShowInstructions: true, 
 	AskForNotes: false,
 	MaxTrials: 4,
-	NPracticeTrials: 1,
+	NPracticeTrials: 4,
 	MaxReversals: 15,
 	StartValue: 1,
 	MinValue: 1,
@@ -378,7 +379,9 @@ vDMS_Adaptive_003 = {
 	RetOnTime: 3500,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
-
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['ArrowLeft','ArrowRight'],
+	KeyboadMappings: [true,false]
 }
 add('vDMS_Adaptive_003', function(){ parameters = vDMS_Adaptive_003});

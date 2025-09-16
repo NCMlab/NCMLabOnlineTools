@@ -90,10 +90,14 @@ var setupTest = {
 
     var Probe = {
       type:jsPsychHtmlButtonResponseTouchscreen,
+      on_start: function() {
+         console.log("IN PROBE")
+        console.log(KeyboardChoices)
+      },
       stimulus: function() {
         return '<p style="color:'+ProbeColor+'; font-size:'+DMSFontSize+'px">'+stimList.CurrentProbe+'</p>'
       },
-      choices: KeyboardChoices,
+      choices: function() { return parameters.ButtonLabels},
       trial_duration: ProbeOnTime,
       on_finish: function(data){
         // NEED TO UPDATE THIS BASED ON TEH ADAPTIVE NATURE OF THE TRIALS
@@ -109,6 +113,7 @@ var setupTest = {
         console.log("Participant Response is:")
         console.log(data.response)
         // in the list of allowable key presses, what is the index of wehat was pressed?
+        alert(data.response)
         var ResponseIndex = ResponseMapping.indexOf(data.response)
         console.log(ResponseMapping)
         console.log(ResponseIndex)

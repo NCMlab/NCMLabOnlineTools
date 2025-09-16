@@ -24,6 +24,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: '<button class="jspsych-btn">%choice%</button>',
               array: true,
           },
+
           /** Any content here will be displayed under the button(s). */
           prompt: {
               type: jspsych.ParameterType.HTML_STRING,
@@ -126,6 +127,8 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           var start_time = performance.now();
           // add event listeners to buttons
           for (var i = 0; i < trial.choices.length; i++) {
+            console.log(trial)
+            console.log(trial.choices)
               display_element
                   .querySelector("#jspsych-html-button-response-button-" + i)
                   .addEventListener("click", (e) => {
@@ -156,11 +159,23 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           };
           // function to handle responses by the subject
           function after_response(choice) {
-              // measure rt
-              var end_time = performance.now();
-              var rt = Math.round(end_time - start_time);
-              response.button = parseInt(choice);
-              response.rt = rt;
+              console.log("RESPONSE RESPONSE: ")
+              console.log(choice)
+              if ( typeof choice === 'object' )
+              {
+                response.button = choice.key
+                response.rt = choice.rt
+                }
+              else {
+                
+                var end_time = performance.now();
+                var rt = Math.round(end_time - start_time);
+                response.button = parseInt(choice);
+                response.rt = rt;
+                }
+                // measure rt
+              
+              
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
               // display_element.querySelector("#jspsych-html-button-response-stimulus").className +=
@@ -172,9 +187,24 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   btns[i].setAttribute("disabled", "disabled");
               }
               if (trial.response_ends_trial) {
-                  end_trial();
+                console.log("ENDING TRIAL")
+                console.log(response)  
+                end_trial();
               }
           }
+          // JASON NEW
+                    // start the response listener
+          if (trial.choices != "NO_KEYS") {
+              var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
+                  callback_function: after_response,
+                  valid_responses: trial.choices,
+                  rt_method: "performance",
+                  persist: false,
+                  allow_held_key: false,
+              });
+          }
+          // -----
+
           // hide image if timing is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
