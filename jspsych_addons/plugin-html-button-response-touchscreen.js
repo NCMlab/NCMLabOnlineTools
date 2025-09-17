@@ -153,6 +153,11 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           const end_trial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
+                // kill keyboard listeners
+              if (typeof keyboardListener !== "undefined") {
+                  this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+              }
+
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,

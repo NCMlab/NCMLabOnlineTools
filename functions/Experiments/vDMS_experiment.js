@@ -141,6 +141,7 @@ var setupTest = {
           {return '<p style="font-size:'+DMSFontSize+'px; color:'+ProbeColor+'">+</p>'}
       },
       choices: [],
+      valid_choices: [],
       trial_duration: function() { return parameters.ITITime},
      // on_finish: function(data){
      //   data.trialType = "fixation"
@@ -153,6 +154,7 @@ var setupTest = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: '<p style="font-size:'+DMSFontSize+'px; color:black">+</p>',
       choices: [],
+      valid_choices: [],
       trial_duration: function() { return parameters.WaitOnTime},
     } 
 
@@ -161,6 +163,7 @@ var setupTest = {
     var debrief_block = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       choices: [],
+      valid_choices: [],
       stimulus: function() {
         return "The Reversals are: "+stair1.ReversalList+"The mean Reversal is : "+stair1.CalculateAverage()
       }

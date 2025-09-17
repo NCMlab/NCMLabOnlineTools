@@ -143,7 +143,7 @@ SpatialDMS_Adaptive_002 = {
 
 add('SpatialDMS_Adaptive_002', function(){ parameters = SpatialDMS_Adaptive_002});
 
-SpatialDMS_Adaptive_002 = {
+SpatialDMS_Adaptive_003 = {
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	ShowThankYou: true,
