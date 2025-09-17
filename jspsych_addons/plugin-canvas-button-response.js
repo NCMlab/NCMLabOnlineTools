@@ -1,12 +1,12 @@
-var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
+var jsPsychCanvasButtonResponse = (function (jspsych) {
   'use strict';
 
   const info = {
-      name: "html-button-response-touchscreen",
+      name: "canvas-button-response",
       parameters: {
-          /** The HTML string to be displayed */
+          /** The drawing function to apply to the canvas. Should take the canvas object as argument. */
           stimulus: {
-              type: jspsych.ParameterType.HTML_STRING,
+              type: jspsych.ParameterType.FUNCTION,
               pretty_name: "Stimulus",
               default: undefined,
           },
@@ -17,28 +17,28 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: undefined,
               array: true,
           },
-          valid_choices: 
+        valid_choices: 
           {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid Choices",
               default: undefined,
               array: true,
           },
-          /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
+
+          /** The html of the button. Can create own style. */
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
               default: '<button class="jspsych-btn">%choice%</button>',
               array: true,
           },
-
-          /** Any content here will be displayed under the button(s). */
+          /** Any content here will be displayed under the button. */
           prompt: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Prompt",
               default: null,
           },
-          /** How long to show the stimulus. */
+          /** How long to hide the stimulus. */
           stimulus_duration: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Stimulus duration",
@@ -68,22 +68,36 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               pretty_name: "Response ends trial",
               default: true,
           },
+          /** Array containing the height (first value) and width (second value) of the canvas element. */
+          canvas_size: {
+              type: jspsych.ParameterType.INT,
+              array: true,
+              pretty_name: "Canvas size",
+              default: [500, 500],
+          },
       },
   };
   /**
-   * html-button-response
-   * jsPsych plugin for displaying a stimulus and getting a button response
-   * @author Josh de Leeuw
-   * @see {@link https://www.jspsych.org/plugins/jspsych-html-button-response/ html-button-response plugin documentation on jspsych.org}
+   * **canvas-button-response**
+   *
+   * jsPsych plugin for displaying a canvas stimulus and getting a button response
+   *
+   * @author Chris Jungerius (modified from Josh de Leeuw)
+   * @see {@link https://www.jspsych.org/plugins/jspsych-canvas-button-response/ canvas-button-response plugin documentation on jspsych.org}
    */
-  class HtmlButtonResponsePluginTouchscreen {
+  class CanvasButtonResponsePlugin {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
       }
       trial(display_element, trial) {
-          // display stimulus
-          //show prompt if there is one
-
+          // create canvas
+          var html = '<div id="jspsych-canvas-button-response-stimulus">' +
+              '<canvas id="jspsych-canvas-stimulus" height="' +
+              trial.canvas_size[0] +
+              '" width="' +
+              trial.canvas_size[1] +
+              '"></canvas>' +
+              "</div>";
           //display buttons
           var buttons = [];
           if (Array.isArray(trial.button_html)) {
@@ -91,7 +105,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   buttons = trial.button_html;
               }
               else {
-                  console.error("Error in html-button-response plugin. The length of the button_html array does not equal the length of the choices array");
+                  console.error("Error in canvas-button-response plugin. The length of the button_html array does not equal the length of the choices array");
               }
           }
           else {
@@ -99,45 +113,37 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   buttons.push(trial.button_html);
               }
           }
-
-          var html = '';
-          html += '<table style="height:75vh">'
-          html += '<tr>'
-          html += '<td>'
-          html += trial.stimulus
-          html += '</tr>'
-          html += '<tr style="height:25%; text-align:center">'
-          html += '<td>'
-          html += '<div id="jspsych-html-button-response-btngroup">';
-                  for (var i = 0; i < trial.choices.length; i++) {
-                      var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-                      html +=
-                          '<div class="jspsych-html-button-response-button" style="display: inline-block; font-size:2em; margin:' +
-                              trial.margin_vertical +
-                              " " +
-                              trial.margin_horizontal +
-                              '" id="jspsych-html-button-response-button-' +
-                              i +
-                              '" data-choice="' +
-                              i +
-                              '">' +
-                              str +
-                              "</div>";
-                  }
-
-          html += '</tr>'
-          html += '</table>'
-
-         
+          html += '<div id="jspsych-canvas-button-response-btngroup">';
+          for (var i = 0; i < trial.choices.length; i++) {
+              var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+              html +=
+                  '<div class="jspsych-canvas-button-response-button" style="display: inline-block; margin:' +
+                      trial.margin_vertical +
+                      " " +
+                      trial.margin_horizontal +
+                      '" id="jspsych-canvas-button-response-button-' +
+                      i +
+                      '" data-choice="' +
+                      i +
+                      '">' +
+                      str +
+                      "</div>";
+          }
+          html += "</div>";
+          //show prompt if there is one
+          if (trial.prompt !== null) {
+              html += trial.prompt;
+          }
           display_element.innerHTML = html;
+          //draw
+          let c = document.getElementById("jspsych-canvas-stimulus");
+          trial.stimulus(c);
           // start time
           var start_time = performance.now();
           // add event listeners to buttons
           for (var i = 0; i < trial.choices.length; i++) {
-            console.log(trial)
-            console.log(trial.choices)
               display_element
-                  .querySelector("#jspsych-html-button-response-button-" + i)
+                  .querySelector("#jspsych-canvas-button-response-button-" + i)
                   .addEventListener("click", (e) => {
                   var btn_el = e.currentTarget;
                   var choice = btn_el.getAttribute("data-choice"); // don't use dataset for jsdom compatibility
@@ -153,7 +159,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           const end_trial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
-                // kill keyboard listeners
+            // kill keyboard listeners
               if (typeof keyboardListener !== "undefined") {
                   this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
               }
@@ -161,7 +167,6 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
-                  stimulus: trial.stimulus,
                   response: response.button,
               };
               // clear the display
@@ -171,39 +176,34 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           };
           // function to handle responses by the subject
           function after_response(choice) {
-              console.log("RESPONSE RESPONSE: ")
-              console.log(choice)
-              if ( typeof choice === 'object' )
+            if ( typeof choice === 'object' )
               {
                 response.button = choice.key
                 response.rt = choice.rt
                 }
-              else {
-                
+              else {                
                 var end_time = performance.now();
                 var rt = Math.round(end_time - start_time);
                 response.button = parseInt(choice);
                 response.rt = rt;
-                }
-                // measure rt
-              
-              
+            }
+  
+
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
-              // display_element.querySelector("#jspsych-html-button-response-stimulus").className +=
-              //     " responded";
+              display_element.querySelector("#jspsych-canvas-button-response-stimulus").className +=
+                  " responded";
               // disable all the buttons after a response
-              var btns = document.querySelectorAll(".jspsych-html-button-response-button button");
+              var btns = document.querySelectorAll(".jspsych-canvas-button-response-button button");
               for (var i = 0; i < btns.length; i++) {
                   //btns[i].removeEventListener('click');
                   btns[i].setAttribute("disabled", "disabled");
               }
               if (trial.response_ends_trial) {
-                console.log("ENDING TRIAL")
-                console.log(response)  
-                end_trial();
+                  end_trial();
               }
           }
+
           // JASON NEW
             // start the response listener
           if (trial.choices != "NO_KEYS") {
@@ -217,17 +217,18 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   allow_held_key: false,
               });
           }
-          // -----
 
           // hide image if timing is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
-                  display_element.querySelector("#jspsych-html-button-response-stimulus").style.visibility = "hidden";
+                  display_element.querySelector("#jspsych-canvas-button-response-stimulus").style.visibility = "hidden";
               }, trial.stimulus_duration);
           }
           // end trial if time limit is set
           if (trial.trial_duration !== null) {
-              this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration);
+              this.jsPsych.pluginAPI.setTimeout(() => {
+                  end_trial();
+              }, trial.trial_duration);
           }
       }
       simulate(trial, simulation_mode, simulation_options, load_callback) {
@@ -241,7 +242,6 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
       }
       create_simulation_data(trial, simulation_options) {
           const default_data = {
-              stimulus: trial.stimulus,
               rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
               response: this.jsPsych.randomization.randomInt(0, trial.choices.length - 1),
           };
@@ -263,8 +263,8 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           }
       }
   }
-  HtmlButtonResponsePluginTouchscreen.info = info;
+  CanvasButtonResponsePlugin.info = info;
 
-  return HtmlButtonResponsePluginTouchscreen;
+  return CanvasButtonResponsePlugin;
 
 })(jsPsychModule);

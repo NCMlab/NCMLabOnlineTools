@@ -80,6 +80,7 @@ var VisualStimulus = {
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
+  valid_choices: function() { return parameters.KeyboardValues },
   prompt: '',
   trial_duration: function() { return parameters.StimOnTime },
 };
@@ -103,24 +104,29 @@ var VisualProbe = {
     CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+")
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth ],
-  choices: [],
+  choices: function() { return parameters.ButtonLabels},
+  valid_choices: function() { return parameters.KeyboardValues },
+
   prompt: '',
   trial_duration: function() { return parameters.ProbeOnTime },
-  choices: function() { return LabelNames.YesNo},
+  
   on_finish: function(data){
-    console.log(data)
+    var ResponseMapping = parameters.KeyboardValues
+    var KeyboardMappings = parameters.KeyboardMappings
+
     var ResponseIndex = ResponseMapping.indexOf(data.response)
+
     // Note that the response buttons are in the order of 0,1,2,3,4
     // Therefore, the left button is a zero and the right button is a one
     // Response mapping (using one and zero) indicates which values are yes (one)
     // and which is no (zero)
-    if ( Probe == 1 && ResponseIndex == 1) 
+    if ( Probe == 1 && KeyboardMappings[ResponseIndex]) 
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct
       stair1.Decide(true)
     }
-    else if ( Probe == 0 && ResponseIndex == 0) 
+    else if ( Probe == 0 && ! KeyboardMappings[ResponseIndex]) 
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct
@@ -153,6 +159,7 @@ var VisualMask = {
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
+  valid_choices: function() { return parameters.KeyboardValues },
   prompt: '',
   trial_duration: function() { return parameters.MaskOnTime },
 };
@@ -165,6 +172,7 @@ var RetentionCanvas = {
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
+  valid_choices: function() { return parameters.KeyboardValues },
   prompt: '',
   trial_duration: function() { return parameters.RetOnTime },
 }
@@ -180,6 +188,7 @@ var Fix = {
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth],
   choices: ['dummy'],
+  valid_choices: function() { return parameters.KeyboardValues },
   prompt: '',
   trial_duration: function() { return parameters.ITITime },
   // on_finish: function(data){

@@ -1,10 +1,10 @@
 var EN_Instructions = {}
 EN_Instructions.Instructions01 = [
-	{'page': 'This is a test of short-term memory. You will see one through nine letters on the screen that you will need to remember.'+
+	{'page': 'This is a test of short-term memory. You will see one through nine letters on the screen that you will need to remember. '+
 	'They will be removed from the screen. After a few seconds you will see a single blue letter. '+
 	'You need to decide whether or not the blue letter was one of the set you studied.'},
 	{'page': '<div><img src='+BaseFolderName+'DMSInstructions.png width=70%% alt=Instructional image</image></div>'},
-	{'page': 'Press [Yes] if the letter WAS in the set.<br>Press [No] if the letter WAS NOT in the set.'},
+	{'page': 'Press [Yes] on the screen or Left-Arrow on the keyboard if the letter WAS in the set.<br>Press [No] on the screen or Right-Arrow on the keyboard if the letter WAS NOT in the set.'},
 	//{'page': 'You will NOT receive feedback after each trial.'},
 	{'page': 'Remember that the letters to study will be in white and CAPITALIZED. The test letter will be in blue and will be lowercase.'},
 	{'page': 'Try to respond as quickly and as accurately as possible. Press next to begin.'},

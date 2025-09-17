@@ -325,7 +325,11 @@ vDMS_Adaptive = {
 	RetOnTime: 3500,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
+
 
 }
 
@@ -353,7 +357,10 @@ vDMS_Adaptive_002 = {
 	RetOnTime: 3500,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
 
 }
 add('vDMS_Adaptive_002', function(){ parameters = vDMS_Adaptive_002});

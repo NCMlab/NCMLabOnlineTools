@@ -4,7 +4,7 @@ EN_Instructions.Instructions01 = [
 	'They will be removed from the screen. After a few seconds you will see a single blue dot. '+
 	'You need to decide whether or not the blue dot is in one of the locations you studied.'},
 	{'page': '<div class="InstructImage"><img src='+BaseFolderName+'EN_VSTMInstructions.png max-width="600px" alt=Instructional image</img></div>'},
-	{'page': 'Press [Yes] if the dot WAS in the set.<br>Press [No] if the letter WAS NOT in the set.'},
+	{'page': 'Press [Yes] on the screen or Left-Arrow on the keyboard if the dot WAS in the set.<br>Press [No] on the screen or Right-Arrow on the keyboard if the letter WAS NOT in the set.'},
 	//{'page': 'You will NOT receive feedback after each trial.'},
 	{'page': 'Try to respond as quickly and as accurately as possible.'},
 	]
@@ -23,7 +23,7 @@ add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
 var FR_Instructions = {}
 FR_Instructions.Instructions01 = [
 	{'page': 'Il s\'agit d\'un test de mémoire à court terme. Vous verrez un ou plusieurs points à l\'écran et vous devrez vous rappeler où ils se trouvent. Ils seront supprimés de l\'écran après quelques secondes. Vous verrez un seul point bleu. Vous devez décider si le point bleu se trouve ou non dans l’un des endroits que vous avez étudiés.'},{'page': '<div class="InstructImage"><img src='+BaseFolderName+'FR_VSTMInstructions.png max-width="600px" alt=Instructional image</img></div>'},
-	{'page': 'Appuyez sur [Oui] si le point ÉTAIT dans l\'ensemble.<br>Appuyez sur [Non] si le point N\'ÉTAIT PAS dans l\'ensemble.'},
+	{'page': 'Appuyez sur [Oui] sur l\'écran ou flèche gauche sur le clavier si le point ÉTAIT dans l\'ensemble.<br>Appuyez sur [Non] sur l\'écran ou flèche driote sur le clavier si le point N\'ÉTAIT PAS dans l\'ensemble.'},
 	
 
 	//{'page': 'You will NOT receive feedback after each trial.'},
