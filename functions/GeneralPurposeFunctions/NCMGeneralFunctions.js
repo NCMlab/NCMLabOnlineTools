@@ -305,7 +305,16 @@ function whereToGoNext(SessionData, ){
             { window.open('https://www.uottawa.ca','_self') }
           else { window.open(SessionData.Redirect,'_self') }
           */
-         jatos.startComponentByTitle("Central Executive")
+
+          // Now that the battery is complete add the Completion information to the Batch
+          //console.log(jatos.studySessionData.AddToCompletionCount)
+          //console.log(jatos.batchSession.get(workerId+'_bitIndex'))
+          
+          //var NewValue = jatos.studySessionData.AddToCompletionCount + jatos.batchSession.get(workerId+'_bitIndex')
+          //console.log(NewValue)
+          //alert('JASON')
+          //jatos.batchSession.set(workerId+'_bitIndex', )
+          jatos.startComponentByTitle("Central Executive")
         }
         else { 
           jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
@@ -338,3 +347,9 @@ function loadScriptSequentially(file) {
     document.head.appendChild(newScript);
     });
 }
+
+
+/* var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            console.log(AddToCompletionCount)
+            console.log("Amount to add to the bitstring of completion: " + AddToCompletionCount)
+            */

@@ -32,3 +32,50 @@ parameters002.push({index: 2,
 
 add('EN_COMM_01', function(){ parameters = parameters001 });
 add('FR_COMM_01', function(){ parameters = parameters002 });
+
+
+// ===================================
+var parameters099 = []
+var List = []
+List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1})
+List.push({name: 'Demographics', battery: '72', row: 1, BitIndex: 2})
+List.push({name: 'CESAM', battery: '72', row: 1, BitIndex: 3})
+List.push({name: 'Baseline 1', battery: '72', row: 2, BitIndex: 4})
+List.push({name: 'Baseline 2', battery: '72', row: 2, BitIndex: 5})
+List.push({name: 'Baseline 3', battery: '72', row: 2, BitIndex: 6})
+List.push({name: 'Baseline Trails 1', battery: '78', row: 3, BitIndex: 7})
+List.push({name: 'Baseline Trails 2', battery: '78', row: 3, BitIndex: 8})
+List.push({name: 'Baseline Trails 3', battery: '78', row: 3, BitIndex: 9})
+List.push({name: 'Week 1, Pre', battery: '75', row: 4, BitIndex: 10})
+List.push({name: 'Week 1, Post', battery: '76', row: 4, BitIndex: 11})
+List.push({name: 'Week 2, Pre', battery: '75', row: 5, BitIndex: 12})
+List.push({name: 'Week 2, Post', battery: '76', row: 5, BitIndex: 13})
+List.push({name: 'Week 3, Pre', battery: '75', row: 6, BitIndex: 14})
+List.push({name: 'Week 3, Post', battery: '76', row: 6, BitIndex: 15})
+List.push({name: 'Week 4, Pre', battery: '75', row: 7, BitIndex: 16})
+List.push({name: 'Week 4, Post', battery: '76', row: 7, BitIndex: 17})
+List.push({name: 'Week 5, Pre', battery: '75', row: 8, BitIndex: 18})
+List.push({name: 'Week 5, Post', battery: '76', row: 8, BitIndex: 19})
+List.push({name: 'Week 6, Pre', battery: '75', row: 9, BitIndex: 20})
+List.push({name: 'Week 6, Post', battery: '76', row: 9, BitIndex: 21})
+List.push({name: 'Week 7, Pre', battery: '75', row: 10, BitIndex: 22})
+List.push({name: 'Week 7, Post', battery: '76', row: 10, BitIndex: 23})
+List.push({name: 'Week 8, Pre', battery: '75', row: 11, BitIndex: 24})
+List.push({name: 'Week 8, Post', battery: '76', row: 11, BitIndex: 25})
+List.push({name: 'Week 9, Pre', battery: '75', row: 12, BitIndex: 26})
+List.push({name: 'Week 9, Post', battery: '76', row: 12, BitIndex: 27})
+List.push({name: 'Week 10, Pre', battery: '75', row: 13, BitIndex: 28})
+List.push({name: 'Week 10, Post', battery: '76', row: 13, BitIndex: 29})
+List.push({name: 'Post-intervention 1', battery: '72', row: 14, BitIndex: 30})
+List.push({name: 'Post-intervention 2', battery: '72', row: 14, BitIndex: 31})
+List.push({name: 'Post-intervention 3', battery: '72', row: 14, BitIndex: 32})
+List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex: 33})
+List.push({name: 'Post-intervention Trails 2', battery: '78', row: 15, BitIndex: 34})
+List.push({name: 'Post-intervention Trails 3', battery: '78', row: 15, BitIndex: 35})
+
+
+parameters099.push({index: 3, 
+    Title: "What session is this?",
+    List: List
+})
+add('EN_COMM_99', function(){ parameters = parameters099 });

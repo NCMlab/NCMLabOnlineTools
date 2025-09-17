@@ -113,7 +113,11 @@ SpatialDMS_AdaptiveSHORT = {
 	RetOnTime: 3200,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
+
 }
 
 add('SpatialDMS_AdaptiveSHORT', function(){ parameters = SpatialDMS_AdaptiveSHORT});
@@ -138,18 +142,22 @@ SpatialDMS_Adaptive_002 = {
 	RetOnTime: 3200,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
+
 }
 
 add('SpatialDMS_Adaptive_002', function(){ parameters = SpatialDMS_Adaptive_002});
 
-SpatialDMS_Adaptive_002 = {
+SpatialDMS_Adaptive_003 = {
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	ShowThankYou: true,
 	ShowInstructions: true,
 	MaxTrials: 4,
-	NPracticeTrials: 1,
+	NPracticeTrials: 4,
 	MaxReversals: 15,
 	StartValue: 1,
 	MinValue: 1,
@@ -163,7 +171,11 @@ SpatialDMS_Adaptive_002 = {
 	RetOnTime: 3200,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
+
 }
 
 add('SpatialDMS_Adaptive_003', function(){ parameters = SpatialDMS_Adaptive_003});

@@ -1624,9 +1624,26 @@ BatteryList.push({index: 121,
 	name:'Royal G.N.', 
 	description: '',
 	TaskList: List,
-	BatteryInstructions: "<h1>Cogntive Testing</h1>",
+	BatteryInstructions: "<h1>Cognitive Testing</h1>",
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   Redirect: '',
 })
+
+
+// =====
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 9999, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    Redirect: '',
+	})
+

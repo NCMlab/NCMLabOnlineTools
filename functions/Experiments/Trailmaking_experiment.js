@@ -94,7 +94,7 @@ var enter_fullscreen = {
   
   var trials = {
       type: jsPsychSketchpadTrailMaking,   
-      on_start: function(){
+      on_start: function(data){
         // The following line removes the header line from being displayed
         document.getElementById("header-btn-group").style = 'display:none'
       },
@@ -118,8 +118,8 @@ var enter_fullscreen = {
       show_redo_button: false,
       
       change_circle_color_only_when_correct: function() {return parameters.change_circle_color_only_when_correct},
-      show_countdown_trial_duration: parameters.ShowTimer,
-      trial_duration: parameters.Duration,
+      show_countdown_trial_duration: function() { return parameters.ShowTimer},
+      trial_duration: function() { return parameters.Duration },
       first_circle_label: function() {return Instructions.FirstCircleLabel},
       last_circle_label: function() {return Instructions.LastCircleLabel},
       finished_button_label: function() {return Instructions.FinishedLabel},
@@ -141,7 +141,6 @@ var enter_fullscreen = {
         data.trial = 'Trail Making'
         data.CanvasHeight = CanvasHeight
         data.CanvasWidth = CanvasWidth
-
       }
     }
 

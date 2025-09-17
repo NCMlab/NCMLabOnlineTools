@@ -148,12 +148,40 @@ function SetupSession() {
     pseudoSwitch(input)
     var Choices = []
     var SessionsBatteryList = []
+    var ButtonRow = []
+    var ButtonBit = []
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
             SessionsBatteryList.push( parameters[0].List[i].battery )
+            ButtonRow.push( parameters[0].List[i].row )
+            ButtonBit.push( parameters[0].List[i].BitIndex )
         }
-    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
+    
+    console.log("Completed Sessions: ")
+    CompletedBits = jatos.batchSession.get(jatos.workerId+'_bitIndex')
+    // Convert this back to bits to centralize this code/decode into one script
+    console.log(CompletedBits)
+    CompletedBits = parseInt(CompletedBits, 10).toString(2)
+    console.log(CompletedBits)
+    console.log(ButtonRow)
+    console.log(ButtonBit)
+    
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
+    
+    // Have different session been completed?
+    // Check the bit 
+    
+
+    // The Where To Go Next functionality may read the current bit from batch data and update the 
+    // overall bit status of the session. The goal is to keep track of which battery in the entire 
+    // session has been completed. Therefore, there is one bit per button in the session, NOT one bit 
+    // per task/component. This Bit Location can be sent to the Session Data. This will allow the central 
+    // executive to keep track of it when it determins that a battery has been completed. 
+    // Therefore, it may be the central executuve that takes care of this.
+    // Whenever a battery (of a session) is finished batch data is updated with this information. 
+    // Therefore, there just needs to be a bit-string/bytes corresponding to the yes/no (1/0) status of 
+    // each battery in the session. The itemCount in the session config is one value per button/battery.
     return SessionChoiceTrial
     //timeline.push()
 }
@@ -188,6 +216,7 @@ function UpdateBatchData() {
             jatos.batchSession.set(jatos.workerId, currentIndex)    
             // set the language
             .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => jatos.batchSession.set(jatos.workerId+"_bitIndex", "0"))
             
         }
         else {
@@ -201,7 +230,7 @@ function UpdateBatchData() {
         resolve(currentIndex)
     })
 }
-
+// This is the location within a bettery
 function UpdateSessionDataIndex(IsThereSessionData) {
     return new Promise((resolve) => {
         if ( IsThereSessionData )
@@ -211,6 +240,15 @@ function UpdateSessionDataIndex(IsThereSessionData) {
             jatos.studySessionData = SessionData 
         }
         resolve("Successfuly updated session index")
+    })
+}
+
+function UpdateSessionBitIndex(AddToCompletionCount) {
+    return new Promise((resolve) => {
+        var SessionData = jatos.studySessionData 
+        SessionData.AddToCompletionCount = AddToCompletionCount
+        jatos.studySessionData = SessionData 
+        resolve("Successfuly updated session bit index")
     })
 }
 
@@ -234,7 +272,17 @@ function UsageTypeDecision(UsageType) {
                 }
                 else { 
                     console.log("The battery is finished.")
-                    timeline.push(MakeThankYouPage()) 
+                    console.log(jatos.workerId)
+                    // Now that the battery is complete add the Completion information to the Batch
+                    console.log(jatos.studySessionData.AddToCompletionCount)
+                    console.log(jatos.batchSession.get(jatos.workerId+'_bitIndex'))
+          
+                    var NewValue = parseInt(jatos.studySessionData.AddToCompletionCount,10) + parseInt(jatos.batchSession.get(jatos.workerId+'_bitIndex'),10)
+                    console.log(NewValue)
+                    jatos.batchSessionVersioning = false;
+                    jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
+                    //.then(() => timeline.push(MakeThankYouPage()))
+                    timeline.push(MakeThankYouPage())
                 }
                 break;
             case 'Session':
@@ -268,22 +316,38 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
+function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow) {
     var trial = {
-        type: jsPsychHtmlButtonResponse,
+        type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },
         choices: Choices,
+        completedBits: CompletedBitList,
+        buttonRow: ButtonRow,
         prompt: "",
+        on_start: function() {
+            // Is the BitList Empty?
+            console.log(BitList === undefined)
+        },
         on_finish: function(data) {
+            // Make a bit version of this session
+            var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            // convert back to base10
+            AddToCompletionCount = parseInt(AddToCompletionCount, 2);
+            console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
+        
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
+            console.log(SessionsBatteryList)
             SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
             JATOSSessionData = jatos.studySessionData
             console.log(JATOSSessionData)
             // Start at the beginning of this battery
             var TitleToStart = JATOSSessionData.TaskNameList[0]
             // Start the battery
-            StartComponent(TitleToStart)
+            console.log(TitleToStart)
+            UpdateSessionBitIndex(AddToCompletionCount)
+            .then(() => StartComponent(TitleToStart))
+            // Once a session is selected, add the Bit Index to the session data
         }
     };
     return trial
