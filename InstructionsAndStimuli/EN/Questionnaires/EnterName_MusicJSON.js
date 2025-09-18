@@ -40,5 +40,5 @@ const json = {
 var EN_EnterName_MusicJSON = {}
 EN_EnterName_MusicJSON.title = title;
 EN_EnterName_MusicJSON.survey_JSON = json;
-EN_EnterName_MusicJSON.shortTitle = shortTitle
+EN_EnterName_MusicJSON.shortTitle = "First Name"
 EN_EnterName_MusicJSON.QuestionnaireType = 'FirstName'
