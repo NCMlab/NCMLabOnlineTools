@@ -5,8 +5,8 @@ var GapBetweenButtons = "0px";
 var FullScreenMode = false;
 var TextFontSize = "30px";
 var StimulusFontSize = '60px';
-var GIFDisplayTime = 100; // milliseconds
-var GIFRecorderTime = 500; // milliseconds
+var GIFDisplayTime = 300; // milliseconds
+var GIFRecorderTime = 300; // milliseconds
 
 var WelcomeTime = 4000; // milliseconds
 

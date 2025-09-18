@@ -166,8 +166,9 @@ function SetupSession() {
     console.log(CompletedBits)
     console.log(ButtonRow)
     console.log(ButtonBit)
-    
-    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
+
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
+    SessionChoiceTrialNEW = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
     
     // Have different session been completed?
     // Check the bit 
@@ -316,7 +317,28 @@ function MakeTestElement() {
     return TestDisplay
 }
 
-function MakeSessionButtons(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow) {
+function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
+    var trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() { return Title },
+        choices: Choices,
+        prompt: "",
+        on_finish: function(data) {
+              // The user has selected a session to administer
+            // Load up the Battery that is associated with the selected session
+            SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
+            JATOSSessionData = jatos.studySessionData
+            console.log(JATOSSessionData)
+            // Start at the beginning of this battery
+            var TitleToStart = JATOSSessionData.TaskNameList[0]
+            // Start the battery
+            StartComponent(TitleToStart)
+        }
+    };
+    return trial
+}
+
+function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow) {
     var trial = {
         type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },

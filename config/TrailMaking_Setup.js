@@ -472,7 +472,7 @@ var TrailMakingA_Default = {
     WelcomeSpoken: false,
 	ShowThankYou: false,
     AskForNotes: false,
-    RecordGIF: true,
+    RecordGIF: false,
     shortTitle: 'Trails A'
 }
 var TrailMakingA_Default011 = {
