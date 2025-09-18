@@ -633,6 +633,7 @@ var StartGIFRecorder = {
       encoder.setRepeat(0); //0  -> loop forever
       //1+ -> loop n times then stop
       encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
+      encoder.setQuality(5)
     }
 }
 

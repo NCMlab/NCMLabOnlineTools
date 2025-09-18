@@ -284,6 +284,7 @@ function Questionnaire_Scoring(data) {
 		console.log(data.response)
 		
 		const FirstName = data.response.Name
+		TotalScore = FirstName	
 		const Email = data.response.email
 		console.log(Email)
 		if ( Email != null ) {
@@ -293,7 +294,8 @@ function Questionnaire_Scoring(data) {
 			}) 
 		}
 		else {
-			jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 
+			jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName)
+			.then(() => {console.log("Name set in batch data")}) 
 		}
 	}
 
@@ -309,5 +311,6 @@ function Questionnaire_Scoring(data) {
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
+	console.log(Results)
     return Results
 }
