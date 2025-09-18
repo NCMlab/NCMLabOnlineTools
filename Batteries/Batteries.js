@@ -1339,9 +1339,9 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		Footer: '©NCMLab 2024',
     Redirect: '',
 	})
-
+// The IconName and the shortTitle need to match to show up correctly in the ReactJS site
   var List = []  
-  List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'Enter Name'})
+  List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'First Name'})
   BatteryList.push({index: 72, 
 		name:'Music Motion: Enter Name', 
     shortName: "Name",
