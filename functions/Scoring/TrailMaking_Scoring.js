@@ -24,7 +24,6 @@ function TrailMaking_Scoring(data) {
 	console.log(Notes)
 	console.log(Notes.trials.length)
 	trialData = data.filter({trial: 'Trail Making'}).trials[0]
-	console.log(trialData)
 	Results = {}
 	Results.NumericResults = {}
 	Results.PrimaryResults = {}

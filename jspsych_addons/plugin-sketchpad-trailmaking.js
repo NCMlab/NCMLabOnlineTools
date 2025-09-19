@@ -333,6 +333,7 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
           Label: -99,
           EnterLocTime: -99,
           LeaveLocTime: -99,
+          Error: 0,
         };
       }
 
@@ -858,9 +859,14 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
               if (currentDistance < radius + tolerance) {
                 // entered a circle
                 this.InsideWhichCircle = i;
+                console.log(this.InsideWhichCircle)
+                console.log(this.CompletedCircle)
                 // check to see if this is the correct circle
                 if (this.InsideWhichCircle == this.CompletedCircle) {
                   console.log("CORRECT CIRCLE");
+                  document.getElementById('sketchpad-canvas').style.borderColor = "black";
+                  document.getElementById('sketchpad-canvas').style.borderWidth = "3px";
+                  document.getElementById('sketchpad-canvas').style.borderStyle = "solid";
                   // record data
                   this.OutData[this.CompletedCircle].Count =
                     this.CompletedCircle;
@@ -930,8 +936,23 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
                     );
                   }
                   console.log(this);
-                  console.log("WRONG CIRCLE TWO");
-                  this.ErrorCount++;
+                  if (this.InsideWhichCircle == this.CompletedCircle-1 )
+                  {
+                    // Back tracking into the same circle just completed, which is NOT an error
+                    console.log("BACKTRACKED")
+                  }
+                  else {
+                    console.log("WRONG CIRCLE TWO");
+                    console.log(document.getElementById('sketchpad-canvas'))
+                    document.getElementById('sketchpad-canvas').style.borderColor = "red";
+                    document.getElementById('sketchpad-canvas').style.borderWidth = "5px";
+                    document.getElementById('sketchpad-canvas').style.borderStyle = "dashed";
+                    // Trying to add error recording here
+                    this.OutData[this.CompletedCircle].Error = this.OutData[this.CompletedCircle].Error + 1;
+                    // end 
+
+                    this.ErrorCount++;
+                  }
                 }
                 this.InCircle = true;
               }
@@ -963,49 +984,6 @@ var jsPsychSketchpadTrailMaking = (function (jspsych) {
             }
           }
         }
-
-        /*
-                // Is cursor in the expected circle Circle?
-                if ( this.CompletedCircle < Circles .length) {
-                  // if inside a circle
-                  if (this.measure_distance([this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY],[x,y]) < radius + tolerance) 
-                  {
-                    // If the flag said cursor was outside circle
-                    if ( ! this.InCircle ) {
-                      console.log("Entering a circle");
-                      console.log(this.InCircle)
-                      console.log(performance.now());
-                      this.OutData[this.CompletedCircle].Count = this.CompletedCircle;
-                      this.OutData[this.CompletedCircle].EnterTime = performance.now();
-                      this.OutData[this.CompletedCircle].Label = this.Circles[this.CompletedCircle].label;
-                      this.InCircle = true;
-                    }
-                    if ( GiveFeedback ) {
-                        this.add_circles(this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY, this.Circles[this.CompletedCircle].radius, CorrectCircleColor); 
-                        this.add_text(this.Circles[this.CompletedCircle].centerX, this.Circles[this.CompletedCircle].centerY, this.Circles[this.CompletedCircle].label);
-                      }
-                      
-                  }
-                  // outside a circle
-                  else {
-                      if ( this.InCircle ) {
-                        console.log("Left the Circle");
-                        this.OutData[this.CompletedCircle].LeaveTime = performance.now();
-                        console.log(performance.now())
-                        this.InCircle = false;
-                        this.CompletedCircle++;
-                      }
-                    }
-                }
-                
-      */
-        /*  if (x > this.params.JASON_Loc) {
-                  console.log('TRUE')
-                }
-                else {
-                  console.log("FALSE")
-                }
-                */
       }
     }
     end_draw(e) {
