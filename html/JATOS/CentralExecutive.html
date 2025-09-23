@@ -11,9 +11,11 @@
     <!--<link rel="stylesheet" href="jspsych/dist/jspsych.css" />-->
     <link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
   
   </head>    
   <body>
+    <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
@@ -21,11 +23,15 @@
     <script src="functions/GeneralPurposeFunctions/pseudoSwitch.js"></script>
     <!--<script src="config/General_Setup.js"></script>-->
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="Batteries/Batteries.js"></script>
     
     <script src="config/SessionChooser_config.js"></script>    
+    <script>
+      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+        function() {UpdateHeader()});})
+    </script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
     <script> 
     // Once jatos is fully loaded, the the URL parameters can be checked.

@@ -1647,3 +1647,66 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
     Redirect: '',
 	})
 
+// ===  Language and Social Cognition Lab === //
+var List = []
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Immediate",
+  Instructions: "Default",
+  IconName: "RAVLT, Imm (Spoken)",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Forward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Forward",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Backward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Backward",
+});
+List.push({
+  Task: "Clock Drawing",
+  Parameters: "ClockDrawing_001",
+  Instructions: "Default",
+  IconName: "Clock Draw",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Delayed",
+  Instructions: "Default",
+  IconName: "RAVLT, Del (Spoken)",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken_003",
+  Instructions: "Default",
+  IconName: "RAVLT, Recog",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 201, 
+		name:'Language and Social Cognition Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Language and Social Cognition Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: '',
+	})
