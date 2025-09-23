@@ -632,8 +632,11 @@ var StartGIFRecorder = {
       encoder = new GIFEncoder();
       encoder.setRepeat(0); //0  -> loop forever
       //1+ -> loop n times then stop
-      encoder.setDelay(GIFDisplayTime); //go to next frame every n milliseconds
-      encoder.setQuality(5)
+      encoder.setDelay(GIFsetDelay); 
+      encoder.setQuality(20) // 1 is highest quality and 20 is lowest
+      
+      // For 20 sec at quality 20, TrailsA=505, B=474
+
     }
 }
 

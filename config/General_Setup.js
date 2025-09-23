@@ -5,8 +5,10 @@ var GapBetweenButtons = "0px";
 var FullScreenMode = false;
 var TextFontSize = "30px";
 var StimulusFontSize = '60px';
-var GIFDisplayTime = 300; // milliseconds
-var GIFRecorderTime = 300; // milliseconds
+// 200 is 5 frames per second
+var GIFsetDelay = 250; // 	 Sets the delay time between each frame, or changes it for subsequent frames
+
+
 
 var WelcomeTime = 4000; // milliseconds
 

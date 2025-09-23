@@ -15,7 +15,7 @@ var CircleBorderWidth = 2
 
 
 // how close to each circle the cursor needs to be
-var tolerance = 15;
+var tolerance = 3;
 // width of the pen
 var pen_width = 2;
 
@@ -452,7 +452,7 @@ var TrailMaking_Default = {
     ShowWelcome: true,
 	ShowThankYou: true,
     AskForNotes: false,
-    RecordGIF: false,
+    RecordGIF: true,
     shortTitle: 'Trails A'
 }
 
@@ -472,7 +472,7 @@ var TrailMakingA_Default = {
     WelcomeSpoken: false,
 	ShowThankYou: false,
     AskForNotes: false,
-    RecordGIF: false,
+    RecordGIF: true,
     shortTitle: 'Trails A'
 }
 var TrailMakingA_Default011 = {
@@ -548,7 +548,7 @@ var TrailMakingB_Default = {
     WelcomeSpoken: false,
 	ShowThankYou: false,
     AskForNotes: false,
-    RecordGIF: false,
+    RecordGIF: true,
     shortTitle: 'Trails B'
 }
 // ====== TESTER ===========
