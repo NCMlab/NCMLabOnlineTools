@@ -119,7 +119,6 @@ var EligibilityCheck = {
 var WelcomeWritten = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() { 
-        console.log("WELCOME WRITTEN")
         var Str = Instructions.WelcomeText[0].page
         Str += "<p>"+LabelNames.PressNext+"</p>"
         return Str
@@ -128,6 +127,7 @@ var WelcomeWritten = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 // present the spoken and written welcome to the task
@@ -157,9 +157,7 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
-
-      console.log("HELLO WORLDS")
-      if ( parameters.ShowWelcome & !(parameters.WelcomeSpoken))
+      if ( parameters.ShowWelcome  & !( parameters.WelcomeSpoken))
       { return true }
       else { return false }
     }
@@ -220,6 +218,7 @@ var thank_you = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 var if_thank_you = {
@@ -266,7 +265,7 @@ var Instructions01_progress_bar_timer_stop = {
 var Instructions01Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
-        console.log("JASON")
+        console.log("JASON -- INSTRUCTIONS 01")
         console.log(Instructions)
         var Str = Instructions.Instructions01[countInstr01].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
@@ -276,6 +275,7 @@ var Instructions01Written = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 var Instructions01Spoken = {
@@ -373,6 +373,7 @@ var Instructions02Written = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 var Instructions02Spoken = {
@@ -467,6 +468,7 @@ var Instructions03Written = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 var Instructions03Spoken = {
@@ -562,6 +564,7 @@ var Instructions04Written = {
     margin_horizontal: function() { return GapBetweenButtons },
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
 }
 
 var Instructions04Spoken = {

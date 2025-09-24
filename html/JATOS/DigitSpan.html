@@ -12,12 +12,7 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-      // use jquery to load up the header button html content 
-      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
-            function() {UpdateHeader()});})
-    </script> 
+
 </head>    
 <body>
   <div id="headerButtons"></div>
@@ -34,21 +29,22 @@
     <script src="jspsych/dist/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
-    
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    
-    <script>
-      loadScriptSequentially("functions/GeneralPurposeFunctions/HeaderFunctions.js")
-            .then(() => UpdateHeader() )
-      </script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+
     <script src="InstructionsAndStimuli/Instructions/DigitSpan_Instructions.js"></script>
     <script src="config/DigitSpan_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-
+    <script> 
+      // use jquery to load up the header button html content 
+      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+            function() {UpdateHeader()});})
+    </script> 
     <script>
-      var DigitSpan_parameters = 'empty'
+      
       var parameters = 'empty'
       jatos.onLoad(() => {
         if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
@@ -61,7 +57,7 @@
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }
         pseudoSwitch(parameters)
-        console.log(DigitSpan_parameters)
+        console.log(parameters)
         
         //LANG = jatos.studySessionData.Language
         LANG = jatos.batchSession.get(jatos.workerId+"_Language")
@@ -98,7 +94,13 @@
             jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
           },
           on_finish: function() {
+            if ( jatos.urlQueryParameters.SaveLocal ) {
+                jsPsych.data.get().localSave('csv',jatos.workerId+'_DigitSpan_'+parameters.direction+'.csv');
+            }    
+
             jatos.submitResultData(jsPsych.data.get().json())
+
+            
             .then(() => whereToGoNext(jatos.studySessionData))
           }      
       });

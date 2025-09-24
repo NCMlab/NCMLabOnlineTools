@@ -20,7 +20,7 @@ function DigitSpan_Scoring(data) {
 	Results = {}
 	Results.PrimaryResults = {}
 	Results.AllResults = {}
-	if (DigitSpan_parameters.DeliveryMethod == 'staircase')
+	if (parameters.DeliveryMethod == 'staircase')
 	{
 		var NTrials = Stair.TrialCount
 		var NReversal = Stair.ReversalCount
@@ -30,7 +30,7 @@ function DigitSpan_Scoring(data) {
 		Results.AllResults['NReversal'] = NReversal
 		Results.AllResults['Threshold'] = Threshold
 	}
-	if (DigitSpan_parameters.DeliveryMethod == 'fixed')
+	if (parameters.DeliveryMethod == 'fixed')
 	{
 		var DataFromTestRun = jsPsych.data.get().filter({task: 'response trial'})
 		console.log(DataFromTestRun)
@@ -55,7 +55,7 @@ function DigitSpan_Scoring(data) {
 		Results.PrimaryResults['Threshold'] = MaxCorrect
 		Results.AllResults['Threshold'] = MaxCorrect
 	}
-	if (DigitSpan_parameters.DeliveryMethod == 'numberErrors')
+	if (parameters.DeliveryMethod == 'numberErrors')
 	{
 		var DataFromTestRun = jsPsych.data.get().filter({task: 'response trial'})
 		console.log(DataFromTestRun)
@@ -95,13 +95,13 @@ function DigitSpan_Scoring(data) {
 			ResponseArray[i][3] = DataFromTestRun.trials[i].ResponseList
 			ResponseArray[i][4] = AccuracyList[i]
 		} 
-	Results.PrimaryResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
-	Results.AllResults['ScoreName'] = DigitSpan_parameters.DeliveryMethod
+	Results.PrimaryResults['ScoreName'] = parameters.DeliveryMethod
+	Results.AllResults['ScoreName'] = parameters.DeliveryMethod
 	Results.AllResults['DS Response Array'] = ResponseArray
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 
-	Results.AllResults['Scoring Notes'] = DigitSpan_Instructions.NotesForResultsPage
+	Results.AllResults['Scoring Notes'] = Instructions.NotesForResultsPage
 	return Results
 }

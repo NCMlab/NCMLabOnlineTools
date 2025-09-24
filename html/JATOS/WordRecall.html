@@ -116,6 +116,10 @@
         jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
       },
       on_finish: function() {
+        if ( jatos.urlQueryParameters.SaveLocal ) {
+          jsPsych.data.get().localSave('csv',jatos.workerId+'_WordRecall.csv');
+        }    
+
         jatos.submitResultData(jsPsych.data.get().json())
         .then(() => whereToGoNext(jatos.studySessionData))
       }

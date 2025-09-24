@@ -17,6 +17,7 @@ var DigitSpan_Default = {
 	DeliveryMethod: 'fixed',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -46,6 +47,7 @@ var DigitSpan_Audio_Forward_Adaptive_14 = {
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -70,6 +72,7 @@ var DigitSpan_Visual_Forward_Adaptive_14 = {
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -94,6 +97,7 @@ var DigitSpan_Audio_Backward_Adaptive_14 = {
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -118,6 +122,7 @@ var DigitSpan_Visual_Backward_Adaptive_14 = {
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -135,7 +140,8 @@ var DigitSpan_Visual_Forward_TwoErrors = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
-	ShowWelcome: true,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -153,7 +159,8 @@ var DigitSpan_Visual_Backward_TwoErrors = {
 	StimulusMode: 'visual', // 'visual',
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
-	ShowWelcome: true,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -172,6 +179,7 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: true,
+	WelcomeSpoken: false,
 	ShowThankYou: true,
 	ShowInstructions: true, 
 }
@@ -190,6 +198,7 @@ var DigitSpan_Audio_Backward_TwoErrors = {
 	DeliveryMethod: 'numberErrors',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
 	ShowWelcome: true,
+	WelcomeSpoken: false,
 	ShowThankYou: true,
 	ShowInstructions: true, 
 	AskForNotes: false,
@@ -206,6 +215,7 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -221,6 +231,7 @@ var DigitSpan_Visual_Backward_Fixed01_Load03 = {
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -236,6 +247,7 @@ var DigitSpan_Audio_Forward_Fixed01_Load05 = {
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
@@ -251,6 +263,7 @@ var DigitSpan_Visual_Forward_Fixed01_Load05 = {
 	DeliveryMethod: 'fixed',
 	Parameters: Parameters,	
 	ShowWelcome: false,
+	WelcomeSpoken: false,
 	ShowThankYou: false,
 	ShowInstructions: true, 
 }
