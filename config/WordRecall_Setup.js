@@ -65,6 +65,26 @@ var RAVLT_Spoken_Immediate = {
 	RecordAUDIO: true
 }
 
+var RAVLT_Spoken_Delayed = {
+	FolderName: 'Set001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Spoken',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+
 var RAVLT_Spoken_ImmediateSHORT = {
 	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
@@ -158,25 +178,7 @@ var RAVLT_Manual_Delayed = {
 	RecordAUDIO: false,
 }
 
-var RAVLT_Spoken_Delayed = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
-	WordList: 'EN_RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 1,
-	BListFlag: false, // Check to see if there is a second set of words
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: true,
-	ShowWelcome: false,
-	WelcomeSpoken: false,
-	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	RecordAUDIO: true
-}
+
 
 var RAVLT_Spoken_Delayed_002 = {
 	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',

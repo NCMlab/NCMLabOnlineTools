@@ -1682,7 +1682,7 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken_003",
+  Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "RAVLT, Recog",
 });

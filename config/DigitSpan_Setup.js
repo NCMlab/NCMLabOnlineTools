@@ -182,6 +182,7 @@ var DigitSpan_Audio_Forward_TwoErrors = {
 	WelcomeSpoken: false,
 	ShowThankYou: true,
 	ShowInstructions: true, 
+	AskForNotes: false,
 }
 // ===================================================
 // == DigitSpan_Audio_Backward_TwoErrors ==
