@@ -37,7 +37,11 @@
     
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    
+    <script>
+      loadScriptSequentially("functions/GeneralPurposeFunctions/HeaderFunctions.js")
+            .then(() => UpdateHeader() )
+      </script>
     <script src="InstructionsAndStimuli/Instructions/DigitSpan_Instructions.js"></script>
     <script src="config/DigitSpan_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
@@ -62,12 +66,13 @@
         //LANG = jatos.studySessionData.Language
         LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         console.log(LANG)
-        pseudoSwitch(LANG+'_DigitSpan_Instructions_'+InstructionsToUse)
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(DigitSpan_Instructions)
+        console.log(Instructions)
 
       })
+      
     </script> 
     <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
     <script src="functions/Experiments/DigitSpan_experiment.js"></script>

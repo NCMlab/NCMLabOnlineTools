@@ -12,12 +12,6 @@
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-      // use jquery to load up the header button html content 
-      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
   </head>    
   <body>
     <div id="headerButtons"></div>
@@ -32,16 +26,26 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych_addons/plugin-sketchpad.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+
     <script src="InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js"></script>
     <script src="config/ClockDrawing_Setup.js"></script>
     <script src="Batteries/ComponentList.js"></script>
-    
+         <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
+
 
     <script>
       var parameters = 'empty'      
@@ -59,7 +63,8 @@
           console.log(parameters)
           pseudoSwitch(parameters)
           console.log(parameters)
-          LANG = jatos.studySessionData.Language
+          //LANG = jatos.studySessionData.Language
+          LANG = jatos.batchSession.get(jatos.workerId+"_Language")
           console.log(LANG)
           pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
           //load general label names
@@ -120,13 +125,6 @@ var jsPsych = initJsPsych({
     });
   </script>
   
-  <div id="footerText"></div>
-  <script>
-    jatos.onLoad(() => {
-      // update the header button labels
-      UpdateHeader()
-    })
-  </script>
 
 </body>
 

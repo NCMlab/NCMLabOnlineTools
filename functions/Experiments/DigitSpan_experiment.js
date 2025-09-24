@@ -1,6 +1,6 @@
 // =======================================================================
 // Define internal variables
-console.log(DigitSpan_parameters)
+console.log(parameters)
 var timeline = [];
 var count = 0
 var stimList; //this is going to house the ordering of the stimuli for each trial
@@ -27,18 +27,18 @@ var enter_fullscreen = {
 var ReadParametersAndSetup = {
   type: jsPsychCallFunction,
   func: function(){
-    if (DigitSpan_parameters.DeliveryMethod == 'staircase'){
+    if (parameters.DeliveryMethod == 'staircase'){
       console.log("STAIRCASE")
-      staircase = new Stair(DigitSpan_parameters.Parameters.Current, DigitSpan_parameters.Parameters.MinValue, DigitSpan_parameters.Parameters.MaxValue, DigitSpan_parameters.Parameters.MaxReversals, DigitSpan_parameters.Parameters.MaxTrials, DigitSpan_parameters.Parameters.StepSize, DigitSpan_parameters.Parameters.NUp, DigitSpan_parameters.Parameters.NDown, DigitSpan_parameters.Parameters.FastStart, DigitSpan_parameters.Parameters.MaxTime)
+      staircase = new Stair(parameters.Parameters.Current, parameters.Parameters.MinValue, parameters.Parameters.MaxValue, parameters.Parameters.MaxReversals, parameters.Parameters.MaxTrials, parameters.Parameters.StepSize, parameters.Parameters.NUp, parameters.Parameters.NDown, parameters.Parameters.FastStart, parameters.Parameters.MaxTime)
       CurrentListLength = staircase.Current
     }
-    else if (DigitSpan_parameters.DeliveryMethod == 'fixed'){
+    else if (parameters.DeliveryMethod == 'fixed'){
       console.log("FIXED")
-      CurrentListLength = DigitSpan_parameters.Parameters.Current
+      CurrentListLength = parameters.Parameters.Current
     }
-    else if (DigitSpan_parameters.DeliveryMethod == 'numberErrors'){
+    else if (parameters.DeliveryMethod == 'numberErrors'){
       console.log("NUMBER OF ERRORS")
-      CurrentListLength = DigitSpan_parameters.Parameters.Current
+      CurrentListLength = parameters.Parameters.Current
     }
   }
 }
@@ -47,7 +47,7 @@ var preload_digits = {
   type: jsPsychPreload,
   audio: function() {
     
-    var List = MakeListOfStimuli(DigitSpan_Instructions.FolderOfAudioFiles, initList)
+    var List = MakeListOfStimuli(Instructions.FolderOfAudioFiles, initList)
     console.log(List)
     console.log("PRELOADING AUDIO")
     return List
@@ -57,7 +57,7 @@ var preload_digits = {
 var if_node = {
   timeline: [preload_digits],
   conditional_function: function(){
-    if ( DigitSpan_parameters.StimulusMode == 'audio' )
+    if ( parameters.StimulusMode == 'audio' )
       { return true }
     else { return false }
   }
@@ -66,12 +66,12 @@ var if_node = {
 var UpdateListLength = {
     type: jsPsychCallFunction,
     func: function(){
-        if (DigitSpan_parameters.DeliveryMethod == 'staircase') {
+        if (parameters.DeliveryMethod == 'staircase') {
           staircase.Decide(accuracy)
           CurrentListLength = staircase.Current
         }
         // change this so that it presents two trials of each load
-        if (DigitSpan_parameters.DeliveryMethod == 'numberErrors') {
+        if (parameters.DeliveryMethod == 'numberErrors') {
           console.log("Previous Length: "+ PreviousListLength)
           console.log("Current Length: "+ CurrentListLength)
           if ( PreviousListLength == CurrentListLength ) 
@@ -84,7 +84,7 @@ var UpdateListLength = {
             // if correct, reset the counter
           else   { MaxErrorsInRow = 0 }
         }
-        if (DigitSpan_parameters.DeliveryMethod == 'fixed') {
+        if (parameters.DeliveryMethod == 'fixed') {
           CurrentListLength += 1
         }
         console.log("Previous Length: "+ PreviousListLength)
@@ -95,16 +95,16 @@ var UpdateListLength = {
 var CheckWhetherToStop = {
   type: jsPsychCallFunction,
   func: function(){
-      if (DigitSpan_parameters.DeliveryMethod == 'staircase') {
-        if ( TrialCount > DigitSpan_parameters.Parameters.MaxTrials )
+      if (parameters.DeliveryMethod == 'staircase') {
+        if ( TrialCount > parameters.Parameters.MaxTrials )
           { StopFlag = false}
       }
-      if (DigitSpan_parameters.DeliveryMethod == 'numberErrors') {
-        if (MaxErrorsInRow == DigitSpan_parameters.Parameters.Nerrors )
+      if (parameters.DeliveryMethod == 'numberErrors') {
+        if (MaxErrorsInRow == parameters.Parameters.Nerrors )
         { StopFlag = false}
       }
-      if (DigitSpan_parameters.DeliveryMethod == 'fixed') {
-        if ( TrialCount > DigitSpan_parameters.Parameters.MaxTrials )
+      if (parameters.DeliveryMethod == 'fixed') {
+        if ( TrialCount > parameters.Parameters.MaxTrials )
           { StopFlag = false}
       }
     }
@@ -116,8 +116,8 @@ var SetupTrial = {
     func: function(data){
         console.log("Current List Length: "+CurrentListLength)
         stimList = CreateDigitList(CurrentListLength)
-        if ( DigitSpan_parameters.StimulusMode == 'audio' ) {
-            stim = MakeListOfStimuli(DigitSpan_Instructions.FolderOfAudioFiles, stimList)
+        if ( parameters.StimulusMode == 'audio' ) {
+            stim = MakeListOfStimuli(Instructions.FolderOfAudioFiles, stimList)
             console.log("Made this list of stimuli: "+stim)
         }
         else { // visual
@@ -150,7 +150,7 @@ var TrialNumber = {
     on_load: function() {
         TrialCount += 1
     },
-    stimulus: function() {return '<p>'+DigitSpan_Instructions.TrialNumber+': '+ String(TrialCount) + '</p>';},
+    stimulus: function() {return '<p>'+Instructions.TrialNumber+': '+ String(TrialCount) + '</p>';},
     choices: [],
     prompt: "",
     trial_duration: DurationToWaitBetweenTrials,
@@ -246,7 +246,7 @@ var VisualStim = {
 }
 var AudioForward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return DigitSpan_Instructions.ForwardAudioInstructions[count].page},
+  stimulus: function (){return Instructions.ForwardAudioInstructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -255,7 +255,7 @@ var AudioForward_Instructions = {
 
 var AudioBackward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return DigitSpan_Instructions.BackwardAudioInstructions[count].page},
+  stimulus: function (){return Instructions.BackwardAudioInstructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -263,7 +263,7 @@ var AudioBackward_Instructions = {
 }
 var VisualForward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return DigitSpan_Instructions.ForwardVisualInstructions[count].page},
+  stimulus: function (){return Instructions.ForwardVisualInstructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -272,7 +272,7 @@ var VisualForward_Instructions = {
 
 var VisualBackward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return DigitSpan_Instructions.BackwardVisualInstructions[count].page},
+  stimulus: function (){return Instructions.BackwardVisualInstructions[count].page},
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: '',
@@ -282,10 +282,10 @@ var VisualBackward_Instructions = {
 var get_response = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-      if ( DigitSpan_parameters.direction == 'forward' ) {
-        return PutStimIntoTable(DigitSpan_Instructions.ForwardTrialQuestion + response_grid,'') 
+      if ( parameters.direction == 'forward' ) {
+        return PutStimIntoTable(Instructions.ForwardTrialQuestion + response_grid,'') 
       }
-      else {return PutStimIntoTable(DigitSpan_Instructions.BackwardTrialQuestion + response_grid,'') }
+      else {return PutStimIntoTable(Instructions.BackwardTrialQuestion + response_grid,'') }
     },
     on_load: function() {
       
@@ -299,7 +299,7 @@ var get_response = {
     on_finish: function(data) {
         var curans = response;
         accuracy = CheckResponse(stimList, response)
-        if (DigitSpan_parameters.direction == 'backward') {
+        if (parameters.direction == 'backward') {
           accuracy = CheckResponse(RevereseStimList(stimList), response)   
         }
         else {
@@ -328,7 +328,7 @@ var AudioForward_Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < DigitSpan_Instructions.ForwardAudioInstructions.length){
+    if ( count < Instructions.ForwardAudioInstructions.length){
         return true} else { return false}
   }
 }
@@ -337,7 +337,7 @@ var AudioBackward_Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < DigitSpan_Instructions.BackwardAudioInstructions.length){
+    if ( count < Instructions.BackwardAudioInstructions.length){
         return true} else { return false}
   }
 }
@@ -346,7 +346,7 @@ var VisualForward_Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < DigitSpan_Instructions.ForwardVisualInstructions.length){
+    if ( count < Instructions.ForwardVisualInstructions.length){
         return true} else { return false}
   }
 }
@@ -355,7 +355,7 @@ var VisualBackward_Instructions_loop_node = {
   loop_function: function(data){
     console.log(count)
     count+=1
-    if ( count < DigitSpan_Instructions.BackwardVisualInstructions.length){
+    if ( count < Instructions.BackwardVisualInstructions.length){
         return true} else { return false}
   }
 }
@@ -393,38 +393,38 @@ var if_audio_forward_instr = {
     timeline: [AudioForward_Instructions_loop_node],
     conditional_function: function() {
       console.log("CHECKING FOR AUDIO FORWARD")
-      console.log(DigitSpan_parameters)
-        if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='forward' )
+      console.log(parameters)
+        if ( parameters.StimulusMode == 'audio' && parameters.direction =='forward' )
             { return true }
         else { return false }
     }
 }
 var if_audio_backward_instr = {
     timeline: [AudioBackward_Instructions_loop_node],
-    timeline_variables: function() {return DigitSpan_Instructions.BackwardAudioInstructions},
+    timeline_variables: function() {return Instructions.BackwardAudioInstructions},
     conditional_function: function() {
       console.log("CHECKING FOR AUDIO BACKWARD")
-        if ( DigitSpan_parameters.StimulusMode == 'audio' && DigitSpan_parameters.direction =='backward' )
+        if ( parameters.StimulusMode == 'audio' && parameters.direction =='backward' )
             { return true }
         else { return false }
     }
 }
 var if_visual_forward_instr = {
     timeline: [VisualForward_Instructions_loop_node],
-    timeline_variables: function() {return DigitSpan_Instructions.ForwardVisualInstructions},
+    timeline_variables: function() {return Instructions.ForwardVisualInstructions},
     conditional_function: function() {
       console.log("CHECKING FOR VISUAL FORWARD")
-        if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='forward' )
+        if ( parameters.StimulusMode == 'visual' && parameters.direction =='forward' )
             { return true }
         else { return false }
     }
 }
 var if_visual_backward_instr = {
     timeline: [VisualBackward_Instructions_loop_node],
-    timeline_variables: function() {return DigitSpan_Instructions.BackwardVisualInstructions},
+    timeline_variables: function() {return Instructions.BackwardVisualInstructions},
     conditional_function: function() {
       console.log("CHECKING FOR VISUAL BACKWARD")
-        if ( DigitSpan_parameters.StimulusMode == 'visual' && DigitSpan_parameters.direction =='backward' )
+        if ( parameters.StimulusMode == 'visual' && parameters.direction =='backward' )
             { return true }
         else { return false }
     }
@@ -433,7 +433,7 @@ var if_visual_backward_instr = {
 var if_audio = {
   timeline: [present_audio],
   conditional_function: function(){
-    if ( DigitSpan_parameters.StimulusMode == 'audio' )
+    if ( parameters.StimulusMode == 'audio' )
       { return true }
     else { return false }
   }
@@ -442,7 +442,7 @@ var if_audio = {
 var if_visual = {
   timeline: [present_visual],
   conditional_function: function(){
-    if ( DigitSpan_parameters.StimulusMode == 'visual' )
+    if ( parameters.StimulusMode == 'visual' )
       { return true }
     else { return false }
   }
@@ -458,7 +458,7 @@ var procedure = {
 var if_Test_Instructions = {
   timeline: [if_audio_forward_instr, if_visual_forward_instr, if_audio_backward_instr, if_visual_backward_instr],
   conditional_function: function() {
-        if ( DigitSpan_parameters.ShowInstructions)
+        if ( parameters.ShowInstructions)
         { 
           return true }
         else { return false }

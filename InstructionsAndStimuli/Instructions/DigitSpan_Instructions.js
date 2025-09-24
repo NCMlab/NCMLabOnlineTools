@@ -62,6 +62,6 @@ FR_Instructions.TrialNumber = 'Essai numéro'
 FR_Instructions.FolderOfAudioFiles = 'assets/SoundFiles/Digits/Set_fr_FR-Neural2-A_Speed70/'
 FR_Instructions.NotesForResultsPage = "FR: The digit span task presented a list of number sequences to the participant who needed to repeat those sequences. The <b>Load List</b> is the length of each number sequence presented. The <b> Accuracy List refers to which sequencers were repeated correctlt, 1 = correct, 0 = incorrect. The overall score for this test is the <b>Threshold</b>. This calculation depends on the <b>Scoring Type</b> used. For <b> numberErrors </b> the threshold is highest sequence length correctly repeated."
 
-add('EN_DigitSpan_Instructions_Default', function(){ DigitSpan_Instructions = EN_Instructions});
-add('FR_DigitSpan_Instructions_Default', function(){ DigitSpan_Instructions = FR_Instructions});
+add('EN_Instructions_Default', function(){ Instructions = EN_Instructions});
+add('FR_Instructions_Default', function(){ Instructions = FR_Instructions});
 

@@ -55,10 +55,10 @@ var RAVLT_Spoken_Immediate = {
 	DelayBeforeShowingDoneButton: 8, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: false,
+	ShowWelcome: true,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
