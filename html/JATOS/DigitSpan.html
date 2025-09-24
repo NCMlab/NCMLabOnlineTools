@@ -15,9 +15,8 @@
     <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+            function() {UpdateHeader()});})
     </script> 
 </head>    
 <body>
@@ -28,6 +27,7 @@
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
@@ -37,6 +37,7 @@
     
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="InstructionsAndStimuli/Instructions/DigitSpan_Instructions.js"></script>
     <script src="config/DigitSpan_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
@@ -57,27 +58,28 @@
         }
         pseudoSwitch(parameters)
         console.log(DigitSpan_parameters)
-        LANG = jatos.studySessionData.Language
+        
+        //LANG = jatos.studySessionData.Language
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
         console.log(LANG)
         pseudoSwitch(LANG+'_DigitSpan_Instructions_'+InstructionsToUse)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
+        console.log(DigitSpan_Instructions)
 
       })
     </script> 
     <script src="functions/TaskSpecificFunctions/DigitSpan_functions.js"></script>
-    <script src="functions/Experiments/DigitSpan_experiment.js" defer></script>
+    <script src="functions/Experiments/DigitSpan_experiment.js"></script>
     <script src="functions/Scoring/DigitSpan_Scoring.js"></script>
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
 
     <script>
       var setup = []
-
       var jsPsych = initJsPsych({
           display_element: 'jspsych-target',
           show_progress_bar: true,    
           auto_update_progress_bar: false,
-
           use_webaudio: true,
           on_trial_start: function() {
             //http://127.0.0.1:9000/publix/fNTRhuguK1x
@@ -92,15 +94,7 @@
           },
           on_finish: function() {
             jatos.submitResultData(jsPsych.data.get().json())
-            if ( SaveLocalFile ) {
-              jsPsych.data.get().localSave('csv','DigitSpan_data.csv');
-            }    
-            // update session data
-            JATOSSessionData = jatos.studySessionData
-            JATOSSessionData.CurrentIndex += 1
-            jatos.studySessionData = JATOSSessionData
-            // Go back to usage management 
-            whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
+            .then(() => whereToGoNext(jatos.studySessionData))
           }      
       });
       jatos.onLoad(() => {
@@ -112,13 +106,6 @@
           jatos.addJatosIds(resultsData);
           jsPsych.run(timeline);
         });
-    </script>
-    <div id="footerText"></div>
-    <script>
-      jatos.onLoad(() => {
-        // update the header button labels
-        UpdateHeader()
-      })
     </script>
 
   </body>

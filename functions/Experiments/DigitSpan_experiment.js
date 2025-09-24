@@ -186,12 +186,12 @@ var OLDAudioStim = {
 var AudioStim = {
   type: jsPsychAudioButtonResponse,
   stimulus: function(){
-    console.log("Audio List length is: "+9)
+  //  console.log("Audio List length is: "+9)
      
     //randomElement = Math.floor(Math.random() * AudioTestList.length) + 1
-    console.log('Planning to present element: '+idx)
-    console.log("The stim list is: "+stim)
-    console.log(stim[idx])
+  //    console.log('Planning to present element: '+idx)
+  //    console.log("The stim list is: "+stim)
+  //    console.log(stim[idx])
     return stim[idx]
   },
   choices: [],
@@ -200,7 +200,7 @@ var AudioStim = {
   response_ends_trial: false,
   prompt: '<p class="Fixation">+</p>',
   on_finish: function(data) {
-    console.log("Finished presenting")
+  //  console.log("Finished presenting")
     data.TrialNumber = TrialCount - 1
     data.task = 'audio'
     idx += 1; //update the index
@@ -217,7 +217,7 @@ var AudioStim = {
 var VisualStim = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: function(){
-    console.log(stim[idx])
+     // console.log(stim[idx])
     return '<p class="Fixation">'+stim[idx] +'</p>'},
   choices: [],
   post_trial_gap: TimeGapBetweenAudioLetters,
