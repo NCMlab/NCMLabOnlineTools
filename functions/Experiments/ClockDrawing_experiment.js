@@ -14,6 +14,7 @@ var trial = {
   canvas_width: 600,
   canvas_height: 600,
   canvas_border_width: 2,
+  save_final_image: true,
   finished_button_label: function() {return LabelNames.Finished},
   clear_button_label: function() {return LabelNames.Clear},
   undo_button_label: function() {return LabelNames.Undo},
