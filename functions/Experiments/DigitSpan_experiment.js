@@ -1,7 +1,5 @@
 // =======================================================================
 // Define internal variables
-console.log(parameters)
-console.log(Instructions)
 var timeline = [];
 var count = 0
 var stimList; //this is going to house the ordering of the stimuli for each trial

@@ -41,8 +41,8 @@
     <script> 
       // use jquery to load up the header button html content 
       // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
-            function() {UpdateHeader()});})
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html")})
+           
     </script> 
 
     <script>
@@ -94,6 +94,7 @@
             jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
             jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
             jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+            UpdateHeader()
           },
           on_finish: function() {
             if ( jatos.urlQueryParameters.SaveLocal ) {
@@ -110,6 +111,7 @@
 
           //var resultsData = {'name':'JASON'};
           //jatos.addJatosIds(resultsData);
+          
           jsPsych.run(timeline);
         });
     </script>

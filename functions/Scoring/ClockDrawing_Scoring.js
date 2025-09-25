@@ -8,8 +8,16 @@ function ClockDrawing_Scoring(data) {
 	Results.PrimaryResults['Accuracy'] = -99
 	Results.AllResults = {}
 	Results.AllResults['Accuracy'] = -99
-	//Results.AllResults['Image'] = trialData.png
-	//Results.AllResults['GIF'] = trialData.gif
+	Results.AllResults['Image'] = trialData.png
+	Results.AllResults['GIF'] = trialData.gif
+
+	// Save Result to a File
+	if ( jatos.urlQueryParameters.SaveLocal ) {
+		var a = document.createElement("a"); //Create <a>
+    	a.href = trialData.png; //Image Base64 Goes here
+    	a.download = jatos.workerId + "_ClockDrawing.png"; //File name Here
+    	a.click(); //Downloaded file
+	}
 	//Results.AllResults['GIF'] = "JASON GIF"
 	Results.AllResults['Response Time (ms)'] = trialData.rt
 	if ( Notes.trials.length > 0 )
