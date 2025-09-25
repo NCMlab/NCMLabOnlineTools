@@ -119,6 +119,7 @@ var EligibilityCheck = {
 var WelcomeWritten = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() { 
+        console.log(Instructions)
         var Str = Instructions.WelcomeText[0].page
         Str += "<p>"+LabelNames.PressNext+"</p>"
         return Str

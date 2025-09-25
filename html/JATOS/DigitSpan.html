@@ -13,6 +13,7 @@
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
 
+
 </head>    
 <body>
   <div id="headerButtons"></div>
@@ -43,6 +44,7 @@
         $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
             function() {UpdateHeader()});})
     </script> 
+
     <script>
       
       var parameters = 'empty'
@@ -97,10 +99,7 @@
             if ( jatos.urlQueryParameters.SaveLocal ) {
                 jsPsych.data.get().localSave('csv',jatos.workerId+'_DigitSpan_'+parameters.direction+'.csv');
             }    
-
             jatos.submitResultData(jsPsych.data.get().json())
-
-            
             .then(() => whereToGoNext(jatos.studySessionData))
           }      
       });
@@ -109,11 +108,12 @@
           console.log(jatos)
           console.log(JATOSID)
 
-          var resultsData = {'name':'JASON'};
-          jatos.addJatosIds(resultsData);
+          //var resultsData = {'name':'JASON'};
+          //jatos.addJatosIds(resultsData);
           jsPsych.run(timeline);
         });
     </script>
+
 
   </body>
 </html>

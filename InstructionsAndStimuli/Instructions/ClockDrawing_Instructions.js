@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.Instructions = "<div>You are to to draw a clock. Start by drawing the face of the clock, then add the numbers to the clock's face. Finally, add the clock arms showing the time as 10 minutes after 11 o'clock.</div>" 
+EN_Instructions.Instructions = "You are to to draw a clock. Start by drawing the face of the clock, then add the numbers to the clock's face. Finally, add the clock arms showing the time as 10 minutes after 11 o'clock." 
 EN_Instructions.WelcomeText = [{'page': 'Welcome to the Clock Drawing Task.'}]
 EN_Instructions.ThankYouText = [{'page': 'Thank you.'}]
 EN_Instructions.NotesForResultsPage = "Scoring is as follows: 10  Full No Impairment or Unlikely Impairment. 8-9 Other clinical determinants must be present otherwise no impairment. 5-8  Cognitive Impairment. 0-4  Prominent Cognitive Impairment"

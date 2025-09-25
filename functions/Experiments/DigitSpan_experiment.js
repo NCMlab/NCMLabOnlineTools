@@ -1,6 +1,7 @@
 // =======================================================================
 // Define internal variables
 console.log(parameters)
+console.log(Instructions)
 var timeline = [];
 var count = 0
 var stimList; //this is going to house the ordering of the stimuli for each trial
@@ -235,15 +236,7 @@ var VisualStim = {
   }
 };
 
- // Define instructions
- var Instructions = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function (){return jsPsych.timeline_variables('page')},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: '',
-  choices: function() {return [LabelNames.Next]}, 
-}
+
 var AudioForward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
   stimulus: function (){return Instructions.ForwardAudioInstructions[count].page},

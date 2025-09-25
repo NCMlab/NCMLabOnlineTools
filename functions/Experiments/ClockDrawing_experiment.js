@@ -6,7 +6,7 @@ var trial = {
   type: jsPsychSketchpad,
   prompt: function(){
     if ( parameters.ShowInstructions )
-    { return Instructions.Instructions } 
+    { return '<div class="TextAboveCanvas">'+Instructions.Instructions+'</div>' } 
     else { return ''}
   },
   GIFRecord: function() { return parameters.RecordGIF },
