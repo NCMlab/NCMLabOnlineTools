@@ -56,6 +56,7 @@ EN_LabelNames.missed_question_label = "Please select an item"
 EN_LabelNames.missed_question_text = "Please answer all questions"
 EN_LabelNames.ThankYou = "Thank you for your participation. You may close this window."
 
+
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
 FR_LabelNames.YesNo = ['Oui', 'No']

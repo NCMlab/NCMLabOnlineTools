@@ -36,3 +36,4 @@ ComponentList.push({name:'Language Selection', iconFileName:'LanguageSelection.p
 ComponentList.push({name:'Matrix Questionnaire', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Form Questionnaire', iconFileName:'MultiChoice.png'})
 ComponentList.push({name:'Ending Page', iconFileName:'MultiChoice.png'})
+ComponentList.push({name:'Ready Hold', iconFileName:'MultiChoice.png'})

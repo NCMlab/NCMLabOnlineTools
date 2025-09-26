@@ -113,7 +113,7 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           var currentRow = 1
           var newRow = false
           // Start the table
-          html += '<table border="0"><tr>'
+          html += '<table border="1"><tr>'
           for (var i = 0; i < trial.choices.length; i++) {
                 if ( trial.buttonRow[i] > currentRow ) { 
                     newRow = true 

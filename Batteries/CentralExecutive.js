@@ -65,6 +65,8 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             console.log(JATOSSessionData)
             
             jatos.studySessionData = JATOSSessionData
+            console.log(jatos)
+            console.log(jatos.studySessionData)
         }
         else {console.log("THERE IS SESSION DATA")}
         resolve("successfully setup session data")
@@ -104,15 +106,17 @@ function StartComponent(title) {
 }
 
 function SetupjsPsychAndRunTimeline()  {
-    var jsPsych = initJsPsych({
-    display_element: 'jspsych-target',
+    return new Promise(() =>{
+        var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+        })
+        // if the central executive has added anything otthe timeline,
+        // then run it.
+        if ( timeline.length !== 0 )
+        { 
+            jsPsych.run(timeline); 
+        }          
     })
-    // if the central executive has added anything otthe timeline,
-    // then run it.
-    if ( timeline.length !== 0 )
-    { 
-        jsPsych.run(timeline); 
-    }          
 }       
 
 // The following is used by the user choice 
@@ -150,15 +154,19 @@ function SetupSession() {
     var SessionsBatteryList = []
     var ButtonRow = []
     var ButtonBit = []
+    var ButtonUsageType = []
+    console.log(parameters[0].List)
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
             SessionsBatteryList.push( parameters[0].List[i].battery )
             ButtonRow.push( parameters[0].List[i].row )
             ButtonBit.push( parameters[0].List[i].BitIndex )
+            ButtonUsageType.push( parameters[0].List[i].ButtonUsageType )
         }
     
     console.log("Completed Sessions: ")
+    console.log(ButtonUsageType)
     CompletedBits = jatos.batchSession.get(jatos.workerId+'_bitIndex')
     // Convert this back to bits to centralize this code/decode into one script
     console.log(CompletedBits)
@@ -168,7 +176,7 @@ function SetupSession() {
     console.log(ButtonBit)
 
     SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
-    SessionChoiceTrialNEW = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow)
+    SessionChoiceTrialNEW = MakeSessionButtonsNEW(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, ButtonUsageType)
     
     // Have different session been completed?
     // Check the bit 
@@ -183,7 +191,7 @@ function SetupSession() {
     // Whenever a battery (of a session) is finished batch data is updated with this information. 
     // Therefore, there just needs to be a bit-string/bytes corresponding to the yes/no (1/0) status of 
     // each battery in the session. The itemCount in the session config is one value per button/battery.
-    return SessionChoiceTrial
+    return SessionChoiceTrialNEW
     //timeline.push()
 }
 
@@ -290,7 +298,9 @@ function UsageTypeDecision(UsageType) {
                 timeline.push(SetupSession())
                 break;
             case 'UserChoice':
-                timeline.push(MakeUserChoiceElement(JATOSSessionData))
+                // reset the timeline
+                timeline = []
+                timeline.push(MakeUserChoiceElement(jatos.studySessionData))
                 // once a choice is made start that title
                 break;
             default:
@@ -338,7 +348,7 @@ function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
     return trial
 }
 
-function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow) {
+function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, ButtonUsageType) {
     var trial = {
         type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },
@@ -347,6 +357,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
         buttonRow: ButtonRow,
         prompt: "",
         on_start: function() {
+            console.log(ButtonUsageType)
             // Is the BitList Empty?
             console.log(BitList === undefined)
         },
@@ -360,16 +371,30 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             console.log(SessionsBatteryList)
-            SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
-            JATOSSessionData = jatos.studySessionData
-            console.log(JATOSSessionData)
-            // Start at the beginning of this battery
-            var TitleToStart = JATOSSessionData.TaskNameList[0]
-            // Start the battery
-            console.log(TitleToStart)
-            UpdateSessionBitIndex(AddToCompletionCount)
-            .then(() => StartComponent(TitleToStart))
-            // Once a session is selected, add the Bit Index to the session data
+            console.log("UASGE TYPE FOR THIS BUTTON")
+            console.log(ButtonUsageType[data.response])
+            
+            if ( ButtonUsageType[data.response] === undefined )
+            {
+                // No usage type was provided for this button
+                // Use the Battery usage type
+                SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
+                JATOSSessionData = jatos.studySessionData
+                // Start at the beginning of this battery
+                var TitleToStart = JATOSSessionData.TaskNameList[0]
+                // Start the battery
+                // It would be great to add a READY screen, with a participant's name on it.
+                UpdateSessionBitIndex(AddToCompletionCount)                
+                SetupjsPsychAndRunTimeline()
+                StartComponent(TitleToStart)
+                // Once a session is selected, add the Bit Index to the session data
+            }
+            else {
+                SetupBattery(false, SessionsBatteryList[data.response], ButtonUsageType[data.response])
+                .then(() => UsageTypeDecision(ButtonUsageType[data.response]))
+                .then(() => SetupjsPsychAndRunTimeline())
+            }
+            
         }
     };
     return trial
@@ -378,6 +403,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
 function MakeUserChoiceElement(JATOSSessionData) {
     // This is the jsPsych task that display an icon for each task in a battery
     IconImgFileList = MakeIconList(JATOSSessionData.TaskNameList, ComponentList)
+    console.log(IconImgFileList)
     var UserChoicePage = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() {return '<b>'+JATOSSessionData.BatteryInstructions+'</b>'},
@@ -404,6 +430,7 @@ function MakeUserChoiceElement(JATOSSessionData) {
     };
     return UserChoicePage
 }
+
 function MakeThankYouPage() {
     console.log("Making thank you page")
     // This is the jsPsych task that display an icon for each task in a battery

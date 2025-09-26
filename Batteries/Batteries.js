@@ -1441,6 +1441,14 @@ BatteryList.push({
 var List = [];
 
 List.push({
+  Task: "Ready Hold",
+  Parameters: "Default",
+  Instructions: "Default",
+  IconName: "Ready, Hold",
+});
+
+
+List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
