@@ -21,7 +21,6 @@ function ClockDrawing_Scoring(data) {
     	a.href = trialData.png; //Image Base64 Goes here
     	a.download = jatos.workerId + StrDateTime+"_ClockDrawing.png"; //File name Here
     	a.click(); //Downloaded file
-		alert('DDD')
 	}
 	//Results.AllResults['GIF'] = "JASON GIF"
 	Results.AllResults['Response Time (ms)'] = trialData.rt
