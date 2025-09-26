@@ -53,6 +53,16 @@
                 },
                 on_finish: function() {
                     console.log("SUBMITTING DATA")
+                    console.log(parameters)
+                    alert("JASON")
+                    if ( jatos.urlQueryParameters.SaveLocal ) {
+                        const d = new Date();
+                        var StrDate = d.getDate() + "_"+String(Number(d.getMonth())+1)+"_"+d.getFullYear();
+                        var StrTime = d.getHours() + "_"+d.getMinutes();
+                        var StrDateTime = "_"+StrDate+"__"+StrTime;
+                        jsPsych.data.get().localSave('csv',jatos.workerId+'_Questionnaire_'+parameters.questionnaire[0]+StrDateTime+'.csv');
+                    }    
+
                     // The submitting data was put into a promise since sometimes it takes a 
                     // bit of time for it to finish and redirects are sometimes quicker and
                     // interrupt the data transfer.

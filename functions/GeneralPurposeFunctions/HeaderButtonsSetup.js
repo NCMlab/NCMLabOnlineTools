@@ -74,4 +74,4 @@
     // Append the select to the wrapper
     langWrapper.appendChild(selectList);
     document.getElementById("header-btn-group").appendChild(langWrapper);
-    UpdateHeader()
+    //UpdateHeader()

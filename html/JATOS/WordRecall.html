@@ -117,7 +117,11 @@
       },
       on_finish: function() {
         if ( jatos.urlQueryParameters.SaveLocal ) {
-          jsPsych.data.get().localSave('csv',jatos.workerId+'_WordRecall.csv');
+          const d = new Date();
+          var StrDate = d.getDate() + "_"+String(Number(d.getMonth())+1)+"_"+d.getFullYear();
+          var StrTime = d.getHours() + "_"+d.getMinutes();
+          var StrDateTime = "_"+StrDate+"__"+StrTime;
+          jsPsych.data.get().localSave('csv',jatos.workerId+StrDateTime+'_WordRecall.csv');
         }    
 
         jatos.submitResultData(jsPsych.data.get().json())
