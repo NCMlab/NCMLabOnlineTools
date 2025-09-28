@@ -25,8 +25,60 @@ const json = {
       ]
     },*/
     {      
-      name: "Demographic Information",
-      title: "Demographic Information",
+      name: "Section Ability",
+      title: "Section Ability",
+       elements: [
+        {
+          type: 'dropdown',
+          title: "Ability Timing", 
+          name: 'AB_Timing', 
+          choices: [
+                      'Congenital',
+                      'Acquired',
+                      'Able-body',
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+          {
+          type: 'dropdown',
+          title: "Classification of disabilities",
+          name: 'AB_Class',
+          choices: [
+                      'Mobility',
+                      'Vision',
+                      'Hearing',
+                      'Cognitive function'
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+        {
+          type: "radiogroup",
+          name: "AB_Loi",
+          title: "How would you rate your ability to perform daily tasks?",
+          isRequired: true,
+          choices: [
+                    { "value": 1, "text": "Total Assistance — Dependent, requires full help from others." },
+                    { "value": 2, "text": "Maximal Assistance — Needs 75% help to complete tasks." },
+                    { "value": 3, "text": "Moderate Assistance — Needs 50% help to complete tasks." },
+                    { "value": 4, "text": "Minimal Assistance — Needs 25% help to complete tasks." },
+                    { "value": 5, "text": "Supervision or Setup — Requires supervision or verbal cues." },
+                    { "value": 6, "text": "Modified Independance — Uses assistive devices but no help needed." },
+                    { "value": 7, "text": "Complete Independance — No assistance, performs safely." }
+                  ]
+                }
+
+        ]
+    },
+
+    // section 2
+
+    {      
+      name: "SportParticipation",
+      title: "Section II: Sport  Participation Profile",
        elements: [
         {
           type: 'dropdown',
@@ -38,9 +90,46 @@ const json = {
               ],
           showOtherItem: true,
           isRequired: true
+        },
+
+          {
+          type: 'text',
+          title: "What sport do you play the most?",
+          name: 'PrimarySport',
+          isRequired: true
         }
         ]
-    }
+    },
+   
+    // section 3
+
+    {      
+      name: "CostActiveSportParticipation",
+      title: "Section III: Cost of Active Sport Participation",
+       elements: [
+        {
+          type: 'dropdown',
+          title: "Gender", 
+          name: 'Gender', 
+          choices: [
+                      'Male',
+                      'Female',
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },
+
+          {
+          type: 'text',
+          title: "What sport do you play the most?",
+          name: 'PrimarySport',
+          isRequired: true
+        }
+        ]
+    },
+
+     
+
    ]
 }
 
