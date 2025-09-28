@@ -69,7 +69,46 @@ const json = {
                     { "value": 6, "text": "Modified Independance — Uses assistive devices but no help needed." },
                     { "value": 7, "text": "Complete Independance — No assistance, performs safely." }
                   ]
-                }
+                },
+
+        {
+          type: 'dropdown',
+          title: "Does your ability require adaptive equipment in your daily life?", 
+          name: 'AB_EQ_DL', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL} = 'yes'",
+          isRequired: false
+        },
+
+
+        {
+          type: 'dropdown',
+          title: "Does your ability require adaptive equipment to participate this sport?", 
+          name: 'AB_EQ_DL_Ex', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+          isRequired: false
+        },
 
         ]
     },
@@ -80,17 +119,37 @@ const json = {
       name: "SportParticipation",
       title: "Section II: Sport  Participation Profile",
        elements: [
-        {
+          {
+           name: "SP_How",
+           type: "text",
+           title: "How did you get into this sport?",
+           minLength: 10,
+           isRequired: true
+          },
+
+
+           {
           type: 'dropdown',
-          title: "Gender", 
-          name: 'Gender', 
+          title: "Do you have classification and/or specialty and/or player position in this sport?", 
+          name: 'SP_Class', 
           choices: [
-                      'Male',
-                      'Female',
-              ],
-          showOtherItem: true,
+                      'Yes',
+                      'No',
+                      'N/A',
+                      
+              ]
+          },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{SP_Class} = 'yes'",
           isRequired: true
         },
+
+
+        
 
           {
           type: 'text',
