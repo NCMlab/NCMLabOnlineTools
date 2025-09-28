@@ -153,10 +153,112 @@ const json = {
 
           {
           type: 'text',
-          title: "What sport do you play the most?",
-          name: 'PrimarySport',
+          inputType:'number',
+          title: "How many years have you played/participated in this sport? ",
+          name: 'SP_Years',
+          min: 0,
+          max: 100,
+         
+         isRequired: true
+        },
+
+        {
+          type: "radiogroup",
+          name: "SP_Context",
+          title: "Indicate the context of your participation?",
+          isRequired: true,
+          choices: [
+                    { "value": 1, "text": "Non-organized"},
+                    { "value": 2, "text": "Organized"},
+                    { "value": 3, "text": "Both"},
+                    { "value": 4, "text": "Other"},
+          
+                  ]
+                },
+
+        {
+          type: "comment",
+          name: "SP_Context_Ex",
+          title: "If other, please explain:",
+          visibleIf: "{SP_Context}= 4",
           isRequired: true
-        }
+        },
+
+
+        {
+          type: "radiogroup",
+          name: "SP_Level",
+          title: "Indicate your level of participation: ",
+          isRequired: true,
+          choices: [
+                    { "value": 1, "text": "Recreational Only"},
+                    { "value": 2, "text": "Mainly recreational, but also competitive"},
+                    { "value": 3, "text": "Mainly competitive, but also recreational"},
+                    { "value": 4, "text": "Competitive only"},
+                    { "value": 5, "text": "Other"},
+          
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "SP_Level_Ex",
+          title: "If other, please explain:",
+          visibleIf: "{SP_Level}=5",
+          isRequired: true
+        },
+
+        {
+           name: "SP_Level_Current",
+           type: "text",
+           title: "What is your current level of participation?",
+           minLength: 10,
+           isRequired: true
+          },
+
+           {
+           name: "SP_Level_Highest",
+           type: "text",
+           title: "What was your highest level in this sport?",
+           minLength: 10,
+           isRequired: true
+          },
+
+           {
+            type: "radiogroup",
+            name: "SP_Fac",
+            title: "The sports facility you mainly play/practice is: ",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "No sports facility"},
+                    { "value": 2, "text": "A public facility"},
+                    { "value": 3, "text": "A private facility"},
+                    { "value": 4, "text": "Other"},
+                    
+          
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "SP_Fac_Ex",
+          title: "If other, please explain:",
+          visibleIf: "{SP_Fac}= 4",
+          isRequired: true
+        },
+
+         {
+           name: "SP_Fac_PC",
+           type: "text",
+           title: "Can you provide the postal code or name of the city of the facility where you play/practice most frequently?",
+           minLength: 6,
+           isRequired: true
+          },
+
+
+
+
+
         ]
     },
    
@@ -186,7 +288,6 @@ const json = {
         }
         ]
     },
-
      
 
    ]
