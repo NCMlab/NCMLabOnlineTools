@@ -78,7 +78,9 @@
         var ReadyPage = {
             type: jsPsychHtmlButtonResponseTouchscreen,
             stimulus: function() { 
-              Str = "Hello " + jatos.workerId + " "+LabelNames.PressNext 
+              var FirstName = jatos.batchSession.get(jatos.workerId+"_FirstName")
+              Str = LabelNames.Hello + " " + FirstName + " "+LabelNames.PressNext 
+              
               return Str},
             choices: function() { return [LabelNames.Next]},
             on_finish: function() {console.log("Ready")}

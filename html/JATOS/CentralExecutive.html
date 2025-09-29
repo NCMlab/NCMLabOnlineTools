@@ -13,9 +13,7 @@
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <link rel="stylesheet" type='text/css' href='css/CentralExecutive.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
-  
-  </head>    
-  <body>
+
     <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
@@ -29,11 +27,7 @@
     <script src="Batteries/Batteries.js"></script>
     
     <script src="config/SessionChooser_config.js"></script>    
-    <script>
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
-        function() {UpdateHeader()});})
-    </script>
-    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+    
     <script> 
     // Once jatos is fully loaded, the the URL parameters can be checked.
     
@@ -41,6 +35,7 @@
       // first load the JS file for the central executive
 
       loadScriptSequentially("Batteries/CentralExecutive.js")
+      .then(()=> loadScriptSequentially("functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"))
       .then(()=> loadScriptSequentially("config/General_Setup.js"))
       .then(() => {
             var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
@@ -52,8 +47,12 @@
             console.log(LabelNames)
 
       })
+      .then(() =>
+                // import the header buttons and set their language and visibility
+            //    $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+                    UpdateHeader()
+            )
       .then((result) => CentralExecutive() )
-      
       // once everything is setup, then proceed to displaying the jspsych timeline
       
       
@@ -61,7 +60,11 @@
 
             
     </script>
-    
+  </head>    
+  <body>
+    <div class="btn-group-header" id="header-btn-group"></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+
   </body>
 
 </html>

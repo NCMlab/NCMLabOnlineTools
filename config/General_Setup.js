@@ -55,7 +55,7 @@ EN_LabelNames.SkipTask = "This will SKIP the current task. Are you sure?"
 EN_LabelNames.missed_question_label = "Please select an item"
 EN_LabelNames.missed_question_text = "Please answer all questions"
 EN_LabelNames.ThankYou = "Thank you for your participation. You may close this window."
-
+EN_LabelNames.Hello = 'Hello'
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
@@ -99,6 +99,8 @@ FR_LabelNames.SkipTask = "Cela va SAUTER la tâche en cours. Etes-vous sûr?"
 FR_LabelNames.missed_question_label = "Veuillez sélectionner un article"
 FR_LabelNames.missed_question_text = "Veuillez répondre à toutes les questions"
 FR_LabelNames.ThankYou = "Merci pour votre participation. Vous pouvez fermer cette fenêtre."
+FR_LabelNames.Hello = 'Bonjour'
+
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

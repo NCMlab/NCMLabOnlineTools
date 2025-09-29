@@ -273,6 +273,7 @@ function UsageTypeDecision(UsageType) {
                // get the title of the task to start next
                console.log("THIS is a battery") 
                console.log(JATOSSessionData)
+               console.log(BREAK)
                if ( !IsTheBatteryFinished() )
                 {
                     console.log("The battery is NOT finished")
@@ -371,7 +372,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             console.log(SessionsBatteryList)
-            console.log("UASGE TYPE FOR THIS BUTTON")
+            console.log("USAGE TYPE FOR THIS BUTTON")
             console.log(ButtonUsageType[data.response])
             
             if ( ButtonUsageType[data.response] === undefined )
@@ -457,25 +458,35 @@ function CentralExecutive() {
         const UsageType = jatos_params["UsageType"];
         var CurrentIndex = -99
         var SessionDataFlag = false
+        console.log(jatos.studySessionData)
+
         UpdateBatchData()
         .then((res) => {
             CurrentIndex = res
             console.log("The current index is: " + res)
+
         })
-        .then(() => CheckForSessiondata())
+        .then(() => {
+        UpdateHeaderPromise()         
+        })
+        .then(() => {
+            CheckForSessiondata()
+
+        })
         .then((res) => {
             UpdateSessionDataIndex(res)
             SessionDataFlag = res
         })
         .then(() => {
             console.log(jatos.studySessionData)
+            
         // If we get here and there is NO session data than this is a fresh start
         // If we get here and there IS session data then we have come to the CE from a 
         // previous task that was just completed. 
         // In that case update the session index. << Maybe
         // There may be a problem if a browser window is closed.
 
-                console.log(jatos.studySessionData)
+            console.log(jatos.studySessionData)
             SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
         })
                 

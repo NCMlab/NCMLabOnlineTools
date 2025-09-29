@@ -162,8 +162,17 @@ function ReturnElementsFromPermute(count, N) {
   return shuffledValues.slice(0,count)
 }
 // Buttons added to the top of each task page for navigation and ending the experiment  
-function returnToUsageManager() {
-  jatos.startComponentByTitle("Central Executive");
+function returnToUsageManager(HomeFlag) {
+  console.log(jatos.studySessionData)
+  // The current index in the session data SHOULD BE 
+  // incremented AFTER a task is completed.
+  // When the return to Central executive is arrived at, it shoudl check if
+  // the batter ywas completed and if not restart the session.
+  // The where to go next should be responsible for progressing along a 
+  // battery withou the use of the CE.
+  if ( HomeFlag === true )
+  { pass }
+  else { jatos.startComponentByTitle("Central Executive"); }
 }
 
 function restartTask() {
@@ -285,7 +294,7 @@ function whereToGoNext(SessionData, ){
     console.log(SessionData.TaskNameList)
     console.log(SessionData.UsageType)
     console.log(CurrentIndex)
-    
+
     if ( SessionData.UsageType == 'UserChoice' )       
       { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
@@ -297,26 +306,11 @@ function whereToGoNext(SessionData, ){
         // get updated until AFTER this check
         if ( CurrentIndex == SessionData.TaskNameList.length - 1)
         {
-        /*  console.log(SessionData)
-          console.log("The redirect site is: "+SessionData.Redirect)
-          if ( SessionData.Redirect === "" )
-            { window.open('https://www.uottawa.ca','_self') }
-          else if ( SessionData["Redirect"] === undefined )
-            { window.open('https://www.uottawa.ca','_self') }
-          else { window.open(SessionData.Redirect,'_self') }
-          */
-
-          // Now that the battery is complete add the Completion information to the Batch
-          //console.log(jatos.studySessionData.AddToCompletionCount)
-          //console.log(jatos.batchSession.get(workerId+'_bitIndex'))
-          
-          //var NewValue = jatos.studySessionData.AddToCompletionCount + jatos.batchSession.get(workerId+'_bitIndex')
-          //console.log(NewValue)
-          //alert('JASON')
-          //jatos.batchSession.set(workerId+'_bitIndex', )
+          // If the battery is complete go back to the CE
           jatos.startComponentByTitle("Central Executive")
         }
         else { 
+          // If the battery is NOT complete
           jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
           jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1)
           .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))

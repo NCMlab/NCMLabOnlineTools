@@ -115,9 +115,14 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           // Start the table
           html += '<table border="1"><tr>'
           for (var i = 0; i < trial.choices.length; i++) {
-                if ( trial.buttonRow[i] > currentRow ) { 
+                if ( (trial.buttonRow[i] - currentRow) == 1 ) { 
                     newRow = true 
                     html += '</tr><tr>'
+                    currentRow = trial.buttonRow[i]
+                }
+                else if ( (trial.buttonRow[i] - currentRow) > 1 ) { 
+                    // there is an empty row 
+                    html += '</tr><tr><td>---</td></tr>'
                     currentRow = trial.buttonRow[i]
                 }
                 else { newRow = false }
