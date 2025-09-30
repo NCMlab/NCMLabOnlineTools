@@ -286,6 +286,17 @@ function closeInfo() {
 
 }
 
+// UPDATE Bit index.
+// Since this is where a battery is checked for completion, see if there is a bit index
+// if so, update it.
+function UpDateBitIndexInBatchData() {
+  var NewValue = parseInt(jatos.studySessionData.AddToCompletionCount,10) + parseInt(jatos.batchSession.get(jatos.workerId+'_bitIndex'),10)
+  console.log(NewValue)
+  jatos.batchSessionVersioning = false;
+  jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
+
+}
+
 // ===============================================
 // Decide where to go next functionaility
 function whereToGoNext(SessionData, ){
@@ -294,7 +305,7 @@ function whereToGoNext(SessionData, ){
     console.log(SessionData.TaskNameList)
     console.log(SessionData.UsageType)
     console.log(CurrentIndex)
-
+  
     if ( SessionData.UsageType == 'UserChoice' )       
       { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
@@ -307,6 +318,9 @@ function whereToGoNext(SessionData, ){
         if ( CurrentIndex == SessionData.TaskNameList.length - 1)
         {
           // If the battery is complete go back to the CE
+
+          UpDateBitIndexInBatchData()
+
           jatos.startComponentByTitle("Central Executive")
         }
         else { 

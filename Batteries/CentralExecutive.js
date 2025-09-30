@@ -61,12 +61,8 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             DisplayBatteryInstructionsFlag = true 
             if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
             { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
-            else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }
-            console.log(JATOSSessionData)
-            
+            else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }            
             jatos.studySessionData = JATOSSessionData
-            console.log(jatos)
-            console.log(jatos.studySessionData)
         }
         else {console.log("THERE IS SESSION DATA")}
         resolve("successfully setup session data")
@@ -155,7 +151,6 @@ function SetupSession() {
     var ButtonRow = []
     var ButtonBit = []
     var ButtonUsageType = []
-    console.log(parameters[0].List)
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
@@ -164,16 +159,11 @@ function SetupSession() {
             ButtonBit.push( parameters[0].List[i].BitIndex )
             ButtonUsageType.push( parameters[0].List[i].ButtonUsageType )
         }
-    
-    console.log("Completed Sessions: ")
-    console.log(ButtonUsageType)
     CompletedBits = jatos.batchSession.get(jatos.workerId+'_bitIndex')
     // Convert this back to bits to centralize this code/decode into one script
     console.log(CompletedBits)
     CompletedBits = parseInt(CompletedBits, 10).toString(2)
     console.log(CompletedBits)
-    console.log(ButtonRow)
-    console.log(ButtonBit)
 
     SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
     SessionChoiceTrialNEW = MakeSessionButtonsNEW(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, ButtonUsageType)
@@ -206,6 +196,7 @@ function IsTheBatteryFinished() {
     if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length) 
     {
         console.log("IT IS COMPLETE")
+        alert("BATTERY IS COMPLETE")
         BatteryCompleteFlag = true
         //timeline.push(MakeThankYouPage())
     }
@@ -229,7 +220,7 @@ function UpdateBatchData() {
             
         }
         else {
-            console.log("Incrementing the index")
+            console.log(">>>>>> Incrementing the index <<<<<<")
             currentIndex = jatos.batchSession.get(jatos.workerId) + 1
             CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
             jatos.batchSession.set(jatos.workerId, currentIndex)    
@@ -253,6 +244,8 @@ function UpdateSessionDataIndex(IsThereSessionData) {
 }
 
 function UpdateSessionBitIndex(AddToCompletionCount) {
+    console.log(">>>>> UPDATING BIT INDEX <<<<<<")
+    console.log(AddToCompletionCount)
     return new Promise((resolve) => {
         var SessionData = jatos.studySessionData 
         SessionData.AddToCompletionCount = AddToCompletionCount
@@ -357,18 +350,15 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
         completedBits: CompletedBitList,
         buttonRow: ButtonRow,
         prompt: "",
-        on_start: function() {
-            console.log(ButtonUsageType)
-            // Is the BitList Empty?
-            console.log(BitList === undefined)
-        },
         on_finish: function(data) {
             // Make a bit version of this session
             var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            
             // convert back to base10
             AddToCompletionCount = parseInt(AddToCompletionCount, 2);
             console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
-        
+            jatos.studySessionData.AddToCompletionCount = AddToCompletionCount
+            
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             console.log(SessionsBatteryList)

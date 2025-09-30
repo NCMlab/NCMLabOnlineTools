@@ -104,11 +104,8 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
               }
           }
           html += '<div id="jspsych-html-button-response-btngroup">';
-          console.log("BUTTON ROW")
-          console.log(trial.completedBits)
           // Reverse completedBits so it is read correctedly
           trial.completedBits = trial.completedBits.split('').reverse().join('');
-          console.log(trial.buttonRow)
           // currentRow is set to 1 so that the table starts with the first <tr>
           var currentRow = 1
           var newRow = false
