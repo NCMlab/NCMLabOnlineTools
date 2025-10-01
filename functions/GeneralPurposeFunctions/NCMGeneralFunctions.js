@@ -290,8 +290,36 @@ function closeInfo() {
 // Since this is where a battery is checked for completion, see if there is a bit index
 // if so, update it.
 function UpDateBitIndexInBatchData() {
-  var NewValue = parseInt(jatos.studySessionData.AddToCompletionCount,10) + parseInt(jatos.batchSession.get(jatos.workerId+'_bitIndex'),10)
-  console.log(NewValue)
+ // Once the battery is completed, check to see if there is an AddtoCompletionCount value
+ // If so add it to the butIndex batch value for this worker Id
+ var ValueToAdd = jatos.studySessionData.AddToCompletionCount
+ if ( ValueToAdd != undefined )
+ { 
+  // get the bit index value
+  var CurrentBitIndex = jatos.batchSession.get(jatos.workerId+'_bitIndex')
+  // the pasreInt(,10) ensures the values are integers
+  var NewValue = parseInt(CurrentBitIndex,10) + parseInt(ValueToAdd,10)
+  }
+  /* var CurrentValue = jatos.batchSession.get(jatos.workerId+'_bitIndex')
+  var ValueToAdd = jatos.studySessionData.AddToCompletionCount
+  console.log(CurrentValue)
+  console.log(ValueToAdd)
+  var LenCV = CurrentValue.length
+  var LenV2A  = ValueToAdd.length
+  if ( ValueToAdd.length > CurrentValue.length )
+  {
+    for ( var i = 0; i < CurrentValue.length; i++ )
+    {
+      if ( CurrentValue[i] == '1' )
+      {
+        ValueToAdd[i] = 
+      }
+      
+    }
+  }
+  console.log(CurrentValue.length)
+  console.log(ValueToAdd.length)
+  console.log(BREAK) */
   jatos.batchSessionVersioning = false;
   jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
 

@@ -352,13 +352,19 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
         prompt: "",
         on_finish: function(data) {
             // Make a bit version of this session
-            var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
-            
+            // var AddToCompletionCount = parseInt("1".padEnd(BitList[data.response].toString(),"0"),10)
+            // var AddToCompletionCount = "1".padEnd(BitList[data.response].toString(),"0")
             // convert back to base10
-            AddToCompletionCount = parseInt(AddToCompletionCount, 2);
-            console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
-            jatos.studySessionData.AddToCompletionCount = AddToCompletionCount
             
+            // AddToCompletionCount = parseInt(AddToCompletionCount, 2);
+            // This will create a base 10 value corresponding to the button that was pressed.
+            var AddToCompletionCount = 2**(BitList[data.response]-1)
+            console.log("Amount to add to the bitstring of completion: "+AddToCompletionCount)
+            
+            // The information kept in the session and batch data will be in base 10 to keep 
+            // the values "smaller" than a long string of 0s and 1s
+            jatos.studySessionData.AddToCompletionCount = AddToCompletionCount
+
             // The user has selected a session to administer
             // Load up the Battery that is associated with the selected session
             console.log(SessionsBatteryList)
