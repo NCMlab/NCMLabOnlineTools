@@ -280,6 +280,144 @@ const json = {
           isRequired: true
         },
 
+
+         {
+            type: "radiogroup",
+            name: "Cost_Gen",
+            title: "  How much do you think you spend annually on your sport participation?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": " <  100.00 CND/yr "},
+                    { "value": 2, "text": " 100.00 < 250.00 CND/yr"},
+                    { "value": 3, "text": "250.00 < 500.00 CND/yr"},
+                    { "value": 4, "text": "500.00 < 750.00 CND/yr"},
+                    { "value": 5, "text": "750.00 < 1000.00 CND/yr"},
+                    { "value": 6, "text": "1000.00 < 1500.00 CND/yr"},
+                    { "value": 7, "text": "1500.00 < 3000.00 CND/yr"},
+                    { "value": 8, "text": "3000.00 < 5000.00 CND/yr"},
+                    { "value": 9, "text": "5000.00 < 10000.00 CND/yr"},
+                    { "value": 10, "text": "> 10,000.00 CND/yr"},
+                    
+          
+                  ]
+                },
+
+
+    
+
+
+        {
+            type: "radiogroup",
+            name: "Cost_Memb",
+            title: "Do you pay a membership fee to play/practice your sport",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "Cost_Memb_$Y",
+          title: "If yes, how much per year:",
+          visibleIf: "{Cost_Memb}= 1",
+          isRequired: true
+        },
+
+
+
+        
+        {
+            type: "radiogroup",
+            name: "Cost_Lic",
+            title: " Do you pay a license fee to play/practice your sport (if not included in the membership fee)? (pays to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition)",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "Cost_Lic_$Y",
+          title: "If yes, how much per year:",
+          visibleIf: "{Cost_Lic}= 1",
+          isRequired: true
+        },
+
+
+
+          {
+            type: "radiogroup",
+            name: "Cost_PF",
+            title: " Did/do you pay any other program fees to play/practice your sport (if not included in the previous questions)?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "Cost_PF_$Y",
+          title: "If yes, how much per year:",
+          visibleIf: "{Cost_PF}= 1",
+          isRequired: true
+        },
+
+
+
+
+        {
+            type: "radiogroup",
+            name: "Cost_COMP",
+            title: " Do you pay fees to participate in tournaments or competitions (if nor included in the membership fee)?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "Cost_COMP_$Y",
+          title: "If yes, how much per year:",
+          visibleIf: "{Cost_COMP}= 1",
+          isRequired: true
+        },
+
+
+
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
           {
           type: 'text',
           title: "What sport do you play the most?",
