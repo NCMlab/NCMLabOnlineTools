@@ -56,6 +56,7 @@ EN_LabelNames.missed_question_label = "Please select an item"
 EN_LabelNames.missed_question_text = "Please answer all questions"
 EN_LabelNames.ThankYou = "Thank you for your participation. You may close this window."
 EN_LabelNames.Hello = 'Hello'
+EN_LabelNames.EnterName = 'Please enter a name first.'
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
@@ -100,7 +101,7 @@ FR_LabelNames.missed_question_label = "Veuillez sélectionner un article"
 FR_LabelNames.missed_question_text = "Veuillez répondre à toutes les questions"
 FR_LabelNames.ThankYou = "Merci pour votre participation. Vous pouvez fermer cette fenêtre."
 FR_LabelNames.Hello = 'Bonjour'
-
+FR_LabelNames.EnterName = 'Veuillez d\'abord entrer un nom.'
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

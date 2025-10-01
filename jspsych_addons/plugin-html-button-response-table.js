@@ -34,7 +34,7 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
-              default: '<button class="jspsych-btn">%choice%</button>',
+              default: '<button class="jspsych-btn" id="%buttonId%" enabled>%choice%</button>',
               array: true,
           },
           /** Any content here will be displayed under the button(s). */
@@ -113,7 +113,6 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           // check the completedBits variable
           if ( trial.completedBits == 0 )
           { 
-            alert(trial.completedBits) 
             var FirstTimeFlag = true
           }
           // Start the table
@@ -131,7 +130,14 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
                 }
                 else { newRow = false }
                 // Making each button here
-              var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+              // Add the button text
+                var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+                // add the button Id
+                var buttonId = trial.choices[i].replace(/\s/g, '')
+                str = str.replace(/%buttonId%/g, buttonId);
+              // check to see if the buttons should be enabled or not!
+              if ( FirstTimeFlag && i > 0 )
+              { str = str.replace(/enabled/g, 'disabled'); }
                 if ( trial.completedBits[i] == 1 )
                 { 
                     console.log('INDEX: '+i+', bit: '+trial.completedBits[i])

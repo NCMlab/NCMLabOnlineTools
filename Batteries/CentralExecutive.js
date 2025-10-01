@@ -166,7 +166,20 @@ function SetupSession() {
     console.log(CompletedBits)
 
     SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
-    SessionChoiceTrialNEW = MakeSessionButtonsNEW(parameters[0].Title, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, ButtonUsageType)
+    // Is there a name entered yet?
+    var FirstName = jatos.batchSession.get(jatos.workerId+"_FirstName")
+    console.log(FirstName)
+    var TitleToUse = ''
+    if ( FirstName == undefined || FirstName == '' ) 
+        {
+            TitleToUse = LabelNames.EnterName
+            alert("NO NAME ENTERED")
+        }
+    else {
+        TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
+    }
+    LabelNames.EnterName
+    SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, ButtonUsageType)
     
     // Have different session been completed?
     // Check the bit 
@@ -196,7 +209,7 @@ function IsTheBatteryFinished() {
     if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length) 
     {
         console.log("IT IS COMPLETE")
-        alert("BATTERY IS COMPLETE")
+    
         BatteryCompleteFlag = true
         //timeline.push(MakeThankYouPage())
     }
