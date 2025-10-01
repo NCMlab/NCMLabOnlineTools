@@ -396,6 +396,37 @@ const json = {
 
 
 
+        {
+            type: "radiogroup",
+            name: "Cost_Entr",
+            title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "comment",
+          name: "Cost_Entr_$U",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Entr}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "comment",
+          name: "Cost_Entr_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Entr}= 1",
+          isRequired: true
+        },
+
+
+
 
 
 
