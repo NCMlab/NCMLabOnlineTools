@@ -173,7 +173,6 @@ function SetupSession() {
     if ( FirstName == undefined || FirstName == '' ) 
         {
             TitleToUse = LabelNames.EnterName
-            alert("NO NAME ENTERED")
         }
     else {
         TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
