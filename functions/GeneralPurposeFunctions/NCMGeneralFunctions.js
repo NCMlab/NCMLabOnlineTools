@@ -292,11 +292,15 @@ function closeInfo() {
 function UpDateBitIndexInBatchData() {
  // Once the battery is completed, check to see if there is an AddtoCompletionCount value
  // If so add it to the butIndex batch value for this worker Id
+ console.log("Updating Bit Index")
  var ValueToAdd = jatos.studySessionData.AddToCompletionCount
+ console.log("Vale to add: "+ValueToAdd)
  if ( ValueToAdd != undefined )
  { 
   // get the bit index value
+  
   var CurrentBitIndex = jatos.batchSession.get(jatos.workerId+'_bitIndex')
+  console.log("Current bit is: "+CurrentBitIndex)
   // the pasreInt(,10) ensures the values are integers
   var NewValue = parseInt(CurrentBitIndex,10) + parseInt(ValueToAdd,10)
   }
@@ -321,8 +325,9 @@ function UpDateBitIndexInBatchData() {
   console.log(ValueToAdd.length)
   console.log(BREAK) */
   jatos.batchSessionVersioning = false;
+  console.log("Setting the new bit index")
   jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
-
+  .then(() => console.log("Finished setting index"))
 }
 
 // ===============================================
@@ -346,7 +351,7 @@ function whereToGoNext(SessionData, ){
         if ( CurrentIndex == SessionData.TaskNameList.length - 1)
         {
           // If the battery is complete go back to the CE
-
+          console.log("BATTERY IS COMPLETE")
           UpDateBitIndexInBatchData()
 
           jatos.startComponentByTitle("Central Executive")
