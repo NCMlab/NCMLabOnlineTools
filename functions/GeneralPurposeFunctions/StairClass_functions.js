@@ -14,6 +14,7 @@
   			this.FastStart = FastStart; // At the beginning should sequential correct responses result in increasing current?
   			this.CurrentRun = 1; // How many correct in a row
   			this.ValueList = []; // List of all the values across all trials
+			this.ResponseTimeList = []; // Response time for all the values across all trials
   			// add the inital value to the list
   			this.ValueList.push(this.Current)
   			this.ReversalList = []; // List of values where a reversal took place

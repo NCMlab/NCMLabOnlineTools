@@ -202,15 +202,14 @@ function IsTheBatteryFinished() {
     // The minus one is because the index starts with zero and does not
     // get updated until AFTER this check
     JATOSSessionData = jatos.studySessionData
-    console.log("Checking to see if battery is finised. Jatos session data is:")
-    console.log(JATOSSessionData)
-
-    if ( JATOSSessionData.CurrentIndex == JATOSSessionData.TaskNameList.length) 
+    if ( JATOSSessionData.CurrentIndex != undefined && JATOSSessionData.TaskNameList != undefined )
     {
-        console.log("IT IS COMPLETE")
-    
-        BatteryCompleteFlag = true
-        //timeline.push(MakeThankYouPage())
+        // The minus one is due to teh Ready Hold component that is added to the beginning
+        if ( JATOSSessionData.CurrentIndex == (JATOSSessionData.TaskNameList.length - 1)) 
+        {        
+            BatteryCompleteFlag = true   
+            timeline.push(MakeThankYouPage())
+        }
     }
     return BatteryCompleteFlag
 }
@@ -285,7 +284,7 @@ function UsageTypeDecision(UsageType) {
                     var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
                     StartComponent(TitleToStart)
                 }
-                else { 
+                /* else { 
                     console.log("The battery is finished.")
                     console.log(jatos.workerId)
                     // Now that the battery is complete add the Completion information to the Batch
@@ -298,7 +297,7 @@ function UsageTypeDecision(UsageType) {
                     jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
                     //.then(() => timeline.push(MakeThankYouPage()))
                     timeline.push(MakeThankYouPage())
-                }
+                }*/
                 break;
             case 'Session':
                 timeline.push(SetupSession())
@@ -485,6 +484,7 @@ function CentralExecutive() {
             UpdateSessionDataIndex(res)
             SessionDataFlag = res
         })
+        .then(() => IsTheBatteryFinished())
         .then(() => {
             console.log(jatos.studySessionData)
             
@@ -499,7 +499,7 @@ function CentralExecutive() {
         })
                 
 
-        //.then(() => IsTheBatteryFinished())
+        
         // When starting the Session Chooser, a URL UsageType of Session is provided.
         // The Session Chooser will start a battery. WHen the battery is complete the
         // CE is returned to. At that point the URL UsageType is still Session; however,
