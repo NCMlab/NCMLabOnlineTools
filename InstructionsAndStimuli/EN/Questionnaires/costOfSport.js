@@ -529,9 +529,7 @@ const json = {
         { "value": 7, "text": "Mail order company, E-Bay" },
         { "value": 8, "text": "Other (please describe)" }
       ],
-      "showOtherItem": false,
-      "visibleIf": "",
-      "colCount": 2
+      colCount: 2
       },
 
       {
@@ -636,7 +634,215 @@ const json = {
         },
 
 
+        // question 14
 
+
+        {
+      type: "checkbox",
+      name: "TR_Pr",
+      title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
+      isRequired: true,
+      choices: [
+        { "value": 1, "text": "By foot" },
+        { "value": 2, "text": "By Bike" },
+        { "value": 3, "text": "By motorbike" },
+        { "value": 4, "text": "By family car" },
+        { "value": 5, "text": "Public Transportation" },
+        { "value": 6, "text": "Have a ride with others/ carpooling" },
+        { "value": 7, "text": "Taxi/Private bus" },
+        { "value": 8, "text": "Special transportation" },
+        { "value": 9, "text": "Other" }
+      ],
+      showOtherItem: false,
+      colCount: 2
+      },
+
+
+
+      {
+            type: "radiogroup",
+            name: "TR_Pr_Spec",
+            title: "Does your level of ability require special transportation?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "TP_PR_Ex",
+          title: "If yes, describe: ",
+          visibleIf: "{TP_Pr_Spec}= 1",
+          isRequired: true
+        },
+
+
+        //if by car
+
+
+        
+         {
+          type: "text",
+          name: "TR_Pr_Car_kmU",
+          inputType:"number",
+          title: "How many kilometers do you drive, back and forth per practice?",
+          visibleIf: "{TR_Pr} contains 4",
+          isRequired: true
+        },
+               
+              // to do 14.5, 14.6, 14.7, 14.8, 
+
+
+
+          
+
+
+
+
+
+
+
+
+
+              // question 15
+
+
+              {
+            type: "radiogroup",
+            name: "SOC_F&B",
+            title: "Do you purchase drinks or food before, during, or after your participation (consider practices, one-day games and competitions)?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "Never"},
+                    { "value": 1, "text": "Rarely"},
+                    { "value": 2, "text": "Sometimes"},
+                    { "value": 3, "text": "Often"},
+                    { "value": 4, "text": "Always"}
+                    
+                  ]
+                },
+
+
+                  {
+          type: "text",
+          name: "SOC_F&B_$U",
+          inputType: "number",
+          title: "If yes, how much do you spend on average each time? ",
+          visibleIf: "{SOC_F&B} >= 1",
+          isRequired: true
+        },
+
+
+
+        // question 16
+
+
+        {
+            type: "radiogroup",
+            name: "SOC_Club",
+            title: " Do you participate in club activities (ex. fundraisers, diner, …)?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "Never"},
+                    { "value": 1, "text": "Rarely"},
+                    { "value": 2, "text": "Sometimes"},
+                    { "value": 3, "text": "Often"},
+                    { "value": 4, "text": "Always"}
+                    
+                  ]
+                },
+
+
+                  {
+          type: "text",
+          name: "SOC_Club_$Y",
+          inputType: "number",
+          title: "If yes, how much do you spend per year? ",
+          visibleIf: "{SOC_Club} >= 1",
+          isRequired: true
+        },
+
+
+
+        // Other indirect costs
+
+        // question 17
+
+         {
+            type: "radiogroup",
+            name: "OIC_MED",
+            title: "Do you have extra medical costs and/or care costs (e.g., physiotherapy, medication, …) related to you sports participation?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_MED_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_MED}= 1",
+          isRequired: true
+        },
+
+
+        // question 18
+
+           {
+            type: "radiogroup",
+            name: "OIC_Body",
+            title: "Do you have extra costs to take care of your body (e.g., body crème, …) or to buy special nutrition (e.g., supplements, …) related to your sports participation?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_Body_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_Body}= 1",
+          isRequired: true
+        },
+
+
+          // question 19
+
+            {
+            type: "radiogroup",
+            name: "OIC_Insur",
+            title: "Do you have extra insurance costs related to your sports participation (if not already included in the membership fee)?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_Insur_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_Insur}= 1",
+          isRequired: true
+        },
 
 
 
