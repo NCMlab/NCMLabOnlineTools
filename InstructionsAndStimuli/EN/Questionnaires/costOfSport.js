@@ -409,8 +409,9 @@ const json = {
                 },
 
           {
-          type: "comment",
+          type: "text",
           name: "Cost_Entr_$U",
+          inputType:"number",
           title: "how much do you pay on average per usage?",
           visibleIf: "{Cost_Entr}= 1",
           isRequired: true
@@ -418,7 +419,8 @@ const json = {
 
 
          {
-          type: "comment",
+          type: "text",
+          inputType:"number",
           name: "Cost_Entr_UY",
           title: "how many times per year?:",
           visibleIf: "{Cost_Entr}= 1",
@@ -430,20 +432,185 @@ const json = {
 
 
 
+         {
+            type: "radiogroup",
+            name: "Cost_Coach",
+            title: " Do you pay for lessons, guidance or coaching?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "Cost_Coach_$U",
+          inputType:"number",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Coach}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          inputType:"number",
+          name: "Cost_Coach_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Coach}= 1",
+          isRequired: true
+        },
+
+
+
+
+
+
+        
+         {
+            type: "radiogroup",
+            name: "Cost_Clini",
+            title: " Do you participate in clinics regarding your sport practice?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "Cost_Clinic_$U",
+          inputType:"number",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Clinic}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          inputType:"number",
+          name: "Cost_Clinic_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Clinic}= 1",
+          isRequired: true
+        },
+
+
+
+        // question 10 to  do 
+
+
+
+
+
+
+
+
+        // question 11
+
+        
+      {
+      type: "checkbox",
+      name: "sports_equipment_sources",
+      title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
+      isRequired: true,
+      choices: [
+        { "value": 1, "text": "In a general store, not specialized in sport (ex. Sears, The Bay, Zellers, Walmart, ...)" },
+        { "value": 2, "text": "In a general sports store (ex. Sport Check, National Sport, Sports Mart, ...)" },
+        { "value": 3, "text": "In a privately owned sports shop" },
+        { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
+        { "value": 5, "text": "Buy from individual people or second hand" },
+        { "value": 6, "text": "Wholesale" },
+        { "value": 7, "text": "Mail order company, E-Bay" },
+        { "value": 8, "text": "Other (please describe)" }
+      ],
+      "showOtherItem": false,
+      "visibleIf": "",
+      "colCount": 2
+      },
+
+      {
+      type: "comment",
+      name: "sports_equipment_sources_other",
+      title: "If you selected 'Other (please describe)', please specify:",
+      visibleIf: "{sports_equipment_sources} contains 8"
+      },
+
+
+
+
+      // question 12 
+
+
+        {
+            type: "radiogroup",
+            name: "EQ_Rent",
+            title: " Do you rent sports apparel or sports equipment?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "EQ_Rent_Ex",
+          title: "If yes, describe: ",
+          visibleIf: "{EQ_Rent}= 1",
+          isRequired: true
+        },
+
+
+
+         {
+          type: "text",
+          name: "EQ_Rent_$U",
+          inputType:"number",
+          title: "How much do you spend on average per rental?",
+          visibleIf: "{EQ_Rent}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          name: "EQ_Rent_UY",
+          inputType:"number",
+          title: "How often do you rent per year?",
+          visibleIf: "{EQ_Rent}= 1",
+          isRequired: true
+        },
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        
+
+
+
+
 
 
 
 
          
-
-
-
-
-
-
-
-
-
 
 
         
