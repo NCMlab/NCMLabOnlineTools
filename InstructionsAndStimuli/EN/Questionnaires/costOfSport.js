@@ -844,6 +844,148 @@ const json = {
           isRequired: true
         },
 
+        
+        // question 20
+
+             {
+            type: "radiogroup",
+            name: "OIC_BPsitting",
+            title: "Do you have extra costs for baby-sitting/pet sitting related to your sports participation?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_BPsitting_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_BPsitting}= 1",
+          isRequired: true
+        },
+
+        // question 21
+
+
+               {
+            type: "radiogroup",
+            name: "OIC_DOC",
+            title: "Do you buy specific documentation related to your sports participation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_DOC_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_DOC}= 1",
+          isRequired: true
+        },
+
+
+        // Question 22
+
+             {
+            type: "radiogroup",
+            name: "OIC_Spect",
+            title: "Do you attend competitions as a spectator related to your sports participation?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_Spect_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_Spect}= 1",
+          isRequired: true
+        },
+
+
+        //question 23
+
+              {
+            type: "radiogroup",
+            name: "OIC_Other",
+            title: "Do you have any other indirect costs related to your sports participation, not already included?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "OIC_Other_$Y",
+          inputType:"number",
+          title: "If yes, how much do you spend on average per year?: ",
+          visibleIf: "{OIC_Spect}= 1",
+          isRequired: true
+        },
+
+
+        // question 24
+
+
+        
+              {
+            type: "radiogroup",
+            name: "SP_Earnings",
+            title: "Do you earn money related to your sports participation (e.g., prize money, any other monetary returns,) ?",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "No"},
+                    { "value": 1, "text": "Yes"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "SP_Earnings_EX",
+          title: "If yes, describe: ",
+          visibleIf: "{SP_Earnings}= 1",
+          isRequired: true
+        },
+
+
+           {
+          type: "text",
+          name: "SP_Earnings_$Y",
+          inputType:"number",
+          title: "How much do you earn on average per year?: ",
+          visibleIf: "{SP_Earnings}= 1",
+          isRequired: true
+        },
+
+
+
+        // SECTION IV : General information
+
+
+
 
 
 
