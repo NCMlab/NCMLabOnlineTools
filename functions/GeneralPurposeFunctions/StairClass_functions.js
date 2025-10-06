@@ -15,6 +15,7 @@
   			this.CurrentRun = 1; // How many correct in a row
   			this.ValueList = []; // List of all the values across all trials
 			this.ResponseTimeList = []; // Response time for all the values across all trials
+			this.AccuracyList = []; // Accuracy for all the values across all trials
   			// add the inital value to the list
   			this.ValueList.push(this.Current)
   			this.ReversalList = []; // List of values where a reversal took place
@@ -76,9 +77,14 @@
   		// Check to see if any stopping conditions are met
   		checkFinished() {
   			if (this.ReversalCount == this.MaxReversals) {
+				// Remove the last value since it is what would be presented if the staircase was NOT finished
+				this.ValueList.pop()
   				this.Finished = true
   			}
   			if (this.TrialCount == this.MaxTrials) {
+				// Remove the last value since it is what would be presented if the staircase was NOT finished
+				this.ValueList.pop()
+
   				this.Finished = true
   			}
   		}
@@ -131,9 +137,11 @@
   		}
 
   		// Make a decision based on the current response
-  		Decide(ResponseCorrect) {
+  		Decide(ResponseCorrect, ResponseTime) {
   			// the response is correct
-  			if (ResponseCorrect) {
+  			this.ResponseTimeList.push(ResponseTime)
+			if (ResponseCorrect) {
+				this.AccuracyList.push(1)
   				// are we still at the rapid increase phase?
 	  			if (this.FastStart) {
 	  				this.BeginningDecision()
@@ -143,6 +151,7 @@
 	  			}
 	  		}
 	  		else {
+				this.AccuracyList.push(0)
 	  			this.stepDown()
 	  			// reset the current run counter
 	  			this.CurrentRun = 1

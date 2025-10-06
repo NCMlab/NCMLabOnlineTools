@@ -116,12 +116,13 @@ var setupTest = {
         if ( KeyboardMappings[ResponseIndex] == correct) 
           {
             data.correct = 1,
-            stair1.Decide(true)
+            console.log(data)
+            stair1.Decide(true, data.rt)
             FeedbackText = LabelNames.Correct
           }
         else {
           data.correct = 0
-          stair1.Decide(false)
+          stair1.Decide(false, data.rt)
           FeedbackText = LabelNames.Incorrect
         }
         /* If the ESCAPE key is pressed the current timeline is ended and the thank you screen is shown */
@@ -134,7 +135,6 @@ var setupTest = {
       type: jsPsychHtmlButtonResponseTouchscreen,
       stimulus: function(data) {
         console.log(FeedbackFlag)
-        console.log(data)
         if ( FeedbackFlag )
         {return '<p style="font-size:'+DMSFontSize+'px; color:'+ProbeColor+'">'+FeedbackText+'</p>'}
         else 
