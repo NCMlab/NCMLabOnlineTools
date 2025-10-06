@@ -589,6 +589,56 @@ const json = {
         },
 
 
+        // question 13
+
+
+
+        
+        {
+            type: "radiogroup",
+            name: "EQ_Maint",
+            title: "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "EQ_Maint_Ex",
+          title: "If yes, describe: ",
+          visibleIf: "{EQ_Maint}= 1",
+          isRequired: true
+        },
+
+
+
+         {
+          type: "text",
+          name: "EQ_Maint_$U",
+          inputType:"number",
+          title: "How much do you spend on average per rental?",
+          visibleIf: "{EQ_Maint}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          name: "EQ_Maint_UY",
+          inputType:"number",
+          title: "How often do you rent per year?",
+          visibleIf: "{EQ_Maint}= 1",
+          isRequired: true
+        },
+
+
+
+
+
 
 
 
