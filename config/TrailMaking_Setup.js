@@ -52,6 +52,21 @@ var GiveFeedback = true;
 // How are the circle locations specified?
 var LocationsAsProportions = true;
 
+
+var SuggestedWidthSampleA = 610;
+// canvas height
+var SuggestedHeightSampleA = 348;
+// use timer?
+var ShowTimerSampleA = false;
+
+// ideal canvas size
+// canvas width
+var SuggestedWidthSampleB = 610;
+// canvas height
+var SuggestedHeightSampleB = 348;
+// use timer?
+var ShowTimerSampleB = false;
+
 // SETUP FOR SAMPLE OF TRAILS A 
 // The order in this list is the correct and expected order
 var SampleCirclesA = [
