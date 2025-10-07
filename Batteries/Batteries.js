@@ -1698,8 +1698,8 @@ BatteryList.push({index: 78,
 })
 var List = []
 List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default011', Instructions: 'DefaultA', IconName: 'Trails A,x'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default011', Instructions: 'DefaultB', IconName: 'Trails A,x'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorX', Instructions: 'DefaultA', IconName: 'Trails A,x'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorX', Instructions: 'DefaultB', IconName: 'Trails A,x'})
 BatteryList.push({index: 83, 
 	name:'Music Motion: Trails', 
   shortName: "Trails",
@@ -1713,8 +1713,8 @@ BatteryList.push({index: 83,
 })
 var List = []
 List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default021', Instructions: 'DefaultA', IconName: 'Trails A,y'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default021', Instructions: 'DefaultB', IconName: 'Trails A,y'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorY', Instructions: 'DefaultA', IconName: 'Trails A,y'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorY', Instructions: 'DefaultB', IconName: 'Trails A,y'})
 
 BatteryList.push({index: 84, 
 	name:'Music Motion: Trails', 
