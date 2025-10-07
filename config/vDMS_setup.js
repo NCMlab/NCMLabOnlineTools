@@ -372,7 +372,7 @@ vDMS_Adaptive_003 = {
 	ShowInstructions: true, 
 	AskForNotes: false,
 	MaxTrials: 4,
-	NPracticeTrials: 4,
+	NPracticeTrials: 1,
 	MaxReversals: 15,
 	StartValue: 1,
 	MinValue: 1,

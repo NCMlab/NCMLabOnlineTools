@@ -1,6 +1,9 @@
 function DMS_Scoring(Stair, data) {
 	Notes = data.filter({trial: 'Notes'})
 	console.log(Stair)	
+	console.log(stair1)
+	console.log(data)
+	
 	var NTrials = Stair.TrialCount
 	var NReversal = Stair.ReversalCount
 	var Threshold = Stair.CalculateAverage()
@@ -15,6 +18,8 @@ function DMS_Scoring(Stair, data) {
 	Results.AllResults['Number of Reversal'] = NReversal
 	Results.AllResults['Number of Trials'] = NTrials
 	Results.AllResults['Load List'] = stair1.ValueList
+	Results.AllResults['Response Time List'] = stair1.ResponseTimeList
+	Results.AllResults['Accuracy List'] = stair1.AccuracyList
 	Results.AllResults['NDown'] = stair1.NDown
 	Results.AllResults['NUp'] = stair1.NUp
 	// NUMERIC SCORING

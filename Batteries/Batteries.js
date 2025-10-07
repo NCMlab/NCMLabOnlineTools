@@ -1682,18 +1682,9 @@ BatteryList.push({
 
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
-List.push({
-  Task: "Ready Hold",
-  Parameters: "Default",
-  Instructions: "Default",
-  IconName: "Ready, Hold",
-});
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'DefaultA', IconName: 'Trails A'})
-// List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default011', Instructions: 'DefaultA', IconName: 'Trails A,x'})
-// List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default021', Instructions: 'DefaultA', IconName: 'Trails A,y'})
-// List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default031', Instructions: 'DefaultA', IconName: 'Trails A,xy'})
 List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
-//List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultTEST', Instructions: 'DefaultB', IconName: 'Trails B'})
 BatteryList.push({index: 78, 
 	name:'Music Motion: Trails', 
   shortName: "Trails",
@@ -1705,7 +1696,37 @@ BatteryList.push({index: 78,
 	Footer: '©NCMLab 2024',
   Redirect: '',
 })
+var List = []
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorX', Instructions: 'DefaultA', IconName: 'Trails A,x'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorX', Instructions: 'DefaultB', IconName: 'Trails A,x'})
+BatteryList.push({index: 83, 
+	name:'Music Motion: Trails', 
+  shortName: "Trails",
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
+var List = []
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorY', Instructions: 'DefaultA', IconName: 'Trails A,y'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorY', Instructions: 'DefaultB', IconName: 'Trails A,y'})
 
+BatteryList.push({index: 84, 
+	name:'Music Motion: Trails', 
+  shortName: "Trails",
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
 // ============ MUSIC STUDY ALL TESTS ==========================
 List = []
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
