@@ -80,7 +80,8 @@ const survey_JSON = {
         title: "Do you receive home care support?",
         choices: [
           { value: 2, text: 'Yes' },
-          { value: 0, text: 'No' },        ],
+          { value: 0, text: 'No' }
+        ],
         isRequired: true,
         showClearButton: true
       },
@@ -330,11 +331,11 @@ const survey_JSON = {
 };
 
 
-var EN_cesamJSONform = {}
-EN_cesamJSONform.title = title,
-EN_cesamJSONform.shortTitle = shortTitle,
-EN_cesamJSONform.survey_JSON = survey_JSON
-EN_cesamJSONform.description = ""
-EN_cesamJSONform.QuestionnaireType = 'form'
-EN_cesamJSONform.references = "references"
-EN_cesamJSONform.notes = ''
+var EN_cesam = {}
+EN_cesam.title = title,
+EN_cesam.shortTitle = shortTitle,
+EN_cesam.survey_JSON = survey_JSON
+EN_cesam.description = ""
+EN_cesam.QuestionnaireType = 'form'
+EN_cesam.references = "references"
+EN_cesam.notes = ''

@@ -1,5 +1,6 @@
 
-var title = "Demographic Questionnaire "
+// KOREAN
+var title = "인구 통계학적 설문지"
 var shortTitle = 'Music Intake'  
 // All questions use the same direction so enter that single flag as an array of size 1
 
@@ -27,23 +28,25 @@ const json = {
     },*/
     {      
       name: "Demographic Information",
-      title: "Demographic Information",
+      title: "인구 통계 정보",
        elements: [
         {
           type: 'dropdown',
-          title: "Gender", 
+          title: "성별", 
           name: 'Gender', 
           choices: [
-                      'Male',
-                      'Female',
+                      '남성',
+                      '여성',
               ],
           showOtherItem: true,
+          otherText: "기타 (설명)",
+          placeholder: '선택하다...',
           isRequired: true
         },
         {
           name: "Height",
           type: "text",
-          title: "Enter your height in inches or centimeters",
+          title: "높이 (cm 또는 피트/인치)",
           inputType: "number",
           min: 0,
           max: 300,
@@ -59,12 +62,13 @@ const json = {
                       'Centimeters',
               ],
           showOtherItem: false,
+          placeholder: '선택하다...',
           isRequired: true
         },
         {
           name: "Weight",
           type: "text",
-          title: "Enter your weight in pounds or kilograms",
+          title: "무게 (kg 또는 파운드)",
           inputType: "number",
           min: 0,
           max: 1000,
@@ -80,39 +84,44 @@ const json = {
                       'Kilograms',
               ],
           showOtherItem: false,
+          placeholder: '선택하다...',
           isRequired: true
         },
         {
           type: 'dropdown',
-          title: "What is the highest level of education you have completed?", 
+          title: "수료한 교육 중 가장 높은 수준의 교육은 무엇인가요?", 
           name: 'Edu', 
           choices: [
-                      'No formal education',
-                      'High school diploma or equivalent',
-                      'College or Trade school',
-                      'Bachelor’s degree',
-                      'Master’s degree',
-                      'Doctoral degree'
+                      '정규 교육 없음',
+                      '고등학교 졸업장 또는 이와 동등한 학력',
+                      '대학 또는 전문학교',
+                      '학사 학위',
+                      '석사 학위',
+                      '박사 학위'
               ],
           showOtherItem: true,
+          otherText: '기타',
+          placeholder: '선택하다...',
           isRequired: true
         },
         {
           type: 'dropdown',
-          title: "What is your employment status?", 
+          title: "귀하의 고용 상태는 무엇입니까?", 
           name: 'Employ', 
           choices: [
-                      'Employed full-time',
-                      'Employed part-time',
-                      'Retired',
-                      'Unemployed'
+                      '정규직 고용',
+                      '파트타임 고용',
+                      '은퇴',
+                      '무직'
               ],
           showOtherItem: true,
+          otherText: '기타',
+          placeholder: '선택하다...',
           isRequired: true
         },
         {
           type: 'comment',
-          title: 'What type of work do you do (or did you do before retirement)?',
+          title: '어떤 종류의 일을 하고 계시나요 (또는 은퇴 전에 하셨나요)?',
           name: 'WorkType',
           rows: 2,
           isRequired: true,
@@ -120,35 +129,37 @@ const json = {
         },          
         {
           type: 'dropdown',
-          title: "Do you live alone or with others?", 
+          title: "혼자 살고 있나요, 아니면 다른 사람과 함께 살고 있나요?", 
           name: 'Living', 
           choices: [
-                  'Alone',
-                  'With spouse / partner',
-                  'With family members',
-                  'With caregivers',
-                  'In assisted living facility'
+                  '혼자',
+                  '배우자/파트너와 함께',
+                  '가족 구성원과 함께',
+                  '간병인과 함께',
+                  '생활 보조 시설에서'
               ],
           showOtherItem: true,
+          otherText: '기타',
+          placeholder: '선택하다...',
           isRequired: true,
         },
         {
           type: 'text',
-          title: 'What is your primary language(s)?',
+          title: '주 언어는 무엇인가요?',
           name: 'PrimaryLanguage',
           isRequired: true,
         },
         {
           name: "LanguageProblem",
           type: "dropdown",
-          title: "Are there any language or communication challenges you have?",
-          choices: ["Yes", "No"],
+          title: "언어나 의사소통에 어려움이 있나요?",
+          choices: ["예", "아니요"],
           isRequired: true,
         }, 
         {
           name: "LanguageProblemDescription",
           type: "comment",
-          title: "Please specify your language or communication challenges.",
+          title: "언어 또는 의사소통에 어려움을 자세히 설명해 주세요.",
           visibleIf: "{LanguageProblem} == Yes",
           maxLength: 500
         },
@@ -156,17 +167,20 @@ const json = {
           type: "tagbox",
           isRequired: true,
           choices: [
-              'European (e.g., white)',
-              'Asian (e.g., Chinese, Japanese, Korean, South-east Asian)',
-              'East Indian, Pakistani',
-              'African-American/Black/Caribbean',
-              'Hispanic',
-              'Middle-Eastern',
-              'First Nations, Métis, Inuit',
+              '유럽인(예: 백인)',
+              '아시아계(예: 중국, 일본, 한국, 동남아시아)',
+              '동인도, 파키스탄인',
+              '아프리카계 미국인/흑인/카리브해 출신',
+              '히스패닉',
+              '중동',
+              '원주민, 메티스족, 이누이트족',
               ],
           name: 'Ethnicity',
-          title: "What is your ethnic background (you may select more than one)",
-          "description": "Please select all that apply."
+          title: "인종적 배경은 무엇인가요 (하나 이상 선택 가능)",
+          "description": "해당되는 모든 항목을 선택해 주세요.",
+          otherText: '기타',
+          placeholder: '선택하다...',
+
         },
         {
           type: 'dropdown',
@@ -544,8 +558,8 @@ const json = {
  }
 
 
-var EN_IntakeForm_MusicJSON = {}
-EN_IntakeForm_MusicJSON.title = title;
-EN_IntakeForm_MusicJSON.survey_JSON = json;
-EN_IntakeForm_MusicJSON.shortTitle = shortTitle
-EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
+var KR_IntakeForm_Music = {}
+KR_IntakeForm_Music.title = title;
+KR_IntakeForm_Music.survey_JSON = json;
+KR_IntakeForm_Music.shortTitle = shortTitle
+KR_IntakeForm_Music.QuestionnaireType = 'Varied'
