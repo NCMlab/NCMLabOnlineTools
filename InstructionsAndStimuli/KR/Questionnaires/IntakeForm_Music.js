@@ -10,6 +10,10 @@ const json = {
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   pageNextText: function() { 
+    console.log(LabelNames)
+    return LabelNames.Next 
+  },
    pages: 
    [
     /*{
@@ -55,11 +59,11 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: "What units did you use for height?", 
+          title: "키를 표현하는 데 사용된 단위는 무엇입니까?", 
           name: 'HeightUnits', 
           choices: [
-                      'Inches',
-                      'Centimeters',
+                      '인치',
+                      '센티미터',
               ],
           showOtherItem: false,
           placeholder: '선택하다...',
@@ -77,11 +81,11 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: "What units did you use for weight?", 
+          title: "무게를 표현하는 데 어떤 단위를 사용하셨나요?", 
           name: 'HeightUnits', 
           choices: [
-                      'Pounds',
-                      'Kilograms',
+                      '파운드',
+                      '킬로그램',
               ],
           showOtherItem: false,
           placeholder: '선택하다...',
@@ -154,13 +158,14 @@ const json = {
           type: "dropdown",
           title: "언어나 의사소통에 어려움이 있나요?",
           choices: ["예", "아니요"],
+          placeholder: '선택하다...',
           isRequired: true,
         }, 
         {
           name: "LanguageProblemDescription",
           type: "comment",
           title: "언어 또는 의사소통에 어려움을 자세히 설명해 주세요.",
-          visibleIf: "{LanguageProblem} == Yes",
+          visibleIf: "{LanguageProblem} == 예",
           maxLength: 500
         },
         {
@@ -184,15 +189,17 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: 'What is your marital status?',
+          title: '결혼 상태는 어떻게 되나요?',
           choices: 
           [   
-              'Single',
-              'Married',
-              'Divorced',
-              'Widowed'
+              '싱글',
+              '기혼',
+              '이혼',
+              '미망인',
           ],
           name: 'marital',
+          otherText: '기타 (지정해 주세요)',
+          placeholder: '선택하다...',
           showOtherItem: true,                    
           isRequired: true,
         },
@@ -213,37 +220,39 @@ const json = {
         }*/
        {
           type: 'dropdown',
-          title: 'Which of the following statements best describes the extent to which your needs are met currently?',
+          title: '다음 중 현재 귀하의 요구가 어느 정도 충족되고 있는지를 가장 잘 설명하는 것은 무엇인가요?',
           choices: 
           [
-            "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month",
-            "Food, housing, clothing and medical needs are met - you can not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) are not met",
-            "Two or more of the basic needs are not met",
-            "I don't know"
+            '음식, 주거, 의복 및 의료 요구가 충족됨 - 사치품을 살 여유가 있음/월말에 남은 돈이 있음',
+            '음식, 주거, 의복 및 의료 요구가 충족됨 - 사치품을 살 여유가 없음',
+            '기본 필요(음식, 주거, 의복 또는 의료) 중 하나가 충족되지 않음',
+            '기본 욕구 중 두 가지 이상이 충족되지 않음',
+            '모르겠음'
           ],
           name: 'CurrentNeeds',
+          placeholder: '선택하다...',
           isRequired: true,
        },
        {
           type: 'dropdown',
-          title: 'Which of the following statements best describes the extent to which your needs were met during the majority of your adult life?',
+          title: '다음 중 성인 생활의 대부분 동안 귀하의 욕구가 어느 정도 충족되었는지를 가장 잘 설명하는 것은 무엇입니까?',
           choices: 
           [
-            "Food, housing, clothing and medical needs were met - you could afford luxuries",
-            "Food, housing, clothing and medical needs were met - you could not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) were not met",
-            "Two or more of the basic needs were not met",
-            "I don't know"
+            '음식, 주거, 의복 및 의료 요구가 충족됨 - 사치품을 살 여유가 있음',
+            '음식, 주거, 의복 및 의료 요구가 충족되었으나 사치품을 살 여유가 없음',
+            '기본 욕구(의식주, 의복, 의료) 중 하나가 충족되지 않음',
+            '기본 욕구 중 두 가지 이상이 충족되지 않았다.',
+            '모르겠음'
           ],
           name: 'PastNeeds',
+          placeholder: '선택하다...',
           isRequired: true,
        }
        ]
      },
      {
        name: "Medical Information",
-       title: "Medical Information",
+       title: "의료 정보",
        
        elements: [
         {
