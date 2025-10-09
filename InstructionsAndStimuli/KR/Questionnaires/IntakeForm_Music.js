@@ -4,16 +4,17 @@ var title = "인구 통계학적 설문지"
 var shortTitle = 'Music Intake'  
 // All questions use the same direction so enter that single flag as an array of size 1
 
+
 const json = {
   showProgressBar: "aboveHeader",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
-   pageNextText: function() { 
-    console.log(LabelNames)
-    return LabelNames.Next 
-  },
+   pageNextText: '다음 페이지',
+   pagePrevText: '이전 페이지',
+   completeText: '설문조사 완료',
+   requiredError: '응답이 필요해요',
    pages: 
    [
     /*{
