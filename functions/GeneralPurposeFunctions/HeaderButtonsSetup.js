@@ -58,7 +58,7 @@
     langWrapper.style.position = "relative"; // helps dropdown position
 
     // Create and append the select list
-    var array = ["EN", "FR"];
+    var array = ["EN", "FR", "KR"];
     var selectList = document.createElement("select");
 
     for (var i = 0; i < array.length; i++) {

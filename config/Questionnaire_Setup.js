@@ -32,7 +32,7 @@ var MusicDemographics_001SHORT = {
  }
  
  var MusicDemographics_001 = { 
-    questionnaire: ['IntakeForm_MusicJSON'], 
+    questionnaire: ['IntakeForm_Music'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -40,7 +40,6 @@ var MusicDemographics_001SHORT = {
     ShowThankYou: false,
     ShowInstructions: false,
  }
- 
 
 var STAI_S_001 = { 
     questionnaire: ['stai_state'], 
@@ -195,15 +194,6 @@ var PANAS_ShortWeekly_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
-var MusicDemographics_001 = { 
-    questionnaire: ['IntakeForm_MusicJSON'], 
-    criteria: [],
-    variable: [],
-    AskForNotes: false,
-    ShowWelcome: false,
-    ShowThankYou: false,
-    ShowInstructions: false,
- }
 
  var MusicEnterName_001 = { 
     questionnaire: ['EnterName_MusicJSON'], 
@@ -259,7 +249,7 @@ var STANFORDSLEEPINESS_001 = {
 }
 
 var CESAM_001 = { 
-    questionnaire: ['cesamJSONform'], 
+    questionnaire: ['cesam'], 
     criteria: [],
     variable: [],
     AskForNotes: false,

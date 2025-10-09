@@ -86,3 +86,5 @@ parameters099.push({index: 3,
     List: List
 })
 add('EN_COMM_99', function(){ parameters = parameters099 });
+add('FR_COMM_99', function(){ parameters = parameters099 });
+add('KR_COMM_99', function(){ parameters = parameters099 });
