@@ -545,8 +545,8 @@ const json = {
  }
 
 
-var EN_IntakeForm_MusicJSON = {}
-EN_IntakeForm_MusicJSON.title = title;
-EN_IntakeForm_MusicJSON.survey_JSON = json;
-EN_IntakeForm_MusicJSON.shortTitle = shortTitle
-EN_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
+var EN_IntakeForm_Music = {}
+EN_IntakeForm_Music.title = title;
+EN_IntakeForm_Music.survey_JSON = json;
+EN_IntakeForm_Music.shortTitle = shortTitle
+EN_IntakeForm_Music.QuestionnaireType = 'Varied'

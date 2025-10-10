@@ -105,11 +105,13 @@
             var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"
             fileName = dirName+parameters.questionnaire[0]+".js"         
             // load the questionaire JS file
+            console.log("Loading file: "+fileName)
             loadScriptSequentially(fileName)
             .then(() =>
                 // load the header buttons and update their visibility and language
                 pseudoSwitch(LANG+'_LabelNames')
             )
+            .then(()=>UpdateHeader())
             /*.then(() =>
                 // import the header buttons and set their language and visibility
                 $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
@@ -137,5 +139,11 @@
         <div class="btn-group-header" id="header-btn-group"></div>
         <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
         <script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+        <script>
+            jatos.onLoad(() => {
+                // update the header button labels
+                UpdateHeader()
+            })
+        </script>
     </body>
 </html>

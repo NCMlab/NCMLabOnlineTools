@@ -202,15 +202,20 @@ function IsTheBatteryFinished() {
     // The minus one is because the index starts with zero and does not
     // get updated until AFTER this check
     JATOSSessionData = jatos.studySessionData
+    console.log(jatos.studySessionData.CurrentIndex)
+    console.log(jatos.studySessionData.TaskNameList.length)
+    
     if ( JATOSSessionData.CurrentIndex != undefined && JATOSSessionData.TaskNameList != undefined )
     {
-        // The minus one is due to teh Ready Hold component that is added to the beginning
-        if ( JATOSSessionData.CurrentIndex == (JATOSSessionData.TaskNameList.length - 1)) 
+        // The minus one is due to the Ready Hold component that is added to the beginning
+        if ( JATOSSessionData.CurrentIndex == (JATOSSessionData.TaskNameList.length )) 
         {        
             BatteryCompleteFlag = true   
             timeline.push(MakeThankYouPage())
         }
+        //console.log(BREAK)
     }
+    
     return BatteryCompleteFlag
 }
 
@@ -243,6 +248,7 @@ function UpdateBatchData() {
 }
 // This is the location within a bettery
 function UpdateSessionDataIndex(IsThereSessionData) {
+    // This is updated at the start of a task, but not for the ready hold 
     return new Promise((resolve) => {
         if ( IsThereSessionData )
         { 
@@ -479,6 +485,7 @@ function CentralExecutive() {
             CheckForSessiondata()
 
         })
+        
         .then((res) => {
             UpdateSessionDataIndex(res)
             SessionDataFlag = res

@@ -514,11 +514,11 @@ const json = {
  }
 
 
-var FR_IntakeForm_MusicJSON = {}
-FR_IntakeForm_MusicJSON.title = title;
-FR_IntakeForm_MusicJSON.survey_JSON = json;
-FR_IntakeForm_MusicJSON.shortTitle = shortTitle
-FR_IntakeForm_MusicJSON.QuestionnaireType = 'Varied'
+var FR_IntakeForm_Music = {}
+FR_IntakeForm_Music.title = title;
+FR_IntakeForm_Music.survey_JSON = json;
+FR_IntakeForm_Music.shortTitle = shortTitle
+FR_IntakeForm_Music.QuestionnaireType = 'Varied'
 //FR_IntakeForm_MusicJSON.Instructions01 = [
 //    {        'page': '<p class="Instructions">Instructions are written here.'   }
 //]
