@@ -107,6 +107,13 @@
       jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
     },
     on_finish: function() {
+      if ( jatos.urlQueryParameters.SaveLocal ) {
+          const d = new Date();
+          var StrDate = d.getDate() + "_"+String(Number(d.getMonth())+1)+"_"+d.getFullYear();
+          var StrTime = d.getHours() + "_"+d.getMinutes();
+          var StrDateTime = "_"+StrDate+"__"+StrTime;
+          jsPsych.data.get().localSave('csv',jatos.workerId+'_verbalDMS_'+StrDateTime+'.csv');
+      }    
       jatos.submitResultData(jsPsych.data.get().json())
       if ( SaveLocalFile ) {
         jsPsych.data.get().localSave('csv','vDMS_data.csv');
