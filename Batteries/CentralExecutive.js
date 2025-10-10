@@ -277,7 +277,6 @@ function UsageTypeDecision(UsageType) {
                // get the title of the task to start next
                console.log("THIS is a battery") 
                console.log(JATOSSessionData)
-               console.log(BREAK)
                if ( !IsTheBatteryFinished() )
                 {
                     console.log("The battery is NOT finished")
