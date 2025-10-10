@@ -124,19 +124,19 @@ var VisualProbe = {
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct
-      stair1.Decide(true)
+      stair1.Decide(true,data.rt)
     }
     else if ( Probe == 0 && ! KeyboardMappings[ResponseIndex]) 
     { 
       data.correct = 1
       FeedbackText = LabelNames.Correct
-      stair1.Decide(true)
+      stair1.Decide(true,data.rt)
     } 
     else 
     {
       data.correct = 0
       FeedbackText = LabelNames.Incorrect
-      stair1.Decide(false)
+      stair1.Decide(false,data.rt)
     }
     data.CurrentLocations = CurrentLocations
     data.Load = CurrentLoad
