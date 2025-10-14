@@ -1945,3 +1945,37 @@ List.push({
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: '',
 	})
+
+
+// ===========
+var List = []
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "RAVLT, Recog",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 123, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: 'www.uottawa.ca',
+	})
