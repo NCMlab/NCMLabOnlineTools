@@ -1622,12 +1622,12 @@ List.push({
   Instructions: "Default",
   IconName: "Ready, Hold",
 });
-/*List.push({
+List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
-});*/
+});
 List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PAES_001",
