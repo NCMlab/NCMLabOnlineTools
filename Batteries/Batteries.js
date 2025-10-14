@@ -1979,3 +1979,24 @@ List.push({
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: 'www.uottawa.ca',
 	})
+
+
+  // ===========
+var List = []
+List.push({
+  Task: "TEST Spatial",
+  Parameters: "SpatialDMS_Adaptive_003",
+  Instructions: "Default",
+  IconName: "Dots (Short)",
+})
+	BatteryList.push({index: 333, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: 'www.uottawa.ca',
+	})
