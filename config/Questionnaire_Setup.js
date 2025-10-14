@@ -196,7 +196,7 @@ var PANAS_ShortWeekly_001 = {
 }
 
  var MusicEnterName_001 = { 
-    questionnaire: ['EnterName_MusicJSON'], 
+    questionnaire: ['EnterName_Music'], 
     criteria: [],
     variable: [],
     AskForNotes: false,

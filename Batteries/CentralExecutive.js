@@ -203,7 +203,7 @@ function IsTheBatteryFinished() {
     // get updated until AFTER this check
     JATOSSessionData = jatos.studySessionData
     console.log(jatos.studySessionData.CurrentIndex)
-    console.log(jatos.studySessionData.TaskNameList.length)
+    //console.log(jatos.studySessionData.TaskNameList.length)
     
     if ( JATOSSessionData.CurrentIndex != undefined && JATOSSessionData.TaskNameList != undefined )
     {
