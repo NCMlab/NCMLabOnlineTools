@@ -46,13 +46,13 @@ var references = ""
 
 var notes = ""
 
-var EN_wemwbsJSONmatrix = {}
-EN_wemwbsJSONmatrix.title = title
-EN_wemwbsJSONmatrix.shortTitle = shortTitle
-EN_wemwbsJSONmatrix.survey_JSON = survey_JSON
+var EN_wemwbs = {}
+EN_wemwbs.title = title
+EN_wemwbs.shortTitle = shortTitle
+EN_wemwbs.survey_JSON = survey_JSON
 //EN_panasJSON.description = instructions
-EN_wemwbsJSONmatrix.QuestionnaireType = 'matrix'
-EN_wemwbsJSONmatrix.references = references
-EN_wemwbsJSONmatrix.notes = notes
+EN_wemwbs.QuestionnaireType = 'matrix'
+EN_wemwbs.references = references
+EN_wemwbs.notes = notes
 
 

@@ -36,13 +36,13 @@ var references = ""
 
 var notes = ""
 
-var EN_paesJSONmatrix = {}
-EN_paesJSONmatrix.title = title
-EN_paesJSONmatrix.shortTitle = shortTitle
-EN_paesJSONmatrix.survey_JSON = survey_JSON
+var EN_paes = {}
+EN_paes.title = title
+EN_paes.shortTitle = shortTitle
+EN_paes.survey_JSON = survey_JSON
 //EN_panasJSON.description = instructions
-EN_paesJSONmatrix.QuestionnaireType = 'matrix'
-EN_paesJSONmatrix.references = references
-EN_paesJSONmatrix.notes = notes
+EN_paes.QuestionnaireType = 'matrix'
+EN_paes.references = references
+EN_paes.notes = notes
 
 

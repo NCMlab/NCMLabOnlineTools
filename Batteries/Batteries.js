@@ -1433,7 +1433,7 @@ List.push({
   IconName: "Loneliness",
 });
 List.push({
-  Task: "Form Questionnaire",
+  Task: "Form Questionnaire", // Not available in Korean
   Parameters: "BERKSYME_001",
   Instructions: "Default",
   IconName: "Social",
@@ -1444,12 +1444,12 @@ List.push({
   Instructions: "Default",
   IconName: "Sleepiness",
 });
-List.push({
+/*List.push({
   Task: "EQ5D",
   Parameters: "EQ5D_001",
   Instructions: "Default",
   IconName: "EQ-5D",
-});
+});*/
 BatteryList.push({
   index: 77,
   name: "Music Motion: Baseline",
@@ -1622,12 +1622,12 @@ List.push({
   Instructions: "Default",
   IconName: "Ready, Hold",
 });
-List.push({
+/*List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
-});
+});*/
 List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PAES_001",

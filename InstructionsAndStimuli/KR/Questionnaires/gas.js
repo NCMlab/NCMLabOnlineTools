@@ -53,11 +53,11 @@ var references = ""
 
 var notes = ""
 
-var EN_gasJSON = {}
-EN_gasJSON.title = title
-EN_gasJSON.shortTitle = shortTitle
-EN_gasJSON.survey_JSON = survey_JSON
+var KR_gas = {}
+KR_gas.title = title
+KR_gas.shortTitle = shortTitle
+KR_gas.survey_JSON = survey_JSON
 //EN_gasJSON.description = instructions
-EN_gasJSON.QuestionnaireType = 'matrix'
-EN_gasJSON.references = references
-EN_gasJSON.notes = notes
+KR_gas.QuestionnaireType = 'matrix'
+KR_gas.references = references
+KR_gas.notes = notes

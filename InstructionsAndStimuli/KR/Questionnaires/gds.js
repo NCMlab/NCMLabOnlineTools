@@ -12,6 +12,7 @@ var survey_JSON =
                 name: 'gds',
                 title: '“이제부터 평상시의 생각이나 느낌에 대해서 여쭈어 보겠습니다. 제가 말씀드리는 내용이 지난 일주일 동안의 자신의 기분이나 생각과 같다고 생각하시면 ‘네’, 그렇지 않다고 생각하시면 ‘아니오’라고 대답하 여 주십시오.',
                 alternateRows: true,
+                className: "gds-matrix",
                 isAllRowRequired: true,
                 rows: [
                     {value: 'gds01', text: "현재의 생활에 대체적으로 만족하십니까?"},
@@ -32,17 +33,17 @@ var survey_JSON =
                 ],
                 columns: [
                     {
-                    "value": 0,
-                    "text": '예'
+                        value: 1,
+                        text: '예'
                     },
                     {
-                    "value": 1,
-                    "text": '아니오'
+                        value: 0,
+                        text: '아니오'
                     },
                 ],
-            }
-        ]
-    }
+            },
+        ],
+    };
 
 
 
@@ -50,12 +51,12 @@ var references = ""
 
 var notes = ""
 
-var EN_gdsJSON = {}
-EN_gdsJSON.title = title
-EN_gdsJSON.shortTitle = shortTitle
-EN_gdsJSON.survey_JSON = survey_JSON
-//EN_gdsJSON.description = instructions
-EN_gdsJSON.QuestionnaireType = 'likert'
-EN_gdsJSON.references = references
-EN_gdsJSON.notes = notes
+var KR_gds = {}
+KR_gds.title = title
+KR_gds.shortTitle = shortTitle
+KR_gds.survey_JSON = survey_JSON
+//KR_gds.description = instructions
+KR_gds.QuestionnaireType = 'matrix'
+KR_gds.references = references
+KR_gds.notes = notes
 
