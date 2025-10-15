@@ -1829,7 +1829,7 @@ BatteryList.push({index: 71234,
 var List = []
 
 List.push({
-  Task: "TEST Spatial DMS",
+  Task: "Spatial DMS",
   Parameters: "SpatialDMS_Adaptive_003",
   Instructions: "Default",
   IconName: "Letters (Short)",
@@ -1863,7 +1863,7 @@ BatteryList.push({index: 121,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   Redirect: '',
-  shortName: "NCMLab"
+  shortName: "NCMLab",
 })
 
 
@@ -1881,6 +1881,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: ['Home'],
     Redirect: '',
+    shortName: '',
 	})
 
 // ===  Language and Social Cognition Lab === //
@@ -1945,6 +1946,7 @@ List.push({
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: '',
+    shortName: '',
 	})
 
 
@@ -1979,17 +1981,25 @@ List.push({
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: 'www.uottawa.ca',
+    shortName: '',
 	})
 
 
   // ===========
 var List = []
 List.push({
-  Task: "TEST Spatial",
-  Parameters: "SpatialDMS_Adaptive_003",
+  Task: "TEST Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003B",
   Instructions: "Default",
   IconName: "Dots (Short)",
 })
+List.push({
+  Task: "Verbal DMS",
+  Parameters: "vDMS_Adaptive_002",
+  Instructions: "Default",
+  IconName: "Letters",
+});
+
 	BatteryList.push({index: 333, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
@@ -2000,4 +2010,6 @@ List.push({
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: 'www.uottawa.ca',
+    shortName: '',
 	})
+

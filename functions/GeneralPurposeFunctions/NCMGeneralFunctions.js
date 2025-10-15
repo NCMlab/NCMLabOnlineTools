@@ -359,7 +359,8 @@ function whereToGoNext(SessionData, ){
         else { 
           // If the battery is NOT complete
           jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
-          jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1)
+          //alert("Updated Index to be: "+jatos.studySessionData.CurrentIndex)
+          jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
           .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))
 
         }

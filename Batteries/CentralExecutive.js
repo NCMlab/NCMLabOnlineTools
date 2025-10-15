@@ -275,13 +275,17 @@ function CheckBatchData() {
         else {
             console.log("THERE IS BATCH DATA FOR THIS WORKER")
             console.log("WorkerID: " + jatos.workerId)
-            console.log("Current Index : " + jatos.batchSession.get(jatos.workerId))
+            console.log("Current Batch Index : " + jatos.batchSession.get(jatos.workerId))
             console.log("Language: "+jatos.batchSession.get(jatos.workerId+"_Language"))
-            //currentIndex = jatos.batchSession.get(jatos.workerId) + 1
-            //CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+            currentIndex = jatos.batchSession.get(jatos.workerId)
+            CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
             //jatos.batchSession.set(jatos.workerId, currentIndex)    
             // Need to also update the session index
-
+            // If the batch inde for this worker is set to something other than zero, 
+            // it means the battery was started and interrupted. The interruption cleared
+            // the session data.
+            console.log("Session Index is set to: "+jatos.studySessionData.CurrentIndex)
+            jatos.studySessionData.CurrentIndex = currentIndex
         }
         resolve(currentIndex)
     })
@@ -577,7 +581,6 @@ function CentralExecutive() {
                 .then((IsThereSessionData) => {
                     console.log("SessionData? "+IsThereSessionData)
                     SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
-                    alert("JASON")
                 })
                 .then(() => CheckBatchData())        
                 .then(()=> {
