@@ -979,11 +979,60 @@ const json = {
           visibleIf: "{SP_Earnings}= 1",
           isRequired: true
         },
+      ]
+
+    },
 
 
 
         // SECTION IV : General information
 
+
+         {      
+      name: "GeneralInformation",
+      title: "Section IV: General Information",
+       elements: [
+        {
+          type: 'dropdown',
+          title: "What is your gender", 
+          name: 'Gender', 
+          choices: [
+                      'Male',
+                      'Female',
+                      'Other'
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },
+
+
+
+        {
+          type: "text",
+          name: "Age",
+          inputType:"number",
+          title: "Your age:  ",
+          isRequired: true
+        },
+
+
+          {
+          type: "text",
+          name: "HH_N",
+          inputType:"number",
+          title: "How many family members in your household (under the same roof)?  ",
+          isRequired: true
+        },
+
+
+
+
+      
+
+         
+
+
+       
 
 
 
