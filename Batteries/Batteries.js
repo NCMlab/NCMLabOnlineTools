@@ -1829,8 +1829,8 @@ BatteryList.push({index: 71234,
 var List = []
 
 List.push({
-  Task: "Verbal DMS",
-  Parameters: "vDMS_Adaptive_003",
+  Task: "TEST Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003",
   Instructions: "Default",
   IconName: "Letters (Short)",
 });
@@ -1863,6 +1863,7 @@ BatteryList.push({index: 121,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   Redirect: '',
+  shortName: "NCMLab"
 })
 
 
