@@ -111,7 +111,7 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           var newRow = false
           // Check to see if this is the first time this session is started
           // check the completedBits variable
-          if ( trial.completedBits == '0' )
+          if (( trial.completedBits == '0' ) || ( trial.completedBits == 0 ))
           { 
             var FirstTimeFlag = true
           }

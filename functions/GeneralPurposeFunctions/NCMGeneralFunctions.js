@@ -172,7 +172,11 @@ function returnToUsageManager(HomeFlag) {
   // battery withou the use of the CE.
   if ( HomeFlag === true )
   { pass }
-  else { jatos.startComponentByTitle("Central Executive"); }
+  else { 
+    // wipe the session data
+    jatos.studySessionData = {}
+    jatos.startComponentByTitle("Central Executive"); 
+  }
 }
 
 function restartTask() {

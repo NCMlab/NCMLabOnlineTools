@@ -1373,6 +1373,7 @@ BatteryList.push({index: 73,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- CESAM  ==================
@@ -1398,6 +1399,7 @@ BatteryList.push({index: 74,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: '',
 })
 
@@ -1461,6 +1463,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: 'https://www.uottawa.ca',
 });
 // ============ MUSIC STUDY -- PRE: WEEKS 1, 4, 7 ==================

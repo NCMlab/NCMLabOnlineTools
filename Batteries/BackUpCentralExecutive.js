@@ -181,6 +181,7 @@ function SetupSession() {
     CompletedBits = parseInt(CompletedBits, 10).toString(2)
     console.log(CompletedBits)
 
+    SessionChoiceTrial = MakeSessionButtons(parameters[0].Title, Choices, SessionsBatteryList)
     // Is there a name entered yet?
     var FirstName = jatos.batchSession.get(jatos.workerId+"_FirstName")
     console.log(FirstName)
@@ -233,6 +234,33 @@ function IsTheBatteryFinished() {
     return BatteryCompleteFlag
 }
 
+function UpdateBatchData() {
+    // Check the session data to see if it is empty, if so add to it. If not, leave it alone
+    // Is this worker in the Batch data?
+    var currentIndex = 0
+    return new Promise((resolve) => {
+        if ( typeof jatos.batchSession.get(jatos.workerId) == 'undefined' ) {
+            console.log("Setting the index to zero")
+            // no batch data
+            CurrentLanguage = 'EN' // This is the default language setting
+            // set the index for this worker
+            jatos.batchSession.set(jatos.workerId, currentIndex)    
+            // set the language
+            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => jatos.batchSession.set(jatos.workerId+"_bitIndex", "0"))
+            
+        }
+        else {
+            console.log(">>>>>> Incrementing the index <<<<<<")
+            currentIndex = jatos.batchSession.get(jatos.workerId) + 1
+            CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+            jatos.batchSession.set(jatos.workerId, currentIndex)    
+            // Need to also update the session index
+
+        }
+        resolve(currentIndex)
+    })
+}
 
 function CheckBatchData() {
     // Check the session data to see if it is empty, if so add to it. If not, leave it alone
@@ -267,6 +295,19 @@ function CheckBatchData() {
             jatos.studySessionData.CurrentIndex = currentIndex
         }
         resolve(currentIndex)
+    })
+}
+// This is the location within a bettery
+function UpdateSessionDataIndex(IsThereSessionData) {
+    // This is updated at the start of a task, but not for the ready hold 
+    return new Promise((resolve) => {
+        if ( IsThereSessionData )
+        { 
+            var SessionData = jatos.studySessionData 
+            SessionData.CurrentIndex = SessionData.CurrentIndex + 1
+            jatos.studySessionData = SessionData 
+        }
+        resolve("Successfuly updated session index")
     })
 }
 
@@ -347,6 +388,26 @@ function MakeTestElement() {
     return TestDisplay
 }
 
+function MakeSessionButtons(Title, Choices, SessionsBatteryList) {
+    var trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() { return Title },
+        choices: Choices,
+        prompt: "",
+        on_finish: function(data) {
+              // The user has selected a session to administer
+            // Load up the Battery that is associated with the selected session
+            SetupBattery(false, SessionsBatteryList[data.response], 'Battery')
+            JATOSSessionData = jatos.studySessionData
+            console.log(JATOSSessionData)
+            // Start at the beginning of this battery
+            var TitleToStart = JATOSSessionData.TaskNameList[0]
+            // Start the battery
+            StartComponent(TitleToStart)
+        }
+    };
+    return trial
+}
 
 function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, ButtonUsageType) {
     var trial = {
@@ -452,6 +513,60 @@ function MakeThankYouPage() {
 }
 // =================================================
 // This is where all the pieces are put together
+
+function OLDCentralExecutive() {
+    return new Promise((resolve) => {
+        const jatos_params = jatos.urlQueryParameters;
+        const BatteryIndex = jatos_params["Battery"];
+        const UsageType = jatos_params["UsageType"];
+        var CurrentIndex = -99
+        var SessionDataFlag = false
+        console.log(jatos.studySessionData)
+
+        UpdateBatchData()
+        .then((res) => {
+            CurrentIndex = res
+            console.log("The current index is: " + res)
+
+        })
+        .then(() => {
+        UpdateHeaderPromise()         
+        })
+        .then(() => {
+            CheckForSessiondata()
+
+        })
+        
+        .then((res) => {
+            UpdateSessionDataIndex(res)
+            SessionDataFlag = res
+        })
+        .then(() => IsTheBatteryFinished())
+        .then(() => {
+            console.log(jatos.studySessionData)
+            
+        // If we get here and there is NO session data than this is a fresh start
+        // If we get here and there IS session data then we have come to the CE from a 
+        // previous task that was just completed. 
+        // In that case update the session index. << Maybe
+        // There may be a problem if a browser window is closed.
+
+            console.log(jatos.studySessionData)
+            SetupBattery(SessionDataFlag, BatteryIndex, UsageType)  
+        })
+                
+
+        
+        // When starting the Session Chooser, a URL UsageType of Session is provided.
+        // The Session Chooser will start a battery. WHen the battery is complete the
+        // CE is returned to. At that point the URL UsageType is still Session; however,
+        // the Session usage type is changed to Battery
+        .then(() => UsageTypeDecision(jatos.studySessionData.UsageType))
+        .then(() => SetupjsPsychAndRunTimeline())
+        resolve("EVERYTHING IS SETUP")
+    })
+}
+
 
 function CentralExecutive() {
     return new Promise((resolve) => {
