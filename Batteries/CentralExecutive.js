@@ -151,8 +151,16 @@ function SetupSession() {
     // In order, to see what has been completed the info needs to be stored in the batch data since 
     // no front end scripts can access the back-end data stored in the database. 
 
-
-    let input = CurrentLanguage+"_"+JATOSSessionData.ComponentParameterLists[0]
+    console.log(jatos.studySessionData)
+    CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+    console.log(CurrentLanguage)
+    if ( CurrentLanguage == undefined )
+    {
+        // set the language to the default, EN
+        CurrentLanguage = 'EN'
+    }
+    let input = CurrentLanguage+"_"+jatos.studySessionData.ComponentParameterLists[0]
+    console.log(input)
     pseudoSwitch(input)
     var Choices = []
     var SessionsBatteryList = []
@@ -219,11 +227,10 @@ function IsTheBatteryFinished() {
         if ( JATOSSessionData.CurrentIndex == (JATOSSessionData.TaskNameList.length )) 
         {        
             BatteryCompleteFlag = true   
-            timeline.push(MakeThankYouPage())
+            
         }
         //console.log(BREAK)
     }
-    
     return BatteryCompleteFlag
 }
 
@@ -441,7 +448,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
                 var TitleToStart = JATOSSessionData.TaskNameList[0]
                 // Start the battery
                 // It would be great to add a READY screen, with a participant's name on it.
-                UpdateSessionBitIndex(AddToCompletionCount)                
+                UpdateSessionBitIndex(BitList[data.response])//AddToCompletionCount)                
                 SetupjsPsychAndRunTimeline()
                 StartComponent(TitleToStart)
                 // Once a session is selected, add the Bit Index to the session data
@@ -565,32 +572,63 @@ function CentralExecutive() {
     return new Promise((resolve) => {
         const jatos_params = jatos.urlQueryParameters;
         const BatteryIndex = jatos_params["Battery"];
-        const UsageType = jatos_params["UsageType"];
+        // If there is no session data yet, then use the URL parameter
+        // to identift the usage type
+        var UsageType = jatos_params["UsageType"];
+        console.log("UsageType: "+UsageType)
+        console.log(jatos.studySessionData)
+        // If there is session data then use it becuase a Session URL parameter
+        // will start a battery
+        if ( ! isEmpty(jatos.studySessionData) )
+        { UsageType = jatos.studySessionData.UsageType }
+        console.log("UsageType: "+UsageType)
         var CurrentIndex = -99
         var SessionDataFlag = false
-        console.log(jatos.studySessionData)
+        
+        
 
         switch(UsageType) {
             case 'SingleTask':
                 console.log("Single Task")
                 break;
             case 'Battery':
+            // When a battery is complete display the Thank you Screen   
+               if ( IsTheBatteryFinished() )
+               {
+                timeline.push(MakeThankYouPage())
+                SetupjsPsychAndRunTimeline()
+               }
                // get the title of the task to start next
-               console.log("THIS is a battery") 
+               else {
+                    CheckForSessiondata()
+                    .then((IsThereSessionData) => {
+                        console.log("SessionData? "+IsThereSessionData)
+                        SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
+                    })
+                    .then(() => CheckBatchData())        
+                    .then(()=> {
+                        console.log(JATOSSessionData)    
+                        alert("JASON")             
+                        var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+                        StartComponent(TitleToStart)
+                    })
+                }
+                break;
+            case 'Session':
+                console.log("THIS is a SESSION") 
                CheckForSessiondata()
                 .then((IsThereSessionData) => {
                     console.log("SessionData? "+IsThereSessionData)
                     SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
                 })
-                .then(() => CheckBatchData())        
-                .then(()=> {
-                    console.log(JATOSSessionData)                 
-                    var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
-                    StartComponent(TitleToStart)
-                })
-                break;
-            case 'Session':
-                timeline.push(SetupSession())
+                .then(() => CheckBatchData())    
+                .then(() => 
+                    {
+                        SessionTimeLine = SetupSession()
+                        console.log(SessionTimeLine)
+                        timeline.push(SessionTimeLine)
+                    })
+                .then(() => SetupjsPsychAndRunTimeline())
                 break;
             case 'UserChoice':
                 // reset the timeline
@@ -602,6 +640,8 @@ function CentralExecutive() {
                 console.log("No Choice Provided")
                 timeline.push(MakeUserChoiceElement(JATOSSessionData))
         }
+        
+        resolve("EVERYTHING IS SETUP")
     })
 }
 
