@@ -19,6 +19,7 @@ EN_LabelNames.NoYes = ['No','Yes']
 EN_LabelNames.YesNo = ['Yes','No']
 EN_LabelNames.Home = 'Home'
 EN_LabelNames.Restart = 'Restart'
+EN_LabelNames.Info = 'Info'
 EN_LabelNames.Stop = 'Stop'
 EN_LabelNames.Quit = 'Quit'
 EN_LabelNames.Skip = 'Skip'

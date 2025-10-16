@@ -16,7 +16,7 @@ var buttonText = "Restart";
     button.setAttribute("onclick", "returnToUsageManager()");
     document.getElementById("header-btn-group").appendChild(button);
 
-    var buttonText = "?";
+    var buttonText = "Info";
     var button = document.createElement("button");
     button.textContent = buttonText;
     button.setAttribute("id", "header-info-button");
