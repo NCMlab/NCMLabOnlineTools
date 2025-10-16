@@ -306,6 +306,10 @@ function UpDateBitIndexInBatchData() {
     console.log("Current bit is: "+CurrentBitIndex)
     // Convert the current value back to bits
     CurrentBits = parseInt(CurrentBitIndex,10).toString(2)
+    console.log("In binary this is: "+CurrentBits)
+    console.log("What bit is to be updated? "+jatos.studySessionData.AddToCompletionCount)
+    // Needed to include the -1 since indexing is done from zero
+    console.log("What is the status of the bit to check? "+CurrentBits[jatos.studySessionData.AddToCompletionCount - 1])
     // Check whether the current task bit is already set in the Current Bits
     if ( CurrentBits[jatos.studySessionData.AddToCompletionCount]  == 1 )
     { console.log("THIS TASK HAS ALREADY BEEN COMPLETED")}
@@ -316,31 +320,10 @@ function UpDateBitIndexInBatchData() {
       jatos.batchSessionVersioning = false;
       console.log("Setting the new bit index")
       jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
-      //.then(() => console.log("Finished setting index"))
-
     }
     
-    
-    
-    }
-    /* var CurrentValue = jatos.batchSession.get(jatos.workerId+'_bitIndex')
-    var ValueToAdd = jatos.studySessionData.AddToCompletionCount
-    console.log(CurrentValue)
-    console.log(ValueToAdd)
-    var LenCV = CurrentValue.length
-    var LenV2A  = ValueToAdd.length
-    if ( ValueToAdd.length > CurrentValue.length )
-    {
-      for ( var i = 0; i < CurrentValue.length; i++ )
-      {
-        if ( CurrentValue[i] == '1' )
-        {
-          ValueToAdd[i] = 
-        }
-        
-      }
-    }*/
     //console.log(BREAK) 
+  }
 }
 
 // ===============================================

@@ -1351,6 +1351,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Restart'],
     Redirect: '',
 	})
 
@@ -1879,7 +1880,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: ['Home'],
+    HeaderButtonsToShow: ['Home','Restart'],
     Redirect: '',
     shortName: '',
 	})

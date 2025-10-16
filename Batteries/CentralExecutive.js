@@ -608,8 +608,15 @@ function CentralExecutive() {
                     .then(() => CheckBatchData())        
                     .then(()=> {
                         console.log(JATOSSessionData)    
-                        alert("JASON")             
                         var TitleToStart = JATOSSessionData.TaskNameList[JATOSSessionData.CurrentIndex]
+                        console.log(TitleToStart)
+                        // If the home button was pressed when the initial UsageType
+                        // was a battery, then restart the task
+                        // If the home (see note) button was pressed when the initial UsageType
+                        // was a Session Manager, then go back to the session Manager page
+                        // It would be better to have two buttons:
+                            // Home buring s you back to the session manager
+                            // Restart restarts the current task
                         StartComponent(TitleToStart)
                     })
                 }
