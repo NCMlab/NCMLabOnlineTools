@@ -15,10 +15,10 @@ var survey_JSON =
                 
                 rows: [
 
-                    {value: 'paes001', text: '나는 이것을 즐긴다.'},
-                    {value: 'paes002', text: '나는 이것이 기분 좋다고 느낀다.'},
-                    {value: 'paes003', text: '이것은 매우 즐겁다.'},
-                    {value: 'paes004', text: '이것은 기분 좋다.'},
+                    {value: 'paes001', text: 'I enjot it. 나는 이것을 즐긴다.'},
+                    {value: 'paes002', text: 'I find it pleasurable. 나는 이것이 기분 좋다고 느낀다.'},
+                    {value: 'paes003', text: 'It is very pleasant. 이것은 매우 즐겁다.'},
+                    {value: 'paes004', text: 'It feels good. 이것은 기분 좋다.'},
                 ],
                 columns: [
                     { "value": 0, text: '전혀동 의하지 않음' }, 

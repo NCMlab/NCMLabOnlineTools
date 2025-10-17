@@ -42,9 +42,19 @@ const json = {
           isRequired: true
         },
         {
+          name: "Age",
+          type: "text",
+          title: "Age",
+          inputType: "number",
+          min: 0,
+          max: 150,
+          defaultValue: '',
+          isRequired: true,
+        },
+        {
           name: "Height",
           type: "text",
-          title: "Enter your height in inches or centimeters",
+          title: "Height (cm or feet/inches)",
           inputType: "number",
           min: 0,
           max: 300,
@@ -65,7 +75,7 @@ const json = {
         {
           name: "Weight",
           type: "text",
-          title: "Enter your weight in pounds or kilograms",
+          title: "Weight (kg or lbs)",
           inputType: "number",
           min: 0,
           max: 1000,
