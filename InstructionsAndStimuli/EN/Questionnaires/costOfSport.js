@@ -256,6 +256,33 @@ const json = {
           },
 
 
+          // question 10 
+
+          
+      {
+        
+      type: "matrixdropdown",
+      name: "practice_table",
+      title : "Detailed information about your participation last year — Practices",
+      isRequired : true,
+      columns: [
+        { name: "SP_PR_1",        title : "Sept–Dec",      cellType: "text",  inputType : "number",  min: 0 },
+        { name: "SP_PR_2", title : "Winter Holiday", cellType: "text",  inputType:  "number",  min: 0 },
+        { name: "SP_PR_3",        title: "Jan–Mar",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_4",       title: "Apr–Jun",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_5",       title: "Jul–Aug",         cellType: "text",  inputType: "number",  min: 0 }
+      ],
+      rows : [
+        { value: "freq",     text: "1. Number of practices per week (exclude games)" },
+        { value: "net_time",  text: "2. Hours per practice, NET (excludes travel/changing/socializing)" },
+        { value: "gross_time",  text: "3. Total time per practice, GROSS (includes travel/changing/socializing)" }
+      ],
+      cellErrorLocation: "bottom",
+      verticalAlign: "middle"
+    
+    },
+
+
 
 
 
@@ -502,7 +529,108 @@ const json = {
 
 
 
-        // question 10 to  do 
+        // question 10 to adjust
+        
+
+
+
+     /* ----------------- (a) Sports apparel ----------------- */
+    {
+      type: "matrixdynamic",
+      name: "SP_APP",
+      title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
+      addRowText: "Add apparel item",
+      removeRowText: "Remove",
+      minRowCount: 0,
+       rowCount: 0,
+      showFooter: true,
+      columns: [
+        { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
+        { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_APP_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
+        { name: "SP_APP_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        {
+          name: "writeoff",
+          title: "Write-off / year (C$)",
+          cellType: "expression",
+          expression: "{row.qty} * {row.price} / {row.years}",
+          displayStyle: "currency",
+          currency: "CAD",
+          totalType: "sum",
+          totalDisplayStyle: "currency",
+          currencyDisplay: "code",
+          width: "15%"
+        }
+      ],
+      footerText: "Sub-total (a)"
+    },
+
+    /* --------------- (b) Sports equipment ----------------- */
+    {
+      type: "matrixdynamic",
+      name: "SP_Equip",
+      title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+      addRowText: "Add equipment item",
+      removeRowText: "Remove",
+      minRowCount: 0,
+      rowCount: 0,
+      showFooter: true,
+      columns: [
+        { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
+        { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_Equip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
+        { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        {
+           name: "writeoff",
+          title: "Write-off / year (C$)",
+          cellType: "expression",
+          expression: "{row.qty} * {row.price} / {row.years}",
+          displayStyle: "currency",
+          currency: "CAD",
+          totalType: "sum",
+          totalDisplayStyle: "currency",
+          currencyDisplay: "code",
+          width: "15%"
+        }
+      ],
+      footerText: "Sub-total (b)"
+    },
+
+    /*  --------- c) Additional equipment -----------------   */
+
+
+     {
+      type: "matrixdynamic",
+      name: "SP_AddEquip",
+      title: "C) additional equipment, ex.towels ..",
+      addRowText: "Add equipment item",
+      removeRowText: "Remove",
+      minRowCount: 0,
+      rowCount: 0,
+      showFooter: true,
+      columns: [
+        { name: "SP_AddEquip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
+        { name: "SP_AddEquip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_AddEquip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
+        { name: "SP_AddEquip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        {
+           name: "writeoff",
+          title: "Write-off / year (C$)",
+          cellType: "expression",
+          expression: "{row.qty} * {row.price} / {row.years}",
+          displayStyle: "currency",
+          currency: "CAD",
+          totalType: "sum",
+          totalDisplayStyle: "currency",
+          currencyDisplay: "code",
+          width: "15%"
+        }
+      ],
+      footerText: "Sub-total (b)"
+    },
 
 
 
