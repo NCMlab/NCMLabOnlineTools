@@ -821,8 +821,194 @@ const json = {
           visibleIf: "{TR_Pr} contains 4",
           isRequired: true
         },
+
+
+        {
+          type: "text",
+          name: "TR_Pr_Car_%",
+          inputType:"number",
+          title: " How often (in %) do you use the car for practise?",
+          visibleIf: "{TR_Pr} contains 4",
+          isRequired: true
+        },
+
+
+       
+         {
+          type: "text",
+          name: "TR_Pr_Park_$Y",
+          inputType:"number",
+          title: " How much do you spend on parking costs per year (in total) to participate in your sport?",
+          visibleIf: "{TR_Pr} contains 4",
+          isRequired: true
+        },
+
+        // if by public transportation
+
+    
+
+         {
+          type: "text",
+          name: "TR_Pr_Pub_$U",
+          inputType:"number",
+          title: " How much do you spend back and forth per practice?",
+          visibleIf: "{TR_Pr} contains 5",
+          isRequired: true
+        },
+
+        {
+          type: "slider",
+          name: "TR_Pr_Pub_%",
+          inputType:"number",
+          title: "How often (in %) do you use the public transport for practise?",
+          description: "Min = 0 | Max = 100 | Step = 1",
+          visibleIf: "{TR_Pr} contains 5",
+          isRequired: true
+        },
+
+
+
+            
                
-              // to do 14.5, 14.6, 14.7, 14.8, 
+              // 14.b
+
+        
+            {
+      type: "checkbox",
+      name: "TR_Comp",
+      title: "For one-day competitions/championships without overnight stay: Which method of transportation do you use? (check all that apply)",
+      isRequired: true,
+      choices: [
+        { "value": 1, "text": "By foot" },
+        { "value": 2, "text": "By Bike" },
+        { "value": 3, "text": "By motorbike" },
+        { "value": 4, "text": "By family car" },
+        { "value": 5, "text": "Public Transportation" },
+        { "value": 6, "text": "Have a ride with others/ carpooling" },
+        { "value": 7, "text": "Taxi/Private bus" },
+        { "value": 8, "text": "Special transportation" },
+        { "value": 9, "text": "Other" }
+      ],
+      showOtherItem: false,
+      colCount: 2
+      },
+
+
+      {
+            type: "radiogroup",
+            name: "TR_Comp_Spec",
+            title: "Does your level of ability require special transportation?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "TP_Comp_Ex",
+          title: "If yes, describe: ",
+          visibleIf: "{TP_Comp_Spec}= 1",
+          isRequired: true
+        },
+
+
+        //if by car
+
+        {
+          type: "text",
+          name: "TR_Comp_Car_kmU",
+          inputType:"number",
+          title: "How many kilometers do you drive, back and forth per one-day competition/championship without overnight stay?",
+          visibleIf: "{TR_Comp} contains 4",
+          isRequired: true
+        },
+
+
+        {
+          type: "text",
+          name: "TR_Comp_Car_%",
+          inputType:"number",
+          title: " How often (in %) do you use the car for one-day competition/championship without overnight stay?",
+          visibleIf: "{TR_Comp} contains 4",
+          isRequired: true
+        },
+
+
+       
+         {
+          type: "slider",
+          name: "TR_Comp_Park_$Y",
+          inputType:"number",
+          title: " How much do you spend on parking costs per year (in total) for one-day competition/championship without overnight stay?",
+          description: "Min = 0 | Max = 100 | Step = 1",
+          visibleIf: "{TR_Pr} contains 4",
+          isRequired: true
+        },
+
+
+        // if by public transportation
+
+
+         {
+          type: "text",
+          name: "TR_Comp_Pub_$U",
+          inputType:"number",
+          title: " How much do you spend back and forth per one-day competition/championship without overnight stay?",
+          visibleIf: "{TR_Comp} contains 5",
+          isRequired: true
+        },
+
+        {
+          type: "slider",
+          name: "TR_Comp_Pub_%",
+          inputType:"number",
+          title: "How often (in %) do you use the public transport for one-day competition/championship without overnight stay?",
+          description: "Min = 0 | Max = 100 | Step = 1",
+          visibleIf: "{TR_Comp} contains 5",
+          isRequired: true
+        },
+
+
+        // Special transportation
+
+           {
+            type: "radiogroup",
+            name: "TR_Comp_Spec",
+            title: "Do you have other expenditures related to transportation (e.g., taxi, bus, carpooling), SPECIAL TRANSPORTATION COSTS?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "TP_Comp_Ex",
+          title: "If yes, describe: ",
+          visibleIf: "{TP_Comp_Spec}= 1",
+          isRequired: true
+        },
+
+
+
+
+
+
+
+
+
+        // 14.C
+
+
+        
+      
 
 
 
