@@ -991,7 +991,7 @@ const json = {
            {
           type: "text",
           name: "TP_Comp_Ex",
-          title: "If yes, describe: ",
+          title: "If yes, how much do you spend on average per year?: ",
           visibleIf: "{TP_Comp_Spec}= 1",
           isRequired: true
         },
@@ -1000,11 +1000,49 @@ const json = {
 
 
 
-
-
-
-
         // 14.C
+
+
+          {
+          type: "text",
+          name: "Cost_O_with_$U",
+          inputType:"number",
+          title: " ONE-DAY COMPETITIONS WITH OVERNIGHT STAY: How much do you spend on average per ONE-DAY COMPETITION WITH OVERNIGHT STAY?",
+          isRequired: true
+        },
+
+
+
+          {
+          type: "text",
+          name: "Cost_WE_$U",
+          inputType:"number",
+          title: " WEEK-END COMPETITIONS: How much do you spend on average per WEEK-END COMPETITION?",
+          isRequired: true
+        },
+
+
+
+        
+          {
+          type: "text",
+          name: "Cost_Multi_$U",
+          inputType:"number",
+          title: " MULTI-DAY COMPETITIONS: How much do you spend on average per MULTI-DAY COMPETION?",
+          isRequired: true
+        },
+
+
+
+
+    
+
+
+
+
+
+
+        //14.d
 
 
         
