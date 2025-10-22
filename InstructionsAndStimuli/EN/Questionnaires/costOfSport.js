@@ -1035,28 +1035,57 @@ const json = {
 
 
 
-    
-
-
-
-
 
 
         //14.d
 
 
         
+           {
+            type: "radiogroup",
+            name: "Cost_Vaca",
+            title: "Do you go on vacations to primarily play/participate in your sport? (i.e. the first reason for the travel is to play/participate in your sport)",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+
+           {
+          type: "text",
+          name: "Cost_Vaca_EX",
+          title: "If yes, describe?: ",
+          visibleIf: "{Cost_Vaca}= 1",
+          isRequired: true
+        },
+
+         {
+          type: "text",
+          name: "Cost_Vaca_$U",
+          inputType: "number",
+          title: "If yes, How much do you spend on average per vacation (include ALL expenditure for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)? ",
+          visibleIf: "{Cost_Vaca}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          name: "Cost_Vaca_UY",
+          inputType:"number",
+          title: "If yes,how many vacations per year?: ",
+          visibleIf: "{Cost_Vaca}= 1",
+          isRequired: true
+        },
+        
       
 
 
 
-          
-
-
-
-
-
-
+        
 
 
 
@@ -1375,6 +1404,112 @@ const json = {
           title: "How many family members in your household (under the same roof)?  ",
           isRequired: true
         },
+
+
+
+             {
+            type: "radiogroup",
+            name: "HH_Educ",
+            title: "  Select the highest level of education achieved by any member in your household? ",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Not completed high school"},
+                    { "value": 2, "text": " High school or an equivalent certificate"},
+                    { "value": 3, "text": "Some college or university"},
+                    { "value": 4, "text": "Apprenticeship or other trades certificate or diploma"},
+                    { "value": 5, "text": "College diploma"},
+                    { "value": 6, "text": "Undergraduate degree"},
+                    { "value": 7, "text": "Graduate/master’s"},
+                    { "value": 8, "text": "Professional"},
+                    { "value": 9, "text": "Doctoral"},
+                    { "value": 10, "text": "Prefer not to answer"},
+                    
+          
+                  ]
+                },
+
+
+
+
+             {
+            type: "radiogroup",
+            name: "HH_Income",
+            title: " What is your annual household income? ",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": " $0-$20,000 "},
+                    { "value": 2, "text": " $20,001-$40,000"},
+                    { "value": 3, "text": "$40,001-$80,000"},
+                    { "value": 4, "text": "$80,001-$100,000"},
+                    { "value": 5, "text": "$100,001-$120,000"},
+                    { "value": 6, "text": "$120,001 and over"},
+                    { "value": 7, "text": "Prefer not to answer"},
+                   
+                
+                  ]
+                },
+
+
+
+            {
+      type: "matrixdynamic",
+      name: "Sport_current",
+      title: "CURRENTLY (top three)",
+      rowCount: 3,
+      minRowCount: 3,
+      maxRowCount: 3,
+      allowAddRows: false,
+      allowRemoveRows: false,
+      columns: [
+
+
+        {
+          name: "Sport_Curr",
+          title: "Sport",
+          cellType: "text",
+          isRequired: true,
+          width: "25%"
+        },
+
+
+        {
+      
+          name: "Sport_Curr_Context",
+          title: "Current context",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "non_org", "text": "Non-org" },
+            { "value": "club",    "text": "Club" },
+            { "value": "school",  "text": "School" }
+          ],
+          isRequired: true,
+          width: "40%"
+        },
+        {
+          name: "Sport_Curr_level",
+          title: "Current level",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "recreational", "text": "Mainly recreational" },
+            { "value": "competitive",  "text": "Mainly competitive" }
+          ],
+          isRequired: true,
+          width: "35%"
+        },
+        {
+          name: "Sport_Curr_nY",
+          title: "Years",
+          cellType: "text",
+          inputType: "number",
+          min: 0,
+          max: 99,
+          placeholder: "0",
+          isRequired: true,
+          width: "25%"
+        }
+      ]
+    },
+
 
 
 
