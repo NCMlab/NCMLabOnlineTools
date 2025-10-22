@@ -58,6 +58,7 @@ EN_LabelNames.missed_question_text = "Please answer all questions"
 EN_LabelNames.ThankYou = "Thank you for your participation. You may close this window."
 EN_LabelNames.Hello = 'Hello'
 EN_LabelNames.EnterName = 'Please enter a name first.'
+EN_LabelNames.TrailMakingRemaining = 'remaining'
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']
@@ -103,6 +104,7 @@ FR_LabelNames.missed_question_text = "Veuillez répondre à toutes les questions
 FR_LabelNames.ThankYou = "Merci pour votre participation. Vous pouvez fermer cette fenêtre."
 FR_LabelNames.Hello = 'Bonjour'
 FR_LabelNames.EnterName = 'Veuillez d\'abord entrer un nom.'
+FR_LabelNames.TrailMakingRemaining = 'restantes'
 
 
 var KR_LabelNames = {}
@@ -113,7 +115,7 @@ KR_LabelNames.Restart = '다시 시작하다'
 KR_LabelNames.Stop = '멈추다'
 KR_LabelNames.Quit = '그만두다'
 KR_LabelNames.Skip = 'Skip'
-KR_LabelNames.Finished = 'Finished'
+KR_LabelNames.Finished = '완전한'
 KR_LabelNames.ProcessSpeech = 'Processing Speech'
 KR_LabelNames.Clear = 'Clear'
 KR_LabelNames.Undo = 'Undo'
@@ -130,7 +132,7 @@ KR_LabelNames.Correct = '옳은'
 KR_LabelNames.Incorrect = '잘못된'
 KR_LabelNames.Same = 'Same'
 KR_LabelNames.DifferKRt = 'Different'
-KR_LabelNames.PressNext = 'Press Next to Continue'
+KR_LabelNames.PressNext = '계속하려면 다음을 클릭하세요'
 KR_LabelNames.WordListA = 'List A'
 KR_LabelNames.WordListB = 'List B'
 KR_LabelNames.ProgressBar = 'Completion Progress'
@@ -148,7 +150,7 @@ KR_LabelNames.missed_question_text = "모든 질문에 답변해 주세요."
 KR_LabelNames.ThankYou = "참여해 주셔서 감사합니다. 이 창을 닫아도 됩니다."
 KR_LabelNames.Hello = '안녕하세요'
 KR_LabelNames.EnterName = '먼저 이름을 입력하세요.'
-
+KR_LabelNames.TrailMakingRemaining = '남음'
 
 add('EN_LabelNames', function(){ LabelNames = EN_LabelNames});
 add('FR_LabelNames', function(){ LabelNames = FR_LabelNames});

@@ -48,6 +48,18 @@ const json = {
           placeholder: '선택하다...',
           isRequired: true
         },
+                {
+          name: "Age",
+          type: "text",
+          title: "나이",
+          inputType: "number",
+          min: 0,
+          max: 150,
+          defaultValue: '',
+          isRequired: true,
+          maxErrorText: '값은 300을 초과할 수 없습니다.'
+        },
+
         {
           name: "Height",
           type: "text",

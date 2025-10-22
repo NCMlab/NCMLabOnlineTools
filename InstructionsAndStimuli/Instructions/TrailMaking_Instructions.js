@@ -15,6 +15,7 @@ EN_Instructions_DefaultA.FirstCircleLabel = "begin"
 EN_Instructions_DefaultA.LastCircleLabel = "end"
 EN_Instructions_DefaultA.FinishedLabel = "Finished"
 add('EN_Instructions_DefaultA', function(){ Instructions = EN_Instructions_DefaultA});
+add('KR_Instructions_DefaultA', function(){ Instructions = EN_Instructions_DefaultA});
 
 // ==================================================================================
 var EN_Instructions_DefaultB = {}
@@ -33,6 +34,7 @@ EN_Instructions_DefaultB.FirstCircleLabel = "begin"
 EN_Instructions_DefaultB.LastCircleLabel = "end"
 EN_Instructions_DefaultB.FinishedLabel = "Finished"
 add('EN_Instructions_DefaultB', function(){ Instructions = EN_Instructions_DefaultB});
+add('KR_Instructions_DefaultB', function(){ Instructions = EN_Instructions_DefaultB});
 
 // ==================================================================================
 var EN_Instructions_Demo = {}

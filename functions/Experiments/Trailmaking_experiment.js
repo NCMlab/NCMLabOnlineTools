@@ -79,6 +79,8 @@ var enter_fullscreen = {
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
+      countdown_timer_label: function() { return LabelNames.TrailMakingRemaining },
+      finished_button_label: function() { return LabelNames.Finished },
       change_circle_color_only_when_correct: parameters.change_circle_color_only_when_correct,
       prompt: parameters.InstructionsShownWithPractice,
 
@@ -88,8 +90,6 @@ var enter_fullscreen = {
       ],
       first_circle_label: function() {return Instructions.FirstCircleLabel},
       last_circle_label: function() {return Instructions.LastCircleLabel},
-      finished_button_label: function() {return Instructions.FinishedLabel},
-      countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
     }
   
   var trials = {
@@ -122,8 +122,9 @@ var enter_fullscreen = {
       trial_duration: function() { return parameters.Duration },
       first_circle_label: function() {return Instructions.FirstCircleLabel},
       last_circle_label: function() {return Instructions.LastCircleLabel},
-      finished_button_label: function() {return Instructions.FinishedLabel},
-      countdown_timer_label: function() {return Instructions.TimeRemainingLabel},
+      finished_button_label: function() {return LabelNames.Finished},
+      countdown_timer_label: function() {return LabelNames.TrailMakingRemaining},
+      
       /*extensions: [
         {type: jsPsychExtensionMouseTracking, params: {targets: ['#sketchpad-canvas'], events: ['mousemove','mousedown','mouseup']}}
       ],*/
