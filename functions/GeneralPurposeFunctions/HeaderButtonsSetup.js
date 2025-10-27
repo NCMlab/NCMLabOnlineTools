@@ -1,4 +1,11 @@
 
+var buttonText = "Restart";
+    var button = document.createElement('button');
+    button.textContent = buttonText;
+    button.setAttribute('id', 'header-restart-button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('onclick',"restartTask()")
+    document.getElementById('header-btn-group').appendChild(button);
 
 
     var buttonText = "Home";
@@ -9,7 +16,7 @@
     button.setAttribute("onclick", "returnToUsageManager()");
     document.getElementById("header-btn-group").appendChild(button);
 
-    var buttonText = "?";
+    var buttonText = "Info";
     var button = document.createElement("button");
     button.textContent = buttonText;
     button.setAttribute("id", "header-info-button");
@@ -41,14 +48,7 @@
     button.setAttribute("onclick", "skipTask()");
     document.getElementById("header-btn-group").appendChild(button);
 
-    var buttonText = "Restart";
-    var button = document.createElement('button');
-    button.textContent = buttonText;
-    button.setAttribute('id', 'header-restart-button');
-    button.setAttribute('type', 'button');
-    button.setAttribute('onclick',"restartTask()")
-    document.getElementById('header-btn-group').appendChild(button);
-
+    
     // Wrap select in a container div
     var langWrapper = document.createElement("div");
     langWrapper.setAttribute("id", "language-wrapper");

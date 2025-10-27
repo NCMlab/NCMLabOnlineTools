@@ -1,5 +1,5 @@
 
-var title = "UCLA 외로움 척도"
+var title = "UCLA 외로움 척도 3판"
 var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
@@ -20,10 +20,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "전혀아니다" }, 
-            { value: 2, text: "드 물 지 만 있다"}, 
-            { value: 3, text: "가끔있다"},
-            { value: 4, text:"항 상그 렇다"},
+            { value: 1, text: "거의 그렇지 않다"}, 
+            { value: 2, text: "가끔 그렇다"}, 
+            { value: 3, text: "자주 그렇다"},            
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -37,10 +36,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "전혀아니다" }, 
-            { value: 2, text: "드 물 지 만 있다"}, 
-            { value: 3, text: "가끔있다"},
-            { value: 4, text:"항 상그 렇다"},
+            { value: 1, text: "거의 그렇지 않다"}, 
+            { value: 2, text: "가끔 그렇다"}, 
+            { value: 3, text: "자주 그렇다"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -54,10 +52,9 @@ const survey_JSON = {
           showOtherItem: false,
           colCount: 1,
           choices: [ 
-            { value: 1, text: "전혀아니다" }, 
-            { value: 2, text: "드 물 지 만 있다"}, 
-            { value: 3, text: "가끔있다"},
-            { value: 4, text:"항 상그 렇다"},
+            { value: 1, text: "거의 그렇지 않다"}, 
+            { value: 2, text: "가끔 그렇다"}, 
+            { value: 3, text: "자주 그렇다"},
            ],
           separateSpecialChoices: true,
           showClearButton: true
@@ -67,12 +64,12 @@ const survey_JSON = {
   };
 
 
-var EN_UCLAlonelinessJSON = {}
-EN_UCLAlonelinessJSON.title = "UCLA 3-Item Loneliness Scale",
-EN_UCLAlonelinessJSON.shortTitle = "Loneliness"
-EN_UCLAlonelinessJSON.survey_JSON = survey_JSON
-EN_UCLAlonelinessJSON.description = ""
-EN_UCLAlonelinessJSON.QuestionnaireType = 'radiogroup'
-EN_UCLAlonelinessJSON.references = "references"
-EN_UCLAlonelinessJSON.notes = ''
+var KR_UCLAloneliness = {}
+KR_UCLAloneliness.title = "UCLA 3-Item Loneliness Scale",
+KR_UCLAloneliness.shortTitle = "Loneliness"
+KR_UCLAloneliness.survey_JSON = survey_JSON
+KR_UCLAloneliness.description = ""
+KR_UCLAloneliness.QuestionnaireType = 'radiogroup'
+KR_UCLAloneliness.references = "references"
+KR_UCLAloneliness.notes = ''
 

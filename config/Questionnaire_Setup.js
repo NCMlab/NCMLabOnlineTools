@@ -94,7 +94,7 @@ var BDI_002 = {
 }
 
 var GDS_001 = { 
-    questionnaire: ['gdsJSON'], 
+    questionnaire: ['gds'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -114,7 +114,7 @@ var GDS_004 = {
 }
 
 var GAS_001 = { 
-    questionnaire: ['gasJSON'], 
+    questionnaire: ['gas'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -186,7 +186,7 @@ var TESTJSON = {
 
 
 var PANAS_ShortWeekly_001 = { 
-    questionnaire: ['panasShortWeeklyJSON'], 
+    questionnaire: ['panasShortWeekly'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -196,7 +196,7 @@ var PANAS_ShortWeekly_001 = {
 }
 
  var MusicEnterName_001 = { 
-    questionnaire: ['EnterName_MusicJSON'], 
+    questionnaire: ['EnterName_Music'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -207,18 +207,7 @@ var PANAS_ShortWeekly_001 = {
 
 
 var UCLA_LONELINESS_001 = { 
-    questionnaire: ['UCLAlonelinessJSON'], 
-    criteria: [],
-    variable: [],
-    AskForNotes: false,
-    ShowWelcome: false,
-    ShowThankYou: false,
-    ShowInstructions: false,  
-}
-
-
-var UCLA_LONELINESS_001 = { 
-    questionnaire: ['UCLAlonelinessJSON'], 
+    questionnaire: ['UCLAloneliness'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -228,7 +217,7 @@ var UCLA_LONELINESS_001 = {
 }
 
 var BERKSYME_001 = { 
-    questionnaire: ['berksymeJSONform'], 
+    questionnaire: ['berksyme'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -239,7 +228,7 @@ var BERKSYME_001 = {
 
 
 var STANFORDSLEEPINESS_001 = { 
-    questionnaire: ['stanfordSleepinessJSON'], 
+    questionnaire: ['stanfordSleepiness'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -269,7 +258,7 @@ var CESAM_001TEST = {
 
 
 var WEMWBS_001 = { 
-    questionnaire: ['wemwbsJSONmatrix'], 
+    questionnaire: ['wemwbs'], 
     criteria: [],
     variable: [],
     AskForNotes: false,
@@ -279,7 +268,7 @@ var WEMWBS_001 = {
 }
 
 var PAES_001 = { 
-    questionnaire: ['paesJSONmatrix'], 
+    questionnaire: ['paes'], 
     criteria: [],
     variable: [],
     AskForNotes: false,

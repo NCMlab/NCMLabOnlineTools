@@ -74,12 +74,12 @@ const survey_JSON = {
   };
 
 
-var EN_UCLAlonelinessJSON = {}
-EN_UCLAlonelinessJSON.title = "UCLA 3-Item Loneliness Scale",
-EN_UCLAlonelinessJSON.shortTitle = "Loneliness"
-EN_UCLAlonelinessJSON.survey_JSON = survey_JSON
-EN_UCLAlonelinessJSON.description = ""
-EN_UCLAlonelinessJSON.QuestionnaireType = 'radiogroup'
-EN_UCLAlonelinessJSON.references = "references"
-EN_UCLAlonelinessJSON.notes = ''
+var EN_UCLAloneliness = {}
+EN_UCLAloneliness.title = "UCLA 3-Item Loneliness Scale",
+EN_UCLAloneliness.shortTitle = "Loneliness"
+EN_UCLAloneliness.survey_JSON = survey_JSON
+EN_UCLAloneliness.description = ""
+EN_UCLAloneliness.QuestionnaireType = 'radiogroup'
+EN_UCLAloneliness.references = "references"
+EN_UCLAloneliness.notes = ''
 

@@ -3,7 +3,7 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
-  Instructions: "The following questions are about your social interactions. Please read the following questions and select the response that most closely describes your current situation.",
+  Instructions: "한국어로는 제공되지 않습니다. The following questions are about your social interactions. Please read the following questions and select the response that most closely describes your current situation.",
   pages: [{
     elements: [
       {
@@ -136,12 +136,12 @@ const survey_JSON = {
 };
 
 
-var EN_berksymeJSONform = {}
-EN_berksymeJSONform.title = "Berkman-Syme Social Network Index",
-EN_berksymeJSONform.shortTitle = "Social"
-EN_berksymeJSONform.survey_JSON = survey_JSON
-EN_berksymeJSONform.description = ""
-EN_berksymeJSONform.QuestionnaireType = 'radiogroup'
-EN_berksymeJSONform.references = "references"
-EN_berksymeJSONform.notes = ''
+var KR_berksyme = {}
+KR_berksyme.title = "Berkman-Syme Social Network Index",
+KR_berksyme.shortTitle = "Social"
+KR_berksyme.survey_JSON = survey_JSON
+KR_berksyme.description = ""
+KR_berksyme.QuestionnaireType = 'radiogroup'
+KR_berksyme.references = "references"
+KR_berksyme.notes = ''
 

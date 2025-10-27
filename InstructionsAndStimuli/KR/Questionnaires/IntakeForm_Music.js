@@ -48,6 +48,18 @@ const json = {
           placeholder: '선택하다...',
           isRequired: true
         },
+                {
+          name: "Age",
+          type: "text",
+          title: "나이",
+          inputType: "number",
+          min: 0,
+          max: 150,
+          defaultValue: '',
+          isRequired: true,
+          maxErrorText: '값은 300을 초과할 수 없습니다.'
+        },
+
         {
           name: "Height",
           type: "text",
@@ -56,8 +68,9 @@ const json = {
           min: 0,
           max: 300,
           defaultValue: '',
-          isRequired: true
-        },
+          isRequired: true,
+          maxErrorText: '값은 300을 초과할 수 없습니다.'
+        }, // Make sure the warning is in the correct language
         {
           type: 'dropdown',
           title: "키를 표현하는 데 사용된 단위는 무엇입니까?", 
@@ -78,7 +91,8 @@ const json = {
           min: 0,
           max: 1000,
           defaultValue: '',
-          isRequired: true
+          isRequired: true,
+          maxErrorText: '값은 1000을 초과할 수 없습니다.'
         },
         {
           type: 'dropdown',
@@ -166,7 +180,7 @@ const json = {
           name: "LanguageProblemDescription",
           type: "comment",
           title: "언어 또는 의사소통에 어려움을 자세히 설명해 주세요.",
-          visibleIf: "{LanguageProblem} == 예",
+          visibleIf: "{LanguageProblem} == '예'",
           maxLength: 500
         },
         {
@@ -259,73 +273,76 @@ const json = {
         {
           type: 'dropdown',
           name: 'CognDeclineDiagnosis',
-          title: 'Have you received a diagnosis of dementia or cognitive decline?',
+          title: '치매 또는 인지 기능 저하 진단을 받은 적이 있나요?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              "예",
+              "아니요",
+              "잘 모름"
           ],
+          placeholder: '선택하다...',
           isRequired: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
         type: 'comment',
-        title: 'If yes, how long ago were you diagnosed?',
+        title: '그렇다면 진단을 받은 지 얼마나 되었나요?',
         name: 'DementiaTime',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        visibleIf: "{CognDeclineDiagnosis} == '예'",
         isRequired: true,
         textbox_rows: 3,
       },
       {
         type: 'comment',
-        title: 'If yes, what type of dementia (or cognitive decline), if known?',
+        title: '그렇다면 어떤 유형의 치매(또는 인지 기능 저하)인가요?',
         name: 'DementiaType',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        visibleIf: "{CognDeclineDiagnosis} == '예'",
         required: false,
         textbox_rows: 3,
       },
       {
           type: 'dropdown',
-          title: 'Do you have hearing loss?',
+          title: '청력 손실이 있으신가요?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              "예",
+              "아니요",
+              "잘 모름"
           ],
           name: 'HearingLoss',
           isRequired: true,
+          placeholder: '선택하다...',
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
         type: 'dropdown',
-        title: 'What type of hearing loss do you have?',
+        title: '당신은 어떤 유형의 청력 손실을 겪고 있나요?',
         choices: 
         [
-            "Bilateral",
-            "Unilateral",
-            "Not sure"
+            '양방향',
+            '일방적',
+            '확실하지 않음',
+
         ],
         name: 'HearingLossType',
-        visibleIf: "{HearingLoss} == Yes",
+        visibleIf: "{HearingLoss} == '예'",
         required: false,
         //add_other_option: true,                    
         //other_option_text: 'Yes, how long ago were you diagnosed?',
     },
     {
       type: 'dropdown',
-      title: 'What is your level of hearing loss?',
+      title: '청력 손실 수준',
       choices: 
       [
-          "Mild",
-          "Moderate",
-          "Severe",
-          "Not sure"
+          "경도",
+          '보통',
+          '중증',
+          '확실하지 않음'
       ],
-      visibleIf: "{HearingLoss} == Yes",
+      visibleIf: "{HearingLoss} == '예'",
       name: 'HearingLossLevel',
       required: false,
       //add_other_option: true,                    
@@ -333,20 +350,20 @@ const json = {
     },
     {
       type: 'dropdown',
-      title: 'Do you have any other health issues?',
+      title: '다른 건강 문제가 있으신가요?',
       choices: 
       [
-          "Yes",
-          "No"
+          '예',
+          '아니요'
       ],
       name: 'OtherHealthIssues',
       isRequired: true,
     },
     {
       type: 'comment',
-      title: 'Please explain your health issues.',
+      title: '귀하의 건강 문제를 설명해 주세요.',
       name: 'OtherHealthIssuesDesc',
-      visibleIf: "{OtherHealthIssues} == Yes",
+      visibleIf: "{OtherHealthIssues} == '예'",
       required: false,
       rows: 3,
     },
@@ -354,12 +371,12 @@ const json = {
      },
      {
        name: "Habits",
-       title: "Habits",
+       title: "습관",
        
        elements: [
         {
           type: 'dropdown',
-          title: 'How many days do you exercise per week?',
+          title: '일주일에 며칠 정도 운동을 하나요?',
           choices: 
           [
               "0", "1","2","3","4","5","6","7"
@@ -369,34 +386,34 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: 'Have you exercised in the last 24 hours?',
+          title: '지난 24 시간 동안 운동을 하셨나요?',
           choices: 
           [
-            "Yes",
-            "No"
+            '예',
+            '아니요'
           ],
           name: 'Exercise24',
           isRequired: true,
         },
         {
           type: 'dropdown',
-          title: 'Do you smoke, or have you smoked in the past?',
+          title: '담배를 피우거나 과거에 담배를 피운 적이 있나요?',
           choices: 
           [
-            "Currently smoke",
-              "Have not smoked for more than 1 year",
-              "Never",
-              "Unknown"
+            '현재 흡연 중',
+            '년 이상 담배를 피우지 않음',
+            '전혀',
+            '모름'
           ],
           name: 'Smoke',
           isRequired: true,
         },
         {
           type: 'dropdown',
-          title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          title: '언제부터 흡연을 시작하셨나요?',
+          visibleIf: "{Smoke} == '현재 흡연 중' or {Smoke} == '년 이상 담배를 피우지 않음'",
           choicesMin: 1920,
-          choicesMax: 2024,
+          choicesMax: 2025,
           choicesStep:1,
           name: 'SmokeStart',
           isRequired: true,
@@ -404,10 +421,10 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          title: '언제 담배를 끊으셨나요?',
+          visibleIf: "{Smoke} == '년 이상 담배를 피우지 않음'",
           choicesMin: 1920,
-          choicesMax: 2024,
+          choicesMax: 2025,
           choicesStep:1,
           name: 'SmokeQuit',
           isRequired: true,
@@ -415,8 +432,8 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          title: '하루 대략적인 팩 수',
+          visibleIf: "{Smoke} == '현재 흡연 중' or {Smoke} == '년 이상 담배를 피우지 않음'",
           choices: ["0","0.5","1","2","3","4","5","6",">6"],
           name: 'SmokePacksPerDay',
           isRequired: true,
@@ -424,127 +441,125 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: 'Alcohol consumption',
+          title: '알코올 소비',
           choices: 
           [
-              "None",
-              "Less than 2 drinks per day",
-              "2 to 4 drinks per day",
-              "More than 4 drinks per day"
+            '없음',
+            '하루 2 잔 미만',
+            '하루 2~4 잔',
+            '하루 4 잔 이상'          
           ],
           name: 'Alcohol',
           isRequired: true,
         },
-      
-  
        ]
      },
      {
       name: "Music Experience",
-      title: "Music Experience",
+      title: "음악 경험",
       
       elements: [
           {
             type: 'dropdown',
-            title: 'Have you engaged in music and movement classes before?',
+            title: '음악과 움직임 수업에 참여한 적이 있나요?',
             choices: 
             [
-              "Yes",
-              "No",
+              '예',
+              '아니요'
             ],
             name: 'MusicMovement',
             isRequired: true,
           },
           {
             type: 'comment',
-            title: 'Please describe your previous music and movement experience (what type of class and for how long).',
+            title: '이전 경험(어떤 유형의 수업과 기간)을 설명해 주세요.',
             name: 'MusicExperience',
-            visibleIf: "{MusicMovement} == Yes",
+            visibleIf: "{MusicMovement} == '예'",
             isRequired: true,
             textbox_rows: 3,
           },
           {
             type: 'dropdown',
-            title: 'Have you participated in group music classes before?',
+            title: '그룹 음악 수업에 참여한 적이 있나요?',
             choices: 
             [
-              "Yes",
-              "No",
+              '예',
+              '아니요'
             ],
             name: 'GroupMusic',
             isRequired: true,
           },
           {
             type: 'comment',
-            title: 'Please describe your previous group music experience (what type of class and for how long).',
+            title: '이전 경험(어떤 유형의 수업과 기간)을 설명해 주세요.',
             name: 'GroupMusicExperience',
-            visibleIf: "{GroupMusic} == Yes",
+            visibleIf: "{GroupMusic} == '예'",
             isRequired: true,
             textbox_rows: 3,
           },
           {
             type: 'dropdown',
-            title: 'Have you been in a choir before?',
+            title: '합창단 활동을 해본 적이 있나요?',
             choices: 
             [
-              "Yes",
-              "No",
+              '예',
+              '아니요'
             ],
             name: 'Choir',
             isRequired: true,
           },
           {
             type: 'comment',
-            title: 'Please describe your previous choir experience (what type of choir and for how long).',
+            title: '이전 경험(어떤 합창단에서 얼마나 오래 활동했는지)을 설명해 주세요.',
             name: 'ChoirExperience',
-            visibleIf: "{Choir} == Yes",
+            visibleIf: "{Choir} == '예'",
             isRequired: true,
             textbox_rows: 3,
           },
           {
             type: 'dropdown',
-            title: 'Do you have any other music experience (i.e. have you played a musical instrument at any time in your life on a regular basis)?',
+            title: '다른 음악 경험(즉, 평소에 정기적으로 악기를 연주해 본 적이 있나요?)이 있나요?',
             choices: 
             [
-              "Yes",
-              "No",
+              '예',
+              '아니요'
             ],
             name: 'OtherMusic',
             isRequired: true,
           },
           {
             type: 'comment',
-            title: 'Which instrument(s) did you play?',
+            title: '어떤 악기인가요?',
             name: 'WhichInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            visibleIf: "{OtherMusic} == '예'",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'comment',
-            title: 'At what age did you start playing the instrument(s)?',
+            title: '몇 살에 시작했나요?',
             name: 'AgeStartInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            visibleIf: "{OtherMusic} == '예'",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'comment',
-            title: 'For how long did you play this instrument (years)?',
+            title: '이 악기를 얼마나 오랫동안 연주했나요(년)?',
             name: 'YearsPlayInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            visibleIf: "{OtherMusic} == '예'",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'dropdown',
-            title: 'Do you still play the instrument(s)?',
+            title: '지금도 연주하시나요?',
             choices: 
             [
-              "Yes",
-              "No",
+              "예",
+              "아니요",
             ],
-            visibleIf: "{OtherMusic} == Yes",
+            visibleIf: "{OtherMusic} == '예'",
             name: 'StillPlayInstrument',
             required: true,
           },
@@ -552,12 +567,12 @@ const json = {
     },
     {
       name: "Additional Comments",
-      title: "Additional Comments",
+      title: "추가 의견",
       
       elements: [
         {
           type: 'comment',
-          title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
+          title: '이 연구 및/또는 음악 수업과 관련이 있다고 생각되는 추가 의견이나 정보가 있으신가요?',
           name: 'AdditionalCOmments',
           required: false,
           textbox_rows: 5,

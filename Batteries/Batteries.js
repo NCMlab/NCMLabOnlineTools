@@ -1324,6 +1324,25 @@ BatteryList.push({
   Redirect: '',
 });
 
+
+
+// ============================================
+// ============ SESSION DEMO ==================
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_DEMO', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 171, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    Redirect: '',
+	})
+
+
 // ============================================
 // ============ MUSIC STUDY ==================
 
@@ -1348,10 +1367,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
-		Language:'EN',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024',
-    Redirect: '',
+    HeaderButtonsToShow: ['Home','Restart','Quit','Stop','Skip','Info'],
 	})
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================
@@ -1372,6 +1388,7 @@ BatteryList.push({index: 73,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- CESAM  ==================
@@ -1397,6 +1414,7 @@ BatteryList.push({index: 74,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: '',
 })
 
@@ -1433,7 +1451,7 @@ List.push({
   IconName: "Loneliness",
 });
 List.push({
-  Task: "Form Questionnaire",
+  Task: "Form Questionnaire", // Not available in Korean
   Parameters: "BERKSYME_001",
   Instructions: "Default",
   IconName: "Social",
@@ -1444,12 +1462,12 @@ List.push({
   Instructions: "Default",
   IconName: "Sleepiness",
 });
-List.push({
+/*List.push({
   Task: "EQ5D",
   Parameters: "EQ5D_001",
   Instructions: "Default",
   IconName: "EQ-5D",
-});
+});*/
 BatteryList.push({
   index: 77,
   name: "Music Motion: Baseline",
@@ -1460,6 +1478,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: ['Home','Restart'],
   Redirect: 'https://www.uottawa.ca',
 });
 // ============ MUSIC STUDY -- PRE: WEEKS 1, 4, 7 ==================
@@ -1829,8 +1848,8 @@ BatteryList.push({index: 71234,
 var List = []
 
 List.push({
-  Task: "Verbal DMS",
-  Parameters: "vDMS_Adaptive_003",
+  Task: "Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003",
   Instructions: "Default",
   IconName: "Letters (Short)",
 });
@@ -1863,6 +1882,7 @@ BatteryList.push({index: 121,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   Redirect: '',
+  shortName: "NCMLab",
 })
 
 
@@ -1878,8 +1898,9 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: ['Home'],
+    HeaderButtonsToShow: ['Home','Restart'],
     Redirect: '',
+    shortName: '',
 	})
 
 // ===  Language and Social Cognition Lab === //
@@ -1944,4 +1965,70 @@ List.push({
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: ['Home','Quit','Stop'],
     Redirect: '',
+    shortName: '',
 	})
+
+
+// ===========
+var List = []
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "RAVLT, Recog",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 123, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})
+
+
+  // ===========
+var List = []
+List.push({
+  Task: "TEST Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003B",
+  Instructions: "Default",
+  IconName: "Dots (Short)",
+})
+List.push({
+  Task: "Verbal DMS",
+  Parameters: "vDMS_Adaptive_002",
+  Instructions: "Default",
+  IconName: "Letters",
+});
+
+	BatteryList.push({index: 333, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})
+

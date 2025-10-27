@@ -42,7 +42,7 @@ Parameters = {
 	MaxTrials: 14,
 }
 var DigitSpan_Audio_Forward_Adaptive_14 = {
-	direction: 'forward',
+	direction: 'forward', // 'backward'
 	StimulusMode: 'audio', // 'visual',
 	DeliveryMethod: 'staircase',//'staircase','fixed','numberErrors'
 	Parameters: Parameters,
