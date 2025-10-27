@@ -315,8 +315,11 @@ function UpDateBitIndexInBatchData() {
     // Needed to include the -1 since indexing is done from zero
     console.log("What is the status of the bit to check? "+CurrentBits[jatos.studySessionData.AddToCompletionCount - 1])
     // Check whether the current task bit is already set in the Current Bits
-    if ( CurrentBits[jatos.studySessionData.AddToCompletionCount]  == 1 )
-    { console.log("THIS TASK HAS ALREADY BEEN COMPLETED")}
+    
+    if ( CurrentBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
+    {
+       console.log("THIS TASK HAS ALREADY BEEN COMPLETED")
+      }
     else 
     {
       // the pasreInt(,10) ensures the values are integers
@@ -325,7 +328,7 @@ function UpDateBitIndexInBatchData() {
       console.log("Setting the new bit index")
       jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
     }
-    
+
     //console.log(BREAK) 
   }
 }
