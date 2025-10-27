@@ -1324,6 +1324,25 @@ BatteryList.push({
   Redirect: '',
 });
 
+
+
+// ============================================
+// ============ SESSION DEMO ==================
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_DEMO', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 171, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    Redirect: '',
+	})
+
+
 // ============================================
 // ============ MUSIC STUDY ==================
 
@@ -1348,11 +1367,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
-		Language:'EN',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: ['Home','Restart'],
-    Redirect: '',
+    HeaderButtonsToShow: ['Home','Restart','Quit','Stop','Skip','Info'],
 	})
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================
