@@ -33,7 +33,7 @@
     
     jatos.onload(function() {
       // first load the JS file for the central executive
-
+      
       loadScriptSequentially("Batteries/CentralExecutive.js")
       .then(()=> loadScriptSequentially("functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"))
       .then(()=> loadScriptSequentially("config/General_Setup.js"))
@@ -52,7 +52,11 @@
             //    $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
                     UpdateHeader()
             )
-      .then((result) => CentralExecutive() )
+      .then((result) => 
+      {
+        CentralExecutive() 
+      }
+    )
       // once everything is setup, then proceed to displaying the jspsych timeline
       
       

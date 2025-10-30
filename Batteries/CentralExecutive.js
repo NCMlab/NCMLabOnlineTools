@@ -454,7 +454,9 @@ function MakeThankYouPage() {
 // This is where all the pieces are put together
 
 function CentralExecutive() {
+    alert("In the CE!")
     return new Promise((resolve) => {
+        
         const jatos_params = jatos.urlQueryParameters;
         const BatteryIndex = jatos_params["Battery"];
         // If there is no session data yet, then use the URL parameter
