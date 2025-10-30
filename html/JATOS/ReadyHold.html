@@ -48,8 +48,8 @@
 
           },
           on_finish: function() {
-            jatos.startComponent(109);  
-            //whereToGoNext(jatos.studySessionData)
+
+            whereToGoNext(jatos.studySessionData)
           }      
       });
       </script>
@@ -84,7 +84,6 @@
               
               return Str},
             choices: function() { return [LabelNames.Next]},
-            on_finish: function() {console.log("Ready")}
         }
         var timeline = []
         timeline.push(ReadyPage)

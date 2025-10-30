@@ -336,6 +336,9 @@ function UpDateBitIndexInBatchData() {
 // ===============================================
 // Decide where to go next functionaility
 function whereToGoNext(SessionData, ){
+  
+  jatos.startComponentByTitle("Central Executive")
+  alert("WHERE")
     CurrentIndex = SessionData.CurrentIndex  
   // If this a la carte or the end of the battery go to the usage manager
     console.log(SessionData.TaskNameList)
