@@ -6,7 +6,7 @@ var Questionnaire = []
 var CriteriaToUse = 0
 var Results 
 // var converter = new showdown.Converter();
-
+console.log(jatos)
 var LoadQuestionnaire = {
   type: jsPsychCallFunction,  
   func: function() {

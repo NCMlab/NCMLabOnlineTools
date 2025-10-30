@@ -3,30 +3,29 @@
   <head>
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
   </head>
   <body>
     <script>
       
-      var response = []
-      var obje = {}
-      obje.name = 'panas01'
-      obje.label = 'Upset'
-      obje.responseValue = 2
-      obje.responseLabel = 'Very'
-      response.push(obje)
       
-      var obje = {}
-      obje.name = 'panas02'
-      obje.label = 'Mad'
-      obje.responseValue = 4
-      obje.responseLabel = 'Meh'
-      response.push(obje)
+      var obj = {}
+      obj.workerID = '49'
+      obj.Task = 'Matrix Questionnaire'
+      obj.Parameters = 'PAES_001'
+      obj.Data  = [3,2,1,4]
       
+      // convert to JSON
+      JSONobj = JSON.stringify(obj)
+      // Ensure it is correct read by HTML
+      JSONobjEncode = encodeURIComponent(JSONobj)
+      // Encrypt
+      console.log(obj)
+      console.log(JSONobj)
+      console.log(JSONobjEncode)
+      //jQuery.post('http://127.0.0.1:9000/publix/KrFNQcvIj05/',JSONobj,alert("SUCCESS"))
+      //jQuery.post("/demo_test_post.asp",{name:"JASON", city:"Newark"},function(data, status){alert(status)})
       
-      
-
-      console.log(obje)
-      console.log(response)
     </script>
   </body>
 </html>
