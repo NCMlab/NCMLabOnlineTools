@@ -1347,8 +1347,8 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_DEMO', Instructions: 'Defa
 // ============ MUSIC STUDY ==================
 
 var List = []
-List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Default', IconName: 'Chooser'})
-	BatteryList.push({index: 71, 
+List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 9999, 
 		name:'Music Motion Landing Page', 
 		description: '',
 		TaskList: List,
@@ -1356,8 +1356,11 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_01', Instructions: 'Defaul
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Restart'],
     Redirect: '',
+    shortName: '',
 	})
+
 // The IconName and the shortTitle need to match to show up correctly in the ReactJS site
   var List = []  
   List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'First Name'})
@@ -1405,7 +1408,8 @@ List.push({
   Instructions: "Default",
   IconName: "CESAM",
 });
-BatteryList.push({index: 74, 
+BatteryList.push({
+  index: 74, 
 	name:'Music Motion: Intake', 
   shortName: "CESAM",
 	description: '',
@@ -1428,6 +1432,13 @@ List.push({
 });
 List.push({
   Task: "Matrix Questionnaire",
+  Parameters: "WEMWBS_001",
+  Instructions: "Default",
+  IconName: "WEMWBS",
+});
+
+List.push({
+  Task: "Matrix Questionnaire",
   Parameters: "GAS_001",
   Instructions: "Default",
   IconName: "GAS",
@@ -1439,35 +1450,11 @@ List.push({
   IconName: "GDS",
 });
 List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
-List.push({
   Task: "Form Questionnaire",
   Parameters: "UCLA_LONELINESS_001",
   Instructions: "Default",
   IconName: "Loneliness",
 });
-List.push({
-  Task: "Form Questionnaire", // Not available in Korean
-  Parameters: "BERKSYME_001",
-  Instructions: "Default",
-  IconName: "Social",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "STANFORDSLEEPINESS_001",
-  Instructions: "Default",
-  IconName: "Sleepiness",
-});
-/*List.push({
-  Task: "EQ5D",
-  Parameters: "EQ5D_001",
-  Instructions: "Default",
-  IconName: "EQ-5D",
-});*/
 BatteryList.push({
   index: 77,
   name: "Music Motion: Baseline",
@@ -1481,7 +1468,58 @@ BatteryList.push({
   HeaderButtonsToShow: ['Home','Restart'],
   Redirect: 'https://www.uottawa.ca',
 });
-// ============ MUSIC STUDY -- PRE: WEEKS 1, 4, 7 ==================
+// ============ MUSIC STUDY -- TRAILS ==================
+var List = []
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'DefaultA', IconName: 'Trails A'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
+BatteryList.push({
+  index: 78, 
+	name:'Music Motion: Trails', 
+  shortName: "Trails",
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
+// -----------------------
+var List = []
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorX', Instructions: 'DefaultA', IconName: 'Trails A,x'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorX', Instructions: 'DefaultB', IconName: 'Trails A,x'})
+BatteryList.push({
+  index: 83, 
+	name:'Music Motion: Trails', 
+  shortName: "Trails",
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
+// -----------------------
+var List = []
+List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorY', Instructions: 'DefaultA', IconName: 'Trails A,y'})
+List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorY', Instructions: 'DefaultB', IconName: 'Trails A,y'})
+BatteryList.push({
+  index: 84, 
+	name:'Music Motion: Trails', 
+  shortName: "Trails",
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
+// ============ MUSIC STUDY -- PRE: ALL WEEKS  ==================
 var List = [];
 List.push({
   Task: "Ready Hold",
@@ -1507,133 +1545,7 @@ BatteryList.push({
   Footer: "©NCMLab 2025",
   Redirect: '',
 });
-// ============ MUSIC STUDY -- PRE: WEEKS 2, 5, 8 ==================
-var List = [];
-List.push({
-  Task: "Ready Hold",
-  Parameters: "Default",
-  Instructions: "Default",
-  IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GAS_001",
-  Instructions: "Default",
-  IconName: "GAS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortWeekly_001",
-  Instructions: "Default",
-  IconName: "PANAS, weekly",
-});
-BatteryList.push({
-  index: 80,
-  name: "Music Motion: Weekly Pre",
-  shortName: "weeklyPre",
-  description: "",
-  TaskList: List,
-  BatteryInstructions: "<h1>Music and Motion Study</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©NCMLab 2025",
-  Redirect: '',
-});
-// ============ MUSIC STUDY -- PRE: WEEKS 3, 6, 9 ==================
-var List = [];
-List.push({
-  Task: "Ready Hold",
-  Parameters: "Default",
-  Instructions: "Default",
-  IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GDS_001",
-  Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "UCLA_LONELINESS_001",
-  Instructions: "Default",
-  IconName: "Loneliness",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortWeekly_001",
-  Instructions: "Default",
-  IconName: "PANAS, weekly",
-});
-BatteryList.push({
-  index: 81,
-  name: "Music Motion: Weekly Pre",
-  shortName: "weeklyPre",
-  description: "",
-  TaskList: List,
-  BatteryInstructions: "<h1>Music and Motion Study</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©NCMLab 2025",
-  Redirect: '',
-});
-// ============ MUSIC STUDY -- PRE: WEEK 10 ==================
-var List = [];
-List.push({
-  Task: "Ready Hold",
-  Parameters: "Default",
-  Instructions: "Default",
-  IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GAS_001",
-  Instructions: "Default",
-  IconName: "GAS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GDS_001",
-  Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "UCLA_LONELINESS_001",
-  Instructions: "Default",
-  IconName: "Loneliness",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortWeekly_001",
-  Instructions: "Default",
-  IconName: "PANAS, weekly",
-});
-BatteryList.push({
-  index: 82,
-  name: "Music Motion: Weekly Pre",
-  shortName: "weeklyPre",
-  description: "",
-  TaskList: List,
-  BatteryInstructions: "<h1>Music and Motion Study</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©NCMLab 2025",
-  Redirect: '',
-});
-// ============ MUSIC STUDY -- WEEKLY - POST ==================
+// ============ MUSIC STUDY -- POST: WEEKS 1, 4, 7 ==================
 var List = [];
 List.push({
   Task: "Ready Hold",
@@ -1654,19 +1566,19 @@ List.push({
   IconName: "PAES",
 });
 BatteryList.push({
-  index: 76,
-  name: "Music Motion: Weekly Post",
-  shortName: "weeklyPost",
+  index: 80,
+  name: "Music Motion: Post Weeks 1, 4, 7",
+  shortName: "weeklyPost147",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
-  Redirect: "https://www.uottawa.ca"
+  Redirect: '',
 });
-// ============ MUSIC STUDY -- POST - STUDY ==================
 
+// ============ MUSIC STUDY -- POST: WEEKS 2, 5, 8 ==================
 var List = [];
 List.push({
   Task: "Ready Hold",
@@ -1675,21 +1587,135 @@ List.push({
   IconName: "Ready, Hold",
 });
 List.push({
-  Task: "Form Questionnaire",
-  Parameters: "STANFORDSLEEPINESS_001",
+  Task: "Matrix Questionnaire",
+  Parameters: "WEMWBS_001",
   Instructions: "Default",
-  IconName: "Sleepiness",
+  IconName: "WEMWBS",
 });
 List.push({
-  Task: "EQ5D",
-  Parameters: "EQ5D_001",
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
   Instructions: "Default",
-  IconName: "EQ-5D",
+  IconName: "GAS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortWeekly_001",
+  Instructions: "Default",
+  IconName: "PANAS, weekly",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PAES",
+});
+
+BatteryList.push({
+  index: 81,
+  name: "Music Motion: Post Weeks 2, 5, 8",
+  shortName: "weeklyPost258",
+  description: "",
+  TaskList: List,
+  BatteryInstructions: "<h1>Music and Motion Study</h1>",
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  Redirect: '',
+});
+// ============ MUSIC STUDY -- POST: WEEKS 3, 6, 9 ==================
+var List = [];
+List.push({
+  Task: "Ready Hold",
+  Parameters: "Default",
+  Instructions: "Default",
+  IconName: "Ready, Hold",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortWeekly_001",
+  Instructions: "Default",
+  IconName: "PANAS, weekly",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PAES",
+});
+
+BatteryList.push({
+  index: 82,
+  name: "Music Motion: Post Weeks 3, 6, 9 ",
+  shortName: "weeklyPost369",
+  description: "",
+  TaskList: List,
+  BatteryInstructions: "<h1>Music and Motion Study</h1>",
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  Redirect: '',
+});
+// ============ MUSIC STUDY -- POST: WEEK 10 ==================
+var List = [];
+List.push({
+  Task: "Ready Hold",
+  Parameters: "Default",
+  Instructions: "Default",
+  IconName: "Ready, Hold",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "WEMWBS_001",
+  Instructions: "Default",
+  IconName: "WEMWBS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortWeekly_001",
+  Instructions: "Default",
+  IconName: "PANAS, weekly",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PAES",
 });
 BatteryList.push({
-  index: 77,
-  name: "Music Motion: Post-Study",
-  shortName: "Post",
+  index: 85,
+  name: "Music Motion: Post Week 10",
+  shortName: "weeklyPost10",
   description: "",
   TaskList: List,
   BatteryInstructions: "<h1>Music and Motion Study</h1>",
@@ -1699,53 +1725,10 @@ BatteryList.push({
   Redirect: '',
 });
 
-// ============ MUSIC STUDY -- TRAILS ==================
-var List = []
-List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_Default', Instructions: 'DefaultA', IconName: 'Trails A'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_Default', Instructions: 'DefaultB', IconName: 'Trails B'})
-BatteryList.push({index: 78, 
-	name:'Music Motion: Trails', 
-  shortName: "Trails",
-	description: '',
-	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCMLab 2024',
-  Redirect: '',
-})
-var List = []
-List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorX', Instructions: 'DefaultA', IconName: 'Trails A,x'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorX', Instructions: 'DefaultB', IconName: 'Trails A,x'})
-BatteryList.push({index: 83, 
-	name:'Music Motion: Trails', 
-  shortName: "Trails",
-	description: '',
-	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCMLab 2024',
-  Redirect: '',
-})
-var List = []
-List.push({Task: "Ready Hold", Parameters: "Default", Instructions: "Default", IconName: "Ready, Hold"});
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingA_DefaultMirrorY', Instructions: 'DefaultA', IconName: 'Trails A,y'})
-List.push({Task: 'Trail Making', Parameters: 'TrailMakingB_DefaultMirrorY', Instructions: 'DefaultB', IconName: 'Trails A,y'})
+// ============ MUSIC STUDY -- POST - STUDY ==================
+// SAME AS THE BASELINE
 
-BatteryList.push({index: 84, 
-	name:'Music Motion: Trails', 
-  shortName: "Trails",
-	description: '',
-	TaskList: List,
-	BatteryInstructions: "<h1>Music and Motion Study</h1>" ,
-	Language:'EN',
-	RunAudioTest: true,
-	Footer: '©NCMLab 2024',
-  Redirect: '',
-})
+
 // ============ MUSIC STUDY ALL TESTS ==========================
 List = []
 List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
@@ -1886,22 +1869,8 @@ BatteryList.push({index: 121,
 })
 
 
-// =====
+// ===== 
 
-var List = []
-List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Default', IconName: 'Chooser'})
-	BatteryList.push({index: 9999, 
-		name:'Music Motion Landing Page', 
-		description: '',
-		TaskList: List,
-		BatteryInstructions: "Music and Motion Study -- Session Chooser",
-		Language:'EN',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: ['Home','Restart'],
-    Redirect: '',
-    shortName: '',
-	})
 
 // ===  Language and Social Cognition Lab === //
 var List = []
