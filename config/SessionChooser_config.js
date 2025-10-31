@@ -94,11 +94,11 @@ List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex:
 List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34})
 List.push({name: 'Post-intervention Trails 3', battery: '84', row: 15, BitIndex: 35})
 List.push({name: 'Week 11, Pre', battery: '75', row: 17, BitIndex: 36})
-List.push({name: 'Week 11, Post', battery: '76', row: 17, BitIndex: 37})
+List.push({name: 'Week 11, Post', battery: '80', row: 17, BitIndex: 37})
 List.push({name: 'Week 12, Pre', battery: '75', row: 18, BitIndex: 38})
-List.push({name: 'Week 12, Post', battery: '76', row: 18, BitIndex: 39})
+List.push({name: 'Week 12, Post', battery: '81', row: 18, BitIndex: 39})
 List.push({name: 'Week 13, Pre', battery: '75', row: 19, BitIndex: 40})
-List.push({name: 'Week 13, Post', battery: '76', row: 10, BitIndex: 41})
+List.push({name: 'Week 13, Post', battery: '82', row: 10, BitIndex: 41})
 List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 42, ButtonUsageType: 'UserChoice'})
 
 
