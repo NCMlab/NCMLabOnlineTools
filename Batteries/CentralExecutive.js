@@ -405,6 +405,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
 
 function MakeUserChoiceElement(JATOSSessionData) {
     // This is the jsPsych task that display an icon for each task in a battery
+    console.log(JATOSSessionData)
     IconImgFileList = MakeIconList(JATOSSessionData.TaskNameList, ComponentList)
     console.log(IconImgFileList)
     var UserChoicePage = {
@@ -532,13 +533,27 @@ function CentralExecutive() {
                 break;
             case 'UserChoice':
                 // reset the timeline
-                timeline = []
-                timeline.push(MakeUserChoiceElement(jatos.studySessionData))
-                // once a choice is made start that title
+                CheckForSessiondata()
+                    .then((IsThereSessionData) => {
+                        console.log("SessionData? "+IsThereSessionData)
+                        SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
+                    })
+                    .then(() => CheckBatchData())    
+                    .then(() => timeline.push(MakeUserChoiceElement(jatos.studySessionData)))
+                    .then(() => SetupjsPsychAndRunTimeline())
+
                 break;
             default:
                 console.log("No Choice Provided")
-                timeline.push(MakeUserChoiceElement(JATOSSessionData))
+                CheckForSessiondata()
+                    .then((IsThereSessionData) => {
+                        console.log("SessionData? "+IsThereSessionData)
+                        SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
+                    })
+                    .then(() => CheckBatchData())    
+                    .then(() => timeline.push(MakeUserChoiceElement(jatos.studySessionData)))
+                    .then(() => SetupjsPsychAndRunTimeline())
+                
         }
         
         resolve("EVERYTHING IS SETUP")
