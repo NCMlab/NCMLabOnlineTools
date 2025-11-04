@@ -302,6 +302,7 @@ function UpDateBitIndexInBatchData() {
 
 
   console.log("Value to add: "+ValueToAdd)
+  alert('Update Bit')
   if ( ValueToAdd != undefined )
   { 
     // get the bit index value
@@ -311,12 +312,16 @@ function UpDateBitIndexInBatchData() {
     // Convert the current value back to bits
     CurrentBits = parseInt(CurrentBitIndex,10).toString(2)
     console.log("In binary this is: "+CurrentBits)
+    console.log("In binary BACKWARDS this is: "+CurrentBits.split("").reverse().join(""))
+    const BackwardBits = CurrentBits.split("").reverse().join("")
     console.log("What bit is to be updated? "+jatos.studySessionData.AddToCompletionCount)
-    // Needed to include the -1 since indexing is done from zero
-    console.log("What is the status of the bit to check? "+CurrentBits[jatos.studySessionData.AddToCompletionCount - 1])
-    // Check whether the current task bit is already set in the Current Bits
     
-    if ( CurrentBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
+    // Needed to include the -1 since indexing is done from zero
+    console.log("What is the status of the bit to check? "+BackwardBits[jatos.studySessionData.AddToCompletionCount])
+    // Check whether the current task bit is already set in the Current Bits
+    alert('Update Bit 2')
+    //if ( CurrentBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
+    if ( BackwardBits[jatos.studySessionData.AddToCompletionCount]  == 1 )
     {
        console.log("THIS TASK HAS ALREADY BEEN COMPLETED")
       }
@@ -328,7 +333,7 @@ function UpDateBitIndexInBatchData() {
       console.log("Setting the new bit index")
       jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
     }
-
+alert('Update Bit 3')
     //console.log(BREAK) 
   }
 }
