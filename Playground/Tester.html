@@ -3,8 +3,8 @@
   <head>
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script src="jatos.js"></script>
+    <script src="../ImportedModules/jquery-3.6.4.js"></script> 
+    
   </head>
   <body>
     <script>
@@ -25,12 +25,9 @@
       console.log(JSONobj)
       console.log(JSONobjEncode)
       //jQuery.post('http://127.0.0.1:9000/publix/KrFNQcvIj05/',JSONobj,alert("SUCCESS"))
-      //jQuery.post("/demo_test_post.asp",{name:"JASON", city:"Newark"},function(data, status){alert(status)})
-      jatos.onLoad(() => {
-        alert("Loaded JATOS")
-        jatos.startComponentByTitle("Tester2", JSONobjEncode)
+      
+      
          
-      } )
       
     </script>
   </body>

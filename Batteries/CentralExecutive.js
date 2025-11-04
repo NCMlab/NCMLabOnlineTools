@@ -454,7 +454,6 @@ function MakeThankYouPage() {
 // This is where all the pieces are put together
 
 function CentralExecutive() {
-    alert("In the CE!")
     return new Promise((resolve) => {
         
         const jatos_params = jatos.urlQueryParameters;
@@ -534,13 +533,26 @@ function CentralExecutive() {
                 break;
             case 'UserChoice':
                 // reset the timeline
-                timeline = []
-                timeline.push(MakeUserChoiceElement(jatos.studySessionData))
-                // once a choice is made start that title
+                CheckForSessiondata()
+                    .then((IsThereSessionData) => {
+                        console.log("SessionData? "+IsThereSessionData)
+                        SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
+                    })
+                    .then(() => CheckBatchData())    
+                    .then(() => timeline.push(MakeUserChoiceElement(jatos.studySessionData)))
+                    .then(() => SetupjsPsychAndRunTimeline())
+
                 break;
             default:
                 console.log("No Choice Provided")
-                timeline.push(MakeUserChoiceElement(JATOSSessionData))
+                CheckForSessiondata()
+                    .then((IsThereSessionData) => {
+                        console.log("SessionData? "+IsThereSessionData)
+                        SetupBattery(IsThereSessionData, BatteryIndex, UsageType)
+                    })
+                    .then(() => CheckBatchData())    
+                    .then(() => timeline.push(MakeUserChoiceElement(jatos.studySessionData)))
+                    .then(() => SetupjsPsychAndRunTimeline())
         }
         
         resolve("EVERYTHING IS SETUP")
