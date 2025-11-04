@@ -1381,7 +1381,7 @@ List.push({
   Instructions: "Default",
   IconName: "Ready, Hold",
 });
-List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001SHORT', Instructions: 'Default', IconName: 'Music Intake'})
+List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
 BatteryList.push({index: 73, 
 	name:'Music Motion: Intake', 
   shortName: "Intake",
