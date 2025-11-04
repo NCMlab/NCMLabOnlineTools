@@ -335,7 +335,7 @@ function UpDateBitIndexInBatchData() {
       console.log("Setting the new bit index")
       jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
     }
-    alert("Updating bits')")
+    
     //console.log(BREAK) 
   }
 }
