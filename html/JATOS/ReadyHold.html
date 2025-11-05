@@ -47,7 +47,8 @@
             console.log(jatos.batchSession.get(jatos.workerId+"_FirstName"))
 
           },
-          on_finish: function() {
+          on_finish: function(data) {
+            data.trial = "Ready Hold"
             whereToGoNext(jatos.studySessionData)
           }      
       });

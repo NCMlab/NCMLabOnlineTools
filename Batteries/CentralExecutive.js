@@ -104,9 +104,9 @@ function CheckForSessiondata() {
 }
 
 // function to start a task
-function StartComponent(title) {
+function StartComponent(title, data) {
     console.log("Starting component: "+title)
-    jatos.startComponentByTitle(title)
+    jatos.startComponentByTitle(title, data)
 }
 
 function SetupjsPsychAndRunTimeline()  {
@@ -388,8 +388,11 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
                 // Start the battery
                 // It would be great to add a READY screen, with a participant's name on it.
                 UpdateSessionBitIndex(BitList[data.response])//AddToCompletionCount)                
-                SetupjsPsychAndRunTimeline()
-                StartComponent(TitleToStart)
+                //SetupjsPsychAndRunTimeline()
+                
+                var resultsData = {}
+                resultsData.ButtonPressed = Choices[data.response]
+                StartComponent(TitleToStart, resultsData)
                 // Once a session is selected, add the Bit Index to the session data
             }
             else {

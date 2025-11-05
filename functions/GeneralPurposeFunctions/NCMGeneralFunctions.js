@@ -377,6 +377,8 @@ function whereToGoNext(SessionData, ){
             else { 
               // If the battery is NOT complete
               //alert("Updated Index to be: "+jatos.studySessionData.CurrentIndex) 
+              var all_data = jsPsych.data.get()
+              //console.log(BREAK)
               jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex])
             }
           })
