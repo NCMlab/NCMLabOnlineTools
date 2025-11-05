@@ -14,7 +14,7 @@
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych/dist/plugin-survey.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSport.js"></script>
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>
     <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
     
       
@@ -28,13 +28,13 @@
         jsPsych.data.displayData();
       }
     });
-    console.log(EN_CostOfSport.survey_JSON)
+    console.log(EN_CostOfSportCalculation.survey_JSON)
     var form_trial = {
 
     }
     var form_trial = {
         type: jsPsychSurvey,
-        survey_json: function() { return EN_CostOfSport.survey_JSON},
+        survey_json: function() { return EN_CostOfSportCalculation.survey_JSON},
         button_label: "Submit",
 
         //next step storing data and creating backend calculation
