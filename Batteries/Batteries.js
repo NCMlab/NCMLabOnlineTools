@@ -1356,7 +1356,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		Language:'EN',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: ['Home','Restart'],
+    HeaderButtonsToShow: [],
     Redirect: '',
     shortName: '',
 	})
@@ -1370,7 +1370,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
-    HeaderButtonsToShow: ['Home','Restart','Quit','Stop','Skip','Info'],
+    HeaderButtonsToShow: [],
 	})
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================
@@ -1391,7 +1391,7 @@ BatteryList.push({index: 73,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
-  HeaderButtonsToShow: ['Home','Restart'],
+  HeaderButtonsToShow: [],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- CESAM  ==================
@@ -1418,7 +1418,7 @@ BatteryList.push({
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
-  HeaderButtonsToShow: ['Home','Restart'],
+  HeaderButtonsToShow: [],
   Redirect: '',
 })
 
@@ -1465,7 +1465,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
-  HeaderButtonsToShow: ['Home','Restart'],
+  HeaderButtonsToShow: [],
   Redirect: 'https://www.uottawa.ca',
 });
 // ============ MUSIC STUDY -- TRAILS ==================
@@ -1483,6 +1483,7 @@ BatteryList.push({
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: [],
   Redirect: '',
 })
 // -----------------------
@@ -1500,6 +1501,7 @@ BatteryList.push({
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: [],
   Redirect: '',
 })
 // -----------------------
@@ -1517,6 +1519,7 @@ BatteryList.push({
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  HeaderButtonsToShow: [],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- PRE: ALL WEEKS  ==================
@@ -1543,6 +1546,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: [],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 1, 4, 7 ==================
@@ -1575,6 +1579,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: [],
   Redirect: '',
 });
 
@@ -1621,6 +1626,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: [],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 3, 6, 9 ==================
@@ -1666,6 +1672,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: [],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEK 10 ==================
@@ -1722,6 +1729,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  HeaderButtonsToShow: [],
   Redirect: '',
 });
 
