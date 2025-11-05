@@ -282,6 +282,48 @@ const json = {
     
     },
 
+    //calculation for practice table
+
+    {
+      type: "expression",
+      name: "SP_PR_Freq",
+      title: "Total practices last year",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{practice_table.freq.SP_PR_1} * 16 + " +
+        "{practice_table.freq.SP_PR_2} * 2  + " +
+        "{practice_table.freq.SP_PR_3} * 12 + " +
+        "{practice_table.freq.SP_PR_4} * 13 + " +
+        "{practice_table.freq.SP_PR_5} * 9"
+    },
+    {
+      type: "expression",
+      name: "SP_PR_NT_Total",
+      title: "Total NET hours (all periods)",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{practice_table.net_time.SP_PR_1} * 16 + " +
+        "{practice_table.net_time.SP_PR_2} * 2  + " +
+        "{practice_table.net_time.SP_PR_3} * 12 + " +
+        "{practice_table.net_time.SP_PR_4} * 13 + " +
+        "{practice_table.net_time.SP_PR_5} * 9"
+    },
+    {
+      type: "expression",
+      name: "SP_PR_GT_Total",
+      title: "Total GROSS hours (all periods)",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{practice_table.gross_time.SP_PR_1} * 16 +"  +
+        "{practice_table.gross_time.SP_PR_2} * 2  + " +
+        "{practice_table.gross_time.SP_PR_3} * 12 + " +
+        "{practice_table.gross_time.SP_PR_4} * 13 + " +
+        "{practice_table.gross_time.SP_PR_5} * 9"
+    },
+
 
 
 
