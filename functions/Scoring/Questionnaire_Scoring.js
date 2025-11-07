@@ -285,7 +285,7 @@ function Questionnaire_Scoring(data) {
 		
 		const FirstName = data.response.Name
 		TotalScore = FirstName	
-		Results.NumericResults['FirstName'] = TotalScore
+		//Results.NumericResults['FirstName'] = TotalScore
 		const Email = data.response.email
 		console.log(Email)
 		if ( Email != null ) {
