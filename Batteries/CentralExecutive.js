@@ -167,6 +167,8 @@ function SetupSession() {
     var ButtonRow = []
     var ButtonBit = []
     var ButtonUsageType = []
+    var Phase = []
+    var Test = []
     for ( var i = 0; i < parameters[0].List.length; i++ )
         { 
             Choices.push( parameters[0].List[i].name ) 
@@ -174,6 +176,8 @@ function SetupSession() {
             ButtonRow.push( parameters[0].List[i].row )
             ButtonBit.push( parameters[0].List[i].BitIndex )
             ButtonUsageType.push( parameters[0].List[i].ButtonUsageType )
+            Phase.push(parameters[0].List[i].Phase)
+            Test.push(parameters[0].List[i].Test)
         }
     CompletedBits = jatos.batchSession.get(jatos.workerId+'_bitIndex')
     // Convert this back to bits to centralize this code/decode into one script
@@ -193,7 +197,7 @@ function SetupSession() {
         TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
     }
     LabelNames.EnterName
-    SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, ButtonUsageType)
+    SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType)
     
     // Have different session been completed?
     // Check the bit 
@@ -348,7 +352,8 @@ function MakeTestElement() {
 }
 
 
-function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, ButtonUsageType) {
+function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType) 
+{
     var trial = {
         type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },
@@ -392,6 +397,10 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
                 
                 var resultsData = {}
                 resultsData.ButtonPressed = Choices[data.response]
+                resultsData.Phase = Phase[data.response]
+                resultsData.Test = Test[data.response]
+                resultsData.Session = BitList[data.response]
+                resultsData.FirstName = jatos.batchSession.get(jatos.workerId+"_FirstName")
                 StartComponent(TitleToStart, resultsData)
                 // Once a session is selected, add the Bit Index to the session data
             }
