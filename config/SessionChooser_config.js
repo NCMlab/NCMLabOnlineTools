@@ -37,18 +37,17 @@ add('FR_COMM_01', function(){ parameters = parameters002 });
 // ===================================
 var parameters001 = []
 var List = []
-List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1})
-List.push({name: 'Intake', battery: '2', row: 2, BitIndex: 2})
-List.push({name: 'Baseline', battery: '3', row: 2, BitIndex: 4})
-List.push({name: 'Week 1, Pre', battery: '4', row: 3, BitIndex: 10})
-List.push({name: 'Week 1, Post', battery: '5', row: 3, BitIndex: 11})
-List.push({name: 'Week 2, Pre', battery: '4', row: 4, BitIndex: 10})
-List.push({name: 'Week 2, Post', battery: '4', row: 4, BitIndex: 11})
-List.push({name: 'Week 3, Pre', battery: '4', row: 5, BitIndex: 10})
-List.push({name: 'Week 3, Post', battery: '5', row: 5, BitIndex: 11})
-List.push({name: 'Post-intervention', battery: '3', row: 6, BitIndex: 30})
-List.push({name: 'Pick a Test', battery: '6', row: 8, BitIndex: 42, ButtonUsageType: 'UserChoice'})
-
+List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1, Phase: 'Name', Test: 'Name'})
+List.push({name: 'Intake', battery: '2', row: 2, BitIndex: 2, Phase: 'Intake', Test: 'IN'})
+List.push({name: 'Baseline', battery: '3', row: 2, BitIndex: 3, Phase: 'Baseline', Test: 'BL'})
+List.push({name: 'Week 1, Pre', battery: '4', row: 3, BitIndex: 4, Phase: 'Pre-class', Test: '1'})
+List.push({name: 'Week 1, Post', battery: '5', row: 3, BitIndex: 5, Phase: 'Post-class', Test: '1'})
+List.push({name: 'Week 2, Pre', battery: '4', row: 4, BitIndex: 6, Phase: 'Pre-class', Test: '2'})
+List.push({name: 'Week 2, Post', battery: '4', row: 4, BitIndex: 7, Phase: 'Post-class', Test: '2'})
+List.push({name: 'Week 3, Pre', battery: '4', row: 5, BitIndex: 8, Phase: 'Pre-class', Test: '3'})
+List.push({name: 'Week 3, Post', battery: '5', row: 5, BitIndex: 9, Phase: 'Post-class', Test: '3'})
+List.push({name: 'Post-intervention', battery: '3', row: 6, BitIndex: 10, Phase: 'Post', Test: 'Post'})
+List.push({name: 'Pick a Test', battery: '6', row: 8, BitIndex: 99, ButtonUsageType: 'UserChoice'})
 parameters001.push({index: 3, 
     Title: "What session is this?",
     List: List
