@@ -322,6 +322,51 @@ const json = {
         "{practice_table.gross_time.SP_PR_4} * 13 + " +
         "{practice_table.gross_time.SP_PR_5} * 9"
     },
+
+
+    {
+            type: "radiogroup",
+            name: "Cost_Entr",
+            title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "Cost_Entr_$U",
+          inputType:"number",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Entr}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          inputType:"number",
+          name: "Cost_Entr_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Entr}= 1",
+          isRequired: true
+        },
+
+
+        {
+      type: "expression",
+      name: "Cost_Entr_$Y",
+      title: "Estimated yearly entrance/rental cost",
+      visibleIf: "{Cost_Entr} = 1",
+      expression: "iif({Cost_Entr} = 1 && !isEmpty({Cost_Entr_$U}) && !isEmpty({Cost_Entr_UY}), {Cost_Entr_$U} * {Cost_Entr_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
   
 
 
