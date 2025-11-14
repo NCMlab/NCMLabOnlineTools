@@ -34,25 +34,7 @@ add('EN_COMM_01', function(){ parameters = parameters001 });
 add('FR_COMM_01', function(){ parameters = parameters002 });
 
 
-// ===================================
-var parameters001 = []
-var List = []
-List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1})
-List.push({name: 'Intake', battery: '2', row: 2, BitIndex: 2})
-List.push({name: 'Baseline', battery: '3', row: 2, BitIndex: 4})
-List.push({name: 'Week 1, Pre', battery: '4', row: 3, BitIndex: 10})
-List.push({name: 'Week 1, Post', battery: '5', row: 3, BitIndex: 11})
-List.push({name: 'Week 2, Pre', battery: '4', row: 4, BitIndex: 10})
-List.push({name: 'Week 2, Post', battery: '4', row: 4, BitIndex: 11})
-List.push({name: 'Week 3, Pre', battery: '4', row: 5, BitIndex: 10})
-List.push({name: 'Week 3, Post', battery: '5', row: 5, BitIndex: 11})
-List.push({name: 'Post-intervention', battery: '3', row: 6, BitIndex: 30})
-List.push({name: 'Pick a Test', battery: '6', row: 8, BitIndex: 42, ButtonUsageType: 'UserChoice'})
 
-parameters001.push({index: 3, 
-    Title: "What session is this?",
-    List: List
-})
 
 add('EN_COMM_DEMO', function(){ parameters = parameters001 });
 // ===================================
@@ -160,3 +142,20 @@ KR_parameters099.push({index: 3,
     List: KR_List
 })
 add('KR_COMM_99', function(){ parameters = KR_parameters099 });
+
+// === Demonstration === //
+// ===================================
+var parameters001 = []
+var List = []
+List.push({name: 'Intake', battery: '72', row: 1, BitIndex: 1})
+List.push({name: 'Baseline', battery: '3', row: 1, BitIndex: 2})
+List.push({name: 'Week 1', battery: '4', row: 3, BitIndex: 3})
+List.push({name: 'Week 2', battery: '4', row: 4, BitIndex: 4})
+List.push({name: 'Week 3', battery: '4', row: 5, BitIndex: 5})
+List.push({name: 'Post-intervention', battery: '3', row: 6, BitIndex: 6})
+List.push({name: 'Pick a Test', battery: '6', row: 8, BitIndex: 99, ButtonUsageType: 'UserChoice'})
+
+parameters001.push({index: 3, 
+    Title: "What session is this?",
+    List: List
+})

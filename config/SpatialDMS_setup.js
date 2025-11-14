@@ -204,7 +204,6 @@ SpatialDMS_Adaptive_003B = {
 	ButtonLabels: ['Yes','No'],
 	KeyboardValues: ['arrowleft','arrowright'],
 	KeyboardMappings: [true,false]
-
 }
 
 add('SpatialDMS_Adaptive_003B', function(){ parameters = SpatialDMS_Adaptive_003B});

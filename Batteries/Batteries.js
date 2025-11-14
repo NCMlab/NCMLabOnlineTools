@@ -2009,3 +2009,22 @@ List.push({
     shortName: '',
 	})
 
+
+// === Demonstration === //
+// 1) Intake
+//  enter name
+//  intake form
+// 2) Baseline/Post-intervention
+//  digit span
+//  spatial working memory
+//  questionnaire
+// 3) Weekly
+//  questionnaire
+
+var List = []
+List.push({
+  Task: "TEST Spatial DMS",
+  Parameters: "SpatialDMS_Adaptive_003B",
+  Instructions: "Default",
+  IconName: "Dots (Short)",
+})
