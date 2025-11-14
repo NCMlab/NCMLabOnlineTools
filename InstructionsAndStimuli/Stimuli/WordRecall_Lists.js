@@ -263,14 +263,12 @@ add('FR_RAVLT', function(){ WordRecallLists = FR_RAVLT});
 
 var EN_Demo = {}
 EN_Demo.WordListA = [
-	{'Word':"River"},		    // 0
-	{'Word':'Flower'}, 	    // 1
+	{'Word':"Horse"},		    // 0
 	{'Word':'Mountain'}, 		// 2
-	//{'Word': 'Garden'},
+	{'Word': 'Turnip'},
 	//{'Word': 'Bicycle'},
 	]
 	EN_Demo.AlternatePronunciationsWordListA = [
-		{'Word':'FLOUR','index':1},
 	]
 	EN_Demo.WordListB = []
 	EN_Demo.RecognitionWordList = []

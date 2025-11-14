@@ -2009,6 +2009,26 @@ List.push({
     shortName: '',
 	})
 
+// === Word Recall Demo === //
+var List = []
+List.push({
+  Task: "Word Recall",
+  Parameters: "Demo",
+  Instructions: "Default",
+  IconName: "Immediate",
+});
+	BatteryList.push({index: 334, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: ['Home','Quit','Stop'],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})
 
 // === Demonstration === //
 // 1) Intake

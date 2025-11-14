@@ -341,7 +341,7 @@ var FaCE_Default_Delayed = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	RecordAUDIO: false,
+	RecordAUDIO: false
 
 }
 var FaCE_Spoken = {
@@ -431,12 +431,12 @@ add('FaCE_Delayed_Manual_VerB_EN', function(){ parameters = FaCE_Delayed_Manual_
 
 
 
-var DemoEN = {
+var Demo = {
 	// specify the word list to use
-	WordList: 'EN_Demo',
+	WordList: 'Demo',
 	// Specify the folder of audio files to use. This allows for presentation of different voices
 	// without the need to change the word list file
-	FolderName: 'Demo/EN/EN-US-Neural2-F/',
+	FolderName: 'Demo/',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false, // Check to see if there is a second set of words
@@ -456,7 +456,7 @@ var DemoEN = {
 	AskForNotes: false,
 	RecordAUDIO: true
 }
-add('DemoEN', function(){ parameters = DemoEN});
+add('Demo', function(){ parameters = Demo});
 
 var DemoENDelayed = {
 	// specify the word list to use
