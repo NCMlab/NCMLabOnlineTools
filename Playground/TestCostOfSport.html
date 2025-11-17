@@ -18,34 +18,71 @@
     <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
     
       
-  <script>
-    
-    var jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      show_progress_bar: false,    
-      auto_update_progress_bar: false,
-      on_finish: function() {
-        jsPsych.data.displayData();
+   <script>
+     
+
+      function downloadCSV(filename, csvString) {
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
       }
-    });
-    console.log(EN_CostOfSport.survey_JSON)
-    var form_trial = {
 
-    }
-    var form_trial = {
-        type: jsPsychSurvey,
-        survey_json: function() { return EN_CostOfSport.survey_JSON},
-        button_label: "Submit",
+     
+      function addFlatResponseToData(trialData) {
+        const resp = trialData.response || {};
+        jsPsych.data.addProperties(resp);
+      }
 
-        //next step storing data and creating backend calculation
-        required: true,
-        on_finish: function(data) {
-          console.log(data)
+  
+
+      var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+        show_progress_bar: false,
+        auto_update_progress_bar: false,
+
+      
+        on_finish: function () {
+          
+          const csv = jsPsych.data.get().csv();
+          const ts = new Date().toISOString().replace(/[:.]/g, "-");
+          const filename = "CostOfSport_" + ts + ".csv";
+
+          downloadCSV(filename, csv);
+
+         
+          jsPsych.data.displayData('json');
+          
         }
-    };
-    jsPsych.run([form_trial]);
-    
-  </script>
+      });
+
+      console.log("Loaded survey JSON:", EN_CostOfSport.survey_JSON);
+
+  
+
+      var form_trial = {
+        type: jsPsychSurvey,
+        survey_json: function () {
+          return EN_CostOfSport.survey_JSON;
+        },
+        button_label: "Submit",
+        required: true,
+
+        
+        on_finish: function (data) {
+          console.log("Survey trial data:", data);
+          addFlatResponseToData(data);
+        }
+      };
+
+     
+      jsPsych.run([form_trial]);
+    </script>
   </head>
 <body>
   <script>

@@ -576,8 +576,8 @@ const json = {
 
 
 
-     /* ----------------- (a) Sports apparel ----------------- */
-    {
+     /* ----------------- (a) Sports apparel ----------------- */ //fixed 
+   {
       type: "matrixdynamic",
       name: "SP_APP",
       title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
@@ -589,21 +589,23 @@ const json = {
       columns: [
         { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
         { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
-        { name: "SP_APP_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
+        { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
         { name: "SP_APP_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
         {
-          name: "writeoff",
-          title: "Write-off / year (C$)",
-          cellType: "expression",
-          expression: "{row.qty} * {row.price} / {row.years}",
-          displayStyle: "currency",
-          currency: "CAD",
-          totalType: "sum",
-          totalDisplayStyle: "currency",
-          currencyDisplay: "code",
-          width: "15%"
-        }
+      name: "SP_APP_$Y",
+      title: "Write-off / year (C$)",
+      cellType: "expression",
+      expression:
+        "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
+        " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+      displayStyle: "currency",
+      currency: "CAD",
+
+      totalType: "sum",             
+      totalDisplayStyle: "currency",
+      currencyDisplay: "code",
+      width: "15%"
+    }
       ],
       footerText: "Sub-total (a)"
     },
