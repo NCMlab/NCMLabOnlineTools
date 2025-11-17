@@ -540,7 +540,7 @@ const json = {
         
          {
             type: "radiogroup",
-            name: "Cost_Clini",
+            name: "Cost_Clinic",
             title: " Do you participate in clinics regarding your sport practice?",
             isRequired: true,
             choices: [

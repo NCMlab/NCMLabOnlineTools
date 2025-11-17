@@ -1,62 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <meta name="description" content="jsPsych Questionnaire">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
-  <link rel="stylesheet" type='text/css' href='../css/defaultV2.min.css'> 
-  <link rel="stylesheet" type='text/css' href='../css/NCMLabGeneral.css'>
-  <link rel="stylesheet" type='text/css' href='../css/ButtonsHeaderBody.css'>
+
+    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type="text/css" href="../css/defaultV2.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/NCMLabGeneral.css">
+    <link rel="stylesheet" type="text/css" href="../css/ButtonsHeaderBody.css">
+
+    
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych/dist/plugin-survey.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+
+ 
     <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>
-    <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
+
     
-      
-  <script>
-    
-    var jsPsych = initJsPsych({
-      display_element: 'jspsych-target',
-      show_progress_bar: false,    
-      auto_update_progress_bar: false,
-      on_finish: function() {
-        jsPsych.data.displayData();
+    <script>
+     
+
+      function downloadCSV(filename, csvString) {
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
       }
-    });
-    console.log(EN_CostOfSportCalculation.survey_JSON)
-    var form_trial = {
 
-    }
-    var form_trial = {
-        type: jsPsychSurvey,
-        survey_json: function() { return EN_CostOfSportCalculation.survey_JSON},
-        button_label: "Submit",
+     
+      function addFlatResponseToData(trialData) {
+        const resp = trialData.response || {};
+        jsPsych.data.addProperties(resp);
+      }
 
-        //next step storing data and creating backend calculation
-        required: true,
-        on_finish: function(data) {
-          console.log(data)
+      /* -------------------------------
+         jsPsych initialization
+         -------------------------------- */
+
+      var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+        show_progress_bar: false,
+        auto_update_progress_bar: false,
+
+        // When the whole experiment finishes
+        on_finish: function () {
+          // Get all data as CSV
+          const csv = jsPsych.data.get().csv();
+          const ts = new Date().toISOString().replace(/[:.]/g, "-");
+          const filename = "CostOfSport_" + ts + ".csv";
+
+          downloadCSV(filename, csv);
+
+         
+          jsPsych.data.displayData('json');
+          // If you prefer JSON view instead, use:
+          // jsPsych.data.displayData('json');
         }
-    };
-    jsPsych.run([form_trial]);
-    
-  </script>
-  </head>
-<body>
-  <script>
-    var Blk = '1'
-    console.log("WM_"+Blk.padStart(2,"0"))</script>
-  
-	
-  <div class="btn-group-header" id="header-btn-group"></div>
-  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
-  <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+      });
+
+      console.log("Loaded survey JSON:", EN_CostOfSportCalculation.survey_JSON);
 
   
-</body>
+
+      var form_trial = {
+        type: jsPsychSurvey,
+        survey_json: function () {
+          return EN_CostOfSportCalculation.survey_JSON;
+        },
+        button_label: "Submit",
+        required: true,
+
+        
+        on_finish: function (data) {
+          console.log("Survey trial data:", data);
+          addFlatResponseToData(data);
+        }
+      };
+
+     
+      jsPsych.run([form_trial]);
+    </script>
+  </head>
+
+  <body>
+    <script>
+      var Blk = '1';
+      console.log("WM_" + Blk.padStart(2, "0"));
+    </script>
+
+    <div class="btn-group-header" id="header-btn-group"></div>
+    <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+
+    <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+  </body>
 </html>
+

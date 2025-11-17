@@ -10,20 +10,7 @@ const json = {
    showCompletedPage: false,
    pages: 
    [
-    /*{
-      name: "Name",
-      title: "Name",
-      
-      elements: [
-        {
-          type: 'comment',
-          title: 'Enter first name and initial of last name',
-          name: 'Name',
-          required: true,
-          textbox_rows: 1,
-        }
-      ]
-    },*/
+    
     {      
       name: "Section Ability",
       title: "Section Ability",
@@ -55,40 +42,8 @@ const json = {
           isRequired: true
         },
 
-        {
-          type: "radiogroup",
-          name: "AB_Loi",
-          title: "How would you rate your ability to perform daily tasks?",
-          isRequired: true,
-          choices: [
-                    { "value": 1, "text": "Total Assistance — Dependent, requires full help from others." },
-                    { "value": 2, "text": "Maximal Assistance — Needs 75% help to complete tasks." },
-                    { "value": 3, "text": "Moderate Assistance — Needs 50% help to complete tasks." },
-                    { "value": 4, "text": "Minimal Assistance — Needs 25% help to complete tasks." },
-                    { "value": 5, "text": "Supervision or Setup — Requires supervision or verbal cues." },
-                    { "value": 6, "text": "Modified Independance — Uses assistive devices but no help needed." },
-                    { "value": 7, "text": "Complete Independance — No assistance, performs safely." }
-                  ]
-                },
+       
 
-        {
-          type: 'dropdown',
-          title: "Does your ability require adaptive equipment in your daily life?", 
-          name: 'AB_EQ_DL', 
-          choices: [
-                      'Yes',
-                      'No',
-                      
-              ]
-        },
-        
-        {
-          type: "comment",
-          name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
-          visibleIf: "{AB_EQ_DL} = 'yes'",
-          isRequired: false
-        },
 
 
         {
@@ -128,27 +83,6 @@ const json = {
           },
 
 
-           {
-          type: 'dropdown',
-          title: "Do you have classification and/or specialty and/or player position in this sport?", 
-          name: 'SP_Class', 
-          choices: [
-                      'Yes',
-                      'No',
-                      'N/A',
-                      
-              ]
-          },
-        
-        {
-          type: "comment",
-          name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
-          visibleIf: "{SP_Class} = 'yes'",
-          isRequired: true
-        },
-
-
         
 
           {
@@ -185,28 +119,7 @@ const json = {
         },
 
 
-        {
-          type: "radiogroup",
-          name: "SP_Level",
-          title: "Indicate your level of participation: ",
-          isRequired: true,
-          choices: [
-                    { "value": 1, "text": "Recreational Only"},
-                    { "value": 2, "text": "Mainly recreational, but also competitive"},
-                    { "value": 3, "text": "Mainly competitive, but also recreational"},
-                    { "value": 4, "text": "Competitive only"},
-                    { "value": 5, "text": "Other"},
-          
-                  ]
-                },
-
-          {
-          type: "comment",
-          name: "SP_Level_Ex",
-          title: "If other, please explain:",
-          visibleIf: "{SP_Level}=5",
-          isRequired: true
-        },
+     
 
         {
            name: "SP_Level_Current",
@@ -366,6 +279,138 @@ const json = {
       currency: "CAD",
       precision: 2
         },
+
+
+
+
+
+        {
+            type: "radiogroup",
+            name: "Cost_Coach",
+            title: " Do you pay for lessons, guidance or coaching?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "Cost_Coach_$U",
+          inputType:"number",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Coach}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          inputType:"number",
+          name: "Cost_Coach_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Coach}= 1",
+          isRequired: true
+        },
+
+
+        {
+      type: "expression",
+      name: "Cost_Coach_$Y",
+      title: "Estimated yearly coaching cost",
+      visibleIf: "{Cost_Coach} = 1",
+      expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
+
+
+        
+         {
+            type: "radiogroup",
+            name: "Cost_Clinic",
+            title: " Do you participate in clinics regarding your sport practice?",
+            isRequired: true,
+            choices: [
+                    { "value": 1, "text": "Yes"},
+                    { "value": 2, "text": "No"}
+                    
+                  ]
+                },
+
+          {
+          type: "text",
+          name: "Cost_Clinic_$U",
+          inputType:"number",
+          title: "how much do you pay on average per usage?",
+          visibleIf: "{Cost_Clinic}= 1",
+          isRequired: true
+        },
+
+
+         {
+          type: "text",
+          inputType:"number",
+          name: "Cost_Clinic_UY",
+          title: "how many times per year?:",
+          visibleIf: "{Cost_Clinic}= 1",
+          isRequired: true
+        },
+
+
+        
+        {
+      type: "expression",
+      name: "Cost_Clinic_$Y",
+      title: "Estimated yearly clinic cost",
+      visibleIf: "{Cost_Clinic} = 1",
+      expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
+
+
+      
+         /* ----------------- (a) Sports apparel ----------------- */
+    {
+      type: "matrixdynamic",
+      name: "SP_APP",
+      title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
+      addRowText: "Add apparel item",
+      removeRowText: "Remove",
+      minRowCount: 0,
+       rowCount: 0,
+      showFooter: true,
+      columns: [
+        { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
+        { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "SP_APP_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        {
+      name: "SP_APP_$Y",
+      title: "Write-off / year (C$)",
+      cellType: "expression",
+      expression:
+        "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
+        " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+      displayStyle: "currency",
+      currency: "CAD",
+
+      totalType: "sum",             
+      totalDisplayStyle: "currency",
+      currencyDisplay: "code",
+      width: "15%"
+    }
+      ],
+      footerText: "Sub-total (a)"
+    },
+
 
   
 
