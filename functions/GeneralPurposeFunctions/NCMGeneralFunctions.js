@@ -303,7 +303,7 @@ function UpDateBitIndexInBatchData() {
 
   console.log("Value to add: "+ValueToAdd)
   
-  if ( ValueToAdd != undefined )
+  if ( ValueToAdd != undefined )  // Add check to the bit index to make sure it is less than 9999
   { 
     // get the bit index value
     // First check to see if this task has been completed already

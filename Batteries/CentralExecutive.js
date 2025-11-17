@@ -110,6 +110,8 @@ function StartComponent(title, data) {
 }
 
 function SetupjsPsychAndRunTimeline()  {
+    // Can I send data through this function to be written to JATOS in the CE?
+    // But make it optional so that it works if data is NOT sent also
     return new Promise(() =>{
         var jsPsych = initJsPsych({
         display_element: 'jspsych-target',
@@ -405,6 +407,9 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
                 // Once a session is selected, add the Bit Index to the session data
             }
             else {
+                // This is for the User Choice button press
+                // I would be good to write to the CE data in JATOS that this was in fact the choice
+                // Copy the creation of the resultsData from above
                 SetupBattery(false, SessionsBatteryList[data.response], ButtonUsageType[data.response])
                 .then(() => UsageTypeDecision(ButtonUsageType[data.response]))
                 .then(() => SetupjsPsychAndRunTimeline())

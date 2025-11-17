@@ -47,7 +47,7 @@ List.push({name: 'Baseline 1', battery: '77', row: 2, BitIndex: 4, Phase: 'Basel
 List.push({name: 'Baseline 2', battery: '77', row: 2, BitIndex: 5, Phase: 'Baseline', Test: 'BL-2'})
 List.push({name: 'Baseline 3', battery: '77', row: 2, BitIndex: 6, Phase: 'Baseline', Test: 'BL-3'})
 List.push({name: 'Baseline Trails 1', battery: '78', row: 3, BitIndex: 7, Phase: 'Baseline', Test: 'BL-Tr-1'})
-List.push({name: 'Baseline Trails 2', battery: '83', row: 3, BitIndex: 8, Phase: 'Baseline', Test: 'BL-TR-2'})
+List.push({name: 'Baseline Trails 2', battery: '83', row: 3, BitIndex: 8, Phase: 'Baseline', Test: 'BL-Tr-2'})
 List.push({name: 'Baseline Trails 3', battery: '84', row: 3, BitIndex: 9, Phase: 'Baseline', Test: 'BL-Tr-3'})
 List.push({name: 'Week 1, Pre', battery: '75', row: 4, BitIndex: 10, Phase: 'Pre-class', Test: '1'})
 List.push({name: 'Week 1, Post', battery: '80', row: 4, BitIndex: 11, Phase: 'Post-class', Test: '1'})
@@ -73,7 +73,7 @@ List.push({name: 'Post-intervention 1', battery: '77', row: 14, BitIndex: 30, Ph
 List.push({name: 'Post-intervention 2', battery: '77', row: 14, BitIndex: 31, Phase: 'Post-intervention', Test: 'PI-2'})
 List.push({name: 'Post-intervention 3', battery: '77', row: 14, BitIndex: 32, Phase: 'Post-intervention', Test: 'PI-3'})
 List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex: 33, Phase: 'Post-intervention', Test: 'PI-Tr-1'})
-List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34, Phase: 'Post-intervention', Test: 'PI--Tr-2'})
+List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34, Phase: 'Post-intervention', Test: 'PI-Tr-2'})
 List.push({name: 'Post-intervention Trails 3', battery: '84', row: 15, BitIndex: 35, Phase: 'Post-intervention', Test: 'PI-Tr-3'})
 List.push({name: 'Week 11, Pre', battery: '75', row: 17, BitIndex: 36, Phase: 'Pre-class', Test: '11'})
 List.push({name: 'Week 11, Post', battery: '80', row: 17, BitIndex: 37, Phase: 'Post-class', Test: '11'})
@@ -81,7 +81,7 @@ List.push({name: 'Week 12, Pre', battery: '75', row: 18, BitIndex: 38, Phase: 'P
 List.push({name: 'Week 12, Post', battery: '81', row: 18, BitIndex: 39, Phase: 'Post-class', Test: '12'})
 List.push({name: 'Week 13, Pre', battery: '75', row: 19, BitIndex: 40, Phase: 'Pre-class', Test: '13'})
 List.push({name: 'Week 13, Post', battery: '82', row: 10, BitIndex: 41, Phase: 'Post-class', Test: '13'})
-List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 42, ButtonUsageType: 'UserChoice'})
+List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 9999, ButtonUsageType: 'UserChoice', Phase: 'User Choice', Test: '9999'})
 
 
 
