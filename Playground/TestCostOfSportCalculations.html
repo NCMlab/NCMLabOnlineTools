@@ -43,18 +43,16 @@
         jsPsych.data.addProperties(resp);
       }
 
-      /* -------------------------------
-         jsPsych initialization
-         -------------------------------- */
+  
 
       var jsPsych = initJsPsych({
         display_element: 'jspsych-target',
         show_progress_bar: false,
         auto_update_progress_bar: false,
 
-        // When the whole experiment finishes
+      
         on_finish: function () {
-          // Get all data as CSV
+          
           const csv = jsPsych.data.get().csv();
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
@@ -63,8 +61,7 @@
 
          
           jsPsych.data.displayData('json');
-          // If you prefer JSON view instead, use:
-          // jsPsych.data.displayData('json');
+          
         }
       });
 
