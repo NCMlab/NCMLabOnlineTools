@@ -107,15 +107,15 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           // Reverse completedBits so it is read correctedly
           trial.completedBits = trial.completedBits.split('').reverse().join('');
           // currentRow is set to 1 so that the table starts with the first <tr>
+
           var currentRow = 1
           var newRow = false
           // Check to see if this is the first time this session is started
           // check the completedBits variable
-          if (( trial.completedBits == '0' ) || ( trial.completedBits == 0 ))
+          if (( trial.completedBits == '0' ) || ( trial.completedBits == 0 ) || trial.completedBits == 'NaN')
           { 
             var FirstTimeFlag = true
           }
-          console.log(trial)
           //console.log(BREAK)
           // Start the table
           html += '<table border="1"><tr>'
