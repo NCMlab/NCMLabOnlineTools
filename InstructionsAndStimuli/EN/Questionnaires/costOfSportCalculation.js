@@ -4,10 +4,13 @@ var shortTitle = 'Cost Of Sports Calculation test'
 
 const json = {
   showProgressBar: "aboveHeader",
-   progressBarType: "pages",
+
    progressBarShowPageNumbers: true,
-   progressBarShowPageTitles: true,
+   progressBarShowPageTitles: false,
    showCompletedPage: false,
+   showTOC: false,
+  progressTitle: "Survey Progress",
+  progressBarType: "questions",
    pages: 
    [
     
@@ -15,7 +18,14 @@ const json = {
       name: "Section Ability",
       title: "Section Ability",
        elements: [
+
+
+
+        
         {
+
+
+          
           type: 'dropdown',
           title: "Ability Timing", 
           name: 'AB_Timing', 
@@ -387,6 +397,7 @@ const json = {
       minRowCount: 0,
        rowCount: 0,
       showFooter: true,
+      footerText: "Subtotal equipment", 
       columns: [
         { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
         { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
@@ -408,8 +419,66 @@ const json = {
       width: "15%"
     }
       ],
-      footerText: "Sub-total (a)"
     },
+      
+      {
+         type: "expression",
+         name: "SP_APP_$Y_Total",
+        title: "Sub-total (a): Total write-off per year (all apparel items)",
+        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         displayStyle: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+        visible: false  
+      },
+
+
+
+    /* --------------- (b) Sports equipment ----------------- */
+    {
+      type: "matrixdynamic",
+      name: "SP_Equip",
+      title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+      addRowText: "Add equipment item",
+      removeRowText: "Remove",
+      minRowCount: 0,
+      rowCount: 0,
+      showFooter: true,
+      columns: [
+        { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
+        { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        {
+         name: "SP_Equip_$Y",
+        title: "Write-off / year (C$)",
+        cellType: "expression",
+        expression:
+        "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
+        " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
+       displayStyle: "currency",
+        currency: "CAD",
+
+        totalType: "sum",             
+       totalDisplayStyle: "currency",
+        currencyDisplay: "code",
+        width: "15%"
+        }
+      ],
+
+      footerText: "Sub-total (b)"
+    },
+    
+    {
+         type: "expression",
+         name: "SP_APP_$Y_Total",
+        title: "Sub-total (a): Total write-off per year (all apparel items)",
+        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         displayStyle: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+        visible: false  
+      },
 
 
   
@@ -418,6 +487,73 @@ const json = {
 
 
 
+
+        ]
+    },
+
+
+
+    {      
+     
+      name: "SportParticipation_1",
+      title: "Section II: Sport  Participation Profile",
+       elements: [
+
+
+
+        
+        {
+
+
+          
+          type: 'dropdown',
+          title: "Ability Timing", 
+          name: 'AB_Timing_test', 
+          choices: [
+                      'Congenital',
+                      'Acquired',
+                      'Able-body',
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+          {
+          type: 'dropdown',
+          title: "Classification of disabilities",
+          name: 'AB_Class_test',
+          choices: [
+                      'Mobility',
+                      'Vision',
+                      'Hearing',
+                      'Cognitive function'
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+       
+
+
+
+        {
+          type: 'dropdown',
+          title: "Does your ability require adaptive equipment to participate this sport?", 
+          name: 'AB_EQ_DL_Ex_test', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation_test",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+          isRequired: false
+        },
 
         ]
     },

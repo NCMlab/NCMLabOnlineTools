@@ -20,7 +20,73 @@
 
  
     <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>
+<style>
 
+      /* Center the radiogroup choices */
+    .sv_q_radiogroup .sv-q-col {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+    }
+
+/* Center each item (radio + label) */
+    .sv_q_radiogroup .sv-radio {
+      display: flex !important;
+      align-items: center;
+     justify-content: center;
+      width: 100%;
+    }
+
+/* Center text next to radio button */
+    .sv_q_radiogroup .sv-radio__label {
+      text-align: center;
+      width: auto !important;
+    }
+
+/* Prevent long choices from left-aligning */
+    .sv_q_radiogroup .sv-radio__item {
+      display: flex !important;
+      justify-content: center;
+      width: 100%;
+    
+    }
+
+    .sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Every option row should have the same width */
+.sd-question--radiogroup .sd-item {
+  width: 260px; /* adjust this to your layout */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Make sure “Other” uses the same width and alignment */
+.sd-question--radiogroup .sd-selectbase__other {
+  width: 260px !important;
+  margin-left: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Center the entire radiogroup options block */
+.sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  justify-content: center;  /* horizontally center the list */
+}
+
+/* Make sure the inner list doesn’t stretch full width */
+.sd-question--radiogroup .sd-selectbase__list {
+  width: auto;
+  margin: 0 auto;
+}
+
+
+</style>
     
     <script>
      

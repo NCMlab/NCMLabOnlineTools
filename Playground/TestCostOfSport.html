@@ -16,6 +16,55 @@
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSport.js"></script>
     <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
+
+   <style>
+  /* Center the whole survey/question area on the page */
+  .jspsych-content {
+    text-align: center;            /* center children (the survey root) */
+  }
+
+  /* The SurveyJS root: make it an inline-block so it can be centered */
+  .jspsych-content .sd-root-modern {
+    display: inline-block;
+    text-align: left;              /* everything INSIDE is left-aligned */
+    width: auto;                   /* let content define width */
+    max-width: 100%;
+  }
+
+  /* Make all radiogroup choices start at the same left position */
+
+  .sd-question--radiogroup .sd-selectbase__item,
+  .sd-question--radiogroup .sd-selectbase__label,
+  .sd-question--radiogroup .sd-selectbase__label-text {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .sd-question--radiogroup .sd-selectbase__label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .sd-question--radiogroup .sd-selectbase__control {
+    margin-right: 0.5rem;
+  }
+
+  /* Center the entire radiogroup options block */
+  .sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  justify-content: center;  /* horizontally center the list */
+  }
+
+/* Make sure the inner list doesn’t stretch full width */
+  .sd-question--radiogroup .sd-selectbase__list {
+  width: auto;
+  margin: 0 auto;
+  }
+</style>
+
+
     
       
    <script>

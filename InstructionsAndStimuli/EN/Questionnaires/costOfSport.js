@@ -26,7 +26,7 @@ const json = {
     },*/
     {      
       name: "Section Ability",
-      title: "Section Ability",
+      title: "Section I:  Ability",
        elements: [
         {
           type: 'dropdown',
@@ -152,12 +152,10 @@ const json = {
         
 
           {
-          type: 'text',
-          inputType:'number',
+          type: 'dropdown',
           title: "How many years have you played/participated in this sport? ",
           name: 'SP_Years',
-          min: 0,
-          max: 100,
+          choices: Array.from({ length: 50 }, (_, i) => i + 1),
          
          isRequired: true
         },
@@ -166,6 +164,7 @@ const json = {
           type: "radiogroup",
           name: "SP_Context",
           title: "Indicate the context of your participation?",
+          colCount:1,
           isRequired: true,
           choices: [
                     { "value": 1, "text": "Non-organized"},
@@ -258,6 +257,18 @@ const json = {
 
           // question 10 
 
+      {
+      type: "html",
+      name: "practice_intro",
+      html: `
+      <b>10.</b> Please provide the following detailed information below about your participation last year. We make a distinction between practices and games/competition.<br><br>
+      <b>a) Practices</b><br>
+      1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
+      2. How much <b>NET</b> time do you spend during one practice? (Excludes travel, changing clothes, socializing.)<br>
+      3. How much <b>GROSS</b> time do you spend during one practice? (Includes travel, changing clothes, socializing.)
+      `
+    },
+
           
       {
         
@@ -266,11 +277,11 @@ const json = {
       title : "Detailed information about your participation last year — Practices",
       isRequired : true,
       columns: [
-        { name: "SP_PR_1",        title : "Sept–Dec",      cellType: "text",  inputType : "number",  min: 0 },
-        { name: "SP_PR_2", title : "Winter Holiday", cellType: "text",  inputType:  "number",  min: 0 },
-        { name: "SP_PR_3",        title: "Jan–Mar",         cellType: "text",  inputType: "number",  min: 0 },
-        {  name: "SP_PR_4",       title: "Apr–Jun",         cellType: "text",  inputType: "number",  min: 0 },
-        {  name: "SP_PR_5",       title: "Jul–Aug",         cellType: "text",  inputType: "number",  min: 0 }
+        { name: "SP_PR_1",        title : "Sept–Dec \n (16)",      cellType: "text",  inputType : "number",  min: 0 },
+        { name: "SP_PR_2",        title : "Winter Holiday \n (2)", cellType: "text",  inputType:  "number",  min: 0 },
+        { name: "SP_PR_3",        title: "Jan–Mar \n (12)",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_4",       title: "Apr–Jun \n (13)",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_5",       title: "Jul–Aug \n  (9)",         cellType: "text",  inputType: "number",  min: 0 }
       ],
       rows : [
         { value: "freq",     text: "1. Number of practices per week (exclude games)" },
@@ -281,6 +292,10 @@ const json = {
       verticalAlign: "middle"
     
     },
+
+  
+      
+
 
     //calculation for practice table
 
@@ -325,6 +340,55 @@ const json = {
     },
 
 
+     // Championships question
+
+      {
+      type: "html",
+      name: "competitions_intro",
+      html: `
+      <b>b) In this section we will be talking about COMPETITIONS/CHAMPIONSHIPS</b><br><br>
+      `
+    },
+
+
+     {
+           name: "SP_CC_ODWithout",
+           type: "text",
+           inputType:"number",
+           title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
+           min: 0,
+           isRequired: true
+          },
+
+
+        {
+           name: "SP_CC_ODWith",
+           type: "text",
+           inputType:"number",
+           title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
+           min: 0,
+           isRequired: true
+          },
+
+        {
+           name: "SP_CC_Weekend",
+           type: "text",
+           inputType:"number",
+           title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
+           min: 0,
+           isRequired: true
+          },
+
+          {
+           name: "SP_CC_Multiday",
+           type: "text",
+           inputType:"number",
+           title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
+           min: 0,
+           isRequired: true
+          },
+
+
 
 
 
@@ -337,17 +401,18 @@ const json = {
       name: "CostActiveSportParticipation",
       title: "Section III: Cost of Active Sport Participation",
        elements: [
-        {
-          type: 'dropdown',
-          title: "Gender", 
-          name: 'Gender', 
-          choices: [
-                      'Male',
-                      'Female',
-              ],
-          showOtherItem: true,
-          isRequired: true
-        },
+      {
+        type: "dropdown",
+        name: "Gender",
+        title: "Gender",
+        choices: [
+        "Male",
+        "Female"
+        ],
+        showOtherItem: true,
+        otherText: "You don't have an option that applies to me. I identify as:",
+        isRequired: true
+    },
 
 
          {
@@ -356,16 +421,16 @@ const json = {
             title: "  How much do you think you spend annually on your sport participation?",
             isRequired: true,
             choices: [
-                    { "value": 1, "text": " <  100.00 CND/yr "},
-                    { "value": 2, "text": " 100.00 < 250.00 CND/yr"},
-                    { "value": 3, "text": "250.00 < 500.00 CND/yr"},
-                    { "value": 4, "text": "500.00 < 750.00 CND/yr"},
-                    { "value": 5, "text": "750.00 < 1000.00 CND/yr"},
-                    { "value": 6, "text": "1000.00 < 1500.00 CND/yr"},
-                    { "value": 7, "text": "1500.00 < 3000.00 CND/yr"},
-                    { "value": 8, "text": "3000.00 < 5000.00 CND/yr"},
-                    { "value": 9, "text": "5000.00 < 10000.00 CND/yr"},
-                    { "value": 10, "text": "> 10,000.00 CND/yr"},
+                    { "value": 1, "text": " <  100.00 CAD/yr "},
+                    { "value": 2, "text": " 100.00 < 250.00 CAD/yr"},
+                    { "value": 3, "text": "250.00 < 500.00 CAD/yr"},
+                    { "value": 4, "text": "500.00 < 750.00 CAD/yr"},
+                    { "value": 5, "text": "750.00 < 1000.00 CAD/yr"},
+                    { "value": 6, "text": "1000.00 < 1500.00 CAD/yr"},
+                    { "value": 7, "text": "1500.00 < 3000.00 CAD/yr"},
+                    { "value": 8, "text": "3000.00 < 5000.00 CAD/yr"},
+                    { "value": 9, "text": "5000.00 < 10000.00 CAD/yr"},
+                    { "value": 10, "text": "> 10,000.00 CAD/yr"},
                     
           
                   ]
@@ -624,19 +689,23 @@ const json = {
         { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
         { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
         { name: "SP_Equip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
         { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
         {
-           name: "writeoff",
-          title: "Write-off / year (C$)",
-          cellType: "expression",
-          expression: "{row.qty} * {row.price} / {row.years}",
-          displayStyle: "currency",
-          currency: "CAD",
-          totalType: "sum",
-          totalDisplayStyle: "currency",
-          currencyDisplay: "code",
-          width: "15%"
+          
+        name: "SP_Equip_$Y",
+        title: "Write-off / year (C$)",
+        cellType: "expression",
+        expression:
+        "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
+        " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
+        displayStyle: "currency",
+        currency: "CAD",
+
+        totalType: "sum",             
+        totalDisplayStyle: "currency",
+        currencyDisplay: "code",
+        width: "15%"
+    
         }
       ],
       footerText: "Sub-total (b)"
@@ -658,19 +727,22 @@ const json = {
         { name: "SP_AddEquip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
         { name: "SP_AddEquip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
         { name: "SP_AddEquip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "years",  title: "Years of use", cellType: "text", inputType: "number", min: 1, isRequired: true, width: "10%" },
         { name: "SP_AddEquip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
         {
-           name: "writeoff",
-          title: "Write-off / year (C$)",
-          cellType: "expression",
-          expression: "{row.qty} * {row.price} / {row.years}",
-          displayStyle: "currency",
-          currency: "CAD",
-          totalType: "sum",
-          totalDisplayStyle: "currency",
-          currencyDisplay: "code",
-          width: "15%"
+
+        name: "SP_AddEquip_$Y",
+        title: "Write-off / year (C$)",
+        cellType: "expression",
+        expression:
+        "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
+        " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
+        displayStyle: "currency",
+        currency: "CAD",
+
+        totalType: "sum",             
+        totalDisplayStyle: "currency",
+        currencyDisplay: "code",
+        width: "15%"
         }
       ],
       footerText: "Sub-total (b)"
