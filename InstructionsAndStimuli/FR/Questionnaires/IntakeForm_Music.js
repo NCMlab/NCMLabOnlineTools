@@ -24,6 +24,9 @@ const json = {
                       'Femme',
               ],
           showOtherItem: true,
+          otherText: 'Autre (décrire)',
+          placeholder: 'Sélectionner...',
+          searchEnabled: false,
           required: true,
         },
         {
@@ -45,6 +48,7 @@ const json = {
                       'Centimètres',
               ],
           showOtherItem: false,
+          placeholder: 'Sélectionner...',
           required: true,
         },
         {
@@ -55,6 +59,7 @@ const json = {
           min: 0,
           max: 1000,
           defaultValue: '',
+          placeholder: 'Sélectionner...',
           isRequired: true
         },
         {
@@ -66,6 +71,7 @@ const json = {
                       'Kilogrammes',
               ],
           showOtherItem: false,
+          placeholder: 'Sélectionner...',
           required: true,
         },
         {
@@ -81,6 +87,8 @@ const json = {
                       'Doctorat'
               ],
           showOtherItem: true,
+          placeholder: 'Sélectionner...',
+          otherText: 'Autre (décrire)',
           required: true,
         },
         {
@@ -94,6 +102,8 @@ const json = {
                       'Sans emploi'
               ],
           showOtherItem: true,
+          placeholder: 'Sélectionner...',
+          otherText: 'Autre (décrire)',
           required: true,
         },
         {
@@ -116,6 +126,8 @@ const json = {
                   'Dans un centre résidentiel assisté'
               ],
           showOtherItem: true,
+          placeholder: 'Sélectionner...',
+          otherText: 'Autre (décrire)',
           required: true,
         },
         {
@@ -128,7 +140,8 @@ const json = {
           name: "LanguageProblem",
           type: "dropdown",
           title: "Avez-vous des difficultés linguistiques ou de communication ?",
-          choices: ["Oui", "Non"]
+          choices: ["Oui", "Non"],
+          placeholder: 'Sélectionner...',
         }, 
         {
           name: "LanguageProblemDescription",
@@ -150,6 +163,7 @@ const json = {
               'Premières nations, Métis, Inuis',
               ],
           name: 'Ethnicity',
+          placeholder: 'Sélectionner...',
           title: "Quelle est votre origine ethnique (vous pouvez sélectionner plus d'une origine) ?",
           "description": "Veuillez sélectionner tous les éléments qui s'appliquent."
         },
@@ -164,6 +178,8 @@ const json = {
               'Veuf(ve)'
           ],
           name: 'marital',
+          placeholder: 'Sélectionner...',
+          otherText: 'Autre (décrire)',
           showOtherItem: true,                    
           required: true,
         },
@@ -179,6 +195,7 @@ const json = {
                 "Je ne sais pas",
             ],
             name: 'NeedsCurrently',
+            placeholder: 'Sélectionner...',
             required: true,
           },
           {
@@ -193,6 +210,7 @@ const json = {
                 "Je ne sais pas",
             ],
             name: 'NeedsCurrently',
+            placeholder: 'Sélectionner...',
             required: true,
           }
        ]
@@ -213,6 +231,7 @@ const json = {
               "Pas certain(e)"
           ],
           required: true,
+          placeholder: 'Sélectionner...',
           //add_other_option: true,                    
           //other_option_text: 'Oui, depuis combien de temps avez-vous été diagnostiqué ?',
       },
@@ -243,6 +262,7 @@ const json = {
           ],
           name: 'HearingLoss',
           required: true,
+          placeholder: 'Sélectionner...',
           //add_other_option: true,                    
           //other_option_text: 'Oui, quel est le type de perte auditive dont vous souffrez ?',
       },
@@ -257,6 +277,7 @@ const json = {
         ],
         name: 'HearingLossType',
         visibleIf: "{HearingLoss} == Oui",
+        placeholder: 'Sélectionner...',
         required: false,
         //add_other_option: true,                    
         //other_option_text: 'Oui, quel est le type de perte auditive dont vous souffrez ?',
@@ -273,6 +294,7 @@ const json = {
       ],
       visibleIf: "{HearingLoss} == Oui",
       name: 'HearingLossLevel',
+      placeholder: 'Sélectionner...',
       required: false,
       //add_other_option: true,                    
       //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -286,6 +308,7 @@ const json = {
           "Non"
       ],
       name: 'OtherHealthIssues',
+      placeholder: 'Sélectionner...',
       required: true,
     },
     {
@@ -310,6 +333,7 @@ const json = {
           [
               "0", "1","2","3","4","5","6","7"
           ],
+          placeholder: 'Sélectionner...',
           name: 'ExerciseFrequency',
           required: true,
         },
@@ -322,6 +346,7 @@ const json = {
             "Non"
           ],
           name: 'Exercise24',
+          placeholder: 'Sélectionner...',
           required: true,
         },
         {
@@ -335,6 +360,7 @@ const json = {
               "Inconnu"
           ],
           name: 'Smoke',
+          placeholder: 'Sélectionner...',
           required: true,
         },
         {
@@ -345,6 +371,7 @@ const json = {
           choicesMax: 2025,
           choicesStep:1,
           name: 'SmokeStart',
+          placeholder: 'Sélectionner...',
           required: false,
           input_type: "number"
         },
@@ -356,6 +383,7 @@ const json = {
           choicesMax: 2025,
           choicesStep:1,
           name: 'SmokeQuit',
+          placeholder: 'Sélectionner...',
           required: false,
           input_type: "number"
         },
@@ -365,6 +393,7 @@ const json = {
           visibleIf: "{Smoke} == 'Fume actuellement' or {Smoke} == 'Il y a plus d'un an que je ne fume plus'",
           choices: ["0","0.5","1","2","3","4","5","6",">6"],
           name: 'SmokePacksPerDay',
+          placeholder: 'Sélectionner...',
           required: false,
           input_type: "number"
         },
@@ -379,6 +408,7 @@ const json = {
               "Plus de 4 boissons par jour"
           ],
           name: 'Alcohol',
+          placeholder: 'Sélectionner...',
           required: true,
         },
       
@@ -399,6 +429,7 @@ const json = {
               "Non",
             ],
             name: 'MusicMovement',
+            placeholder: 'Sélectionner...',
             required: true,
           },
           {
@@ -418,6 +449,7 @@ const json = {
               "Non",
             ],
             name: 'GroupMusic',
+            placeholder: 'Sélectionner...',
             required: true,
           },
           {
@@ -437,6 +469,7 @@ const json = {
               "Non",
             ],
             name: 'Choir',
+            placeholder: 'Sélectionner...',
             required: true,
           },
           {
@@ -456,6 +489,7 @@ const json = {
               "Non",
             ],
             name: 'OtherMusic',
+            placeholder: 'Sélectionner...',
             required: true,
           },
           {
@@ -491,6 +525,7 @@ const json = {
               "Non",
             ],
             visibleIf: "{OtherMusic} == Oui",
+            placeholder: 'Sélectionner...',
             name: 'StillPlayInstrument',
             required: true,
           },

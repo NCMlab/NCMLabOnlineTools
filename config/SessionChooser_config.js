@@ -38,60 +38,107 @@ add('FR_COMM_01', function(){ parameters = parameters002 });
 
 add('EN_COMM_DEMO', function(){ parameters = parameters001 });
 // ===================================
-var parameters099 = []
-var List = []
-List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1, Phase: 'Name', Test: 'Name'})
-List.push({name: 'Demographics', battery: '73', row: 1, BitIndex: 2, Phase: 'Demog', Test: 'Demog'})
-List.push({name: 'CESAM', battery: '74', row: 1, BitIndex: 3, Phase: 'CESAM', Test: 'CESAM'})
-List.push({name: 'Baseline 1', battery: '77', row: 2, BitIndex: 4, Phase: 'Baseline', Test: 'BL-1'})
-List.push({name: 'Baseline 2', battery: '77', row: 2, BitIndex: 5, Phase: 'Baseline', Test: 'BL-2'})
-List.push({name: 'Baseline 3', battery: '77', row: 2, BitIndex: 6, Phase: 'Baseline', Test: 'BL-3'})
-List.push({name: 'Baseline Trails 1', battery: '78', row: 3, BitIndex: 7, Phase: 'Baseline', Test: 'BL-Tr-1'})
-List.push({name: 'Baseline Trails 2', battery: '83', row: 3, BitIndex: 8, Phase: 'Baseline', Test: 'BL-Tr-2'})
-List.push({name: 'Baseline Trails 3', battery: '84', row: 3, BitIndex: 9, Phase: 'Baseline', Test: 'BL-Tr-3'})
-List.push({name: 'Week 1, Pre', battery: '75', row: 4, BitIndex: 10, Phase: 'Pre-class', Test: '1'})
-List.push({name: 'Week 1, Post', battery: '80', row: 4, BitIndex: 11, Phase: 'Post-class', Test: '1'})
-List.push({name: 'Week 2, Pre', battery: '75', row: 5, BitIndex: 12, Phase: 'Pre-class', Test: '2'})
-List.push({name: 'Week 2, Post', battery: '81', row: 5, BitIndex: 13, Phase: 'Post-class', Test: '2'})
-List.push({name: 'Week 3, Pre', battery: '75', row: 6, BitIndex: 14, Phase: 'Pre-class', Test: '3'})
-List.push({name: 'Week 3, Post', battery: '82', row: 6, BitIndex: 15, Phase: 'Post-class', Test: '3'})
-List.push({name: 'Week 4, Pre', battery: '75', row: 7, BitIndex: 16, Phase: 'Pre-class', Test: '4'})
-List.push({name: 'Week 4, Post', battery: '80', row: 7, BitIndex: 17, Phase: 'Post-class', Test: '4'})
-List.push({name: 'Week 5, Pre', battery: '75', row: 8, BitIndex: 18, Phase: 'Pre-class', Test: '5'})
-List.push({name: 'Week 5, Post', battery: '81', row: 8, BitIndex: 19, Phase: 'Post-class', Test: '5'})
-List.push({name: 'Week 6, Pre', battery: '75', row: 9, BitIndex: 20, Phase: 'Pre-class', Test: '6'})
-List.push({name: 'Week 6, Post', battery: '82', row: 9, BitIndex: 21, Phase: 'Post-class', Test: '6'})
-List.push({name: 'Week 7, Pre', battery: '75', row: 10, BitIndex: 22, Phase: 'Pre-class', Test: '7'})
-List.push({name: 'Week 7, Post', battery: '80', row: 10, BitIndex: 23, Phase: 'Post-class', Test: '7'})
-List.push({name: 'Week 8, Pre', battery: '75', row: 11, BitIndex: 24, Phase: 'Pre-class', Test: '8'})
-List.push({name: 'Week 8, Post', battery: '81', row: 11, BitIndex: 25, Phase: 'Post-class', Test: '8'})
-List.push({name: 'Week 9, Pre', battery: '75', row: 12, BitIndex: 26, Phase: 'Pre-class', Test: '9'})
-List.push({name: 'Week 9, Post', battery: '82', row: 12, BitIndex: 27, Phase: 'Post-class', Test: '9'})
-List.push({name: 'Week 10, Pre', battery: '75', row: 13, BitIndex: 28, Phase: 'Pre-class', Test: '10'})
-List.push({name: 'Week 10, Post', battery: '85', row: 13, BitIndex: 29, Phase: 'Post-class', Test: '10'})
-List.push({name: 'Post-intervention 1', battery: '77', row: 14, BitIndex: 30, Phase: 'Post-intervention', Test: 'PI-1'})
-List.push({name: 'Post-intervention 2', battery: '77', row: 14, BitIndex: 31, Phase: 'Post-intervention', Test: 'PI-2'})
-List.push({name: 'Post-intervention 3', battery: '77', row: 14, BitIndex: 32, Phase: 'Post-intervention', Test: 'PI-3'})
-List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex: 33, Phase: 'Post-intervention', Test: 'PI-Tr-1'})
-List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34, Phase: 'Post-intervention', Test: 'PI-Tr-2'})
-List.push({name: 'Post-intervention Trails 3', battery: '84', row: 15, BitIndex: 35, Phase: 'Post-intervention', Test: 'PI-Tr-3'})
-List.push({name: 'Week 11, Pre', battery: '75', row: 17, BitIndex: 36, Phase: 'Pre-class', Test: '11'})
-List.push({name: 'Week 11, Post', battery: '80', row: 17, BitIndex: 37, Phase: 'Post-class', Test: '11'})
-List.push({name: 'Week 12, Pre', battery: '75', row: 18, BitIndex: 38, Phase: 'Pre-class', Test: '12'})
-List.push({name: 'Week 12, Post', battery: '81', row: 18, BitIndex: 39, Phase: 'Post-class', Test: '12'})
-List.push({name: 'Week 13, Pre', battery: '75', row: 19, BitIndex: 40, Phase: 'Pre-class', Test: '13'})
-List.push({name: 'Week 13, Post', battery: '82', row: 10, BitIndex: 41, Phase: 'Post-class', Test: '13'})
-List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 9999, ButtonUsageType: 'UserChoice', Phase: 'User Choice', Test: '9999'})
+var EN_parameters099 = []
+var EN_List = []
+EN_List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1, Phase: 'Name', Test: 'Name'})
+EN_List.push({name: 'Demographics', battery: '73', row: 1, BitIndex: 2, Phase: 'Demog', Test: 'Demog'})
+EN_List.push({name: 'CESAM', battery: '74', row: 1, BitIndex: 3, Phase: 'CESAM', Test: 'CESAM'})
+EN_List.push({name: 'Baseline 1', battery: '77', row: 2, BitIndex: 4, Phase: 'Baseline', Test: 'BL-1'})
+EN_List.push({name: 'Baseline 2', battery: '77', row: 2, BitIndex: 5, Phase: 'Baseline', Test: 'BL-2'})
+EN_List.push({name: 'Baseline 3', battery: '77', row: 2, BitIndex: 6, Phase: 'Baseline', Test: 'BL-3'})
+EN_List.push({name: 'Baseline Trails 1', battery: '78', row: 3, BitIndex: 7, Phase: 'Baseline', Test: 'BL-Tr-1'})
+EN_List.push({name: 'Baseline Trails 2', battery: '83', row: 3, BitIndex: 8, Phase: 'Baseline', Test: 'BL-Tr-2'})
+EN_List.push({name: 'Baseline Trails 3', battery: '84', row: 3, BitIndex: 9, Phase: 'Baseline', Test: 'BL-Tr-3'})
+EN_List.push({name: 'Week 1, Pre', battery: '75', row: 4, BitIndex: 10, Phase: 'Pre-class', Test: '1'})
+EN_List.push({name: 'Week 1, Post', battery: '80', row: 4, BitIndex: 11, Phase: 'Post-class', Test: '1'})
+EN_List.push({name: 'Week 2, Pre', battery: '75', row: 5, BitIndex: 12, Phase: 'Pre-class', Test: '2'})
+EN_List.push({name: 'Week 2, Post', battery: '81', row: 5, BitIndex: 13, Phase: 'Post-class', Test: '2'})
+EN_List.push({name: 'Week 3, Pre', battery: '75', row: 6, BitIndex: 14, Phase: 'Pre-class', Test: '3'})
+EN_List.push({name: 'Week 3, Post', battery: '82', row: 6, BitIndex: 15, Phase: 'Post-class', Test: '3'})
+EN_List.push({name: 'Week 4, Pre', battery: '75', row: 7, BitIndex: 16, Phase: 'Pre-class', Test: '4'})
+EN_List.push({name: 'Week 4, Post', battery: '80', row: 7, BitIndex: 17, Phase: 'Post-class', Test: '4'})
+EN_List.push({name: 'Week 5, Pre', battery: '75', row: 8, BitIndex: 18, Phase: 'Pre-class', Test: '5'})
+EN_List.push({name: 'Week 5, Post', battery: '81', row: 8, BitIndex: 19, Phase: 'Post-class', Test: '5'})
+EN_List.push({name: 'Week 6, Pre', battery: '75', row: 9, BitIndex: 20, Phase: 'Pre-class', Test: '6'})
+EN_List.push({name: 'Week 6, Post', battery: '82', row: 9, BitIndex: 21, Phase: 'Post-class', Test: '6'})
+EN_List.push({name: 'Week 7, Pre', battery: '75', row: 10, BitIndex: 22, Phase: 'Pre-class', Test: '7'})
+EN_List.push({name: 'Week 7, Post', battery: '80', row: 10, BitIndex: 23, Phase: 'Post-class', Test: '7'})
+EN_List.push({name: 'Week 8, Pre', battery: '75', row: 11, BitIndex: 24, Phase: 'Pre-class', Test: '8'})
+EN_List.push({name: 'Week 8, Post', battery: '81', row: 11, BitIndex: 25, Phase: 'Post-class', Test: '8'})
+EN_List.push({name: 'Week 9, Pre', battery: '75', row: 12, BitIndex: 26, Phase: 'Pre-class', Test: '9'})
+EN_List.push({name: 'Week 9, Post', battery: '82', row: 12, BitIndex: 27, Phase: 'Post-class', Test: '9'})
+EN_List.push({name: 'Week 10, Pre', battery: '75', row: 13, BitIndex: 28, Phase: 'Pre-class', Test: '10'})
+EN_List.push({name: 'Week 10, Post', battery: '85', row: 13, BitIndex: 29, Phase: 'Post-class', Test: '10'})
+EN_List.push({name: 'Post-intervention 1', battery: '77', row: 14, BitIndex: 30, Phase: 'Post-intervention', Test: 'PI-1'})
+EN_List.push({name: 'Post-intervention 2', battery: '77', row: 14, BitIndex: 31, Phase: 'Post-intervention', Test: 'PI-2'})
+EN_List.push({name: 'Post-intervention 3', battery: '77', row: 14, BitIndex: 32, Phase: 'Post-intervention', Test: 'PI-3'})
+EN_List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex: 33, Phase: 'Post-intervention', Test: 'PI-Tr-1'})
+EN_List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34, Phase: 'Post-intervention', Test: 'PI-Tr-2'})
+EN_List.push({name: 'Post-intervention Trails 3', battery: '84', row: 15, BitIndex: 35, Phase: 'Post-intervention', Test: 'PI-Tr-3'})
+EN_List.push({name: 'Week 11, Pre', battery: '75', row: 17, BitIndex: 36, Phase: 'Pre-class', Test: '11'})
+EN_List.push({name: 'Week 11, Post', battery: '80', row: 17, BitIndex: 37, Phase: 'Post-class', Test: '11'})
+EN_List.push({name: 'Week 12, Pre', battery: '75', row: 18, BitIndex: 38, Phase: 'Pre-class', Test: '12'})
+EN_List.push({name: 'Week 12, Post', battery: '81', row: 18, BitIndex: 39, Phase: 'Post-class', Test: '12'})
+EN_List.push({name: 'Week 13, Pre', battery: '75', row: 19, BitIndex: 40, Phase: 'Pre-class', Test: '13'})
+EN_List.push({name: 'Week 13, Post', battery: '82', row: 10, BitIndex: 41, Phase: 'Post-class', Test: '13'})
+EN_List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 9999, ButtonUsageType: 'UserChoice', Phase: 'User Choice', Test: '9999'})
 
-
-
-
-parameters099.push({index: 3, 
+EN_parameters099.push({index: 3, 
     Title: "What session is this?",
-    List: List
+    List: EN_List
 })
-add('EN_COMM_99', function(){ parameters = parameters099 });
-add('FR_COMM_99', function(){ parameters = parameters099 });
+add('EN_COMM_99', function(){ parameters = EN_parameters099 });
+
+var FR_parameters099 = []
+var FR_List = []
+FR_List.push({name: 'Entrez votre nom', battery: '72', row: 1, BitIndex: 1, Phase: 'Name', Test: 'Name'})
+FR_List.push({name: 'Démographique', battery: '73', row: 1, BitIndex: 2, Phase: 'Demog', Test: 'Demog'})
+FR_List.push({name: 'CESAM', battery: '74', row: 1, BitIndex: 3, Phase: 'CESAM', Test: 'CESAM'})
+FR_List.push({name: 'Référence 1', battery: '77', row: 2, BitIndex: 4, Phase: 'Référence', Test: 'BL-1'})
+FR_List.push({name: 'Référence 2', battery: '77', row: 2, BitIndex: 5, Phase: 'Référence', Test: 'BL-2'})
+FR_List.push({name: 'Référence 3', battery: '77', row: 2, BitIndex: 6, Phase: 'Référence', Test: 'BL-3'})
+FR_List.push({name: 'Référence Trails 1', battery: '78', row: 3, BitIndex: 7, Phase: 'Référence', Test: 'BL-Tr-1'})
+FR_List.push({name: 'Référence Trails 2', battery: '83', row: 3, BitIndex: 8, Phase: 'Référence', Test: 'BL-Tr-2'})
+FR_List.push({name: 'Référence Trails 3', battery: '84', row: 3, BitIndex: 9, Phase: 'Référence', Test: 'BL-Tr-3'})
+FR_List.push({name: 'Semaine 1, Pre', battery: '75', row: 4, BitIndex: 10, Phase: 'Pre-class', Test: '1'})
+FR_List.push({name: 'Semaine 1, Post', battery: '80', row: 4, BitIndex: 11, Phase: 'Post-class', Test: '1'})
+FR_List.push({name: 'Semaine 2, Pre', battery: '75', row: 5, BitIndex: 12, Phase: 'Pre-class', Test: '2'})
+FR_List.push({name: 'Semaine 2, Post', battery: '81', row: 5, BitIndex: 13, Phase: 'Post-class', Test: '2'})
+FR_List.push({name: 'Semaine 3, Pre', battery: '75', row: 6, BitIndex: 14, Phase: 'Pre-class', Test: '3'})
+FR_List.push({name: 'Semaine 3, Post', battery: '82', row: 6, BitIndex: 15, Phase: 'Post-class', Test: '3'})
+FR_List.push({name: 'Semaine 4, Pre', battery: '75', row: 7, BitIndex: 16, Phase: 'Pre-class', Test: '4'})
+FR_List.push({name: 'Semaine 4, Post', battery: '80', row: 7, BitIndex: 17, Phase: 'Post-class', Test: '4'})
+FR_List.push({name: 'Semaine 5, Pre', battery: '75', row: 8, BitIndex: 18, Phase: 'Pre-class', Test: '5'})
+FR_List.push({name: 'Semaine 5, Post', battery: '81', row: 8, BitIndex: 19, Phase: 'Post-class', Test: '5'})
+FR_List.push({name: 'Semaine 6, Pre', battery: '75', row: 9, BitIndex: 20, Phase: 'Pre-class', Test: '6'})
+FR_List.push({name: 'Semaine 6, Post', battery: '82', row: 9, BitIndex: 21, Phase: 'Post-class', Test: '6'})
+FR_List.push({name: 'Semaine 7, Pre', battery: '75', row: 10, BitIndex: 22, Phase: 'Pre-class', Test: '7'})
+FR_List.push({name: 'Semaine 7, Post', battery: '80', row: 10, BitIndex: 23, Phase: 'Post-class', Test: '7'})
+FR_List.push({name: 'Semaine 8, Pre', battery: '75', row: 11, BitIndex: 24, Phase: 'Pre-class', Test: '8'})
+FR_List.push({name: 'Semaine 8, Post', battery: '81', row: 11, BitIndex: 25, Phase: 'Post-class', Test: '8'})
+FR_List.push({name: 'Semaine 9, Pre', battery: '75', row: 12, BitIndex: 26, Phase: 'Pre-class', Test: '9'})
+FR_List.push({name: 'Semaine 9, Post', battery: '82', row: 12, BitIndex: 27, Phase: 'Post-class', Test: '9'})
+FR_List.push({name: 'Semaine 10, Pre', battery: '75', row: 13, BitIndex: 28, Phase: 'Pre-class', Test: '10'})
+FR_List.push({name: 'Semaine 10, Post', battery: '85', row: 13, BitIndex: 29, Phase: 'Post-class', Test: '10'})
+FR_List.push({name: 'Post-intervention 1', battery: '77', row: 14, BitIndex: 30, Phase: 'Post-intervention', Test: 'PI-1'})
+FR_List.push({name: 'Post-intervention 2', battery: '77', row: 14, BitIndex: 31, Phase: 'Post-intervention', Test: 'PI-2'})
+FR_List.push({name: 'Post-intervention 3', battery: '77', row: 14, BitIndex: 32, Phase: 'Post-intervention', Test: 'PI-3'})
+FR_List.push({name: 'Post-intervention Trails 1', battery: '78', row: 15, BitIndex: 33, Phase: 'Post-intervention', Test: 'PI-Tr-1'})
+FR_List.push({name: 'Post-intervention Trails 2', battery: '83', row: 15, BitIndex: 34, Phase: 'Post-intervention', Test: 'PI-Tr-2'})
+FR_List.push({name: 'Post-intervention Trails 3', battery: '84', row: 15, BitIndex: 35, Phase: 'Post-intervention', Test: 'PI-Tr-3'})
+FR_List.push({name: 'Semaine 11, Pre', battery: '75', row: 17, BitIndex: 36, Phase: 'Pre-class', Test: '11'})
+FR_List.push({name: 'Semaine 11, Post', battery: '80', row: 17, BitIndex: 37, Phase: 'Post-class', Test: '11'})
+FR_List.push({name: 'Semaine 12, Pre', battery: '75', row: 18, BitIndex: 38, Phase: 'Pre-class', Test: '12'})
+FR_List.push({name: 'Semaine 12, Post', battery: '81', row: 18, BitIndex: 39, Phase: 'Post-class', Test: '12'})
+FR_List.push({name: 'Semaine 13, Pre', battery: '75', row: 19, BitIndex: 40, Phase: 'Pre-class', Test: '13'})
+FR_List.push({name: 'Semaine 13, Post', battery: '82', row: 10, BitIndex: 41, Phase: 'Post-class', Test: '13'})
+FR_List.push({name: 'Pick a Test', battery: '79', row: 20, BitIndex: 9999, ButtonUsageType: 'UserChoice', Phase: 'User Choice', Test: '9999'})
+
+FR_parameters099.push({index: 3, 
+    Title: "De quelle session s'agit-il?",
+    List: FR_List
+})
+add('FR_COMM_99', function(){ parameters = FR_parameters099 });
 
 var KR_parameters099 = []
 var KR_List = []
