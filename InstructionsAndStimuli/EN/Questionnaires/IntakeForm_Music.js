@@ -35,8 +35,8 @@ const json = {
           title: "Gender", 
           name: 'Gender', 
           choices: [
-                      'Male',
-                      'Female',
+                      {value: 1, text:'Male'},
+                      {value: 2, text:'Female'},
               ],
           showOtherItem: true,
           isRequired: true
