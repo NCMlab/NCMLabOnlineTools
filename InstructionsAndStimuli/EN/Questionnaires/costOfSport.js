@@ -6,92 +6,16 @@ const json = {
   showProgressBar: "aboveHeader",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
-   progressBarShowPageTitles: true,
+   progressBarShowPageTitles: false,
    showCompletedPage: false,
    pages: 
    [
-    /*{
-      name: "Name",
-      title: "Name",
-      
-      elements: [
-        {
-          type: 'comment',
-          title: 'Enter first name and initial of last name',
-          name: 'Name',
-          required: true,
-          textbox_rows: 1,
-        }
-      ]
-    },*/
-    {      
-      name: "Section Ability",
-      title: "Section I:  Ability",
-       elements: [
-        {
-          type: 'dropdown',
-          title: "Ability Timing", 
-          name: 'AB_Timing', 
-          choices: [
-                      'Congenital',
-                      'Acquired',
-                      'Able-body',
-              ],
-          showOtherItem: false,
-          isRequired: true
-        },
+   
 
-          {
-          type: 'dropdown',
-          title: "Classification of disabilities",
-          name: 'AB_Class',
-          choices: [
-                      'Mobility',
-                      'Vision',
-                      'Hearing',
-                      'Cognitive function'
-              ],
-          showOtherItem: false,
-          isRequired: true
-        },
+    //make question font size bigger than choices in radiogroups
+    
 
-        {
-          type: "radiogroup",
-          name: "AB_Loi",
-          title: "How would you rate your ability to perform daily tasks?",
-          isRequired: true,
-          choices: [
-                    { "value": 1, "text": "Total Assistance — Dependent, requires full help from others." },
-                    { "value": 2, "text": "Maximal Assistance — Needs 75% help to complete tasks." },
-                    { "value": 3, "text": "Moderate Assistance — Needs 50% help to complete tasks." },
-                    { "value": 4, "text": "Minimal Assistance — Needs 25% help to complete tasks." },
-                    { "value": 5, "text": "Supervision or Setup — Requires supervision or verbal cues." },
-                    { "value": 6, "text": "Modified Independance — Uses assistive devices but no help needed." },
-                    { "value": 7, "text": "Complete Independance — No assistance, performs safely." }
-                  ]
-                },
-
-        {
-          type: 'dropdown',
-          title: "Does your ability require adaptive equipment in your daily life?", 
-          name: 'AB_EQ_DL', 
-          choices: [
-                      'Yes',
-                      'No',
-                      
-              ]
-        },
-        
-        {
-          type: "comment",
-          name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
-          visibleIf: "{AB_EQ_DL} = 'yes'",
-          isRequired: false
-        },
-
-
-        {
+        /*{
           type: 'dropdown',
           title: "Does your ability require adaptive equipment to participate this sport?", 
           name: 'AB_EQ_DL_Ex', 
@@ -107,22 +31,168 @@ const json = {
           name: "adaptive_equipment_explanation",
           title: "If yes, please explain:",
           visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-          isRequired: false
-        },
+          isRequired: true
+        },*/
+    
 
-        ]
-    },
-
-    // section 2
+    // Section 1 ( ability moved to IV)
 
     {      
       name: "SportParticipation",
-      title: "Section II: Sport  Participation Profile",
+      title: "Section I: Sport  Participation Profile",
        elements: [
+
+
+        // Add : Before starting to report
+
+
+        {
+        type: "html",
+        name: "current_past_subtitle",
+        html: `
+         <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+          Before starting to report on the particular (para)sport of this survey, list the three most important current and past
+          (para)sport you participate or have participated in, including the one under investigation here.
+          </div>
+          `
+        },
+
+        {
+      type: "matrixdynamic",
+      name: "Sport_current",
+      title: "CURRENTLY (top three)",
+      rowCount: 3,
+      minRowCount: 3,
+      maxRowCount: 3,
+      allowAddRows: false,
+      allowRemoveRows: false,
+      columns: [
+
+
+        {
+          name: "Sport_Curr",
+          title: "Sport",
+          cellType: "text",
+          isRequired: false,
+          width: "25%"
+        },
+
+
+        {
+      
+          name: "Sport_Curr_Context",
+          title: "Current context",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "non_org", "text": "Non-org" },
+            { "value": "club",    "text": "Club" },
+            { "value": "school",  "text": "School" }
+          ],
+          isRequired: false,
+          width: "40%"
+        },
+
+        //to verify if mainly recreational or competitive is added together or separated (only choose one)
+        //1=mainly recreational 2=mainly competitve
+        //1= non-org, 2=club 3=school
+        {
+          name: "Sport_Curr_level",
+          title: "Current level",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "recreational", "text": "Mainly recreational" },
+            { "value": "competitive",  "text": "Mainly competitive" }
+          ],
+          isRequired: false,
+          width: "35%"
+        },
+        {
+          name: "Sport_Curr_nY",
+          title: "Years",
+          cellType: "text",
+          inputType: "number",
+          min: 0,
+          max: 99,
+          placeholder: "0",
+          isRequired: false,
+          width: "25%"
+        }
+      ]
+    },
+
+
+
+
+
+    {
+      type: "matrixdynamic",
+      name: "Sport_previous",
+      title: "In the Past (top three)",
+      rowCount: 3,
+      minRowCount: 3,
+      maxRowCount: 3,
+      allowAddRows: false,
+      allowRemoveRows: false,
+      columns: [
+
+
+        {
+          name: "Sport_past",
+          title: "Sport",
+          cellType: "text",
+          isRequired: false,
+          width: "25%"
+        },
+
+
+        {
+      
+          name: "Sport_past_Context",
+          title: "Past context",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "non_org", "text": "Non-org" },
+            { "value": "club",    "text": "Club" },
+            { "value": "school",  "text": "School" }
+          ],
+          isRequired: false,
+          width: "40%"
+        },
+
+        //to verify if mainly recreational or competitive is added together or separated (only choose one)
+        //1=mainly recreational 2=mainly competitve
+        //1= non-org, 2=club 3=school
+        {
+          name: "Sport_past_level",
+          title: "Past level",
+          cellType: "radiogroup",
+          choices: [
+            { "value": "recreational", "text": "Mainly recreational" },
+            { "value": "competitive",  "text": "Mainly competitive" }
+          ],
+          isRequired: false,
+          width: "35%"
+        },
+        {
+          name: "Sport_past_nY",
+          title: "Years",
+          cellType: "text",
+          inputType: "number",
+          min: 0,
+          max: 99,
+          placeholder: "0",
+          isRequired: false,
+          width: "25%"
+        }
+      ]
+    },
+
+    //modified 
+
           {
            name: "SP_How",
            type: "text",
-           title: "How did you get into this sport?",
+           title: "How did you get into the current (para) sport?",
            minLength: 10,
            isRequired: true
           },
@@ -159,6 +229,7 @@ const json = {
          
          isRequired: true
         },
+
 
         {
           type: "radiogroup",
@@ -261,7 +332,7 @@ const json = {
       type: "html",
       name: "practice_intro",
       html: `
-      <b>10.</b> Please provide the following detailed information below about your participation last year. We make a distinction between practices and games/competition.<br><br>
+       Please provide the following detailed information below about your participation last year. We make a distinction between practices and games/competition.<br><br>
       <b>a) Practices</b><br>
       1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
       2. How much <b>NET</b> time do you spend during one practice? (Excludes travel, changing clothes, socializing.)<br>
@@ -277,11 +348,11 @@ const json = {
       title : "Detailed information about your participation last year — Practices",
       isRequired : true,
       columns: [
-        { name: "SP_PR_1",        title : "Sept–Dec \n (16)",      cellType: "text",  inputType : "number",  min: 0 },
-        { name: "SP_PR_2",        title : "Winter Holiday \n (2)", cellType: "text",  inputType:  "number",  min: 0 },
-        { name: "SP_PR_3",        title: "Jan–Mar \n (12)",         cellType: "text",  inputType: "number",  min: 0 },
-        {  name: "SP_PR_4",       title: "Apr–Jun \n (13)",         cellType: "text",  inputType: "number",  min: 0 },
-        {  name: "SP_PR_5",       title: "Jul–Aug \n  (9)",         cellType: "text",  inputType: "number",  min: 0 }
+        { name: "SP_PR_1",        title : "Sept–Dec \n (16 weeks)",      cellType: "text",  inputType : "number",  min: 0 },
+        { name: "SP_PR_2",        title : "Winter Holiday \n (2 weeks)", cellType: "text",  inputType:  "number",  min: 0 },
+        { name: "SP_PR_3",        title: "Jan–Mar \n (12 weeks)",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_4",       title: "Apr–Jun \n (13 weeks)",         cellType: "text",  inputType: "number",  min: 0 },
+        {  name: "SP_PR_5",       title: "Jul–Aug \n  (9 weeks)",         cellType: "text",  inputType: "number",  min: 0 }
       ],
       rows : [
         { value: "freq",     text: "1. Number of practices per week (exclude games)" },
@@ -399,21 +470,11 @@ const json = {
 
     {      
       name: "CostActiveSportParticipation",
-      title: "Section III: Cost of Active Sport Participation",
+      title: "Section II: Cost of Active Sport Participation",
        elements: [
-      {
-        type: "dropdown",
-        name: "Gender",
-        title: "Gender",
-        choices: [
-        "Male",
-        "Female"
-        ],
-        showOtherItem: true,
-        otherText: "You don't have an option that applies to me. I identify as:",
-        isRequired: true
-    },
+      
 
+        //make it two columns
 
          {
             type: "radiogroup",
@@ -437,11 +498,20 @@ const json = {
                 },
 
 
-    
+        {
+    type: "html",
+    name: "membership_subtitle",
+    html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Membership and Entrance / Year
+    </div>
+    `
+    },
+
 
 
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Memb",
             title: "Do you pay a membership fee to play/practice your sport",
             isRequired: true,
@@ -464,7 +534,7 @@ const json = {
 
         
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Lic",
             title: " Do you pay a license fee to play/practice your sport (if not included in the membership fee)? (pays to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition)",
             isRequired: true,
@@ -486,7 +556,7 @@ const json = {
 
 
           {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_PF",
             title: " Did/do you pay any other program fees to play/practice your sport (if not included in the previous questions)?",
             isRequired: true,
@@ -509,9 +579,9 @@ const json = {
 
 
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_COMP",
-            title: " Do you pay fees to participate in tournaments or competitions (if nor included in the membership fee)?",
+            title: " Do you pay fees to participate in tournaments or competitions (if not included in the membership fee)?",
             isRequired: true,
             choices: [
                     { "value": 1, "text": "Yes"},
@@ -531,7 +601,7 @@ const json = {
 
 
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Entr",
             title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
             isRequired: true,
@@ -561,13 +631,42 @@ const json = {
           isRequired: true
         },
 
+         {
+      type: "expression",
+      name: "Cost_Entr_$Y",
+      title: "Estimated yearly entrance/rental cost",
+      visibleIf: "{Cost_Entr} = 1",
+      expression: "iif({Cost_Entr} = 1 && !isEmpty({Cost_Entr_$U}) && !isEmpty({Cost_Entr_UY}), {Cost_Entr_$U} * {Cost_Entr_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
+
+      ]
+    },
 
 
 
+      {      
+      name: "CostActiveSportParticipation",
+      title: "Section II: Cost of Active Sport Participation",
+       elements: [
+
+
+           {
+      type: "html",
+      name: "coaching_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Coaching / Year
+    </div>
+    `
+    },
 
 
          {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Coach",
             title: " Do you pay for lessons, guidance or coaching?",
             isRequired: true,
@@ -598,13 +697,25 @@ const json = {
         },
 
 
+          {
+      type: "expression",
+      name: "Cost_Coach_$Y",
+      title: "Estimated yearly coaching cost",
+      visibleIf: "{Cost_Coach} = 1",
+      expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
+
 
 
 
 
         
          {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Clinic",
             title: " Do you participate in clinics regarding your sport practice?",
             isRequired: true,
@@ -635,10 +746,63 @@ const json = {
         },
 
 
+          {
+      type: "expression",
+      name: "Cost_Clinic_$Y",
+      title: "Estimated yearly clinic cost",
+      visibleIf: "{Cost_Clinic} = 1",
+      expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
+
+        
+           {
+      type: "html",
+      name: "apparel_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Apparel and Equipment / Year
+    </div>
+    `
+    },
+   
+    //moved to section apparel and Equipment from section I: ability
+
+    {
+          type: 'dropdown',
+          title: "Does your ability require adaptive apparel/equipment to participate this sport?", 
+          name: 'AB_EQ_DL_Ex', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+          isRequired: true
+        },
 
         // question 10 to adjust
-        
-
+        //fix html text 
+         {
+      type: "html",
+      name: "apparel_subtitle",
+      html: `
+    
+      Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
+      the quantity, the number of months or years you actually use it, and the price per unit:
+      
+    </div>
+    `
+    },
 
 
      /* ----------------- (a) Sports apparel ----------------- */ //fixed 
@@ -648,14 +812,14 @@ const json = {
       title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
       addRowText: "Add apparel item",
       removeRowText: "Remove",
-      minRowCount: 0,
+      minRowCount: 1,
        rowCount: 0,
       showFooter: true,
       columns: [
-        { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
-        { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_APP_Describe",  title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+        { name: "SP_APP_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
         { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "SP_APP_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        { name: "SP_APP_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
         {
       name: "SP_APP_$Y",
       title: "Write-off / year (C$)",
@@ -675,6 +839,17 @@ const json = {
       footerText: "Sub-total (a)"
     },
 
+       {
+         type: "expression",
+         name: "SP_APP_$Y_Total",
+        title: "Sub-total (a): Total write-off per year (all apparel items)",
+        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         displayStyle: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+        visible: false  
+      },
+
     /* --------------- (b) Sports equipment ----------------- */
     {
       type: "matrixdynamic",
@@ -682,14 +857,14 @@ const json = {
       title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
       addRowText: "Add equipment item",
       removeRowText: "Remove",
-      minRowCount: 0,
+      minRowCount: 1,
       rowCount: 0,
       showFooter: true,
       columns: [
-        { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
-        { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+        { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
         { name: "SP_Equip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
         {
           
         name: "SP_Equip_$Y",
@@ -711,6 +886,17 @@ const json = {
       footerText: "Sub-total (b)"
     },
 
+      {
+         type: "expression",
+         name: "SP_APP_$Y_Total",
+        title: "Sub-total (a): Total write-off per year (all apparel items)",
+        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         displayStyle: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+        visible: false  
+      },
+
     /*  --------- c) Additional equipment -----------------   */
 
 
@@ -720,14 +906,14 @@ const json = {
       title: "C) additional equipment, ex.towels ..",
       addRowText: "Add equipment item",
       removeRowText: "Remove",
-      minRowCount: 0,
+      minRowCount: 1,
       rowCount: 0,
       showFooter: true,
       columns: [
-        { name: "SP_AddEquip_Describe",  title: "Describe item", cellType: "text", isRequired: true, width: "35%" },
-        { name: "SP_AddEquip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "10%" },
+        { name: "SP_AddEquip_Describe",  title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+        { name: "SP_AddEquip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
         { name: "SP_AddEquip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-        { name: "SP_AddEquip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: true, width: "15%" },
+        { name: "SP_AddEquip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
         {
 
         name: "SP_AddEquip_$Y",
@@ -745,8 +931,19 @@ const json = {
         width: "15%"
         }
       ],
-      footerText: "Sub-total (b)"
+      footerText: "Sub-total (c)"
     },
+
+      {
+         type: "expression",
+         name: "SP_APP_$Y_Total",
+        title: "Sub-total (a): Total write-off per year (all apparel items)",
+        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         displayStyle: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+        visible: false  
+      },
 
 
 
@@ -764,16 +961,16 @@ const json = {
       title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
       isRequired: true,
       choices: [
-        { "value": 1, "text": "In a general store, not specialized in sport (ex. Sears, The Bay, Zellers, Walmart, ...)" },
-        { "value": 2, "text": "In a general sports store (ex. Sport Check, National Sport, Sports Mart, ...)" },
+        { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
+        { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
         { "value": 3, "text": "In a privately owned sports shop" },
         { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
         { "value": 5, "text": "Buy from individual people or second hand" },
         { "value": 6, "text": "Wholesale" },
-        { "value": 7, "text": "Mail order company, E-Bay" },
+        { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
         { "value": 8, "text": "Other (please describe)" }
       ],
-      colCount: 2
+      colCount: 3
       },
 
       {
@@ -790,7 +987,7 @@ const json = {
 
 
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "EQ_Rent",
             title: " Do you rent sports apparel or sports equipment?",
             isRequired: true,
@@ -830,6 +1027,17 @@ const json = {
           isRequired: true
         },
 
+         {
+      type: "expression",
+      name: "EQ_Rent_$Y",
+      title: "Estimated yearly rental cost",
+      visibleIf: "{EQ_Rent} = 1",
+      expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
+
 
         // question 13
 
@@ -837,7 +1045,7 @@ const json = {
 
         
         {
-            type: "radiogroup",
+            type: "dropdown",
             name: "EQ_Maint",
             title: "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)",
             isRequired: true,
@@ -878,33 +1086,69 @@ const json = {
         },
 
 
-        // question 14
+         {
+      type: "expression",
+      name: "EQ_Maint_$Y",
+      title: "Estimated yearly rental cost",
+      visibleIf: "{EQ_Maint} = 1",
+      expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
+      displayStyle: "currency",
+      currency: "CAD",
+      precision: 2
+        },
 
+      
+      ]
 
-        {
-      type: "checkbox",
-      name: "TR_Pr",
-      title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
-      isRequired: true,
-      choices: [
-        { "value": 1, "text": "By foot" },
-        { "value": 2, "text": "By Bike" },
-        { "value": 3, "text": "By motorbike" },
-        { "value": 4, "text": "By family car" },
-        { "value": 5, "text": "Public Transportation" },
-        { "value": 6, "text": "Have a ride with others/ carpooling" },
-        { "value": 7, "text": "Taxi/Private bus" },
-        { "value": 8, "text": "Special transportation" },
-        { "value": 9, "text": "Other" }
-      ],
-      showOtherItem: false,
-      colCount: 2
+      // to add the sum of maintenance and apparel together 
+
       },
 
 
 
+       {      
+      name: "CostActiveSportParticipation",
+      title: "Section II: Cost of Active Sport Participation",
+       elements: [
+        // question 14
+
+              {
+      type: "html",
+      name: "travel_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Travel Costs / Year
+    </div>
+    `
+    },
+
+     //if select value 8 add a blank box to explain their special transportation
+
+        {
+      type: "checkbox",
+      name: "TR_Pr",
+      title: "For Practices: Which method of transportation do you use? (check all that apply)",
+      isRequired: true,
+      choices: [
+        { "value": 1, "text": "By foot/wheeling" },
+        { "value": 2, "text": "By Bike" },
+        { "value": 3, "text": "By motorbike" },
+        { "value": 4, "text": "By family/own car" },
+        { "value": 5, "text": "Public Transportation" },
+        { "value": 6, "text": "Have a ride with others/ carpooling" },
+        { "value": 7, "text": "Taxi/Private bus" },
+        { "value": 8, "text": "Special transportation, if yes, please explain" },
+        { "value": 9, "text": "Other" }
+      ],
+      showOtherItem: false,
+      colCount: 3
+      },
+
+
+  //to remove
+  /*
       {
-            type: "radiogroup",
+            type: "dropdown",
             name: "TR_Pr_Spec",
             title: "Does your level of ability require special transportation?",
             isRequired: true,
@@ -913,20 +1157,27 @@ const json = {
                     { "value": 2, "text": "No"}
                     
                   ]
-                },
+                },  */
 
+// to remove
 
-           {
+           /*{
           type: "text",
           name: "TP_PR_Ex",
           title: "If yes, describe: ",
           visibleIf: "{TP_Pr_Spec}= 1",
           isRequired: true
-        },
+        },*/
 
 
         //if by car
 
+        {
+    type: "panel",
+    name: "TR_Pr_CarPanel",
+    title: "<span style='font-size:32px; font-weight:bold;'>If you use a car for practices, answer the following 3 questions:</span>",
+    visibleIf: "{TR_Pr} contains 4",
+    elements: [
 
         
          {
@@ -943,7 +1194,7 @@ const json = {
           type: "text",
           name: "TR_Pr_Car_%",
           inputType:"number",
-          title: " How often (in %) do you use the car for practise?",
+          title: " How often (in %) do you use the car for practice?",
           visibleIf: "{TR_Pr} contains 4",
           isRequired: true
         },
@@ -959,9 +1210,32 @@ const json = {
           isRequired: true
         },
 
+
+        // parking cost should be added total yearly car travel cost
+        {
+      type: "expression",
+      name: "TR_Pr_Car_$Y",
+      title: "Total yearly car travel cost",
+      displayStyle: "decimal",
+      precision: 2,
+      visibleIf: "{TR_Pr} contains 4",
+      expression:"{TR_Pr_Car_kmU} * {SP_PR_Freq} * 0.5 * ({TR_Pr_Car_%} / 100)"
+      },
+
+      ]
+
+    },
+
+
+
         // if by public transportation
 
-    
+    {
+    type: "panel",
+    name: "TR_Pr_PublicPanel",
+    title: "<span style='font-size:32px; font-weight:bold;'>If you use public transportation for practices, answer the following questions:</span>",
+    visibleIf: "{TR_Pr} contains 5",
+    elements: [
 
          {
           type: "text",
@@ -972,22 +1246,56 @@ const json = {
           isRequired: true
         },
 
+       
         {
-          type: "slider",
-          name: "TR_Pr_Pub_%",
-          inputType:"number",
-          title: "How often (in %) do you use the public transport for practise?",
-          description: "Min = 0 | Max = 100 | Step = 1",
-          visibleIf: "{TR_Pr} contains 5",
-          isRequired: true
+        type: "text",
+         name: "TR_Pr_Pub_%",
+        titleLocation: "hidden",        
+        inputType: "range",
+        min: 0,
+        max: 100,
+        step: 1,
+        visibleIf: "{TR_Pr} contains 5",
+        valueName: "TR_Pr_Pub_Perc"      
         },
+
+        {
+         type: "text",
+         name: "TR_Pr_Pub_%",
+        title: "How often (in %) do you use the public transport for practice?",
+        inputType: "number",
+        min: 0,
+        max: 100,
+        step: 1,
+        textUpdateMode: "onTyping",
+        visibleIf: "{TR_Pr} contains 5",
+        valueName: "TR_Pr_Pub_%",     
+        isRequired: true
+      },
+
+
+      {
+    type: "expression",
+    name: "TR_Pr_Pub_$Y",
+    title: "Total yearly public transport costs",
+    displayStyle: "decimal",
+    precision: 2,
+    visibleIf: "{TR_Pr} contains 5",   // only if they selected public transport
+    expression: "{TR_Pr_Pub_$U} * {SP_PR_Freq} * ({TR_Pr_Pub_%} / 100)"
+    }
+
+
+
+      ]
+
+    },
 
 
 
             
                
               // 14.b
-
+// to fix pop up
         
             {
       type: "checkbox",
@@ -995,23 +1303,27 @@ const json = {
       title: "For one-day competitions/championships without overnight stay: Which method of transportation do you use? (check all that apply)",
       isRequired: true,
       choices: [
-        { "value": 1, "text": "By foot" },
+        { "value": 1, "text": "By foot/wheeling" },
         { "value": 2, "text": "By Bike" },
         { "value": 3, "text": "By motorbike" },
         { "value": 4, "text": "By family car" },
         { "value": 5, "text": "Public Transportation" },
         { "value": 6, "text": "Have a ride with others/ carpooling" },
         { "value": 7, "text": "Taxi/Private bus" },
-        { "value": 8, "text": "Special transportation" },
+        { "value": 8, "text": "Special transportation, if yes, please explain" },
         { "value": 9, "text": "Other" }
       ],
       showOtherItem: false,
-      colCount: 2
+      colCount: 3
       },
 
 
-      {
-            type: "radiogroup",
+    
+
+ //to remove 2 questions below
+
+      /*{
+            type: "dropdown",
             name: "TR_Comp_Spec",
             title: "Does your level of ability require special transportation?",
             isRequired: true,
@@ -1029,7 +1341,15 @@ const json = {
           title: "If yes, describe: ",
           visibleIf: "{TP_Comp_Spec}= 1",
           isRequired: true
-        },
+        },  */
+
+
+              {
+    type: "panel",
+    name: "TR_Comp_CarPanel",
+    title: "<span style='font-size:32px; font-weight:bold;'>If you use a car for practices, answer the following questions:</span>",
+    visibleIf: "{TR_Comp} contains 4",
+    elements: [
 
 
         //if by car
@@ -1056,14 +1376,49 @@ const json = {
 
        
          {
-          type: "slider",
+          type: "text",
           name: "TR_Comp_Park_$Y",
           inputType:"number",
           title: " How much do you spend on parking costs per year (in total) for one-day competition/championship without overnight stay?",
-          description: "Min = 0 | Max = 100 | Step = 1",
-          visibleIf: "{TR_Pr} contains 4",
+          visibleIf: "{TR_Comp} contains 4",
           isRequired: true
         },
+
+
+        
+        {
+      type: "expression",
+      name: "TR_Comp_Car_$Y",
+      title: "Total yearly car travel cost",
+      displayStyle: "decimal",
+      precision: 2,
+      visibleIf: "{TR_Comp} contains 4",
+      expression:"{TR_Comp_Car_kmU} * {SP_PR_Freq} * 0.5 * ({TR_Comp_Car_%} / 100)"
+      },
+
+      ]
+
+    },
+
+
+    {
+  type: "html",
+  name: "tr_comp_subtitle",
+  visibleIf: "{TR_PR} contains 4",
+  html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      "If you use public transportation for practices, answer the following questions:
+    </div>
+  `
+  },
+
+
+              {
+    type: "panel",
+    name: "TR_Comp_PublicPanel",
+    //title: "If you use public transportation for practices, answer the following questions:",
+    visibleIf: "{TR_Pr} contains 4",
+    elements: [
 
 
         // if by public transportation
@@ -1079,20 +1434,49 @@ const json = {
         },
 
         {
-          type: "slider",
+          type: "text",
           name: "TR_Comp_Pub_%",
           inputType:"number",
-          title: "How often (in %) do you use the public transport for one-day competition/championship without overnight stay?",
-          description: "Min = 0 | Max = 100 | Step = 1",
+          title: "How often (in 0-100%) do you use the public transport for one-day competition/championship without overnight stay?",
           visibleIf: "{TR_Comp} contains 5",
           isRequired: true
         },
 
 
+          {
+      type: "expression",
+      name: "TR_Comp_Pub_$Y",
+      title: "Total yearly public transport costs",
+      displayStyle: "decimal",
+      precision: 2,
+      visibleIf: "{TR_Comp} contains 5",   // only if they selected public transport
+      expression: "{TR_Comp_Pub_$U} * {SP_PR_Freq} * ({TR_Comp_Pub_%} / 100)"
+    }
+
+
+      ]
+
+
+    },
+
+
+    {
+      type: "html",
+      name: "other_transportation_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Other Transportation Costs
+    </div>
+    `
+    },
+
+
         // Special transportation
 
+        // fix pop visible if for special transportation
+
            {
-            type: "radiogroup",
+            type: "dropdown",
             name: "TR_Comp_Spec",
             title: "Do you have other expenditures related to transportation (e.g., taxi, bus, carpooling), SPECIAL TRANSPORTATION COSTS?",
             isRequired: true,
@@ -1116,7 +1500,17 @@ const json = {
 
 
 
-        // 14.C
+        // 14.C   to add ifvisible relevant to #9
+
+                 {
+      type: "html",
+      name: "competitions_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 30px; margin-top: 20px;">
+      Cost of competitions/championships with overnight stay (include ALL expenditures for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)
+    </div>
+    `
+    },
 
 
           {
@@ -1124,6 +1518,7 @@ const json = {
           name: "Cost_O_with_$U",
           inputType:"number",
           title: " ONE-DAY COMPETITIONS WITH OVERNIGHT STAY: How much do you spend on average per ONE-DAY COMPETITION WITH OVERNIGHT STAY?",
+          visibleIf: "{SP_CC_ODWith} > 0",
           isRequired: true
         },
 
@@ -1134,6 +1529,7 @@ const json = {
           name: "Cost_WE_$U",
           inputType:"number",
           title: " WEEK-END COMPETITIONS: How much do you spend on average per WEEK-END COMPETITION?",
+          visibleIf: "{SP_CC_Weekend} > 0",
           isRequired: true
         },
 
@@ -1145,6 +1541,7 @@ const json = {
           name: "Cost_Multi_$U",
           inputType:"number",
           title: " MULTI-DAY COMPETITIONS: How much do you spend on average per MULTI-DAY COMPETION?",
+           visibleIf: "{SP_CC_Multiday} > 0",
           isRequired: true
         },
 
@@ -1158,7 +1555,7 @@ const json = {
 
         
            {
-            type: "radiogroup",
+            type: "dropdown",
             name: "Cost_Vaca",
             title: "Do you go on vacations to primarily play/participate in your sport? (i.e. the first reason for the travel is to play/participate in your sport)",
             isRequired: true,
@@ -1182,7 +1579,7 @@ const json = {
           type: "text",
           name: "Cost_Vaca_$U",
           inputType: "number",
-          title: "If yes, How much do you spend on average per vacation (include ALL expenditure for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)? ",
+          title: "How much do you spend on average per vacation (include ALL expenditure for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)? ",
           visibleIf: "{Cost_Vaca}= 1",
           isRequired: true
         },
@@ -1192,7 +1589,7 @@ const json = {
           type: "text",
           name: "Cost_Vaca_UY",
           inputType:"number",
-          title: "If yes,how many vacations per year?: ",
+          title: "How many vacations per year?: ",
           visibleIf: "{Cost_Vaca}= 1",
           isRequired: true
         },
@@ -1201,7 +1598,15 @@ const json = {
 
 
 
-        
+                   {
+      type: "html",
+      name: "Social_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Social Costs/year
+    </div>
+    `
+    },
 
 
 
@@ -1210,15 +1615,15 @@ const json = {
 
               {
             type: "radiogroup",
-            name: "SOC_F&B",
+            name: "SOC_F&B_P",
             title: "Do you purchase drinks or food before, during, or after your participation (consider practices, one-day games and competitions)?",
             isRequired: true,
             choices: [
-                    { "value": 0, "text": "Never"},
-                    { "value": 1, "text": "Rarely"},
-                    { "value": 2, "text": "Sometimes"},
-                    { "value": 3, "text": "Often"},
-                    { "value": 4, "text": "Always"}
+                    { "value": 0, "text": "Never (0%)"},
+                    { "value": 1, "text": "Rarely (25%)"},
+                    { "value": 2, "text": "Sometimes (50%)"},
+                    { "value": 3, "text": "Often (75%)"},
+                    { "value": 4, "text": "Always (100%)"}
                     
                   ]
                 },
@@ -1226,12 +1631,40 @@ const json = {
 
                   {
           type: "text",
-          name: "SOC_F&B_$U",
+          name: "SOC_F&B_P_$U",
           inputType: "number",
           title: "If yes, how much do you spend on average each time? ",
-          visibleIf: "{SOC_F&B} >= 1",
+          visibleIf: "{SOC_F&B_P} >= 1",
           isRequired: true
         },
+
+
+    //to add another question to separate between practices and one-day competitions without overnight stay
+        
+            /*  {
+            type: "radiogroup",
+            name: "SOC_F&B_O",
+            title: "Do you purchase drinks or food before, during, or after  one-day competitions without overnight stay ",
+            isRequired: true,
+            choices: [
+                    { "value": 0, "text": "Never (0%)"},
+                    { "value": 1, "text": "Rarely (25%)"},
+                    { "value": 2, "text": "Sometimes (50%)"},
+                    { "value": 3, "text": "Often (75%)"},
+                    { "value": 4, "text": "Always (100%)"}
+                    
+                  ]
+                },
+
+
+                  {
+          type: "text",
+          name: "SOC_F&B_O_$U",
+          inputType: "number",
+          title: "If yes, how much do you spend on average each time? ",
+          visibleIf: "{SOC_F&B_O} >= 1",
+          isRequired: true
+        }, */
 
 
 
@@ -1264,6 +1697,16 @@ const json = {
         },
 
 
+                      {
+      type: "html",
+      name: "other_indirect_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Other Indirect Costs/year
+    </div>
+    `
+    },
+
 
         // Other indirect costs
 
@@ -1295,7 +1738,7 @@ const json = {
         // question 18
 
            {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_Body",
             title: "Do you have extra costs to take care of your body (e.g., body crème, …) or to buy special nutrition (e.g., supplements, …) related to your sports participation?",
             isRequired: true,
@@ -1320,7 +1763,7 @@ const json = {
           // question 19
 
             {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_Insur",
             title: "Do you have extra insurance costs related to your sports participation (if not already included in the membership fee)?",
             isRequired: true,
@@ -1345,7 +1788,7 @@ const json = {
         // question 20
 
              {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_BPsitting",
             title: "Do you have extra costs for baby-sitting/pet sitting related to your sports participation?",
             isRequired: true,
@@ -1370,7 +1813,7 @@ const json = {
 
 
                {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_DOC",
             title: "Do you buy specific documentation related to your sports participation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)?",
             isRequired: true,
@@ -1395,7 +1838,7 @@ const json = {
         // Question 22
 
              {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_Spect",
             title: "Do you attend competitions as a spectator related to your sports participation?",
             isRequired: true,
@@ -1420,7 +1863,7 @@ const json = {
         //question 23
 
               {
-            type: "radiogroup",
+            type: "dropdown",
             name: "OIC_Other",
             title: "Do you have any other indirect costs related to your sports participation, not already included?",
             isRequired: true,
@@ -1445,9 +1888,20 @@ const json = {
         // question 24
 
 
+                      {
+      type: "html",
+      name: "earnings_subtitle",
+      html: `
+    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+      Sports Earnings /year
+    </div>
+    `
+    },
+
+
         
               {
-            type: "radiogroup",
+            type: "dropdown",
             name: "SP_Earnings",
             title: "Do you earn money related to your sports participation (e.g., prize money, any other monetary returns,) ?",
             isRequired: true,
@@ -1462,7 +1916,7 @@ const json = {
            {
           type: "text",
           name: "SP_Earnings_EX",
-          title: "If yes, describe: ",
+          title: "Describe: ",
           visibleIf: "{SP_Earnings}= 1",
           isRequired: true
         },
@@ -1487,23 +1941,23 @@ const json = {
 
          {      
       name: "GeneralInformation",
-      title: "Section IV: General Information",
+      title: "Section III: General Information",
        elements: [
-        {
-          type: 'dropdown',
-          title: "What is your gender", 
-          name: 'Gender', 
-          choices: [
-                      'Male',
-                      'Female',
-                      'Other'
-              ],
-          showOtherItem: true,
-          isRequired: true
-        },
+          {
+        type: "dropdown",
+        name: "Gender",
+        title: "Gender",
+        choices: [
+        "Male",
+        "Female"
+        ],
+        showOtherItem: true,
+        otherText: "You don't have an option that applies to me. I identify as:",
+        isRequired: true
+    },
 
 
-
+//dropdown to 100
         {
           type: "text",
           name: "Age",
@@ -1512,16 +1966,22 @@ const json = {
           isRequired: true
         },
 
-
+//dropdown to 20
           {
           type: "text",
           name: "HH_N",
           inputType:"number",
-          title: "How many family members in your household (under the same roof)?  ",
+          title: "How many members in your household (under the same roof)?  ",
           isRequired: true
         },
 
 
+
+        // to add position in household: add sole occupant to choices
+
+
+
+        //columns 2
 
              {
             type: "radiogroup",
@@ -1546,7 +2006,7 @@ const json = {
 
 
 
-
+                // make it 2 columns
              {
             type: "radiogroup",
             name: "HH_Income",
@@ -1649,7 +2109,7 @@ const json = {
           name: "Sport_past",
           title: "Sport",
           cellType: "text",
-          isRequired: true,
+          isRequired: false,
           width: "25%"
         },
 
@@ -1657,14 +2117,14 @@ const json = {
         {
       
           name: "Sport_past_Context",
-          title: "Current context",
+          title: "Past context",
           cellType: "radiogroup",
           choices: [
             { "value": "non_org", "text": "Non-org" },
             { "value": "club",    "text": "Club" },
             { "value": "school",  "text": "School" }
           ],
-          isRequired: true,
+          isRequired: false,
           width: "40%"
         },
 
@@ -1673,13 +2133,13 @@ const json = {
         //1= non-org, 2=club 3=school
         {
           name: "Sport_past_level",
-          title: "Current level",
+          title: "Past level",
           cellType: "radiogroup",
           choices: [
             { "value": "recreational", "text": "Mainly recreational" },
             { "value": "competitive",  "text": "Mainly competitive" }
           ],
-          isRequired: true,
+          isRequired: false,
           width: "35%"
         },
         {
@@ -1690,10 +2150,102 @@ const json = {
           min: 0,
           max: 99,
           placeholder: "0",
-          isRequired: true,
+          isRequired: false,
           width: "25%"
         }
       ]
+    },
+
+
+    {      
+      name: "Section Ability",
+      title: "Section IV:  Ability",
+       elements: [
+        {
+          type: 'dropdown',
+          title: "Ability Timing", 
+          name: 'AB_Timing', 
+          choices: [
+                      'Congenital',
+                      'Acquired',
+                      'Able-body',
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+          {
+          type: 'dropdown',
+          title: "Classification of disabilities",
+          name: 'AB_Class',
+          choices: [
+                      'Mobility',
+                      'Vision',
+                      'Hearing',
+                      'Cognitive function'
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+
+        {
+          type: "radiogroup",
+          name: "AB_Loi",
+          title: "How would you rate your ability to perform daily tasks?",
+          isRequired: true,
+          choices: [
+                    { "value": 1, "text": "1 - Total Assistance — Dependent, requires full help from others." },
+                    { "value": 2, "text": "2 - Maximal Assistance — Needs 75% help to complete tasks." },
+                    { "value": 3, "text": "3 - Moderate Assistance — Needs 50% help to complete tasks." },
+                    { "value": 4, "text": "4 - Minimal Assistance — Needs 25% help to complete tasks." },
+                    { "value": 5, "text": "5 - Supervision or Setup — Requires supervision or verbal cues." },
+                    { "value": 6, "text": "6 - Modified Independance — Uses assistive devices but no help needed." },
+                    { "value": 7, "text": "7 - Complete Independance — No assistance, performs safely." }
+                  ]
+                },
+
+        {
+          type: 'dropdown',
+          title: "Does your ability require adaptive equipment in your daily life?", 
+          name: 'AB_EQ_DL', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+
+        
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL} = 'yes'",
+          isRequired: true
+        },
+
+
+       /* {
+          type: 'dropdown',
+          title: "Does your ability require adaptive equipment to participate this sport?", 
+          name: 'AB_EQ_DL_Ex', 
+          choices: [
+                      'Yes',
+                      'No',
+                      
+              ]
+        },
+        
+        {
+          type: "comment",
+          name: "adaptive_equipment_explanation",
+          title: "If yes, please explain:",
+          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+          isRequired: true
+        },*/
+
+        ]
     },
 
 
@@ -1709,6 +2261,8 @@ const json = {
 
    ]
 }
+
+// at the end, the excel csv how can the researchers have it if the user does the questionnaire from their phone.
 
 var EN_CostOfSport = {}
 EN_CostOfSport.title = title;

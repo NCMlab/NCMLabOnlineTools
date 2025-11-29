@@ -21,6 +21,46 @@ const json = {
 
 
 
+        {
+      type: "text",
+      name: "TR_Pr_Pub_Perc",
+      inputType: "range",
+      title: "How often (in %) do you use the public transport for practice?",
+      min: 0,
+      max: 100,
+      step: 1
+      },
+
+
+      // Numeric input (visible)
+  {
+  type: "text",
+  name: "TR_Pr_Pub_Perc_Input",
+  title: "How often (in %) do you use the public transport for practice?",
+  inputType: "number",
+  min: 0,
+  max: 100,
+  step: 1,
+  textUpdateMode: "onTyping",
+  valueName: "TR_Pr_Pub_Perc",   // underlying stored value
+  isRequired: true
+  },
+
+// Slider (range input) bound to the same value
+  {
+  type: "text",
+  name: "TR_Pr_Pub_Perc_Slider",
+  titleLocation: "hidden",
+  inputType: "range",
+  min: 0,
+  max: 100,
+  step: 1,
+  valueName: "TR_Pr_Pub_Perc"    // same stored value
+  },
+
+
+
+
         
         {
 
