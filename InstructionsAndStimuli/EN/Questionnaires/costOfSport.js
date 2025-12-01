@@ -1677,9 +1677,23 @@ const json = {
         },
 
 
+        {
+        type: "expression",
+        name: "SOC_F&B_P_$Y",
+        title: "Food & Drink Costs / YEAR (Practices)",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{SOC_F&B_P} >= 1",
+        expression: "{SP_PR_Freq} * ({SOC_F&B_P} * 0.25) * {SOC_F&B_P_$U}"
+        },
+
+
+       // "{SOC_F&B} * {SOC_F&B_$U} * ({SP_PR_Freq} + {SP_CC_ODWithout})"    total practice
+
+
     //to add another question to separate between practices and one-day competitions without overnight stay
         
-            /*  {
+            {
             type: "radiogroup",
             name: "SOC_F&B_O",
             title: "Do you purchase drinks or food before, during, or after  one-day competitions without overnight stay ",
@@ -1695,14 +1709,37 @@ const json = {
                 },
 
 
-                  {
+         {
           type: "text",
           name: "SOC_F&B_O_$U",
           inputType: "number",
           title: "If yes, how much do you spend on average each time? ",
           visibleIf: "{SOC_F&B_O} >= 1",
           isRequired: true
-        }, */
+        }, 
+
+
+        {
+        type: "expression",
+        name: "SOC_F&B_O_$Y",
+        title: "Food & Drink Costs / YEAR (One-day competitions without overnight stay)",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{SOC_F&B_O} >= 1",
+        expression: "{SP_CC_ODWithout} * ({SOC_F&B_O} * 0.25) * {SOC_F&B_O_$U}"
+      },
+
+
+      {
+       type: "expression",
+       name: "SOC_F&B_$Y",
+       title: "Total Food & Drink Costs / YEAR",
+       displayStyle: "decimal",
+       precision: 2,
+       expression: "({SP_PR_Freq} * ({SOC_F&B_P} * 0.25) * {SOC_F&B_P_$U})" + " + ({SP_CC_ODWithout} * ({SOC_F&B_O} * 0.25) * {SOC_F&B_O_$U})"
+      },
+
+
 
 
 
