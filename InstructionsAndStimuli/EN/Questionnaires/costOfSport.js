@@ -213,7 +213,7 @@ const json = {
         {
           type: "comment",
           name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
+          title: "Please explain:",
           visibleIf: "{SP_Class} = 'yes'",
           isRequired: true
         },
@@ -249,7 +249,7 @@ const json = {
         {
           type: "comment",
           name: "SP_Context_Ex",
-          title: "If other, please explain:",
+          title: "Please explain:",
           visibleIf: "{SP_Context}= 4",
           isRequired: true
         },
@@ -273,7 +273,7 @@ const json = {
           {
           type: "comment",
           name: "SP_Level_Ex",
-          title: "If other, please explain:",
+          title: "Please explain:",
           visibleIf: "{SP_Level}=5",
           isRequired: true
         },
@@ -312,7 +312,7 @@ const json = {
           {
           type: "comment",
           name: "SP_Fac_Ex",
-          title: "If other, please explain:",
+          title: "Please explain:",
           visibleIf: "{SP_Fac}= 4",
           isRequired: true
         },
@@ -526,8 +526,9 @@ const json = {
                 },
 
           {
-          type: "comment",
+          type: "text",
           name: "Cost_Memb_$Y",
+          inputType:"number",
           title: "If yes, how much per year:",
           visibleIf: "{Cost_Memb}= 1",
           isRequired: true
@@ -549,8 +550,9 @@ const json = {
                 },
 
           {
-          type: "comment",
+          type: "text",
           name: "Cost_Lic_$Y",
+          inputType:"number",
           title: "If yes, how much per year:",
           visibleIf: "{Cost_Lic}= 1",
           isRequired: true
@@ -571,8 +573,9 @@ const json = {
                 },
 
           {
-          type: "comment",
+          type: "text",
           name: "Cost_PF_$Y",
+          inputType:"number",
           title: "If yes, how much per year:",
           visibleIf: "{Cost_PF}= 1",
           isRequired: true
@@ -594,8 +597,9 @@ const json = {
                 },
 
           {
-          type: "comment",
+          type: "text",
           name: "Cost_COMP_$Y",
+          inputType:"number",
           title: "If yes, how much per year:",
           visibleIf: "{Cost_COMP}= 1",
           isRequired: true
@@ -891,9 +895,9 @@ const json = {
 
       {
          type: "expression",
-         name: "SP_APP_$Y_Total",
-        title: "Sub-total (a): Total write-off per year (all apparel items)",
-        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         name: "SP_Equip_$Y_Total",
+        title: "Sub-total b: Total write-off per year (all equipment items)",
+        expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
          displayStyle: "currency",
         currency: "CAD",
         currencyDisplay: "code",
@@ -939,9 +943,9 @@ const json = {
 
       {
          type: "expression",
-         name: "SP_APP_$Y_Total",
-        title: "Sub-total (a): Total write-off per year (all apparel items)",
-        expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+         name: "SP_AddEquip_$Y_Total",
+        title: "Sub-total (c): Total write-off per year (additonal items)",
+        expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
          displayStyle: "currency",
         currency: "CAD",
         currencyDisplay: "code",
@@ -2014,7 +2018,7 @@ const json = {
         // SECTION IV : General information
 
 
-         {      
+      {      
       name: "GeneralInformation",
       title: "Section III: General Information",
        elements: [
@@ -2301,6 +2305,10 @@ const json = {
         },
 
 
+
+      
+
+
        /* {
           type: 'dropdown',
           title: "Does your ability require adaptive equipment to participate this sport?", 
@@ -2332,6 +2340,47 @@ const json = {
          
         ]
     },
+
+
+     {      
+      name: "GeneralInformation",
+      title: "Results: Cost of sports ",
+       elements: [
+
+
+        {
+        type: "expression",
+        name: "MEMB_ENTR",             
+        title: "Total Membership, License, Participation & Entrance Costs / YEAR",
+        displayStyle: "decimal",
+        precision: 2,
+        expression: "{Cost_Memb_$Y}" + " + {Cost_Lic_$Y}" + " + {Cost_PF_$Y}" + " + {Cost_Comp_$Y}" + " + {Cost_Entr_$Y}"
+      },
+
+      {
+    type: "expression",
+    name: "COACHING",
+    title: "Coaching",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+       ]
+
+
+      },
      
 
    ]
