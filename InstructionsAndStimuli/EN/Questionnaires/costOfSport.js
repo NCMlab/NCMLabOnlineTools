@@ -320,8 +320,8 @@ const json = {
          {
            name: "SP_Fac_PC",
            type: "text",
-           title: "Can you provide the postal code or name of the city of the facility where you play/practice most frequently?",
-           minLength: 6,
+           title: "Can you provide the first 3 characters of the postal code or name of the city of the facility where you play/practice most frequently?",
+           minLength: 3,
            isRequired: true
           },
 
@@ -332,6 +332,7 @@ const json = {
       type: "html",
       name: "practice_intro",
       html: `
+      <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
        Please provide the following detailed information below about your participation last year. We make a distinction between practices and games/competition.<br><br>
       <b>a) Practices</b><br>
       1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
@@ -417,6 +418,7 @@ const json = {
       type: "html",
       name: "competitions_intro",
       html: `
+      <div style="font-weight: bold; font-size: 30px; margin-top: 20px;">
       <b>b) In this section we will be talking about COMPETITIONS/CHAMPIONSHIPS</b><br><br>
       `
     },
@@ -494,7 +496,8 @@ const json = {
                     { "value": 10, "text": "> 10,000.00 CAD/yr"},
                     
           
-                  ]
+                  ],
+                colCount: 2,
                 },
 
 
@@ -785,7 +788,7 @@ const json = {
         {
           type: "comment",
           name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
+          title: "Please explain:",
           visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
           isRequired: true
         },
@@ -796,7 +799,7 @@ const json = {
       type: "html",
       name: "apparel_subtitle",
       html: `
-    
+      <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
       Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
       the quantity, the number of months or years you actually use it, and the price per unit:
       
@@ -863,7 +866,7 @@ const json = {
       columns: [
         { name: "SP_Equip_Describe",  title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
         { name: "SP_Equip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-        { name: "SP_Equip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
         { name: "SP_Equip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
         {
           
@@ -912,7 +915,7 @@ const json = {
       columns: [
         { name: "SP_AddEquip_Describe",  title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
         { name: "SP_AddEquip_Quantity",   title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-        { name: "SP_AddEquip_Usage", title: "Months/yr usage", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+        { name: "SP_AddEquip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
         { name: "SP_AddEquip_$U",  title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
         {
 
@@ -970,7 +973,7 @@ const json = {
         { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
         { "value": 8, "text": "Other (please describe)" }
       ],
-      colCount: 3
+      colCount: 2
       },
 
       {
@@ -1137,37 +1140,12 @@ const json = {
         { "value": 5, "text": "Public Transportation" },
         { "value": 6, "text": "Have a ride with others/ carpooling" },
         { "value": 7, "text": "Taxi/Private bus" },
-        { "value": 8, "text": "Special transportation, if yes, please explain" },
+        { "value": 8, "text": "Special transportation" },
         { "value": 9, "text": "Other" }
       ],
       showOtherItem: false,
       colCount: 3
       },
-
-
-  //to remove
-  /*
-      {
-            type: "dropdown",
-            name: "TR_Pr_Spec",
-            title: "Does your level of ability require special transportation?",
-            isRequired: true,
-            choices: [
-                    { "value": 1, "text": "Yes"},
-                    { "value": 2, "text": "No"}
-                    
-                  ]
-                },  */
-
-// to remove
-
-           /*{
-          type: "text",
-          name: "TP_PR_Ex",
-          title: "If yes, describe: ",
-          visibleIf: "{TP_Pr_Spec}= 1",
-          isRequired: true
-        },*/
 
 
         //if by car
@@ -1522,6 +1500,16 @@ const json = {
           isRequired: true
         },
 
+        {
+        type: "expression",
+        name: "Cost_O_with_$Y",
+        title: "Total Yearly Cost: One-day competitions with overnight stay",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{SP_CC_ODWith} > 0",
+        expression: "{Cost_O_with_$U} * {SP_CC_ODWith}"
+        },
+
 
 
           {
@@ -1535,6 +1523,18 @@ const json = {
 
 
 
+        {
+        type: "expression",
+        name: "Cost_WE_$Y",
+        title: "Total Yearly Cost: One-day competitions with overnight stay",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{SP_CC_Weekend} > 0",
+        expression: "{Cost_WE_$U} * {SP_CC_Weekend}"
+        },
+
+
+
         
           {
           type: "text",
@@ -1544,6 +1544,20 @@ const json = {
            visibleIf: "{SP_CC_Multiday} > 0",
           isRequired: true
         },
+
+
+          {
+        type: "expression",
+        name: "Cost_Multi_$Y",
+        title: "Total Yearly Cost: One-day competitions with overnight stay",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{SP_CC_Multiday} > 0",
+        expression: "{Cost_Multi_$U} * {SP_CC_Multiday}"
+        },
+
+
+
 
 
 
@@ -1594,6 +1608,30 @@ const json = {
           isRequired: true
         },
         
+
+
+          {
+        type: "expression",
+        name: "Cost_Vaca_$Y",
+        title: "Total Yearly Vacations cost",
+        displayStyle: "decimal",
+        precision: 2,
+        visibleIf: "{Cost_Vaca} = 1",
+        expression: "{Cost_Vaca_$U} * {Cost_Vaca_UY}"
+        },
+
+
+
+        {
+      type: "expression",
+      name: "TR_$Y_Total",
+      title: "Total Travel & Transportations Costs / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{TR_Pr_Car_$Y}" + "+ {TR_Pr_Pub_$Y}" + "+ {TR_Comp_Car_$Y}" + "+ {TR_COMP_PUB_$Y}" + "+ {Cost_O_with_$Y}" + "+ {TR_Other_$Y}" +
+       "+ {Cost_WE_$Y}" + "+ {Cost_Mult_$Y}" + "+ {Cost_Vaca_$Y}"
+      },
+
       
 
 
