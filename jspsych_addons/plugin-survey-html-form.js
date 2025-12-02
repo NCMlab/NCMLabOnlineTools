@@ -226,10 +226,11 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                     break;
                 case 'text':
                     console.log(thisQuestion.name)
-                    Str += '<div class="surveyFormTitle surveyFormDiv surveyFormTime" id="div-'+thisQuestion.name+'">'
+                    Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
+                    Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
                     Str += thisQuestion.title
-                    Str += ':  <input class="timeInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                    Str += '</div><p><hr>'
+                    Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                    Str += '</div><hr>'
                 default:
                     console.log("========= DEFAULT ==========")
                         console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")

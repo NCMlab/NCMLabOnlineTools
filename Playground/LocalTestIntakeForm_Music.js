@@ -66,8 +66,8 @@ const json = {
           title: "What units did you use for height?", 
           name: 'HeightUnits', 
           choices: [
-                      'Inches',
-                      'Centimeters',
+                      {value: 1, text: 'Inches'},
+                      {value: 2, text: 'Centimeters'},
               ],
           showOtherItem: false,
           isRequired: true
@@ -87,8 +87,8 @@ const json = {
           title: "What units did you use for weight?", 
           name: 'HeightUnits', 
           choices: [
-                      'Pounds',
-                      'Kilograms',
+                      {value: 1, text: 'Pounds'},
+                      {value: 2, text: 'Kilograms'},
               ],
           showOtherItem: false,
           isRequired: true
@@ -98,12 +98,12 @@ const json = {
           title: "What is the highest level of education you have completed?", 
           name: 'Edu', 
           choices: [
-                      'No formal education',
-                      'High school diploma or equivalent',
-                      'College or Trade school',
-                      'Bachelor’s degree',
-                      'Master’s degree',
-                      'Doctoral degree'
+                      {value: 1, text: 'No formal education'},
+                      {value: 2, text: 'High school diploma or equivalent'},
+                      {value: 3, text: 'College or Trade school'},
+                      {value: 4, text: 'Bachelor\’s degree'},
+                      {value: 5, text: 'Master\’s degree'},
+                      {value: 6, text: 'Doctoral degree'}
               ],
           showOtherItem: true,
           isRequired: true
@@ -113,10 +113,10 @@ const json = {
           title: "What is your employment status?", 
           name: 'Employ', 
           choices: [
-                      'Employed full-time',
-                      'Employed part-time',
-                      'Retired',
-                      'Unemployed'
+                      {value: 1, text: 'Employed full-time'},
+                      {value: 2, text: 'Employed part-time'},
+                      {value: 3, text: 'Retired'},
+                      {value: 4, text: 'Unemployed'}
               ],
           showOtherItem: true,
           isRequired: true
@@ -134,11 +134,11 @@ const json = {
           title: "Do you live alone or with others?", 
           name: 'Living', 
           choices: [
-                  'Alone',
-                  'With spouse / partner',
-                  'With family members',
-                  'With caregivers',
-                  'In assisted living facility'
+                  {value: 1, text: 'Alone'},
+                  {value: 2, text: 'With spouse / partner'},
+                  {value: 3, text: 'With family members'},
+                  {value: 4, text: 'With caregivers'},
+                  {value: 5, text: 'In assisted living facility'}
               ],
           showOtherItem: true,
           isRequired: true,
@@ -153,7 +153,10 @@ const json = {
           name: "LanguageProblem",
           type: "dropdown",
           title: "Are there any language or communication challenges you have?",
-          choices: ["Yes", "No"],
+          choices: [
+              {value: 1, text: "Yes"}, 
+              {value: 2, text: "No"}
+              ],
           isRequired: true,
         }, 
         {
@@ -184,10 +187,10 @@ const json = {
           title: 'What is your marital status?',
           choices: 
           [   
-              'Single',
-              'Married',
-              'Divorced',
-              'Widowed'
+              {value: 1, text: 'Single'},
+              {value: 2, text: 'Married'},
+              {value: 3, text: 'Divorced'},
+              {value: 4, text: 'Widowed'}
           ],
           name: 'marital',
           showOtherItem: true,                    
@@ -213,11 +216,11 @@ const json = {
           title: 'Which of the following statements best describes the extent to which your needs are met currently?',
           choices: 
           [
-            "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month",
-            "Food, housing, clothing and medical needs are met - you can not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) are not met",
-            "Two or more of the basic needs are not met",
-            "I don't know"
+            {value: 1, text: "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month"},
+            {value: 2, text: "Food, housing, clothing and medical needs are met - you can not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) are not met"},
+            {value: 4, text: "Two or more of the basic needs are not met"},
+            {value: 99, text: "I don't know"}
           ],
           name: 'CurrentNeeds',
           isRequired: true,
@@ -227,11 +230,11 @@ const json = {
           title: 'Which of the following statements best describes the extent to which your needs were met during the majority of your adult life?',
           choices: 
           [
-            "Food, housing, clothing and medical needs were met - you could afford luxuries",
-            "Food, housing, clothing and medical needs were met - you could not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) were not met",
-            "Two or more of the basic needs were not met",
-            "I don't know"
+            {value: 1, text: "Food, housing, clothing and medical needs were met - you could afford luxuries"},
+            {value: 2, text: "Food, housing, clothing and medical needs were met - you could not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) were not met"},
+            {value: 4, text: "Two or more of the basic needs were not met"},
+            {value: 99, text: "I don't know"}
           ],
           name: 'PastNeeds',
           isRequired: true,
@@ -249,9 +252,9 @@ const json = {
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
           ],
           isRequired: true,
           //add_other_option: true,                    
@@ -278,9 +281,9 @@ const json = {
           title: 'Do you have hearing loss?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
           ],
           name: 'HearingLoss',
           isRequired: true,
@@ -292,9 +295,9 @@ const json = {
         title: 'What type of hearing loss do you have?',
         choices: 
         [
-            "Bilateral",
-            "Unilateral",
-            "Not sure"
+            {value: 1, text: "Bilateral"},
+            {value: 2, text: "Unilateral"},
+            {value: 3, text: "Not sure"}
         ],
         name: 'HearingLossType',
         visibleIf: "{HearingLoss} == Yes",
@@ -307,10 +310,10 @@ const json = {
       title: 'What is your level of hearing loss?',
       choices: 
       [
-          "Mild",
-          "Moderate",
-          "Severe",
-          "Not sure"
+          {value: 1, text: "Mild"},
+          {value: 2, text: "Moderate"},
+          {value: 3, text: "Severe"},
+          {value: 99, text: "Not sure"}
       ],
       visibleIf: "{HearingLoss} == Yes",
       name: 'HearingLossLevel',
@@ -323,8 +326,8 @@ const json = {
       title: 'Do you have any other health issues?',
       choices: 
       [
-          "Yes",
-          "No"
+          {value: 1, text: "Yes"},
+          {value: 2, text: "No"}
       ],
       name: 'OtherHealthIssues',
       isRequired: true,
@@ -349,7 +352,14 @@ const json = {
           title: 'How many days do you exercise per week?',
           choices: 
           [
-              "0", "1","2","3","4","5","6","7"
+              {value: 1, text: "0"}, 
+              {value: 1, text: "1"},
+              {value: 1, text: "2"},
+              {value: 1, text: "3"},
+              {value: 1, text: "4"},
+              {value: 1, text: "5"},
+              {value: 1, text: "6"},
+              {value: 1, text: "7"}
           ],
           name: 'ExerciseFrequency',
           isRequired: true,
