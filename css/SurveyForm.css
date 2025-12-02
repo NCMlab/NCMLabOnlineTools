@@ -16,6 +16,17 @@
   text-align: center;
   width: 80%;
 }
+
+.textInput {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  width: 80%;
+}
+
+
 .surveyFormLabel, .tableSubmitButton, .surveyFormResponseLabel, .surveyFormSubTitle{
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.5rem;
