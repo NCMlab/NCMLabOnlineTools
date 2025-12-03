@@ -2090,6 +2090,23 @@ const json = {
 
         // to add position in household: add sole occupant to choices
 
+        {
+      type: "radiogroup",
+      name: "HH_Position",
+      title: "What is your position in this household?",
+      isRequired: true,
+      choices: [
+         "Son",
+        "Daughter",
+        "Spouse",
+        "Parent",
+        "Guardian",
+        "Sole occupant"
+      ],
+    showOtherItem: true,
+    otherText: "Other (please specify):"
+    },
+
 
 
         //columns 2
@@ -2138,132 +2155,10 @@ const json = {
 
 
 
-            {
-      type: "matrixdynamic",
-      name: "Sport_current",
-      title: "CURRENTLY (top three)",
-      rowCount: 3,
-      minRowCount: 3,
-      maxRowCount: 3,
-      allowAddRows: false,
-      allowRemoveRows: false,
-      columns: [
+    
 
 
-        {
-          name: "Sport_Curr",
-          title: "Sport",
-          cellType: "text",
-          isRequired: true,
-          width: "25%"
-        },
-
-
-        {
-      
-          name: "Sport_Curr_Context",
-          title: "Current context",
-          cellType: "radiogroup",
-          choices: [
-            { "value": "non_org", "text": "Non-org" },
-            { "value": "club",    "text": "Club" },
-            { "value": "school",  "text": "School" }
-          ],
-          isRequired: true,
-          width: "40%"
-        },
-
-        //to verify if mainly recreational or competitive is added together or separated (only choose one)
-        //1=mainly recreational 2=mainly competitve
-        //1= non-org, 2=club 3=school
-        {
-          name: "Sport_Curr_level",
-          title: "Current level",
-          cellType: "radiogroup",
-          choices: [
-            { "value": "recreational", "text": "Mainly recreational" },
-            { "value": "competitive",  "text": "Mainly competitive" }
-          ],
-          isRequired: true,
-          width: "35%"
-        },
-        {
-          name: "Sport_Curr_nY",
-          title: "Years",
-          cellType: "text",
-          inputType: "number",
-          min: 0,
-          max: 99,
-          placeholder: "0",
-          isRequired: true,
-          width: "25%"
-        }
-      ]
-    },
-
-
-
-
-    {
-      type: "matrixdynamic",
-      name: "Sport_previous",
-      title: "In the Past (top three)",
-      rowCount: 3,
-      minRowCount: 3,
-      maxRowCount: 3,
-      allowAddRows: false,
-      allowRemoveRows: false,
-      columns: [
-
-
-        {
-          name: "Sport_past",
-          title: "Sport",
-          cellType: "text",
-          isRequired: false,
-          width: "25%"
-        },
-
-
-        {
-      
-          name: "Sport_past_Context",
-          title: "Past context",
-          cellType: "radiogroup",
-          choices: [
-            { "value": "non_org", "text": "Non-org" },
-            { "value": "club",    "text": "Club" },
-            { "value": "school",  "text": "School" }
-          ],
-          isRequired: false,
-          width: "40%"
-        },
-
-        //to verify if mainly recreational or competitive is added together or separated (only choose one)
-        //1=mainly recreational 2=mainly competitve
-        //1= non-org, 2=club 3=school
-        {
-          name: "Sport_past_level",
-          title: "Past level",
-          cellType: "radiogroup",
-          choices: [
-            { "value": "recreational", "text": "Mainly recreational" },
-            { "value": "competitive",  "text": "Mainly competitive" }
-          ],
-          isRequired: false,
-          width: "35%"
-        },
-        {
-          name: "Sport_past_nY",
-          title: "Years",
-          cellType: "text",
-          inputType: "number",
-          min: 0,
-          max: 99,
-          placeholder: "0",
-          isRequired: false,
-          width: "25%"
-        }
+       
       ]
     },
 
@@ -2363,15 +2258,7 @@ const json = {
         ]
     },
 
-
-
-
-
-      
-
-         
-        ]
-    },
+    
 
 
      {      
