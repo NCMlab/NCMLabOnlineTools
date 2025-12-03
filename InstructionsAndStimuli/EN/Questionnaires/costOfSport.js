@@ -288,7 +288,7 @@ const json = {
         
         {
           type: "comment",
-          name: "adaptive_equipment_explanation",
+          name: "SP_Class_Ex",
           title: "Please explain:",
           visibleIf: "{SP_Class} = 'yes'",
           isRequired: true
@@ -1153,7 +1153,7 @@ const json = {
           type: "text",
           name: "EQ_Maint_$U",
           inputType:"number",
-          title: "How much do you spend on average per rental?",
+          title: "How much do you spend on average per maintenance?",
           visibleIf: "{EQ_Maint}= 1",
           isRequired: true
         },
@@ -1163,7 +1163,7 @@ const json = {
           type: "text",
           name: "EQ_Maint_UY",
           inputType:"number",
-          title: "How often do you rent per year?",
+          title: "How often do perform maintenance per year?",
           visibleIf: "{EQ_Maint}= 1",
           isRequired: true
         },
@@ -1248,7 +1248,7 @@ const json = {
         {
     type: "panel",
     name: "TR_Pr_CarPanel",
-    title: "<span style='font-size:32px; font-weight:bold;'>If you use a car for practices, answer the following 3 questions:</span>",
+    title: "If you use a car for practices, answer the following 3 questions:",
     visibleIf: "{TR_Pr} contains 4",
     elements: [
 
@@ -1306,7 +1306,7 @@ const json = {
     {
     type: "panel",
     name: "TR_Pr_PublicPanel",
-    title: "<span style='font-size:32px; font-weight:bold;'>If you use public transportation for practices, answer the following questions:</span>",
+    title: "If you use public transportation for practices, answer the following questions:",
     visibleIf: "{TR_Pr} contains 5",
     elements: [
 
@@ -1319,32 +1319,15 @@ const json = {
           isRequired: true
         },
 
-       
-        {
-        type: "text",
-         name: "TR_Pr_Pub_%",
-        titleLocation: "hidden",        
-        inputType: "range",
-        min: 0,
-        max: 100,
-        step: 1,
-        visibleIf: "{TR_Pr} contains 5",
-        valueName: "TR_Pr_Pub_Perc"      
-        },
-
-        {
-         type: "text",
-         name: "TR_Pr_Pub_%",
-        title: "How often (in %) do you use the public transport for practice?",
-        inputType: "number",
-        min: 0,
-        max: 100,
-        step: 1,
-        textUpdateMode: "onTyping",
-        visibleIf: "{TR_Pr} contains 5",
-        valueName: "TR_Pr_Pub_%",     
-        isRequired: true
-      },
+     {
+      type: "text",
+      name: "TR_Pr_Pub_%",
+      inputType: "number",
+      min: 0,
+      max: 100,
+      title: "How often (in %) do you use public transport?",
+      isRequiredIf: "{TR_Pr} contains 5"
+    },
 
 
       {
@@ -1354,7 +1337,7 @@ const json = {
     displayStyle: "decimal",
     precision: 2,
     visibleIf: "{TR_Pr} contains 5",   // only if they selected public transport
-    expression: "{TR_Pr_Pub_$U} * {SP_PR_Freq} * ({TR_Pr_Pub_%} / 100)"
+    expression: "(({TR_Pr_Pub_$U} || 0) * ({SP_PR_Freq} || 0) * (({TR_Pr_Pub_%} || 0) / 100))"
     }
 
 
@@ -1391,36 +1374,25 @@ const json = {
       },
 
 
-    
 
- //to remove 2 questions below
-
-      /*{
-            type: "dropdown",
-            name: "TR_Comp_Spec",
-            title: "Does your level of ability require special transportation?",
-            isRequired: true,
-            choices: [
-                    { "value": 1, "text": "Yes"},
-                    { "value": 2, "text": "No"}
-                    
-                  ]
-                },
+      {
+       type: "html",
+       name: "tr_comp_car_subtitle",
+       visibleIf: "{TR_Comp} contains 4",
+       html: `
+        <div style="font-size: 30px; font-weight: bold; margin-top: 28px; margin-bottom: 12px;">
+        If you use a car for one-day competitions, answer the following:
+        </div>
+        `
+      },
 
 
-           {
-          type: "text",
-          name: "TP_Comp_Ex",
-          title: "If yes, describe: ",
-          visibleIf: "{TP_Comp_Spec}= 1",
-          isRequired: true
-        },  */
 
 
-              {
+   {
     type: "panel",
     name: "TR_Comp_CarPanel",
-    title: "<span style='font-size:32px; font-weight:bold;'>If you use a car for practices, answer the following questions:</span>",
+    titleLocation: "hidden",
     visibleIf: "{TR_Comp} contains 4",
     elements: [
 
@@ -1466,7 +1438,7 @@ const json = {
       displayStyle: "decimal",
       precision: 2,
       visibleIf: "{TR_Comp} contains 4",
-      expression:"{TR_Comp_Car_kmU} * {SP_PR_Freq} * 0.5 * ({TR_Comp_Car_%} / 100)"
+      expression:"({TR_Comp_Car_kmU} || 0) * ({SP_PR_Freq} || 0) * 0.5 * (({TR_Comp_Car_%} || 0) / 100)"
       },
 
       ]
@@ -1476,21 +1448,20 @@ const json = {
 
     {
   type: "html",
-  name: "tr_comp_subtitle",
-  visibleIf: "{TR_PR} contains 4",
+  name: "tr_comp_public_subtitle",
+  visibleIf: "{TR_Comp} contains 5",
   html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      "If you use public transportation for practices, answer the following questions:
+    <div style="font-size: 30px; font-weight: bold; margin-top: 24px; margin-bottom: 10px;">
+      If you use public transportation for one-day competitions, answer the following:
     </div>
   `
-  },
+},
 
 
               {
     type: "panel",
     name: "TR_Comp_PublicPanel",
-    //title: "If you use public transportation for practices, answer the following questions:",
-    visibleIf: "{TR_Pr} contains 4",
+    visibleIf: "{TR_Comp} contains 5",
     elements: [
 
 
@@ -1522,8 +1493,8 @@ const json = {
       title: "Total yearly public transport costs",
       displayStyle: "decimal",
       precision: 2,
-      visibleIf: "{TR_Comp} contains 5",   // only if they selected public transport
-      expression: "{TR_Comp_Pub_$U} * {SP_PR_Freq} * ({TR_Comp_Pub_%} / 100)"
+      visibleIf: "{TR_Comp} contains 5",   
+      expression: "(({TR_Comp_Pub_$U} || 0) * ({SP_PR_Freq} || 0) * (({TR_Comp_Pub_%} || 0) / 100))"
     }
 
 
@@ -1565,7 +1536,7 @@ const json = {
           type: "text",
           name: "TP_Comp_Ex",
           title: "If yes, how much do you spend on average per year?: ",
-          visibleIf: "{TP_Comp_Spec}= 1",
+          visibleIf: "{TR_Comp_Spec}= 1",
           isRequired: true
         },
 
@@ -2129,21 +2100,21 @@ const json = {
 
 //dropdown to 100
         {
-          type: "text",
-          name: "Age",
-          inputType:"number",
-          title: "Your age:  ",
-          isRequired: true
-        },
+         type: "dropdown",
+        name: "Age",
+        title: "Your age:",
+        isRequired: true,
+        choices: Array.from({ length: 100 }, (_, i) => i + 1) // 1–100
+      },
 
 //dropdown to 20
           {
-          type: "text",
-          name: "HH_N",
-          inputType:"number",
-          title: "How many members in your household (under the same roof)?  ",
-          isRequired: true
-        },
+        type: "dropdown",
+        name: "HH_N",
+        title: "How many members in your household (under the same roof)?",
+        isRequired: true,
+        choices: Array.from({ length: 20 }, (_, i) => i + 1) // 1–20
+      },
 
 
 
@@ -2188,7 +2159,8 @@ const json = {
                     { "value": 10, "text": "Prefer not to answer"},
                     
           
-                  ]
+                  ],
+                  colCount: 2,
                 },
 
 
@@ -2198,6 +2170,7 @@ const json = {
             type: "radiogroup",
             name: "HH_Income",
             title: " What is your annual household income? ",
+            colCount: 2,
             isRequired: true,
             choices: [
                     { "value": 1, "text": " $0-$20,000 "},
@@ -2211,6 +2184,26 @@ const json = {
                 
                   ]
                 },
+
+          {
+        type: "radiogroup",
+        name: "Future_Research",
+        title: "Would you be interested in participating in future research regarding socio-economic and financial barriers of WCB participation?",
+        isRequired: true,
+        choices: [
+        { value: "Yes", text: "Yes" },
+        { value: "No", text: "No" }
+        ]
+        },
+
+      {
+      type: "text",
+      name: "Future_Research_Email",
+      inputType: "email",
+      title: "If yes, please provide your e-mail:",
+      visibleIf: "{Future_Research} = 'Yes'",
+      isRequired: true
+      },
 
 
 
@@ -2284,7 +2277,7 @@ const json = {
         
         {
           type: "comment",
-          name: "adaptive_equipment_explanation",
+          name: "adaptive_equipment__dl_explanation",
           title: "If yes, please explain:",
           visibleIf: "{AB_EQ_DL} = 'yes'",
           isRequired: true
@@ -2294,33 +2287,13 @@ const json = {
 
       
 
-
-       /* {
-          type: 'dropdown',
-          title: "Does your ability require adaptive equipment to participate this sport?", 
-          name: 'AB_EQ_DL_Ex', 
-          choices: [
-                      'Yes',
-                      'No',
-                      
-              ]
-        },
-        
-        {
-          type: "comment",
-          name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
-          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-          isRequired: true
-        },*/
-
         ]
     },
 
     
 
 
-     {      
+    {      
       name: "GeneralInformation",
       title: "Results: Cost of sports ",
        elements: [
@@ -2346,13 +2319,13 @@ const json = {
       },
 
       {
-    type: "expression",
-    name: "Coaching_costs",
-    title: "Coaching",
-    displayStyle: "decimal",
-    precision: 2,
-    expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
-    },
+      type: "expression",
+      name: "Coaching_costs",
+      title: "Coaching",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
+      },
 
 
 
