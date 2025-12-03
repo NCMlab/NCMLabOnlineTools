@@ -10,40 +10,99 @@ const json = {
    showCompletedPage: true,
 
 
-   completedHtml: `
-    <div style="text-align:center; font-family:Arial; margin-top: 30px;">
+   completedHtml:  `
+    <div style="font-family: Arial, sans-serif; background:#f7f7fb; min-height:100vh; padding:30px 10px;">
+      <div style="max-width: 960px; margin:0 auto;">
 
-      <div style="display:flex; justify-content:center; gap:40px; margin-bottom: 20px;">
-        <div style="border:2px solid black; padding:15px; width:220px;">
-          <strong>Total Direct Costs / YEAR</strong><br>
-          <span style="font-size:20px; color:#0066cc;">{Direct_cost}</span>
+        <!-- Title / intro -->
+        <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
+          <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Cost of sports</h2>
+          <p style="margin:0; font-size:14px; color:#555;">
+            Below is a summary of your estimated yearly costs and earnings related to your sport.
+          </p>
         </div>
-        <div style="font-size:40px; font-weight:bold;">+</div>
-        <div style="border:2px solid black; padding:15px; width:220px;">
-          <strong>Total Indirect Costs / YEAR</strong><br>
-          <span style="font-size:20px; color:#008000;">{total_indirect}</span>
+
+        <!-- Direct / Indirect cards -->
+        <div style="display:flex; flex-wrap:wrap; gap:20px; margin-bottom:30px;">
+
+          <!-- Direct costs -->
+          <div style="flex:1 1 280px; background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+            <h3 style="margin:0 0 10px 0; font-size:18px;">Direct costs / YEAR</h3>
+            <div style="font-size:14px;">
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Membership, licence, participation & entrance</span>
+                <strong>{MEMB_ENTR}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Apparel & equipment (total)</span>
+                <strong>{App_Equip}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Coaching</span>
+                <strong>{Coaching_costs}</strong>
+              </div>
+            </div>
+            <hr style="margin:10px 0;">
+            <div style="display:flex; justify-content:space-between; font-size:15px;">
+              <span><strong>Total direct costs</strong></span>
+              <span style="font-weight:bold; color:#0052cc;">{Direct_cost}</span>
+            </div>
+          </div>
+
+          <!-- Indirect costs -->
+          <div style="flex:1 1 280px; background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+            <h3 style="margin:0 0 10px 0; font-size:18px;">Indirect costs / YEAR</h3>
+            <div style="font-size:14px;">
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Travel costs / YEAR</span>
+                <strong>{Travel}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Social costs / YEAR</span>
+                <strong>{SOC_Total_$Y}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin:4px 0;">
+                <span>Other indirect costs / YEAR</span>
+                <strong>{OIC_Total}</strong>
+              </div>
+            </div>
+            <hr style="margin:10px 0;">
+            <div style="display:flex; justify-content:space-between; font-size:15px;">
+              <span><strong>Total indirect costs</strong></span>
+              <span style="font-weight:bold; color:#14833b;">{total_indirect}</span>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div style="font-size:40px; font-weight:bold; margin:20px 0;">−</div>
-
-      <div style="display:flex; justify-content:center; margin-bottom:40px;">
-        <div style="border:2px solid black; padding:15px; width:220px;">
-          <strong>Sport Earnings / YEAR</strong><br>
-          <span style="font-size:20px; color:#cc0000;">{Earning}</span>
+        <!-- Earnings + equation -->
+        <div style="background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:28px; text-align:center;">
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:16px; font-size:16px; margin-bottom:10px;">
+            <span><strong>Direct costs</strong> = {Direct_cost}</span>
+            <span style="font-size:22px;">+</span>
+            <span><strong>Indirect costs</strong> = {total_indirect}</span>
+            <span style="font-size:22px;">−</span>
+            <span><strong>Sport earnings</strong> = <span style="color:#c0392b;">{Earning}</span></span>
+          </div>
+          <div style="font-size:14px; color:#666;">
+            This formula is used to calculate your final total cost per year.
+          </div>
         </div>
+
+        <!-- Final total card -->
+        <div style="background:#ffffff; border-radius:14px; padding:24px 28px; box-shadow:0 6px 16px rgba(0,0,0,0.08); text-align:center;">
+          <div style="font-size:20px; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">
+            Total costs / year
+          </div>
+          <div style="font-size:32px; font-weight:700; color:#001e6b;">
+            {Total_Cost_$Y}
+          </div>
+        </div>
+
+        <p style="margin-top:24px; font-size:13px; color:#777; text-align:center;">
+          Thank you for completing the questionnaire. Your responses have been recorded.
+        </p>
+
       </div>
-
-      <hr style="width:80%; border:1px solid black; margin-bottom:40px;">
-
-      <div style="border:4px solid black; padding:25px; width:300px; margin:0 auto; background:#fdfdfd;">
-        <strong style="font-size:24px;">TOTAL COSTS / YEAR</strong><br>
-        <span style="font-size:30px; font-weight:bold; color:#000066;">{Total_Cost_$Y}</span>
-      </div>
-
-      <p style="margin-top:30px; font-size:14px; color:#555;">
-        You can now close this window. Your responses have been recorded.
-      </p>
     </div>
   `,
 
