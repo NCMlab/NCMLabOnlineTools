@@ -7,35 +7,52 @@ const json = {
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: false,
-   showCompletedPage: false,
+   showCompletedPage: true,
+
+
+   completedHtml: `
+    <div style="text-align:center; font-family:Arial; margin-top: 30px;">
+
+      <div style="display:flex; justify-content:center; gap:40px; margin-bottom: 20px;">
+        <div style="border:2px solid black; padding:15px; width:220px;">
+          <strong>Total Direct Costs / YEAR</strong><br>
+          <span style="font-size:20px; color:#0066cc;">{Direct_cost}</span>
+        </div>
+        <div style="font-size:40px; font-weight:bold;">+</div>
+        <div style="border:2px solid black; padding:15px; width:220px;">
+          <strong>Total Indirect Costs / YEAR</strong><br>
+          <span style="font-size:20px; color:#008000;">{total_indirect}</span>
+        </div>
+      </div>
+
+      <div style="font-size:40px; font-weight:bold; margin:20px 0;">−</div>
+
+      <div style="display:flex; justify-content:center; margin-bottom:40px;">
+        <div style="border:2px solid black; padding:15px; width:220px;">
+          <strong>Sport Earnings / YEAR</strong><br>
+          <span style="font-size:20px; color:#cc0000;">{Earning}</span>
+        </div>
+      </div>
+
+      <hr style="width:80%; border:1px solid black; margin-bottom:40px;">
+
+      <div style="border:4px solid black; padding:25px; width:300px; margin:0 auto; background:#fdfdfd;">
+        <strong style="font-size:24px;">TOTAL COSTS / YEAR</strong><br>
+        <span style="font-size:30px; font-weight:bold; color:#000066;">{Total_Cost_$Y}</span>
+      </div>
+
+      <p style="margin-top:30px; font-size:14px; color:#555;">
+        You can now close this window. Your responses have been recorded.
+      </p>
+    </div>
+  `,
+
    pages: 
    [
    
 
     //make question font size bigger than choices in radiogroups
     
-
-        /*{
-          type: 'dropdown',
-          title: "Does your ability require adaptive equipment to participate this sport?", 
-          name: 'AB_EQ_DL_Ex', 
-          choices: [
-                      'Yes',
-                      'No',
-                      
-              ]
-        },
-        
-        {
-          type: "comment",
-          name: "adaptive_equipment_explanation",
-          title: "If yes, please explain:",
-          visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-          isRequired: true
-        },*/
-    
-
-    // Section 1 ( ability moved to IV)
 
     {      
       name: "SportParticipation",
@@ -1104,10 +1121,25 @@ const json = {
       precision: 2
         },
 
+
+
+
+
+        {
+        type: "expression",
+        name: "SP_Equip_APP_$Y_Total",
+        title: "Apparel & Equipment / YEAR (Total)",
+        displayStyle: "decimal",
+        precision: 2,
+        expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+      },
+
+
       
       ]
 
       // to add the sum of maintenance and apparel together 
+
 
       },
 
@@ -1640,7 +1672,7 @@ const json = {
 
 
 
-                   {
+       {
       type: "html",
       name: "Social_subtitle",
       html: `
@@ -2357,14 +2389,106 @@ const json = {
         expression: "{Cost_Memb_$Y}" + " + {Cost_Lic_$Y}" + " + {Cost_PF_$Y}" + " + {Cost_Comp_$Y}" + " + {Cost_Entr_$Y}"
       },
 
+
+       {
+        type: "expression",
+        name: "App_Equip",
+        title: "Apparel & Equipment / YEAR (Total)",
+        displayStyle: "decimal",
+        precision: 2,
+        expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+      },
+
       {
     type: "expression",
-    name: "COACHING",
+    name: "Coaching_costs",
     title: "Coaching",
     displayStyle: "decimal",
     precision: 2,
     expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
     },
+
+
+
+    {
+    type: "expression",
+    name: "Travel",
+    title: "Total Travel Costs / YEAR",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{TR_$Y_Total}" 
+    },
+
+
+{
+  type: "expression",
+  name: "SOC_Total_$Y",
+  title: "Total Social Costs / YEAR",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{SOC_F&B_$Y}" + " + {SOC_Club_$Y}"
+},
+
+
+
+  {
+  type: "expression",
+  name: "Direct_cost",
+  title: "Total Direct Costs",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{MEMB_ENTR}" + " + {Coaching_costs}"+ "+{App_Equip}"
+},
+
+
+  {
+  type: "expression",
+  name: "OIC_Total",
+  title: "Other Indirect Costs / YEAR",
+  displayStyle: "decimal",
+  precision: 2,
+  expression: "{OIC_MED_$Y}" + " + {OIC_Body_$Y}" + " + {OIC_Insur_$Y}" + " + {OIC_BPsitting_$Y}" + " + {OIC_DOC_$Y}" +
+    " + {OIC_Spect_$Y}" + " + {OIC_Other_$Y}"
+  }, 
+
+
+  {
+  type: "expression",
+  name: "total_indirect",
+  title: "Total Indirect costs",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{OIC_Total}" + " + {SOC_Total_$Y}" + "+ {Travel}"
+  },
+
+
+  {
+    type: "expression",
+    name: "Earning",
+    title: "Total Earnings",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{SP_Earnings_$Y}" 
+    },
+
+
+    {
+    type: "expression",
+    name: "Total_Cost_$Y",
+    title: "TOTAL COST / YEAR",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{Direct_cost} + {total_indirect} - {Earning}"
+    }
+
+
+
+
+
+
 
 
 
