@@ -2021,7 +2021,7 @@ const json = {
           name: "OIC_Other_$Y",
           inputType:"number",
           title: "If yes, how much do you spend on average per year?: ",
-          visibleIf: "{OIC_Spect}= 1",
+          visibleIf: "{OIC_Other}= 1",
           isRequired: true
         },
 
