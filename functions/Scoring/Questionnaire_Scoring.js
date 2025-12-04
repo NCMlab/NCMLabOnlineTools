@@ -292,6 +292,7 @@ function Questionnaire_Scoring(data) {
 			jatos.batchSession.set(jatos.workerId+"_Email", Email)
 			.then(() => {
 				jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
+				.then(() => {console.log("Name set in batch data")}) 
 			}) 
 		}
 		else {

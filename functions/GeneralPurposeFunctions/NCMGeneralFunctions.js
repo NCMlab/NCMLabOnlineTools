@@ -342,7 +342,7 @@ function UpDateBitIndexInBatchData() {
 
 // ===============================================
 // Decide where to go next functionaility
-function whereToGoNext(SessionData, ){
+function whereToGoNext(SessionData){
     CurrentIndex = SessionData.CurrentIndex  
   // If this a la carte or the end of the battery go to the usage manager
     console.log(SessionData.TaskNameList)
@@ -364,7 +364,7 @@ function whereToGoNext(SessionData, ){
         jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
         // Update the batch index also 
         console.log("Just about to set the batch")
-        jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
+        //jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
         .then(() => 
           {
             console.log('updated batch index')
