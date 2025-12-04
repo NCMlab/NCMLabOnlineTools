@@ -321,7 +321,7 @@ function UpDateBitIndexInBatchData() {
     // Needed to include the -1 since indexing is done from zero
     console.log("What is the status of the bit to check? "+BackwardBits[jatos.studySessionData.AddToCompletionCount - 1])
     // Check whether the current task bit is already set in the Current Bits
-    
+    var NewValue
     //if ( CurrentBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
     if ( BackwardBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
     {
@@ -330,12 +330,12 @@ function UpDateBitIndexInBatchData() {
     else 
     {
       // the pasreInt(,10) ensures the values are integers
-      var NewValue = parseInt(CurrentBitIndex,10) + parseInt(ValueToAdd,10)
+      NewValue = parseInt(CurrentBitIndex,10) + parseInt(ValueToAdd,10)
       jatos.batchSessionVersioning = false;
       console.log("Setting the new bit index")
-      jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
+      //jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
     }
-    
+    return NewValue
     //console.log(BREAK) 
   }
 }
@@ -365,16 +365,28 @@ function whereToGoNext(SessionData, ){
         jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
         .then(() => 
           {
+            console.log('updated batch index')
+            console.log("Current index: "+jatos.studySessionData.CurrentIndex)
+            console.log("Task Name List Length: "+SessionData.TaskNameList.length)
             if ( jatos.studySessionData.CurrentIndex == SessionData.TaskNameList.length)
             {
               // If the battery is complete go back to the CE
               console.log("BATTERY IS COMPLETE")
               // Make sure this does not update the bit index if a task is 
               // done a second or third time
-              UpDateBitIndexInBatchData()
-              jatos.startComponentByTitle("Central Executive")
+              NewValue = UpDateBitIndexInBatchData()
+              console.log(NewValue)
+              if ( NewValue != undefined )
+                { 
+                  jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) 
+                  .then(() => {
+                    jatos.startComponentByTitle("Central Executive")
+                  })
+                }
+              else { jatos.startComponentByTitle("Central Executive") }
             }
             else { 
+
               // If the battery is NOT complete
               //alert("Updated Index to be: "+jatos.studySessionData.CurrentIndex) 
               var all_data = jsPsych.data.get()
