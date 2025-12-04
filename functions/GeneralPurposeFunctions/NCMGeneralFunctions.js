@@ -362,6 +362,7 @@ function whereToGoNext(SessionData, ){
         // Update the session current index to indicate the task is complete
         jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
         // Update the batch index also 
+        console.log("Just about to set the batch")
         jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
         .then(() => 
           {
