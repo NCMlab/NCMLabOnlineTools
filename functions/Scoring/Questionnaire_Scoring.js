@@ -292,12 +292,15 @@ function Questionnaire_Scoring(data) {
 			jatos.batchSession.set(jatos.workerId+"_Email", Email)
 			.then(() => {
 				jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
-				.then(() => {console.log("Name set in batch data")}) 
+				.then(() => {console.log("Name set in batch data")})
+				.catch(() => console.log("Batch Session synchronization failed")); 
+				
 			}) 
 		}
 		else {
 			jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName)
-			.then(() => {console.log("Name set in batch data")}) 
+			.then(() => {console.log("Name set in batch data")})
+			.catch(() => console.log("Batch Session synchronization failed"))
 		}
 	}
 
