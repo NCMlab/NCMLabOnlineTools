@@ -84,10 +84,9 @@
                 on_finish: function() {
                     console.log("SUBMITTING DATA")
                     jatos.submitResultData(jsPsych.data.get().json())
-                    .then(() => {
-                        console.log("Finished sending data and will now decide where to go next")    
-                        whereToGoNext(jatos.studySessionData)
-                    }) 
+                    .then(() => whereToGoNext(jatos.studySessionData))
+                    .catch(() => console.log("Syncronization problem"))
+                    
                }
             })
         }
