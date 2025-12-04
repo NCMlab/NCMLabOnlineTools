@@ -355,6 +355,7 @@ function whereToGoNext(SessionData, ){
       {  console.log(BreakPoint) }
     else if ( SessionData.UsageType == 'Battery' ) 
       { 
+        console.log("Entering Battery part of the switch")
         // Is the user done with the battry?
         // The minus one is because the index stars with zero and does not
         // get updated until AFTER this check
@@ -399,6 +400,7 @@ function whereToGoNext(SessionData, ){
       }
     else 
       { // if no usage type is selected then do the same as a la carte/user choice
+        console.log('DEFAULT response in teh switch statement')
         jatos.startComponentByTitle("Central Executive")
       }
 }
