@@ -293,7 +293,8 @@ function closeInfo() {
 // UPDATE Bit index.
 // Since this is where a battery is checked for completion, see if there is a bit index
 // if so, update it.
-function UpDateBitIndexInBatchData() {
+//function UpDateBitIndexInBatchData() {
+const UpDateBitIndexInBatchData = new Promise((resolve, reject) => {
   // Once the battery is completed, check to see if there is an AddtoCompletionCount value
   // If so add it to the butIndex batch value for this worker Id
   console.log("Updating Bit Index")
@@ -321,24 +322,29 @@ function UpDateBitIndexInBatchData() {
     // Needed to include the -1 since indexing is done from zero
     console.log("What is the status of the bit to check? "+BackwardBits[jatos.studySessionData.AddToCompletionCount - 1])
     // Check whether the current task bit is already set in the Current Bits
-    var NewValue
+    var NewValue = -99
     //if ( CurrentBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
     if ( BackwardBits[jatos.studySessionData.AddToCompletionCount - 1]  == 1 )
     {
        console.log("THIS TASK HAS ALREADY BEEN COMPLETED")
+       // keep the value the same
+       NewValue = parseInt(CurrentBitIndex,10)
       }
     else 
     {
       // the pasreInt(,10) ensures the values are integers
       NewValue = parseInt(CurrentBitIndex,10) + parseInt(ValueToAdd,10)
+      NewValue = parseInt(ValueToAdd,10)
+      NewValue = parseInt(CurrentBitIndex,10)
+      NewValue = jatos.workerId
       jatos.batchSessionVersioning = false;
       console.log("Setting the new bit index")
       //jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString())
     }
-    return NewValue
+    resolve(NewValue)
     //console.log(BREAK) 
   }
-}
+})
 
 // ===============================================
 // Decide where to go next functionaility
@@ -364,9 +370,10 @@ function whereToGoNext(SessionData){
         jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
         // Update the batch index also 
         console.log("Just about to set the batch")
-        //jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
-        .then(() => 
-          {
+        jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
+        .then(() => UpDateBitIndexInBatchData)
+        .then((result) => console.log("NEW VALUE TO ADD IS: "+result))
+          /*{
             console.log('updated batch index')
             console.log("Current index: "+jatos.studySessionData.CurrentIndex)
             console.log("Task Name List Length: "+SessionData.TaskNameList.length)
@@ -394,10 +401,9 @@ function whereToGoNext(SessionData){
               var all_data = jsPsych.data.get()
               //console.log(BREAK)
               jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex])
-            }
-          })
-        
-      }
+            }*/
+          }
+      
     else 
       { // if no usage type is selected then do the same as a la carte/user choice
         console.log('DEFAULT response in teh switch statement')
