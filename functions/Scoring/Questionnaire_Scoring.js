@@ -278,7 +278,7 @@ function Questionnaire_Scoring(data) {
 				}
 		}
 	}
-	if ( data.QuestionnaireType == 'FirstName' )
+	/*if ( data.QuestionnaireType == 'FirstName' )
 	{ // Put this info into the Batch Data 
 		console.log(data)
 		console.log(data.response)
@@ -299,7 +299,7 @@ function Questionnaire_Scoring(data) {
 			.then(() => console.log("Name set in batch data"))
 			.catch(() => console.log("Batch Session synchronization failed"))
 		}
-	}
+	}*/
 
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore

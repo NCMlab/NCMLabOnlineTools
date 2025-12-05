@@ -1366,7 +1366,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
   List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'First Name'})
   BatteryList.push({index: 72, 
 		name:'Music Motion: Enter Name', 
-    shortName: "First Name",
+    shortName: "First Name", // Do not change this name since it is used later
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",

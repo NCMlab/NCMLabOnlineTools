@@ -521,7 +521,7 @@ function CentralExecutive() {
                             console.log("Usgae Type: "+UsageType)
                             console.log("URL: ")
                             //jatos.studySessionData.UsageType = jatos_params["UsageType"];
-                            alert("WAS THE HOME BUTTON PRESSED?")
+                            //alert("WAS THE HOME BUTTON PRESSED?")
                             jatos.startComponentByTitle("Central Executive")
                         StartComponent(TitleToStart)
                     })

@@ -347,10 +347,13 @@ return new Promise((resolve, reject) => {
 
 // ===============================================
 // Decide where to go next functionaility
+
+// OK, the problem seems to be that the question scoring sends data to the batch
+// then it moves onto where to go next. BUT, scoring has a promise which may not finish 
+// before the where to go starts sending data to the batch.
 function whereToGoNext(SessionData){
     CurrentIndex = SessionData.CurrentIndex  
   // If this User Choice or the end of the battery go to the usage manager
-    
     if ( SessionData.UsageType == 'UserChoice' )       
       { jatos.startComponentByTitle("Central Executive") }
     else if ( SessionData.UsageType == 'SingleTask' )
@@ -358,22 +361,53 @@ function whereToGoNext(SessionData){
     else if ( SessionData.UsageType == 'Battery' ) 
       {         
         // Update the session current index to indicate the task is complete
+        console.log('Within the Battery Switch statement')
         jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
         // Update the batch index also 
-        
         if ( jatos.studySessionData.CurrentIndex == SessionData.TaskNameList.length)
-        {
-          jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
-          .then(() => UpDateBitIndexInBatchData())
-          .then((NewValue) => jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) )
-          .then(() => jatos.startComponentByTitle("Central Executive"))
+        { // The battery has been completed
+          // If this is the first name entry, send that info to the bacth here so the promises can be linked
+          if (SessionData.BatteryShortName === "First Name")
+          {
+            var data = jsPsych.data.get().filter({trial: 'Questionnaire'})
+            var FirstName = data.trials[0].response['Name']
+            var Email = data.trials[0].response['email']
+            
+            if ( Email != null ) 
+            {
+              jatos.batchSession.set(jatos.workerId+"_Email", Email)
+              .then(() => jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName)) 	
+              .then(() => jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1))
+              .then(() => UpDateBitIndexInBatchData())
+              .then((NewValue) => jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) )
+              .then(() => jatos.startComponentByTitle("Central Executive"))
+              .catch(() => console.log("Batch Session synchronization failed")); 
+            }
+            else 
+            { 
+              jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
+              .then(() => jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1))
+              .then(() => UpDateBitIndexInBatchData())
+              .then((NewValue) => jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) )
+              .then(() => jatos.startComponentByTitle("Central Executive"))
+              .catch(() => console.log("Batch Session synchronization failed"));  
+            }
+          }
+          else
+          { // this is a completed battery, but not the first name entry
+            jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1)
+            .then(() => UpDateBitIndexInBatchData())
+            .then((NewValue) => jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) )
+            .then(() => jatos.startComponentByTitle("Central Executive"))
+          }
         }
         else 
-        { 
+        { // The battery is not completed
           jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
           .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))        
-        }   
+        }
       }
+    
     else 
       { // if no usage type is selected then do the same as a la carte/user choice
         console.log('DEFAULT response in teh switch statement')
