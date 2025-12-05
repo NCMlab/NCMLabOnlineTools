@@ -360,38 +360,20 @@ function whereToGoNext(SessionData){
         // Update the session current index to indicate the task is complete
         jatos.studySessionData.CurrentIndex = SessionData.CurrentIndex+1
         // Update the batch index also 
-        jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
-        .then(() => {
-              if ( jatos.studySessionData.CurrentIndex == SessionData.TaskNameList.length)
-              {
-                // If the battery is complete go back to the CE
-                // Make sure this does not update the bit index if a task is 
-                // done a second or third time
-                UpDateBitIndexInBatchData()
-                .then((NewValue) => {
-                if ( NewValue != undefined )
-                  { 
-                    console.log("The New Value for the bit Index is: "+NewValue)
-                    jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) 
-                    .then(() => {
-                      jatos.startComponentByTitle("Central Executive")
-                    })
-                  }
-                else { jatos.startComponentByTitle("Central Executive") }                  
-                })
-                
-
-              }
-              else { 
-
-                // If the battery is NOT complete
-                //alert("Updated Index to be: "+jatos.studySessionData.CurrentIndex) 
-                var all_data = jsPsych.data.get()
-                //console.log(BREAK)
-                jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex])
-              }
-          })
+        
+        if ( jatos.studySessionData.CurrentIndex == SessionData.TaskNameList.length)
+        {
+          jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
+          .then(() => UpDateBitIndexInBatchData())
+          .then((NewValue) => jatos.batchSession.set(jatos.workerId+"_bitIndex", NewValue.toString()) )
+          .then(() => jatos.startComponentByTitle("Central Executive"))
         }
+        else 
+        { 
+          jatos.batchSession.set(jatos.workerId, jatos.studySessionData.CurrentIndex)
+          .then(() => jatos.startComponentByTitle(SessionData.TaskNameList[SessionData.CurrentIndex]))        
+        }   
+      }
     else 
       { // if no usage type is selected then do the same as a la carte/user choice
         console.log('DEFAULT response in teh switch statement')
