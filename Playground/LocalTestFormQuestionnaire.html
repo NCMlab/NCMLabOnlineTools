@@ -21,7 +21,7 @@
     <script src="../jspsych/dist/plugin-call-function.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-survey-text.js"></script>
-    <script src="../jspsych_addons/plugin-survey-html-form.js"></script>
+    <script src="../jspsych_addons/plugin-survey-form-JASON.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
@@ -111,6 +111,10 @@
     
     </head>
     <body>
+        <script>
+        var currentTab = 2; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab          
+        </script>
         <!-- The body contains the header buttons, the 'stage,' and the footer-->
         <div class="btn-group-header" id="header-btn-group"></div>
         <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>

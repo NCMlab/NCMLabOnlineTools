@@ -282,122 +282,14 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
           html += Str
 
-          
-
-          
           html += "</form>";
           
           display_element.innerHTML = html;
-          if (trial.autofocus !== "") {
-              var focus_elements = display_element.querySelectorAll("#" + trial.autofocus);
-              if (focus_elements.length === 0) {
-                  console.warn("No element found with id: " + trial.autofocus);
-              }
-              else if (focus_elements.length > 1) {
-                  console.warn('The id "' + trial.autofocus + '" is not unique so autofocus will not work.');
-              }
-              else {
-                  focus_elements[0].focus();
-              }
-          }
-          display_element 
-              .querySelector("#jspsych-survey-html-form")
-              .addEventListener("next", (event) => {
-                alert("NEXT BUTTON PRESSED")
-              })
-          display_element
-              .querySelector("#jspsych-survey-html-form")
-              .addEventListener("submit", (event) => {
-
-                console.log("Have all questions been answered? " + AllQuestionsValid)
-                
-              // don't submit form
-              event.preventDefault();
-              if ( AllQuestionsValid )
-              {
-                
-                
-                // measure response time
-                var endTime = performance.now();
-                var response_time = Math.round(endTime - startTime);
-                var this_form = display_element.querySelector("#jspsych-survey-html-form");
-                // get response data
-                // Need each questions 
-                //    id
-                //    label innerHTML
-                //    selection innerHTML(text)
-                //    selection value
-                
-                // get all the div elements that contain the questions
-                    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
-                    var NQuestions = AllQuestions.length
-                    
-                    // Initialize the object for holding the resultant data
-                    var question_data = []    
-                    for ( var i = 0; i < NQuestions; i++ ) {
-                        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-                        { // THIS IS A DROPDOWN QUESTION 
-                            var selectedIndex = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex
-                            var this_question_data = {}
-                            this_question_data.name = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id
-                            this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
-                            this_question_data.responseValue = Number(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].value)
-                            this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].options[selectedIndex].innerText
-                            question_data.push(this_question_data)
-                        }
-                        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
-                        { // THIS IS A RADIO GROUP QUESTION 
-                            var this_question_data = {}
-                            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
-                            var rates = document.getElementsByName(CurrentQuestionName)
-                            for ( var k = 0; k < rates.length; k++ )
-                            { 
-                                if ( rates[k].checked ) 
-                                    {
-                                        if (rates[k].checked)
-                                            { 
-                                                this_question_data.responseText = AllQuestions[i].getElementsByClassName("surveyFormResponseLabel")[k].innerText
-                                            }
-                                        }
-                                    }
-                            this_question_data.name = CurrentQuestionName
-                            this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
-                            this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
-                            question_data.push(this_question_data)
-                        }
-                        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
-                        { 
-                            var this_question_data = {}
-                            this_question_data.label = AllQuestions[i].innerText
-                            this_question_data.responseValue = AllQuestions[i].getElementsByClassName("timeInput")[0].value
-                            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
-                            this_question_data.name = CurrentQuestionName
-                            question_data.push(this_question_data)
-                        }
-                    }
-                
-                // save data
-                var trialdata = {
-                    rt: response_time,
-                    response: question_data,
-                };
-                console.log(trialdata)
-                display_element.innerHTML = "";
-
-
-
-
-
-
-                // next trial
-                this.jsPsych.finishTrial(trialdata);
-            }
-          });
-          var startTime = performance.now();
-
-      
+        
       }
+
   }
+
   SurveyHtmlFormPlugin.info = info;
 
   return SurveyHtmlFormPlugin;
@@ -410,8 +302,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
 
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+
 
 function showTab(n) {
   // This function will display the specified tab of the form...
