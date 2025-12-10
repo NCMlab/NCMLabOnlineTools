@@ -10,6 +10,114 @@ const json = {
    showCompletedPage: true,
 
 
+    "calculatedValues": [
+  
+    {
+        type: "expression",
+        name: "MEMB_ENTR",             
+        title: "Total Membership, License, Participation & Entrance Costs / YEAR",
+        displayStyle: "decimal",
+        precision: 2,
+        expression: "{Cost_Memb_$Y}" + " + {Cost_Lic_$Y}" + " + {Cost_PF_$Y}" + " + {Cost_Comp_$Y}" + " + {Cost_Entr_$Y}"
+      },
+
+
+       {
+        type: "expression",
+        name: "App_Equip",
+        title: "Apparel & Equipment / YEAR (Total)",
+        displayStyle: "decimal",
+        precision: 2,
+        expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+      },
+
+      {
+      type: "expression",
+      name: "Coaching_costs",
+      title: "Coaching",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
+      },
+
+
+
+    {
+    type: "expression",
+    name: "Travel",
+    title: "Total Travel Costs / YEAR",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{TR_$Y_Total}" 
+    },
+
+
+{
+  type: "expression",
+  name: "SOC_Total_$Y",
+  title: "Total Social Costs / YEAR",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{SOC_F&B_$Y}" + " + {SOC_Club_$Y}"
+},
+
+
+
+  {
+  type: "expression",
+  name: "Direct_cost",
+  title: "Total Direct Costs",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{MEMB_ENTR}" + " + {Coaching_costs}"+ "+{App_Equip}"
+},
+
+
+  {
+  type: "expression",
+  name: "OIC_Total",
+  title: "Other Indirect Costs / YEAR",
+  displayStyle: "decimal",
+  precision: 2,
+  expression: "{OIC_MED_$Y}" + " + {OIC_Body_$Y}" + " + {OIC_Insur_$Y}" + " + {OIC_BPsitting_$Y}" + " + {OIC_DOC_$Y}" +
+    " + {OIC_Spect_$Y}" + " + {OIC_Other_$Y}"
+  }, 
+
+
+  {
+  type: "expression",
+  name: "total_indirect",
+  title: "Total Indirect costs",
+  displayStyle: "decimal",
+  precision: 2,
+  expression:
+    "{OIC_Total}" + " + {SOC_Total_$Y}" + "+ {Travel}"
+  },
+
+
+  {
+    type: "expression",
+    name: "Earning",
+    title: "Total Earnings",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{SP_Earnings_$Y}" 
+    },
+
+
+    {
+    type: "expression",
+    name: "Total_Cost_$Y",
+    title: "TOTAL COST / YEAR",
+    displayStyle: "decimal",
+    precision: 2,
+    expression: "{Direct_cost} + {total_indirect} - {Earning}"
+    }
+  ],
+
+
    completedHtml:  `
     <div style="font-family: Arial, sans-serif; background:#f7f7fb; min-height:100vh; padding:30px 10px;">
       <div style="max-width: 960px; margin:0 auto;">
@@ -1172,7 +1280,7 @@ const json = {
          {
       type: "expression",
       name: "EQ_Maint_$Y",
-      title: "Estimated yearly rental cost",
+      title: "Estimated yearly maintenance cost",
       visibleIf: "{EQ_Maint} = 1",
       expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
       displayStyle: "currency",
@@ -1362,7 +1470,7 @@ const json = {
         { "value": 1, "text": "By foot/wheeling" },
         { "value": 2, "text": "By Bike" },
         { "value": 3, "text": "By motorbike" },
-        { "value": 4, "text": "By family car" },
+        { "value": 4, "text": "By family/own car" },
         { "value": 5, "text": "Public Transportation" },
         { "value": 6, "text": "Have a ride with others/ carpooling" },
         { "value": 7, "text": "Taxi/Private bus" },
@@ -1914,6 +2022,8 @@ const json = {
                     
                   ]
                 },
+            
+
 
 
            {
@@ -2293,7 +2403,7 @@ const json = {
     
 
 
-    {      
+    /*{      
       name: "GeneralInformation",
       title: "Results: Cost of sports ",
        elements: [
@@ -2423,7 +2533,7 @@ const json = {
        ]
 
 
-      },
+      },*/
      
 
    ]
