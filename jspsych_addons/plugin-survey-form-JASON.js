@@ -115,6 +115,7 @@ var VisibleIfConditionsPages = []
                         Str = 'style="display: none"'
                         thisQ['div'] = Str
                         thisQ['name'] = thisQuestion.name
+                        console.log(thisQ)
                         // decode the visible if condition
                         var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
                         var ThisQuestionIsConditionalOn = matches[1]
@@ -142,7 +143,8 @@ var VisibleIfConditionsPages = []
                 }
                 VisibleIfConditionsPages.push(VisibleIfConditions)
             }
-
+            console.log("==== VISIBLE IF CONDITIONS ====")
+            console.log(VisibleIfConditionsPages)
 
 var Str = ''
           console.log("==== PREPARING THE HTML ====")
@@ -217,7 +219,8 @@ var Str = ''
                             Str += '</div></div><hr>'
                             break;
                         case 'text':
-                            console.log(thisQuestion.name)
+                            console.log("========= TEXT QUESTION ==========")     
+
                             Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
@@ -377,13 +380,17 @@ function showTab(n) {
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
+    console.log("MODIFY ON CHANGE")
     var splitInput = elementToChange.split('___')
+    console.log('Element to modify: '+splitInput)
     //get current question
     var e = document.getElementById(splitInput[0])
     // The values provided for each option should be arbitray form the code's point of view
     // what is the option index for the selected option?
+    console.log(e.options[e.options.selectedIndex].innerHTML)
     if (e.options[e.options.selectedIndex].innerHTML == splitInput[2]) {
         f = document.getElementById("div-"+splitInput[1])
+        console.log(f)
         f.style="display: visible"
         s = document.getElementById("div-"+splitInput[1]).getElementsByClassName("surveyFormSelect")[0]
         

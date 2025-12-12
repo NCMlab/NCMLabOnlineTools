@@ -26,34 +26,7 @@ const json = {
         }
       ]
     },*/
-    {      
-      name: "Demographic Information",
-      title: "Demographic Information",
-       elements: [
-        {
-          type: 'dropdown',
-          title: "Gender", 
-          name: 'Gender', 
-          choices: [
-                      {value: 1, text:'Male'},
-                      {value: 2, text:'Female'},
-              ],
-          showOtherItem: true,
-          isRequired: false
-        },
-        {
-          name: "Age",
-          type: "text",
-          title: "Age",
-          inputType: "number",
-          min: 0,
-          max: 150,
-          defaultValue: '',
-          isRequired: false,
-        },
-       
-       ]
-     },
+    
      {
        name: "Medical Information",
        title: "Medical Information",
@@ -74,7 +47,7 @@ const json = {
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'comment',
+        type: 'text',
         title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -82,7 +55,7 @@ const json = {
         textbox_rows: 3,
       },
       {
-        type: 'comment',
+        type: 'text',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
         name: 'DementiaType',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
