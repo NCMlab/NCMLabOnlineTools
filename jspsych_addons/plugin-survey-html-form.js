@@ -181,7 +181,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             for ( var page = 0; page < NPages; page++ ) {
                 console.log(trial.survey_json.pages[page])
                 var NQuestions = trial.survey_json.pages[page].elements.length
-                Str += '<div class="JASONtab">'
+                Str += '<div class="tab">'
                 Str += trial.survey_json.pages[page].title
 
 
