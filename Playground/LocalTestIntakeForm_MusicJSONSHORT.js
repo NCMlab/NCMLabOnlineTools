@@ -47,7 +47,7 @@ const json = {
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'text',
+        type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -55,7 +55,7 @@ const json = {
         textbox_rows: 3,
       },
       {
-        type: 'text',
+        type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
         name: 'DementiaType',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -63,18 +63,18 @@ const json = {
         textbox_rows: 3,
       },
       {
-          type: 'dropdown',
-          title: 'Do you have hearing loss?',
-          choices: 
-          [
-              {value: 1, text: "Yes"},
-              {value: 2, text: "No"},
-              {value: 3, text: "Not sure"}
-          ],
-          name: 'HearingLoss',
-          isRequired: true,
-          //add_other_option: true,                    
-          //other_option_text: 'Yes, how long ago were you diagnosed?',
+        type: 'dropdown',
+        title: 'Do you have hearing loss?',
+        choices: 
+        [
+            {value: 1, text: "Yes"},
+            {value: 2, text: "No"},
+            {value: 3, text: "Not sure"}
+        ],
+        name: 'HearingLoss',
+        isRequired: true,
+        //add_other_option: true,                    
+        //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
         type: 'dropdown',
@@ -119,12 +119,12 @@ const json = {
       isRequired: true,
     },
     {
-      type: 'comment',
+      type: 'textarea',
       title: 'Please explain your health issues.',
       name: 'OtherHealthIssuesDesc',
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
-      rows: 3,
+      textbox_rows: 3,
     },
        ]
      },
@@ -249,7 +249,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
@@ -268,7 +268,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
             name: 'GroupMusicExperience',
             visibleIf: "{GroupMusic} == Yes",
@@ -287,7 +287,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
             name: 'ChoirExperience',
             visibleIf: "{Choir} == Yes",
@@ -306,7 +306,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Which instrument(s) did you play?',
             name: 'WhichInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -314,7 +314,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
             name: 'AgeStartInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -322,7 +322,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
             name: 'YearsPlayInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -349,7 +349,7 @@ const json = {
       
       elements: [
         {
-          type: 'comment',
+          type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
           name: 'AdditionalComments',
           required: false,

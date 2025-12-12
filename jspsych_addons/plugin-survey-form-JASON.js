@@ -109,13 +109,14 @@ var VisibleIfConditionsPages = []
                 for ( var i = 0; i < NQuestions; i++ ) {
                     var thisQ = {}
                     var thisQuestion = trial.survey_json.pages[page].elements[i]
+                    
                     if ( thisQuestion.visibleIf ) {
+                        
                         // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
                         var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
                         Str = 'style="display: none"'
                         thisQ['div'] = Str
                         thisQ['name'] = thisQuestion.name
-                        console.log(thisQ)
                         // decode the visible if condition
                         var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
                         var ThisQuestionIsConditionalOn = matches[1]
@@ -123,13 +124,27 @@ var VisibleIfConditionsPages = []
                         // Find this question and edit it
                         let obj = VisibleIfConditions.find((o, index) => 
                             {
+                                
                                 if (o.name === ThisQuestionIsConditionalOn) {
                                     // Now that we found the question that the current question is conditional ON
                                     // we need to find what the condition is. If that condition is met, then make the
                                     // set the onChange function to make this question visible.
                                     // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
-                                    VisibleIfConditions[index]['onChangeQuestion'] = thisQuestion.name
-                                    VisibleIfConditions[index]['onChangeCondition'] = ConditionToMeet.trim()
+                                    
+                                    // If more than one question is supposed to be made visible by one answer
+                                    // then deal with that scenario 
+                                    if ( 'onChangeQuestion' in VisibleIfConditions[index]) 
+                                        {
+                                            VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
+                                            VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
+                                        } 
+                                    else {
+                                        VisibleIfConditions[index]['onChangeQuestion'] = []
+                                        VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
+                                        VisibleIfConditions[index]['onChangeCondition'] = []
+                                        VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
+                                    }
+                                    
                                     return true;
                                 }
                             })
@@ -149,7 +164,7 @@ var VisibleIfConditionsPages = []
 var Str = ''
           console.log("==== PREPARING THE HTML ====")
             for ( var page = 0; page < NPages; page++ ) {
-                console.log(trial.survey_json.pages[page])
+                //console.log(trial.survey_json.pages[page])
                 var NQuestions = trial.survey_json.pages[page].elements.length
                 Str += '<div class="tab">'
                 Str += trial.survey_json.pages[page].title
@@ -218,13 +233,14 @@ var Str = ''
                             
                             Str += '</div></div><hr>'
                             break;
-                        case 'text':
+                        case 'textarea':
                             console.log("========= TEXT QUESTION ==========")     
-
+                            console.log(thisQuestion)
                             Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
-                            Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><textarea class="textInput" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
                             Str += '</div><hr>'
                         default:
                             console.log("========= DEFAULT ==========")
@@ -381,18 +397,25 @@ function showTab(n) {
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
     console.log("MODIFY ON CHANGE")
+    console.log(elementToChange)
     var splitInput = elementToChange.split('___')
     console.log('Element to modify: '+splitInput)
+    
+    splitInput[1] = splitInput[1].split(',')
+    splitInput[2] = splitInput[2].split(',')
     //get current question
     var e = document.getElementById(splitInput[0])
     // The values provided for each option should be arbitray form the code's point of view
     // what is the option index for the selected option?
-    console.log(e.options[e.options.selectedIndex].innerHTML)
-    if (e.options[e.options.selectedIndex].innerHTML == splitInput[2]) {
-        f = document.getElementById("div-"+splitInput[1])
-        console.log(f)
-        f.style="display: visible"
-        s = document.getElementById("div-"+splitInput[1]).getElementsByClassName("surveyFormSelect")[0]
+    console.log(e)
+    console.log(splitInput)
+    for ( k = 0; k < splitInput[1].length; k++ )
+        if (e.options[e.options.selectedIndex].innerHTML == splitInput[2][k]) {
+        
+            f = document.getElementById("div-"+splitInput[1][k])
+            console.log(f)
+            f.style="display: visible"
+            s = document.getElementById("div-"+splitInput[1][k]).getElementsByClassName("surveyFormSelect")[0]
         
         //f.setAttribute('required','')
         //s.required = true;
