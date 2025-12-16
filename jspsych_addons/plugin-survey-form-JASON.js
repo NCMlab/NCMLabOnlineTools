@@ -182,7 +182,7 @@ var Str = ''
                             Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
-                            Str += '<select class="surveyFormSelect"'
+                            Str += '<select class="surveyFormSelect FormInput"'
                             if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
                                 Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
                             }
@@ -240,7 +240,7 @@ var Str = ''
                             Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                            Str += '</div><textarea class="textInput" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
+                            Str += '</div><textarea class="textInput FormInput" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
                             Str += '</div><hr>'
                         default:
                             console.log("========= DEFAULT ==========")
@@ -340,12 +340,11 @@ html += "</form>"
         // Otherwise, display the correct tab:
         showTab(currentTab);
     }
+
 function showTab(n) {
         // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab");
-        console.log(n)
-        console.log(x)
-            x[n].style.display = "block";
+        x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
@@ -363,12 +362,18 @@ function showTab(n) {
 
  
     function validateForm() {
+        console.log("VALIDATING FORM")
         // This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("input");
+        //y = x[currentTab].getElementsByTagName("input");
+        y = x[currentTab].getElementsByClassName("FormInput")
+        
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
+            console.log(y[i])
+            y[i].className += " invalid";
+            valid = false;
             // If a field is empty...
             if (y[i].value == "") {
             // add an "invalid" class to the field:

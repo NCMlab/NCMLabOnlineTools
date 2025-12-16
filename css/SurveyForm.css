@@ -134,3 +134,8 @@ button:hover {
 .step.finish {
   background-color: #04AA6D;
 }
+
+/* Mark input boxes that gets an error on validation: */
+.invalid {
+  background-color: #ffdddd;
+}
