@@ -116,8 +116,8 @@ button:hover {
 
 /* Make circles that indicate the steps of the form: */
 .step {
-  height: 15px;
-  width: 15px;
+  height: 25px;
+  width: 25px;
   margin: 0 2px;
   background-color: #bbbbbb;
   border: none;  
@@ -133,7 +133,9 @@ button:hover {
 /* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #04AA6D;
-}
+  opacity: 1;
+ }
+ 
 
 /* Mark input boxes that gets an error on validation: */
 .invalid {

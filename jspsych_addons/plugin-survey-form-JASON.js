@@ -86,88 +86,85 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
       trial(display_element, trial) {
 
           var html = "";
-        html += "JASON"
         html += '<form id="regForm">'
   
 
 
 // ====================
 var NPages = trial.survey_json.pages.length
-
+// These are the progress dots
 html += `<div style="text-align:center;margin-top:40px;">`
-  for ( var j = 0; j < NPages; j++ )
+for ( var j = 0; j < NPages; j++ )
     { html += `<span class="step"></span>`} 
-  html += "</div>"
+html += "</div>"
 
 var VisibleIfConditionsPages = []
-          
-          console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
-          //var AllQuestionsValid
-          for ( var page = 0; page < NPages; page++ ) {
-                var VisibleIfConditions = []
-                var NQuestions = trial.survey_json.pages[page].elements.length
-                for ( var i = 0; i < NQuestions; i++ ) {
-                    var thisQ = {}
-                    var thisQuestion = trial.survey_json.pages[page].elements[i]
-                    
-                    if ( thisQuestion.visibleIf ) {
+    
+    console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
+    //var AllQuestionsValid
+    for ( var page = 0; page < NPages; page++ ) {
+        var VisibleIfConditions = []
+        var NQuestions = trial.survey_json.pages[page].elements.length
+        for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQ = {}
+            var thisQuestion = trial.survey_json.pages[page].elements[i]
+            
+            if ( thisQuestion.visibleIf ) {
+                
+                // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
+                var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
+                Str = 'style="display: none"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                // decode the visible if condition
+                var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
+                var ThisQuestionIsConditionalOn = matches[1]
+                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
+                // Find this question and edit it
+                let obj = VisibleIfConditions.find((o, index) => 
+                    {
                         
-                        // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
-                        var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
-                        Str = 'style="display: none"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                        // decode the visible if condition
-                        var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
-                        var ThisQuestionIsConditionalOn = matches[1]
-                        // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
-                        // Find this question and edit it
-                        let obj = VisibleIfConditions.find((o, index) => 
-                            {
-                                
-                                if (o.name === ThisQuestionIsConditionalOn) {
-                                    // Now that we found the question that the current question is conditional ON
-                                    // we need to find what the condition is. If that condition is met, then make the
-                                    // set the onChange function to make this question visible.
-                                    // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
-                                    
-                                    // If more than one question is supposed to be made visible by one answer
-                                    // then deal with that scenario 
-                                    if ( 'onChangeQuestion' in VisibleIfConditions[index]) 
-                                        {
-                                            VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
-                                            VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
-                                        } 
-                                    else {
-                                        VisibleIfConditions[index]['onChangeQuestion'] = []
-                                        VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
-                                        VisibleIfConditions[index]['onChangeCondition'] = []
-                                        VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
-                                    }
-                                    
-                                    return true;
-                                }
-                            })
-                    } 
-                    else {
-                        var Str = 'style="display: visible"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                    }
-                    VisibleIfConditions.push(thisQ)
-                }
-                VisibleIfConditionsPages.push(VisibleIfConditions)
+                        if (o.name === ThisQuestionIsConditionalOn) {
+                            // Now that we found the question that the current question is conditional ON
+                            // we need to find what the condition is. If that condition is met, then make the
+                            // set the onChange function to make this question visible.
+                            // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
+                            
+                            // If more than one question is supposed to be made visible by one answer
+                            // then deal with that scenario 
+                            if ( 'onChangeQuestion' in VisibleIfConditions[index]) 
+                                {
+                                    VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
+                                    VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
+                                } 
+                            else {
+                                VisibleIfConditions[index]['onChangeQuestion'] = []
+                                VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
+                                VisibleIfConditions[index]['onChangeCondition'] = []
+                                VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
+                            }
+                            
+                            return true;
+                        }
+                    })
+            } 
+            else {
+                var Str = 'style="display: visible"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
             }
-            console.log("==== VISIBLE IF CONDITIONS ====")
-            console.log(VisibleIfConditionsPages)
-
-var Str = ''
-          console.log("==== PREPARING THE HTML ====")
+            VisibleIfConditions.push(thisQ)
+        }
+        VisibleIfConditionsPages.push(VisibleIfConditions)
+    }
+        
+        var Str = ''
+        
             for ( var page = 0; page < NPages; page++ ) {
                 //console.log(trial.survey_json.pages[page])
                 var NQuestions = trial.survey_json.pages[page].elements.length
                 Str += '<div class="tab">'
-                Str += trial.survey_json.pages[page].title
+                Str += '<h1>'+trial.survey_json.pages[page].title+'</h1>'
 
 
                 for ( var i = 0; i < NQuestions; i++ ) {
@@ -182,10 +179,13 @@ var Str = ''
                             Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
-                            Str += '<select class="surveyFormSelect FormInput"'
+                            // the visible class is used to only use visible questions when validating 
+                            // the form.
                             if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
+                                Str += '<select class="surveyFormSelect FormInput visible"'
                                 Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
                             }
+                            else { Str += '<select class="surveyFormSelect FormInput"' }
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
@@ -260,52 +260,14 @@ var Str = ''
             Str += '</div>'
             //<!-- Circles which indicates the steps of the form: -->
 
-            Str += '<div style="text-align:center;margin-top:40px;">'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-            Str += '</div>'
+            
 
           html += Str
-
-// ====================
-  /*
-  //<!-- One "tab" for each step in the form: -->
-  html += '<div class="tab">Name:'
-    html += `<p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>`
-    html += `<p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>`
-  html += "</div>"
-  html += '<div class="tab">Contact Info:'
-    html += `<p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>`
-    html += `<p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>`
-  html += "</div>"
-  html += '<div class="tab">Birthday'
-    html += `<p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>`
-    html += `<p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>`
-    html += `<p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>`
-  html += "</div>"
-  html += '<div class="tab">Login Info:'
-    html += `<p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>`
-    html += `<p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>`
-  html += "</div>"
-  html += `<div style="overflow:auto;">`
-    html += `<div style="float:right;">`
-      html += `<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>`
-      html += `<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>`
-    html += "</div>"
-  html += "</div>"
-  */
-  //<!-- Circles which indicates the steps of the form: -->
-html += "</form>"
-
-
-
-
-
+ 
+        html += "</form>"
 
         display_element.innerHTML = html;
-
+        // start off by showing the first tab
         showTab(0)
       }
     }    
@@ -318,9 +280,6 @@ html += "</form>"
 
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
-
-
-
 
    function nextPrev(n) {
         // This function will figure out which tab to display
@@ -371,16 +330,17 @@ function showTab(n) {
         
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
-            console.log(y[i])
-            y[i].className += " invalid";
-            valid = false;
-            // If a field is empty...
-            if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false
-            valid = false;
+            // CHeck to make sure validity is ONLY based on the visible items
+            // check to see if the element is in the non-visable class
+            // If a field is empty AND visible
+            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
+            {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
             }
+            else { y[i].classList.remove('invalid') }
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
@@ -401,10 +361,8 @@ function showTab(n) {
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
-    console.log("MODIFY ON CHANGE")
-    console.log(elementToChange)
+    
     var splitInput = elementToChange.split('___')
-    console.log('Element to modify: '+splitInput)
     
     splitInput[1] = splitInput[1].split(',')
     splitInput[2] = splitInput[2].split(',')
@@ -412,112 +370,32 @@ function ModifyOnChange(elementToChange) {
     var e = document.getElementById(splitInput[0])
     // The values provided for each option should be arbitray form the code's point of view
     // what is the option index for the selected option?
-    console.log(e)
-    console.log(splitInput)
+
+    // If this element has been given the invlaid classname, remove it.
+    e.classList.remove('invalid')
+
     for ( k = 0; k < splitInput[1].length; k++ )
-        if (e.options[e.options.selectedIndex].innerHTML == splitInput[2][k]) {
         
+        if (e.options[e.options.selectedIndex].innerHTML == splitInput[2][k]) {
+       
             f = document.getElementById("div-"+splitInput[1][k])
-            console.log(f)
             f.style="display: visible"
             s = document.getElementById("div-"+splitInput[1][k]).getElementsByClassName("surveyFormSelect")[0]
-        
-        //f.setAttribute('required','')
-        //s.required = true;
-        //console.log(s)
-    }
-}
+            input = f.getElementsByClassName('FormInput')
+            input[0].className += ' visible'
+            input[0].classList.remove('non-visible')        
 
-
-
-function InternalValidateForm(form) {
-    
-    // Add a variable to determine if all questions are answered
-    AllQuestionsValid = true
-    console.log(AllQuestionsValid)
-    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
-    var NQuestions = AllQuestions.length
-    //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
-    for ( var i = 0; i < NQuestions; i++ ) {
-        // get the name of each question
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-        { // THIS IS A DROPDOWN QUESTION 
-             //console.log(AllQuestions[i].style.display != 'none')
-            //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-            // Add check to see if a question is visible or not before deciding if it needs to be answered.
-
-            // This is still checking to see if non needed questions are being answered or not
-            if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-                if ( AllQuestions[i].style.display != 'none' ) {
-                    AllQuestionsValid = false
-                    document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                    document.getElementById("tableMessageBox").style = "block"
-                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-                }
-            }
-            else { // reset the background color
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
-            }
-        }
-        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+        } 
+        else
         {
-            // THIS IS A RADIO GROUP QUESTION 
-            document.getElementById("tableMessageBox").style.backgroundColor = "#FFF"
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
-            //console.log(CurrentQuestionName+": "+document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
-            if (document.querySelector('input[name="'+CurrentQuestionName+'"]:checked'))
-            {
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-            else {
-                AllQuestionsValid = false
-                // what os the DIV element for this question?
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-        }
-        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
-        { 
 
-            console.log("FOUND TIME INPUT")
+            f = document.getElementById("div-"+splitInput[1][k])
+            input = f.getElementsByClassName('FormInput')
+            input[0].className += ' non-visible'
+            input[0].classList.remove('visible')
+            f.style="display: none"
+            s = document.getElementById("div-"+splitInput[1][k]).getElementsByClassName("surveyFormSelect")[0]
             
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
-            if ( AllQuestions[i].getElementsByClassName("timeInput")[0].value == '' ) {
-                AllQuestionsValid = false
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-            else { 
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-
-            console.log(CurrentQuestionName)
-            console.log(AllQuestions[i].getElementsByClassName("surveyFormTime")) 
-
         }
-    }
-
-    /* for ( var i = 0; i < NQuestions; i++ ) {
-        //console.log(AllQuestions[i].style.display != 'none')
-        //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-        // Add check to see if a question is visible or not before deciding if it needs to be answered.
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect"))
-        console.log(AllQuestions[i].getElementsByClassName("surveryFormRadioGroup"))
-
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-            if ( AllQuestions[i].style.display != 'none' ) {
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-        }
-        else { // reset the background color
-            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
-        }
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
-        console.log(AllQuestions[i])
-    }*/
-        console.log(AllQuestionsValid)
 }
+
