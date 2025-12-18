@@ -26,7 +26,11 @@
   width: 80%;
 }
 
-
+h1 {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 2.5rem;
+  text-align: center
+}
 .surveyFormLabel, .tableSubmitButton, .surveyFormResponseLabel, .surveyFormSubTitle{
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.5rem;

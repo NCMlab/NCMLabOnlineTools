@@ -27,7 +27,7 @@ const json = {
       ]
     },*/
     
-     {
+     /*{
        name: "Medical Information",
        title: "Medical Information",
        
@@ -127,7 +127,7 @@ const json = {
       textbox_rows: 3,
     },
        ]
-     },
+     },*/
      {
        name: "Habits",
        title: "Habits",

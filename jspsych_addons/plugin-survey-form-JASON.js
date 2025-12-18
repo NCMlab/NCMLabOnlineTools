@@ -102,13 +102,15 @@ var VisibleIfConditionsPages = []
     
     console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
     //var AllQuestionsValid
+// THERE IS AN ISSUE WITH CREATING THE VISIBILITY CONDITIONS WHEN THERE IS AN OR FOR THE RESPONSES
+
     for ( var page = 0; page < NPages; page++ ) {
         var VisibleIfConditions = []
         var NQuestions = trial.survey_json.pages[page].elements.length
         for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
             var thisQuestion = trial.survey_json.pages[page].elements[i]
-            
+            console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
                 
                 // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
@@ -155,6 +157,7 @@ var VisibleIfConditionsPages = []
             }
             VisibleIfConditions.push(thisQ)
         }
+        console.log(VisibleIfConditions)
         VisibleIfConditionsPages.push(VisibleIfConditions)
     }
         
@@ -211,6 +214,42 @@ var VisibleIfConditionsPages = []
                             break;
                         
                         case 'radiogroup':
+                            Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
+
+                            // the visible class is used to only use visible questions when validating 
+                            // the form.
+                            if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
+                                Str += '<select class="surveyFormSelect FormInput visible"'
+                                Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
+                            }
+                            else { Str += '<select class="surveyFormSelect FormInput"' }
+                            // only set the visible questions to be required
+                            //if ( ! thisQuestion.visibleIf ) {
+                            //    Str += ' required '
+                            //}
+                            Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
+                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                            Str += '>'
+                            if (Object.hasOwn(thisQuestion,'choicesMin'))
+                            {
+                                // need to add functionaility to create all choices between the min and max values
+                            }
+                            else {
+                                var NChoices = thisQuestion.choices.length
+                                // add default/blank option
+                                Str += '<option disabled selected value> -- </option>'
+                                for ( var j = 0; j < NChoices; j++ ) {
+                                    //console.log("The choices are: "+thisQuestion.choices[j])
+                                    Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
+                                }
+                            }
+                            Str += '</select></div><hr>'
+
+                            break;
+
+                        // =====
+                        case 'radiogroupXX':
                             console.log("========= RADIO GROUP QUESTION ==========") 
                             Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
                             
@@ -252,12 +291,19 @@ var VisibleIfConditionsPages = []
                 Str += '</div>' // end the tab div
             }// This ends the for loop over pages
 
+            Str += '<table border="0"><tr><td colspan="2">'
             Str += '<div style="overflow:auto;">'
                 Str += '<div style="float:right;">'
                 Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>'
                 Str += '<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>'
                 Str += '</div>'
             Str += '</div>'
+            Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
+
+
+            
+            
+//            Str += '</td></tr></table>'
             //<!-- Circles which indicates the steps of the form: -->
 
             
@@ -326,6 +372,8 @@ function showTab(n) {
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
         //y = x[currentTab].getElementsByTagName("input");
+        
+        // Find all input slotsin teh form
         y = x[currentTab].getElementsByClassName("FormInput")
         
         // A loop that checks every input field in the current tab:
@@ -333,18 +381,28 @@ function showTab(n) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
+            console.log(y[i])
             if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
             {
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
                 valid = false;
+                    //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                    document.getElementById("tableMessageBox").style = "block"
+                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+
             }
-            else { y[i].classList.remove('invalid') }
+            else { 
+                y[i].classList.remove('invalid') 
+                
+                //document.getElementById("tableMessageBox").style = "display: none"
+            }
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
             document.getElementsByClassName("step")[currentTab].className += " finish";
+            document.getElementById("tableMessageBox").style = "display: none"
         }
         return valid; // return the valid status
     }
@@ -361,13 +419,14 @@ function showTab(n) {
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
-    
+    console.log("===== MODIFY ON CHANGE ======")
     var splitInput = elementToChange.split('___')
-    
+    console.log(splitInput)
     splitInput[1] = splitInput[1].split(',')
     splitInput[2] = splitInput[2].split(',')
     //get current question
     var e = document.getElementById(splitInput[0])
+    console.log(e)
     // The values provided for each option should be arbitray form the code's point of view
     // what is the option index for the selected option?
 
