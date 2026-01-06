@@ -133,19 +133,41 @@ const json = {
        title: "Habits",
        
        elements: [
-        {
+                {
+          type: 'dropdown',
+          name: 'CognDeclineDiagnosis',
+          title: 'Have you received a diagnosis of dementia or cognitive decline?',
+          choices: 
+          [
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
+          ],
+          isRequired: true,
+          //add_other_option: true,                    
+          //other_option_text: 'Yes, how long ago were you diagnosed?',
+      },
+      {
+        type: 'textarea',
+        title: 'If yes, how long ago were you diagnosed?',
+        name: 'DementiaTime',
+        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        isRequired: true,
+        textbox_rows: 3,
+      },
+        /*{
           type: 'dropdown',
           title: 'How many days do you exercise per week?',
           choices: 
           [
               {value: 1, text: "0"}, 
-              {value: 1, text: "1"},
-              {value: 1, text: "2"},
-              {value: 1, text: "3"},
-              {value: 1, text: "4"},
-              {value: 1, text: "5"},
-              {value: 1, text: "6"},
-              {value: 1, text: "7"}
+              {value: 2, text: "1"},
+              {value: 3, text: "2"},
+              {value: 4, text: "3"},
+              {value: 5, text: "4"},
+              {value: 6, text: "5"},
+              {value: 7, text: "6"},
+              {value: 8, text: "7"}
           ],
           name: 'ExerciseFrequency',
           isRequired: true,
@@ -160,61 +182,47 @@ const json = {
           ],
           name: 'Exercise24',
           isRequired: true,
-        },
+        },*/
         {
           type: 'dropdown',
+          name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
           choices: 
           [
-            {value: 1, text: "Currently smoke"},
-            {value: 1, text: "Have not smoked for more than 1 year"},
-            {value: 1, text: "Never"},
-            {value: 1, text: "Unknown"}
+            {value: 1, text: "Currently Smoke"},
+            {value: 2, text: "Have not smoked for more than 1 year"},
+            {value: 3, text: "Never"},
+            {value: 4, text: "Unknown"}
           ],
-          name: 'Smoke',
           isRequired: true,
         },
+
+
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choicesMin: 1920,
-          choicesMax: 2024,
-          choicesStep:1,
           name: 'SmokeStart',
-          isRequired: true,
-          input_type: "number"
-        },
-        {
-          type: 'dropdown',
-          title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Currently Smoke",
+          //visibleIf: "{Smoke} == CurrentlySmoke",          
           choicesMin: 1920,
-          choicesMax: 2024,
-          choicesStep:1,
-          name: 'SmokeQuit',
+          choicesMax: 2025,
+          //choicesStep: 1,
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
-          title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choices: [
-            {value: 1, text: "0"},
-            {value: 2, text: "0.5"},
-            {value: 3, text: "1"},
-            {value: 4, text: "2"},
-            {value: 5, text: "3"},
-            {value: 6, text: "4"},
-            {value: 7, text: "5"},
-            {value: 8, text: "6"},
-            {value: 9, text: ">6"}
-          ],
-          name: 'SmokePacksPerDay',
+          title: 'What year did you stop smoking?',
+          name: 'SmokeStop',
+          visibleIf: "{Smoke} == Currently Smoke; {Smoke} == 'Have not smoked for more than 1 year'",
+          //visibleIf: "{Smoke} == CurrentlySmoke",          
+          choicesMin: 1920,
+          choicesMax: 2025,
+          //choicesStep: 1,
           isRequired: true,
           input_type: "number"
         },
+       
         {
           type: 'dropdown',
           title: 'Alcohol consumption',
@@ -232,7 +240,8 @@ const json = {
   
        ]
      },
-     {
+     
+     /*{
       name: "Music Experience",
       title: "Music Experience",
       
@@ -357,6 +366,7 @@ const json = {
         }
       ]
     }
+      */
    ]
  }
 
