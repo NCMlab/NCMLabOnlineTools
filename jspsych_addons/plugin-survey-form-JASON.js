@@ -371,7 +371,7 @@ var VisibleIfConditionsPages = []
                             console.log("========= TEXT QUESTION ==========")     
                             console.log(thisQuestion)
                             Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
-                            Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
                             Str += '</div><textarea class="textInput FormInput" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
@@ -412,6 +412,10 @@ var VisibleIfConditionsPages = []
         showTab(0)
       }
     }    
+
+    console.log("GOT HERE")
+console.log("GOT HERE")
+console.log("GOT HERE")
   SurveyHtmlFormPlugin.info = info;
 
   return SurveyHtmlFormPlugin;
@@ -432,9 +436,18 @@ var VisibleIfConditionsPages = []
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
+        console.log("Current Tab: "+currentTab)
+        console.log("x: ")
+        console.log(x)
+        
         if (currentTab >= x.length) {
             // ... the form gets submitted:
-            document.getElementById("regForm").submit();
+            console.log('Submitting form: ')
+            //document.getElementById("regForm").submit();
+            console.log(x)
+            PrepareDataForSubmission()
+            this.jsPsych.finishTrial();
+            
             return false;
         }
         // Otherwise, display the correct tab:
@@ -468,7 +481,7 @@ function showTab(n) {
         x = document.getElementsByClassName("tab");
         //y = x[currentTab].getElementsByTagName("input");
         
-        // Find all input slotsin teh form
+        // Find all input slots in the form
         y = x[currentTab].getElementsByClassName("FormInput")
         
         // A loop that checks every input field in the current tab:
@@ -498,6 +511,7 @@ function showTab(n) {
             document.getElementsByClassName("step")[currentTab].className += " finish";
             document.getElementById("tableMessageBox").style = "display: none"
         }
+        console.log("Break point")
         return valid; // return the valid status
     }
 
@@ -581,4 +595,74 @@ function ModifyOnChange(elementToChange) {
         
         
 }
+// Prepare data for submission
+function PrepareDataForSubmission()
+{
+        x = document.getElementsByClassName("tab");
+        var AllQuestionsOnThisTab
+        // How many tabs/pages are there?
+        console.log("Number of pages: "+x.length)
+        for ( var currentTab = 0; currentTab < x.length; currentTab++ )
+        {
+            // every question is embedded in this DIV
+            AllQuestionsOnThisTab = x[currentTab].getElementsByClassName("surveyFormDiv")
+            for ( var currentQuestion = 0; currentQuestion < AllQuestionsOnThisTab.length; currentQuestion++ )
+            {
+                var this_question_data = {}
+                // console.log(AllQuestionsOnThisTab[currentQuestion])
+                // The question text:
+                // console.log(AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML)
+                this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
+                console.log(AllQuestionsOnThisTab[currentQuestion])
+                // console.log(AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel"))
 
+                y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                console.log(y)
+                console.log(y.classList.contains('visible'))
+                //console.log(y.getElementsByClassName('non-visible'))
+                // Check for visibility
+                if ( AllQuestionsOnThisTab[currentQuestion].getElementsByClassName('visible').length > 0 )
+                {
+                    this_question_data.visible = 'Yes'
+                    // Get the response for this question
+                    y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                    this_question_data.name = y[0].id
+                
+                    // console.log(y[0][y[0].value].text)
+                    this_question_data.responseValue = y[0].value
+                    if (y[0].tagName == "TEXTAREA" )
+                    { this_question_data.responseText = '' }
+                    else 
+                    { this_question_data.responseText = y[0][y[0].value].text }
+                }
+                else 
+                {
+                    this_question_data.visible = 'No'
+                }
+                console.log(this_question_data)
+            }
+        }
+        //
+        
+        // Find all input slots in the form
+        
+        
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // CHeck to make sure validity is ONLY based on the visible items
+            // check to see if the element is in the non-visable class
+            // If a field is empty AND visible
+            // if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
+
+    
+
+
+        }
+    
+    
+    // save data
+    var trialdata = {
+        //rt: response_time,
+        response: question_data,
+    };
+}

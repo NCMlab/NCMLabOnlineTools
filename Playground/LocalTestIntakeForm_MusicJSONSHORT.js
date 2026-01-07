@@ -183,7 +183,7 @@ const json = {
           name: 'Exercise24',
           isRequired: true,
         },*/
-        {
+        /*{
           type: 'dropdown',
           name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
@@ -236,12 +236,12 @@ const json = {
           name: 'Alcohol',
           isRequired: true,
         },
-      
+      */
   
        ]
      },
      
-     /*{
+     {
       name: "Music Experience",
       title: "Music Experience",
       
@@ -257,6 +257,8 @@ const json = {
             name: 'MusicMovement',
             isRequired: true,
           },
+        ]}
+          /*
           {
             type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
