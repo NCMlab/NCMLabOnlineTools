@@ -476,7 +476,6 @@ function showTab(n) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
-            console.log(y[i])
             if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
             {
                 // add an "invalid" class to the field:
@@ -519,16 +518,12 @@ function showTab(n) {
 
 function ModifyOnChange(elementToChange) {
     console.log("===== MODIFY ON CHANGE ======")
-    console.log(elementToChange)
     var splitInput = elementToChange.split(';;')
-    console.log(splitInput[0])
-    console.log(splitInput[1])
-    console.log(splitInput[2])
+
     // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
     splitInput[1] = splitInput[1].split(',')
     splitInput[2] = splitInput[2].split(';')
-    //splitInput[2] = splitInput[2].split(',')
-    console.log(splitInput)
+
     //get current question
     var e = document.getElementById(splitInput[0])
     console.log(e)
@@ -573,9 +568,7 @@ function ModifyOnChange(elementToChange) {
             splitInput[2][k] = splitInput[2][k].split(',')
             for ( var m = 0; m < splitInput[2][k].length; m++ )    
             {   
-                
                 var QuestionsToModify = splitInput[2][k][m]
-                console.log(QuestionsToModify)
                 f = document.getElementById("div-"+QuestionsToModify)
                 input = f.getElementsByClassName('FormInput')
                 input[0].className += ' non-visible'
