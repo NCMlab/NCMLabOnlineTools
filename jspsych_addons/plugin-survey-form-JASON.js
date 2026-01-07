@@ -103,12 +103,16 @@ var VisibleIfConditionsPages = []
     console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
     //var AllQuestionsValid
 // THERE IS AN ISSUE WITH CREATING THE VISIBILITY CONDITIONS WHEN THERE IS AN OR FOR THE RESPONSES
-
+    var VisibleIfConditionsPages = []
     for ( var page = 0; page < NPages; page++ ) {
-        var VisibleIfConditions = []
+    var VisibleIfConditions = []
+        
         var NQuestions = trial.survey_json.pages[page].elements.length
+        console.log("Number of questions: "+NQuestions)
+        // cycle over each question
         for ( var i = 0; i < NQuestions; i++ ) {
             var thisQ = {}
+            var TEST = {}
             var thisQuestion = trial.survey_json.pages[page].elements[i]
             //console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
@@ -119,6 +123,24 @@ var VisibleIfConditionsPages = []
                 Str = 'style="display: none"'
                 thisQ['div'] = Str
                 thisQ['name'] = thisQuestion.name
+                TEST['div'] = Str
+                TEST['name'] = thisQuestion.name
+            }
+            else {
+                var Str = 'style="display: visible"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                TEST['div'] = Str
+                TEST['name'] = thisQuestion.name
+            }
+            
+            VisibleIfConditions.push(TEST)
+        }
+        console.log(VisibleIfConditions)
+        for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQuestion = trial.survey_json.pages[page].elements[i]
+            //console.log(thisQuestion)
+            if ( thisQuestion.visibleIf ) {
                 // decode the visible if condition
                 //console.log(thisQuestion.visibleIf)
                 
@@ -129,12 +151,18 @@ var VisibleIfConditionsPages = []
                   //  console.log(MultipleConditions[k].split("==")[1])
                     CondMatches.push(MultipleConditions[k].split("==")[1].trim())
                 }
-                //console.log(CondMatches)
+                //console.log(CondMatches) // These are the responses
                 //console.log(ConditionToMeet)
                 var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
-                var ThisQuestionIsConditionalOn = matches[1]
+                var ThisQuestionIsConditionalOn = matches[1] // The question name
+                //console.log("CURRENT QUESTION: "+thisQuestion.name)
+                //console.log('QUESTION CONDITIONAL ON:'+matches[1])
+
                 //console.log(ThisQuestionIsConditionalOn)
-                
+                //console.log("RESPONSES: "+CondMatches)
+            
+
+
                 // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
                 // Find this question and edit it
                 let obj = VisibleIfConditions.find((o, index) => 
@@ -148,49 +176,45 @@ var VisibleIfConditionsPages = []
                             // set the onChange function to make this question visible.
                             // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
                             
-                            // If more than one question is supposed to be made visible by one answer
-                            // then deal with that scenario 
-                            /*if ( 'onChangeQuestion' in VisibleIfConditions[index]) 
-                                {
-                                    console.log("?????????????>>>>>>>====+TRUE========<<<<<<<<<<<")
-                                    VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
-                                    //VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
-                                    for ( var m = 0; m < CondMatches.length; m++ )
-                                    { VisibleIfConditions[index]['onChangeCondition'].push(CondMatches[m]) }
-                                    
-                                    console.log(VisibleIfConditions[index])
-                                } 
-                            else {*/
-                                //console.log("?????????????>>>>>>>====+ ELSE========<<<<<<<<<<<")
-                                //VisibleIfConditions[index]['onChangeQuestion'] = []
-                                if ( 'onChangeQuestion' in VisibleIfConditions[index]) 
-                                { VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name) }
-                                else {
-                                    VisibleIfConditions[index]['onChangeQuestion'] = []
-                                    VisibleIfConditions[index]['onChangeQuestion'].push(thisQuestion.name)
-                                }
-                                VisibleIfConditions[index]['onChangeCondition'] = []
-                                //VisibleIfConditions[index]['onChangeCondition'].push(ConditionToMeet.trim())
-                                //VisibleIfConditions[index]['onChangeCondition'].push(CondMatches)
-                                for ( var m = 0; m < CondMatches.length; m++ )
-                                { VisibleIfConditions[index]['onChangeCondition'].push(CondMatches[m]) }
-                            //}
+                            // Find the index for this option
                             
-                            return true;
+                            // console.log('THIS QUESTION: '+thisQuestion.name)
+                            // console.log("The index is: "+index) // This is the index of the question with the conditions
+                            // Are the om change responses added to this qieston yet?
+                            if ( !('onChangeResponses' in VisibleIfConditions[index] ))
+                            { 
+                                VisibleIfConditions[index]['onChangeResponses'] = []
+                                VisibleIfConditions[index]['onChangeQuestions'] = []
+                            }
+                            let CondIndex
+                            for ( var k = 0; k < CondMatches.length; k++ )
+                            {
+                                if (!( VisibleIfConditions[index]['onChangeResponses'].includes(CondMatches[k])))
+                                {
+                                    VisibleIfConditions[index]['onChangeResponses'].push(CondMatches[k])
+                                    // console.log("CURRENT COND: "+CondMatches[k])
+                                    // console.log("CURRENT QUESTION: "+thisQuestion.name)
+                                    // need to add the questions to the arrays
+                                    // What is the index of this response?
+                                    CondIndex = VisibleIfConditions[index]['onChangeResponses'].indexOf(CondMatches[k])
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex] = []
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex].push(thisQuestion.name)
+                                }
+                                else { 
+                                    // console.log("CURRENT QUESTION: "+thisQuestion.name)
+                                    CondIndex = VisibleIfConditions[index]['onChangeResponses'].indexOf(CondMatches[k])
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex].push(thisQuestion.name)
+                                }
+                                // console.log("Cond Index: "+ CondIndex)
+                            }                            
                         }
                     })
-            } 
-            else {
-                var Str = 'style="display: visible"'
-                thisQ['div'] = Str
-                thisQ['name'] = thisQuestion.name
             }
-            VisibleIfConditions.push(thisQ)
         }
-        
         VisibleIfConditionsPages.push(VisibleIfConditions)
     }
-     //   console.log(VisibleIfConditionsPages)
+    
+        console.log(VisibleIfConditionsPages)
         var Str = ''
         
             for ( var page = 0; page < NPages; page++ ) {
@@ -214,24 +238,34 @@ var VisibleIfConditionsPages = []
 
                             // the visible class is used to only use visible questions when validating 
                             // the form.
-                            if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
+                            console.log(VisibleIfConditionsPages[page][i])
+                            if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
+                                console.log('=== VISIBLE IF CONDIRTION ===')
                                 console.log(VisibleIfConditionsPages[page][i])
                                 Str += '<select class="surveyFormSelect FormInput visible"'
                                 //Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
+                                
                                 var SSS = ''
-
-                                SSS += 'onChange="ModifyOnChange(`'+thisQuestion.name+';'
-                                console.log(VisibleIfConditionsPages[page][i])
-                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeQuestion.length; k++ )
+                                SSS += 'onChange="ModifyOnChange(`'+thisQuestion.name+';;'
+                                
+                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeResponses.length; k++ )
                                 { 
                                     if ( k > 0 ){ SSS += ',' }
-                                    SSS += VisibleIfConditionsPages[page][i].onChangeQuestion[k]  
+                                    SSS += VisibleIfConditionsPages[page][i].onChangeResponses[k]  
                                 }
-                                SSS += ';'
-                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeCondition.length; k++ )
+                                SSS += ';;'
+                                // cycle over array of arrays
+                                // cycle over responses
+                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeQuestions.length; k++ )
                                 { 
-                                    if ( k > 0 ){ SSS += ',' }
-                                    SSS += VisibleIfConditionsPages[page][i].onChangeCondition[k]  
+                                     if ( k > 0 ){ SSS += ';' }
+                                    // cycle over the questions related to each response
+                                    for ( var m = 0; m < VisibleIfConditionsPages[page][i].onChangeQuestions[k].length; m++ )
+                                    {
+                                         if ( m > 0 ){ SSS += ',' }
+                                        SSS += VisibleIfConditionsPages[page][i].onChangeQuestions[k][m]
+                                    }
+                                    
                                 }
                                 SSS += '`)'
                                 //+VisibleIfConditionsPages[page][i].onChangeQuestion+','+VisibleIfConditionsPages[page][i].onChangeCondition+')" '                     
@@ -486,13 +520,14 @@ function showTab(n) {
 function ModifyOnChange(elementToChange) {
     console.log("===== MODIFY ON CHANGE ======")
     console.log(elementToChange)
-    var splitInput = elementToChange.split(';')
+    var splitInput = elementToChange.split(';;')
     console.log(splitInput[0])
     console.log(splitInput[1])
     console.log(splitInput[2])
     // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
     splitInput[1] = splitInput[1].split(',')
-    splitInput[2] = splitInput[2].split(',')
+    splitInput[2] = splitInput[2].split(';')
+    //splitInput[2] = splitInput[2].split(',')
     console.log(splitInput)
     //get current question
     var e = document.getElementById(splitInput[0])
@@ -505,18 +540,33 @@ function ModifyOnChange(elementToChange) {
     console.log("LENGTH: "+ splitInput[1].length)
     // Check to see if any of the conditions have been met
     var ConditionalResponseMadeFlag = false
-    for ( var k = 0; k < splitInput[2].length; k++ )
+    var ResponseIndex = -99
+    for ( var k = 0; k < splitInput[1].length; k++ )
     {
-        if (e.options[e.options.selectedIndex].innerHTML === splitInput[2][k]) 
-        { ConditionalResponseMadeFlag = true}
+        console.log("RESPOINSE: "+e.options[e.options.selectedIndex].innerHTML)
+        console.log("Checking: "+splitInput[1][k])
+        if (e.options[e.options.selectedIndex].innerHTML === splitInput[1][k]) 
+        { 
+            console.log("INDEX: "+k)
+            ResponseIndex = k
+            ConditionalResponseMadeFlag = true
+        }
     }
     if ( ConditionalResponseMadeFlag )
     {
-        for ( var k = 0; k < splitInput[1].length; k++ )
+        // cycle over the questions linked to this response
+
+        
+        splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
+        console.log(splitInput[2][ResponseIndex])
+        for ( var k = 0; k < splitInput[2][ResponseIndex].length; k++ )
         {
-            f = document.getElementById("div-"+splitInput[1][k])
+            
+            var QuestionsToModify = splitInput[2][ResponseIndex][k]
+            console.log(QuestionsToModify)
+            f = document.getElementById("div-"+QuestionsToModify)
             f.style="display: visible"
-            s = document.getElementById("div-"+splitInput[1][k]).getElementsByClassName("surveyFormSelect")[0]
+            s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
             input = f.getElementsByClassName('FormInput')
             input[0].className += ' visible'
             input[0].classList.remove('non-visible')        
