@@ -543,11 +543,8 @@ function ModifyOnChange(elementToChange) {
     var ResponseIndex = -99
     for ( var k = 0; k < splitInput[1].length; k++ )
     {
-        console.log("RESPOINSE: "+e.options[e.options.selectedIndex].innerHTML)
-        console.log("Checking: "+splitInput[1][k])
         if (e.options[e.options.selectedIndex].innerHTML === splitInput[1][k]) 
         { 
-            console.log("INDEX: "+k)
             ResponseIndex = k
             ConditionalResponseMadeFlag = true
         }
@@ -555,15 +552,10 @@ function ModifyOnChange(elementToChange) {
     if ( ConditionalResponseMadeFlag )
     {
         // cycle over the questions linked to this response
-
-        
         splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
-        console.log(splitInput[2][ResponseIndex])
         for ( var k = 0; k < splitInput[2][ResponseIndex].length; k++ )
         {
-            
             var QuestionsToModify = splitInput[2][ResponseIndex][k]
-            console.log(QuestionsToModify)
             f = document.getElementById("div-"+QuestionsToModify)
             f.style="display: visible"
             s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
@@ -574,14 +566,23 @@ function ModifyOnChange(elementToChange) {
     }
     else 
     {
-        for ( var k = 0; k < splitInput[1].length; k++ )    
+        // Make sure to hide anything that may have been made visible but know does not need to be
+        // splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
+        for ( var k = 0; k < splitInput[1].length; k++ )
         {
-            f = document.getElementById("div-"+splitInput[1][k])
-            input = f.getElementsByClassName('FormInput')
-            input[0].className += ' non-visible'
-            input[0].classList.remove('visible')
-            f.style="display: none"
-            s = document.getElementById("div-"+splitInput[1][k]).getElementsByClassName("surveyFormSelect")[0]
+            splitInput[2][k] = splitInput[2][k].split(',')
+            for ( var m = 0; m < splitInput[2][k].length; m++ )    
+            {   
+                
+                var QuestionsToModify = splitInput[2][k][m]
+                console.log(QuestionsToModify)
+                f = document.getElementById("div-"+QuestionsToModify)
+                input = f.getElementsByClassName('FormInput')
+                input[0].className += ' non-visible'
+                input[0].classList.remove('visible')
+                f.style="display: none"
+                s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
+            }
         }
     }
         
