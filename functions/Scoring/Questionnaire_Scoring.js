@@ -8,6 +8,7 @@ function Questionnaire_Scoring(data) {
 	AllTrials = data
 	
 	data = data.trials[0]
+	console.log(data)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
     Results.AllResults = {}

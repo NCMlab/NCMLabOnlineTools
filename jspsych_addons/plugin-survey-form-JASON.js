@@ -125,6 +125,7 @@ var VisibleIfConditionsPages = []
                 thisQ['name'] = thisQuestion.name
                 TEST['div'] = Str
                 TEST['name'] = thisQuestion.name
+                TEST['visibleClass'] = 'non-visible'
             }
             else {
                 var Str = 'style="display: visible"'
@@ -132,6 +133,7 @@ var VisibleIfConditionsPages = []
                 thisQ['name'] = thisQuestion.name
                 TEST['div'] = Str
                 TEST['name'] = thisQuestion.name
+                TEST['visibleClass'] = 'visible'
             }
             
             VisibleIfConditions.push(TEST)
@@ -233,7 +235,7 @@ var VisibleIfConditionsPages = []
                     switch(thisQuestion.type) {
                         case 'dropdown':
                             console.log("========= DROPDOWN QUESTION ==========")
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
                             // the visible class is used to only use visible questions when validating 
@@ -370,7 +372,7 @@ var VisibleIfConditionsPages = []
                         case 'textarea':
                             console.log("========= TEXT QUESTION ==========")     
                             console.log(thisQuestion)
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
@@ -565,8 +567,11 @@ function ModifyOnChange(elementToChange) {
         for ( var k = 0; k < splitInput[2][ResponseIndex].length; k++ )
         {
             var QuestionsToModify = splitInput[2][ResponseIndex][k]
+
             f = document.getElementById("div-"+QuestionsToModify)
             f.style="display: visible"
+            f.className += ' visible'
+            f.classList.remove('non-visible')        
             s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
             input = f.getElementsByClassName('FormInput')
             input[0].className += ' visible'
@@ -584,6 +589,8 @@ function ModifyOnChange(elementToChange) {
             {   
                 var QuestionsToModify = splitInput[2][k][m]
                 f = document.getElementById("div-"+QuestionsToModify)
+                f.className += ' non-visible'
+                f.classList.remove('visible')        
                 input = f.getElementsByClassName('FormInput')
                 input[0].className += ' non-visible'
                 input[0].classList.remove('visible')
@@ -600,6 +607,7 @@ function PrepareDataForSubmission()
 {
         x = document.getElementsByClassName("tab");
         var AllQuestionsOnThisTab
+        AllQuestionsData = []
         // How many tabs/pages are there?
         console.log("Number of pages: "+x.length)
         for ( var currentTab = 0; currentTab < x.length; currentTab++ )
@@ -609,60 +617,46 @@ function PrepareDataForSubmission()
             for ( var currentQuestion = 0; currentQuestion < AllQuestionsOnThisTab.length; currentQuestion++ )
             {
                 var this_question_data = {}
-                // console.log(AllQuestionsOnThisTab[currentQuestion])
-                // The question text:
-                // console.log(AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML)
+
+                y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                this_question_data.name = y[0].id
+
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
+
+                this_question_data.responseValue = Number(y[0].value)
+                if (y[0].tagName == "TEXTAREA" )
+                { this_question_data.responseText = y[0].value }
+                else 
+                { this_question_data.responseText = y[0][y[0].value].text }
+
+
                 console.log(AllQuestionsOnThisTab[currentQuestion])
                 // console.log(AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel"))
 
-                y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
-                console.log(y)
-                console.log(y.classList.contains('visible'))
-                //console.log(y.getElementsByClassName('non-visible'))
                 // Check for visibility
-                if ( AllQuestionsOnThisTab[currentQuestion].getElementsByClassName('visible').length > 0 )
-                {
-                    this_question_data.visible = 'Yes'
-                    // Get the response for this question
-                    y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
-                    this_question_data.name = y[0].id
+                console.log(AllQuestionsOnThisTab[currentQuestion].classList.contains('visible'))
+                //console.log(y.getElementsByClassName('non-visible'))
                 
-                    // console.log(y[0][y[0].value].text)
-                    this_question_data.responseValue = y[0].value
-                    if (y[0].tagName == "TEXTAREA" )
-                    { this_question_data.responseText = '' }
-                    else 
-                    { this_question_data.responseText = y[0][y[0].value].text }
-                }
-                else 
-                {
-                    this_question_data.visible = 'No'
-                }
+                if ( AllQuestionsOnThisTab[currentQuestion].classList.contains('visible') )
+                { this_question_data.visible = 'Yes' }
+                else { this_question_data.visible = 'No' }
+    
+            
+                // console.log(y[0][y[0].value].text)
+                
                 console.log(this_question_data)
+                AllQuestionsData.push(this_question_data)
             }
         }
+        console.log(AllQuestionsData)
         //
         
-        // Find all input slots in the form
-        
-        
-        // A loop that checks every input field in the current tab:
-        for (i = 0; i < y.length; i++) {
-            // CHeck to make sure validity is ONLY based on the visible items
-            // check to see if the element is in the non-visable class
-            // If a field is empty AND visible
-            // if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
-
-    
-
-
-        }
     
     
     // save data
     var trialdata = {
         //rt: response_time,
-        response: question_data,
+        response: AllQuestionsData,
     };
+    this.jsPsych.finishTrial(trialdata);
 }
