@@ -1,10 +1,18 @@
 var title = "The Centre of Excellence Self-Administered questionnaire"
 var shortTitle = "CESAM"
 const survey_JSON = {
+   showProgressBar: "bot", // bottom, none
+   showTitle: false,
+   progressBarType: "pages",
+   progressBarShowPageNumbers: true,
+   progressBarShowPageTitles: true,
   showQuestionNumbers: false,
   showCompletedPage: false,
-  pages: [{
-  elements: [
+  pages: [
+    {
+    name: 'CESAM',
+    title: 'CESAM',
+    elements: [
     {
         type: "dropdown",
         name: "cesam001",
@@ -90,9 +98,9 @@ const survey_JSON = {
         name: "cesam006p1",
         title: "From whom?",
         choices: [
-            {text: "Family"},
-            {text: "Friends"},
-            {text: "Professional"}
+            {value: 0, text: "Family"},
+            {value: 1, text: "Friends"},
+            {value: 2, text: "Professional"}
         ],
         visibleIf: "{cesam006} == Yes",
         isRequired: true,
@@ -302,7 +310,7 @@ const survey_JSON = {
         ],
         isRequired: true,
         showClearButton: true
-      },
+      }, 
       {
         type: "dropdown",
         name: "cesam023",
@@ -319,8 +327,8 @@ const survey_JSON = {
         name: "cesam023p1",
         title: "What is his/her condition?",
         choices: [
-            {text: "Alzheimer's disease"},
-            {text: "Other"}
+            {value: 1, text: "Alzheimer's disease"},
+            {value: 0, text: "Other"}
         ],
         visibleIf: "{cesam023} == Yes",
         isRequired: true,

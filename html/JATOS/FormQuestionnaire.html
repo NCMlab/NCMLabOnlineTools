@@ -21,7 +21,7 @@
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-survey-text.js"></script>
-    <script src="jspsych_addons/plugin-survey-html-form.js"></script>
+    <script src="jspsych_addons/plugin-survey-form-JASON.js"></script>
     <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
@@ -65,7 +65,9 @@
         }
     </script>
     <script>
+        var currentTab = 0
         jatos.onLoad(() => {
+            
             // Once Jatos has been loaded
             // What is the language?
             LANG = jatos.batchSession.get(jatos.workerId+"_Language"),

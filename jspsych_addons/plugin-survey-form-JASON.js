@@ -91,12 +91,17 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
 
 // ====================
+
 var NPages = trial.survey_json.pages.length
 // These are the progress dots
-html += `<div style="text-align:center;margin-top:40px;">`
-for ( var j = 0; j < NPages; j++ )
-    { html += `<span class="step"></span>`} 
-html += "</div>"
+console.log(trial)
+if ( trial.survey_json.showProgressBar == 'top')
+{ 
+    html += `<div style="text-align:center;margin-top:40px;">`
+    for ( var j = 0; j < NPages; j++ )
+        { html += `<span class="step"></span>`} 
+    html += "</div>"
+}
 
 var VisibleIfConditionsPages = []
     
@@ -223,7 +228,8 @@ var VisibleIfConditionsPages = []
                 //console.log(trial.survey_json.pages[page])
                 var NQuestions = trial.survey_json.pages[page].elements.length
                 Str += '<div class="tab">'
-                Str += '<h1>'+trial.survey_json.pages[page].title+'</h1>'
+                if ( trial.survey_json.showTitle )
+                { Str += '<h1>'+trial.survey_json.pages[page].title+'</h1>' }
 
 
                 for ( var i = 0; i < NQuestions; i++ ) {
@@ -275,7 +281,7 @@ var VisibleIfConditionsPages = []
                                 Str += SSS
                                 //console.log(BREAK)
                             }
-                            else { Str += '<select class="surveyFormSelect FormInput"' }
+                            else { Str += '<select class="surveyFormSelect FormInput visible"' }
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
@@ -408,6 +414,13 @@ var VisibleIfConditionsPages = []
           html += Str
  
         html += "</form>"
+        if ( trial.survey_json.showProgressBar == 'bot')
+        { 
+            html += `<div style="text-align:center;margin-top:40px;">`
+            for ( var j = 0; j < NPages; j++ )
+                { html += `<span class="step"></span>`} 
+            html += "</div>"
+        }
 
         display_element.innerHTML = html;
         // start off by showing the first tab
@@ -504,16 +517,14 @@ function showTab(n) {
             }
             else { 
                 y[i].classList.remove('invalid') 
-                
-                //document.getElementById("tableMessageBox").style = "display: none"
             }
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
+            console.log(document.getElementsByClassName("step"))
             document.getElementsByClassName("step")[currentTab].className += " finish";
             document.getElementById("tableMessageBox").style = "display: none"
         }
-        console.log("Break point")
         return valid; // return the valid status
     }
 
@@ -619,15 +630,20 @@ function PrepareDataForSubmission()
                 var this_question_data = {}
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                console.log(y)
                 this_question_data.name = y[0].id
 
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
 
                 this_question_data.responseValue = Number(y[0].value)
+
                 if (y[0].tagName == "TEXTAREA" )
                 { this_question_data.responseText = y[0].value }
                 else 
-                { this_question_data.responseText = y[0][y[0].value].text }
+                { 
+                    // The value for each question is not the index, it is used for later scoring
+                    this_question_data.responseText = y[0][y[0].selectedIndex].text 
+                }
 
 
                 console.log(AllQuestionsOnThisTab[currentQuestion])

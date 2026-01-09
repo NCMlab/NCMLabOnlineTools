@@ -5,7 +5,7 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "aboveHeader",
+  showProgressBar: "bot",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
@@ -155,7 +155,7 @@ const json = {
         isRequired: true,
         textbox_rows: 3,
       },
-        /*{
+        {
           type: 'dropdown',
           title: 'How many days do you exercise per week?',
           choices: 
@@ -171,7 +171,7 @@ const json = {
           ],
           name: 'ExerciseFrequency',
           isRequired: true,
-        },
+        },/*
         {
           type: 'dropdown',
           title: 'Have you exercised in the last 24 hours?',

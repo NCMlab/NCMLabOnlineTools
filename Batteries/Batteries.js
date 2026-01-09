@@ -1375,13 +1375,17 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================
 var List = []
-List.push({
+/*List.push({
   Task: "Ready Hold",
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
-});
-List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
+});*/
+List.push({
+  Task: 'Form Questionnaire', 
+  Parameters: 'MusicDemographics_001SHORT',//'MusicDemographics_001', 
+  Instructions: 'Default', 
+  IconName: 'Music Intake'})
 BatteryList.push({index: 73, 
 	name:'Music Motion: Intake', 
   shortName: "Intake",
