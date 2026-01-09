@@ -1,6 +1,6 @@
     class Stair {
   		constructor(Current=1, MinValue=1, MaxValue=9, MaxReversals=5,
-  			MaxTrials=40, StepSize=1, NUp=3, NDown=1, FastStart=true, MaxTime=420) 
+  			MaxTrials=40, StepSizeUp=1, StepSizeDown=1, NUp=3, NDown=1, FastStart=true, MaxTime=420) 
   		{
   			this.Current = Current; // what is the current value
   			this.TrialCount = 0; // How many trials have been completed
@@ -8,7 +8,8 @@
   			this.MaxValue = MaxValue; // what is the maximum value this staircase can reach
   			this.MaxReversals = MaxReversals; // What is the maximum number of reversal. This is a break condition
   			this.MaxTrials = MaxTrials; // What is the maximum number of trials. This is a break condition
-  			this.StepSize = StepSize; // What is the step size
+  			this.StepSizeUp = StepSizeUp; // What is the step size UP
+			this.StepSizeDown = StepSizeDown; // What is the step size DOWN
   			this.NUp = NUp;// How many correct responses in a row are required before the current value is INcreased
   			this.NDown = NDown;// How many INcorrect responses in a two are required before the current value is DEcreased
   			this.FastStart = FastStart; // At the beginning should sequential correct responses result in increasing current?
@@ -37,7 +38,7 @@
   		// increase difficulty
   		stepUp() {
   			// allow for reverse staircases
-  			if (this.StepSize > 0) {
+  			if (this.StepSizeUp > 0) {
   			// only increase current if the max value has NOT been reached
 	  			if (this.Current < this.MaxValue) {
 	  				// Is this a reversal?
@@ -47,7 +48,7 @@
 	  					// and update the reversal count list
 	  					this.updateReversalCount()
 	  				}
-	  				this.Current += this.StepSize	
+	  				this.Current += this.StepSizeUp	
 
 	  				// update the current run list
 	  				this.CurrentRun = 1
@@ -67,7 +68,7 @@
 	  					// update the current run list
 	  					this.CurrentRun = 1
 	  				}
-	  				this.Current += this.StepSize	
+	  				this.Current += this.StepSizeUp	
 	  			}
 	  			// Make sure the direction is correct
 	  			this.CurrentDirection = -1	
@@ -92,7 +93,7 @@
   		// decrease difficulty
   		stepDown() {
   			// allow for reverse staircases
-  			if (this.StepSize > 0) {
+  			if (this.StepSizeDown > 0) {
   				
   				if (this.CurrentDirection == 1) {
 	  				// if so add the current value to the list
@@ -103,7 +104,7 @@
 	  			// Check to make sure the value is not at the limit
   				if (this.Current > this.MinValue) 
   				{
-  					this.Current -= this.StepSize
+  					this.Current -= this.StepSizeDown
   				}
   				// Make sure the direction is correct
 	  			this.CurrentDirection = -1
@@ -119,7 +120,7 @@
 
   				if (this.Current < this.MaxValue) 
   				{
-  					this.Current -= this.StepSize
+  					this.Current -= this.StepSizeDown
   				}
   				// Make sure the direction is correct
 	  			this.CurrentDirection = 1
@@ -185,13 +186,20 @@
   			}
   		}
 
-      CalculateAverage() {
+      CalculateAverage(HowManyReversals) {
         // calculate the average of the reversal values
           var totalSum = 0;
-          for(var i in this.ReversalList) {
-            totalSum += this.ReversalList[i];
+		  var ReversalList = this.ReversalList
+          if ( HowManyReversals !== undefined )
+			{
+				console.log('LIMITED REVERSAL LIST: '+HowManyReversals)
+				ReversalList = this.ReversalList.slice(-HowManyReversals) 
+			}
+		 console.log(ReversalList) 
+		  for ( var i in ReversalList ) {
+            totalSum += ReversalList[i];
           }
-          var numsCnt = this.ReversalList.length;
+          var numsCnt = ReversalList.length;
           var average = totalSum / numsCnt;
           return average
       }

@@ -1,0 +1,53 @@
+<html>
+<head>
+    <script src="../functions/GeneralPurposeFunctions/StairClass_functions.js"></script>
+
+
+<script>
+    function func_respYES(stim, threshold, slope, guess, lapse) {
+        return (1 - lapse - (1 - lapse - guess )*Math.exp(-Math.pow(stim/threshold,slope)))
+    }
+
+    function func_respYESReverse(stim, threshold, slope, guess, lapse) {
+        return ( guess + (1 - lapse - guess )*Math.exp(-Math.pow(stim/threshold,slope)))
+    }
+    function simulate_resp(current_intensity, true_threshold, true_slope, true_guess, true_lapse){
+        var currentProbYes = func_respYESReverse(current_intensity, true_threshold, true_slope, true_guess, true_lapse)        
+        // if current stimulus is below threshold, then guess at guess rate
+        // if current stim is ABOVE threshold, then get it correct at prob of 
+        
+        // currentThresh value
+        var RandomNumber = Math.random()
+        //console.log('At intensity: '+ current_intensity +', Prob of YES: '+currentProbYes+', RandomNumber: '+RandomNumber)
+        if (RandomNumber <  ( currentProbYes ))
+        {
+              return 1 // yes // 
+          } else {
+              return 0 // no // 
+          }
+
+      } 
+
+</script>
+<script>
+        var true_threshold = 8
+        var true_lapse = 0.01
+        var true_slope = 3.5
+        var true_guess = 0.5
+        var N_trials = 10
+        stair1 = new Stair(1,1,9,5,N_trials,1,1,3,1,true,420)
+        console.log(stair1)
+        for ( var i = 0; i < N_trials; i++ )
+        {
+            response = simulate_resp(stair1.Current, true_threshold, true_slope, true_guess, true_lapse)
+            console.log(response)
+            stair1.Decide(response)
+            console.log("Current Value: "+stair1.Current+", True Thresh="+true_threshold+", Prob of a YES: "+func_respYESReverse(stair1.Current,true_threshold,true_slope,true_guess,true_lapse))
+        }
+        
+        console.log("The Reversals are: "+stair1.ReversalList+", The mean Reversal is : "+stair1.CalculateAverage())
+        console.log("The Reversals are: "+stair1.ReversalList.slice(-4)+", The mean Reversal is : "+stair1.CalculateAverage(4))
+</script>
+</head>
+<body></body>
+</html>
