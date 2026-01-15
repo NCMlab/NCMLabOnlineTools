@@ -2048,3 +2048,24 @@ List.push({
   Instructions: "Default",
   IconName: "Dots (Short)",
 })
+
+// === Cost of Sports === //
+var List = []
+List.push({
+  Task: "Cost of Sport",
+  Parameters: "",
+  Instructions: "",
+  IconName: "Cost of Sport",
+});
+	BatteryList.push({index: 337, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})
