@@ -35,29 +35,29 @@ const json = {
           title: "Gender", 
           name: 'Gender', 
           choices: [
-                      {value: 1, text:'Male'},
-                      {value: 2, text:'Female'},
-              ],
+              {value: 1, text:'Male'},
+              {value: 2, text:'Female'},
+            ],
           showOtherItem: true,
           isRequired: true
         },
         {
           name: "Age",
-          type: "text",
+          type: "input",
           title: "Age",
           inputType: "number",
-          min: 0,
-          max: 150,
+          choicesMin: 0,
+          choicesMax: 150,
           defaultValue: '',
           isRequired: true,
         },
         {
           name: "Height",
-          type: "text",
-          title: "Height (cm or feet/inches)",
+          type: "input",
+          title: "Height (cm or inches)",
           inputType: "number",
-          min: 0,
-          max: 300,
+          choicesMin: 0,
+          choicesMax: 300,
           defaultValue: '',
           isRequired: true
         },
@@ -74,11 +74,11 @@ const json = {
         },
         {
           name: "Weight",
-          type: "text",
+          type: "input",
           title: "Weight (kg or lbs)",
           inputType: "number",
-          min: 0,
-          max: 1000,
+          choicesMin: 0,
+          choicesMax: 1000,
           defaultValue: '',
           isRequired: true
         },
@@ -122,7 +122,7 @@ const json = {
           isRequired: true
         },
         {
-          type: 'comment',
+          type: 'textarea',
           title: 'What type of work do you do (or did you do before retirement)?',
           name: 'WorkType',
           rows: 2,
@@ -144,7 +144,7 @@ const json = {
           isRequired: true,
         },
         {
-          type: 'text',
+          type: 'textarea',
           title: 'What is your primary language(s)?',
           name: 'PrimaryLanguage',
           isRequired: true,
@@ -161,7 +161,7 @@ const json = {
         }, 
         {
           name: "LanguageProblemDescription",
-          type: "comment",
+          type: "textarea",
           title: "Please specify your language or communication challenges.",
           visibleIf: "{LanguageProblem} == Yes",
           maxLength: 500

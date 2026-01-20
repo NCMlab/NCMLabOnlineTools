@@ -382,8 +382,27 @@ var VisibleIfConditionsPages = []
                             Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                            Str += '</div><textarea class="textInput FormInput" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
+                            Str += '</div><textarea class="textInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
                             Str += '</div><hr>'
+                        case 'input':
+                            console.log("========= INPUT QUESTION ==========")     
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
+                            Str += thisQuestion.title
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><p><input type="number" class="numberInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '" width="40%"'
+                            if (Object.hasOwn(thisQuestion,'choicesMax'))
+                            {  Str += ' max="'+thisQuestion.choicesMax+'" ' }
+                            if (Object.hasOwn(thisQuestion,'choicesMin'))
+                            {  Str += ' min="'+thisQuestion.choicesMin+'" ' }
+                            Str += '></input></p>'
+                            Str += '</div><hr>'
+
                         default:
                             console.log("========= DEFAULT ==========")
                                 console.error("Questions of type "+trial.survey_json.pages[page].elements[i].type+" are not availble")
@@ -504,6 +523,7 @@ function showTab(n) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
+            console.log(y[i])
             if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
             {
                 // add an "invalid" class to the field:
@@ -513,11 +533,20 @@ function showTab(n) {
                     //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
                     document.getElementById("tableMessageBox").style = "block"
                     document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-
             }
             else { 
                 y[i].classList.remove('invalid') 
             }
+        }
+        // Check number inputs for valid values
+        n = x[currentTab].getElementsByClassName("numberInput")
+        console.log(n)
+        for ( i = 0; i < n.length; i++ )
+        {
+            if ( Number(n[i].value) > Number(n[i].max) ) 
+            { n[i].className += " invalid"; }
+            if ( Number(n[i].value) < Number(n[i].min) ) 
+            { n[i].className += " invalid"; }
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {

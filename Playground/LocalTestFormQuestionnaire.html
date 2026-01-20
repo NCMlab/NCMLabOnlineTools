@@ -59,8 +59,8 @@
                 },
                 on_finish: function() {
                     console.log("SUBMITTING DATA")
-                    //jatos.submitResultData(jsPsych.data.get().json())
-                    //.then(() => whereToGoNext(jatos.studySessionData))
+                    jatos.submitResultData(jsPsych.data.get().json())
+                    .then(() => whereToGoNext(jatos.studySessionData))
                 }
             })
         }
@@ -76,7 +76,7 @@
             // Load the parameters as stored in the session data
             //parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
             
-            parameters = 'MusicDemographics_001SHORT'
+            parameters = 'MusicDemographics_001'
             pseudoSwitch(parameters)
             //console.log(parameters)
             parameters.Language = LANG

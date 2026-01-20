@@ -5,7 +5,7 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "aboveHeader",
+  showProgressBar: "bot",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
@@ -35,19 +35,19 @@ const json = {
           title: "Gender", 
           name: 'Gender', 
           choices: [
-                      {value: 1, text:'Male'},
-                      {value: 2, text:'Female'},
-              ],
+            {value: 1, text:'Male'},
+            {value: 2, text:'Female'},
+          ],
           showOtherItem: true,
           isRequired: true
         },
         {
           name: "Age",
-          type: "text",
+          type: "input",
           title: "Age",
           inputType: "number",
-          min: 0,
-          max: 150,
+          choicesMin: 0,
+          choicesMax: 150,
           defaultValue: '',
           isRequired: true,
         },
@@ -56,8 +56,8 @@ const json = {
           type: "text",
           title: "Height (cm or feet/inches)",
           inputType: "number",
-          min: 0,
-          max: 300,
+          choicesMin: 0,
+          choicesMax: 300,
           defaultValue: '',
           isRequired: true
         },
@@ -66,8 +66,8 @@ const json = {
           title: "What units did you use for height?", 
           name: 'HeightUnits', 
           choices: [
-                      'Inches',
-                      'Centimeters',
+                      {values: 1, text: 'Inches'},
+                      {values: 2, text: 'Centimeters'},
               ],
           showOtherItem: false,
           isRequired: true

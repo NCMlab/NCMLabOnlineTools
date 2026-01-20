@@ -12,6 +12,7 @@ const json = {
    showCompletedPage: false,
    pages: 
    [
+    
     /*{
       name: "Name",
       title: "Name",
@@ -133,7 +134,40 @@ const json = {
        title: "Habits",
        
        elements: [
-                {
+        {
+          type: 'dropdown',
+          title: "Gender", 
+          name: 'Gender', 
+          choices: [
+                      {value: 1, text:'Male'},
+                      {value: 2, text:'Female'},
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },        
+          {
+          name: "Age",
+          type: "input",
+          title: "Age",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 150,
+          defaultValue: '',
+          isRequired: true,
+        },
+        {
+          name: "Height",
+          type: "input",
+          title: "Height (cm or inches)",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 300,
+          defaultValue: '',
+          isRequired: true
+        },
+        
+        {
+
           type: 'dropdown',
           name: 'CognDeclineDiagnosis',
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
