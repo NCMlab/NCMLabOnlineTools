@@ -5,11 +5,12 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "aboveHeader",
+  showProgressBar: "bot",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   showTitle: true,
    pages: 
    [
     /*{
@@ -369,8 +370,8 @@ const json = {
           title: 'Have you exercised in the last 24 hours?',
           choices: 
           [
-            "Yes",
-            "No"
+            {value: 1, text:"Yes"},
+            {value: 2, text: "No"}
           ],
           name: 'Exercise24',
           isRequired: true,
@@ -380,10 +381,10 @@ const json = {
           title: 'Do you smoke, or have you smoked in the past?',
           choices: 
           [
-            "Currently smoke",
-              "Have not smoked for more than 1 year",
-              "Never",
-              "Unknown"
+              {value: 1, text: "Currently smoke"},
+              {value: 2, text: "Have not smoked for more than 1 year"},
+              {value: 3, text: "Never"},
+              {value: 4, text: "Unknown"}
           ],
           name: 'Smoke',
           isRequired: true,
@@ -414,7 +415,17 @@ const json = {
           type: 'dropdown',
           title: 'Approximately how many packs per day?',
           visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choices: ["0","0.5","1","2","3","4","5","6",">6"],
+          choices: [
+            {value: 0, text: "0"},
+            {value: 0.5, text: "0.5"},
+            {value: 1, text: "1"},
+            {value: 2, text: "2"},
+            {value: 3, text: "3"},
+            {value: 4, text: "4"},
+            {value: 5, text: "5"},
+            {value: 6, text: "6"},
+            {value: 7, text: ">6"}
+          ],
           name: 'SmokePacksPerDay',
           isRequired: true,
           input_type: "number"
@@ -424,10 +435,10 @@ const json = {
           title: 'Alcohol consumption',
           choices: 
           [
-              "None",
-              "Less than 2 drinks per day",
-              "2 to 4 drinks per day",
-              "More than 4 drinks per day"
+              {value: 0, text: "None"},
+              {value: 1, text: "Less than 2 drinks per day"},
+              {value: 2, text: "2 to 4 drinks per day"},
+              {value: 3, text: "More than 4 drinks per day"}
           ],
           name: 'Alcohol',
           isRequired: true,
@@ -446,14 +457,14 @@ const json = {
             title: 'Have you engaged in music and movement classes before?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'MusicMovement',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
@@ -465,14 +476,14 @@ const json = {
             title: 'Have you participated in group music classes before?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'GroupMusic',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
             name: 'GroupMusicExperience',
             visibleIf: "{GroupMusic} == Yes",
@@ -484,14 +495,13 @@ const json = {
             title: 'Have you been in a choir before?',
             choices: 
             [
-              "Yes",
-              "No",
-            ],
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},            ],
             name: 'Choir',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
             name: 'ChoirExperience',
             visibleIf: "{Choir} == Yes",
@@ -503,14 +513,14 @@ const json = {
             title: 'Do you have any other music experience (i.e. have you played a musical instrument at any time in your life on a regular basis)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'OtherMusic',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Which instrument(s) did you play?',
             name: 'WhichInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -518,7 +528,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
             name: 'AgeStartInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -526,7 +536,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
             name: 'YearsPlayInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -538,8 +548,8 @@ const json = {
             title: 'Do you still play the instrument(s)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             visibleIf: "{OtherMusic} == Yes",
             name: 'StillPlayInstrument',
@@ -553,7 +563,7 @@ const json = {
       
       elements: [
         {
-          type: 'comment',
+          type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
           name: 'AdditionalCOmments',
           required: false,

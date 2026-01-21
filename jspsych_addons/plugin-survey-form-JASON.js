@@ -386,6 +386,7 @@ var VisibleIfConditionsPages = []
                             Str += VisibleIfConditionsPages[page][i].visibleClass
                             Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
                             Str += '</div><hr>'
+                            break;
                         case 'input':
                             console.log("========= INPUT QUESTION ==========")     
                             console.log(thisQuestion)

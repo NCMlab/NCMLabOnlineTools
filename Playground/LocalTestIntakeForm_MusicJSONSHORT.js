@@ -9,6 +9,7 @@ const json = {
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
+   showTitle: true,
    showCompletedPage: false,
    pages: 
    [
