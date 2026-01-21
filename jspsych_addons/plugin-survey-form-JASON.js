@@ -576,7 +576,7 @@ function showTab(n) {
 function ModifyOnChange(elementToChange) {
     console.log("===== MODIFY ON CHANGE ======")
     var splitInput = elementToChange.split(';;')
-
+    console.log(splitInput)
     // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
     splitInput[1] = splitInput[1].split(',')
     splitInput[2] = splitInput[2].split(';')

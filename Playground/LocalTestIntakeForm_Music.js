@@ -13,21 +13,8 @@ const json = {
    showTitle: true,
    pages: 
    [
-    /*{
-      name: "Name",
-      title: "Name",
-      
-      elements: [
-        {
-          type: 'comment',
-          title: 'Enter first name and initial of last name',
-          name: 'Name',
-          required: true,
-          textbox_rows: 1,
-        }
-      ]
-    },*/
-    {      
+
+    /*{      
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
@@ -197,21 +184,7 @@ const json = {
           showOtherItem: true,                    
           isRequired: true,
         },
-        /*{
-          type: 'dropdown',
-          title: 'What is your annual household income?',
-          choices: 
-          [
-              "Less than $20,000",
-              "$20,000 - $40,000",
-              "$40,001 - $60,000",
-              "$60,001 - $80,000",
-              "$80,001 - $100,000",
-              "Above $100,000"
-          ],
-          name: 'Income',
-          required: true,
-        }*/
+        
        {
           type: 'dropdown',
           title: 'Which of the following statements best describes the extent to which your needs are met currently?',
@@ -342,7 +315,7 @@ const json = {
       rows: 3,
     },
        ]
-     },
+     },*/
      {
        name: "Habits",
        title: "Habits",
@@ -392,10 +365,10 @@ const json = {
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Currently Smoke; {Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
-          choicesStep:1,
+          //choicesStep:1,
           name: 'SmokeStart',
           isRequired: true,
           input_type: "number"
@@ -403,10 +376,10 @@ const json = {
         {
           type: 'dropdown',
           title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
-          choicesStep:1,
+          //choicesStep:1,
           name: 'SmokeQuit',
           isRequired: true,
           input_type: "number"
@@ -414,7 +387,7 @@ const json = {
         {
           type: 'dropdown',
           title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
           choices: [
             {value: 0, text: "0"},
             {value: 0.5, text: "0.5"},

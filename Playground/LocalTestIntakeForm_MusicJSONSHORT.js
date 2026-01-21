@@ -218,7 +218,7 @@ const json = {
           name: 'Exercise24',
           isRequired: true,
         },*/
-        /*{
+        {
           type: 'dropdown',
           name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
@@ -257,7 +257,7 @@ const json = {
           isRequired: true,
           input_type: "number"
         },
-       
+       /*
         {
           type: 'dropdown',
           title: 'Alcohol consumption',
