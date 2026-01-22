@@ -252,14 +252,21 @@ var VisibleIfConditionsPages = []
                                 console.log(VisibleIfConditionsPages[page][i])
                                 Str += '<select class="surveyFormSelect FormInput visible"'
                                 //Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
+                                var TTT = {}
                                 
                                 var SSS = ''
                                 SSS += 'onChange="ModifyOnChange(`'+thisQuestion.name+';;'
-                                
+                                TTT.name = thisQuestion.name
+                                TTT.TriggerResponse = []
+                                console.log(TTT)
                                 for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeResponses.length; k++ )
                                 { 
                                     if ( k > 0 ){ SSS += ',' }
+                                    console.log(SSS)
+                                    console.log(VisibleIfConditionsPages[page][i].onChangeResponses[k]  )
+                                    console.log(SSS.search(VisibleIfConditionsPages[page][i].onChangeResponses[k]))
                                     SSS += VisibleIfConditionsPages[page][i].onChangeResponses[k]  
+                                    TTT.TriggerResponse.push(VisibleIfConditionsPages[page][i].onChangeResponses[k]  )
                                 }
                                 SSS += ';;'
                                 // cycle over array of arrays
@@ -278,6 +285,7 @@ var VisibleIfConditionsPages = []
                                 SSS += '`)'
                                 //+VisibleIfConditionsPages[page][i].onChangeQuestion+','+VisibleIfConditionsPages[page][i].onChangeCondition+')" '                     
                                 console.log(SSS)
+                                console.log(TTT)
                                 Str += SSS
                                 //console.log(BREAK)
                             }
@@ -580,7 +588,9 @@ function ModifyOnChange(elementToChange) {
     // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
     splitInput[1] = splitInput[1].split(',')
     splitInput[2] = splitInput[2].split(';')
-
+    
+    for ( var k = 0; k < splitInput[2].length; k++ )
+    { splitInput[2][k] = splitInput[2][k].split(',') }
     //get current question
     var e = document.getElementById(splitInput[0])
     console.log(e)
@@ -601,10 +611,31 @@ function ModifyOnChange(elementToChange) {
             ConditionalResponseMadeFlag = true
         }
     }
+    console.log(ConditionalResponseMadeFlag)
+    console.log("Response Index: "+ResponseIndex)
+    // In case anything was made visible by a previous choice, make sure it is not non-visible
+    // before meeting thios condition.
+    for ( var k = 0; k < splitInput[1].length; k++ )
+        {
+            for ( var m = 0; m < splitInput[2][k].length; m++ )    
+            {   
+                var QuestionsToModify = splitInput[2][k][m]
+                f = document.getElementById("div-"+QuestionsToModify)
+                f.className += ' non-visible'
+                f.classList.remove('visible')        
+                input = f.getElementsByClassName('FormInput')
+                input[0].className += ' non-visible'
+                input[0].classList.remove('visible')
+                f.style="display: none"
+                s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
+            }
+        }
+
     if ( ConditionalResponseMadeFlag )
     {
         // cycle over the questions linked to this response
-        splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
+        // Make sure to make all non visible before making them visible
+
         for ( var k = 0; k < splitInput[2][ResponseIndex].length; k++ )
         {
             var QuestionsToModify = splitInput[2][ResponseIndex][k]
@@ -621,11 +652,10 @@ function ModifyOnChange(elementToChange) {
     }
     else 
     {
-        // Make sure to hide anything that may have been made visible but know does not need to be
+        // Make sure to hide anything that may have been made visible but now does not need to be
         // splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
         for ( var k = 0; k < splitInput[1].length; k++ )
         {
-            splitInput[2][k] = splitInput[2][k].split(',')
             for ( var m = 0; m < splitInput[2][k].length; m++ )    
             {   
                 var QuestionsToModify = splitInput[2][k][m]

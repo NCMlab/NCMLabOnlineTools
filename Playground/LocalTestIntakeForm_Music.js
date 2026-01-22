@@ -365,7 +365,7 @@ const json = {
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == Currently Smoke; {Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
