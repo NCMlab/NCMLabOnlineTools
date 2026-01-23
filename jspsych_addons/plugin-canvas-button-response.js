@@ -100,6 +100,8 @@ var jsPsychCanvasButtonResponse = (function (jspsych) {
               "</div>";
           //display buttons
           var buttons = [];
+          console.log(trial.button_html)
+          console.log(trial.choices)
           if (Array.isArray(trial.button_html)) {
               if (trial.button_html.length == trial.choices.length) {
                   buttons = trial.button_html;
