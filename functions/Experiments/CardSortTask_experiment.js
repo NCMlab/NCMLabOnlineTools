@@ -112,7 +112,8 @@ var TestTrial = {
     data.trial = "Test"
     console.log(data)
     jsPsych.setProgressBar(0)
-  }
+  },
+  button_html: '<button >%choice%</button>',
 };
 
 // ===================================================
