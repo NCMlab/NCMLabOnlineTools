@@ -68,6 +68,12 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
             else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }            
             jatos.studySessionData = JATOSSessionData
+            // Check for language selections
+            if ( typeof CurrentBattery.LanguagesToShow !== 'undefined' )
+            { JATOSSessionData.LanguagesToShow = CurrentBattery.LanguagesToShow }
+            else { JATOSSessionData.LanguagesToShow = ['EN'] }            
+            jatos.studySessionData = JATOSSessionData
+
         }
         else {console.log("THERE IS SESSION DATA")}
         resolve("successfully setup session data")
@@ -522,7 +528,7 @@ function CentralExecutive() {
                             console.log("URL: ")
                             //jatos.studySessionData.UsageType = jatos_params["UsageType"];
                             //alert("WAS THE HOME BUTTON PRESSED?")
-                            jatos.startComponentByTitle("Central Executive")
+                            //jatos.startComponentByTitle("Central Executive")
                         StartComponent(TitleToStart)
                     })
                 }
