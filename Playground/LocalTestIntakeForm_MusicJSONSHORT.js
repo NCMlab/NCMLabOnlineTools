@@ -9,6 +9,7 @@ const json = {
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
+   showTitle: true,
    showCompletedPage: false,
    pages: 
    [
@@ -217,7 +218,7 @@ const json = {
           name: 'Exercise24',
           isRequired: true,
         },*/
-        /*{
+        {
           type: 'dropdown',
           name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
@@ -256,7 +257,7 @@ const json = {
           isRequired: true,
           input_type: "number"
         },
-       
+       /*
         {
           type: 'dropdown',
           title: 'Alcohol consumption',
