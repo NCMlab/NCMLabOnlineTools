@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type="text/css" href="../css/defaultV2.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/NCMLabGeneral.css">
+    <link rel="stylesheet" type="text/css" href="../css/ButtonsHeaderBody.css">
+
+    
+    <script src="../jspsych/dist/jspsych.js"></script>
+    <script src="../jspsych/dist/plugin-survey.js"></script>
+    <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="https://unpkg.com/survey-core@latest/survey.core.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@latest/survey.jquery.min.js"></script>
+
+ 
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>
+<style>
+
+      /* Center the radiogroup choices */
+    .sv_q_radiogroup .sv-q-col {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+    }
+
+/* Center each item (radio + label) */
+    .sv_q_radiogroup .sv-radio {
+      display: flex !important;
+      align-items: center;
+     justify-content: center;
+      width: 100%;
+    }
+
+/* Center text next to radio button */
+    .sv_q_radiogroup .sv-radio__label {
+      text-align: center;
+      width: auto !important;
+    }
+
+/* Prevent long choices from left-aligning */
+    .sv_q_radiogroup .sv-radio__item {
+      display: flex !important;
+      justify-content: center;
+      width: 100%;
+    
+    }
+
+    .sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Every option row should have the same width */
+.sd-question--radiogroup .sd-item {
+  width: 260px; /* adjust this to your layout */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Make sure “Other” uses the same width and alignment */
+.sd-question--radiogroup .sd-selectbase__other {
+  width: 260px !important;
+  margin-left: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Center the entire radiogroup options block */
+.sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  justify-content: center;  /* horizontally center the list */
+}
+
+/* Make sure the inner list doesn’t stretch full width */
+.sd-question--radiogroup .sd-selectbase__list {
+  width: auto;
+  margin: 0 auto;
+}
+
+
+</style>
+    
+    <script>
+     
+
+      function downloadCSV(filename, csvString) {
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+     
+      function addFlatResponseToData(trialData) {
+        const resp = trialData.response || {};
+        jsPsych.data.addProperties(resp);
+      }
+
+  
+
+      var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+        show_progress_bar: false,
+        auto_update_progress_bar: false,
+
+      
+        on_finish: function () {
+          
+          const csv = jsPsych.data.get().csv();
+          const ts = new Date().toISOString().replace(/[:.]/g, "-");
+          const filename = "CostOfSport_" + ts + ".csv";
+
+          downloadCSV(filename, csv);
+
+         
+          jsPsych.data.displayData('json');
+          
+        }
+      });
+
+      console.log("Loaded survey JSON:", EN_CostOfSportCalculation.survey_JSON);
+
+  
+
+      var form_trial = {
+        type: jsPsychSurvey,
+        survey_json: function () {
+          return EN_CostOfSportCalculation.survey_JSON;
+        },
+        button_label: "Submit",
+        required: true,
+
+        
+        on_finish: function (data) {
+          console.log("Survey trial data:", data);
+          addFlatResponseToData(data);
+        }
+      };
+
+     
+      jsPsych.run([form_trial]);
+    </script>
+  </head>
+
+  <body>
+    <script>
+      var Blk = '1';
+      console.log("WM_" + Blk.padStart(2, "0"));
+    </script>
+
+    <div class="btn-group-header" id="header-btn-group"></div>
+    <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+
+    <script src="../functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>
+  </body>
+</html>
+

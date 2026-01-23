@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Questionnaire">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+  <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'> 
+  <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+  <link rel="stylesheet" type='text/css' href='css/ButtonsHeaderBody.css'>
+  <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-survey.js"></script>
+    <!--<script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>-->
+    <script src="InstructionsAndStimuli/EN/Questionnaires/costOfSport.js"></script>
+    <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
+
+   <style>
+  /* Center the whole survey/question area on the page */
+  .jspsych-content {
+    text-align: center;            /* center children (the survey root) */
+  }
+
+  /* The SurveyJS root: make it an inline-block so it can be centered */
+  .jspsych-content .sd-root-modern {
+    display: inline-block;
+    text-align: left;              /* everything INSIDE is left-aligned */
+    width: auto;                   /* let content define width */
+    max-width: 100%;
+  }
+
+  /* Make all radiogroup choices start at the same left position */
+
+  .sd-question--radiogroup .sd-selectbase__item,
+  .sd-question--radiogroup .sd-selectbase__label,
+  .sd-question--radiogroup .sd-selectbase__label-text {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .sd-question--radiogroup .sd-selectbase__label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .sd-question--radiogroup .sd-selectbase__control {
+    margin-right: 0.5rem;
+  }
+
+  /* Center the entire radiogroup options block */
+  .sd-question--radiogroup .sd-selectbase {
+  display: flex;
+  justify-content: center;  /* horizontally center the list */
+  }
+
+/* Make sure the inner list doesn’t stretch full width */
+  .sd-question--radiogroup .sd-selectbase__list {
+  width: auto;
+  margin: 0 auto;
+  }
+</style>
+
+
+    
+      
+   <script>
+     
+
+      function downloadCSV(filename, csvString) {
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+     
+      function addFlatResponseToData(trialData) {
+        const resp = trialData.response || {};
+        jsPsych.data.addProperties(resp);
+      }
+
+  
+
+      var jsPsych = initJsPsych({
+        display_element: 'jspsych-target',
+        show_progress_bar: false,
+        auto_update_progress_bar: false,
+
+      
+        on_finish: function () {
+          
+          const csv = jsPsych.data.get().csv();
+          const ts = new Date().toISOString().replace(/[:.]/g, "-");
+          const filename = "CostOfSport_" + ts + ".csv";
+
+          downloadCSV(filename, csv);
+
+         
+          //jsPsych.data.displayData('json');
+          
+        }
+      });
+
+      console.log("Loaded survey JSON:", EN_CostOfSport.survey_JSON);
+
+  
+
+      var form_trial = {
+        type: jsPsychSurvey,
+        survey_json: function () {
+          return EN_CostOfSport.survey_JSON;
+        },
+        button_label: "Submit",
+        required: true,
+
+        
+        on_finish: function (data) {
+          console.log("Survey trial data:", data);
+          addFlatResponseToData(data);
+          jatos.submitResultData(data);
+      
+        }
+      };
+      jatos.onLoad(() =>
+        {
+          jsPsych.run([form_trial]);
+      })
+     
+      
+    </script>
+  </head>
+<body>
+  <script>
+    var Blk = '1'
+    console.log("WM_"+Blk.padStart(2,"0"))</script>
+  
+	
+  <!--<div class="btn-group-header" id="header-btn-group"></div>-->
+  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
+  <!--<script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>-->
+
+  
+</body>
+</html>
