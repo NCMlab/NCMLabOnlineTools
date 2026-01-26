@@ -18,9 +18,10 @@ var Count = 0
 var preload_audio = {
     type: jsPsychPreload,
     audio: function() {
+      LANG = jatos.batchSession.get(jatos.workerId+"_Language")
       document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
       for ( var i = 0; i  < Instructions.AudioTestList.length; i++ ) {
-        List.push(parameters.FolderOfAudioFiles + Instructions.AudioTestList[i] + parameters.AudioFileType)
+        List.push(parameters.FolderOfAudioFiles + LANG + '/'+ parameters.SubfolderOfAudioFiles + Instructions.AudioTestList[i] + parameters.AudioFileType)
         ButtonList.push(Instructions.AudioTestList[i])
       }
       console.log("PRELOADING AUDIO")

@@ -458,6 +458,9 @@ function MakeUserChoiceElement(JATOSSessionData) {
     return UserChoicePage
 }
 
+
+
+
 function MakeThankYouPage() {
     console.log("Making thank you page")
     // This is the jsPsych task that display an icon for each task in a battery
@@ -502,7 +505,11 @@ function CentralExecutive() {
             // When a battery is complete display the Thank you Screen   
                if ( IsTheBatteryFinished() )
                {
-                timeline.push(MakeThankYouPage())
+                // Once the battery is finished, check to see if there is a 
+                // recirect site provided.
+                if (JATOSSessionData.Redirect != '' )
+                { jatos.endStudyAndRedirect(JATOSSessionData.Redirect) }
+                else { timeline.push(MakeThankYouPage()) }
                 SetupjsPsychAndRunTimeline()
                }
                // get the title of the task to start next
