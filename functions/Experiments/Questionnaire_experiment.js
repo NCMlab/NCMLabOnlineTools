@@ -24,7 +24,7 @@ var LoadQuestionnaire = {
 
 
 var trial02 = {
-  type: jsPsychSurveyHtmlForm,
+  type: jsPsychSurvey,
   survey_json:  function() { 
     
     return Questionnaire.survey_JSON
@@ -46,7 +46,7 @@ var trial02 = {
 }
 
 var trial = {
-    type: jsPsychSurveyHtmlForm,
+    type: jsPsychSurvey,
     pages: function() { 
       // Are there more than one criteria?
       // If the value does not meet any of the criteria, use the first option
