@@ -77,7 +77,7 @@ List.push({
   Instructions: "Default",
   IconName: "Language",
 });
-List.push({
+/*List.push({
   Task: "Screening",
   Parameters: "BriefScreening",
   Instructions: "Default",
@@ -100,7 +100,7 @@ List.push({
   Parameters: "Listening_001",
   Instructions: "Default",
   IconName: "Listening",
-});
+});*/
 List.push({
   Task: "Reading Test",
   Parameters: "ReadingListeningList01",

@@ -104,35 +104,56 @@ function ThisGetRow(Input, Row) {
    return row
   }
 
+
+
 var WaitForWords = function() {
       var Output = {}
       annyang.removeCommands()
       const commands01 = {'*search': WhatWasSaid};
       annyang.addCommands(commands01);
-      annyang.addCallback('result', function(userSaid) {
-        
-        
-        //document.getElementById("jspsych-html-button-response-button-0").disabled = true;
-      Score = CompareReadAndHeard(ReadSentence, userSaid[0])
-      Output.Score = Score
-      console.log(Score)
-      console.log(parameters.ScoreNeeded)
-      if ( Score > parameters.ScoreNeeded )
-      { console.log("GOOD JOB")
-      document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/GreenCheck.png" width="30" height="30"></img>'
-      document.getElementById("id_next").innerHTML = 'Press next to continue'
-      var x = document.getElementById("jspsych-html-button-response-button-0")
-      x.style.display = 'block'
-      }  
-      else {document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/redX.png" width="30" height="30"></img>'}
-      document.getElementById("id_sent_heard").style.color="blue"
-      document.getElementById("id_next").innerHTML = 'Press next to continue'
-      var x = document.getElementById("jspsych-html-button-response-button-0")
-      x.style.display = 'block'
+      console.log("USING LANGUAGE MAPPING")
 
-      HeardSentence01 = userSaid[0]
-      HeardSentence02 = userSaid[1]
-    });  
+      if ( LANG == 'EN' )
+      {
+        console.log('Using Language: '+'en')
+        annyang.setLanguage('en')
+      }
+      else if ( LANG == 'FR' )
+      {
+        console.log('Using Language: '+'fr')
+        annyang.setLanguage('fr')
+      }
+      else
+      {
+        console.log('Using Language: '+'en')
+        annyang.setLanguage('en')
+      }
+      annyang.addCallback('result', function(userSaid) {
+        console.log(userSaid)
+        Score = CompareReadAndHeard(ReadSentence, userSaid[0])
+        Output.Score = Score
+        console.log(Score)
+        console.log(parameters.ScoreNeeded)
+        if ( Score > parameters.ScoreNeeded )
+        { 
+          console.log("GOOD JOB")
+          document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/GreenCheck.png" width="30" height="30"></img>'
+          document.getElementById("id_next").innerHTML = LabelNames.PressNext
+          var x = document.getElementById("jspsych-html-button-response-button-0")
+          x.style.display = 'block'
+        }  
+        else 
+        {
+          document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/redX.png" width="30" height="30"></img>'}
+          document.getElementById("id_sent_heard").style.color="blue"
+          document.getElementById("id_next").innerHTML = LabelNames.PressNext
+          var x = document.getElementById("jspsych-html-button-response-button-0")
+          x.style.display = 'block'
+
+          HeardSentence01 = userSaid[0]
+          HeardSentence02 = userSaid[1]
+        }
+      );  
     return Output  
   }
 
@@ -171,7 +192,7 @@ var RecallRequest01 = {
       '<div id="id_next">-</div></div>'
       return stim
     },
-    choices: ['Next'], 
+    choices: function() { return [LabelNames.Next] }, 
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: '', //Add this to config file

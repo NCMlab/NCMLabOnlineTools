@@ -439,3 +439,14 @@ function loadScriptSequentially(file) {
             console.log(AddToCompletionCount)
             console.log("Amount to add to the bitstring of completion: " + AddToCompletionCount)
             */
+function LanguageMapping(input)
+{
+  var output = 'en'
+  switch ( input ) 
+  {
+    case 'FR':
+      output = 'fr'   
+      break;
+  }
+  return output
+}

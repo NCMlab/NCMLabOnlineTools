@@ -20,7 +20,8 @@ var SetupSpeechRecognition = {
       };  
       annyang.addCommands(YesCommand);
       annyang.addCommands(NoCommand);
-      annyang.setLanguage(LANG)
+      alert("Using Language: "+LANG)
+      annyang.setLanguage(LanguageMapping(LANG))
       annyang.addCallback('result', function(userSaid) {
         // userSaid contains multiple possibilities for what was heard
         console.log(userSaid)
