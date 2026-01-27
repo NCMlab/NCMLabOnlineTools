@@ -1,40 +1,15 @@
 <html>
-  <body>
-<script>
-  
-  function UrlExists(url)
-  {
-      var http = new XMLHttpRequest();
-      http.open('HEAD', url, false);
-      http.send();
-      return http.status!=404;
-  }
 
-    var InternalLocation = '../jspsych/'
-    var ExternalLocation = '/static/'
-    
-  function LoadIntExt(file) {
-    if (UrlExists(ExternalLocation + "dist/jspsych.js")) {
-      console.log("Trying External")
-      const newScript = document.createElement('script');
-      newScript.setAttribute('src', ExternalLocation + file);
-      newScript.setAttribute('async', 'true');    
-      document.head.appendChild(newScript);
-    }
-    else if (UrlExists(InternalLocation + "dist/jspsych.js")) {
-      console.log("Trying Internal")
-      const newScript = document.createElement('script');
-      newScript.setAttribute('src', InternalLocation + file);
-      newScript.setAttribute('async', 'true');    
-      document.head.appendChild(newScript);
-    }
-}
-</script>
-<script>
-  LoadIntExt('/dist/jspsych.js')    
-  LoadIntExt('/dist/plugin-survey.js')    
-</script>
+<body>
+  <a href="mailto:?subject=NCM%20Lab:%20Link%20for%20online%20%20study%20of%20memory&body=https://jatos.ncmlab.ca/publix/7xmQ4EQpbI5?Battery=16%26UsageType=Battery%0D%0A%0D%0A">TEST</a>
+
+  <p>
+    <a href="https://jatos.ncmlab.ca/publix/7xmQ4EQpbI5?Battery=16&UsageType=Battery">Link To NCMLab</a>
+  </p>
+  <p>
+    <a href="mailto:email@example.com?subject=Hello&body=Click%20here:%20https://example.com">TEST 3</a>
+  </p>
+
+<a href="mailto:support@example.com?subject=Support%20Request&body=Hello,%0D%0A%0D%0APlease%20help%20with%20my%20issue.%0D%0A%0D%0AThanks">TEST 2</a>
 </body>
 </html>
-
-ht
