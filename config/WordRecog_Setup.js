@@ -28,7 +28,7 @@ var WordRecog_Spoken = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	InstructionsSpoken: false,
-	AskForNotes: false,
+	AskForNotes: true,
 	RecordAUDIO: true,
 }
 add('WordRecog_Spoken', function(){ parameters = WordRecog_Spoken});
