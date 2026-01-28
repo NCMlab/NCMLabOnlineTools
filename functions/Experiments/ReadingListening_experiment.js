@@ -10,7 +10,7 @@ var count = 1
 var ReadSentence 
 var SentenceOrder
 var SentenceCount = 0
-
+var Output = {}
 
 var SentencesToRepeat
 /*
@@ -104,7 +104,40 @@ function ThisGetRow(Input, Row) {
    return row
   }
 
+var SetupSpeechRecognition = {
+    type: jsPsychCallFunction,
+    func: function() {
+      const commands01 = {'*search': WhatWasSaid};
+      annyang.addCommands(commands01);
+      annyang.setLanguage(LanguageMapping(LANG))
+      annyang.addCallback('result', function(userSaid) {
+      console.log(userSaid)
+      Score = CompareReadAndHeard(ReadSentence, userSaid[0])
+      Output.Score = Score
+      console.log(Score)
+      console.log(parameters.ScoreNeeded)
+      if ( Score > parameters.ScoreNeeded )
+      { 
+          console.log("GOOD JOB")
+          document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/GreenCheck.png" width="30" height="30"></img>'
+          document.getElementById("id_next").innerHTML = LabelNames.PressNext
+          //var x = document.getElementById("jspsych-html-button-response-button-0")
+          //x.style.display = 'block'
+      }  
+      else 
+      {
+          document.getElementById("id_sent_heard").innerHTML = userSaid[0] + '<img src="assets/Icons/redX.png" width="30" height="30"></img>'}
+          document.getElementById("id_sent_heard").style.color="blue"
+          document.getElementById("id_next").innerHTML = LabelNames.PressNext
+          //var x = document.getElementById("jspsych-html-button-response-button-0")
+          //x.style.display = 'block'
 
+          HeardSentence01 = userSaid[0]
+          HeardSentence02 = userSaid[1]
+      })
+  }
+}
+  
 
 var WaitForWords = function() {
       var Output = {}
@@ -177,6 +210,52 @@ var CompareReadAndHeard = function(ReadSentence, HeardSentence) {
   return Score
 }
 
+var RecallRequest02 = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: function() {
+      var stim = 
+      '<div><img src="assets/Icons/Recording.gif" alt="microphone" style="width:120px;height:120px;">'+
+      '<br/>'+LabelNames.PleaseRead+
+      '<h4><div id="id_sent_to_read">'+ReadSentence+'</div></h4>'+
+      '<h4><div id="id_sent_heard">'+'-'+'</div></h4>'+
+      '<div id="id_next">-</div></div>'
+      return stim
+    },
+    choices: function() {return [LabelNames.Next]}, 
+    show_done_button: true,
+    done_button_label: function() {return [LabelNames.Next]},
+    margin_horizontal: GapBetweenButtons,
+    post_trial_gap: 0,
+    recording_duration: 60000,
+
+    on_start: function(SimpleList) {
+      console.log('================================')
+      // start listening
+      annyang.start({autorestart: false, continuous: true})    },
+    on_finish: function(data){
+           jsPsych.setProgressBar(count/parameters.SentencesToRepeat)
+      count += 1
+      console.log(HeardSentence01)
+      console.log(Score)
+      data.task = 'read'
+      data.Results = {}
+      data.Results.ReadSentence = ReadSentence
+      data.Results.HeardSentence01 = HeardSentence01
+      data.Results.HeardSentence02 = HeardSentence02
+      data.Results.Score = Score
+    },
+    on_load: function(){ // This inserts a timer on the recall duration      
+      annyang.addCallback('soundstart', function() {
+        ListeningFlag = true
+      })
+      annyang.addCallback('result', function() {
+        ListeningFlag = false
+      })
+      annyang.addCallback('end', function() {
+        ListeningFlag = false        
+      })
+    }
+};
 
 var RecallRequest01 = {
     type: jsPsychHtmlButtonResponseTouchscreen,
@@ -227,7 +306,7 @@ var RecallRequest01 = {
   }
 
 var SentenceLoop = {
-  timeline: [RecallRequest01],
+  timeline: [RecallRequest02],
   loop_function: function(data){
     console.log("In sentence loop")
     console.log(SentenceCount)
@@ -257,6 +336,10 @@ timeline.push(Welcome)
 timeline.push(GetList)
 timeline.push(GetSentenceCount)
 timeline.push(Instructions01)
+timeline.push(CheckMicrophone)
+timeline.push(SetupSpeechRecognition)
+
+
 timeline.push(SentenceLoop)
 timeline.push(Notes)
 timeline.push(ThankYou);
