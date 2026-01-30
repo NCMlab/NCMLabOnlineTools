@@ -2014,9 +2014,16 @@ List.push({
 var List = []
 List.push({
   Task: "Word Recall",
-  Parameters: "Demo",
+  Parameters: "RAVLT_Manual_Immediate",
   Instructions: "Default",
-  IconName: "Immediate",
+  IconName: "Manual",
+});
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Immediate",
+  Instructions: "Default",
+  IconName: "Spoken",
 });
 	BatteryList.push({index: 334, 
 		name:'Neural Cognitive Mapping Lab', 
@@ -2042,13 +2049,7 @@ List.push({
 // 3) Weekly
 //  questionnaire
 
-var List = []
-List.push({
-  Task: "TEST Spatial DMS",
-  Parameters: "SpatialDMS_Adaptive_003B",
-  Instructions: "Default",
-  IconName: "Dots (Short)",
-})
+
 
 // === Cost of Sports === //
 var List = []

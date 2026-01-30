@@ -25,7 +25,7 @@ var RAVLT_Default = {
 
 
 var RAVLT_Manual_Immediate = {
-	FolderName: 'RAVLTSet001/',
+	FolderName: 'Set001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
 	NBlocks: 2,
