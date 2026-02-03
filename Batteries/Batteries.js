@@ -77,7 +77,7 @@ List.push({
   Instructions: "Default",
   IconName: "Language",
 });
-List.push({
+/*List.push({
   Task: "Screening",
   Parameters: "BriefScreening",
   Instructions: "Default",
@@ -148,7 +148,7 @@ List.push({
   Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
-});
+});*/
 BatteryList.push({
   index: 16,
   name: "H-10-23-9755",
@@ -163,6 +163,22 @@ BatteryList.push({
   HeaderButtonsToShow: ['Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
+BatteryList.push({
+  index: 1699,
+  name: "H-10-23-9755",
+  description: "ISPR",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  shortName: "NCMLab",
+  TaskList: List,
+  HeaderButtonsToShow: ['Quit','Stop'],
+  Redirect: 'https://uottawa.sona-systems.com/webstudy_credit.aspx?experiment_id=1850&credit_token=1d801a0f0eb04046abac04794866542d&survey_code='
+});
+
+
 // ===============
 var List = [];
 List.push({
