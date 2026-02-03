@@ -77,7 +77,7 @@ List.push({
   Instructions: "Default",
   IconName: "Language",
 });
-/*List.push({
+List.push({
   Task: "Screening",
   Parameters: "BriefScreening",
   Instructions: "Default",
@@ -148,7 +148,7 @@ List.push({
   Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
-});*/
+});
 BatteryList.push({
   index: 16,
   name: "H-10-23-9755",
