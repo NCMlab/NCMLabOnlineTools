@@ -436,15 +436,15 @@ var Demo = {
 	WordList: 'Demo',
 	// Specify the folder of audio files to use. This allows for presentation of different voices
 	// without the need to change the word list file
-	FolderName: 'Demo/',
+	FolderName: 'Set001/',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType: 'Spoken',
-	RecallDuration: 120, // seconds
-	DelayBeforeShowingDoneButton: 3, // seconds
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10, // seconds
 	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
