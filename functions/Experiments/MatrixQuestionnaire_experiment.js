@@ -33,7 +33,7 @@ var matrix_trial = {
     button_label: function() { return LabelNames.Submit},
     missed_question_label: function() { return LabelNames.missed_question_label}, 
     missed_question_text: function() { return LabelNames.missed_question_text}, 
-    required: true,
+    required: function() { return Questionnaire.survey_JSON.elements[0].isAllRowRequired },
     on_load: function() {
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"

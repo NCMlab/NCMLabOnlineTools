@@ -12,13 +12,13 @@ var survey_JSON =
                 name: 'panas',
                 title: 'This scale consists of a number of words that describe different feelings and emotions. Indicate to what extent you feel this way right now, that is, at the present moment.',
                 alternateRows: true,
-                isAllRowRequired: true,
-                
+                isAllRowRequired: false,
+                // Change to Required/Not-Required/Suggested
                 rows: [
                     //{value: 'panas01', text: "Interested"},
                     //{value: 'panas02', text: "Distressed"},
                     //{value: 'panas03', text: "Excited"},
-                    {value: 'panas01', text: "Upset"},
+                    {value: 'panas01', text: "UpsetXX"},
                     //{value: 'panas05', text: "Strong"},
                     //{value: 'panas06', text: "Guilty"},
                     //{value: 'panas07', text: "Scared"},

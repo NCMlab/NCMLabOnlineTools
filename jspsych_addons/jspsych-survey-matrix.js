@@ -82,8 +82,10 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
           console.log(trial.survey_json)
           var html = "";
-          
-          html += '<form id="jspsych-survey-matrix-form" autocomplete="off">';
+          if ( trial.survey_json.elements[0].isAllRowRequired )
+          { html += '<form id="jspsych-survey-matrix-form" class="required" autocomplete="off">'}
+          else { html += '<form id="jspsych-survey-matrix-form" autocomplete="off">'}
+
           
           // inject CSS for trial
           
@@ -194,6 +196,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
         var thisForm = FF[0]
         
         for ( var i = 0; i < NRows-2; i++ ) {
+            var SelectionMade = -99
             var SelectionMadeInRow = false
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {
@@ -208,17 +211,30 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             }
             
             console.log(cols[1].text)
-            console.log(cols[2].innerHTML)
-            console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
+            console.log(SelectionMade)
+            //console.log(cols[2].innerHTML)
+            //console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
 //            obje[rowNames[i]] = SelectionMade
  //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
             var this_question_data = {}
             this_question_data.name = rowNames[i]
             this_question_data.label = rowPrompts[i]
-            this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
             
-            // The plus one is because the first column contains the prompts
-            this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+            // add check here
+            console.log("Selection made: "+SelectionMade)
+            if ( SelectionMade != -99 )
+            { 
+                this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
+                // The plus one is because the first column contains the prompts
+                this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+            }
+            else 
+            { 
+                this_question_data.responseValue = -99 
+                this_question_data.responsePrompt = 'NA'
+            }
+            
+            
             question_data.push(this_question_data)
         }
               // measure response time
@@ -297,8 +313,16 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
 function InternalValidateForm(form) {
-    var CheckIfValid = true    
-    // get the row names
+    console.log("VALIDATING FORM")
+    console.log(form)
+    // is the form required?
+    var CheckIfValid = true 
+    if ( form.getAttribute('class') == 'required' )
+    {
+        console.log("This form is required")
+    
+        
+        // get the row names
         elmts = document.getElementsByTagName("tr");
         // how many columns
         cols = document.getElementsByTagName("th")
@@ -312,7 +336,7 @@ function InternalValidateForm(form) {
         var rowPrompts = []
         labels = document.getElementsByClassName('item_label')
         for ( var i = 0; i < NRows-2; i++ ) {
-          rowPrompts.push(labels[i].innerHTML)
+            rowPrompts.push(labels[i].innerHTML)
         }
         for ( var i = 1; i < NRows-1; i++ ) {
             rowNames.push(elmts[i].id)
@@ -342,6 +366,8 @@ function InternalValidateForm(form) {
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
-        document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
-
     }
+        
+    document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
+
+}
