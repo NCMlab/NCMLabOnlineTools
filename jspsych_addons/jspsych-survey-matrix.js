@@ -82,10 +82,9 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
           console.log(trial.survey_json)
           var html = "";
-          if ( trial.survey_json.elements[0].isAllRowRequired )
-          { html += '<form id="jspsych-survey-matrix-form" class="required" autocomplete="off">'}
-          else { html += '<form id="jspsych-survey-matrix-form" autocomplete="off">'}
-
+          // add the class for the requirement format
+          html += '<form id="jspsych-survey-matrix-form" class="'+trial.survey_json.elements[0].isAllRowRequired+'" autocomplete="off">'
+          
           
           // inject CSS for trial
           
@@ -145,7 +144,11 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                   trial.button_label +
                   ' "></input>';
-          html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
+          html += "</form></td>"
+          html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
+          html += 'style="display: none" value="Submit Anyway" onClick="SubmitAnyway()"></td>'
+          html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
+          html += "</tr></table>";
           html += '</div>'
           display_element.innerHTML = html;
         
@@ -317,7 +320,7 @@ function InternalValidateForm(form) {
     console.log(form)
     // is the form required?
     var CheckIfValid = true 
-    if ( form.getAttribute('class') == 'required' )
+    if ( form.getAttribute('class') == 'Required' )
     {
         console.log("This form is required")
     
@@ -366,8 +369,15 @@ function InternalValidateForm(form) {
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
+
+        document.getElementById('submit-anyway-btn').style = "block"
+
     }
         
     document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
 
+}
+
+function SubmitAnyway() {
+    document.getElementById('jspsych-survey-matrix-next').valid = true
 }
