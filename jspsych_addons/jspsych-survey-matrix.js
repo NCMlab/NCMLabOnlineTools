@@ -37,9 +37,15 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
-              default: "Continue",
+              default: "Submit",
           },
-                    /** Label on the popup when a question is missed. */
+        /** Label of the button to submit responses. */
+          button_label_empty_responses: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Empty Responses",
+              default: "Submit Anyway",
+          },
+        /** Label on the popup when a question is missed. */
           missed_question_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
@@ -145,8 +151,12 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                   trial.button_label +
                   ' "></input>';
           html += "</form></td>"
-          html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
-          html += 'style="display: none" value="Submit Anyway" onClick="SubmitAnyway()"></td>'
+          console.log("REQUIRED: "+trial.required)
+          if ( trial.required == 'Suggested' )
+          {
+            html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
+            html += 'style="display: none" value="'+trial.button_label_empty_responses+'" onClick="SubmitAnyway()"></td>'
+          }
           html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
           html += "</tr></table>";
           html += '</div>'
@@ -320,7 +330,7 @@ function InternalValidateForm(form) {
     console.log(form)
     // is the form required?
     var CheckIfValid = true 
-    if ( form.getAttribute('class') == 'Required' )
+    if ( (form.getAttribute('class') == 'Required') || (form.getAttribute('class') == 'Suggested') )
     {
         console.log("This form is required")
     
@@ -369,13 +379,10 @@ function InternalValidateForm(form) {
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
-
+        // If this button exists, display it.
         document.getElementById('submit-anyway-btn').style = "block"
-
     }
-        
     document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
-
 }
 
 function SubmitAnyway() {

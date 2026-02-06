@@ -31,6 +31,7 @@ var matrix_trial = {
         return Questionnaire.survey_JSON
     },
     button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
     missed_question_label: function() { return LabelNames.missed_question_label}, 
     missed_question_text: function() { return LabelNames.missed_question_text}, 
     required: function() { return Questionnaire.survey_JSON.elements[0].isAllRowRequired },

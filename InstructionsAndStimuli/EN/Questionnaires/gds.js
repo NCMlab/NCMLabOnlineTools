@@ -11,7 +11,7 @@ var survey_JSON = {
       title: "Choose the best answer for how you felt over the past week.",
       alternateRows: true,
       className: "gds-matrix",
-      isAllRowRequired: true,
+      isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
       rows: [
         { value: "gds01", text: "Are you basically satisfied with your life?" },
         { value: "gds02", text: "Have you dropped many of your activities and interests?" },
