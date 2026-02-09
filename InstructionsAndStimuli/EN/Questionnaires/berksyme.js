@@ -3,6 +3,7 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
+  isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
   Instructions: "The following questions are about your social interactions. Please read the following questions and select the response that most closely describes your current situation.",
   pages: [{
     elements: [

@@ -1,6 +1,7 @@
 const survey_JSON = {
     showQuestionNumbers: false,
     showCompletedPage: false,
+    isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
     pages: [{
     elements: [
         {

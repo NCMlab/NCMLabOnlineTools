@@ -29,48 +29,94 @@ function Questionnaire_Scoring(data) {
 		const rowIndices = Object.keys(data.response)
 		var NRows = rowIndices.length
 		// cycle over responses
+		var QuestionsAnswered = 0
+		
 		for ( var i = 0; i < NRows; i++ )
 		{
+			// Need to add functionaility for missed questions.
+			// Take sum, divide by questions answered and multiply by total questions
+			// Save 
+			// 	Questions on test
+			//	Questions answered
+			//  Sum of questions answered
+			//  Average of questions answered times questions on test
 			NumericScore = data.response[i].responseValue			
-			TotalScore += NumericScore
+			if ( NumericScore > -99 )
+			{
+				TotalScore += NumericScore
+				QuestionsAnswered = QuestionsAnswered + 1
+			}
 			Results.AllResults[data.response[i].label] = data.response[i].responsePrompt
 			// The following version of data will be used for extracting data
 			// Add the question name/id and its numeric score
 			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
-			
 		}
 		// Add the total score, Need to also add the specialty scores
 		var totalScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_total"
+		var avgScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_avg"
 		Results.NumericResults[totalScoreName] = TotalScore
+		Results.AllResults['Questions Answered'] = QuestionsAnswered
+		Results.AllResults['Number of Questions'] = NRows
+		Results.AllResults['Average Score'] = TotalScore/QuestionsAnswered*NRows
+		Results.NumericResults[avgScoreName] = TotalScore/QuestionsAnswered*NRows
 	}
 
 	if ( data.QuestionnaireType == 'form' )
 	{	
+
 		const rowIndices = Object.keys(data.response)
         console.log(rowIndices)
 		var NRows = rowIndices.length
 		console.log(data)
 		//console.log(BREAK)
 		// cycle over responses
+		var QuestionsAnswered = 0
 		for ( var i = 0; i < NRows; i++ )
 		{
 			NumericScore = data.response[i].responseValue			
-			TotalScore += NumericScore
+			if ( NumericScore > -99 )
+			{
+				TotalScore += NumericScore
+				QuestionsAnswered = QuestionsAnswered + 1
+			}
 			Results.AllResults[data.response[i].label] = data.response[i].responseText
+			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
 		}
+		var totalScoreName = data.Questionnaire.survey_JSON.name + "_total"
+		var avgScoreName = data.Questionnaire.survey_JSON.name + "_avg"
+		Results.NumericResults[totalScoreName] = TotalScore
+		Results.AllResults['Questions Answered'] = QuestionsAnswered
+		Results.AllResults['Number of Questions'] = NRows
+		Results.AllResults['Average Score'] = TotalScore/QuestionsAnswered*NRows
+		Results.NumericResults[avgScoreName] = TotalScore/QuestionsAnswered*NRows
+
 	}
 	if ( data.QuestionnaireType == 'radiogroup' )
 	{	
+		console.log(data)
 		const rowIndices = Object.keys(data.response)
         console.log(rowIndices)
 		var NRows = rowIndices.length
 		console.log(data)
 		//console.log(BREAK)
 		// cycle over responses
+		var QuestionsAnswered = 0
 		for ( var i = 0; i < NRows; i++ )
 		{
 			NumericScore = data.response[i].responseValue			
-			TotalScore += NumericScore
+			if ( NumericScore > -99 )
+			{
+				TotalScore += NumericScore
+				QuestionsAnswered = QuestionsAnswered + 1
+			}
+			var totalScoreName = data.Questionnaire.survey_JSON.name + "_total"
+			var avgScoreName = data.Questionnaire.survey_JSON.name + "_avg"
+			Results.NumericResults[totalScoreName] = TotalScore
+			Results.AllResults['Questions Answered'] = QuestionsAnswered
+			Results.AllResults['Number of Questions'] = NRows
+			Results.AllResults['Average Score'] = TotalScore/QuestionsAnswered*NRows
+			Results.NumericResults[avgScoreName] = TotalScore/QuestionsAnswered*NRows
+			
 			Results.AllResults[data.response[i].label] = data.response[i].responseText
 			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
 		}
