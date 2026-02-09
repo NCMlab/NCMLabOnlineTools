@@ -163,107 +163,107 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           display_element.innerHTML = html;
         
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
-            // Get responses
+        // Get responses
 
 
-            e.preventDefault();
+        e.preventDefault();
 
-            // I am seeing the validate code can go here instead
-            console.log(e)
-            console.log(display_element.querySelectorAll("th"))
+        // I am seeing the validate code can go here instead
+        console.log(e)
+        console.log(display_element.querySelectorAll("th"))
 
 
-            var matches = display_element.querySelectorAll(".sd-item__decorator")
-            if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
-            { 
-                console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
+        var matches = display_element.querySelectorAll(".sd-item__decorator")
+        if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
+        { 
+            console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
 
-        var question_data = []    
-        // get the row names
-        var elmts = display_element.querySelectorAll("tr");
-        // how many columns
-        var cols = display_element.querySelectorAll("th")
-        
-        var NCols = cols.length
-        console.log("Ncols: "+NCols)
-        // how many rows
-        var NRows = elmts.length;
-        // make a list of row names
-        var rowNames = []
-        var rowPrompts = []
-        var labels = display_element.querySelectorAll('item_label')
-        var labels = document.getElementsByClassName('item_label')
-        console.log(labels)
-        for ( var i = 0; i < NRows-2; i++ ) {
-            console.log(labels[i])
-          rowPrompts.push(labels[i].innerHTML)
-        }
-        for ( var i = 1; i < NRows-1; i++ ) {
-            rowNames.push(elmts[i].id)
-        }
-        console.log("Row Names: "+rowNames)
-        console.log("Row Prompts: "+rowPrompts)
-        // cycle over rows, start from the second column, thereby ignoring the row labels
-        // extract the form
-        var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
-        var thisForm = FF[0]
-        
-        for ( var i = 0; i < NRows-2; i++ ) {
-            var SelectionMade = -99
-            var SelectionMadeInRow = false
-            // cycle over columns
-            for ( var j = 0; j < NCols-1; j++ ) {
-                // check to see if a selection was made in this row 
+            var question_data = []    
+            // get the row names
+            var elmts = display_element.querySelectorAll("tr");
+            // how many columns
+            var cols = display_element.querySelectorAll("th")
+            
+            var NCols = cols.length
+            console.log("Ncols: "+NCols)
+            // how many rows
+            var NRows = elmts.length;
+            // make a list of row names
+            var rowNames = []
+            var rowPrompts = []
+            var labels = display_element.querySelectorAll('item_label')
+            var labels = document.getElementsByClassName('item_label')
+            console.log(labels)
+            for ( var i = 0; i < NRows-2; i++ ) {
+                console.log(labels[i])
+            rowPrompts.push(labels[i].innerHTML)
+            }
+            for ( var i = 1; i < NRows-1; i++ ) {
+                rowNames.push(elmts[i].id)
+            }
+            console.log("Row Names: "+rowNames)
+            console.log("Row Prompts: "+rowPrompts)
+            // cycle over rows, start from the second column, thereby ignoring the row labels
+            // extract the form
+            var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
+            var thisForm = FF[0]
+            
+            for ( var i = 0; i < NRows-2; i++ ) {
+                var SelectionMade = -99
+                var SelectionMadeInRow = false
+                // cycle over columns
+                for ( var j = 0; j < NCols-1; j++ ) {
+                    // check to see if a selection was made in this row 
+                    
+                    if ( thisForm[rowNames[i]][j].checked ) {
+                        SelectionMadeInRow = true
+                        SelectionMade = j
+                        break
+                    }
                 
-                if ( thisForm[rowNames[i]][j].checked ) {
-                    SelectionMadeInRow = true
-                    SelectionMade = j
-                    break
                 }
-            
-            }
-            
-            console.log(cols[1].text)
-            console.log(SelectionMade)
-            //console.log(cols[2].innerHTML)
-            //console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
-//            obje[rowNames[i]] = SelectionMade
- //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
-            var this_question_data = {}
-            this_question_data.name = rowNames[i]
-            this_question_data.label = rowPrompts[i]
-            
-            // add check here
-            console.log("Selection made: "+SelectionMade)
-            if ( SelectionMade != -99 )
-            { 
-                this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
-                // The plus one is because the first column contains the prompts
-                this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
-            }
-            else 
-            { 
-                this_question_data.responseValue = -99 
-                this_question_data.responsePrompt = 'NA'
-            }
-            
-            
-            question_data.push(this_question_data)
-        }
-              // measure response time
-              var endTime = performance.now();
-              var response_time = Math.round(endTime - startTime);
-              // create object to hold responses
+                
+                console.log(cols[1].text)
+                console.log(SelectionMade)
+                //console.log(cols[2].innerHTML)
+                //console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
+    //            obje[rowNames[i]] = SelectionMade
+    //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+                var this_question_data = {}
+                this_question_data.name = rowNames[i]
+                this_question_data.label = rowPrompts[i]
+                
+                // add check here
+                console.log("Selection made: "+SelectionMade)
+                if ( SelectionMade != -99 )
+                { 
+                    this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
+                    // The plus one is because the first column contains the prompts
+                    this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+                }
+                else 
+                { 
+                    this_question_data.responseValue = -99 
+                    this_question_data.responsePrompt = 'NA'
+                }
+                
+                
+                question_data.push(this_question_data)
+                }
+                // measure response time
+                var endTime = performance.now();
+                var response_time = Math.round(endTime - startTime);
+                // create object to hold responses
 
-              // save data
-              var trial_data = {
-                  rt: response_time,
-                  response: question_data,
-              };
-              display_element.innerHTML = "";
-              // next trial
-              this.jsPsych.finishTrial(trial_data);
-            }
+                // save data
+                var trial_data = {
+                    rt: response_time,
+                    response: question_data,
+                };
+                display_element.innerHTML = "";
+                // next trial
+                this.jsPsych.finishTrial(trial_data);
+        }
             
 
 

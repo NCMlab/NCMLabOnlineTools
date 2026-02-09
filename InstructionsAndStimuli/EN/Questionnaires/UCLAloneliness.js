@@ -4,6 +4,7 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
+  isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
   Instructions: "When answering the questions, you could take account of the following:"+
       "<ul>"+  
       "<li>There are no right or wrong answers"+
