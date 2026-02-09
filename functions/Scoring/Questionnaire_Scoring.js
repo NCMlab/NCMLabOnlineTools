@@ -63,7 +63,7 @@ function Questionnaire_Scoring(data) {
 
 	if ( data.QuestionnaireType == 'form' )
 	{	
-		alert("SCORING A FORM")
+
 		const rowIndices = Object.keys(data.response)
         console.log(rowIndices)
 		var NRows = rowIndices.length
@@ -82,8 +82,8 @@ function Questionnaire_Scoring(data) {
 			Results.AllResults[data.response[i].label] = data.response[i].responseText
 			Results.NumericResults[data.response[i].name] = data.response[i].responseValue
 		}
-		var totalScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_total"
-		var avgScoreName = data.Questionnaire.survey_JSON.elements[0].name + "_avg"
+		var totalScoreName = data.Questionnaire.survey_JSON.name + "_total"
+		var avgScoreName = data.Questionnaire.survey_JSON.name + "_avg"
 		Results.NumericResults[totalScoreName] = TotalScore
 		Results.AllResults['Questions Answered'] = QuestionsAnswered
 		Results.AllResults['Number of Questions'] = NRows

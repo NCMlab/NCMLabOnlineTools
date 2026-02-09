@@ -4,6 +4,7 @@ const survey_JSON = {
   showQuestionNumbers: false,
   showCompletedPage: false,
   isAllRowRequired: 'Required', // Required/Not-Required/Suggested
+  name: "CESAM",
   pages: [{
   elements: [
     {
