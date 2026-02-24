@@ -438,9 +438,9 @@ var VisibleIfConditionsPages = []
             Str += '<div style="overflow:auto;">'
                 Str += '<div style="float:right;">'
                 Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
-                // I may need to just show/hid buttons instead of changing their text
-                //Str += '<button type="button" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
-                Str += '<button type="button" id="submit" onclick="nextPrev( 1)">'+ trial.submit_button_label +'</button>'
+                Str += '<button type="button" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
+                // Submit is its own button, but uses the same functionality as the next button
+                Str += '<button type="button" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
                 Str += '</div>'
             Str += '</div>'
             Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
@@ -450,9 +450,7 @@ var VisibleIfConditionsPages = []
             
 //            Str += '</td></tr></table>'
             //<!-- Circles which indicates the steps of the form: -->
-
             
-
           html += Str
  
         html += "</form>"
@@ -469,10 +467,6 @@ var VisibleIfConditionsPages = []
         showTab(0, trial)
       }
     }    
-
-    console.log("GOT HERE")
-console.log("GOT HERE")
-console.log("GOT HERE")
   SurveyHtmlFormPlugin.info = info;
 
   return SurveyHtmlFormPlugin;
@@ -485,7 +479,7 @@ console.log("GOT HERE")
 
    function nextPrev(n) {
         console.log("NEXT PREV TRIAL")
-        console.log(info)
+        
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
@@ -495,9 +489,6 @@ console.log("GOT HERE")
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
-        console.log("Current Tab: "+currentTab)
-        console.log("x: ")
-        console.log(x)
         
         if (currentTab >= x.length) {
             // ... the form gets submitted:
@@ -514,24 +505,28 @@ console.log("GOT HERE")
     }
 
 function showTab(n) {
-    // This function updates the buttons depending on whether it is the last tabe in the series
-    console.log("SHOW TAB TRIAL")
-    console.log(info)
+    // This function updates the buttons depending on whether it is the last tab in the series    
     // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab");
         x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
         if (n == 0) {
+            // If on the fiirst tab, hide the previous Button
             document.getElementById("prevBtn").style.display = "none";
-        } else {
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("submitBtn").style.display = "none";
+        } else if ( n < x.length - 1) {
+            // If on in-between tabs, show previous, keep next shown, keep submit hidden
             document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("submitBtn").style.display = "none";
         }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = trial.submit_button_label
-        } else {
-            document.getElementById("nextBtn").innerHTML = trial.next_button_label;
+        else {
+            // If on last tab, show previous, hide next, show submit 
+            document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitBtn").style.display = "inline";
         }
-        //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
     }
 
