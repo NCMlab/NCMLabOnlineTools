@@ -25,16 +25,28 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               default: null,
           },
           /** Label of the button to submit responses. */
-          button_label: {
+          submit_button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
-              default: "Continue",
+              default: "XXSubmit",
           },
           /** Label on the popup when a question is missed. */
           missed_question_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid check",
               default: "Please select an item",
+          },
+        /** Label on the popup when a question is missed. */
+          next_button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "XXNext",
+          },
+                    /** Label on the popup when a question is missed. */
+          previous_button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "XXPrevious",
           },
           /** Label next to submit button when a question is missed. */
           missed_question_text: {
@@ -425,8 +437,10 @@ var VisibleIfConditionsPages = []
             Str += '<table border="0"><tr><td colspan="2">'
             Str += '<div style="overflow:auto;">'
                 Str += '<div style="float:right;">'
-                Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>'
-                Str += '<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>'
+                Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
+                // I may need to just show/hid buttons instead of changing their text
+                //Str += '<button type="button" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
+                Str += '<button type="button" id="submit" onclick="nextPrev( 1)">'+ trial.submit_button_label +'</button>'
                 Str += '</div>'
             Str += '</div>'
             Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
@@ -452,7 +466,7 @@ var VisibleIfConditionsPages = []
 
         display_element.innerHTML = html;
         // start off by showing the first tab
-        showTab(0)
+        showTab(0, trial)
       }
     }    
 
@@ -470,6 +484,8 @@ console.log("GOT HERE")
 // then change the functionaility of the question or the onChange function
 
    function nextPrev(n) {
+        console.log("NEXT PREV TRIAL")
+        console.log(info)
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
@@ -498,7 +514,10 @@ console.log("GOT HERE")
     }
 
 function showTab(n) {
-        // This function will display the specified tab of the form...
+    // This function updates the buttons depending on whether it is the last tabe in the series
+    console.log("SHOW TAB TRIAL")
+    console.log(info)
+    // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab");
         x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
@@ -508,9 +527,9 @@ function showTab(n) {
             document.getElementById("prevBtn").style.display = "inline";
         }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").innerHTML = trial.submit_button_label
         } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").innerHTML = trial.next_button_label;
         }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)

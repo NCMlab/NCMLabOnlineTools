@@ -30,7 +30,7 @@ var form_trial = {
     survey_json: function() {
         return Questionnaire.survey_JSON
     },
-    button_label: function() { return LabelNames.Submit},
+    button_label: function() { return 'JASON'},//LabelNames.Submit},
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
     required: true,
