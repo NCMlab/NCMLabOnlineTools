@@ -5,7 +5,7 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "bot",
+  showProgressBar: "top",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
@@ -14,7 +14,7 @@ const json = {
    pages: 
    [
 
-    /*{      
+    {      
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
@@ -214,7 +214,7 @@ const json = {
           isRequired: true,
        }
        ]
-     },*/
+     },
      {
        name: "Medical Information",
        title: "Medical Information",

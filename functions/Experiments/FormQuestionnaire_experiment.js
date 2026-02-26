@@ -31,6 +31,8 @@ var form_trial = {
         return Questionnaire.survey_JSON
     },
     button_label: function() { return 'JASON'},//LabelNames.Submit},
+    next_button_label: function() { return LabelNames.Next },
+    previous_button_label: function() { return LabelNames.Previous },
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
     required: true,

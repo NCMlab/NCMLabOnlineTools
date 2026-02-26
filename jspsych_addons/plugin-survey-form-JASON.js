@@ -40,13 +40,13 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           next_button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid check",
-              default: "XXNext",
+              default: "Next",
           },
                     /** Label on the popup when a question is missed. */
           previous_button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid check",
-              default: "XXPrevious",
+              default: "Previous",
           },
           /** Label next to submit button when a question is missed. */
           missed_question_text: {
@@ -107,13 +107,8 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 var NPages = trial.survey_json.pages.length
 // These are the progress dots
 console.log(trial)
-if ( trial.survey_json.showProgressBar == 'top')
-{ 
-    html += `<div style="text-align:center;margin-top:40px;">`
-    for ( var j = 0; j < NPages; j++ )
-        { html += `<span class="step"></span>`} 
-    html += "</div>"
-}
+    if ( trial.survey_json.showProgressBar == 'top')
+        {  html += MakeProgressBar(trial) }
 
 var VisibleIfConditionsPages = []
     
@@ -336,7 +331,8 @@ var VisibleIfConditionsPages = []
 
                             break;
                         
-                        case 'radiogroup':
+                        case 'radiogrouXXp':
+                            console.log("========= RADIOGROUP QUESTION ==========")
                             Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
@@ -372,7 +368,7 @@ var VisibleIfConditionsPages = []
                             break;
 
                         // =====
-                        case 'radiogroupXX':
+                        case 'radiogroup':
                             console.log("========= RADIO GROUP QUESTION ==========") 
                             Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
                             
@@ -455,16 +451,26 @@ var VisibleIfConditionsPages = []
  
         html += "</form>"
         if ( trial.survey_json.showProgressBar == 'bot')
-        { 
-            html += `<div class="progress-bar" >`
-            html += `<div class="progress" id="progress"></div>`
-            for ( var j = 0; j < NPages; j++ )
-                { html += `<span class="progress-step" data-title='`+trial.survey_json.pages[j].name+`'></span>`} 
-            html += "</div>"
-        }
-        display_element.innerHTML = html;
+        {  html += MakeProgressBar(trial) }
+        display_element.innerHTML = html; 
         // start off by showing the first tab
         showTab(0, trial)
+        // Now that the html has been created update the progress bar label settings
+        const e = document.getElementsByClassName('progress-step')
+        if ( trial.survey_json.showProgressBar == 'bot')
+        {   
+            for (var i = 0; i < e.length; i++ )
+            { e[i].classList += ' progress-step-bot'}
+        }
+        else 
+        {   
+            for (var i = 0; i < e.length; i++ )
+            { e[i].classList += ' progress-step-top'}
+        }
+        
+        
+        
+        
       }
     }    
   SurveyHtmlFormPlugin.info = info;
@@ -476,6 +482,19 @@ var VisibleIfConditionsPages = []
 
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
+
+    function MakeProgressBar(trial) {
+        var NPages = trial.survey_json.pages.length
+        var html =''
+        { 
+            html += `<div class="progress-bar" >`
+            html += `<div class="progress" id="progress"></div>`
+            for ( var j = 0; j < NPages; j++ )
+                { html += `<span class="progress-step" data-title='`+trial.survey_json.pages[j].name+`'></span>`} 
+            html += "</div>"
+        }
+        return html
+    }
 
    function nextPrev(n) {
         console.log("NEXT PREV TRIAL")
