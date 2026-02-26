@@ -110,11 +110,11 @@ console.log(trial)
     if ( trial.survey_json.showProgressBar == 'top')
         {  html += MakeProgressBar(trial) }
 
-var VisibleIfConditionsPages = []
+    var VisibleIfConditionsPages = []
     
     console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
-    //var AllQuestionsValid
-// THERE IS AN ISSUE WITH CREATING THE VISIBILITY CONDITIONS WHEN THERE IS AN OR FOR THE RESPONSES
+    // var AllQuestionsValid
+    // THERE IS AN ISSUE WITH CREATING THE VISIBILITY CONDITIONS WHEN THERE IS AN OR FOR THE RESPONSES
     var VisibleIfConditionsPages = []
     for ( var page = 0; page < NPages; page++ ) {
     var VisibleIfConditions = []
@@ -255,7 +255,7 @@ var VisibleIfConditionsPages = []
                             // the form.
                             console.log(VisibleIfConditionsPages[page][i])
                             if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
-                                console.log('=== VISIBLE IF CONDIRTION ===')
+                                console.log('=== VISIBLE IF CONDITION ===')
                                 console.log(VisibleIfConditionsPages[page][i])
                                 Str += '<select class="surveyFormSelect FormInput visible"'
                                 //Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
@@ -278,6 +278,7 @@ var VisibleIfConditionsPages = []
                                 SSS += ';;'
                                 // cycle over array of arrays
                                 // cycle over responses
+                                
                                 for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeQuestions.length; k++ )
                                 { 
                                      if ( k > 0 ){ SSS += ';' }
@@ -296,13 +297,14 @@ var VisibleIfConditionsPages = []
                                 Str += SSS
                                 //console.log(BREAK)
                             }
-                            else { Str += '<select class="surveyFormSelect FormInput visible"' }
+                            else { Str += '<select class="surveyFormSelect FormInput visible" ' }
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
                             //}
                             Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
                             Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                            Str += ' onChange=ShowOther("'+thisQuestion.name+'") '
                             Str += '>'
                             if (Object.hasOwn(thisQuestion,'choicesMin'))
                             {
@@ -319,12 +321,18 @@ var VisibleIfConditionsPages = []
                                 }
                             }
                             else {
+                                console.log(thisQuestion)
                                 var NChoices = thisQuestion.choices.length
                                 // add default/blank option
                                 Str += '<option disabled selected value> -- </option>'
                                 for ( var j = 0; j < NChoices; j++ ) {
                                     //console.log("The choices are: "+thisQuestion.choices[j])
                                     Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
+                                }
+                                if ( thisQuestion.showOtherItem == true )
+                                { 
+                                    console.log("NEED to show other ")
+                                    Str += '<option value="9999">'+LabelNames.Other+'</option>'
                                 }
                             }
                             Str += '</select></div><hr>'
@@ -482,6 +490,44 @@ var VisibleIfConditionsPages = []
 
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
+    function ShowOther(elemID) {
+        console.log("ON CHANGE")
+        const elem = document.getElementById(elemID)
+        console.log(elem)
+        console.log(elem.name)
+        if ( elem.options[elem.selectedIndex].text == LabelNames.Other )
+        {
+            var Str = ''
+            //Str += '<div class="surveyFormDiv">'
+            Str += '<textarea class="textInput FormInput" id="'+elemID+"-other" +' rows="3" cols="80%></textarea>'
+            console.log("OTHER SELECTED")
+            const newElement = document.createElement("textarea")
+            newElement.setAttribute("rows","3")
+            newElement.setAttribute("cols","80%")
+            newElement.classList.add('textInput')
+            newElement.classList.add('FormInput')
+            newElement.setAttribute("id",elemID+"-other")
+            console.log(newElement)
+            elem.after(newElement)
+        }
+        else // something else was selected, so make sure the textarea box is not visible
+        {
+            const otherElem = document.getElementById(elemID+"-other")
+            console.log(otherElem)
+            if ( otherElem != null ) { otherElem.remove() }
+        }
+/*
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
+                            Str += thisQuestion.title
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><textarea class="textInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
+                            Str += '</div>
+
+  */      
+    }
 
     function MakeProgressBar(trial) {
         var NPages = trial.survey_json.pages.length
@@ -748,12 +794,10 @@ function PrepareDataForSubmission()
                 { 
                     // The value for each question is not the index, it is used for later scoring
                     this_question_data.responseText = y[0][y[0].selectedIndex].text 
+                    // Check to see if Other was selected and somethign was written
+                    if ( this_question_data.responseValue == 9999 )
+                    { this_question_data.responseText = y[1].value }
                 }
-
-
-                console.log(AllQuestionsOnThisTab[currentQuestion])
-                // console.log(AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel"))
-
                 // Check for visibility
                 console.log(AllQuestionsOnThisTab[currentQuestion].classList.contains('visible'))
                 //console.log(y.getElementsByClassName('non-visible'))
