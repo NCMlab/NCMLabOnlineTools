@@ -268,9 +268,7 @@ function Questionnaire_Scoring(data) {
 						
 						console.log(ResponseText)
 						if ( ResponseText == null )
-						{
-							ResponseText = 'null'
-						}
+						{ ResponseText = 'null' }
 						Results.AllResults[TextAnswer] = ResponseText
 						// add the data in numeric format
 						var NumQuestionFormatName = data.shortTitle.replaceAll(" ","") + "_" + QuestionName
