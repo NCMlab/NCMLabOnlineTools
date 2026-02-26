@@ -1,6 +1,10 @@
+:root {
+  --font: "Open Sans", "Arial", sans-serif;
+  --fontSize: 1.5rem
+}
 .surveyFormInstructions {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   padding-top: 2rem;
   padding-left: 1rem;
   padding-bottom: 1rem;
@@ -9,8 +13,8 @@
 
 }
 .surveyFormSelect {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   text-align: center;
@@ -18,8 +22,8 @@
 }
 
 .textInput {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   text-align: center;
@@ -27,13 +31,13 @@
 }
 
 h1 {
-  font-family: "Open Sans", "Arial", sans-serif;
+  font-family: var(--font);
   font-size: 2.5rem;
   text-align: center
 }
 .surveyFormLabel, .tableSubmitButton, .surveyFormResponseLabel, .surveyFormSubTitle{
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   display: inline-flex;
@@ -49,8 +53,8 @@ h1 {
 }
 
 .tableSubmitButton {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   display: inline-flex;
@@ -75,8 +79,8 @@ h1 {
   display:flex;
 }
 .surveyFormTitle {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: var(--fontSize);
   display: flex; align-items : center; justify-content: center
 }
 
@@ -118,29 +122,70 @@ button:hover {
 #prevBtn {
   background-color: #bbbbbb;
 }
-
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 25px;
-  width: 25px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
+/* Container for the progress bar of dots */
+.progress-bar {
+  position: relative;
+  display:flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5rem 10rem 0rem 10rem;
+  counter-reset: step;
 }
 
-.step.active {
+.progress-bar::before, .progress {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  width: 100%;
+  background-color: #dcdcdc;
+}
+.progress {
+  background-color:rgb(0, 81, 255);
+  width: 0%;
+  transition: 0.3s ease-in-out;
+}
+/* Make circles that indicate the steps of the form: */
+.progress-step {
+  height: 35px;
+  width: 35px;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fontSize);
+  font-family: var(--font);
+  /*opacity: 0.5;*/
+  z-index: 2;
+}
+
+.progress-step::before {
+  counter-increment: step;
+  content: counter(step);
+}
+
+.progress-step.active {
   opacity: 1;
+  background-color: rgb(0, 81, 255);
+  color: white;
 }
 
 /* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #04AA6D;
+.progress-step.finish {
   opacity: 1;
  }
  
+ .progress-step::after {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + .5rem);
+  font-size: var(--fontSize);
+  height: 45px;
+  color: #666666;
+ }
 
 /* Mark input boxes that gets an error on validation: */
 .invalid {

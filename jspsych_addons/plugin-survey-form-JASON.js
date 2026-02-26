@@ -456,12 +456,12 @@ var VisibleIfConditionsPages = []
         html += "</form>"
         if ( trial.survey_json.showProgressBar == 'bot')
         { 
-            html += `<div style="text-align:center;margin-top:40px;">`
+            html += `<div class="progress-bar" >`
+            html += `<div class="progress" id="progress"></div>`
             for ( var j = 0; j < NPages; j++ )
-                { html += `<span class="step"></span>`} 
+                { html += `<span class="progress-step" data-title='`+trial.survey_json.pages[j].name+`'></span>`} 
             html += "</div>"
         }
-
         display_element.innerHTML = html;
         // start off by showing the first tab
         showTab(0, trial)
@@ -573,8 +573,8 @@ function showTab(n) {
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
-            console.log(document.getElementsByClassName("step"))
-            document.getElementsByClassName("step")[currentTab].className += " finish";
+            console.log(document.getElementsByClassName("progress-step"))
+            document.getElementsByClassName("progress-step")[currentTab].className += " finish";
             document.getElementById("tableMessageBox").style = "display: none"
         }
         return valid; // return the valid status
@@ -582,12 +582,24 @@ function showTab(n) {
 
     function fixStepIndicator(n) {
         // This function removes the "active" class of all steps...
-        var i, x = document.getElementsByClassName("step");
+        var i, x = document.getElementsByClassName("progress-step");
+        console.log("n = " + n)
+        console.log(x)
+        // remove active class, in case previous button has been pressed,
         for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
+            x[i].classList.remove('active')
         }
+        for (i = 0; i < n+1; i++) {
+            x[i].className += " active";
+        }
+        const progressSteps = document.querySelectorAll('.progress-step')
+        const progressActive = document.querySelectorAll('.progress-step.active')
+        
+        console.log(progressActive)
+        console.log(progressSteps)
+        progress.style.width = (progressActive.length - 1)/(progressSteps.length - 1)*100 + '%'
         //... and adds the "active" class on the current step:
-        x[n].className += " active";
+        //x[n].className += " active";
     }
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
