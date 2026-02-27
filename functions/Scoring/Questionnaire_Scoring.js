@@ -264,7 +264,7 @@ function Questionnaire_Scoring(data) {
 						console.log(QuestionName)
 						// Response in text form
 						console.log(data.response)
-						ResponseText = data.response[QuestionName]
+						ResponseText = data.response[QuestionName].responseText
 						
 						console.log(ResponseText)
 						if ( ResponseText == null )

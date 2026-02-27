@@ -65,6 +65,7 @@ var CheckForAlert = {
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
     Results = Questionnaire_Scoring(data)
+    console.log(Results)
   }
 }
 

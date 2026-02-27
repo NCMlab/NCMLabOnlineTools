@@ -408,7 +408,7 @@ console.log(trial)
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
                             Str += '</div><textarea class="textInput FormInput '
                             Str += VisibleIfConditionsPages[page][i].visibleClass
-                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
+                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%" id="'+thisQuestion.name+'"></textarea>'
                             Str += '</div><hr>'
                             break;
                         case 'input':
@@ -425,7 +425,7 @@ console.log(trial)
                             {  Str += ' max="'+thisQuestion.choicesMax+'" ' }
                             if (Object.hasOwn(thisQuestion,'choicesMin'))
                             {  Str += ' min="'+thisQuestion.choicesMin+'" ' }
-                            Str += '></input></p>'
+                            Str += ' id="'+thisQuestion.name+'"></input></p>'
                             Str += '</div><hr>'
 
                         default:
@@ -781,23 +781,34 @@ function PrepareDataForSubmission()
                 var this_question_data = {}
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
-                console.log(y)
+                
                 this_question_data.name = y[0].id
 
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
 
                 this_question_data.responseValue = Number(y[0].value)
-
-                if (y[0].tagName == "TEXTAREA" )
+                console.log("---------- NEW QUESTION -------------")
+                console.log(y[0])
+                console.log(y[0].value)
+                console.log(y[0].selectedIndex)
+                console.log(this_question_data)
+                console.log(y[0][y[0].selectedIndex])
+                // Add response text if it is available
+                if ( y[0][y[0].selectedIndex] != undefined )
+                { this_question_data.responseText = y[0][y[0].selectedIndex].text }
+                if ( this_question_data.responseValue == 9999 )
+                { this_question_data.responseText = y[1].value }
+                
+                
+                /*if (y[0].tagName == "TEXTAREA" )
                 { this_question_data.responseText = y[0].value }
                 else 
                 { 
                     // The value for each question is not the index, it is used for later scoring
                     this_question_data.responseText = y[0][y[0].selectedIndex].text 
                     // Check to see if Other was selected and somethign was written
-                    if ( this_question_data.responseValue == 9999 )
-                    { this_question_data.responseText = y[1].value }
-                }
+                
+                */
                 // Check for visibility
                 console.log(AllQuestionsOnThisTab[currentQuestion].classList.contains('visible'))
                 //console.log(y.getElementsByClassName('non-visible'))
