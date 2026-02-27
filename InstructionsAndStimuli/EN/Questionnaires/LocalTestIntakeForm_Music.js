@@ -29,7 +29,7 @@ const json = {
           showOtherItem: true,
           isRequired: true
         },
-        /*{
+        {
           name: "Age",
           type: "input",
           title: "Age",
@@ -212,10 +212,10 @@ const json = {
           ],
           name: 'PastNeeds',
           isRequired: true,
-       }*/
+       }
        ]
      },
-     /*{
+     {
        name: "Medical Information",
        title: "Medical Information",
        
@@ -543,7 +543,7 @@ const json = {
           textbox_rows: 5,
         }
       ]
-    }*/
+    }
    ]
  }
 

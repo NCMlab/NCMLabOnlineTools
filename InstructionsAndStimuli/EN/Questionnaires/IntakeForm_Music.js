@@ -5,27 +5,15 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "bot",
+  showProgressBar: "top",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   showTitle: true,
    pages: 
    [
-    /*{
-      name: "Name",
-      title: "Name",
-      
-      elements: [
-        {
-          type: 'comment',
-          title: 'Enter first name and initial of last name',
-          name: 'Name',
-          required: true,
-          textbox_rows: 1,
-        }
-      ]
-    },*/
+
     {      
       name: "Demographic Information",
       title: "Demographic Information",
@@ -35,9 +23,9 @@ const json = {
           title: "Gender", 
           name: 'Gender', 
           choices: [
-            {value: 1, text:'Male'},
-            {value: 2, text:'Female'},
-          ],
+              {value: 1, text:'Male'},
+              {value: 2, text:'Female'},
+            ],
           showOtherItem: true,
           isRequired: true
         },
@@ -53,8 +41,8 @@ const json = {
         },
         {
           name: "Height",
-          type: "text",
-          title: "Height (cm or feet/inches)",
+          type: "input",
+          title: "Height (cm or inches)",
           inputType: "number",
           choicesMin: 0,
           choicesMax: 300,
@@ -66,19 +54,19 @@ const json = {
           title: "What units did you use for height?", 
           name: 'HeightUnits', 
           choices: [
-                      {values: 1, text: 'Inches'},
-                      {values: 2, text: 'Centimeters'},
+                      {value: 1, text: 'Inches'},
+                      {value: 2, text: 'Centimeters'},
               ],
           showOtherItem: false,
           isRequired: true
         },
         {
           name: "Weight",
-          type: "text",
+          type: "input",
           title: "Weight (kg or lbs)",
           inputType: "number",
-          min: 0,
-          max: 1000,
+          choicesMin: 0,
+          choicesMax: 1000,
           defaultValue: '',
           isRequired: true
         },
@@ -87,8 +75,8 @@ const json = {
           title: "What units did you use for weight?", 
           name: 'HeightUnits', 
           choices: [
-                      'Pounds',
-                      'Kilograms',
+                      {value: 1, text: 'Pounds'},
+                      {value: 2, text: 'Kilograms'},
               ],
           showOtherItem: false,
           isRequired: true
@@ -98,12 +86,12 @@ const json = {
           title: "What is the highest level of education you have completed?", 
           name: 'Edu', 
           choices: [
-                      'No formal education',
-                      'High school diploma or equivalent',
-                      'College or Trade school',
-                      'Bachelor’s degree',
-                      'Master’s degree',
-                      'Doctoral degree'
+                      {value: 1, text: 'No formal education'},
+                      {value: 2, text: 'High school diploma or equivalent'},
+                      {value: 3, text: 'College or Trade school'},
+                      {value: 4, text: 'Bachelor\’s degree'},
+                      {value: 5, text: 'Master\’s degree'},
+                      {value: 6, text: 'Doctoral degree'}
               ],
           showOtherItem: true,
           isRequired: true
@@ -113,16 +101,16 @@ const json = {
           title: "What is your employment status?", 
           name: 'Employ', 
           choices: [
-                      'Employed full-time',
-                      'Employed part-time',
-                      'Retired',
-                      'Unemployed'
+                      {value: 1, text: 'Employed full-time'},
+                      {value: 2, text: 'Employed part-time'},
+                      {value: 3, text: 'Retired'},
+                      {value: 4, text: 'Unemployed'}
               ],
           showOtherItem: true,
           isRequired: true
         },
-        {
-          type: 'comment',
+        /*{
+          type: 'textarea',
           title: 'What type of work do you do (or did you do before retirement)?',
           name: 'WorkType',
           rows: 2,
@@ -134,17 +122,17 @@ const json = {
           title: "Do you live alone or with others?", 
           name: 'Living', 
           choices: [
-                  'Alone',
-                  'With spouse / partner',
-                  'With family members',
-                  'With caregivers',
-                  'In assisted living facility'
+                  {value: 1, text: 'Alone'},
+                  {value: 2, text: 'With spouse / partner'},
+                  {value: 3, text: 'With family members'},
+                  {value: 4, text: 'With caregivers'},
+                  {value: 5, text: 'In assisted living facility'}
               ],
           showOtherItem: true,
           isRequired: true,
         },
         {
-          type: 'text',
+          type: 'textarea',
           title: 'What is your primary language(s)?',
           name: 'PrimaryLanguage',
           isRequired: true,
@@ -153,12 +141,15 @@ const json = {
           name: "LanguageProblem",
           type: "dropdown",
           title: "Are there any language or communication challenges you have?",
-          choices: ["Yes", "No"],
+          choices: [
+              {value: 1, text: "Yes"}, 
+              {value: 2, text: "No"}
+              ],
           isRequired: true,
         }, 
         {
           name: "LanguageProblemDescription",
-          type: "comment",
+          type: "textarea",
           title: "Please specify your language or communication challenges.",
           visibleIf: "{LanguageProblem} == Yes",
           maxLength: 500
@@ -184,40 +175,26 @@ const json = {
           title: 'What is your marital status?',
           choices: 
           [   
-              'Single',
-              'Married',
-              'Divorced',
-              'Widowed'
+              {value: 1, text: 'Single'},
+              {value: 2, text: 'Married'},
+              {value: 3, text: 'Divorced'},
+              {value: 4, text: 'Widowed'}
           ],
           name: 'marital',
           showOtherItem: true,                    
           isRequired: true,
         },
-        /*{
-          type: 'dropdown',
-          title: 'What is your annual household income?',
-          choices: 
-          [
-              "Less than $20,000",
-              "$20,000 - $40,000",
-              "$40,001 - $60,000",
-              "$60,001 - $80,000",
-              "$80,001 - $100,000",
-              "Above $100,000"
-          ],
-          name: 'Income',
-          required: true,
-        }*/
+        
        {
           type: 'dropdown',
           title: 'Which of the following statements best describes the extent to which your needs are met currently?',
           choices: 
           [
-            "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month",
-            "Food, housing, clothing and medical needs are met - you can not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) are not met",
-            "Two or more of the basic needs are not met",
-            "I don't know"
+            {value: 1, text: "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month"},
+            {value: 2, text: "Food, housing, clothing and medical needs are met - you can not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) are not met"},
+            {value: 4, text: "Two or more of the basic needs are not met"},
+            {value: 99, text: "I don't know"}
           ],
           name: 'CurrentNeeds',
           isRequired: true,
@@ -227,18 +204,18 @@ const json = {
           title: 'Which of the following statements best describes the extent to which your needs were met during the majority of your adult life?',
           choices: 
           [
-            "Food, housing, clothing and medical needs were met - you could afford luxuries",
-            "Food, housing, clothing and medical needs were met - you could not afford luxuries",
-            "One of the basic needs (food, housing, clothing or medical care) were not met",
-            "Two or more of the basic needs were not met",
-            "I don't know"
+            {value: 1, text: "Food, housing, clothing and medical needs were met - you could afford luxuries"},
+            {value: 2, text: "Food, housing, clothing and medical needs were met - you could not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) were not met"},
+            {value: 4, text: "Two or more of the basic needs were not met"},
+            {value: 99, text: "I don't know"}
           ],
           name: 'PastNeeds',
           isRequired: true,
-       }
+       }*/
        ]
      },
-     {
+     /*{
        name: "Medical Information",
        title: "Medical Information",
        
@@ -249,9 +226,9 @@ const json = {
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
           ],
           isRequired: true,
           //add_other_option: true,                    
@@ -278,9 +255,9 @@ const json = {
           title: 'Do you have hearing loss?',
           choices: 
           [
-              "Yes",
-              "No",
-              "Not sure"
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
           ],
           name: 'HearingLoss',
           isRequired: true,
@@ -292,9 +269,9 @@ const json = {
         title: 'What type of hearing loss do you have?',
         choices: 
         [
-            "Bilateral",
-            "Unilateral",
-            "Not sure"
+            {value: 1, text: "Bilateral"},
+            {value: 2, text: "Unilateral"},
+            {value: 3, text: "Not sure"}
         ],
         name: 'HearingLossType',
         visibleIf: "{HearingLoss} == Yes",
@@ -307,10 +284,10 @@ const json = {
       title: 'What is your level of hearing loss?',
       choices: 
       [
-          "Mild",
-          "Moderate",
-          "Severe",
-          "Not sure"
+          {value: 1, text: "Mild"},
+          {value: 2, text: "Moderate"},
+          {value: 3, text: "Severe"},
+          {value: 99, text: "Not sure"}
       ],
       visibleIf: "{HearingLoss} == Yes",
       name: 'HearingLossLevel',
@@ -323,8 +300,8 @@ const json = {
       title: 'Do you have any other health issues?',
       choices: 
       [
-          "Yes",
-          "No"
+          {value: 1, text: "Yes"},
+          {value: 2, text: "No"}
       ],
       name: 'OtherHealthIssues',
       isRequired: true,
@@ -349,7 +326,14 @@ const json = {
           title: 'How many days do you exercise per week?',
           choices: 
           [
-              "0", "1","2","3","4","5","6","7"
+              {value: 1, text: "0"}, 
+              {value: 1, text: "1"},
+              {value: 1, text: "2"},
+              {value: 1, text: "3"},
+              {value: 1, text: "4"},
+              {value: 1, text: "5"},
+              {value: 1, text: "6"},
+              {value: 1, text: "7"}
           ],
           name: 'ExerciseFrequency',
           isRequired: true,
@@ -359,8 +343,8 @@ const json = {
           title: 'Have you exercised in the last 24 hours?',
           choices: 
           [
-            "Yes",
-            "No"
+            {value: 1, text:"Yes"},
+            {value: 2, text: "No"}
           ],
           name: 'Exercise24',
           isRequired: true,
@@ -370,10 +354,10 @@ const json = {
           title: 'Do you smoke, or have you smoked in the past?',
           choices: 
           [
-            "Currently smoke",
-              "Have not smoked for more than 1 year",
-              "Never",
-              "Unknown"
+              {value: 1, text: "Currently smoke"},
+              {value: 2, text: "Have not smoked for more than 1 year"},
+              {value: 3, text: "Never"},
+              {value: 4, text: "Unknown"}
           ],
           name: 'Smoke',
           isRequired: true,
@@ -381,10 +365,10 @@ const json = {
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
-          choicesStep:1,
+          //choicesStep:1,
           name: 'SmokeStart',
           isRequired: true,
           input_type: "number"
@@ -392,10 +376,10 @@ const json = {
         {
           type: 'dropdown',
           title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
-          choicesStep:1,
+          //choicesStep:1,
           name: 'SmokeQuit',
           isRequired: true,
           input_type: "number"
@@ -403,8 +387,18 @@ const json = {
         {
           type: 'dropdown',
           title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choices: ["0","0.5","1","2","3","4","5","6",">6"],
+          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
+          choices: [
+            {value: 0, text: "0"},
+            {value: 0.5, text: "0.5"},
+            {value: 1, text: "1"},
+            {value: 2, text: "2"},
+            {value: 3, text: "3"},
+            {value: 4, text: "4"},
+            {value: 5, text: "5"},
+            {value: 6, text: "6"},
+            {value: 7, text: ">6"}
+          ],
           name: 'SmokePacksPerDay',
           isRequired: true,
           input_type: "number"
@@ -414,10 +408,10 @@ const json = {
           title: 'Alcohol consumption',
           choices: 
           [
-              "None",
-              "Less than 2 drinks per day",
-              "2 to 4 drinks per day",
-              "More than 4 drinks per day"
+              {value: 0, text: "None"},
+              {value: 1, text: "Less than 2 drinks per day"},
+              {value: 2, text: "2 to 4 drinks per day"},
+              {value: 3, text: "More than 4 drinks per day"}
           ],
           name: 'Alcohol',
           isRequired: true,
@@ -436,14 +430,14 @@ const json = {
             title: 'Have you engaged in music and movement classes before?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'MusicMovement',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
@@ -455,14 +449,14 @@ const json = {
             title: 'Have you participated in group music classes before?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'GroupMusic',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
             name: 'GroupMusicExperience',
             visibleIf: "{GroupMusic} == Yes",
@@ -474,14 +468,13 @@ const json = {
             title: 'Have you been in a choir before?',
             choices: 
             [
-              "Yes",
-              "No",
-            ],
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},            ],
             name: 'Choir',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
             name: 'ChoirExperience',
             visibleIf: "{Choir} == Yes",
@@ -493,14 +486,14 @@ const json = {
             title: 'Do you have any other music experience (i.e. have you played a musical instrument at any time in your life on a regular basis)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             name: 'OtherMusic',
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Which instrument(s) did you play?',
             name: 'WhichInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -508,7 +501,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
             name: 'AgeStartInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -516,7 +509,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
             name: 'YearsPlayInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -528,8 +521,8 @@ const json = {
             title: 'Do you still play the instrument(s)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
             visibleIf: "{OtherMusic} == Yes",
             name: 'StillPlayInstrument',
@@ -543,14 +536,14 @@ const json = {
       
       elements: [
         {
-          type: 'comment',
+          type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
           name: 'AdditionalCOmments',
           required: false,
           textbox_rows: 5,
         }
       ]
-    }
+    }*/
    ]
  }
 

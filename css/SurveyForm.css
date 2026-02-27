@@ -199,9 +199,12 @@ font-size: 4rem;
   top: calc(100% + .5rem);
 }
 
-
-
 /* Mark input boxes that gets an error on validation: */
 .invalid {
   background-color: #ffdddd;
+}
+
+.numberInput {
+  font-family: var(--font);
+  font-size: var(--fontSize);
 }

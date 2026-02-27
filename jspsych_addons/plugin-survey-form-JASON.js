@@ -28,7 +28,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           submit_button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
-              default: "XXSubmit",
+              default: "Submit",
           },
           /** Label on the popup when a question is missed. */
           missed_question_label: {
