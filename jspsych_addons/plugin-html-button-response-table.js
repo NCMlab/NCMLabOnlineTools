@@ -143,7 +143,7 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
                 if ( trial.completedBits[i] == 1 )
                 { 
                     console.log('INDEX: '+i+', bit: '+trial.completedBits[i])
-                    html += '<td bgcolor="orange">' 
+                    html += '<td class="completedCell">' 
                 }
                 else { html += '<td>' }
               html +=
