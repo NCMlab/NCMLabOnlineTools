@@ -1,9 +1,11 @@
 
 var title = "UCLA 3-item Loneliness Scale"
-var shortTitle = ""
+var shortTitle = "loneliness"
 const survey_JSON = {
   showQuestionNumbers: "off",
+  name: "loneliness",
   showCompletedPage: false,
+  isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
   Instructions: "When answering the questions, you could take account of the following:"+
       "<ul>"+  
       "<li>There are no right or wrong answers"+

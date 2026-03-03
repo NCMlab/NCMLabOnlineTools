@@ -12,7 +12,7 @@ var survey_JSON =
                 name: 'PAES',
                 title: 'Please rate how you feel <em>at the moment</em> about the music and movement activity you have been doing',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 
                 rows: [
 

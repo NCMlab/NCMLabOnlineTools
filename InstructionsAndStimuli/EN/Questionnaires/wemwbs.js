@@ -12,8 +12,7 @@ var survey_JSON =
                 name: 'wemwbs',
                 title: 'Below are some statements about feelings and thoughts. Please tick the box that best describes your experience over the last 2 weeks.',
                 alternateRows: true,
-                isAllRowRequired: true,
-                
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
 
                     {value: 'wemwbs001', text: 'I\'ve been feeling optimistic about the future'},
