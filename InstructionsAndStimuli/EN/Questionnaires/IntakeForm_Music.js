@@ -60,7 +60,7 @@ const json = {
           showOtherItem: false,
           isRequired: true
         },
-        {
+       /* {
           name: "Weight",
           type: "input",
           title: "Weight (kg or lbs)",
@@ -250,7 +250,7 @@ const json = {
         required: false,
         textbox_rows: 3,
       },
-      {
+      /*{
           type: 'dropdown',
           title: 'Do you have hearing loss?',
           choices: 
@@ -313,9 +313,10 @@ const json = {
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
       rows: 3,
-    },
+    },*/
        ]
      },
+     /*
      {
        name: "Habits",
        title: "Habits",
