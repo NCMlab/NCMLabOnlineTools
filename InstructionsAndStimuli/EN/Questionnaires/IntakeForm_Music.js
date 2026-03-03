@@ -109,7 +109,7 @@ const json = {
           showOtherItem: true,
           isRequired: true
         },
-        /*{
+        {
           type: 'textarea',
           title: 'What type of work do you do (or did you do before retirement)?',
           name: 'WorkType',
@@ -212,10 +212,10 @@ const json = {
           ],
           name: 'PastNeeds',
           isRequired: true,
-       }*/
+       }
        ]
      },
-     /*{
+     {
        name: "Medical Information",
        title: "Medical Information",
        
@@ -543,7 +543,7 @@ const json = {
           textbox_rows: 5,
         }
       ]
-    }*/
+    }
    ]
  }
 

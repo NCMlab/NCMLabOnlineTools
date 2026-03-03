@@ -255,16 +255,24 @@ function Questionnaire_Scoring(data) {
 				{
 					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
 					{
-						console.log(data.Questionnaire.survey_JSON.pages[i].elements[j].title)
+						
 						// Question text
 						TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
 						console.log(TextAnswer)
+						console.log("Question number: "+j+ " of "+data.Questionnaire.survey_JSON.pages[i].elements.length)
 						// Question Name 
 						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
 						console.log(QuestionName)
 						// Response in text form
 						console.log(data.response)
-						ResponseText = data.response[QuestionName].responseText
+						// If other, use text box results
+						if ( data.response[j].responseValue == 9999 )
+						{ ResponseText = data.response[j].responseText }
+						// If numeric response
+						else if ( ! data.response[j].hasOwnProperty('responseText') )
+						{ ResponseText = data.response[j].responseValue }
+						else { ResponseText = data.response[j].responseText }
+						// If numeric, use it as text result
 						
 						console.log(ResponseText)
 						if ( ResponseText == null )
