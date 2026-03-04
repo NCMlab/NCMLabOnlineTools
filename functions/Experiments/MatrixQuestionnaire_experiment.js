@@ -47,6 +47,7 @@ var matrix_trial = {
         data.AlertLimit = Questionnaire.AlertLimit
         data.title = Questionnaire.title
         data.shortTitle = Questionnaire.shortTitle
+        data.name = Questionnaire.survey_JSON.elements[0].name
     }
 };
 
@@ -100,6 +101,19 @@ var SpecialtyScoring = {
             if ( data.trials[0].response.find(o => o.name === 'gds15').responseValue == 1 ){ TotalScore++ }
             Results.AllResults['Total Score'] = TotalScore
             Results.AllResults['Accuracy'] = TotalScore
+            // Make adjustments for unanswered questions
+            var AvgScore = Results.AllResults['Total Score']/Results.AllResults['Questions Answered']*Results.AllResults['Number of Questions']
+            Results.AllResults['Average Score'] = AvgScore
+            console.log(data)
+            console.log(data.trials[0].name)
+            var totalScoreName = data.trials[0].name + "_total"
+		        var avgScoreName = data.trials[0].name + "_avg"
+		        
+            Results.NumericResults[totalScoreName] = TotalScore
+            Results.NumericResults[avgScoreName] = AvgScore
+            console.log("SPECIALY SCORING")
+            console.log(Results)
+
             break;
           }
           case 'PANAS, weekly':
@@ -148,7 +162,7 @@ timeline.push(matrix_trial)
 
 
 timeline.push(CheckForAlert)
-timeline.push(SpecialtyScoring)
+//timeline.push(SpecialtyScoring)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)

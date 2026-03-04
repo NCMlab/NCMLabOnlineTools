@@ -24,6 +24,7 @@ function Questionnaire_Scoring(data) {
 	var NumericScore
 	var prompt
 	var resp
+
 	if ( data.QuestionnaireType == 'matrix' )
 	{	
 		const rowIndices = Object.keys(data.response)
@@ -63,7 +64,6 @@ function Questionnaire_Scoring(data) {
 
 	if ( data.QuestionnaireType == 'form' )
 	{	
-
 		const rowIndices = Object.keys(data.response)
         console.log(rowIndices)
 		var NRows = rowIndices.length
@@ -122,91 +122,6 @@ function Questionnaire_Scoring(data) {
 		}
 	}	
 	
-	
-	if ( data.QuestionnaireType == 'OLDmatrix' )
-	{	
-		
-		console.log(data.response)
-		const surveyName = Object.keys(data.response)
-        console.log(surveyName)
-		const keys = Object.keys(data.response[surveyName])
-		console.log(keys)
-		const responses = data.response[surveyName]
-		console.log(responses)
-		// cycle over responses
-		for ( var i = 0; i < keys.length; i++ )
-		{
-			NumericScore = responses[keys[i]]
-			console.log(data.Questionnaire.survey_JSON)
-			console.log(data.Questionnaire.survey_JSON.elements)
-			console.log(data.Questionnaire.survey_JSON.elements[0])
-			console.log(data.Questionnaire.survey_JSON.elements[0].rows)
-			// cycle over ALL questions
-			for ( var j = 0; j < data.Questionnaire.survey_JSON.elements[0].rows.length; j++ )
-			{
-				if ( data.Questionnaire.survey_JSON.elements[0].rows[j].value == keys[i] )
-				{
-					// Find the STIMULUS/QUESTION in TEXT
-					TextAnswer = data.Questionnaire.survey_JSON.elements[0].rows[j].text 
-					for ( var k = 0; k < data.Questionnaire.survey_JSON.elements[0].columns.length; k++ )
-					{
-						if ( data.Questionnaire.survey_JSON.elements[0].columns[k].value == NumericScore )
-						{
-							// Find the RESPONSE TEXT
-							ResponseText = data.Questionnaire.survey_JSON.elements[0].columns[k].text		
-						}
-					}
-				}
-			}
-			TotalScore += NumericScore
-			Results.AllResults[TextAnswer] = ResponseText
-			//console.log(BREAK)
-		}
-	}
-	if ( data.QuestionnaireType == 'OLDradiogroup' )
-	{
-		console.log(data)
-		console.log(data.response)
-		const keys = Object.keys(data.response)
-		console.log(keys)
-		// cycle over EACH QUESTIONS 
-		for ( var i = 0; i < keys.length; i++ )
-		{
-			// make sure it is NOT an introduction text "question"
-			if ( keys[i] != 'introduction' )
-			{ 
-				// get the response value
-				NumericScore = data.response[keys[i]]
-				console.log("Numeric Score: " + NumericScore)
-				console.log(data.Questionnaire.survey_JSON.pages[0].elements[keys[i]])
-				// cycle over ALL questions
-				for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[0].elements.length; j++ )
-				{
-					console.log("j: "+j)
-					console.log(data.response[keys[i]])
-					if ( data.Questionnaire.survey_JSON.pages[0].elements[j].name == keys[i] )
-					{
-						// Find the STIMULUS/QUESTION in TEXT
-						TextAnswer = data.Questionnaire.survey_JSON.pages[0].elements[j].title
-						console.log(TextAnswer)
-						for ( var k = 0; k < data.Questionnaire.survey_JSON.pages[0].elements[j].choices.length; k++ )
-						{
-							console.log(data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k])
-							if ( data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].value == NumericScore )
-							{
-								// Find the RESPONSE TEXT
-								ResponseText = data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].text		
-								console.log("Response Text: "+ResponseText)
-							}
-						}
-					}
-				}
-				TotalScore += NumericScore
-				Results.AllResults[TextAnswer] = ResponseText
-			}
-		}
-
-	}
 	if ( data.QuestionnaireType == 'likert' )
 	{
 		const keys = Object.keys(data.response)
@@ -284,7 +199,6 @@ function Questionnaire_Scoring(data) {
 			}
 		}
 	}
-
 	if ( data.QuestionnaireType == 'Varied' )
 	{
 		// This assumes there is not total score, so a score of one indicates that it was completed
@@ -346,6 +260,85 @@ function Questionnaire_Scoring(data) {
 			.catch(() => console.log("Batch Session synchronization failed"))
 		}
 	}*/
+
+	// SPECIALTY SCORING
+	console.log(data)
+	switch ( data.shortTitle ) {
+      case 'FirstName':
+        // This is here to have a language independent location to store the first name of a participant
+        {
+          Results.AllResults['FirstName'] = data.response['Name']
+        }
+        case 'GDS':
+          {
+            var TotalScore = 0
+            // The following can be done with a loop, but the explicit nature of the following makes it very 
+            // easy to see what is being done.
+            if ( data.response.find(o => o.name === 'gds01').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds02').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds03').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds04').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds05').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds06').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds07').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds08').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds09').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds10').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds11').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds12').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds13').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds14').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds15').responseValue == 1 ){ TotalScore++ }
+            Results.AllResults['Total Score'] = TotalScore
+            Results.AllResults['Accuracy'] = TotalScore
+            // Make adjustments for unanswered questions
+            var AvgScore = Results.AllResults['Total Score']/Results.AllResults['Questions Answered']*Results.AllResults['Number of Questions']
+            Results.AllResults['Average Score'] = AvgScore
+            var totalScoreName = data.name + "_total"
+		        var avgScoreName = data.name + "_avg"
+		        
+            Results.NumericResults[totalScoreName] = TotalScore
+            Results.NumericResults[avgScoreName] = AvgScore
+
+            break;
+          }
+          case 'PANAS, weekly':
+            {
+              Results.AllResults['Positive'] = data.response.find(o => o.name === 'panas03').responseValue + 
+                data.response.find(o => o.name === 'panas05').responseValue + 
+                data.response.find(o => o.name === 'panas07').responseValue + 
+                data.response.find(o => o.name === 'panas08').responseValue + 
+                data.response.find(o => o.name === 'panas10').responseValue
+              Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
+
+              Results.AllResults['Negative'] = data.response.find(o => o.name === 'panas01').responseValue + 
+                data.response.find(o => o.name === 'panas02').responseValue + 
+                data.response.find(o => o.name === 'panas04').responseValue + 
+                data.response.find(o => o.name === 'panas06').responseValue + 
+                data.response.find(o => o.name === 'panas09').responseValue
+              Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
+              break;                                              
+            }
+          case 'PANAS, baseline':
+          {
+            Results.AllResults['Positive'] = data.response.find(o => o.name === 'panas03').responseValue + 
+              data.response.find(o => o.name === 'panas05').responseValue + 
+              data.response.find(o => o.name === 'panas07').responseValue + 
+              data.response.find(o => o.name === 'panas08').responseValue + 
+              data.response.find(o => o.name === 'panas10').responseValue
+            Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
+
+            Results.AllResults['Negative'] = data.response.find(o => o.name === 'panas01').responseValue + 
+              data.response.find(o => o.name === 'panas02').responseValue + 
+              data.response.find(o => o.name === 'panas04').responseValue + 
+              data.response.find(o => o.name === 'panas06').responseValue + 
+              data.response.find(o => o.name === 'panas09').responseValue
+            Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
+            break;                                              
+          }
+    }
+
+
 
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
