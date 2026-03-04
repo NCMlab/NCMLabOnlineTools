@@ -304,37 +304,137 @@ function Questionnaire_Scoring(data) {
           }
           case 'PANAS, weekly':
             {
-              Results.AllResults['Positive'] = data.response.find(o => o.name === 'panas03').responseValue + 
-                data.response.find(o => o.name === 'panas05').responseValue + 
-                data.response.find(o => o.name === 'panas07').responseValue + 
-                data.response.find(o => o.name === 'panas08').responseValue + 
-                data.response.find(o => o.name === 'panas10').responseValue
-              Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
-
-              Results.AllResults['Negative'] = data.response.find(o => o.name === 'panas01').responseValue + 
-                data.response.find(o => o.name === 'panas02').responseValue + 
-                data.response.find(o => o.name === 'panas04').responseValue + 
-                data.response.find(o => o.name === 'panas06').responseValue + 
-                data.response.find(o => o.name === 'panas09').responseValue
-              Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
+				var Npos = 0
+				var Nneg = 0
+				Results.AllResults['Positive'] = 0
+              	if ( data.response.find(o => o.name === 'panas03').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas03').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas05').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas05').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas07').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas07').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas08').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas08').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas10').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas10').responseValue 
+					Npos++
+				}
+				Results.AllResults['Positive Average'] = Results.AllResults['Positive']/Npos*5
+				Results.NumericResults['panas_pos_sum'] = Results.AllResults['Positive']
+				Results.NumericResults['panas_Npos'] = Npos
+				Results.NumericResults['panas_pos_avg'] = Results.AllResults['Positive']/Npos*5
+				
+				Results.AllResults['Negative'] = 0
+              	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
+					Npos++
+				}
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Npos*5
+				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
+				Results.NumericResults['panas_Nneg'] = Npos
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Npos*5
               break;                                              
             }
           case 'PANAS, baseline':
           {
-            Results.AllResults['Positive'] = data.response.find(o => o.name === 'panas03').responseValue + 
-              data.response.find(o => o.name === 'panas05').responseValue + 
-              data.response.find(o => o.name === 'panas07').responseValue + 
-              data.response.find(o => o.name === 'panas08').responseValue + 
-              data.response.find(o => o.name === 'panas10').responseValue
-            Results.NumericResults['panas_pos'] = Results.AllResults['Positive']
-
-            Results.AllResults['Negative'] = data.response.find(o => o.name === 'panas01').responseValue + 
-              data.response.find(o => o.name === 'panas02').responseValue + 
-              data.response.find(o => o.name === 'panas04').responseValue + 
-              data.response.find(o => o.name === 'panas06').responseValue + 
-              data.response.find(o => o.name === 'panas09').responseValue
-            Results.NumericResults['panas_neg'] = Results.AllResults['Negative']
-            break;                                              
+            	var Npos = 0
+				var Nneg = 0
+				Results.AllResults['Positive'] = 0
+              	if ( data.response.find(o => o.name === 'panas03').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas03').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas05').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas05').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas07').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas07').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas08').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas08').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas10').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas10').responseValue 
+					Npos++
+				}
+				Results.AllResults['Positive Average'] = Results.AllResults['Positive']/Npos*5
+				Results.NumericResults['panas_pos_sum'] = Results.AllResults['Positive']
+				Results.NumericResults['panas_Npos'] = Npos
+				Results.NumericResults['panas_pos_avg'] = Results.AllResults['Positive']/Npos*5
+				
+				Results.AllResults['Negative'] = 0
+              	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
+					Npos++
+				}
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Npos*5
+				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
+				Results.NumericResults['panas_Nneg'] = Npos
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Npos*5
+				break                                           
           }
     }
 

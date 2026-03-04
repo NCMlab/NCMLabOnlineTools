@@ -3,11 +3,11 @@ GDS: before we think the score from the online tool export was correct, but now 
 >> Fixed
 
 PANAS: note that there is still the same issue as discussed below (scoring shows up in the tool export as 0 to 4 instead of 1 to 5). Also – there is currently only one average score for PANAS, but there should be one for negative and one for positive.
-
+>> Fixed
  
 
 PACES: same issue with score as PANAS – likert scale responses should be 1 to 5 instead of 0 to 4
-
+>> FIXED
  
 
 General for “avg” scores:
@@ -30,14 +30,17 @@ To follow-up regarding CESAM and demographic data exports.
 
 Demographic: in the output file the order of the responses does not match the order found in the questionnaire. Can you this be changed?
 
+
 Also – to discuss – we are currently inputing the data from paper copies using codes (see attached). We will need to change one or the other so that we can just do a copy-paste from the tool export into our sheet. We can either switch over to full answers in our data entry, or switch the tool to export number codes for some of the questions. What are your thoughts on this? See attached spreadsheet.
 
  
 
 CESAM: the scoring is not matching ours (sometimes it should be a score of 1, but it gives 2 for example), so the total scores are different than ours. Questions where Ramzi noticed a discrepancy: 6 to 9, 17 to 19.
+>> Can you send me your scoring sheet so I can match them up?
+
 
 Also – some of the subquestions were left blank when there should have been a response (for example: 6.1), or if there was no response (because the previous question was answered “no”), the output file shows “0”.
-
+>> What should the response look like if there was no response needed? 
  
 
 We can always meet about any of this in a call if necessary to discuss.

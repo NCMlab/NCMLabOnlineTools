@@ -38,23 +38,23 @@ var survey_JSON =
                 ],
                 columns: [
                     {
-                    "value": 0,
+                    "value": 1,
                     "text": 'Very slightly or not at all'
                     },
                     {
-                    "value": 1,
+                    "value": 2,
                     "text": 'A little'
                     },
                     {
-                    "value": 2,
+                    "value": 3,
                     "text": 'Moderately'
                     },
                     {
-                    "value": 3,
+                    "value": 4,
                     "text": 'Quite a bit'
                     },
                     {
-                    "value": 4,
+                    "value": 5,
                     "text": 'Extremely'
                     },
                 ],
