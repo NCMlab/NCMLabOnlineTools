@@ -84,7 +84,7 @@ var SpecialtyScoring = {
           Results.AllResults['Nutrition'] = data.trials[0].response.find(o => o.name === 'cesam001').responseValue
           Results.AllResults['Multimorbidity'] = data.trials[0].response.find(o => o.name === 'cesam002').responseValue
           Results.AllResults['Communication'] = data.trials[0].response.find(o => o.name === 'cesam003').responseValue + 
-            data.trials[0].response.find(o => o.name === 'cesam004').responseValue
+          data.trials[0].response.find(o => o.name === 'cesam004').responseValue
           Results.AllResults['Cognition'] = data.trials[0].response.find(o => o.name === 'cesam005').responseValue
 
           var sumADL = data.trials[0].response['cesam007'] + 
@@ -144,42 +144,7 @@ var SpecialtyScoring = {
                                         
           break;
         }
-        case 'GDS':
-          {
-            var TotalScore = 0
-            if ( data.trials[0].response.gds['gds01'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds02'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds03'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds04'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds05'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds06'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds07'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds08'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds09'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds10'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds11'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds12'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds13'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds14'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds15'] == 1 ) { TotalScore++ }
-            Results.AllResults['Total Score'] = TotalScore
-            Results.AllResults['Accuracy'] = TotalScore
-            break;
-          }
-          case 'PANASsf':
-            {
-              Results.AllResults['Positive'] = data.trials[0].response.panas['panas03']
-                                              + data.trials[0].response.panas['panas05']
-                                              + data.trials[0].response.panas['panas07']
-                                              + data.trials[0].response.panas['panas08']
-                                              + data.trials[0].response.panas['panas10']
-              Results.AllResults['Negative'] = data.trials[0].response.panas['panas01']
-                                              + data.trials[0].response.panas['panas02']
-                                              + data.trials[0].response.panas['panas04']
-                                              + data.trials[0].response.panas['panas06']
-                                              + data.trials[0].response.panas['panas09']                                              
-              break;                                              
-            }
+       
     }
     
   }
