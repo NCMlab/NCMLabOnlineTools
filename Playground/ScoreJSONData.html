@@ -1,0 +1,60 @@
+<html>
+<head>
+  <script src="../jspsych/dist/jspsych.js"></script>
+  <script src="../jspsych/dist/plugin-call-function.js"></script>
+  <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
+  <script src="../functions/Scoring/SpecialtyQuestionnaireScoring.js"></script>
+  <script src="../InstructionsAndStimuli/EN/Questionnaires/gds.js"></script>
+</head>
+<body>
+  <script>
+    // The incoming data contains the numeric results only.
+    // This includes column headings
+    // values (0 or 1)
+    // Incoming data 
+    var incoming_data = {
+      name: "gds",
+      workerID: '1234',
+      site: '',
+      date: '',
+      language: 'EN',
+      rows: [
+        { name: 'gds01', reponse: '1'},
+        { name: 'gds02', reponse: '1'},
+        { name: 'gds03', reponse: '0'},
+        { name: 'gds04', reponse: '0'},
+        { name: 'gds05', reponse: '1'},
+        { name: 'gds06', reponse: '1'},
+        { name: 'gds07', reponse: '1'},
+        { name: 'gds08', reponse: '0'},
+        { name: 'gds09', reponse: '1'},
+        { name: 'gds10', reponse: '1'},
+        { name: 'gds11', reponse: '1'},
+        { name: 'gds12', reponse: '0'},
+        { name: 'gds13', reponse: '1'},
+        { name: 'gds14', reponse: '1'},
+        { name: 'gds15', reponse: '1'}
+      ]
+    }
+    // Take the incoming data and the JSON for the questionnaire and pair them up 
+    // together to create the expected data and then send it through the 
+    // scoring program.
+    //
+    console.log(incoming_data)
+    console.log(EN_gds)
+    var data = {} 
+    data.shortTitle = 'GDS'
+    data.name = 'gds'
+    data.jatosWorkerID = '21'
+    data.response = []
+    var i = 0
+    data.response[i] = {}
+    data.response[i].label = EN_gds.survey_JSON.elements[0].rows[i].text 
+    data.response[i].name = EN_gds.survey_JSON.elements[0].rows[i].value
+    data.response[i].responsePrompt = '' // yes or no
+    data.response[i].responseValue = 1;
+    Questionnaire_Scoring(data)
+  </script>
+  Jason
+</body>
+</html>

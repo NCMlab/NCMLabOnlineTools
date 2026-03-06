@@ -7,7 +7,10 @@ function Questionnaire_Scoring(data) {
 	//
 	AllTrials = data
 	
-	data = data.trials[0]
+	//data = data.trials[0]
+
+	console.log(data)
+	console.log(BREAK)
 	Notes = AllTrials.filter({trial: 'Notes'})
 	Results = {}	
     Results.AllResults = {}
