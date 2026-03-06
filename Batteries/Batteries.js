@@ -1969,7 +1969,7 @@ List.push({
   Task: "Word Recognition",
   Parameters: "WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "RAVLT, Recog",
+  IconName: "Word Recog",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1984,7 +1984,7 @@ List.push({
   Instructions: "Default",
   IconName: "GDS",
 });
-	BatteryList.push({index: 123, 
+	BatteryList.push({index: 99999123, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
@@ -1997,6 +1997,21 @@ List.push({
     shortName: '',
 	})
 
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_09', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 123, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   // ===========
 var List = []
