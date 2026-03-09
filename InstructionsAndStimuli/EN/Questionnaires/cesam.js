@@ -48,7 +48,7 @@ const survey_JSON = {
         name: "cesam003",
         title: "Do you have vision problems?",
         choices: [
-          { value: 2, text: 'Yes' },
+          { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },
         ],
         isRequired: true,
@@ -59,7 +59,7 @@ const survey_JSON = {
         name: "cesam004",
         title: "Do you have hearing problems?",
         choices: [
-          { value: 2, text: 'Yes' },
+          { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },
         ],
         isRequired: true,
