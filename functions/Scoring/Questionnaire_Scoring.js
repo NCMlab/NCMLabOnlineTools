@@ -10,8 +10,13 @@ function Questionnaire_Scoring(data) {
 	//data = data.trials[0]
 
 	console.log(data)
-	console.log(BREAK)
-	Notes = AllTrials.filter({trial: 'Notes'})
+	//console.log(BREAK)
+	try {
+		Notes = AllTrials.filter({trial: 'Notes'})
+	}
+	catch (error) {
+		Notes = ''
+	}
 	Results = {}	
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.shortTitle
@@ -265,7 +270,6 @@ function Questionnaire_Scoring(data) {
 	}*/
 
 	// SPECIALTY SCORING
-	console.log(data)
 	switch ( data.shortTitle ) {
       case 'FirstName':
         // This is here to have a language independent location to store the first name of a participant
@@ -296,7 +300,7 @@ function Questionnaire_Scoring(data) {
             Results.AllResults['Accuracy'] = TotalScore
             // Make adjustments for unanswered questions
             var AvgScore = Results.AllResults['Total Score']/Results.AllResults['Questions Answered']*Results.AllResults['Number of Questions']
-            Results.AllResults['Average Score'] = AvgScore
+			Results.AllResults['Average Score'] = AvgScore
             var totalScoreName = data.name + "_total"
 		        var avgScoreName = data.name + "_avg"
 		        
@@ -445,16 +449,22 @@ function Questionnaire_Scoring(data) {
 
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
-	if ( Notes.trials.length > 0 )
-		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
-	else { Results.AllResults['Notes'] = '' }
-	Results.parameters = parameters
+	// If the data is sent from a CSV to JSON procedure there are no NOTES
+	try {
+		if ( Notes.trials.length > 0 )
+			{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+		else { Results.AllResults['Notes'] = '' }
+	}
+	catch (error)
+	{ Results.AllResults['Notes'] = '' }
+	// If the data is sent from a CSV to JSON procedure there are no parameters
+	try { Results.parameters = parameters }
+	catch (error) { Results.parameters = '' }
 	Results.Alert = false
 	if ( data.AlertLimit !== undefined ) 
 	{
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
-	console.log(Results)
     return Results
 }
