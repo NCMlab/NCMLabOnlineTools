@@ -270,6 +270,7 @@ function Questionnaire_Scoring(data) {
 	}*/
 
 	// SPECIALTY SCORING
+	console.log(data.shortTitle)
 	switch ( data.shortTitle ) {
       	case 'FirstName':
         // This is here to have a language independent location to store the first name of a participant
@@ -278,26 +279,26 @@ function Questionnaire_Scoring(data) {
         }
 		case 'CESAM':
         {
-          Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
-          Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
-          Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
-          Results.AllResults['Cognition'] = data.trials[0].response['cesam005']
+          Results.AllResults['Nutrition'] = data.response['cesam001']
+          Results.AllResults['Multimorbidity'] = data.response['cesam002']
+          Results.AllResults['Communication'] = data.response['cesam003'] + data.response['cesam004']
+          Results.AllResults['Cognition'] = data.response['cesam005']
 		// ADL 
 		// Questions 7 through 11 are coded as 1 for NO and 0 for YES
-		  var sumADL =  data.trials[0].response['cesam007'] + 
-                        data.trials[0].response['cesam008'] + 
-                        data.trials[0].response['cesam009'] +
-                        data.trials[0].response['cesam010'] +
-                        data.trials[0].response['cesam011']
+		  var sumADL =  data.response['cesam007'] + 
+                        data.response['cesam008'] + 
+                        data.response['cesam009'] +
+                        data.response['cesam010'] +
+                        data.response['cesam011']
 			if ( sumADL >= 4 ) { Results.AllResults['ADL'] = 0 }
 		  	else if ( sumADL == 2 || sumADL == 3 ) { Results.AllResults['ADL'] = 1 }
 		  	else if ( sumADL <= 1 ) { Results.AllResults['ADL'] = 2 }
 		// IADL 
 		// Questions 12 through 15 are coded as 1 for NO and 0 for YES
-		  var sumIADL = data.trials[0].response['cesam012'] + 
-          				data.trials[0].response['cesam013'] + 
-          				data.trials[0].response['cesam014'] +
-          				data.trials[0].response['cesam015'] 
+		  var sumIADL = data.response['cesam012'] + 
+          				data.response['cesam013'] + 
+          				data.response['cesam014'] +
+          				data.response['cesam015'] 
 		  if ( sumIADL == 4 ) { Results.AllResults['IADL'] = 0 }
 		  else if ( sumIADL == 3 ) { Results.AllResults['IADL'] = 1 }
 		  else if ( sumIADL <= 2 ) { Results.AllResults['IADL'] = 2 }
@@ -333,6 +334,15 @@ function Questionnaire_Scoring(data) {
                                               Results.AllResults['Mood'] + 
                                               Results.AllResults['Mobility']
           Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                
+		  Results.NumericResults['Nutrition'] = Results.AllResults['Nutrition']
+		  Results.NumericResults['Multimorbidity'] = Results.AllResults['Multimorbidity']
+		  Results.NumericResults['Communication'] = Results.AllResults['Communication']
+		  Results.NumericResults['Cognition'] = Results.AllResults['Cognition']
+		  Results.NumericResults['ADL'] = Results.AllResults['ADL']
+		  Results.NumericResults['IADL'] = Results.AllResults['IADL']
+		  Results.NumericResults['Continence'] = Results.AllResults['Continence']
+		  Results.NumericResults['Mood'] = Results.AllResults['Mood']
+		  Results.NumericResults['Mobility'] = Results.AllResults['Mobility']
           break;
         }
 		

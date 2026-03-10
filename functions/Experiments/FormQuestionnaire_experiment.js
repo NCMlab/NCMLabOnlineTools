@@ -63,7 +63,9 @@ var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    Results = Questionnaire_Scoring(data)
+    Results = Questionnaire_Scoring(data.trials[0])
+    console.log(Results)
+    console.log(BREAK)
   }
 }
 
@@ -157,7 +159,7 @@ timeline.push(form_trial)
 
 
 timeline.push(CheckForAlert)
-timeline.push(SpecialtyScoring)
+//timeline.push(SpecialtyScoring)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)
