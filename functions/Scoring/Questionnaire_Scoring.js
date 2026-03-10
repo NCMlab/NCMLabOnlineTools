@@ -271,12 +271,12 @@ function Questionnaire_Scoring(data) {
 
 	// SPECIALTY SCORING
 	switch ( data.shortTitle ) {
-      case 'FirstName':
+      	case 'FirstName':
         // This is here to have a language independent location to store the first name of a participant
         {
           Results.AllResults['FirstName'] = data.response['Name']
         }
-        case 'GDS':
+		case 'GDS':
           {
             var TotalScore = 0
             // The following can be done with a loop, but the explicit nature of the following makes it very 
@@ -309,7 +309,7 @@ function Questionnaire_Scoring(data) {
 
             break;
           }
-          case 'PANAS, weekly':
+		case 'PANAS, weekly':
             {
 				var Npos = 0
 				var Nneg = 0
@@ -376,7 +376,7 @@ function Questionnaire_Scoring(data) {
 				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Npos*5
               break;                                              
             }
-          case 'PANAS, baseline':
+		case 'PANAS, baseline':
           {
             	var Npos = 0
 				var Nneg = 0
