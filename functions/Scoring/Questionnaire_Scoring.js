@@ -276,6 +276,66 @@ function Questionnaire_Scoring(data) {
         {
           Results.AllResults['FirstName'] = data.response['Name']
         }
+		case 'CESAM':
+        {
+          Results.AllResults['Nutrition'] = data.trials[0].response['cesam001']
+          Results.AllResults['Multimorbidity'] = data.trials[0].response['cesam002']
+          Results.AllResults['Communication'] = data.trials[0].response['cesam003'] + data.trials[0].response['cesam004']
+          Results.AllResults['Cognition'] = data.trials[0].response['cesam005']
+		// ADL 
+		// Questions 7 through 11 are coded as 1 for NO and 0 for YES
+		  var sumADL =  data.trials[0].response['cesam007'] + 
+                        data.trials[0].response['cesam008'] + 
+                        data.trials[0].response['cesam009'] +
+                        data.trials[0].response['cesam010'] +
+                        data.trials[0].response['cesam011']
+			if ( sumADL >= 4 ) { Results.AllResults['ADL'] = 0 }
+		  	else if ( sumADL == 2 || sumADL == 3 ) { Results.AllResults['ADL'] = 1 }
+		  	else if ( sumADL <= 1 ) { Results.AllResults['ADL'] = 2 }
+		// IADL 
+		// Questions 12 through 15 are coded as 1 for NO and 0 for YES
+		  var sumIADL = data.trials[0].response['cesam012'] + 
+          				data.trials[0].response['cesam013'] + 
+          				data.trials[0].response['cesam014'] +
+          				data.trials[0].response['cesam015'] 
+		  if ( sumIADL == 4 ) { Results.AllResults['IADL'] = 0 }
+		  else if ( sumIADL == 3 ) { Results.AllResults['IADL'] = 1 }
+		  else if ( sumIADL <= 2 ) { Results.AllResults['IADL'] = 2 }
+
+  		 Results.AllResults['Continence'] = data.trials[0].response['cesam016']
+
+		 if ( ( data.trials[0].response['cesam017'] == 2 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+            Results.AllResults['Mood'] = 0
+          }
+          if ( ( data.trials[0].response['cesam017'] == 0 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+            Results.AllResults['Mood'] = 1
+          }
+          if ( ( data.trials[0].response['cesam017'] == 1 ) || ( data.trials[0].response['cesam018'] == 0 ) ) {
+            Results.AllResults['Mood'] = 2
+          }
+          // Mobility
+          if ( ( data.trials[0].response['cesam019'] == 1 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+            Results.AllResults['Mobility'] = 0
+          }
+          if ( ( data.trials[0].response['cesam019'] == 0 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+            Results.AllResults['Mobility'] = 1
+          }
+          if ( data.trials[0].response['cesam020'] == 1 )  {
+            Results.AllResults['Mobility'] = 2
+          }
+          Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
+                                              Results.AllResults['Multimorbidity'] + 
+                                              Results.AllResults['Communication'] + 
+                                              Results.AllResults['Cognition'] + 
+                                              Results.AllResults['ADL'] + 
+                                              Results.AllResults['IADL'] + 
+                                              Results.AllResults['Continence'] + 
+                                              Results.AllResults['Mood'] + 
+                                              Results.AllResults['Mobility']
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                
+          break;
+        }
+		
 		case 'GDS':
           {
             var TotalScore = 0
