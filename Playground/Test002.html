@@ -1,23 +1,88 @@
-<html>
+<head>
     <head>
         <script src="../jspsych/dist/jspsych.js"></script>
+        <script src="../jspsych/dist/plugin-survey.js"></script>
+<script>
+    const json = {
+  "elements": [
+    {
+      "type": "matrixdropdown",
+      "name": "framework-ratings",
+      "title": "Please leave your feedback about JavaScript frameworks",
+      "columnMinWidth": "130px",
+      "columns": [
+        {
+          "name": "usage",
+          "title": "Do you use the framework?",
+          "cellType": "radiogroup",
+          "choices": [ "Yes", "No" ],
+          "defaultValue": "Yes"
+        },
+        {
+          "name": "experience",
+          "title": "How long have you used it?",
+          "choices": [
+            { "text": "3-5 years", "value": 4 },
+            { "text": "1-2 years", "value": 1.5 },
+            { "text": "Less than a year", "value": 0.5 }
+          ],
+          "enableIf": "{row.usage} = 'Yes'"
+        },
+        {
+          "name": "strengths",
+          "title": "Which are the framework's main strengths?",
+          "cellType": "checkbox",
+          "choices": [
+            "Scalability",
+            "Performance",
+            "Complete functionality",
+            "Learning materials",
+            "Strong community"
+          ],
+          "colCount": 1,
+          "enableIf": "{row.usage} = 'Yes'"
+        },
+        {
+          "name": "free-form-feedback",
+          "title": "Describe what you like and dislike about the framework",
+          "cellType": "comment",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false
+        },
+        {
+          "name": "rating",
+          "title": "Rate your experience with the framework",
+          "cellType": "rating",
+          "rateValues": [
+            { "text": "Excellent", "value": 5 },
+            { "text": "Good", "value": 4 },
+            { "text": "Average", "value": 3 },
+            { "text": "Fair", "value": 2 },
+            { "text": "Poor", "value": 1 }
+          ],
+          "displayMode": "dropdown",
+          "enableIf": "{row.usage} = 'Yes'"
+        }
+      ],
+      "rows": [
+        { "text": "Angular", "value": "angular" },
+        { "text": "React", "value": "react" },
+        { "text": "Vue.js", "value": "vue" }
+      ],
+      "transposeData": true
+    }
+  ]
+};
+</script>
+<script>
+    const survey = new Survey.Model(json);
+survey.onComplete.add((sender, options) => {
+    console.log(JSON.stringify(sender.data, null, 3));
+});
+survey.render(document.getElementById("surveyElement"));
+</script>
     </head>
-<body>
-    <div height="50px">
-    <table border="1px" height="50%">
-        <tr>
-            <td rowspan="2">LEFT INST</td>
-            <td height="10%">TOP RIGHT</td>
-        </tr>
-        <tr>
-            <td>MIDDLE RIGHT</td>
-        </tr>
-        <tr>
-            <td>BOTTOM LEFT</td>
-            <td height="10%">BOTTOM RIGHT</td>
-        </tr>  
-    </table>
-</div>
-</body>
-
-</html>
+    <body>
+ <div id="surveyElement" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; height:100%"></div>
+    </body>
+</head>
