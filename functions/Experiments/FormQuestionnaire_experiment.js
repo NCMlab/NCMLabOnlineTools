@@ -65,7 +65,6 @@ var CheckForAlert = {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
     Results = Questionnaire_Scoring(data.trials[0])
     console.log(Results)
-    console.log(BREAK)
   }
 }
 

@@ -279,49 +279,49 @@ function Questionnaire_Scoring(data) {
         }
 		case 'CESAM':
         {
-          Results.AllResults['Nutrition'] = data.response['cesam001']
-          Results.AllResults['Multimorbidity'] = data.response['cesam002']
-          Results.AllResults['Communication'] = data.response['cesam003'] + data.response['cesam004']
-          Results.AllResults['Cognition'] = data.response['cesam005']
+		  Results.AllResults['Nutrition'] = data.response.find(o=>o.name === 'cesam001').responseValue
+          Results.AllResults['Multimorbidity'] = data.response.find(o=>o.name === 'cesam002').responseValue
+          Results.AllResults['Communication'] = data.response.find(o=>o.name === 'cesam003').responseValue + data.response.find(o=>o.name === 'cesam004').responseValue
+          Results.AllResults['Cognition'] = data.response.find(o=>o.name === 'cesam005').responseValue
 		// ADL 
 		// Questions 7 through 11 are coded as 1 for NO and 0 for YES
-		  var sumADL =  data.response['cesam007'] + 
-                        data.response['cesam008'] + 
-                        data.response['cesam009'] +
-                        data.response['cesam010'] +
-                        data.response['cesam011']
+		  var sumADL =  data.response.find(o=>o.name === 'cesam007').responseValue + 
+                        data.response.find(o=>o.name === 'cesam008').responseValue + 
+                        data.response.find(o=>o.name === 'cesam009').responseValue +
+                        data.response.find(o=>o.name === 'cesam010').responseValue +
+                        data.response.find(o=>o.name === 'cesam011').responseValue
 			if ( sumADL >= 4 ) { Results.AllResults['ADL'] = 0 }
 		  	else if ( sumADL == 2 || sumADL == 3 ) { Results.AllResults['ADL'] = 1 }
 		  	else if ( sumADL <= 1 ) { Results.AllResults['ADL'] = 2 }
 		// IADL 
 		// Questions 12 through 15 are coded as 1 for NO and 0 for YES
-		  var sumIADL = data.response['cesam012'] + 
-          				data.response['cesam013'] + 
-          				data.response['cesam014'] +
-          				data.response['cesam015'] 
+		  var sumIADL = data.response.find(o=>o.name === 'cesam012').responseValue + 
+          				data.response.find(o=>o.name === 'cesam013').responseValue + 
+          				data.response.find(o=>o.name === 'cesam014').responseValue +
+          				data.response.find(o=>o.name === 'cesam015').responseValue 
 		  if ( sumIADL == 4 ) { Results.AllResults['IADL'] = 0 }
 		  else if ( sumIADL == 3 ) { Results.AllResults['IADL'] = 1 }
 		  else if ( sumIADL <= 2 ) { Results.AllResults['IADL'] = 2 }
 
-  		 Results.AllResults['Continence'] = data.trials[0].response['cesam016']
+  		 Results.AllResults['Continence'] = data.response.find(o=>o.name === 'cesam016').responseValue
 
-		 if ( ( data.trials[0].response['cesam017'] == 2 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+		 if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 2 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
             Results.AllResults['Mood'] = 0
           }
-          if ( ( data.trials[0].response['cesam017'] == 0 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
             Results.AllResults['Mood'] = 1
           }
-          if ( ( data.trials[0].response['cesam017'] == 1 ) || ( data.trials[0].response['cesam018'] == 0 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 1 ) || ( data.response.find(o=>o.name === 'cesam018').responseValue == 0 ) ) {
             Results.AllResults['Mood'] = 2
           }
           // Mobility
-          if ( ( data.trials[0].response['cesam019'] == 1 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 1 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
             Results.AllResults['Mobility'] = 0
           }
-          if ( ( data.trials[0].response['cesam019'] == 0 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
             Results.AllResults['Mobility'] = 1
           }
-          if ( data.trials[0].response['cesam020'] == 1 )  {
+          if ( data.response.find(o=>o.name === 'cesam020').responseValue == 1 )  {
             Results.AllResults['Mobility'] = 2
           }
           Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
@@ -343,6 +343,9 @@ function Questionnaire_Scoring(data) {
 		  Results.NumericResults['Continence'] = Results.AllResults['Continence']
 		  Results.NumericResults['Mood'] = Results.AllResults['Mood']
 		  Results.NumericResults['Mobility'] = Results.AllResults['Mobility']
+		  // Overwrite the average score values
+		  Results.AllResults['Average Score'] = -99
+		  Results.NumericResults['Average Score'] = -99
           break;
         }
 		
@@ -522,7 +525,7 @@ function Questionnaire_Scoring(data) {
 	// If the data is sent from a CSV to JSON procedure there are no NOTES
 	try {
 		if ( Notes.trials.length > 0 )
-			{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
+			{ Results.AllResults['Notes'] = Notes.response.Notes }
 		else { Results.AllResults['Notes'] = '' }
 	}
 	catch (error)
