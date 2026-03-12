@@ -268,6 +268,9 @@ function Questionnaire_Scoring(data) {
 						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
 						console.log(QuestionName)
 						// CHeck through the data.response for an answer to this question name
+
+						data.response.find(o => o.name === QuestionName).responseValue != -99
+			  	{ 
 						// Response in text form
 						console.log(data.response)
 						// If other, use text box results
