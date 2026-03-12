@@ -21,7 +21,7 @@ const json = {
         {
           type: 'dropdown',
           title: "Gender", 
-          name: 'Gender', 
+          name: 'dem001_gender', 
           choices: [
               {value: 1, text:'Male'},
               {value: 2, text:'Female'},
@@ -30,7 +30,7 @@ const json = {
           isRequired: true
         },
         {
-          name: "Age",
+          name: "dem002_age",
           type: "input",
           title: "Age",
           inputType: "number",
@@ -40,7 +40,7 @@ const json = {
           isRequired: true,
         },
         {
-          name: "Height",
+          name: "dem003_height",
           type: "input",
           title: "Height (cm or inches)",
           inputType: "number",
@@ -52,7 +52,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What units did you use for height?", 
-          name: 'HeightUnits', 
+          name: 'dem003p1_heightU', 
           choices: [
                       {value: 1, text: 'Inches'},
                       {value: 2, text: 'Centimeters'},
@@ -60,8 +60,9 @@ const json = {
           showOtherItem: false,
           isRequired: true
         },
-       /* {
-          name: "Weight",
+    
+       {
+          name: "dem004_weight",
           type: "input",
           title: "Weight (kg or lbs)",
           inputType: "number",
@@ -73,7 +74,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What units did you use for weight?", 
-          name: 'HeightUnits', 
+          name: 'dem004p1_weightU', 
           choices: [
                       {value: 1, text: 'Pounds'},
                       {value: 2, text: 'Kilograms'},
@@ -84,7 +85,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What is the highest level of education you have completed?", 
-          name: 'Edu', 
+          name: 'dem005_edu', 
           choices: [
                       {value: 1, text: 'No formal education'},
                       {value: 2, text: 'High school diploma or equivalent'},
@@ -99,7 +100,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What is your employment status?", 
-          name: 'Employ', 
+          name: 'dem006_employ', 
           choices: [
                       {value: 1, text: 'Employed full-time'},
                       {value: 2, text: 'Employed part-time'},
@@ -112,7 +113,7 @@ const json = {
         {
           type: 'textarea',
           title: 'What type of work do you do (or did you do before retirement)?',
-          name: 'WorkType',
+          name: 'dem007_work',
           rows: 2,
           isRequired: true,
           autoGrow: true
@@ -120,7 +121,7 @@ const json = {
         {
           type: 'dropdown',
           title: "Do you live alone or with others?", 
-          name: 'Living', 
+          name: 'dem007_live', 
           choices: [
                   {value: 1, text: 'Alone'},
                   {value: 2, text: 'With spouse / partner'},
@@ -134,11 +135,11 @@ const json = {
         {
           type: 'textarea',
           title: 'What is your primary language(s)?',
-          name: 'PrimaryLanguage',
+          name: 'dem008_lang',
           isRequired: true,
         },
         {
-          name: "LanguageProblem",
+          name: "dem009_langProb",
           type: "dropdown",
           title: "Are there any language or communication challenges you have?",
           choices: [
@@ -148,7 +149,7 @@ const json = {
           isRequired: true,
         }, 
         {
-          name: "LanguageProblemDescription",
+          name: "dem009p1_langProbDesc",
           type: "textarea",
           title: "Please specify your language or communication challenges.",
           visibleIf: "{LanguageProblem} == Yes",
@@ -166,7 +167,7 @@ const json = {
               'Middle-Eastern',
               'First Nations, Métis, Inuit',
               ],
-          name: 'Ethnicity',
+          name: 'dem010_ethn',
           title: "What is your ethnic background (you may select more than one)",
           "description": "Please select all that apply."
         },
@@ -180,7 +181,7 @@ const json = {
               {value: 3, text: 'Divorced'},
               {value: 4, text: 'Widowed'}
           ],
-          name: 'marital',
+          name: 'dem011_marital',
           showOtherItem: true,                    
           isRequired: true,
         },
@@ -196,7 +197,7 @@ const json = {
             {value: 4, text: "Two or more of the basic needs are not met"},
             {value: 99, text: "I don't know"}
           ],
-          name: 'CurrentNeeds',
+          name: 'dem012_currNeed',
           isRequired: true,
        },
        {
@@ -210,7 +211,7 @@ const json = {
             {value: 4, text: "Two or more of the basic needs were not met"},
             {value: 99, text: "I don't know"}
           ],
-          name: 'PastNeeds',
+          name: 'dem013_pastNeed',
           isRequired: true,
        }
        ]
@@ -250,7 +251,7 @@ const json = {
         required: false,
         textbox_rows: 3,
       },
-      /*{
+      {
           type: 'dropdown',
           title: 'Do you have hearing loss?',
           choices: 
@@ -313,10 +314,10 @@ const json = {
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
       rows: 3,
-    },*/
+    },
        ]
      },
-     /*
+     
      {
        name: "Habits",
        title: "Habits",

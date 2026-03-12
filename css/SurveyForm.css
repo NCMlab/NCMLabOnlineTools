@@ -1,6 +1,7 @@
 :root {
   --font: "Open Sans", "Arial", sans-serif;
-  --fontSize: 1.5rem
+  --fontSize: 1.5rem;
+  --smallFontSize: 1.0rem
 }
 .surveyFormInstructions {
   font-family: var(--font);
@@ -126,10 +127,10 @@ button:hover {
 .progress-bar {
   position: relative;
   display:flex;
-  width: 80%;
+  /*width: 80%;*/
   align-items: center;
   justify-content: space-between;
-  margin: 5rem 0rem 0rem 10rem;
+  margin: 6rem 3rem 6rem 5rem;
   counter-reset: step;
 }
 
@@ -186,8 +187,7 @@ font-size: 4rem;
 .progress-step::after {
   content: attr(data-title);
   position: absolute;
-  
-  font-size: var(--fontSize);
+  font-size: var(--smallFontSize);
   height: 45px;
   color: #666666;
  }
