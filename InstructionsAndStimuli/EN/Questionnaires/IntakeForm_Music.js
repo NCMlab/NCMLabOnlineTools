@@ -38,7 +38,7 @@ const json = {
           choicesMax: 150,
           defaultValue: '',
           isRequired: true,
-        },
+        },/*
         {
           name: "dem003_height",
           type: "input",
@@ -213,7 +213,7 @@ const json = {
           ],
           name: 'dem013_pastNeed',
           isRequired: true,
-       }
+       }*/
        ]
      },
      {
@@ -318,7 +318,7 @@ const json = {
        ]
      },
      
-     {
+     /*{
        name: "Habits",
        title: "Habits",
        
@@ -545,7 +545,7 @@ const json = {
           textbox_rows: 5,
         }
       ]
-    }
+    }*/
    ]
  }
 

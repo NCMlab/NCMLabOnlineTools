@@ -251,6 +251,10 @@ function Questionnaire_Scoring(data) {
 		{
 			console.log("Page: "+i)
 			// cycle over elements on a page
+			// This is cycling over the questions in the questionnaire.
+			// Not all questions have a response since some are conditional.
+			// The information in data.response is a list (regardless of page) of all questions that are respoonded to.
+			// All question in the questionnaire should be in the output list
 			for (var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
 					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
@@ -263,6 +267,7 @@ function Questionnaire_Scoring(data) {
 						// Question Name 
 						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
 						console.log(QuestionName)
+						// CHeck through the data.response for an answer to this question name
 						// Response in text form
 						console.log(data.response)
 						// If other, use text box results
