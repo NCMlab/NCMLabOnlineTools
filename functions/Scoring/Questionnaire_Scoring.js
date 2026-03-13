@@ -293,6 +293,7 @@ function Questionnaire_Scoring(data) {
 				}
 		}
 	}
+}
 	if ( data.QuestionnaireType == 'FirstName' )
 	{ // Put this info into the Batch Data 
 		console.log(data)
