@@ -555,3 +555,4 @@ function Questionnaire_Scoring(data) {
 	}
     return Results
 }
+}
