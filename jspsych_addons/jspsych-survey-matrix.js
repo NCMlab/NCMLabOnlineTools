@@ -37,9 +37,15 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
-              default: "Continue",
+              default: "Submit",
           },
-                    /** Label on the popup when a question is missed. */
+        /** Label of the button to submit responses. */
+          button_label_empty_responses: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Empty Responses",
+              default: "Submit Anyway",
+          },
+        /** Label on the popup when a question is missed. */
           missed_question_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
@@ -82,8 +88,9 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
           console.log(trial.survey_json)
           var html = "";
+          // add the class for the requirement format
+          html += '<form id="jspsych-survey-matrix-form" class="'+trial.survey_json.elements[0].isAllRowRequired+'" autocomplete="off">'
           
-          html += '<form id="jspsych-survey-matrix-form" autocomplete="off">';
           
           // inject CSS for trial
           
@@ -143,98 +150,120 @@ var jsPsychSurveyMatrix = (function (jspsych) {
               '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
                   trial.button_label +
                   ' "></input>';
-          html += "</form></td><td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
+          html += "</form></td>"
+          console.log("REQUIRED: "+trial.required)
+          if ( trial.required == 'Suggested' )
+          {
+            html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
+            html += 'style="display: none" value="'+trial.button_label_empty_responses+'" onClick="SubmitAnyway()"></td>'
+          }
+          html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
+          html += "</tr></table>";
           html += '</div>'
           display_element.innerHTML = html;
         
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
-            // Get responses
+        // Get responses
 
 
-            e.preventDefault();
+        e.preventDefault();
 
-            // I am seeing the validate code can go here instead
-            console.log(e)
-            console.log(display_element.querySelectorAll("th"))
+        // I am seeing the validate code can go here instead
+        console.log(e)
+        console.log(display_element.querySelectorAll("th"))
 
 
-            var matches = display_element.querySelectorAll(".sd-item__decorator")
-            if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
-            { 
-                console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
+        var matches = display_element.querySelectorAll(".sd-item__decorator")
+        if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
+        { 
+            console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
 
-        var question_data = []    
-        // get the row names
-        var elmts = display_element.querySelectorAll("tr");
-        // how many columns
-        var cols = display_element.querySelectorAll("th")
-        
-        var NCols = cols.length
-        console.log("Ncols: "+NCols)
-        // how many rows
-        var NRows = elmts.length;
-        // make a list of row names
-        var rowNames = []
-        var rowPrompts = []
-        var labels = display_element.querySelectorAll('item_label')
-        var labels = document.getElementsByClassName('item_label')
-        console.log(labels)
-        for ( var i = 0; i < NRows-2; i++ ) {
-            console.log(labels[i])
-          rowPrompts.push(labels[i].innerHTML)
-        }
-        for ( var i = 1; i < NRows-1; i++ ) {
-            rowNames.push(elmts[i].id)
-        }
-        console.log("Row Names: "+rowNames)
-        console.log("Row Prompts: "+rowPrompts)
-        // cycle over rows, start from the second column, thereby ignoring the row labels
-        // extract the form
-        var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
-        var thisForm = FF[0]
-        
-        for ( var i = 0; i < NRows-2; i++ ) {
-            var SelectionMadeInRow = false
-            // cycle over columns
-            for ( var j = 0; j < NCols-1; j++ ) {
-                // check to see if a selection was made in this row 
+            var question_data = []    
+            // get the row names
+            var elmts = display_element.querySelectorAll("tr");
+            // how many columns
+            var cols = display_element.querySelectorAll("th")
+            
+            var NCols = cols.length
+            console.log("Ncols: "+NCols)
+            // how many rows
+            var NRows = elmts.length;
+            // make a list of row names
+            var rowNames = []
+            var rowPrompts = []
+            var labels = display_element.querySelectorAll('item_label')
+            var labels = document.getElementsByClassName('item_label')
+            console.log(labels)
+            for ( var i = 0; i < NRows-2; i++ ) {
+                console.log(labels[i])
+            rowPrompts.push(labels[i].innerHTML)
+            }
+            for ( var i = 1; i < NRows-1; i++ ) {
+                rowNames.push(elmts[i].id)
+            }
+            console.log("Row Names: "+rowNames)
+            console.log("Row Prompts: "+rowPrompts)
+            // cycle over rows, start from the second column, thereby ignoring the row labels
+            // extract the form
+            var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
+            var thisForm = FF[0]
+            
+            for ( var i = 0; i < NRows-2; i++ ) {
+                var SelectionMade = -99
+                var SelectionMadeInRow = false
+                // cycle over columns
+                for ( var j = 0; j < NCols-1; j++ ) {
+                    // check to see if a selection was made in this row 
+                    
+                    if ( thisForm[rowNames[i]][j].checked ) {
+                        SelectionMadeInRow = true
+                        SelectionMade = j
+                        break
+                    }
                 
-                if ( thisForm[rowNames[i]][j].checked ) {
-                    SelectionMadeInRow = true
-                    SelectionMade = j
-                    break
                 }
-            
-            }
-            
-            console.log(cols[1].text)
-            console.log(cols[2].innerHTML)
-            console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
-//            obje[rowNames[i]] = SelectionMade
- //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
-            var this_question_data = {}
-            this_question_data.name = rowNames[i]
-            this_question_data.label = rowPrompts[i]
-            this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
-            
-            // The plus one is because the first column contains the prompts
-            this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
-            question_data.push(this_question_data)
-        }
-              // measure response time
-              var endTime = performance.now();
-              var response_time = Math.round(endTime - startTime);
-              // create object to hold responses
+                
+                console.log(cols[1].text)
+                console.log(SelectionMade)
+                //console.log(cols[2].innerHTML)
+                //console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
+    //            obje[rowNames[i]] = SelectionMade
+    //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+                var this_question_data = {}
+                this_question_data.name = rowNames[i]
+                this_question_data.label = rowPrompts[i]
+                
+                // add check here
+                console.log("Selection made: "+SelectionMade)
+                if ( SelectionMade != -99 )
+                { 
+                    this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
+                    // The plus one is because the first column contains the prompts
+                    this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+                }
+                else 
+                { 
+                    this_question_data.responseValue = -99 
+                    this_question_data.responsePrompt = 'NA'
+                }
+                
+                
+                question_data.push(this_question_data)
+                }
+                // measure response time
+                var endTime = performance.now();
+                var response_time = Math.round(endTime - startTime);
+                // create object to hold responses
 
-              // save data
-              var trial_data = {
-                  rt: response_time,
-                  response: question_data,
-              };
-              display_element.innerHTML = "";
-              // next trial
-              this.jsPsych.finishTrial(trial_data);
-            }
+                // save data
+                var trial_data = {
+                    rt: response_time,
+                    response: question_data,
+                };
+                display_element.innerHTML = "";
+                // next trial
+                this.jsPsych.finishTrial(trial_data);
+        }
             
 
 
@@ -297,8 +326,16 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 
 function InternalValidateForm(form) {
-    var CheckIfValid = true    
-    // get the row names
+    console.log("VALIDATING FORM")
+    console.log(form)
+    // is the form required?
+    var CheckIfValid = true 
+    if ( (form.getAttribute('class') == 'Required') || (form.getAttribute('class') == 'Suggested') )
+    {
+        console.log("This form is required")
+    
+        
+        // get the row names
         elmts = document.getElementsByTagName("tr");
         // how many columns
         cols = document.getElementsByTagName("th")
@@ -312,7 +349,7 @@ function InternalValidateForm(form) {
         var rowPrompts = []
         labels = document.getElementsByClassName('item_label')
         for ( var i = 0; i < NRows-2; i++ ) {
-          rowPrompts.push(labels[i].innerHTML)
+            rowPrompts.push(labels[i].innerHTML)
         }
         for ( var i = 1; i < NRows-1; i++ ) {
             rowNames.push(elmts[i].id)
@@ -342,6 +379,12 @@ function InternalValidateForm(form) {
                 document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
         }
-        document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
-
+        // If this button exists, display it.
+        document.getElementById('submit-anyway-btn').style = "block"
     }
+    document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
+}
+
+function SubmitAnyway() {
+    document.getElementById('jspsych-survey-matrix-next').valid = true
+}

@@ -62,12 +62,22 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             JATOSSessionData.BatteryShortName = CurrentBattery.shortName
             JATOSSessionData.Redirect = CurrentBattery.Redirect
             JATOSSessionData.UsageType = UsageType
+            console.log(jatos.urlQueryParameters['sona_id'])
+            if ( jatos.urlQueryParameters['sona_id'] != undefined )
+            { JATOSSessionData.sona_id = jatos.urlQueryParameters['sona_id'] }
+            //ISPRcode = 
             // If this is the first visit to this manager, display the battery instructions
             DisplayBatteryInstructionsFlag = true 
             if ( typeof CurrentBattery.HeaderButtonsToShow !== 'undefined' )
             { JATOSSessionData.HeaderButtonsToShow = CurrentBattery.HeaderButtonsToShow }
             else { JATOSSessionData.HeaderButtonsToShow = ['Home'] }            
             jatos.studySessionData = JATOSSessionData
+            // Check for language selections
+            if ( typeof CurrentBattery.LanguagesToShow !== 'undefined' )
+            { JATOSSessionData.LanguagesToShow = CurrentBattery.LanguagesToShow }
+            else { JATOSSessionData.LanguagesToShow = ['EN'] }            
+            jatos.studySessionData = JATOSSessionData
+
         }
         else {console.log("THERE IS SESSION DATA")}
         resolve("successfully setup session data")
@@ -452,6 +462,9 @@ function MakeUserChoiceElement(JATOSSessionData) {
     return UserChoicePage
 }
 
+
+
+
 function MakeThankYouPage() {
     console.log("Making thank you page")
     // This is the jsPsych task that display an icon for each task in a battery
@@ -475,6 +488,8 @@ function CentralExecutive() {
     return new Promise((resolve) => {
         const jatos_params = jatos.urlQueryParameters;
         const BatteryIndex = jatos_params["Battery"];
+        var ISPRcode = ''
+        ISPRcode = jatos_params['sona_id']
         // If there is no session data yet, then use the URL parameter
         // to identift the usage type
         var UsageType = jatos_params["UsageType"];
@@ -496,7 +511,22 @@ function CentralExecutive() {
             // When a battery is complete display the Thank you Screen   
                if ( IsTheBatteryFinished() )
                {
-                timeline.push(MakeThankYouPage())
+                // Once the battery is finished, check to see if there is a 
+                // recirect site provided.
+                if (JATOSSessionData.Redirect != '' )
+                { 
+                    // Check to see if this is an ISPR study. If it is
+                    // create the redirect link including the participant code
+                    // and redirect them so they get credit.
+                    if ( JATOSSessionData.sona_id != undefined )
+                    {
+                        var Redirect = JATOSSessionData.Redirect+JATOSSessionData.sona_id
+                        console.log(Redirect)
+                        jatos.endStudyAndRedirect(Redirect) 
+                    }
+                    else { jatos.endStudyAndRedirect(JATOSSessionData.Redirect) }
+                }
+                else { timeline.push(MakeThankYouPage()) }
                 SetupjsPsychAndRunTimeline()
                }
                // get the title of the task to start next
@@ -521,8 +551,8 @@ function CentralExecutive() {
                             console.log("Usgae Type: "+UsageType)
                             console.log("URL: ")
                             //jatos.studySessionData.UsageType = jatos_params["UsageType"];
-                            alert("WAS THE HOME BUTTON PRESSED?")
-                            jatos.startComponentByTitle("Central Executive")
+                            //alert("WAS THE HOME BUTTON PRESSED?")
+                            //jatos.startComponentByTitle("Central Executive")
                         StartComponent(TitleToStart)
                     })
                 }

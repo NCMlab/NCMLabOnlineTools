@@ -30,12 +30,11 @@ var form_trial = {
     survey_json: function() {
         return Questionnaire.survey_JSON
     },
-    button_label: function() { return 'JASON'},//LabelNames.Submit},
-    next_button_label: function() { return LabelNames.Next },
-    previous_button_label: function() { return LabelNames.Previous },
+    button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
-    required: true,
+    required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
     on_load: function() {
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
@@ -64,7 +63,7 @@ var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    Results = Questionnaire_Scoring(data)
+    Results = Questionnaire_Scoring(data.trials[0])
     console.log(Results)
   }
 }
@@ -86,7 +85,7 @@ var SpecialtyScoring = {
           Results.AllResults['Nutrition'] = data.trials[0].response.find(o => o.name === 'cesam001').responseValue
           Results.AllResults['Multimorbidity'] = data.trials[0].response.find(o => o.name === 'cesam002').responseValue
           Results.AllResults['Communication'] = data.trials[0].response.find(o => o.name === 'cesam003').responseValue + 
-            data.trials[0].response.find(o => o.name === 'cesam004').responseValue
+          data.trials[0].response.find(o => o.name === 'cesam004').responseValue
           Results.AllResults['Cognition'] = data.trials[0].response.find(o => o.name === 'cesam005').responseValue
 
           var sumADL = data.trials[0].response['cesam007'] + 
@@ -146,42 +145,7 @@ var SpecialtyScoring = {
                                         
           break;
         }
-        case 'GDS':
-          {
-            var TotalScore = 0
-            if ( data.trials[0].response.gds['gds01'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds02'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds03'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds04'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds05'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds06'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds07'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds08'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds09'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds10'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds11'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds12'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds13'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds14'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds15'] == 1 ) { TotalScore++ }
-            Results.AllResults['Total Score'] = TotalScore
-            Results.AllResults['Accuracy'] = TotalScore
-            break;
-          }
-          case 'PANASsf':
-            {
-              Results.AllResults['Positive'] = data.trials[0].response.panas['panas03']
-                                              + data.trials[0].response.panas['panas05']
-                                              + data.trials[0].response.panas['panas07']
-                                              + data.trials[0].response.panas['panas08']
-                                              + data.trials[0].response.panas['panas10']
-              Results.AllResults['Negative'] = data.trials[0].response.panas['panas01']
-                                              + data.trials[0].response.panas['panas02']
-                                              + data.trials[0].response.panas['panas04']
-                                              + data.trials[0].response.panas['panas06']
-                                              + data.trials[0].response.panas['panas09']                                              
-              break;                                              
-            }
+       
     }
     
   }
@@ -194,7 +158,7 @@ timeline.push(form_trial)
 
 
 timeline.push(CheckForAlert)
-timeline.push(SpecialtyScoring)
+//timeline.push(SpecialtyScoring)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)

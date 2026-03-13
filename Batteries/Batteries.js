@@ -163,6 +163,22 @@ BatteryList.push({
   HeaderButtonsToShow: ['Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
+BatteryList.push({
+  index: 1699,
+  name: "H-10-23-9755",
+  description: "ISPR",
+  BatteryInstructions:
+    'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
+  Language: "EN",
+  RunAudioTest: true,
+  Footer: "©NCMLab 2025",
+  shortName: "NCMLab",
+  TaskList: List,
+  HeaderButtonsToShow: ['Quit','Stop'],
+  Redirect: 'https://uottawa.sona-systems.com/webstudy_credit.aspx?experiment_id=1850&credit_token=1d801a0f0eb04046abac04794866542d&survey_code='
+});
+
+
 // ===============
 var List = [];
 List.push({
@@ -195,6 +211,7 @@ BatteryList.push({
   shortName: "NCMLab",
   TaskList: List,
   HeaderButtonsToShow: ['Quit','Stop'],
+  LanguagesToShow: ['EN','FR'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
 
@@ -1366,7 +1383,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
   List.push({Task: 'Questionnaire', Parameters: 'MusicEnterName_001', Instructions: 'Default', IconName: 'First Name'})
   BatteryList.push({index: 72, 
 		name:'Music Motion: Enter Name', 
-    shortName: "First Name",
+    shortName: "First Name", // Do not change this name since it is used later
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
@@ -1956,7 +1973,7 @@ List.push({
   Task: "Word Recognition",
   Parameters: "WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "RAVLT, Recog",
+  IconName: "Word Recog",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1971,7 +1988,7 @@ List.push({
   Instructions: "Default",
   IconName: "GDS",
 });
-	BatteryList.push({index: 123, 
+	BatteryList.push({index: 99999123, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
@@ -1984,6 +2001,21 @@ List.push({
     shortName: '',
 	})
 
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_09', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 123, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   // ===========
 var List = []
@@ -2052,3 +2084,24 @@ List.push({
   Instructions: "Default",
   IconName: "Dots (Short)",
 })
+
+// === Cost of Sports === //
+var List = []
+List.push({
+  Task: "Cost of Sport",
+  Parameters: "",
+  Instructions: "",
+  IconName: "Cost of Sport",
+});
+	BatteryList.push({index: 337, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})

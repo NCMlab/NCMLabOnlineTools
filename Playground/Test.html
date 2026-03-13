@@ -1,40 +1,16 @@
 <html>
-  <body>
-<script>
-  
-  function UrlExists(url)
-  {
-      var http = new XMLHttpRequest();
-      http.open('HEAD', url, false);
-      http.send();
-      return http.status!=404;
-  }
+  <head>
+    <script>
+      response = []
+      response[0] = {name: 'cesam001', label: 'Have you willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
+      response[1] = {name: 'cesam002', label: 'Have you TWO willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
+      response[2] = {name: 'cesam003', label: 'Have THREE?', responseValue: 0, responseText: 'No'}
+      console.log(response)
+      console.log(response.find(o=>o.name === 'cesam003').responseValue)
+    </script>
+      </head>
+    <body>
 
-    var InternalLocation = '../jspsych/'
-    var ExternalLocation = '/static/'
-    
-  function LoadIntExt(file) {
-    if (UrlExists(ExternalLocation + "dist/jspsych.js")) {
-      console.log("Trying External")
-      const newScript = document.createElement('script');
-      newScript.setAttribute('src', ExternalLocation + file);
-      newScript.setAttribute('async', 'true');    
-      document.head.appendChild(newScript);
-    }
-    else if (UrlExists(InternalLocation + "dist/jspsych.js")) {
-      console.log("Trying Internal")
-      const newScript = document.createElement('script');
-      newScript.setAttribute('src', InternalLocation + file);
-      newScript.setAttribute('async', 'true');    
-      document.head.appendChild(newScript);
-    }
-}
-</script>
-<script>
-  LoadIntExt('/dist/jspsych.js')    
-  LoadIntExt('/dist/plugin-survey.js')    
-</script>
-</body>
+    </body>
+
 </html>
-
-ht

@@ -24,7 +24,12 @@ List01.push({stim:"The salt breeze came across from the sea."})
 List01.push({stim:"The girl at the booth sold fifty bonds."})
 EN_Instructions.List = List01
 EN_Instructions.Instructions01 = [
-    {'page':'<p class="Instructions">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.'},
+    {'page':'<p class="Instructions">To ensure the computer can accurately hear '+
+        'and understand you, please, clearly read out loud each of the sentences '+
+        'on the next few screens.</p>'+
+        '<p>Even if the speech recognition is not accurate, that is OK, as long as you '+
+        'are being heard.</p>'
+    },
 ]
 EN_Instructions.WelcomeText = [{'page': '<p class="Instructions">This is a Reading Test Task.</p>'}]
 EN_Instructions.ThankYouText = [{'page': '<p class="Instructions">Thank you'}]
@@ -56,7 +61,12 @@ List01.push({'stim':"L’idée est de coudre ensemble ces morceaux de tissus."})
 var FR_Instructions_Default = {}
 FR_Instructions_Default.List = List01
 FR_Instructions_Default.Instructions01 = [
-    {'page':'<p class="Instructions">Pour vous assurer que l\'ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur l\'écran suivant.'},
+    {'page':'<p class="Instructions">Pour vous assurer que l\'ordinateur peut vous'+
+        ' entendre et vous comprendre avec précision, veuillez lire clairement à haute'+
+        ' voix chacune des phrases sur l\'écran suivant.</p>'+
+         "<p>Même si la reconnaissance vocale n'est pas précise, ce n'est pas grave,"+
+         " tant que vous êtes entendu.</p>"
+    },
 ]
 FR_Instructions_Default.WelcomeText = [{'page': '<p class="Instructions">Bienvenu(e) à la tâche de lecture.</p>'}]
 FR_Instructions_Default.ThankYouText = [{'page': '<p class="Instructions">Merci'}]

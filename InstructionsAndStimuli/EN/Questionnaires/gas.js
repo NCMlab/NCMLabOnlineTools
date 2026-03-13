@@ -12,7 +12,7 @@ var survey_JSON =
                 name: 'gas',
                 title: 'Below is a list of common symptoms of anxiety or stress. Please read each item in the list carefully. Indicate how often you have experienced each symptom during the PAST WEEK, INCLUDING TODAY by checking under the corresponding answer.',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
                     {value: 'gas01', text: "I was irritable."},
                     {value: 'gas02', text: "I felt detached or isolated from others."},

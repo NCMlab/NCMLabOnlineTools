@@ -47,6 +47,7 @@ var setupPractice = {
       document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
       jsPsych.setProgressBar(0)
     FeedbackFlag = true
+    console.log(VisualProbe)
     }
   }
 
@@ -87,6 +88,7 @@ var VisualStimulus = {
 
 var VisualProbe = {
   type: jsPsychCanvasButtonResponse,
+  on_start: function() {console.log("STARTING PROBE")},
   stimulus: function(c) {
     // decide if this is a positive or negative probe trial
     Probe = Math.round(Math.random())
@@ -104,7 +106,10 @@ var VisualProbe = {
     CanvasText(c, CanvasScale*CanvasWidth/2+0, CanvasScale*CanvasHeight/2+0, "+")
   },
   canvas_size: [CanvasScale*CanvasHeight, CanvasScale*CanvasWidth ],
-  choices: function() { return parameters.ButtonLabels},
+  choices: function() { 
+    console.log(parameters.ButtonLabels)
+    return parameters.ButtonLabels
+  },
   valid_choices: function() { return parameters.KeyboardValues },
 
   prompt: '',

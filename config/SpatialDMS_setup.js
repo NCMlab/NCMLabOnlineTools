@@ -88,7 +88,11 @@ SpatialDMS_Adaptive = {
 	RetOnTime: 3200,
 	ProbeOnTime: 2500,
 // This is the intertrial interval. 
-	ITITime: 1000
+	ITITime: 1000,
+	ButtonLabels: ['Yes','No'],
+	KeyboardValues: ['arrowleft','arrowright'],
+	KeyboardMappings: [true,false]
+
 }
 
 add('SpatialDMS_Adaptive', function(){ parameters = SpatialDMS_Adaptive});

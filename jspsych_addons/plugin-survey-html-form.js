@@ -24,12 +24,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               pretty_name: "Preamble",
               default: null,
           },
-          /** Label of the button to submit responses. */
-          button_label: {
-              type: jspsych.ParameterType.STRING,
-              pretty_name: "Button label",
-              default: "Continue",
-          },
           /** Label on the popup when a question is missed. */
           missed_question_label: {
               type: jspsych.ParameterType.STRING,
@@ -42,12 +36,28 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               pretty_name: "Valid check",
               default: "Please answer all questions",
           },
-
+         required: {
+            type: jspsych.ParameterType.BOOL,
+            pretty_name: "Required",
+            default: false,
+         },
           /** The HTML element ID of a form field to autofocus on. */
           autofocus: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Element ID to focus",
               default: "",
+          },
+        /** Label of the button to submit responses. */
+          button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Button label",
+              default: "Submit",
+          },
+        /** Label of the button to submit responses. */
+          button_label_empty_responses: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Empty Responses",
+              default: "Submit Anyway",
           },
           /** Retrieve the data as an array e.g. [{name: "INPUT_NAME", value: "INPUT_VALUE"}, ...] instead of an object e.g. {INPUT_NAME: INPUT_VALUE, ...}. */
           dataAsArray: {
@@ -65,7 +75,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               type: jspsych.ParameterType.BOOL,
               pretty_name: "Valid form",
               default: false,
-          
           }
       },
   };
@@ -102,70 +111,65 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                       "</div>";
           }
           // start form
-          if (trial.autocomplete) {
-              html += '<form id="jspsych-survey-html-form" valid=false>';
-          }
-          else {
-              html += '<form id="jspsych-survey-html-form" autocomplete="off" valid=false>';
-          }
+        //   if (trial.autocomplete) {
+        //       html += '<form id="jspsych-survey-html-form" valid=false>';
+        //   }
+        //   else {
+              //html += '<form id="jspsych-survey-html-form" autocomplete="off" valid=false>';
+              html += '<form id="jspsych-survey-html-form" class="'+trial.survey_json.isAllRowRequired+'" autocomplete="off">'
+          
+        //   }
           
 
           // add form HTML / input elements
           // cycle over the JSON input data
           console.log(trial.survey_json)
+          var NQuestions = trial.survey_json.pages[0].elements.length
+          console.log("There are "+NQuestions+" questions")
           
-          var NPages = trial.survey_json.pages.length
-          console.log("There are "+NPages+" pages")
-          
-          
-          var Str = ''
-        
           // Look for visible if questions and create the text to hide them
-          var VisibleIfConditionsPages = []
-          
-          console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
+          var VisibleIfConditions = []
           //var AllQuestionsValid
-          for ( var page = 0; page < NPages; page++ ) {
-                var VisibleIfConditions = []
-                var NQuestions = trial.survey_json.pages[page].elements.length
-                for ( var i = 0; i < NQuestions; i++ ) {
-                    var thisQ = {}
-                    var thisQuestion = trial.survey_json.pages[page].elements[i]
-                    if ( thisQuestion.visibleIf ) {
-                        // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
-                        var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
-                        Str = 'style="display: none"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                        // decode the visible if condition
-                        var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
-                        var ThisQuestionIsConditionalOn = matches[1]
-                        // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
-                        // Find this question and edit it
-                        let obj = VisibleIfConditions.find((o, index) => 
-                            {
-                                if (o.name === ThisQuestionIsConditionalOn) {
-                                    // Now that we found the question that the current question is conditional ON
-                                    // we need to find what the condition is. If that condition is met, then make the
-                                    // set the onChange function to make this question visible.
-                                    // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
-                                    VisibleIfConditions[index]['onChangeQuestion'] = thisQuestion.name
-                                    VisibleIfConditions[index]['onChangeCondition'] = ConditionToMeet.trim()
-                                    return true;
-                                }
-                            })
-                    } 
-                    else {
-                        var Str = 'style="display: visible"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                    }
-                    VisibleIfConditions.push(thisQ)
-                }
-                VisibleIfConditionsPages.push(VisibleIfConditions)
+
+          for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQ = {}
+            var thisQuestion = trial.survey_json.pages[0].elements[i]
+            if ( thisQuestion.visibleIf ) {
+                // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
+                var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
+                
+                var Str = 'style="display: none"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                // decode the visible if condition
+                var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
+                var ThisQuestionIsConditionalOn = matches[1]
+                console.log(ThisQuestionIsConditionalOn)
+                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
+                // Find this question and edit it
+                let obj = VisibleIfConditions.find((o, index) => 
+                    {
+                        if (o.name === ThisQuestionIsConditionalOn) {
+                            console.log("INEDX: "+index)
+                            // Now that we found the question that the current question is conditional ON
+                            // we need to find what the condition is. If that condition is met, then make the
+                            // set the onChange function to make this question visible.
+                            // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
+                            VisibleIfConditions[index]['onChangeQuestion'] = thisQuestion.name
+                            VisibleIfConditions[index]['onChangeCondition'] = ConditionToMeet.trim()
+                            return true;
+                        }
+                    })
+
+            } 
+            else {
+                var Str = 'style="display: visible"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
             }
-            console.log(VisibleIfConditionsPages)          
-          
+            VisibleIfConditions.push(thisQ)
+          }
+          console.log(VisibleIfConditions)
           //console.log(obj)
           console.log(html)
           // reset the Str variable to be empty
@@ -176,116 +180,90 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
             Str += '<div class="surveyFormInstructions">'+trial.survey_json.Instructions+'</div>'
           }
           Str += '<hr>'
+          for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQuestion = trial.survey_json.pages[0].elements[i]
+            // process dropdown questions
 
-          console.log("==== PREPARING THE HTML ====")
-            for ( var page = 0; page < NPages; page++ ) {
-                console.log(trial.survey_json.pages[page])
-                var NQuestions = trial.survey_json.pages[page].elements.length
-                Str += '<div class="tab">'
-                Str += trial.survey_json.pages[page].title
+            switch(thisQuestion.type) {
+                case 'dropdown':
+                    console.log("========= DROPDOWN QUESTION ==========")
+                    // This has NOT been updated for suggested questions, only RADIO group has been updated
+                    Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditions[i].div+'>'
+                    Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
-
-                for ( var i = 0; i < NQuestions; i++ ) {
-                    //console.log('Page: '+page+', Question: '+i)
-                    //console.log("VISIBLE: "+VisibleIfConditionsPages[page][i].div)
-                    var thisQuestion = trial.survey_json.pages[page].elements[i]
-                    // process dropdown questions
-                    //console.log(thisQuestion)
-                    switch(thisQuestion.type) {
-                        case 'dropdown':
-                            console.log("========= DROPDOWN QUESTION ==========")
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
-                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
-
-                            Str += '<select class="surveyFormSelect"'
-                            if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
-                                Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
-                            }
-                            // only set the visible questions to be required
-                            //if ( ! thisQuestion.visibleIf ) {
-                            //    Str += ' required '
-                            //}
-                            Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
-                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
-                            Str += '>'
-                            if (Object.hasOwn(thisQuestion,'choicesMin'))
-                            {
-                                // need to add functionaility to create all choices between the min and max values
-                            }
-                            else {
-                                var NChoices = thisQuestion.choices.length
-                                // add default/blank option
-                                Str += '<option disabled selected value> -- </option>'
-                                for ( var j = 0; j < NChoices; j++ ) {
-                                    //console.log("The choices are: "+thisQuestion.choices[j])
-                                    Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
-                                }
-                            }
-                            Str += '</select></div><hr>'
-
-                            break;
-                        
-                        case 'radiogroup':
-                            console.log("========= RADIO GROUP QUESTION ==========") 
-                            Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
-                            
-                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
-                            // if there is a subtitle add it
-                            if ( thisQuestion.subtitle != undefined ) {
-                                Str += '<label class="surveyFormSubTitle">'+thisQuestion.subtitle+'</label>'
-                            }
-                            Str += '<div class="radiogroup_alignment">'
-                            var NChoices = thisQuestion.choices.length
-                            for ( var j = 0; j < NChoices; j++ )
-                            {
-                                Str += '<div class radioGroupWrapper>'
-                                Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
-                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
-                            Str += '>' 
-                            Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
-                            Str += '</div>'
-                            }
-                            
-                            Str += '</div></div><hr>'
-                            break;
-                        case 'text':
-                            console.log(thisQuestion.name)
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
-                            Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
-                            Str += thisQuestion.title
-                            Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                            Str += '</div><hr>'
-                        default:
-                            console.log("========= DEFAULT ==========")
-                                console.error("Questions of type "+trial.survey_json.pages[page].elements[i].type+" are not availble")
+                    Str += '<select class="surveyFormSelect"'
+                    if ( VisibleIfConditions[i].onChangeCondition ) {
+                        Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditions[i].onChangeQuestion+'___'+VisibleIfConditions[i].onChangeCondition+'\')" '                     
                     }
-                }
+                    // only set the visible questions to be required
+                    //if ( ! thisQuestion.visibleIf ) {
+                    //    Str += ' required '
+                    //}
+                    Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
+                    Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                    Str += '>'
+                    var NChoices = thisQuestion.choices.length
+                    // add default/blank option
+                     Str += '<option disabled selected value> -- </option>'
+                    for ( var j = 0; j < NChoices; j++ ) {
+                        //console.log("The choices are: "+thisQuestion.choices[j])
+                        Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
+                    }
+                    Str += '</select></div><hr>'
 
-                // End of a page of questions
-                Str += '</div>' // end the tab div
-            }// This ends the for loop over pages
-
-            Str += '<div style="overflow:auto;">'
-                Str += '<div style="float:right;">'
-                Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>'
-                Str += '<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>'
-                Str += '</div>'
-            Str += '</div>'
-            //<!-- Circles which indicates the steps of the form: -->
-
-            Str += '<div style="text-align:center;margin-top:40px;">'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-            Str += '</div>'
-
+                    break;
+                
+                case 'radiogroup':
+                    console.log("========= RADIO GROUP QUESTION ==========") 
+                    Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
+                    
+                    Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
+                    // if there is a subtitle add it
+                    if ( thisQuestion.subtitle != undefined ) {
+                        Str += '<label class="surveyFormSubTitle">'+thisQuestion.subtitle+'</label>'
+                    }
+                    Str += '<div class="radiogroup_alignment">'
+                    var NChoices = thisQuestion.choices.length
+                    for ( var j = 0; j < NChoices; j++ )
+                    {
+                        Str += '<div class radioGroupWrapper>'
+                        Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                     Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                     Str += '>' 
+                     Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                     Str += '</div>'
+                    }
+                    
+                    Str += '</div></div><hr>'
+                    break;
+                case 'text':
+                    console.log(thisQuestion.name)
+                    Str += '<div class="surveyFormTitle surveyFormDiv surveyFormTime" id="div-'+thisQuestion.name+'">'
+                    Str += thisQuestion.title
+                    Str += ':  <input class="timeInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                    Str += '</div><p><hr>'
+                default:
+                    console.log("========= DEFAULT ==========")
+                        console.error("Questions of type "+trial.survey_json.pages[0].elements[i].type+" are not availble")
+            }
+          }
           html += Str
 
-          
-
-          
-          html += "</form>";
+          // add submit button
+            html += '<div class="tableSubmitButton">'
+            html +=
+              '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-form-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
+                trial.button_label +
+                ' "></input>';
+            html += "</form></td>"
+            if ( trial.required == 'Suggested' )
+            {
+                html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
+                html += 'style="display: none" value="'+trial.button_label_empty_responses+'" onClick="SubmitAnyway()"></td>'
+            }
+            html += "<td colspan='3' class='item_label' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td>"
+            html += "</tr></table>";
+            html += "</div>";
           
           display_element.innerHTML = html;
           if (trial.autofocus !== "") {
@@ -300,11 +278,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                   focus_elements[0].focus();
               }
           }
-          display_element 
-              .querySelector("#jspsych-survey-html-form")
-              .addEventListener("next", (event) => {
-                alert("NEXT BUTTON PRESSED")
-              })
           display_element
               .querySelector("#jspsych-survey-html-form")
               .addEventListener("submit", (event) => {
@@ -361,7 +334,16 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
                                         }
                                     }
                             this_question_data.name = CurrentQuestionName
-                            this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
+                            // Check for empty responses
+                            
+                            if ( document.querySelector('input[name="'+CurrentQuestionName+'"]:checked') != null )
+                            { 
+                                this_question_data.responseValue = Number(document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value) 
+                            }
+                            else { 
+                                this_question_data.responseValue = -99
+                                this_question_data.responseText = 'NA'
+                            }
                             this_question_data.label = AllQuestions[i].getElementsByClassName("surveyFormLabel")[0].innerText
                             question_data.push(this_question_data)
                         }
@@ -408,58 +390,6 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
 
-
-
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
-}
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 function ModifyOnChange(elementToChange) {
     var splitInput = elementToChange.split('___')
@@ -479,93 +409,87 @@ function ModifyOnChange(elementToChange) {
 }
 
 function InternalValidateForm(form) {
-    
+    console.log("VALIDATING FORM")
+    console.log(form)
+
     // Add a variable to determine if all questions are answered
     AllQuestionsValid = true
     console.log(AllQuestionsValid)
-    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
-    var NQuestions = AllQuestions.length
-    //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
-    for ( var i = 0; i < NQuestions; i++ ) {
-        // get the name of each question
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-        { // THIS IS A DROPDOWN QUESTION 
-             //console.log(AllQuestions[i].style.display != 'none')
-            //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-            // Add check to see if a question is visible or not before deciding if it needs to be answered.
+    if ( (form.getAttribute('class') == 'Required') || (form.getAttribute('class') == 'Suggested') )
+    {
+        console.log("This form is: "+form.getAttribute('class'))
+    
+        var AllQuestions = document.getElementsByClassName("surveyFormDiv")
+        var NQuestions = AllQuestions.length
+        //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
+        for ( var i = 0; i < NQuestions; i++ ) {
+            // get the name of each question
+            if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
+            { // THIS IS A DROPDOWN QUESTION 
+                //console.log(AllQuestions[i].style.display != 'none')
+                //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
+                // Add check to see if a question is visible or not before deciding if it needs to be answered.
 
-            // This is still checking to see if non needed questions are being answered or not
-            if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-                if ( AllQuestions[i].style.display != 'none' ) {
+                // This is still checking to see if non needed questions are being answered or not
+                if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
+                    if ( AllQuestions[i].style.display != 'none' ) {
+                        AllQuestionsValid = false
+                        document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                        document.getElementById("tableMessageBox").style = "block"
+                        document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+                    }
+                }
+                else { // reset the background color
+                    document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
+                }
+            }
+            else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+            {
+                // THIS IS A RADIO GROUP QUESTION 
+                document.getElementById("tableMessageBox").style.backgroundColor = "#FFF"
+                var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
+                //console.log(CurrentQuestionName+": "+document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
+                if (document.querySelector('input[name="'+CurrentQuestionName+'"]:checked'))
+                {
+                    document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
+                }
+                else {
                     AllQuestionsValid = false
-                    document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                    // what os the DIV element for this question?
+                    document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
                     document.getElementById("tableMessageBox").style = "block"
                     document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
                 }
             }
-            else { // reset the background color
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
+            else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
+            { 
+
+                console.log("FOUND TIME INPUT")
+                
+                var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
+                if ( AllQuestions[i].getElementsByClassName("timeInput")[0].value == '' ) {
+                    AllQuestionsValid = false
+                    document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
+                    document.getElementById("tableMessageBox").style = "block"
+                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+                }
+                else { 
+                    document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
+                }
+
+                console.log(CurrentQuestionName)
+                console.log(AllQuestions[i].getElementsByClassName("surveyFormTime")) 
             }
         }
-        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
-        {
-            // THIS IS A RADIO GROUP QUESTION 
-            document.getElementById("tableMessageBox").style.backgroundColor = "#FFF"
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
-            //console.log(CurrentQuestionName+": "+document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
-            if (document.querySelector('input[name="'+CurrentQuestionName+'"]:checked'))
-            {
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-            else {
-                AllQuestionsValid = false
-                // what os the DIV element for this question?
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-        }
-        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
-        { 
-
-            console.log("FOUND TIME INPUT")
-            
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
-            if ( AllQuestions[i].getElementsByClassName("timeInput")[0].value == '' ) {
-                AllQuestionsValid = false
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-            else { 
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-
-            console.log(CurrentQuestionName)
-            console.log(AllQuestions[i].getElementsByClassName("surveyFormTime")) 
-
-        }
-    }
-
-    /* for ( var i = 0; i < NQuestions; i++ ) {
-        //console.log(AllQuestions[i].style.display != 'none')
-        //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-        // Add check to see if a question is visible or not before deciding if it needs to be answered.
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect"))
-        console.log(AllQuestions[i].getElementsByClassName("surveryFormRadioGroup"))
-
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-            if ( AllQuestions[i].style.display != 'none' ) {
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-        }
-        else { // reset the background color
-            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
-        }
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
-        console.log(AllQuestions[i])
-    }*/
+        document.getElementById('submit-anyway-btn').style = "block"
         console.log(AllQuestionsValid)
+    }
+    
+    document.getElementById('jspsych-survey-form-next').valid = AllQuestionsValid
+}
+
+function SubmitAnyway() {
+    console.log("SUBMITTING ANYWAY!")
+    AllQuestionsValid = true
+    document.getElementById('jspsych-survey-form-next').valid = true
 }
