@@ -1,1 +1,0 @@
-export const task = "TASK0002";
