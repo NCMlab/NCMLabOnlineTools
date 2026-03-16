@@ -21,7 +21,7 @@
     <script src="../jspsych/dist/plugin-call-function.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-survey-text.js"></script>
-    <script src="../jspsych_addons/plugin-survey-html-form.js"></script>
+    <script src="../jspsych_addons/jspsych-survey-matrix.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
@@ -31,7 +31,7 @@
     <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="../config/Questionnaire_Setup.js"></script>
-    <script src="../functions/Experiments/FormQuestionnaire_experiment.js"></script>
+    <script src="../functions/Experiments/MatrixQuestionnaire_experiment.js"></script>
     <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
     
     
@@ -69,21 +69,21 @@
         //jatos.onLoad(() => {
             // Once Jatos has been loaded
             // What is the language?
-            const LANG = 'EN'
+            const LANG = 'FR'
             //LANG = jatos.batchSession.get(jatos.workerId+"_Language"),
             //console.log(LANG),
             
             // Load the parameters as stored in the session data
             //parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
             
-            parameters = 'UCLA_LONELINESS_001'
+            parameters = 'CCICIMAQ_001'
             pseudoSwitch(parameters)
-            //console.log(parameters)
+            console.log(parameters)
             parameters.Language = LANG
             // prepare the questionnaire file name
-            var dirName = "LocalTest"
-            fileName = dirName+parameters.questionnaire[0]+".js"
-            fileName = "../InstructionsAndStimuli/EN/Questionnaires/UCLAloneliness.js"
+            //var dirName = "LocalTest"
+            //fileName = dirName+parameters.questionnaire[0]+".js"
+            fileName = "../InstructionsAndStimuli/FR/Questionnaires/cci_cimaq.js"
             // load the questionaire JS file
             loadScriptSequentially(fileName)
             .then(() =>

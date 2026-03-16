@@ -2086,3 +2086,30 @@ List.push({
     Redirect: 'www.uottawa.ca',
     shortName: '',
 	})
+
+// =========== MONTREAL ==========
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PARQ_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CCICIMAQ_001",
+  Instructions: "Default",
+  IconName: "CCI",
+});
+	BatteryList.push({index: 987, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})

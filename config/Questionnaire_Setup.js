@@ -297,6 +297,26 @@ var PANAS_TEST = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+//========== Montreal ============
+var PARQ_001 = { 
+    questionnaire: ['parq'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+
+var CCICIMAQ_001 = { 
+    questionnaire: ['cci_cimaq'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
@@ -327,3 +347,6 @@ add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
 add('TESTJSON', function(){ parameters = TESTJSON});
 add('CESAM_001TEST', function(){ parameters = CESAM_001TEST});
 add('MusicDemographics_001SHORT', function(){ parameters = MusicDemographics_001SHORT});
+
+add('PARQ_001', function(){ parameters = PARQ_001});
+add('CCICIMAQ_001', function(){ parameters = CCICIMAQ_001});
