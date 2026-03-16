@@ -39,14 +39,6 @@ const json = {
           defaultValue: '',
           isRequired: true,
         },
-              {
-        type: 'textarea',
-        title: 'If yes, how long ago were you diagnosed?',
-        name: 'DementiaTime',
-        isRequired: true,
-        textbox_rows: 3,
-      },
-        /*
         {
           name: "dem003_height",
           type: "input",
@@ -68,7 +60,6 @@ const json = {
           showOtherItem: false,
           isRequired: true
         },
-    
        {
           name: "dem004_weight",
           type: "input",
@@ -160,9 +151,10 @@ const json = {
           name: "dem009p1_langProbDesc",
           type: "textarea",
           title: "Please specify your language or communication challenges.",
-          visibleIf: "{LanguageProblem} == Yes",
+          visibleIf: "{dem009_langProb} == Yes",
           maxLength: 500
         },
+// ======== DOES THIS QUESTION GET RECORDED????? ============
         {
           type: "tagbox",
           isRequired: true,
@@ -224,14 +216,14 @@ const json = {
        }*/
        ]
      },
-     /*{
+     {
        name: "Medical Information",
        title: "Medical Information",
        
        elements: [
         {
           type: 'dropdown',
-          name: 'CognDeclineDiagnosis',
+          name: 'dem014_CogDecDiag',
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
@@ -246,16 +238,16 @@ const json = {
       {
         type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
-        name: 'DementiaTime',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        name: 'dem014p1_DemTime',
+        visibleIf: "{dem014_CogDecDiag} == Yes",
         isRequired: true,
         textbox_rows: 3,
       },
       {
         type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
-        name: 'DementiaType',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        name: 'dem014p2_DemType',
+        visibleIf: "{dem014_CogDecDiag} == Yes",
         required: false,
         textbox_rows: 3,
       },
@@ -268,7 +260,7 @@ const json = {
               {value: 2, text: "No"},
               {value: 3, text: "Not sure"}
           ],
-          name: 'HearingLoss',
+          name: 'dem015_HearLoss',
           isRequired: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -282,8 +274,8 @@ const json = {
             {value: 2, text: "Unilateral"},
             {value: 3, text: "Not sure"}
         ],
-        name: 'HearingLossType',
-        visibleIf: "{HearingLoss} == Yes",
+        name: 'dem015p1_HearType',
+        visibleIf: "{dem015_HearLoss} == Yes",
         required: false,
         //add_other_option: true,                    
         //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -298,8 +290,8 @@ const json = {
           {value: 3, text: "Severe"},
           {value: 99, text: "Not sure"}
       ],
-      visibleIf: "{HearingLoss} == Yes",
-      name: 'HearingLossLevel',
+      visibleIf: "{dem015_HearLoss} == Yes",
+      name: 'dem015p2_HearLevel',
       required: false,
       //add_other_option: true,                    
       //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -312,21 +304,21 @@ const json = {
           {value: 1, text: "Yes"},
           {value: 2, text: "No"}
       ],
-      name: 'OtherHealthIssues',
+      name: 'dem016_OtherHealth',
       isRequired: true,
     },
     {
       type: 'textarea',
       title: 'Please explain your health issues.',
       name: 'OtherHealthIssuesDesc',
-      visibleIf: "{OtherHealthIssues} == Yes",
+      visibleIf: "{dem016_OtherHealth} == Yes",
       required: false,
       rows: 3,
     },
        ]
      },
      
-     /*{
+     {
        name: "Habits",
        title: "Habits",
        
@@ -345,7 +337,7 @@ const json = {
               {value: 1, text: "6"},
               {value: 1, text: "7"}
           ],
-          name: 'ExerciseFrequency',
+          name: 'dem017_ExeFreq',
           isRequired: true,
         },
         {
@@ -356,7 +348,7 @@ const json = {
             {value: 1, text:"Yes"},
             {value: 2, text: "No"}
           ],
-          name: 'Exercise24',
+          name: 'dem018_Exe24',
           isRequired: true,
         },
         {
@@ -369,13 +361,13 @@ const json = {
               {value: 3, text: "Never"},
               {value: 4, text: "Unknown"}
           ],
-          name: 'Smoke',
+          name: 'dem019_Smoke',
           isRequired: true,
         },
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
