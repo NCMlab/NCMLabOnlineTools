@@ -328,12 +328,24 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 function ModifyOnChange(input)
 {
     console.log("CHANGE")
-    console.log(input)
-    var e = document.getElementById("tableMatrix")
-    console.log(e)
+ /*   console.log(input)
+    var eTable = document.getElementById("tableMatrix")
+    var eRow = document.getElementById(input)
+    console.log(eRow)
+    var row = eTable.insertRow(eRow.rowIndex + 1)
+    var cell1 = row.insertCell(0)
+    var cell2 = row.insertCell(1)
+    var cell3 = row.insertCell(2)
+    console.log(row)
+    row.id = input+"p1"
+    var Str = ''
+    //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+    Str += '<div class="extraMatrixQuestion"><input type="radio">YES</input><input type="radio">NO</input></div>'
+    cell1.innerHTML = Str
     
-    console.log(e.rows.id)
-
+    console.log(eRow.rowIndex)
+    */
+						
 }
 function InternalValidateForm(form) {
     console.log("VALIDATING FORM")
@@ -358,7 +370,10 @@ function InternalValidateForm(form) {
         var rowNames = []
         var rowPrompts = []
         labels = document.getElementsByClassName('item_label')
+        console.log(labels)
+        console.log("There are # rows: "+NRows)
         for ( var i = 0; i < NRows-2; i++ ) {
+            console.log(i)
             rowPrompts.push(labels[i].innerHTML)
         }
         for ( var i = 1; i < NRows-1; i++ ) {
