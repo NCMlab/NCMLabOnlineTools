@@ -760,10 +760,11 @@ function ModifyOnChange(elementToChange) {
                 s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
             }
         }
-    }
-        
-        
+    }       
 }
+
+function OnChangeTextArea()
+{}
 // Prepare data for submission
 function PrepareDataForSubmission()
 {
@@ -800,6 +801,12 @@ function PrepareDataForSubmission()
                 { this_question_data.responseText = y[1].value }
                 
                 
+                if (y[0].classList.contains("textInput") )
+                { 
+                    this_question_data.responseText = y[0].value 
+                    this_question_data.responseValue == 9999
+                }
+
                 /*if (y[0].tagName == "TEXTAREA" )
                 { this_question_data.responseText = y[0].value }
                 else 

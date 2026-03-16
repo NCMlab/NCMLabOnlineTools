@@ -38,7 +38,15 @@ const json = {
           choicesMax: 150,
           defaultValue: '',
           isRequired: true,
-        },/*
+        },
+              {
+        type: 'textarea',
+        title: 'If yes, how long ago were you diagnosed?',
+        name: 'DementiaTime',
+        isRequired: true,
+        textbox_rows: 3,
+      },
+        /*
         {
           name: "dem003_height",
           type: "input",
@@ -216,7 +224,7 @@ const json = {
        }*/
        ]
      },
-     {
+     /*{
        name: "Medical Information",
        title: "Medical Information",
        
@@ -236,7 +244,7 @@ const json = {
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'comment',
+        type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -244,7 +252,7 @@ const json = {
         textbox_rows: 3,
       },
       {
-        type: 'comment',
+        type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
         name: 'DementiaType',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -308,7 +316,7 @@ const json = {
       isRequired: true,
     },
     {
-      type: 'comment',
+      type: 'textarea',
       title: 'Please explain your health issues.',
       name: 'OtherHealthIssuesDesc',
       visibleIf: "{OtherHealthIssues} == Yes",

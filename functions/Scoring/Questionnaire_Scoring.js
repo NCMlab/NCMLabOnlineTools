@@ -223,7 +223,7 @@ function Questionnaire_Scoring(data) {
 			// The information in data.response is a list (regardless of page) of 
 			// all questions that are respoonded to.
 			// All question in the questionnaire should be in the output list
-			for (var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
+			for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
 					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
 					{
@@ -236,21 +236,23 @@ function Questionnaire_Scoring(data) {
 						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
 						console.log(QuestionName)
 						// Is this a conditional question?
-						console.log(data.response.find(o => o.name === QuestionName))
 						if (data.response.find(o => o.name === QuestionName) == undefined )
 						{
 							ResponseText = 'null'	 
 						}
-			  		
+						// The questionnaire is split into pages,
+						// but the responses are all in a list
+						var temp = data.response.find(o => o.name === QuestionName)
+						console.log(temp)
 						// Response in text form
-						console.log(data.response)
+
 						// If other, use text box results
-						if ( data.response[j].responseValue == 9999 )
-						{ ResponseText = data.response[j].responseText }
+						if ( temp.responseValue == 9999 )
+						{ ResponseText = temp.responseText }
 						// If numeric response
-						else if ( ! data.response[j].hasOwnProperty('responseText') )
-						{ ResponseText = data.response[j].responseValue }
-						else { ResponseText = data.response[j].responseText }
+						else if ( ! temp.hasOwnProperty('responseText') )
+						{ ResponseText = temp.responseValue }
+						else { ResponseText = temp.responseText }
 						// If numeric, use it as text result
 						
 						console.log(ResponseText)
@@ -557,6 +559,7 @@ function Questionnaire_Scoring(data) {
 		if ( TotalScore > data.AlertLimit )
 		{ Results.Alert = true }
 	}
+	console.log(Results)
+	
     return Results
-}
 }
