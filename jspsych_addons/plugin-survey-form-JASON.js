@@ -806,25 +806,12 @@ function PrepareDataForSubmission()
                     this_question_data.responseText = y[0].value 
                     this_question_data.responseValue == 9999
                 }
-
-                /*if (y[0].tagName == "TEXTAREA" )
-                { this_question_data.responseText = y[0].value }
-                else 
-                { 
-                    // The value for each question is not the index, it is used for later scoring
-                    this_question_data.responseText = y[0][y[0].selectedIndex].text 
-                    // Check to see if Other was selected and somethign was written
-                
-                */
                 // Check for visibility
                 console.log(AllQuestionsOnThisTab[currentQuestion].classList.contains('visible'))
                 //console.log(y.getElementsByClassName('non-visible'))
-                
                 if ( AllQuestionsOnThisTab[currentQuestion].classList.contains('visible') )
                 { this_question_data.visible = 'Yes' }
                 else { this_question_data.visible = 'No' }
-    
-            
                 // console.log(y[0][y[0].value].text)
                 
                 console.log(this_question_data)
