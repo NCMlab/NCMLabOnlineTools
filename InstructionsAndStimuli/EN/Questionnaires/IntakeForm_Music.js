@@ -213,7 +213,7 @@ const json = {
           ],
           name: 'dem013_pastNeed',
           isRequired: true,
-       }*/
+       }
        ]
      },
      {
@@ -371,25 +371,25 @@ const json = {
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
-          name: 'SmokeStart',
+          name: 'dem019p1_SmokeStart',
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem019_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
-          name: 'SmokeQuit',
+          name: 'dem019p2_SmokeQuit',
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == Currently smoke; {Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
           choices: [
             {value: 0, text: "0"},
             {value: 0.5, text: "0.5"},
@@ -401,7 +401,7 @@ const json = {
             {value: 6, text: "6"},
             {value: 7, text: ">6"}
           ],
-          name: 'SmokePacksPerDay',
+          name: 'dem019p3_SmokePacks',
           isRequired: true,
           input_type: "number"
         },
@@ -415,7 +415,7 @@ const json = {
               {value: 2, text: "2 to 4 drinks per day"},
               {value: 3, text: "More than 4 drinks per day"}
           ],
-          name: 'Alcohol',
+          name: 'dem020_Alc',
           isRequired: true,
         },
       
@@ -435,14 +435,14 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'MusicMovement',
+            name: 'dem021_MusCls',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
-            name: 'MusicExperience',
-            visibleIf: "{MusicMovement} == Yes",
+            name: 'dem021p1_MusClsExp',
+            visibleIf: "{dem021_MusCls} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -454,14 +454,14 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'GroupMusic',
+            name: 'dem022_MusGrp',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
-            name: 'GroupMusicExperience',
-            visibleIf: "{GroupMusic} == Yes",
+            name: 'dem022p1_MusGrpExp',
+            visibleIf: "{dem022_MusGrp} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -472,14 +472,14 @@ const json = {
             [
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},            ],
-            name: 'Choir',
+            name: 'dem023_MusChr',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
-            name: 'ChoirExperience',
-            visibleIf: "{Choir} == Yes",
+            name: 'dem023p1_MusChrExp',
+            visibleIf: "{dem023_MusChr} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -491,30 +491,30 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'OtherMusic',
+            name: 'dem024_MusOth',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Which instrument(s) did you play?',
-            name: 'WhichInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p1_MusOthInst',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
-            name: 'AgeStartInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p2_MusOthInsAge',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
-            name: 'YearsPlayInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p2_MusOthInsYrs',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
@@ -526,8 +526,8 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            visibleIf: "{OtherMusic} == Yes",
-            name: 'StillPlayInstrument',
+            visibleIf: "{dem024_MusOth} == Yes",
+            name: 'dem024_MusOthCur',
             required: true,
           },
       ]
@@ -540,12 +540,12 @@ const json = {
         {
           type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
-          name: 'AdditionalCOmments',
+          name: 'dem025_Comments',
           required: false,
           textbox_rows: 5,
         }
       ]
-    }*/
+    }
    ]
  }
 
