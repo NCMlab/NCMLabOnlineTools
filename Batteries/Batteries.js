@@ -2101,6 +2101,13 @@ List.push({
   Instructions: "Default",
   IconName: "CCI",
 });
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "COGQUOT_001",
+  Instructions: "Default",
+  IconName: "Cog Quot",
+});
+
 	BatteryList.push({index: 987, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
@@ -2111,5 +2118,19 @@ List.push({
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
     Redirect: 'www.uottawa.ca',
+    shortName: '',
+	})
+  var List = []
+List.push({Task: 'Session Chooser', Parameters: 'Mont_99', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 1987, 
+		name:'Montreal Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
     shortName: '',
 	})

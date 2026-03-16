@@ -372,6 +372,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
         choices: Choices,
         completedBits: CompletedBitList,
         buttonRow: ButtonRow,
+        runNameCheck: false,
         prompt: "",
         on_finish: function(data) {
             // Make a bit version of this session

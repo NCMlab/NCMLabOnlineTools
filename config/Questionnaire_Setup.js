@@ -317,6 +317,15 @@ var CCICIMAQ_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+var COGQUOT_001 = { 
+    questionnaire: ['cog_quot'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
@@ -350,3 +359,4 @@ add('MusicDemographics_001SHORT', function(){ parameters = MusicDemographics_001
 
 add('PARQ_001', function(){ parameters = PARQ_001});
 add('CCICIMAQ_001', function(){ parameters = CCICIMAQ_001});
+add('COGQUOT_001', function(){ parameters = COGQUOT_001});

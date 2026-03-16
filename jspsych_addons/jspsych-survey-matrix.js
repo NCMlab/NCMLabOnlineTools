@@ -139,8 +139,33 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     html += '</tbody>'
                     html += '</table>'
             html += '</div>'
-
-
+/* TRYING TO ADD VISIBLE IF QUESTIONS 
+                    html += "JASON"
+                    var tt = {}
+                    tt.name = "JASON01"
+                    tt.title = ""
+                    tt.choices = [{value:1,text:'A'},{value:2, text:'B'}]
+                    var Str = ''
+Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+tt.name+'">'
+                            
+                            Str += '<label class="surveyFormLabel">'+tt.title+'</label>'
+                            // if there is a subtitle add it
+                            if ( tt.subtitle != undefined ) {
+                                Str += '<label class="surveyFormSubTitle">'+tt.subtitle+'</label>'
+                            }
+                            Str += '<div class="radiogroup_alignment">'
+                            var NChoices = tt.choices.length
+                            for ( var j = 0; j < NChoices; j++ )
+                            {
+                                Str += '<div class radioGroupWrapper>'
+                                Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+tt.name+'" name="'+tt.name+'" value="'+tt.choices[j].value +'" '
+                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                            Str += '>' 
+                            Str += '<label for="tt.name'+'_'+j+'" class="surveyFormResponseLabel">' + tt.choices[j].text+'</label></br>'
+                            Str += '</div>'
+                            }
+                                html += Str
+*/
 
           // add submit button
           html += '<div class="tableSubmitButton">'
@@ -160,6 +185,8 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
           html += "</tr></table>";
           html += '</div>'
+
+
           display_element.innerHTML = html;
         
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
