@@ -2117,7 +2117,7 @@ List.push({
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
-    Redirect: 'www.uottawa.ca',
+    Redirect: '',
     shortName: '',
 	})
   var List = []

@@ -23,6 +23,10 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
             array: true,
             default: [],
         },
+        runNameCheck: {
+            type: jspsych.ParameterType.BOOL,
+            default: false
+        },
           /** Array containing the label(s) for the button(s). */
           choices: {
               type: jspsych.ParameterType.STRING,
@@ -114,8 +118,12 @@ var jsPsychHtmlButtonResponseTable = (function (jspsych) {
           // check the completedBits variable
           if (( trial.completedBits == '0' ) || ( trial.completedBits == 0 ) || trial.completedBits == 'NaN')
           { 
-            var FirstTimeFlag = true
+          // Now check to see if the name check is required
+            if ( trial.runNameCheck )
+            { var FirstTimeFlag = true }
+            else { var FirstTimeFlag = false }
           }
+          
           //console.log(BREAK)
           // Start the table
           html += '<table border="1"><tr>'
