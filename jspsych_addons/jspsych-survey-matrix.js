@@ -114,7 +114,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             html += '</div>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
-                html += '<table class="tableMatrix">'
+                html += '<table class="tableMatrix" id="tableMatrix">'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
                     for ( let i = 0; i < trial.survey_json.elements[0].columns.length; i++ ) {
@@ -124,11 +124,11 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     html += '</thead>'
                     html += '<tbody id = "tableBody">'
                     for ( let i =0; i < trial.survey_json.elements[0].rows.length; i++ ) {
-                        console.log(i)
+                        console.log(trial.survey_json.elements[0].rows[i]['value'])
                         html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
                         for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
-                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            html += '<td><input type="radio" class="sd-item__decorator"  onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'\')" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
                             /*if (trial.required) {
                                html += ' required ';
                             }*/
@@ -139,33 +139,8 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     html += '</tbody>'
                     html += '</table>'
             html += '</div>'
-/* TRYING TO ADD VISIBLE IF QUESTIONS 
-                    html += "JASON"
-                    var tt = {}
-                    tt.name = "JASON01"
-                    tt.title = ""
-                    tt.choices = [{value:1,text:'A'},{value:2, text:'B'}]
-                    var Str = ''
-Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+tt.name+'">'
-                            
-                            Str += '<label class="surveyFormLabel">'+tt.title+'</label>'
-                            // if there is a subtitle add it
-                            if ( tt.subtitle != undefined ) {
-                                Str += '<label class="surveyFormSubTitle">'+tt.subtitle+'</label>'
-                            }
-                            Str += '<div class="radiogroup_alignment">'
-                            var NChoices = tt.choices.length
-                            for ( var j = 0; j < NChoices; j++ )
-                            {
-                                Str += '<div class radioGroupWrapper>'
-                                Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+tt.name+'" name="'+tt.name+'" value="'+tt.choices[j].value +'" '
-                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
-                            Str += '>' 
-                            Str += '<label for="tt.name'+'_'+j+'" class="surveyFormResponseLabel">' + tt.choices[j].text+'</label></br>'
-                            Str += '</div>'
-                            }
-                                html += Str
-*/
+
+
 
           // add submit button
           html += '<div class="tableSubmitButton">'
@@ -350,8 +325,16 @@ Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+tt.name+'">'
 
 })(jsPsychModule);
 
+function ModifyOnChange(input)
+{
+    console.log("CHANGE")
+    console.log(input)
+    var e = document.getElementById("tableMatrix")
+    console.log(e)
+    
+    console.log(e.rows.id)
 
-
+}
 function InternalValidateForm(form) {
     console.log("VALIDATING FORM")
     console.log(form)
