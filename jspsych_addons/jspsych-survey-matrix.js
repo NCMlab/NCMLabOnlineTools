@@ -127,8 +127,27 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                         console.log(trial.survey_json.elements[0].rows[i]['value'])
                         html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
+                        
+                        var AreThereOptions = (trial.survey_json.elements[0].rows[i].options != undefined)
+                        var Str = ''
                         for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
-                            html += '<td><input type="radio" class="sd-item__decorator"  onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'\')" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            html += '<td><input type="radio" class="sd-item__decorator radioBtn" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            if ( AreThereOptions )
+                            {
+                                Str = ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'; '
+                                Str += ""+trial.survey_json.elements[0].rows[i].options.answer+"; "
+                                for ( var k = 0; k < trial.survey_json.elements[0].rows[i].options.options.length; k++ )
+                                { 
+                                    Str += ""+trial.survey_json.elements[0].rows[i].options.options[k]+""
+                                    if ( k < trial.survey_json.elements[0].rows[i].options.options.length-1 )
+                                    { Str += ", "}
+                                }
+                                Str += '\') "'
+                                
+                            }
+                            console.log(Str)
+                             //html += ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'\')" '
+                             html += Str
                             /*if (trial.required) {
                                html += ' required ';
                             }*/
@@ -328,11 +347,56 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 function ModifyOnChange(input)
 {
     console.log("CHANGE")
- /*   console.log(input)
+    console.log(input)
+    inputSplit = input.split(';') 
+    console.log(inputSplit)
+    inputOptionSplit = inputSplit[2].split(',')
     var eTable = document.getElementById("tableMatrix")
-    var eRow = document.getElementById(input)
-    console.log(eRow)
-    var row = eTable.insertRow(eRow.rowIndex + 1)
+    
+    var eRow = document.getElementById(inputSplit[0])
+    eCells = eRow.getElementsByClassName("radioBtn")
+    elabels = eRow.getElementsByClassName('item_label')
+    var row_id = inputSplit[0]+"p1"
+    for ( var k = 0; k < eCells.length; k++ )
+    {
+        if (eCells[k].checked)
+        {
+            // what is the text label
+            // Compare the seelcted response to the option. Remove any spaces
+            if (eTable.getElementsByClassName("headerLabels")[k].innerHTML == inputSplit[1].replace(/\s/g, ''))
+            {
+                console.log("YES YES YES")
+                var row = eTable.insertRow(eRow.rowIndex + 1)
+                var cell1 = row.insertCell(0)
+                var cell2 = row.insertCell(1)
+                var cell3 = row.insertCell(2)
+                console.log(row)
+                
+                var Str = ''
+                //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+                Str += '<div class="extraMatrixQuestion" id = "'+row_id+'"><input type="radio" class="extraMatrixQuestion" name="'+row_id+'01">'
+                Str += '<label class="extraMatrixQuestion" for="'+row_id+'01">'+inputOptionSplit[0]+"</label>"
+                Str += '</input><input type="radio" class="extraMatrixQuestion" name="'+row_id+'02">'
+                Str += '</input>'
+                Str += '<label class="extraMatrixQuestion" for="'+row_id+'02">'+inputOptionSplit[1]+"</label>"
+                Str += '</div>'
+                cell1.innerHTML = Str
+                console.log(row)
+                
+            }
+            else {
+                console.log(row_id)
+                var extraRow = document.getElementById(row_id)
+                console.log(extraRow)
+                if ( extraRow )
+                { extraRow.remove() }
+            }
+        }
+    }
+    console.log(eCells)
+    console.log(eCells[0].value)
+    
+ /*   var row = eTable.insertRow(eRow.rowIndex + 1)
     var cell1 = row.insertCell(0)
     var cell2 = row.insertCell(1)
     var cell3 = row.insertCell(2)
