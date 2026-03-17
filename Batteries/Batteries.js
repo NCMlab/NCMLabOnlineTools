@@ -2086,3 +2086,19 @@ List.push({
     Redirect: 'www.uottawa.ca',
     shortName: '',
 	})
+
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_987', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 9987, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})

@@ -194,11 +194,15 @@ add('KR_COMM_99', function(){ parameters = KR_parameters099 });
 // ===================================
 var parameters001 = []
 var List = []
-List.push({name: 'Intake', battery: '72', row: 1, BitIndex: 1})
-List.push({name: 'Baseline', battery: '3', row: 1, BitIndex: 2})
-List.push({name: 'Week 1', battery: '4', row: 3, BitIndex: 3})
-List.push({name: 'Week 2', battery: '4', row: 4, BitIndex: 4})
-List.push({name: 'Week 3', battery: '4', row: 5, BitIndex: 5})
+List.push({name: 'Enter a Name', battery: '72', row: 1, BitIndex: 1})
+List.push({name: 'Intake', battery: '72', row: 2, BitIndex: 1})
+List.push({name: 'Baseline', battery: '3', row: 2, BitIndex: 2})
+List.push({name: 'Week 1, Pre', battery: '4', row: 3, BitIndex: 3})
+List.push({name: 'Week 1, Post', battery: '4', row: 3, BitIndex: 3})
+List.push({name: 'Week 2, Pre', battery: '4', row: 4, BitIndex: 3})
+List.push({name: 'Week 2, Post', battery: '4', row: 4, BitIndex: 3})
+List.push({name: 'Week 3, Pre', battery: '4', row: 5, BitIndex: 3})
+List.push({name: 'Week 4, Post', battery: '4', row: 6, BitIndex: 3})
 List.push({name: 'Post-intervention', battery: '3', row: 6, BitIndex: 6})
 List.push({name: 'Pick a Test', battery: '6', row: 8, BitIndex: 99, ButtonUsageType: 'UserChoice'})
 
@@ -206,3 +210,4 @@ parameters001.push({index: 3,
     Title: "What session is this?",
     List: List
 })
+add('EN_COMM_987', function(){ parameters = parameters001 });
