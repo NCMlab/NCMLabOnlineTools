@@ -34,6 +34,8 @@ var form_trial = {
     button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Next },
+    previous_button_label: function() { return LabelNames.Previous },
     required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
     on_load: function() {
         //console.log(document.getElementById("jspsych-progressbar-container"))

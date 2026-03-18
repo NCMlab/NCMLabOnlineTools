@@ -248,15 +248,14 @@ console.log(trial)
                     switch(thisQuestion.type) {
                         case 'tagbox':
                             console.log("====== TAG BOX TAG BOX TAG BOX ==========")
-                            Str += "JASON"
                             Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str+='<fieldset class="FormInput TagBox '+VisibleIfConditionsPages[page][i].visibleClass+'" id = "'+thisQuestion.name+'">'
                                 Str += '<legend class="surveyFormLabel">'+thisQuestion.title+'</legend>'
                                 for ( var k = 0; k < thisQuestion.choices.length; k++ )
                                 { 
                                     Str += '<div>'
-                                    Str += '<input type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
-                                    Str += '<label for="coding">'+thisQuestion.choices[k]+'</label>'
+                                    Str += '<input class="TagBoxInput" type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
+                                    Str += '<label for="coding" class="surveyFormLabel">'+thisQuestion.choices[k]+'</label>'
                                     Str += '</div>'
                                 }                                
                             Str += '</fieldset>'
@@ -818,8 +817,6 @@ function PrepareDataForSubmission()
                 var this_question_data = {}
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
-                console.log("JASON JASON")
-                console.log(y)
                 this_question_data.name = y[0].id
                 
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
@@ -831,6 +828,16 @@ function PrepareDataForSubmission()
                 console.log(y[0].selectedIndex)
                 console.log(this_question_data)
                 console.log(y[0][y[0].selectedIndex])
+                if ( y[0].classList.contains("TagBox") )
+                {
+                    var Str = ''
+                    for ( var k = 0; k < y[0].value.length; k++ )
+                    { 
+                        Str += y[0].value[k] 
+                        if ( k < y[0].value.length - 1 ) {Str += "; "}
+                    }
+                    this_question_data.responseValue = Str
+                }
                 // Add response text if it is available
                 if ( y[0][y[0].selectedIndex] != undefined )
                 { this_question_data.responseText = y[0][y[0].selectedIndex].text }

@@ -258,7 +258,7 @@ function Questionnaire_Scoring(data) {
 						{ ResponseText = 'null' }
 						Results.AllResults[TextAnswer] = ResponseText
 						// add the data in numeric format
-						var NumQuestionFormatName = data.shortTitle.replaceAll(" ","") + "_" + QuestionName
+						var NumQuestionFormatName = QuestionName
 						Results.NumericResults[NumQuestionFormatName] = ResponseText
 					}
 				}
@@ -558,6 +558,5 @@ function Questionnaire_Scoring(data) {
 		{ Results.Alert = true }
 	}
 	console.log(Results)
-	
     return Results
 }

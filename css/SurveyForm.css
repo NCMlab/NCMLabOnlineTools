@@ -101,6 +101,14 @@ input.invalid {
   background-color: #ffdddd;
 }
 
+
+.TagBoxInput {
+  width: 10%;
+  transform: scale(2);
+}
+fieldset {
+    border: 1;
+}
 /* Hide all steps by default: */
 .tab {
   display: none;
