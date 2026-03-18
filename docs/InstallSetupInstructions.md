@@ -23,6 +23,7 @@
 ## Setup an Experiment 
 1. Within the Batteries.js file add the text shown in Figure 2 and reprinted below:
 
+```
 > Var List = []
 > List.push({
 >   Task: "Word Recognition",
@@ -52,7 +53,7 @@
 >   HeaderButtonsToShow: ['Home','Quit','Stop'],
 >   Redirect: www.uottawa.ca
 > })
-
+```
 
 Within the JATOS interface setup a new Batch following the JATOS instructions:
 https://www.jatos.org/3.6.x/Run-your-Study-with-Worker-and-Batch-Manager.html 
