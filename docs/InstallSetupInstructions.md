@@ -24,35 +24,35 @@
 1. Within the Batteries.js file add the text shown in Figure 2 and reprinted below:
 
 ```
-> Var List = []
-> List.push({
->   Task: "Word Recognition",
->   Parameters: "WordRecog_Spoken",
->   Instructions: "Default",
->   IconName: "Word Recog",
-> });
-> List.push({
->   Task: "Matrix Questionnaire",
->   Parameters: "GAS_001",
->   Instructions: "Default",
->   IconName: "GAS",
-> });
-> 
-> List.push({
->   Task: "Matrix Questionnaire",
->   Parameters: "GDS_001",
->   Instructions: "Default",
->   IconName: "GDS",
-> });
-> BatteryList.push({
->   index: 123, 
->   name:'Neural Cognitive Mapping Lab', 
->   description: '',
->   TaskList: List,
->   BatteryInstructions: "Neural Cognitive Mapping Lab",
->   HeaderButtonsToShow: ['Home','Quit','Stop'],
->   Redirect: www.uottawa.ca
-> })
+Var List = []
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "Word Recog",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+BatteryList.push({
+  index: 123, 
+  name:'Neural Cognitive Mapping Lab', 
+  description: '',
+  TaskList: List,
+  BatteryInstructions: "Neural Cognitive Mapping Lab",
+  HeaderButtonsToShow: ['Home','Quit','Stop'],
+  Redirect: www.uottawa.ca
+})
 ```
 
 Within the JATOS interface setup a new Batch following the JATOS instructions:
