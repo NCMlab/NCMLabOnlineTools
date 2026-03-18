@@ -1,7 +1,7 @@
 var title = "The Centre of Excellence Self-Administered questionnaire"
 var shortTitle = "CESAM"
 const survey_JSON = {
-   showProgressBar: "bot", // bottom, none
+   showProgressBar: "none", // bottom, none
    showTitle: false,
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
@@ -12,7 +12,7 @@ const survey_JSON = {
   name: "CESAM",
   pages: [{
   elements: [
-    {
+    /*{
         type: "dropdown",
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
@@ -261,14 +261,14 @@ const survey_JSON = {
         ],
         isRequired: true,
         showClearButton: true
-      },
+      },*/
       {
         type: "dropdown",
         name: "cesam021",
         title: "Have you received help to complete this questionnaire?",
         choices: [
-          { value: 2, text: 'Yes' },
-          { value: 0, text: 'No' },
+          { value: 0, text: "No" },
+          { value: 2, text: "Yes" }
         ],
         isRequired: true,
         showClearButton: true
@@ -296,8 +296,8 @@ const survey_JSON = {
             {value: 3, text: "Child"},
             {value: 4, text: "Other"}
         ],
-        visibleIf: "{cesam021p1} == Family",
-        isRequired: true,
+        visibleIf: "{cesam021} == Yes",
+        isRequired: false,
         showClearButton: true
       },
       {
@@ -311,7 +311,7 @@ const survey_JSON = {
         isRequired: true,
         showClearButton: true
       }, 
-      {
+      /*{
         type: "dropdown",
         name: "cesam023",
         title: "Are you the caregiver to an individual who is suffering from a chronic illness?",
@@ -333,7 +333,7 @@ const survey_JSON = {
         visibleIf: "{cesam023} == Yes",
         isRequired: true,
         showClearButton: true
-      },
+      },*/
     ],
   }]
 };

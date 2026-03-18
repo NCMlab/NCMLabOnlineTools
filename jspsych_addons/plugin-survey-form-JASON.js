@@ -126,7 +126,7 @@ console.log(trial)
             var thisQ = {}
             var TEST = {}
             var thisQuestion = trial.survey_json.pages[page].elements[i]
-            //console.log(thisQuestion)
+            console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
                 
                 
@@ -264,7 +264,13 @@ console.log(trial)
                             break;
                         case 'dropdown':
                             console.log("========= DROPDOWN QUESTION ==========")
-                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass
+                            // Is this a required question?
+                            if ( thisQuestion.isRequired )
+                            { Str += " Required" }
+                            else { Str += " Not-Required" }
+                            Str += '" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
                             // the visible class is used to only use visible questions when validating 
@@ -491,10 +497,6 @@ console.log(trial)
             for (var i = 0; i < e.length; i++ )
             { e[i].classList += ' progress-step-top'}
         }
-        
-        
-        
-        
       }
     }    
   SurveyHtmlFormPlugin.info = info;
@@ -623,7 +625,8 @@ function showTab(n) {
         return selectedValues
     }
     function validateForm() {
-        console.log("VALIDATING FORM")
+        console.log(">>>> VALIDATING FORM <<<<")
+        console.log(document.getElementById('div-cesam021p2'))
         // This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
@@ -631,14 +634,13 @@ function showTab(n) {
         
         // Find all input slots in the form
         y = x[currentTab].getElementsByClassName("FormInput")
-        
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
             // is this a tag box?
-
+            console.log(y[i])
             if (y[i].classList.contains("TagBox"))
             {
                 var name = y[i].id
@@ -672,10 +674,12 @@ function showTab(n) {
         }
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
-            console.log(document.getElementsByClassName("progress-step"))
-            document.getElementsByClassName("progress-step")[currentTab].className += " finish";
+            // Is there a progress bar?
+            if ( document.getElementsByClassName("progress-bar").length > 0 )
+            { document.getElementsByClassName("progress-step")[currentTab].className += " finish"; }
             document.getElementById("tableMessageBox").style = "display: none"
         }
+        console.log(document.getElementById('div-cesam021p2'))
         return valid; // return the valid status
     }
 
@@ -708,6 +712,8 @@ function showTab(n) {
 
 function ModifyOnChange(elementToChange) {
     console.log("===== MODIFY ON CHANGE ======")
+    console.log(document.getElementById('div-cesam021p2'))
+    console.log(document.getElementsByClassName("FormInput"))
     var splitInput = elementToChange.split(';;')
     console.log(splitInput)
     // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
@@ -736,10 +742,13 @@ function ModifyOnChange(elementToChange) {
             ConditionalResponseMadeFlag = true
         }
     }
+
     console.log(ConditionalResponseMadeFlag)
     console.log("Response Index: "+ResponseIndex)
     // In case anything was made visible by a previous choice, make sure it is not non-visible
     // before meeting thios condition.
+    console.log(splitInput[1])
+    console.log(splitInput[2])
     for ( var k = 0; k < splitInput[1].length; k++ )
         {
             for ( var m = 0; m < splitInput[2][k].length; m++ )    
@@ -779,6 +788,7 @@ function ModifyOnChange(elementToChange) {
     {
         // Make sure to hide anything that may have been made visible but now does not need to be
         // splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
+        console.log(">>> ELSE COND <<<")
         for ( var k = 0; k < splitInput[1].length; k++ )
         {
             for ( var m = 0; m < splitInput[2][k].length; m++ )    
@@ -795,6 +805,7 @@ function ModifyOnChange(elementToChange) {
             }
         }
     }       
+    
 }
 
 function OnChangeTextArea()
