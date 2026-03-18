@@ -55,29 +55,29 @@ BatteryList.push({
 })
 ```
 
-Within the JATOS interface setup a new Batch following the JATOS instructions:
-https://www.jatos.org/3.6.x/Run-your-Study-with-Worker-and-Batch-Manager.html 
-Create a study link and add URL parameters for the usage type and the battery index:
-https://127.0.0.1/publix/8BexzI7alDM?UsageType=UserChoice&Battery=123 
+2. Within the JATOS interface setup a new Batch following the JATOS instructions:
+    a. https://www.jatos.org/3.6.x/Run-your-Study-with-Worker-and-Batch-Manager.html 
+    b. Create a study link and add URL parameters for the usage type and the battery index:
+        i. https://127.0.0.1/publix/8BexzI7alDM?UsageType=UserChoice&Battery=123 
 
-Setup the NeuroClinic
-The NeuroClinic is a ReactJS site that requires that JATOS was installed using a MySQL database. 
-By default JATOS is installed with a builtin database. 
-Modify the JATOS install to use MySQL using these instructions
-https://www.jatos.org/JATOS-with-MySQL.html 
-Install Yarn
-This can be done using the Yarn instructions
-https://yarnpkg.com/getting-started/install 
-It can also be installed using Homebrew 
-Install Homebrew via: https://brew.sh/ 
+## Setup the NeuroClinic
+1. The NeuroClinic is a ReactJS site that requires that JATOS was installed using a MySQL database. 
+    a. By default JATOS is installed with a builtin database. 
+    b. Modify the JATOS install to use MySQL using these instructions
+        i. https://www.jatos.org/JATOS-with-MySQL.html 
+2. Install Yarn
+    a. This can be done using the Yarn instructions
+        i. https://yarnpkg.com/getting-started/install 
+    b. It can also be installed using Homebrew 
+        i. Install Homebrew via: https://brew.sh/ 
+    c. Install Yarn using Homebrew
+        i. brew install brew
+        ii. brew install yarn
+3. Install NVM
+    a. https://www.linode.com/docs/guides/how-to-install-use-node-version-manager-nvm/
+4. Install the NeuroClinic
 
-
-Install Yarn using Homebrew
-brew install brew
-brew install yarn
-Install NVM
-https://www.linode.com/docs/guides/how-to-install-use-node-version-manager-nvm/
-Install the NeuroClinic
+```
 cd ~ &&
 git clone https://github.com/NCMLab/NeuroClinicPublic &&
 cd NeuroClinic
@@ -87,16 +87,17 @@ cd ..
 cd client
 yarn install
 yarn build
+```
 
-Ensure that the NeuroClinic can access the MySQL database
-Update the file server/app.js 
-Enter your credentials where you see:
-user: 'MYSQL-USERNAME',
- password: 'MYSQL-PASSWORD',
-Start NeuroClinic
-sudo yarn dev
-Open the interface by visiting the URL:
-http://localhost:3000/clinic_app 
+5. Ensure that the NeuroClinic can access the MySQL database
+    a. Update the file server/app.js 
+    b. Enter your credentials where you see:
+        i. user: 'MYSQL-USERNAME',
+        ii. password: 'MYSQL-PASSWORD',
+6. Start NeuroClinic
+    a. sudo yarn dev
+7. Open the interface by visiting the URL:
+    a. http://localhost:3000/clinic_app 
 
 
 
