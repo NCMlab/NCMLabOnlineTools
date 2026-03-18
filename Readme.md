@@ -14,3 +14,4 @@ One vision of this project is to serve as a platform for clinicians to identify 
 
 Another vision of this platform is to serve as a collaborative platform to revolutionize cognitive assessments by integrating cutting-edge technology with the foundations of cognitive neuropsychology. This vision includes leveraging the open source nature of the work to expand the currently available assessments and questionnaires. Current ideas and immediate future directions are the inclusion of technologies such as pupillometry, eye tracking, mouse tracking, image recognition, and matching an individual's needs to available services. 
 
+[List of Available Tasks](docs/AvaialableTasks.md)
