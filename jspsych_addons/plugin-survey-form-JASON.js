@@ -244,8 +244,25 @@ console.log(trial)
                     //console.log("VISIBLE: "+VisibleIfConditionsPages[page][i].div)
                     var thisQuestion = trial.survey_json.pages[page].elements[i]
                     // process dropdown questions
-                    //console.log(thisQuestion)
+                    //
                     switch(thisQuestion.type) {
+                        case 'tagbox':
+                            console.log("====== TAG BOX TAG BOX TAG BOX ==========")
+                            Str += "JASON"
+                            Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str+='<fieldset class="FormInput TagBox '+VisibleIfConditionsPages[page][i].visibleClass+'" id = "'+thisQuestion.name+'">'
+                                Str += '<legend class="surveyFormLabel">'+thisQuestion.title+'</legend>'
+                                for ( var k = 0; k < thisQuestion.choices.length; k++ )
+                                { 
+                                    Str += '<div>'
+                                    Str += '<input type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
+                                    Str += '<label for="coding">'+thisQuestion.choices[k]+'</label>'
+                                    Str += '</div>'
+                                }                                
+                            Str += '</fieldset>'
+                            Str += '</div>'
+                            console.log(thisQuestion)
+                            break;
                         case 'dropdown':
                             console.log("========= DROPDOWN QUESTION ==========")
                             Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
@@ -595,7 +612,17 @@ function showTab(n) {
         fixStepIndicator(n)
     }
 
- 
+    function getCheckedValuesFromFieldSet(name) {
+        // Select all checked checkboxes with the supplied name 
+        const checkboxes = document.querySelectorAll('input[name="choice-'+ name +'"]:checked');
+        // Create an array to store the values
+        const selectedValues = [];        
+        // Iterate over the selected checkboxes and push their values into the array
+        checkboxes.forEach((checkbox) => {
+           selectedValues.push(checkbox.value);
+        });
+        return selectedValues
+    }
     function validateForm() {
         console.log("VALIDATING FORM")
         // This function deals with validation of the form fields
@@ -611,7 +638,15 @@ function showTab(n) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
-            console.log(y[i])
+            // is this a tag box?
+
+            if (y[i].classList.contains("TagBox"))
+            {
+                var name = y[i].id
+                var selectedValues = getCheckedValuesFromFieldSet(name)
+                // This allows for the validity checker to work
+                y[i].value = selectedValues
+            }
             if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
             {
                 // add an "invalid" class to the field:
@@ -768,7 +803,8 @@ function OnChangeTextArea()
 // Prepare data for submission
 function PrepareDataForSubmission()
 {
-        x = document.getElementsByClassName("tab");
+        
+    x = document.getElementsByClassName("tab");
         var AllQuestionsOnThisTab
         AllQuestionsData = []
         // How many tabs/pages are there?
@@ -782,9 +818,10 @@ function PrepareDataForSubmission()
                 var this_question_data = {}
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
-                
+                console.log("JASON JASON")
+                console.log(y)
                 this_question_data.name = y[0].id
-
+                
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
 
                 this_question_data.responseValue = Number(y[0].value)

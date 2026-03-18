@@ -32,7 +32,6 @@ function Questionnaire_Scoring(data) {
 	var NumericScore
 	var prompt
 	var resp
-
 	if ( data.QuestionnaireType == 'matrix' )
 	{	
 		const rowIndices = Object.keys(data.response)
@@ -227,7 +226,6 @@ function Questionnaire_Scoring(data) {
 				{
 					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
 					{
-						
 						// Question text
 						TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
 						console.log(TextAnswer)

@@ -18,6 +18,23 @@ const json = {
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
+                {
+          type: "tagbox",
+          isRequired: true,
+          choices: [
+              'European (e.g., white)',
+              'Asian (e.g., Chinese, Japanese, Korean, South-east Asian)',
+              'East Indian, Pakistani',
+              'African-American/Black/Caribbean',
+              'Hispanic',
+              'Middle-Eastern',
+              'First Nations, Métis, Inuit',
+              ],
+          name: 'dem010_ethn',
+          title: "What is your ethnic background (you may select more than one)",
+          "description": "Please select all that apply."
+        },
+/*
         {
           type: 'dropdown',
           title: "Gender", 
@@ -545,7 +562,9 @@ const json = {
           textbox_rows: 5,
         }
       ]
-    }
+    } // end of this page
+      */
+       ]}
    ]
  }
 
