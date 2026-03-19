@@ -440,7 +440,7 @@ console.log(trial)
                             Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                            Str += '</div><p><input type="number" class="numberInput FormInput '
+                            Str += '</div><p><input type="'+ thisQuestion.inputType +'" class="numberInput FormInput '
                             Str += VisibleIfConditionsPages[page][i].visibleClass
                             Str += '" width="40%"'
                             if (Object.hasOwn(thisQuestion,'choicesMax'))
