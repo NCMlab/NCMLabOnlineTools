@@ -5,13 +5,15 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "aboveHeader",
+  showProgressBar: "bot",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
+   showTitle: true,
    showCompletedPage: false,
    pages: 
    [
+    
     /*{
       name: "Name",
       title: "Name",
@@ -26,35 +28,8 @@ const json = {
         }
       ]
     },*/
-    {      
-      name: "Demographic Information",
-      title: "Demographic Information",
-       elements: [
-        {
-          type: 'dropdown',
-          title: "Gender", 
-          name: 'Gender', 
-          choices: [
-                      {value: 1, text:'Male'},
-                      {value: 2, text:'Female'},
-              ],
-          showOtherItem: true,
-          isRequired: false
-        },
-        {
-          name: "Age",
-          type: "text",
-          title: "Age",
-          inputType: "number",
-          min: 0,
-          max: 150,
-          defaultValue: '',
-          isRequired: false,
-        },
-       
-       ]
-     },
-     {
+    
+     /*{
        name: "Medical Information",
        title: "Medical Information",
        
@@ -74,7 +49,7 @@ const json = {
           //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
-        type: 'comment',
+        type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
         name: 'DementiaTime',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -82,7 +57,7 @@ const json = {
         textbox_rows: 3,
       },
       {
-        type: 'comment',
+        type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
         name: 'DementiaType',
         visibleIf: "{CognDeclineDiagnosis} == Yes",
@@ -90,18 +65,18 @@ const json = {
         textbox_rows: 3,
       },
       {
-          type: 'dropdown',
-          title: 'Do you have hearing loss?',
-          choices: 
-          [
-              {value: 1, text: "Yes"},
-              {value: 2, text: "No"},
-              {value: 3, text: "Not sure"}
-          ],
-          name: 'HearingLoss',
-          isRequired: true,
-          //add_other_option: true,                    
-          //other_option_text: 'Yes, how long ago were you diagnosed?',
+        type: 'dropdown',
+        title: 'Do you have hearing loss?',
+        choices: 
+        [
+            {value: 1, text: "Yes"},
+            {value: 2, text: "No"},
+            {value: 3, text: "Not sure"}
+        ],
+        name: 'HearingLoss',
+        isRequired: true,
+        //add_other_option: true,                    
+        //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
         type: 'dropdown',
@@ -146,15 +121,15 @@ const json = {
       isRequired: true,
     },
     {
-      type: 'comment',
+      type: 'textarea',
       title: 'Please explain your health issues.',
       name: 'OtherHealthIssuesDesc',
       visibleIf: "{OtherHealthIssues} == Yes",
       required: false,
-      rows: 3,
+      textbox_rows: 3,
     },
        ]
-     },
+     },*/
      {
        name: "Habits",
        title: "Habits",
@@ -162,21 +137,76 @@ const json = {
        elements: [
         {
           type: 'dropdown',
+          title: "Gender", 
+          name: 'Gender', 
+          choices: [
+                      {value: 1, text:'Male'},
+                      {value: 2, text:'Female'},
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },        
+          {
+          name: "Age",
+          type: "input",
+          title: "Age",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 150,
+          defaultValue: '',
+          isRequired: true,
+        },
+        {
+          name: "Height",
+          type: "input",
+          title: "Height (cm or inches)",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 300,
+          defaultValue: '',
+          isRequired: true
+        },
+        
+        {
+
+          type: 'dropdown',
+          name: 'CognDeclineDiagnosis',
+          title: 'Have you received a diagnosis of dementia or cognitive decline?',
+          choices: 
+          [
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
+          ],
+          isRequired: true,
+          //add_other_option: true,                    
+          //other_option_text: 'Yes, how long ago were you diagnosed?',
+      },
+      {
+        type: 'textarea',
+        title: 'If yes, how long ago were you diagnosed?',
+        name: 'DementiaTime',
+        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        isRequired: true,
+        textbox_rows: 3,
+      },
+        {
+          type: 'dropdown',
           title: 'How many days do you exercise per week?',
           choices: 
           [
               {value: 1, text: "0"}, 
-              {value: 1, text: "1"},
-              {value: 1, text: "2"},
-              {value: 1, text: "3"},
-              {value: 1, text: "4"},
-              {value: 1, text: "5"},
-              {value: 1, text: "6"},
-              {value: 1, text: "7"}
+              {value: 2, text: "1"},
+              {value: 3, text: "2"},
+              {value: 4, text: "3"},
+              {value: 5, text: "4"},
+              {value: 6, text: "5"},
+              {value: 7, text: "6"},
+              {value: 8, text: "7"}
           ],
           name: 'ExerciseFrequency',
           isRequired: true,
-        },
+        },/*
         {
           type: 'dropdown',
           title: 'Have you exercised in the last 24 hours?',
@@ -187,61 +217,47 @@ const json = {
           ],
           name: 'Exercise24',
           isRequired: true,
-        },
+        },*/
         {
           type: 'dropdown',
+          name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
           choices: 
           [
-            {value: 1, text: "Currently smoke"},
-            {value: 1, text: "Have not smoked for more than 1 year"},
-            {value: 1, text: "Never"},
-            {value: 1, text: "Unknown"}
+            {value: 1, text: "Currently Smoke"},
+            {value: 2, text: "Have not smoked for more than 1 year"},
+            {value: 3, text: "Never"},
+            {value: 4, text: "Unknown"}
           ],
-          name: 'Smoke',
           isRequired: true,
         },
+
+
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choicesMin: 1920,
-          choicesMax: 2024,
-          choicesStep:1,
           name: 'SmokeStart',
-          isRequired: true,
-          input_type: "number"
-        },
-        {
-          type: 'dropdown',
-          title: 'What year did you quit smoking?',
-          visibleIf: "{Smoke} == 'Have not smoked for more than 1 year'",
+          visibleIf: "{Smoke} == Currently Smoke; {Smoke} == Have not smoked for more than 1 year",
+          //visibleIf: "{Smoke} == CurrentlySmoke",          
           choicesMin: 1920,
-          choicesMax: 2024,
-          choicesStep:1,
-          name: 'SmokeQuit',
+          choicesMax: 2025,
+          //choicesStep: 1,
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
-          title: 'Approximately how many packs per day?',
-          visibleIf: "{Smoke} == 'Currently smoke' or {Smoke} == 'Have not smoked for more than 1 year'",
-          choices: [
-            {value: 1, text: "0"},
-            {value: 2, text: "0.5"},
-            {value: 3, text: "1"},
-            {value: 4, text: "2"},
-            {value: 5, text: "3"},
-            {value: 6, text: "4"},
-            {value: 7, text: "5"},
-            {value: 8, text: "6"},
-            {value: 9, text: ">6"}
-          ],
-          name: 'SmokePacksPerDay',
+          title: 'What year did you stop smoking?',
+          name: 'SmokeStop',
+          visibleIf: "{Smoke} == Have not smoked for more than 1 year",
+          //visibleIf: "{Smoke} == CurrentlySmoke",          
+          choicesMin: 1920,
+          choicesMax: 2025,
+          //choicesStep: 1,
           isRequired: true,
           input_type: "number"
         },
+       /*
         {
           type: 'dropdown',
           title: 'Alcohol consumption',
@@ -255,10 +271,11 @@ const json = {
           name: 'Alcohol',
           isRequired: true,
         },
-      
+      */
   
        ]
      },
+     
      {
       name: "Music Experience",
       title: "Music Experience",
@@ -275,8 +292,10 @@ const json = {
             name: 'MusicMovement',
             isRequired: true,
           },
+        ]}
+          /*
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
             name: 'MusicExperience',
             visibleIf: "{MusicMovement} == Yes",
@@ -295,7 +314,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
             name: 'GroupMusicExperience',
             visibleIf: "{GroupMusic} == Yes",
@@ -314,7 +333,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
             name: 'ChoirExperience',
             visibleIf: "{Choir} == Yes",
@@ -333,7 +352,7 @@ const json = {
             isRequired: true,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'Which instrument(s) did you play?',
             name: 'WhichInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -341,7 +360,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
             name: 'AgeStartInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -349,7 +368,7 @@ const json = {
             textbox_rows: 3,
           },
           {
-            type: 'comment',
+            type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
             name: 'YearsPlayInstrument',
             visibleIf: "{OtherMusic} == Yes",
@@ -376,7 +395,7 @@ const json = {
       
       elements: [
         {
-          type: 'comment',
+          type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
           name: 'AdditionalComments',
           required: false,
@@ -384,6 +403,7 @@ const json = {
         }
       ]
     }
+      */
    ]
  }
 

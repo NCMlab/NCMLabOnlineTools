@@ -1,15 +1,16 @@
 <html>
+  <head>
+    <script>
+      response = []
+      response[0] = {name: 'cesam001', label: 'Have you willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
+      response[1] = {name: 'cesam002', label: 'Have you TWO willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
+      response[2] = {name: 'cesam003', label: 'Have THREE?', responseValue: 0, responseText: 'No'}
+      console.log(response)
+      console.log(response.find(o=>o.name === 'cesam003').responseValue)
+    </script>
+      </head>
+    <body>
 
-<body>
-  <a href="mailto:?subject=NCM%20Lab:%20Link%20for%20online%20%20study%20of%20memory&body=https://jatos.ncmlab.ca/publix/7xmQ4EQpbI5?Battery=16%26UsageType=Battery%0D%0A%0D%0A">TEST</a>
+    </body>
 
-  <p>
-    <a href="https://jatos.ncmlab.ca/publix/7xmQ4EQpbI5?Battery=16&UsageType=Battery">Link To NCMLab</a>
-  </p>
-  <p>
-    <a href="mailto:email@example.com?subject=Hello&body=Click%20here:%20https://example.com">TEST 3</a>
-  </p>
-
-<a href="mailto:support@example.com?subject=Support%20Request&body=Hello,%0D%0A%0D%0APlease%20help%20with%20my%20issue.%0D%0A%0D%0AThanks">TEST 2</a>
-</body>
 </html>

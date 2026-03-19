@@ -1,0 +1,76 @@
+<html>
+<head>
+  <script src="../jspsych/dist/jspsych.js"></script>
+  <script src="../jspsych/dist/plugin-call-function.js"></script>
+  <script src="../functions/Scoring/Questionnaire_Scoring.js"></script>
+  <script src="../functions/Scoring/SpecialtyQuestionnaireScoring.js"></script>
+  <script src="../InstructionsAndStimuli/EN/Questionnaires/gds.js"></script>
+</head>
+<body>
+  <script>
+    // The incoming data contains the numeric results only.
+    // This includes column headings
+    // values (0 or 1)
+    // Incoming data 
+    var incoming_data = {
+      name: "gds",
+      workerID: '1234',
+      site: 'Site A',
+      date: 'March 9, 2026',
+      language: 'EN',
+      rows: [
+        { name: 'gds01', response: '0'},
+        { name: 'gds02', response: '1'},
+        { name: 'gds03', response: '1'},
+        { name: 'gds04', response: '1'},
+        { name: 'gds05', response: -99},
+        { name: 'gds06', response: '0'},
+        { name: 'gds07', response: '0'},
+        { name: 'gds08', response: -99},
+        { name: 'gds09', response: '1'},
+        { name: 'gds10', response: '1'},
+        { name: 'gds11', response: '0'},
+        { name: 'gds12', response: '1'},
+        { name: 'gds13', response: '0'},
+        { name: 'gds14', response: '1'},
+        { name: 'gds15', response: '1'}
+      ]
+    }
+    // Take the incoming data and the JSON for the questionnaire and pair them up 
+    // together to create the expected data and then send it through the 
+    // scoring program.
+    //
+    console.log(incoming_data)
+    console.log(EN_gds)
+    var data = {} 
+    data.shortTitle = 'GDS'
+    data.name = 'gds'
+    data.QuestionnaireType = EN_gds.QuestionnaireType
+    data.Questionnaire = {}
+    data.Questionnaire.survey_JSON = EN_gds.survey_JSON
+    data.jatosWorkerID = '21'
+    data.response = []
+    
+    for ( var i = 0; i < EN_gds.survey_JSON.elements[0].rows.length; i++ ) 
+    {
+      data.response[i] = {}
+      data.response[i].label = EN_gds.survey_JSON.elements[0].rows[i].text 
+      data.response[i].name = EN_gds.survey_JSON.elements[0].rows[i].value
+      data.response[i].responseValue = incoming_data.rows[i].response;
+      if ( incoming_data.rows[i].response != -99 )
+      {
+        const ii = EN_gds.survey_JSON.elements[0].columns.find((ee) =>ee.value === Number(incoming_data.rows[i].response))
+        data.response[i].responsePrompt = ii.text // yes or no
+      }
+      else { data.response[i].responsePrompt = 'NA' }
+      
+      
+    }
+    
+    
+    var RES = Questionnaire_Scoring(data)
+    console.log(RES)
+  </script>
+  Jason
+</body>
+</html>

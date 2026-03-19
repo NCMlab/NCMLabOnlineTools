@@ -34,6 +34,8 @@ var form_trial = {
     button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Next },
+    previous_button_label: function() { return LabelNames.Previous },
     required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
     on_load: function() {
         //console.log(document.getElementById("jspsych-progressbar-container"))
@@ -63,125 +65,9 @@ var CheckForAlert = {
   type: jsPsychCallFunction,
   func: function() {
     var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    Results = Questionnaire_Scoring(data)
-  }
-}
-
-var SpecialtyScoring = {
-  type: jsPsychCallFunction,
-  func: function() {
-    var data = this.type.jsPsych.data.get().filter({trial: 'Questionnaire'})
-    
-    switch ( data.trials[0].shortTitle ) {
-      case 'FirstName':
-        // This is here to have a language independent location to store the first name of a participant
-        {
-          Results.AllResults['FirstName'] = data.trials[0].response['Name']
-        }
-      case 'CESAM':
-        {
-          // https://www.sciencedirect.com/science/article/pii/S1525861022005035
-          Results.AllResults['Nutrition'] = data.trials[0].response.find(o => o.name === 'cesam001').responseValue
-          Results.AllResults['Multimorbidity'] = data.trials[0].response.find(o => o.name === 'cesam002').responseValue
-          Results.AllResults['Communication'] = data.trials[0].response.find(o => o.name === 'cesam003').responseValue + 
-            data.trials[0].response.find(o => o.name === 'cesam004').responseValue
-          Results.AllResults['Cognition'] = data.trials[0].response.find(o => o.name === 'cesam005').responseValue
-
-          var sumADL = data.trials[0].response['cesam007'] + 
-                        data.trials[0].response['cesam008'] + 
-                        data.trials[0].response['cesam009']
-                        data.trials[0].response['cesam010']
-                        data.trials[0].response['cesam011']
-          switch ( sumADL ) {
-            case 0 : { Results.AllResults['ADL'] = 0 }
-            case 1 : { Results.AllResults['ADL'] = 0 }
-            case 2 : { Results.AllResults['ADL'] = 1 }
-            case 3 : { Results.AllResults['ADL'] = 1 }
-            case 4 : { Results.AllResults['ADL'] = 2 }
-            case 5 : { Results.AllResults['ADL'] = 2 }
-          }
-          var sumIADL = data.trials[0].response['cesam012'] + 
-          data.trials[0].response['cesam013'] + 
-          data.trials[0].response['cesam014']
-          data.trials[0].response['cesam015']
-          switch ( sumIADL ) {
-            case 0 : { Results.AllResults['IADL'] = 0 }
-            case 1 : { Results.AllResults['IADL'] = 1 }
-            case 2 : { Results.AllResults['IADL'] = 2 }
-            case 3 : { Results.AllResults['IADL'] = 2 }
-            case 4 : { Results.AllResults['IADL'] = 2 }
-          }
-          Results.AllResults['Continence'] = data.trials[0].response['cesam016']
-          if ( ( data.trials[0].response['cesam017'] == 2 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
-            Results.AllResults['Mood'] = 0
-          }
-          if ( ( data.trials[0].response['cesam017'] == 0 ) && ( data.trials[0].response['cesam018'] == 1 ) ) {
-            Results.AllResults['Mood'] = 1
-          }
-          if ( ( data.trials[0].response['cesam017'] == 1 ) || ( data.trials[0].response['cesam018'] == 0 ) ) {
-            Results.AllResults['Mood'] = 2
-          }
-          // Mobility
-          if ( ( data.trials[0].response['cesam019'] == 1 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
-            Results.AllResults['Mobility'] = 0
-          }
-          if ( ( data.trials[0].response['cesam019'] == 0 ) && ( data.trials[0].response['cesam020'] == 0 ) ) {
-            Results.AllResults['Mobility'] = 1
-          }
-          if ( data.trials[0].response['cesam020'] == 1 )  {
-            Results.AllResults['Mobility'] = 2
-          }
-          Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
-                                              Results.AllResults['Multimorbidity'] + 
-                                              Results.AllResults['Communication'] + 
-                                              Results.AllResults['Cognition'] + 
-                                              Results.AllResults['ADL'] + 
-                                              Results.AllResults['IADL'] + 
-                                              Results.AllResults['Continence'] + 
-                                              Results.AllResults['Mood'] + 
-                                              Results.AllResults['Mobility']
-          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']             
-                                        
-          break;
-        }
-        case 'GDS':
-          {
-            var TotalScore = 0
-            if ( data.trials[0].response.gds['gds01'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds02'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds03'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds04'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds05'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds06'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds07'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds08'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds09'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds10'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds11'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds12'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds13'] == 0 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds14'] == 1 ) { TotalScore++ }
-            if ( data.trials[0].response.gds['gds15'] == 1 ) { TotalScore++ }
-            Results.AllResults['Total Score'] = TotalScore
-            Results.AllResults['Accuracy'] = TotalScore
-            break;
-          }
-          case 'PANASsf':
-            {
-              Results.AllResults['Positive'] = data.trials[0].response.panas['panas03']
-                                              + data.trials[0].response.panas['panas05']
-                                              + data.trials[0].response.panas['panas07']
-                                              + data.trials[0].response.panas['panas08']
-                                              + data.trials[0].response.panas['panas10']
-              Results.AllResults['Negative'] = data.trials[0].response.panas['panas01']
-                                              + data.trials[0].response.panas['panas02']
-                                              + data.trials[0].response.panas['panas04']
-                                              + data.trials[0].response.panas['panas06']
-                                              + data.trials[0].response.panas['panas09']                                              
-              break;                                              
-            }
-    }
-    
+    console.log(data)
+    Results = Questionnaire_Scoring(data.trials[0])
+    console.log(Results)
   }
 }
 
@@ -192,7 +78,7 @@ timeline.push(form_trial)
 
 
 timeline.push(CheckForAlert)
-timeline.push(SpecialtyScoring)
+//timeline.push(SpecialtyScoring)
 timeline.push(MentalHealthCheck)
 timeline.push(Notes)
 timeline.push(ThankYou)

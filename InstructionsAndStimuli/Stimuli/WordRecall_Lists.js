@@ -270,9 +270,22 @@ EN_Demo.WordListA = [
 	{'Word':"goblin"}
 	]
 	EN_Demo.AlternatePronunciationsWordListA = [
+	{'Word':'Cheque','index':2},
+	{'Word':'Tin','index':3},
 	]
 	EN_Demo.WordListB = []
-	EN_Demo.RecognitionWordList = []
+	EN_Demo.RecognitionWordList = [
+		{'Word':'Dog',	'Answer':true},
+		{'Word':'Cat',	'Answer':false},
+		{'Word':'City',	'Answer':true},
+		{'Word':'Town',	'Answer':false},
+		{'Word':'Check','Answer':true},
+		{'Word':'Paper','Answer':false},
+		{'Word':'Ten',	'Answer':true},
+		{'Word':'Four',	'Answer':false},
+		{'Word':'Ocean','Answer':true},
+		{'Word':'Sea',	'Answer':false},
+	]
 	EN_Demo.AlternatePronunciationsWordListB = []
 	EN_Demo.NWords = EN_Demo.WordListA.length
 add('EN_Demo', function(){ WordRecallLists = EN_Demo});
