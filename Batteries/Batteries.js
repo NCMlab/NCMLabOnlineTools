@@ -1487,7 +1487,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
-  Redirect: 'https://www.uottawa.ca',
+  Redirect: '',
 });
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []

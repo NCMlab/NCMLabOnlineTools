@@ -361,7 +361,7 @@ console.log(trial)
 
                             break;
                         
-                        case 'radiogrouXXp':
+                        case 'radioXXXgroup':
                             console.log("========= RADIOGROUP QUESTION ==========")
                             Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
@@ -412,10 +412,10 @@ console.log(trial)
                             for ( var j = 0; j < NChoices; j++ )
                             {
                                 Str += '<div class radioGroupWrapper>'
-                                Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                                Str += '<input type="radio"  class="sd-item__decorator radiogroup FormInput" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
                             Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                             Str += '>' 
-                            Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                            Str += '<label for="'+thisQuestion.name+'_'+thisQuestion.choices[j].value+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
                             Str += '</div>'
                             }
                             
@@ -808,13 +808,13 @@ function ModifyOnChange(elementToChange) {
     
 }
 
-function OnChangeTextArea()
-{}
+
 // Prepare data for submission
 function PrepareDataForSubmission()
 {
         
     x = document.getElementsByClassName("tab");
+
         var AllQuestionsOnThisTab
         AllQuestionsData = []
         // How many tabs/pages are there?
@@ -829,16 +829,18 @@ function PrepareDataForSubmission()
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
                 this_question_data.name = y[0].id
-                
+               
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
-
                 this_question_data.responseValue = Number(y[0].value)
                 console.log("---------- NEW QUESTION -------------")
-                console.log(y[0])
-                console.log(y[0].value)
-                console.log(y[0].selectedIndex)
-                console.log(this_question_data)
-                console.log(y[0][y[0].selectedIndex])
+
+                if ( y[0].classList.contains("radiogroup") ) 
+                {
+                    var respValue = document.querySelector('input[name="'+y[0].id+'"]:checked').value
+                    this_question_data.responseText = document.querySelector('label[for="'+y[0].id+'_'+respValue+'"]').innerHTML
+                    this_question_data.responseValue = respValue
+                }
+        
                 if ( y[0].classList.contains("TagBox") )
                 {
                     var Str = ''
@@ -852,6 +854,7 @@ function PrepareDataForSubmission()
                 // Add response text if it is available
                 if ( y[0][y[0].selectedIndex] != undefined )
                 { this_question_data.responseText = y[0][y[0].selectedIndex].text }
+                
                 if ( this_question_data.responseValue == 9999 )
                 { this_question_data.responseText = y[1].value }
                 
