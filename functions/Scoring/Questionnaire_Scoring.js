@@ -439,32 +439,32 @@ function Questionnaire_Scoring(data) {
               	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
-					Npos++
+					Nneg++
 				}
-				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Npos*5
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Nneg*5
 				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
-				Results.NumericResults['panas_Nneg'] = Npos
-				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Npos*5
+				Results.NumericResults['panas_Nneg'] = Nneg
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Nneg*5
               break;                                              
             }
 		case 'PANAS, baseline':
@@ -506,32 +506,32 @@ function Questionnaire_Scoring(data) {
               	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
-					Npos++
+					Nneg++
 				}
 				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
 			  	{ 
 					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
-					Npos++
+					Nneg++
 				}
-				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Npos*5
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Nneg*5
 				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
-				Results.NumericResults['panas_Nneg'] = Npos
-				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Npos*5
+				Results.NumericResults['panas_Nneg'] = Nneg
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Nneg*5
 				break                                           
           }
     }

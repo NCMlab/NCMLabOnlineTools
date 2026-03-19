@@ -29,9 +29,8 @@ To follow-up regarding CESAM and demographic data exports.
 
 
 Demographic: in the output file the order of the responses does not match the order found in the questionnaire. Can you this be changed?
->> This reorder is done when the JSON data is extracted from teh database.
-The variable names are set in Questionnaire_Scoring, line 235/236
->> I just renamed all of the intake form questions names and it still reorders, based on who knows what
+>> This reorder is done when the JSON data is extracted from the database.
+>> I just renamed all of the intake form questions names and it still reorders, based on who knows what!
 
 
 Also – to discuss – we are currently inputing the data from paper copies using codes (see attached). We will need to change one or the other so that we can just do a copy-paste from the tool export into our sheet. We can either switch over to full answers in our data entry, or switch the tool to export number codes for some of the questions. What are your thoughts on this? See attached spreadsheet.
