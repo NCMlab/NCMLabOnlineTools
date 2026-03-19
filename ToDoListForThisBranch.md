@@ -54,4 +54,3 @@ We can always meet about any of this in a call if necessary to discuss.
 ## 
 Make function to take CSV data, convert to JSON and push to the dB
 
-## CESAM NOW does not work! (3/18/26)
