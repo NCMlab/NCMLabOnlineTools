@@ -14,7 +14,7 @@ const json = {
    pages: 
    [
 
-    {      
+    /*{      
       name: "Demographic Information",
       title: "Demographic Information",
        elements: [
@@ -532,7 +532,7 @@ const json = {
             required: true,
           },
       ]
-    },
+    },*/
     {
       name: "Additional Comments",
       title: "Additional Comments",

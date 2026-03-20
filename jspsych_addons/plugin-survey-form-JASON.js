@@ -430,6 +430,9 @@ console.log(trial)
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
                             Str += '</div><textarea class="textInput FormInput '
                             Str += VisibleIfConditionsPages[page][i].visibleClass
+                            // Add required class
+                            if ( thisQuestion.isRequired )
+                            { Str += ' Required ' }
                             Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%" id="'+thisQuestion.name+'"></textarea>'
                             Str += '</div><hr>'
                             break;
@@ -626,7 +629,6 @@ function showTab(n) {
     }
     function validateForm() {
         console.log(">>>> VALIDATING FORM <<<<")
-        console.log(document.getElementById('div-cesam021p2'))
         // This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
@@ -648,7 +650,7 @@ function showTab(n) {
                 // This allows for the validity checker to work
                 y[i].value = selectedValues
             }
-            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) )
+            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) && (y[i].classList.contains['Required']) )
             {
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
