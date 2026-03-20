@@ -233,3 +233,10 @@ font-size: 4rem;
   font-family: var(--font);
   font-size: var(--fontSize);
 }
+
+.textbox {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  border: 2px solid blue; 
+ padding: 10px;" 
+}

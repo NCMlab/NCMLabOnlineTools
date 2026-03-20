@@ -21,7 +21,7 @@
     <script src="../jspsych/dist/plugin-call-function.js"></script>
     <script src="../jspsych/dist/plugin-fullscreen.js"></script>
     <script src="../jspsych/dist/plugin-survey-text.js"></script>
-    <script src="../jspsych_addons/plugin-survey-form-JASON.js"></script>
+    <script src="../jspsych_addons/plugin-survey-ipaq-form.js"></script>
     <script src="../jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
@@ -31,7 +31,7 @@
     <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="../InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="../config/Questionnaire_Setup.js"></script>
-    <script src="../functions/Experiments/FormQuestionnaire_experiment.js"></script>
+    <script src="../functions/Experiments/IpaqFormQuestionnaire_experiment.js"></script>
     <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
     
     
@@ -78,7 +78,7 @@
             
 
             parameters =  { 
-                questionnaire: ['sleep_cimaq2014'], 
+                questionnaire: ['ipaq'], 
                 criteria: [],
                 variable: [],
                 AskForNotes: false,
@@ -92,7 +92,7 @@
             // prepare the questionnaire file name
             //var dirName = "LocalTest"
             //fileName = dirName+parameters.questionnaire[0]+".js"
-            fileName = "../InstructionsAndStimuli/FR/Questionnaires/sleep_cimaq2014.js"
+            fileName = "../InstructionsAndStimuli/FR/Questionnaires/ipaq.js"
             // load the questionaire JS file
             loadScriptSequentially(fileName)
             .then(() =>
