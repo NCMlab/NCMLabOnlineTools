@@ -463,10 +463,10 @@ console.log(trial)
             Str += '<table border="0"><tr><td colspan="2">'
             Str += '<div style="overflow:auto;">'
                 Str += '<div style="float:right;">'
-                Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
-                Str += '<button type="button" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
                 // Submit is its own button, but uses the same functionality as the next button
-                Str += '<button type="button" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
+                Str += '<button type="button" class="jspsych-btn" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
                 Str += '</div>'
             Str += '</div>'
             Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
@@ -836,7 +836,7 @@ function PrepareDataForSubmission()
 
                 if ( y[0].classList.contains("radiogroup") ) 
                 {
-                    var respValue = document.querySelector('input[name="'+y[0].id+'"]:checked').value
+                    var respValue = Number(document.querySelector('input[name="'+y[0].id+'"]:checked').value)
                     this_question_data.responseText = document.querySelector('label[for="'+y[0].id+'_'+respValue+'"]').innerHTML
                     this_question_data.responseValue = respValue
                 }
