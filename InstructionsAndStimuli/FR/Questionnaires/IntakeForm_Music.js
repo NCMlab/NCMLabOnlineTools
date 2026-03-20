@@ -4,11 +4,12 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "aboveHeader",
+  showProgressBar: "top",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   showTitle: true,
    pages: [
      {
       
@@ -18,11 +19,11 @@ const json = {
         {
           type: 'dropdown',
           title: "Sexe", 
-          name: 'Sexe', 
+          name: 'dem001_gender', 
           choices: [
-                      'Homme',
-                      'Femme',
-              ],
+              {value: 1, text:'Homme'},
+              {value: 2, text:'Femme'},
+            ],
           showOtherItem: true,
           otherText: 'Autre (décrire)',
           placeholder: 'Sélectionner...',
@@ -30,7 +31,17 @@ const json = {
           required: true,
         },
         {
-          name: "Hauteur",
+          name: "dem002_age",
+          type: "input",
+          title: "Âge",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 150,
+          defaultValue: '',
+          isRequired: true,
+        },
+        {
+          name: "dem003_height",
           type: "text",
           title: "Saisissez votre taille en pouces ou en centimètres",
           inputType: "number",
@@ -41,18 +52,18 @@ const json = {
         },
         {
           type: 'dropdown',
-          title: "Quelles unités avez-vous utilisées pour la hauteur ?", 
-          name: 'HeightUnits', 
+          title: "Quelles unités avez-vous utilisées pour la hauteur?", 
+          name: 'dem003p1_heightU', 
           choices: [
-                      'Pouces',
-                      'Centimètres',
+                    {value:1, text:'Pouces'},
+                    {value:2, text:'Centimètres'},
               ],
           showOtherItem: false,
           placeholder: 'Sélectionner...',
-          required: true,
+          isRequired: true,
         },
         {
-          name: "Poids",
+          name: "dem004_weight",
           type: "text",
           title: "Saisissez votre poids en livres ou en kilogrammes",
           inputType: "number",
@@ -65,10 +76,10 @@ const json = {
         {
           type: 'dropdown',
           title: "Quelles unités avez-vous utilisées pour le poids ?", 
-          name: 'HeightUnits', 
+          name: 'dem004p1_weightU', 
           choices: [
-                      'Livres',
-                      'Kilogrammes',
+                    {value:1, text:'Livres'},
+                    {value:2, text:'Kilogrammes'},
               ],
           showOtherItem: false,
           placeholder: 'Sélectionner...',
@@ -79,12 +90,12 @@ const json = {
           title: "Quel est le niveau d'études le plus élevé que vous ayez complété ?", 
           name: 'Edu', 
           choices: [
-                      'Aucune éducation formelle',
-                      'Diplôme d’études secondaires ou équivalent',
-                      'Collège ou école de métiers',
-                      'Baccalauréat',
-                      'Maîtrise',
-                      'Doctorat'
+                      {value:1,text:'Aucune éducation formelle'},
+                      {value:2,text:'Diplôme d’études secondaires ou équivalent'},
+                      {value:3,text:'Collège ou école de métiers'},
+                      {value:4,text:'Baccalauréat'},
+                      {value:5,text:'Maîtrise'},
+                      {value:6,text:'Doctorat'}
               ],
           showOtherItem: true,
           placeholder: 'Sélectionner...',
