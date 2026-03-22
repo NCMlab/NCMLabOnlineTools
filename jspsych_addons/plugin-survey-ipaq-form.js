@@ -134,15 +134,15 @@ console.log(trial)
             console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
                 
-                
+                // What is the condition?
                 // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
                 var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
-                Str = 'style="display: none"'
-                thisQ['div'] = Str
-                thisQ['name'] = thisQuestion.name
-                TEST['div'] = Str
-                TEST['name'] = thisQuestion.name
-                TEST['visibleClass'] = 'non-visible'
+                Str = thisQuestion.visibleIf
+                // thisQ['div'] = 'VisibleIf: ' + Str
+                // thisQ['name'] = thisQuestion.name
+                 TEST['div'] = 'VisibleIf: ' + Str
+                // TEST['name'] = thisQuestion.name
+                // TEST['visibleClass'] = 'non-visible'
             }
             else {
                 var Str = 'style="display: visible"'
@@ -156,7 +156,7 @@ console.log(trial)
             VisibleIfConditions.push(TEST)
         }
         console.log(VisibleIfConditions)
-        for ( var i = 0; i < NQuestions; i++ ) {
+        /*for ( var i = 0; i < NQuestions; i++ ) {
             var thisQuestion = trial.survey_json.pages[page].elements[i]
             //console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
@@ -229,7 +229,7 @@ console.log(trial)
                         }
                     })
             }
-        }
+        }*/
         VisibleIfConditionsPages.push(VisibleIfConditions)
     }
     
@@ -253,8 +253,9 @@ console.log(trial)
                     switch(thisQuestion.type) {
                         case 'multiInput':
                             console.log("=========== MULTI INPUT ==========")
-                            Str += '<div>'
-                            Str += '<div id="'+thisQuestion.name+'" class="surveyFormDiv surveyFormLabel">'
+                            Str += '<div id="'+thisQuestion.name+'">'
+                            // The visible if condition needs to some how get into teh div so the toggle funcrion can read it
+                            Str += '<div  class="surveyFormDiv surveyFormLabel">'
                             //
                             Str += thisQuestion.title
                             Str += '<br />'

@@ -31,7 +31,7 @@ const json = {
             ],
             checkbox: true,
             checkboxLabel: "Je n\’ai pas eu d\’activité physique intense",
-            checkboxId: "noneCheck02" 
+            checkboxId: "noneCheck01" 
         },
         {
             name: "ipaq02",
@@ -53,6 +53,7 @@ const json = {
                     max: 59,
                 }
             ],
+            visibleIf: "ipaq01",
             checkbox: true,
             checkboxLabel: "Je ne sais pas",
             checkboxId: "noneCheck02" 
