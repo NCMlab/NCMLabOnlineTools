@@ -224,12 +224,13 @@ List.push({name: 'GAI', battery: '3', row: 2, BitIndex: 6})
 List.push({name: 'GDS', battery: '3', row: 2, BitIndex: 6})
 List.push({name: 'CRQ', battery: '3', row: 3, BitIndex: 6})
 List.push({name: 'LTPAQ', battery: '3', row: 3, BitIndex: 6})
+List.push({name: 'IPAQ', battery: '3', row: 3, BitIndex: 6})
 List.push({name: 'Semaine 1', battery: '987', row: 4, BitIndex: 6})
 List.push({name: 'Semaine 2', battery: '987', row: 5, BitIndex: 6})
 List.push({name: 'Semaine 3', battery: '987', row: 6, BitIndex: 6})
 List.push({name: 'Semaine 4', battery: '987', row: 7, BitIndex: 6})
 List.push({name: 'Semaine 5', battery: '987', row: 8, BitIndex: 6})
-List.push({name: 'Pick a Test', battery: '6', row: 10, BitIndex: 99, ButtonUsageType: 'UserChoice'})
+List.push({name: 'Pick a Test', battery: '987', row: 10, BitIndex: 99, ButtonUsageType: 'UserChoice'})
 
 parameters009.push({index: 4, 
     Title: "What session is this?",

@@ -38,7 +38,7 @@ const json = {
              
             inputs: [
                 {
-                    id: "q01jour",
+                    id: "ipaq01jour",
                     label:  "jours par semaine",
                     type: "number",
                     min: 0,
@@ -56,14 +56,14 @@ const json = {
             title: "Au total, combien de temps avez-vous passé à faire des activités intenses au cours des 7 derniers jours ?",
             inputs: [
                 {
-                    id: "q02heure",
+                    id: "ipaq02heure",
                     label:  "heures(s) par jour",
                     type: "number",
                     min: 0,
                     max: 24,
                 },
                 {
-                    id: "q02min",
+                    id: "ipaq02min",
                     label:  "minutes par jour",
                     type: "number",
                     min: 0,
@@ -87,7 +87,7 @@ const json = {
             title: "Au cours des 7 derniers jours, combien y a-t-il eu de jours au cours desquels vous avez fait des activités physiques modérées comme porter des charges légères, passer l’aspirateur, faire du vélo tranquillement, ou jouer au volley- ball ? Ne pas inclure la marche.",
             inputs: [
                 {
-                    id: "q03jours",
+                    id: "ipaq03jours",
                     label:  "jours par semaine",
                     type: "number",
                     min: 0,
@@ -104,14 +104,14 @@ const json = {
             title: "Au total, combien de temps avez-vous passé à faire des activités modérées au cours des 7 derniers jours?",
             inputs: [
                 {
-                    id: "q04heure",
+                    id: "ipaq04heure",
                     label:  "heures(s) par jour",
                     type: "number",
                     min: 0,
                     max: 24,
                 },
                 {
-                    id: "q05min",
+                    id: "ipaq05min",
                     label:  "minutes par jour",
                     type: "number",
                     min: 0,
@@ -135,7 +135,7 @@ const json = {
             title: "Au cours des <b>7 derniers jours</b>, combien y a-t-il eu de jours au cours desquels vous avez <b>marché</b> pendant <b>au moins 10 minutes d’affilée.</b>",
             inputs: [
                 {
-                    id: "q05jours",
+                    id: "ipaq05jours",
                     label:  "jours par semaine",
                     type: "number",
                     min: 0,
@@ -152,14 +152,14 @@ const json = {
             title: "Au total, combien de temps avez-vous passé à <b>marcher</b> au cours des <b>7 derniers jours</b>?",
             inputs: [
                 {
-                    id: "q06heure",
+                    id: "ipaq06heure",
                     label:  "heures(s) par jour",
                     type: "number",
                     min: 0,
                     max: 24,
                 },
                 {
-                    id: "q06min",
+                    id: "ipaq06min",
                     label:  "minutes par jour",
                     type: "number",
                     min: 0,
@@ -183,14 +183,14 @@ const json = {
             title: "Au cours des <b>7 derniers jours</b>, combien de temps avez-vous passé assis pendant un <b>jour de semaine</b>?",
             inputs: [
                 {
-                    id: "q07jours",
+                    id: "ipaq07jours",
                     label:  "jours par semaine",
                     type: "number",
                     min: 0,
                     max: 7,
                 },
                 {
-                    id: "q07min",
+                    id: "ipaq07min",
                     label:  "minutes par jour",
                     type: "number",
                     min: 0,

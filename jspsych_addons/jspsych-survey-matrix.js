@@ -207,19 +207,21 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             
             var NCols = cols.length
             console.log("Ncols: "+NCols)
-            // how many rows
-            var NRows = elmts.length;
             // make a list of row names
             var rowNames = []
             var rowPrompts = []
             var labels = display_element.querySelectorAll('item_label')
             var labels = document.getElementsByClassName('item_label')
             console.log(labels)
-            for ( var i = 0; i < NRows-2; i++ ) {
+            // how many rows
+            var NRows = labels.length;
+            console.log("THERE ARE NROWS: "+NRows)
+            console.log(elmts)
+            for ( var i = 0; i < NRows; i++ ) {
                 console.log(labels[i])
-            rowPrompts.push(labels[i].innerHTML)
+                rowPrompts.push(labels[i].innerHTML)
             }
-            for ( var i = 1; i < NRows-1; i++ ) {
+            for ( var i = 1; i < NRows; i++ ) {
                 rowNames.push(elmts[i].id)
             }
             console.log("Row Names: "+rowNames)
@@ -229,7 +231,7 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
             var thisForm = FF[0]
             
-            for ( var i = 0; i < NRows-2; i++ ) {
+            for ( var i = 0; i < NRows-1; i++ ) {
                 var SelectionMade = -99
                 var SelectionMadeInRow = false
                 // cycle over columns
@@ -428,16 +430,18 @@ function InternalValidateForm(form) {
         
         NCols = cols.length
         console.log("Ncols: "+NCols)
-        // how many rows
-        NRows = elmts.length;
         // make a list of row names
         var rowNames = []
         var rowPrompts = []
         labels = document.getElementsByClassName('item_label')
+        // how many rows
+        NRows = labels.length;
+
         console.log(labels)
         console.log("There are # rows: "+NRows)
         for ( var i = 0; i < NRows-2; i++ ) {
             console.log(i)
+            console.log(labels[i])
             rowPrompts.push(labels[i].innerHTML)
         }
         for ( var i = 1; i < NRows-1; i++ ) {

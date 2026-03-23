@@ -2115,6 +2115,13 @@ List.push({
   IconName: "GDS",
 });
 List.push({
+  Task: "IPAQ Questionnaire",
+  Parameters: "IPAQ_001",
+  Instructions: "Default",
+  IconName: "IPAQ",
+});
+
+List.push({
   Task: "Matrix Questionnaire",
   Parameters: "CCICIMAQ_001",
   Instructions: "Default",
