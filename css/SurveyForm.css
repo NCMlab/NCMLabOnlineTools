@@ -237,10 +237,40 @@ font-size: 4rem;
 .textbox {
   font-family: var(--font);
   font-size: var(--fontSize);
+  
+  padding: 10px
+}
+.textboxWithBorder {
   border: 2px solid blue; 
- padding: 10px
 }
 
 .LabelDiv {
   display: flex;
+}
+
+
+.checkbox:disabled {
+  background-color: #555; /* A darker grey background */
+  color: #ed3030;            /* A lighter grey text color for contrast */
+  cursor: not-allowed;   /* Changes the cursor on hover */
+  opacity: 0.7;          /* Optional: reduces transparency further */
+}
+input[type=checkbox]
+{
+  transform: scale(2);
+  padding: 10px;
+}
+.questionTitle{
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: contents;
+  text-align: center;
+}
+input:disabled {
+  background-color: #c4a5a5;
+}
+input[type=checkbox]:disabled {
+  background-color: #c4a5a5;
 }

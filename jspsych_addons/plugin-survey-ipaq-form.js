@@ -156,35 +156,47 @@ console.log(trial)
             VisibleIfConditions.push(TEST)
         }
         console.log(VisibleIfConditions)
-        /*for ( var i = 0; i < NQuestions; i++ ) {
+        for ( var i = 0; i < NQuestions; i++ ) {
+            console.log("i = "+i)
             var thisQuestion = trial.survey_json.pages[page].elements[i]
             //console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
                 // decode the visible if condition
-                //console.log(thisQuestion.visibleIf)
+                console.log(thisQuestion.visibleIf)
                 
-                var MultipleConditions = thisQuestion.visibleIf.split(";")
-                var CondMatches = []
-                for ( var k = 0; k < MultipleConditions.length; k++ )
-                { 
+        //        var MultipleConditions = thisQuestion.visibleIf.split(";")
+        //        var CondMatches = []
+        //        for ( var k = 0; k < MultipleConditions.length; k++ )
+        //        { 
                   //  console.log(MultipleConditions[k].split("==")[1])
-                    CondMatches.push(MultipleConditions[k].split("==")[1].trim())
-                }
+        //            CondMatches.push(MultipleConditions[k].split("==")[1].trim())
+        //        }
                 //console.log(CondMatches) // These are the responses
                 //console.log(ConditionToMeet)
-                var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
-                var ThisQuestionIsConditionalOn = matches[1] // The question name
-                //console.log("CURRENT QUESTION: "+thisQuestion.name)
-                //console.log('QUESTION CONDITIONAL ON:'+matches[1])
+                //var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
+                console.log(thisQuestion)
+                var ThisQuestionIsConditionalOn = thisQuestion.visibleIf
+                console.log("CURRENT QUESTION: "+thisQuestion.name)
+                console.log('QUESTION CONDITIONAL ON:'+ThisQuestionIsConditionalOn)
 
                 //console.log(ThisQuestionIsConditionalOn)
                 //console.log("RESPONSES: "+CondMatches)
-            
-
-
-                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
+                
                 // Find this question and edit it
-                let obj = VisibleIfConditions.find((o, index) => 
+                let obj = VisibleIfConditions.find((o, index) => {
+                    if (o.name === ThisQuestionIsConditionalOn) {
+                        console.log('THIS QUESTION: '+thisQuestion.name)
+                        console.log("The index is: "+index) // This is the index of the question with the conditions
+                        VisibleIfConditions[index].toggle = thisQuestion.name
+
+                    }})
+
+            }
+        }
+                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
+                
+                
+/*                let obj = VisibleIfConditions.find((o, index) => 
                     {
                         
                         if (o.name === ThisQuestionIsConditionalOn) {
@@ -255,8 +267,8 @@ console.log(trial)
                             console.log("=========== MULTI INPUT ==========")
                             Str += '<div id="'+thisQuestion.name+'">'
                             // The visible if condition needs to some how get into teh div so the toggle funcrion can read it
-                            Str += '<div  class="surveyFormDiv surveyFormLabel">'
-                            //
+                            Str += '<div  class="surveyFormDiv questionTitle">'
+                            //surveyFormLabel
                             Str += thisQuestion.title
                             Str += '<br />'
                             Str += '</div>'
@@ -275,7 +287,15 @@ console.log(trial)
                             Str += '</label><br />'
                             // Add the checkbox
                             Str += '<label class="surveyFormLabel"><input class="checkbox " type="checkbox" '
-                            Str += 'id="noneCheck_'+i+'" onclick="toggleDiv('+thisQuestion.name+')"> '
+                            Str += 'id="noneCheck_'+i+'" onclick="toggleDiv(['+thisQuestion.name
+                            // is there a toggle condition?
+                            
+                            if ( VisibleIfConditions[i].toggle != undefined )
+                            {
+                                console.log(VisibleIfConditions[i].toggle)
+                                Str += ','+VisibleIfConditions[i].toggle
+                            }
+                            Str += '])"> '
                             Str += thisQuestion.checkboxLabel
                             Str += '</label>'
                             
@@ -284,9 +304,14 @@ console.log(trial)
                             break;
                         case 'textbox':
                             console.log('======== TEXT BOX ==========')
-                            Str += '<div class="textbox" >'
+                            console.log(thisQuestion)
+                            Str += '<div class="textbox '
+                            if ( thisQuestion.box ) 
+                            { Str += ' textboxWithBorder'}
+                            Str += '" >'
                             Str += thisQuestion.text
                             Str += '</div>'
+                            Str += '<p>'
                             break;
                         case 'textarea':
                             console.log("========= TEXT QUESTION ==========")     
@@ -357,30 +382,44 @@ console.log(trial)
 })(jsPsychModule);
 
 // Use the check box to turn on and off the associated questions
-    function toggleDiv(input) {
+    function toggleDiv(inputArray) {
         console.log(" GREETINGS FROM TOGGLE DIV ")
-        console.log(input)
-        // get the checkbox
-        const checkbox = input.getElementsByClassName("checkbox")
-      
-        console.log(checkbox)
-        console.log(checkbox[0].checked)
-        // get all the number inputs
-        const numberInputs = input.getElementsByClassName("numberInput")
-        console.log(numberInputs)
-      // disable all number inputs for this question
-      for ( var i = 0; i < numberInputs.length; i++ ) 
-      {
-        numberInputs[i].disabled = checkbox[0].checked
-      }
-      // clear the boxes
-      if ( checkbox[0].checked )
-      for ( var i = 0; i < numberInputs.length; i++ ) 
-      {
-        numberInputs[i].value = '';
-      }
+        console.log(inputArray)
+        // The first element will govern any remaining items in the toggle list
+        for ( var k = 0; k < inputArray.length; k++ ) 
+        {
+            input = inputArray[k]
+            console.log(input)
+            // get the checkbox from item one
+            if ( k == 0 )
+            {  checkbox = input.getElementsByClassName("checkbox") }
 
-      
+        
+            console.log(checkbox)
+            console.log(checkbox[0].checked)
+            // get all the number inputs
+            const numberInputs = input.getElementsByClassName("numberInput")
+            console.log(numberInputs)
+            // disable all number inputs for this question
+            for ( var i = 0; i < numberInputs.length; i++ ) 
+            {
+                numberInputs[i].disabled = checkbox[0].checked
+            }
+            // clear the boxes
+            if ( checkbox[0].checked )
+            for ( var i = 0; i < numberInputs.length; i++ ) 
+            {
+                numberInputs[i].value = '';
+            }
+            // Also disable the checkbox for any subsequent questions
+            if ( k > 0 )
+            {
+                console.log("LOOKING FOR TEH CHECKBOX TOO")
+                checkboxExtra = input.getElementsByClassName("checkbox")
+                console.log(checkboxExtra)
+                checkboxExtra[0].disabled = checkbox[0].checked
+            }
+        }
     }
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
@@ -698,24 +737,22 @@ function PrepareDataForSubmission()
         for ( var currentTab = 0; currentTab < x.length; currentTab++ )
         {
             // every question is embedded in this DIV
-            AllQuestionsOnThisTab = x[currentTab].getElementsByClassName("surveyFormDiv")
+            AllQuestionsOnThisTab = x[currentTab].getElementsByClassName("FormInput")
             for ( var i = 0; i < AllQuestionsOnThisTab.length; i++ )
             {   
+                var this_question_data = []
                 console.log(AllQuestionsOnThisTab[i]) 
-                // from each question div, get the imputs
-                q = AllQuestionsOnThisTab[i].getElementsByClassName("FormInput")
-                for ( var j = 0; j < q.length; j++ )
-                {
-                    console.log(q)
-                    console.log(q[j].value)
-                    console.log(q[j].id)
-                    console.log(q[j].labels[0].innerText)
-                    this_question_data.label = q[j].id
-                    this_question_data.name = AllQuestionsOnThisTab[i].id
-                    this_question_data.responseValue = q[j].value
-                    this_question_data.responseText = q[j].labels[0].innerText
+                console.log(AllQuestionsOnThisTab[i].value)
+                console.log(AllQuestionsOnThisTab[i].id) 
+                this_question_data.name = AllQuestionsOnThisTab[i].id
+                this_question_data.responseValue = AllQuestionsOnThisTab[i].value
+                
+                    //console.log(q[j].labels[0].innerText)
+                    // this_question_data.label = q[j].id
+                    // this_question_data.name = AllQuestionsOnThisTab[i].id
+                    // this_question_data.responseValue = q[j].value
+                    // this_question_data.responseText = q[j].labels[0].innerText
                     AllQuestionsData.push(this_question_data)
-                }
             }
         }
         console.log(AllQuestionsData)
