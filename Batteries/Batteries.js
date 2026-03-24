@@ -2160,3 +2160,47 @@ List.push({Task: 'Session Chooser', Parameters: 'Mont_99', Instructions: 'Defaul
     Redirect: '',
     shortName: '',
 	})
+
+// =========== Cog Quot ==========
+  // List.push({name: 'Semaine 1',   battery: '98713', row: 5, BitIndex: 13})// sleep/ipaq/cog_quot
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "SLEEP_001",
+  Instructions: "Default",
+  IconName: "Sleep",
+});
+
+  // =========== Semaine 1 ==========
+  // List.push({name: 'Semaine 1',   battery: '98713', row: 5, BitIndex: 13})// sleep/ipaq/cog_quot
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "SLEEP_001",
+  Instructions: "Default",
+  IconName: "Sleep",
+});
+List.push({
+  Task: "IPAQ Questionnaire",
+  Parameters: "IPAQ_001",
+  Instructions: "Default",
+  IconName: "IPAQ",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "COGQUOT_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 98713, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
