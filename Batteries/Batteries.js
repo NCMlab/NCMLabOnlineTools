@@ -2134,7 +2134,7 @@ List.push({
   IconName: "Cog Quot",
 });
 
-	BatteryList.push({index: 987, 
+	BatteryList.push({index: 98799, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
@@ -2148,7 +2148,7 @@ List.push({
 	})
   var List = []
 List.push({Task: 'Session Chooser', Parameters: 'Mont_99', Instructions: 'Default', IconName: 'Chooser'})
-	BatteryList.push({index: 1987, 
+	BatteryList.push({index: 98700, 
 		name:'Montreal Landing Page', 
 		description: '',
 		TaskList: List,
