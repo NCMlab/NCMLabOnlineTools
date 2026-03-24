@@ -253,7 +253,6 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     // get the labels 
                     if ( selectedValue != undefined )
                     { this_question_data.label = e[0].getElementsByClassName('label-extraMatrixQuestion')[selectedValue].innerHTML }
-
                 }
                 
                 question_data.push(this_question_data)
