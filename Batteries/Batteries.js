@@ -2133,6 +2133,12 @@ List.push({
   Instructions: "Default",
   IconName: "Cog Quot",
 });
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp01_001",
+  Instructions: "Default",
+  IconName: "Comp Exp",
+});
 
 	BatteryList.push({index: 98799, 
 		name:'Neural Cognitive Mapping Lab', 

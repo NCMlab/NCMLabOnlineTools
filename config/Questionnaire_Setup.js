@@ -344,6 +344,15 @@ var SLEEP_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+var CompExp01_001 = { 
+    questionnaire: ['compExp_part01'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
@@ -380,3 +389,5 @@ add('CCICIMAQ_001', function(){ parameters = CCICIMAQ_001});
 add('COGQUOT_001', function(){ parameters = COGQUOT_001});
 add('IPAQ_001', function(){ parameters = IPAQ_001});
 add('SLEEP_001', function(){ parameters = SLEEP_001});
+add('SLEEP_001', function(){ parameters = SLEEP_001});
+add('CompExp01_001', function(){ parameters = CompExp01_001});
