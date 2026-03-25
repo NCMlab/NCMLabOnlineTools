@@ -279,7 +279,11 @@ console.log(trial)
                             if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
                                 console.log('=== VISIBLE IF CONDITION ===')
                                 console.log(VisibleIfConditionsPages[page][i])
-                                Str += '<select class="surveyFormSelect FormInput visible"'
+                                Str += '<select class="surveyFormSelect FormInput visible'
+                                // May need to enter required/no-required here
+                                if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                                Str += '"'
                                 //Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
                                 var TTT = {}
                                 
@@ -319,7 +323,10 @@ console.log(trial)
                                 Str += SSS
                                 //console.log(BREAK)
                             }
-                            else { Str += '<select class="surveyFormSelect FormInput visible" ' }
+                            else { Str += '<select class="surveyFormSelect FormInput visible ' }
+                            if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                            Str += '"'
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
@@ -642,16 +649,32 @@ function showTab(n) {
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
             // is this a tag box?
-            console.log(y[i])
             if (y[i].classList.contains("TagBox"))
             {
+                console.log(y[i])
+                console.log(y[i].classList)
                 var name = y[i].id
                 var selectedValues = getCheckedValuesFromFieldSet(name)
+                console.log(selectedValues)
                 // This allows for the validity checker to work
                 y[i].value = selectedValues
+                if ( y[i].value == undefined )
+                {
+                    console.log("TAG BOX IS INVALID")
+                    y[i].className += " invalid";
+                    valid = false
+                }
+                else { 
+                   y[i].classList.remove('invalid') 
+                }
+
+                
+                console.log(y[i])
+                console.log(y[i].classList)
             }
-            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) && (y[i].classList.contains['Required']) )
+            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) && (y[i].classList.contains('Required')) )
             {
+                console.log("CHECKING FOR VALIDITY ")
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
@@ -667,13 +690,17 @@ function showTab(n) {
         // Check number inputs for valid values
         n = x[currentTab].getElementsByClassName("numberInput")
         console.log(n)
+
         for ( i = 0; i < n.length; i++ )
         {
             if ( Number(n[i].value) > Number(n[i].max) ) 
             { n[i].className += " invalid"; }
             if ( Number(n[i].value) < Number(n[i].min) ) 
             { n[i].className += " invalid"; }
+            if ( n[i].value == '' )
+                { n[i].className += " invalid"; }
         }
+
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
             // Is there a progress bar?
@@ -681,7 +708,6 @@ function showTab(n) {
             { document.getElementsByClassName("progress-step")[currentTab].className += " finish"; }
             document.getElementById("tableMessageBox").style = "display: none"
         }
-        console.log(document.getElementById('div-cesam021p2'))
         return valid; // return the valid status
     }
 

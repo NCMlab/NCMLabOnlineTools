@@ -296,7 +296,7 @@ const survey_JSON = {
             {value: 3, text: "Child"},
             {value: 4, text: "Other"}
         ],
-        visibleIf: "{cesam021p1} == Yes",
+        visibleIf: "{cesam021} == Yes",
         isRequired: true,
         showClearButton: true
       },

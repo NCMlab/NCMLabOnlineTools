@@ -1388,6 +1388,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
     HeaderButtonsToShow: [],
+    Redirect: '',
 	})
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================

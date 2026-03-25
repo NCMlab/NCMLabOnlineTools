@@ -108,6 +108,7 @@ FR_LabelNames.ThankYou = "Merci pour votre participation. Vous pouvez fermer cet
 FR_LabelNames.Hello = 'Bonjour'
 FR_LabelNames.EnterName = 'Veuillez d\'abord entrer un nom.'
 FR_LabelNames.TrailMakingRemaining = 'restantes'
+FR_LabelNames.Other = 'Veuillez décrire tout autre choix.'
 
 
 var KR_LabelNames = {}
