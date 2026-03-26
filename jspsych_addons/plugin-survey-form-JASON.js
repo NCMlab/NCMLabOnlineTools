@@ -354,6 +354,7 @@ console.log(trial)
                                 if ( thisQuestion.showOtherItem == true )
                                 { 
                                     console.log("NEED to show other ")
+                                    console.log(LabelNames)
                                     Str += '<option value="9999">'+LabelNames.Other+'</option>'
                                 }
                             }

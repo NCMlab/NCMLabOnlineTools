@@ -353,7 +353,33 @@ var CompExp01_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
-
+var CompExp02_001 = { 
+    questionnaire: ['compExp_part02'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp03_001 = { 
+    questionnaire: ['compExp_part03'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp04_001 = { 
+    questionnaire: ['compExp_part04'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
@@ -391,3 +417,6 @@ add('IPAQ_001', function(){ parameters = IPAQ_001});
 add('SLEEP_001', function(){ parameters = SLEEP_001});
 add('SLEEP_001', function(){ parameters = SLEEP_001});
 add('CompExp01_001', function(){ parameters = CompExp01_001});
+add('CompExp02_001', function(){ parameters = CompExp02_001});
+add('CompExp03_001', function(){ parameters = CompExp03_001});
+add('CompExp04_001', function(){ parameters = CompExp04_001});

@@ -2210,3 +2210,41 @@ List.push({
     Redirect: '',
     shortName: '',
 	})
+// =========== COMPUTER QUESTIONNAIRES ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp01_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 01",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp02_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 02",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp03_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 03",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp04_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 04",
+});
+	BatteryList.push({index: 98706, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
