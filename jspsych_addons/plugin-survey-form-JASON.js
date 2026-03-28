@@ -660,29 +660,33 @@ function showTab(n) {
             console.log(y[i].id )
             console.log(y[i])
             // Checking radio group
+
             // console.log((document.querySelector('input[name="'+y[i].id+'"]:checked')))
-            // if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null && (y[i].classList.contains('visible')))
-            // {
-            //     console.log("VALIDATING A RADIO GROUP")
-            //     //  console.log('Item '+i+' response is: EMPTY')
-            //         // Need to also make sure that the question is VISIBLE
-            //     var temp = y[i].closest('div');
-            //     temp = temp.parentElement;
-            //     temp = temp.parentElement;
-            //     console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
-            //     console.log("VALID: "+valid)
-            //     valid = false
-            //     if ( ! temp.classList.contains('invalid'))
-            //     { temp.className += " invalid"; }
-            //     //y[i].value = ""
-            // }
-            // else { 
-                
-            //     var temp = y[i].closest('div');
-            //     temp = temp.parentElement;
-            //     temp = temp.parentElement;
-            //     temp.classList.remove('invalid') 
-            // }
+            if ( y[i].classList.contains('radiogroup'))
+            {
+                if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null && (y[i].classList.contains('visible')))
+                {
+                    console.log("VALIDATING A RADIO GROUP")
+                    //  console.log('Item '+i+' response is: EMPTY')
+                        // Need to also make sure that the question is VISIBLE
+                    var temp = y[i].closest('div');
+                    temp = temp.parentElement;
+                    temp = temp.parentElement;
+                    console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
+                    console.log("VALID: "+valid)
+                    valid = false
+                    if ( ! temp.classList.contains('invalid'))
+                    { temp.className += " invalid"; }
+                    //y[i].value = ""
+                }
+                else { 
+                    
+                    var temp = y[i].closest('div');
+                    temp = temp.parentElement;
+                    temp = temp.parentElement;
+                    temp.classList.remove('invalid') 
+                }
+            }
             if (y[i].classList.contains("TagBox"))
             {
                 console.log("VALIDATING A TAG BOX")
