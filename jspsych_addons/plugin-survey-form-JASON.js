@@ -419,7 +419,11 @@ console.log(trial)
                             for ( var j = 0; j < NChoices; j++ )
                             {
                                 Str += '<div class radioGroupWrapper>'
-                                Str += '<input type="radio"  class="sd-item__decorator radiogroup FormInput" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                                // NOTE: radio group does not handle conditional questions
+                                Str += '<input type="radio"  class="sd-item__decorator radiogroup FormInput visible'
+                                if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                                Str += '" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
                             Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                             Str += '>' 
                             Str += '<label for="'+thisQuestion.name+'_'+thisQuestion.choices[j].value+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
@@ -644,15 +648,42 @@ function showTab(n) {
         // Find all input slots in the form
         y = x[currentTab].getElementsByClassName("FormInput")
         // A loop that checks every input field in the current tab:
+        console.log('CHECKING OVER FORM INPUTS: '+y.length)
         for (i = 0; i < y.length; i++) {
             // CHeck to make sure validity is ONLY based on the visible items
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
             // is this a tag box?
+            // console.log(y[i])
+            console.log(y[i].classList)
+            // Checking radio group
+            // console.log((document.querySelector('input[name="'+y[i].id+'"]:checked')))
+                if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null )
+                {
+                    //  console.log('Item '+i+' response is: EMPTY')
+                     
+                    var temp = y[i].closest('div');
+                     temp = temp.parentElement;
+                     temp = temp.parentElement;
+                     console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
+                     console.log("VALID: "+valid)
+                     valid = false
+                     if ( ! temp.classList.contains('invalid'))
+                     { temp.className += " invalid"; }
+                     //y[i].value = ""
+                }
+                else { 
+                    console.log('Item '+i+' response is: '+Number(document.querySelector('input[name="'+y[i].id+'"]:checked').value))
+                    //y[i].value = Number(document.querySelector('input[name="'+y[i].id+'"]:checked').value)
+                    
+                    var temp = y[i].closest('div');
+                    temp = temp.parentElement;
+                    temp = temp.parentElement;
+                    temp.classList.remove('invalid') 
+                }
             if (y[i].classList.contains("TagBox"))
             {
-                console.log(y[i])
-                console.log(y[i].classList)
+                
                 var name = y[i].id
                 var selectedValues = getCheckedValuesFromFieldSet(name)
                 console.log(selectedValues)
@@ -667,25 +698,28 @@ function showTab(n) {
                 else { 
                    y[i].classList.remove('invalid') 
                 }
-
-                
                 console.log(y[i])
                 console.log(y[i].classList)
             }
+            console.log(y[i].value=="")
             if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) && (y[i].classList.contains('Required')) )
             {
-                console.log("CHECKING FOR VALIDITY ")
+
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
                 valid = false;
-                    //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                    document.getElementById("tableMessageBox").style = "block"
-                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
             }
             else { 
                 y[i].classList.remove('invalid') 
             }
+            if ( valid == false )
+            {
+                    //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                    document.getElementById("tableMessageBox").style = "block"
+                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+            
         }
         // Check number inputs for valid values
         n = x[currentTab].getElementsByClassName("numberInput")
@@ -708,6 +742,7 @@ function showTab(n) {
             { document.getElementsByClassName("progress-step")[currentTab].className += " finish"; }
             document.getElementById("tableMessageBox").style = "display: none"
         }
+        
         return valid; // return the valid status
     }
 
@@ -836,7 +871,6 @@ function ModifyOnChange(elementToChange) {
     
 }
 
-
 // Prepare data for submission
 function PrepareDataForSubmission()
 {
@@ -856,6 +890,7 @@ function PrepareDataForSubmission()
                 var this_question_data = {}
 
                 y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                console.log(y[0])
                 this_question_data.name = y[0].id
                
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
@@ -865,6 +900,7 @@ function PrepareDataForSubmission()
                 if ( y[0].classList.contains("radiogroup") ) 
                 {
                     var respValue = Number(document.querySelector('input[name="'+y[0].id+'"]:checked').value)
+                    console.log("RESPONSE VALUE: "+respValue)
                     this_question_data.responseText = document.querySelector('label[for="'+y[0].id+'_'+respValue+'"]').innerHTML
                     this_question_data.responseValue = respValue
                 }
