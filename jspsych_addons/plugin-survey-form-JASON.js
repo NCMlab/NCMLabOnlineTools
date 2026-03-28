@@ -126,7 +126,7 @@ console.log(trial)
             var thisQ = {}
             var TEST = {}
             var thisQuestion = trial.survey_json.pages[page].elements[i]
-            console.log(thisQuestion)
+            // console.log(thisQuestion)
             if ( thisQuestion.visibleIf ) {
                 
                 
@@ -265,7 +265,7 @@ console.log(trial)
                         case 'dropdown':
                             console.log("========= DROPDOWN QUESTION ==========")
                             console.log(thisQuestion)
-                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '<div class="surveyFormDiv surveyFormDropDown '+VisibleIfConditionsPages[page][i].visibleClass
                             // Is this a required question?
                             if ( thisQuestion.isRequired )
                             { Str += " Required" }
@@ -279,7 +279,7 @@ console.log(trial)
                             if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
                                 console.log('=== VISIBLE IF CONDITION ===')
                                 console.log(VisibleIfConditionsPages[page][i])
-                                Str += '<select class="surveyFormSelect FormInput visible'
+                                Str += '<select class="surveyFormSelect FormInput dropdown '
                                 // May need to enter required/no-required here
                                 if ( thisQuestion.isRequired ) 
                                 { Str += ' Required ' }     
@@ -323,10 +323,12 @@ console.log(trial)
                                 Str += SSS
                                 //console.log(BREAK)
                             }
-                            else { Str += '<select class="surveyFormSelect FormInput visible ' }
-                            if ( thisQuestion.isRequired ) 
+                            else { 
+                                Str += '<select class="surveyFormSelect FormInput  ' 
+                                if ( thisQuestion.isRequired ) 
                                 { Str += ' Required ' }     
-                            Str += '"'
+                                Str += '"'
+                            }
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
@@ -370,7 +372,7 @@ console.log(trial)
                         
                         case 'radioXXXgroup':
                             console.log("========= RADIOGROUP QUESTION ==========")
-                            Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormDiv surveyFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
                             // the visible class is used to only use visible questions when validating 
@@ -654,36 +656,36 @@ function showTab(n) {
             // check to see if the element is in the non-visable class
             // If a field is empty AND visible
             // is this a tag box?
-            // console.log(y[i])
-            console.log(y[i].classList)
+            
+            console.log(y[i].id )
+            console.log(y[i])
             // Checking radio group
             // console.log((document.querySelector('input[name="'+y[i].id+'"]:checked')))
-                if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null )
-                {
-                    //  console.log('Item '+i+' response is: EMPTY')
-                     
-                    var temp = y[i].closest('div');
-                     temp = temp.parentElement;
-                     temp = temp.parentElement;
-                     console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
-                     console.log("VALID: "+valid)
-                     valid = false
-                     if ( ! temp.classList.contains('invalid'))
-                     { temp.className += " invalid"; }
-                     //y[i].value = ""
-                }
-                else { 
-                    console.log('Item '+i+' response is: '+Number(document.querySelector('input[name="'+y[i].id+'"]:checked').value))
-                    //y[i].value = Number(document.querySelector('input[name="'+y[i].id+'"]:checked').value)
-                    
-                    var temp = y[i].closest('div');
-                    temp = temp.parentElement;
-                    temp = temp.parentElement;
-                    temp.classList.remove('invalid') 
-                }
+            // if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null && (y[i].classList.contains('visible')))
+            // {
+            //     console.log("VALIDATING A RADIO GROUP")
+            //     //  console.log('Item '+i+' response is: EMPTY')
+            //         // Need to also make sure that the question is VISIBLE
+            //     var temp = y[i].closest('div');
+            //     temp = temp.parentElement;
+            //     temp = temp.parentElement;
+            //     console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
+            //     console.log("VALID: "+valid)
+            //     valid = false
+            //     if ( ! temp.classList.contains('invalid'))
+            //     { temp.className += " invalid"; }
+            //     //y[i].value = ""
+            // }
+            // else { 
+                
+            //     var temp = y[i].closest('div');
+            //     temp = temp.parentElement;
+            //     temp = temp.parentElement;
+            //     temp.classList.remove('invalid') 
+            // }
             if (y[i].classList.contains("TagBox"))
             {
-                
+                console.log("VALIDATING A TAG BOX")
                 var name = y[i].id
                 var selectedValues = getCheckedValuesFromFieldSet(name)
                 console.log(selectedValues)
@@ -702,9 +704,14 @@ function showTab(n) {
                 console.log(y[i].classList)
             }
             console.log(y[i].value=="")
-            if ( (y[i].value == "") && ( y[i].classList.contains('visible') ) && (y[i].classList.contains('Required')) )
+            var temp = y[i].closest('div');
+            console.log(temp)
+            //temp = temp.parentElement;
+            //temp = temp.parentElement;
+            
+            if ( (y[i].value == "") && ( temp.classList.contains('visible') ) && (temp.classList.contains('Required')) )
             {
-
+                console.log("LINE 710")
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
@@ -715,6 +722,7 @@ function showTab(n) {
             }
             if ( valid == false )
             {
+                console.log("LINE 718")
                     //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
                     document.getElementById("tableMessageBox").style = "block"
                     document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 

@@ -12,7 +12,7 @@ const survey_JSON = {
   name: "CESAM",
   pages: [{
   elements: [
-    {
+    /*{
         type: "dropdown",
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
@@ -261,7 +261,7 @@ const survey_JSON = {
         ],
         isRequired: true,
         showClearButton: true
-      },
+      },*/
       {
         type: "dropdown",
         name: "cesam021",
@@ -296,11 +296,11 @@ const survey_JSON = {
             {value: 3, text: "Child"},
             {value: 4, text: "Other"}
         ],
-        visibleIf: "{cesam021} == Yes",
+        visibleIf: "{cesam021p1} == Family",
         isRequired: true,
         showClearButton: true
       },
-      {
+      /*{
         type: "dropdown",
         name: "cesam022",
         title: "Did you answer this questionnaire for yourself or for someone else?",
@@ -333,7 +333,7 @@ const survey_JSON = {
         visibleIf: "{cesam023} == Yes",
         isRequired: true,
         showClearButton: true
-      },
+      },*/
     ],
   }]
 };
