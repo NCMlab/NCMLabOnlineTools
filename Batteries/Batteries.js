@@ -2210,55 +2210,33 @@ List.push({
     Redirect: '',
     shortName: '',
 	})
-
+// =========== COMPUTER QUESTIONNAIRES ================
 var List = []
 List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "PARQ_001",
+  Parameters: "CompExp01_001",
   Instructions: "Default",
-  IconName: "PARQ",
+  IconName: "Comp Exp 01",
 });
-	BatteryList.push({index: 98702, 
-		name:'Neural Cognitive Mapping Lab', 
-		description: '',
-		TaskList: List,
-		BatteryInstructions: "Neural Cognitive Mapping Lab",
-		Language:'FR',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: [],
-    Redirect: '',
-    shortName: '',
-	})
-  
-  var List = []
-  List.push({
-  Task: "Matrix Questionnaire ExtraQ",
-  Parameters: "CCICIMAQ_001",
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp02_001",
   Instructions: "Default",
-  IconName: "CCI",
+  IconName: "Comp Exp 02",
 });
-	BatteryList.push({index: 98705, 
-		name:'Neural Cognitive Mapping Lab', 
-		description: '',
-		TaskList: List,
-		BatteryInstructions: "Neural Cognitive Mapping Lab",
-		Language:'FR',
-		RunAudioTest: true,
-		Footer: '©NCMLab 2024',
-    HeaderButtonsToShow: [],
-    Redirect: '',
-    shortName: '',
-	})
-
-  var List = []
-  List.push({
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp03_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 03",
+});
+List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "GDS_001",
+  Parameters: "CompExp04_001",
   Instructions: "Default",
-  IconName: "GDS",
+  IconName: "Comp Exp 04",
 });
-	BatteryList.push({index: 98709, 
+	BatteryList.push({index: 98706, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
