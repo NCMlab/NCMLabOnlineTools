@@ -28,7 +28,7 @@
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <script src="InstructionsAndStimuli/Instructions/Questionnaire_Instructions.js"></script>
     <script src="config/Questionnaire_Setup.js"></script>
-    <script src="functions/Experiments/MatrixQuestionnaire_experiment.js"></script>
+    <script src="functions/Experiments/MatrixQuestionnaireExtraQ_experiment.js"></script>
     <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
     
     
@@ -84,6 +84,7 @@
             parameters.Language = LANG
             // prepare the questionnaire file name
             var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"
+            console.log(parameters)
             fileName = dirName+parameters.questionnaire[0]+".js"         
             // load the questionaire JS file
             loadScriptSequentially(fileName)

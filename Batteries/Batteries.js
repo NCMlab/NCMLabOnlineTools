@@ -2210,3 +2210,63 @@ List.push({
     Redirect: '',
     shortName: '',
 	})
+
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PARQ_001",
+  Instructions: "Default",
+  IconName: "PARQ",
+});
+	BatteryList.push({index: 98702, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+  
+  var List = []
+  List.push({
+  Task: "Matrix Questionnaire ExtraQ",
+  Parameters: "CCICIMAQ_001",
+  Instructions: "Default",
+  IconName: "CCI",
+});
+	BatteryList.push({index: 98705, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
+  var List = []
+  List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 98709, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})

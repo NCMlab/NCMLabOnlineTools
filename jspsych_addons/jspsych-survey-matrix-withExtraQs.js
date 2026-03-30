@@ -440,7 +440,7 @@ function InternalValidateForm(form) {
         // cycle over rows, start from the second column, thereby ignoring the row labels
         for ( var i = 0; i < NRows-2; i++ ) {
             // Reset the background colors 
-            document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
+            //document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
             var SelectionMadeInRow = false
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {

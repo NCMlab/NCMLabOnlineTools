@@ -38,7 +38,7 @@ var survey_JSON = {
         { value: "cci07", text: "Maladie chronique pulmonaire" },
         { value: "cci08", text: "Maladie des tissus conjonctifs" },
         { value: "cci09", text: "Maladie ulcéreuse" },
-        { value: "cci10", text: "Maladie du foie", options: option010},*/
+        { value: "cci10", text: "Maladie du foie", options: option010},
         { value: "cci11", text: "Diabète" , options: option011},
         { value: "cci12", text: "Hémiplégie" },
         { value: "cci13", text: "Maladie rénale modérée ou sévère" },
@@ -75,4 +75,5 @@ FR_cci_cimaq.survey_JSON = survey_JSON;
 FR_cci_cimaq.QuestionnaireType = "matrix";
 FR_cci_cimaq.references = references;
 FR_cci_cimaq.notes = notes;
+
 
