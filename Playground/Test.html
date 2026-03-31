@@ -1,16 +1,124 @@
 <html>
   <head>
-    <script>
-      response = []
-      response[0] = {name: 'cesam001', label: 'Have you willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
-      response[1] = {name: 'cesam002', label: 'Have you TWO willingly lost weight in the past year?', responseValue: 2, responseText: 'Yes'}
-      response[2] = {name: 'cesam003', label: 'Have THREE?', responseValue: 0, responseText: 'No'}
-      console.log(response)
-      console.log(response.find(o=>o.name === 'cesam003').responseValue)
-    </script>
-      </head>
-    <body>
 
-    </body>
+<!--<form>
+  <label>
+    <input type="checkbox" id="noneCheck" onclick="toggleNumber()"> None
+  </label>
+  <br>
+  <label>
+    Quantity:
+    <input type="number" id="quantityInput" name="quantity" min="0" required>
+  </label>
+  
+  <script>
+    function toggleNumber() {
+      const checkbox = document.getElementById('noneCheck');
+      const numberInput = document.getElementById('quantityInput');
+      // If checked, disable the number input
+      numberInput.disabled = checkbox.checked;
+      if (checkbox.checked) {
+        numberInput.value = ''; // Optional: clear value
+      }
+    }
+  </script>
+</form>-->
 
+  </head>
+  <body>
+    
+
+    <form>
+    <div id = "quantityInput01">
+      <label>
+        Au cours des 7 derniers jours, combien y a-t-il eu de jours au cours desquels vous avez fait des
+        activités physiques intenses comme porter des charges lourdes, bêcher, faire du VTT ou jouer
+        au football ? 
+      <br />
+        
+        <input type="number" class="numberinput" id="q01" name="quantity" min="0" required> jours par semaine
+        </label>
+        <br>
+        <label><input class="checkbox" type="checkbox" id="noneCheck01" onclick="toggleDiv(quantityInput01)"> Je n’ai pas eu d’activité physique intense</label>
+    </div>
+    <p></p>
+
+    <div id = "quantityInput02">
+      <label>
+        Au total, combien de temps avez-vous passé à faire des activités intenses au cours des 7
+        derniers jours ?
+      <br />
+      <input type="number" class="numberinput" id="q02p1" name="quantity" min="0" required> heures(s) par jour 
+      <input type="number" class="numberinput" id="q02p2" name="quantity" min="0" required> minutes par jour
+      </label>
+      <br>
+      <label><input class="checkbox" type="checkbox" id="noneCheck02" onclick="toggleDiv(quantityInput02)"> Je n’ai pas eu d’activité physique intense</label>      
+    </div>
+
+<div style="border: 2px solid blue; padding: 10px;">
+  Pensez à toutes les activités modérées que vous avez faites au cours des 7 derniers jours. Les activités
+physiques modérées font référence aux activités qui vous demandent un effort physique modéré et
+vous font respirer un peu plus difficilement que normalement. Pensez seulement aux activités que
+vous avez effectuées pendant au moins 10 minutes d’affilée.
+</div>
+
+<div id = "quantityInput03">
+      <label>
+        Au total, combien de temps avez-vous passé à faire des activités modérées au cours des
+        7 derniers jours ?
+      <br />
+      <input type="number" class="numberinput" id="q03" name="quantity" min="0" required> jours par semaine
+      </label>
+      <br>
+      <label><input class="checkbox" type="checkbox" id="noneCheck03" onclick="toggleDiv(quantityInput03)"> Je n’ai pas eu d’activité physique modérée</label>      
+    </div>
+<div id = "quantityInput04">
+      <label>
+        Au cours des 7 derniers jours, combien y a-t-il eu de jours au cours desquels vous avez fait des
+        activités physiques modérées comme porter des charges légères, passer l’aspirateur, faire du
+        vélo tranquillement, ou jouer au volley- ball ? Ne pas inclure la marche.
+      <br />
+       <input type="number" class="numberinput" id="q04p1" name="quantity" min="0" required> heures(s) par jour 
+       <input type="number" class="numberinput" id="q04p2" name="quantity" min="0" required> minutes par jour
+
+      </label>
+      <br>
+      <label><input class="checkbox" type="checkbox" id="noneCheck04" onclick="toggleDiv(quantityInput04)"> Je ne sais pas</label>      
+    </div>
+<div style="border: 2px solid blue; padding: 10px;">
+    Pensez au temps que vous avez passé à marcher au cours des 7 derniers jours. Cela comprend la
+marche au travail et à la maison, la marche pour vous rendre d’un lieu à un autre, et tout autre type
+de marche que vous auriez pu faire pendant votre temps libre pour la détente, le sport ou les loisirs.
+</div>
+
+  <script>
+    
+    // Work at the div level
+    function toggleDiv(input) {
+      // get the checkbox
+      console.log(input)
+      const checkbox = input.getElementsByClassName("checkbox")
+      
+      console.log(checkbox)
+      console.log(checkbox[0].checked)
+      // get all the number inputs
+      const numberInputs = input.getElementsByClassName("numberinput")
+      // disable all number inputs for this question
+      for ( var i = 0; i < numberInputs.length; i++ ) 
+      {
+        numberInputs[i].disabled = checkbox[0].checked
+      }
+      // clear the boxes
+      if ( checkbox[0].checked )
+      for ( var i = 0; i < numberInputs.length; i++ ) 
+      {
+        numberInputs[i].value = '';
+      }
+
+      
+    }
+  </script>
+ 
+</form>
+  </body>
 </html>

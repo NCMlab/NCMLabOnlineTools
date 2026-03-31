@@ -74,8 +74,8 @@ h1 {
 .radiogroup_alignment {
  text-align: left;
  padding-left: 2em;
- 
 }
+
 .radioGroupWrapper {
   display:flex;
 }
@@ -84,8 +84,6 @@ h1 {
   font-size: var(--fontSize);
   display: flex; align-items : center; justify-content: center
 }
-
-
 
 input {
   padding: 10px;
@@ -96,9 +94,28 @@ input {
   border: 1px solid #aaaaaa;
 }
 
+
+.item_label {
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+}
+
+
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
+}
+
+
+.extraMatrixQuestion {
+  display: flex;
+  
+  gap: 20px;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.5rem;
+}
+.extraMatrixQuestion::before {
+  align-items: left;
 }
 
 
@@ -215,4 +232,45 @@ font-size: 4rem;
 .numberInput {
   font-family: var(--font);
   font-size: var(--fontSize);
+}
+
+.textbox {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  
+  padding: 10px
+}
+.textboxWithBorder {
+  border: 2px solid blue; 
+}
+
+.LabelDiv {
+  display: flex;
+}
+
+
+.checkbox:disabled {
+  background-color: #555; /* A darker grey background */
+  color: #ed3030;            /* A lighter grey text color for contrast */
+  cursor: not-allowed;   /* Changes the cursor on hover */
+  opacity: 0.7;          /* Optional: reduces transparency further */
+}
+input[type=checkbox]
+{
+  transform: scale(2);
+  padding: 10px;
+}
+.questionTitle{
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: contents;
+  text-align: center;
+}
+input:disabled {
+  background-color: #c4a5a5;
+}
+input[type=checkbox]:disabled {
+  background-color: #c4a5a5;
 }

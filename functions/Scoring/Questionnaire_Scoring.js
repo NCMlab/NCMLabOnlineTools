@@ -83,7 +83,7 @@ function Questionnaire_Scoring(data) {
 			NumericScore = data.response[i].responseValue			
 			if ( NumericScore > -99 )
 			{
-				TotalScore += NumericScore
+				TotalScore += Number(NumericScore)
 				QuestionsAnswered = QuestionsAnswered + 1
 			}
 			Results.AllResults[data.response[i].label] = data.response[i].responseText
@@ -224,7 +224,9 @@ function Questionnaire_Scoring(data) {
 			// All question in the questionnaire should be in the output list
 			for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
-					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
+					if (( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' ) &&
+						( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'textbox' ) 
+					)
 					{
 						// Question text
 						TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title

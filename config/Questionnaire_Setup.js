@@ -297,7 +297,89 @@ var PANAS_TEST = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+//========== Montreal ============
+var PARQ_001 = { 
+    questionnaire: ['parq'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 
+var CCICIMAQ_001 = { 
+    questionnaire: ['cci_cimaq'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var COGQUOT_001 = { 
+    questionnaire: ['cog_quot'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var IPAQ_001 = { 
+    questionnaire: ['ipaq'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var SLEEP_001 = { 
+    questionnaire: ['sleep_cimaq2014'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp01_001 = { 
+    questionnaire: ['compExp_part01'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp02_001 = { 
+    questionnaire: ['compExp_part02'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp03_001 = { 
+    questionnaire: ['compExp_part03'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var CompExp04_001 = { 
+    questionnaire: ['compExp_part04'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
@@ -327,3 +409,14 @@ add('MusicEnterName_001', function(){ parameters = MusicEnterName_001});
 add('TESTJSON', function(){ parameters = TESTJSON});
 add('CESAM_001TEST', function(){ parameters = CESAM_001TEST});
 add('MusicDemographics_001SHORT', function(){ parameters = MusicDemographics_001SHORT});
+
+add('PARQ_001', function(){ parameters = PARQ_001});
+add('CCICIMAQ_001', function(){ parameters = CCICIMAQ_001});
+add('COGQUOT_001', function(){ parameters = COGQUOT_001});
+add('IPAQ_001', function(){ parameters = IPAQ_001});
+add('SLEEP_001', function(){ parameters = SLEEP_001});
+add('SLEEP_001', function(){ parameters = SLEEP_001});
+add('CompExp01_001', function(){ parameters = CompExp01_001});
+add('CompExp02_001', function(){ parameters = CompExp02_001});
+add('CompExp03_001', function(){ parameters = CompExp03_001});
+add('CompExp04_001', function(){ parameters = CompExp04_001});

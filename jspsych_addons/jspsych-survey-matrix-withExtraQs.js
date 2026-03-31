@@ -112,9 +112,6 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             html += '<div id="tableInstructions" class="QuestionnaireInstructions">'
             html += trial.survey_json.elements[0].title
             html += '</div>'
-            html += '<div class="QuestionnaireInstructions">'
-            html += trial.survey_json.elements[0].description
-            html += '</div>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
                 html += '<table class="tableMatrix" id="tableMatrix">'
@@ -229,21 +226,11 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                             break; // Exit the loop once the checked button is found
                         }
                     }
-                    console.log("Question Number: "+k)
-                    console.log(rowLabels[0])
-                    console.log(selectedValue)
+                    
                     this_question_data.label = rowLabels[0].innerHTML
                     this_question_data.name = rows[k].id
-                    if ( selectedValue != undefined )
-                    { 
-                        this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
-                        this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
-                    }
-                    else // no response
-                    {
-                        this_question_data.responseValue = -99
-                        this_question_data.responsePrompt = 'NA'
-                    }
+                    this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
+                    this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
 
                 }
                 else 
@@ -266,7 +253,6 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     // get the labels 
                     if ( selectedValue != undefined )
                     { this_question_data.label = e[0].getElementsByClassName('label-extraMatrixQuestion')[selectedValue].innerHTML }
-
                 }
                 
                 question_data.push(this_question_data)
@@ -442,19 +428,19 @@ function InternalValidateForm(form) {
 
         console.log(labels)
         console.log("There are # rows: "+NRows)
-        for ( var i = 0; i < NRows-1; i++ ) {
+        for ( var i = 0; i < NRows-2; i++ ) {
             console.log(i)
             console.log(labels[i])
             rowPrompts.push(labels[i].innerHTML)
         }
-        for ( var i = 1; i < NRows; i++ ) {
+        for ( var i = 1; i < NRows-1; i++ ) {
             rowNames.push(elmts[i].id)
         }
-        console.log(rowNames)
+
         // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 0; i < NRows-1; i++ ) {
+        for ( var i = 0; i < NRows-2; i++ ) {
             // Reset the background colors 
-            document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
+            //document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
             var SelectionMadeInRow = false
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {
