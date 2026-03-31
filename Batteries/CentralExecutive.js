@@ -62,6 +62,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             JATOSSessionData.BatteryShortName = CurrentBattery.shortName
             JATOSSessionData.Redirect = CurrentBattery.Redirect
             JATOSSessionData.UsageType = UsageType
+            JATOSSessionData.Language = CurrentBattery.Language
             console.log(jatos.urlQueryParameters['sona_id'])
             if ( jatos.urlQueryParameters['sona_id'] != undefined )
             { JATOSSessionData.sona_id = jatos.urlQueryParameters['sona_id'] }
@@ -77,6 +78,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             { JATOSSessionData.LanguagesToShow = CurrentBattery.LanguagesToShow }
             else { JATOSSessionData.LanguagesToShow = ['EN'] }            
             jatos.studySessionData = JATOSSessionData
+            console.log(JATOSSessionData)
 
         }
         else {console.log("THERE IS SESSION DATA")}
@@ -164,7 +166,8 @@ function SetupSession() {
     // no front end scripts can access the back-end data stored in the database. 
 
     console.log(jatos.studySessionData)
-    CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+    //CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+    CurrentLanguage = jatos.studySessionData.Language
     console.log(CurrentLanguage)
     if ( CurrentLanguage == undefined )
     {
@@ -263,7 +266,7 @@ function CheckBatchData() {
             // set the index for this worker
             jatos.batchSession.set(jatos.workerId, currentIndex)    
             // set the language
-            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", jatos.studySessionData.Language))
             .then(() => jatos.batchSession.set(jatos.workerId+"_bitIndex", "0"))
             
         }
@@ -574,10 +577,12 @@ function CentralExecutive() {
                         
                         SessionTimeLine = SetupSession()
                         console.log(SessionTimeLine)
-                        
+
+
                         timeline.push(SessionTimeLine)
                     })
                 .then(() => SetupjsPsychAndRunTimeline())
+                
                 break;
             case 'UserChoice':
                 // reset the timeline

@@ -2160,10 +2160,11 @@ List.push({Task: 'Session Chooser', Parameters: 'Mont_99', Instructions: 'Defaul
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Session Chooser",
-		Language:'FR',
+		Language: 'FR',
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
+    LanguagesToShow: ['FR'],
     Redirect: '',
     shortName: '',
 	})

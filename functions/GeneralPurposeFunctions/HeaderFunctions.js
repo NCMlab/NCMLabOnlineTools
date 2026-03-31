@@ -52,7 +52,17 @@ function UpdateHeader() {
                         break;
                 }
             }
-            
+                x = document.getElementById('LanguageSelectPulldown')
+                console.log(x)
+                            
+                var array = jatos.studySessionData.LanguagesToShow
+                for (var i = 0; i < array.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = array[i];
+                    option.text = array[i];
+                    x.appendChild(option);
+                }
+
             // set the language pulldown button             
             var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
             
