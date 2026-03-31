@@ -155,9 +155,22 @@ p.Instructions {
 
 /* Change the size of the font in the buttons */
 
+/* borrowing Bootstrap style for btn elements, but combining styles a bit */
 .jspsych-btn {
+  display: inline-block;
+  padding: 10px 20px;
   font-size: large;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin: 4px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: none;
+  transition: background 0.3s ease, transform 0.1s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 /* https://www.w3schools.com/howto/howto_css_image_text.asp */
 /* Container holding the image and the text */
@@ -439,6 +452,7 @@ span:hover + div {
   /* this is for overflowing content */
   font-size: 4vmin;
   line-height: 1.6;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 :root {
