@@ -1374,6 +1374,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
+    LanguagesToShow: ['EN','FR'],
     Redirect: '',
     shortName: '',
 	})
@@ -1388,6 +1389,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
     HeaderButtonsToShow: [],
+    LanguagesToShow: ['EN','FR'],
     Redirect: '',
 	})
 
@@ -1414,6 +1416,7 @@ BatteryList.push({index: 73,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- CESAM  ==================
@@ -1441,6 +1444,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 
@@ -1488,6 +1492,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- TRAILS ==================
@@ -1506,6 +1511,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // -----------------------
@@ -1524,6 +1530,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // -----------------------
@@ -1542,6 +1549,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- PRE: ALL WEEKS  ==================
@@ -1569,6 +1577,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 1, 4, 7 ==================
@@ -1602,6 +1611,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1615,18 +1625,6 @@ List.push({
 });
 List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GAS_001",
-  Instructions: "Default",
-  IconName: "GAS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
@@ -1636,6 +1634,18 @@ List.push({
   Parameters: "PAES_001",
   Instructions: "Default",
   IconName: "PAES",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "WEMWBS_001",
+  Instructions: "Default",
+  IconName: "WEMWBS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
 });
 
 BatteryList.push({
@@ -1649,6 +1659,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 3, 6, 9 ==================
@@ -1658,18 +1669,6 @@ List.push({
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GDS_001",
-  Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "UCLA_LONELINESS_001",
-  Instructions: "Default",
-  IconName: "Loneliness",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1683,6 +1682,18 @@ List.push({
   Instructions: "Default",
   IconName: "PAES",
 });
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
 
 BatteryList.push({
   index: 82,
@@ -1695,6 +1706,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEK 10 ==================
@@ -1704,6 +1716,18 @@ List.push({
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortWeekly_001",
+  Instructions: "Default",
+  IconName: "PANAS, weekly",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PAES",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1729,18 +1753,6 @@ List.push({
   Instructions: "Default",
   IconName: "Loneliness",
 });
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortWeekly_001",
-  Instructions: "Default",
-  IconName: "PANAS, weekly",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PAES_001",
-  Instructions: "Default",
-  IconName: "PAES",
-});
 BatteryList.push({
   index: 85,
   name: "Music Motion: Post Week 10",
@@ -1752,6 +1764,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1839,6 +1852,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1854,6 +1868,7 @@ BatteryList.push({index: 71234,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 
@@ -2146,7 +2161,8 @@ List.push({
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Neural Cognitive Mapping Lab",
-		Language:'EN',
+		Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
@@ -2196,7 +2212,8 @@ List.push({
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Neural Cognitive Mapping Lab",
-		Language:'EN',
+		Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
@@ -2234,7 +2251,8 @@ List.push({
 		description: '',
 		TaskList: List,
 		BatteryInstructions: "Neural Cognitive Mapping Lab",
-		Language:'FR',
+    Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
@@ -2257,6 +2275,7 @@ List.push({
 		TaskList: List,
 		BatteryInstructions: "Neural Cognitive Mapping Lab",
 		Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
@@ -2277,6 +2296,7 @@ List.push({
 		TaskList: List,
 		BatteryInstructions: "Neural Cognitive Mapping Lab",
 		Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],

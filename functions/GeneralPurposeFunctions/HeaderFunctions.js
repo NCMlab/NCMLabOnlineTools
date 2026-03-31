@@ -55,7 +55,9 @@ function UpdateHeader() {
                 x = document.getElementById('LanguageSelectPulldown')
                 console.log(x)
                             
-                var array = jatos.studySessionData.LanguagesToShow
+                var array = jatos.studySessionData.LanguagesToShow  
+                console.log(jatos.studySessionData)
+                console.log(array)
                 for (var i = 0; i < array.length; i++) {
                     var option = document.createElement("option");
                     option.value = array[i];
