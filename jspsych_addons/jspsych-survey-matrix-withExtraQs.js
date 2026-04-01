@@ -359,15 +359,19 @@ function ModifyOnChange(input)
                 var row = eTable.insertRow(eRow.rowIndex + 1)
                 row.classList.add("matrixRow"); //
                 var cell1 = row.insertCell(0)
-                var cell2 = row.insertCell(1)
-                var cell3 = row.insertCell(2)
+                cell1.colSpan = "2"
+                //var cell2 = row.insertCell(1)
+                // cell2.innerHTML = "ASD"
+                // console.log(cell1)
+                // var cell3 = row.insertCell(2)
+                // cell3.textContent = 'DSS'
                 console.log(row)
                 
                 var Str = ''
                 //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
-                Str += '<div class="div-extraMatrixQuestion" id = "'+row_id+'"><input type="radio" class="extraMatrixQuestion" name="'+row_id+'">'
+                Str += '<div class="div-extraMatrixQuestion" id = "'+row_id+'"><input type="radio" class="extraMatrixQuestion sd-item__decorator" name="'+row_id+'">'
                 Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'01">'+inputOptionSplit[0]+"</label>"
-                Str += '</input><input type="radio" class="extraMatrixQuestion" name="'+row_id+'">'
+                Str += '</input><input type="radio" class="extraMatrixQuestion sd-item__decorator" name="'+row_id+'">'
                 Str += '</input>'
                 Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'02">'+inputOptionSplit[1]+"</label>"
                 Str += '</div>'
@@ -428,7 +432,7 @@ function InternalValidateForm(form) {
 
         console.log(labels)
         console.log("There are # rows: "+NRows)
-        for ( var i = 0; i < NRows-2; i++ ) {
+        for ( var i = 0; i < NRows-1; i++ ) {
             console.log(i)
             console.log(labels[i])
             rowPrompts.push(labels[i].innerHTML)
@@ -436,16 +440,17 @@ function InternalValidateForm(form) {
         for ( var i = 1; i < NRows-1; i++ ) {
             rowNames.push(elmts[i].id)
         }
-
+        console.log(rowNames)
         // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 0; i < NRows-2; i++ ) {
+        for ( var i = 0; i < NRows-1; i++ ) {
             // Reset the background colors 
             //document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
+            console.log("ROW: "+i)
             var SelectionMadeInRow = false
             // cycle over columns
             for ( var j = 0; j < NCols-1; j++ ) {
                 // check to see if a selection was made in this row 
-                
+                console.log("COL: "+j)
                 if ( form[rowNames[i]][j].checked ) {
                     SelectionMadeInRow = true
                     SelectionMade = j
