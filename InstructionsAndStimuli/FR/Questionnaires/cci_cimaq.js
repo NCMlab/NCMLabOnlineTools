@@ -30,7 +30,7 @@ var survey_JSON = {
       className: "parq-matrix",
       isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
       rows: [
-        { value: "cci02", text: "Infarctus du myocarde" },
+        /*{ value: "cci02", text: "Infarctus du myocarde" },
         { value: "cci03", text: "Insuffisance cardiaque congestive" },
         { value: "cci04", text: "Maladie vasculaire périphérique " },
         { value: "cci05", text: "Maladie cérébrovasculaire" },
@@ -41,7 +41,7 @@ var survey_JSON = {
         { value: "cci10", text: "Maladie du foie", options: option010},
         { value: "cci11", text: "Diabète" , options: option011},
         { value: "cci12", text: "Hémiplégie" },
-        { value: "cci13", text: "Maladie rénale modérée ou sévère" },
+        { value: "cci13", text: "Maladie rénale modérée ou sévère" },*/
         { value: "cci14", text: "Tumeur solide" , options: option014},
         { value: "cci15", text: "Leucémie" },
         { value: "cci16", text: "Lymphome" },

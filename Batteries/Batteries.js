@@ -2138,7 +2138,7 @@ List.push({
 });
 
 List.push({
-  Task: "Matrix Questionnaire",
+  Task: "Matrix Questionnaire ExtraQ",
   Parameters: "CCICIMAQ_001",
   Instructions: "Default",
   IconName: "CCI",
@@ -2304,7 +2304,30 @@ List.push({
     shortName: '',
 	})
 
+// =========== CCI QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CCICIMAQ_001",
+  Instructions: "Default",
+  IconName: "CCI",
+});
+	BatteryList.push({index: 98711, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
 
   
-
   
+
+  98711

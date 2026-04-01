@@ -432,15 +432,16 @@ function InternalValidateForm(form) {
 
         console.log(labels)
         console.log("There are # rows: "+NRows)
-        for ( var i = 0; i < NRows-1; i++ ) {
+        for ( var i = 0; i < NRows; i++ ) {
             console.log(i)
             console.log(labels[i])
             rowPrompts.push(labels[i].innerHTML)
         }
-        for ( var i = 1; i < NRows-1; i++ ) {
+        for ( var i = 0; i < NRows; i++ ) {
             rowNames.push(elmts[i].id)
         }
         console.log(rowNames)
+
         // cycle over rows, start from the second column, thereby ignoring the row labels
         for ( var i = 0; i < NRows-1; i++ ) {
             // Reset the background colors 
@@ -451,6 +452,7 @@ function InternalValidateForm(form) {
             for ( var j = 0; j < NCols-1; j++ ) {
                 // check to see if a selection was made in this row 
                 console.log("COL: "+j)
+                console
                 if ( form[rowNames[i]][j].checked ) {
                     SelectionMadeInRow = true
                     SelectionMade = j
