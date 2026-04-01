@@ -212,8 +212,10 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             {
                 var this_question_data = {}
                 const currentRow = rows[k]
+                console.log(currentRow)
                 // is there a row lable?
                 var rowLabels = rows[k].getElementsByClassName('item_label')
+                console.log(rowLabels)
                 if (rowLabels.length > 0 )
                 { 
                     // Regular question
@@ -358,12 +360,14 @@ function ModifyOnChange(input)
                 console.log("YES YES YES")
                 var row = eTable.insertRow(eRow.rowIndex + 1)
                 row.classList.add("matrixRow"); //
+                row.id = row_id
                 var cell1 = row.insertCell(0)
                 cell1.colSpan = "2"
-                //var cell2 = row.insertCell(1)
+                
+
                 // cell2.innerHTML = "ASD"
                 // console.log(cell1)
-                // var cell3 = row.insertCell(2)
+                 
                 // cell3.textContent = 'DSS'
                 console.log(row)
                 
@@ -413,46 +417,52 @@ function InternalValidateForm(form) {
     var CheckIfValid = true 
     if ( (form.getAttribute('class') == 'Required') || (form.getAttribute('class') == 'Suggested') )
     {
-        console.log("This form is required")
-    
-        
+        // console.log("This form is required")
         // get the row names
         elmts = document.getElementsByTagName("tr");
         // how many columns
         cols = document.getElementsByTagName("th")
         
         NCols = cols.length
-        console.log("Ncols: "+NCols)
+        // console.log("Ncols: "+NCols)
         // make a list of row names
         var rowNames = []
         var rowPrompts = []
-        labels = document.getElementsByClassName('item_label')
+        
         // how many rows
-        NRows = labels.length;
+        //NRows = labels.length;
 
-        console.log(labels)
-        console.log("There are # rows: "+NRows)
-        for ( var i = 0; i < NRows; i++ ) {
-            console.log(i)
-            console.log(labels[i])
-            rowPrompts.push(labels[i].innerHTML)
+        for ( var i = 1; i < elmts.length-1; i++ ) {
+            // console.log("ROW NUMBER: "+i)
+            // console.log(elmts[i])
+            labels = elmts[i].getElementsByClassName('item_label')
+            if ( labels.length == 0 )
+            {
+                // There is no prompt since this is an extra row
+                labels = elmts[i].id
+                rowPrompts.push(labels)
+            }
+            else { rowPrompts.push(labels[0].innerHTML)}
+            
         }
-        for ( var i = 0; i < NRows; i++ ) {
+        for ( var i = 1; i < elmts.length-1; i++ ) {
             rowNames.push(elmts[i].id)
         }
-        console.log(rowNames)
-
+        // console.log(rowNames)
+        // console.log(rowPrompts)
+        // console.log(form[rowNames[3]])
         // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 0; i < NRows-1; i++ ) {
+        for ( var i = 0; i < elmts.length-2; i++ ) {
             // Reset the background colors 
             //document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
-            console.log("ROW: "+i)
+
+            // Check to see if this is an EXTRA row
             var SelectionMadeInRow = false
             // cycle over columns
+            // console.log(rowNames[i])
             for ( var j = 0; j < NCols-1; j++ ) {
                 // check to see if a selection was made in this row 
-                console.log("COL: "+j)
-                console
+                
                 if ( form[rowNames[i]][j].checked ) {
                     SelectionMadeInRow = true
                     SelectionMade = j

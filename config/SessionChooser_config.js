@@ -220,7 +220,7 @@ List.push({name: 'xQVieActive',     battery: '98703', row: 2, BitIndex: 4, Phase
 List.push({name: 'xADL-PD',         battery: '98704', row: 2, BitIndex: 5, Phase: "Eligibility"})
 List.push({name: 'CompExp',         battery: '98705', row: 2, BitIndex: 6, Phase: "Eligibility"})
 List.push({name: 'xVideoExp',        battery: '98706', row: 2, BitIndex: 7, Phase: "Eligibility"})
-List.push({name: 'xCCI',         battery: '98711', row: 4, BitIndex: 8, Phase: "Health"})
+List.push({name: 'CCI',         battery: '98711', row: 4, BitIndex: 8, Phase: "Health"})
 List.push({name: 'xFRS',         battery: '98712', row: 4, BitIndex: 9, Phase: "Health"})
 List.push({name: 'xWH',          battery: '98713', row: 4, BitIndex: 10, Phase: "Health"})
 List.push({name: 'GAI',         battery: '98714', row: 4, BitIndex: 11, Phase: "Health"})
