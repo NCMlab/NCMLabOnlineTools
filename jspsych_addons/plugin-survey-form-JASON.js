@@ -483,7 +483,7 @@ console.log(trial)
                 Str += '<button type="button" class="jspsych-btn submit-btn" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
                 Str += '<button type="button" class="jspsych-btn submit-btn" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
                 // Submit is its own button, but uses the same functionality as the next button
-                Str += '<button type="button" class="jspsych-btn" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
                 Str += '</div>'
             Str += '</div>'
             Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
@@ -692,18 +692,26 @@ function showTab(n) {
             {
                 console.log("VALIDATING A TAG BOX")
                 var name = y[i].id
+                var TagElm = document.getElementById(y[i].id)
                 var selectedValues = getCheckedValuesFromFieldSet(name)
                 console.log(selectedValues)
                 // This allows for the validity checker to work
                 y[i].value = selectedValues
-                if ( y[i].value == undefined )
+                console.log(y[i].value)
+                console.log(selectedValues.length)
+                //if ( y[i].value == undefined )
+                if ( selectedValues.length == 0 )
                 {
                     console.log("TAG BOX IS INVALID")
                     y[i].className += " invalid";
+                    
+                    TagElm.closest('div').style.backgroundColor = '#FFC0CB'
+                    console.log(TagElm)
                     valid = false
                 }
                 else { 
                    y[i].classList.remove('invalid') 
+                    TagElm.closest('div').style.backgroundColor = '#FFFFFF'
                 }
                 console.log(y[i])
                 console.log(y[i].classList)

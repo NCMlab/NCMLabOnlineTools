@@ -76,14 +76,14 @@
             // Load the parameters as stored in the session data
             //parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
             
-            parameters = 'CESAM_001'
+            parameters = 'MusicDemographics_001SHORT'
             pseudoSwitch(parameters)
             //console.log(parameters)
             parameters.Language = LANG
             // prepare the questionnaire file name
             var dirName = "LocalTest"
             fileName = dirName+parameters.questionnaire[0]+".js"
-            fileName = "../InstructionsAndStimuli/EN/Questionnaires/cesam.js"
+            fileName = "../InstructionsAndStimuli/EN/Questionnaires/IntakeForm_MusicJSONSHORT.js"
             // load the questionaire JS file
             
             loadScriptSequentially(fileName)

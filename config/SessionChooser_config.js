@@ -213,7 +213,7 @@ parameters001.push({index: 3,
 // ===================================
 var parameters009 = []
 var List = []
-List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1, Phase: "Eligibility"})
+//List.push({name: 'Enter Name', battery: '72', row: 1, BitIndex: 1, Phase: "Eligibility"})
 List.push({name: 'xDemographics',   battery: '98701', row: 2, BitIndex: 2, Phase: "Eligibility"})
 List.push({name: 'xMRI Safety',     battery: '98702', row: 2, BitIndex: 3, Phase: "Eligibility"})
 List.push({name: 'xQVieActive',     battery: '98703', row: 2, BitIndex: 4, Phase: "Eligibility"})

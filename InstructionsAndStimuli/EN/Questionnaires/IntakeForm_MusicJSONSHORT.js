@@ -5,36 +5,226 @@ var shortTitle = 'Music Intake'
 // All questions use the same direction so enter that single flag as an array of size 1
 
 const json = {
-  showProgressBar: "bot",
+  showProgressBar: "top",
    progressBarType: "pages",
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   showTitle: true,
    pages: 
    [
-    /*{
-      name: "Name",
-      title: "Name",
-      
-      elements: [
+
+    {      
+      name: "Demographic Information",
+      title: "Demographic Information",
+       elements: [
+     
         {
-          type: 'comment',
-          title: 'Enter first name and initial of last name',
-          name: 'Name',
-          required: true,
-          textbox_rows: 1,
-        }
-      ]
-    },*/
-    
-     /*{
+          type: 'dropdown',
+          title: "Gender", 
+          name: 'dem001_gender', 
+          choices: [
+              {value: 1, text:'Male'},
+              {value: 2, text:'Female'},
+            ],
+          showOtherItem: true,
+          isRequired: true
+        },
+/*        {
+          name: "dem002_age",
+          type: "input",
+          title: "Age",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 150,
+          defaultValue: '',
+          isRequired: true,
+        },
+        {
+          name: "dem003_height",
+          type: "input",
+          title: "Height (cm or inches)",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 300,
+          defaultValue: '',
+          isRequired: true
+        },
+        {
+          type: 'dropdown',
+          title: "What units did you use for height?", 
+          name: 'dem003p1_heightU', 
+          choices: [
+                      {value: 1, text: 'Inches'},
+                      {value: 2, text: 'Centimeters'},
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+       {
+          name: "dem004_weight",
+          type: "input",
+          title: "Weight (kg or lbs)",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 1000,
+          defaultValue: '',
+          isRequired: true
+        },
+        {
+          type: 'dropdown',
+          title: "What units did you use for weight?", 
+          name: 'dem004p1_weightU', 
+          choices: [
+                      {value: 1, text: 'Pounds'},
+                      {value: 2, text: 'Kilograms'},
+              ],
+          showOtherItem: false,
+          isRequired: true
+        },
+        {
+          type: 'dropdown',
+          title: "What is the highest level of education you have completed?", 
+          name: 'dem005_edu', 
+          choices: [
+                      {value: 1, text: 'No formal education'},
+                      {value: 2, text: 'High school diploma or equivalent'},
+                      {value: 3, text: 'College or Trade school'},
+                      {value: 4, text: 'Bachelor\’s degree'},
+                      {value: 5, text: 'Master\’s degree'},
+                      {value: 6, text: 'Doctoral degree'}
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },
+        {
+          type: 'dropdown',
+          title: "What is your employment status?", 
+          name: 'dem006_employ', 
+          choices: [
+                      {value: 1, text: 'Employed full-time'},
+                      {value: 2, text: 'Employed part-time'},
+                      {value: 3, text: 'Retired'},
+                      {value: 4, text: 'Unemployed'}
+              ],
+          showOtherItem: true,
+          isRequired: true
+        },
+        {
+          type: 'textarea',
+          title: 'What type of work do you do (or did you do before retirement)?',
+          name: 'dem007_work',
+          rows: 2,
+          isRequired: true,
+          autoGrow: true
+        },          
+        {
+          type: 'dropdown',
+          title: "Do you live alone or with others?", 
+          name: 'dem007_live', 
+          choices: [
+                  {value: 1, text: 'Alone'},
+                  {value: 2, text: 'With spouse / partner'},
+                  {value: 3, text: 'With family members'},
+                  {value: 4, text: 'With caregivers'},
+                  {value: 5, text: 'In assisted living facility'}
+              ],
+          showOtherItem: true,
+          isRequired: true,
+        },
+        {
+          type: 'textarea',
+          title: 'What is your primary language(s)?',
+          name: 'dem008_lang',
+          isRequired: true,
+        },
+        {
+          name: "dem009_langProb",
+          type: "dropdown",
+          title: "Are there any language or communication challenges you have?",
+          choices: [
+              {value: 1, text: "Yes"}, 
+              {value: 2, text: "No"}
+              ],
+          isRequired: true,
+        }, 
+        {
+          name: "dem009p1_langProbDesc",
+          type: "textarea",
+          title: "Please specify your language or communication challenges.",
+          visibleIf: "{dem009_langProb} == Yes",
+          maxLength: 500
+        },*/
+// ======== DOES THIS QUESTION GET RECORDED????? ============
+        {
+          type: "tagbox",
+          isRequired: true,
+          choices: [
+              'European (e.g., white)',
+              'Asian (e.g., Chinese, Japanese, Korean, South-east Asian)',
+              'East Indian, Pakistani',
+              'African-American/Black/Caribbean',
+              'Hispanic',
+              'Middle-Eastern',
+              'First Nations, Métis, Inuit',
+              ],
+          name: 'dem010_ethn',
+          title: "What is your ethnic background (you may select more than one)",
+          "description": "Please select all that apply."
+        },
+/*        {
+          type: 'dropdown',
+          title: 'What is your marital status?',
+          choices: 
+          [   
+              {value: 1, text: 'Single'},
+              {value: 2, text: 'Married'},
+              {value: 3, text: 'Divorced'},
+              {value: 4, text: 'Widowed'}
+          ],
+          name: 'dem011_marital',
+          showOtherItem: true,                    
+          isRequired: true,
+        },
+        
+       {
+          type: 'dropdown',
+          title: 'Which of the following statements best describes the extent to which your needs are met currently?',
+          choices: 
+          [
+            {value: 1, text: "Food, housing, clothing and medical needs are met - you can afford luxuries/there is money left over at the end of the month"},
+            {value: 2, text: "Food, housing, clothing and medical needs are met - you can not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) are not met"},
+            {value: 4, text: "Two or more of the basic needs are not met"},
+            {value: 99, text: "I don't know"}
+          ],
+          name: 'dem012_currNeed',
+          isRequired: true,
+       },
+       {
+          type: 'dropdown',
+          title: 'Which of the following statements best describes the extent to which your needs were met during the majority of your adult life?',
+          choices: 
+          [
+            {value: 1, text: "Food, housing, clothing and medical needs were met - you could afford luxuries"},
+            {value: 2, text: "Food, housing, clothing and medical needs were met - you could not afford luxuries"},
+            {value: 3, text: "One of the basic needs (food, housing, clothing or medical care) were not met"},
+            {value: 4, text: "Two or more of the basic needs were not met"},
+            {value: 99, text: "I don't know"}
+          ],
+          name: 'dem013_pastNeed',
+          isRequired: true,
+       }*/
+       ]
+     },
+     {
        name: "Medical Information",
        title: "Medical Information",
        
        elements: [
         {
           type: 'dropdown',
-          name: 'CognDeclineDiagnosis',
+          name: 'dem014_CogDecDiag',
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
@@ -49,32 +239,32 @@ const json = {
       {
         type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
-        name: 'DementiaTime',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        name: 'dem014p1_DemTime',
+        visibleIf: "{dem014_CogDecDiag} == Yes",
         isRequired: true,
         textbox_rows: 3,
       },
       {
         type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
-        name: 'DementiaType',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
+        name: 'dem014p2_DemType',
+        visibleIf: "{dem014_CogDecDiag} == Yes",
         required: false,
         textbox_rows: 3,
       },
       {
-        type: 'dropdown',
-        title: 'Do you have hearing loss?',
-        choices: 
-        [
-            {value: 1, text: "Yes"},
-            {value: 2, text: "No"},
-            {value: 3, text: "Not sure"}
-        ],
-        name: 'HearingLoss',
-        isRequired: true,
-        //add_other_option: true,                    
-        //other_option_text: 'Yes, how long ago were you diagnosed?',
+          type: 'dropdown',
+          title: 'Do you have hearing loss?',
+          choices: 
+          [
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
+              {value: 3, text: "Not sure"}
+          ],
+          name: 'dem015_HearLoss',
+          isRequired: true,
+          //add_other_option: true,                    
+          //other_option_text: 'Yes, how long ago were you diagnosed?',
       },
       {
         type: 'dropdown',
@@ -85,8 +275,8 @@ const json = {
             {value: 2, text: "Unilateral"},
             {value: 3, text: "Not sure"}
         ],
-        name: 'HearingLossType',
-        visibleIf: "{HearingLoss} == Yes",
+        name: 'dem015p1_HearType',
+        visibleIf: "{dem015_HearLoss} == Yes",
         required: false,
         //add_other_option: true,                    
         //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -101,8 +291,8 @@ const json = {
           {value: 3, text: "Severe"},
           {value: 99, text: "Not sure"}
       ],
-      visibleIf: "{HearingLoss} == Yes",
-      name: 'HearingLossLevel',
+      visibleIf: "{dem015_HearLoss} == Yes",
+      name: 'dem015p2_HearLevel',
       required: false,
       //add_other_option: true,                    
       //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -115,133 +305,125 @@ const json = {
           {value: 1, text: "Yes"},
           {value: 2, text: "No"}
       ],
-      name: 'OtherHealthIssues',
+      name: 'dem016_OtherHealth',
       isRequired: true,
     },
     {
       type: 'textarea',
       title: 'Please explain your health issues.',
-      name: 'OtherHealthIssuesDesc',
-      visibleIf: "{OtherHealthIssues} == Yes",
+      name: 'dem016p1_OtherHealthDesc',
+      visibleIf: "{dem016_OtherHealth} == Yes",
       required: false,
-      textbox_rows: 3,
+      rows: 3,
     },
        ]
-     },*/
-     {
+     },
+     
+/*     {
        name: "Habits",
        title: "Habits",
        
        elements: [
-                {
-          type: 'dropdown',
-          name: 'CognDeclineDiagnosis',
-          title: 'Have you received a diagnosis of dementia or cognitive decline?',
-          choices: 
-          [
-              {value: 1, text: "Yes"},
-              {value: 2, text: "No"},
-              {value: 3, text: "Not sure"}
-          ],
-          isRequired: true,
-          //add_other_option: true,                    
-          //other_option_text: 'Yes, how long ago were you diagnosed?',
-      },
-      {
-        type: 'textarea',
-        title: 'If yes, how long ago were you diagnosed?',
-        name: 'DementiaTime',
-        visibleIf: "{CognDeclineDiagnosis} == Yes",
-        isRequired: true,
-        textbox_rows: 3,
-      },
         {
           type: 'dropdown',
           title: 'How many days do you exercise per week?',
           choices: 
           [
               {value: 1, text: "0"}, 
-              {value: 2, text: "1"},
-              {value: 3, text: "2"},
-              {value: 4, text: "3"},
-              {value: 5, text: "4"},
-              {value: 6, text: "5"},
-              {value: 7, text: "6"},
-              {value: 8, text: "7"}
+              {value: 1, text: "1"},
+              {value: 1, text: "2"},
+              {value: 1, text: "3"},
+              {value: 1, text: "4"},
+              {value: 1, text: "5"},
+              {value: 1, text: "6"},
+              {value: 1, text: "7"}
           ],
-          name: 'ExerciseFrequency',
+          name: 'dem017_ExeFreq',
           isRequired: true,
-        },/*
+        },
         {
           type: 'dropdown',
           title: 'Have you exercised in the last 24 hours?',
           choices: 
           [
-            {value: 1, text: "Yes"},
+            {value: 1, text:"Yes"},
             {value: 2, text: "No"}
           ],
-          name: 'Exercise24',
+          name: 'dem018_Exe24',
           isRequired: true,
-        },*/
-        /*{
+        },
+        {
           type: 'dropdown',
-          name: 'Smoke',
           title: 'Do you smoke, or have you smoked in the past?',
           choices: 
           [
-            {value: 1, text: "Currently Smoke"},
-            {value: 2, text: "Have not smoked for more than 1 year"},
-            {value: 3, text: "Never"},
-            {value: 4, text: "Unknown"}
+              {value: 1, text: "Currently smoke"},
+              {value: 2, text: "Have not smoked for more than 1 year"},
+              {value: 3, text: "Never"},
+              {value: 4, text: "Unknown"}
           ],
+          name: 'dem019_Smoke',
           isRequired: true,
         },
-
-
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          name: 'SmokeStart',
-          visibleIf: "{Smoke} == Currently Smoke; {Smoke} == Have not smoked for more than 1 year",
-          //visibleIf: "{Smoke} == CurrentlySmoke",          
+          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
-          choicesMax: 2025,
-          //choicesStep: 1,
+          choicesMax: 2024,
+          //choicesStep:1,
+          name: 'dem019p1_SmokeStart',
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
-          title: 'What year did you stop smoking?',
-          name: 'SmokeStop',
-          visibleIf: "{Smoke} == Have not smoked for more than 1 year",
-          //visibleIf: "{Smoke} == CurrentlySmoke",          
+          title: 'What year did you quit smoking?',
+          visibleIf: "{dem019_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
-          choicesMax: 2025,
-          //choicesStep: 1,
+          choicesMax: 2024,
+          //choicesStep:1,
+          name: 'dem019p2_SmokeQuit',
           isRequired: true,
           input_type: "number"
         },
-       
+        {
+          type: 'dropdown',
+          title: 'Approximately how many packs per day?',
+          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
+          choices: [
+            {value: 0, text: "0"},
+            {value: 0.5, text: "0.5"},
+            {value: 1, text: "1"},
+            {value: 2, text: "2"},
+            {value: 3, text: "3"},
+            {value: 4, text: "4"},
+            {value: 5, text: "5"},
+            {value: 6, text: "6"},
+            {value: 7, text: ">6"}
+          ],
+          name: 'dem019p3_SmokePacks',
+          isRequired: true,
+          input_type: "number"
+        },
         {
           type: 'dropdown',
           title: 'Alcohol consumption',
           choices: 
           [
-              {value: 1, text: "None"},
-              {value: 2, text: "Less than 2 drinks per day"},
-              {value: 3, text: "2 to 4 drinks per day"},
-              {value: 4, text: "More than 4 drinks per day"}
+              {value: 0, text: "None"},
+              {value: 1, text: "Less than 2 drinks per day"},
+              {value: 2, text: "2 to 4 drinks per day"},
+              {value: 3, text: "More than 4 drinks per day"}
           ],
-          name: 'Alcohol',
+          name: 'dem020_Alc',
           isRequired: true,
         },
-      */
+      
   
        ]
-     },
-     
-     {
+     },*/
+/*     {
       name: "Music Experience",
       title: "Music Experience",
       
@@ -254,16 +436,14 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'MusicMovement',
+            name: 'dem021_MusCls',
             isRequired: true,
           },
-        ]}
-          /*
           {
             type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
-            name: 'MusicExperience',
-            visibleIf: "{MusicMovement} == Yes",
+            name: 'dem021p1_MusClsExp',
+            visibleIf: "{dem021_MusCls} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -272,17 +452,17 @@ const json = {
             title: 'Have you participated in group music classes before?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
-            name: 'GroupMusic',
+            name: 'dem022_MusGrp',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
-            name: 'GroupMusicExperience',
-            visibleIf: "{GroupMusic} == Yes",
+            name: 'dem022p1_MusGrpExp',
+            visibleIf: "{dem022_MusGrp} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -291,17 +471,16 @@ const json = {
             title: 'Have you been in a choir before?',
             choices: 
             [
-              "Yes",
-              "No",
-            ],
-            name: 'Choir',
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},            ],
+            name: 'dem023_MusChr',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
-            name: 'ChoirExperience',
-            visibleIf: "{Choir} == Yes",
+            name: 'dem023p1_MusChrExp',
+            visibleIf: "{dem023_MusChr} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -310,33 +489,33 @@ const json = {
             title: 'Do you have any other music experience (i.e. have you played a musical instrument at any time in your life on a regular basis)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
-            name: 'OtherMusic',
+            name: 'dem024_MusOth',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Which instrument(s) did you play?',
-            name: 'WhichInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p1_MusOthInst',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
-            name: 'AgeStartInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p2_MusOthInsAge',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
-            name: 'YearsPlayInstrument',
-            visibleIf: "{OtherMusic} == Yes",
+            name: 'dem024p2_MusOthInsYrs',
+            visibleIf: "{dem024_MusOth} == Yes",
             required: false,
             textbox_rows: 3,
           },
@@ -345,15 +524,15 @@ const json = {
             title: 'Do you still play the instrument(s)?',
             choices: 
             [
-              "Yes",
-              "No",
+              {value: 1, text: "Yes"},
+              {value: 2, text: "No"},
             ],
-            visibleIf: "{OtherMusic} == Yes",
-            name: 'StillPlayInstrument',
+            visibleIf: "{dem024_MusOth} == Yes",
+            name: 'dem024_MusOthCur',
             required: true,
           },
       ]
-    },
+    },*/
     {
       name: "Additional Comments",
       title: "Additional Comments",
@@ -362,13 +541,14 @@ const json = {
         {
           type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
-          name: 'AdditionalComments',
+          name: 'dem025_Comments',
           required: false,
           textbox_rows: 5,
         }
       ]
-    }
-      */
+    } // end of this page
+      
+      
    ]
  }
 
