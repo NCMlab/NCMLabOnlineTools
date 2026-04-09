@@ -389,6 +389,24 @@ var ADLPI_001 = {
     ShowThankYou: false,
     ShowInstructions: false,  
 }
+var FRS_001 = { 
+    questionnaire: ['FRS'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
+var SocioMontreal_001 = { 
+    questionnaire: ['Sociodemographic'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,  
+}
 add('PANAS_TEST', function(){ parameters = PANAS_TEST});
 add('AES_001', function(){ parameters = AES_001});
 add('EQ5D_001', function(){ parameters = EQ5D_001});
@@ -430,3 +448,5 @@ add('CompExp02_001', function(){ parameters = CompExp02_001});
 add('CompExp03_001', function(){ parameters = CompExp03_001});
 add('CompExp04_001', function(){ parameters = CompExp04_001});
 add('ADLPI_001', function(){ parameters = ADLPI_001});
+add('FRS_001', function(){ parameters = FRS_001});
+add('SocioMontreal_001', function(){ parameters = SocioMontreal_001});

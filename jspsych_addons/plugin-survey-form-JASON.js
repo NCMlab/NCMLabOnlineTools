@@ -477,7 +477,10 @@ console.log(trial)
                             {  Str += ' max="'+thisQuestion.choicesMax+'" ' }
                             if (Object.hasOwn(thisQuestion,'choicesMin'))
                             {  Str += ' min="'+thisQuestion.choicesMin+'" ' }
-                            Str += ' id="'+thisQuestion.name+'"></input></p>'
+                            Str += ' id="'+thisQuestion.name+'"></input>'
+                            if ( thisQuestion.hasOwnProperty("units") )
+                            { Str += '<div class="surveyFormResponseLabel">'+thisQuestion.units+'</div>' }
+                            Str += '</p>'
                             Str += '</div><hr>'
 
                         default:

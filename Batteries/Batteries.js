@@ -2325,7 +2325,7 @@ List.push({
     Redirect: '',
     shortName: '',
 	})
-// =========== CCI QUESTIONNAIRE ================
+// =========== ADL PI QUESTIONNAIRE ================
 var List = []
 List.push({
   Task: "Form Questionnaire",
@@ -2334,6 +2334,48 @@ List.push({
   IconName: "ADLPI",
 });
 	BatteryList.push({index: 98704, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== FRS QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "FRS_001",
+  Instructions: "Default",
+  IconName: "FRS",
+});
+	BatteryList.push({index: 98712, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== Sociodemographic Montreal QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "SocioMontreal_001",
+  Instructions: "Default",
+  IconName: "Sociodemographic",
+});
+	BatteryList.push({index: 98701, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,

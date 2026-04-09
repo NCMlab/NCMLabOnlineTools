@@ -22,7 +22,6 @@ const json = {
         {
             type: 'description',
             text: [
-                {text: "JASON"},
                 {text: "<b>SVP, lisez les instructions puis, complétez le questionnaire:</b>"},
                 {text: "Nous voudrions savoir comment se déroulent certaines de vos activités de la vie de tous les jours depuis les 2 dernières semaines."},
                 {text:" SVP, lisez chaque question sur ces activités. Puis, faites un crochet « √ » dans la case qui représente le mieux la façon avec laquelle vous réalisez ces activités."},

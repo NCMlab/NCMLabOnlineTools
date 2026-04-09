@@ -12,7 +12,7 @@
     <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
     <!--<link rel="stylesheet" type='text/css' href='../css/SurveyMatrix.css'>-->
     <!--<link rel="stylesheet" type='text/css' href='../css/StuffFromCoPilot_SurveyMatrix.css'>-->
-    <link rel="stylesheet" type='text/css' href='../css/SurveyForm.css'>
+    <link rel="stylesheet" type='text/css' href='../css/SurveyFormCoPilotCleaned.css'>
     <link rel="stylesheet" type='text/css' href='../css/ButtonsHeaderBody.css'>
     
 
@@ -82,7 +82,7 @@
             
 
             parameters =  { 
-                questionnaire: ['adl_pi'], 
+                questionnaire: ['Sociodemographic'], 
                 criteria: [],
                 variable: [],
                 AskForNotes: false,
@@ -96,7 +96,7 @@
             // prepare the questionnaire file name
             //var dirName = "LocalTest"
             //fileName = dirName+parameters.questionnaire[0]+".js"
-            fileName = "../InstructionsAndStimuli/FR/Questionnaires/adl_pi.js"
+            fileName = "../InstructionsAndStimuli/FR/Questionnaires/Sociodemographic.js"
             // load the questionaire JS file
             loadScriptSequentially(fileName)
             .then(() =>

@@ -1,0 +1,137 @@
+/* =========================
+   CSS VARIABLES (MOBILE FIRST)
+   ========================= */
+
+:root {
+  --font: "Open Sans", "Arial", sans-serif;
+  --fontSize: clamp(1rem, 2.5vw, 1.5rem);
+  --smallFontSize: clamp(0.8rem, 2vw, 1rem);
+}
+
+/* =========================
+   TEXT & HEADINGS
+   ========================= */
+
+h1 {
+  font-family: var(--font);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.surveyFormTitle,
+.surveyFormInstructions,
+.surveyFormLabel,
+.surveyFormResponseLabel,
+.surveyFormSubTitle,
+.surveyFormDescription,
+.questionTitle,
+.item_label {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  line-height: 1.4;
+}
+
+/* instructions & descriptions */
+.surveyFormInstructions {
+  padding: 1.5rem 1rem 1rem;
+  display: block;
+  text-align: center;
+}
+
+.surveyFormDescription {
+  padding: 0.5rem 0;
+}
+
+.surveyFormSubTitle {
+  color: red;
+}
+
+/* =========================
+   FORM LAYOUT
+   ========================= */
+
+.surveyFormDiv,
+.LabelDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.surveyFormLabel,
+.tableSubmitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+input,
+.textInput,
+.textbox,
+.numberInput,
+.surveyFormSelect {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  padding: 0.6rem;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #aaaaaa;
+}
+
+/* textareas */
+.textbox {
+  padding: 10px;
+}
+
+.textboxWithBorder {
+  border: 2px solid blue;
+}
+
+/* invalid inputs */
+input.invalid,
+.invalid {
+  background-color: #ffdddd;
+}
+
+/* disabled inputs */
+input:disabled,
+input[type=checkbox]:disabled {
+  background-color: #c4a5a5;
+}
+
+/* =========================
+   RADIO BUTTONS & CHECKBOXES
+   ========================= */
+
+.sd-item__decorator {
+  width: clamp(32px, 6vw, 40px);
+  height: clamp(32px, 6vw, 40px);
+  border-radius: 5%;
+}
+
+.radioGroupWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.radiogroup_alignment {
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+input[type=checkbox] {
+  transform: scale(1.6);
+  margin: 0.5rem;
+}
+
+.checkbox:disabled {
+  background-color: #555;
+  color: #ed3030;
+  cursor: not-allowed;
