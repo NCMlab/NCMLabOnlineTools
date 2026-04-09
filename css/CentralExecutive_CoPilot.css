@@ -1,0 +1,325 @@
+/* =========================================================
+   ROOT VARIABLES
+   ========================================================= */
+
+:root {
+  --font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sjs-transition-duration: 150ms;
+
+  --sd-rating-bad-color: var(--sjs-special-red, #e60a3e);
+  --sd-rating-normal-color: var(--sjs-special-yellow, #ff9814);
+  --sd-rating-good-color: var(--sjs-special-green, #19b394);
+
+  --sd-rating-bad-color-light: rgba(230, 10, 62, 0.1);
+  --sd-rating-normal-color-light: rgba(255, 152, 20, 0.1);
+  --sd-rating-good-color-light: rgba(25, 179, 148, 0.1);
+
+  --sliderHeight: 50vh;
+  --thumbHeight: 20px;
+  --sliderShiftFromRightOfCell: 90px;
+}
+
+/* =========================================================
+   PAGE & BODY LAYOUT
+   ========================================================= */
+
+html {
+  background-color: rgb(213, 241, 255);
+}
+
+body {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  margin: 0;
+  padding-bottom: 100px;
+  position: relative;
+  left: 0vw;
+  top: 0vh;
+  width: 98vw;
+  height: 98vh;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px #888888;
+  overflow: auto;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1 {
+  line-height: 1;
+}
+
+p.Instructions {
+  text-align: center;
+  font-size: 4vmin;
+  line-height: 1.6;
+}
+
+p.Fixation,
+p.AntCue,
+p.ANTArrowSize {
+  text-align: center;
+  color: black;
+}
+
+.sv-string-viewer,
+.sd-html {
+  font-size: 1.2em;
+  font-family: var(--font-family);
+}
+
+/* =========================================================
+   jsPsych CONTAINERS
+   ========================================================= */
+
+.jspsych-display-element {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  font-family: var(--font-family);
+  font-size: 18px;
+  line-height: 1.6em;
+}
+
+.jspsych-content-wrapper {
+  display: flex;
+  flex: 1 1 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.jspsych-content {
+  max-width: 85%;
+  margin: auto;
+  text-align: center;
+  font-size: 4vmin;
+  line-height: 1.6;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.jspsych-btn,
+.button,
+.sd-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin: 4px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.1s ease-in-out;
+}
+
+.sd-btn {
+  color: rgb(56, 97, 56);
+}
+
+.sd-btn:hover {
+  background-color: rgb(9, 48, 9);
+  color: white;
+}
+
+.sd-btn:last-child {
+  background-color: rgb(56, 97, 56);
+  color: white;
+}
+
+/* =========================================================
+   HEADER CONTROLS
+   ========================================================= */
+
+#header-btn-group {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+#header-btn-group > button,
+#LanguageSelectPulldown {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  padding: 0.8vw 1.5vw;
+  font-size: 1.2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#language-wrapper {
+  display: flex;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+/* =========================================================
+   SURVEYJS CORE / QUESTIONS
+   ========================================================= */
+
+.sd-element,
+.sd-question,
+.sd-row__question {
+  padding-left: 0px;
+}
+
+.sd-element--with-frame {
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.sd-question--table {
+  overflow-x: auto;
+}
+
+.sd-item__decorator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(3 * 8px);
+  height: calc(3 * 8px);
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+/* =========================================================
+   MATRIX / TABLES
+   ========================================================= */
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.sd-table {
+  width: 100%;
+  border-spacing: 0;
+  white-space: normal;
+}
+
+.sd-table__cell {
+  text-align: center;
+  padding: 8px;
+}
+
+.sd-table__cell--header {
+  font-weight: 600;
+  padding: 2px;
+}
+
+.sd-table__cell--row-text {
+  text-align: start;
+  font-weight: 600;
+}
+
+/* PANAS / wide matrix tweak */
+.sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
+  min-width: calc(10 * 8px);
+}
+
+/* =========================================================
+   TASK-SPECIFIC (EXPERIMENT FACTORY / DMS / CARD SORT)
+   ========================================================= */
+
+.square {
+  float: left;
+  width: 30%;
+  height: 30%;
+  margin: 1.66%;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.submit_button,
+.clear_button {
+  width: 47%;
+  height: 25%;
+  margin: 1.5%;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.numbers {
+  font-weight: 900;
+  font-size: 4vh;
+  text-align: center;
+}
+
+.CardSortTable,
+.PatternCompTable {
+  max-width: 600px;
+  background-color: white;
+  table-layout: fixed;
+  white-space: nowrap;
+}
+
+.CardSortImage,
+.PatternCompImage {
+  max-width: 100%;
+}
+
+.vdmsTableDiv {
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  position: absolute;
+  inset: 0;
+}
+
+/* =========================================================
+   UTILITIES & STATES
+   ========================================================= */
+
+.completedCell {
+  background-color: lightgreen;
+}
+
+.REDCross {
+  color: red;
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.modal.open {
+  opacity: 1;
+  z-index: 999;
+}
+
+.modal-inner {
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px 25px;
+  width: 540px;
+  text-align: center;
+}
