@@ -7,201 +7,274 @@ var shortTitle = 'IPAQ'
 const json = {
   showProgressBar: "aboveHeader",
    progressBarType: "pages",
-   name: 'ipaq',
+   name: 'adlpi',
    progressBarShowPageNumbers: true,
    progressBarShowPageTitles: true,
    showCompletedPage: false,
+   showTitle: true,
+   title: "JASON JASON",
    pages: [
      {
       
       name: "Information démographique",
-      title: "Information démographique",
+      title: "Inventaire des Activités de la vie quotidienne (AVQ) de I'ADCS",
        elements: [
+        {
+            type: 'description',
+            text: [
+                {text: "JASON"},
+                {text: "<b>SVP, lisez les instructions puis, complétez le questionnaire:</b>"},
+                {text: "Nous voudrions savoir comment se déroulent certaines de vos activités de la vie de tous les jours depuis les 2 dernières semaines."},
+                {text:" SVP, lisez chaque question sur ces activités. Puis, faites un crochet « √ » dans la case qui représente le mieux la façon avec laquelle vous réalisez ces activités."},
+                {text: "<b> Cochez seulement une case pour chaque question.</b>"},
+                {text: "Voici les choix que vous aurez :" },
+                {text: "<ul><li>Si vous avez effectué l'activité sans difficulté ou changement par rapport à votre fonctionnement habituel, cochez « √ » la case indiquant <b>aussi bien que d'habitude, sans difficulté</b>. </li><li>Si vous avez éprouvé un peu plus de difficultés qu'à l'habitude lors de la réalisation de cette activité, cochez « √ » la case indiquant <b>avec un peu de difficultés</b>. Par exemple, l'activité peu avoir pris plus de temps que d'habitude ou vous avez parfois fait quelques erreurs dans sa réalisation. </li><li>Si vous avez éprouvé beaucoup de difficultés lors de la réalisation de cette activité, cochez « √ » la case indiquant <b>avec beaucoup de difficultés</b>. Par exemple, vous pouvez avoir besoin de l'aide d'une autre personne puisque vous avez beaucoup de difficultés à effectuez cette activité. </li><li>Si vous n'avez pas du tout réalisé cette activité lors des 2 dernières semaines, cochez «√» la case indiquant <b>vous n'avez pas réalisé cette activité</b>.</ul>"},
+                {text: "<b>Voici un exemple vous indiquant comment répondre à une question:</b>"},
+                {text: "Question: Avez-vous appris de nouvelles habiletés durant les 2 dernières semaines ? <ul><li>aussi bien que d'habitude, sans difficulté</li><li>avec un peu de difficultés</li><li>avec beaucoup de difficultés</li><li>vous n'avez pas effectué cette activité"},
+                {text:"Imaginons que vous avez appris comment utiliser un nouveau four à micro-ondes lors des 2 dernières semaines. Cet apprentissage a été un peu plus difficile pour vous que d'habitude. Donc, vous cocheriez « √ » la case indiquant <b>avec un peu de difficultés</b>, tel que montré dans l'exemple précédent. "},
+                {text: "Maintenant, SVP complétez toutes les questions qui suivent. Cochez « √ » la case qui décrit comment vous avez réalisé chaque activité au cours des 2 dernières semaines. "}
+            ]
+        },
+        {
+            type: "radiogroup",
+            name: "adlpi01",
+            title: "Question1. Au cours des 2 dernières semaines, avez-vous fait vos comptes, payé des factures ou utilisé un guichet automatique pour retirer ou déposer de l'argent?",
+            choices: [
+                {value: 1, text: "aussi bien que d'habitude, sans difficulté "},
+                {value: 2, text: "avec un peu de difficultés"},
+                {value: 3, text: "avec beaucoup de difficultés"},
+                {value: 4, text: "vous n'avez pas réalisé cette activité"}
+                ],
+            isRequired: true,
+            showClearButton: true
+        },
+        {
+            type: "radiogroup",
+            name: "adlpi02",
+            title: "Question 2. Au cours des 2 dernières semaines, avez-vous conduit une voiture sans vous perdre ou avez-vous utilisé les transports en commun ou tout autre moyen de transport pour vous rendre partout où vous désiriez aller ?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté" },
+                { value: 2, text: "avec un peu de difficultés" },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi03",
+            title: "Question 3. Au cours des 2 dernières semaines, avez-vous utilisé un appareil ménager (par exemple, un micro-ondes, un lave vaisselle, un ordinateur ou un aspirateur) ou avez-vous effectué des réparations dans votre domicile?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté" },
+                { value: 2, text: "avec un peu de difficultés" },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi04",
+            title: "Question 4. Au cours des 2 dernières semaines, avez-vous fait la lessive ?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté" },
+                { value: 2, text: "avec un peu de difficultés" },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi05",
+            title: "Question 5. Au cours des 2 dernières semaines, avez-vous choisi et payé des articles lors de votre magasinage ?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté" },
+                { value: 2, text: "avec un peu de difficultés" },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi06",
+            title: "Question 6. Au cours des 2 dernières semaines, avez-vous préparé des repas ou des collations?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté" },
+                { value: 2, text: "avec un peu de difficultés" },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi07",
+            title: "Question 7. Au cours des 2 dernières semaines, de quelle manière vous êtes-vous souvenus de dates ou d'heures importantes, telles que des rendez-vous ou des rencontres ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi08",
+            title: "Question 8. Au cours des 2 dernières semaines, avez-vous généralement trouvé vos objets personnels à la maison ; par exemple des clés, des lunettes, un portefeuille ou des livres ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi09",
+            title: "Question 9. Au cours des 2 dernières semaines, de quelle manière avez-vous été en mesure d'écrire des choses de façon à ce que d'autres personnes puissent vous comprendre (ex. : lettres, notes détaillées ou listes) ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi10",
+            title: "Question 10. Au cours des 2 dernières semaines, de quelle manière avez-vous été en mesure de suivre des programmes de télévision ou des films et de vous souvenir des détails de l'histoire ?",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi11",
+            title: "Question 11. Au cours des 2 dernières semaines, de quelle manière avez-vous été en mesure de parler et de vous souvenir des événements récents que vous avez entendus ou lus à quelque part ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi12",
+            title: "Question 12. Au cours des 2 dernières semaines, de quelle manière avez-vous été en mesure de faire des appels téléphoniques, incluant la recherche de numéros de téléphone ou l'utilisation de l'assistance annuaire au besoin ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi13",
+            title: "Question 13. Au cours des 2 dernières semaines, avez-vous pris vos médicaments régulièrement ; incluant les médicaments sous prescriptions et sans ordonnance ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi14",
+            title: "Question 14. Au cours des 2 dernières semaines avez-vous planifié et organisé des activités complexes pour vous ou pour des groupes de personnes, par ex : voyages, faire ses courses, participation à des activités de groupe (telles que des services religieux), ou effectué vos loisirs et passe-temps ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+            type: "radiogroup",
+            name: "adlpi15",
+            title: "Question 15. Au cours des 2 dernières semaines, avez-vous complété des activités complexes telles que des loisirs et passe-temps, par ex : jouer aux cartes, lire des livres, jardiner ? ",
+            choices: [
+                { value: 1, text: "aussi bien que d'habitude, sans difficulté " },
+                { value: 2, text: "avec un peu de difficultés " },
+                { value: 3, text: "avec beaucoup de difficultés" },
+                { value: 4, text: "vous n'avez pas réalisé cette activité" }
+            ],
+            isRequired: true
+            },
+            {
+                type: "description",
+                text: [
+                    {text: "<b>Maintenant, nous allons vous poser quelques questions sur votre vision, votre ouïe et votre mobilité:</b>"},
+                    {text: "Cochez« √ » la case correspondant à « Oui » ou « Non » pour chaque question."},
+                ]
+            },
+            {
+                type: "radiogroup",
+                name: "adlpi16",
+                title: "Pouvez-vous voir assez bien pour être en mesure de reconnaître un(e) ami(e) qui se trouve de l'autre côté de la rue, en portant, au besoin, des lunettes ou des verres de contact ?",
+                choices: [
+                    { value: 1, text: "Oui" },
+                    { value: 2, text: "Non" },
+                ],
+                isRequired: true
+            },
+                        {
+                type: "radiogroup",
+                name: "adlpi17",
+                title: "Pouvez-vous généralement entendre et comprendre lorsqu'une autre personne parle avec un ton de voix normal?",
+                choices: [
+                    { value: 1, text: "Oui" },
+                    { value: 2, text: "Non" },
+                ],
+                isRequired: true
+            },
+                        {
+                type: "radiogroup",
+                name: "adlpi18",
+                title: "Pouvez-vous monter et descendre une série de marches (un étage) sans l'aide d'une autre personne ?",
+                choices: [
+                    { value: 1, text: "Oui" },
+                    { value: 2, text: "Non" },
+                ],
+                isRequired: true
+            },
+                        {
+                type: "radiogroup",
+                name: "adlpi19",
+                title: "Pouvez-vous marcher deux pâtés de maisons ou plus loin sans aide ?",
+                choices: [
+                    { value: 1, text: "Oui" },
+                    { value: 2, text: "Non" },
+                ],
+                isRequired: true
+            },
+                        {
+                type: "radiogroup",
+                name: "adlpi20",
+                title: "Pouvez-vous faire des travaux ménagers, tels que laver les vitres, les murs, le plancher ou sortir les vidanges sans aide?",
+                choices: [
+                    { value: 1, text: "Oui" },
+                    { value: 2, text: "Non" },
+                ],
+                isRequired: true
+            }
 
-        {
-            name: 'textbox00',
-            type: 'textbox',
-            text: "Nous nous intéressons aux différents types d’activités physiques que vous faites dans votre vie quotidienne. Les questions suivantes portent sur le temps que vous avez passé à être actif physiquement au cours des 7 derniers jours. Répondez à chacune de ces questions même si vous ne vous considérez pas comme une personne active. Les questions concernent les activités physiques que vous faites au travail, dans votre maison ou votre jardin, pour vos déplacements, et pendant votre temps libre.",
-            box: false
-        },
-        {
-            name: 'textbox01',
-            type: 'textbox',
-            text: "Pensez à toutes les activités <b>intenses</b> que vous avez faites au cours des <u><b>7 derniers jours</b></u>. Les activités physiques intenses font référence aux activités qui vous demandent un effort physique important et vous font respirer beaucoup plus difficilement que normalement. Pensez seulement aux activités que vous avez effectuées pendant au moins <b>10 minutes d’affilées</b>.",
-            box: true
-        },
-
-        {
-            name: "ipaq01",
-            type: "multiInput",
-            title: "Au cours des  <b> 7 derniers jours</b>, combien y a-t-il eu de jours au cours desquels vous avez fait des activités physiques <b>intenses</b> comme porter des charges lourdes, bêcher, faire du VTT ou jouer au football ? ",
-             
-            inputs: [
-                {
-                    id: "ipaq01jour",
-                    label:  "jours par semaine",
-                    type: "number",
-                    min: 0,
-                    max: 7,
-                },
-                
-            ],
-            checkbox: true,
-            checkboxLabel: "Je n\’ai pas eu d\’activité physique intense",
-            checkboxId: "noneCheck01" 
-        },
-        {
-            name: "ipaq02",
-            type: "multiInput",
-            title: "Au total, combien de temps avez-vous passé à faire des activités intenses au cours des 7 derniers jours ?",
-            inputs: [
-                {
-                    id: "ipaq02heure",
-                    label:  "heures(s) par jour",
-                    type: "number",
-                    min: 0,
-                    max: 24,
-                },
-                {
-                    id: "ipaq02min",
-                    label:  "minutes par jour",
-                    type: "number",
-                    min: 0,
-                    max: 59,
-                }
-            ],
-            visibleIf: "ipaq01",
-            checkbox: true,
-            checkboxLabel: "Je ne sais pas",
-            checkboxId: "noneCheck02" 
-        },
-        {
-            name: 'textbox01',
-            type: 'textbox',
-            text: "Pensez à toutes les activités <b>modérées</b> que vous avez faites au cours des 7 derniers jours. Les activités physiques modérées font référence aux activités qui vous demandent un effort physique modéré et vous font respirer un peu plus difficilement que normalement. Pensez seulement aux activités que vous avez effectuées pendant au moins 10 minutes d’affilée.",
-            box: true,
-        },
-        {
-            name: "ipaq03",
-            type: "multiInput",
-            title: "Au cours des 7 derniers jours, combien y a-t-il eu de jours au cours desquels vous avez fait des activités physiques modérées comme porter des charges légères, passer l’aspirateur, faire du vélo tranquillement, ou jouer au volley- ball ? Ne pas inclure la marche.",
-            inputs: [
-                {
-                    id: "ipaq03jours",
-                    label:  "jours par semaine",
-                    type: "number",
-                    min: 0,
-                    max: 7,
-                },
-            ],
-            checkbox: true,
-            checkboxLabel: "Je n\’ai pas eu d\’activité physique modérée",
-            checkboxId: "noneCheck03" 
-        },
-        {
-            name: "ipaq04",
-            type: "multiInput",
-            title: "Au total, combien de temps avez-vous passé à faire des activités modérées au cours des 7 derniers jours?",
-            inputs: [
-                {
-                    id: "ipaq04heure",
-                    label:  "heures(s) par jour",
-                    type: "number",
-                    min: 0,
-                    max: 24,
-                },
-                {
-                    id: "ipaq05min",
-                    label:  "minutes par jour",
-                    type: "number",
-                    min: 0,
-                    max: 59,
-                }
-            ],
-            visibleIf: 'ipaq03',
-            checkbox: true,
-            checkboxLabel: "Je ne sais pas",
-            checkboxId: "noneCheck02" 
-        },
-        {
-            name: 'textbox04',
-            type: 'textbox',
-            text: "Pensez au temps que vous avez passé à marcher au cours des 7 derniers jours. Cela comprend la marche au travail et à la maison, la marche pour vous rendre d’un lieu à un autre, et tout autre type de marche que vous auriez pu faire pendant votre temps libre pour la détente, le sport ou les loisirs.",
-            box: true,
-        },
-        {
-            name: "ipaq05",
-            type: "multiInput",
-            title: "Au cours des <b>7 derniers jours</b>, combien y a-t-il eu de jours au cours desquels vous avez <b>marché</b> pendant <b>au moins 10 minutes d’affilée.</b>",
-            inputs: [
-                {
-                    id: "ipaq05jours",
-                    label:  "jours par semaine",
-                    type: "number",
-                    min: 0,
-                    max: 7,
-                },
-            ],
-            checkbox: true,
-            checkboxLabel: "Je n’ai pas fait de marche",
-            checkboxId: "noneCheck05" 
-        },
-        {
-            name: "ipaq06",
-            type: "multiInput",
-            title: "Au total, combien de temps avez-vous passé à <b>marcher</b> au cours des <b>7 derniers jours</b>?",
-            inputs: [
-                {
-                    id: "ipaq06heure",
-                    label:  "heures(s) par jour",
-                    type: "number",
-                    min: 0,
-                    max: 24,
-                },
-                {
-                    id: "ipaq06min",
-                    label:  "minutes par jour",
-                    type: "number",
-                    min: 0,
-                    max: 59,
-                }
-            ],
-            visibleIf: 'ipaq05',
-            checkbox: true,
-            checkboxLabel: "Je ne sais pas",
-            checkboxId: "noneCheck02" 
-        },
-           {
-            name: 'textbox05',
-            type: 'textbox',
-            text: "La dernière question porte sur le temps que vous avez passé assis pendant un jour de semaine, au cours des 7 derniers jours. Cela comprend le temps passé assis au travail, à la maison, lorsque vous étudiez et pendant votre temps libre. Il peut s’agir par exemple du temps passé assis à un bureau, chez des amis, à lire, à être assis ou allongé pour regarder la télévision.",
-            box: true,
-        },
-        {
-            name: "ipaq07",
-            type: "multiInput",
-            title: "Au cours des <b>7 derniers jours</b>, combien de temps avez-vous passé assis pendant un <b>jour de semaine</b>?",
-            inputs: [
-                {
-                    id: "ipaq07jours",
-                    label:  "jours par semaine",
-                    type: "number",
-                    min: 0,
-                    max: 7,
-                },
-                {
-                    id: "ipaq07min",
-                    label:  "minutes par jour",
-                    type: "number",
-                    min: 0,
-                    max: 59,
-                }
-            ],
-            checkbox: true,
-            checkboxLabel: "Je ne sais pas",
-            checkboxId: "noneCheck07" 
-        },
-    ]
+        ]   
     }
    ]
 }   

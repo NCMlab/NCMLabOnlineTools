@@ -45,6 +45,14 @@ h1 {
   text-align: center;
   display: inline-flex; align-items : center; justify-content: center
 }
+
+.surveyFormDescription{
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .surveyFormSubTitle{
   color: red ;
 }

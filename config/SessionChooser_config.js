@@ -217,7 +217,7 @@ var List = []
 List.push({name: 'xDemographics',   battery: '98701', row: 2, BitIndex: 2, Phase: "Eligibility"})
 List.push({name: 'xMRI Safety',     battery: '98702', row: 2, BitIndex: 3, Phase: "Eligibility"})
 List.push({name: 'xQVieActive',     battery: '98703', row: 2, BitIndex: 4, Phase: "Eligibility"})
-List.push({name: 'xADL-PD',         battery: '98704', row: 2, BitIndex: 5, Phase: "Eligibility"})
+List.push({name: 'ADL-PD',         battery: '98704', row: 2, BitIndex: 5, Phase: "Eligibility"})
 List.push({name: 'CompExp',         battery: '98705', row: 2, BitIndex: 6, Phase: "Eligibility"})
 List.push({name: 'xVideoExp',        battery: '98706', row: 2, BitIndex: 7, Phase: "Eligibility"})
 List.push({name: 'CCI',         battery: '98711', row: 4, BitIndex: 8, Phase: "Health"})

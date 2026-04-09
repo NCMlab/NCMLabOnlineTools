@@ -2325,9 +2325,29 @@ List.push({
     Redirect: '',
     shortName: '',
 	})
-
+// =========== CCI QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "ADLPI_001",
+  Instructions: "Default",
+  IconName: "ADLPI",
+});
+	BatteryList.push({index: 98704, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   
   
 
-  98711
+  

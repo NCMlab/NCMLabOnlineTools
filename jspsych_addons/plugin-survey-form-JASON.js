@@ -246,6 +246,19 @@ console.log(trial)
                     // process dropdown questions
                     //
                     switch(thisQuestion.type) {
+                        case 'description':
+                            console.log(" -------- DESCRIPTION --------- ")
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDescription">'
+                            for ( var k = 0; k < thisQuestion.text.length; k++ )
+                            { 
+                                Str += '<div>'
+                                Str += thisQuestion.text[k].text 
+                                Str += '</div>'
+                            }
+                            Str += '</div>'
+                            Str += '<hr>'
+                            break;
                         case 'tagbox':
                             console.log("====== TAG BOX TAG BOX TAG BOX ==========")
                             Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
