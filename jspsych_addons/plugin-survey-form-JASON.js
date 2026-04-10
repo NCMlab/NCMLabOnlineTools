@@ -266,9 +266,10 @@ console.log(trial)
                                 Str += '<legend class="surveyFormLabel">'+thisQuestion.title+'</legend>'
                                 for ( var k = 0; k < thisQuestion.choices.length; k++ )
                                 { 
-                                    Str += '<div>'
+                                    Str += '<div class="TagBoxColumn">'
+                                    Str += '<div class="TagBoxInputWrapper">'
                                     Str += '<input class="TagBoxInput" type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
-                                    Str += '<label for="coding" class="surveyFormLabel">'+thisQuestion.choices[k]+'</label>'
+                                    Str += '<label for="coding" class="tagBoxLabel">'+thisQuestion.choices[k]+'</label>'
                                     Str += '</div>'
                                 }                                
                             Str += '</fieldset>'

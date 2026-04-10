@@ -57,6 +57,15 @@ h1 {
   align-items: center;
   width: 100%;
 }
+.TagBoxInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between checkbox and label */
+}
+
+.TagBoxInput {
+  margin: 0; /* prevents browser default spacing issues */
+}
 
 .surveyFormLabel,
 .tableSubmitButton {
