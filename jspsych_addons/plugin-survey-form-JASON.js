@@ -259,7 +259,29 @@ console.log(trial)
                             Str += '</div>'
                             Str += '<hr>'
                             break;
+
                         case 'tagbox':
+                            Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" id="'
+                                Str += 'div-'+thisQuestion.name+'">'
+                                Str += '<fieldset class="FormInput TagBox" id="'+thisQuestion.name+'">'
+                                    Str += '<legend class="surveyFormLabel">'
+                                        Str += thisQuestion.title
+                                    Str += '</legend>'
+                                    Str += '<div class="TagBoxColumn">'
+                                        for ( var k = 0; k < thisQuestion.choices.length; k++ )
+                                        { 
+                                            Str += '<label class="TagBoxInputWrapper">'
+                                            Str += '<input class="TagBoxInput" type="checkbox"'
+                                            Str += 'name="choice-'+thisQuestion.name+'[]"'
+                                            Str += ' value="'+thisQuestion.choices[k]+'"/>'
+                                            Str += '<span class="tagBoxLabel">'+thisQuestion.choices[k]+'</span>'
+                                            Str += '</label>'
+                                        }
+                                    Str += '</div>'
+                                Str += '</fieldset>'
+                            Str += '</div>'
+                            break
+                        case 'tagboxS':
                             console.log("====== TAG BOX TAG BOX TAG BOX ==========")
                             Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str+='<fieldset class="FormInput TagBox '+VisibleIfConditionsPages[page][i].visibleClass+'" id = "'+thisQuestion.name+'">'

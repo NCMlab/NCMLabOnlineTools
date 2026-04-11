@@ -19,7 +19,7 @@ const json = {
       title: "Demographic Information",
        elements: [
      
-        /*{
+        {
           type: 'dropdown',
           title: "Gender", 
           name: 'dem001_gender', 
@@ -154,7 +154,7 @@ const json = {
           title: "Please specify your language or communication challenges.",
           visibleIf: "{dem009_langProb} == Yes",
           maxLength: 500
-        },*/
+        },
 // ======== DOES THIS QUESTION GET RECORDED????? ============
         {
           type: "tagbox",
