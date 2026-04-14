@@ -1,0 +1,146 @@
+
+/* ADDING HEADERBUTTON CSS ALSO
+
+/* ===== COPIED FROM NCMLabGeneral.css ======= */
+/* ===== Base Layout ===== */
+
+html {
+  background-color: rgb(213, 241, 255);
+}
+
+body {
+  background-color: #ffffff;
+  width: 95vw;
+  height: 98vh;
+  margin: 1vh auto;
+  padding: 0 2vw;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px #888;
+  overflow: hidden;
+}
+
+/* ===== Buttons (Global) ===== */
+
+.jspsych-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000;
+
+  margin: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.1s ease-in-out;
+}
+
+.jspsych-btn:hover {
+  transform: translateY(-1px);
+}
+
+.submit-btn {
+  background-color: #386138;
+  color: #ffffff;
+}
+
+/* ===== Header Button Group ===== */
+
+
+#header-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;        /* smaller gap = fewer rows */
+  width: 100%;
+  margin-top: 1rem;
+  padding-bottom: clamp(1rem, 2vh, 1.5rem);
+}
+
+
+/*
+  Responsive scaling:
+  - flex: 1 allows equal-width buttons
+  - min-width prevents buttons from becoming unusably small
+  - clamp() scales font with viewport
+*/
+#header-btn-group > button {
+  flex: 0 1 auto;                /* do NOT stretch full width */
+  white-space: nowrap;           /* prevent internal wrapping */
+  
+  min-width: 80px;              /* smaller buttons */
+  max-width: fit-content;
+
+  padding: 0.5em 1em;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+
+  background-color: #f8f9fa;
+  color: #000;
+
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease-in-out;
+}
+
+/* ===== Progress Bar ===== */
+
+#jspsych-progressbar-container {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 8px 0;
+
+  text-align: center;
+  color: #555;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #dedede;
+}
+
+#jspsych-progressbar-container span {
+  font-size: 0.875rem;
+  padding-right: 14px;
+}
+
+#jspsych-progressbar-outer {
+  width: 50%;
+  height: 14px;
+  margin: auto;
+
+  background-color: #eee;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#jspsych-progressbar-inner {
+  height: 100%;
+  width: 0%;
+  background-color: #aaa;
+}
+
+/* ===== Language Selector ===== */
+
+#LanguageSelectPulldown {
+  padding: 0.6em 1.2em;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+
+  background-color: #f8f9fa;
+  color: #000;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease-in-out;
+}
