@@ -57,19 +57,19 @@ thead {
 .tableFixedHead {
   width: 100%;
   overflow: auto;
-  height: 65vh; /* Mobile default */
+  height: 65dvh; /* Mobile default */
 }
 
 /* Orientation tweaks */
 @media (orientation: portrait) {
   .tableFixedHead {
-    height: 75vh;
+    height: 75dvh;
   }
 }
 
 @media (orientation: landscape) {
   .tableFixedHead {
-    height: 60vh;
+    height: 60dvh;
   }
 }
 
@@ -210,7 +210,7 @@ th {
   }
 
   .tableFixedHead {
-    height: 65vh;
+    height: 65dvh;
   }
 }
 
@@ -224,7 +224,7 @@ th {
   }
 
   .tableFixedHead {
-    height: 60vh;
+    height: 60dvh;
   }
 
   td,
@@ -256,3 +256,14 @@ body,
   padding-bottom: 0.5rem;
 }
 
+
+.submit-btn {
+  position: sticky;
+  left: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+
+  margin-left: 0.75rem;
+  margin-bottom: 0.5rem;
+
+  z-index: 50;
+}
