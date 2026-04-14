@@ -11,7 +11,7 @@ html {
 body {
   background-color: #ffffff;
   width: 95vw;
-  height: 98vh;
+  height: 95vh;
   margin: 1vh auto;
   padding: 0 2vw;
 
@@ -143,4 +143,9 @@ body {
 
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.25s ease-in-out;
+}
+
+
+.is-hidden {
+  display: none !important;
 }
