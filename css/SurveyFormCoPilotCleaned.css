@@ -203,3 +203,23 @@ input[type=checkbox] {
 }
 
 
+
+/* =========================
+   iOS SAFE-AREA FIX (Submit Button Hidden)
+   ========================= */
+
+/* Add breathing room so bottom UI doesn't overlap content */
+
+body,
+.surveyFormDiv {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+}
+
+.tableSubmitButton {
+  margin-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+}
+
+.submit-btn {
+  margin-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+}
+
