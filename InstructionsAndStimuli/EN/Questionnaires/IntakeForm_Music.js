@@ -19,7 +19,7 @@ const json = {
       title: "Demographic Information",
        elements: [
      
-        {
+       /* {
           type: 'dropdown',
           title: "Gender", 
           name: 'dem001_gender', 
@@ -154,7 +154,7 @@ const json = {
           title: "Please specify your language or communication challenges.",
           visibleIf: "{dem009_langProb} == Yes",
           maxLength: 500
-        },
+        },*/
 // ======== DOES THIS QUESTION GET RECORDED????? ============
         {
           type: "tagbox",
@@ -170,9 +170,10 @@ const json = {
               ],
           name: 'dem010_ethn',
           title: "What is your ethnic background (you may select more than one)",
-          "description": "Please select all that apply."
+          "description": "Please select all that apply.",
+          isRequired: true
         },
-        {
+/*        {
           type: 'dropdown',
           title: 'What is your marital status?',
           choices: 
@@ -214,7 +215,7 @@ const json = {
           ],
           name: 'dem013_pastNeed',
           isRequired: true,
-       }
+       }*/
        ]
      },
      {

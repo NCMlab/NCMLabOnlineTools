@@ -192,6 +192,10 @@ input[type=checkbox] {
   word-break: normal;
   overflow-wrap: break-word;
   text-align: left;
+  font-family: var(--font);
+  font-size: var(--FontSize);
+
+
 }
 
 /* =========================

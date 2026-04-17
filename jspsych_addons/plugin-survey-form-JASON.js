@@ -669,17 +669,17 @@ function showTab(n) {
         fixStepIndicator(n)
     }
 
-    function getCheckedValuesFromFieldSet(name) {
-        // Select all checked checkboxes with the supplied name 
-        const checkboxes = document.querySelectorAll('input[name="choice-'+ name +'"]:checked');
-        // Create an array to store the values
-        const selectedValues = [];        
-        // Iterate over the selected checkboxes and push their values into the array
-        checkboxes.forEach((checkbox) => {
-           selectedValues.push(checkbox.value);
-        });
-        return selectedValues
-    }
+
+function getCheckedValuesFromFieldSet(fieldsetId) {
+    const fieldset = document.getElementById(fieldsetId);
+    if (!fieldset) return [];
+
+    return Array.from(
+        fieldset.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+}
+
+
     function validateForm() {
         console.log(">>>> VALIDATING FORM <<<<")
         // This function deals with validation of the form fields
@@ -731,7 +731,9 @@ function showTab(n) {
             {
                 console.log("VALIDATING A TAG BOX")
                 var name = y[i].id
+                console.log(name)
                 var TagElm = document.getElementById(y[i].id)
+                console.log(TagElm)
                 var selectedValues = getCheckedValuesFromFieldSet(name)
                 console.log(selectedValues)
                 // This allows for the validity checker to work
