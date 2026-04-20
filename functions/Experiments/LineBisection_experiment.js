@@ -119,7 +119,6 @@ var SendData = {
     var data = jsPsych.data.get()
     Results = LineBisection_Scoring(data)
     console.log(Results)
-    console.log(BREAK)
     jsPsych.finishTrial(Results)
     
   }
