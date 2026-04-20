@@ -3,21 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <meta name="description" content="jsPsych Line Bisection">
+    <meta name="description" content="jsPsych Stroop Word">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Line Bisection</title>
-    <link rel="stylesheet" href="jspsych/dist/jspsych.css">
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
     <link rel="stylesheet" type='text/css' href='css/survey.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
- <script src="ImportedModules/jquery-3.6.4.js"></script> 
-    <script> 
-      // use jquery to load up the header button html content 
-      // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-      $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html");}); 
-      $(function(){$("#footerText").load("functions/GeneralPurposeFunctions/FooterButtons.html");});
-    </script> 
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
 
   </head>    
   <body>
@@ -26,60 +20,82 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-fullscreen.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
-    <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
-    
+    <script src="jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych_addons/plugin-sketchpad-linebisection.js"></script>
+
     <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="config/General_Setup.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/LineBisection_Instructions.js"></script>
-    
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="config/LineBisection_Setup.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
-<script>
-      var LineBisection_parameters = 'empty'
+    <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
+     <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
+    <script>
+      
+
+
+
       var parameters = 'empty'
       jatos.onLoad(() => {
-        console.log(jatos.studySessionData)
-        BatteryHtmlID = jatos.studySessionData.BatteryHtmlID 
-        UsageManagerHtmlID = jatos.studySessionData.UsageManagerHtmlID
-        if (typeof BatteryHtmlID === 'undefined') {
-          parameters = 'LineBisection_Default'
+        
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
+          parameters = 'RAVLT_Manual_Immediate'
           InstructionsToUse = 'Default'
         }
         else {
           parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
           InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
         }
-        pseudoSwitch(parameters)
-        console.log(LineBisection_parameters)
-        LANG = jatos.studySessionData.Language
+        console.log(parameters)
+        pseudoSwitch(parameters)      
+        console.log(parameters)
+        //parameters = WordRecall_parameters
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+        // Load language specific instructions
         console.log(LANG)
-        pseudoSwitch(LANG+'_LineBisection_Instructions_'+InstructionsToUse)
+        pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
+        // Load language specific stimuli
+        console.log(LANG+"_"+parameters.WordList)
+        // load up the word lists
+        pseudoSwitch(LANG+"_"+parameters.WordList)
+        
+        console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
-        console.log(LabelNames)
         console.log(Instructions)
       })
     </script> 
+
     <script src="functions/Experiments/LineBisection_experiment.js"></script>
     <script src="functions/Scoring/LineBisection_Scoring.js"></script>
-
-    <div id="jspsych-target"  style="overflow:flex; height:100%" class='center'></div>
-  </body>
+    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  
+  
   <script>
     var setup = []
-    var TrialCount = 1;
     var jsPsych = initJsPsych({
-        display_element: 'jspsych-target',
-        on_trial_start: function() {
+      display_element: 'jspsych-target',
+      show_progress_bar: true,    
+      auto_update_progress_bar: false,
+      
+      on_trial_start: function() {
         //http://127.0.0.1:9000/publix/fNTRhuguK1x
-    //      console.log(jatos.urlQueryParameters);
+        //console.log(jatos.urlQueryParameters);
         var input = jatos.urlQueryParameters;
-        console.log(TrialCount)
+        //console.log(input.a);
         TrialCount += 1
         // Add jatos info to the data file
         jsPsych.data.addProperties({assignedURLID: input.a});
@@ -87,36 +103,34 @@
         jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
         jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
         jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
-        },
-        on_finish: function() {
-        jatos.submitResultData(jsPsych.data.get().json())
-        if ( SaveLocalFile ) {
-            jsPsych.data.get().localSave('csv','LineBisection_data.csv');
+      },
+      on_finish: function() {
+        if ( jatos.urlQueryParameters.SaveLocal ) {
+          const d = new Date();
+          var StrDate = d.getDate() + "_"+String(Number(d.getMonth())+1)+"_"+d.getFullYear();
+          var StrTime = d.getHours() + "_"+d.getMinutes();
+          var StrDateTime = "_"+StrDate+"__"+StrTime;
+          jsPsych.data.get().localSave('csv',jatos.workerId+StrDateTime+'_WordRecall.csv');
         }    
-        // update session data
-        JATOSSessionData = jatos.studySessionData
-        JATOSSessionData.CurrentIndex += 1
-        jatos.studySessionData = JATOSSessionData
-      // Go back to usage management 
-      whereToGoNext(jatos.studySessionData, JATOSSessionData.CurrentIndex)
 
-        }
+        jatos.submitResultData(jsPsych.data.get().json())
+        .then(() => whereToGoNext(jatos.studySessionData))
+      }
     });
+    jatos.waitSendDataOverlayConfig = { text: "Sending data. Please wait. This may take a minute or two depending on the internet connection." };
     jatos.onLoad(() => {
+
         var JATOSID = jatos.workerId;
         console.log(jatos)
         console.log(JATOSID)
-
         var resultsData = {'name':'JASON'};
         jatos.addJatosIds(resultsData);
         jsPsych.run(timeline);
-        });
+      });
   </script>
-      <div id="footerText"></div>
-      <script>
-        jatos.onLoad(() => {
-          // update the header button labels
-          UpdateHeader()
-        })
-      </script>
+
+  
+
+
+</body>
 </html>

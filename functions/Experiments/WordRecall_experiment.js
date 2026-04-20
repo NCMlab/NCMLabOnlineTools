@@ -199,7 +199,7 @@ var MakeWordListA = {
     // Make a full list the words and thier alternative pronunciations
     FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
     // indices fro the primary word list
-    WordListIndexA = CreateWordListIndex(WordRecallLists.WordListA)
+    WordListIndexA = CreateWordListIndex(WordRecallLists.WordListA, WordRecallLists.WordListOrder)
     // indices for the world list containing the alternatives
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
@@ -209,6 +209,7 @@ var MakeWordListA = {
     AudioFileDictListA = AudioFileListA.map(function(e) {
       return {Word: e}
     })
+    
     // Create an array so the recall procedure can use a timelinevariable
     WordListAForRecall = {
       'WordList': WordRecallLists.WordListA,

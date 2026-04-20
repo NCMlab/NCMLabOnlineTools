@@ -296,6 +296,12 @@ List.push({
   Instructions: "Default",
   IconName: "Recognition",
 });
+List.push({
+  Task: 'Line Bisection', 
+  Parameters: 'LineBisection_001', 
+  Instructions: 'Default', 
+  IconName: 'Line Bisect'})
+
 BatteryList.push({
   index: 9916,
   name: "H-10-23-9755",
@@ -651,7 +657,7 @@ List.push({
   Instructions: "Default",
   IconName: "Fluency, Animals",
 });
-//List.push({Task: 'Line Bisection', Parameters: 'LineBisection_001', Instructions: 'Default', IconName: 'Line Bisect'})
+
 List.push({
   Task: "Verbal DMS",
   Parameters: "vDMS_Adaptive",

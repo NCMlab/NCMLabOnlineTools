@@ -44,6 +44,8 @@ var MakeAllWordsUpperCase = function(WordList) {
 	}
 	return outList
 }
+// TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
+// Work on this so that word lists can be added
 var CreateSimpleIndexList = function(WordList, AltWordList) {
 	// this is used to map matches with alterantive pronunciations back to the
 	// primary spelling of the word
@@ -59,11 +61,19 @@ var CreateSimpleIndexList = function(WordList, AltWordList) {
 	}
 	return SimpleIndexList
 }
-var CreateWordListIndex = function(WordList) {
+var CreateWordListIndex = function(WordList, ProvidedOrder) {
 	var WordListIndex = []
-	for (var i = 0; i < WordList.length; i++) {
-		WordListIndex.push(i)
+	if (typeof ProvidedOrder !== 'undefined') {
+		for (var i = 0; i < ProvidedOrder.length; i++) {
+			WordListIndex.push(ProvidedOrder[i])
+		}
+	} else {
+		for (var i = 0; i < WordList.length; i++) {
+			WordListIndex.push(i)
+		}
 	}
+	console.log(ProvidedOrder)
+	console.log(BREAK)
 	return WordListIndex
 }
 

@@ -5,10 +5,12 @@ var timeline = [];
 var countInstr = 0
 console.log('==============================')
 console.log('CANVAS SIZE')
+console.log(LineBisection_parameters)
 var CanvasHeight
 var CanvasWidth
 var count = 0
 var NLines
+
 
 var enter_fullscreen = {
   type: jsPsychFullscreen,

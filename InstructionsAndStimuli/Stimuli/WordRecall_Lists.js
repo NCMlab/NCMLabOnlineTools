@@ -99,6 +99,7 @@ EN_RAVLT.WordListA = [
 	{'Word':'House'},		// 13
 	{'Word':'River'},		// 14
 	]
+EN_RAVLT.WordListOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 EN_RAVLT.AlternatePronunciationsWordListA = [
 	{'Word':'COLOUR','index':12},
 	{'Word':'KNOWS','index':10},
@@ -309,3 +310,49 @@ EN_FaCE_VerB.AlternatePronunciationsWordListB = []
 EN_FaCE_VerB.NWords = EN_FaCE_VerB.WordListA.length
 add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
 	
+
+
+// ===== CERAD ========================================================================
+// Rey auditory verbal learning test
+var EN_CERAD = {}
+EN_CERAD.WordListA = [
+	{'Word':'Butter'}, 		// 0
+	{'Word':'Arm'}, 	// 1
+	{'Word':'Shore'},		// 2
+	{'Word':'Letter'},		// 3
+	{'Word':'Queen'},		// 4
+	{'Word':'Cabin'},		// 5
+	{'Word':'Pole'},		// 6
+	{'Word':'Ticket'},		// 7
+	{'Word':'Grass'},			// 8 
+	{'Word':'Engine'}		// 9
+]
+EN_CERAD.Trial1_Order = [0,1,2,3,4,5,6,7,8,9]
+EN_CERAD.Trial2_Order = [7,5,0,2,9,1,4,3,6,8]
+EN_CERAD.Trial3_Order = [4,8,1,5,6,2,0,9,7,3]
+
+EN_CERAD.RecognitionWordList = [
+	{'Word':'School',	'Answer':true},
+	{'Word':'Coffee',	'Answer':true},
+	{'Word':'Butter',	'Answer':true},
+	{'Word':'Dollar',	'Answer':true},
+	{'Word':'Arm',		'Answer':true},
+	{'Word':'Shore',	'Answer':true},
+	{'Word':'Five',		'Answer':true},
+	{'Word':'Letter',	'Answer':true},
+	{'Word':'Hotel',	'Answer':true},
+	{'Word':'Mountain',	'Answer':true},
+	{'Word':'Queen',	'Answer':true},
+	{'Word':'Cabin',	'Answer':true},
+	{'Word':'Slipper',	'Answer':true},
+	{'Word':'Pole',		'Answer':true},
+	{'Word':'Village',	'Answer':true},
+	{'Word':'String',	'Answer':true},
+	{'Word':'Ticket',	'Answer':true},
+	{'Word':'Troops',	'Answer':true},
+	{'Word':'Grass',	'Answer':true},
+	{'Word':'Engine',	'Answer':true}
+]
+	
+
+
