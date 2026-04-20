@@ -1,6 +1,12 @@
 function LineBisection_Scoring(data) {
+	Notes = data.filter({trial: 'Notes'})
 	const temp = data.filter({trial : 'trial'}).trials
+	console.log(data)
+	const CanvasSize = data.filter({trial : 'FindCanvasSize'}).trials
+
 	console.log(temp)
+	createAndDownloadPNG(temp[0].strokes, CanvasSize)
+/*
 	// the task is one trial of N lines or Ntrials of one line
 	// the scoring needs to take this into account
 	var Ntrials = temp.length
@@ -87,6 +93,10 @@ function LineBisection_Scoring(data) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 	Results.AllResults['Scoring Notes'] = Instructions.NotesForResultsPage
+	// Recreate the final image
+
+*/
+
 
 
 	// // Find the length of each line
@@ -164,4 +174,86 @@ function CountResponses(array, MissingValue) {
 	array.forEach((v) => (v === MissingValue && count++));
 	var NResponses = array.length - count
 	return NResponses;
+}
+
+function getOffset(points, margin = 20) {
+  let minX = Infinity;
+  let minY = Infinity;
+
+  for (const p of points) {
+    if (typeof p.x !== "number" || typeof p.y !== "number") continue;
+    minX = Math.min(minX, p.x);
+    minY = Math.min(minY, p.y);
+  }
+
+  return {
+    offsetX: minX - margin,
+    offsetY: minY - margin
+  };
+}
+
+
+function createAndDownloadPNG(points, canvasMeta) {
+	console.log(Array.isArray(points))
+	console.log(points)
+  const meta = canvasMeta[0];
+  const width = Math.ceil(meta.CanvasWidth);
+  const height = Math.ceil(meta.CanvasHeight);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext("2d");
+
+  // --- background ---
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, width, height);
+
+  // --- DEBUG: draw a border so you know the canvas is real ---
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 3;
+  ctx.strokeRect(0, 0, width, height);
+
+  // --- stroke settings ---
+  ctx.lineWidth = 5;               // thick so it is impossible to miss
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.globalAlpha = 1.0;
+
+  let drawing = false;
+  let currentColor = "#000000";
+
+  for (const p of points[0]) {
+	console.log(p)
+    // skip non‑coordinate events (e.g. action: "end")
+    if (typeof p.x !== "number" || typeof p.y !== "number") {
+      drawing = false;
+      continue;
+    }
+
+    if (p.color) {
+      currentColor = p.color;
+      ctx.strokeStyle = currentColor;
+    }
+
+    if (p.action === "start") {
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      drawing = true;
+    } 
+    
+    else if (p.action === "move" && drawing) {
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();     // ✅ CRITICAL: commit immediately
+      ctx.beginPath();  // prevent path accumulation bugs
+      ctx.moveTo(p.x, p.y);
+    }
+  }
+
+  // --- download ---
+  const link = document.createElement("a");
+  link.download = "drawing.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 }

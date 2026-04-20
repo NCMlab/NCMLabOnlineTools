@@ -15,8 +15,9 @@ var Lines_test = [
 ]
 var Lines_001 = [
     {LeftX:0.27, LeftY:0.06, RightX:0.97, RightY:0.06},
-    {LeftX:0.11, LeftY:0.11, RightX:0.89, RightY:0.11},
+    {LeftX:0.11, LeftY:0.11, RightX:0.89, RightY:0.11}]/*
     {LeftX:0.03, LeftY:0.17, RightX:0.59, RightY:0.17},
+    
     {LeftX:0.06, LeftY:0.22, RightX:0.97, RightY:0.22},
     {LeftX:0.08, LeftY:0.28, RightX:0.92, RightY:0.28},
     {LeftX:0.03, LeftY:0.33, RightX:0.38, RightY:0.33},
@@ -31,7 +32,7 @@ var Lines_001 = [
     {LeftX:0.41, LeftY:0.83, RightX:0.97, RightY:0.83},
     {LeftX:0.11, LeftY:0.89, RightX:0.88, RightY:0.89},
     {LeftX:0.03, LeftY:0.94, RightX:0.73, RightY:0.94},
-]
+]*/
 
 var LocationsAsProportions = true;
 

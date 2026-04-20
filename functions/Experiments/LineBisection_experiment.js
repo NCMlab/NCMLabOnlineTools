@@ -5,7 +5,7 @@ var timeline = [];
 var countInstr = 0
 console.log('==============================')
 console.log('CANVAS SIZE')
-console.log(LineBisection_parameters)
+
 var CanvasHeight
 var CanvasWidth
 var count = 0
@@ -27,8 +27,14 @@ var FindCanvasSizeTest = {
       console.log(CanvasWidth)
       console.log(CanvasHeight)
       console.log('==============================')
+  },
+  on_finish: function(data) {
+      data.trial = 'FindCanvasSize'
+      data.CanvasWidth = CanvasWidth
+      data.CanvasHeight = CanvasHeight
   }
 }
+
 var FindNumberOfLines = {
   type: jsPsychCallFunction,
   func: function() {
@@ -47,13 +53,13 @@ var FindNumberOfLines = {
       canvas_width: function(){return CanvasWidth},
       canvas_height: function(){return CanvasHeight},
       canvas_border_width: 1,
-      stroke_width: LineBisection_parameters.stroke_width,
-      save_final_image: true,
+      stroke_width: function(){return LineBisection_parameters.stroke_width},
+      save_final_image: false,
       save_strokes: false,
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      show_countdown_trial_duration: LineBisection_parameters.ShowTimer,
+      show_countdown_trial_duration: function() { return LineBisection_parameters.ShowTimer },
       trial_duration: function(){return LineBisection_parameters.Duration},
       // on_finish: function() {
       //   // download the drawing as a file
@@ -105,18 +111,7 @@ var instr_procedure_loop_node = {
   }
 }
 
-var Notes = {
-  type: jsPsychSurvey, 
-  pages: [[{
-        type: 'text',
-        prompt: function() {return LabelNames.NoteInputBox},
-        textbox_rows: 10,
-        name: 'Notes', 
-        required: false,
-      }]],
-  on_finish: function(data)
-  { data.trial = "Notes" },
-}
+
 
 var SendData = {
   type: jsPsychCallFunction,
@@ -124,7 +119,9 @@ var SendData = {
     var data = jsPsych.data.get()
     Results = LineBisection_Scoring(data)
     console.log(Results)
-    //jsPsych.finishTrial(Results)
+    console.log(BREAK)
+    jsPsych.finishTrial(Results)
+    
   }
 }
 

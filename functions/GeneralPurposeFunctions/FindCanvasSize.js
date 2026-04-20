@@ -2,7 +2,7 @@ function FindCanvasSize(SuggestedWidth, SuggestedHeight, HeightOffset, WidthOffs
 {
 	// Find dimensions of the jspsych target
   
-  visualStage = document.getElementById("jspsych-target-TRAILMAKING").getBoundingClientRect();
+  visualStage = document.getElementById("jspsych-target").getBoundingClientRect();
   console.log(document.getElementById("jspsych-content").getBoundingClientRect());
   
   

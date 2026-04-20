@@ -34,6 +34,7 @@
     <script src="config/LineBisection_Setup.js"></script>
     <script src="Batteries/ComponentList.js"></script>
     <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/LineBisection_Instructions.js"></script>
     <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
      <script> 
     // use jquery to load up the header button html content 
@@ -45,7 +46,7 @@
       
 
 
-
+        console.log("JASON JASON")
       var parameters = 'empty'
       jatos.onLoad(() => {
         
@@ -66,12 +67,7 @@
         // Load language specific instructions
         console.log(LANG)
         pseudoSwitch(LANG+'_Instructions_'+InstructionsToUse)
-        // Load language specific stimuli
-        console.log(LANG+"_"+parameters.WordList)
-        // load up the word lists
-        pseudoSwitch(LANG+"_"+parameters.WordList)
         
-        console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(Instructions)
@@ -96,7 +92,7 @@
         //console.log(jatos.urlQueryParameters);
         var input = jatos.urlQueryParameters;
         //console.log(input.a);
-        TrialCount += 1
+        
         // Add jatos info to the data file
         jsPsych.data.addProperties({assignedURLID: input.a});
         jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
