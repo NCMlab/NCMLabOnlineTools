@@ -99,7 +99,6 @@ EN_RAVLT.WordListA = [
 	{'Word':'House'},		// 13
 	{'Word':'River'},		// 14
 	]
-EN_RAVLT.WordListOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 EN_RAVLT.AlternatePronunciationsWordListA = [
 	{'Word':'COLOUR','index':12},
 	{'Word':'KNOWS','index':10},

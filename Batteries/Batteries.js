@@ -258,14 +258,61 @@ List.push({
   Task: "Word Recall",
   Parameters: "RAVLT_Spoken_Immediate",
   Instructions: "Default",
-  IconName: "Immediate",
+  IconName: "Rey Imm",
 });
 List.push({
-  Task: "Card Sort",
-  Parameters: "CardSort_001SHORT",
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Delayed",
   Instructions: "Default",
-  IconName: "Card Sort",
+  IconName: "Rey Delay",
 });
+List.push({
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "Rey Recog",
+});
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "XX",
+  Instructions: "Default",
+  IconName: "XCERAD Imm",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "XXX",
+  Instructions: "Default",
+  IconName: "XCERAD Delay",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "XXX",
+  Instructions: "Default",
+  IconName: "XCERAD Recog",
+});
+
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "XX",
+  Instructions: "Default",
+  IconName: "XHopkins Imm",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "XXX",
+  Instructions: "Default",
+  IconName: "XHopkins Delay",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "XXX",
+  Instructions: "Default",
+  IconName: "XHopkins Recog",
+});
+
+
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingA_Default",
@@ -278,30 +325,55 @@ List.push({
   Instructions: "DefaultB",
   IconName: "Trails B",
 });
-List.push({
-  Task: "Spatial DMS",
-  Parameters: "SpatialDMS_AdaptiveSHORT",
-  Instructions: "Default",
-  IconName: "Dots",
-});
-List.push({
-  Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Delayed",
-  Instructions: "Default",
-  IconName: "Delayed",
-});
-List.push({
-  Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
-  Instructions: "Default",
-  IconName: "Recognition",
-});
+
 List.push({
   Task: 'Line Bisection', 
   Parameters: 'LineBisection_001', 
   Instructions: 'Default', 
-  IconName: 'Line Bisect'})
-
+  IconName: 'Line Bisect'}
+)
+List.push({
+  Task: "Image Copy",
+  Parameters: "ImageCopy_Default",
+  Instructions: "Default",
+  IconName: "Cube Copy",
+});
+List.push({
+  Task: "Stroop Color",
+  Parameters: "Stroop_Default",
+  Instructions: "Default",
+  IconName: "Color",
+});
+List.push({
+  Task: "Stroop Word",
+  Parameters: "Stroop_Default",
+  Instructions: "Default",
+  IconName: "Word",
+});
+List.push({
+  Task: "Stroop Color/Word",
+  Parameters: "Stroop_Default",
+  Instructions: "Default",
+  IconName: "Color/Word",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Forward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Forward",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Backward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Backward",
+});
+List.push({
+  Task: "Cancellation Task",
+  Parameters: "Cancellation_001",
+  Instructions: "Default",
+  IconName: "Cancellation",
+});
 BatteryList.push({
   index: 9916,
   name: "H-10-23-9755",
@@ -315,6 +387,8 @@ BatteryList.push({
   HeaderButtonsToShow: ['Home','Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
+
+
 
 // ------ FRENCH --------------------------------
 var List = [];

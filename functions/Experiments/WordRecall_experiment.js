@@ -192,6 +192,7 @@ var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(parameters)
+    console.log(WordRecallLists)
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
     SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
@@ -199,7 +200,7 @@ var MakeWordListA = {
     // Make a full list the words and thier alternative pronunciations
     FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
     // indices fro the primary word list
-    WordListIndexA = CreateWordListIndex(WordRecallLists.WordListA, WordRecallLists.WordListOrder)
+    WordListIndexA = CreateWordListIndex(WordRecallLists.WordListA)
     // indices for the world list containing the alternatives
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
@@ -299,6 +300,8 @@ var AudioStimulus = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function()
       {
+        console.log(WordRecallLists)
+        console.log(ItemCount)
         Stim = '+'
         // find what trial index this is
         ind = (TrialCount) % WordRecallLists.NWords

@@ -61,19 +61,11 @@ var CreateSimpleIndexList = function(WordList, AltWordList) {
 	}
 	return SimpleIndexList
 }
-var CreateWordListIndex = function(WordList, ProvidedOrder) {
+var CreateWordListIndex = function(WordList) {
 	var WordListIndex = []
-	if (typeof ProvidedOrder !== 'undefined') {
-		for (var i = 0; i < ProvidedOrder.length; i++) {
-			WordListIndex.push(ProvidedOrder[i])
-		}
-	} else {
-		for (var i = 0; i < WordList.length; i++) {
-			WordListIndex.push(i)
-		}
+	for (var i = 0; i < WordList.length; i++) {
+		WordListIndex.push(i)
 	}
-	console.log(ProvidedOrder)
-	console.log(BREAK)
 	return WordListIndex
 }
 
