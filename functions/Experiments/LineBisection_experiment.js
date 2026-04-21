@@ -21,7 +21,7 @@ var FindCanvasSizeTest = {
   // This stops the interval timer and resets the clock to 00:00
   type: jsPsychCallFunction,
   func: function() {
-      sizes = FindCanvasSize(LineBisection_parameters.SuggestedWidth, LineBisection_parameters.SuggestedHeight, 0.7, 0.75) 
+      sizes = FindCanvasSize(parameters.SuggestedWidth, parameters.SuggestedHeight, 0.7, 0.75) 
        CanvasWidth = sizes.CanvasWidth
        CanvasHeight = sizes.CanvasHeight
       console.log(CanvasWidth)
@@ -38,7 +38,7 @@ var FindCanvasSizeTest = {
 var FindNumberOfLines = {
   type: jsPsychCallFunction,
   func: function() {
-    NLines = LineBisection_parameters.Lines.length
+    NLines = parameters.Lines.length
     console.log("The number of lines is: "+NLines)
   }
 }
@@ -48,19 +48,19 @@ var FindNumberOfLines = {
   var trials = {
       type: jsPsychSketchpadLineBisection,   
       Lines: function(){ 
-        console.log(LineBisection_parameters.Lines[count])
-        return [LineBisection_parameters.Lines[count]]}, 
+        console.log(parameters.Lines[count])
+        return [parameters.Lines[count]]}, 
       canvas_width: function(){return CanvasWidth},
       canvas_height: function(){return CanvasHeight},
       canvas_border_width: 1,
-      stroke_width: function(){return LineBisection_parameters.stroke_width},
+      stroke_width: function(){return parameters.stroke_width},
       save_final_image: false,
       save_strokes: false,
       show_clear_button: false,
       show_undo_button: false,
       show_redo_button: false,
-      show_countdown_trial_duration: function() { return LineBisection_parameters.ShowTimer },
-      trial_duration: function(){return LineBisection_parameters.Duration},
+      show_countdown_trial_duration: function() { return parameters.ShowTimer },
+      trial_duration: function(){return parameters.Duration},
       // on_finish: function() {
       //   // download the drawing as a file
       //   var imageData = jsPsych.data.get().last(1).values()[0].png;
@@ -124,50 +124,11 @@ var SendData = {
   }
 }
 
-var thank_you = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    console.log(Instructions)
-    return Instructions.ThankYouText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-var if_ThankYou = {
-  timeline: [thank_you],
-  conditional_function: function() {
-        if ( LineBisection_parameters.ShowThankYou)
-        { return true }
-        else { return false }
-  }
-}
-
-var welcome = {
-  type: jsPsychHtmlButtonResponseTouchscreen,
-  stimulus: function() {
-    console.log(Instructions)
-    return Instructions.WelcomeText[0].page},
-  post_trial_gap: 0,
-  margin_horizontal: GapBetweenButtons,
-  prompt: 'PROMPT',
-  choices: function() {return [LabelNames.Next]}, 
-}
-
-var if_Welcome = {
-  timeline: [welcome],
-  conditional_function: function() {
-        if ( LineBisection_parameters.ShowWelcome)
-        { 
-          return true }
-        else { return false }
-  }
-}
 
 var if_Test_Instructions = {
   timeline: [instr_procedure_loop_node],
   conditional_function: function() {
-        if ( LineBisection_parameters.ShowInstructions)
+        if ( parameters.ShowInstructions)
         { 
           return true }
         else { return false }
@@ -177,16 +138,18 @@ var if_Test_Instructions = {
 
 // =======================================================================    
   //timeline.push(InstructionsSampleA)
-  timeline.push(if_Welcome)
+  timeline.push(Welcome)
   timeline.push(FindCanvasSizeTest)
   timeline.push(enter_fullscreen)
   timeline.push(FindNumberOfLines)
-  timeline.push(if_Test_Instructions)
+  timeline.push(Instructions01)
   timeline.push(loop_node)
   ///timeline.push(trials)
-  timeline.push(if_Notes)
+
   timeline.push(SendData)
-  timeline.push(if_ThankYou)
+  timeline.push(Notes)
+timeline.push(ThankYou)
+
   
   
   

@@ -2,8 +2,8 @@ var EN_Instructions = {}
 EN_Instructions.WelcomeText = [
     {'page': 'Welcome to the Line Bisection Task.'},
 ]
-EN_Instructions.InstructionText = [
-    {'page': 'For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.'},
+EN_Instructions.Instructions01 = [
+    {'page': 'For this task you will see lines. You are to mark the center of each line as closely as possible. '},
 ]
 EN_Instructions.ThankYouText = [{'page':'Thank you.'}]
 // The following notes show up on teh results page
@@ -15,8 +15,8 @@ var FR_Instructions = {}
 FR_Instructions.WelcomeText = [
     {'page': 'FR: Welcome to the Line Bisection Task.'},
 ]
-FR_Instructions.InstructionText = [
-    {'page': 'FR: For this task you will see lines. You are to mark the center of each line as closely as possible. <br/> Press Next to Begin.'},
+FR_Instructions.Instructions01 = [
+    {'page': 'FR: For this task you will see lines. You are to mark the center of each line as closely as possible. '},
 ]
 FR_Instructions.ThankYouText = [{'page':'FR: Thank you.'}]
 // The following notes show up on teh results page

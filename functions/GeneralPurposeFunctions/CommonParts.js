@@ -158,6 +158,8 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
+        console.log("HELLO FROM IF WELCOME WRITTEN")
+        console.log(parameters)
       if ( parameters.ShowWelcome  & !( parameters.WelcomeSpoken))
       { return true }
       else { return false }
@@ -172,8 +174,10 @@ var if_WelcomeWritten = {
             document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
         } catch (err) {}
       if ( parameters.ShowWelcome & parameters.WelcomeSpoken)
-      { return true }
-      else { return false }
+      { 
+        return true }
+      else { 
+        return false }
     }
 }
 
