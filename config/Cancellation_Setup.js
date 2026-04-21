@@ -18,9 +18,10 @@ var Cancellation_001 = {
     non_target_labels: ["A","B","C","D","E","F","G","I"],
     target_labels: "H",
     ShowWelcome: true,
-    ShowThankYou: false,
+    ShowThankYou: true,
     AskForNotes: false, 
     RecordGIF: true,
+    save_final_image: true,
 }
 
 var Cancellation_Demo = {
