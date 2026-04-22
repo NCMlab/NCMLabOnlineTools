@@ -3,37 +3,109 @@ var userSaidWords = []
 var ListeningFlag = false
 
 
+// ============= JASON EDITS ============
+var ManualRecallA = {
+    type: jsPsychSurveyHtmlForm,
+    survey_json: function() {
+const PPP ={
+      showProgressBar: "none",
+      progressBarShowPageNumbers: false,
+      progressBarShowPageTitles: false,
+      showCompletedPage: false,
+      showTitle: false,
+      pages: 
+      [
+        {      
+          elements: [
+            {type: "tagbox",
+            name: "Recall",
+            title: Instructions.WordRecallPrompt,
+            choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)),
+            name: 'ListRecall',
+            required: false
+            },
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            name: 'Intrusion01', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title:  Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion02', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion03', 
+            required: false,
+          }, 
+        ]
+        }
+  ]
+  }
+    console.log(PPP)
+  return PPP
+    },
+    button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
+    missed_question_label: function() { return LabelNames.missed_question_label},
+    missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Next },
+    previous_button_label: function() { return LabelNames.Previous },
+    required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
+    on_load: function() {
+      console.log("JASON JASON")
+      console.log(Instructions)
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+    },
+    on_finish: function(data) {
+        data.trial = "Questionnaire"
+        data.response = data.response
+        data.QuestionnaireType = Questionnaire.QuestionnaireType
+        data.Questionnaire = Questionnaire
+        data.AlertLimit = Questionnaire.AlertLimit
+        data.title = Questionnaire.title
+        data.shortTitle = Questionnaire.shortTitle
+    }
+};
 
 
-
-
-
-
+// ============== END OF JASON EDITS ============
 // Manual Recall Trial
 
-var ManualRecallA = {
+var XXManualRecallA = {
   type: jsPsychSurvey,
-  //  on_load: function(){ // This inserts a timer on the recall duration
-  //   var wait_time = RecallDuration * 1000; // in milliseconds
-  //   var start_time = performance.now();
-  //   interval = setInterval(function(){
-  //   time_left = wait_time - (performance.now() - start_time);
-  //     var minutes = Math.floor(time_left / 1000 / 60);
-  //     var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-  //     var seconds_str = seconds.toString().padStart(2,'0');
-  //     document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-  //     if(time_left <= 0){
-  //       document.querySelector('#clock').innerHTML = "0:00";
-  //       document.querySelector('button').disabled = false;
-  //       clearInterval(interval);
-  //       // STOP VOICE RECORDING!!!
-  //     }
-  //   }, 250)
-  // },
+  /*title: function() { return '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+                  Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>' },//'Word Recall',*/
+   
+    
+
   on_load: function() {
     console.log("WORD RECALL SETUP")
     console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+    }, 250)
   },
+  
   on_start: function() {
       console.log("WORD RECALL SETUP")          
       // reset the list of indices
@@ -46,17 +118,20 @@ var ManualRecallA = {
           console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
 
     var PPP = {
+
       elements: [
-    
-      {
-        type: 'multi-select',
-        prompt: function(){return Instructions.WordRecallPrompt},
-        options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
+        
+        {type: "checkbox",
+        name: "car",
+        title: Instructions.WordRecallPrompt,
+        choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)),
+        colCount: 2,
+        showNoneItem: true,
+        showSelectAllItem: false,
+        name: 'ListRecall'
+
         },
-        columns: 3,
-        name: 'ListRecall', 
-      },
+
 
       {
         type: 'text',
@@ -85,7 +160,7 @@ var ManualRecallA = {
   return PPP
 
 },
-  title: function() { return Instructions.title },//'Word Recall',
+  
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: function() { return LabelNames.Submit },
@@ -170,7 +245,7 @@ var ManualRecallB = {
         columns: 3,
         name: 'ListRecall', 
       },
-
+/*
       {
         type: 'text',
         prompt: "Intrusion?", 
@@ -191,7 +266,7 @@ var ManualRecallB = {
         placeholder: '',
         name: 'Intrusion03', 
         required: false,
-      }, 
+      }, */
     ]
   ],
   title: 'Word Recall',

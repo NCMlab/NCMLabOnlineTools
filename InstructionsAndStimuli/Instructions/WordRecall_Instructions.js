@@ -27,7 +27,7 @@ EN_Instructions_Default.InstructionsDelayed = [
 
 EN_Instructions_Default.WordPrompt = 'empty'
 EN_Instructions_Default.ThankYouText = [{'page': 'Thank you'}]
-
+EN_Instructions_Default.IntrusionPrompt = 'Intrusion? (Words not in the list)'
 EN_Instructions_Default.WordRecallPrompt = 'Which words were recalled?'
 add('EN_Instructions_Default', function(){ Instructions = EN_Instructions_Default});
 

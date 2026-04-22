@@ -1,5 +1,5 @@
 var AllQuestionsValid = false
-
+var currentTab = 0
 var jsPsychSurveyHtmlForm = (function (jspsych) {
   'use strict';
     
