@@ -313,45 +313,292 @@ add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
 
 // ===== CERAD ========================================================================
 // Rey auditory verbal learning test
+
 var EN_CERAD = {}
 EN_CERAD.WordListA = [
 	{'Word':'Butter'}, 		// 0
-	{'Word':'Arm'}, 	// 1
+	{'Word':'Arm'}, 		// 1
 	{'Word':'Shore'},		// 2
 	{'Word':'Letter'},		// 3
 	{'Word':'Queen'},		// 4
 	{'Word':'Cabin'},		// 5
 	{'Word':'Pole'},		// 6
 	{'Word':'Ticket'},		// 7
-	{'Word':'Grass'},			// 8 
+	{'Word':'Grass'},		// 8 
 	{'Word':'Engine'}		// 9
 ]
-EN_CERAD.Trial1_Order = [0,1,2,3,4,5,6,7,8,9]
-EN_CERAD.Trial2_Order = [7,5,0,2,9,1,4,3,6,8]
-EN_CERAD.Trial3_Order = [4,8,1,5,6,2,0,9,7,3]
 
 EN_CERAD.RecognitionWordList = [
-	{'Word':'School',	'Answer':true},
-	{'Word':'Coffee',	'Answer':true},
+	{'Word':'School',	'Answer':false},
+	{'Word':'Coffee',	'Answer':false},
 	{'Word':'Butter',	'Answer':true},
-	{'Word':'Dollar',	'Answer':true},
+	{'Word':'Dollar',	'Answer':false},
 	{'Word':'Arm',		'Answer':true},
 	{'Word':'Shore',	'Answer':true},
-	{'Word':'Five',		'Answer':true},
+	{'Word':'Five',		'Answer':false},
 	{'Word':'Letter',	'Answer':true},
-	{'Word':'Hotel',	'Answer':true},
-	{'Word':'Mountain',	'Answer':true},
+	{'Word':'Hotel',	'Answer':false},
+	{'Word':'Mountain',	'Answer':false},
 	{'Word':'Queen',	'Answer':true},
 	{'Word':'Cabin',	'Answer':true},
-	{'Word':'Slipper',	'Answer':true},
+	{'Word':'Slipper',	'Answer':false},
 	{'Word':'Pole',		'Answer':true},
-	{'Word':'Village',	'Answer':true},
-	{'Word':'String',	'Answer':true},
+	{'Word':'Village',	'Answer':false},
+	{'Word':'String',	'Answer':false},
 	{'Word':'Ticket',	'Answer':true},
-	{'Word':'Troops',	'Answer':true},
+	{'Word':'Troops',	'Answer':false},
 	{'Word':'Grass',	'Answer':true},
 	{'Word':'Engine',	'Answer':true}
 ]
 	
+// =====================================================
+// Word rate of one word every 2 sec
+// No visual presentation of words.
+// Three trials, each followed by a recall
+// Then a recognition trial
+// Score: Number of true positive (out of 12)
+// Number of false positives: Related (out of 6); Unrelated (out of 6) 
+// Discrimination index: (#TP - #FP)
+// https://static1.squarespace.com/static/548f3b5ce4b0ab0288d52cf5/t/5502073be4b0e85d639f7ec1/1426196283131/Hopkins.pdf
+EN_Hopkins.WordList01 = [
+	{'Word':'LION'},   	// 0
+	{'Word':'EMERALD'},   // 1
+	{'Word':'HORSE'},     // 2
+	{'Word':'TENT'},      // 3
+	{'Word':'SAPPHIRE'},  // 4
+	{'Word':'HOTEL'},     // 5
+	{'Word':'CAVE'},      // 6
+	{'Word':'OPAL'},      // 7
+	{'Word':'TIGER'},     // 8
+	{'Word':'PEARL'},     // 9
+	{'Word':'COW'},       // 10
+	{'Word':'HUT'},       // 11
+]
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Horse',     'Answer':true},
+	{'Word':'Ruby',      'Answer':false},
+	{'Word':'Cave',      'Answer':true},
+	{'Word':'Balloon',   'Answer':false},
+	{'Word':'Coffee',    'Answer':false},
+	{'Word':'Lion',      'Answer':true},
+	{'Word':'House',     'Answer':false},
+	{'Word':'Opal',      'Answer':true},
+	{'Word':'Tiger',     'Answer':true},
+	{'Word':'Boat',      'Answer':false},
+	{'Word':'Scarf',     'Answer':false},
+	{'Word':'Pearl',     'Answer':true},
+	{'Word':'Hut',       'Answer':true},
+	{'Word':'Emerald',   'Answer':true},
+	{'Word':'Sapphire',  'Answer':true},
+	{'Word':'Dog',       'Answer':false},
+	{'Word':'Apartment', 'Answer':false},
+	{'Word':'Penny',     'Answer':false},
+	{'Word':'Tent',      'Answer':true},
+	{'Word':'Mountain',  'Answer':false},
+	{'Word':'Cat',       'Answer':false},
+	{'Word':'Hotel',     'Answer':true},
+	{'Word':'Cow',       'Answer':true},
+	{'Word':'Diamond',   'Answer':false}
+]
 
+EN_Hopkins.WordList01 = [
+	{'Word':'Fork'},     // 0
+	{'Word':'Rum'},      // 1
+	{'Word':'Pan'},      // 2
+	{'Word':'Pistol'},   // 3
+	{'Word':'Sword'},    // 4
+	{'Word':'Spatula'},  // 5
+	{'Word':'Bourbon'},  // 6
+	{'Word':'Vodka'},    // 7
+	{'Word':'Pot'},      // 8
+	{'Word':'Cow'},      // 9
+	{'Word':'Hut'},      // 10
+	{'Word':'Wine'},     // 11
+]
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Spoon',      'Answer':false},
+	{'Word':'Pistol',     'Answer':true},
+	{'Word':'Doll',       'Answer':false},
+	{'Word':'Whiskey',    'Answer':false},
+	{'Word':'Fork',       'Answer':true},
+	{'Word':'Pot',        'Answer':true},
+	{'Word':'Harmonica',  'Answer':false},
+	{'Word':'Can Opener', 'Answer':false},
+	{'Word':'Sword',      'Answer':true},
+	{'Word':'Pencil',     'Answer':false},
+	{'Word':'Gun',        'Answer':false},
+	{'Word':'Vodka',      'Answer':true},
+	{'Word':'Knife',      'Answer':false},
+	{'Word':'Rum',        'Answer':true},
+	{'Word':'Trout',      'Answer':false},
+	{'Word':'Bomb',       'Answer':true},
+	{'Word':'Pan',        'Answer':true},
+	{'Word':'Gold',       'Answer':false},
+	{'Word':'Wine',       'Answer':true},
+	{'Word':'Lemon',      'Answer':false},
+	{'Word':'Spatula',    'Answer':true},
+	{'Word':'Bourbon',    'Answer':true},
+	{'Word':'Beer',       'Answer':false},
+	{'Word':'Rifle',      'Answer':true},
+]
+EN_Hopkins.WordList01 = [
+	{'Word':'Sugar'},     // 0
+	{'Word':'Trumpet'},  // 1
+	{'Word':'Violin'},   // 2
+	{'Word':'Coal'},     // 3
+	{'Word':'Garlic'},   // 4
+	{'Word':'Kerosine'}, // 5
+	{'Word':'Vanilla'},  // 6
+	{'Word':'Wood'},     // 7
+	{'Word':'Clarinet'}, // 8
+	{'Word':'Flute'},    // 9
+	{'Word':'Cinnamon'}, // 10
+	{'Word':'Gasoline'}, // 11
+]
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Pepper',      'Answer':false},
+	{'Word':'Garlic',      'Answer':true},
+	{'Word':'Wood',        'Answer':true},
+	{'Word':'Drum',        'Answer':false},
+	{'Word':'Oil',         'Answer':false},
+	{'Word':'Sugar',       'Answer':true},
+	{'Word':'Harmonica',   'Answer':false},
+	{'Word':'Salt',        'Answer':false},
+	{'Word':'Priest',      'Answer':false},
+	{'Word':'Chair',       'Answer':false},
+	{'Word':'Coal',        'Answer':true},
+	{'Word':'Clarinet',    'Answer':true},
+	{'Word':'Trumpet',     'Answer':true},
+	{'Word':'Basement',    'Answer':false},
+	{'Word':'Cinnamon',    'Answer':true},
+	{'Word':'Flute',       'Answer':true},
+	{'Word':'Electricity', 'Answer':false},
+	{'Word':'Moon',        'Answer':false},
+	{'Word':'Kerosine',    'Answer':true},
+	{'Word':'Vanilla',     'Answer':true},
+	{'Word':'Gasoline',    'Answer':true},
+	{'Word':'Sand',        'Answer':false},
+	{'Word':'Piano',       'Answer':false},
+	{'Word':'Violin',      'Answer':true},
+]
+EN_Hopkins.WordList01 = [
+	{'Word':'Canary'},      // 0
+	{'Word':'Shoes'},       // 1
+	{'Word':'Eagle'},       // 2
+	{'Word':'Blouse'},      // 3
+	{'Word':'Nails'},       // 4
+	{'Word':'Crow'},        // 5
+	{'Word':'Bluebird'},    // 6
+	{'Word':'Screwdriver'}, // 7
+	{'Word':'Pants'},       // 8
+	{'Word':'Chisel'},      // 9
+	{'Word':'Skirt'},       // 10
+	{'Word':'Wrench'},      // 11
+]
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Bluebird',     'Answer':true},
+	{'Word':'Shirt',        'Answer':false},
+	{'Word':'Chisel',       'Answer':true},
+	{'Word':'Eagle',        'Answer':true},
+	{'Word':'Chocolate',    'Answer':false},
+	{'Word':'Robin',        'Answer':false},
+	{'Word':'Chapel',       'Answer':false},
+	{'Word':'Screwdriver',  'Answer':true},
+	{'Word':'Crow',         'Answer':true},
+	{'Word':'Sparrow',      'Answer':false},
+	{'Word':'Wrench',       'Answer':true},
+	{'Word':'Pants',        'Answer':true},
+	{'Word':'Nails',        'Answer':true},
+	{'Word':'Socks',        'Answer':false},
+	{'Word':'Child',        'Answer':false},
+	{'Word':'Shoes',        'Answer':true},
+	{'Word':'Hair',         'Answer':false},
+	{'Word':'Hammer',       'Answer':false},
+	{'Word':'Canary',       'Answer':true},
+	{'Word':'Apple',        'Answer':false},
+	{'Word':'Skirt',        'Answer':true},
+	{'Word':'Saw',          'Answer':false},
+	{'Word':'Silver',       'Answer':false},
+	{'Word':'Blouse',       'Answer':true},
+]
+EN_Hopkins.WordList01 = [
+	{'Word':'Teacher'},     // 0
+	{'Word':'Basketball'},  // 1
+	{'Word':'Lettuce'},     // 2
+	{'Word':'Dentist'},     // 3
+	{'Word':'Tennis'},      // 4
+	{'Word':'Bean'},        // 5
+	{'Word':'Engineer'},    // 6
+	{'Word':'Potato'},      // 7
+	{'Word':'Professor'},   // 8
+	{'Word':'Golf'},        // 9
+	{'Word':'Corn'},        // 10
+	{'Word':'Soccer'},      // 11
+]
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Tennis',      'Answer':true},
+	{'Word':'Football',    'Answer':false},
+	{'Word':'Professor',   'Answer':true},
+	{'Word':'Spinach',     'Answer':false},
+	{'Word':'Lawyer',      'Answer':false},
+	{'Word':'Submarine',   'Answer':false},
+	{'Word':'Golf',        'Answer':true},
+	{'Word':'Dentist',     'Answer':true},
+	{'Word':'Lettuce',     'Answer':true},
+	{'Word':'Spider',      'Answer':false},
+	{'Word':'Water',       'Answer':false},
+	{'Word':'Bean',        'Answer':true},
+	{'Word':'Basketball',  'Answer':true},
+	{'Word':'Doctor',      'Answer':false},
+	{'Word':'Corn',        'Answer':true},
+	{'Word':'Baseball',    'Answer':false},
+	{'Word':'Teacher',     'Answer':true},
+	{'Word':'Snake',       'Answer':false},
+	{'Word':'Carrot',      'Answer':false},
+	{'Word':'Engineer',    'Answer':true},
+	{'Word':'Glove',       'Answer':false},
+	{'Word':'Soccer',      'Answer':true},
+	{'Word':'Potato',      'Answer':true},
+	{'Word':'Tulip',       'Answer':false},
+]
+EN_Hopkins.WordList01 = [
+	{'Word':'Shark'},   // 0
+	{'Word':'Wall'},    // 1
+	{'Word':'Herring'}, // 2
+	{'Word':'Rain'},    // 3
+	{'Word':'Floor'},   // 4
+	{'Word':'Hail'},    // 5
+	{'Word':'Catfish'}, // 6
+	{'Word':'Roof'},    // 7
+	{'Word':'Salmon'},  // 8
+	{'Word':'Storm'},   // 9
+	{'Word':'Ceiling'}, // 10
+	{'Word':'Snow'},    // 11
+]
 
+EN_Hopkins.RecognitionWordList01 = [
+	{'Word':'Hail',      'Answer':true},
+	{'Word':'Bass',      'Answer':false},
+	{'Word':'Snow',      'Answer':true},
+	{'Word':'Bank',      'Answer':false},
+	{'Word':'Floor',     'Answer':true},
+	{'Word':'Mustard',   'Answer':false},
+	{'Word':'Window',    'Answer':false},
+	{'Word':'Ceiling',   'Answer':true},
+	{'Word':'Canyon',    'Answer':false},
+	{'Word':'Rain',      'Answer':true},
+	{'Word':'Ladder',    'Answer':false},
+	{'Word':'Storm',     'Answer':true},
+	{'Word':'Herring',   'Answer':true},
+	{'Word':'Salmon',    'Answer':true},
+	{'Word':'Tornado',   'Answer':false},
+	{'Word':'Trout',     'Answer':false},
+	{'Word':'Melon',     'Answer':false},
+	{'Word':'Roof',      'Answer':true},
+	{'Word':'Shark',     'Answer':true},
+	{'Word':'Hurricane', 'Answer':false},
+	{'Word':'Elbow',     'Answer':false},
+	{'Word':'Catfish',   'Answer':true},
+	{'Word':'Wall',      'Answer':true},
+	{'Word':'Door',      'Answer':false},
+]
