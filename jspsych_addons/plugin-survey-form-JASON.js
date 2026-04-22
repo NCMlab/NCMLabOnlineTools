@@ -259,16 +259,39 @@ console.log(trial)
                             Str += '</div>'
                             Str += '<hr>'
                             break;
+
                         case 'tagbox':
+                            Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" id="'
+                                Str += 'div-'+thisQuestion.name+'">'
+                                Str += '<fieldset class="FormInput TagBox" id="'+thisQuestion.name+'">'
+                                    Str += '<legend class="surveyFormLabel">'
+                                        Str += thisQuestion.title
+                                    Str += '</legend>'
+                                    Str += '<div class="TagBoxColumn">'
+                                        for ( var k = 0; k < thisQuestion.choices.length; k++ )
+                                        { 
+                                            Str += '<label class="TagBoxInputWrapper">'
+                                            Str += '<input class="TagBoxInput" type="checkbox"'
+                                            Str += 'name="choice-'+thisQuestion.name+'[]"'
+                                            Str += ' value="'+thisQuestion.choices[k]+'"/>'
+                                            Str += '<span class="tagBoxLabel">'+thisQuestion.choices[k]+'</span>'
+                                            Str += '</label>'
+                                        }
+                                    Str += '</div>'
+                                Str += '</fieldset>'
+                            Str += '</div>'
+                            break
+                        case 'tagboxS':
                             console.log("====== TAG BOX TAG BOX TAG BOX ==========")
                             Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str+='<fieldset class="FormInput TagBox '+VisibleIfConditionsPages[page][i].visibleClass+'" id = "'+thisQuestion.name+'">'
                                 Str += '<legend class="surveyFormLabel">'+thisQuestion.title+'</legend>'
                                 for ( var k = 0; k < thisQuestion.choices.length; k++ )
                                 { 
-                                    Str += '<div>'
+                                    Str += '<div class="TagBoxColumn">'
+                                    Str += '<div class="TagBoxInputWrapper">'
                                     Str += '<input class="TagBoxInput" type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
-                                    Str += '<label for="coding" class="surveyFormLabel">'+thisQuestion.choices[k]+'</label>'
+                                    Str += '<label for="coding" class="tagBoxLabel">'+thisQuestion.choices[k]+'</label>'
                                     Str += '</div>'
                                 }                                
                             Str += '</fieldset>'
@@ -646,17 +669,17 @@ function showTab(n) {
         fixStepIndicator(n)
     }
 
-    function getCheckedValuesFromFieldSet(name) {
-        // Select all checked checkboxes with the supplied name 
-        const checkboxes = document.querySelectorAll('input[name="choice-'+ name +'"]:checked');
-        // Create an array to store the values
-        const selectedValues = [];        
-        // Iterate over the selected checkboxes and push their values into the array
-        checkboxes.forEach((checkbox) => {
-           selectedValues.push(checkbox.value);
-        });
-        return selectedValues
-    }
+
+function getCheckedValuesFromFieldSet(fieldsetId) {
+    const fieldset = document.getElementById(fieldsetId);
+    if (!fieldset) return [];
+
+    return Array.from(
+        fieldset.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+}
+
+
     function validateForm() {
         console.log(">>>> VALIDATING FORM <<<<")
         // This function deals with validation of the form fields
@@ -708,7 +731,9 @@ function showTab(n) {
             {
                 console.log("VALIDATING A TAG BOX")
                 var name = y[i].id
+                console.log(name)
                 var TagElm = document.getElementById(y[i].id)
+                console.log(TagElm)
                 var selectedValues = getCheckedValuesFromFieldSet(name)
                 console.log(selectedValues)
                 // This allows for the validity checker to work

@@ -170,7 +170,8 @@ const json = {
               ],
           name: 'dem010_ethn',
           title: "What is your ethnic background (you may select more than one)",
-          "description": "Please select all that apply."
+          "description": "Please select all that apply.",
+          isRequired: true
         },
         {
           type: 'dropdown',

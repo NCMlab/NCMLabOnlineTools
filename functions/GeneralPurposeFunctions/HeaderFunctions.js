@@ -10,6 +10,7 @@ function GetSessionData() {
 }
 
 function UpdateHeader() {
+        console.log("========== UPDATE HEADER CALLED ==========")
         try {
             // By default make them all hidden
             document.getElementById('header-restart-button').style.visibility = "hidden"
@@ -81,16 +82,17 @@ function UpdateHeader() {
     }
 
 function UpdateHeaderPromise() {
+    console.log("========== UPDATE HEADER PROMISE CALLED ==========")
         return new Promise((resolve) => {
             // By default make them all hidden
-            document.getElementById('header-home-button').style.visibility = "hidden"
-            document.getElementById('header-quit-button').style.visibility = "hidden"
-            document.getElementById('header-restart-button').style.visibility = "hidden"
-            document.getElementById('header-skip-button').style.visibility = "hidden"
-            document.getElementById('header-stop-button').style.visibility = "hidden"
-            document.getElementById('header-info-button').style.visibility = "hidden"
-
-            console.log(jatos.studySessionData.HeaderButtonsToShow)
+            document.getElementById('header-home-button').classList.add("is-hidden")
+            document.getElementById('header-quit-button').classList.add("is-hidden")
+            document.getElementById('header-restart-button').classList.add("is-hidden")
+            document.getElementById('header-skip-button').classList.add("is-hidden")
+            document.getElementById('header-stop-button').classList.add("is-hidden")
+            document.getElementById('header-info-button').classList.add("is-hidden")
+            console.log(jatos)
+            console.log(jatos.studySessionData)
             const JJ = jatos.studySessionData
             console.log(JJ)
             for ( item in jatos.studySessionData.HeaderButtonsToShow ) {
@@ -99,33 +101,54 @@ function UpdateHeaderPromise() {
                     case 'Home':
                         console.log("HOME")
                         document.getElementById('header-home-button').textContent = LabelNames.Home;            
-                        document.getElementById('header-home-button').style.visibility = "visible"            
+                        document.getElementById('header-home-button').classList.remove("is-hidden")
                         break;
                     case 'Quit':
                         console.log("QUIT")
                         document.getElementById('header-quit-button').textContent = LabelNames.Quit;            
-                        document.getElementById('header-quit-button').style.visibility = "visible"            
+                        document.getElementById('header-quit-button').classList.remove("is-hidden")
                         break;
                     case 'Restart':
                         console.log("RESTART")
                         document.getElementById('header-restart-button').textContent = LabelNames.Restart;            
-                        document.getElementById('header-restart-button').style.visibility = "visible"            
+                        document.getElementById('header-restart-button').classList.remove("is-hidden")
                         break;
                     case 'Stop':
                         document.getElementById('header-stop-button').textContent = LabelNames.Stop;            
-                        document.getElementById('header-stop-button').style.visibility = "visible"            
+                        document.getElementById('header-stop-button').classList.remove("is-hidden")            
                         break;
                     case 'Skip':
                         document.getElementById('header-skip-button').textContent = LabelNames.Skip;            
-                        document.getElementById('header-skip-button').style.visibility = "visible"            
+                        document.getElementById('header-skip-button').classList.remove("is-hidden")            
                         break;
                     case 'Info':
                         document.getElementById('header-info-button').textContent = LabelNames.Info;            
-                        document.getElementById('header-info-button').style.visibility = "visible"            
+                        document.getElementById('header-info-button').classList.remove("is-hidden")            
                         break;
                 }
             }
             
+                x = document.getElementById('LanguageSelectPulldown')
+                console.log(x)
+                            
+                var array = jatos.studySessionData.LanguagesToShow  
+                console.log(jatos.studySessionData)
+                console.log(array)
+                if ( array.length > 0 )
+                {
+                    for (var i = 0; i < array.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = array[i];
+                        option.text = array[i];
+                        x.appendChild(option);
+                    }
+                }
+                else
+                    {
+                        x.classList.add("is-hidden")
+                    }
+
+
             // set the language pulldown button             
             var LangIsSetTo = jatos.batchSession.get(jatos.workerId+"_Language")
             

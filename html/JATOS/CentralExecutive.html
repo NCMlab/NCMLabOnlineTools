@@ -48,15 +48,12 @@
             console.log(LabelNames)
 
       })
-      .then(() =>
-                // import the header buttons and set their language and visibility
-            //    $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
-                    UpdateHeader()
-            )
+      
       .then((result) => CentralExecutive() )
       // once everything is setup, then proceed to displaying the jspsych timeline
-      
-      
+      .then(() =>
+          UpdateHeaderPromise()
+      )
     })
 
             
