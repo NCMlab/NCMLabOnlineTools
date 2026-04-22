@@ -329,8 +329,7 @@ var AudioStimulus = {
         //Stim = jsPsych.timelineVariable('Word')
         // Check to see if there is a wordlist order parameter provided.
         // If so use it.
-        var CurrentIndex = GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount) 
-        Stim = AudioFileDictListA[CurrentIndex].Word
+        Stim = AudioFileDictListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)].Word
         
         // return the chosen stimulus
         return Stim
@@ -366,7 +365,7 @@ var AudioStimulus = {
         // find what trial index this is
         ind = (TrialCountB) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
-        Stim = AudioFileDictListB[ItemCount].Word
+        Stim = AudioFileDictListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)].Word
         // return the chosen stimulus
         return Stim
       },
@@ -374,7 +373,7 @@ var AudioStimulus = {
         if ( parameters.VisualPresentation )
         { 
           var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
-          '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
+          '<p class="Fixation">'+SimpleWordListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
           return Str
         }
         else 
@@ -396,9 +395,9 @@ var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        console.log(jsPsych.timelineVariable('Word'))
         var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
-          jsPsych.timelineVariable('Word') + '</p>'
+        //  jsPsych.timelineVariable('Word') + '</p>'
+        '<p class="Fixation">'+SimpleWordListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
         return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
@@ -420,7 +419,7 @@ var VisualStimulus = {
       {
         console.log(jsPsych.timelineVariable('Word'))
         var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
-          jsPsych.timelineVariable('Word') + '</p>'
+          '<p class="Fixation">'+SimpleWordListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
         return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },

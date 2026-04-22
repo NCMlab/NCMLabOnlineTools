@@ -50,7 +50,7 @@ var RAVLT_Spoken_Immediate = {
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType: 'Spoken',
+	RecallType: 'Spoken', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
 	TimePerWord: 1500, // milliseconds
@@ -63,12 +63,12 @@ var RAVLT_Spoken_Immediate = {
 	InstructionsSpoken: false,
 	AskForNotes: false,
 	RecordAUDIO: true,
-		/*WordListOrder: [2,1,2,1,2,5,6,7,8,9,10,11,12,13,0]
-		/*[[14,1,2,3,4,5,6,7,8,9,10,11,12,13,0],
+		WordListOrder: 
+		[[14,1,2,3,4,5,6,7,8,9,10,11,12,13,0],
 			[2,1,2,3,4,5,6,7,8,9,10,11,12,13,0],
 			[3,1,2,3,4,5,6,7,8,9,10,11,12,13,0],
 			[4,1,2,3,4,5,6,7,8,9,10,11,12,13,0],
-			[5,1,2,3,4,5,6,7,8,9,10,11,12,13,0]],*/
+			[5,1,2,3,4,5,6,7,8,9,10,11,12,13,0]]
 }
 
 var RAVLT_Spoken_Delayed = {
