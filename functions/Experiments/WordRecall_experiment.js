@@ -49,6 +49,28 @@ var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
 }
+// ============================================================
+function GetCurrentWordIndex(WordListOrder, BlockCount, ItemCount) 
+{
+  if ( WordListOrder != undefined )
+  {
+    // a word order was provided.
+    // Check to see if it is a different order for each trial/block
+    if ( WordListOrder.some(item=>Array.isArray(item)))
+    { /* array of lists, different orders per block/trial*/ 
+      CurrentIndex = WordListOrder[BlockCount][ItemCount]
+    }
+    else 
+    { /* single list, so same provided order for all blocks/trials */ 
+      CurrentIndex = WordListOrder[ItemCount]
+    }
+  }
+  else 
+  {
+    CurrentIndex = ItemCount
+  }
+  return CurrentIndex
+}
 /*
 var InitializeMicrophone = {
   type: jsPsychInitializeMicrophone,
@@ -295,18 +317,20 @@ var fixation = {
   trial_duration: FixationTimeBetweenWords
 }
 
+
 // Define the stimuli
 var AudioStimulus = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: function()
       {
-        console.log(WordRecallLists)
-        console.log(ItemCount)
         Stim = '+'
         // find what trial index this is
         ind = (TrialCount) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
-        Stim = AudioFileDictListA[ItemCount].Word
+        // Check to see if there is a wordlist order parameter provided.
+        // If so use it.
+        var CurrentIndex = GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount) 
+        Stim = AudioFileDictListA[CurrentIndex].Word
         
         // return the chosen stimulus
         return Stim
@@ -315,7 +339,7 @@ var AudioStimulus = {
         if ( parameters.VisualPresentation )
         { 
           var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
-            '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+            '<p class="Fixation">'+SimpleWordListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
           return Str
         }
         else 
