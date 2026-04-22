@@ -12,10 +12,12 @@ const PPP ={
       progressBarShowPageNumbers: false,
       progressBarShowPageTitles: false,
       showCompletedPage: false,
-      showTitle: false,
+      showTitle: true,
       pages: 
       [
+        
         {      
+          title: '<p><span id="clock">1:00</span></p>',
           elements: [
             {type: "tagbox",
             name: "Recall",
@@ -57,13 +59,31 @@ const PPP ={
     missed_question_text: function() { return LabelNames.missed_question_text},
     next_button_label: function() { return LabelNames.Next },
     previous_button_label: function() { return LabelNames.Previous },
-    required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
+    required: false,
+
+
     on_load: function() {
-      console.log("JASON JASON")
-      console.log(Instructions)
+    console.log("WORD RECALL SETUP")
+
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+    }, 250)
+    },
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
-    },
+    // },
     on_finish: function(data) {
         data.trial = "Questionnaire"
         data.response = data.response
@@ -72,6 +92,7 @@ const PPP ={
         data.AlertLimit = Questionnaire.AlertLimit
         data.title = Questionnaire.title
         data.shortTitle = Questionnaire.shortTitle
+        console.log(data)
     }
 };
 
