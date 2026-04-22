@@ -313,6 +313,17 @@ add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
 
 // ===== CERAD ========================================================================
 // Rey auditory verbal learning test
+// Only visual presentation of words
+// Free recall of words
+// Three trials
+// Ten minute delay
+// This is often filled with:
+/* Constructional Praxis Test: tests visuoconstructive abilities by asking patients to copy a
+circle, a diamond, intersecting rectangles, and a three-dimensional cube (maximum score
+= 11). After 5 minutes, patients are asked to reproduce as many of the drawings as
+possible, without seeing them (constructional praxis recall; maximum score = 11). */
+// Free recall
+// Recognition trial
 
 var EN_CERAD = {}
 EN_CERAD.WordListA = [
@@ -353,7 +364,7 @@ EN_CERAD.RecognitionWordList = [
 	
 // =====================================================
 // Word rate of one word every 2 sec
-// No visual presentation of words.
+// No visual presentation of words only auditory
 // Three trials, each followed by a recall
 // Then a recognition trial
 // Score: Number of true positive (out of 12)
