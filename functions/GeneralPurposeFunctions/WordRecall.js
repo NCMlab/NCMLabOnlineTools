@@ -3,34 +3,51 @@ var userSaidWords = []
 var ListeningFlag = false
 
 
+
+
+
+
+
+
 // Manual Recall Trial
+
 var ManualRecallA = {
   type: jsPsychSurvey,
-/*   on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
-  },*/
-  on_load: function() {console.log("WORD RECALL SETUP")},
+  //  on_load: function(){ // This inserts a timer on the recall duration
+  //   var wait_time = RecallDuration * 1000; // in milliseconds
+  //   var start_time = performance.now();
+  //   interval = setInterval(function(){
+  //   time_left = wait_time - (performance.now() - start_time);
+  //     var minutes = Math.floor(time_left / 1000 / 60);
+  //     var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+  //     var seconds_str = seconds.toString().padStart(2,'0');
+  //     document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+  //     if(time_left <= 0){
+  //       document.querySelector('#clock').innerHTML = "0:00";
+  //       document.querySelector('button').disabled = false;
+  //       clearInterval(interval);
+  //       // STOP VOICE RECORDING!!!
+  //     }
+  //   }, 250)
+  // },
+  on_load: function() {
+    console.log("WORD RECALL SETUP")
+    console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
+  },
   on_start: function() {
       console.log("WORD RECALL SETUP")          
       // reset the list of indices
     },
 
-  pages: [
-    [
+  survey_json: function() {
+    console.log("IN PAGES")
+              console.log(WordRecallLists)
+          console.log(CreateSimpleWordList(WordRecallLists.WordListA))
+          console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
+
+    var PPP = {
+      elements: [
+    
       {
         type: 'multi-select',
         prompt: function(){return Instructions.WordRecallPrompt},
@@ -63,7 +80,11 @@ var ManualRecallA = {
         required: false,
       }, 
     ]
-  ],
+  }
+    console.log(PPP)
+  return PPP
+
+},
   title: function() { return Instructions.title },//'Word Recall',
   button_label_next: 'Continue',
   button_label_back: 'Previous',

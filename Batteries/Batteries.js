@@ -256,9 +256,9 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Immediate",
+  Parameters: "DemoENManual",
   Instructions: "Default",
-  IconName: "Rey Imm",
+  IconName: "DEMO MAN",
 });
 List.push({
   Task: "Word Recall",
