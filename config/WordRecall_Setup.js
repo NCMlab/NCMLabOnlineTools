@@ -504,7 +504,7 @@ var DemoENManual = {
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType: 'Manual',
-	RecallDuration: 120, // seconds
+	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,

@@ -182,7 +182,7 @@ input[type=checkbox] {
 
 /* Checkbox alignment (important with scaling) */
 .TagBoxInputWrapper input[type="checkbox"] {
-  margin-top: 0.15em;
+  /* margin-top: 0.15em; */
   flex-shrink: 0;
 }
 
