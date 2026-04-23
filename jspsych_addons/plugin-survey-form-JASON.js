@@ -1,8 +1,8 @@
-var AllQuestionsValid = false
+
 var currentTab = 0
 var jsPsychSurveyHtmlForm = (function (jspsych) {
   'use strict';
-    
+
   const info = {
       name: "survey-html-form",
       parameters: {
@@ -91,7 +91,8 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
    */
   class SurveyHtmlFormPlugin {
       constructor(jsPsych) {
-          this.jsPsych = jsPsych;
+        this.jsPsych = jsPsych;
+        currentTab = 0
       }
         
 

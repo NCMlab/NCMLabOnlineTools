@@ -10,6 +10,7 @@ EN_Instructions_Default.Instructions01 = [
 	{'page': 'It does not matter in what order you repeat them, just try to recall as many as you can.'},
 	]
 EN_Instructions_Default.Instructions02 = [
+	{'page': ''},
 	{'page': 'Now you will hear the same words again, and once again, at the end of the list repeat back as many words as you can recall, including words you said the first time. '},
 	{'page': 'It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before.'},
 	]

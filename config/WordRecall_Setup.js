@@ -499,7 +499,7 @@ var DemoENManual = {
 	// without the need to change the word list file
 	FolderName: 'Set001/',
 	FileExtension: '.wav',
-	NBlocks: 2,
+	NBlocks: 5,
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
@@ -511,7 +511,7 @@ var DemoENManual = {
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	Instructions01Time: 10,

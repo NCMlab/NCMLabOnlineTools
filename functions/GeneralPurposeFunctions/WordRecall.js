@@ -7,7 +7,7 @@ var ListeningFlag = false
 var ManualRecallA = {
     type: jsPsychSurveyHtmlForm,
     survey_json: function() {
-const PPP ={
+    const PPP ={
       showProgressBar: "none",
       progressBarShowPageNumbers: false,
       progressBarShowPageTitles: false,
@@ -50,7 +50,7 @@ const PPP ={
         }
   ]
   }
-    console.log(PPP)
+  console.log(PPP)
   return PPP
     },
     button_label: function() { return LabelNames.Submit},
