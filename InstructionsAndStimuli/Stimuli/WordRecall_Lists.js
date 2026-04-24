@@ -371,7 +371,11 @@ EN_CERAD.RecognitionWordList = [
 // Number of false positives: Related (out of 6); Unrelated (out of 6) 
 // Discrimination index: (#TP - #FP)
 // https://static1.squarespace.com/static/548f3b5ce4b0ab0288d52cf5/t/5502073be4b0e85d639f7ec1/1426196283131/Hopkins.pdf
-
+// "prompt": "Read aloud in a warm, welcoming tone.",  
+// "voice": {
+//     "languageCode": "en-us",
+//     "modelName": "gemini-3.1-flash-tts-preview",
+//     "name": "Achernar"
 // Need to fix manual scoring of tasks
 EN_Hopkins = {}
 EN_Hopkins.WordList01 = [
