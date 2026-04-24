@@ -7,7 +7,7 @@ var ListeningFlag = false
 var ManualRecallA = {
     type: jsPsychSurveyHtmlForm,
     survey_json: function() {
-const PPP ={
+    const PPP ={
       showProgressBar: "none",
       progressBarShowPageNumbers: false,
       progressBarShowPageTitles: false,
@@ -50,14 +50,14 @@ const PPP ={
         }
   ]
   }
-    console.log(PPP)
+  console.log(PPP)
   return PPP
     },
     button_label: function() { return LabelNames.Submit},
     button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
     missed_question_label: function() { return LabelNames.missed_question_label},
     missed_question_text: function() { return LabelNames.missed_question_text},
-    next_button_label: function() { return LabelNames.Next },
+    next_button_label: function() { return LabelNames.Submit },
     previous_button_label: function() { return LabelNames.Previous },
     required: false,
 
@@ -85,15 +85,56 @@ const PPP ={
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     // },
     on_finish: function(data) {
-        data.trial = "Questionnaire"
-        data.response = data.response
-        data.QuestionnaireType = Questionnaire.QuestionnaireType
-        data.Questionnaire = Questionnaire
-        data.AlertLimit = Questionnaire.AlertLimit
-        data.title = Questionnaire.title
-        data.shortTitle = Questionnaire.shortTitle
-        console.log(data)
+      HeardList = []
+      userSaidWords = []
+      userSaid = []
+      BlockRecallCount = 0
+      BlockIntrusionCount = 0
+      IntrusionList = []
+      console.log(data)
+    console.log(data.response[0])
+    console.log(data.response[0].responseValue)
+      console.log(data.response[0].responseValue.length)
+      console.log(WordRecallLists)
+      
+      Responses = data.response[0].responseValue.split(";")
+      console.log(Responses)
+      // Make the output RecallBlock
+      TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
+      // Cycle over the selected words and put them in the correct spots
+      for ( var i = 0; i < Responses.length; i++ ) {
+        var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(Responses[i])
+        console.log(IndexOfWordRecalled)
+        HeardList.push(Responses[i])
+        TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+        BlockRecallCount++
+      }
+    console.log(BlockRecallCount)
+    data.RecallCount = BlockRecallCount
+    data.RecallBlock = TempRecall
+      console.log(data)
+    var NIntrustion = 0
+    for ( var k = 1; k < 4; k++ )
+    if ( data.response[k].responseValue != 0 )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response[k].responseText)
+          HeardList.push(data.response[k].responseText)
     }
+    data.HeardList = HeardList
+    data.userSaid = ''
+    //data.RecallCount = BlockRecallCount
+    data.IntrusionList = IntrusionList
+    data.NIntrusions = NIntrustion
+    data.task = 'Recall'
+    data.type = 'A'
+    BlockCount++
+    
+    // reset the timer
+    clearInterval(interval);
+    console.log(data)
+      
+  },
 };
 
 
