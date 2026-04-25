@@ -19,7 +19,8 @@ var time_left
 var WordList = []
 var WordListA
 var WordListB
-var SimpleWordList = []
+var SimpleWordListA = []
+var SimpleWordListB = []
 var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
@@ -40,6 +41,7 @@ var countInstr01 = 0
 var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
+var countInstr05 = 0
 var countInstrDelay = 0
 var IntrusionListA = []
 var IntrusionListB = []
@@ -215,9 +217,12 @@ var MakeWordListA = {
   func: function() {
     console.log(parameters)
     console.log(WordRecallLists)
+    console.log("ONE")
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
+    console.log("TWO")
     SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
+    console.log("THREE")
     AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListA))
     // Make a full list the words and thier alternative pronunciations
     FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
@@ -662,6 +667,7 @@ var AfterFirstBlockLoop = {
     else { return false }
   }
 }  
+
 var if_MoreThanOneBlock = {
   timeline: [AfterFirstBlockLoop],
   conditional_function: function() {
@@ -670,6 +676,16 @@ var if_MoreThanOneBlock = {
     else {return false}
   }
 }
+var if_WordListB = {
+  timeline: [MakeWordListB],
+  conditional_function: function() {
+    if ( parameters.BListFlag )
+    { return true}
+    else {return false}
+  }
+}
+
+
 var PresentListOfWordsA = {
     timeline: [fixation, AudioStimulus],
     timeline_variables: AudioFileDictListA,
@@ -686,7 +702,7 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
+      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, Instructions05, if_Manual_RecallA, if_Spoken_RecallA],
       repetitions: 1,
       randomize_order: false
   } 
@@ -704,7 +720,7 @@ var DelayedRecalBlockA = {
 } 
 
 var DelayedRecallNo = {
-  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
+  timeline: [MakeWordListA, if_WordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
     console.log(parameters)
     if ( parameters.DelayedRecallFlag)
@@ -716,7 +732,7 @@ var DelayedRecallNo = {
  
 
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, MakeWordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
+  timeline: [MakeWordListA, if_WordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
     if ( parameters.DelayedRecallFlag)
     { return true }

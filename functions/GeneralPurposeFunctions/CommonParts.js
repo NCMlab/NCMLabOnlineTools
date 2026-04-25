@@ -633,6 +633,104 @@ var Instructions04 = {
 }
 
 
+
+
+var Instructions05_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
+        timer_progress_bar(parameters.Instructions05Time[countInstr05]) }
+    }
+}
+
+var Instructions05_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions05Written = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function (){
+        var Str = Instructions.Instructions05[countInstr05].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
+    },
+    post_trial_gap: 0,
+    margin_horizontal: function() { return GapBetweenButtons },
+    prompt: '',
+    choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
+}
+
+var Instructions05Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.Instructions05Audio[countInstr05] },
+    choices: function() { return [LabelNames.Repeat] },
+    prompt: function() { return Instructions.Instructions05[countInstr05].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions05Time[countInstr05] },
+};
+
+// This loop allows the user to repeat the instructions
+var Instructions05SpokenRepeat_loop = {
+    timeline: [Instructions05_progress_bar_timer_start, Instructions05Spoken, Instructions05_progress_bar_timer_stop],
+    loop_function: function(data){
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions05Spoken_loop = {
+    timeline: [Instructions05SpokenRepeat_loop],
+    loop_function: function(data){
+      countInstr05 += 1
+      if ( countInstr05 < Instructions.Instructions05.length) 
+      { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions05Written_loop = {
+    timeline: [Instructions05Written],
+    loop_function: function(data){
+      countInstr05+=1
+      if ( countInstr05 < Instructions.Instructions05.length) 
+      { return true} else { return false}
+    }
+}
+
+var if_Instructions05Written = {
+    timeline: [Instructions05Written_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions05Spoken = {
+    timeline: [Instructions05Spoken_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
+          { return true }
+          else { return false }
+    }
+}
+var Instructions05 = {
+    timeline: [if_Instructions05Written, if_Instructions05Spoken]
+}
+
+
+
 // ================ GIF RECORDING ===================
 var StartGIFRecorder = {
     type: jsPsychCallFunction,

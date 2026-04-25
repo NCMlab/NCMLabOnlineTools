@@ -9,6 +9,9 @@ EN_Instructions_Default.Instructions01 = [
 	{'page': 'You are going to hear a list of words, this is <b>List A</b>. Listen carefully. At the end of the list you are to repeat back as many words as you can recall.'},
 	{'page': 'It does not matter in what order you repeat them, just try to recall as many as you can.'},
 	]
+EN_Instructions_Default.Instructions05 = [
+	{'page': 'Get ready to recall the words you just heard.'},
+]
 EN_Instructions_Default.Instructions02 = [
 	{'page': ''},
 	{'page': 'Now you will hear the same words again, and once again, at the end of the list repeat back as many words as you can recall, including words you said the first time. '},
@@ -132,3 +135,22 @@ FR_Instructions.title = 'Rappel différé'
 FR_Instructions.WordRecallPrompt = 'Quels mots ont été rappelés?'
 FR_Instructions.IntrusionPrompt = 'Intrusion? (Mots absents de la liste)'
 add('FR_Instructions_FaCE', function(){ Instructions = FR_Instructions});
+
+EN_Instructions_CERAD = {}
+EN_Instructions_CERAD.WelcomeText = [
+    {'page': 'Welcome to the Word Recall Task.'},
+]
+EN_Instructions_CERAD.Instructions01 = [
+	{'page': 'I am going to show you some words printed on these cards one at a time. Please read '+
+		'each word out loud and try to remember it, because later I will ask you to try to remember '+
+		'all of the words I have shown you. Ready? Read the word and try to remember it.'}
+	]
+EN_Instructions_CERAD.Instructions05 = [
+	{'page': 'Good, now tell me all the words you can remember.'}
+]
+EN_Instructions_CERAD.Instructions03 = [
+	{'page': 'Now I\’m going to show you the same words again. Read each word out loud and try to remember it.'}
+]
+EN_Instructions_CERAD.ThankYouText = 'Thank you'
+EN_Instructions_CERAD.WordRecallPrompt = 'Which words were recalled?'
+add('EN_Instructions_CERAD', function(){ Instructions = EN_Instructions_CERAD});

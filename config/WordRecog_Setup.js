@@ -15,7 +15,7 @@ var WordRecog_Default = {
 	RecordAUDIO: true,
 }
 
-var WordRecog_Spoken = {
+var RAVLT_WordRecog_Spoken = {
 	FolderName: 'Set001/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
@@ -31,7 +31,26 @@ var WordRecog_Spoken = {
 	AskForNotes: true,
 	RecordAUDIO: true,
 }
-add('WordRecog_Spoken', function(){ parameters = WordRecog_Spoken});
+add('RAVLT_WordRecog_Spoken', function(){ parameters = RAVLT_WordRecog_Spoken});
+
+var CERAD_WordRecog_Spoken = {
+	FolderName: 'Set001/',
+	WordList: 'CERAD',
+	FileExtension: '.wav',
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType:'Manual',
+	RecogDuration: 10, // seconds
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	ShowThankYou: true,
+	ShowInstructions: true,
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+}
+add('CERAD_WordRecog_Spoken', function(){ parameters = CERAD_WordRecog_Spoken});
+
 
 var WordRecog_Spoken_002 = {
 	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',

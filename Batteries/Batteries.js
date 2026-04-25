@@ -195,7 +195,7 @@ List.push({
 });*/
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -256,9 +256,9 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "DemoENManual",
+  Parameters: "RAVLT_Spoken_Immediate",
   Instructions: "Default",
-  IconName: "DEMO MAN",
+  IconName: "Rey Imm",
 });
 List.push({
   Task: "Word Recall",
@@ -268,16 +268,16 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Rey Recog",
 });
 
 List.push({
   Task: "Word Recall",
-  Parameters: "XX",
-  Instructions: "Default",
-  IconName: "XCERAD Imm",
+  Parameters: "CERAD_Manual_Immediate",
+  Instructions: "CERAD",
+  IconName: "CERAD Imm",
 });
 List.push({
   Task: "Word Recall",
@@ -287,9 +287,9 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "XXX",
+  Parameters: "CERAD_WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "XCERAD Recog",
+  IconName: "CERAD Recog",
 });
 
 
@@ -298,12 +298,6 @@ List.push({
   Parameters: "XX",
   Instructions: "Default",
   IconName: "XHopkins Imm",
-});
-List.push({
-  Task: "Word Recall",
-  Parameters: "XXX",
-  Instructions: "Default",
-  IconName: "XHopkins Delay",
 });
 List.push({
   Task: "Word Recognition",
@@ -560,7 +554,7 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -2067,7 +2061,7 @@ List.push({
 var List = []
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Word Recog",
 });

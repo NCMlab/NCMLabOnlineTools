@@ -312,7 +312,7 @@ add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
 
 
 // ===== CERAD ========================================================================
-// Rey auditory verbal learning test
+// auditory verbal learning test
 // Only visual presentation of words
 // Free recall of words
 // Three trials
@@ -338,7 +338,6 @@ EN_CERAD.WordListA = [
 	{'Word':'Grass'},		// 8 
 	{'Word':'Engine'}		// 9
 ]
-
 EN_CERAD.RecognitionWordList = [
 	{'Word':'School',	'Answer':false},
 	{'Word':'Coffee',	'Answer':false},
@@ -361,7 +360,10 @@ EN_CERAD.RecognitionWordList = [
 	{'Word':'Grass',	'Answer':true},
 	{'Word':'Engine',	'Answer':true}
 ]
-	
+EN_CERAD.AlternatePronunciationsWordListA = []
+EN_CERAD.NWords = EN_CERAD.WordListA.length
+
+add('EN_CERAD', function(){ WordRecallLists = EN_CERAD});
 // =====================================================
 // Word rate of one word every 2 sec
 // No visual presentation of words only auditory
