@@ -380,7 +380,7 @@ add('EN_CERAD', function(){ WordRecallLists = EN_CERAD});
 //     "name": "Achernar"
 // Need to fix manual scoring of tasks
 EN_Hopkins = {}
-EN_Hopkins.WordList01 = [
+EN_Hopkins.WordListA = [
 	{'Word':'LION'},   	// 0
 	{'Word':'EMERALD'},   // 1
 	{'Word':'HORSE'},     // 2
@@ -394,7 +394,7 @@ EN_Hopkins.WordList01 = [
 	{'Word':'COW'},       // 10
 	{'Word':'HUT'},       // 11
 ]
-EN_Hopkins.RecognitionWordList01 = [
+EN_Hopkins.RecognitionWordList = [
 	{'Word':'Horse',     'Answer':true},
 	{'Word':'Ruby',      'Answer':false},
 	{'Word':'Cave',      'Answer':true},
@@ -418,8 +418,11 @@ EN_Hopkins.RecognitionWordList01 = [
 	{'Word':'Cat',       'Answer':false},
 	{'Word':'Hotel',     'Answer':true},
 	{'Word':'Cow',       'Answer':true},
-	{'Word':'Diamond',   'Answer':false}
+	//{'Word':'Diamond',   'Answer':false}
 ]
+EN_Hopkins.AlternatePronunciationsWordListA = []
+EN_Hopkins.NWords = EN_Hopkins.WordListA.length
+add('EN_Hopkins', function(){ WordRecallLists = EN_Hopkins});
 
 EN_Hopkins.WordList01 = [
 	{'Word':'Fork'},     // 0

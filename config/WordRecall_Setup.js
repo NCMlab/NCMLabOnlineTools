@@ -449,10 +449,10 @@ var CERAD_Manual_Immediate = {
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: false,
 	VisualPresentation: true,
-	RecallType: 'Spoken', // Spoken / Manual
+	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 150, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
@@ -468,3 +468,51 @@ var CERAD_Manual_Immediate = {
 		 [4,8,1,5,6,2,0,9,7,3]]
 }
 add('CERAD_Manual_Immediate', function(){ parameters = CERAD_Manual_Immediate});
+
+
+var CERAD_Manual_Delayed = {
+	FolderName: 'Set001/',
+	WordList: 'CERAD',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Manual',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: true
+}
+add('CERAD_Manual_Delayed', function(){ parameters = CERAD_Manual_Delayed});
+
+
+var Hopkins_Spoken_Immediate = {
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'Hopkins',
+	FileExtension: '.wav',
+	NBlocks: 3,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: false,
+	RecallType: 'Spoken', // Spoken / Manual
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 200, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+}
+add('Hopkins_Spoken_Immediate', function(){ parameters = Hopkins_Spoken_Immediate});

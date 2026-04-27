@@ -136,21 +136,31 @@ FR_Instructions.WordRecallPrompt = 'Quels mots ont été rappelés?'
 FR_Instructions.IntrusionPrompt = 'Intrusion? (Mots absents de la liste)'
 add('FR_Instructions_FaCE', function(){ Instructions = FR_Instructions});
 
+
 EN_Instructions_CERAD = {}
 EN_Instructions_CERAD.WelcomeText = [
     {'page': 'Welcome to the Word Recall Task.'},
 ]
 EN_Instructions_CERAD.Instructions01 = [
-	{'page': 'I am going to show you some words printed on these cards one at a time. Please read '+
-		'each word out loud and try to remember it, because later I will ask you to try to remember '+
-		'all of the words I have shown you. Ready? Read the word and try to remember it.'}
+	{'page': 'I am going to show you some words printed on the screen one at a time. Please read '+
+		'each word out loud and try to remember it, because later you will be asked to try to remember '+
+		'all of the words you have been shown you. Ready? Read the word and try to remember it.'},
+	
 	]
 EN_Instructions_CERAD.Instructions05 = [
-	{'page': 'Good, now tell me all the words you can remember.'}
+	{'page': 'Good, say all the words you can remember.'}
 ]
-EN_Instructions_CERAD.Instructions03 = [
-	{'page': 'Now I\’m going to show you the same words again. Read each word out loud and try to remember it.'}
+EN_Instructions_CERAD.Instructions02 = [
+	{'page':''},
+	{'page': 'Now you will see the same words again. Read each word out loud and try to remember it.'},	
 ]
+EN_Instructions_CERAD.InstructionsDelayed = [
+	{'page': 'A few minutes ago you read some words printed on the screen. Say all of the words you can remember that were on the screen.'},
+	]	
+
 EN_Instructions_CERAD.ThankYouText = 'Thank you'
+EN_Instructions_CERAD.IntrusionPrompt = 'Intrusion? (Words not in the list)'
 EN_Instructions_CERAD.WordRecallPrompt = 'Which words were recalled?'
 add('EN_Instructions_CERAD', function(){ Instructions = EN_Instructions_CERAD});
+
+//“A few minutes ago I had you read some words printed on these cards (point to word cards). Tell me all of the words you can remember that were on the cards

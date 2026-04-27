@@ -272,6 +272,7 @@ var Instructions01Written = {
     stimulus: function (){
         console.log("JASON -- INSTRUCTIONS 01")
         console.log(Instructions)
+        
         var Str = Instructions.Instructions01[countInstr01].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str
@@ -292,7 +293,6 @@ var Instructions01Spoken = {
     response_ends_trial: true,
     trial_duration: function() { return parameters.Instructions01Time[countInstr01] },
 };
-
 // This loop allows the user to repeat the instructions
 var Instructions01SpokenRepeat_loop = {
     timeline: [Instructions01_progress_bar_timer_start, Instructions01Spoken, Instructions01_progress_bar_timer_stop],
@@ -301,7 +301,6 @@ var Instructions01SpokenRepeat_loop = {
         { return true} else { return false}
     }
 }
-
 // This loops over multiple pages of the instructions
 var Instructions01Spoken_loop = {
     timeline: [Instructions01SpokenRepeat_loop],
@@ -312,7 +311,6 @@ var Instructions01Spoken_loop = {
       { return true} else { return false}
     }
 }
-
 // This loops over multiple pages of the instructions
 var Instructions01Written_loop = {
     timeline: [Instructions01Written],
@@ -322,7 +320,6 @@ var Instructions01Written_loop = {
       { return true} else { return false}
     }
 }
-
 var if_Instructions01Written = {
     timeline: [Instructions01Written_loop],
     conditional_function: function() {
@@ -332,7 +329,6 @@ var if_Instructions01Written = {
           else { return false }
     }
 }
-
 var if_Instructions01Spoken = {
     timeline: [Instructions01Spoken_loop],
     conditional_function: function() {
@@ -344,9 +340,6 @@ var if_Instructions01Spoken = {
 var Instructions01 = {
     timeline: [if_Instructions01Written, if_Instructions01Spoken]
 }
-
-
-
 var Instructions02_progress_bar_timer_start = {
     type: jsPsychCallFunction,
     func: function(){ 
@@ -356,7 +349,6 @@ var Instructions02_progress_bar_timer_start = {
         timer_progress_bar(parameters.Instructions02Time[countInstr02]) }
     }
 }
-
 var Instructions02_progress_bar_timer_stop = {
     type: jsPsychCallFunction,
     func: function(){ 
@@ -366,10 +358,10 @@ var Instructions02_progress_bar_timer_stop = {
          }
     }
 }
-
 var Instructions02Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
+        console.log("JASON -- INSTRUCTIONS 02")
         var Str = Instructions.Instructions02[countInstr02].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str
@@ -379,6 +371,7 @@ var Instructions02Written = {
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
     valid_choices: '',
+    on_finish: function() {countInstr02+=1}
 }
 
 var Instructions02Spoken = {
@@ -389,6 +382,7 @@ var Instructions02Spoken = {
     response_allowed_while_playing: false,
     response_ends_trial: true,
     trial_duration: function() { return parameters.Instructions02Time[countInstr02] },
+    on_finish: function() {countInstr02+=1}
 };
 
 // This loop allows the user to repeat the instructions
@@ -404,7 +398,6 @@ var Instructions02SpokenRepeat_loop = {
 var Instructions02Spoken_loop = {
     timeline: [Instructions02SpokenRepeat_loop],
     loop_function: function(data){
-      countInstr02 += 1
       if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
@@ -414,7 +407,9 @@ var Instructions02Spoken_loop = {
 var Instructions02Written_loop = {
     timeline: [Instructions02Written],
     loop_function: function(data){
-      countInstr02+=1
+        console.log("HELLO FROM INSTRUCTIONS 02 WRITTEN LOOP")
+      
+      console.log(countInstr02)
       if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
@@ -423,6 +418,7 @@ var Instructions02Written_loop = {
 var if_Instructions02Written = {
     timeline: [Instructions02Written_loop],
     conditional_function: function() {
+        console.log("HELLO FROM IF INSTRUCTIONS 02 WRITTEN")
           if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }

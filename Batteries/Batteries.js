@@ -281,9 +281,9 @@ List.push({
 });
 List.push({
   Task: "Word Recall",
-  Parameters: "XXX",
-  Instructions: "Default",
-  IconName: "XCERAD Delay",
+  Parameters: "CERAD_Manual_Delayed",
+  Instructions: "CERAD",
+  IconName: "CERAD Delay",
 });
 List.push({
   Task: "Word Recognition",
@@ -295,15 +295,15 @@ List.push({
 
 List.push({
   Task: "Word Recall",
-  Parameters: "XX",
+  Parameters: "Hopkins_Spoken_Immediate",
   Instructions: "Default",
-  IconName: "XHopkins Imm",
+  IconName: "Hopkins Imm",
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "XXX",
+  Parameters: "Hopkins_WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "XHopkins Recog",
+  IconName: "Hopkins Recog",
 });
 
 
