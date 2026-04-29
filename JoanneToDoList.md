@@ -1,8 +1,6 @@
 ## Word List Tasks
-I need to figure out how to allow provided word orders that are unique for each trial.
-- CERAD Word List
-- Hopkins Verbal Learning
-Rey Learning >> DONE
+These are all done. Double check that they work as intended.
+Rey Imm gives an error at List B
 ## Digit Memory >> DONE
 
 ## Stroop >> DONE
