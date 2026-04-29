@@ -330,7 +330,7 @@ List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_Default",
   Instructions: "Default",
-  IconName: "Cube Copy",
+  IconName: "Image Copy",
 });
 List.push({
   Task: "Stroop Color",

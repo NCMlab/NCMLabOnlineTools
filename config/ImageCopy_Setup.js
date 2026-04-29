@@ -30,7 +30,7 @@ var ImageCopy_Default = {
 	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'NeckerCube.png',
+	Image: ['Circle.png','Lozange.png','TwoRectangles.png','NeckerCube.png'],
 	RecordGIF: true,
 }
 
@@ -41,7 +41,7 @@ var ImageCopy_Smile = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'SmileFace.png',
+	Image: ['SmileFace.png'],
 	RecordGIF: true,
 }
 
@@ -52,7 +52,7 @@ var ImageCopy_TwoCircles = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'TwoCircles.png',
+	Image: ['TwoCircles.png'],
 	RecordGIF: true,
 }
 
@@ -64,7 +64,7 @@ var ImageCopy_CBprotocol = {
 	ShowThankYou: false,
 	ShowInstructions: false,
 	AskForNotes: false,
-	Image: 'NeckerCube.png',
+	Image: ['NeckerCube.png'],
 	RecordGIF: true,
 }
 
@@ -75,7 +75,7 @@ var ImageCopy_FaCE_Training = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'TwoCircles.png',
+	Image: ['TwoCircles.png'],
 	RecordGIF: true,
 }
 
@@ -86,7 +86,7 @@ var ImageCopy_FaCE_VerA= {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'NeckerCube.png',
+	Image: ['NeckerCube.png'],
 	RecordGIF: true,
 }
 
@@ -97,7 +97,7 @@ var ImageCopy_FaCE_VerB= {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
-	Image: 'InverseNeckerCube.png',
+	Image: ['InverseNeckerCube.png'],
 	RecordGIF: true,
 }
 

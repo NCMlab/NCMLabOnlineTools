@@ -1,5 +1,6 @@
 
 var timeline = []
+var ImageCount = 0
 var encoder // needs to be global so sketchpad can use it
 
 
@@ -7,16 +8,16 @@ var enter_fullscreen = {
       type: jsPsychFullscreen,
       fullscreen_mode: FullScreenMode
     }
-    
+
 var trial = {
       type: jsPsychSketchpad,
       prompt: function() {
         console.log(parameters)
-        const ImageToUse = parameters.Image
+        const ImageToUse = parameters.Image[ImageCount]
           console.log(ImageToUse)
           if ( parameters.ShowInstructions )
-            { return Instructions.Instructions+'<p><img src="'+ImageFolder+parameters.Image+'" width="300vw" height="300vh" border="2px">'} 
-          else { return '<p><img src="'+ImageFolder+parameters.Image+'" width="300vw" height="300vh" border="2px">'}
+            { return Instructions.Instructions+'<p><img src="'+ImageFolder+parameters.Image[ImageCount]+'" width="300vw" height="300vh" border="2px">'} 
+          else { return '<p><img src="'+ImageFolder+parameters.Image[ImageCount]+'" width="300vw" height="300vh" border="2px">'}
       },
       GIFRecord: function() { return parameters.RecordGIF },
       canvas_border_width: 1,
@@ -43,19 +44,32 @@ var trial = {
       }
 }
 
-    var SendData = {
-      type: jsPsychCallFunction,
-      func: function() {
-            var data = jsPsych.data.get()
-            Results = ImageCopy_Scoring(data)
-            jsPsych.finishTrial(Results)
-      },
+var ImageCopy_loop = {
+    timeline: [trial],
+    loop_function: function(data){
+      console.log(parameters)
+      console.log(parameters.Image.length)
+      if ( ImageCount < parameters.Image.length-1) 
+      { 
+        ImageCount += 1  
+        return true
+      } else { return false}
     }
+}    
+    
+var SendData = {
+    type: jsPsychCallFunction,
+    func: function() {
+          var data = jsPsych.data.get()
+          Results = ImageCopy_Scoring(data)
+          jsPsych.finishTrial(Results)
+    },
+  }
     
 timeline.push(if_GIFRecorder)
 timeline.push(enter_fullscreen)
 timeline.push(Welcome)
-timeline.push(trial)
+timeline.push(ImageCopy_loop)
 timeline.push(Notes)
-timeline.push(ThankYou)
 timeline.push(SendData)
+timeline.push(ThankYou)
