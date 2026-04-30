@@ -286,7 +286,141 @@ var ManualRecallA = {
 // };
 
 // ==========================================================================
- var ManualRecallB = {}
+var ManualRecallB = {
+    type: jsPsychSurveyHtmlForm,
+    survey_json: function() {
+    const PPP ={
+      showProgressBar: "none",
+      progressBarShowPageNumbers: false,
+      progressBarShowPageTitles: false,
+      showCompletedPage: false,
+      showTitle: true,
+      pages: 
+      [
+        
+        {      
+          title: '<p><span id="clock">1:00</span></p>',
+          elements: [
+            {type: "tagbox",
+            name: "Recall",
+            title: Instructions.WordRecallPrompt,
+            choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB)),
+            name: 'ListRecall',
+            required: false
+            },
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            name: 'Intrusion01', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title:  Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion02', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion03', 
+            required: false,
+          }, 
+        ]
+        }
+  ]
+  }
+  console.log(PPP)
+  return PPP
+    },
+    button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
+    missed_question_label: function() { return LabelNames.missed_question_label},
+    missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Submit },
+    previous_button_label: function() { return LabelNames.Previous },
+    required: false,
+
+
+    on_load: function() {
+    console.log("WORD RECALL SETUP")
+
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+    }, 250)
+    },
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+    // },
+    on_finish: function(data) {
+      HeardList = []
+      userSaidWords = []
+      userSaid = []
+      BlockRecallCount = 0
+      BlockIntrusionCount = 0
+      IntrusionList = []
+      console.log(data)
+    console.log(data.response[0])
+    console.log(data.response[0].responseValue)
+      console.log(data.response[0].responseValue.length)
+      console.log(WordRecallLists)
+      
+      Responses = data.response[0].responseValue.split(";")
+      console.log(Responses)
+      // Make the output RecallBlock
+      TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
+      // Cycle over the selected words and put them in the correct spots
+      for ( var i = 0; i < Responses.length; i++ ) {
+        var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(Responses[i])
+        console.log(IndexOfWordRecalled)
+        HeardList.push(Responses[i])
+        TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+        BlockRecallCount++
+      }
+    console.log(BlockRecallCount)
+    data.RecallCount = BlockRecallCount
+    data.RecallBlock = TempRecall
+      console.log(data)
+    var NIntrustion = 0
+    for ( var k = 1; k < 4; k++ )
+    if ( data.response[k].responseValue != 0 )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response[k].responseText)
+          HeardList.push(data.response[k].responseText)
+    }
+    data.HeardList = HeardList
+    data.userSaid = ''
+    //data.RecallCount = BlockRecallCount
+    data.IntrusionList = IntrusionList
+    data.NIntrusions = NIntrustion
+    data.task = 'Recall'
+    data.type = 'A'
+    BlockCount++
+    
+    // reset the timer
+    clearInterval(interval);
+    console.log(data)
+      
+  },
+}; 
+
+
+//var ManualRecallB = {}
 //   type: jsPsychSurvey,  
 //   on_start: function() {
 //       // reset the list of indices

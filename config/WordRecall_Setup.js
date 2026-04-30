@@ -29,14 +29,14 @@ var RAVLT_Spoken_Immediate = {
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 500, // milliseconds
+	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,

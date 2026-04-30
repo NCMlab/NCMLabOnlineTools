@@ -18,14 +18,17 @@ EN_Instructions_Default.Instructions02 = [
 	{'page': 'It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before.'},
 	]
 EN_Instructions_Default.Instructions03 = [
+	{'page': ''},
 	{'page': 'Now you will hear a second list of words, this is <b>List B</b>. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. '},
 	{'page': 'It does not matter in what order you repeat them, just try to remember as many as you can.'},
 	]
 EN_Instructions_Default.Instructions04 = [
+	{'page': ''},
 	{'page': 'Now repeat back all the words you can recall from <b>List A</b>, the list you heard a number of times.'},
 	]
 
 EN_Instructions_Default.InstructionsDelayed = [
+	{'page': ''},
 	{'page': 'Recall all the words you can remember from the list you heard a number of times, <b>List A</b>.'},
 	]	
 
