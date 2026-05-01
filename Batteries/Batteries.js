@@ -256,19 +256,19 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Immediate",
+  Parameters: "RAVLT_Manual_Immediate",
   Instructions: "Default",
   IconName: "Rey Imm",
 });
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Delayed",
+  Parameters: "RAVLT_Manual_Delayed",
   Instructions: "Default",
   IconName: "Rey Delay",
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "RAVLT_WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Manual",
   Instructions: "Default",
   IconName: "Rey Recog",
 });

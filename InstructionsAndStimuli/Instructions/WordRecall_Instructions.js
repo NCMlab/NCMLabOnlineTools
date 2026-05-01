@@ -10,6 +10,7 @@ EN_Instructions_Default.Instructions01 = [
 	{'page': 'It does not matter in what order you repeat them, just try to recall as many as you can.'},
 	]
 EN_Instructions_Default.Instructions05 = [
+	{'page': ''},
 	{'page': 'Get ready to recall the words you just heard.'},
 ]
 EN_Instructions_Default.Instructions02 = [
@@ -28,7 +29,6 @@ EN_Instructions_Default.Instructions04 = [
 	]
 
 EN_Instructions_Default.InstructionsDelayed = [
-	{'page': ''},
 	{'page': 'Recall all the words you can remember from the list you heard a number of times, <b>List A</b>.'},
 	]	
 
@@ -145,7 +145,7 @@ EN_Instructions_CERAD.WelcomeText = [
     {'page': 'Welcome to the Word Recall Task.'},
 ]
 EN_Instructions_CERAD.Instructions01 = [
-	{'page': 'I am going to show you some words printed on the screen one at a time. Please read '+
+	{'page': 'You will see some words printed on the screen one at a time. Please read '+
 		'each word out loud and try to remember it, because later you will be asked to try to remember '+
 		'all of the words you have been shown you. Ready? Read the word and try to remember it.'},
 	

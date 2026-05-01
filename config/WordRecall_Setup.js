@@ -8,21 +8,46 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 var RAVLT_Manual_Immediate = {
-	FolderName: 'RAVLTSet001/',
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 2,
+	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual',
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
-	TimePerWord: 150, // milliseconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 200, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+}
+
+var RAVLT_Manual_Delayed = {
+	FolderName: 'Set001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Manual', // Spoken
+	RecallDuration: 60, // seconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
-	ShowInstructions: true, // not implemented
+	ShowInstructions: true,
 	AskForNotes: false,
 	RecordAUDIO: false,
 }
+
 
 var RAVLT_Spoken_Immediate = {
 	FolderName: 'Set001/',
@@ -33,7 +58,7 @@ var RAVLT_Spoken_Immediate = {
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType: 'Manual', // Spoken / Manual
+	RecallType: 'Spoken', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
 	TimePerWord: 200, // milliseconds
@@ -95,23 +120,6 @@ RAVLT_Spoken_Immediate.Instructions04Audio.push('assets/SoundFiles/Instructions/
 RAVLT_Spoken_Immediate.Instructions04Time = []
 RAVLT_Spoken_Immediate.Instructions04Time.push(10000)
 
-
-var RAVLT_Manual_Delayed = {
-	FolderName: 'RAVLTSet001/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 1,
-	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual', // Spoken
-	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: true,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	RecordAUDIO: false,
-}
 
 
 
@@ -452,7 +460,7 @@ var CERAD_Manual_Immediate = {
 	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 150, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,

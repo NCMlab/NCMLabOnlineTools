@@ -146,9 +146,10 @@ var if_Test_Instructions = {
   timeline.push(loop_node)
   ///timeline.push(trials)
 
-  timeline.push(SendData)
+  
   timeline.push(Notes)
-timeline.push(ThankYou)
+  timeline.push(ThankYou)
+  timeline.push(SendData)
 
   
   

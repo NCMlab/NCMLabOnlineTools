@@ -92,12 +92,15 @@ var ManualRecallA = {
       BlockIntrusionCount = 0
       IntrusionList = []
       console.log(data)
-    console.log(data.response[0])
-    console.log(data.response[0].responseValue)
-      console.log(data.response[0].responseValue.length)
+      console.log(data.response[0])
+      console.log(data.response[0].responseValue)
+      console.log(data.response[0].responseValue.length) // This gives the wrong value
       console.log(WordRecallLists)
       
       Responses = data.response[0].responseValue.split(";")
+      // remove any spaces at the beginning or end of the words
+      for ( var i = 0; i < Responses.length; i++ )
+      { Responses[i] = Responses[i].replace(/\s/g, ''); }
       console.log(Responses)
       // Make the output RecallBlock
       TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
@@ -112,7 +115,7 @@ var ManualRecallA = {
     console.log(BlockRecallCount)
     data.RecallCount = BlockRecallCount
     data.RecallBlock = TempRecall
-      console.log(data)
+    console.log(data)
     var NIntrustion = 0
     for ( var k = 1; k < 4; k++ )
     if ( data.response[k].responseValue != 0 )
@@ -380,6 +383,9 @@ var ManualRecallB = {
       console.log(WordRecallLists)
       
       Responses = data.response[0].responseValue.split(";")
+      // remove any spaces at the beginning or end of the words
+      for ( var i = 0; i < Responses.length; i++ )
+      { Responses[i] = Responses[i].replace(/\s/g, ''); }
       console.log(Responses)
       // Make the output RecallBlock
       TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
@@ -409,7 +415,7 @@ var ManualRecallB = {
     data.IntrusionList = IntrusionList
     data.NIntrusions = NIntrustion
     data.task = 'Recall'
-    data.type = 'A'
+    data.type = 'B'
     BlockCount++
     
     // reset the timer
