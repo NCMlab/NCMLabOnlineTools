@@ -19,7 +19,7 @@ var RAVLT_Manual_Immediate = {
 	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 200, // milliseconds
+	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
@@ -39,7 +39,7 @@ var RAVLT_Manual_Delayed = {
 	BListFlag: false, // Check to see if there is a second set of words
 	RecallType: 'Manual', // Spoken
 	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: false,
 	ShowThankYou: false,
@@ -61,7 +61,7 @@ var RAVLT_Spoken_Immediate = {
 	RecallType: 'Spoken', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 200, // milliseconds
+	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
@@ -460,7 +460,7 @@ var CERAD_Manual_Immediate = {
 	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 150, // milliseconds
+	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
@@ -495,7 +495,11 @@ var CERAD_Manual_Delayed = {
 	ShowThankYou: true,
 	ShowInstructions: true,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: true,
+	WordListOrder: 
+		[[0,1,2,3,4,5,6,7,8,9],
+		 [7,5,0,2,9,1,4,3,6,8],
+		 [4,8,1,5,6,2,0,9,7,3]]
 }
 add('CERAD_Manual_Delayed', function(){ parameters = CERAD_Manual_Delayed});
 
@@ -512,7 +516,7 @@ var Hopkins_Spoken_Immediate = {
 	RecallType: 'Spoken', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 200, // milliseconds
+	TimePerWord: 1500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
