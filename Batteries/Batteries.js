@@ -865,7 +865,8 @@ FaCE_VerA_Spoken_EN_List.push({
   Instructions: "FaCE",
   IconName: "Delayed",
 });
-// 				Manual
+// ==========================================
+// =============== Manual ===================
 var FaCE_VerA_Manual_EN_List = [];
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})

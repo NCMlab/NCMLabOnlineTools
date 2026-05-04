@@ -23,8 +23,8 @@ add('EN_Test', function(){ WordRecallLists = EN_Test});
 // ====================================================================================
 // === FaCE ===========================================================================
 
-var EN_FaCE_VerA = {}
-EN_FaCE_VerA.WordListA = [
+var EN_FaCE = {}
+EN_FaCE.WordListA = [
 	{'Word':"Leg"},		    // 0
 	{'Word':'Wool'}, 	    // 1
 	{'Word':'Castle'}, 		// 2
@@ -33,12 +33,12 @@ EN_FaCE_VerA.WordListA = [
 	{'Word':'Horse'},		// 5
 	{'Word':'Potato'},		// 6
 	]
-EN_FaCE_VerA.AlternatePronunciationsWordListA = []
-EN_FaCE_VerA.WordListB = []
-EN_FaCE_VerA.RecognitionWordList = []
-EN_FaCE_VerA.AlternatePronunciationsWordListB = []
-EN_FaCE_VerA.NWords = EN_FaCE_VerA.WordListA.length
-add('EN_FaCE_VerA', function(){ WordRecallLists = EN_FaCE_VerA});
+EN_FaCE.AlternatePronunciationsWordListA = []
+EN_FaCE.WordListB = []
+EN_FaCE.RecognitionWordList = []
+EN_FaCE.AlternatePronunciationsWordListB = []
+EN_FaCE.NWords = EN_FaCE.WordListA.length
+add('EN_FaCE', function(){ WordRecallLists = EN_FaCE});
 
 var EN_FaCE_VerB = {}
 EN_FaCE_VerB.WordListA = [

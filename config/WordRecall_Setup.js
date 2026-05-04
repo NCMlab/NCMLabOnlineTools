@@ -217,10 +217,10 @@ var RAVLT_001 = {
 
 var FaCE_Immediate_Spoken_VerA_EN = {
 	// specify the word list to use
-	WordList: 'EN_FaCE_VerA',
+	WordList: 'FaCE',
 	// Specify the folder of audio files to use. This allows for presentation of different voices
 	// without the need to change the word list file
-	FolderName: 'FaCE/EN/EN-US-Neural2-F/',
+	FolderName: 'Set001/',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false, // Check to see if there is a second set of words
@@ -253,7 +253,7 @@ let FaCE_Delayed_Spoken_Training_EN = Object.assign({}, FaCE_Immediate_Spoken_Tr
 	FaCE_Delayed_Spoken_Training_EN.DelayedRecallFlag = true
 
 
-let FaCE_Immediate_Manual_VerA_EN = Object.assign({}, FaCE_Immediate_Spoken_VerA_EN)
+let FaCE_Immediate_Manual_VerA_EN = FaCE_Immediate_Spoken_VerA_EN
 	FaCE_Immediate_Manual_VerA_EN.RecallType = 'Manual'
 let FaCE_Immediate_Manual_VerB_EN = Object.assign({}, FaCE_Immediate_Spoken_VerB_EN)
 	FaCE_Immediate_Manual_VerB_EN.RecallType = 'Manual'
