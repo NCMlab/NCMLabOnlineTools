@@ -787,7 +787,7 @@ FaCE_Training_Spoken_EN_List.push({
   Task: "Intake Form",
   Parameters: "IntakeForm_EN",
   Instructions: "OrientationFaCE",
-  IconName: "",
+  IconName: "Intake",
 });
 FaCE_Training_Spoken_EN_List.push({
   Task: "Word Recall",
@@ -907,39 +907,40 @@ FaCE_VerA_Spoken_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Spoken_VerA_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Recall Imm",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Trail Making",
   Parameters: "TrailMaking_FaCE",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Trails",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_VerA",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Image Copy",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_VerA_Spoken",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Subtract",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_VerA_Spoken",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Fluency",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Spoken_VerA_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Delayed",
 });
-// 				Manual
+// ==========================================
+// =============== Manual ===================
 var FaCE_VerA_Manual_EN_List = [];
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
@@ -947,37 +948,37 @@ FaCE_VerA_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Manual_VerA_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Recall Imm",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Trail Making",
   Parameters: "TrailMaking_FaCE",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Trails",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_VerB",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Image Copy",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_VerA_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Subtract",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_VerA_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Fluency",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Manual_VerA_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Delayed",
 });
 
 BatteryList.push({
