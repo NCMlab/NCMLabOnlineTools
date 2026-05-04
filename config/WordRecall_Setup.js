@@ -137,10 +137,10 @@ var FaCE_Immediate_Spoken_VerA_EN = {
 	RecallType: 'Spoken',
 	RecallDuration: 120, // seconds
 	DelayBeforeShowingDoneButton: 3, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	WelcomeSpoken: false,
+	ShowWelcome: true,
+	WelcomeSpoken: true,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
 	ShowInstructions: true, 

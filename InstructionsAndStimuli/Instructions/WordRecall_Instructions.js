@@ -77,8 +77,8 @@ add('FR_Instructions_Default', function(){ Instructions = FR_Instructions_Defaul
 
 
 
-// ====================================================
-
+// =================================================================
+// ============ FaCE-Specific Instructions =========================
 var EN_Instructions = {}
 EN_Instructions.WelcomeText = [
     {'page': 'Welcome to the Word Recall Task.'},
@@ -97,6 +97,11 @@ EN_Instructions.Instructions03 = [
 EN_Instructions.Instructions04 = [
 	{'page': 'Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin.'},
 	]
+EN_Instructions.Instructions05 = [
+	{'page': ''},
+	{'page': 'Get ready to recall the words you just heard.'},
+]
+
 EN_Instructions.InstructionsDelayed = [
 	{'page': 'Earlier, you heard a wordlist that you were asked you to remember. Now, you are to name every word that you remember from that list.'},
 	]	
