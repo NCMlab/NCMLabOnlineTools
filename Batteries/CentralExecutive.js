@@ -166,9 +166,14 @@ function SetupSession() {
     // no front end scripts can access the back-end data stored in the database. 
 
     console.log(jatos.studySessionData)
+    
+    // Check the Batch data to see what the language is set to and use that.
+
     //CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
     CurrentLanguage = jatos.studySessionData.Language
-    console.log(CurrentLanguage)
+    // If there is no language in the batch, then this is likely the first time the worker has come to the session manager. 
+    // In this case, use the URL parameter to set the language and store that in the batch.
+    CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
     if ( CurrentLanguage == undefined )
     {
         // set the language to the default, EN

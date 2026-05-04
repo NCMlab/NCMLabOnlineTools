@@ -11,8 +11,8 @@ const json = {
    pages: 
    [
     {
-      name: "Nom",
-      title: "Nom",
+      name: "Name", // This needs to stay in English because other parts of the program search for this name to pull the participant response
+      title: "Name",
       
       elements: [
         {

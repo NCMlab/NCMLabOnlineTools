@@ -369,10 +369,11 @@ function whereToGoNext(SessionData){
           // If this is the first name entry, send that info to the bacth here so the promises can be linked
           if (SessionData.BatteryShortName === "First Name")
           {
+            console.log(jsPsych.data.get())
             var data = jsPsych.data.get().filter({trial: 'Questionnaire'})
             var FirstName = data.trials[0].response['Name']
             var Email = data.trials[0].response['email']
-            
+            console.log(data)
             if ( Email != null ) 
             {
               jatos.batchSession.set(jatos.workerId+"_Email", Email)
@@ -385,6 +386,8 @@ function whereToGoNext(SessionData){
             }
             else 
             { 
+              console.log("FIRST NAME")
+              console.log(FirstName)
               jatos.batchSession.set(jatos.workerId+"_FirstName", FirstName) 	
               .then(() => jatos.batchSession.set(jatos.workerId, SessionData.CurrentIndex+1))
               .then(() => UpDateBitIndexInBatchData())

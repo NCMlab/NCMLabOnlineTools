@@ -18,7 +18,7 @@ const json = {
         {
           type: 'comment',
           title: "Entrez le prénom et l'initiale du nom de famille.",
-          name: 'Nom',// Keep this as Name (in English) it is used later to find the participant response
+          name: 'Name',// Keep this as Name (in English) it is used later to find the participant response
           required: true,
           textbox_rows: 1,
        
