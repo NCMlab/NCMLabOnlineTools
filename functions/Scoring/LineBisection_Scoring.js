@@ -97,9 +97,6 @@ function LineBisection_Scoring(data) {
 	Results.AllResults['SummaryImage'] = SummaryImage
 
 
-
-
-
 	// // Find the length of each line
 	// for ( var i = 0; i < temp.Lines.length; i++) {
 	// 	tempLoc = temp.Lines[i]
@@ -167,7 +164,7 @@ function removeEmptyValues(array, MissingValue) {
 		array.splice( index );
 	}
 	console.log(array)
-	return array
+	return array 
 }
 
 function CountResponses(array, MissingValue) {
