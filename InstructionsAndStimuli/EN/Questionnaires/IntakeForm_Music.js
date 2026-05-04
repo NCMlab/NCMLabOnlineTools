@@ -22,7 +22,7 @@ const json = {
         {
           type: 'dropdown',
           title: "Gender", 
-          name: 'dem001_gender', 
+          name: 'dem0101_gender', 
           choices: [
               {value: 1, text:'Male'},
               {value: 2, text:'Female'},
@@ -31,7 +31,7 @@ const json = {
           isRequired: true
         },
         {
-          name: "dem002_age",
+          name: "dem0102_age",
           type: "input",
           title: "Age",
           inputType: "number",
@@ -41,7 +41,7 @@ const json = {
           isRequired: true,
         },
         {
-          name: "dem003_height",
+          name: "dem0103_height",
           type: "input",
           title: "Height (cm or inches)",
           inputType: "number",
@@ -53,7 +53,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What units did you use for height?", 
-          name: 'dem003p1_heightU', 
+          name: 'dem0103p1_heightU', 
           choices: [
                       {value: 1, text: 'Inches'},
                       {value: 2, text: 'Centimeters'},
@@ -62,7 +62,7 @@ const json = {
           isRequired: true
         },
        {
-          name: "dem004_weight",
+          name: "dem0104_weight",
           type: "input",
           title: "Weight (kg or lbs)",
           inputType: "number",
@@ -74,7 +74,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What units did you use for weight?", 
-          name: 'dem004p1_weightU', 
+          name: 'dem0104p1_weightU', 
           choices: [
                       {value: 1, text: 'Pounds'},
                       {value: 2, text: 'Kilograms'},
@@ -85,7 +85,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What is the highest level of education you have completed?", 
-          name: 'dem005_edu', 
+          name: 'dem0105_edu', 
           choices: [
                       {value: 1, text: 'No formal education'},
                       {value: 2, text: 'High school diploma or equivalent'},
@@ -100,7 +100,7 @@ const json = {
         {
           type: 'dropdown',
           title: "What is your employment status?", 
-          name: 'dem006_employ', 
+          name: 'dem0106_employ', 
           choices: [
                       {value: 1, text: 'Employed full-time'},
                       {value: 2, text: 'Employed part-time'},
@@ -113,7 +113,7 @@ const json = {
         {
           type: 'textarea',
           title: 'What type of work do you do (or did you do before retirement)?',
-          name: 'dem007_work',
+          name: 'dem0107_work',
           rows: 2,
           isRequired: true,
           autoGrow: true
@@ -121,7 +121,7 @@ const json = {
         {
           type: 'dropdown',
           title: "Do you live alone or with others?", 
-          name: 'dem007_live', 
+          name: 'dem0108_live', 
           choices: [
                   {value: 1, text: 'Alone'},
                   {value: 2, text: 'With spouse / partner'},
@@ -135,11 +135,11 @@ const json = {
         {
           type: 'textarea',
           title: 'What is your primary language(s)?',
-          name: 'dem008_lang',
+          name: 'dem0109_lang',
           isRequired: true,
         },
         {
-          name: "dem009_langProb",
+          name: "dem0110_langProb",
           type: "dropdown",
           title: "Are there any language or communication challenges you have?",
           choices: [
@@ -149,10 +149,10 @@ const json = {
           isRequired: true,
         }, 
         {
-          name: "dem009p1_langProbDesc",
+          name: "dem0110p1_langProbDesc",
           type: "textarea",
           title: "Please specify your language or communication challenges.",
-          visibleIf: "{dem009_langProb} == Yes",
+          visibleIf: "{dem0110_langProb} == Yes",
           maxLength: 500
         },
 // ======== DOES THIS QUESTION GET RECORDED????? ============
@@ -168,7 +168,7 @@ const json = {
               'Middle-Eastern',
               'First Nations, Métis, Inuit',
               ],
-          name: 'dem010_ethn',
+          name: 'dem0111_ethn',
           title: "What is your ethnic background (you may select more than one)",
           "description": "Please select all that apply.",
           isRequired: true
@@ -183,7 +183,7 @@ const json = {
               {value: 3, text: 'Divorced'},
               {value: 4, text: 'Widowed'}
           ],
-          name: 'dem011_marital',
+          name: 'dem0112_marital',
           showOtherItem: true,                    
           isRequired: true,
         },
@@ -199,7 +199,7 @@ const json = {
             {value: 4, text: "Two or more of the basic needs are not met"},
             {value: 99, text: "I don't know"}
           ],
-          name: 'dem012_currNeed',
+          name: 'dem0113_currNeed',
           isRequired: true,
        },
        {
@@ -213,7 +213,7 @@ const json = {
             {value: 4, text: "Two or more of the basic needs were not met"},
             {value: 99, text: "I don't know"}
           ],
-          name: 'dem013_pastNeed',
+          name: 'dem0114_pastNeed',
           isRequired: true,
        }
        ]
@@ -225,7 +225,7 @@ const json = {
        elements: [
         {
           type: 'dropdown',
-          name: 'dem014_CogDecDiag',
+          name: 'dem0201_CogDecDiag',
           title: 'Have you received a diagnosis of dementia or cognitive decline?',
           choices: 
           [
@@ -240,16 +240,16 @@ const json = {
       {
         type: 'textarea',
         title: 'If yes, how long ago were you diagnosed?',
-        name: 'dem014p1_DemTime',
-        visibleIf: "{dem014_CogDecDiag} == Yes",
+        name: 'dem0202_DemTime',
+        visibleIf: "{dem0201_CogDecDiag} == Yes",
         isRequired: true,
         textbox_rows: 3,
       },
       {
         type: 'textarea',
         title: 'If yes, what type of dementia (or cognitive decline), if known?',
-        name: 'dem014p2_DemType',
-        visibleIf: "{dem014_CogDecDiag} == Yes",
+        name: 'dem0203_DemType',
+        visibleIf: "{dem0201_CogDecDiag} == Yes",
         required: false,
         textbox_rows: 3,
       },
@@ -262,7 +262,7 @@ const json = {
               {value: 2, text: "No"},
               {value: 3, text: "Not sure"}
           ],
-          name: 'dem015_HearLoss',
+          name: 'dem0204_HearLoss',
           isRequired: true,
           //add_other_option: true,                    
           //other_option_text: 'Yes, how long ago were you diagnosed?',
@@ -274,11 +274,11 @@ const json = {
         [
             {value: 1, text: "Bilateral"},
             {value: 2, text: "Unilateral"},
-            {value: 3, text: "Not sure"}
+            {value: 99, text: "Not sure"}
         ],
-        name: 'dem015p1_HearType',
-        visibleIf: "{dem015_HearLoss} == Yes",
-        required: false,
+        name: 'dem0204p1_HearType',
+        visibleIf: "{dem0204_HearLoss} == Yes",
+        isRequired: false,
         //add_other_option: true,                    
         //other_option_text: 'Yes, how long ago were you diagnosed?',
     },
@@ -292,9 +292,9 @@ const json = {
           {value: 3, text: "Severe"},
           {value: 99, text: "Not sure"}
       ],
-      visibleIf: "{dem015_HearLoss} == Yes",
-      name: 'dem015p2_HearLevel',
-      required: false,
+      visibleIf: "{dem0204_HearLoss} == Yes",
+      name: 'dem0204p2_HearLevel',
+      isRequired: false,
       //add_other_option: true,                    
       //other_option_text: 'Yes, how long ago were you diagnosed?',
     },
@@ -306,16 +306,16 @@ const json = {
           {value: 1, text: "Yes"},
           {value: 2, text: "No"}
       ],
-      name: 'dem016_OtherHealth',
+      name: 'dem0205_OtherHealth',
       isRequired: true,
     },
     {
       type: 'textarea',
       title: 'Please explain your health issues.',
-      name: 'dem016p1_OtherHealthDesc',
-      visibleIf: "{dem016_OtherHealth} == Yes",
-      required: false,
-      rows: 3,
+      name: 'dem0205p1_OtherHealthDesc',
+      visibleIf: "{dem0205_OtherHealth} == Yes",
+      isRequired: false,
+      textbox_rows: 3,
     },
        ]
      },
@@ -339,7 +339,7 @@ const json = {
               {value: 1, text: "6"},
               {value: 1, text: "7"}
           ],
-          name: 'dem017_ExeFreq',
+          name: 'dem0301_ExeFreq',
           isRequired: true,
         },
         {
@@ -350,7 +350,7 @@ const json = {
             {value: 1, text:"Yes"},
             {value: 2, text: "No"}
           ],
-          name: 'dem018_Exe24',
+          name: 'dem0302_Exe24',
           isRequired: true,
         },
         {
@@ -363,35 +363,35 @@ const json = {
               {value: 3, text: "Never"},
               {value: 4, text: "Unknown"}
           ],
-          name: 'dem019_Smoke',
+          name: 'dem0303_Smoke',
           isRequired: true,
         },
         {
           type: 'dropdown',
           title: 'What year did you start smoking?',
-          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem0303_Smoke} == Currently smoke; {dem0303_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
-          name: 'dem019p1_SmokeStart',
+          name: 'dem0304p1_SmokeStart',
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'What year did you quit smoking?',
-          visibleIf: "{dem019_Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem0303_Smoke} == Have not smoked for more than 1 year",
           choicesMin: 1920,
           choicesMax: 2024,
           //choicesStep:1,
-          name: 'dem019p2_SmokeQuit',
+          name: 'dem0304p2_SmokeQuit',
           isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'Approximately how many packs per day?',
-          visibleIf: "{dem019_Smoke} == Currently smoke; {dem019_Smoke} == Have not smoked for more than 1 year",
+          visibleIf: "{dem0303_Smoke} == Currently smoke; {dem0303_Smoke} == Have not smoked for more than 1 year",
           choices: [
             {value: 0, text: "0"},
             {value: 0.5, text: "0.5"},
@@ -403,7 +403,7 @@ const json = {
             {value: 6, text: "6"},
             {value: 7, text: ">6"}
           ],
-          name: 'dem019p3_SmokePacks',
+          name: 'dem0304p3_SmokePacks',
           isRequired: true,
           input_type: "number"
         },
@@ -417,7 +417,7 @@ const json = {
               {value: 2, text: "2 to 4 drinks per day"},
               {value: 3, text: "More than 4 drinks per day"}
           ],
-          name: 'dem020_Alc',
+          name: 'dem0305_Alc',
           isRequired: true,
         },
       
@@ -437,14 +437,14 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'dem021_MusCls',
+            name: 'dem0401_MusCls',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous music and movement experience (what type of class and for how long).',
-            name: 'dem021p1_MusClsExp',
-            visibleIf: "{dem021_MusCls} == Yes",
+            name: 'dem0401p1_MusClsExp',
+            visibleIf: "{dem0401_MusCls} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -456,14 +456,14 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'dem022_MusGrp',
+            name: 'dem0402_MusGrp',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous group music experience (what type of class and for how long).',
-            name: 'dem022p1_MusGrpExp',
-            visibleIf: "{dem022_MusGrp} == Yes",
+            name: 'dem0402p1_MusGrpExp',
+            visibleIf: "{dem0402_MusGrp} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -474,14 +474,14 @@ const json = {
             [
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},            ],
-            name: 'dem023_MusChr',
+            name: 'dem0403_MusChr',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Please describe your previous choir experience (what type of choir and for how long).',
-            name: 'dem023p1_MusChrExp',
-            visibleIf: "{dem023_MusChr} == Yes",
+            name: 'dem0403p1_MusChrExp',
+            visibleIf: "{dem0403_MusChr} == Yes",
             isRequired: true,
             textbox_rows: 3,
           },
@@ -493,31 +493,31 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            name: 'dem024_MusOth',
+            name: 'dem0404_MusOth',
             isRequired: true,
           },
           {
             type: 'textarea',
             title: 'Which instrument(s) did you play?',
-            name: 'dem024p1_MusOthInst',
-            visibleIf: "{dem024_MusOth} == Yes",
-            required: false,
+            name: 'dem0405p1_MusOthInst',
+            visibleIf: "{dem0404_MusOth} == Yes",
+            isRequired: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'At what age did you start playing the instrument(s)?',
-            name: 'dem024p2_MusOthInsAge',
-            visibleIf: "{dem024_MusOth} == Yes",
-            required: false,
+            name: 'dem0405p2_MusOthInsAge',
+            visibleIf: "{dem0404_MusOth} == Yes",
+            isRequired: false,
             textbox_rows: 3,
           },
           {
             type: 'textarea',
             title: 'For how long did you play this instrument (years)?',
-            name: 'dem024p2_MusOthInsYrs',
-            visibleIf: "{dem024_MusOth} == Yes",
-            required: false,
+            name: 'dem0405p3_MusOthInsYrs',
+            visibleIf: "{dem0404_MusOth} == Yes",
+            isRequired: false,
             textbox_rows: 3,
           },
           {
@@ -528,9 +528,9 @@ const json = {
               {value: 1, text: "Yes"},
               {value: 2, text: "No"},
             ],
-            visibleIf: "{dem024_MusOth} == Yes",
-            name: 'dem024_MusOthCur',
-            required: true,
+            visibleIf: "{dem0404_MusOth} == Yes",
+            name: 'dem0405p4_MusOthCur',
+            isRequired: true,
           },
       ]
     },
@@ -542,8 +542,8 @@ const json = {
         {
           type: 'textarea',
           title: 'Do you have any additional comments or information that you think might be relevant to this study and/or music classes?',
-          name: 'dem025_Comments',
-          required: false,
+          name: 'dem0501_Comments',
+          isRequired: false,
           textbox_rows: 5,
         }
       ]
