@@ -17,9 +17,10 @@ var Lines_001 = [
     {LeftX:0.27, LeftY:0.06, RightX:0.97, RightY:0.06},
     {LeftX:0.11, LeftY:0.11, RightX:0.89, RightY:0.11},
     {LeftX:0.03, LeftY:0.17, RightX:0.59, RightY:0.17},
+    
     {LeftX:0.06, LeftY:0.22, RightX:0.97, RightY:0.22},
     {LeftX:0.08, LeftY:0.28, RightX:0.92, RightY:0.28},
-    {LeftX:0.03, LeftY:0.33, RightX:0.38, RightY:0.33},
+    {LeftX:0.03, LeftY:0.33, RightX:0.38, RightY:0.33}]/*
     {LeftX:0.19, LeftY:0.39, RightX:0.81, RightY:0.39},
     {LeftX:0.48, LeftY:0.44, RightX:0.97, RightY:0.44},
     {LeftX:0.29, LeftY:0.5, RightX:0.71, RightY:0.5},
@@ -31,7 +32,7 @@ var Lines_001 = [
     {LeftX:0.41, LeftY:0.83, RightX:0.97, RightY:0.83},
     {LeftX:0.11, LeftY:0.89, RightX:0.88, RightY:0.89},
     {LeftX:0.03, LeftY:0.94, RightX:0.73, RightY:0.94},
-]
+]*/
 
 var LocationsAsProportions = true;
 
@@ -48,9 +49,10 @@ var LineBisection_001 = {
     ShowTimer: false,
     Duration: 1000*60*3, // milliseconds,
     ShowWelcome: true,
+    WelcomeSpoken: false,
 	ShowThankYou: true,
-    ShowInstructions: false, 
-    stroke_width: 10,
+    ShowInstructions: true, 
+    stroke_width: 5,
 }
 
-add('LineBisection_001', function(){ LineBisection_parameters = LineBisection_001});
+add('LineBisection_001', function(){ parameters = LineBisection_001});

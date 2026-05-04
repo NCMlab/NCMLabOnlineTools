@@ -90,3 +90,18 @@ six <break time="600ms"/>
 sept <break time="600ms"/>
 huit <break time="600ms"/>
 neuf <break time="600ms"/>
+
+// =================================
+// CERAD 
+	Butter <break time="600ms"/>
+	Arm <break time="600ms"/>
+	Shore <break time="600ms"/>
+	Letter <break time="600ms"/>
+	Queen <break time="600ms"/>
+	Cabin <break time="600ms"/>
+	Pole <break time="600ms"/>
+	Ticket <break time="600ms"/>
+	Grass <break time="600ms"/>
+	Engine <break time="600ms"/>
+
+    

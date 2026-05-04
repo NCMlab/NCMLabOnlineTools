@@ -46,15 +46,28 @@ var SendData = {
 function ImageCopy_Scoring(data) {
 	Notes = data.filter({trial: 'Notes'})
 	console.log(data)
-	temp = data.filter({task: 'Image Copy'})
+	temp = data.filter({trial: 'Image Copy'})
 	Results = {}
 	Results.PrimaryResults = {}
-	Results.PrimaryResults['ScoreName'] = 'Accuracy'
-	Results.PrimaryResults['Accuracy'] = -99
+	Results.PrimaryResults['ScoreName'] = []
+	Results.PrimaryResults['Accuracy'] = []
+	for (i=0; i<temp.trials.length; i++)
+	{ 
+		Results.PrimaryResults['ScoreName'].push('Accuracy')
+		Results.PrimaryResults['Accuracy'].push(-99)
+	}
 	Results.AllResults = {}
-	Results.AllResults['ScoreName'] = 'Accuracy'
-	Results.AllResults['Accuracy'] = -99
-	Results.AllResults['Score'] = -99
+	Results.AllResults['ScoreName'] = []
+	Results.AllResults['Accuracy'] = []
+	Results.AllResults['Elapsed Time'] = []
+	for (i=0; i<temp.trials.length; i++)
+	{
+		Results.AllResults['ScoreName'].push('Accuracy')
+		Results.AllResults['Accuracy'].push(-99)
+		Results.AllResults['Elapsed Time'].push(temp.trials[i].rt)
+	}
+	console.log(temp)
+	console.log(Results.AllResults)
 	if ( Notes.trials.length > 0 )
 	{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }

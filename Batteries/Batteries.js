@@ -195,7 +195,7 @@ List.push({
 });*/
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -256,16 +256,57 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Immediate",
+  Parameters: "RAVLT_Manual_Immediate",
   Instructions: "Default",
-  IconName: "Immediate",
+  IconName: "Rey Imm",
 });
 List.push({
-  Task: "Card Sort",
-  Parameters: "CardSort_001SHORT",
+  Task: "Word Recall",
+  Parameters: "RAVLT_Manual_Delayed",
   Instructions: "Default",
-  IconName: "Card Sort",
+  IconName: "Rey Delay",
 });
+List.push({
+  Task: "Word Recognition",
+  Parameters: "RAVLT_WordRecog_Manual",
+  Instructions: "Default",
+  IconName: "Rey Recog",
+});
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "CERAD_Manual_Immediate",
+  Instructions: "CERAD",
+  IconName: "CERAD Imm",
+});
+List.push({
+  Task: "Word Recall",
+  Parameters: "CERAD_Manual_Delayed",
+  Instructions: "CERAD",
+  IconName: "CERAD Delay",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "CERAD_WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "CERAD Recog",
+});
+
+
+List.push({
+  Task: "Word Recall",
+  Parameters: "Hopkins_Spoken_Immediate",
+  Instructions: "Default",
+  IconName: "Hopkins Imm",
+});
+List.push({
+  Task: "Word Recognition",
+  Parameters: "Hopkins_WordRecog_Spoken",
+  Instructions: "Default",
+  IconName: "Hopkins Recog",
+});
+
+
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingA_Default",
@@ -278,23 +319,54 @@ List.push({
   Instructions: "DefaultB",
   IconName: "Trails B",
 });
+
 List.push({
-  Task: "Spatial DMS",
-  Parameters: "SpatialDMS_AdaptiveSHORT",
+  Task: 'Line Bisection', 
+  Parameters: 'LineBisection_001', 
+  Instructions: 'Default', 
+  IconName: 'Line Bisect'}
+)
+List.push({
+  Task: "Image Copy",
+  Parameters: "ImageCopy_Default",
   Instructions: "Default",
-  IconName: "Dots",
+  IconName: "Image Copy",
 });
 List.push({
-  Task: "Word Recall",
-  Parameters: "RAVLT_Spoken_Delayed",
+  Task: "Stroop Color",
+  Parameters: "Stroop_Default",
   Instructions: "Default",
-  IconName: "Delayed",
+  IconName: "Color",
 });
 List.push({
-  Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Task: "Stroop Word",
+  Parameters: "Stroop_Default",
   Instructions: "Default",
-  IconName: "Recognition",
+  IconName: "Word",
+});
+List.push({
+  Task: "Stroop Color/Word",
+  Parameters: "Stroop_Default",
+  Instructions: "Default",
+  IconName: "Color/Word",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Forward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Forward",
+});
+List.push({
+  Task: "Digit Span",
+  Parameters: "DigitSpan_Audio_Backward_TwoErrors",
+  Instructions: "Default",
+  IconName: "DS, Backward",
+});
+List.push({
+  Task: "Cancellation Task",
+  Parameters: "Cancellation_001",
+  Instructions: "Default",
+  IconName: "Cancellation",
 });
 BatteryList.push({
   index: 9916,
@@ -309,6 +381,8 @@ BatteryList.push({
   HeaderButtonsToShow: ['Home','Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
+
+
 
 // ------ FRENCH --------------------------------
 var List = [];
@@ -480,7 +554,7 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -651,7 +725,7 @@ List.push({
   Instructions: "Default",
   IconName: "Fluency, Animals",
 });
-//List.push({Task: 'Line Bisection', Parameters: 'LineBisection_001', Instructions: 'Default', IconName: 'Line Bisect'})
+
 List.push({
   Task: "Verbal DMS",
   Parameters: "vDMS_Adaptive",
@@ -1987,7 +2061,7 @@ List.push({
 var List = []
 List.push({
   Task: "Word Recognition",
-  Parameters: "WordRecog_Spoken",
+  Parameters: "RAVLT_WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Word Recog",
 });

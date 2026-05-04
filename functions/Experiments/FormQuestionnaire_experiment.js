@@ -39,6 +39,7 @@ var form_trial = {
     submit_button_label: function() { return LabelNames.Submit },
     required: function() { return Questionnaire.survey_JSON.isAllRowRequired },
     on_load: function() {
+      
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
     },

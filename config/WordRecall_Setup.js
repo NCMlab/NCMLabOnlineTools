@@ -6,54 +6,20 @@ var FixationTimeBetweenWords = 200 // milliseconds
 
 
 
-var RAVLT_Default = {
-	FolderName: 'RAVLTSet001/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 2,
-	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual',
-	RecallDuration: 60, // seconds
-	TimePerWord: 150, // milliseconds
-	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true, // not implemented
-	AskForNotes: false,
-	RecordAUDIO: false,
-}
-
 
 var RAVLT_Manual_Immediate = {
-	FolderName: 'RAVLTSet001/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 2,
-	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual',
-	RecallDuration: 60, // seconds
-	TimePerWord: 150, // milliseconds
-	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true, // not implemented
-	AskForNotes: false,
-	RecordAUDIO: false,
-}
-
-var RAVLT_Spoken_Immediate = {
 	FolderName: 'Set001/',
 	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
 	WordList: 'RAVLT',
 	FileExtension: '.wav',
-	NBlocks: 5,
+	NBlocks: 1,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType: 'Spoken',
+	RecallType: 'Manual', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 500, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
 	WelcomeSpoken: false,
@@ -62,7 +28,49 @@ var RAVLT_Spoken_Immediate = {
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: true,
+}
+
+var RAVLT_Manual_Delayed = {
+	FolderName: 'Set001/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Manual', // Spoken
+	RecallDuration: 60, // seconds
+	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: false,
+}
+
+
+var RAVLT_Spoken_Immediate = {
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'RAVLT',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: true, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Spoken', // Spoken / Manual
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
 }
 
 var RAVLT_Spoken_Delayed = {
@@ -81,54 +89,6 @@ var RAVLT_Spoken_Delayed = {
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: true,
 	ShowInstructions: true,
-	AskForNotes: false,
-	RecordAUDIO: true
-}
-
-var RAVLT_Spoken_ImmediateSHORT = {
-	FolderName: 'RAVLT_en_US-Neural2-F_Speed100/',
-	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
-	WordList: 'EN_RAVLTSHORT', 
-	FileExtension: '.wav',
-	NBlocks: 2,
-	BListFlag: true, // Check to see if there is a second set of words
-	AudioPresentation: true,
-	VisualPresentation: true,
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 2, // seconds
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	WelcomeSpoken: false,
-	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
-	ShowInstructions: true, 
-	InstructionsSpoken: false,
-	AskForNotes: false,
-	RecordAUDIO: true
-}
-
-var RAVLT_Spoken_Immediate_002 = {
-	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',
-	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
-	WordList: 'FR_RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 5,
-	BListFlag: true, // Check to see if there is a second set of words
-	AudioPresentation: true,
-	VisualPresentation: true,
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 8, // seconds
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	WelcomeSpoken: false,
-	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
-	ShowInstructions: true, 
-	InstructionsSpoken: false,
 	AskForNotes: false,
 	RecordAUDIO: true
 }
@@ -161,59 +121,7 @@ RAVLT_Spoken_Immediate.Instructions04Time = []
 RAVLT_Spoken_Immediate.Instructions04Time.push(10000)
 
 
-var RAVLT_Manual_Delayed = {
-	FolderName: 'RAVLTSet001/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 1,
-	BListFlag: true, // Check to see if there is a second set of words
-	RecallType: 'Manual', // Spoken
-	RecallDuration: 60, // seconds
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: true,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	RecordAUDIO: false,
-}
 
-
-
-var RAVLT_Spoken_Delayed_002 = {
-	FolderName: 'RAVLT_fr_FR-Neural2-A_Speed100/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 1,
-	BListFlag: false, // Check to see if there is a second set of words
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: true,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-}
-
-var RAVLT_001 = {
-	FolderName: 'RAVLTSet001/',
-	WordList: 'RAVLT',
-	FileExtension: '.wav',
-	NBlocks: 5,
-	BListFlag: true,
-	RecallType:'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
-	TimePerWord: 1500, // milliseconds
-	DelayedRecallFlag: false,
-	ShowWelcome: false,
-	ShowThankYou: false,
-	ShowInstructions: true,
-	AskForNotes: false,
-	RecordAUDIO: true,
-}
 
 var FaCE_Immediate_Spoken_VerA_EN = {
 	// specify the word list to use
@@ -403,11 +311,8 @@ var TEST_Spoken = {
 
 add('RAVLT_Manual_Immediate', function(){ parameters = RAVLT_Manual_Immediate});
 add('RAVLT_Spoken_Immediate', function(){ parameters = RAVLT_Spoken_Immediate});
-add('RAVLT_Spoken_ImmediateSHORT', function(){ parameters = RAVLT_Spoken_ImmediateSHORT});
-add('RAVLT_Spoken_Immediate_002', function(){ parameters = RAVLT_Spoken_Immediate_002});
 add('RAVLT_Manual_Delayed', function(){ parameters = RAVLT_Manual_Delayed});
 add('RAVLT_Spoken_Delayed', function(){ parameters = RAVLT_Spoken_Delayed});
-add('RAVLT_Spoken_Delayed_002', function(){ parameters = RAVLT_Spoken_Delayed_002});
 
 add('FaCE_Immediate_Spoken_Training_EN', function(){ parameters = FaCE_Immediate_Spoken_Training_EN});
 add('FaCE_Immediate_Spoken_VerA_EN', function(){ parameters = FaCE_Immediate_Spoken_VerA_EN});
@@ -488,24 +393,24 @@ add('DemoENDelayed', function(){ parameters = DemoENDelayed});
 
 var DemoENManual = {
 	// specify the word list to use
-	WordList: 'EN_Demo',
+	WordList: 'Demo',
 	// Specify the folder of audio files to use. This allows for presentation of different voices
 	// without the need to change the word list file
-	FolderName: 'Demo/EN/EN-US-Neural2-F/',
+	FolderName: 'Set001/',
 	FileExtension: '.wav',
-	NBlocks: 2,
+	NBlocks: 5,
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
 	RecallType: 'Manual',
-	RecallDuration: 120, // seconds
+	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 3, // seconds
-	TimePerWord: 1500, // milliseconds
+	TimePerWord: 200, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
-	WelcomeSpoken: true,
+	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	Instructions01Time: 10,
@@ -513,3 +418,113 @@ var DemoENManual = {
 	RecordAUDIO: true
 }
 add('DemoENManual', function(){ parameters = DemoENManual});
+
+var CERAD_Spoken_Immediate = {
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'CERAD',
+	FileExtension: '.wav',
+	NBlocks: 3,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: false,
+	RecallType: 'Spoken', // Spoken / Manual
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+	WordListOrder: 
+		[[0,1,2,3,4,5,6,7,8,9],
+		 [7,5,0,2,9,1,4,3,6,8],
+		 [4,8,1,5,6,2,0,9,7,3]]
+}
+add('CERAD_Spoken_Immediate', function(){ parameters = CERAD_Spoken_Immediate});
+
+var CERAD_Manual_Immediate = {
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'CERAD',
+	FileExtension: '.wav',
+	NBlocks: 3,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: false,
+	VisualPresentation: true,
+	RecallType: 'Manual', // Spoken / Manual
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+	WordListOrder: 
+		[[0,1,2,3,4,5,6,7,8,9],
+		 [7,5,0,2,9,1,4,3,6,8],
+		 [4,8,1,5,6,2,0,9,7,3]]
+}
+add('CERAD_Manual_Immediate', function(){ parameters = CERAD_Manual_Immediate});
+
+
+var CERAD_Manual_Delayed = {
+	FolderName: 'Set001/',
+	WordList: 'CERAD',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	RecallType: 'Manual',
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 10,
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true,
+	AskForNotes: false,
+	RecordAUDIO: true,
+	WordListOrder: 
+		[[0,1,2,3,4,5,6,7,8,9],
+		 [7,5,0,2,9,1,4,3,6,8],
+		 [4,8,1,5,6,2,0,9,7,3]]
+}
+add('CERAD_Manual_Delayed', function(){ parameters = CERAD_Manual_Delayed});
+
+
+var Hopkins_Spoken_Immediate = {
+	FolderName: 'Set001/',
+	//FolderName: 'RAVLT_en_GB-Neural2-B_Speed70/',
+	WordList: 'Hopkins',
+	FileExtension: '.wav',
+	NBlocks: 3,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: false,
+	RecallType: 'Spoken', // Spoken / Manual
+	RecallDuration: 60, // seconds
+	DelayBeforeShowingDoneButton: 8, // seconds
+	TimePerWord: 1500, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: true,
+}
+add('Hopkins_Spoken_Immediate', function(){ parameters = Hopkins_Spoken_Immediate});

@@ -1,8 +1,8 @@
-var AllQuestionsValid = false
 
+var currentTab = 0
 var jsPsychSurveyHtmlForm = (function (jspsych) {
   'use strict';
-    
+
   const info = {
       name: "survey-html-form",
       parameters: {
@@ -91,7 +91,8 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
    */
   class SurveyHtmlFormPlugin {
       constructor(jsPsych) {
-          this.jsPsych = jsPsych;
+        this.jsPsych = jsPsych;
+        currentTab = 0
       }
         
 
@@ -813,19 +814,22 @@ function getCheckedValuesFromFieldSet(fieldsetId) {
         var i, x = document.getElementsByClassName("progress-step");
         console.log("n = " + n)
         console.log(x)
-        // remove active class, in case previous button has been pressed,
-        for (i = 0; i < x.length; i++) {
-            x[i].classList.remove('active')
+        if (x.length > 0)
+        {
+            // remove active class, in case previous button has been pressed,
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.remove('active')
+            }
+            for (i = 0; i < n+1; i++) {
+                x[i].className += " active";
+            }
+            const progressSteps = document.querySelectorAll('.progress-step')
+            const progressActive = document.querySelectorAll('.progress-step.active')
+            
+            console.log(progressActive)
+            console.log(progressSteps)
+            progress.style.width = (progressActive.length - 1)/(progressSteps.length - 1)*100 + '%'
         }
-        for (i = 0; i < n+1; i++) {
-            x[i].className += " active";
-        }
-        const progressSteps = document.querySelectorAll('.progress-step')
-        const progressActive = document.querySelectorAll('.progress-step.active')
-        
-        console.log(progressActive)
-        console.log(progressSteps)
-        progress.style.width = (progressActive.length - 1)/(progressSteps.length - 1)*100 + '%'
         //... and adds the "active" class on the current step:
         //x[n].className += " active";
     }
