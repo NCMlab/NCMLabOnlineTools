@@ -238,7 +238,7 @@ const json = {
         {
           type: 'dropdown',
           name: 'dem0201_CogDecDiag',
-          title: 'Avez-vous reçu un diagnostic de démence ou de déclin cognitif ?',
+          title: 'Avez-vous reçu un diagnostic de démence ou de déclin cognitif?',
           choices: 
           [
               {value: 1, text: "Oui"},
@@ -246,20 +246,19 @@ const json = {
               {value: 3, text: "Pas certain(e)"}
           ],
           isRequired: true,
-          placeholder: 'Sélectionner...',
           //add_other_option: true,                    
           //other_option_text: 'Oui, depuis combien de temps avez-vous été diagnostiqué ?',
       },
       {
         type: 'textarea',
-        title: 'Si oui, depuis combien de temps avez-vous été diagnostiqué ?',
+        title: 'Si oui, depuis combien de temps avez-vous été diagnostiqué?',
         name: 'dem0202_DemTime',
         visibleIf: "{dem0201_CogDecDiag} == Oui",
-        isRequired: false,
+        isRequired: true,
         textbox_rows: 3,
       },
       {
-        type: 'comment',
+        type: 'textarea',
         title: 'Si oui, quel est le type de démence (ou de déclin cognitif), s’il est connu ?',
         name: 'dem0203_DementiaType',
         visibleIf: "{dem0201_CogDecDiag} == Oui",
@@ -368,7 +367,6 @@ const json = {
               {value: 2, text: "Non"}
           ],
           name: 'dem0302_Exe24',
-          placeholder: 'Sélectionner...',
           isRequired: true,
         },
         {
@@ -382,37 +380,34 @@ const json = {
             {value: 4, text: "Inconnu"}
           ],
           name: 'dem0303_Smoke',
-          placeholder: 'Sélectionner...',
           isRequired: true,
         },
         {
           type: 'dropdown',
           title: 'En quelle année avez-vous commencé à fumer ?',
-          visibleIf: "{dem0303_Smoke} == 'Fume actuellement' or {dem0303_Smoke} == 'Il y a plus d'un an que je ne fume plus'",
+          visibleIf: "{dem0303_Smoke} == Fume actuellement; {dem0303_Smoke} == Il y a plus d\'un an que je ne fume plus",
           choicesMin: 1920,
           choicesMax: 2025,
           choicesStep:1,
           name: 'dem0304p1_SmokeStart',
-          placeholder: 'Sélectionner...',
-          isRequired: false,
+          isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'En quelle année avez-vous arrêté de fumer ?',
-          visibleIf: "{dem0303_Smoke} == 'Il y a plus d'un an que je ne fume plus'",
+          visibleIf: "{dem0303_Smoke} == Il y a plus d\'un an que je ne fume plus",
           choicesMin: 1920,
           choicesMax: 2025,
           choicesStep:1,
           name: 'dem0304p2_SmokeQuit',
-          placeholder: 'Sélectionner...',
-          isRequired: false,
+          isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
           title: 'Environ combien de paquets par jour ?',
-          visibleIf: "{dem0303_Smoke} == 'Fume actuellement' or {dem0303_Smoke} == 'Il y a plus d'un an que je ne fume plus'",
+          visibleIf: "{dem0303_Smoke} == Fume actuellement; {dem0303_Smoke} == Il y a plus d\'un an que je ne fume plus",
           choices: [
             {value: 0, text: "0"},
             {value: 0.5, text: "0.5"},
@@ -426,12 +421,12 @@ const json = {
           ],
           name: 'dem0304p3_SmokePacks',
           placeholder: 'Sélectionner...',
-          isRequired: false,
+          isRequired: true,
           input_type: "number"
         },
         {
           type: 'dropdown',
-          title: 'Consommation d’alcool',
+          title: 'Consommation d\’alcool',
           choices: 
           [
               {value: 0, text: "Aucune"},
