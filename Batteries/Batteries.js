@@ -195,7 +195,7 @@ List.push({
 });*/
 List.push({
   Task: "Word Recognition",
-  Parameters: "RAVLT_WordRecog_Spoken",
+  Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -256,57 +256,16 @@ List.push({
 });*/
 List.push({
   Task: "Word Recall",
-  Parameters: "RAVLT_Manual_Immediate",
+  Parameters: "RAVLT_Spoken_Immediate",
   Instructions: "Default",
-  IconName: "Rey Imm",
+  IconName: "Immediate",
 });
 List.push({
-  Task: "Word Recall",
-  Parameters: "RAVLT_Manual_Delayed",
+  Task: "Card Sort",
+  Parameters: "CardSort_001SHORT",
   Instructions: "Default",
-  IconName: "Rey Delay",
+  IconName: "Card Sort",
 });
-List.push({
-  Task: "Word Recognition",
-  Parameters: "RAVLT_WordRecog_Manual",
-  Instructions: "Default",
-  IconName: "Rey Recog",
-});
-
-List.push({
-  Task: "Word Recall",
-  Parameters: "CERAD_Manual_Immediate",
-  Instructions: "CERAD",
-  IconName: "CERAD Imm",
-});
-List.push({
-  Task: "Word Recall",
-  Parameters: "CERAD_Manual_Delayed",
-  Instructions: "CERAD",
-  IconName: "CERAD Delay",
-});
-List.push({
-  Task: "Word Recognition",
-  Parameters: "CERAD_WordRecog_Spoken",
-  Instructions: "Default",
-  IconName: "CERAD Recog",
-});
-
-
-List.push({
-  Task: "Word Recall",
-  Parameters: "Hopkins_Spoken_Immediate",
-  Instructions: "Default",
-  IconName: "Hopkins Imm",
-});
-List.push({
-  Task: "Word Recognition",
-  Parameters: "Hopkins_WordRecog_Spoken",
-  Instructions: "Default",
-  IconName: "Hopkins Recog",
-});
-
-
 List.push({
   Task: "Trail Making",
   Parameters: "TrailMakingA_Default",
@@ -319,54 +278,23 @@ List.push({
   Instructions: "DefaultB",
   IconName: "Trails B",
 });
-
 List.push({
-  Task: 'Line Bisection', 
-  Parameters: 'LineBisection_001', 
-  Instructions: 'Default', 
-  IconName: 'Line Bisect'}
-)
-List.push({
-  Task: "Image Copy",
-  Parameters: "ImageCopy_Default",
+  Task: "Spatial DMS",
+  Parameters: "SpatialDMS_AdaptiveSHORT",
   Instructions: "Default",
-  IconName: "Image Copy",
+  IconName: "Dots",
 });
 List.push({
-  Task: "Stroop Color",
-  Parameters: "Stroop_Default",
+  Task: "Word Recall",
+  Parameters: "RAVLT_Spoken_Delayed",
   Instructions: "Default",
-  IconName: "Color",
+  IconName: "Delayed",
 });
 List.push({
-  Task: "Stroop Word",
-  Parameters: "Stroop_Default",
+  Task: "Word Recognition",
+  Parameters: "WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "Word",
-});
-List.push({
-  Task: "Stroop Color/Word",
-  Parameters: "Stroop_Default",
-  Instructions: "Default",
-  IconName: "Color/Word",
-});
-List.push({
-  Task: "Digit Span",
-  Parameters: "DigitSpan_Audio_Forward_TwoErrors",
-  Instructions: "Default",
-  IconName: "DS, Forward",
-});
-List.push({
-  Task: "Digit Span",
-  Parameters: "DigitSpan_Audio_Backward_TwoErrors",
-  Instructions: "Default",
-  IconName: "DS, Backward",
-});
-List.push({
-  Task: "Cancellation Task",
-  Parameters: "Cancellation_001",
-  Instructions: "Default",
-  IconName: "Cancellation",
+  IconName: "Recognition",
 });
 BatteryList.push({
   index: 9916,
@@ -381,8 +309,6 @@ BatteryList.push({
   HeaderButtonsToShow: ['Home','Quit','Stop'],
   Redirect: 'https://docs.google.com/forms/d/e/1FAIpQLSf7icO9lOneaStuFgt0O5abVpTMhOfNJ2c9Y_SiXoG04Oe2hA/viewform?usp=sf_link'
 });
-
-
 
 // ------ FRENCH --------------------------------
 var List = [];
@@ -554,7 +480,7 @@ List.push({
 });
 List.push({
   Task: "Word Recognition",
-  Parameters: "RAVLT_WordRecog_Spoken",
+  Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Recognition",
 });
@@ -725,7 +651,7 @@ List.push({
   Instructions: "Default",
   IconName: "Fluency, Animals",
 });
-
+//List.push({Task: 'Line Bisection', Parameters: 'LineBisection_001', Instructions: 'Default', IconName: 'Line Bisect'})
 List.push({
   Task: "Verbal DMS",
   Parameters: "vDMS_Adaptive",
@@ -787,7 +713,7 @@ FaCE_Training_Spoken_EN_List.push({
   Task: "Intake Form",
   Parameters: "IntakeForm_EN",
   Instructions: "OrientationFaCE",
-  IconName: "Intake",
+  IconName: "",
 });
 FaCE_Training_Spoken_EN_List.push({
   Task: "Word Recall",
@@ -907,40 +833,39 @@ FaCE_VerA_Spoken_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Spoken_VerA_EN",
   Instructions: "FaCE",
-  IconName: "Recall Imm",
+  IconName: "",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Trail Making",
   Parameters: "TrailMaking_FaCE",
   Instructions: "FaCE",
-  IconName: "Trails",
+  IconName: "",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_VerA",
   Instructions: "FaCE",
-  IconName: "Image Copy",
+  IconName: "",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_VerA_Spoken",
   Instructions: "FaCE",
-  IconName: "Subtract",
+  IconName: "",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_VerA_Spoken",
   Instructions: "FaCE",
-  IconName: "Fluency",
+  IconName: "",
 });
 FaCE_VerA_Spoken_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Spoken_VerA_EN",
   Instructions: "FaCE",
-  IconName: "Delayed",
+  IconName: "",
 });
-// ==========================================
-// =============== Manual ===================
+// 				Manual
 var FaCE_VerA_Manual_EN_List = [];
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
 //FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
@@ -948,37 +873,37 @@ FaCE_VerA_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Manual_VerA_EN",
   Instructions: "FaCE",
-  IconName: "Recall Imm",
+  IconName: "",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Trail Making",
   Parameters: "TrailMaking_FaCE",
   Instructions: "FaCE",
-  IconName: "Trails",
+  IconName: "",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_VerB",
   Instructions: "FaCE",
-  IconName: "Image Copy",
+  IconName: "",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_VerA_Manual",
   Instructions: "FaCE",
-  IconName: "Subtract",
+  IconName: "",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_VerA_Manual",
   Instructions: "FaCE",
-  IconName: "Fluency",
+  IconName: "",
 });
 FaCE_VerA_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Manual_VerA_EN",
   Instructions: "FaCE",
-  IconName: "Delayed",
+  IconName: "",
 });
 
 BatteryList.push({
@@ -1449,7 +1374,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
-    LanguagesToShow: ['EN','FR','KR','JP'],
+    LanguagesToShow: ['EN','FR'],
     Redirect: '',
     shortName: '',
 	})
@@ -1530,12 +1455,6 @@ List.push({
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "UCLA_LONELINESS_001",
-  Instructions: "Default",
-  IconName: "Loneliness",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -2068,7 +1987,7 @@ List.push({
 var List = []
 List.push({
   Task: "Word Recognition",
-  Parameters: "RAVLT_WordRecog_Spoken",
+  Parameters: "WordRecog_Spoken",
   Instructions: "Default",
   IconName: "Word Recog",
 });

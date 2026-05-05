@@ -1,20 +1,23 @@
 
-var title = "ÉCHELLE DE SOLITUDE DE L’UNIVERSITÉ DE LAVAL (ESUL)"
+var title = "ÉCHELLE DE SOLITUDE DE L\’UNIVERSITÉ DE LAVAL (ESUL)"
 var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
   pages: [{
     elements: [                
-      {
-        type: "html",
-        name: "introduction",
-        html: "Indiquez la fréquence avec laquelle chacun des énoncés décrit bien ce que vous ressentez. Encerclez un chiffre pour chaque énoncé."
-       },
+       {
+          type: "description",
+          text: [
+            {
+              text: "Indiquez la fréquence avec laquelle chacun des énoncés décrit bien ce que vous ressentez."
+            }
+          ]
+        },
         {
           type: "radiogroup",
           name: "loneliness001",
-          title: "Je n’ai pas assez de compagnons (compagnes)",
+          title: "Je n\’ai pas assez de compagnons (compagnes)",
           isRequired: true,
           showNoneItem: false,
           showOtherItem: false,
@@ -67,11 +70,11 @@ const survey_JSON = {
   };
 
 
-var FR_UCLAlonelinessJSON = {}
-FR_UCLAlonelinessJSON.title = "UCLA 3-Item Loneliness Scale",
-FR_UCLAlonelinessJSON.shortTitle = "Loneliness"
-FR_UCLAlonelinessJSON.survey_JSON = survey_JSON
-FR_UCLAlonelinessJSON.description = ""
-FR_UCLAlonelinessJSON.QuestionnaireType = 'radiogroup'
-FR_UCLAlonelinessJSON.references = "references"
-FR_UCLAlonelinessJSON.notes = ''
+var FR_UCLAloneliness = {}
+FR_UCLAloneliness.title = "UCLA 3-Item Loneliness Scale",
+FR_UCLAloneliness.shortTitle = "Loneliness"
+FR_UCLAloneliness.survey_JSON = survey_JSON
+FR_UCLAloneliness.description = ""
+FR_UCLAloneliness.QuestionnaireType = 'radiogroup'
+FR_UCLAloneliness.references = "references"
+FR_UCLAloneliness.notes = ''
