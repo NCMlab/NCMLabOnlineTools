@@ -1449,7 +1449,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
-    LanguagesToShow: ['EN','FR'],
+    LanguagesToShow: ['EN','FR','KR','JP'],
     Redirect: '',
     shortName: '',
 	})
