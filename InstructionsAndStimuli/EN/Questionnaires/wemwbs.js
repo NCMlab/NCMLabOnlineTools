@@ -1,4 +1,3 @@
-
 var title = "WEMWBS"
 var shortTitle = 'WEMWBS'  
 // All questions use the same direction so enter that single flag as an array of size 1

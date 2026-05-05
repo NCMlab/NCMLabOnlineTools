@@ -215,7 +215,7 @@ var UCLA_LONELINESS_001 = {
     AskForNotes: false,
     ShowWelcome: false,
     ShowThankYou: false,
-    ShowInstructions: false,  
+    ShowInstructions: true,  
 }
 
 var BERKSYME_001 = { 
