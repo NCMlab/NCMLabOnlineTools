@@ -21,15 +21,6 @@ const survey_JSON = {
             }
           ]
         },
-      /*{
-        type: "html",
-        name: "introduction",
-        html: "When answering the questions, you could take account of the following:"+
-        "<ul><li>There are no right or wrong answers</li>"+
-        "<li>We would like you to be completely honest</li>"+
-        "<li>In answering the questions it is best to think of your life as it generally is now (we all have some good or bad days)</li>"+
-        "</b></p>"
-       },*/
         {
           type: "radiogroup",
           name: "loneliness001",

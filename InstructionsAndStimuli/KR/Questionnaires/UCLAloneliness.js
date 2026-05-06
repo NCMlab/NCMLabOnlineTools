@@ -4,13 +4,17 @@ var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
   showCompletedPage: false,
+  isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
   pages: [{
     elements: [                
-      {
-        type: "html",
-        name: "introduction",
-        html: "다음 각 진술에 설명된 방식을 얼마나 자주 느끼는지 표시하세요."
-       },
+      { 
+          type: "description",
+          text: [
+            {
+              text: "다음 각 진술에 설명된 방식을 얼마나 자주 느끼는지 표시하세요."
+            }
+          ]
+        },       
         {
           type: "radiogroup",
           name: "loneliness001",

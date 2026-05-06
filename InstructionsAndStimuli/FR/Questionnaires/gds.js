@@ -13,7 +13,7 @@ var survey_JSON =
                 title: 'Cocher la réponse qui convient',
                 alternateRows: true,
                 className: "gds-matrix",
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
                     {value: 'gds01', text: "Êtes-vous dans l'ensemble satisfait de votre vie ?"},
                     {value: 'gds02', text: "Avez-vous renoncé à nombre de vos activités et intérêts ?"},

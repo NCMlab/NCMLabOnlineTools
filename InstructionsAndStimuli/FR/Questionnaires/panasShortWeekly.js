@@ -11,7 +11,7 @@ var survey_JSON =
                 name: 'panas',
                 title: 'Indiquez comment vous vous sentez en ce momment:',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested',
                 rows: [
                     {value: 'panas01', text: "Boulversé(e)"},
                     {value: 'panas02', text: "Hostile"},
@@ -26,23 +26,23 @@ var survey_JSON =
                 ],
                 columns: [
                     {
-                    "value": 0,
+                    "value": 1,
                     "text": 'Très peu ou pas du tout'
                     },
                     {
-                    "value": 1,
+                    "value": 2,
                     "text": 'Un peu'
                     },
                     {
-                    "value": 2,
+                    "value": 3,
                     "text": 'Moyennement'
                     },
                     {
-                    "value": 3,
+                    "value": 4,
                     "text": 'Beaucoup'
                     },
                     {
-                    "value": 4,
+                    "value": 5,
                     "text": 'Énormément'
                     },
                 ],
@@ -56,14 +56,14 @@ var references = "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development a
 
 var notes = ""
 
-var FR_panasShortWeeklyJSON = {}
-FR_panasShortWeeklyJSON.title = title
-FR_panasShortWeeklyJSON.shortTitle = shortTitle
-FR_panasShortWeeklyJSON.survey_JSON = survey_JSON
+var FR_panasShortWeekly = {}
+FR_panasShortWeekly.title = title
+FR_panasShortWeekly.shortTitle = shortTitle
+FR_panasShortWeekly.survey_JSON = survey_JSON
 //FR_panasJSON.description = instructions
-FR_panasShortWeeklyJSON.QuestionnaireType = 'matrix'
-FR_panasShortWeeklyJSON.references = references
-FR_panasShortWeeklyJSON.notes = notes
+FR_panasShortWeekly.QuestionnaireType = 'matrix'
+FR_panasShortWeekly.references = references
+FR_panasShortWeekly.notes = notes
 
 
 

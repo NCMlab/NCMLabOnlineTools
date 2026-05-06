@@ -13,7 +13,7 @@ var survey_JSON =
                 title: '“이제부터 평상시의 생각이나 느낌에 대해서 여쭈어 보겠습니다. 제가 말씀드리는 내용이 지난 일주일 동안의 자신의 기분이나 생각과 같다고 생각하시면 ‘네’, 그렇지 않다고 생각하시면 ‘아니오’라고 대답하 여 주십시오.',
                 alternateRows: true,
                 className: "gds-matrix",
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
                     {value: 'gds01', text: "현재의 생활에 대체적으로 만족하십니까?"},
                     {value: 'gds02', text: "요즈음 들어 활동량이나 의욕이 많이 떨어지셨습니까?"},

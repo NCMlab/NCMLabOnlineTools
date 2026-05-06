@@ -12,7 +12,7 @@ var survey_JSON =
                 name: 'gas',
                 title: 'Vous trouverez ci-dessous une liste de symptômes courants d\'anxiété ou de stress. Veuillez lire attentivement chaque élément de la liste. Indiquez la fréquence à laquelle vous avez ressenti chaque symptôme au cours de la SEMAINE ÉCOULÉE, Y COMPRIS AUJOURD\'HUI, en cochant la réponse correspondante.',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
                     {value: 'gas01', text: "J'étais irritable."},
                     {value: 'gas02', text: "Je me sentais détaché ou isolé des autres."},

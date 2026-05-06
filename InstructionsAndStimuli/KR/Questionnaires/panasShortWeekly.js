@@ -10,7 +10,8 @@ var survey_JSON =
                 name: 'panas',
                 title: '다음에 나오는 각 단어는 감정이나 기분을 기술한 것입니다.. 각 단어를 읽고, 현재를 포함한 지난 일주일 동안 당신이 느끼는 기분의 정도를 가장 잘 나타낸 곳에 “V”표시를 해 주십시오.',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested',
+                // Change to Required/Not-Required/Suggested
                 rows: [
                     {value: 'panas01', text: "마음이 상한"},
                     {value: 'panas02', text: "적대적인"},
@@ -25,23 +26,23 @@ var survey_JSON =
                 ],
                 columns: [
                     {
-                        "value": 0,
+                        "value": 1,
                         "text": '전혀 그렇지 않다'
                         },
                         {
-                        "value": 1,
+                        "value": 2,
                         "text": '약간 그렇다'
                         },
                         {
-                        "value": 2,
+                        "value": 3,
                         "text": '보통 정도로 그렇다'
                         },
                         {
-                        "value": 3,
+                        "value": 4,
                         "text": '많이 그렇다'
                         },
                         {
-                        "value": 4,
+                        "value": 5,
                         "text": '매우 많이 그렇다'
                         },
                 ],

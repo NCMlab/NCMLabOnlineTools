@@ -231,9 +231,16 @@ var jsPsychSurveyMatrix = (function (jspsych) {
                     
                     this_question_data.label = rowLabels[0].innerHTML
                     this_question_data.name = rows[k].id
-                    this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
-                    this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
-
+                    if ( selectedValue != undefined )
+                    { 
+                        this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
+                        this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
+                    }
+                    else // no response
+                    {
+                        this_question_data.responseValue = -99
+                        this_question_data.responsePrompt = 'NA'
+                    }
                 }
                 else 
                 {

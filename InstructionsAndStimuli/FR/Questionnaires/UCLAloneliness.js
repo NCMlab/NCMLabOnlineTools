@@ -3,7 +3,9 @@ var title = "ÉCHELLE DE SOLITUDE DE L\’UNIVERSITÉ DE LAVAL (ESUL)"
 var shortTitle = ""
 const survey_JSON = {
   showQuestionNumbers: "off",
+  name: "loneliness",
   showCompletedPage: false,
+  isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
   pages: [{
     elements: [                
        {

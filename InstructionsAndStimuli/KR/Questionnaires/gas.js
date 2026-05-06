@@ -12,7 +12,7 @@ var survey_JSON =
                 name: 'gas',
                 title: '아래는 불안과 스트레스로 인해 흔히 나타나는 증상입니다. 오늘을 포함해서 지난 1주일 간 아래의 증상들을 얼마나 자주 경험했는지 작성해 주십시오.',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 rows: [
                     {value: 'gas01', text: "나는 짜증이 났다."},
                     {value: 'gas02', text: "나는 다른 사람들로부터 분리되거나 고립된 느낌을 받았다."},
