@@ -310,18 +310,51 @@ function Questionnaire_Scoring(data) {
                         data.response.find(o=>o.name === 'cesam009').responseValue +
                         data.response.find(o=>o.name === 'cesam010').responseValue +
                         data.response.find(o=>o.name === 'cesam011').responseValue
-			if ( sumADL >= 4 ) { Results.AllResults['ADL'] = 0 }
-		  	else if ( sumADL == 2 || sumADL == 3 ) { Results.AllResults['ADL'] = 1 }
-		  	else if ( sumADL <= 1 ) { Results.AllResults['ADL'] = 2 }
+			// This question uses the count of NOs. The questions are coded as 0 for NO and 1 for YES.
+			// This make senses for the questions, but confuses things for teh scoring.
+			// 4 or 5 NOs is the same as 1 or 0 YESs. 
+			switch (sumADL) {
+				case 0: // 0 YESs, 5 NOs
+					Results.AllResults['ADL'] = 0
+					break;
+				case 1: // 1 YES, 4 NOs
+					Results.AllResults['ADL'] = 0
+					break;
+				case 2: // 2 YESs, 3 NOs
+					Results.AllResults['ADL'] = 1
+					break;
+				case 3: // 3 YESs, 2 NOs
+					Results.AllResults['ADL'] = 1
+					break;
+				case 4: // 4 YESs, 1 NO
+					Results.AllResults['ADL'] = 2
+					break;
+				default: // 5 YESs, 0 NOs
+					Results.AllResults['ADL'] = 2
+			}
 		// IADL 
 		// Questions 12 through 15 are coded as 1 for NO and 0 for YES
 		  var sumIADL = data.response.find(o=>o.name === 'cesam012').responseValue + 
           				data.response.find(o=>o.name === 'cesam013').responseValue + 
           				data.response.find(o=>o.name === 'cesam014').responseValue +
           				data.response.find(o=>o.name === 'cesam015').responseValue 
-		  if ( sumIADL == 4 ) { Results.AllResults['IADL'] = 0 }
-		  else if ( sumIADL == 3 ) { Results.AllResults['IADL'] = 1 }
-		  else if ( sumIADL <= 2 ) { Results.AllResults['IADL'] = 2 }
+		 	switch (sumIADL) {
+				case 0: // 0 YESs, 4 NOs
+					Results.AllResults['IADL'] = 0
+					break;
+				case 1: // 1 YES, 3 NOs
+					Results.AllResults['IADL'] = 1
+					break;
+				case 2: // 2 YESs, 2 NOs
+					Results.AllResults['IADL'] = 2
+					break;
+				case 3: // 3 YESs, 1 NOs
+					Results.AllResults['IADL'] = 2
+					break;
+				default: // 4 YESs, 0 NOs
+					Results.AllResults['IADL'] = 2	
+					break;				
+			}
 
   		 Results.AllResults['Continence'] = data.response.find(o=>o.name === 'cesam016').responseValue
 
@@ -338,10 +371,10 @@ function Questionnaire_Scoring(data) {
           if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 1 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
             Results.AllResults['Mobility'] = 0
           }
-          if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
+          else if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
             Results.AllResults['Mobility'] = 1
           }
-          if ( data.response.find(o=>o.name === 'cesam020').responseValue == 1 )  {
+          else if ( data.response.find(o=>o.name === 'cesam020').responseValue == 1 )  {
             Results.AllResults['Mobility'] = 2
           }
           Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
@@ -363,10 +396,19 @@ function Questionnaire_Scoring(data) {
 		  Results.NumericResults['Continence'] = Results.AllResults['Continence']
 		  Results.NumericResults['Mood'] = Results.AllResults['Mood']
 		  Results.NumericResults['Mobility'] = Results.AllResults['Mobility']
+		  
 		  // Overwrite the average score values
 		  Results.AllResults['Average Score'] = -99
 		  Results.NumericResults['Average Score'] = -99
-          break;
+		  // Overwrite Total scores
+			var totalScoreName = data.Questionnaire.survey_JSON.name + "_total"
+			Results.NumericResults[totalScoreName] = Results.AllResults['Total Score']     
+		  // At the very end of this script there is a statement assigningthe total score value.
+		  // this overwrites the total score value with the sum ver all quesations.
+		  // The CESAM does not use all questions in iuts totalcalculation; therefore, this calue is incorrect.
+          // Overwrite the total score value with the sum of the specialty scores.
+		  TotalScore = Results.AllResults['Total Score'] 
+		  break;
         }
 		
 		case 'GDS':
