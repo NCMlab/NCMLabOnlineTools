@@ -8,8 +8,8 @@ const json = {
   progressBarShowPageNumbers: true,
   progressBarShowPageTitles: false,
   showCompletedPage: true,
-// ################################################################
-// ##### CALCULATIONS #############################################
+  // ################################################################
+  // ##### CALCULATIONS #############################################
   "calculatedValues": [
     {
       type: "expression",
@@ -97,8 +97,8 @@ const json = {
     }
   ],
 
-// ################################################################
-// ##### REPORT CARD ##############################################
+  // ################################################################
+  // ##### REPORT CARD ##############################################
   completedHtml: `
     <div style="font-family: Arial, sans-serif; background:#f7f7fb; min-height:100vh; padding:30px 10px;">
       <div style="max-width: 960px; margin:0 auto;">
@@ -195,8 +195,8 @@ const json = {
     </div>
   `,
 
-// ################################################################
-// ##### QUESTIONNAIRE ############################################
+  // ################################################################
+  // ##### QUESTIONNAIRE ############################################
   pages:
     [
       //make question font size bigger than choices in radiogroups
@@ -496,85 +496,125 @@ const json = {
           },
           //calculation for practice table
 
-          {
-            type: "expression",
-            name: "SP_PR_Freq",
-            title: "Total practices last year",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.freq.SP_PR_1} * 16 + " +
-              "{practice_table.freq.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * 9"
-          },
-          {
-            type: "expression",
-            name: "SP_PR_NT_Total",
-            title: "Total NET hours (all periods)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.net_time.SP_PR_1} * 16 + " +
-              "{practice_table.net_time.SP_PR_2} * 2  + " +
-              "{practice_table.net_time.SP_PR_3} * 12 + " +
-              "{practice_table.net_time.SP_PR_4} * 13 + " +
-              "{practice_table.net_time.SP_PR_5} * 9"
-          },
-          {
-            type: "expression",
-            name: "SP_PR_GT_Total",
-            title: "Total GROSS hours (all periods)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.gross_time.SP_PR_1} * 16 +" +
-              "{practice_table.gross_time.SP_PR_2} * 2  + " +
-              "{practice_table.gross_time.SP_PR_3} * 12 + " +
-              "{practice_table.gross_time.SP_PR_4} * 13 + " +
-              "{practice_table.gross_time.SP_PR_5} * 9"
-          },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_Freq",
+          //   title: "Total practices last year",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.freq.SP_PR_1} * 16 + " +
+          //     "{practice_table.freq.SP_PR_2} * 2  + " +
+          //     "{practice_table.freq.SP_PR_3} * 12 + " +
+          //     "{practice_table.freq.SP_PR_4} * 13 + " +
+          //     "{practice_table.freq.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_NT_Total",
+          //   title: "Total NET hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.net_time.SP_PR_1} * 16 + " +
+          //     "{practice_table.net_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.net_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.net_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.net_time.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_GT_Total",
+          //   title: "Total GROSS hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.gross_time.SP_PR_1} * 16 +" +
+          //     "{practice_table.gross_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.gross_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.gross_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.gross_time.SP_PR_5} * 9"
+          // },
           // Championships question
           {
             type: "html",
             name: "competitions_intro",
             html: `
-      <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-      <b>b) In this section we will be talking about GAMES/COMPETITIONS</b><br><br>`
+              <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+              <b>b) In this section we will be talking about GAMES/COMPETITIONS</b><br><br>`
           },
+
           {
-            name: "SP_CC_ODWithout",
-            type: "text",
-            inputType: "number",
-            title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
-            min: 0,
-            isRequired: true
+            "type": "matrixdropdown",
+            "name": "framework-ratings",
+            "title": "Participation",
+            "columnMinWidth": "130px",
+            "columns": [
+              // {
+              //   "name": "usage",
+              //   "title": "Do you pay?",
+              //   "cellType": "radiogroup",
+              //   "choices": [ "Yes", "No" ],
+              //   "defaultValue": "No"
+              // },
+              {
+                "name": "experience",
+                "title": "On average, how many do you participate in per year?",
+                "choices": [
+                  { "text": "0", "value": 0 },
+                  { "text": "1", "value": 1 },
+                  { "text": "2", "value": 2 },
+                  { "text": "3", "value": 3 },
+                  { "text": "4", "value": 4 },
+                  { "text": "5", "value": 5 },
+                  { "text": "6", "value": 6 },
+                  { "text": "7", "value": 7 },
+                  { "text": "8", "value": 8 },
+                  { "text": "9", "value": 9 },
+                  { "text": "10 or more", "value": 10 }
+                ],
+              },
+            ],
+            "rows": [
+              { "text": "One-day competitions without an overnight stay", "value": 1 },
+              { "text": "One-day competitions that require an overnight stay", "value": 2 },
+              { "text": "Weekend competitions (2 nights)", "value": 3 },
+              { "text": "Multi-day competitions (3 or more nights)", "value": 4 }
+            ],
+            "transposeData": false
           },
-          {
-            name: "SP_CC_ODWith",
-            type: "text",
-            inputType: "number",
-            title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
-            min: 0,
-            isRequired: true
-          },
-          {
-            name: "SP_CC_Weekend",
-            type: "text",
-            inputType: "number",
-            title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
-            min: 0,
-            isRequired: true
-          },
-          {
-            name: "SP_CC_Multiday",
-            type: "text",
-            inputType: "number",
-            title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
-            min: 0,
-            isRequired: true
-          },
+          // {
+          //   name: "SP_CC_ODWithout",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_ODWith",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_Weekend",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_Multiday",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
         ]
       },
       // ################################################################
@@ -601,7 +641,7 @@ const json = {
               { "value": 9, "text": "5000.00 < 10000.00 CAD/yr" },
               { "value": 10, "text": "> 10,000.00 CAD/yr" },
             ],
-            colCount: 2,
+            colCount: 3,
           },
           {
             type: "html",
