@@ -29,7 +29,7 @@ const survey_JSON = {
         title: "체중이 3kg 이상 감소했나요?",
         choices: [
             { value: 1, text: "예"},
-            { value: 2, text: "아니요"}
+            { value: 0, text: "아니요"}
         ],
         visibleIf: "{cesam001} == 예",
         isRequired: true,
@@ -40,7 +40,8 @@ const survey_JSON = {
         name: "cesam002",
         title: "매일 복용하는 약물의 개수는 몇 개인가요?",
         choices: [
-          { value: 0, text: '<5' },
+          { value: 0, text: '0' },
+          { value: 0, text: '1-4' },
           { value: 1, text: '5-9' },
           { value: 2, text: '≥10' },
         ],
@@ -110,8 +111,8 @@ const survey_JSON = {
         name: "cesam007",
         title: "몸단장 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -121,8 +122,8 @@ const survey_JSON = {
         name: "cesam008",
         title: "목욕 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -132,8 +133,8 @@ const survey_JSON = {
         name: "cesam009",
         title: "옷 입기 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -143,8 +144,8 @@ const survey_JSON = {
         name: "cesam010",
         title: "보행 및 계단 오르기 도움필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -154,8 +155,8 @@ const survey_JSON = {
         name: "cesam011",
         title: "화장실 이용 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -176,8 +177,8 @@ const survey_JSON = {
         name: "cesam013",
         title: "대중교통 이용 도움 필요여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -187,8 +188,8 @@ const survey_JSON = {
         name: "cesam014",
         title: "약물 관리 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -198,8 +199,8 @@ const survey_JSON = {
         name: "cesam015",
         title: "재정 관리 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -265,7 +266,7 @@ const survey_JSON = {
         name: "cesam021",
         title: "이 설문지를 작성하는 데 도움을 받으셨나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -314,7 +315,7 @@ const survey_JSON = {
         name: "cesam023",
         title: "만성 질환을 앓고 있는 사람의 간병인이신가요?",
         choices: [
-            {value:2, text: "예"},
+            {value:1, text: "예"},
             {value:0, text: "아니요"}
         ],
         isRequired: true,

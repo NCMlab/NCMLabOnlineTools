@@ -29,7 +29,7 @@ const survey_JSON = {
         name: "cesam001p1",
         title: "Si oui, précisez si la perte de poids a été de plus de 3 kilos (plus de 6 livres) ?",
         choices: [
-            { value: 2, text: 'Oui' },
+            { value: 1, text: 'Oui' },
             { value: 0, text: 'Non' },
         ],
         visibleIf: "{cesam001} == Oui",
@@ -112,8 +112,8 @@ const survey_JSON = {
         name: "cesam007",
         title: "Avez-vous besoin d'aide pour vos soins d'apparence corporelle ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -123,8 +123,8 @@ const survey_JSON = {
         name: "cesam008",
         title: "Avez-vous besoin d'aide pour faire votre toilette ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -134,8 +134,8 @@ const survey_JSON = {
         name: "cesam009",
         title: "Avez-vous besoin d'aide pour vous habiller ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -145,8 +145,8 @@ const survey_JSON = {
         name: "cesam010",
         title: "Avez-vous besoin d'aide pour vous déplacer (canne ou autre) ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -156,8 +156,8 @@ const survey_JSON = {
         name: "cesam011",
         title: "Avez-vous besoin d'aide pour manger ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -167,8 +167,8 @@ const survey_JSON = {
         name: "cesam012",
         title: "Avez vous besoin d'aide pour utiliser le téléphone ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -178,8 +178,8 @@ const survey_JSON = {
         name: "cesam013",
         title: "Avez-vous besoin d'aide pour prendre les transports en commun ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -189,8 +189,8 @@ const survey_JSON = {
         name: "cesam014",
         title: "Avez-vous besoin d'aide pour prendre vos médicamemts ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -200,8 +200,8 @@ const survey_JSON = {
         name: "cesam015",
         title: "Avez-vous besoin d'aide pour gérer votre argent ?",
         choices: [
-          { value: 0, text: 'Oui' },
-          { value: 1, text: 'Non' },
+          { value: 1, text: 'Oui' },
+          { value: 0, text: 'Non' },
         ],
         isRequired: true,
         showClearButton: true
@@ -267,7 +267,7 @@ const survey_JSON = {
         name: "cesam021",
         title: "Avez-vous reçu de l'aide pour remplir ce questionnaire ?",
         choices: [
-          { value: 2, text: 'Oui' },
+          { value: 1, text: 'Oui' },
           { value: 0, text: 'Non' },
         ],
         isRequired: true,
@@ -316,7 +316,7 @@ const survey_JSON = {
         name: "cesam023",
         title: "Êtes-vous l'aidant d'une personne malade ? ",
         choices: [
-            {value: 2, text: "Oui"},
+            {value: 1, text: "Oui"},
             {value: 0, text: "Non"}
         ],
         isRequired: true,
