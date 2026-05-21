@@ -70,6 +70,7 @@ var CheckForAlert = {
     console.log(data)
     Results = Questionnaire_Scoring(data.trials[0])
     console.log(Results)
+    
   }
 }
 

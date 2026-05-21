@@ -984,9 +984,10 @@ function PrepareDataForSubmission()
                 // Add response text if it is available
                 if ( y[0][y[0].selectedIndex] != undefined )
                 { this_question_data.responseText = y[0][y[0].selectedIndex].text }
-                
+                else { console.log("NO SELECTED INDEX") }
                 if ( this_question_data.responseValue == 9999 )
                 { this_question_data.responseText = y[1].value }
+                else { console.log("NO RESPONSE VALUE") }
                 
                 
                 if (y[0].classList.contains("textInput") )
@@ -999,7 +1000,11 @@ function PrepareDataForSubmission()
                 //console.log(y.getElementsByClassName('non-visible'))
                 if ( AllQuestionsOnThisTab[currentQuestion].classList.contains('visible') )
                 { this_question_data.visible = 'Yes' }
-                else { this_question_data.visible = 'No' }
+                else {
+                     this_question_data.visible = 'No' 
+                     console.log("QUESTION NOT VISIBLE, STILL SAVING DATA BUT MARKING AS NOT VISIBLE")
+                     this_question_data.responseValue = null
+                    }
                 // console.log(y[0][y[0].value].text)
                 
                 console.log(this_question_data)

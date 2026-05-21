@@ -17,7 +17,7 @@ const survey_JSON = {
         name: "cesam001",
         title: "Have you willingly lost weight in the past year?",
         choices: [
-            { value: 2, text: 'Yes' },
+            { value: 1, text: 'Yes' },
             { value: 0, text: 'No' },
         ],
         isRequired: true,
@@ -40,10 +40,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "How many different types of drugs do you take on a daily basis?",
         choices: [
-          { value: 0, text: '0' },
-          { value: 0, text: '1 to 4' },
-          { value: 1, text: '5 to 9' },
-          { value: 2, text: '10 or more' },
+          { value: 1, text: '0' },
+          { value: 2, text: '1 to 4' },
+          { value: 3, text: '5 to 9' },
+          { value: 4, text: '10 or more' },
         ],
         isRequired: true,
         showClearButton: true
@@ -75,7 +75,7 @@ const survey_JSON = {
         name: "cesam005",
         title: "Has someone close to you expressed concern about your memory?",
         choices: [
-          { value: 2, text: 'Yes' },
+          { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },
         ],
         isRequired: true,
@@ -86,7 +86,7 @@ const survey_JSON = {
         name: "cesam006",
         title: "Do you receive home care support?",
         choices: [
-          { value: 2, text: 'Yes' },
+          { value: 1, text: 'Yes' },
           { value: 0, text: 'No' }
         ],
         isRequired: true,
@@ -211,7 +211,7 @@ const survey_JSON = {
         name: "cesam016",
         title: "Are you incontinent (urine and/or stool)?",
         choices: [
-          { value: 2, text: 'Yes' },
+          { value: 1, text: 'Yes' },
           { value: 0, text: 'No' },
         ],
         isRequired: true,
@@ -222,9 +222,9 @@ const survey_JSON = {
         name: "cesam017",
         title: "How do you feel today?",
         choices: [
-            { value: 2, text: "Happy" },
-            { value: 1, text: "Unhappy" },
-            { value: 0, text: "Neither one nor the other" },
+            { value: 1, text: "Happy" },
+            { value: 2, text: "Unhappy" },
+            { value: 3, text: "Neither one nor the other" },
         ],
         isRequired: true,
         showClearButton: true

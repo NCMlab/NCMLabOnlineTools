@@ -299,10 +299,24 @@ function Questionnaire_Scoring(data) {
         }
 		case 'CESAM':
         {
-		  Results.AllResults['Nutrition'] = data.response.find(o=>o.name === 'cesam001').responseValue
-          Results.AllResults['Multimorbidity'] = data.response.find(o=>o.name === 'cesam002').responseValue
+		// Nutrition
+			if ( data.response.find(o=>o.name === 'cesam001').responseValue == 1)
+			{ Results.AllResults['Nutrition'] = 2} 
+		  else { Results.AllResults['Nutrition'] = 0} 
+		// Multimorbidity
+		  if ( data.response.find(o=>o.name === 'cesam002').responseValue == 1)
+			{ Results.AllResults['Multimorbidity'] = 0} 
+		  else if ( data.response.find(o=>o.name === 'cesam002').responseValue == 2)
+			{ Results.AllResults['Multimorbidity'] = 0}
+		  else if ( data.response.find(o=>o.name === 'cesam002').responseValue == 3)
+			{ Results.AllResults['Multimorbidity'] = 1}
+		  else { Results.AllResults['Multimorbidity'] = 2}
+		// Communication
           Results.AllResults['Communication'] = data.response.find(o=>o.name === 'cesam003').responseValue + data.response.find(o=>o.name === 'cesam004').responseValue
-          Results.AllResults['Cognition'] = data.response.find(o=>o.name === 'cesam005').responseValue
+		// Cognition
+			if ( data.response.find(o=>o.name === 'cesam005').responseValue == 1)
+			{ Results.AllResults['Cognition'] = 2} 
+		  	else { Results.AllResults['Cognition'] = 0} 
 		// ADL 
 		// Questions 7 through 11 are coded as 1 for NO and 0 for YES
 		  var sumADL =  data.response.find(o=>o.name === 'cesam007').responseValue + 
@@ -355,16 +369,18 @@ function Questionnaire_Scoring(data) {
 					Results.AllResults['IADL'] = 2	
 					break;				
 			}
-
-  		 Results.AllResults['Continence'] = data.response.find(o=>o.name === 'cesam016').responseValue
-
-		 if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 2 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
+		// Continence
+			if ( data.response.find(o=>o.name === 'cesam016').responseValue == 1)
+			{ Results.AllResults['Continence'] = 2} 
+		  	else { Results.AllResults['Continence'] = 0} 
+		// Mood
+		 if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 1 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
             Results.AllResults['Mood'] = 0
           }
-          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 3 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
             Results.AllResults['Mood'] = 1
           }
-          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 1 ) || ( data.response.find(o=>o.name === 'cesam018').responseValue == 0 ) ) {
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 2 ) || ( data.response.find(o=>o.name === 'cesam018').responseValue == 0 ) ) {
             Results.AllResults['Mood'] = 2
           }
           // Mobility
