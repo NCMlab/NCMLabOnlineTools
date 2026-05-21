@@ -491,6 +491,13 @@ function InternalValidateForm(form) {
     document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
 }
 
-function SubmitAnyway() {
-    document.getElementById('jspsych-survey-matrix-next').valid = true
+function SubmitAnyway() {   
+    if (confirm("You have chosen to submit without answering all questions. Are you sure?"))
+    {
+        txt = "You pressed OK!";
+        document.getElementById('jspsych-survey-matrix-next').valid = true
+    } else {
+        txt = "You pressed Cancel!";
+    }
+
 }
