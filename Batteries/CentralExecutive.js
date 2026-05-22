@@ -217,8 +217,9 @@ function SetupSession() {
         TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
     }
     LabelNames.EnterName
-    SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType)
     
+    // Original_SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType)
+    SessionChoiceTrialNEW = MakeSessionButtonsLINKS(TitleToUse, Choices, SessionsBatteryList, ButtonBit, '0', ButtonRow, Phase, Test, ButtonUsageType)
     // Have different session been completed?
     // Check the bit 
     
@@ -372,6 +373,48 @@ function MakeTestElement() {
 }
 
 
+function MakeSessionButtonsLINKS(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType) 
+{
+    var trial = {
+        type: jsPsychHtmlButtonResponseTableLINKS,
+        stimulus: function() { return Title },
+        choices: Choices,
+        completedBits: CompletedBitList,
+        buttonRow: ButtonRow,
+        runNameCheck: false,
+        prompt: "",
+        on_finish: function(data) {
+            console.log(data)
+            console.log("COPY LINK FLAG: "+jatos.studySessionData.copyLinkFlag)
+            // Make the link to the battery or session that is associated with the selected button
+            console.log("BATTERY: "+SessionsBatteryList[data.response])
+            console.log(jatos.studyCode)
+            var BasePath = window.location.hostname
+                // The server for the NeuroClinic and JATOS are different, even if on the same machine.
+                        console.log(BasePath)
+            if ( BasePath.includes('localhost') )
+                { BasePath =  "127.0.0.1" }
+            else if ( BasePath === 'ncmlab.ca' )
+                { BasePath = "jatos.ncmlab.ca" }
+            else if ( BasePath === 'dev.ncmlab.ca')
+                { BasePath = "jatos-dev.ncmlab.ca" }
+        // Check to see if a port is needed
+        // JATOS runs locally on port 9000
+            var PortNumber = ''
+            if ( ! window.location.port == "" )
+            {
+            PortNumber = ':9000'
+            }
+            // Assemble the link
+            var Output = window.location.protocol + '//' + BasePath + PortNumber + '/publix/' + jatos.studyCode +'?Battery='+SessionsBatteryList[data.response]+'&UsageType=Battery'
+            console.log(Output)
+            navigator.clipboard.writeText(Output)
+            alert("Link was copied to the clipboard.")
+        }
+    };
+    return trial
+}
+
 function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType) 
 {
     var trial = {
@@ -496,9 +539,13 @@ function MakeThankYouPage() {
 function CentralExecutive() {
     return new Promise((resolve) => {
         const jatos_params = jatos.urlQueryParameters;
+        console.log(jatos_params)
         const BatteryIndex = jatos_params["Battery"];
         var ISPRcode = ''
         ISPRcode = jatos_params['sona_id']
+        var copyLinkFlag = false
+        copyLinkFlag = jatos_params['copyLink']
+        console.log("COPY LINK FLAG: "+copyLinkFlag)
         // If there is no session data yet, then use the URL parameter
         // to identift the usage type
         var UsageType = jatos_params["UsageType"];
@@ -579,11 +626,10 @@ function CentralExecutive() {
                 .then(() => CheckBatchData())    
                 .then(() => 
                     {
-                        
+                        jatos.studySessionData.copyLinkFlag = copyLinkFlag
+                        console.log(jatos.studySessionData)
                         SessionTimeLine = SetupSession()
                         console.log(SessionTimeLine)
-
-
                         timeline.push(SessionTimeLine)
                     })
                 .then(() => SetupjsPsychAndRunTimeline())
