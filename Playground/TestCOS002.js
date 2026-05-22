@@ -4,7 +4,7 @@
     {
       "type": "matrixdropdown",
       "name": "framework-ratings",
-      "title": "Please leave your feedback about JavaScript frameworks",
+      "title": "Membership and Entrance / Year",
       "columnMinWidth": "130px",
       "columns": [
         {
