@@ -210,16 +210,20 @@ function SetupSession() {
     console.log(FirstName)
     var TitleToUse = ''
     if ( FirstName == undefined || FirstName == '' ) 
-        {
-            TitleToUse = LabelNames.EnterName
-        }
-    else {
-        TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
-    }
+        { TitleToUse = LabelNames.EnterName }
+    else { TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title }
+
     LabelNames.EnterName
+    // url parameters are always strings
+    if ( jatos.urlQueryParameters.CopyLink == 'true' )
+    { 
+        // Overwrite the title
+        var TitleToUse = 'Select the link to copy for: ' + FirstName
+        SessionChoiceTrialNEW = MakeSessionButtonsLINKS(TitleToUse, Choices, SessionsBatteryList, ButtonBit, '0', ButtonRow, Phase, Test, ButtonUsageType) }
+    else 
+    { SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType) }
     
-    // Original_SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType)
-    SessionChoiceTrialNEW = MakeSessionButtonsLINKS(TitleToUse, Choices, SessionsBatteryList, ButtonBit, '0', ButtonRow, Phase, Test, ButtonUsageType)
+    
     // Have different session been completed?
     // Check the bit 
     
@@ -375,8 +379,9 @@ function MakeTestElement() {
 
 function MakeSessionButtonsLINKS(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType) 
 {
+    console.log(Title)
     var trial = {
-        type: jsPsychHtmlButtonResponseTableLINKS,
+        type: jsPsychHtmlButtonResponseTable,
         stimulus: function() { return Title },
         choices: Choices,
         completedBits: CompletedBitList,
@@ -384,11 +389,6 @@ function MakeSessionButtonsLINKS(Title, Choices, SessionsBatteryList, BitList, C
         runNameCheck: false,
         prompt: "",
         on_finish: function(data) {
-            console.log(data)
-            console.log("COPY LINK FLAG: "+jatos.studySessionData.copyLinkFlag)
-            // Make the link to the battery or session that is associated with the selected button
-            console.log("BATTERY: "+SessionsBatteryList[data.response])
-            console.log(jatos.studyCode)
             var BasePath = window.location.hostname
                 // The server for the NeuroClinic and JATOS are different, even if on the same machine.
                         console.log(BasePath)
@@ -407,9 +407,9 @@ function MakeSessionButtonsLINKS(Title, Choices, SessionsBatteryList, BitList, C
             }
             // Assemble the link
             var Output = window.location.protocol + '//' + BasePath + PortNumber + '/publix/' + jatos.studyCode +'?Battery='+SessionsBatteryList[data.response]+'&UsageType=Battery'
-            console.log(Output)
             navigator.clipboard.writeText(Output)
-            alert("Link was copied to the clipboard.")
+            alert("Link for "+Choices[data.response]+" was copied to the clipboard.")
+            window.close()
         }
     };
     return trial
