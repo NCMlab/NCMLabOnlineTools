@@ -18,7 +18,7 @@ const survey_JSON = {
         name: "cesam001",
         title: "Avez-vous involontairement perdu du poids au cours de la dernière année ?",
         choices: [
-            { value: 2, text: 'Oui' },
+            { value: 1, text: 'Oui' },
             { value: 0, text: 'Non' },
         ],
         isRequired: true,
@@ -41,10 +41,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "Chaque jour, combien de médicamments différents prenez-vous ?",
         choices: [
-          { value: 0, text: 'Aucun' },
-          { value: 0, text: '1 à 4' },
-          { value: 1, text: '5 à 9' },
-          { value: 2, text: '10 ou plus' },
+          { value: 1, text: 'Aucun' },
+          { value: 2, text: '1 à 4' },
+          { value: 3, text: '5 à 9' },
+          { value: 4, text: '10 ou plus' },
         ],
         isRequired: true,
         showClearButton: true
@@ -76,7 +76,7 @@ const survey_JSON = {
         name: "cesam005",
         title: "Votre entourage vous a-t-il fait remarquer que vous aviez des problèmes de mémoire ?",
         choices: [
-          { value: 2, text: 'Oui' },
+          { value: 1, text: 'Oui' },
           { value: 0, text: 'Non' },
         ],
         isRequired: true,
@@ -87,7 +87,7 @@ const survey_JSON = {
         name: "cesam006",
         title: "Recevez-vous de l'aide pour accomplir les actes de vie de tous les jours ?",
         choices: [
-          { value: 2, text: 'Oui' },
+          { value: 1, text: 'Oui' },
           { value: 0, text: 'Non' },
         ],
         isRequired: true,
@@ -211,7 +211,7 @@ const survey_JSON = {
         name: "cesam016",
         title: "Perdez-vous vos urines et/ou selles ?",
         choices: [
-          { value: 2, text: 'Oui' },
+          { value: 1, text: 'Oui' },
           { value: 0, text: 'Non' },
         ],
         isRequired: true,
@@ -222,9 +222,9 @@ const survey_JSON = {
         name: "cesam017",
         title: "Aujourd'hui, vous vous sentez :",
         choices: [
-            { value: 2, text: "Heureux" },
-            { value: 1, text: "Malheureux" },
-            { value: 0, text: "Ni l'un ni l'autre" },
+            { value: 1, text: "Heureux" },
+            { value: 2, text: "Malheureux" },
+            { value: 3, text: "Ni l'un ni l'autre" },
         ],
         isRequired: true,
         showClearButton: true

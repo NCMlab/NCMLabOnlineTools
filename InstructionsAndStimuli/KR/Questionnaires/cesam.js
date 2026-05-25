@@ -17,7 +17,7 @@ const survey_JSON = {
         name: "cesam001",
         title: "지난 1년간 의도하지 않은 체중 감량이 있었나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -40,10 +40,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "매일 복용하는 약물의 개수는 몇 개인가요?",
         choices: [
-          { value: 0, text: '0' },
-          { value: 0, text: '1-4' },
-          { value: 1, text: '5-9' },
-          { value: 2, text: '≥10' },
+          { value: 1, text: '0' },
+          { value: 2, text: '1-4' },
+          { value: 3, text: '5-9' },
+          { value: 4, text: '≥10' },
         ],
         isRequired: true,
         showClearButton: true
@@ -75,7 +75,7 @@ const survey_JSON = {
         name: "cesam005",
         title: "주변 사람들이 기억력 문제를 지적한 적이 있나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -86,7 +86,7 @@ const survey_JSON = {
         name: "cesam006",
         title: "홈 케어 지원을 받고 있나요?",
         choices: [
-            { value: 2, text: "예"},
+            { value: 1, text: "예"},
             { value: 0, text: "아니요"}
         ],
         isRequired: true,
@@ -166,8 +166,8 @@ const survey_JSON = {
         name: "cesam012",
         title: "전화 사용 도움 필요 여부",
         choices: [
-            { value: 0, text: '예' },
-            { value: 1, text: '아니요' },
+            { value: 1, text: '예' },
+            { value: 0, text: '아니요' },
         ],
         isRequired: true,
         showClearButton: true
@@ -210,7 +210,7 @@ const survey_JSON = {
         name: "cesam016",
         title: "배뇨/배변 실금이 있나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -221,9 +221,9 @@ const survey_JSON = {
         name: "cesam017",
         title: "오늘 기분이 어떻습니까?",
         choices: [
-            { value: 2, text: "행복" },
-            { value: 1, text: "불행" },
-            { value: 0, text: "중립" },
+            { value: 1, text: "행복" },
+            { value: 2, text: "불행" },
+            { value: 3, text: "중립" },
         ],
         isRequired: true,
         showClearButton: true
