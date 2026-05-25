@@ -3,8 +3,9 @@
   "elements": [
     {
       "type": "matrixdropdown",
-      "name": "framework-ratings",
-      "title": "Membership and Entrance / Year",
+      "name": "coaching_costs",
+      "title": "Coaching / Year",
+      "showHeader": true,
       "columnMinWidth": "130px",
       "columns": [
         {
@@ -15,22 +16,51 @@
           "defaultValue": "No"
         },
         {
-          "name": "experience",
-          "title": "If yes, how much $/year?",
-          "choices": [
-            { "text": "3-5 years", "value": 4 },
-            { "text": "1-2 years", "value": 1.5 },
-            { "text": "Less than a year", "value": 0.5 }
-          ],
-          "enableIf": "{row.usage} = 'Yes'"
+          "name": "cost_per_usage",
+          "title": "If yes, how much do you pay on average per usage?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+                {
+          "name": "frequency_per_year",
+          "title": "How many times per year?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
         },
       ],
       "rows": [
-        { "text": "Membership fee to play/practice your sport", "value": "angular" },
-        { "text": "License fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)", "value": "react" },
-        { "text": "Other program fees to play/practice your sport (if not included in the previous questions)", "value": "vue" }
+        { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
+        { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
+         
       ],
       "transposeData": false
-    }
+    },
+        
+      {
+            type: "expression",
+            name: "Cost_Coach_$Y",
+            title: "Estimated yearly coaching costXXX",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
+            precision: 2
+          },
+    {
+            type: "expression",
+            name: "Clinic_Coach_$Y",
+            title: "Estimated yearly clinic costXXX",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
+            precision: 2
+          },
   ]
 };

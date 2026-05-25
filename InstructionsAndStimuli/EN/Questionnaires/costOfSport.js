@@ -858,97 +858,71 @@ const json = {
           {
             type: "html",
             name: "coaching_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Coaching / Year
-    </div>
-    `
+            html: `<div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+                    Coaching / Year
+                    </div>`
           },
-
-
           {
-            type: "radiogroup",
-            name: "Cost_Coach",
-            title: " Do you pay for lessons, guidance or coaching?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 1, "text": "Yes" },
-              { "value": 2, "text": "No" }
-
-            ]
-          },
-
-          {
-            type: "text",
-            name: "Cost_Coach_$U",
-            inputType: "number",
-            title: "how much do you pay on average per usage?",
-            visibleIf: "{Cost_Coach}= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "text",
-            inputType: "number",
-            name: "Cost_Coach_UY",
-            title: "how many times per year?:",
-            visibleIf: "{Cost_Coach}= 1",
-            isRequired: true
-          },
-
-
-          {
+                "type": "matrixdropdown",
+                "name": "coaching_costs",
+                "title": "Coaching / Year",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Do you pay?",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "If yes, how much do you pay on average per usage?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "How many times per year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
+                  { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
+                  
+                ],
+                "transposeData": false
+              },
+        
+       {
             type: "expression",
             name: "Cost_Coach_$Y",
-            title: "Estimated yearly coaching cost",
-            visibleIf: "{Cost_Coach} = 1",
-            expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-            displayStyle: "currency",
-            currency: "CAD",
+            title: "Estimated yearly coaching costXXX",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
             precision: 2
           },
-
-
-
-
-
-
-
-          {
-            type: "radiogroup",
-            name: "Cost_Clinic",
-            title: " Do you participate in clinics regarding your sport practice?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 1, "text": "Yes" },
-              { "value": 2, "text": "No" }
-
-            ]
+    {
+            type: "expression",
+            name: "Clinic_Coach_$Y",
+            title: "Estimated yearly clinic costXXX",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
+            precision: 2
           },
-
-          {
-            type: "text",
-            name: "Cost_Clinic_$U",
-            inputType: "number",
-            title: "how much do you pay on average per usage?",
-            visibleIf: "{Cost_Clinic}= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "text",
-            inputType: "number",
-            name: "Cost_Clinic_UY",
-            title: "how many times per year?:",
-            visibleIf: "{Cost_Clinic}= 1",
-            isRequired: true
-          },
-
-
           {
             type: "expression",
             name: "Cost_Clinic_$Y",
@@ -959,8 +933,6 @@ const json = {
             currency: "CAD",
             precision: 2
           },
-
-
 
           {
             type: "html",
