@@ -851,21 +851,14 @@ const json = {
 
       {
         name: "CostActiveSportParticipation",
-        title: "Section II: Cost of Active Sport Participation",
+        title: "Section II: Cost of Coaching and Clinics",
         elements: [
 
 
           {
-            type: "html",
-            name: "coaching_subtitle",
-            html: `<div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-                    Coaching / Year
-                    </div>`
-          },
-          {
                 "type": "matrixdropdown",
                 "name": "coaching_costs",
-                "title": "Coaching / Year",
+                "title": "Coaching and Clinics / Year",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "columns": [
@@ -904,7 +897,7 @@ const json = {
        {
             type: "expression",
             name: "Cost_Coach_$Y",
-            title: "Estimated yearly coaching costXXX",
+            title: "Estimated yearly coaching cost",
             //visibleIf: "{Cost_Coach} = 1",
             //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
             expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
@@ -915,7 +908,7 @@ const json = {
     {
             type: "expression",
             name: "Clinic_Coach_$Y",
-            title: "Estimated yearly clinic costXXX",
+            title: "Estimated yearly clinic cost",
             //visibleIf: "{Cost_Coach} = 1",
             //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
             expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
@@ -934,15 +927,12 @@ const json = {
             precision: 2
           },
 
-          {
-            type: "html",
-            name: "apparel_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Apparel and Equipment / Year
-    </div>
-    `
-          },
+        ]
+      },
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section III: Cost of Apparel and Equipment",
+        elements: [
 
           //moved to section apparel and Equipment from section I: ability
 
@@ -950,7 +940,8 @@ const json = {
             type: "radiogroup",
             title: "Does your ability require adaptive apparel/equipment to participate this sport?",
             name: 'AB_EQ_DL_Ex',
-            colCount: 2,
+            titleLocation: "left",
+            colCount: 0,
             choices: [
               'Yes',
               'No',
@@ -1079,7 +1070,7 @@ const json = {
           {
             type: "matrixdynamic",
             name: "SP_AddEquip",
-            title: "C) additional equipment, ex.towels ..",
+            title: "C) Additional equipment, ex.towels ..",
             addRowText: "➕ Add equipment item",
             removeRowText: "➖ Remove",
             minRowCount: 1,
@@ -1161,49 +1152,45 @@ const json = {
 
           // question 12 
 
-
-          {
-            type: "radiogroup",
-            name: "EQ_Rent",
-            title: " Do you rent sports apparel or sports equipment?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 1, "text": "Yes" },
-              { "value": 2, "text": "No" }
-
-            ]
-          },
-
-          {
-            type: "text",
-            name: "EQ_Rent_Ex",
-            title: " Please describe: ",
-            visibleIf: "{EQ_Rent}= 1",
-            isRequired: true
-          },
-
-
-
-          {
-            type: "text",
-            name: "EQ_Rent_$U",
-            inputType: "number",
-            title: "How much do you spend on average per rental?",
-            visibleIf: "{EQ_Rent}= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "text",
-            name: "EQ_Rent_UY",
-            inputType: "number",
-            title: "How often do you rent per year?",
-            visibleIf: "{EQ_Rent}= 1",
-            isRequired: true
-          },
-
+        {
+                "type": "matrixdropdown",
+                "name": "EQ_Rent",
+                "title": "Rental Costs",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "Average $ per usage?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "How many times per year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you rent sports apparel or sports equipment?", "value": 'rental_equipment' },
+                  { "text": "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)","value": 'rental_maintenance' } 
+                  
+                ],
+                "transposeData": false
+              },
+         
           {
             type: "expression",
             name: "EQ_Rent_$Y",
