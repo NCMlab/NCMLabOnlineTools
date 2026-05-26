@@ -849,313 +849,411 @@ const json = {
 
 
 
-      {
-        name: "CostActiveSportParticipation",
-        title: "Section II: Cost of Coaching and Clinics",
-        elements: [
+    //   {
+    //     name: "CostActiveSportParticipation",
+    //     title: "Section II: Cost of Coaching and Clinics",
+    //     elements: [
 
 
-          {
-                "type": "matrixdropdown",
-                "name": "coaching_costs",
-                "title": "Coaching and Clinics / Year",
-                "showHeader": true,
-                "columnMinWidth": "130px",
-                "columns": [
-                  {
-                    "name": "usage",
-                    "title": "Do you pay?",
-                    "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
-                    "defaultValue": "No"
-                  },
-                  {
-                    "name": "cost_per_usage",
-                    "title": "If yes, how much do you pay on average per usage?",
-                    "cellType": "text",
-                    "inputType": "number",
-                    "enableIf": "{row.usage} = 'Yes'",
-                    "allowResize": false,
-                  },
-                          {
-                    "name": "frequency_per_year",
-                    "title": "How many times per year?",
-                    "cellType": "text",
-                    "inputType": "number",
-                    "enableIf": "{row.usage} = 'Yes'",
-                    "allowResize": false,
-                  },
-                ],
-                "rows": [
-                  { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
-                  { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
+    //       {
+    //             "type": "matrixdropdown",
+    //             "name": "coaching_costs",
+    //             "title": "Coaching and Clinics / Year",
+    //             "showHeader": true,
+    //             "columnMinWidth": "130px",
+    //             "columns": [
+    //               {
+    //                 "name": "usage",
+    //                 "title": "Do you pay?",
+    //                 "cellType": "radiogroup",
+    //                 "choices": [ "Yes", "No" ],
+    //                 "defaultValue": "No"
+    //               },
+    //               {
+    //                 "name": "cost_per_usage",
+    //                 "title": "If yes, how much do you pay on average per usage?",
+    //                 "cellType": "text",
+    //                 "inputType": "number",
+    //                 "enableIf": "{row.usage} = 'Yes'",
+    //                 "allowResize": false,
+    //               },
+    //                       {
+    //                 "name": "frequency_per_year",
+    //                 "title": "How many times per year?",
+    //                 "cellType": "text",
+    //                 "inputType": "number",
+    //                 "enableIf": "{row.usage} = 'Yes'",
+    //                 "allowResize": false,
+    //               },
+    //             ],
+    //             "rows": [
+    //               { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
+    //               { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
                   
-                ],
-                "transposeData": false
-              },
+    //             ],
+    //             "transposeData": false
+    //           },
         
-       {
-            type: "expression",
-            name: "Cost_Coach_$Y",
-            title: "Estimated yearly coaching cost",
-            //visibleIf: "{Cost_Coach} = 1",
-            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-            expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-            displayStyle: "decimal",
-            //currency: "CAD",
-            precision: 2
-          },
-    {
-            type: "expression",
-            name: "Clinic_Coach_$Y",
-            title: "Estimated yearly clinic cost",
-            //visibleIf: "{Cost_Coach} = 1",
-            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-            expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-            displayStyle: "decimal",
-            //currency: "CAD",
-            precision: 2
-          },
-          {
-            type: "expression",
-            name: "Cost_Clinic_$Y",
-            title: "Estimated yearly clinic cost",
-            visibleIf: "{Cost_Clinic} = 1",
-            expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
+    //    {
+    //         type: "expression",
+    //         name: "Cost_Coach_$Y",
+    //         title: "Estimated yearly coaching cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    // {
+    //         type: "expression",
+    //         name: "Clinic_Coach_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    //       {
+    //         type: "expression",
+    //         name: "Cost_Clinic_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         visibleIf: "{Cost_Clinic} = 1",
+    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         precision: 2
+    //       },
 
-        ]
-      },
+    //     ]
+    //   },
+    //   {
+    //     name: "CostActiveSportParticipation",
+    //     title: "Section III: Cost of Apparel and Equipment",
+    //     elements: [
+
+    //       //moved to section apparel and Equipment from section I: ability
+
+    //       {
+    //         type: "radiogroup",
+    //         title: "Does your ability require adaptive apparel/equipment to participate this sport?",
+    //         name: 'AB_EQ_DL_Ex',
+    //         titleLocation: "left",
+    //         colCount: 0,
+    //         choices: [
+    //           'Yes',
+    //           'No',
+
+    //         ]
+    //       },
+
+    //       {
+    //         type: "comment",
+    //         name: "adaptive_equipment_explanation",
+    //         title: "Please explain:",
+    //         visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+    //         isRequired: true
+    //       },
+
+    //       // question 10 to adjust
+    //       //fix html text 
+    //       {
+    //         type: "html",
+    //         name: "apparel_subtitle",
+    //         html: `
+    //   <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
+    //   Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
+    //   the quantity, the number of months or years you actually use it, and the price per unit:
+      
+    // </div>
+    // `
+    //       },
+
+
+    //       /* ----------------- (a) Sports apparel ----------------- */ //fixed 
+    //       {
+    //         type: "matrixdynamic",
+    //         name: "SP_APP",
+    //         title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
+    //         addRowText: "➕ Add apparel item",
+    //         removeRowText: "➖ Remove",
+    //         minRowCount: 1,
+    //         rowCount: 0,
+    //         showFooter: true,
+    //         columns: [
+    //           { name: "SP_APP_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+    //           { name: "SP_APP_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+    //           { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+    //           { name: "SP_APP_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+    //           {
+    //             name: "SP_APP_$Y",
+    //             title: "Write-off / year (C$)",
+    //             cellType: "expression",
+    //             expression:
+    //               "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
+    //               " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+    //             displayStyle: "currency",
+    //             currency: "CAD",
+
+    //             totalType: "sum",
+    //             totalDisplayStyle: "currency",
+    //             currencyDisplay: "code",
+    //             width: "15%"
+    //           }
+    //         ],
+    //         footerText: "Sub-total (a)"
+    //       },
+
+    //       {
+    //         type: "expression",
+    //         name: "SP_APP_$Y_Total",
+    //         title: "Sub-total (a): Total write-off per year (all apparel items)",
+    //         expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         currencyDisplay: "code",
+    //         visible: false
+    //       },
+
+    //       /* --------------- (b) Sports equipment ----------------- */
+    //       {
+    //         type: "matrixdynamic",
+    //         name: "SP_Equip",
+    //         title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+    //         addRowText: "➕ Add equipment item",
+    //         removeRowText: "➖ Remove",
+    //         minRowCount: 1,
+    //         rowCount: 0,
+    //         showFooter: true,
+    //         columns: [
+    //           { name: "SP_Equip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+    //           { name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+    //           { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+    //           { name: "SP_Equip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+    //           {
+
+    //             name: "SP_Equip_$Y",
+    //             title: "Write-off / year (C$)",
+    //             cellType: "expression",
+    //             expression:
+    //               "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
+    //               " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
+    //             displayStyle: "currency",
+    //             currency: "CAD",
+
+    //             totalType: "sum",
+    //             totalDisplayStyle: "currency",
+    //             currencyDisplay: "code",
+    //             width: "15%"
+
+    //           }
+    //         ],
+    //         footerText: "Sub-total (b)"
+    //       },
+
+    //       {
+    //         type: "expression",
+    //         name: "SP_Equip_$Y_Total",
+    //         title: "Sub-total b: Total write-off per year (all equipment items)",
+    //         expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         currencyDisplay: "code",
+    //         visible: false
+    //       },
+
+    //       /*  --------- c) Additional equipment -----------------   */
+
+
+    //       {
+    //         type: "matrixdynamic",
+    //         name: "SP_AddEquip",
+    //         title: "C) Additional equipment, ex.towels ..",
+    //         addRowText: "➕ Add equipment item",
+    //         removeRowText: "➖ Remove",
+    //         minRowCount: 1,
+    //         rowCount: 0,
+    //         showFooter: true,
+    //         columns: [
+    //           { name: "SP_AddEquip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+    //           { name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+    //           { name: "SP_AddEquip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+    //           { name: "SP_AddEquip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+    //           {
+
+    //             name: "SP_AddEquip_$Y",
+    //             title: "Write-off / year (C$)",
+    //             cellType: "expression",
+    //             expression:
+    //               "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
+    //               " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
+    //             displayStyle: "currency",
+    //             currency: "CAD",
+
+    //             totalType: "sum",
+    //             totalDisplayStyle: "currency",
+    //             currencyDisplay: "code",
+    //             width: "15%"
+    //           }
+    //         ],
+    //         footerText: "Sub-total (c)"
+    //       },
+
+    //       {
+    //         type: "expression",
+    //         name: "SP_AddEquip_$Y_Total",
+    //         title: "Sub-total (c): Total write-off per year (additonal items)",
+    //         expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         currencyDisplay: "code",
+    //         visible: false
+    //       },
+
+
+
+
+
+
+
+
+    //       // question 11
+
+
+    //       {
+    //         type: "checkbox",
+    //         name: "sports_equipment_sources",
+    //         title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
+    //         isRequired: true,
+    //         choices: [
+    //           { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
+    //           { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
+    //           { "value": 3, "text": "In a privately owned sports shop" },
+    //           { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
+    //           { "value": 5, "text": "Buy from individual people or second hand" },
+    //           { "value": 6, "text": "Wholesale" },
+    //           { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
+    //           { "value": 8, "text": "Other (please describe)" }
+    //         ],
+    //         colCount: 2
+    //       },
+
+    //       {
+    //         type: "comment",
+    //         name: "sports_equipment_sources_other",
+    //         title: "If you selected 'Other (please describe)', please specify:",
+    //         visibleIf: "{sports_equipment_sources} contains 8"
+    //       },
+
+
+
+
+    //       // question 12 
+
+    //     {
+    //             "type": "matrixdropdown",
+    //             "name": "EQ_Rent",
+    //             "title": "Rental Costs",
+    //             "showHeader": true,
+    //             "columnMinWidth": "130px",
+    //             "columns": [
+    //               {
+    //                 "name": "usage",
+    //                 "title": "Yes/No",
+    //                 "cellType": "radiogroup",
+    //                 "choices": [ "Yes", "No" ],
+    //                 "defaultValue": "No"
+    //               },
+    //               {
+    //                 "name": "cost_per_usage",
+    //                 "title": "Average $ per usage?",
+    //                 "cellType": "text",
+    //                 "inputType": "number",
+    //                 "enableIf": "{row.usage} = 'Yes'",
+    //                 "allowResize": false,
+    //               },
+    //                       {
+    //                 "name": "frequency_per_year",
+    //                 "title": "How many times per year?",
+    //                 "cellType": "text",
+    //                 "inputType": "number",
+    //                 "enableIf": "{row.usage} = 'Yes'",
+    //                 "allowResize": false,
+    //               },
+    //             ],
+    //             "rows": [
+    //               { "text": "Do you rent sports apparel or sports equipment?", "value": 'rental_equipment' },
+    //               { "text": "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)","value": 'rental_maintenance' } 
+                  
+    //             ],
+    //             "transposeData": false
+    //           },
+         
+    //       {
+    //         type: "expression",
+    //         name: "EQ_Rent_$Y",
+    //         title: "Estimated yearly rental cost",
+    //         visibleIf: "{EQ_Rent} = 1",
+    //         expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         precision: 2
+    //       },
+
+
+    //       // question 13
+
+     
+
+    //       {
+    //         type: "expression",
+    //         name: "EQ_Maint_$Y",
+    //         title: "Estimated yearly maintenance cost",
+    //         visibleIf: "{EQ_Maint} = 1",
+    //         expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         precision: 2
+    //       },
+
+
+
+
+
+    //       {
+    //         type: "expression",
+    //         name: "SP_Equip_APP_$Y_Total",
+    //         title: "Apparel & Equipment / YEAR (Total)",
+    //         displayStyle: "decimal",
+    //         precision: 2,
+    //         expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+    //       },
+
+
+
+    //     ]
+
+    //     // to add the sum of maintenance and apparel together 
+
+
+    //   },
+
+
+
       {
         name: "CostActiveSportParticipation",
-        title: "Section III: Cost of Apparel and Equipment",
+        title: "Section II: Travel Costs",
         elements: [
-
-          //moved to section apparel and Equipment from section I: ability
-
-          {
-            type: "radiogroup",
-            title: "Does your ability require adaptive apparel/equipment to participate this sport?",
-            name: 'AB_EQ_DL_Ex',
-            titleLocation: "left",
-            colCount: 0,
-            choices: [
-              'Yes',
-              'No',
-
-            ]
-          },
-
-          {
-            type: "comment",
-            name: "adaptive_equipment_explanation",
-            title: "Please explain:",
-            visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-            isRequired: true
-          },
-
-          // question 10 to adjust
-          //fix html text 
-          {
-            type: "html",
-            name: "apparel_subtitle",
-            html: `
-      <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
-      Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
-      the quantity, the number of months or years you actually use it, and the price per unit:
-      
-    </div>
-    `
-          },
+          // question 14
 
 
-          /* ----------------- (a) Sports apparel ----------------- */ //fixed 
-          {
-            type: "matrixdynamic",
-            name: "SP_APP",
-            title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
-            addRowText: "➕ Add apparel item",
-            removeRowText: "➖ Remove",
-            minRowCount: 1,
-            rowCount: 0,
-            showFooter: true,
-            columns: [
-              { name: "SP_APP_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-              { name: "SP_APP_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-              { name: "SP_APP_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-              {
-                name: "SP_APP_$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression:
-                  "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
-                  " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
-                displayStyle: "currency",
-                currency: "CAD",
-
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                width: "15%"
-              }
-            ],
-            footerText: "Sub-total (a)"
-          },
-
-          {
-            type: "expression",
-            name: "SP_APP_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
-            displayStyle: "currency",
-            currency: "CAD",
-            currencyDisplay: "code",
-            visible: false
-          },
-
-          /* --------------- (b) Sports equipment ----------------- */
-          {
-            type: "matrixdynamic",
-            name: "SP_Equip",
-            title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
-            addRowText: "➕ Add equipment item",
-            removeRowText: "➖ Remove",
-            minRowCount: 1,
-            rowCount: 0,
-            showFooter: true,
-            columns: [
-              { name: "SP_Equip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-              { name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-              { name: "SP_Equip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-              {
-
-                name: "SP_Equip_$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression:
-                  "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
-                  " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
-                displayStyle: "currency",
-                currency: "CAD",
-
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                width: "15%"
-
-              }
-            ],
-            footerText: "Sub-total (b)"
-          },
-
-          {
-            type: "expression",
-            name: "SP_Equip_$Y_Total",
-            title: "Sub-total b: Total write-off per year (all equipment items)",
-            expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
-            displayStyle: "currency",
-            currency: "CAD",
-            currencyDisplay: "code",
-            visible: false
-          },
-
-          /*  --------- c) Additional equipment -----------------   */
-
-
-          {
-            type: "matrixdynamic",
-            name: "SP_AddEquip",
-            title: "C) Additional equipment, ex.towels ..",
-            addRowText: "➕ Add equipment item",
-            removeRowText: "➖ Remove",
-            minRowCount: 1,
-            rowCount: 0,
-            showFooter: true,
-            columns: [
-              { name: "SP_AddEquip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-              { name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_AddEquip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-              { name: "SP_AddEquip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-              {
-
-                name: "SP_AddEquip_$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression:
-                  "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
-                  " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
-                displayStyle: "currency",
-                currency: "CAD",
-
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                width: "15%"
-              }
-            ],
-            footerText: "Sub-total (c)"
-          },
-
-          {
-            type: "expression",
-            name: "SP_AddEquip_$Y_Total",
-            title: "Sub-total (c): Total write-off per year (additonal items)",
-            expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
-            displayStyle: "currency",
-            currency: "CAD",
-            currencyDisplay: "code",
-            visible: false
-          },
-
-
-
-
-
-
-
-
-          // question 11
-
-
-          {
-            type: "checkbox",
-            name: "sports_equipment_sources",
-            title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
-            isRequired: true,
-            choices: [
-              { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
-              { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
-              { "value": 3, "text": "In a privately owned sports shop" },
-              { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
-              { "value": 5, "text": "Buy from individual people or second hand" },
-              { "value": 6, "text": "Wholesale" },
-              { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
-              { "value": 8, "text": "Other (please describe)" }
-            ],
-            colCount: 2
-          },
-
-          {
-            type: "comment",
-            name: "sports_equipment_sources_other",
-            title: "If you selected 'Other (please describe)', please specify:",
-            visibleIf: "{sports_equipment_sources} contains 8"
-          },
-
-
-
-
-          // question 12 
-
-        {
+          //if select value 8 add a blank box to explain their special transportation
+           {
                 "type": "matrixdropdown",
-                "name": "EQ_Rent",
-                "title": "Rental Costs",
+                "name": "TR_Pr",
+                "title": "Travel Costs for Practices",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "columns": [
@@ -1168,7 +1266,7 @@ const json = {
                   },
                   {
                     "name": "cost_per_usage",
-                    "title": "Average $ per usage?",
+                    "title": "How often in %?",
                     "cellType": "text",
                     "inputType": "number",
                     "enableIf": "{row.usage} = 'Yes'",
@@ -1176,7 +1274,7 @@ const json = {
                   },
                           {
                     "name": "frequency_per_year",
-                    "title": "How many times per year?",
+                    "title": "How much $ per time?",
                     "cellType": "text",
                     "inputType": "number",
                     "enableIf": "{row.usage} = 'Yes'",
@@ -1184,396 +1282,130 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Do you rent sports apparel or sports equipment?", "value": 'rental_equipment' },
-                  { "text": "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)","value": 'rental_maintenance' } 
-                  
+                  { "text": "Foot/Wheeling", "value": 'travel_foot_wheeling' },
+                  { "text": "Bike", "value": 'travel_bike' },
+                  { "text": "Motorbike", "value": 'travel_motorbike' },
+                  { "text": "Family/Own Car", "value": 'travel_family_own_car' },
+                  { "text": "Public Transportation", "value": 'travel_public_transportation' },
+                  { "text": "Carpooling", "value": 'travel_carpooling' },
+                  { "text": "Taxi/Private Bus", "value": 'travel_taxi_private_bus' },
+                  { "text": "Special Transportation", "value": 'travel_special_transportation' },
+                  { "text": "Other", "value": 'travel_other' }
                 ],
                 "transposeData": false
               },
-         
-          {
-            type: "expression",
-            name: "EQ_Rent_$Y",
-            title: "Estimated yearly rental cost",
-            visibleIf: "{EQ_Rent} = 1",
-            expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-
-          // question 13
-
-     
-
-          {
-            type: "expression",
-            name: "EQ_Maint_$Y",
-            title: "Estimated yearly maintenance cost",
-            visibleIf: "{EQ_Maint} = 1",
-            expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-
-
-
-
-          {
-            type: "expression",
-            name: "SP_Equip_APP_$Y_Total",
-            title: "Apparel & Equipment / YEAR (Total)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
-          },
-
-
-
-        ]
-
-        // to add the sum of maintenance and apparel together 
-
-
-      },
-
-
-
-      {
-        name: "CostActiveSportParticipation",
-        title: "Section II: Cost of Active Sport Participation",
-        elements: [
-          // question 14
-
-          {
-            type: "html",
-            name: "travel_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Travel Costs
-    </div>
-    `
-          },
-
-          //if select value 8 add a blank box to explain their special transportation
-
-          {
-            type: "checkbox",
-            name: "TR_Pr",
-            title: "For Practices: Which method of transportation do you use? (check all that apply)",
-            isRequired: true,
-            choices: [
-              { "value": 1, "text": "By foot/wheeling" },
-              { "value": 2, "text": "By Bike" },
-              { "value": 3, "text": "By motorbike" },
-              { "value": 4, "text": "By family/own car" },
-              { "value": 5, "text": "Public Transportation" },
-              { "value": 6, "text": "Have a ride with others/ carpooling" },
-              { "value": 7, "text": "Taxi/Private bus" },
-              { "value": 8, "text": "Special transportation" },
-              { "value": 9, "text": "Other" }
-            ],
-            showOtherItem: false,
-            colCount: 3
-          },
+{
+                "type": "matrixdropdown",
+                "name": "TR_Pr",
+                "title": "Parking",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "travel_parking_cost_per_usage",
+                    "title": "How much $ per time?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you pay for parking?", "value": 'travel_parking' },
+                ],
+                "transposeData": false
+              },
 
 
           //if by car
 
-          {
-            type: "html",
-            name: "tr_pr_car_subtitle",
-            visibleIf: "{TR_Pr} contains 4",
-            html: `
-        <div style="font-size: 30px; font-weight: bold; margin-top: 28px; margin-bottom: 12px;">
-        If you use a car for practices, answer the following:
-        </div>
-        `
-          },
-
-          {
-            type: "panel",
-            name: "TR_Pr_CarPanel",
-            title: "If you use a car for practices, answer the following 3 questions:",
-            titleLocation: "hidden",
-            visibleIf: "{TR_Pr} contains 4",
-            elements: [
-
-
-              {
-                type: "text",
-                name: "TR_Pr_Car_kmU",
-                inputType: "number",
-                title: "How many kilometers do you drive, back and forth per practice?",
-                visibleIf: "{TR_Pr} contains 4",
-                isRequired: true
+        {
+                "type": "matrixdropdown",
+                "name": "TR_Comp",
+                "title": "Travel Costs for Competitions",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "How often in %?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "How much $ per time?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Foot/Wheeling", "value": 'travel_foot_wheeling' },
+                  { "text": "Bike", "value": 'travel_bike' },
+                  { "text": "Motorbike", "value": 'travel_motorbike' },
+                  { "text": "Family/Own Car", "value": 'travel_family_own_car' },
+                  { "text": "Public Transportation", "value": 'travel_public_transportation' },
+                  { "text": "Carpooling", "value": 'travel_carpooling' },
+                  { "text": "Taxi/Private Bus", "value": 'travel_taxi_private_bus' },
+                  { "text": "Special Transportation", "value": 'travel_special_transportation' },
+                  { "text": "Other", "value": 'travel_other' }
+                ],
+                "transposeData": false
               },
 
-
-              {
-                type: "text",
-                name: "TR_Pr_Car_%",
-                inputType: "number",
-                title: " How often (in %) do you use the car for practice?",
-                visibleIf: "{TR_Pr} contains 4",
-                isRequired: true
-              },
-
-
-
-              {
-                type: "text",
-                name: "TR_Pr_Park_$Y",
-                inputType: "number",
-                title: " How much do you spend on parking costs per year (in total) to participate in your sport?",
-                visibleIf: "{TR_Pr} contains 4",
-                isRequired: true
-              },
-
-
-              // parking cost should be added total yearly car travel cost
-              {
-                type: "expression",
-                name: "TR_Pr_Car_$Y",
-                title: "Total yearly car travel cost",
-                displayStyle: "decimal",
-                precision: 2,
-                visibleIf: "{TR_Pr} contains 4",
-                expression: "{TR_Pr_Car_kmU} * {SP_PR_Freq} * 0.5 * ({TR_Pr_Car_%} / 100)"
-              },
-
-            ]
-
-          },
-
-
-
-          // if by public transportation
-
-          {
-            type: "html",
-            name: "tr_pr_public_subtitle",
-            visibleIf: "{TR_Pr} contains 5",
-            html: `
-          <div style="font-size: 30px; font-weight: bold; margin-top: 24px; margin-bottom: 10px;">
-          If you use public transportation for practices, answer the following:
-         </div>
-        `
-          },
-
-          {
-            type: "panel",
-            name: "TR_Pr_PublicPanel",
-            title: "If you use public transportation for practices, answer the following questions:",
-            titleLocation: "hidden",
-            visibleIf: "{TR_Pr} contains 5",
-            elements: [
-
-              {
-                type: "text",
-                name: "TR_Pr_Pub_$U",
-                inputType: "number",
-                title: " How much do you spend back and forth per practice?",
-                visibleIf: "{TR_Pr} contains 5",
-                isRequired: true
-              },
-
-              {
-                type: "text",
-                name: "TR_Pr_Pub_%",
-                inputType: "number",
-                min: 0,
-                max: 100,
-                title: "How often (in %) do you use public transport?",
-                isRequiredIf: "{TR_Pr} contains 5"
-              },
-
-
-              {
-                type: "expression",
-                name: "TR_Pr_Pub_$Y",
-                title: "Total yearly public transport costs",
-                displayStyle: "decimal",
-                precision: 2,
-                visibleIf: "{TR_Pr} contains 5",
-                expression: "(({TR_Pr_Pub_$U} || 0) * ({SP_PR_Freq} || 0) * (({TR_Pr_Pub_%} || 0) / 100))"
-              }
-
-
-
-            ]
-
-          },
-
-
-
-
-
-
-
-          {
-            type: "checkbox",
-            name: "TR_Comp",
-            title: "For one-day competitions/championships without overnight stay: Which method of transportation do you use? (check all that apply)",
-            isRequired: true,
-            choices: [
-              { "value": 1, "text": "By foot/wheeling" },
-              { "value": 2, "text": "By Bike" },
-              { "value": 3, "text": "By motorbike" },
-              { "value": 4, "text": "By family/own car" },
-              { "value": 5, "text": "Public Transportation" },
-              { "value": 6, "text": "Have a ride with others/ carpooling" },
-              { "value": 7, "text": "Taxi/Private bus" },
-              { "value": 8, "text": "Special transportation, if yes, please explain" },
-              { "value": 9, "text": "Other" }
-            ],
-            showOtherItem: false,
-            colCount: 3
-          },
-
-
-
-          {
-            type: "html",
-            name: "tr_comp_car_subtitle",
-            visibleIf: "{TR_Comp} contains 4",
-            html: `
-        <div style="font-size: 30px; font-weight: bold; margin-top: 28px; margin-bottom: 12px;">
-        If you use a car for one-day competitions, answer the following:
-        </div>
-        `
-          },
-
-
-
-
-          {
-            type: "panel",
-            name: "TR_Comp_CarPanel",
-            titleLocation: "hidden",
-            visibleIf: "{TR_Comp} contains 4",
-            elements: [
-
-
-              //if by car
-
-              {
-                type: "text",
-                name: "TR_Comp_Car_kmU",
-                inputType: "number",
-                title: "How many kilometers do you drive, back and forth per one-day competition/championship without overnight stay?",
-                visibleIf: "{TR_Comp} contains 4",
-                isRequired: true
-              },
-
-
-              {
-                type: "text",
-                name: "TR_Comp_Car_%",
-                inputType: "number",
-                title: " How often (in %) do you use the car for one-day competition/championship without overnight stay?",
-                visibleIf: "{TR_Comp} contains 4",
-                isRequired: true
+{
+                "type": "matrixdropdown",
+                "name": "TR_Comp",
+                "title": "Travel Costs for Competitions",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Do you spend money on:",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "Average $ per usage? (include ALL expenditures for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "One-day games/competitions/championships without an overnight stay.", "value": 'other_oneday_no_overnight' },
+                  { "text": "One-day games/competitions/championships with one overnight stay.", "value": 'other_oneday_with_overnight' },
+                  { "text": "Games/competitions/championships with two-night stay.", "value": 'other_twonight' },
+                  { "text": "Games/competitions/championships with three or more overnight stay", "value": 'other_threenight_plus' },
+                  { "text": "Vacations", "value": 'other_vacations' },
+                ],
+                "transposeData": false
               },
 
 
 
-              {
-                type: "text",
-                name: "TR_Comp_Park_$Y",
-                inputType: "number",
-                title: " How much do you spend on parking costs per year (in total) for one-day competition/championship without overnight stay?",
-                visibleIf: "{TR_Comp} contains 4",
-                isRequired: true
-              },
-
-
-
-              {
-                type: "expression",
-                name: "TR_Comp_Car_$Y",
-                title: "Total yearly car travel cost",
-                displayStyle: "decimal",
-                precision: 2,
-                visibleIf: "{TR_Comp} contains 4",
-                expression: "({TR_Comp_Car_kmU} || 0) * ({SP_PR_Freq} || 0) * 0.5 * (({TR_Comp_Car_%} || 0) / 100)"
-              },
-
-            ]
-
-          },
-
-
-          {
-            type: "html",
-            name: "tr_comp_public_subtitle",
-            visibleIf: "{TR_Comp} contains 5",
-            html: `
-    <div style="font-size: 30px; font-weight: bold; margin-top: 24px; margin-bottom: 10px;">
-      If you use public transportation for one-day competitions, answer the following:
-    </div>
-  `
-          },
-
-
-          {
-            type: "panel",
-            name: "TR_Comp_PublicPanel",
-            visibleIf: "{TR_Comp} contains 5",
-            elements: [
-
-
-              // if by public transportation
-
-
-              {
-                type: "text",
-                name: "TR_Comp_Pub_$U",
-                inputType: "number",
-                title: " How much do you spend back and forth per one-day competition/championship without overnight stay?",
-                visibleIf: "{TR_Comp} contains 5",
-                isRequired: true
-              },
-
-              {
-                type: "text",
-                name: "TR_Comp_Pub_%",
-                inputType: "number",
-                title: "How often (in 0-100%) do you use the public transport for one-day competition/championship without overnight stay?",
-                visibleIf: "{TR_Comp} contains 5",
-                isRequired: true
-              },
-
-
-              {
-                type: "expression",
-                name: "TR_Comp_Pub_$Y",
-                title: "Total yearly public transport costs",
-                displayStyle: "decimal",
-                precision: 2,
-                visibleIf: "{TR_Comp} contains 5",
-                expression: "(({TR_Comp_Pub_$U} || 0) * ({SP_PR_Freq} || 0) * (({TR_Comp_Pub_%} || 0) / 100))"
-              }
-
-
-            ]
-
-
-          },
-
-
-          {
-            type: "html",
-            name: "other_transportation_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Other Transportation Costs
-    </div>
-    `
-          },
 
 
           // Special transportation
@@ -1608,85 +1440,7 @@ const json = {
 
           // 14.C   to add ifvisible relevant to #9
 
-          {
-            type: "html",
-            name: "competitions_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 30px; margin-top: 20px;">
-      Cost of competitions/championships with overnight stay (include ALL expenditures for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)
-    </div>
-    `
-          },
-
-
-          {
-            type: "text",
-            name: "Cost_O_with_$U",
-            inputType: "number",
-            title: " ONE-DAY COMPETITIONS WITH OVERNIGHT STAY: How much do you spend on average per ONE-DAY COMPETITION WITH OVERNIGHT STAY?",
-            visibleIf: "{SP_CC_ODWith} > 0",
-            isRequired: true
-          },
-
-          {
-            type: "expression",
-            name: "Cost_O_with_$Y",
-            title: "Total Yearly Cost: One-day competitions with overnight stay",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{SP_CC_ODWith} > 0",
-            expression: "{Cost_O_with_$U} * {SP_CC_ODWith}"
-          },
-
-
-
-          {
-            type: "text",
-            name: "Cost_WE_$U",
-            inputType: "number",
-            title: " WEEK-END COMPETITIONS: How much do you spend on average per WEEK-END COMPETITION?",
-            visibleIf: "{SP_CC_Weekend} > 0",
-            isRequired: true
-          },
-
-
-
-          {
-            type: "expression",
-            name: "Cost_WE_$Y",
-            title: "Total Yearly Cost: One-day competitions with overnight stay",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{SP_CC_Weekend} > 0",
-            expression: "{Cost_WE_$U} * {SP_CC_Weekend}"
-          },
-
-
-
-
-          {
-            type: "text",
-            name: "Cost_Multi_$U",
-            inputType: "number",
-            title: " MULTI-DAY COMPETITIONS: How much do you spend on average per MULTI-DAY COMPETION?",
-            visibleIf: "{SP_CC_Multiday} > 0",
-            isRequired: true
-          },
-
-
-          {
-            type: "expression",
-            name: "Cost_Multi_$Y",
-            title: "Total Yearly Cost: One-day competitions with overnight stay",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{SP_CC_Multiday} > 0",
-            expression: "{Cost_Multi_$U} * {SP_CC_Multiday}"
-          },
-
-
-
-
+   
 
 
 
@@ -1696,209 +1450,88 @@ const json = {
 
 
 
-          {
-            type: "radiogroup",
-            name: "Cost_Vaca",
-            title: "Do you go on vacations to primarily play/participate in your sport? (i.e. the first reason for the travel is to play/participate in your sport)",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 1, "text": "Yes" },
-              { "value": 2, "text": "No" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "Cost_Vaca_EX",
-            title: "Please describe: ",
-            visibleIf: "{Cost_Vaca}= 1",
-            isRequired: true
-          },
-
-          {
-            type: "text",
-            name: "Cost_Vaca_$U",
-            inputType: "number",
-            title: "How much do you spend on average per vacation (include ALL expenditure for travel, lodging, meals, rental of equipment or facilities, etc. not previously included)? ",
-            visibleIf: "{Cost_Vaca}= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "text",
-            name: "Cost_Vaca_UY",
-            inputType: "number",
-            title: "How many vacations per year?: ",
-            visibleIf: "{Cost_Vaca}= 1",
-            isRequired: true
-          },
-
-
-
-          {
-            type: "expression",
-            name: "Cost_Vaca_$Y",
-            title: "Total Yearly Vacations cost",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{Cost_Vaca} = 1",
-            expression: "{Cost_Vaca_$U} * {Cost_Vaca_UY}"
-          },
-
-
-
-          {
-            type: "expression",
-            name: "TR_$Y_Total",
-            title: "Total Travel & Transportations Costs per Year",
-            displayStyle: "decimal",
-            precision: 2,
-            expression: "{TR_Pr_Car_$Y}" + "+ {TR_Pr_Pub_$Y}" + "+ {TR_Comp_Car_$Y}" + "+ {TR_COMP_PUB_$Y}" + "+ {Cost_O_with_$Y}" + "+ {TR_Other_$Y}" +
-              "+ {Cost_WE_$Y}" + "+ {Cost_Mult_$Y}" + "+ {Cost_Vaca_$Y}"
-          },
-
-
-
-
-
-          {
-            type: "html",
-            name: "Social_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Social Costs
-    </div>
-    `
-          },
 
 
 
           // question 15
+              {
+                "type": "matrixdropdown",
+                "name": "B_P",
+                "title": "Social Costs",
+                "titleLocation": "hidden",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "How many times per year?:",
+                    "cellType": "dropdown",
+                    "choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
+                    "defaultValue": "Never (0%)"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "Average $ per usage?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you purchase drinks or food before, during, or after your participation?", "value": 'social_costs' },
+                ],
+                "transposeData": false
+              },
+
+        
 
 
-          {
-            type: "radiogroup",
-            name: "SOC_F&B_P",
-            title: "Do you purchase drinks or food before, during, or after your participation (consider practices, one-day games and competitions)?",
-            isRequired: true,
-            choices: [
-              { "value": 0, "text": "Never (0%)" },
-              { "value": 1, "text": "Rarely (25%)" },
-              { "value": 2, "text": "Sometimes (50%)" },
-              { "value": 3, "text": "Often (75%)" },
-              { "value": 4, "text": "Always (100%)" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "SOC_F&B_P_$U",
-            inputType: "number",
-            title: "If yes, how much do you spend on average each time? ",
-            visibleIf: "{SOC_F&B_P} >= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "expression",
-            name: "SOC_F&B_P_$Y",
-            title: "Food & Drink Costs per Year (Practices)",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{SOC_F&B_P} >= 1",
-            expression: "{SP_PR_Freq} * ({SOC_F&B_P} * 0.25) * {SOC_F&B_P_$U}"
-          },
-
+ 
 
           // "{SOC_F&B} * {SOC_F&B_$U} * ({SP_PR_Freq} + {SP_CC_ODWithout})"    total practice
 
 
           //to add another question to separate between practices and one-day competitions without overnight stay
 
-          {
-            type: "radiogroup",
-            name: "SOC_F&B_O",
-            title: "Do you purchase drinks or food before, during, or after  one-day competitions without overnight stay ",
-            isRequired: true,
-            choices: [
-              { "value": 0, "text": "Never (0%)" },
-              { "value": 1, "text": "Rarely (25%)" },
-              { "value": 2, "text": "Sometimes (50%)" },
-              { "value": 3, "text": "Often (75%)" },
-              { "value": 4, "text": "Always (100%)" }
-
-            ]
-          },
 
 
-          {
-            type: "text",
-            name: "SOC_F&B_O_$U",
-            inputType: "number",
-            title: " How much do you spend on average each time? ",
-            visibleIf: "{SOC_F&B_O} >= 1",
-            isRequired: true
-          },
+     
 
-
-          {
-            type: "expression",
-            name: "SOC_F&B_O_$Y",
-            title: "Food & Drink Costs per Year (One-day competitions without overnight stay)",
-            displayStyle: "decimal",
-            precision: 2,
-            visibleIf: "{SOC_F&B_O} >= 1",
-            expression: "{SP_CC_ODWithout} * ({SOC_F&B_O} * 0.25) * {SOC_F&B_O_$U}"
-          },
-
-
-          {
-            type: "expression",
-            name: "SOC_F&B_$Y",
-            title: "Total Food & Drink Costs per Year",
-            displayStyle: "decimal",
-            precision: 2,
-            expression: "({SP_PR_Freq} * ({SOC_F&B_P} * 0.25) * {SOC_F&B_P_$U})" + " + ({SP_CC_ODWithout} * ({SOC_F&B_O} * 0.25) * {SOC_F&B_O_$U})"
-          },
-
-
+       
 
 
 
           // question 16
-
-
-          {
-            type: "radiogroup",
-            name: "SOC_Club",
-            title: " Do you participate in club activities (ex. fundraisers, diner, …)?",
-            isRequired: true,
-            choices: [
-              { "value": 0, "text": "Never" },
-              { "value": 1, "text": "Rarely" },
-              { "value": 2, "text": "Sometimes" },
-              { "value": 3, "text": "Often" },
-              { "value": 4, "text": "Always" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "SOC_Club_$Y",
-            inputType: "number",
-            title: "If yes, how much do you spend per year? ",
-            visibleIf: "{SOC_Club} >= 1",
-            isRequired: true
-          },
+            { 
+                "type": "matrixdropdown",
+                "name": "B_P",
+                "title": "Social Club",
+                "showHeader": true,
+                "titleLocation": "hidden",
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "How many times per year?:",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "Never (0%)"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "How much $/year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you participate in club activities (ex. fundraisers, diner, …)?", "value": 'social_club_costs' },
+                ],
+                "transposeData": false
+              },
 
 
           {
@@ -1915,187 +1548,42 @@ const json = {
           // Other indirect costs
 
           // question 17
+           { 
+                "type": "matrixdropdown",
+                "name": "B_P",
+                "title": "Social Club",
+                "showHeader": true,
+                "titleLocation": "hidden",
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "Never (0%)"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "How much $/year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you have extra medical costs and/or care costs (e.g., physiotherapy, medication, …) related to you sports participation?", "value": 'other_medical' },
+                  { "text": "Do you have extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …) related to your sports participation?", "value": 'other_body_care' },
+                  { "text": "Do you have extra insurance costs related to your sports participation (if not already included in the membership fee)?", "value": 'other_insurance' },
+                  { "text": "Do you have extra costs for baby-sitting/pet sitting related to your sports participation?", "value": 'other_babysitting' },
+                  { "text": "Do you buy specific documentation related to your sports participation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)?", "value": 'other_documentation' },
+                  { "text": "Do you attend competitions as a spectator related to your sports participation?", "value": 'other_spectator' },
+                  { "text": "Do you have any other indirect costs related to your sports participation, not already included?", "value": 'other_indirect' },
+                ],
+                "transposeData": false
+              },
 
-          {
-            type: "radiogroup",
-            name: "OIC_MED",
-            title: "Do you have extra medical costs and/or care costs (e.g., physiotherapy, medication, …) related to you sports participation?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_MED_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_MED}= 1",
-            isRequired: true
-          },
-
-
-          // question 18
-
-          {
-            type: "radiogroup",
-            name: "OIC_Body",
-            title: "Do you have extra costs to take care of your body (e.g., body crème, …) or to buy special nutrition (e.g., supplements, …) related to your sports participation?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_Body_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_Body}= 1",
-            isRequired: true
-          },
-
-
-          // question 19
-
-          {
-            type: "radiogroup",
-            name: "OIC_Insur",
-            title: "Do you have extra insurance costs related to your sports participation (if not already included in the membership fee)?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-
-
-          {
-            type: "text",
-            name: "OIC_Insur_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_Insur}= 1",
-            isRequired: true
-          },
-
-
-          // question 20
-
-          {
-            type: "radiogroup",
-            name: "OIC_BPsitting",
-            title: "Do you have extra costs for baby-sitting/pet sitting related to your sports participation?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_BPsitting_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_BPsitting}= 1",
-            isRequired: true
-          },
-
-          // question 21
-
-
-          {
-            type: "radiogroup",
-            name: "OIC_DOC",
-            title: "Do you buy specific documentation related to your sports participation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_DOC_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_DOC}= 1",
-            isRequired: true
-          },
-
-
-          // Question 22
-
-          {
-            type: "radiogroup",
-            name: "OIC_Spect",
-            title: "Do you attend competitions as a spectator related to your sports participation?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_Spect_$Y",
-            inputType: "number",
-            title: "If yes, how much do you spend on average per year?: ",
-            visibleIf: "{OIC_Spect}= 1",
-            isRequired: true
-          },
-
-
-          //question 23
-
-          {
-            type: "radiogroup",
-            name: "OIC_Other",
-            title: "Do you have any other indirect costs related to your sports participation, not already included?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "OIC_Other_$Y",
-            inputType: "number",
-            title: "How much do you spend on average per year?: ",
-            visibleIf: "{OIC_Other}= 1",
-            isRequired: true
-          },
 
 
           // question 24
