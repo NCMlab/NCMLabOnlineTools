@@ -98,8 +98,9 @@ var form_trial = {
   }
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
-timeline.push(form_trial)
 timeline.push(VAStrial)
+timeline.push(form_trial)
+
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)
