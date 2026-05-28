@@ -8,7 +8,7 @@
 /*  What is super confusing with the slider height is that it is based off the width of the cell
 it is in. This is because it is a horizontal aslider that has been rotated. */
 :root {
-  --sliderHeight: 50%;
+  --sliderHeight: 56vh;
   --thumbSize: 28px;
   --sliderShiftFromRightOfCell: 20vw;
   --sliderCellHeight: 400px;
@@ -144,12 +144,9 @@ li span {
   height: 2px;
 }
 
-/* Firefox: thumb center travels exactly 0→inputWidth (no half-thumb offset like WebKit),
-   so remove the extra thumbSize that Chrome needs */
+/* Firefox: same thumb-travel offset as WebKit (center travels thumbSize/2 to inputWidth-thumbSize/2),
+   so it needs the same wider width — only override the font size */
 @supports (-moz-appearance: none) {
-  #jspsych-html-slider-response-response {
-    width: var(--sliderHeight);
-  }
   .tickLabel {
     font-size: 2.5vmin;
   }
@@ -270,17 +267,15 @@ tbody {
 
 
 
-.topCell {
+#topCell {
   text-align: center;
   padding-left: 2%;
-  height: 10%;
-  vertical-align: top;
+  vertical-align: bottom;
 }
-.bottomCell {
+#bottomCell {
   text-align: center;
   padding-left: 1%;
-  height: 10%;
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
 .ScoreCell {
