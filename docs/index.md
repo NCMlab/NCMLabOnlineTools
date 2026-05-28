@@ -1,9 +1,6 @@
 ---
 template: home.html
 title: 3C Platform
-hide:
-  - navigation
-  - toc
 ---
 
 <div class="grid cards" markdown>
