@@ -1,0 +1,106 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<section class="mdx-hero">
+  <div class="mdx-hero__image">
+    <div class="mdx-hero__overlay"></div>
+  </div>
+  <div class="md-grid">
+    <div class="mdx-hero__content md-typeset">
+      <h1>3C Platform</h1>
+      <p>
+        Open-source, browser-based platform for administering cognitive and
+        behavioural assessments — in-person, remotely, or offline. No
+        proprietary software. No specialist programming required.
+      </p>
+      <a
+        href="{{ 'getting-started/installation/' | url }}"
+        title="Get started"
+        class="md-button md-button--primary"
+      >
+        Get started
+      </a>
+      <a
+        href="https://github.com/NCMlab/NCMLabOnlineTools"
+        title="View on GitHub"
+        class="md-button"
+      >
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+{% block footer %}
+<div class="md-grid md-typeset mdx-features">
+  <div class="mdx-features__inner">
+
+    <a href="{{ 'tasks/available-tasks/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">🧠</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">21 task components</p>
+        <p>Cognitive, memory, language, and questionnaire tasks — pre-built, configurable, and ready to deploy.</p>
+      </div>
+    </a>
+
+    <a href="{{ 'features/languages/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">🌐</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">Multilingual</p>
+        <p>English, French, Japanese, and Korean via an on-screen language picker. Switch mid-session without reloading.</p>
+      </div>
+    </a>
+
+    <a href="{{ 'platform/administration/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">📡</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">Three deployment modes</p>
+        <p>Remote server, local laptop (no internet), or offline LAN — use the same study files in every setting.</p>
+      </div>
+    </a>
+
+    <a href="{{ 'features/response-types/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">🎙️</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">Rich response types</p>
+        <p>Keyboard, touchscreen, speech recognition, drawing (GIF-recorded), and visual analog scales.</p>
+      </div>
+    </a>
+
+    <a href="{{ 'platform/central-executive/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">⚙️</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">Automated scoring</p>
+        <p>Each task scores itself at completion — no post-collection data extraction scripts needed.</p>
+      </div>
+    </a>
+
+    <a href="{{ 'backend/' | url }}" class="mdx-feature">
+      <div class="mdx-feature__icon">
+        <span class="twemoji">📊</span>
+      </div>
+      <div class="mdx-feature__body">
+        <p class="mdx-feature__title">NeuroClinic portal</p>
+        <p>Review scores, playback drawing animations, and download data through the optional back-end web interface.</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+{{ super() }}
+{% endblock %}

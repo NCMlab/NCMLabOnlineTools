@@ -1,39 +1,42 @@
-# 3C Platform
+---
+template: home.html
+title: 3C Platform
+---
 
-The **3C Platform** (NCMLabOnlineTools) is open-source software for developing, administering, and interpreting behavioural and cognitive assessments, designed for both in-person and remote delivery. Built by Jason Steffener at the University of Ottawa, the platform combines standardised questionnaires and cognitive tasks in a unified, browser-based environment that requires no proprietary software and no specialist programming knowledge to operate.
+## What is the 3C Platform?
 
-## Goals
-
-The platform was built around two guiding principles:
-
-- **Democratise access** — make validated cognitive and behavioural assessments freely available to researchers, clinicians, and educators regardless of institutional resources or technical expertise.
-- **Leverage computing** — use browser technology to deliver richer assessments than paper-and-pencil allows, including timed responses, spoken stimuli, drawing tasks, speech recognition, and automated scoring.
+The **3C Platform** (NCMLabOnlineTools) is open-source software for delivering, scoring, and reviewing behavioural and cognitive assessments in a standard web browser. Built by Jason Steffener at the University of Ottawa, it combines validated questionnaires and cognitive tasks in a unified environment that works in-person, remotely, or completely offline — with no proprietary software and no specialist programming.
 
 ## Repositories
 
 | Component | Repository |
 |-----------|-----------|
-| Front-end tasks | [NCMlab/NCMLabOnlineTools](https://github.com/NCMlab/NCMLabOnlineTools) |
-| Back-end review interface (NeuroClinic) | [NCMlab/NeuroClinicPublic](https://github.com/NCMlab/NeuroClinicPublic) |
+| Front-end tasks & questionnaires | [NCMlab/NCMLabOnlineTools](https://github.com/NCMlab/NCMLabOnlineTools) |
+| Back-end review portal (NeuroClinic) | [NCMlab/NeuroClinicPublic](https://github.com/NCMlab/NeuroClinicPublic) |
 
-## Key Features
+## How a session works
 
-- Unified delivery of questionnaires and cognitive tasks in a single session
-- Built-in scoring — no post-collection data extraction required
-- Multi-language support: English, French, Japanese, and Korean via an on-screen dropdown
-- AI-generated speech (Google TTS) for spoken stimuli
-- Browser speech recognition (annyang) for verbal responses
-- Touchscreen support for drawing and button-press tasks
-- Three administration modes: remote server, local laptop (no internet), and offline LAN
-- Back-end portal (NeuroClinic) for reviewing results, audio recordings, drawing animations, and downloading data
+```mermaid
+flowchart LR
+    A([Participant browser]) -->|HTTP| B[JATOS server]
+    B -->|loads| C[Central Executive]
+    C -->|sequences| D[Task 1 … Task N]
+    D -->|result JSON| B
+    B -->|MySQL| E[NeuroClinic]
+    E -->|browser| F([Clinician / researcher])
+```
 
-## Quick Links
+The participant opens a URL. JATOS loads the **Central Executive**, which reads two URL parameters — `UsageType` and `Battery` — builds the ordered task list, and hands off to each task in turn. Every task scores its own responses and submits a result JSON to JATOS. When the battery is complete the participant is redirected to a thank-you page or an external URL.
 
-- [Installation guide](getting-started/installation.md) — get the platform running in minutes
-- [Your first experiment](getting-started/first-experiment.md) — build and run your first battery
-- [Available tasks](tasks/available-tasks.md) — browse all 21 task components
+## Administration modes at a glance
+
+| Mode | Internet required | JATOS location | Typical use |
+|------|:-----------------:|----------------|-------------|
+| Remote server | Yes | Cloud / institutional server | Large-scale remote studies |
+| Local laptop | No | Researcher's laptop | In-clinic, no network |
+| Offline LAN | No (local only) | Raspberry Pi or NUC | Multi-device room studies |
 
 ---
 
 !!! note "Citation"
-    If you use the 3C Platform in your research, please cite the associated publication. Details are available in the repository README at [github.com/NCMlab/NCMLabOnlineTools](https://github.com/NCMlab/NCMLabOnlineTools).
+    If you use the 3C Platform in your research, please cite the associated publication. Details are in the repository README at [github.com/NCMlab/NCMLabOnlineTools](https://github.com/NCMlab/NCMLabOnlineTools).

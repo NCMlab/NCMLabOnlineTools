@@ -18,25 +18,20 @@ The NeuroClinic is optional. The front-end works fully without it; JATOS stores 
 
 ## Component relationships
 
-```
-Participant browser
-       |
-       | (HTTP)
-       v
-    JATOS server
-       |
-       |-- serves --> jsPsych tasks (JavaScript)
-       |-- serves --> SurveyJS questionnaires (JavaScript)
-       |-- stores --> Result data (JSON)
-       |
-       | (MySQL)
-       v
-   NeuroClinic
-  (ReactJS app)
-       |
-       | (browser)
-       v
-  Administrator
+```mermaid
+flowchart TD
+    P([Participant browser]) -->|HTTP| J[JATOS server]
+    J -->|serves| JSP[jsPsych tasks]
+    J -->|serves| SVY[SurveyJS questionnaires]
+    J -->|stores| RD[(Result data — JSON)]
+    J -->|MySQL| NC[NeuroClinic\nReactJS app]
+    NC -->|browser| A([Administrator])
+
+    style J fill:#283593,color:#fff,stroke:none
+    style NC fill:#1565c0,color:#fff,stroke:none
+    style JSP fill:#e8eaf6,stroke:#283593
+    style SVY fill:#e8eaf6,stroke:#283593
+    style RD fill:#f3e5f5,stroke:#6a1b9a
 ```
 
 | Component | Role | Technology |
@@ -64,8 +59,14 @@ Participant browser
 
 The platform has a clear dependency hierarchy:
 
-```
-jsPsych  --builds on-->  JATOS  --optionally connects to-->  NeuroClinic
+```mermaid
+flowchart LR
+    JSP[jsPsych tasks] -->|requires| J[JATOS]
+    J -->|optionally connects to| NC[NeuroClinic]
+
+    style J fill:#283593,color:#fff,stroke:none
+    style NC fill:#1565c0,color:#fff,stroke:none
+    style JSP fill:#e8eaf6,stroke:#283593
 ```
 
 You can run jsPsych tasks without JATOS (they work as standalone HTML files), but you lose session management, result storage, and multi-component orchestration. You can run JATOS without the NeuroClinic, but you lose the review portal. The NeuroClinic cannot function without JATOS and MySQL.
