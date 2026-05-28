@@ -3,10 +3,10 @@
    ───────────────────────────────────────────── */
 
 :root {
-  --ncm-amber-dark:   #7B3F00;
-  --ncm-amber-mid:    #BF6000;
-  --ncm-amber-bright: #E8870A;
-  --ncm-amber-light:  #FFF3E0;
+  --ncm-amber-dark:   #7B1500;
+  --ncm-amber-mid:    #BF360C;
+  --ncm-amber-bright: #E64A19;
+  --ncm-amber-light:  #FBE9E7;
 }
 
 /* Override Material primary colour with amber */
@@ -23,7 +23,7 @@
 
 .mdx-hero {
   position: relative;
-  background: linear-gradient(135deg, #7B3F00 0%, #BF6000 55%, #E8870A 100%);
+  background: linear-gradient(135deg, #7B1500 0%, #BF360C 55%, #E64A19 100%);
   padding: 1.75rem 0 2rem;
   overflow: hidden;
 }
