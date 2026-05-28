@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<section class="mdx-hero">
+  <div class="md-grid">
+    <div class="mdx-hero__content md-typeset">
+      <h1>3C Platform</h1>
+      <p>
+        Open-source, browser-based platform for administering cognitive and
+        behavioural assessments — in-person, remotely, or offline. No
+        proprietary software. No specialist programming required.
+      </p>
+      <a
+        href="{{ 'getting-started/installation/' | url }}"
+        title="Get started"
+        class="md-button md-button--primary"
+      >
+        Get started
+      </a>
+      <a
+        href="https://github.com/NCMlab/NCMLabOnlineTools"
+        title="View on GitHub"
+        class="md-button"
+      >
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

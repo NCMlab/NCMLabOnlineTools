@@ -1,0 +1,220 @@
+/* ─────────────────────────────────────────────
+   Site-wide amber accent overrides
+   ───────────────────────────────────────────── */
+
+:root {
+  --ncm-amber-dark:   #7B1500;
+  --ncm-amber-mid:    #BF360C;
+  --ncm-amber-bright: #E64A19;
+  --ncm-amber-light:  #FBE9E7;
+}
+
+/* Override Material primary colour with amber */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color:        var(--ncm-amber-bright);
+  --md-primary-fg-color--light: #F4A733;
+  --md-primary-fg-color--dark:  var(--ncm-amber-mid);
+  --md-primary-bg-color:        #fff;
+}
+
+/* ─────────────────────────────────────────────
+   Hero section
+   ───────────────────────────────────────────── */
+
+.mdx-hero {
+  position: relative;
+  background: linear-gradient(135deg, #7B1500 0%, #BF360C 55%, #E64A19 100%);
+  padding: 1.75rem 0 2rem;
+  overflow: hidden;
+}
+
+/* subtle diagonal stripe overlay */
+.mdx-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 40px
+  );
+  pointer-events: none;
+}
+
+.mdx-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 0 1rem;
+}
+
+.mdx-hero__content h1 {
+  color: #fff !important;
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.mdx-hero__content p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 580px;
+}
+
+/* Primary "Get started" button */
+.mdx-hero__content .md-button--primary {
+  background-color: #fff;
+  color: var(--ncm-amber-dark) !important;
+  border-color: #fff;
+  font-weight: 700;
+  margin-right: 0.75rem;
+  border-radius: 6px;
+}
+
+.mdx-hero__content .md-button--primary:hover {
+  background-color: var(--ncm-amber-light);
+  border-color: var(--ncm-amber-light);
+}
+
+/* Secondary "GitHub" button */
+.mdx-hero__content .md-button:not(.md-button--primary) {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+}
+
+.mdx-hero__content .md-button:not(.md-button--primary):hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+}
+
+/* ─────────────────────────────────────────────
+   Navigation bar — match amber theme
+   ───────────────────────────────────────────── */
+
+.md-header {
+  background-color: var(--ncm-amber-dark) !important;
+}
+
+.md-tabs {
+  background-color: var(--ncm-amber-mid) !important;
+}
+
+/* ─────────────────────────────────────────────
+   Feature cards below the hero
+   ───────────────────────────────────────────── */
+
+.mdx-features {
+  padding: 3rem 0;
+}
+
+.mdx-features__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.mdx-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-default-bg-color);
+  text-decoration: none !important;
+  color: var(--md-default-fg-color) !important;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.mdx-feature:hover {
+  border-color: var(--ncm-amber-bright);
+  box-shadow: 0 4px 16px rgba(191, 96, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.mdx-feature__icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.mdx-feature__title {
+  font-weight: 700;
+  margin: 0 0 0.3rem !important;
+  font-size: 0.95rem;
+  color: var(--ncm-amber-mid);
+}
+
+.mdx-feature__body p:last-child {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.55;
+}
+
+/* ─────────────────────────────────────────────
+   Task icon rows
+   ───────────────────────────────────────────── */
+
+.task-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.task-icons figure {
+  margin: 0;
+  text-align: center;
+}
+
+.task-icons figure img {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-default-bg-color);
+  padding: 0.5rem;
+}
+
+.task-icons figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ─────────────────────────────────────────────
+   Responsive adjustments
+   ───────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .mdx-hero__content h1 {
+    font-size: 1.6rem;
+  }
+
+  .mdx-features__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Dark-mode palette tweaks
+   ───────────────────────────────────────────── */
+
+[data-md-color-scheme="slate"] .mdx-feature {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="slate"] .mdx-feature:hover {
+  border-color: var(--ncm-amber-bright);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
