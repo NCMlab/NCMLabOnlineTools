@@ -200,1045 +200,1044 @@ const json = {
   pages:
     [
       //make question font size bigger than choices in radiogroups
-      // // ################################################################
-      // // ##### SECTION 0    #############################################
-      // {
-      //   name: "Intro",
-      //   title: "Section 0",
-      //   elements: [
-      //     {
-      //       name: "Sport",
-      //       title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN (PARA)SPORT",
-      //       type: "text",
-      //       isRequired: false,
-      //       width: "25%"
-      //     },
-      //   ]
-      // },
-      // // ################################################################
-      // // ##### SECTION 1    #############################################
-      // {
-      //   name: "SportParticipation",
-      //   title: "Section I: Sport  Participation Profile",
-      //   elements: [
-      //     // Add : Before starting to report
-      //     {
-      //       type: "html",
-      //       name: "current_past_subtitle",
-      //       html: `
-      //    <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-      //     Before starting to report on the particular (para)sport of this survey, list the three most important current and past
-      //     (para)sport you participate or have participated in, including the one under investigation here.
-      //     </div>`
-      //     },
-      //     {
-      //       type: "matrixdynamic",
-      //       name: "Sport_current",
-      //       title: "CURRENTLY (top three)",
-      //       rowCount: 3,
-      //       minRowCount: 3,
-      //       maxRowCount: 3,
-      //       allowAddRows: false,
-      //       allowRemoveRows: false,
-      //       columns: [
-      //         {
-      //           name: "Sport_Curr",
-      //           title: "Sport",
-      //           cellType: "text",
-      //           isRequired: false,
-      //           width: "25%"
-      //         },
-      //         {
-      //           name: "Sport_Curr_Context",
-      //           title: "Main current context",
-      //           cellType: "radiogroup",
-      //           choices: [
-      //             { "value": "non_org", "text": "Non-org" },
-      //             { "value": "club", "text": "Club" },
-      //             { "value": "school", "text": "School" }
-      //           ],
-      //           isRequired: false,
-      //           width: "40%"
-      //         },
-      //         {
-      //           name: "Sport_Curr_level",
-      //           title: "Current level",
-      //           cellType: "radiogroup",
-      //           choices: [
-      //             { "value": "recreational", "text": "Mainly recreational" },
-      //             { "value": "competitive", "text": "Mainly competitive" },
-      //             { "value": "both", "text": "Both equally" }
-      //           ],
-      //           isRequired: false,
-      //           width: "35%"
-      //         },
-      //         {
-      //           name: "Sport_Curr_nY",
-      //           title: "Years",
-      //           cellType: "text",
-      //           inputType: "number",
-      //           min: 0,
-      //           max: 99,
-      //           placeholder: "0",
-      //           isRequired: false,
-      //           width: "25%"
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       type: "matrixdynamic",
-      //       name: "Sport_previous",
-      //       title: "IN THE PAST (top three)",
-      //       rowCount: 3,
-      //       minRowCount: 3,
-      //       maxRowCount: 3,
-      //       allowAddRows: false,
-      //       allowRemoveRows: false,
-      //       columns: [
-      //         {
-      //           name: "Sport_past",
-      //           title: "Sport",
-      //           cellType: "text",
-      //           isRequired: false,
-      //           width: "25%"
-      //         },
-      //         {
-      //           name: "Sport_past_Context",
-      //           title: "Past context",
-      //           cellType: "radiogroup",
-      //           choices: [
-      //             { "value": "non_org", "text": "Non-org" },
-      //             { "value": "club", "text": "Club" },
-      //             { "value": "school", "text": "School" }
-      //           ],
-      //           isRequired: false,
-      //           width: "40%"
-      //         },
-      //         {
-      //           name: "Sport_past_level",
-      //           title: "Past level",
-      //           cellType: "radiogroup",
-      //           choices: [
-      //             { "value": "recreational", "text": "Mainly recreational" },
-      //             { "value": "competitive", "text": "Mainly competitive" },
-      //             { "value": "both", "text": "Both equally" }
-      //           ],
-      //           isRequired: false,
-      //           width: "35%"
-      //         },
-      //         {
-      //           name: "Sport_past_nY",
-      //           title: "Years",
-      //           cellType: "text",
-      //           inputType: "number",
-      //           min: 0,
-      //           max: 99,
-      //           placeholder: "0",
-      //           isRequired: false,
-      //           width: "25%"
-      //         }
-      //       ]
-      //     },
-      //     //modified 
-      //     {
-      //       name: "SP_How",
-      //       type: "text",
-      //       title: "How did you get into the current (para) sport?",
-      //       minLength: 10,
-      //       isRequired: true
-      //     },
-      //     {
-      //       type: "radiogroup",
-      //       name: "SP_Class",
-      //       title: "Do you have classification and/or specialty and/or player position in this sport?",
-      //       isRequired: true,
-      //       colCount: 3,   // horizontal layout for Yes / No / N/A
-      //       choices: [
-      //         { value: "Yes", text: "Yes" },
-      //         { value: "No", text: "No" },
-      //         { value: "N/A", text: "N/A" }
-      //       ]
-      //     },
-      //     {
-      //       type: "comment",
-      //       name: "SP_Class_Ex",
-      //       title: "Please explain:",
-      //       visibleIf: "{SP_Class} = 'yes'",
-      //       isRequired: true
-      //     },
-      //     //   {
-      //     //   type: 'dropdown',
-      //     //   title: "How many years have you played/participated in this sport? ",
-      //     //   name: 'SP_Years',
-      //     //   choices: Array.from({ length: 50 }, (_, i) => i + 1),
+      // ################################################################
+      // ##### SECTION 0    #############################################
+      {
+        name: "Intro",
+        title: "Section 0",
+        elements: [
+          {
+            name: "Sport",
+            title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN (PARA)SPORT",
+            type: "text",
+            isRequired: false
+          },
+        ]
+      },
+      // ################################################################
+      // ##### SECTION 1    #############################################
+      {
+        name: "SportParticipation",
+        title: "Section I: Sport  Participation Profile",
+        elements: [
+          // Add : Before starting to report
+          {
+            type: "html",
+            name: "current_past_subtitle",
+            html: `
+         <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+          Before starting to report on the particular (para)sport of this survey, list the three most important current and past
+          (para)sport you participate or have participated in, including the one under investigation here.
+          </div>`
+          },
+          {
+            type: "matrixdynamic",
+            name: "Sport_current",
+            title: "CURRENTLY (top three)",
+            rowCount: 3,
+            minRowCount: 3,
+            maxRowCount: 3,
+            allowAddRows: false,
+            allowRemoveRows: false,
+            columns: [
+              {
+                name: "Sport_Curr",
+                title: "Sport",
+                cellType: "text",
+                isRequired: false,
+                width: "25%"
+              },
+              {
+                name: "Sport_Curr_Context",
+                title: "Main current context",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "non_org", "text": "Non-org" },
+                  { "value": "club", "text": "Club" },
+                  { "value": "school", "text": "School" }
+                ],
+                isRequired: false,
+                width: "40%"
+              },
+              {
+                name: "Sport_Curr_level",
+                title: "Current level",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "recreational", "text": "Mainly recreational" },
+                  { "value": "competitive", "text": "Mainly competitive" },
+                  { "value": "both", "text": "Both equally" }
+                ],
+                isRequired: false,
+                width: "35%"
+              },
+              {
+                name: "Sport_Curr_nY",
+                title: "Years",
+                cellType: "text",
+                inputType: "number",
+                min: 0,
+                max: 99,
+                placeholder: "0",
+                isRequired: false,
+                width: "25%"
+              }
+            ]
+          },
+          {
+            type: "matrixdynamic",
+            name: "Sport_previous",
+            title: "IN THE PAST (top three)",
+            rowCount: 3,
+            minRowCount: 3,
+            maxRowCount: 3,
+            allowAddRows: false,
+            allowRemoveRows: false,
+            columns: [
+              {
+                name: "Sport_past",
+                title: "Sport",
+                cellType: "text",
+                isRequired: false,
+                width: "25%"
+              },
+              {
+                name: "Sport_past_Context",
+                title: "Past context",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "non_org", "text": "Non-org" },
+                  { "value": "club", "text": "Club" },
+                  { "value": "school", "text": "School" }
+                ],
+                isRequired: false,
+                width: "40%"
+              },
+              {
+                name: "Sport_past_level",
+                title: "Past level",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "recreational", "text": "Mainly recreational" },
+                  { "value": "competitive", "text": "Mainly competitive" },
+                  { "value": "both", "text": "Both equally" }
+                ],
+                isRequired: false,
+                width: "35%"
+              },
+              {
+                name: "Sport_past_nY",
+                title: "Years",
+                cellType: "text",
+                inputType: "number",
+                min: 0,
+                max: 99,
+                placeholder: "0",
+                isRequired: false,
+                width: "25%"
+              }
+            ]
+          },
+          //modified 
+          {
+            name: "SP_How",
+            type: "text",
+            title: "How did you get into the current (para) sport?",
+            minLength: 10,
+            isRequired: true
+          },
+          {
+            type: "radiogroup",
+            name: "SP_Class",
+            title: "Do you have classification and/or specialty and/or player position in this sport?",
+            isRequired: true,
+            colCount: 3,   // horizontal layout for Yes / No / N/A
+            choices: [
+              { value: "Yes", text: "Yes" },
+              { value: "No", text: "No" },
+              { value: "N/A", text: "N/A" }
+            ]
+          },
+          {
+            type: "comment",
+            name: "SP_Class_Ex",
+            title: "Please explain:",
+            visibleIf: "{SP_Class} = 'yes'",
+            isRequired: true
+          },
+          //   {
+          //   type: 'dropdown',
+          //   title: "How many years have you played/participated in this sport? ",
+          //   name: 'SP_Years',
+          //   choices: Array.from({ length: 50 }, (_, i) => i + 1),
 
-      //     //  isRequired: true
-      //     // },
-
-
-      //     // {
-      //     //   type: "radiogroup",
-      //     //   name: "SP_Context",
-      //     //   title: "Indicate the context of your participation?",
-      //     //   colCount:1,
-      //     //   isRequired: true,
-      //     //   choices: [
-      //     //             { "value": 1, "text": "Non-organized"},
-      //     //             { "value": 2, "text": "Organized"},
-      //     //             { "value": 3, "text": "Both"},
-      //     //             { "value": 4, "text": "Other"},
-
-      //     //           ]
-      //     // },
-      //     {
-      //       type: "comment",
-      //       name: "SP_Context_Ex",
-      //       title: "Please explain:",
-      //       visibleIf: "{SP_Context}= 4",
-      //       isRequired: true
-      //     },
-      //     // {
-      //     //   type: "radiogroup",
-      //     //   name: "SP_Level",
-      //     //   title: "Indicate your level of participation: ",
-      //     //   isRequired: true,
-      //     //   choices: [
-      //     //             { "value": 1, "text": "Recreational Only"},
-      //     //             { "value": 2, "text": "Mainly recreational, but also competitive"},
-      //     //             { "value": 3, "text": "Mainly competitive, but also recreational"},
-      //     //             { "value": 4, "text": "Competitive only"},
-      //     //             { "value": 5, "text": "Other"},
-
-      //     //           ]
-      //     // },
-
-      //     {
-      //       type: "comment",
-      //       name: "SP_Level_Ex",
-      //       title: "Please explain:",
-      //       visibleIf: "{SP_Level}=5",
-      //       isRequired: true
-      //     },
-      //     // {
-      //     //    name: "SP_Level_Current",
-      //     //    type: "text",
-      //     //    title: "What is your current level of participation?",
-      //     //    minLength: 10,
-      //     //    isRequired: true
-      //     //   },
-
-      //     //  {
-      //     //  name: "SP_Level_Highest",
-      //     //  type: "text",
-      //     //  title: "What was your highest level in this sport?",
-      //     //  minLength: 10,
-      //     //  isRequired: true
-      //     // },
-      //     {
-      //       type: "radiogroup",
-      //       name: "SP_Fac",
-      //       title: "The sports facility you mainly play/practice is: ",
-      //       isRequired: true,
-      //       choices: [
-      //         { "value": 1, "text": "No sports facility" },
-      //         { "value": 2, "text": "A public facility (community sport complex run by the city)" },
-      //         { "value": 3, "text": "A private facility (owned by the club or a private person)" },
-      //         { "value": 4, "text": "Other" },
-      //       ]
-      //     },
-      //     {
-      //       type: "comment",
-      //       name: "SP_Fac_Ex",
-      //       title: "Please explain:",
-      //       visibleIf: "{SP_Fac}= 4",
-      //       isRequired: false
-      //     },
-      //     {
-      //       name: "SP_Fac_PC",
-      //       type: "text",
-      //       title: "Can you provide the first 3 characters of the postal code or name of the city of the facility where you play/practice most frequently?",
-      //       minLength: 3,
-      //       isRequired: false
-      //     },
-      //     // question 10 
-
-      //     {
-      //       type: "html",
-      //       name: "practice_intro",
-      //       html: `
-      // <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-      //  Thinking about your participation in your parasport this past year, provide the following detailed information. Note that there is a clear distinction between practices and games/competitions/championships.<br><br>
-      // <b>a) PRACTICES</b><br>
-      // 1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
-      // 2. How much <b>NET</b> time do you spend during one practice? (EXCLUDES travel, changing clothes, socializing.)<br>
-      // 3. How much <b>GROSS</b> time do you spend during one practice? (INCLUDES travel, changing clothes, socializing.)`
-      //     },
-      //     {
-      //       type: "matrixdropdown",
-      //       name: "practice_table",
-      //       title: "Detailed information about your participation last year — Practices",
-      //       isRequired: true,
-      //       columns: [
-      //         { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0 },
-      //         { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0 },
-      //         { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0 },
-      //         { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0 },
-      //         { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0 }
-      //       ],
-      //       rows: [
-      //         { value: "freq", text: "1. Number of practices per week (exclude games)" },
-      //         { value: "net_time", text: "2. Hours per practice, NET (excludes travel/changing/socializing)" },
-      //         { value: "gross_time", text: "3. Total time per practice, GROSS (includes travel/changing/socializing)" }
-      //       ],
-      //       cellErrorLocation: "bottom",
-      //       verticalAlign: "middle"
-
-      //     },
-      //     //calculation for practice table
-
-      //     // {
-      //     //   type: "expression",
-      //     //   name: "SP_PR_Freq",
-      //     //   title: "Total practices last year",
-      //     //   displayStyle: "decimal",
-      //     //   precision: 2,
-      //     //   expression:
-      //     //     "{practice_table.freq.SP_PR_1} * 16 + " +
-      //     //     "{practice_table.freq.SP_PR_2} * 2  + " +
-      //     //     "{practice_table.freq.SP_PR_3} * 12 + " +
-      //     //     "{practice_table.freq.SP_PR_4} * 13 + " +
-      //     //     "{practice_table.freq.SP_PR_5} * 9"
-      //     // },
-      //     // {
-      //     //   type: "expression",
-      //     //   name: "SP_PR_NT_Total",
-      //     //   title: "Total NET hours (all periods)",
-      //     //   displayStyle: "decimal",
-      //     //   precision: 2,
-      //     //   expression:
-      //     //     "{practice_table.net_time.SP_PR_1} * 16 + " +
-      //     //     "{practice_table.net_time.SP_PR_2} * 2  + " +
-      //     //     "{practice_table.net_time.SP_PR_3} * 12 + " +
-      //     //     "{practice_table.net_time.SP_PR_4} * 13 + " +
-      //     //     "{practice_table.net_time.SP_PR_5} * 9"
-      //     // },
-      //     // {
-      //     //   type: "expression",
-      //     //   name: "SP_PR_GT_Total",
-      //     //   title: "Total GROSS hours (all periods)",
-      //     //   displayStyle: "decimal",
-      //     //   precision: 2,
-      //     //   expression:
-      //     //     "{practice_table.gross_time.SP_PR_1} * 16 +" +
-      //     //     "{practice_table.gross_time.SP_PR_2} * 2  + " +
-      //     //     "{practice_table.gross_time.SP_PR_3} * 12 + " +
-      //     //     "{practice_table.gross_time.SP_PR_4} * 13 + " +
-      //     //     "{practice_table.gross_time.SP_PR_5} * 9"
-      //     // },
-      //     // Championships question
-      //     {
-      //       type: "html",
-      //       name: "competitions_intro",
-      //       html: `
-      //         <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-      //         <b>b) In this section we will be talking about GAMES/COMPETITIONS</b><br><br>`
-      //     },
-
-      //     {
-      //       "type": "matrixdropdown",
-      //       "name": "framework-ratings",
-      //       "title": "Participation",
-      //       "columnMinWidth": "130px",
-      //       "columns": [
-      //         // {
-      //         //   "name": "usage",
-      //         //   "title": "Do you pay?",
-      //         //   "cellType": "radiogroup",
-      //         //   "choices": [ "Yes", "No" ],
-      //         //   "defaultValue": "No"
-      //         // },
-      //         {
-      //           "name": "experience",
-      //           "title": "On average, how many do you participate in per year?",
-      //           "choices": [
-      //             { "text": "0", "value": 0 },
-      //             { "text": "1", "value": 1 },
-      //             { "text": "2", "value": 2 },
-      //             { "text": "3", "value": 3 },
-      //             { "text": "4", "value": 4 },
-      //             { "text": "5", "value": 5 },
-      //             { "text": "6", "value": 6 },
-      //             { "text": "7", "value": 7 },
-      //             { "text": "8", "value": 8 },
-      //             { "text": "9", "value": 9 },
-      //             { "text": "10 or more", "value": 10 }
-      //           ],
-      //         },
-      //       ],
-      //       "rows": [
-      //         { "text": "One-day competitions without an overnight stay", "value": 1 },
-      //         { "text": "One-day competitions that require an overnight stay", "value": 2 },
-      //         { "text": "Weekend competitions (2 nights)", "value": 3 },
-      //         { "text": "Multi-day competitions (3 or more nights)", "value": 4 }
-      //       ],
-      //       "transposeData": false
-      //     },
-      //     // {
-      //     //   name: "SP_CC_ODWithout",
-      //     //   type: "text",
-      //     //   inputType: "number",
-      //     //   title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
-      //     //   min: 0,
-      //     //   isRequired: true
-      //     // },
-      //     // {
-      //     //   name: "SP_CC_ODWith",
-      //     //   type: "text",
-      //     //   inputType: "number",
-      //     //   title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
-      //     //   min: 0,
-      //     //   isRequired: true
-      //     // },
-      //     // {
-      //     //   name: "SP_CC_Weekend",
-      //     //   type: "text",
-      //     //   inputType: "number",
-      //     //   title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
-      //     //   min: 0,
-      //     //   isRequired: true
-      //     // },
-      //     // {
-      //     //   name: "SP_CC_Multiday",
-      //     //   type: "text",
-      //     //   inputType: "number",
-      //     //   title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
-      //     //   min: 0,
-      //     //   isRequired: true
-      //     // },
-      //   ]
-      // },
-      // // ################################################################
-      // // ##### SECTION II    #############################################
-
-//       {
-//         name: "CostActiveSportParticipation",
-//         title: "Section II: Cost of Active Sport Participation",
-//         elements: [
-//           //make it two columns
-//           {
-//             type: "radiogroup",
-//             name: "Cost_Gen",
-//             title: "  How much do you think you spend annually on your sport participation?",
-//             isRequired: true,
-//             choices: [
-//               { "value": 1, "text": " <  100.00 CAD/yr " },
-//               { "value": 2, "text": " 100.00 < 250.00 CAD/yr" },
-//               { "value": 3, "text": "250.00 < 500.00 CAD/yr" },
-//               { "value": 4, "text": "500.00 < 750.00 CAD/yr" },
-//               { "value": 5, "text": "750.00 < 1000.00 CAD/yr" },
-//               { "value": 6, "text": "1000.00 < 1500.00 CAD/yr" },
-//               { "value": 7, "text": "1500.00 < 3000.00 CAD/yr" },
-//               { "value": 8, "text": "3000.00 < 5000.00 CAD/yr" },
-//               { "value": 9, "text": "5000.00 < 10000.00 CAD/yr" },
-//               { "value": 10, "text": "> 10,000.00 CAD/yr" },
-//             ],
-//             colCount: 3,
-//           },
-//           {
-//             type: "html",
-//             name: "membership_subtitle",
-//             html: `
-//                 <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-//                 Membership and Entrance / Year
-//                 </div>`
-//           },
-// /* REPLACED THESE QUESTIONS WITH A TABLE TO MAKE IT MORE COMPACT, SEE BELOW
-//           {
-//             type: "radiogroup",
-//             name: "Cost_Memb",
-//             title: "Do you pay a membership fee to play/practice your sport?",
-//             isRequired: true,
-//             colCount: 2,
-//             choices: [
-//               { value: 1, text: "Yes" },
-//               { value: 2, text: "No" }
-//             ]
-//           },
-//           {
-//             type: "text",
-//             name: "Cost_Memb_$Y",
-//             inputType: "number",
-//             title: " How much per year:",
-//             visibleIf: "{Cost_Memb}= 1",
-//             isRequired: true
-//           },
-//           {
-//             type: "radiogroup",
-//             name: "Cost_Lic",
-//             title: "Do you pay a license fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)",
-//             isRequired: true,
-//             colCount: 2,
-//             choices: [
-//               { value: 1, text: "Yes" },
-//               { value: 2, text: "No" }
-//             ]
-//           },
-//           {
-//             type: "text",
-//             name: "Cost_Lic_$Y",
-//             inputType: "number",
-//             title: "How much per year:",
-//             visibleIf: "{Cost_Lic}= 1",
-//             isRequired: true
-//           },
-//           {
-//             type: "radiogroup",
-//             name: "Cost_PF",
-//             title: " Did/do you pay any other program fees to play/practice your sport (if not included in the previous questions)?",
-//             isRequired: true,
-//             colCount: 2,
-//             choices: [
-//               { "value": 1, "text": "Yes" },
-//               { "value": 2, "text": "No" }
-
-//             ]
-//           },
-//           {
-//             type: "text",
-//             name: "Cost_PF_$Y",
-//             inputType: "number",
-//             title: "If yes, how much per year:",
-//             visibleIf: "{Cost_PF}= 1",
-//             isRequired: true
-//           },
-//           {
-//             type: "radiogroup",
-//             name: "Cost_COMP",
-//             title: " Do you pay fees to participate in tournaments or competitions (if not included in the membership fee)?",
-//             isRequired: true,
-//             colCount: 2,
-//             choices: [
-//               { "value": 1, "text": "Yes" },
-//               { "value": 2, "text": "No" }
-
-//             ]
-//           },
-//           {
-//             type: "text",
-//             name: "Cost_COMP_$Y",
-//             inputType: "number",
-//             title: "If yes, how much per year:",
-//             visibleIf: "{Cost_COMP}= 1",
-//             isRequired: true
-//           },
-// */
-// {
-//       "type": "matrixdropdown",
-//       "name": "framework-ratings",
-//       "title": "Membership and Entrance / Year",
-//       "columnMinWidth": "130px",
-//       "columns": [
-//         {
-//           "name": "usage",
-//           "title": "Do you pay?",
-//           "cellType": "radiogroup",
-//           "choices": [ "Yes", "No" ],
-//           "defaultValue": "No"
-//         },
-//         {
-//           "name": "experience",
-//           "title": "If yes, how much $/year?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.usage} = 'Yes'",
-//           "allowResize": false,
-//         },
-//       ],
-//       "rows": [
-//         { "text": "Membership fee to play/practice your sport", "value": "fee_membership" },
-//         { "text": "License fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)", "value": "fee_license" },
-//         { "text": "Other program fees to play/practice your sport (if not included in the previous questions)", "value": "fee_program" },
-//         { "text": "Fees to participate in tournaments or competitions (if not included in the membership fee)?", "value": "fee_tournament" }
-//       ],
-//       "transposeData": false
-//     },
-
-//     /*  REPLACED THESE QUESTIONS BY THE TABLE BELOW TO MAKE IT MORE COMPACT
-//           {
-//             type: "radiogroup",
-//             name: "Cost_Entr",
-//             title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
-//             isRequired: true,
-//             colCount: 2,
-//             choices: [
-//               { "value": 1, "text": "Yes" },
-//               { "value": 2, "text": "No" }
-
-//             ]
-//           },
-
-//           {
-//             type: "text",
-//             name: "Cost_Entr_$U",
-//             inputType: "number",
-//             title: "how much do you pay on average per usage?",
-//             visibleIf: "{Cost_Entr}= 1",
-//             isRequired: true
-//           },
+          //  isRequired: true
+          // },
 
 
-//           {
-//             type: "text",
-//             inputType: "number",
-//             name: "Cost_Entr_UY",
-//             title: "how many times per year?:",
-//             visibleIf: "{Cost_Entr}= 1",
-//             isRequired: true
-//           },
+          // {
+          //   type: "radiogroup",
+          //   name: "SP_Context",
+          //   title: "Indicate the context of your participation?",
+          //   colCount:1,
+          //   isRequired: true,
+          //   choices: [
+          //             { "value": 1, "text": "Non-organized"},
+          //             { "value": 2, "text": "Organized"},
+          //             { "value": 3, "text": "Both"},
+          //             { "value": 4, "text": "Other"},
 
-//           {
-//             type: "expression",
-//             name: "Cost_Entr_$Y",
-//             title: "Estimated yearly entrance/rental cost",
-//             visibleIf: "{Cost_Entr} = 1",
-//             expression: "iif({Cost_Entr} = 1 && !isEmpty({Cost_Entr_$U}) && !isEmpty({Cost_Entr_UY}), {Cost_Entr_$U} * {Cost_Entr_UY}, 0)",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//             precision: 2
-//           },*/
-// {
-//       "type": "matrixdropdown",
-//       "name": "framework-ratings",
-//       "title": "Membership and Entrance / Year",
-//       "showHeader": true,
-//       "columnMinWidth": "130px",
-//       "columns": [
-//         {
-//           "name": "usage",
-//           "title": "Do you pay?",
-//           "cellType": "radiogroup",
-//           "choices": [ "Yes", "No" ],
-//           "defaultValue": "No"
-//         },
-//         {
-//           "name": "experience",
-//           "title": "If yes, average $ per usage?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.usage} = 'Yes'",
-//           "allowResize": false,
-//         },
-//                 {
-//           "name": "experience",
-//           "title": "How many times per year?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.usage} = 'Yes'",
-//           "allowResize": false,
-//         },
-//       ],
-//       "rows": [
-//         { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?" },
-//       ],
-//       "transposeData": false
-//     },
+          //           ]
+          // },
+          {
+            type: "comment",
+            name: "SP_Context_Ex",
+            title: "Please explain:",
+            visibleIf: "{SP_Context}= 4",
+            isRequired: true
+          },
+          // {
+          //   type: "radiogroup",
+          //   name: "SP_Level",
+          //   title: "Indicate your level of participation: ",
+          //   isRequired: true,
+          //   choices: [
+          //             { "value": 1, "text": "Recreational Only"},
+          //             { "value": 2, "text": "Mainly recreational, but also competitive"},
+          //             { "value": 3, "text": "Mainly competitive, but also recreational"},
+          //             { "value": 4, "text": "Competitive only"},
+          //             { "value": 5, "text": "Other"},
+
+          //           ]
+          // },
+
+          {
+            type: "comment",
+            name: "SP_Level_Ex",
+            title: "Please explain:",
+            visibleIf: "{SP_Level}=5",
+            isRequired: true
+          },
+          // {
+          //    name: "SP_Level_Current",
+          //    type: "text",
+          //    title: "What is your current level of participation?",
+          //    minLength: 10,
+          //    isRequired: true
+          //   },
+
+          //  {
+          //  name: "SP_Level_Highest",
+          //  type: "text",
+          //  title: "What was your highest level in this sport?",
+          //  minLength: 10,
+          //  isRequired: true
+          // },
+          {
+            type: "radiogroup",
+            name: "SP_Fac",
+            title: "The sports facility you mainly play/practice is: ",
+            isRequired: true,
+            choices: [
+              { "value": 1, "text": "No sports facility" },
+              { "value": 2, "text": "A public facility (community sport complex run by the city)" },
+              { "value": 3, "text": "A private facility (owned by the club or a private person)" },
+              { "value": 4, "text": "Other" },
+            ]
+          },
+          {
+            type: "comment",
+            name: "SP_Fac_Ex",
+            title: "Please explain:",
+            visibleIf: "{SP_Fac}= 4",
+            isRequired: false
+          },
+          {
+            name: "SP_Fac_PC",
+            type: "text",
+            title: "Can you provide the first 3 characters of the postal code or name of the city of the facility where you play/practice most frequently?",
+            minLength: 3,
+            isRequired: false
+          },
+          // question 10 
+
+          {
+            type: "html",
+            name: "practice_intro",
+            html: `
+      <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+       Thinking about your participation in your parasport this past year, provide the following detailed information. Note that there is a clear distinction between practices and games/competitions/championships.<br><br>
+      <b>a) PRACTICES</b><br>
+      1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
+      2. How much <b>NET</b> time do you spend during one practice? (EXCLUDES travel, changing clothes, socializing.)<br>
+      3. How much <b>GROSS</b> time do you spend during one practice? (INCLUDES travel, changing clothes, socializing.)`
+          },
+          {
+            type: "matrixdropdown",
+            name: "practice_table",
+            title: "Detailed information about your participation last year — Practices",
+            isRequired: true,
+            columns: [
+              { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0 },
+              { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0 },
+              { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0 },
+              { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0 },
+              { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0 }
+            ],
+            rows: [
+              { value: "freq", text: "1. Number of practices per week (exclude games)" },
+              { value: "net_time", text: "2. Hours per practice, NET (excludes travel/changing/socializing)" },
+              { value: "gross_time", text: "3. Total time per practice, GROSS (includes travel/changing/socializing)" }
+            ],
+            cellErrorLocation: "bottom",
+            verticalAlign: "middle"
+
+          },
+          //calculation for practice table
+
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_Freq",
+          //   title: "Total practices last year",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.freq.SP_PR_1} * 16 + " +
+          //     "{practice_table.freq.SP_PR_2} * 2  + " +
+          //     "{practice_table.freq.SP_PR_3} * 12 + " +
+          //     "{practice_table.freq.SP_PR_4} * 13 + " +
+          //     "{practice_table.freq.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_NT_Total",
+          //   title: "Total NET hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.net_time.SP_PR_1} * 16 + " +
+          //     "{practice_table.net_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.net_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.net_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.net_time.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_GT_Total",
+          //   title: "Total GROSS hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.gross_time.SP_PR_1} * 16 +" +
+          //     "{practice_table.gross_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.gross_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.gross_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.gross_time.SP_PR_5} * 9"
+          // },
+          // Championships question
+          {
+            type: "html",
+            name: "competitions_intro",
+            html: `
+              <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+              <b>b) In this section we will be talking about GAMES/COMPETITIONS</b><br><br>`
+          },
+
+          {
+            "type": "matrixdropdown",
+            "name": "framework-ratings",
+            "title": "Participation",
+            "columnMinWidth": "130px",
+            "columns": [
+              // {
+              //   "name": "usage",
+              //   "title": "Do you pay?",
+              //   "cellType": "radiogroup",
+              //   "choices": [ "Yes", "No" ],
+              //   "defaultValue": "No"
+              // },
+              {
+                "name": "experience",
+                "title": "On average, how many do you participate in per year?",
+                "choices": [
+                  { "text": "0", "value": 0 },
+                  { "text": "1", "value": 1 },
+                  { "text": "2", "value": 2 },
+                  { "text": "3", "value": 3 },
+                  { "text": "4", "value": 4 },
+                  { "text": "5", "value": 5 },
+                  { "text": "6", "value": 6 },
+                  { "text": "7", "value": 7 },
+                  { "text": "8", "value": 8 },
+                  { "text": "9", "value": 9 },
+                  { "text": "10 or more", "value": 10 }
+                ],
+              },
+            ],
+            "rows": [
+              { "text": "One-day competitions without an overnight stay", "value": 1 },
+              { "text": "One-day competitions that require an overnight stay", "value": 2 },
+              { "text": "Weekend competitions (2 nights)", "value": 3 },
+              { "text": "Multi-day competitions (3 or more nights)", "value": 4 }
+            ],
+            "transposeData": false
+          },
+          // {
+          //   name: "SP_CC_ODWithout",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_ODWith",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_Weekend",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+          // {
+          //   name: "SP_CC_Multiday",
+          //   type: "text",
+          //   inputType: "number",
+          //   title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
+          //   min: 0,
+          //   isRequired: true
+          // },
+        ]
+      },
+      // ################################################################
+      // ##### SECTION II    #############################################
+
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II: Cost of Active Sport Participation",
+        elements: [
+          //make it two columns
+          {
+            type: "radiogroup",
+            name: "Cost_Gen",
+            title: "  How much do you think you spend annually on your sport participation?",
+            isRequired: true,
+            choices: [
+              { "value": 1, "text": " <  100.00 CAD/yr " },
+              { "value": 2, "text": " 100.00 < 250.00 CAD/yr" },
+              { "value": 3, "text": "250.00 < 500.00 CAD/yr" },
+              { "value": 4, "text": "500.00 < 750.00 CAD/yr" },
+              { "value": 5, "text": "750.00 < 1000.00 CAD/yr" },
+              { "value": 6, "text": "1000.00 < 1500.00 CAD/yr" },
+              { "value": 7, "text": "1500.00 < 3000.00 CAD/yr" },
+              { "value": 8, "text": "3000.00 < 5000.00 CAD/yr" },
+              { "value": 9, "text": "5000.00 < 10000.00 CAD/yr" },
+              { "value": 10, "text": "> 10,000.00 CAD/yr" },
+            ],
+            colCount: 3,
+          },
+          {
+            type: "html",
+            name: "membership_subtitle",
+            html: `
+                <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+                Membership and Entrance / Year
+                </div>`
+          },
+/* REPLACED THESE QUESTIONS WITH A TABLE TO MAKE IT MORE COMPACT, SEE BELOW
+          {
+            type: "radiogroup",
+            name: "Cost_Memb",
+            title: "Do you pay a membership fee to play/practice your sport?",
+            isRequired: true,
+            colCount: 2,
+            choices: [
+              { value: 1, text: "Yes" },
+              { value: 2, text: "No" }
+            ]
+          },
+          {
+            type: "text",
+            name: "Cost_Memb_$Y",
+            inputType: "number",
+            title: " How much per year:",
+            visibleIf: "{Cost_Memb}= 1",
+            isRequired: true
+          },
+          {
+            type: "radiogroup",
+            name: "Cost_Lic",
+            title: "Do you pay a license fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)",
+            isRequired: true,
+            colCount: 2,
+            choices: [
+              { value: 1, text: "Yes" },
+              { value: 2, text: "No" }
+            ]
+          },
+          {
+            type: "text",
+            name: "Cost_Lic_$Y",
+            inputType: "number",
+            title: "How much per year:",
+            visibleIf: "{Cost_Lic}= 1",
+            isRequired: true
+          },
+          {
+            type: "radiogroup",
+            name: "Cost_PF",
+            title: " Did/do you pay any other program fees to play/practice your sport (if not included in the previous questions)?",
+            isRequired: true,
+            colCount: 2,
+            choices: [
+              { "value": 1, "text": "Yes" },
+              { "value": 2, "text": "No" }
+
+            ]
+          },
+          {
+            type: "text",
+            name: "Cost_PF_$Y",
+            inputType: "number",
+            title: "If yes, how much per year:",
+            visibleIf: "{Cost_PF}= 1",
+            isRequired: true
+          },
+          {
+            type: "radiogroup",
+            name: "Cost_COMP",
+            title: " Do you pay fees to participate in tournaments or competitions (if not included in the membership fee)?",
+            isRequired: true,
+            colCount: 2,
+            choices: [
+              { "value": 1, "text": "Yes" },
+              { "value": 2, "text": "No" }
+
+            ]
+          },
+          {
+            type: "text",
+            name: "Cost_COMP_$Y",
+            inputType: "number",
+            title: "If yes, how much per year:",
+            visibleIf: "{Cost_COMP}= 1",
+            isRequired: true
+          },
+*/
+{
+      "type": "matrixdropdown",
+      "name": "framework-ratings",
+      "title": "Membership and Entrance / Year",
+      "columnMinWidth": "130px",
+      "columns": [
+        {
+          "name": "usage",
+          "title": "Do you pay?",
+          "cellType": "radiogroup",
+          "choices": [ "Yes", "No" ],
+          "defaultValue": "No"
+        },
+        {
+          "name": "experience",
+          "title": "If yes, how much $/year?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+      ],
+      "rows": [
+        { "text": "Membership fee to play/practice your sport", "value": "fee_membership" },
+        { "text": "License fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)", "value": "fee_license" },
+        { "text": "Other program fees to play/practice your sport (if not included in the previous questions)", "value": "fee_program" },
+        { "text": "Fees to participate in tournaments or competitions (if not included in the membership fee)?", "value": "fee_tournament" }
+      ],
+      "transposeData": false
+    },
+
+    /*  REPLACED THESE QUESTIONS BY THE TABLE BELOW TO MAKE IT MORE COMPACT
+          {
+            type: "radiogroup",
+            name: "Cost_Entr",
+            title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
+            isRequired: true,
+            colCount: 2,
+            choices: [
+              { "value": 1, "text": "Yes" },
+              { "value": 2, "text": "No" }
+
+            ]
+          },
+
+          {
+            type: "text",
+            name: "Cost_Entr_$U",
+            inputType: "number",
+            title: "how much do you pay on average per usage?",
+            visibleIf: "{Cost_Entr}= 1",
+            isRequired: true
+          },
 
 
-//         ]
-//       },
+          {
+            type: "text",
+            inputType: "number",
+            name: "Cost_Entr_UY",
+            title: "how many times per year?:",
+            visibleIf: "{Cost_Entr}= 1",
+            isRequired: true
+          },
+
+          {
+            type: "expression",
+            name: "Cost_Entr_$Y",
+            title: "Estimated yearly entrance/rental cost",
+            visibleIf: "{Cost_Entr} = 1",
+            expression: "iif({Cost_Entr} = 1 && !isEmpty({Cost_Entr_$U}) && !isEmpty({Cost_Entr_UY}), {Cost_Entr_$U} * {Cost_Entr_UY}, 0)",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },*/
+{
+      "type": "matrixdropdown",
+      "name": "framework-ratings",
+      "title": "Membership and Entrance / Year",
+      "showHeader": true,
+      "columnMinWidth": "130px",
+      "columns": [
+        {
+          "name": "usage",
+          "title": "Do you pay?",
+          "cellType": "radiogroup",
+          "choices": [ "Yes", "No" ],
+          "defaultValue": "No"
+        },
+        {
+          "name": "experience",
+          "title": "If yes, average $ per usage?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+                {
+          "name": "experience",
+          "title": "How many times per year?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+      ],
+      "rows": [
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?" },
+      ],
+      "transposeData": false
+    },
+
+
+        ]
+      },
 
 
 
-    //   {
-    //     name: "CostActiveSportParticipation",
-    //     title: "Section II: Cost of Coaching and Clinics",
-    //     elements: [
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II: Cost of Coaching and Clinics",
+        elements: [
 
 
-    //       {
-    //             "type": "matrixdropdown",
-    //             "name": "coaching_costs",
-    //             "title": "Coaching and Clinics / Year",
-    //             "showHeader": true,
-    //             "columnMinWidth": "130px",
-    //             "columns": [
-    //               {
-    //                 "name": "usage",
-    //                 "title": "Do you pay?",
-    //                 "cellType": "radiogroup",
-    //                 "choices": [ "Yes", "No" ],
-    //                 "defaultValue": "No"
-    //               },
-    //               {
-    //                 "name": "cost_per_usage",
-    //                 "title": "If yes, how much do you pay on average per usage?",
-    //                 "cellType": "text",
-    //                 "inputType": "number",
-    //                 "enableIf": "{row.usage} = 'Yes'",
-    //                 "allowResize": false,
-    //               },
-    //                       {
-    //                 "name": "frequency_per_year",
-    //                 "title": "How many times per year?",
-    //                 "cellType": "text",
-    //                 "inputType": "number",
-    //                 "enableIf": "{row.usage} = 'Yes'",
-    //                 "allowResize": false,
-    //               },
-    //             ],
-    //             "rows": [
-    //               { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
-    //               { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
+          {
+                "type": "matrixdropdown",
+                "name": "coaching_costs",
+                "title": "Coaching and Clinics / Year",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Do you pay?",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "If yes, how much do you pay on average per usage?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "How many times per year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you pay for lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
+                  { "text": "Do you participate in clinics regarding your sport practice?","value": 'clinics' } 
                   
-    //             ],
-    //             "transposeData": false
-    //           },
+                ],
+                "transposeData": false
+              },
         
-    //    {
-    //         type: "expression",
-    //         name: "Cost_Coach_$Y",
-    //         title: "Estimated yearly coaching cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    // {
-    //         type: "expression",
-    //         name: "Clinic_Coach_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    //       {
-    //         type: "expression",
-    //         name: "Cost_Clinic_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         visibleIf: "{Cost_Clinic} = 1",
-    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         precision: 2
-    //       },
+       {
+            type: "expression",
+            name: "Cost_Coach_$Y",
+            title: "Estimated yearly coaching cost",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
+            precision: 2
+          },
+    {
+            type: "expression",
+            name: "Clinic_Coach_$Y",
+            title: "Estimated yearly clinic cost",
+            //visibleIf: "{Cost_Coach} = 1",
+            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+            expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+            displayStyle: "decimal",
+            //currency: "CAD",
+            precision: 2
+          },
+          {
+            type: "expression",
+            name: "Cost_Clinic_$Y",
+            title: "Estimated yearly clinic cost",
+            visibleIf: "{Cost_Clinic} = 1",
+            expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
 
-    //     ]
-    //   },
-    //   {
-    //     name: "CostActiveSportParticipation",
-    //     title: "Section III: Cost of Apparel and Equipment",
-    //     elements: [
+        ]
+      },
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section III: Cost of Apparel and Equipment",
+        elements: [
 
-    //       //moved to section apparel and Equipment from section I: ability
+          //moved to section apparel and Equipment from section I: ability
 
-    //       {
-    //         type: "radiogroup",
-    //         title: "Does your ability require adaptive apparel/equipment to participate this sport?",
-    //         name: 'AB_EQ_DL_Ex',
-    //         titleLocation: "left",
-    //         colCount: 0,
-    //         choices: [
-    //           'Yes',
-    //           'No',
+          {
+            type: "radiogroup",
+            title: "Does your ability require adaptive apparel/equipment to participate this sport?",
+            name: 'AB_EQ_DL_Ex',
+            titleLocation: "left",
+            colCount: 0,
+            choices: [
+              'Yes',
+              'No',
 
-    //         ]
-    //       },
+            ]
+          },
 
-    //       {
-    //         type: "comment",
-    //         name: "adaptive_equipment_explanation",
-    //         title: "Please explain:",
-    //         visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-    //         isRequired: true
-    //       },
+          {
+            type: "comment",
+            name: "adaptive_equipment_explanation",
+            title: "Please explain:",
+            visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+            isRequired: true
+          },
 
-    //       // question 10 to adjust
-    //       //fix html text 
-    //       {
-    //         type: "html",
-    //         name: "apparel_subtitle",
-    //         html: `
-    //   <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
-    //   Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
-    //   the quantity, the number of months or years you actually use it, and the price per unit:
+          // question 10 to adjust
+          //fix html text 
+          {
+            type: "html",
+            name: "apparel_subtitle",
+            html: `
+      <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
+      Provide a list of a) <b>sports apparel</b>, b) <b> sports equipment</b>, and c) <b>other equipment</b> you currently possess to play your sport. Provide information on the item, 
+      the quantity, the number of months or years you actually use it, and the price per unit:
       
-    // </div>
-    // `
-    //       },
+    </div>
+    `
+          },
 
 
-    //       /* ----------------- (a) Sports apparel ----------------- */ //fixed 
-    //       {
-    //         type: "matrixdynamic",
-    //         name: "SP_APP",
-    //         title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
-    //         addRowText: "➕ Add apparel item",
-    //         removeRowText: "➖ Remove",
-    //         minRowCount: 1,
-    //         rowCount: 0,
-    //         showFooter: true,
-    //         columns: [
-    //           { name: "SP_APP_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-    //           { name: "SP_APP_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-    //           { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-    //           { name: "SP_APP_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-    //           {
-    //             name: "SP_APP_$Y",
-    //             title: "Write-off / year (C$)",
-    //             cellType: "expression",
-    //             expression:
-    //               "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
-    //               " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
-    //             displayStyle: "currency",
-    //             currency: "CAD",
+          /* ----------------- (a) Sports apparel ----------------- */ //fixed 
+          {
+            type: "matrixdynamic",
+            name: "SP_APP",
+            title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
+            addRowText: "➕ Add apparel item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_APP_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+              { name: "SP_APP_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_APP_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+              { name: "SP_APP_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+              {
+                name: "SP_APP_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression:
+                  "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
+                  " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+                displayStyle: "currency",
+                currency: "CAD",
 
-    //             totalType: "sum",
-    //             totalDisplayStyle: "currency",
-    //             currencyDisplay: "code",
-    //             width: "15%"
-    //           }
-    //         ],
-    //         footerText: "Sub-total (a)"
-    //       },
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                width: "15%"
+              }
+            ],
+            footerText: "Sub-total (a)"
+          },
 
-    //       {
-    //         type: "expression",
-    //         name: "SP_APP_$Y_Total",
-    //         title: "Sub-total (a): Total write-off per year (all apparel items)",
-    //         expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         currencyDisplay: "code",
-    //         visible: false
-    //       },
+          {
+            type: "expression",
+            name: "SP_APP_$Y_Total",
+            title: "Sub-total (a): Total write-off per year (all apparel items)",
+            expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+            displayStyle: "currency",
+            currency: "CAD",
+            currencyDisplay: "code",
+            visible: false
+          },
 
-    //       /* --------------- (b) Sports equipment ----------------- */
-    //       {
-    //         type: "matrixdynamic",
-    //         name: "SP_Equip",
-    //         title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
-    //         addRowText: "➕ Add equipment item",
-    //         removeRowText: "➖ Remove",
-    //         minRowCount: 1,
-    //         rowCount: 0,
-    //         showFooter: true,
-    //         columns: [
-    //           { name: "SP_Equip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-    //           { name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-    //           { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-    //           { name: "SP_Equip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-    //           {
+          /* --------------- (b) Sports equipment ----------------- */
+          {
+            type: "matrixdynamic",
+            name: "SP_Equip",
+            title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+            addRowText: "➕ Add equipment item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_Equip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+              { name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_Equip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+              { name: "SP_Equip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+              {
 
-    //             name: "SP_Equip_$Y",
-    //             title: "Write-off / year (C$)",
-    //             cellType: "expression",
-    //             expression:
-    //               "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
-    //               " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
-    //             displayStyle: "currency",
-    //             currency: "CAD",
+                name: "SP_Equip_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression:
+                  "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
+                  " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
+                displayStyle: "currency",
+                currency: "CAD",
 
-    //             totalType: "sum",
-    //             totalDisplayStyle: "currency",
-    //             currencyDisplay: "code",
-    //             width: "15%"
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                width: "15%"
 
-    //           }
-    //         ],
-    //         footerText: "Sub-total (b)"
-    //       },
+              }
+            ],
+            footerText: "Sub-total (b)"
+          },
 
-    //       {
-    //         type: "expression",
-    //         name: "SP_Equip_$Y_Total",
-    //         title: "Sub-total b: Total write-off per year (all equipment items)",
-    //         expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         currencyDisplay: "code",
-    //         visible: false
-    //       },
+          {
+            type: "expression",
+            name: "SP_Equip_$Y_Total",
+            title: "Sub-total b: Total write-off per year (all equipment items)",
+            expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
+            displayStyle: "currency",
+            currency: "CAD",
+            currencyDisplay: "code",
+            visible: false
+          },
 
-    //       /*  --------- c) Additional equipment -----------------   */
-
-
-    //       {
-    //         type: "matrixdynamic",
-    //         name: "SP_AddEquip",
-    //         title: "C) Additional equipment, ex.towels ..",
-    //         addRowText: "➕ Add equipment item",
-    //         removeRowText: "➖ Remove",
-    //         minRowCount: 1,
-    //         rowCount: 0,
-    //         showFooter: true,
-    //         columns: [
-    //           { name: "SP_AddEquip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
-    //           { name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-    //           { name: "SP_AddEquip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
-    //           { name: "SP_AddEquip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
-    //           {
-
-    //             name: "SP_AddEquip_$Y",
-    //             title: "Write-off / year (C$)",
-    //             cellType: "expression",
-    //             expression:
-    //               "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
-    //               " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
-    //             displayStyle: "currency",
-    //             currency: "CAD",
-
-    //             totalType: "sum",
-    //             totalDisplayStyle: "currency",
-    //             currencyDisplay: "code",
-    //             width: "15%"
-    //           }
-    //         ],
-    //         footerText: "Sub-total (c)"
-    //       },
-
-    //       {
-    //         type: "expression",
-    //         name: "SP_AddEquip_$Y_Total",
-    //         title: "Sub-total (c): Total write-off per year (additonal items)",
-    //         expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         currencyDisplay: "code",
-    //         visible: false
-    //       },
+          /*  --------- c) Additional equipment -----------------   */
 
 
+          {
+            type: "matrixdynamic",
+            name: "SP_AddEquip",
+            title: "C) Additional equipment, ex.towels ..",
+            addRowText: "➕ Add equipment item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_AddEquip_Describe", title: "Describe item", cellType: "text", isRequired: false, width: "35%" },
+              { name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_AddEquip_Usage", title: "Years of usage per item", cellType: "text", inputType: "number", min: 0, max: 12, placeholder: "e.g. 6", width: "15%" },
+              { name: "SP_AddEquip_$U", title: "Price per unit (C$)", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "15%" },
+              {
 
+                name: "SP_AddEquip_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression:
+                  "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
+                  " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
+                displayStyle: "currency",
+                currency: "CAD",
+
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                width: "15%"
+              }
+            ],
+            footerText: "Sub-total (c)"
+          },
+
+          {
+            type: "expression",
+            name: "SP_AddEquip_$Y_Total",
+            title: "Sub-total (c): Total write-off per year (additonal items)",
+            expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
+            displayStyle: "currency",
+            currency: "CAD",
+            currencyDisplay: "code",
+            visible: false
+          },
 
 
 
 
 
-    //       // question 11
-
-
-    //       {
-    //         type: "checkbox",
-    //         name: "sports_equipment_sources",
-    //         title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
-    //         isRequired: true,
-    //         choices: [
-    //           { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
-    //           { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
-    //           { "value": 3, "text": "In a privately owned sports shop" },
-    //           { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
-    //           { "value": 5, "text": "Buy from individual people or second hand" },
-    //           { "value": 6, "text": "Wholesale" },
-    //           { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
-    //           { "value": 8, "text": "Other (please describe)" }
-    //         ],
-    //         colCount: 2
-    //       },
-
-    //       {
-    //         type: "comment",
-    //         name: "sports_equipment_sources_other",
-    //         title: "If you selected 'Other (please describe)', please specify:",
-    //         visibleIf: "{sports_equipment_sources} contains 8"
-    //       },
 
 
 
+          // question 11
 
-    //       // question 12 
 
-    //     {
-    //             "type": "matrixdropdown",
-    //             "name": "EQ_Rent",
-    //             "title": "Rental Costs",
-    //             "showHeader": true,
-    //             "columnMinWidth": "130px",
-    //             "columns": [
-    //               {
-    //                 "name": "usage",
-    //                 "title": "Yes/No",
-    //                 "cellType": "radiogroup",
-    //                 "choices": [ "Yes", "No" ],
-    //                 "defaultValue": "No"
-    //               },
-    //               {
-    //                 "name": "cost_per_usage",
-    //                 "title": "Average $ per usage?",
-    //                 "cellType": "text",
-    //                 "inputType": "number",
-    //                 "enableIf": "{row.usage} = 'Yes'",
-    //                 "allowResize": false,
-    //               },
-    //                       {
-    //                 "name": "frequency_per_year",
-    //                 "title": "How many times per year?",
-    //                 "cellType": "text",
-    //                 "inputType": "number",
-    //                 "enableIf": "{row.usage} = 'Yes'",
-    //                 "allowResize": false,
-    //               },
-    //             ],
-    //             "rows": [
-    //               { "text": "Do you rent sports apparel or sports equipment?", "value": 'rental_equipment' },
-    //               { "text": "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)","value": 'rental_maintenance' } 
+          {
+            type: "checkbox",
+            name: "sports_equipment_sources",
+            title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
+            isRequired: true,
+            choices: [
+              { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
+              { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
+              { "value": 3, "text": "In a privately owned sports shop" },
+              { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
+              { "value": 5, "text": "Buy from individual people or second hand" },
+              { "value": 6, "text": "Wholesale" },
+              { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
+              { "value": 8, "text": "Other (please describe)" }
+            ],
+            colCount: 2
+          },
+
+          {
+            type: "comment",
+            name: "sports_equipment_sources_other",
+            title: "If you selected 'Other (please describe)', please specify:",
+            visibleIf: "{sports_equipment_sources} contains 8"
+          },
+
+
+
+
+          // question 12 
+
+        {
+                "type": "matrixdropdown",
+                "name": "EQ_Rent",
+                "title": "Rental Costs",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "Average $ per usage?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "How many times per year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Do you rent sports apparel or sports equipment?", "value": 'rental_equipment' },
+                  { "text": "Do you have maintenance costs for your sports apparel or equipment? (maintenance, repair, dry cleaning, …)","value": 'rental_maintenance' } 
                   
-    //             ],
-    //             "transposeData": false
-    //           },
+                ],
+                "transposeData": false
+              },
          
-    //       {
-    //         type: "expression",
-    //         name: "EQ_Rent_$Y",
-    //         title: "Estimated yearly rental cost",
-    //         visibleIf: "{EQ_Rent} = 1",
-    //         expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         precision: 2
-    //       },
+          {
+            type: "expression",
+            name: "EQ_Rent_$Y",
+            title: "Estimated yearly rental cost",
+            visibleIf: "{EQ_Rent} = 1",
+            expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
 
 
-    //       // question 13
+          // question 13
 
      
 
-    //       {
-    //         type: "expression",
-    //         name: "EQ_Maint_$Y",
-    //         title: "Estimated yearly maintenance cost",
-    //         visibleIf: "{EQ_Maint} = 1",
-    //         expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         precision: 2
-    //       },
+          {
+            type: "expression",
+            name: "EQ_Maint_$Y",
+            title: "Estimated yearly maintenance cost",
+            visibleIf: "{EQ_Maint} = 1",
+            expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
 
 
 
 
 
-    //       {
-    //         type: "expression",
-    //         name: "SP_Equip_APP_$Y_Total",
-    //         title: "Apparel & Equipment / YEAR (Total)",
-    //         displayStyle: "decimal",
-    //         precision: 2,
-    //         expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
-    //       },
+          {
+            type: "expression",
+            name: "SP_Equip_APP_$Y_Total",
+            title: "Apparel & Equipment / YEAR (Total)",
+            displayStyle: "decimal",
+            precision: 2,
+            expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+          },
 
 
 
-    //     ]
+        ]
 
-    //     // to add the sum of maintenance and apparel together 
+        // to add the sum of maintenance and apparel together 
 
 
-    //   },
+      },
 
 
 
@@ -1599,39 +1598,47 @@ const json = {
     `
           },
 
+ { 
+                "type": "matrixdropdown",
+                "name": "B_P",
+                "title": "Do you earn money related to your sports participation (e.g., prize money, any other monetary returns,) ?",
+                "showHeader": true,
+                "titleLocation": "top",
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "Never (0%)"
+                  },
+                    {
+                    "name": "cost_per_usage",
+                    "title": "Source",
+                    "cellType": "text",
+                    "inputType": "text",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "How much $/year?",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Describe source...", "value": 'income_1' },
+                  { "text": "Describe source...", "value": 'income_2' },
+          
+                ],
+                "transposeData": false
+              },
 
-
-          {
-            type: "radiogroup",
-            name: "SP_Earnings",
-            title: "Do you earn money related to your sports participation (e.g., prize money, any other monetary returns,) ?",
-            isRequired: true,
-            colCount: 2,
-            choices: [
-              { "value": 0, "text": "No" },
-              { "value": 1, "text": "Yes" }
-
-            ]
-          },
-
-
-          {
-            type: "text",
-            name: "SP_Earnings_EX",
-            title: "Describe: ",
-            visibleIf: "{SP_Earnings}= 1",
-            isRequired: true
-          },
-
-
-          {
-            type: "text",
-            name: "SP_Earnings_$Y",
-            inputType: "number",
-            title: "How much do you earn on average per year?: ",
-            visibleIf: "{SP_Earnings}= 1",
-            isRequired: true
-          },
+          
         ]
 
       },
@@ -1694,6 +1701,7 @@ const json = {
               "Guardian",
               "Sole occupant"
             ],
+            colCount: 2,
             showOtherItem: true,
             otherText: "Other (please specify):"
           },
@@ -1781,6 +1789,17 @@ const json = {
         name: "Section Ability",
         title: "Section IV:  Ability",
         elements: [
+          
+          {
+            type: "radiogroup",
+            title: "Does have a disability?",
+            name: "Disability",
+            colCount: 2,
+            choices: [
+              'Yes',
+              'No',
+            ]
+          },
           {
             type: 'dropdown',
             title: "Ability Timing",
@@ -1788,15 +1807,15 @@ const json = {
             choices: [
               'Congenital',
               'Acquired',
-              'Able-body',
             ],
             showOtherItem: false,
-            isRequired: true
+            isRequired: true,
+            visibleIf: "{Disability} = 'Yes'",
           },
 
           {
-            type: 'dropdown',
-            title: "Classification of disabilities",
+            type: 'tagbox',
+            title: "Classification of disabilities (Select all that apply)",
             name: 'AB_Class',
             choices: [
               'Mobility',
@@ -1805,7 +1824,8 @@ const json = {
               'Cognitive function'
             ],
             showOtherItem: false,
-            isRequired: true
+            isRequired: true,
+            visibleIf: "{Disability} = 'Yes'",
           },
 
           {

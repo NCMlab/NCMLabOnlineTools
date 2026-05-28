@@ -1590,3 +1590,31 @@ BatteryList.push({index: 121,
 	Footer: '©NCMLab 2024',
   Redirect: '',
 })
+
+
+// ============== Cost of Sports ==============
+List = [];
+List.push()
+List.push({
+  Task: "Cost of Sport",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "CoS",
+});
+List.push({
+  Task: "Cost of Sport",
+  Parameters: "",
+  Instructions: "Default",
+  IconName: "CoS",
+});
+
+BatteryList.push({index: 9121, 
+	name:'Cost of Sports', 
+	description: '',
+	TaskList: List,
+	BatteryInstructions: "<h1>Cogntive Testing</h1>",
+	Language:'EN',
+	RunAudioTest: true,
+	Footer: '©NCMLab 2024',
+  Redirect: '',
+})
