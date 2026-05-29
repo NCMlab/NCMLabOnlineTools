@@ -210,7 +210,8 @@ const json = {
             name: "Sport",
             title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN (PARA)SPORT",
             type: "text",
-            isRequired: false
+            isRequired: false,
+            inputWidth: "40%"
           },
         ]
       },
@@ -893,38 +894,38 @@ const json = {
                 "transposeData": false
               },
         
-       {
-            type: "expression",
-            name: "Cost_Coach_$Y",
-            title: "Estimated yearly coaching cost",
-            //visibleIf: "{Cost_Coach} = 1",
-            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-            expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-            displayStyle: "decimal",
-            //currency: "CAD",
-            precision: 2
-          },
-    {
-            type: "expression",
-            name: "Clinic_Coach_$Y",
-            title: "Estimated yearly clinic cost",
-            //visibleIf: "{Cost_Coach} = 1",
-            //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-            expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-            displayStyle: "decimal",
-            //currency: "CAD",
-            precision: 2
-          },
-          {
-            type: "expression",
-            name: "Cost_Clinic_$Y",
-            title: "Estimated yearly clinic cost",
-            visibleIf: "{Cost_Clinic} = 1",
-            expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
+    //    {
+    //         type: "expression",
+    //         name: "Cost_Coach_$Y",
+    //         title: "Estimated yearly coaching cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    // {
+    //         type: "expression",
+    //         name: "Clinic_Coach_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    //       {
+    //         type: "expression",
+    //         name: "Cost_Clinic_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         visibleIf: "{Cost_Clinic} = 1",
+    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         precision: 2
+    //       },
 
         ]
       },
@@ -1463,6 +1464,13 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
+                    "title": "Yes/No",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "Social_often_per_year",
                     "title": "How many times per year?:",
                     "cellType": "dropdown",
                     "choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
