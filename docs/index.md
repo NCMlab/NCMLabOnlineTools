@@ -59,7 +59,7 @@ title: 3C Platform
 
 ## What is the 3C Platform?
 
-The **3C Platform** is open-source software for delivering, scoring, and reviewing behavioural and cognitive assessments in any modern web browser. Built by Jason Steffener at the University of Ottawa, it combines validated questionnaires and cognitive tasks in a unified environment that works in-person, remotely, or completely offline — with no proprietary software and no specialist programming.
+The **3C Platform** is open-source software for delivering, scoring, and reviewing behavioural and cognitive assessments in any modern web browser. Built by Jason  Steffener and students in his Neural Cognitive Mapping lab at the University of Ottawa, it combines validated cognitive tasks and questionnaires in a unified environment that works in-person, remotely, or completely offline — with no proprietary software and no specialist programming.
 
 The platform is built around two guiding principles:
 
