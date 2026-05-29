@@ -207,7 +207,7 @@ var if_ManualResponse = {
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(UpdateHeaderCall)  
+
 timeline.push(enter_fullscreen)
 timeline.push(if_SpokenResponse01)
 timeline.push(Welcome)

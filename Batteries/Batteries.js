@@ -781,13 +781,13 @@ FaCE_Training_Spoken_EN_List.push({
   Task: "Intake Form",
   Parameters: "IntakeForm_EN",
   Instructions: "IntakeFaCE",
-  IconName: "",
+  IconName: "Intake",
 });
 FaCE_Training_Spoken_EN_List.push({
   Task: "Intake Form",
   Parameters: "IntakeForm_EN",
   Instructions: "OrientationFaCE",
-  IconName: "Intake",
+  IconName: "Orientation",
 });
 FaCE_Training_Spoken_EN_List.push({
   Task: "Word Recall",
@@ -942,8 +942,8 @@ FaCE_VerA_Spoken_EN_List.push({
 // ==========================================
 // =============== Manual ===================
 var FaCE_VerA_Manual_EN_List = [];
-//FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
-//FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
+FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:'Intake'})
+FaCE_VerA_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:'Orientation'})
 FaCE_VerA_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Manual_VerA_EN",
@@ -984,24 +984,15 @@ FaCE_VerA_Manual_EN_List.push({
 BatteryList.push({
   index: 611,
   name: "FaCE Battery: Version A",
-  description: "A web-based version of the FaCE using spoken recall",
-  TaskList: FaCE_VerA_Spoken_EN_List,
-  BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
-  Language: "EN",
-  RunAudioTest: true,
-  Footer: "©GagnonBruno 2016",
-});
-
-BatteryList.push({
-  index: 612,
-  name: "FaCE Battery: Version A",
-  description: "A web-based version of the FaCE using manual scoring",
+  description: "A web-based version of the FaCE using manual recall",
   TaskList: FaCE_VerA_Manual_EN_List,
   BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
   Language: "EN",
   RunAudioTest: true,
   Footer: "©GagnonBruno 2016",
 });
+
+
 
 // VERSION B
 // 				Spoken
