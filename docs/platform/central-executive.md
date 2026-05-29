@@ -85,3 +85,46 @@ When all tasks in the battery are complete, the CE can:
 - **Redirect to a URL** — the CE reads the `Redirect` field from the battery definition and sends the participant to that address. This is useful for redirecting participants to a recruitment portal or a debrief page.
 
 Both options are configured in the battery definition in `Batteries.js`. If no redirect URL is provided, the study ends on the JATOS default end page.
+
+---
+
+## Function reference
+
+The CE is implemented in `Batteries/CentralExecutive.js`. Its functions fall into four groups.
+
+### Utility / data helpers
+
+| Function | Purpose |
+|----------|---------|
+| `isEmpty(obj)` | Returns `true` if an object has no own properties. Used to detect missing session or batch data. |
+| `MakeIconList(TaskNameList, ComponentList)` | Builds an array of icon image filenames by matching each task name against the component list. |
+
+### JATOS session and batch data
+
+| Function | Purpose |
+|----------|---------|
+| `CheckForSessiondata()` | Promise — checks whether JATOS session data exists and contains all expected keys. Resolves with a boolean. |
+| `SetupBattery(SessionDataFlag, BatteryIndex, UsageType)` | Promise — if no session data exists, finds the battery by index, extracts task/parameter/instruction lists, and writes them into the JATOS study session. |
+| `CheckBatchData()` | Promise — checks JATOS batch data for the current worker; initializes batch entries (index, language, bitIndex) on first visit, or restores the current index from batch on subsequent visits. |
+| `UpdateSessionBitIndex(AddToCompletionCount)` | Promise — writes a completion bit value into the session data to track which session battery was selected and needs to be marked complete on finish. |
+| `IsTheBatteryFinished()` | Returns `true` if `CurrentIndex` has reached the end of the task list, indicating the battery is done. |
+
+### Navigation / flow control
+
+| Function | Purpose |
+|----------|---------|
+| `StartComponent(title, data)` | Wrapper around `jatos.startComponentByTitle()` that launches the next JATOS component by title. |
+| `UsageTypeDecision(UsageType)` | Promise — switches on usage type (`SingleTask`, `Battery`, `Session`, `UserChoice`) and routes accordingly — starting a component directly or pushing the appropriate jsPsych trial to the timeline. |
+| `CentralExecutive()` | Main entry point. Promise — reads URL parameters, determines `UsageType`, checks for battery completion, then chains the setup promises and launches the appropriate next step. |
+
+### jsPsych trial builders
+
+| Function | Purpose |
+|----------|---------|
+| `SetupjsPsychAndRunTimeline()` | Promise — initializes jsPsych and runs the global `timeline` array if it is non-empty. |
+| `SetupSession()` | Reads session config parameters, builds button lists for the session manager page, checks completed bits from batch data, and returns the appropriate session button trial. |
+| `MakeSessionButtonsNEW(...)` | Builds the session manager button trial for participants. On button press, sets up and starts the selected battery. |
+| `MakeSessionButtonsLINKS(...)` | Same layout as `MakeSessionButtonsNEW`, but for staff use — each button assembles a direct JATOS participant URL and copies it to the clipboard instead of starting a battery. |
+| `MakeUserChoiceElement(JATOSSessionData)` | Builds an icon-button trial letting the participant choose which task to run within a battery. |
+| `MakeThankYouPage()` | Builds the end-of-study thank-you screen. Closes the window when the participant is done. |
+| `MakeTestElement()` | Development/debugging stub — builds a minimal yes/no button trial. |
