@@ -1,4 +1,10 @@
 /* .tableFixHead          { overflow: auto; height: 50px; } */
+:root {
+  --font: "Open Sans", "Arial", sans-serif;
+  --fontSize: 1.2rem;
+  --smallFontSize: 1.0rem
+}
+
 
 thead { 
     position: sticky; 
@@ -215,3 +221,7 @@ body {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.label-extraMatrixQuestion{
+  font-family: var(--font);
+  font-size: var(--fontSize);
+}

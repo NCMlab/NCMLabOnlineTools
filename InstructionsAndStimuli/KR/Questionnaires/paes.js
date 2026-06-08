@@ -11,7 +11,7 @@ var survey_JSON =
                 name: 'PAES',
                 title: 'Please rate how you feel <em>at the moment</em> about the music and movement activity you have been doing',
                 alternateRows: true,
-                isAllRowRequired: true,
+                isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
                 
                 rows: [
 
@@ -21,11 +21,11 @@ var survey_JSON =
                     {value: 'paes004', text: 'It feels good. 이것은 기분 좋다.'},
                 ],
                 columns: [
-                    { "value": 0, text: '전혀동 의하지 않음' }, 
-                    { "value": 1, text: '동의하 지 않음' },
-                    { "value": 2, text: '보통' },
-                    { "value": 3, text: '동의함' }, 
-                    { "value": 4, text: '매우 동의함'}
+                    { "value": 1, text: '전혀동 의하지 않음' }, 
+                    { "value": 2, text: '동의하 지 않음' },
+                    { "value": 3, text: '보통' },
+                    { "value": 4, text: '동의함' }, 
+                    { "value": 5, text: '매우 동의함'}
                 ],
             }
         ]

@@ -1374,6 +1374,7 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
+    LanguagesToShow: ['EN','FR'],
     Redirect: '',
     shortName: '',
 	})
@@ -1388,17 +1389,23 @@ List.push({Task: 'Session Chooser', Parameters: 'COMM_99', Instructions: 'Defaul
 		TaskList: List,
 		BatteryInstructions: "Music and Motion Study -- Enter Name",
     HeaderButtonsToShow: [],
+    LanguagesToShow: ['EN','FR'],
+    Redirect: '',
 	})
 
 // ============ MUSIC STUDY -- DEMOGRAPHICS  ==================
 var List = []
-List.push({
+/*List.push({
   Task: "Ready Hold",
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
-});
-List.push({Task: 'Questionnaire', Parameters: 'MusicDemographics_001', Instructions: 'Default', IconName: 'Music Intake'})
+});*/
+List.push({
+  Task: 'Form Questionnaire', 
+  Parameters: 'MusicDemographics_001',//'MusicDemographics_001', 
+  Instructions: 'Default', 
+  IconName: 'Music Intake'})
 BatteryList.push({index: 73, 
 	name:'Music Motion: Intake', 
   shortName: "Intake",
@@ -1409,6 +1416,7 @@ BatteryList.push({index: 73,
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- CESAM  ==================
@@ -1436,6 +1444,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 
@@ -1483,7 +1492,8 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
-  Redirect: 'https://www.uottawa.ca',
+  LanguagesToShow: ['EN','FR'],
+  Redirect: '',
 });
 // ============ MUSIC STUDY -- TRAILS ==================
 var List = []
@@ -1501,6 +1511,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // -----------------------
@@ -1519,6 +1530,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // -----------------------
@@ -1537,6 +1549,7 @@ BatteryList.push({
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 // ============ MUSIC STUDY -- PRE: ALL WEEKS  ==================
@@ -1564,6 +1577,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 1, 4, 7 ==================
@@ -1597,6 +1611,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1610,18 +1625,6 @@ List.push({
 });
 List.push({
   Task: "Matrix Questionnaire",
-  Parameters: "WEMWBS_001",
-  Instructions: "Default",
-  IconName: "WEMWBS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GAS_001",
-  Instructions: "Default",
-  IconName: "GAS",
-});
-List.push({
-  Task: "Matrix Questionnaire",
   Parameters: "PANAS_ShortWeekly_001",
   Instructions: "Default",
   IconName: "PANAS, weekly",
@@ -1631,6 +1634,18 @@ List.push({
   Parameters: "PAES_001",
   Instructions: "Default",
   IconName: "PAES",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "WEMWBS_001",
+  Instructions: "Default",
+  IconName: "WEMWBS",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
 });
 
 BatteryList.push({
@@ -1644,6 +1659,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEKS 3, 6, 9 ==================
@@ -1653,18 +1669,6 @@ List.push({
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "GDS_001",
-  Instructions: "Default",
-  IconName: "GDS",
-});
-List.push({
-  Task: "Form Questionnaire",
-  Parameters: "UCLA_LONELINESS_001",
-  Instructions: "Default",
-  IconName: "Loneliness",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1678,6 +1682,18 @@ List.push({
   Instructions: "Default",
   IconName: "PAES",
 });
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "UCLA_LONELINESS_001",
+  Instructions: "Default",
+  IconName: "Loneliness",
+});
 
 BatteryList.push({
   index: 82,
@@ -1690,6 +1706,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 // ============ MUSIC STUDY -- POST: WEEK 10 ==================
@@ -1699,6 +1716,18 @@ List.push({
   Parameters: "Default",
   Instructions: "Default",
   IconName: "Ready, Hold",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PANAS_ShortWeekly_001",
+  Instructions: "Default",
+  IconName: "PANAS, weekly",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PAES",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1724,18 +1753,6 @@ List.push({
   Instructions: "Default",
   IconName: "Loneliness",
 });
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PANAS_ShortWeekly_001",
-  Instructions: "Default",
-  IconName: "PANAS, weekly",
-});
-List.push({
-  Task: "Matrix Questionnaire",
-  Parameters: "PAES_001",
-  Instructions: "Default",
-  IconName: "PAES",
-});
 BatteryList.push({
   index: 85,
   name: "Music Motion: Post Week 10",
@@ -1747,6 +1764,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   HeaderButtonsToShow: [],
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1834,6 +1852,7 @@ BatteryList.push({
   Language: "EN",
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 });
 
@@ -1849,6 +1868,7 @@ BatteryList.push({index: 71234,
 	Language:'EN',
 	RunAudioTest: true,
 	Footer: '©NCMLab 2024',
+  LanguagesToShow: ['EN','FR'],
   Redirect: '',
 })
 
@@ -1969,7 +1989,7 @@ List.push({
   Task: "Word Recognition",
   Parameters: "WordRecog_Spoken",
   Instructions: "Default",
-  IconName: "RAVLT, Recog",
+  IconName: "Word Recog",
 });
 List.push({
   Task: "Matrix Questionnaire",
@@ -1984,7 +2004,7 @@ List.push({
   Instructions: "Default",
   IconName: "GDS",
 });
-	BatteryList.push({index: 123, 
+	BatteryList.push({index: 99999123, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
@@ -1997,6 +2017,21 @@ List.push({
     shortName: '',
 	})
 
+
+var List = []
+List.push({Task: 'Session Chooser', Parameters: 'COMM_09', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 123, 
+		name:'Music Motion Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language:'EN',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   // ===========
 var List = []
@@ -2087,18 +2122,274 @@ List.push({
     shortName: '',
 	})
 
-
+// =========== MONTREAL ==========
 var List = []
-List.push({Task: 'Session Chooser', Parameters: 'COMM_987', Instructions: 'Default', IconName: 'Chooser'})
-	BatteryList.push({index: 9987, 
-		name:'Music Motion Landing Page', 
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PARQ_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+List.push({
+  Task: "IPAQ Questionnaire",
+  Parameters: "IPAQ_001",
+  Instructions: "Default",
+  IconName: "IPAQ",
+});
+
+List.push({
+  Task: "Matrix Questionnaire ExtraQ",
+  Parameters: "CCICIMAQ_001",
+  Instructions: "Default",
+  IconName: "CCI",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "COGQUOT_001",
+  Instructions: "Default",
+  IconName: "Cog Quot",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp01_001",
+  Instructions: "Default",
+  IconName: "Comp Exp",
+});
+
+	BatteryList.push({index: 98799, 
+		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,
-		BatteryInstructions: "Music and Motion Study -- Session Chooser",
-		Language:'EN',
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
 		RunAudioTest: true,
 		Footer: '©NCMLab 2024',
     HeaderButtonsToShow: [],
     Redirect: '',
     shortName: '',
 	})
+  var List = []
+List.push({Task: 'Session Chooser', Parameters: 'Mont_99', Instructions: 'Default', IconName: 'Chooser'})
+	BatteryList.push({index: 98700, 
+		name:'Montreal Landing Page', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Music and Motion Study -- Session Chooser",
+		Language: 'FR',
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    LanguagesToShow: ['FR'],
+    Redirect: '',
+    shortName: '',
+	})
+
+  // =========== Semaine 1 ==========
+  // List.push({name: 'Semaine 1',   battery: '98713', row: 5, BitIndex: 13})// sleep/ipaq/cog_quot
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "COGQUOT_001",
+  Instructions: "Default",
+  IconName: "Cog Quot",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "SLEEP_001",
+  Instructions: "Default",
+  IconName: "Sleep",
+});
+List.push({
+  Task: "IPAQ Questionnaire",
+  Parameters: "IPAQ_001",
+  Instructions: "Default",
+  IconName: "IPAQ",
+});
+
+	BatteryList.push({index: 98713, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== COMPUTER QUESTIONNAIRES ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp01_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 01",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp02_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 02",
+});
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "CompExp03_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 03",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CompExp04_001",
+  Instructions: "Default",
+  IconName: "Comp Exp 04",
+});
+	BatteryList.push({index: 98705, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+    Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
+
+  // =========== ANXIETY QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GAS_001",
+  Instructions: "Default",
+  IconName: "GAS",
+});
+	BatteryList.push({index: 98714, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== DEPRESSION QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "GDS_001",
+  Instructions: "Default",
+  IconName: "GDS",
+});
+	BatteryList.push({index: 98715, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
+// =========== CCI QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "CCICIMAQ_001",
+  Instructions: "Default",
+  IconName: "CCI",
+});
+	BatteryList.push({index: 98711, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== ADL PI QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "ADLPI_001",
+  Instructions: "Default",
+  IconName: "ADLPI",
+});
+	BatteryList.push({index: 98704, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== FRS QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "FRS_001",
+  Instructions: "Default",
+  IconName: "FRS",
+});
+	BatteryList.push({index: 98712, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+// =========== Sociodemographic Montreal QUESTIONNAIRE ================
+var List = []
+List.push({
+  Task: "Form Questionnaire",
+  Parameters: "SocioMontreal_001",
+  Instructions: "Default",
+  IconName: "Sociodemographic",
+});
+	BatteryList.push({index: 98701, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
+  
+  
+
+  

@@ -1,0 +1,93 @@
+/* =========================
+   VARIABLES
+   ========================= */
+
+:root {
+  --font: "Open Sans", "Arial", sans-serif;
+  --fontSize: clamp(1rem, 2.5vw, 1.5rem);
+  --smallFontSize: clamp(0.8rem, 2vw, 1rem);
+}
+
+/* =========================
+   TEXT
+   ========================= */
+
+h1 {
+  font-family: var(--font);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.surveyFormLabel,
+.surveyFormDescription {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  line-height: 1.4;
+}
+
+/* =========================
+   FORM CONTAINERS
+   ========================= */
+
+.surveyFormDiv {
+  display: block;           /* ✅ DO NOT center grid containers */
+  width: 100%;
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+input {
+  font-family: var(--font);
+  font-size: var(--fontSize);
+}
+
+/* =========================
+   CHECKBOX BASE
+   ========================= */
+
+input[type=checkbox] {
+  transform: scale(1.6);
+  margin: 0.5rem;
+}
+
+/* =========================
+   TAGBOX (THIS IS THE FIX)
+   ========================= */
+
+.TagBoxColumn {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile */
+  grid-auto-flow: row;          /* ✅ force order */
+  row-gap: 0.6rem;
+  column-gap: 1.5rem;
+  width: 100%;
+}
+
+/* wide screens */
+@media (min-width: 900px) {
+  .TagBoxColumn {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* individual option */
+.TagBoxInputWrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ✅ neutralize checkbox margin INSIDE tagbox */
+.TagBoxInputWrapper input[type=checkbox] {
+  margin: 0.2rem 0.5rem 0 0;
+}
+
+/* label text */
+.tagBoxLabel {
+  line-height: 1.4;
+  text-align: left;
+  word-break: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}

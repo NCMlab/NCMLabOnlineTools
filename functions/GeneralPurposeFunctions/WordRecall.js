@@ -3,11 +3,69 @@ var userSaidWords = []
 var ListeningFlag = false
 
 
-// Manual Recall Trial
+// ============= JASON EDITS ============
 var ManualRecallA = {
-  type: jsPsychSurvey,
-/*   on_load: function(){ // This inserts a timer on the recall duration
-    var wait_time = RecallDuration * 1000; // in milliseconds
+    type: jsPsychSurveyHtmlForm,
+    survey_json: function() {
+    const PPP ={
+      showProgressBar: "none",
+      progressBarShowPageNumbers: false,
+      progressBarShowPageTitles: false,
+      showCompletedPage: false,
+      showTitle: true,
+      pages: 
+      [
+        
+        {      
+          title: '<p><span id="clock">1:00</span></p>',
+          elements: [
+            {type: "tagbox",
+            name: "Recall",
+            title: Instructions.WordRecallPrompt,
+            choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)),
+            name: 'ListRecall',
+            required: false
+            },
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            name: 'Intrusion01', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title:  Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion02', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion03', 
+            required: false,
+          }, 
+        ]
+        }
+  ]
+  }
+  console.log(PPP)
+  return PPP
+    },
+    button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
+    missed_question_label: function() { return LabelNames.missed_question_label},
+    missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Submit },
+    previous_button_label: function() { return LabelNames.Previous },
+    required: false,
+
+
+    on_load: function() {
+    console.log("WORD RECALL SETUP")
+
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
     var start_time = performance.now();
     interval = setInterval(function(){
     time_left = wait_time - (performance.now() - start_time);
@@ -22,94 +80,49 @@ var ManualRecallA = {
         // STOP VOICE RECORDING!!!
       }
     }, 250)
-  },*/
-  on_load: function() {console.log("WORD RECALL SETUP")},
-  on_start: function() {
-      console.log("WORD RECALL SETUP")          
-      // reset the list of indices
     },
-
-  pages: [
-    [
-      {
-        type: 'multi-select',
-        prompt: function(){return Instructions.WordRecallPrompt},
-        options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
-        },
-        columns: 3,
-        name: 'ListRecall', 
-      },
-
-      {
-        type: 'text',
-        prompt: function() { return Instructions.IntrusionPrompt },
-        placeholder: '',
-        name: 'Intrusion01', 
-        required: false,
-      }, 
-      {
-        type: 'text',
-        prompt: function() { return Instructions.IntrusionPrompt },
-        placeholder: '',
-        name: 'Intrusion02', 
-        required: false,
-      }, 
-      {
-        type: 'text',
-        prompt: function() { return Instructions.IntrusionPrompt },
-        placeholder: '',
-        name: 'Intrusion03', 
-        required: false,
-      }, 
-    ]
-  ],
-  title: function() { return Instructions.title },//'Word Recall',
-  button_label_next: 'Continue',
-  button_label_back: 'Previous',
-  button_label_finish: function() { return LabelNames.Submit },
-  show_question_numbers: 'off',
-  on_finish: function(data) {
-    HeardList = []
-    userSaidWords = []
-    userSaid = []
-    BlockRecallCount = 0
-    BlockIntrusionCount = 0
-    IntrusionList = []
-
-
-    // Make the output RecallBlock
-    TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
-    // Cycle over the selected words and put them in the correct spots
-    for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
-      var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(data.response.ListRecall[i])
-    	console.log(IndexOfWordRecalled)
-      HeardList.push(data.response.ListRecall[i])
-      TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
-      BlockRecallCount++
-    }
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+    // },
+    on_finish: function(data) {
+      HeardList = []
+      userSaidWords = []
+      userSaid = []
+      BlockRecallCount = 0
+      BlockIntrusionCount = 0
+      IntrusionList = []
+      console.log(data)
+      console.log(data.response[0])
+      console.log(data.response[0].responseValue)
+      console.log(data.response[0].responseValue.length) // This gives the wrong value
+      console.log(WordRecallLists)
+      
+      Responses = data.response[0].responseValue.split(";")
+      // remove any spaces at the beginning or end of the words
+      for ( var i = 0; i < Responses.length; i++ )
+      { Responses[i] = Responses[i].replace(/\s/g, ''); }
+      console.log(Responses)
+      // Make the output RecallBlock
+      TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
+      // Cycle over the selected words and put them in the correct spots
+      for ( var i = 0; i < Responses.length; i++ ) {
+        var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(Responses[i])
+        console.log(IndexOfWordRecalled)
+        HeardList.push(Responses[i])
+        TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+        BlockRecallCount++
+      }
     console.log(BlockRecallCount)
     data.RecallCount = BlockRecallCount
     data.RecallBlock = TempRecall
-
+    console.log(data)
     var NIntrustion = 0
-    if ( data.response.Intrusion01 != "" )
+    for ( var k = 1; k < 4; k++ )
+    if ( data.response[k].responseValue != 0 )
     {
           NIntrustion++
-          IntrusionList.push(data.response.Intrusion01)
-          HeardList.push(data.response.Intrusion01)
-    }
-    if ( data.response.Intrusion02 != "" )
-    {
-          NIntrustion++
-          IntrusionList.push(data.response.Intrusion01)
-          HeardList.push(data.response.Intrusion01)
-    }
-    if ( data.response.Intrusion03 != "" )
-    {
-          NIntrustion++
-          IntrusionList.push(data.response.Intrusion01)
-          HeardList.push(data.response.Intrusion01)
+          IntrusionList.push(data.response[k].responseText)
+          HeardList.push(data.response[k].responseText)
     }
     data.HeardList = HeardList
     data.userSaid = ''
@@ -127,112 +140,397 @@ var ManualRecallA = {
   },
 };
 
+
+// ============== END OF JASON EDITS ============
+// Manual Recall Trial
+
+// var XXManualRecallA = {
+//   type: jsPsychSurvey,
+//   /*title: function() { return '<p><img src="assets/Icons/Recording.gif" alt="microphone" style="width:160px;height:160px;"></p>'+
+//                   Instructions.WordRecallPrompt + '<p><span id="clock">1:00</span></p>' },//'Word Recall',*/
+   
+    
+
+//   on_load: function() {
+//     console.log("WORD RECALL SETUP")
+//     console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
+//     var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+//     var start_time = performance.now();
+//     interval = setInterval(function(){
+//     time_left = wait_time - (performance.now() - start_time);
+//       var minutes = Math.floor(time_left / 1000 / 60);
+//       var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+//       var seconds_str = seconds.toString().padStart(2,'0');
+//       document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+//       if(time_left <= 0){
+//         document.querySelector('#clock').innerHTML = "0:00";
+//         document.querySelector('button').disabled = false;
+//         clearInterval(interval);
+//         // STOP VOICE RECORDING!!!
+//       }
+//     }, 250)
+//   },
+  
+//   on_start: function() {
+//       console.log("WORD RECALL SETUP")          
+//       // reset the list of indices
+//     },
+
+//   survey_json: function() {
+//     console.log("IN PAGES")
+//               console.log(WordRecallLists)
+//           console.log(CreateSimpleWordList(WordRecallLists.WordListA))
+//           console.log(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)))
+
+//     var PPP = {
+
+//       elements: [
+        
+//         {type: "checkbox",
+//         name: "car",
+//         title: Instructions.WordRecallPrompt,
+//         choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)),
+//         colCount: 2,
+//         showNoneItem: true,
+//         showSelectAllItem: false,
+//         name: 'ListRecall'
+
+//         },
+
+
+//       {
+//         type: 'text',
+//         prompt: function() { return Instructions.IntrusionPrompt },
+//         placeholder: '',
+//         name: 'Intrusion01', 
+//         required: false,
+//       }, 
+//       {
+//         type: 'text',
+//         prompt: function() { return Instructions.IntrusionPrompt },
+//         placeholder: '',
+//         name: 'Intrusion02', 
+//         required: false,
+//       }, 
+//       {
+//         type: 'text',
+//         prompt: function() { return Instructions.IntrusionPrompt },
+//         placeholder: '',
+//         name: 'Intrusion03', 
+//         required: false,
+//       }, 
+//     ]
+//   }
+//     console.log(PPP)
+//   return PPP
+
+// },
+  
+//   button_label_next: 'Continue',
+//   button_label_back: 'Previous',
+//   button_label_finish: function() { return LabelNames.Submit },
+//   show_question_numbers: 'off',
+//   on_finish: function(data) {
+//     HeardList = []
+//     userSaidWords = []
+//     userSaid = []
+//     BlockRecallCount = 0
+//     BlockIntrusionCount = 0
+//     IntrusionList = []
+
+
+//     // Make the output RecallBlock
+//     TempRecall = Array.from(Array(WordRecallLists.WordListA.length), _ => -99) //Array(1).fill(-99))
+//     // Cycle over the selected words and put them in the correct spots
+//     for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
+//       var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(data.response.ListRecall[i])
+//     	console.log(IndexOfWordRecalled)
+//       HeardList.push(data.response.ListRecall[i])
+//       TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+//       BlockRecallCount++
+//     }
+//     console.log(BlockRecallCount)
+//     data.RecallCount = BlockRecallCount
+//     data.RecallBlock = TempRecall
+
+//     var NIntrustion = 0
+//     if ( data.response.Intrusion01 != "" )
+//     {
+//           NIntrustion++
+//           IntrusionList.push(data.response.Intrusion01)
+//           HeardList.push(data.response.Intrusion01)
+//     }
+//     if ( data.response.Intrusion02 != "" )
+//     {
+//           NIntrustion++
+//           IntrusionList.push(data.response.Intrusion01)
+//           HeardList.push(data.response.Intrusion01)
+//     }
+//     if ( data.response.Intrusion03 != "" )
+//     {
+//           NIntrustion++
+//           IntrusionList.push(data.response.Intrusion01)
+//           HeardList.push(data.response.Intrusion01)
+//     }
+//     data.HeardList = HeardList
+//     data.userSaid = ''
+//     //data.RecallCount = BlockRecallCount
+//     data.IntrusionList = IntrusionList
+//     data.NIntrusions = NIntrustion
+//     data.task = 'Recall'
+//     data.type = 'A'
+//     BlockCount++
+    
+//     // reset the timer
+//     clearInterval(interval);
+//     console.log(data)
+      
+//   },
+// };
+
 // ==========================================================================
 var ManualRecallB = {
-  type: jsPsychSurvey,  
-  on_start: function() {
-      // reset the list of indices
+    type: jsPsychSurveyHtmlForm,
+    survey_json: function() {
+    const PPP ={
+      showProgressBar: "none",
+      progressBarShowPageNumbers: false,
+      progressBarShowPageTitles: false,
+      showCompletedPage: false,
+      showTitle: true,
+      pages: 
+      [
+        
+        {      
+          title: '<p><span id="clock">1:00</span></p>',
+          elements: [
+            {type: "tagbox",
+            name: "Recall",
+            title: Instructions.WordRecallPrompt,
+            choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB)),
+            name: 'ListRecall',
+            required: false
+            },
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            name: 'Intrusion01', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title:  Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion02', 
+            required: false,
+          }, 
+          {
+            type: 'textarea',
+            title: Instructions.IntrusionPrompt,
+            placeholder: '',
+            name: 'Intrusion03', 
+            required: false,
+          }, 
+        ]
+        }
+  ]
+  }
+  console.log(PPP)
+  return PPP
+    },
+    button_label: function() { return LabelNames.Submit},
+    button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
+    missed_question_label: function() { return LabelNames.missed_question_label},
+    missed_question_text: function() { return LabelNames.missed_question_text},
+    next_button_label: function() { return LabelNames.Submit },
+    previous_button_label: function() { return LabelNames.Previous },
+    required: false,
+
+
+    on_load: function() {
+    console.log("WORD RECALL SETUP")
+
+    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+    var start_time = performance.now();
+    interval = setInterval(function(){
+    time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+      if(time_left <= 0){
+        document.querySelector('#clock').innerHTML = "0:00";
+        document.querySelector('button').disabled = false;
+        clearInterval(interval);
+        // STOP VOICE RECORDING!!!
+      }
+    }, 250)
+    },
+        //console.log(document.getElementById("jspsych-progressbar-container"))
+        //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+    // },
+    on_finish: function(data) {
       HeardList = []
+      userSaidWords = []
+      userSaid = []
       BlockRecallCount = 0
       BlockIntrusionCount = 0
-    },
-  pages: [
-    [
-      {
-        type: 'multi-select',
-        prompt: function(){
-          var stim = 'Which words were recalled?'
-          return stim }, 
-        options:  function() {
-          return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB))
-        },
-        columns: 3,
-        name: 'ListRecall', 
-      },
-
-      {
-        type: 'text',
-        prompt: "Intrusion?", 
-        placeholder: '',
-        name: 'Intrusion01', 
-        required: false,
-      }, 
-      {
-        type: 'text',
-        prompt: "Intrusion?", 
-        placeholder: '',
-        name: 'Intrusion02', 
-        required: false,
-      }, 
-      {
-        type: 'text',
-        prompt: "Intrusion?", 
-        placeholder: '',
-        name: 'Intrusion03', 
-        required: false,
-      }, 
-    ]
-  ],
-  title: 'Word Recall',
-  button_label_next: 'Continue',
-  button_label_back: 'Previous',
-  button_label_finish: 'Submit',
-  show_question_numbers: 'off',
-  on_finish: function(data) {
-    HeardList = []
-    userSaidWords = []
-    userSaid = []
-    BlockRecallCount = 0
-    BlockIntrusionCount = 0
-    IntrusionList = []
-
-
-    // Make the output RecallBlock
-    TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
-    // Cycle over the selected words and put them in the correct spots
-    for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
-      var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(data.response.ListRecall[i])
-    	console.log(IndexOfWordRecalled)
-      HeardList.push(data.response.ListRecall[i])
-      TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
-      BlockRecallCount++
-    }
+      IntrusionList = []
+      console.log(data)
+    console.log(data.response[0])
+    console.log(data.response[0].responseValue)
+      console.log(data.response[0].responseValue.length)
+      console.log(WordRecallLists)
+      
+      Responses = data.response[0].responseValue.split(";")
+      // remove any spaces at the beginning or end of the words
+      for ( var i = 0; i < Responses.length; i++ )
+      { Responses[i] = Responses[i].replace(/\s/g, ''); }
+      console.log(Responses)
+      // Make the output RecallBlock
+      TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
+      // Cycle over the selected words and put them in the correct spots
+      for ( var i = 0; i < Responses.length; i++ ) {
+        var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(Responses[i])
+        console.log(IndexOfWordRecalled)
+        HeardList.push(Responses[i])
+        TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+        BlockRecallCount++
+      }
     console.log(BlockRecallCount)
     data.RecallCount = BlockRecallCount
     data.RecallBlock = TempRecall
-
-      var NIntrustion = 0
-      if ( data.response.Intrusion01 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      if ( data.response.Intrusion02 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      if ( data.response.Intrusion03 != "" )
-      {
-            NIntrustion++
-            HeardList.push(data.response.Intrusion01)
-      }
-      //data.RecallList = WordListIndex
-      
-      data.HeardList = HeardList
-      data.userSaid = ''
-      //data.RecallCount = BlockRecallCount
-      data.IntrusionList = IntrusionList
-      data.NIntrusions = NIntrustion
-      data.task = 'Recall'
-      data.type = 'B'
-      BlockCount++
-      // reset the timer
-      clearInterval(interval);
       console.log(data)
+    var NIntrustion = 0
+    for ( var k = 1; k < 4; k++ )
+    if ( data.response[k].responseValue != 0 )
+    {
+          NIntrustion++
+          IntrusionList.push(data.response[k].responseText)
+          HeardList.push(data.response[k].responseText)
+    }
+    data.HeardList = HeardList
+    data.userSaid = ''
+    //data.RecallCount = BlockRecallCount
+    data.IntrusionList = IntrusionList
+    data.NIntrusions = NIntrustion
+    data.task = 'Recall'
+    data.type = 'B'
+    BlockCount++
+    
+    // reset the timer
+    clearInterval(interval);
+    console.log(data)
       
   },
-};
+}; 
+
+
+//var ManualRecallB = {}
+//   type: jsPsychSurvey,  
+//   on_start: function() {
+//       // reset the list of indices
+//       HeardList = []
+//       BlockRecallCount = 0
+//       BlockIntrusionCount = 0
+//     },
+//   pages: [
+//     [
+//       {
+//         type: 'multi-select',
+//         prompt: function(){
+//           var stim = 'Which words were recalled?'
+//           return stim }, 
+//         options:  function() {
+//           return MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListB))
+//         },
+//         columns: 3,
+//         name: 'ListRecall', 
+//       },
+// /*
+//       {
+//         type: 'text',
+//         prompt: "Intrusion?", 
+//         placeholder: '',
+//         name: 'Intrusion01', 
+//         required: false,
+//       }, 
+//       {
+//         type: 'text',
+//         prompt: "Intrusion?", 
+//         placeholder: '',
+//         name: 'Intrusion02', 
+//         required: false,
+//       }, 
+//       {
+//         type: 'text',
+//         prompt: "Intrusion?", 
+//         placeholder: '',
+//         name: 'Intrusion03', 
+//         required: false,
+//       }, */
+//     ]
+//   ],
+//   title: 'Word Recall',
+//   button_label_next: 'Continue',
+//   button_label_back: 'Previous',
+//   button_label_finish: 'Submit',
+//   show_question_numbers: 'off',
+//   on_finish: function(data) {
+//     HeardList = []
+//     userSaidWords = []
+//     userSaid = []
+//     BlockRecallCount = 0
+//     BlockIntrusionCount = 0
+//     IntrusionList = []
+
+
+//     // Make the output RecallBlock
+//     TempRecall = Array.from(Array(WordRecallLists.WordListB.length), _ => -99) //Array(1).fill(-99))
+//     // Cycle over the selected words and put them in the correct spots
+//     for ( var i = 0; i < data.response.ListRecall.length; i++ ) {
+//       var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(data.response.ListRecall[i])
+//     	console.log(IndexOfWordRecalled)
+//       HeardList.push(data.response.ListRecall[i])
+//       TempRecall[WordListBForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
+//       BlockRecallCount++
+//     }
+//     console.log(BlockRecallCount)
+//     data.RecallCount = BlockRecallCount
+//     data.RecallBlock = TempRecall
+
+//       var NIntrustion = 0
+//       if ( data.response.Intrusion01 != "" )
+//       {
+//             NIntrustion++
+//             HeardList.push(data.response.Intrusion01)
+//       }
+//       if ( data.response.Intrusion02 != "" )
+//       {
+//             NIntrustion++
+//             HeardList.push(data.response.Intrusion01)
+//       }
+//       if ( data.response.Intrusion03 != "" )
+//       {
+//             NIntrustion++
+//             HeardList.push(data.response.Intrusion01)
+//       }
+//       //data.RecallList = WordListIndex
+      
+//       data.HeardList = HeardList
+//       data.userSaid = ''
+//       //data.RecallCount = BlockRecallCount
+//       data.IntrusionList = IntrusionList
+//       data.NIntrusions = NIntrustion
+//       data.task = 'Recall'
+//       data.type = 'B'
+//       BlockCount++
+//       // reset the timer
+//       clearInterval(interval);
+//       console.log(data)
+      
+//   },
+// };
 
 // ==========================================================================
 var SpokenRecallA = {

@@ -112,23 +112,45 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             html += '<div id="tableInstructions" class="QuestionnaireInstructions">'
             html += trial.survey_json.elements[0].title
             html += '</div>'
+            html += '<div class="QuestionnaireInstructions">'
+            html += trial.survey_json.elements[0].description
+            html += '</div>'
             html += '</div>'
             html += '<div class="tableFixedHead">'
-                html += '<table class="tableMatrix">'
+                html += '<table class="tableMatrix" id="tableMatrix">'
                     html += '<thead id = "tableHeader">'
                     html += '<th></th>'
                     for ( let i = 0; i < trial.survey_json.elements[0].columns.length; i++ ) {
                     
-                        html += '<th class="headerLabels" id=col_'+i+'>'+trial.survey_json.elements[0].columns[i]['text']+'</th>'
+                        html += '<th class="headerLabels" id=col_'+i+' value="'+trial.survey_json.elements[0].columns[i]['value']+'">'+trial.survey_json.elements[0].columns[i]['text']+'</th>'
                     }
                     html += '</thead>'
                     html += '<tbody id = "tableBody">'
                     for ( let i =0; i < trial.survey_json.elements[0].rows.length; i++ ) {
-                        console.log(i)
-                        html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
+                        console.log(trial.survey_json.elements[0].rows[i]['value'])
+                        html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'" class="matrixRow"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
                         // The 'name' for an input row makes all inputs with the same name exclusive of each other
+                        
+                        var AreThereOptions = (trial.survey_json.elements[0].rows[i].options != undefined)
+                        var Str = ''
                         for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
-                            html += '<td><input type="radio" class="sd-item__decorator" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            html += '<td><input type="radio" class="sd-item__decorator radioBtn" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            if ( AreThereOptions )
+                            {
+                                Str = ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'; '
+                                Str += ""+trial.survey_json.elements[0].rows[i].options.answer+"; "
+                                for ( var k = 0; k < trial.survey_json.elements[0].rows[i].options.options.length; k++ )
+                                { 
+                                    Str += ""+trial.survey_json.elements[0].rows[i].options.options[k]+""
+                                    if ( k < trial.survey_json.elements[0].rows[i].options.options.length-1 )
+                                    { Str += ", "}
+                                }
+                                Str += '\') "'
+                                
+                            }
+                            console.log(Str)
+                             //html += ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'\')" '
+                             html += Str
                             /*if (trial.required) {
                                html += ' required ';
                             }*/
@@ -160,6 +182,8 @@ var jsPsychSurveyMatrix = (function (jspsych) {
           html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
           html += "</tr></table>";
           html += '</div>'
+
+
           display_element.innerHTML = html;
         
          display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
@@ -183,73 +207,74 @@ var jsPsychSurveyMatrix = (function (jspsych) {
             var elmts = display_element.querySelectorAll("tr");
             // how many columns
             var cols = display_element.querySelectorAll("th")
+            console.log(cols)
+            var cols = document.getElementsByClassName('headerLabels')
+            const rows = display_element.getElementsByClassName('matrixRow')
             
-            var NCols = cols.length
-            console.log("Ncols: "+NCols)
-            // how many rows
-            var NRows = elmts.length;
-            // make a list of row names
-            var rowNames = []
-            var rowPrompts = []
-            var labels = display_element.querySelectorAll('item_label')
-            var labels = document.getElementsByClassName('item_label')
-            console.log(labels)
-            for ( var i = 0; i < NRows-2; i++ ) {
-                console.log(labels[i])
-            rowPrompts.push(labels[i].innerHTML)
-            }
-            for ( var i = 1; i < NRows-1; i++ ) {
-                rowNames.push(elmts[i].id)
-            }
-            console.log("Row Names: "+rowNames)
-            console.log("Row Prompts: "+rowPrompts)
-            // cycle over rows, start from the second column, thereby ignoring the row labels
-            // extract the form
-            var FF = display_element.querySelectorAll("#jspsych-survey-matrix-form")
-            var thisForm = FF[0]
-            
-            for ( var i = 0; i < NRows-2; i++ ) {
-                var SelectionMade = -99
-                var SelectionMadeInRow = false
-                // cycle over columns
-                for ( var j = 0; j < NCols-1; j++ ) {
-                    // check to see if a selection was made in this row 
-                    
-                    if ( thisForm[rowNames[i]][j].checked ) {
-                        SelectionMadeInRow = true
-                        SelectionMade = j
-                        break
-                    }
-                
-                }
-                
-                console.log(cols[1].text)
-                console.log(SelectionMade)
-                //console.log(cols[2].innerHTML)
-                //console.log(rowNames[i]+", "+rowPrompts[i]+", Selection: "+SelectionMade+", "+cols[SelectionMade].innerHTML)
-    //            obje[rowNames[i]] = SelectionMade
-    //           obje[rowPrompts[i]] = cols[SelectionMade].innerHTML
+            for ( var k = 0; k < rows.length; k++ )
+            {
                 var this_question_data = {}
-                this_question_data.name = rowNames[i]
-                this_question_data.label = rowPrompts[i]
-                
-                // add check here
-                console.log("Selection made: "+SelectionMade)
-                if ( SelectionMade != -99 )
+                const currentRow = rows[k]
+                // is there a row lable?
+                var rowLabels = rows[k].getElementsByClassName('item_label')
+                if (rowLabels.length > 0 )
                 { 
-                    this_question_data.responseValue = trial.survey_json.elements[0].columns[SelectionMade].value
-                    // The plus one is because the first column contains the prompts
-                    this_question_data.responsePrompt = cols[SelectionMade+1].innerHTML
+                    // Regular question
+                    // what was selected?
+                    const radios = document.getElementsByName(rows[k].id)
+                    let selectedValue;
+                    for (let i = 0; i < radios.length; i++) {
+                        if (radios[i].checked) {
+                            selectedValue = i;
+                            break; // Exit the loop once the checked button is found
+                        }
+                    }
+                    console.log("Question Number: "+k)
+                    console.log(rowLabels[0])
+                    console.log(selectedValue)
+                    this_question_data.label = rowLabels[0].innerHTML
+                    this_question_data.name = rows[k].id
+                    if ( selectedValue != undefined )
+                    { 
+                        this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
+                        this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
+                    }
+                    else // no response
+                    {
+                        this_question_data.responseValue = -99
+                        this_question_data.responsePrompt = 'NA'
+                    }
+
                 }
                 else 
-                { 
-                    this_question_data.responseValue = -99 
-                    this_question_data.responsePrompt = 'NA'
-                }
+                {
+                    // get the div name for this extra question
+                    const e = currentRow.getElementsByClassName('div-extraMatrixQuestion')
+                    this_question_data.name = e[0].id
+                    const currentId = e[0].id
+                    const radios = document.getElementsByName(currentId)
                 
+                    let selectedValue;
+                    for (let i = 0; i < radios.length; i++) {
+                        if (radios[i].checked) {
+                            selectedValue = i;
+                            break; // Exit the loop once the checked button is found
+                        }
+                    }
+                    this_question_data.responsePrompt = 'NA'
+                    this_question_data.responseValue = selectedValue
+                    // get the labels 
+                    if ( selectedValue != undefined )
+                    { this_question_data.label = e[0].getElementsByClassName('label-extraMatrixQuestion')[selectedValue].innerHTML }
+
+                }
                 
                 question_data.push(this_question_data)
-                }
+            }
+            console.log(question_data)
+                
+             
+                
                 // measure response time
                 var endTime = performance.now();
                 var response_time = Math.round(endTime - startTime);
@@ -323,8 +348,74 @@ var jsPsychSurveyMatrix = (function (jspsych) {
 
 })(jsPsychModule);
 
-
-
+function ModifyOnChange(input)
+{
+    console.log("CHANGE")
+    console.log(input)
+    inputSplit = input.split(';') 
+    console.log(inputSplit)
+    inputOptionSplit = inputSplit[2].split(',')
+    var eTable = document.getElementById("tableMatrix")
+    
+    var eRow = document.getElementById(inputSplit[0])
+    eCells = eRow.getElementsByClassName("radioBtn")
+    elabels = eRow.getElementsByClassName('item_label')
+    var row_id = inputSplit[0]+"p1"
+    for ( var k = 0; k < eCells.length; k++ )
+    {
+        if (eCells[k].checked)
+        {
+            // what is the text label
+            // Compare the seelcted response to the option. Remove any spaces
+            if (eTable.getElementsByClassName("headerLabels")[k].innerHTML == inputSplit[1].replace(/\s/g, ''))
+            {
+                console.log("YES YES YES")
+                var row = eTable.insertRow(eRow.rowIndex + 1)
+                row.classList.add("matrixRow"); //
+                var cell1 = row.insertCell(0)
+                var cell2 = row.insertCell(1)
+                var cell3 = row.insertCell(2)
+                console.log(row)
+                
+                var Str = ''
+                //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+                Str += '<div class="div-extraMatrixQuestion" id = "'+row_id+'"><input type="radio" class="extraMatrixQuestion" name="'+row_id+'">'
+                Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'01">'+inputOptionSplit[0]+"</label>"
+                Str += '</input><input type="radio" class="extraMatrixQuestion" name="'+row_id+'">'
+                Str += '</input>'
+                Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'02">'+inputOptionSplit[1]+"</label>"
+                Str += '</div>'
+                cell1.innerHTML = Str
+                console.log(row)
+                
+            }
+            else {
+                console.log(row_id)
+                var extraRow = document.getElementById(row_id)
+                console.log(extraRow)
+                if ( extraRow )
+                { extraRow.remove() }
+            }
+        }
+    }
+    console.log(eCells)
+    console.log(eCells[0].value)
+    
+ /*   var row = eTable.insertRow(eRow.rowIndex + 1)
+    var cell1 = row.insertCell(0)
+    var cell2 = row.insertCell(1)
+    var cell3 = row.insertCell(2)
+    console.log(row)
+    row.id = input+"p1"
+    var Str = ''
+    //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+    Str += '<div class="extraMatrixQuestion"><input type="radio">YES</input><input type="radio">NO</input></div>'
+    cell1.innerHTML = Str
+    
+    console.log(eRow.rowIndex)
+    */
+						
+}
 function InternalValidateForm(form) {
     console.log("VALIDATING FORM")
     console.log(form)
@@ -342,21 +433,26 @@ function InternalValidateForm(form) {
         
         NCols = cols.length
         console.log("Ncols: "+NCols)
-        // how many rows
-        NRows = elmts.length;
         // make a list of row names
         var rowNames = []
         var rowPrompts = []
         labels = document.getElementsByClassName('item_label')
-        for ( var i = 0; i < NRows-2; i++ ) {
+        // how many rows
+        NRows = labels.length;
+
+        console.log(labels)
+        console.log("There are # rows: "+NRows)
+        for ( var i = 0; i < NRows-1; i++ ) {
+            console.log(i)
+            console.log(labels[i])
             rowPrompts.push(labels[i].innerHTML)
         }
-        for ( var i = 1; i < NRows-1; i++ ) {
+        for ( var i = 1; i < NRows; i++ ) {
             rowNames.push(elmts[i].id)
         }
-
+        console.log(rowNames)
         // cycle over rows, start from the second column, thereby ignoring the row labels
-        for ( var i = 0; i < NRows-2; i++ ) {
+        for ( var i = 0; i < NRows-1; i++ ) {
             // Reset the background colors 
             document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
             var SelectionMadeInRow = false

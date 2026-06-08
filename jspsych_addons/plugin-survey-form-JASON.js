@@ -1,8 +1,8 @@
-var AllQuestionsValid = false
 
+var currentTab = 0
 var jsPsychSurveyHtmlForm = (function (jspsych) {
   'use strict';
-    
+
   const info = {
       name: "survey-html-form",
       parameters: {
@@ -25,16 +25,28 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               default: null,
           },
           /** Label of the button to submit responses. */
-          button_label: {
+          submit_button_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button label",
-              default: "Continue",
+              default: "Submit",
           },
           /** Label on the popup when a question is missed. */
           missed_question_label: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid check",
               default: "Please select an item",
+          },
+        /** Label on the popup when a question is missed. */
+          next_button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Next",
+          },
+                    /** Label on the popup when a question is missed. */
+          previous_button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Previous",
           },
           /** Label next to submit button when a question is missed. */
           missed_question_text: {
@@ -79,78 +91,153 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
    */
   class SurveyHtmlFormPlugin {
       constructor(jsPsych) {
-          this.jsPsych = jsPsych;
+        this.jsPsych = jsPsych;
+        currentTab = 0
       }
         
 
       trial(display_element, trial) {
 
           var html = "";
-        html += "JASON"
         html += '<form id="regForm">'
   
 
 
 // ====================
+
 var NPages = trial.survey_json.pages.length
+// These are the progress dots
+console.log(trial)
+    if ( trial.survey_json.showProgressBar == 'top')
+        {  html += MakeProgressBar(trial) }
 
-html += `<div style="text-align:center;margin-top:40px;">`
-  for ( var j = 0; j < NPages; j++ )
-    { html += `<span class="step"></span>`} 
-  html += "</div>"
-
-var VisibleIfConditionsPages = []
-          
-          console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
-          //var AllQuestionsValid
-          for ( var page = 0; page < NPages; page++ ) {
-                var VisibleIfConditions = []
-                var NQuestions = trial.survey_json.pages[page].elements.length
-                for ( var i = 0; i < NQuestions; i++ ) {
-                    var thisQ = {}
-                    var thisQuestion = trial.survey_json.pages[page].elements[i]
-                    if ( thisQuestion.visibleIf ) {
-                        // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
-                        var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
-                        Str = 'style="display: none"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                        // decode the visible if condition
-                        var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
-                        var ThisQuestionIsConditionalOn = matches[1]
-                        // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
-                        // Find this question and edit it
-                        let obj = VisibleIfConditions.find((o, index) => 
-                            {
-                                if (o.name === ThisQuestionIsConditionalOn) {
-                                    // Now that we found the question that the current question is conditional ON
-                                    // we need to find what the condition is. If that condition is met, then make the
-                                    // set the onChange function to make this question visible.
-                                    // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
-                                    VisibleIfConditions[index]['onChangeQuestion'] = thisQuestion.name
-                                    VisibleIfConditions[index]['onChangeCondition'] = ConditionToMeet.trim()
-                                    return true;
-                                }
-                            })
-                    } 
-                    else {
-                        var Str = 'style="display: visible"'
-                        thisQ['div'] = Str
-                        thisQ['name'] = thisQuestion.name
-                    }
-                    VisibleIfConditions.push(thisQ)
-                }
-                VisibleIfConditionsPages.push(VisibleIfConditions)
+    var VisibleIfConditionsPages = []
+    
+    console.log("==== REVIEWING QUESTIONS FOR VISIBILITY ==== ")
+    // var AllQuestionsValid
+    // THERE IS AN ISSUE WITH CREATING THE VISIBILITY CONDITIONS WHEN THERE IS AN OR FOR THE RESPONSES
+    var VisibleIfConditionsPages = []
+    for ( var page = 0; page < NPages; page++ ) {
+    var VisibleIfConditions = []
+        
+        var NQuestions = trial.survey_json.pages[page].elements.length
+        console.log("Number of questions: "+NQuestions)
+        // cycle over each question
+        for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQ = {}
+            var TEST = {}
+            var thisQuestion = trial.survey_json.pages[page].elements[i]
+            // console.log(thisQuestion)
+            if ( thisQuestion.visibleIf ) {
+                
+                
+                // https://stackoverflow.com/questions/29830628/how-to-regex-after-equal-sign
+                var ConditionToMeet = thisQuestion.visibleIf.split("==")[1]
+                Str = 'style="display: none"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                TEST['div'] = Str
+                TEST['name'] = thisQuestion.name
+                TEST['visibleClass'] = 'non-visible'
             }
+            else {
+                var Str = 'style="display: visible"'
+                thisQ['div'] = Str
+                thisQ['name'] = thisQuestion.name
+                TEST['div'] = Str
+                TEST['name'] = thisQuestion.name
+                TEST['visibleClass'] = 'visible'
+            }
+            
+            VisibleIfConditions.push(TEST)
+        }
+        console.log(VisibleIfConditions)
+        for ( var i = 0; i < NQuestions; i++ ) {
+            var thisQuestion = trial.survey_json.pages[page].elements[i]
+            //console.log(thisQuestion)
+            if ( thisQuestion.visibleIf ) {
+                // decode the visible if condition
+                //console.log(thisQuestion.visibleIf)
+                
+                var MultipleConditions = thisQuestion.visibleIf.split(";")
+                var CondMatches = []
+                for ( var k = 0; k < MultipleConditions.length; k++ )
+                { 
+                  //  console.log(MultipleConditions[k].split("==")[1])
+                    CondMatches.push(MultipleConditions[k].split("==")[1].trim())
+                }
+                //console.log(CondMatches) // These are the responses
+                //console.log(ConditionToMeet)
+                var matches = thisQuestion.visibleIf.match(/\{(.*?)\}/);
+                var ThisQuestionIsConditionalOn = matches[1] // The question name
+                //console.log("CURRENT QUESTION: "+thisQuestion.name)
+                //console.log('QUESTION CONDITIONAL ON:'+matches[1])
+
+                //console.log(ThisQuestionIsConditionalOn)
+                //console.log("RESPONSES: "+CondMatches)
+            
 
 
-var Str = ''
-          console.log("==== PREPARING THE HTML ====")
+                // thisQuestion.name is VISIBLE if  ThisQuestionIsConditionalOn is changed to be ConditionToMeet
+                // Find this question and edit it
+                let obj = VisibleIfConditions.find((o, index) => 
+                    {
+                        
+                        if (o.name === ThisQuestionIsConditionalOn) {
+                            
+                            
+                            // Now that we found the question that the current question is conditional ON
+                            // we need to find what the condition is. If that condition is met, then make the
+                            // set the onChange function to make this question visible.
+                            // This could look like onChange(this, "the selected value to define the condition is met", the Question ID to make visible)
+                            
+                            // Find the index for this option
+                            
+                            // console.log('THIS QUESTION: '+thisQuestion.name)
+                            // console.log("The index is: "+index) // This is the index of the question with the conditions
+                            // Are the om change responses added to this qieston yet?
+                            if ( !('onChangeResponses' in VisibleIfConditions[index] ))
+                            { 
+                                VisibleIfConditions[index]['onChangeResponses'] = []
+                                VisibleIfConditions[index]['onChangeQuestions'] = []
+                            }
+                            let CondIndex
+                            for ( var k = 0; k < CondMatches.length; k++ )
+                            {
+                                if (!( VisibleIfConditions[index]['onChangeResponses'].includes(CondMatches[k])))
+                                {
+                                    VisibleIfConditions[index]['onChangeResponses'].push(CondMatches[k])
+                                    // console.log("CURRENT COND: "+CondMatches[k])
+                                    // console.log("CURRENT QUESTION: "+thisQuestion.name)
+                                    // need to add the questions to the arrays
+                                    // What is the index of this response?
+                                    CondIndex = VisibleIfConditions[index]['onChangeResponses'].indexOf(CondMatches[k])
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex] = []
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex].push(thisQuestion.name)
+                                }
+                                else { 
+                                    // console.log("CURRENT QUESTION: "+thisQuestion.name)
+                                    CondIndex = VisibleIfConditions[index]['onChangeResponses'].indexOf(CondMatches[k])
+                                    VisibleIfConditions[index]['onChangeQuestions'][CondIndex].push(thisQuestion.name)
+                                }
+                                // console.log("Cond Index: "+ CondIndex)
+                            }                            
+                        }
+                    })
+            }
+        }
+        VisibleIfConditionsPages.push(VisibleIfConditions)
+    }
+    
+        console.log(VisibleIfConditionsPages)
+        var Str = ''
+        
             for ( var page = 0; page < NPages; page++ ) {
-                console.log(trial.survey_json.pages[page])
+                //console.log(trial.survey_json.pages[page])
                 var NQuestions = trial.survey_json.pages[page].elements.length
                 Str += '<div class="tab">'
-                Str += trial.survey_json.pages[page].title
+                if ( trial.survey_json.showTitle )
+                { Str += '<h1>'+trial.survey_json.pages[page].title+'</h1>' }
 
 
                 for ( var i = 0; i < NQuestions; i++ ) {
@@ -158,17 +245,181 @@ var Str = ''
                     //console.log("VISIBLE: "+VisibleIfConditionsPages[page][i].div)
                     var thisQuestion = trial.survey_json.pages[page].elements[i]
                     // process dropdown questions
-                    //console.log(thisQuestion)
+                    //
                     switch(thisQuestion.type) {
+                        case 'description':
+                            console.log(" -------- DESCRIPTION --------- ")
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDescription">'
+                            for ( var k = 0; k < thisQuestion.text.length; k++ )
+                            { 
+                                Str += '<div>'
+                                Str += thisQuestion.text[k].text 
+                                Str += '</div>'
+                            }
+                            Str += '</div>'
+                            Str += '<hr>'
+                            break;
+
+                        case 'tagbox':
+                            Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" id="'
+                                Str += 'div-'+thisQuestion.name+'">'
+                                Str += '<fieldset class="FormInput TagBox" id="'+thisQuestion.name+'">'
+                                    Str += '<legend class="surveyFormLabel">'
+                                        Str += thisQuestion.title
+                                    Str += '</legend>'
+                                    Str += '<div class="TagBoxColumn">'
+                                        for ( var k = 0; k < thisQuestion.choices.length; k++ )
+                                        { 
+                                            Str += '<label class="TagBoxInputWrapper">'
+                                            Str += '<input class="TagBoxInput" type="checkbox"'
+                                            Str += 'name="choice-'+thisQuestion.name+'[]"'
+                                            Str += ' value="'+thisQuestion.choices[k]+'"/>'
+                                            Str += '<span class="tagBoxLabel">'+thisQuestion.choices[k]+'</span>'
+                                            Str += '</label>'
+                                        }
+                                    Str += '</div>'
+                                Str += '</fieldset>'
+                            Str += '</div>'
+                            break
+                        case 'tagboxS':
+                            console.log("====== TAG BOX TAG BOX TAG BOX ==========")
+                            Str += '<div class="surveyFormTagBox FormInput surveyFormDiv" '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str+='<fieldset class="FormInput TagBox '+VisibleIfConditionsPages[page][i].visibleClass+'" id = "'+thisQuestion.name+'">'
+                                Str += '<legend class="surveyFormLabel">'+thisQuestion.title+'</legend>'
+                                for ( var k = 0; k < thisQuestion.choices.length; k++ )
+                                { 
+                                    Str += '<div class="TagBoxColumn">'
+                                    Str += '<div class="TagBoxInputWrapper">'
+                                    Str += '<input class="TagBoxInput" type="checkbox" id="'+thisQuestion.name+'" name="choice-'+thisQuestion.name+'" value="'+thisQuestion.choices[k]+'" />'
+                                    Str += '<label for="coding" class="tagBoxLabel">'+thisQuestion.choices[k]+'</label>'
+                                    Str += '</div>'
+                                }                                
+                            Str += '</fieldset>'
+                            Str += '</div>'
+                            console.log(thisQuestion)
+                            break;
                         case 'dropdown':
                             console.log("========= DROPDOWN QUESTION ==========")
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDiv surveyFormDropDown '+VisibleIfConditionsPages[page][i].visibleClass
+                            // Is this a required question?
+                            if ( thisQuestion.isRequired )
+                            { Str += " Required" }
+                            else { Str += " Not-Required" }
+                            Str += '" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
 
-                            Str += '<select class="surveyFormSelect"'
+                            // the visible class is used to only use visible questions when validating 
+                            // the form.
+                            console.log(VisibleIfConditionsPages[page][i])
+                            if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
+                                console.log('=== VISIBLE IF CONDITION ===')
+                                console.log(VisibleIfConditionsPages[page][i])
+                                Str += '<select class="surveyFormSelect FormInput dropdown '
+                                // May need to enter required/no-required here
+                                if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                                Str += '"'
+                                //Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
+                                var TTT = {}
+                                
+                                var SSS = ''
+                                SSS += 'onChange="ModifyOnChange(`'+thisQuestion.name+';;'
+                                TTT.name = thisQuestion.name
+                                TTT.TriggerResponse = []
+                                console.log(TTT)
+                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeResponses.length; k++ )
+                                { 
+                                    if ( k > 0 ){ SSS += ',' }
+                                    console.log(SSS)
+                                    console.log(VisibleIfConditionsPages[page][i].onChangeResponses[k]  )
+                                    console.log(SSS.search(VisibleIfConditionsPages[page][i].onChangeResponses[k]))
+                                    SSS += VisibleIfConditionsPages[page][i].onChangeResponses[k]  
+                                    TTT.TriggerResponse.push(VisibleIfConditionsPages[page][i].onChangeResponses[k]  )
+                                }
+                                SSS += ';;'
+                                // cycle over array of arrays
+                                // cycle over responses
+                                
+                                for ( var k = 0; k < VisibleIfConditionsPages[page][i].onChangeQuestions.length; k++ )
+                                { 
+                                     if ( k > 0 ){ SSS += ';' }
+                                    // cycle over the questions related to each response
+                                    for ( var m = 0; m < VisibleIfConditionsPages[page][i].onChangeQuestions[k].length; m++ )
+                                    {
+                                         if ( m > 0 ){ SSS += ',' }
+                                        SSS += VisibleIfConditionsPages[page][i].onChangeQuestions[k][m]
+                                    }
+                                    
+                                }
+                                SSS += '`)'
+                                //+VisibleIfConditionsPages[page][i].onChangeQuestion+','+VisibleIfConditionsPages[page][i].onChangeCondition+')" '                     
+                                console.log(SSS)
+                                console.log(TTT)
+                                Str += SSS
+                                //console.log(BREAK)
+                            }
+                            else { 
+                                Str += '<select class="surveyFormSelect FormInput  ' 
+                                if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                                Str += '"'
+                            }
+                            // only set the visible questions to be required
+                            //if ( ! thisQuestion.visibleIf ) {
+                            //    Str += ' required '
+                            //}
+                            Str += '"name="'+thisQuestion.name+'" id="'+thisQuestion.name+'" '
+                            Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                            Str += ' onChange=ShowOther("'+thisQuestion.name+'") '
+                            Str += '>'
+                            if (Object.hasOwn(thisQuestion,'choicesMin'))
+                            {
+                                // need to add functionaility to create all choices between the min and max values
+                                console.log("FOUND MIN")
+                                console.log(thisQuestion)
+                                var NChoices = thisQuestion.choicesMax - thisQuestion.choicesMin
+                                Str += '<option disabled selected value> -- </option>'
+                                var CurrentValue = -99
+                                for ( var j = 0; j < NChoices + 1; j++ )
+                                {
+                                    CurrentValue = thisQuestion.choicesMin + j
+                                    Str += '<option value="'+CurrentValue+'">'+CurrentValue+'</option>'
+                                }
+                            }
+                            else {
+                                console.log(thisQuestion)
+                                var NChoices = thisQuestion.choices.length
+                                // add default/blank option
+                                Str += '<option disabled selected value> -- </option>'
+                                for ( var j = 0; j < NChoices; j++ ) {
+                                    //console.log("The choices are: "+thisQuestion.choices[j])
+                                    Str += '<option value="'+thisQuestion.choices[j].value+'">'+thisQuestion.choices[j].text+'</option>'
+                                }
+                                if ( thisQuestion.showOtherItem == true )
+                                { 
+                                    console.log("NEED to show other ")
+                                    console.log(LabelNames)
+                                    Str += '<option value="9999">'+LabelNames.Other+'</option>'
+                                }
+                            }
+                            Str += '</select></div><hr>'
+
+                            break;
+                        
+                        case 'radioXXXgroup':
+                            console.log("========= RADIOGROUP QUESTION ==========")
+                            Str += '<div class="surveyFormDiv surveyFormRadioGroup" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
+
+                            // the visible class is used to only use visible questions when validating 
+                            // the form.
                             if ( VisibleIfConditionsPages[page][i].onChangeCondition ) {
+                                Str += '<select class="surveyFormSelect FormInput visible"'
                                 Str += 'onChange="ModifyOnChange(\''+thisQuestion.name+'___'+VisibleIfConditionsPages[page][i].onChangeQuestion+'___'+VisibleIfConditionsPages[page][i].onChangeCondition+'\')" '                     
                             }
+                            else { Str += '<select class="surveyFormSelect FormInput"' }
                             // only set the visible questions to be required
                             //if ( ! thisQuestion.visibleIf ) {
                             //    Str += ' required '
@@ -192,7 +443,8 @@ var Str = ''
                             Str += '</select></div><hr>'
 
                             break;
-                        
+
+                        // =====
                         case 'radiogroup':
                             console.log("========= RADIO GROUP QUESTION ==========") 
                             Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
@@ -207,22 +459,54 @@ var Str = ''
                             for ( var j = 0; j < NChoices; j++ )
                             {
                                 Str += '<div class radioGroupWrapper>'
-                                Str += '<input type="radio"  class="sd-item__decorator radiogroup" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
+                                // NOTE: radio group does not handle conditional questions
+                                Str += '<input type="radio"  class="sd-item__decorator radiogroup FormInput visible'
+                                if ( thisQuestion.isRequired ) 
+                                { Str += ' Required ' }     
+                                Str += '" id="'+thisQuestion.name+'" name="'+thisQuestion.name+'" value="'+thisQuestion.choices[j].value +'" '
                             Str += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
                             Str += '>' 
-                            Str += '<label for="thisQuestion.name'+'_'+j+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
+                            Str += '<label for="'+thisQuestion.name+'_'+thisQuestion.choices[j].value+'" class="surveyFormResponseLabel">' + thisQuestion.choices[j].text+'</label></br>'
                             Str += '</div>'
                             }
                             
                             Str += '</div></div><hr>'
                             break;
-                        case 'text':
-                            console.log(thisQuestion.name)
-                            Str += '<div class="surveyFormDiv" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
-                            Str += '<div class="surveyFormTitle" id="div-'+thisQuestion.name+'">'
+                        case 'textarea':
+                            console.log("========= TEXT QUESTION ==========")     
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
-                            Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><textarea class="textInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            // Add required class
+                            if ( thisQuestion.isRequired )
+                            { Str += ' Required ' }
+                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%" id="'+thisQuestion.name+'"></textarea>'
                             Str += '</div><hr>'
+                            break;
+                        case 'input':
+                            console.log("========= INPUT QUESTION ==========")     
+                            console.log(thisQuestion)
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
+                            Str += thisQuestion.title
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><p><input type="'+ thisQuestion.inputType +'" class="numberInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '" width="40%"'
+                            if (Object.hasOwn(thisQuestion,'choicesMax'))
+                            {  Str += ' max="'+thisQuestion.choicesMax+'" ' }
+                            if (Object.hasOwn(thisQuestion,'choicesMin'))
+                            {  Str += ' min="'+thisQuestion.choicesMin+'" ' }
+                            Str += ' id="'+thisQuestion.name+'"></input>'
+                            if ( thisQuestion.hasOwnProperty("units") )
+                            { Str += '<div class="surveyFormResponseLabel">'+thisQuestion.units+'</div>' }
+                            Str += '</p>'
+                            Str += '</div><hr>'
+
                         default:
                             console.log("========= DEFAULT ==========")
                                 console.error("Questions of type "+trial.survey_json.pages[page].elements[i].type+" are not availble")
@@ -233,61 +517,43 @@ var Str = ''
                 Str += '</div>' // end the tab div
             }// This ends the for loop over pages
 
+            Str += '<table border="0"><tr><td colspan="2">'
             Str += '<div style="overflow:auto;">'
                 Str += '<div style="float:right;">'
-                Str += '<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>'
-                Str += '<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>'
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="prevBtn" onclick="nextPrev(-1)">'+ trial.previous_button_label +'</button>'
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="nextBtn" onclick="nextPrev( 1)">'+ trial.next_button_label +'</button>'
+                // Submit is its own button, but uses the same functionality as the next button
+                Str += '<button type="button" class="jspsych-btn submit-btn" id="submitBtn" onclick="nextPrev(1)">'+ trial.submit_button_label +'</button>'
                 Str += '</div>'
             Str += '</div>'
+            Str += "</td><td colspan='3' class='surveyFormLabel' id='tableMessageBox' style='display: none'>"+trial.missed_question_text+"</td></tr></table>";
+
+
+            
+            
+//            Str += '</td></tr></table>'
             //<!-- Circles which indicates the steps of the form: -->
-
-            Str += '<div style="text-align:center;margin-top:40px;">'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-                Str += '<span class="step"></span>'
-            Str += '</div>'
-
+            
           html += Str
-
-// ====================
-  /*
-  //<!-- One "tab" for each step in the form: -->
-  html += '<div class="tab">Name:'
-    html += `<p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>`
-    html += `<p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>`
-  html += "</div>"
-  html += '<div class="tab">Contact Info:'
-    html += `<p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>`
-    html += `<p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>`
-  html += "</div>"
-  html += '<div class="tab">Birthday'
-    html += `<p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>`
-    html += `<p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>`
-    html += `<p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>`
-  html += "</div>"
-  html += '<div class="tab">Login Info:'
-    html += `<p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>`
-    html += `<p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>`
-  html += "</div>"
-  html += `<div style="overflow:auto;">`
-    html += `<div style="float:right;">`
-      html += `<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>`
-      html += `<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>`
-    html += "</div>"
-  html += "</div>"
-  */
-  //<!-- Circles which indicates the steps of the form: -->
-html += "</form>"
-
-
-
-
-
-
-        display_element.innerHTML = html;
-
-        showTab(0)
+ 
+        html += "</form>"
+        if ( trial.survey_json.showProgressBar == 'bot')
+        {  html += MakeProgressBar(trial) }
+        display_element.innerHTML = html; 
+        // start off by showing the first tab
+        showTab(0, trial)
+        // Now that the html has been created update the progress bar label settings
+        const e = document.getElementsByClassName('progress-step')
+        if ( trial.survey_json.showProgressBar == 'bot')
+        {   
+            for (var i = 0; i < e.length; i++ )
+            { e[i].classList += ' progress-step-bot'}
+        }
+        else 
+        {   
+            for (var i = 0; i < e.length; i++ )
+            { e[i].classList += ' progress-step-top'}
+        }
       }
     }    
   SurveyHtmlFormPlugin.info = info;
@@ -299,11 +565,61 @@ html += "</form>"
 
 // if a visibleIf question is found when looping over the JSON          
 // then change the functionaility of the question or the onChange function
+    function ShowOther(elemID) {
+        console.log("ON CHANGE")
+        const elem = document.getElementById(elemID)
+        console.log(elem)
+        console.log(elem.name)
+        if ( elem.options[elem.selectedIndex].text == LabelNames.Other )
+        {
+            var Str = ''
+            //Str += '<div class="surveyFormDiv">'
+            Str += '<textarea class="textInput FormInput" id="'+elemID+"-other" +' rows="3" cols="80%></textarea>'
+            console.log("OTHER SELECTED")
+            const newElement = document.createElement("textarea")
+            newElement.setAttribute("rows","3")
+            newElement.setAttribute("cols","80%")
+            newElement.classList.add('textInput')
+            newElement.classList.add('FormInput')
+            newElement.setAttribute("id",elemID+"-other")
+            console.log(newElement)
+            elem.after(newElement)
+        }
+        else // something else was selected, so make sure the textarea box is not visible
+        {
+            const otherElem = document.getElementById(elemID+"-other")
+            console.log(otherElem)
+            if ( otherElem != null ) { otherElem.remove() }
+        }
+/*
+                            Str += '<div class="surveyFormDiv '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
+                            Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
+                            Str += thisQuestion.title
+                            //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
+                            Str += '</div><textarea class="textInput FormInput '
+                            Str += VisibleIfConditionsPages[page][i].visibleClass
+                            Str += '" rows="'+thisQuestion.textbox_rows+'" cols="80%"></textarea>'
+                            Str += '</div>
 
+  */      
+    }
 
-
+    function MakeProgressBar(trial) {
+        var NPages = trial.survey_json.pages.length
+        var html =''
+        { 
+            html += `<div class="progress-bar" >`
+            html += `<div class="progress" id="progress"></div>`
+            for ( var j = 0; j < NPages; j++ )
+                { html += `<span class="progress-step" data-title='`+trial.survey_json.pages[j].name+`'></span>`} 
+            html += "</div>"
+        }
+        return html
+    }
 
    function nextPrev(n) {
+        console.log("NEXT PREV TRIAL")
+        
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
@@ -313,176 +629,397 @@ html += "</form>"
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
+        
         if (currentTab >= x.length) {
             // ... the form gets submitted:
-            document.getElementById("regForm").submit();
+            console.log('Submitting form: ')
+            //document.getElementById("regForm").submit();
+            console.log(x)
+            PrepareDataForSubmission()
+            this.jsPsych.finishTrial();
+            
             return false;
         }
         // Otherwise, display the correct tab:
         showTab(currentTab);
     }
+
 function showTab(n) {
-        // This function will display the specified tab of the form...
+    // This function updates the buttons depending on whether it is the last tab in the series    
+    // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab");
-        console.log(n)
-        console.log(x)
-            x[n].style.display = "block";
+        x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
         if (n == 0) {
+            // If on the fiirst tab, hide the previous Button
             document.getElementById("prevBtn").style.display = "none";
-        } else {
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("submitBtn").style.display = "none";
+        } else if ( n < x.length - 1) {
+            // If on in-between tabs, show previous, keep next shown, keep submit hidden
             document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("submitBtn").style.display = "none";
         }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
-        } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
+        else {
+            // If on last tab, show previous, hide next, show submit 
+            document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitBtn").style.display = "inline";
         }
-        //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
     }
 
- 
+
+function getCheckedValuesFromFieldSet(fieldsetId) {
+    const fieldset = document.getElementById(fieldsetId);
+    if (!fieldset) return [];
+
+    return Array.from(
+        fieldset.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+}
+
+
     function validateForm() {
+        console.log(">>>> VALIDATING FORM <<<<")
         // This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("input");
+        //y = x[currentTab].getElementsByTagName("input");
+        
+        // Find all input slots in the form
+        y = x[currentTab].getElementsByClassName("FormInput")
         // A loop that checks every input field in the current tab:
+        console.log('CHECKING OVER FORM INPUTS: '+y.length)
         for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false
-            valid = false;
+            // CHeck to make sure validity is ONLY based on the visible items
+            // check to see if the element is in the non-visable class
+            // If a field is empty AND visible
+            // is this a tag box?
+            
+            console.log(y[i].id )
+            console.log(y[i])
+            // Checking radio group
+
+            // console.log((document.querySelector('input[name="'+y[i].id+'"]:checked')))
+            if ( y[i].classList.contains('radiogroup'))
+            {
+                if ( (document.querySelector('input[name="'+y[i].id+'"]:checked')) == null && (y[i].classList.contains('visible')))
+                {
+                    console.log("VALIDATING A RADIO GROUP")
+                    //  console.log('Item '+i+' response is: EMPTY')
+                        // Need to also make sure that the question is VISIBLE
+                    var temp = y[i].closest('div');
+                    temp = temp.parentElement;
+                    temp = temp.parentElement;
+                    console.log("ALREADY INVALID: "+temp.classList.contains('invalid'))
+                    console.log("VALID: "+valid)
+                    valid = false
+                    if ( ! temp.classList.contains('invalid'))
+                    { temp.className += " invalid"; }
+                    //y[i].value = ""
+                }
+                else { 
+                    
+                    var temp = y[i].closest('div');
+                    temp = temp.parentElement;
+                    temp = temp.parentElement;
+                    temp.classList.remove('invalid') 
+                }
             }
+            if (y[i].classList.contains("TagBox"))
+            {
+                console.log("VALIDATING A TAG BOX")
+                var name = y[i].id
+                console.log(name)
+                var TagElm = document.getElementById(y[i].id)
+                console.log(TagElm)
+                var selectedValues = getCheckedValuesFromFieldSet(name)
+                console.log(selectedValues)
+                // This allows for the validity checker to work
+                y[i].value = selectedValues
+                console.log(y[i].value)
+                console.log(selectedValues.length)
+                //if ( y[i].value == undefined )
+                if ( selectedValues.length == 0 )
+                {
+                    console.log("TAG BOX IS INVALID")
+                    y[i].className += " invalid";
+                    
+                    TagElm.closest('div').style.backgroundColor = '#FFC0CB'
+                    console.log(TagElm)
+                    valid = false
+                }
+                else { 
+                   y[i].classList.remove('invalid') 
+                    TagElm.closest('div').style.backgroundColor = '#FFFFFF'
+                }
+                console.log(y[i])
+                console.log(y[i].classList)
+            }
+            console.log(y[i].value=="")
+            var temp = y[i].closest('div');
+            console.log(temp)
+            //temp = temp.parentElement;
+            //temp = temp.parentElement;
+            
+            if ( (y[i].value == "") && ( temp.classList.contains('visible') ) && (temp.classList.contains('Required')) )
+            {
+                console.log("LINE 710")
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
+            }
+            else { 
+                y[i].classList.remove('invalid') 
+            }
+            if ( valid == false )
+            {
+                console.log("LINE 718")
+                    //document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
+                    document.getElementById("tableMessageBox").style = "block"
+                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+            
         }
+        // Check number inputs for valid values
+        n = x[currentTab].getElementsByClassName("numberInput")
+        console.log(n)
+
+        for ( i = 0; i < n.length; i++ )
+        {
+            if ( Number(n[i].value) > Number(n[i].max) ) 
+            { n[i].className += " invalid"; }
+            if ( Number(n[i].value) < Number(n[i].min) ) 
+            { n[i].className += " invalid"; }
+            if ( n[i].value == '' )
+                { n[i].className += " invalid"; }
+        }
+
         // If the valid status is true, mark the step as finished and valid:
         if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
+            // Is there a progress bar?
+            if ( document.getElementsByClassName("progress-bar").length > 0 )
+            { document.getElementsByClassName("progress-step")[currentTab].className += " finish"; }
+            document.getElementById("tableMessageBox").style = "display: none"
         }
+        
         return valid; // return the valid status
     }
 
     function fixStepIndicator(n) {
         // This function removes the "active" class of all steps...
-        var i, x = document.getElementsByClassName("step");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
+        var i, x = document.getElementsByClassName("progress-step");
+        console.log("n = " + n)
+        console.log(x)
+        if (x.length > 0)
+        {
+            // remove active class, in case previous button has been pressed,
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.remove('active')
+            }
+            for (i = 0; i < n+1; i++) {
+                x[i].className += " active";
+            }
+            const progressSteps = document.querySelectorAll('.progress-step')
+            const progressActive = document.querySelectorAll('.progress-step.active')
+            
+            console.log(progressActive)
+            console.log(progressSteps)
+            progress.style.width = (progressActive.length - 1)/(progressSteps.length - 1)*100 + '%'
         }
         //... and adds the "active" class on the current step:
-        x[n].className += " active";
+        //x[n].className += " active";
     }
 
 // https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
+
+// Still a bit more to do with this.
+// The form questions are now correct but the visibleif parts need to be updated.
+
 function ModifyOnChange(elementToChange) {
-    var splitInput = elementToChange.split('___')
+    console.log("===== MODIFY ON CHANGE ======")
+    console.log(document.getElementById('div-cesam021p2'))
+    console.log(document.getElementsByClassName("FormInput"))
+    var splitInput = elementToChange.split(';;')
+    console.log(splitInput)
+    // I a happy with how the visible if conditions are made, but now this function needs to interpret them correctly
+    splitInput[1] = splitInput[1].split(',')
+    splitInput[2] = splitInput[2].split(';')
+    
+    for ( var k = 0; k < splitInput[2].length; k++ )
+    { splitInput[2][k] = splitInput[2][k].split(',') }
     //get current question
     var e = document.getElementById(splitInput[0])
+    console.log(e)
     // The values provided for each option should be arbitray form the code's point of view
     // what is the option index for the selected option?
-    if (e.options[e.options.selectedIndex].innerHTML == splitInput[2]) {
-        f = document.getElementById("div-"+splitInput[1])
-        f.style="display: visible"
-        s = document.getElementById("div-"+splitInput[1]).getElementsByClassName("surveyFormSelect")[0]
-        
-        //f.setAttribute('required','')
-        //s.required = true;
-        //console.log(s)
+
+    // If this element has been given the invlaid classname, remove it.
+    e.classList.remove('invalid')
+    console.log("LENGTH: "+ splitInput[1].length)
+    // Check to see if any of the conditions have been met
+    var ConditionalResponseMadeFlag = false
+    var ResponseIndex = -99
+    for ( var k = 0; k < splitInput[1].length; k++ )
+    {
+        if (e.options[e.options.selectedIndex].innerHTML === splitInput[1][k]) 
+        { 
+            ResponseIndex = k
+            ConditionalResponseMadeFlag = true
+        }
     }
+
+    console.log(ConditionalResponseMadeFlag)
+    console.log("Response Index: "+ResponseIndex)
+    // In case anything was made visible by a previous choice, make sure it is not non-visible
+    // before meeting thios condition.
+    console.log(splitInput[1])
+    console.log(splitInput[2])
+    for ( var k = 0; k < splitInput[1].length; k++ )
+        {
+            for ( var m = 0; m < splitInput[2][k].length; m++ )    
+            {   
+                var QuestionsToModify = splitInput[2][k][m]
+                f = document.getElementById("div-"+QuestionsToModify)
+                f.className += ' non-visible'
+                f.classList.remove('visible')        
+                input = f.getElementsByClassName('FormInput')
+                input[0].className += ' non-visible'
+                input[0].classList.remove('visible')
+                f.style="display: none"
+                s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
+            }
+        }
+
+    if ( ConditionalResponseMadeFlag )
+    {
+        // cycle over the questions linked to this response
+        // Make sure to make all non visible before making them visible
+
+        for ( var k = 0; k < splitInput[2][ResponseIndex].length; k++ )
+        {
+            var QuestionsToModify = splitInput[2][ResponseIndex][k]
+
+            f = document.getElementById("div-"+QuestionsToModify)
+            f.style="display: visible"
+            f.className += ' visible'
+            f.classList.remove('non-visible')        
+            s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
+            input = f.getElementsByClassName('FormInput')
+            input[0].className += ' visible'
+            input[0].classList.remove('non-visible')        
+        }
+    }
+    else 
+    {
+        // Make sure to hide anything that may have been made visible but now does not need to be
+        // splitInput[2][ResponseIndex] = splitInput[2][ResponseIndex].split(',')
+        console.log(">>> ELSE COND <<<")
+        for ( var k = 0; k < splitInput[1].length; k++ )
+        {
+            for ( var m = 0; m < splitInput[2][k].length; m++ )    
+            {   
+                var QuestionsToModify = splitInput[2][k][m]
+                f = document.getElementById("div-"+QuestionsToModify)
+                f.className += ' non-visible'
+                f.classList.remove('visible')        
+                input = f.getElementsByClassName('FormInput')
+                input[0].className += ' non-visible'
+                input[0].classList.remove('visible')
+                f.style="display: none"
+                s = document.getElementById("div-"+QuestionsToModify).getElementsByClassName("surveyFormSelect")[0]
+            }
+        }
+    }       
+    
 }
 
+// Prepare data for submission
+function PrepareDataForSubmission()
+{
+        
+    x = document.getElementsByClassName("tab");
 
-
-function InternalValidateForm(form) {
-    
-    // Add a variable to determine if all questions are answered
-    AllQuestionsValid = true
-    console.log(AllQuestionsValid)
-    var AllQuestions = document.getElementsByClassName("surveyFormDiv")
-    var NQuestions = AllQuestions.length
-    //console.log(document.querySelector('input[name="loneliness002"]:checked').value)
-    for ( var i = 0; i < NQuestions; i++ ) {
-        // get the name of each question
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect").length > 0 )
-        { // THIS IS A DROPDOWN QUESTION 
-             //console.log(AllQuestions[i].style.display != 'none')
-            //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-            // Add check to see if a question is visible or not before deciding if it needs to be answered.
-
-            // This is still checking to see if non needed questions are being answered or not
-            if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-                if ( AllQuestions[i].style.display != 'none' ) {
-                    AllQuestionsValid = false
-                    document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                    document.getElementById("tableMessageBox").style = "block"
-                    document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-                }
-            }
-            else { // reset the background color
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
-            }
-        }
-        else if ( AllQuestions[i].getElementsByClassName("radiogroup").length )
+        var AllQuestionsOnThisTab
+        AllQuestionsData = []
+        // How many tabs/pages are there?
+        console.log("Number of pages: "+x.length)
+        for ( var currentTab = 0; currentTab < x.length; currentTab++ )
         {
-            // THIS IS A RADIO GROUP QUESTION 
-            document.getElementById("tableMessageBox").style.backgroundColor = "#FFF"
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("radiogroup")[0].name
-            //console.log(CurrentQuestionName+": "+document.querySelector('input[name="'+CurrentQuestionName+'"]:checked').value)
-            if (document.querySelector('input[name="'+CurrentQuestionName+'"]:checked'))
+            // every question is embedded in this DIV
+            AllQuestionsOnThisTab = x[currentTab].getElementsByClassName("surveyFormDiv")
+            for ( var currentQuestion = 0; currentQuestion < AllQuestionsOnThisTab.length; currentQuestion++ )
             {
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-            else {
-                AllQuestionsValid = false
-                // what os the DIV element for this question?
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+                var this_question_data = {}
+
+                y = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("FormInput")
+                console.log(y[0])
+                this_question_data.name = y[0].id
+               
+                this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
+                this_question_data.responseValue = Number(y[0].value)
+                console.log("---------- NEW QUESTION -------------")
+
+                if ( y[0].classList.contains("radiogroup") ) 
+                {
+                    var respValue = Number(document.querySelector('input[name="'+y[0].id+'"]:checked').value)
+                    console.log("RESPONSE VALUE: "+respValue)
+                    this_question_data.responseText = document.querySelector('label[for="'+y[0].id+'_'+respValue+'"]').innerHTML
+                    this_question_data.responseValue = respValue
+                }
+        
+                if ( y[0].classList.contains("TagBox") )
+                {
+                    var Str = ''
+                    for ( var k = 0; k < y[0].value.length; k++ )
+                    { 
+                        Str += y[0].value[k] 
+                        if ( k < y[0].value.length - 1 ) {Str += "; "}
+                    }
+                    this_question_data.responseValue = Str
+                }
+                // Add response text if it is available
+                if ( y[0][y[0].selectedIndex] != undefined )
+                { this_question_data.responseText = y[0][y[0].selectedIndex].text }
+                else { console.log("NO SELECTED INDEX") }
+                if ( this_question_data.responseValue == 9999 )
+                { this_question_data.responseText = y[1].value }
+                else { console.log("NO RESPONSE VALUE") }
+                
+                
+                if (y[0].classList.contains("textInput") )
+                { 
+                    this_question_data.responseText = y[0].value 
+                    this_question_data.responseValue == 9999
+                }
+                // Check for visibility
+                console.log(AllQuestionsOnThisTab[currentQuestion].classList.contains('visible'))
+                //console.log(y.getElementsByClassName('non-visible'))
+                if ( AllQuestionsOnThisTab[currentQuestion].classList.contains('visible') )
+                { this_question_data.visible = 'Yes' }
+                else {
+                     this_question_data.visible = 'No' 
+                     console.log("QUESTION NOT VISIBLE, STILL SAVING DATA BUT MARKING AS NOT VISIBLE")
+                     this_question_data.responseValue = null
+                    }
+                // console.log(y[0][y[0].value].text)
+                
+                console.log(this_question_data)
+                AllQuestionsData.push(this_question_data)
             }
         }
-        else if ( AllQuestions[i].getElementsByClassName("timeInput").length )
-        { 
-
-            console.log("FOUND TIME INPUT")
-            
-            var CurrentQuestionName = AllQuestions[i].getElementsByClassName("timeInput")[0].name
-            if ( AllQuestions[i].getElementsByClassName("timeInput")[0].value == '' ) {
-                AllQuestionsValid = false
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-            else { 
-                document.getElementById("div-"+CurrentQuestionName).style.backgroundColor = '#FFF'
-            }
-
-            console.log(CurrentQuestionName)
-            console.log(AllQuestions[i].getElementsByClassName("surveyFormTime")) 
-
-        }
-    }
-
-    /* for ( var i = 0; i < NQuestions; i++ ) {
-        //console.log(AllQuestions[i].style.display != 'none')
-        //console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex)
-        // Add check to see if a question is visible or not before deciding if it needs to be answered.
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect"))
-        console.log(AllQuestions[i].getElementsByClassName("surveryFormRadioGroup"))
-
-        if ( AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].selectedIndex == 0 ) {
-            if ( AllQuestions[i].style.display != 'none' ) {
-                document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFC0CB'
-                document.getElementById("tableMessageBox").style = "block"
-                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
-            }
-        }
-        else { // reset the background color
-            document.getElementById("div-"+AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id).style.backgroundColor = '#FFF'
-        }
-        console.log(AllQuestions[i].getElementsByClassName("surveyFormSelect")[0].id)
-        console.log(AllQuestions[i])
-    }*/
-        console.log(AllQuestionsValid)
+        console.log(AllQuestionsData)
+        //
+        
+    
+    
+    // save data
+    var trialdata = {
+        //rt: response_time,
+        response: AllQuestionsData,
+    };
+    this.jsPsych.finishTrial(trialdata);
 }

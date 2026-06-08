@@ -22,11 +22,11 @@ var survey_JSON =
                     {value: 'paes004', text: 'It feels good'},
                 ],
                 columns: [
-                    { "value": 0, text: 'Strongly disagree' }, 
-                    { "value": 1, text: 'Disagree' },
-                    { "value": 2, text: 'Neither agree nor disagree' },
-                    { "value": 3, text: 'Agree' }, 
-                    { "value": 4, text: 'Strongly agree'}
+                    { "value": 1, text: 'Strongly disagree' }, 
+                    { "value": 2, text: 'Disagree' },
+                    { "value": 3, text: 'Neither agree nor disagree' },
+                    { "value": 4, text: 'Agree' }, 
+                    { "value": 5, text: 'Strongly agree'}
                 ],
             }
         ]

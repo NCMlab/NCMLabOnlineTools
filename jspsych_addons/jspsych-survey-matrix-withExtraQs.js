@@ -1,0 +1,503 @@
+var jsPsychSurveyMatrix = (function (jspsych) {
+  'use strict';
+
+  const info = {
+      name: "survey-matrix",
+      parameters: {
+          /** Array containing one or more objects with parameters for the question(s) that should be shown on the page. */
+          survey_json: {
+              type: jspsych.ParameterType.JSON,              
+              pretty_name: "Questions",
+             
+          },
+          /** If true, the order of the questions in the 'questions' array will be randomized. */
+          randomize_question_order: {
+              type: jspsych.ParameterType.BOOL,
+              pretty_name: "Randomize Question Order",
+              default: false,
+          },
+        required: {
+            type: jspsych.ParameterType.BOOL,
+            pretty_name: "Required",
+            default: false,
+        },
+          /** HTML-formatted string to display at top of the page above all of the questions. */
+          preamble: {
+              type: jspsych.ParameterType.HTML_STRING,
+              pretty_name: "Preamble",
+              default: null,
+          },
+          /** Width of the matrix scales in pixels. */
+          scale_width: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Scale width",
+              default: null,
+          },
+          /** Label of the button to submit responses. */
+          button_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Button label",
+              default: "Submit",
+          },
+        /** Label of the button to submit responses. */
+          button_label_empty_responses: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Empty Responses",
+              default: "Submit Anyway",
+          },
+        /** Label on the popup when a question is missed. */
+          missed_question_label: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Button label",
+              default: "Please select an item ",
+          },
+          /** Label next to submit button when a question is missed. */
+          missed_question_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Valid check",
+              default: "Please answer all questions",
+          },
+
+          /** Setting this to true will enable browser auto-complete or auto-fill for the form. */
+          autocomplete: {
+              type: jspsych.ParameterType.BOOL,
+              pretty_name: "Allow autocomplete",
+              default: false,
+          },
+      },
+  };
+  /**
+   * **survey-matrix**
+   *
+   * jsPsych plugin for gathering responses to questions on a matrix scale
+   *
+   * @author Josh de Leeuw
+   * @see {@link https://www.jspsych.org/plugins/jspsych-survey-likert/ survey-likert plugin documentation on jspsych.org}
+   */
+  class SurveyMatrixPlugin {
+      constructor(jsPsych) {
+          this.jsPsych = jsPsych;
+      }
+      trial(display_element, trial) {
+          if (trial.scale_width !== null) {
+              var w = trial.scale_width + "px";
+          }
+          else {
+              var w = "100%";
+          }
+
+          console.log(trial.survey_json)
+          var html = "";
+          // add the class for the requirement format
+          html += '<form id="jspsych-survey-matrix-form" class="'+trial.survey_json.elements[0].isAllRowRequired+'" autocomplete="off">'
+          
+          
+          // inject CSS for trial
+          
+          html += '<style id="jspsych-survey-likert-css">';
+          html +=
+              ".jspsych-survey-likert-statement { display:block; font-size: 16px; padding-top: 40px; margin-bottom:10px; }" +
+                  ".jspsych-survey-likert-opts { list-style:none; width:" +
+                  w +
+                  "; margin:auto; padding:0 0 35px; display:block; font-size: 14px; line-height:1.1em; }" +
+                  ".jspsych-survey-likert-opt-label { line-height: 1.1em; color: #444; }" +
+                  ".jspsych-survey-likert-opts:before { content: ''; position:relative; top:11px; /*left:9.5%;*/ display:block; background-color:#efefef; height:4px; width:100%; }" +
+                  ".jspsych-survey-likert-opts:last-of-type { border-bottom: 0; }" +
+                  ".jspsych-survey-likert-opts li { display:inline-block; /*width:19%;*/ text-align:center; vertical-align: top; }" +
+                  ".jspsych-survey-likert-opts li input[type=radio] { display:block; position:relative; top:0; left:50%; margin-left:-6px; }";
+          html += "</style>";
+            
+            html += '<div>'
+            console.log(trial.survey_json.elements[0].rows[1]['value'])
+            html += '<div id="tableInstructions" class="QuestionnaireInstructions">'
+            html += trial.survey_json.elements[0].title
+            html += '</div>'
+            html += '</div>'
+            html += '<div class="tableFixedHead">'
+                html += '<table class="tableMatrix" id="tableMatrix">'
+                    html += '<thead id = "tableHeader">'
+                    html += '<th></th>'
+                    for ( let i = 0; i < trial.survey_json.elements[0].columns.length; i++ ) {
+                    
+                        html += '<th class="headerLabels" id=col_'+i+' value="'+trial.survey_json.elements[0].columns[i]['value']+'">'+trial.survey_json.elements[0].columns[i]['text']+'</th>'
+                    }
+                    html += '</thead>'
+                    html += '<tbody id = "tableBody">'
+                    for ( let i =0; i < trial.survey_json.elements[0].rows.length; i++ ) {
+                        console.log(trial.survey_json.elements[0].rows[i]['value'])
+                        html += '<tr id="'+trial.survey_json.elements[0].rows[i]['value']+'" class="matrixRow"><td class="item_label">' + trial.survey_json.elements[0].rows[i]['text'] + '</td>'
+                        // The 'name' for an input row makes all inputs with the same name exclusive of each other
+                        
+                        var AreThereOptions = (trial.survey_json.elements[0].rows[i].options != undefined)
+                        var Str = ''
+                        for ( let j =0; j < trial.survey_json.elements[0].columns.length; j++ ) {
+                            html += '<td><input type="radio" class="sd-item__decorator radioBtn" name="'+trial.survey_json.elements[0].rows[i]['value']+'"'
+                            if ( AreThereOptions )
+                            {
+                                Str = ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'; '
+                                Str += ""+trial.survey_json.elements[0].rows[i].options.answer+"; "
+                                for ( var k = 0; k < trial.survey_json.elements[0].rows[i].options.options.length; k++ )
+                                { 
+                                    Str += ""+trial.survey_json.elements[0].rows[i].options.options[k]+""
+                                    if ( k < trial.survey_json.elements[0].rows[i].options.options.length-1 )
+                                    { Str += ", "}
+                                }
+                                Str += '\') "'
+                                
+                            }
+                            console.log(Str)
+                             //html += ' onChange="ModifyOnChange(\''+trial.survey_json.elements[0].rows[i]['value']+'\')" '
+                             html += Str
+                            /*if (trial.required) {
+                               html += ' required ';
+                            }*/
+                            html += 'oninvalid="this.setCustomValidity(\''+ trial.missed_question_label +'\')"'
+                            html+= '></td>'
+                        }
+                    }
+                    html += '</tbody>'
+                    html += '</table>'
+            html += '</div>'
+
+
+
+          // add submit button
+          html += '<div class="tableSubmitButton">'
+          html +=
+    //          '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
+
+              '<table border="0"><tr><td colspan="2"><input type="submit" id="jspsych-survey-matrix-next" onClick="InternalValidateForm(this.form)" class="jspsych-survey-matrix jspsych-btn submit-btn" value="' +
+                  trial.button_label +
+                  ' "></input>';
+          html += "</form></td>"
+          console.log("REQUIRED: "+trial.required)
+          if ( trial.required == 'Suggested' )
+          {
+            html += '<td><input type="submit" id="submit-anyway-btn" class="jspsych-survey-matrix jspsych-btn submit-btn" '
+            html += 'style="display: none" value="'+trial.button_label_empty_responses+'" onClick="SubmitAnyway()"></td>'
+          }
+          html += "<td colspan='3' class='item_label' id='tableMessageBox'  style='display: none'>"+trial.missed_question_text+"</td>"
+          html += "</tr></table>";
+          html += '</div>'
+
+
+          display_element.innerHTML = html;
+        
+         display_element.querySelector("#jspsych-survey-matrix-form").addEventListener("submit", (e) => {
+        // Get responses
+
+
+        e.preventDefault();
+
+        // I am seeing the validate code can go here instead
+        console.log(e)
+        console.log(display_element.querySelectorAll("th"))
+
+
+        var matches = display_element.querySelectorAll(".sd-item__decorator")
+        if ( document.getElementById('jspsych-survey-matrix-next').valid == true)
+        { 
+            console.log("TRUE Is the form valid: "+document.getElementById('jspsych-survey-matrix-next').valid)
+
+            var question_data = []    
+            // get the row names
+            var elmts = display_element.querySelectorAll("tr");
+            // how many columns
+            var cols = display_element.querySelectorAll("th")
+            console.log(cols)
+            var cols = document.getElementsByClassName('headerLabels')
+            const rows = display_element.getElementsByClassName('matrixRow')
+            
+            for ( var k = 0; k < rows.length; k++ )
+            {
+                var this_question_data = {}
+                const currentRow = rows[k]
+                console.log(currentRow)
+                // is there a row lable?
+                var rowLabels = rows[k].getElementsByClassName('item_label')
+                console.log(rowLabels)
+                if (rowLabels.length > 0 )
+                { 
+                    // Regular question
+                    // what was selected?
+                    const radios = document.getElementsByName(rows[k].id)
+                    let selectedValue;
+                    for (let i = 0; i < radios.length; i++) {
+                        if (radios[i].checked) {
+                            selectedValue = i;
+                            break; // Exit the loop once the checked button is found
+                        }
+                    }
+                    
+                    this_question_data.label = rowLabels[0].innerHTML
+                    this_question_data.name = rows[k].id
+                    if ( selectedValue != undefined )
+                    { 
+                        this_question_data.responseValue = trial.survey_json.elements[0].columns[selectedValue].value
+                        this_question_data.responsePrompt = trial.survey_json.elements[0].columns[selectedValue].text
+                    }
+                    else // no response
+                    {
+                        this_question_data.responseValue = -99
+                        this_question_data.responsePrompt = 'NA'
+                    }
+                }
+                else 
+                {
+                    // get the div name for this extra question
+                    const e = currentRow.getElementsByClassName('div-extraMatrixQuestion')
+                    this_question_data.name = e[0].id
+                    const currentId = e[0].id
+                    const radios = document.getElementsByName(currentId)
+                
+                    let selectedValue;
+                    for (let i = 0; i < radios.length; i++) {
+                        if (radios[i].checked) {
+                            selectedValue = i;
+                            break; // Exit the loop once the checked button is found
+                        }
+                    }
+                    this_question_data.responsePrompt = 'NA'
+                    this_question_data.responseValue = selectedValue
+                    // get the labels 
+                    if ( selectedValue != undefined )
+                    { this_question_data.label = e[0].getElementsByClassName('label-extraMatrixQuestion')[selectedValue].innerHTML }
+                }
+                
+                question_data.push(this_question_data)
+            }
+            console.log(question_data)
+                
+             
+                
+                // measure response time
+                var endTime = performance.now();
+                var response_time = Math.round(endTime - startTime);
+                // create object to hold responses
+
+                // save data
+                var trial_data = {
+                    rt: response_time,
+                    response: question_data,
+                };
+                display_element.innerHTML = "";
+                // next trial
+                this.jsPsych.finishTrial(trial_data);
+        }
+            
+
+
+        // Initialize the object for holding the resulatnt data
+          });
+          
+          var startTime = performance.now();
+      }
+      
+      simulate(trial, simulation_mode, simulation_options, load_callback) {
+          if (simulation_mode == "data-only") {
+              load_callback();
+              this.simulate_data_only(trial, simulation_options);
+          }
+          if (simulation_mode == "visual") {
+              this.simulate_visual(trial, simulation_options, load_callback);
+          }
+      }
+      create_simulation_data(trial, simulation_options) {
+          const question_data = {};
+          let rt = 1000;
+          for (const q of trial.questions) {
+              const name = q.name ? q.name : `Q${trial.questions.indexOf(q)}`;
+              question_data[name] = this.jsPsych.randomization.randomInt(0, q.labels.length - 1);
+              rt += this.jsPsych.randomization.sampleExGaussian(1500, 400, 1 / 200, true);
+          }
+          const default_data = {
+              response: question_data,
+              rt: rt,
+              question_order: trial.randomize_question_order
+                  ? this.jsPsych.randomization.shuffle([...Array(trial.questions.length).keys()])
+                  : [...Array(trial.questions.length).keys()],
+          };
+          const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
+          this.jsPsych.pluginAPI.ensureSimulationDataConsistency(trial, data);
+          return data;
+      }
+      simulate_data_only(trial, simulation_options) {
+          const data = this.create_simulation_data(trial, simulation_options);
+          this.jsPsych.finishTrial(data);
+      }
+      simulate_visual(trial, simulation_options, load_callback) {
+          const data = this.create_simulation_data(trial, simulation_options);
+          const display_element = this.jsPsych.getDisplayElement();
+          this.trial(display_element, trial);
+          load_callback();
+          const answers = Object.entries(data.response);
+          for (let i = 0; i < answers.length; i++) {
+              this.jsPsych.pluginAPI.clickTarget(display_element.querySelector(`input[type="radio"][name="${answers[i][0]}"][value="${answers[i][1]}"]`), ((data.rt - 1000) / answers.length) * (i + 1));
+          }
+          this.jsPsych.pluginAPI.clickTarget(display_element.querySelector("#jspsych-survey-matrix-next"), data.rt);
+      }
+  }
+  SurveyMatrixPlugin.info = info;
+
+  return SurveyMatrixPlugin;
+
+})(jsPsychModule);
+
+function ModifyOnChange(input)
+{
+    console.log("CHANGE")
+    console.log(input)
+    inputSplit = input.split(';') 
+    console.log(inputSplit)
+    inputOptionSplit = inputSplit[2].split(',')
+    var eTable = document.getElementById("tableMatrix")
+    
+    var eRow = document.getElementById(inputSplit[0])
+    eCells = eRow.getElementsByClassName("radioBtn")
+    elabels = eRow.getElementsByClassName('item_label')
+    var row_id = inputSplit[0]+"p1"
+    for ( var k = 0; k < eCells.length; k++ )
+    {
+        if (eCells[k].checked)
+        {
+            // what is the text label
+            // Compare the seelcted response to the option. Remove any spaces
+            if (eTable.getElementsByClassName("headerLabels")[k].innerHTML == inputSplit[1].replace(/\s/g, ''))
+            {
+                console.log("YES YES YES")
+                var row = eTable.insertRow(eRow.rowIndex + 1)
+                row.classList.add("matrixRow"); //
+                row.id = row_id
+                var cell1 = row.insertCell(0)
+                cell1.colSpan = "2"
+                
+
+                // cell2.innerHTML = "ASD"
+                // console.log(cell1)
+                 
+                // cell3.textContent = 'DSS'
+                console.log(row)
+                
+                var Str = ''
+                //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+                Str += '<div class="div-extraMatrixQuestion" id = "'+row_id+'"><input type="radio" class="extraMatrixQuestion sd-item__decorator" name="'+row_id+'">'
+                Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'01">'+inputOptionSplit[0]+"</label>"
+                Str += '</input><input type="radio" class="extraMatrixQuestion sd-item__decorator" name="'+row_id+'">'
+                Str += '</input>'
+                Str += '<label class="label-extraMatrixQuestion" for="'+row_id+'02">'+inputOptionSplit[1]+"</label>"
+                Str += '</div>'
+                cell1.innerHTML = Str
+                console.log(row)
+                
+            }
+            else {
+                console.log(row_id)
+                var extraRow = document.getElementById(row_id)
+                console.log(extraRow)
+                if ( extraRow )
+                { extraRow.remove() }
+            }
+        }
+    }
+    console.log(eCells)
+    console.log(eCells[0].value)
+    
+ /*   var row = eTable.insertRow(eRow.rowIndex + 1)
+    var cell1 = row.insertCell(0)
+    var cell2 = row.insertCell(1)
+    var cell3 = row.insertCell(2)
+    console.log(row)
+    row.id = input+"p1"
+    var Str = ''
+    //Str = '<table><tr><td><input type="radio">YES</input></td><td><input type="radio">NO</input></td></tr></table>'
+    Str += '<div class="extraMatrixQuestion"><input type="radio">YES</input><input type="radio">NO</input></div>'
+    cell1.innerHTML = Str
+    
+    console.log(eRow.rowIndex)
+    */
+						
+}
+function InternalValidateForm(form) {
+    console.log("VALIDATING FORM")
+    console.log(form)
+    // is the form required?
+    var CheckIfValid = true 
+    if ( (form.getAttribute('class') == 'Required') || (form.getAttribute('class') == 'Suggested') )
+    {
+        // console.log("This form is required")
+        // get the row names
+        elmts = document.getElementsByTagName("tr");
+        // how many columns
+        cols = document.getElementsByTagName("th")
+        
+        NCols = cols.length
+        // console.log("Ncols: "+NCols)
+        // make a list of row names
+        var rowNames = []
+        var rowPrompts = []
+        
+        // how many rows
+        //NRows = labels.length;
+
+        for ( var i = 1; i < elmts.length-1; i++ ) {
+            // console.log("ROW NUMBER: "+i)
+            // console.log(elmts[i])
+            labels = elmts[i].getElementsByClassName('item_label')
+            if ( labels.length == 0 )
+            {
+                // There is no prompt since this is an extra row
+                labels = elmts[i].id
+                rowPrompts.push(labels)
+            }
+            else { rowPrompts.push(labels[0].innerHTML)}
+            
+        }
+        for ( var i = 1; i < elmts.length-1; i++ ) {
+            rowNames.push(elmts[i].id)
+        }
+        // console.log(rowNames)
+        // console.log(rowPrompts)
+        // console.log(form[rowNames[3]])
+        // cycle over rows, start from the second column, thereby ignoring the row labels
+        for ( var i = 0; i < elmts.length-2; i++ ) {
+            // Reset the background colors 
+            //document.getElementById(rowNames[i]).style.backgroundColor = '#FFF' 
+
+            // Check to see if this is an EXTRA row
+            var SelectionMadeInRow = false
+            // cycle over columns
+            // console.log(rowNames[i])
+            for ( var j = 0; j < NCols-1; j++ ) {
+                // check to see if a selection was made in this row 
+                
+                if ( form[rowNames[i]][j].checked ) {
+                    SelectionMadeInRow = true
+                    SelectionMade = j
+                    break
+                }
+            }
+            // change the background color of any rows without a selection in them
+            if ( ! SelectionMadeInRow ) {
+                CheckIfValid = false
+                document.getElementById(rowNames[i]).style.backgroundColor = '#FFC0CB' 
+                //document.getElementById("tableMessageBox").innerHTML = "Please answer all questions"
+                document.getElementById("tableMessageBox").style = "block"
+                document.getElementById("tableMessageBox").style.backgroundColor = '#FFC0CB' 
+            }
+        }
+        // If this button exists, display it.
+        document.getElementById('submit-anyway-btn').style = "block"
+    }
+    document.getElementById('jspsych-survey-matrix-next').valid = CheckIfValid
+}
+
+function SubmitAnyway() {   
+    if (confirm("You have chosen to submit without answering all questions. Are you sure?"))
+    {
+        txt = "You pressed OK!";
+        document.getElementById('jspsych-survey-matrix-next').valid = true
+    } else {
+        txt = "You pressed Cancel!";
+    }
+
+}

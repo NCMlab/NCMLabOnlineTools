@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab: Rey Auditory Verbal Learning Test</title>
     <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
-    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+        <link rel="stylesheet" type='text/css' href='css/SurveyFormCoPilotCleaned.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
 
   </head>    
@@ -24,7 +25,9 @@
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
-    <script src="jspsych/dist/plugin-survey.js"></script>
+    <!--<script src="jspsych/dist/plugin-survey.js"></script> -->
+<script src="jspsych_addons/plugin-survey-form-JASON.js"></script>
+
     <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-initialize-microphone.js"></script>
     <script src="jspsych/dist/plugin-preload.js"></script>
@@ -81,7 +84,7 @@
         // load up the word lists
         pseudoSwitch(LANG+"_"+parameters.WordList)
         
-        console.log(WordRecallLists)
+        // console.log(WordRecallLists)
         //load general label names
         pseudoSwitch(LANG+'_LabelNames')
         console.log(Instructions)

@@ -158,6 +158,8 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
+        console.log("HELLO FROM IF WELCOME WRITTEN")
+        console.log(parameters)
       if ( parameters.ShowWelcome  & !( parameters.WelcomeSpoken))
       { return true }
       else { return false }
@@ -172,8 +174,10 @@ var if_WelcomeWritten = {
             document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
         } catch (err) {}
       if ( parameters.ShowWelcome & parameters.WelcomeSpoken)
-      { return true }
-      else { return false }
+      { 
+        return true }
+      else { 
+        return false }
     }
 }
 
@@ -268,6 +272,7 @@ var Instructions01Written = {
     stimulus: function (){
         console.log("JASON -- INSTRUCTIONS 01")
         console.log(Instructions)
+        
         var Str = Instructions.Instructions01[countInstr01].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str
@@ -288,7 +293,6 @@ var Instructions01Spoken = {
     response_ends_trial: true,
     trial_duration: function() { return parameters.Instructions01Time[countInstr01] },
 };
-
 // This loop allows the user to repeat the instructions
 var Instructions01SpokenRepeat_loop = {
     timeline: [Instructions01_progress_bar_timer_start, Instructions01Spoken, Instructions01_progress_bar_timer_stop],
@@ -297,7 +301,6 @@ var Instructions01SpokenRepeat_loop = {
         { return true} else { return false}
     }
 }
-
 // This loops over multiple pages of the instructions
 var Instructions01Spoken_loop = {
     timeline: [Instructions01SpokenRepeat_loop],
@@ -308,7 +311,6 @@ var Instructions01Spoken_loop = {
       { return true} else { return false}
     }
 }
-
 // This loops over multiple pages of the instructions
 var Instructions01Written_loop = {
     timeline: [Instructions01Written],
@@ -318,7 +320,6 @@ var Instructions01Written_loop = {
       { return true} else { return false}
     }
 }
-
 var if_Instructions01Written = {
     timeline: [Instructions01Written_loop],
     conditional_function: function() {
@@ -328,7 +329,6 @@ var if_Instructions01Written = {
           else { return false }
     }
 }
-
 var if_Instructions01Spoken = {
     timeline: [Instructions01Spoken_loop],
     conditional_function: function() {
@@ -340,9 +340,6 @@ var if_Instructions01Spoken = {
 var Instructions01 = {
     timeline: [if_Instructions01Written, if_Instructions01Spoken]
 }
-
-
-
 var Instructions02_progress_bar_timer_start = {
     type: jsPsychCallFunction,
     func: function(){ 
@@ -352,7 +349,6 @@ var Instructions02_progress_bar_timer_start = {
         timer_progress_bar(parameters.Instructions02Time[countInstr02]) }
     }
 }
-
 var Instructions02_progress_bar_timer_stop = {
     type: jsPsychCallFunction,
     func: function(){ 
@@ -362,10 +358,10 @@ var Instructions02_progress_bar_timer_stop = {
          }
     }
 }
-
 var Instructions02Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
+        console.log("JASON -- INSTRUCTIONS 02")
         var Str = Instructions.Instructions02[countInstr02].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str
@@ -375,6 +371,7 @@ var Instructions02Written = {
     prompt: '',
     choices: function() {return [LabelNames.Next]}, 
     valid_choices: '',
+    on_finish: function() {countInstr02+=1}
 }
 
 var Instructions02Spoken = {
@@ -385,6 +382,7 @@ var Instructions02Spoken = {
     response_allowed_while_playing: false,
     response_ends_trial: true,
     trial_duration: function() { return parameters.Instructions02Time[countInstr02] },
+    on_finish: function() {countInstr02+=1}
 };
 
 // This loop allows the user to repeat the instructions
@@ -400,7 +398,6 @@ var Instructions02SpokenRepeat_loop = {
 var Instructions02Spoken_loop = {
     timeline: [Instructions02SpokenRepeat_loop],
     loop_function: function(data){
-      countInstr02 += 1
       if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
@@ -410,7 +407,9 @@ var Instructions02Spoken_loop = {
 var Instructions02Written_loop = {
     timeline: [Instructions02Written],
     loop_function: function(data){
-      countInstr02+=1
+        console.log("HELLO FROM INSTRUCTIONS 02 WRITTEN LOOP")
+      
+      console.log(countInstr02)
       if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
@@ -419,6 +418,7 @@ var Instructions02Written_loop = {
 var if_Instructions02Written = {
     timeline: [Instructions02Written_loop],
     conditional_function: function() {
+        console.log("HELLO FROM IF INSTRUCTIONS 02 WRITTEN")
           if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }
@@ -627,6 +627,104 @@ var if_Instructions04Spoken = {
 var Instructions04 = {
     timeline: [if_Instructions04Written, if_Instructions04Spoken]
 }
+
+
+
+
+var Instructions05_progress_bar_timer_start = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
+        document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
+        timer_progress_bar(parameters.Instructions05Time[countInstr05]) }
+    }
+}
+
+var Instructions05_progress_bar_timer_stop = {
+    type: jsPsychCallFunction,
+    func: function(){ 
+      if ( parameters.InstructionsSpoken > 0 ) {
+        clearInterval(interval);
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"
+         }
+    }
+}
+
+var Instructions05Written = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function (){
+        var Str = Instructions.Instructions05[countInstr05].page
+        Str += '<p>'+ LabelNames.PressNext +'</p>'
+        return Str
+    },
+    post_trial_gap: 0,
+    margin_horizontal: function() { return GapBetweenButtons },
+    prompt: '',
+    choices: function() {return [LabelNames.Next]}, 
+    valid_choices: '',
+}
+
+var Instructions05Spoken = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: function() { return parameters.Instructions05Audio[countInstr05] },
+    choices: function() { return [LabelNames.Repeat] },
+    prompt: function() { return Instructions.Instructions05[countInstr05].page},
+    response_allowed_while_playing: false,
+    response_ends_trial: true,
+    trial_duration: function() { return parameters.Instructions05Time[countInstr05] },
+};
+
+// This loop allows the user to repeat the instructions
+var Instructions05SpokenRepeat_loop = {
+    timeline: [Instructions05_progress_bar_timer_start, Instructions05Spoken, Instructions05_progress_bar_timer_stop],
+    loop_function: function(data){
+        if ( data.trials[1].response == 0 ) 
+        { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions05Spoken_loop = {
+    timeline: [Instructions05SpokenRepeat_loop],
+    loop_function: function(data){
+      countInstr05 += 1
+      if ( countInstr05 < Instructions.Instructions05.length) 
+      { return true} else { return false}
+    }
+}
+
+// This loops over multiple pages of the instructions
+var Instructions05Written_loop = {
+    timeline: [Instructions05Written],
+    loop_function: function(data){
+      countInstr05+=1
+      if ( countInstr05 < Instructions.Instructions05.length) 
+      { return true} else { return false}
+    }
+}
+
+var if_Instructions05Written = {
+    timeline: [Instructions05Written_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
+          { return true }
+          else { return false }
+    }
+}
+
+var if_Instructions05Spoken = {
+    timeline: [Instructions05Spoken_loop],
+    conditional_function: function() {
+          if ( parameters.ShowInstructions & parameters.InstructionsSpoken )
+          { return true }
+          else { return false }
+    }
+}
+var Instructions05 = {
+    timeline: [if_Instructions05Written, if_Instructions05Spoken]
+}
+
 
 
 // ================ GIF RECORDING ===================

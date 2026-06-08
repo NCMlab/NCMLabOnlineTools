@@ -18,7 +18,7 @@ var CurrentLanguage
 // ==============================================================
 // Functions used by the central execitive
 
-// Check to see if an object is emoty
+// Returns true if an object has no own properties.
 function isEmpty(obj) {
   for (const prop in obj) {
     if (Object.hasOwn(obj, prop)) {
@@ -28,7 +28,8 @@ function isEmpty(obj) {
   return true;
 }
 
-// Setup a Battery
+// If no session data exists, finds the battery by index, extracts its task/parameter/instruction
+// lists, and writes them into the JATOS study session. Skips setup if session data is already present.
 function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
     return new Promise((resolve) => {
         if ( !SessionDataFlag ) {
@@ -62,6 +63,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             JATOSSessionData.BatteryShortName = CurrentBattery.shortName
             JATOSSessionData.Redirect = CurrentBattery.Redirect
             JATOSSessionData.UsageType = UsageType
+            JATOSSessionData.Language = CurrentBattery.Language
             console.log(jatos.urlQueryParameters['sona_id'])
             if ( jatos.urlQueryParameters['sona_id'] != undefined )
             { JATOSSessionData.sona_id = jatos.urlQueryParameters['sona_id'] }
@@ -77,6 +79,7 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
             { JATOSSessionData.LanguagesToShow = CurrentBattery.LanguagesToShow }
             else { JATOSSessionData.LanguagesToShow = ['EN'] }            
             jatos.studySessionData = JATOSSessionData
+            console.log(JATOSSessionData)
 
         }
         else {console.log("THERE IS SESSION DATA")}
@@ -84,7 +87,8 @@ function SetupBattery(SessionDataFlag, BatteryIndex, UsageType) {
     })
 }
 
-// This checks to see if there is session data and it is complete
+// Checks whether JATOS session data exists and contains all expected keys.
+// Resolves with a boolean: true if session data is complete, false if missing or incomplete.
 function CheckForSessiondata() {
     return new Promise((resolve) =>{
     const ExpectedKeysInSessionData = ['CurrentIndex', 'TaskNameList', 
@@ -113,12 +117,13 @@ function CheckForSessiondata() {
     })
 }
 
-// function to start a task
+// Wrapper around jatos.startComponentByTitle() that launches the next JATOS component by title.
 function StartComponent(title, data) {
     console.log("Starting component: "+title)
     jatos.startComponentByTitle(title, data)
 }
 
+// Initializes jsPsych and runs the global timeline array if it is non-empty.
 function SetupjsPsychAndRunTimeline()  {
     // Can I send data through this function to be written to JATOS in the CE?
     // But make it optional so that it works if data is NOT sent also
@@ -135,7 +140,7 @@ function SetupjsPsychAndRunTimeline()  {
     })
 }       
 
-// The following is used by the user choice 
+// Builds an array of icon image filenames by matching each task name against the component list.
 function MakeIconList(TaskNameList, ComponentList) {
     // create a list of image file names for the tasks in the battery
     var IconImgFileList = []
@@ -146,7 +151,8 @@ function MakeIconList(TaskNameList, ComponentList) {
       return IconImgFileList
 }
 
-// Need function to setup the session. This info is stored in a parameter.
+// Reads session config parameters, builds button lists for the session manager page, and checks
+// completed bits from batch data. Returns either a MakeSessionButtonsLINKS or MakeSessionButtonsNEW trial.
 function SetupSession() {
     // This function is called from teh UpdatBatch promise. This is because it 
     // requires the LANGUAGE value which is storedin the batch. Access the batch may 
@@ -164,8 +170,14 @@ function SetupSession() {
     // no front end scripts can access the back-end data stored in the database. 
 
     console.log(jatos.studySessionData)
+    
+    // Check the Batch data to see what the language is set to and use that.
+
+    //CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
+    CurrentLanguage = jatos.studySessionData.Language
+    // If there is no language in the batch, then this is likely the first time the worker has come to the session manager. 
+    // In this case, use the URL parameter to set the language and store that in the batch.
     CurrentLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
-    console.log(CurrentLanguage)
     if ( CurrentLanguage == undefined )
     {
         // set the language to the default, EN
@@ -202,14 +214,19 @@ function SetupSession() {
     console.log(FirstName)
     var TitleToUse = ''
     if ( FirstName == undefined || FirstName == '' ) 
-        {
-            TitleToUse = LabelNames.EnterName
-        }
-    else {
-        TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title 
-    }
+        { TitleToUse = LabelNames.EnterName }
+    else { TitleToUse = LabelNames.Hello+ " "+FirstName+", "+parameters[0].Title }
+
     LabelNames.EnterName
-    SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType)
+    // url parameters are always strings
+    if ( jatos.urlQueryParameters.CopyLink == 'true' )
+    { 
+        // Overwrite the title
+        var TitleToUse = 'Select the link to copy for: ' + FirstName
+        SessionChoiceTrialNEW = MakeSessionButtonsLINKS(TitleToUse, Choices, SessionsBatteryList, ButtonBit, '0', ButtonRow, Phase, Test, ButtonUsageType) }
+    else 
+    { SessionChoiceTrialNEW = MakeSessionButtonsNEW(TitleToUse, Choices, SessionsBatteryList, ButtonBit, CompletedBits, ButtonRow, Phase, Test, ButtonUsageType) }
+    
     
     // Have different session been completed?
     // Check the bit 
@@ -228,6 +245,7 @@ function SetupSession() {
     //timeline.push()
 }
 
+// Returns true if CurrentIndex has reached the end of the task list, indicating the battery is complete.
 function IsTheBatteryFinished() {
     var BatteryCompleteFlag = false
     // The minus one is because the index starts with zero and does not
@@ -250,8 +268,9 @@ function IsTheBatteryFinished() {
 }
 
 
+// Checks JATOS batch data for the current worker. On first visit, initializes batch entries
+// (index, language, bitIndex). On subsequent visits, restores the saved index into the session.
 function CheckBatchData() {
-    // Check the session data to see if it is empty, if so add to it. If not, leave it alone
     // Is this worker in the Batch data?
     var currentIndex = 0
     return new Promise((resolve) => {
@@ -263,7 +282,7 @@ function CheckBatchData() {
             // set the index for this worker
             jatos.batchSession.set(jatos.workerId, currentIndex)    
             // set the language
-            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", "EN"))
+            .then(() => jatos.batchSession.set(jatos.workerId+"_Language", jatos.studySessionData.Language))
             .then(() => jatos.batchSession.set(jatos.workerId+"_bitIndex", "0"))
             
         }
@@ -286,6 +305,8 @@ function CheckBatchData() {
     })
 }
 
+// Writes a completion bit value (AddToCompletionCount) into the session data to track
+// which session battery was selected and needs to be marked complete on finish.
 function UpdateSessionBitIndex(AddToCompletionCount) {
     console.log(">>>>> UPDATING BIT INDEX <<<<<<")
     console.log(AddToCompletionCount)
@@ -297,8 +318,8 @@ function UpdateSessionBitIndex(AddToCompletionCount) {
     })
 }
 
-// These are the following usage types available.
-
+// Switches on UsageType (SingleTask, Battery, Session, UserChoice) and routes accordingly —
+// either starting the next component directly or pushing the appropriate jsPsych trial to the timeline.
 function UsageTypeDecision(UsageType) {
     return new Promise((resolve) => {
         switch(UsageType) {
@@ -349,11 +370,12 @@ function UsageTypeDecision(UsageType) {
 
 
 // =================================================
-// jsPsych elements to display.
-// These include: 
-//  - the welcome/splash page
-//  - the icons for user choice
-//  - the session manager page
+// jsPsych trial builders
+// These functions construct jsPsych trial objects and push them onto the timeline.
+// They cover: session manager buttons, user task-choice icons, the thank-you end screen,
+// and a minimal yes/no test stub used during development.
+
+// Development/debugging stub — builds a minimal yes/no button trial.
 function MakeTestElement() {
     var TestDisplay = {
         type: jsPsychHtmlButtonResponse,
@@ -364,7 +386,49 @@ function MakeTestElement() {
 }
 
 
-function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType) 
+// Builds a session manager button trial for staff use. Instead of starting a battery, each button
+// assembles a direct JATOS participant URL for that battery and copies it to the clipboard.
+function MakeSessionButtonsLINKS(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType)
+{
+    console.log(Title)
+    var trial = {
+        type: jsPsychHtmlButtonResponseTable,
+        stimulus: function() { return Title },
+        choices: Choices,
+        completedBits: CompletedBitList,
+        buttonRow: ButtonRow,
+        runNameCheck: false,
+        prompt: "",
+        on_finish: function(data) {
+            var BasePath = window.location.hostname
+                // The server for the NeuroClinic and JATOS are different, even if on the same machine.
+                        console.log(BasePath)
+            if ( BasePath.includes('localhost') )
+                { BasePath =  "127.0.0.1" }
+            else if ( BasePath === 'ncmlab.ca' )
+                { BasePath = "jatos.ncmlab.ca" }
+            else if ( BasePath === 'dev.ncmlab.ca')
+                { BasePath = "jatos-dev.ncmlab.ca" }
+        // Check to see if a port is needed
+        // JATOS runs locally on port 9000
+            var PortNumber = ''
+            if ( ! window.location.port == "" )
+            {
+            PortNumber = ':9000'
+            }
+            // Assemble the link
+            var Output = window.location.protocol + '//' + BasePath + PortNumber + '/publix/' + jatos.studyCode +'?Battery='+SessionsBatteryList[data.response]+'&UsageType=Battery'
+            navigator.clipboard.writeText(Output)
+            alert("Link for "+Choices[data.response]+" was copied to the clipboard.")
+            window.close()
+        }
+    };
+    return trial
+}
+
+// Builds the session manager button trial for participants. On button press, sets up and starts
+// the selected battery, recording which session bit to mark complete when the battery finishes.
+function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, CompletedBitList, ButtonRow, Phase, Test, ButtonUsageType)
 {
     var trial = {
         type: jsPsychHtmlButtonResponseTable,
@@ -372,6 +436,7 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
         choices: Choices,
         completedBits: CompletedBitList,
         buttonRow: ButtonRow,
+        runNameCheck: false,
         prompt: "",
         on_finish: function(data) {
             // Make a bit version of this session
@@ -430,8 +495,9 @@ function MakeSessionButtonsNEW(Title, Choices, SessionsBatteryList, BitList, Com
     return trial
 }
 
+// Builds an icon-button trial letting the participant choose which task to run within a battery.
+// Each button shows the task icon and name; the selected task is started via StartComponent.
 function MakeUserChoiceElement(JATOSSessionData) {
-    // This is the jsPsych task that display an icon for each task in a battery
     console.log(JATOSSessionData)
     IconImgFileList = MakeIconList(JATOSSessionData.TaskNameList, ComponentList)
     console.log(IconImgFileList)
@@ -465,9 +531,10 @@ function MakeUserChoiceElement(JATOSSessionData) {
 
 
 
+// Builds the end-of-study thank-you screen. Displays the localized thank-you message and
+// closes the window when the participant clicks done (no choices shown — study is complete).
 function MakeThankYouPage() {
     console.log("Making thank you page")
-    // This is the jsPsych task that display an icon for each task in a battery
     var ThankYouPage = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() { 
@@ -482,14 +549,19 @@ function MakeThankYouPage() {
     return ThankYouPage
 }
 // =================================================
-// This is where all the pieces are put together
-
+// Main entry point. Reads URL parameters to determine UsageType, checks whether the battery is
+// finished (redirecting or showing the thank-you page if so), then chains the setup promises
+// (CheckForSessiondata → SetupBattery → CheckBatchData) and launches the appropriate next step.
 function CentralExecutive() {
     return new Promise((resolve) => {
         const jatos_params = jatos.urlQueryParameters;
+        console.log(jatos_params)
         const BatteryIndex = jatos_params["Battery"];
         var ISPRcode = ''
         ISPRcode = jatos_params['sona_id']
+        var copyLinkFlag = false
+        copyLinkFlag = jatos_params['copyLink']
+        console.log("COPY LINK FLAG: "+copyLinkFlag)
         // If there is no session data yet, then use the URL parameter
         // to identift the usage type
         var UsageType = jatos_params["UsageType"];
@@ -570,13 +642,14 @@ function CentralExecutive() {
                 .then(() => CheckBatchData())    
                 .then(() => 
                     {
-                        
+                        jatos.studySessionData.copyLinkFlag = copyLinkFlag
+                        console.log(jatos.studySessionData)
                         SessionTimeLine = SetupSession()
                         console.log(SessionTimeLine)
-                        
                         timeline.push(SessionTimeLine)
                     })
                 .then(() => SetupjsPsychAndRunTimeline())
+                
                 break;
             case 'UserChoice':
                 // reset the timeline

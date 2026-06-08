@@ -7,8 +7,16 @@ function Questionnaire_Scoring(data) {
 	//
 	AllTrials = data
 	
-	data = data.trials[0]
-	Notes = AllTrials.filter({trial: 'Notes'})
+	//data = data.trials[0]
+
+	console.log(data)
+	//console.log(BREAK)
+	try {
+		Notes = AllTrials.filter({trial: 'Notes'})
+	}
+	catch (error) {
+		Notes = ''
+	}
 	Results = {}	
     Results.AllResults = {}
 	Results.AllResults['ScoreName'] = data.shortTitle
@@ -63,7 +71,6 @@ function Questionnaire_Scoring(data) {
 
 	if ( data.QuestionnaireType == 'form' )
 	{	
-
 		const rowIndices = Object.keys(data.response)
         console.log(rowIndices)
 		var NRows = rowIndices.length
@@ -76,7 +83,7 @@ function Questionnaire_Scoring(data) {
 			NumericScore = data.response[i].responseValue			
 			if ( NumericScore > -99 )
 			{
-				TotalScore += NumericScore
+				TotalScore += Number(NumericScore)
 				QuestionsAnswered = QuestionsAnswered + 1
 			}
 			Results.AllResults[data.response[i].label] = data.response[i].responseText
@@ -122,91 +129,6 @@ function Questionnaire_Scoring(data) {
 		}
 	}	
 	
-	
-	if ( data.QuestionnaireType == 'OLDmatrix' )
-	{	
-		
-		console.log(data.response)
-		const surveyName = Object.keys(data.response)
-        console.log(surveyName)
-		const keys = Object.keys(data.response[surveyName])
-		console.log(keys)
-		const responses = data.response[surveyName]
-		console.log(responses)
-		// cycle over responses
-		for ( var i = 0; i < keys.length; i++ )
-		{
-			NumericScore = responses[keys[i]]
-			console.log(data.Questionnaire.survey_JSON)
-			console.log(data.Questionnaire.survey_JSON.elements)
-			console.log(data.Questionnaire.survey_JSON.elements[0])
-			console.log(data.Questionnaire.survey_JSON.elements[0].rows)
-			// cycle over ALL questions
-			for ( var j = 0; j < data.Questionnaire.survey_JSON.elements[0].rows.length; j++ )
-			{
-				if ( data.Questionnaire.survey_JSON.elements[0].rows[j].value == keys[i] )
-				{
-					// Find the STIMULUS/QUESTION in TEXT
-					TextAnswer = data.Questionnaire.survey_JSON.elements[0].rows[j].text 
-					for ( var k = 0; k < data.Questionnaire.survey_JSON.elements[0].columns.length; k++ )
-					{
-						if ( data.Questionnaire.survey_JSON.elements[0].columns[k].value == NumericScore )
-						{
-							// Find the RESPONSE TEXT
-							ResponseText = data.Questionnaire.survey_JSON.elements[0].columns[k].text		
-						}
-					}
-				}
-			}
-			TotalScore += NumericScore
-			Results.AllResults[TextAnswer] = ResponseText
-			//console.log(BREAK)
-		}
-	}
-	if ( data.QuestionnaireType == 'OLDradiogroup' )
-	{
-		console.log(data)
-		console.log(data.response)
-		const keys = Object.keys(data.response)
-		console.log(keys)
-		// cycle over EACH QUESTIONS 
-		for ( var i = 0; i < keys.length; i++ )
-		{
-			// make sure it is NOT an introduction text "question"
-			if ( keys[i] != 'introduction' )
-			{ 
-				// get the response value
-				NumericScore = data.response[keys[i]]
-				console.log("Numeric Score: " + NumericScore)
-				console.log(data.Questionnaire.survey_JSON.pages[0].elements[keys[i]])
-				// cycle over ALL questions
-				for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[0].elements.length; j++ )
-				{
-					console.log("j: "+j)
-					console.log(data.response[keys[i]])
-					if ( data.Questionnaire.survey_JSON.pages[0].elements[j].name == keys[i] )
-					{
-						// Find the STIMULUS/QUESTION in TEXT
-						TextAnswer = data.Questionnaire.survey_JSON.pages[0].elements[j].title
-						console.log(TextAnswer)
-						for ( var k = 0; k < data.Questionnaire.survey_JSON.pages[0].elements[j].choices.length; k++ )
-						{
-							console.log(data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k])
-							if ( data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].value == NumericScore )
-							{
-								// Find the RESPONSE TEXT
-								ResponseText = data.Questionnaire.survey_JSON.pages[0].elements[j].choices[k].text		
-								console.log("Response Text: "+ResponseText)
-							}
-						}
-					}
-				}
-				TotalScore += NumericScore
-				Results.AllResults[TextAnswer] = ResponseText
-			}
-		}
-
-	}
 	if ( data.QuestionnaireType == 'likert' )
 	{
 		const keys = Object.keys(data.response)
@@ -284,7 +206,6 @@ function Questionnaire_Scoring(data) {
 			}
 		}
 	}
-
 	if ( data.QuestionnaireType == 'Varied' )
 	{
 		// This assumes there is not total score, so a score of one indicates that it was completed
@@ -296,29 +217,50 @@ function Questionnaire_Scoring(data) {
 		{
 			console.log("Page: "+i)
 			// cycle over elements on a page
-			for (var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
+			// This is cycling over the questions in the questionnaire.
+			// Not all questions have a response since some are conditional.
+			// The information in data.response is a list (regardless of page) of 
+			// all questions that are respoonded to.
+			// All question in the questionnaire should be in the output list
+			for ( var j = 0; j < data.Questionnaire.survey_JSON.pages[i].elements.length; j++ )
 				{
-					if ( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' )
+					if (( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'html' ) &&
+						( data.Questionnaire.survey_JSON.pages[i].elements[j].type != 'textbox' ) 
+					)
 					{
-						console.log(data.Questionnaire.survey_JSON.pages[i].elements[j].title)
 						// Question text
 						TextAnswer = data.Questionnaire.survey_JSON.pages[i].elements[j].title
 						console.log(TextAnswer)
+						console.log("Question number: "+j+ " of "+data.Questionnaire.survey_JSON.pages[i].elements.length)
 						// Question Name 
 						QuestionName = data.Questionnaire.survey_JSON.pages[i].elements[j].name
 						console.log(QuestionName)
+						// Is this a conditional question?
+						if (data.response.find(o => o.name === QuestionName) == undefined )
+						{
+							ResponseText = 'null'	 
+						}
+						// The questionnaire is split into pages,
+						// but the responses are all in a list
+						var temp = data.response.find(o => o.name === QuestionName)
+						console.log(temp)
 						// Response in text form
-						console.log(data.response)
-						ResponseText = data.response[QuestionName]
+
+						// If other, use text box results
+						if ( temp.responseValue == 9999 )
+						{ ResponseText = temp.responseText }
+						// If numeric response
+						else if ( ! temp.hasOwnProperty('responseText') )
+						{ ResponseText = temp.responseValue }
+						else { ResponseText = temp.responseText }
+						// If numeric, use it as text result
 						
 						console.log(ResponseText)
 						if ( ResponseText == null )
-						{
-							ResponseText = 'null'
-						}
+						{ ResponseText = 'null' }
 						Results.AllResults[TextAnswer] = ResponseText
 						// add the data in numeric format
-						var NumQuestionFormatName = data.shortTitle.replaceAll(" ","") + "_" + QuestionName
+						var NumQuestionFormatName = QuestionName
 						Results.NumericResults[NumQuestionFormatName] = ResponseText
 					}
 				}
@@ -347,12 +289,328 @@ function Questionnaire_Scoring(data) {
 		}
 	}*/
 
+	// SPECIALTY SCORING
+	console.log(data.shortTitle)
+	switch ( data.shortTitle ) {
+      	case 'FirstName':
+        // This is here to have a language independent location to store the first name of a participant
+        {
+          Results.AllResults['FirstName'] = data.response['Name']
+        }
+		case 'CESAM':
+        {
+		// Nutrition
+			if ( data.response.find(o=>o.name === 'cesam001').responseValue == 1)
+			{ Results.AllResults['Nutrition'] = 2} 
+		  else { Results.AllResults['Nutrition'] = 0} 
+		// Multimorbidity
+		  if ( data.response.find(o=>o.name === 'cesam002').responseValue == 1)
+			{ Results.AllResults['Multimorbidity'] = 0} 
+		  else if ( data.response.find(o=>o.name === 'cesam002').responseValue == 2)
+			{ Results.AllResults['Multimorbidity'] = 0}
+		  else if ( data.response.find(o=>o.name === 'cesam002').responseValue == 3)
+			{ Results.AllResults['Multimorbidity'] = 1}
+		  else { Results.AllResults['Multimorbidity'] = 2}
+		// Communication
+          Results.AllResults['Communication'] = data.response.find(o=>o.name === 'cesam003').responseValue + data.response.find(o=>o.name === 'cesam004').responseValue
+		// Cognition
+			if ( data.response.find(o=>o.name === 'cesam005').responseValue == 1)
+			{ Results.AllResults['Cognition'] = 2} 
+		  	else { Results.AllResults['Cognition'] = 0} 
+		// ADL 
+		// Questions 7 through 11 are coded as 1 for NO and 0 for YES
+		  var sumADL =  data.response.find(o=>o.name === 'cesam007').responseValue + 
+                        data.response.find(o=>o.name === 'cesam008').responseValue + 
+                        data.response.find(o=>o.name === 'cesam009').responseValue +
+                        data.response.find(o=>o.name === 'cesam010').responseValue +
+                        data.response.find(o=>o.name === 'cesam011').responseValue
+			// This question uses the count of NOs. The questions are coded as 0 for NO and 1 for YES.
+			// This make senses for the questions, but confuses things for teh scoring.
+			// 4 or 5 NOs is the same as 1 or 0 YESs. 
+			switch (sumADL) {
+				case 0: // 0 YESs, 5 NOs
+					Results.AllResults['ADL'] = 0
+					break;
+				case 1: // 1 YES, 4 NOs
+					Results.AllResults['ADL'] = 0
+					break;
+				case 2: // 2 YESs, 3 NOs
+					Results.AllResults['ADL'] = 1
+					break;
+				case 3: // 3 YESs, 2 NOs
+					Results.AllResults['ADL'] = 1
+					break;
+				case 4: // 4 YESs, 1 NO
+					Results.AllResults['ADL'] = 2
+					break;
+				default: // 5 YESs, 0 NOs
+					Results.AllResults['ADL'] = 2
+			}
+		// IADL 
+		// Questions 12 through 15 are coded as 1 for NO and 0 for YES
+		  var sumIADL = data.response.find(o=>o.name === 'cesam012').responseValue + 
+          				data.response.find(o=>o.name === 'cesam013').responseValue + 
+          				data.response.find(o=>o.name === 'cesam014').responseValue +
+          				data.response.find(o=>o.name === 'cesam015').responseValue 
+		 	switch (sumIADL) {
+				case 0: // 0 YESs, 4 NOs
+					Results.AllResults['IADL'] = 0
+					break;
+				case 1: // 1 YES, 3 NOs
+					Results.AllResults['IADL'] = 1
+					break;
+				case 2: // 2 YESs, 2 NOs
+					Results.AllResults['IADL'] = 2
+					break;
+				case 3: // 3 YESs, 1 NOs
+					Results.AllResults['IADL'] = 2
+					break;
+				default: // 4 YESs, 0 NOs
+					Results.AllResults['IADL'] = 2	
+					break;				
+			}
+		// Continence
+			if ( data.response.find(o=>o.name === 'cesam016').responseValue == 1)
+			{ Results.AllResults['Continence'] = 2} 
+		  	else { Results.AllResults['Continence'] = 0} 
+		// Mood
+		 if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 1 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
+            Results.AllResults['Mood'] = 0
+          }
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 3 ) && ( data.response.find(o=>o.name === 'cesam018').responseValue == 1 ) ) {
+            Results.AllResults['Mood'] = 1
+          }
+          if ( ( data.response.find(o=>o.name === 'cesam017').responseValue == 2 ) || ( data.response.find(o=>o.name === 'cesam018').responseValue == 0 ) ) {
+            Results.AllResults['Mood'] = 2
+          }
+          // Mobility
+          if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 1 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
+            Results.AllResults['Mobility'] = 0
+          }
+          else if ( ( data.response.find(o=>o.name === 'cesam019').responseValue == 0 ) && ( data.response.find(o=>o.name === 'cesam020').responseValue == 0 ) ) {
+            Results.AllResults['Mobility'] = 1
+          }
+          else if ( data.response.find(o=>o.name === 'cesam020').responseValue == 1 )  {
+            Results.AllResults['Mobility'] = 2
+          }
+          Results.AllResults['Total Score'] = Results.AllResults['Nutrition'] + 
+                                              Results.AllResults['Multimorbidity'] + 
+                                              Results.AllResults['Communication'] + 
+                                              Results.AllResults['Cognition'] + 
+                                              Results.AllResults['ADL'] + 
+                                              Results.AllResults['IADL'] + 
+                                              Results.AllResults['Continence'] + 
+                                              Results.AllResults['Mood'] + 
+                                              Results.AllResults['Mobility']
+          Results.AllResults['Accuracy'] = Results.AllResults['Total Score']                                
+		  Results.NumericResults['Nutrition'] = Results.AllResults['Nutrition']
+		  Results.NumericResults['Multimorbidity'] = Results.AllResults['Multimorbidity']
+		  Results.NumericResults['Communication'] = Results.AllResults['Communication']
+		  Results.NumericResults['Cognition'] = Results.AllResults['Cognition']
+		  Results.NumericResults['ADL'] = Results.AllResults['ADL']
+		  Results.NumericResults['IADL'] = Results.AllResults['IADL']
+		  Results.NumericResults['Continence'] = Results.AllResults['Continence']
+		  Results.NumericResults['Mood'] = Results.AllResults['Mood']
+		  Results.NumericResults['Mobility'] = Results.AllResults['Mobility']
+		  
+		  // Overwrite the average score values
+		  Results.AllResults['Average Score'] = -99
+		  Results.NumericResults['Average Score'] = -99
+		  // Overwrite Total scores
+			var totalScoreName = data.Questionnaire.survey_JSON.name + "_total"
+			Results.NumericResults[totalScoreName] = Results.AllResults['Total Score']     
+		  // At the very end of this script there is a statement assigningthe total score value.
+		  // this overwrites the total score value with the sum ver all quesations.
+		  // The CESAM does not use all questions in iuts totalcalculation; therefore, this calue is incorrect.
+          // Overwrite the total score value with the sum of the specialty scores.
+		  TotalScore = Results.AllResults['Total Score'] 
+		  break;
+        }
+		
+		case 'GDS':
+          {
+            var TotalScore = 0
+            // The following can be done with a loop, but the explicit nature of the following makes it very 
+            // easy to see what is being done.
+            if ( data.response.find(o => o.name === 'gds01').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds02').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds03').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds04').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds05').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds06').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds07').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds08').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds09').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds10').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds11').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds12').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds13').responseValue == 0 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds14').responseValue == 1 ){ TotalScore++ }
+            if ( data.response.find(o => o.name === 'gds15').responseValue == 1 ){ TotalScore++ }
+            Results.AllResults['Total Score'] = TotalScore
+            Results.AllResults['Accuracy'] = TotalScore
+            // Make adjustments for unanswered questions
+            var AvgScore = Results.AllResults['Total Score']/Results.AllResults['Questions Answered']*Results.AllResults['Number of Questions']
+			Results.AllResults['Average Score'] = AvgScore
+            var totalScoreName = data.name + "_total"
+		        var avgScoreName = data.name + "_avg"
+		        
+            Results.NumericResults[totalScoreName] = TotalScore
+            Results.NumericResults[avgScoreName] = AvgScore
+
+            break;
+          }
+		case 'PANAS, weekly':
+            {
+				var Npos = 0
+				var Nneg = 0
+				Results.AllResults['Positive'] = 0
+              	if ( data.response.find(o => o.name === 'panas03').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas03').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas05').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas05').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas07').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas07').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas08').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas08').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas10').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas10').responseValue 
+					Npos++
+				}
+				Results.AllResults['Positive Average'] = Results.AllResults['Positive']/Npos*5
+				Results.NumericResults['panas_pos_sum'] = Results.AllResults['Positive']
+				Results.NumericResults['panas_Npos'] = Npos
+				Results.NumericResults['panas_pos_avg'] = Results.AllResults['Positive']/Npos*5
+				
+				Results.AllResults['Negative'] = 0
+              	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
+					Nneg++
+				}
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Nneg*5
+				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
+				Results.NumericResults['panas_Nneg'] = Nneg
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Nneg*5
+              break;                                              
+            }
+		case 'PANAS, baseline':
+          {
+            	var Npos = 0
+				var Nneg = 0
+				Results.AllResults['Positive'] = 0
+              	if ( data.response.find(o => o.name === 'panas03').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas03').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas05').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas05').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas07').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas07').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas08').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas08').responseValue 
+					Npos++
+				}
+				if ( data.response.find(o => o.name === 'panas10').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Positive'] += data.response.find(o => o.name === 'panas10').responseValue 
+					Npos++
+				}
+				Results.AllResults['Positive Average'] = Results.AllResults['Positive']/Npos*5
+				Results.NumericResults['panas_pos_sum'] = Results.AllResults['Positive']
+				Results.NumericResults['panas_Npos'] = Npos
+				Results.NumericResults['panas_pos_avg'] = Results.AllResults['Positive']/Npos*5
+				
+				Results.AllResults['Negative'] = 0
+              	if ( data.response.find(o => o.name === 'panas01').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas01').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas02').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas02').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas04').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas04').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas06').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas06').responseValue 
+					Nneg++
+				}
+				if ( data.response.find(o => o.name === 'panas09').responseValue != -99 )
+			  	{ 
+					Results.AllResults['Negative'] += data.response.find(o => o.name === 'panas09').responseValue 
+					Nneg++
+				}
+				Results.AllResults['Negative Average'] = Results.AllResults['Negative']/Nneg*5
+				Results.NumericResults['panas_neg_sum'] = Results.AllResults['Negative']
+				Results.NumericResults['panas_Nneg'] = Nneg
+				Results.NumericResults['panas_neg_avg'] = Results.AllResults['Negative']/Nneg*5
+				break                                           
+          }
+    }
+
+
+
 	Results.AllResults['Accuracy'] = TotalScore
 	Results.AllResults['Total Score'] = TotalScore
-	if ( Notes.trials.length > 0 )
-		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
-	else { Results.AllResults['Notes'] = '' }
-	Results.parameters = parameters
+	// If the data is sent from a CSV to JSON procedure there are no NOTES
+	try {
+		if ( Notes.trials.length > 0 )
+			{ Results.AllResults['Notes'] = Notes.response.Notes }
+		else { Results.AllResults['Notes'] = '' }
+	}
+	catch (error)
+	{ Results.AllResults['Notes'] = '' }
+	// If the data is sent from a CSV to JSON procedure there are no parameters
+	try { Results.parameters = parameters }
+	catch (error) { Results.parameters = '' }
 	Results.Alert = false
 	if ( data.AlertLimit !== undefined ) 
 	{

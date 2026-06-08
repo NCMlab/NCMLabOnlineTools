@@ -29,20 +29,7 @@ var VAStrial = {
           return parameters.Instructions 
     },
     on_load: function() {
-
-      // Set the height of teh slider based on the rendered size of the cell it is in        
-        var r = document.querySelector(':root');
-        var rs = getComputedStyle(r);
-        console.log("JASONJASONJASON")
-        //console.log(document.getElementById('VASTable').offsetHeight)
-        console.log(document.getElementById('VAStableElement').offsetHeight)
-        var VAScellHeight = 0.9*document.getElementById('VAStableElement').offsetHeight
-        //VAScellHeight = document.getElementById('VASTable').offsetHeight - 20
-        console.log(VAScellHeight)
-        var NewHeight = VAScellHeight + 'px'
-        r.style.setProperty('--sliderHeight', NewHeight)
-        //r.style.setProperty('--sliderCellHeight', NewHeight)
-        
+        // --sliderHeight is set in CSS as a vh value so it scales automatically on resize.
     },
     min: function() {return parameters.min},
     max: function() {return parameters.max},
@@ -98,8 +85,9 @@ var form_trial = {
   }
 timeline.push(Welcome)
 timeline.push(LoadQuestionnaire)
-timeline.push(form_trial)
 timeline.push(VAStrial)
+timeline.push(form_trial)
+
 timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)

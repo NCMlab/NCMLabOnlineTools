@@ -1,6 +1,12 @@
 function LineBisection_Scoring(data) {
+	Notes = data.filter({trial: 'Notes'})
 	const temp = data.filter({trial : 'trial'}).trials
+	console.log(data)
+	const CanvasSize = data.filter({trial : 'FindCanvasSize'}).trials
+
 	console.log(temp)
+	const SummaryImage = createAndDownloadPNG(temp, CanvasSize)
+
 	// the task is one trial of N lines or Ntrials of one line
 	// the scoring needs to take this into account
 	var Ntrials = temp.length
@@ -87,6 +93,8 @@ function LineBisection_Scoring(data) {
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
 	else { Results.AllResults['Notes'] = '' }
 	Results.AllResults['Scoring Notes'] = Instructions.NotesForResultsPage
+	// Recreate the final image
+	Results.AllResults['SummaryImage'] = SummaryImage
 
 
 	// // Find the length of each line
@@ -156,7 +164,7 @@ function removeEmptyValues(array, MissingValue) {
 		array.splice( index );
 	}
 	console.log(array)
-	return array
+	return array 
 }
 
 function CountResponses(array, MissingValue) {
@@ -164,4 +172,102 @@ function CountResponses(array, MissingValue) {
 	array.forEach((v) => (v === MissingValue && count++));
 	var NResponses = array.length - count
 	return NResponses;
+}
+
+
+function createAndDownloadPNG(points, canvasMeta) {
+	// This recreates the full task into a single image. 
+	// It includes all the lines and teh strokes the participant makes.
+	// It also includes a red mark at the midpoint of each line.
+	console.log(Array.isArray(points))
+	console.log(points)
+  const meta = canvasMeta[0];
+  const width = Math.ceil(meta.CanvasWidth);
+  const height = Math.ceil(meta.CanvasHeight);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext("2d");
+
+  // --- background ---
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, width, height);
+
+  // --- DEBUG: draw a border so you know the canvas is real ---
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 3;
+  ctx.strokeRect(0, 0, width, height);
+
+  // --- stroke settings ---
+  ctx.lineWidth = 5;               // thick so it is impossible to miss
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.globalAlpha = 1.0;
+
+  let drawing = false;
+  let currentColor = "#000000";
+	ctx.strokeStyle = currentColor;
+  for ( var k = 0; k < points.length; k++ ) {
+	// cycle over the different trials
+	console.log(points[k])
+	// draw the line for each trial
+	ctx.beginPath();
+	ctx.moveTo(points[k].Lines[0].LeftX, points[k].Lines[0].LeftY );
+	drawing = true;
+	ctx.lineTo(points[k].Lines[0].RightX, points[k].Lines[0].RightY );
+	ctx.stroke();     // ✅ CRITICAL: commit immediately
+	ctx.beginPath();  // prevent path accumulation bugs
+
+	// Draw teh midpoint
+	ctx.strokeStyle = "red"
+		var midP = MidPoint(points[k].Lines[0].LeftX, points[k].Lines[0].LeftY, points[k].Lines[0].RightX, points[k].Lines[0].RightY)
+		console.log(midP)
+		ctx.moveTo(midP[0], midP[1]-5 );
+		drawing = true;
+		ctx.lineTo(midP[0], midP[1]+5 );
+		ctx.stroke();     // ✅ CRITICAL: commit immediately
+		ctx.beginPath();  // prevent path accumulation bugs
+
+	ctx.strokeStyle = currentColor;
+	for ( var j = 0; j < points[k].strokes.length; j++ ) {
+		// cycle over each stroke of a trial
+		for ( var i = 0; i < points[k].strokes[j].length; i++ ) {
+			// cycle over the points within a stroke
+			p = points[k].strokes[j][i]
+			// skip non‑coordinate events (e.g. action: "end")
+			if (typeof p.x !== "number" || typeof p.y !== "number") {
+				drawing = false;
+				continue;
+			}
+
+			if (p.color) {
+				currentColor = p.color;
+				ctx.strokeStyle = currentColor;
+			}
+
+			if (p.action === "start") {
+				ctx.beginPath();
+				ctx.moveTo(p.x, p.y);
+				drawing = true;
+			} 
+			
+			else if (p.action === "move" && drawing) {
+				ctx.lineTo(p.x, p.y);
+				ctx.stroke();     // ✅ CRITICAL: commit immediately
+				ctx.beginPath();  // prevent path accumulation bugs
+				ctx.moveTo(p.x, p.y);
+			}
+		}
+  	}
+	}
+
+
+  // --- download ---
+  const link = document.createElement("a");
+  link.download = "drawing.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+  return link.href
 }

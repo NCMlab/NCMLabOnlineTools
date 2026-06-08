@@ -9,15 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCMLab</title>
     <!--<link rel="stylesheet" href="jspsych/dist/jspsych.css" />-->
-    <link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
     <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-    <link rel="stylesheet" type='text/css' href='css/CentralExecutive.css'>
+    <link rel="stylesheet" type='text/css' href='css/CentralExecutive.css'>-->
+    <link rel="stylesheet" type='text/css' href='css/CentralExecutive_CoPilot.css'>
     <script src="ImportedModules/jquery-3.6.4.js"></script> 
 
     <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <!--<script src="jspsych_addons/plugin-html-button-response-table.js"></script>-->
     <script src="jspsych_addons/plugin-html-button-response-table.js"></script>
     <script src="functions/GeneralPurposeFunctions/pseudoSwitch.js"></script>
     <!--<script src="config/General_Setup.js"></script>-->
@@ -47,15 +49,12 @@
             console.log(LabelNames)
 
       })
-      .then(() =>
-                // import the header buttons and set their language and visibility
-            //    $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
-                    UpdateHeader()
-            )
+      
       .then((result) => CentralExecutive() )
       // once everything is setup, then proceed to displaying the jspsych timeline
-      
-      
+      .then(() =>
+          UpdateHeaderPromise()
+      )
     })
 
             

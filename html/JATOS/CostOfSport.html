@@ -28,7 +28,7 @@
   .jspsych-content .sd-root-modern {
     display: inline-block;
     text-align: left;              /* everything INSIDE is left-aligned */
-    width: auto;                   /* let content define width */
+    width: 90%;
     max-width: 100%;
   }
 
@@ -62,6 +62,16 @@
   .sd-question--radiogroup .sd-selectbase__list {
   width: auto;
   margin: 0 auto;
+  }
+
+  /* NCMLabGeneral.css zeros out .sd-element--with-frame padding, but SurveyJS
+     still applies a negative margin-left on the error box to bleed past that
+     padding. With 0 padding there is nothing to compensate for, so the bar
+     shifts left and gets clipped. Reset the margin so it stays in bounds. */
+  .sd-element--with-frame > .sd-element__erbox {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
   }
 </style>
 

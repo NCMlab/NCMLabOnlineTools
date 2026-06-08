@@ -8,9 +8,8 @@
 /*  What is super confusing with the slider height is that it is based off the width of the cell
 it is in. This is because it is a horizontal aslider that has been rotated. */
 :root {
-  --sliderHeight: 50%;
-  --thumbHeight: 25px;
-  --thumbWidth: 40px;
+  --sliderHeight: 56vh;
+  --thumbSize: 28px;
   --sliderShiftFromRightOfCell: 20vw;
   --sliderCellHeight: 400px;
 }
@@ -49,24 +48,20 @@ li span {
 
 
 .track {
-  /*width: calc(100% - 30px + 36px);*/
   width: var(--sliderHeight);
-
-  /* border: 3px solid #04AA6D; */
-
-  /* transform-origin: left;*/
-  /* The following, along with the relative div cell above
-   FIXES the slider to the right hand side of the cell */
+  height: var(--thumbSize);
   right: var(--sliderShiftFromRightOfCell);
+  top: calc(50% - var(--thumbSize) / 2);
   position: absolute;
   transform: translate(50%, 0%) rotate(270deg);
-  /* transform: rotate(270deg); */
 }
 
 .ticks {
   display: flex;
   justify-content: space-between;
-  padding: 0 0px;
+  align-items: center;
+  height: 100%;
+  padding: 0;
 }
 
 .tick {
@@ -75,62 +70,86 @@ li span {
   justify-content: center;
   width: 1px;
   background: black;
-  height: 15px;
-  line-height: 50px;
+  height: 40%;
 }
 
 .tickWide {
+  position: relative;
+  display: flex;
+  justify-content: center;
   width: 1px;
   background: black;
-  height: 35px;
-  line-height: 50px;
-  margin: -10px 0px -10px 0px;
+  height: 85%;
 }
 
 .tickLabel {
-  content: "";
   position: absolute;
-  margin: 0px 8px 10px -24px;
-  top: 40px;
-  transform: rotate(-270deg);
-  /* rotate the element */
-  font-size: 3.5vmin
+  /* rotate(270deg) maps original "down" → screen "right"
+     so positive top moves the label to the right of the scale in screen space */
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-270deg);
+  white-space: nowrap;
+  font-size: 3.5vmin;
 }
 
 .groove {
   height: 2px;
   background: #b3b3b3;
   position: absolute;
-  width: var(--sliderHeight); /*calc(100% - 16px);*/
-  left: 0px;
-  top: 50%;
   width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #jspsych-html-slider-response-response {
-  /* border: 3px solid #888888; */
   appearance: none;
   background: none;
-  margin: auto;
-  /*width: calc(100% - 30px + 36px);*/
-  width: calc(var(--sliderHeight) + var(--thumbHeight));
-  top: calc(var(--thumbHeight) * (-0.25));
-  
-  right: var(--sliderShiftFromRightOfCell);
-  position: fixed;
+  border: none;
+  margin: 0;
   padding: 0;
-  /* transform: translateY(50%); */
+  /* wider than the track by thumbSize so the thumb center reaches both ends */
+  width: calc(var(--sliderHeight) + var(--thumbSize));
+  height: var(--thumbSize);
+  top: calc(50% - var(--thumbSize) / 2);
+  right: var(--sliderShiftFromRightOfCell);
   position: absolute;
   transform: translate(50%, 0%) rotate(270deg);
 }
 
 #jspsych-html-slider-response-response::-webkit-slider-thumb {
   appearance: none;
-  width: var(--thumbHeight);
-  height: var(--thumbWidth);
-  
+  width: var(--thumbSize);
+  height: var(--thumbSize);
   border-radius: 50%;
   background: yellowgreen;
+}
+
+#jspsych-html-slider-response-response::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 100%;
+}
+
+#jspsych-html-slider-response-response::-moz-range-thumb {
+  width: var(--thumbSize);
+  height: var(--thumbSize);
+  border-radius: 50%;
+  background: yellowgreen;
+  border: none;
+}
+
+#jspsych-html-slider-response-response::-moz-range-track {
+  background: transparent;
+  height: 2px;
+}
+
+/* Firefox: same thumb-travel offset as WebKit (center travels thumbSize/2 to inputWidth-thumbSize/2),
+   so it needs the same wider width — only override the font size */
+@supports (-moz-appearance: none) {
+  .tickLabel {
+    font-size: 2.5vmin;
+  }
 }
 /*
 tbody {
@@ -248,17 +267,15 @@ tbody {
 
 
 
-.topCell {
+#topCell {
   text-align: center;
   padding-left: 2%;
-  height: 10%;
-  vertical-align: top;
+  vertical-align: bottom;
 }
-.bottomCell {
+#bottomCell {
   text-align: center;
   padding-left: 1%;
-  height: 10%;
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
 .ScoreCell {

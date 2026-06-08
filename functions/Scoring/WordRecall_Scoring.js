@@ -3,7 +3,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	console.log(data)
 	console.log(WordListA)
 	console.log(WordListB)
-	// Get the recall blocks
+	// Get just the recall trials and not the word presentation trials
 	temp = data.filter({task: 'Recall'})
 	console.log(temp)
 	console.log(temp.trials)
@@ -184,6 +184,7 @@ function WordRecall_Scoring(data, WordListA, WordListB) {
 	else { Results.AllResults['Notes'] = '' }
 	Results.parameters = parameters
 	console.log(Results)
+	//console.log(BREAK)
 	return Results
 }
 

@@ -1,0 +1,105 @@
+site_name: 3C Platform
+site_url: https://ncmlab.github.io/NCMLabOnlineTools/
+site_description: Open-source platform for developing, administering, and interpreting behavioural and cognitive assessments in-person or remotely.
+site_author: Jason Steffener, University of Ottawa
+repo_url: https://github.com/NCMlab/NCMLabOnlineTools
+repo_name: NCMlab/NCMLabOnlineTools
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  logo: assets/images/3CLogo.png
+  favicon: assets/images/3CLogo.png
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Your First Experiment: getting-started/first-experiment.md
+  - Platform:
+    - Overview: platform/overview.md
+    - Administration Modes: platform/administration.md
+    - The Central Executive: platform/central-executive.md
+  - Usage Types:
+    - Pre-defined Battery: usage-types/predefined.md
+    - User Choice: usage-types/user-choice.md
+    - Experiment Manager: usage-types/experiment-manager.md
+  - Tasks:
+    - Task Structure: tasks/task-structure.md
+    - Configuration Files: tasks/configuration.md
+    - Header Buttons: tasks/header-buttons.md
+    - Available Tasks: tasks/available-tasks.md
+  - Features:
+    - Languages: features/languages.md
+    - Response Types: features/response-types.md
+    - Adaptive Difficulty: features/adaptive-difficulty.md
+  - Backend (NeuroClinic): backend.md
+  - Contributing: contributing.md
+  - Student Projects: projects.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/NCMlab/NCMLabOnlineTools
+      name: NCMLabOnlineTools on GitHub
+    - icon: fontawesome/brands/github
+      link: https://github.com/NCMlab/NeuroClinicPublic
+      name: NeuroClinicPublic on GitHub

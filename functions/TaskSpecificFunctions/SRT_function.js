@@ -44,6 +44,8 @@ var MakeAllWordsUpperCase = function(WordList) {
 	}
 	return outList
 }
+// TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
+// Work on this so that word lists can be added
 var CreateSimpleIndexList = function(WordList, AltWordList) {
 	// this is used to map matches with alterantive pronunciations back to the
 	// primary spelling of the word

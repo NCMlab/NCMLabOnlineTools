@@ -1,5 +1,5 @@
 var EN_Instructions = {}
-EN_Instructions.Instructions = 'Draw a copy of a cube, take your time.'
+EN_Instructions.Instructions = 'Draw a copy of a this image, take your time.'
 EN_Instructions.WelcomeText = [{'page': 'Welcome to the Image Copying Task.'}]
 EN_Instructions.ThankYouText = [{'page': 'Thank you'}]
 EN_Instructions.NotesForResultsPage = "The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."

@@ -8,10 +8,12 @@ https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-6.php
 */
 var trial_data
 
+
 var jsPsychCancellationMouse = (function (jspsych) {
   'use strict';
+  
   const info = {
-      name: "cancellation-mouse",
+      name: "cancellation",
       parameters: {
           /** This array represents the grid of boxes shown on the screen. */
           grid: {
@@ -129,6 +131,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
             type: jspsych.ParameterType.BOOL,
             default: false,
         },
+        /**
+        * Whether to save the final image in the data as dataURL
+        */
+        save_final_image: {
+            type: jspsych.ParameterType.BOOL,
+            default: true,
+        },
       },
   };
   /**
@@ -216,12 +225,12 @@ var jsPsychCancellationMouse = (function (jspsych) {
                   this.jsPsych.pluginAPI.setTimeout(endTrial, trial.trial_duration);
               }
 
-            //   if ( this.params.GIFRecord )
-            //   {
-            //     this.enc = encoder
-            //     this.enc.start()
-            //     this.capture_frame();
-            //   }
+              if ( this.params.GIFRecord )
+              {
+                this.enc = encoder
+                this.enc.start()
+                this.capture_frame();
+              }
           };
 
 
@@ -247,13 +256,13 @@ var jsPsychCancellationMouse = (function (jspsych) {
           display_element.querySelector("#sketchpad-end").addEventListener("click", () => {endTrial()});
 
           const endTrial = () => {
-            // if ( this.params.GIFRecord )
-            // { 
-            //     this.enc.finish();
-            //     clearInterval(this.capture_frame_interval)
-            //     var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
-            //     var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
-            // };
+            if ( this.params.GIFRecord )
+            { 
+                this.enc.finish();
+                clearInterval(this.capture_frame_interval)
+                var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+                var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
+            };
 
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();            
@@ -265,7 +274,21 @@ var jsPsychCancellationMouse = (function (jspsych) {
                 correct: response.row == trial.target[0] && response.column == trial.target[1],
                 
               };
-            //   trial_data.gif = data_url
+
+              trial_data.gif = data_url
+              if (this.params.save_final_image) {
+                console.log(this)
+
+                const canv = html2canvas(document.querySelector("#jspsych-content")).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'screenshot.png';
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                    return canv
+                });
+                trial_data.png = canv
+
+            }
 
 
 
@@ -391,11 +414,14 @@ var jsPsychCancellationMouse = (function (jspsych) {
           }
       }
 
-    //   capture_frame() {
-    //     //capture a frame
-    //     console.log("Capturing Frame")
-    //     this.capture_frame_interval = setInterval(() => { this.enc.addFrame(document.getElementById('jspsych-serial-reaction-time-stimulus'), 500)})
-    //   }
+      capture_frame() {
+        //capture a frame
+        console.log("Capturing Frame")
+        this.capture_frame_interval = setInterval(() => { 
+            //this.enc.addFrame(document.getElementById('jspsych-serial-reaction-time-stimulus')
+            this.enc.addFrame(this.ctx);
+            }, 1000)
+      }
 
       create_simulation_data(trial, simulation_options) {
           let response = this.jsPsych.utils.deepCopy(trial.target);

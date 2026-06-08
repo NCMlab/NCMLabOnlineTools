@@ -1,8 +1,15 @@
 var title = "The Centre of Excellence Self-Administered questionnaire"
 var shortTitle = "CESAM"
 const survey_JSON = {
+   showProgressBar: "none", // bottom, none
+   showTitle: false,
+   progressBarType: "pages",
+   progressBarShowPageNumbers: true,
+   progressBarShowPageTitles: true,
   showQuestionNumbers: false,
   showCompletedPage: false,
+  isAllRowRequired: 'Required', // Required/Not-Required/Suggested
+  name: "CESAM",
   pages: [{
   elements: [
     {
@@ -10,7 +17,7 @@ const survey_JSON = {
         name: "cesam001",
         title: "지난 1년간 의도하지 않은 체중 감량이 있었나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -22,7 +29,7 @@ const survey_JSON = {
         title: "체중이 3kg 이상 감소했나요?",
         choices: [
             { value: 1, text: "예"},
-            { value: 2, text: "아니요"}
+            { value: 0, text: "아니요"}
         ],
         visibleIf: "{cesam001} == 예",
         isRequired: true,
@@ -33,9 +40,10 @@ const survey_JSON = {
         name: "cesam002",
         title: "매일 복용하는 약물의 개수는 몇 개인가요?",
         choices: [
-          { value: 0, text: '<5' },
-          { value: 1, text: '5-9' },
-          { value: 2, text: '≥10' },
+          { value: 1, text: '0' },
+          { value: 2, text: '1-4' },
+          { value: 3, text: '5-9' },
+          { value: 4, text: '≥10' },
         ],
         isRequired: true,
         showClearButton: true
@@ -67,7 +75,7 @@ const survey_JSON = {
         name: "cesam005",
         title: "주변 사람들이 기억력 문제를 지적한 적이 있나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -78,7 +86,7 @@ const survey_JSON = {
         name: "cesam006",
         title: "홈 케어 지원을 받고 있나요?",
         choices: [
-            { value: 2, text: "예"},
+            { value: 1, text: "예"},
             { value: 0, text: "아니요"}
         ],
         isRequired: true,
@@ -89,9 +97,9 @@ const survey_JSON = {
         name: "cesam006p1",
         title: "누구로부터?",
         choices: [
-            {text: "가족"},
-            {text: "친구"},
-            {text: "전문가"}
+            {value: 0, text: "가족"},
+            {value: 1, text: "친구"},
+            {value: 2, text: "전문가"}
         ],
         visibleIf: "{cesam006} == 예",
         isRequired: true,
@@ -202,7 +210,7 @@ const survey_JSON = {
         name: "cesam016",
         title: "배뇨/배변 실금이 있나요?",
         choices: [
-            { value: 2, text: '예' },
+            { value: 1, text: '예' },
             { value: 0, text: '아니요' },
         ],
         isRequired: true,
@@ -213,9 +221,9 @@ const survey_JSON = {
         name: "cesam017",
         title: "오늘 기분이 어떻습니까?",
         choices: [
-            { value: 2, text: "행복" },
-            { value: 1, text: "불행" },
-            { value: 0, text: "중립" },
+            { value: 1, text: "행복" },
+            { value: 2, text: "불행" },
+            { value: 3, text: "중립" },
         ],
         isRequired: true,
         showClearButton: true
@@ -307,7 +315,7 @@ const survey_JSON = {
         name: "cesam023",
         title: "만성 질환을 앓고 있는 사람의 간병인이신가요?",
         choices: [
-            {value:2, text: "예"},
+            {value:1, text: "예"},
             {value:0, text: "아니요"}
         ],
         isRequired: true,
@@ -318,8 +326,8 @@ const survey_JSON = {
         name: "cesam023p1",
         title: "그 사람의 상태는 어떤가요?",
         choices: [
-            {text: "알츠하이머병"},
-            {text: "기타"}
+            {value: 1, text: "알츠하이머병"},
+            {value: 0, text: "기타"}
         ],
         visibleIf: "{cesam023} == 예",
         isRequired: true,
@@ -335,6 +343,6 @@ KR_cesam.title = title,
 KR_cesam.shortTitle = shortTitle,
 KR_cesam.survey_JSON = survey_JSON
 KR_cesam.description = ""
-KR_cesam.QuestionnaireType = 'Varied'
+KR_cesam.QuestionnaireType = 'form'
 KR_cesam.references = "references"
 KR_cesam.notes = ''

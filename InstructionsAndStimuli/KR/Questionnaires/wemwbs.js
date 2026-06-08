@@ -9,7 +9,7 @@ const survey_JSON = {
         name: "정신적 웰빙(정신적 건강과 긍정적 정서)척도",
         title: "각 제목 아래에서 오늘의 건강을 가장 잘 설명하는 상자를 선택하세요.",
         alternateRows: true,
-        isAllRowRequired: true,
+        isAllRowRequired: 'Suggested', // Required/Not-Required/Suggested
         rows: [
             {value: 'wemwbs001',text: '나는 미래에 대해서 긍정적으로 느낀다.'},
             {value: 'wemwbs002',text: '나는 내가 쓸모 있는 사람이라고 느낀다.'},

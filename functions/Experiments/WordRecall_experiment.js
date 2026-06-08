@@ -19,7 +19,8 @@ var time_left
 var WordList = []
 var WordListA
 var WordListB
-var SimpleWordList = []
+var SimpleWordListA = []
+var SimpleWordListB = []
 var FullWordList = []
 var WordListIndex = []
 var FullListIndex = []
@@ -40,6 +41,7 @@ var countInstr01 = 0
 var countInstr02 = 0
 var countInstr03 = 0
 var countInstr04 = 0
+var countInstr05 = 0
 var countInstrDelay = 0
 var IntrusionListA = []
 var IntrusionListB = []
@@ -48,6 +50,28 @@ var IntrusionListB = []
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: FullScreenMode
+}
+// ============================================================
+function GetCurrentWordIndex(WordListOrder, BlockCount, ItemCount) 
+{
+  if ( WordListOrder != undefined )
+  {
+    // a word order was provided.
+    // Check to see if it is a different order for each trial/block
+    if ( WordListOrder.some(item=>Array.isArray(item)))
+    { /* array of lists, different orders per block/trial*/ 
+      CurrentIndex = WordListOrder[BlockCount][ItemCount]
+    }
+    else 
+    { /* single list, so same provided order for all blocks/trials */ 
+      CurrentIndex = WordListOrder[ItemCount]
+    }
+  }
+  else 
+  {
+    CurrentIndex = ItemCount
+  }
+  return CurrentIndex
 }
 /*
 var InitializeMicrophone = {
@@ -192,9 +216,13 @@ var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
     console.log(parameters)
+    console.log(WordRecallLists)
+    console.log("ONE")
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
+    console.log("TWO")
     SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
+    console.log("THREE")
     AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListA))
     // Make a full list the words and thier alternative pronunciations
     FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
@@ -209,6 +237,7 @@ var MakeWordListA = {
     AudioFileDictListA = AudioFileListA.map(function(e) {
       return {Word: e}
     })
+    
     // Create an array so the recall procedure can use a timelinevariable
     WordListAForRecall = {
       'WordList': WordRecallLists.WordListA,
@@ -293,6 +322,7 @@ var fixation = {
   trial_duration: FixationTimeBetweenWords
 }
 
+
 // Define the stimuli
 var AudioStimulus = {
     type: jsPsychAudioKeyboardResponse,
@@ -302,7 +332,9 @@ var AudioStimulus = {
         // find what trial index this is
         ind = (TrialCount) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
-        Stim = AudioFileDictListA[ItemCount].Word
+        // Check to see if there is a wordlist order parameter provided.
+        // If so use it.
+        Stim = AudioFileDictListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)].Word
         
         // return the chosen stimulus
         return Stim
@@ -311,7 +343,7 @@ var AudioStimulus = {
         if ( parameters.VisualPresentation )
         { 
           var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
-            '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
+            '<p class="Fixation">'+SimpleWordListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
           return Str
         }
         else 
@@ -338,7 +370,7 @@ var AudioStimulus = {
         // find what trial index this is
         ind = (TrialCountB) % WordRecallLists.NWords
         //Stim = jsPsych.timelineVariable('Word')
-        Stim = AudioFileDictListB[ItemCount].Word
+        Stim = AudioFileDictListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)].Word
         // return the chosen stimulus
         return Stim
       },
@@ -346,7 +378,7 @@ var AudioStimulus = {
         if ( parameters.VisualPresentation )
         { 
           var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
-          '<p class="Fixation">'+SimpleWordListB[ItemCount]+'</p>'
+          '<p class="Fixation">'+SimpleWordListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
           return Str
         }
         else 
@@ -368,9 +400,9 @@ var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        console.log(jsPsych.timelineVariable('Word'))
         var Str = '<p>'+ LabelNames.WordListA+'</p>' + 
-          jsPsych.timelineVariable('Word') + '</p>'
+        //  jsPsych.timelineVariable('Word') + '</p>'
+        '<p class="Fixation">'+SimpleWordListA[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
         return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
@@ -392,7 +424,7 @@ var VisualStimulus = {
       {
         console.log(jsPsych.timelineVariable('Word'))
         var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
-          jsPsych.timelineVariable('Word') + '</p>'
+          '<p class="Fixation">'+SimpleWordListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
         return Str
         //return '<p class="Fixation">'+SimpleWordListA[ItemCount]+'</p>'
       },
@@ -635,6 +667,7 @@ var AfterFirstBlockLoop = {
     else { return false }
   }
 }  
+
 var if_MoreThanOneBlock = {
   timeline: [AfterFirstBlockLoop],
   conditional_function: function() {
@@ -643,6 +676,16 @@ var if_MoreThanOneBlock = {
     else {return false}
   }
 }
+var if_WordListB = {
+  timeline: [MakeWordListB],
+  conditional_function: function() {
+    if ( parameters.BListFlag )
+    { return true}
+    else {return false}
+  }
+}
+
+
 var PresentListOfWordsA = {
     timeline: [fixation, AudioStimulus],
     timeline_variables: AudioFileDictListA,
@@ -659,7 +702,7 @@ var PresentListOfWordsB = {
 }
 
 var FirstBlock = {
-      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, if_Manual_RecallA, if_Spoken_RecallA],
+      timeline: [Instructions01, if_AudioStimuli, if_VisualStimuli, ResetCounter, Instructions05, if_Manual_RecallA, if_Spoken_RecallA],
       repetitions: 1,
       randomize_order: false
   } 
@@ -677,7 +720,7 @@ var DelayedRecalBlockA = {
 } 
 
 var DelayedRecallNo = {
-  timeline: [MakeWordListA, MakeWordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
+  timeline: [MakeWordListA, if_WordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
     console.log(parameters)
     if ( parameters.DelayedRecallFlag)
@@ -689,7 +732,7 @@ var DelayedRecallNo = {
  
 
 var DelayedRecallYes = {
-  timeline: [MakeWordListA, MakeWordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
+  timeline: [MakeWordListA, if_WordListB, MakeDelayedResponseArray, DelayedRecalBlockA],
   conditional_function: function() {
     if ( parameters.DelayedRecallFlag)
     { return true }
@@ -729,6 +772,7 @@ var if_FinalRecallA = {
 
 // ======================================================================= 
 // Add procedures to the timeline
+
 
 timeline.push(Welcome)
 timeline.push(if_Spoken)
