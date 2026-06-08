@@ -270,9 +270,9 @@ EN_Demo.WordListA = [
 	{'Word':"goblin"}
 	]
 	EN_Demo.AlternatePronunciationsWordListA = [
-	{'Word':'Cheque','index':2},
-	{'Word':'Tin','index':3},
+	{'Word':'racket','index':2},
 	]
+	
 	EN_Demo.WordListB = []
 	EN_Demo.RecognitionWordList = [
 		{'Word':'Dog',	'Answer':true},
