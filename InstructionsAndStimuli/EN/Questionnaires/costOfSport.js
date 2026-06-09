@@ -202,15 +202,72 @@ const json = {
       //make question font size bigger than choices in radiogroups
       // ################################################################
       // ##### SECTION 0    #############################################
+      
       {
         name: "Intro",
-        title: "Section 0",
+        title: "Reference Sport",
         elements: [
-          {
-            name: "Sport",
-            title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN (PARA)SPORT",
-            type: "text",
-            isRequired: false
+        
+          // {
+          //   name: "Sport",
+          //   title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT:",
+          //   type: "text",
+          //   isRequired: false
+          // },
+           {
+            type: "matrixdynamic",
+            name: "Sport_current",
+            title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT: " ,
+            description: "Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school",
+            rowCount: 1,
+            minRowCount: 1,
+            maxRowCount: 1,
+            allowAddRows: false,
+            allowRemoveRows: false,
+            columns: [
+              {
+                name: "Sport_Curr",
+                title: "Sport",
+                cellType: "text",
+                isRequired: false,
+                width: "25%"
+              },
+              {
+                name: "Sport_Curr_Context",
+                title: "Main current context ",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "non_org", "text": "Non-organized" },
+                  { "value": "club", "text": "Club" },
+                  { "value": "school", "text": "School" }
+                ],
+                isRequired: false,
+                width: "40%"
+              },
+              {
+                name: "Sport_Curr_level",
+                title: "Current level",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": "recreational", "text": "Mainly recreational" },
+                  { "value": "competitive", "text": "Mainly competitive" },
+                  { "value": "both", "text": "Both equally" }
+                ],
+                isRequired: false,
+                width: "35%"
+              },
+              {
+                name: "Sport_Curr_nY",
+                title: "Years",
+                cellType: "text",
+                inputType: "number",
+                min: 0,
+                max: 99,
+                placeholder: "0",
+                isRequired: false,
+                width: "25%"
+              }
+            ]
           },
         ]
       },
@@ -226,14 +283,17 @@ const json = {
             name: "current_past_subtitle",
             html: `
          <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-          Before starting to report on the particular (para)sport of this survey, list the three most important current and past
-          (para)sport you participate or have participated in, including the one under investigation here.
-          </div>`
+          List up to three other important current and past (para)sport you participate(d) in. Also include the context, the level and the number of years you participate(d) in those sports.
+          </div>
+          <div>Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school,
+          </div>
+          `
           },
           {
             type: "matrixdynamic",
             name: "Sport_current",
             title: "CURRENTLY (top three)",
+            
             rowCount: 3,
             minRowCount: 3,
             maxRowCount: 3,
@@ -252,7 +312,7 @@ const json = {
                 title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "non_org", "text": "Non-org" },
+                  { "value": "non_org", "text": "Non-organized" },
                   { "value": "club", "text": "Club" },
                   { "value": "school", "text": "School" }
                 ],
@@ -306,7 +366,7 @@ const json = {
                 title: "Past context",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "non_org", "text": "Non-org" },
+                  { "value": "non_org", "text": "Non-organized" },
                   { "value": "club", "text": "Club" },
                   { "value": "school", "text": "School" }
                 ],
@@ -344,13 +404,13 @@ const json = {
             type: "text",
             title: "How did you get into the current (para) sport?",
             minLength: 10,
-            isRequired: true
+            isRequired: false
           },
           {
             type: "radiogroup",
             name: "SP_Class",
             title: "Do you have classification and/or specialty and/or player position in this sport?",
-            isRequired: true,
+            isRequired: false,
             colCount: 3,   // horizontal layout for Yes / No / N/A
             choices: [
               { value: "Yes", text: "Yes" },
@@ -363,7 +423,7 @@ const json = {
             name: "SP_Class_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Class} = 'yes'",
-            isRequired: true
+            isRequired: false
           },
           //   {
           //   type: 'dropdown',
@@ -371,7 +431,7 @@ const json = {
           //   name: 'SP_Years',
           //   choices: Array.from({ length: 50 }, (_, i) => i + 1),
 
-          //  isRequired: true
+          //  isRequired: false
           // },
 
 
@@ -380,7 +440,7 @@ const json = {
           //   name: "SP_Context",
           //   title: "Indicate the context of your participation?",
           //   colCount:1,
-          //   isRequired: true,
+          //   isRequired: false,
           //   choices: [
           //             { "value": 1, "text": "Non-organized"},
           //             { "value": 2, "text": "Organized"},
@@ -394,13 +454,13 @@ const json = {
             name: "SP_Context_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Context}= 4",
-            isRequired: true
+            isRequired: false
           },
           // {
           //   type: "radiogroup",
           //   name: "SP_Level",
           //   title: "Indicate your level of participation: ",
-          //   isRequired: true,
+          //   isRequired: false,
           //   choices: [
           //             { "value": 1, "text": "Recreational Only"},
           //             { "value": 2, "text": "Mainly recreational, but also competitive"},
@@ -416,14 +476,14 @@ const json = {
             name: "SP_Level_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Level}=5",
-            isRequired: true
+            isRequired: false
           },
           // {
           //    name: "SP_Level_Current",
           //    type: "text",
           //    title: "What is your current level of participation?",
           //    minLength: 10,
-          //    isRequired: true
+          //    isRequired: false
           //   },
 
           //  {
@@ -431,13 +491,13 @@ const json = {
           //  type: "text",
           //  title: "What was your highest level in this sport?",
           //  minLength: 10,
-          //  isRequired: true
+          //  isRequired: false
           // },
           {
             type: "radiogroup",
             name: "SP_Fac",
             title: "The sports facility you mainly play/practice is: ",
-            isRequired: true,
+            isRequired: false,
             choices: [
               { "value": 1, "text": "No sports facility" },
               { "value": 2, "text": "A public facility (community sport complex run by the city)" },
@@ -464,30 +524,25 @@ const json = {
           {
             type: "html",
             name: "practice_intro",
-            html: `
-      <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-       Thinking about your participation in your parasport this past year, provide the following detailed information. Note that there is a clear distinction between practices and games/competitions/championships.<br><br>
-      <b>a) PRACTICES</b><br>
-      1. Indicate for each period of last year how often you practiced per week. The different periods are: September till December, Winter Holidays, January till March, April till June, July and August (Summer Holidays).<br>
-      2. How much <b>NET</b> time do you spend during one practice? (EXCLUDES travel, changing clothes, socializing.)<br>
-      3. How much <b>GROSS</b> time do you spend during one practice? (INCLUDES travel, changing clothes, socializing.)`
+            html: `<b>Please tell us about your practices and competitions over the past year for the (para)sport under investigation. Answer the practice questions and competition questions separately.</b>`
           },
           {
             type: "matrixdropdown",
             name: "practice_table",
-            title: "Detailed information about your participation last year — Practices",
-            isRequired: true,
+            title: "PRACTICES (TRAINING SESSIONS)",
+            description: "For each period, estimate your usual number of practices per week and the time spent per practice.",
+            isRequired: false,
             columns: [
-              { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0 },
-              { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0 },
-              { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0 },
-              { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0 },
-              { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0 }
+              { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
+              { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
+              { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
+              { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
+              { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0}
             ],
             rows: [
-              { value: "freq", text: "1. Number of practices per week (exclude games)" },
-              { value: "net_time", text: "2. Hours per practice, NET (excludes travel/changing/socializing)" },
-              { value: "gross_time", text: "3. Total time per practice, GROSS (includes travel/changing/socializing)" }
+              { value: "freq", text: "1. Number of practices per week" },
+              { value: "net_time", text: "2. Practice time only, per practice" },
+              { value: "gross_time", text: "3. Total time per practice, including travel/changing/socializing" }
             ],
             cellErrorLocation: "bottom",
             verticalAlign: "middle"
@@ -535,18 +590,15 @@ const json = {
           //     "{practice_table.gross_time.SP_PR_5} * 9"
           // },
           // Championships question
-          {
-            type: "html",
-            name: "competitions_intro",
-            html: `
-              <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-              <b>b) In this section we will be talking about GAMES/COMPETITIONS</b><br><br>`
-          },
 
+
+          // CHANGE THIS TO BE NUMBER INPUT WITH ZERO AS DEFAULT AND STEP SIZE OF 1.
           {
             "type": "matrixdropdown",
             "name": "framework-ratings",
-            "title": "Participation",
+            "title": "COMPETITIONS (GAMES, TOURNAMENTS, OR CHAMPIONSHIPS)",
+            description: 'Estimate how many competitions, games, tournaments, or championships you participated in over the past year.',
+
             "columnMinWidth": "130px",
             "columns": [
               // {
@@ -576,9 +628,9 @@ const json = {
             ],
             "rows": [
               { "text": "One-day competitions without an overnight stay", "value": 1 },
-              { "text": "One-day competitions that require an overnight stay", "value": 2 },
-              { "text": "Weekend competitions (2 nights)", "value": 3 },
-              { "text": "Multi-day competitions (3 or more nights)", "value": 4 }
+              { "text": "One-day competitions with one overnight stay", "value": 2 },
+              { "text": "Competitions with two overnight stays", "value": 3 },
+              { "text": "Competitions with three or more overnight stays", "value": 4 }
             ],
             "transposeData": false
           },
@@ -588,7 +640,7 @@ const json = {
           //   inputType: "number",
           //   title: "1. One-day competitions without an overnight stay: On average, how many do you participate in per year?",
           //   min: 0,
-          //   isRequired: true
+          //   isRequired: false
           // },
           // {
           //   name: "SP_CC_ODWith",
@@ -596,7 +648,7 @@ const json = {
           //   inputType: "number",
           //   title: "2. One-day competitions that require an overnight stay: On average, how many do you participate in per year?",
           //   min: 0,
-          //   isRequired: true
+          //   isRequired: false
           // },
           // {
           //   name: "SP_CC_Weekend",
@@ -604,7 +656,7 @@ const json = {
           //   inputType: "number",
           //   title: "3. Weekend competitions (2 nights): On average, how many do you participate in per year?",
           //   min: 0,
-          //   isRequired: true
+          //   isRequired: false
           // },
           // {
           //   name: "SP_CC_Multiday",
@@ -612,7 +664,7 @@ const json = {
           //   inputType: "number",
           //   title: "4. Multi-day competitions (3 or more nights): On average, how many do you participate in per year?",
           //   min: 0,
-          //   isRequired: true
+          //   isRequired: false
           // },
         ]
       },
@@ -621,42 +673,34 @@ const json = {
 
       {
         name: "CostActiveSportParticipation",
-        title: "Section II: Cost of Active Sport Participation",
+        title: "Section II: Cost of Active (Para)Sport Participation",
         elements: [
           //make it two columns
           {
             type: "radiogroup",
             name: "Cost_Gen",
-            title: "  How much do you think you spend annually on your sport participation?",
-            isRequired: true,
+            title: "How much do you think you spend annually on your (para)sport participation?",
+            isRequired: false,
             choices: [
-              { "value": 1, "text": " <  100.00 CAD/yr " },
-              { "value": 2, "text": " 100.00 < 250.00 CAD/yr" },
-              { "value": 3, "text": "250.00 < 500.00 CAD/yr" },
-              { "value": 4, "text": "500.00 < 750.00 CAD/yr" },
-              { "value": 5, "text": "750.00 < 1000.00 CAD/yr" },
-              { "value": 6, "text": "1000.00 < 1500.00 CAD/yr" },
-              { "value": 7, "text": "1500.00 < 3000.00 CAD/yr" },
-              { "value": 8, "text": "3000.00 < 5000.00 CAD/yr" },
-              { "value": 9, "text": "5000.00 < 10000.00 CAD/yr" },
-              { "value": 10, "text": "> 10,000.00 CAD/yr" },
+              { "value": 1, "text": " <  100 CAD/yr " },
+              { "value": 2, "text": "100 < 250 CAD/yr" },
+              { "value": 3, "text": "250 < 500 CAD/yr" },
+              { "value": 4, "text": "500 < 750 CAD/yr" },
+              { "value": 5, "text": "750 < 1,000 CAD/yr" },
+              { "value": 6, "text": "1,000 < 1,500 CAD/yr" },
+              { "value": 7, "text": "1,500 < 3,000 CAD/yr" },
+              { "value": 8, "text": "3,000 < 5,000 CAD/yr" },
+              { "value": 9, "text": "5,000 < 10,000 CAD/yr" },
+              { "value": 10, "text": "> 10,000 CAD/yr" },
             ],
             colCount: 3,
-          },
-          {
-            type: "html",
-            name: "membership_subtitle",
-            html: `
-                <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-                Membership and Entrance / Year
-                </div>`
           },
 /* REPLACED THESE QUESTIONS WITH A TABLE TO MAKE IT MORE COMPACT, SEE BELOW
           {
             type: "radiogroup",
             name: "Cost_Memb",
             title: "Do you pay a membership fee to play/practice your sport?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { value: 1, text: "Yes" },
@@ -669,13 +713,13 @@ const json = {
             inputType: "number",
             title: " How much per year:",
             visibleIf: "{Cost_Memb}= 1",
-            isRequired: true
+            isRequired: false
           },
           {
             type: "radiogroup",
             name: "Cost_Lic",
             title: "Do you pay a license fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { value: 1, text: "Yes" },
@@ -688,13 +732,13 @@ const json = {
             inputType: "number",
             title: "How much per year:",
             visibleIf: "{Cost_Lic}= 1",
-            isRequired: true
+            isRequired: false
           },
           {
             type: "radiogroup",
             name: "Cost_PF",
             title: " Did/do you pay any other program fees to play/practice your sport (if not included in the previous questions)?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { "value": 1, "text": "Yes" },
@@ -708,13 +752,13 @@ const json = {
             inputType: "number",
             title: "If yes, how much per year:",
             visibleIf: "{Cost_PF}= 1",
-            isRequired: true
+            isRequired: false
           },
           {
             type: "radiogroup",
             name: "Cost_COMP",
             title: " Do you pay fees to participate in tournaments or competitions (if not included in the membership fee)?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { "value": 1, "text": "Yes" },
@@ -728,18 +772,34 @@ const json = {
             inputType: "number",
             title: "If yes, how much per year:",
             visibleIf: "{Cost_COMP}= 1",
-            isRequired: true
+            isRequired: false
           },
 */
-{
+              {
+            type: "html",
+            name: "membership_subtitle",
+            html: `
+                <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+                II.1. Membership and Entrance Fees / Year
+                </div>`
+          },
+// Can the text in () below be in italics or grey?  
+// One solution could be: to have a column of just text, with no input it just includes the stuff in ()
+// Can the inputType: number be changed so that there are no up/down arrows???
+// Add a column name above the first column???
+// make it say: ANNUAL FEES
+// Can the yes/no responses be centered under their column name
+
+    {
       "type": "matrixdropdown",
       "name": "framework-ratings",
-      "title": "Membership and Entrance / Year",
+      "title": "ANNUAL FEES",
+      //"titleLocation": "hidden",
       "columnMinWidth": "130px",
       "columns": [
         {
           "name": "usage",
-          "title": "Do you pay?",
+          "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [ "Yes", "No" ],
           "defaultValue": "No"
@@ -754,10 +814,10 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Membership fee to play/practice your sport", "value": "fee_membership" },
-        { "text": "License fee to play/practice your sport (if not included in the membership fee)? (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition.)", "value": "fee_license" },
-        { "text": "Other program fees to play/practice your sport (if not included in the previous questions)", "value": "fee_program" },
-        { "text": "Fees to participate in tournaments or competitions (if not included in the membership fee)?", "value": "fee_tournament" }
+        { "text": "Membership fee", "value": "fee_membership" },
+        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "fee_license" },
+        { "text": "Other program fees (If not included in the previous questions.)", "value": "fee_program" },
+        { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "fee_tournament" }
       ],
       "transposeData": false
     },
@@ -767,7 +827,7 @@ const json = {
             type: "radiogroup",
             name: "Cost_Entr",
             title: " Do you pay entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { "value": 1, "text": "Yes" },
@@ -782,7 +842,7 @@ const json = {
             inputType: "number",
             title: "how much do you pay on average per usage?",
             visibleIf: "{Cost_Entr}= 1",
-            isRequired: true
+            isRequired: false
           },
 
 
@@ -792,7 +852,7 @@ const json = {
             name: "Cost_Entr_UY",
             title: "how many times per year?:",
             visibleIf: "{Cost_Entr}= 1",
-            isRequired: true
+            isRequired: false
           },
 
           {
@@ -805,16 +865,20 @@ const json = {
             currency: "CAD",
             precision: 2
           },*/
-{
+
+// ADD A COLUMN NAME TO COLUMN ONE: 
+// PER-USE FEES
+          {
       "type": "matrixdropdown",
       "name": "framework-ratings",
-      "title": "Membership and Entrance / Year",
+      "title": "PER-USE FEES",
+
       "showHeader": true,
       "columnMinWidth": "130px",
       "columns": [
         {
           "name": "usage",
-          "title": "Do you pay?",
+          "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [ "Yes", "No" ],
           "defaultValue": "No"
@@ -837,7 +901,7 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee) to play your sport?" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" },
       ],
       "transposeData": false
     },
@@ -850,7 +914,7 @@ const json = {
 
       {
         name: "CostActiveSportParticipation",
-        title: "Section II: Cost of Coaching and Clinics",
+        title: "Section II.2. Cost of Coaching and Clinics",
         elements: [
 
 
@@ -953,7 +1017,7 @@ const json = {
             name: "adaptive_equipment_explanation",
             title: "Please explain:",
             visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-            isRequired: true
+            isRequired: false
           },
 
           // question 10 to adjust
@@ -1125,7 +1189,7 @@ const json = {
             type: "checkbox",
             name: "sports_equipment_sources",
             title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
-            isRequired: true,
+            isRequired: false,
             choices: [
               { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
               { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
@@ -1415,7 +1479,7 @@ const json = {
             type: "radiogroup",
             name: "TR_Comp_Spec",
             title: "Do you have other expenditures related to transportation (e.g., taxi, bus, carpooling), SPECIAL TRANSPORTATION COSTS?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { "value": 1, "text": "Yes" },
@@ -1430,7 +1494,7 @@ const json = {
             name: "TP_Comp_Ex",
             title: "If yes, how much do you spend on average per year?: ",
             visibleIf: "{TR_Comp_Spec}= 1",
-            isRequired: true
+            isRequired: false
           },
 
 
@@ -1662,7 +1726,7 @@ const json = {
             ],
             showOtherItem: true,
             otherText: "You don't have an option that applies to me. I identify as:",
-            isRequired: true
+            isRequired: false
           },
 
 
@@ -1671,7 +1735,7 @@ const json = {
             type: "dropdown",
             name: "Age",
             title: "Your age:",
-            isRequired: true,
+            isRequired: false,
             choices: Array.from({ length: 100 }, (_, i) => i + 1) // 1–100
           },
 
@@ -1680,7 +1744,7 @@ const json = {
             type: "dropdown",
             name: "HH_N",
             title: "How many members in your household (under the same roof)?",
-            isRequired: true,
+            isRequired: false,
             choices: Array.from({ length: 20 }, (_, i) => i + 1) // 1–20
           },
 
@@ -1692,7 +1756,7 @@ const json = {
             type: "radiogroup",
             name: "HH_Position",
             title: "What is your position in this household?",
-            isRequired: true,
+            isRequired: false,
             choices: [
               "Son",
               "Daughter",
@@ -1714,7 +1778,7 @@ const json = {
             type: "radiogroup",
             name: "HH_Educ",
             title: "  Select the highest level of education achieved by any member in your household? ",
-            isRequired: true,
+            isRequired: false,
             choices: [
               { "value": 1, "text": "Not completed high school" },
               { "value": 2, "text": " High school or an equivalent certificate" },
@@ -1740,7 +1804,7 @@ const json = {
             name: "HH_Income",
             title: " What is your annual household income? ",
             colCount: 2,
-            isRequired: true,
+            isRequired: false,
             choices: [
               { "value": 1, "text": " $0-$20,000 " },
               { "value": 2, "text": " $20,001-$40,000" },
@@ -1758,7 +1822,7 @@ const json = {
             type: "radiogroup",
             name: "Future_Research",
             title: "Would you be interested in participating in future research regarding socio-economic and financial barriers of WCB participation?",
-            isRequired: true,
+            isRequired: false,
             colCount: 2,
             choices: [
               { value: "Yes", text: "Yes" },
@@ -1772,7 +1836,7 @@ const json = {
             inputType: "email",
             title: "If yes, please provide your e-mail:",
             visibleIf: "{Future_Research} = 'Yes'",
-            isRequired: true
+            isRequired: false
           },
 
 
@@ -1809,7 +1873,7 @@ const json = {
               'Acquired',
             ],
             showOtherItem: false,
-            isRequired: true,
+            isRequired: false,
             visibleIf: "{Disability} = 'Yes'",
           },
 
@@ -1824,7 +1888,7 @@ const json = {
               'Cognitive function'
             ],
             showOtherItem: false,
-            isRequired: true,
+            isRequired: false,
             visibleIf: "{Disability} = 'Yes'",
           },
 
@@ -1832,7 +1896,7 @@ const json = {
             type: "radiogroup",
             name: "AB_Loi",
             title: "How would you rate your ability to perform daily tasks?",
-            isRequired: true,
+            isRequired: false,
             choices: [
               { "value": 1, "text": "1 - Total Assistance — Dependent, requires full help from others." },
               { "value": 2, "text": "2 - Maximal Assistance — Needs 75% help to complete tasks." },
@@ -1863,7 +1927,7 @@ const json = {
             name: "adaptive_equipment__dl_explanation",
             title: "If yes, please explain:",
             visibleIf: "{AB_EQ_DL} = 'yes'",
-            isRequired: true
+            isRequired: false
           },
 
 
