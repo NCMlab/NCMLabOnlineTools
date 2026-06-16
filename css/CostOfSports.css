@@ -1,0 +1,14 @@
+/* HIDE THE SPINNER FOR NUMBER INPUTS IN THE COST OF SPORT QUESTIONNAIRE */
+/* Spinners are the little up and down arrows that appear in number input fields in some browsers. */
+   
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
