@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+    
+  
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+  </head>
+  <body>
+    <script>
+      
+      
+      var obj = {}
+      obj.workerID = '49'
+      obj.Task = 'Matrix Questionnaire'
+      obj.Parameters = 'PAES_001'
+      obj.Data  = [3,2,1,4]
+      
+      // convert to JSON
+      JSONobj = JSON.stringify(obj)
+      // Ensure it is correct read by HTML
+      JSONobjEncode = encodeURIComponent(JSONobj)
+      // Encrypt
+      console.log(obj)
+      console.log(JSONobj)
+      console.log(JSONobjEncode)
+      //jQuery.post('http://127.0.0.1:9000/publix/KrFNQcvIj05/',JSONobj,alert("SUCCESS"))
+      
+    </script>
+  </body>
+</html>
