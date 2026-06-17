@@ -663,6 +663,16 @@ function CentralExecutive() {
                     .then(() => SetupjsPsychAndRunTimeline())
 
                 break;
+            case 'DataReceive':
+                console.log("THIS is a data receiving component") 
+                // This is for receiving data from a task and writing it to JATOS. 
+                // This will be used for tasks that run outside of JATOS but need to write data to the JATOS database.
+                // The data should be sent in the URL parameters as a JSON string. This will parse that string and write the data to JATOS.
+                var DataToWrite = jatos.urlQueryParameters.Data
+                console.log(DataToWrite)
+                var DataToWriteParsed = JSON.parse(DataToWrite)
+                console.log(DataToWriteParsed)
+                break;
             default:
                 console.log("No Choice Provided")
                 CheckForSessiondata()
