@@ -2390,6 +2390,27 @@ List.push({
 	})
 
   
-  
+// == Component for receiving JSON data via a URL
+var List = []
+List.push({
+  Task: "Data Receiving",
+  Parameters: "",
+  Instructions: "",
+  IconName: "Data Receiving",
+});
+	BatteryList.push({index: 99001, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'EN',
+    LanguagesToShow: ['FR','EN'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
 
   
