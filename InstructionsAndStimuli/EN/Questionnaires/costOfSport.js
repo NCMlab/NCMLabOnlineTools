@@ -1,3 +1,9 @@
+
+// Format notes.
+// Make question names a bit bigger font, since the responses are typically a larger font size. Be consistent with left or center align across question types.
+// How to make PDF of this questionnaire.
+https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
+
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
 // All questions use the same direction so enter that single flag as an array of size 1
@@ -234,7 +240,7 @@ const json = {
               },
               {
                 name: "Sport_Curr_Context",
-                title: "Main current context ",
+                title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
                   { "value": "non_org", "text": "Non-organized" },
@@ -402,7 +408,7 @@ const json = {
           {
             name: "SP_How",
             type: "text",
-            title: "How did you get into the current (para) sport?",
+            title: "How did you get into the current (para)sport?",
             minLength: 10,
             isRequired: false
           },
@@ -1360,7 +1366,8 @@ const json = {
             minLength: 10,
             isRequired: false
           },
-//  NEED VISIBLEIF QUESTIONS BASED ON EACH OF THE RESPONSES.
+// ****************** TO DO, TO DO, TO DO ************************
+          //  NEED VISIBLEIF QUESTIONS BASED ON EACH OF THE RESPONSES.
 // FOR EACH MODE CHOSEN, THERE IS A UNIQUE VISIBLEIF QUESTION.
 // TO DO THIS, THE VISIBLEIF NEEDS TO BE CONNECTED TO PARTICULAR ROW INTHE TABLE. 
 // THIS IS DONE BY USING {row.NAME} IN THE VISIBLEIF CONDITION, WHERE NAME 
@@ -1403,7 +1410,7 @@ const json = {
 
        
 
-{
+              {
                 "type": "matrixdropdown",
                 "name": "TR_Comp",
                 "title": "Travel Costs for COMPETITIONS (include ALL expenditures for travel, lodging, meals, etc. not previously included)",
@@ -1431,41 +1438,16 @@ const json = {
                   { "text": "One-day games/competitions/championships with one overnight stay.", "value": 'other_oneday_with_overnight' },
                   { "text": "Games/competitions/championships with two-night stay.", "value": 'other_twonight' },
                   { "text": "Games/competitions/championships with three or more overnight stay.", "value": 'other_threenight_plus' },
-                  { "text": "Vacations", "value": 'other_vacations' },
+                  { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'other_vacations' },
                 ],
                 "transposeData": false
               },
-
-
-
-
-
-          // Special transportation
-
-          // fix pop visible if for special transportation
-
-
-
-
-
-
-
-          // 14.C   to add ifvisible relevant to #9
-
-   
-
-
-
-
-
-          //14.d
-
-
-
-
-
-
-          // question 15
+        ]
+      },
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II.5: Social Costs",
+        elements: [
               {
                 "type": "matrixdropdown",
                 "name": "B_P",
@@ -1476,6 +1458,12 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
+                    "title": "Did you purchase?",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ]
+                  },
+                  {
+                    "name": "usage",
                     "title": "How many times per year?:",
                     "cellType": "dropdown",
                     "choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
@@ -1483,7 +1471,7 @@ const json = {
                   },
                   {
                     "name": "cost_per_usage",
-                    "title": "Average $ per usage?",
+                    "title": "Average $ per time?",
                     "cellType": "text",
                     "inputType": "number",
                     "enableIf": "{row.usage} = 'Yes'",
@@ -1491,7 +1479,7 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Do you purchase drinks or food before, during, or after your participation?", "value": 'social_costs' },
+                  { "text": "Drinks or food before, during, or after your PRACTICES?", "value": 'social_costs' },
                 ],
                 "transposeData": false
               },
@@ -1512,6 +1500,7 @@ const json = {
 
        
 
+        
 
 
           // question 16
@@ -1525,10 +1514,9 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
-                    "title": "How many times per year?:",
+                    "title": "Did you pay?",
                     "cellType": "radiogroup",
                     "choices": [ "Yes", "No" ],
-                    "defaultValue": "Never (0%)"
                   },
                   {
                     "name": "cost_per_usage",
@@ -1540,40 +1528,43 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Do you participate in club activities (ex. fundraisers, diner, …)?", "value": 'social_club_costs' },
+                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": 'social_club_costs' },
                 ],
                 "transposeData": false
               },
 
 
-          {
-            type: "html",
-            name: "other_indirect_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Other Indirect Costs
-    </div>
-    `
-          },
 
 
           // Other indirect costs
+        ]
+      },
 
+      // IDEA IDEA IDEA
+      // Can the text enetered on page one, the sport name, be used throughout the survey??
+      // IDEA 
+      {
+        name: "CostIndirectCosts",
+        title: "Section II.6: Other Indirect Costs Related to THIS (Para)Sport Participation",
+        // Can I edit the CSS to make the description a bit larger and keep it black?
+        // If so then every section will have this description.
+        // IDEAL would be to replace THIS with the name of the actual sport they typed in,
+        //description: "Related to THIS (para)sport participation",
+        elements: [
           // question 17
            { 
                 "type": "matrixdropdown",
                 "name": "B_P",
-                "title": "Social Club",
+                "title": "Related to THIS sport",
                 "showHeader": true,
                 "titleLocation": "hidden",
                 "columnMinWidth": "130px",
                 "columns": [
                   {
                     "name": "usage",
-                    "title": "Yes/No",
+                    "title": "Did you pay for?",
                     "cellType": "radiogroup",
                     "choices": [ "Yes", "No" ],
-                    "defaultValue": "Never (0%)"
                   },
                   {
                     "name": "cost_per_usage",
@@ -1585,71 +1576,55 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Do you have extra medical costs and/or care costs (e.g., physiotherapy, medication, …) related to you sports participation?", "value": 'other_medical' },
-                  { "text": "Do you have extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …) related to your sports participation?", "value": 'other_body_care' },
-                  { "text": "Do you have extra insurance costs related to your sports participation (if not already included in the membership fee)?", "value": 'other_insurance' },
-                  { "text": "Do you have extra costs for baby-sitting/pet sitting related to your sports participation?", "value": 'other_babysitting' },
-                  { "text": "Do you buy specific documentation related to your sports participation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)?", "value": 'other_documentation' },
-                  { "text": "Do you attend competitions as a spectator related to your sports participation?", "value": 'other_spectator' },
-                  { "text": "Do you have any other indirect costs related to your sports participation, not already included?", "value": 'other_indirect' },
+                  { "text": "Extra medical costs and/or care costs (e.g., physiotherapy, medication, …)", "value": 'other_medical' },
+                  { "text": "Extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …)", "value": 'other_body_care' },
+                  { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'other_insurance' },
+                  { "text": "Extra costs for baby-sitting/pet sitting", "value": 'other_babysitting' },
+                  { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'other_documentation' },
+                  { "text": "Attending competitions as a spectator", "value": 'other_spectator' },
+                  { "text": "Any other indirect costs not already included", "value": 'other_indirect' },
                 ],
                 "transposeData": false
               },
 
 
-
+            ]
+          },
           // question 24
 
-
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II.7: Sports Earnings/year",
+        // description: "Related to THIS (Para)Sport Participation"
+        elements: [
           {
-            type: "html",
-            name: "earnings_subtitle",
-            html: `
-    <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-      Sports Earnings /year
-    </div>
-    `
+            type: "radiogroup",
+            name: "SP_earn_YN",
+            title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
+            choices: [
+              "Yes",
+              "No"
+            ],
+            colCount: 2,
+            showOtherItem: false,
+            isRequired: false
           },
-
- { 
-                "type": "matrixdropdown",
-                "name": "B_P",
-                "title": "Do you earn money related to your sports participation (e.g., prize money, any other monetary returns,) ?",
-                "showHeader": true,
-                "titleLocation": "top",
-                "columnMinWidth": "130px",
-                "columns": [
-                  {
-                    "name": "usage",
-                    "title": "Yes/No",
-                    "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
-                    "defaultValue": "Never (0%)"
-                  },
-                    {
-                    "name": "cost_per_usage",
-                    "title": "Source",
-                    "cellType": "text",
-                    "inputType": "text",
-                    "enableIf": "{row.usage} = 'Yes'",
-                    "allowResize": false,
-                  },
-                  {
-                    "name": "cost_per_usage",
-                    "title": "How much $/year?",
-                    "cellType": "text",
-                    "inputType": "number",
-                    "enableIf": "{row.usage} = 'Yes'",
-                    "allowResize": false,
-                  },
-                ],
-                "rows": [
-                  { "text": "Describe source...", "value": 'income_1' },
-                  { "text": "Describe source...", "value": 'income_2' },
-          
-                ],
-                "transposeData": false
-              },
+          {
+            type: "matrixdynamic",
+            name: "SP_Earnings",
+            title: "If yes, describe",
+            titleLocation: "hidden",
+            addRowText: "➕ Add source",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_Earn_Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+              { name: "SP_Equip_$U", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              
+            ],
+          },
 
           
         ]
@@ -1688,19 +1663,79 @@ const json = {
             choices: Array.from({ length: 100 }, (_, i) => i + 1) // 1–100
           },
 
-          //dropdown to 20
+      {
+          type: "radiogroup",
+          name: "HH_FirstNations",
+          title: "Do you identify as First Nations, Inuk/Inuit and/or Métis?",
+          
+          choices: [ "Yes, First Nations",
+                    "Yes, Inuk/Inuit",
+                    "Yes, Métis",
+                    "No",
+                    "Do not know",
+                    "Prefer not to answer"
+          ],
+          "isRequired": false,
+          "colCount": 2,
+          "showNoneItem": false,
+          "showOtherItem": false,
+          "showSelectAllItem": false,
+          "separateSpecialChoices": false
+        },
+      {
+          type: "checkbox",
+          name: "HH_Race",
+          title: "Which category(ies) best describes your race or racial background? Check all that apply:",
+          
+          choices: [ "Black",
+                    "East Asian",
+                    "Indigenous (First Nations, Inuk/Inuit, Métis)",
+                    "Latin American",
+                    "Middle Eastern",
+                    "South Asian",
+                    "Southeast Asian",
+                    "White",
+                    "Do not know",
+                    "Prefer not to answer"
+          ],
+          "isRequired": false,
+          "colCount": 2,
+          "showNoneItem": false,
+          "showOtherItem": true,
+          "otherText": "Another race category",
+          "showSelectAllItem": false,
+          "separateSpecialChoices": false
+        },
+
+                    //dropdown to 20
           {
             type: "dropdown",
-            name: "HH_N",
-            title: "How many members in your household (under the same roof)?",
+            name: "HH_Npeople",
+            title: "How many people live in your household (under the same roof) including yourself?",
             isRequired: false,
-            choices: Array.from({ length: 20 }, (_, i) => i + 1) // 1–20
+            choices: [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6 or more"],
+            defaultValue: 0,
           },
-
-
-
-          // to add position in household: add sole occupant to choices
-
+          {
+            type: "dropdown",
+            name: "HH_Nchildren",
+            title: "How many children under the age of 18 live in your household?",
+            isRequired: false,
+            choices: [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4 or more"
+              ],
+            defaultValue: 0,
+          },
           {
             type: "radiogroup",
             name: "HH_Position",
@@ -1750,20 +1785,91 @@ const json = {
           // make it 2 columns
           {
             type: "radiogroup",
-            name: "HH_Income",
-            title: " What is your annual household income? ",
+            name: "HH_Income_ExcludeBenefits",
+            title: " What is your annual household income BEFORE taxes, EXCLUDING provincial or federal disability benefits",
             colCount: 2,
             isRequired: false,
             choices: [
-              { "value": 1, "text": " $0-$20,000 " },
-              { "value": 2, "text": " $20,001-$40,000" },
-              { "value": 3, "text": "$40,001-$80,000" },
-              { "value": 4, "text": "$80,001-$100,000" },
-              { "value": 5, "text": "$100,001-$120,000" },
-              { "value": 6, "text": "$120,001 and over" },
-              { "value": 7, "text": "Prefer not to answer" },
+              { "value": 1, "text": "less than $20,000 " },
+              { "value": 2, "text": "$20,000-$39,999" },
+              { "value": 3, "text": "$40,000-$59,999" },
+              { "value": 4, "text": "$60,000-$79,999" },
+              { "value": 5, "text": "$80,000-$99,999" },
+              { "value": 6, "text": "$100,000-$124,999" },
+              { "value": 7, "text": "$125,000-$149,999" },
+              { "value": 8, "text": "$150,000-$199,999" },
+              { "value": 9, "text": "$200,000 or more" },
+              { "value": 10, "text": "Prefer not to answer" },
+            ]
+          },
+          {
+            type: "radiogroup",
+            name: "HH_Income_IncludeBenefits",
+            title: " What is your annual household income BEFORE taxes, INCLUDING provincial or federal disability benefits",
+            colCount: 2,
+            isRequired: false,
+            choices: [
+              { "value": 0, "text": "No difference"},
+              { "value": 1, "text": "less than $20,000" },
+              { "value": 2, "text": "$20,000-$39,999" },
+              { "value": 3, "text": "$40,000-$59,999" },
+              { "value": 4, "text": "$60,000-$79,999" },
+              { "value": 5, "text": "$80,000-$99,999" },
+              { "value": 6, "text": "$100,000-$124,999" },
+              { "value": 7, "text": "$125,000-$149,999" },
+              { "value": 8, "text": "$150,000-$199,999" },
+              { "value": 9, "text": "$200,000 or more" },
+              { "value": 10, "text": "Prefer not to answer" },            ]
+          },
+        ]
+      },
 
 
+      {
+        name: "Section Ability",
+        title: "Section IV:  Ability",
+        elements: [
+          
+          {
+            type: "radiogroup",
+            title: "Timing of Impairement?",
+            name: "Time_Disability",
+            colCount: 2,
+            choices: [
+              'Congenital',
+              'Acquired',
+              'Able-Bodied',
+              'Prefer not to answer'
+            ]
+          },
+          {
+            type: "checkbox",
+            title: "Classification of disabilities (check all that apply)?",
+            name: "Class_Disability",
+            colCount: 2,
+            choices: [
+              'Mobility',
+              'Vision',
+              'Hearing',
+              'Cognitive function',
+              'Not Applicable'
+            ]
+          },
+
+
+          {
+            type: "radiogroup",
+            name: "AB_Loi",
+            title: "How would you rate your ability to perform daily tasks?",
+            isRequired: false,
+            choices: [
+              { "value": 1, "text": "1 - Total Assistance — Dependent, requires full help from others." },
+              { "value": 2, "text": "2 - Maximal Assistance — Needs 75% help to complete tasks." },
+              { "value": 3, "text": "3 - Moderate Assistance — Needs 50% help to complete tasks." },
+              { "value": 4, "text": "4 - Minimal Assistance — Needs 25% help to complete tasks." },
+              { "value": 5, "text": "5 - Supervision or Setup — Requires supervision or verbal cues." },
+              { "value": 6, "text": "6 - Modified Independance — Uses assistive devices but no help needed." },
+              { "value": 7, "text": "7 - Complete Independance — No assistance, performs safely." }
             ]
           },
 
@@ -1788,96 +1894,6 @@ const json = {
             isRequired: false
           },
 
-
-
-
-
-
-
-        ]
-      },
-
-
-      {
-        name: "Section Ability",
-        title: "Section IV:  Ability",
-        elements: [
-          
-          {
-            type: "radiogroup",
-            title: "Does have a disability?",
-            name: "Disability",
-            colCount: 2,
-            choices: [
-              'Yes',
-              'No',
-            ]
-          },
-          {
-            type: 'dropdown',
-            title: "Ability Timing",
-            name: 'AB_Timing',
-            choices: [
-              'Congenital',
-              'Acquired',
-            ],
-            showOtherItem: false,
-            isRequired: false,
-            visibleIf: "{Disability} = 'Yes'",
-          },
-
-          {
-            type: 'tagbox',
-            title: "Classification of disabilities (Select all that apply)",
-            name: 'AB_Class',
-            choices: [
-              'Mobility',
-              'Vision',
-              'Hearing',
-              'Cognitive function'
-            ],
-            showOtherItem: false,
-            isRequired: false,
-            visibleIf: "{Disability} = 'Yes'",
-          },
-
-          {
-            type: "radiogroup",
-            name: "AB_Loi",
-            title: "How would you rate your ability to perform daily tasks?",
-            isRequired: false,
-            choices: [
-              { "value": 1, "text": "1 - Total Assistance — Dependent, requires full help from others." },
-              { "value": 2, "text": "2 - Maximal Assistance — Needs 75% help to complete tasks." },
-              { "value": 3, "text": "3 - Moderate Assistance — Needs 50% help to complete tasks." },
-              { "value": 4, "text": "4 - Minimal Assistance — Needs 25% help to complete tasks." },
-              { "value": 5, "text": "5 - Supervision or Setup — Requires supervision or verbal cues." },
-              { "value": 6, "text": "6 - Modified Independance — Uses assistive devices but no help needed." },
-              { "value": 7, "text": "7 - Complete Independance — No assistance, performs safely." }
-            ]
-          },
-
-          {
-            type: "radiogroup",
-            title: "Does your ability require adaptive equipment in your daily life?",
-            name: "AB_EQ_DL",
-            colCount: 2,
-            choices: [
-              'Yes',
-              'No',
-
-            ]
-          },
-
-
-
-          {
-            type: "comment",
-            name: "adaptive_equipment__dl_explanation",
-            title: "If yes, please explain:",
-            visibleIf: "{AB_EQ_DL} = 'yes'",
-            isRequired: false
-          },
 
 
 

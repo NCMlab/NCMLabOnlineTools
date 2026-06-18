@@ -12,3 +12,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* Can I make the description larger? */
+.sd-description {
+  color: black
+}
