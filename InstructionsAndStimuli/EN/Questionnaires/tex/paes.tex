@@ -1,0 +1,140 @@
+% sdapsclassic: SDAPS document class for questionnaires.
+% Options:
+%   14pt         — base font size; 14pt is recommended for older adults
+%   english      — language used for SDAPS-generated text (e.g. instructions)
+%   a4paper      — page size
+%   sdaps_style=code128 — barcode style printed at the bottom of each page;
+%                  code128 is a 1-D barcode that encodes page/questionnaire ID
+%   checkmode=check — how marks are detected: "check" accepts any mark in the box
+\documentclass[
+  14pt,
+  english,
+  a4paper,
+  sdaps_style=code128,
+  checkmode=check,
+  print_questionnaire_id
+]{sdapsclassic}
+
+% Charter: a serif font with a large x-height and open letterforms,
+% recommended for readability in print questionnaires for older adults.
+\usepackage{charter}
+
+% Override the normal font size to 14pt with 18pt leading (line spacing).
+% The two numbers are {font size}{baseline skip (line spacing)}.
+% Increasing baseline skip beyond 1.2× font size improves readability.
+\renewcommand{\normalsize}{\fontsize{14}{18}\selectfont}
+
+\ExplSyntaxOn
+
+% Suppress the "DRAFT" watermark that SDAPS prints before the questionnaire
+% has been registered with the sdaps command-line tool.
+\bool_gset_false:N \g_sdaps_draft_bool
+
+% Set the size and border thickness of the response circles.
+%   width/height — diameter of the circle in mm (default: 3.5mm)
+%   linewidth    — thickness of the circle border (default: 1bp)
+% singlechoice = radio buttons (select one); multichoice = tick boxes (select many)
+\sdaps_context_append:nn { singlechoice } { width=6mm, height=6mm, linewidth=1.5bp }
+\sdaps_context_append:nn { multichoice }  { width=6mm, height=6mm, linewidth=1.5bp }
+
+% Set the size of the barcode printed at the bottom of each page.
+%   c_sdaps_barcode_height_dim  — height of the bars (default: 6.5mm)
+%   c_sdaps_barcode_bar_width_dim — width of each individual bar (default: 0.33mm);
+%                                   increasing this makes the whole barcode wider.
+%                                   Do not exceed ~0.66mm or it may not fit the margin.
+\dim_gset:Nn \c_sdaps_barcode_height_dim  { 10mm }
+\dim_gset:Nn \c_sdaps_barcode_bar_width_dim { 0.4mm }
+
+\ExplSyntaxOff
+
+\title{PAES}
+\author{}
+\date{}
+
+% Suppress automatic section numbering in the output.
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+
+% questionnaire: the main SDAPS environment. Every page must be inside this.
+%   noinfo — suppresses the "how to fill in this form" instructions box
+%            that SDAPS normally prints at the top of the first page.
+\begin{questionnaire}[noinfo]
+
+% addinfo: stores key–value metadata in the .sdaps project file.
+% scale_id is used by the downstream data pipeline to identify which
+% questionnaire this is when multiple scales share a single project.
+\addinfo{scale_id}{paes}
+
+\section{Staff Use Only}
+
+    % Side-by-side layout for the ID and Week boxes.
+    % Each minipage is 48% of the line width; \hfill provides the gap between them.
+    \noindent
+    \begin{minipage}[t]{0.48\linewidth}
+        % \textbox* creates a free-text write-in box for manual entry by staff.
+        %   * (star)  — the box does NOT stretch vertically to fill extra space
+        %   var=...   — variable name written to the SDAPS data file
+        %   {0.8cm}   — height of the write-in box
+        %   {ID:}     — label printed to the left of the box
+        \textbox*[var=worker_id]{0.8cm}{ID:}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \textbox*[var=week]{0.8cm}{Week:}
+    \end{minipage}
+
+    % Side-by-side layout for the Timepoint label and its radio buttons.
+    % The label sits in a 3cm minipage; the options share the remaining width.
+    % [c] vertically centers both minipages relative to each other.
+    \noindent
+    \begin{minipage}[c]{3cm}
+        Timepoint:
+    \end{minipage}%
+    \begin{minipage}[c]{\dimexpr\linewidth-1cm\relax}
+        % optionquestion: a single-answer (radio button) question.
+        %   cols=4    — arrange the choices in 4 equal columns on one row
+        %   var=...   — variable name written to the SDAPS data file
+        %   {}        — empty title suppresses the subsection heading above the choices
+        \begin{optionquestion}[cols=4, var=timepoint]{}
+            % \choiceitem defines one radio-button option.
+            % The text is the label printed next to the circle.
+            \choiceitem{Pre-class}
+            \choiceitem{Post-class}
+            \choiceitem{Baseline}
+            \choiceitem{Post}
+        \end{optionquestion}
+    \end{minipage}
+
+\section{Scale}
+Please rate how you feel \underline{at the moment} about the music and movement activity you have been doing.
+
+\vspace{5mm}
+
+% optiongroup: a grid of questions sharing the same set of response options.
+%   colsep=5pt  — horizontal space between columns
+%   rowsep=10pt — vertical space between question rows
+%   {}          — empty title (no heading above the table)
+\begin{optiongroup}[colsep=5pt, rowsep=10pt]{}
+
+    % \choice defines one column header (a response option shared by all questions).
+    %   val=N — the numeric value written to the data file when this option is selected
+    % \parbox[t]{2cm}{\centering ...} forces all column headers to the same
+    %   2cm width so that columns are equal regardless of label length.
+    %   [t] top-aligns the text; \centering centers it within the box.
+    %   Increase the width if labels are cut off; decrease it to tighten the layout.
+    \choice[val=1]{\parbox[t]{2cm}{\centering Strongly disagree}}
+    \choice[val=2]{\parbox[t]{2cm}{\centering Disagree}}
+    \choice[val=3]{\parbox[t]{2cm}{\centering Neither agree nor disagree}}
+    \choice[val=4]{\parbox[t]{2cm}{\centering Agree}}
+    \choice[val=5]{\parbox[t]{2cm}{\centering Strongly agree}}
+
+    % \question defines one row in the grid.
+    %   var=... — variable name written to the SDAPS data file for this item
+    %   {text}  — the question text displayed to the respondent
+    \question[var=paes001]{I enjoy it}
+    \question[var=paes002]{I find it pleasurable}
+    \question[var=paes003]{It is very pleasant}
+    \question[var=paes004]{It feels good}
+\end{optiongroup}
+\end{questionnaire}
+\end{document}
