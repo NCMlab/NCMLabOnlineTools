@@ -504,6 +504,7 @@ const json = {
             name: "SP_Fac",
             title: "The sports facility you mainly play/practice is: ",
             isRequired: false,
+            colCount: 1,
             choices: [
               { "value": 1, "text": "No sports facility" },
               { "value": 2, "text": "A public facility (community sport complex run by the city)" },
