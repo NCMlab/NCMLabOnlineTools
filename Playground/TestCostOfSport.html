@@ -19,6 +19,9 @@
 
   <!-- <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>-->
     <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSport.js"></script>
+
+    <!--<script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/survey-pdf@latest/survey.pdf.min.js"></script> -->
 <style>
 
       /* Center the radiogroup choices */
@@ -88,7 +91,13 @@
 </style>
     
     <script>
-     
+    // function downloadSurveyPDF() {
+    //    const surveyPdf = new SurveyPDF.SurveyPDF(EN_CostOfSport.survey_JSON, {
+    //   fontSize: 12,
+    //   margins: { left: 10, right: 10, top: 10, bot: 10 }
+    //   });
+    //   surveyPdf.save("CostOfSport.pdf");
+    // }
 
       function downloadCSV(filename, csvString) {
         const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
@@ -142,7 +151,10 @@
         button_label: "Submit",
         required: true,
 
-        
+        // on_load: function () {
+        //   console.log("JASON LOADED")
+        //   downloadSurveyPDF()
+        // },
         on_finish: function (data) {
           console.log("Survey trial data:", data);
           addFlatResponseToData(data);
