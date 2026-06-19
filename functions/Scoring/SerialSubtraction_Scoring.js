@@ -2,7 +2,7 @@ function SerialSubtraction_Scoring(data) {
 	Notes = data.filter({trial: 'Notes'})
 	console.log(data)
 	var TotalScore
-	temp = data.filter({task: 'SerialSubtract'})
+	temp = data.filter({task: 'SerialSubtraction'})
 	const NResponses = temp.length
 	console.log(temp)
 	if ( parameters.ResponseType == 'Manual' )
@@ -21,6 +21,7 @@ function SerialSubtraction_Scoring(data) {
 		Results.AllResults['Number of Correct Responses'] = NCorrect
 		Results.AllResults['Expected Responses'] = temp.trials[0].ExpectedResponse
 		Results.AllResults['Actual Responses'] = temp.trials[0].response.ListRecall
+		Results.AllResults['Other Responses'] = temp.trials[0].response.ListRecall_Other
 	}
 	else 
 	{
@@ -34,7 +35,7 @@ function SerialSubtraction_Scoring(data) {
 		Results.AllResults['Accuracy'] = -99
 		Results.AllResults['Spoken Words'] = temp.trials[0].HeardList
 		Results.AllResults['Speech Processing'] = temp.trials[0].userSaid 
-		Results.AllResults['Expected Responses'] = temp.trials[0].ExpectedResponse
+		Results.AllResults['Expected Responses'] = temptrials[0].ExpectedResponse
 	}
 	if ( Notes.trials.length > 0 )
 		{ Results.AllResults['Notes'] = Notes.trials[0].response.Notes }
@@ -42,5 +43,6 @@ function SerialSubtraction_Scoring(data) {
 	Results.parameters = parameters
 	console.log(Results)
 	console.log("DONE WITH RESULTS")
+	console.log(BREAK)
 	return Results
 }

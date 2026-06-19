@@ -260,12 +260,6 @@ var jsPsychSurveyMultiSelect = (function (jspsych) {
                       var currentChecked = inputboxes[j];
                       val.push(currentChecked.value);
                   }
-                  if (trial.showOtherOption) {
-                      var other_input = match.querySelector("input[type=text]");
-                      if (other_input && other_input.value.trim() !== "") {
-                          val.push(other_input.value.trim());
-                      }
-                  }
                   var id = "Q" + index;
                   var obje = {};
                   var name = id;
@@ -273,6 +267,10 @@ var jsPsychSurveyMultiSelect = (function (jspsych) {
                       name = match.attributes["data-name"].value;
                   }
                   obje[name] = val;
+                  if (trial.showOtherOption) {
+                      var other_input = match.querySelector("input[type=text]");
+                      obje[name + "_Other"] = other_input ? other_input.value.trim() : "";
+                  }
                   Object.assign(question_data, obje);
                   if (val.length == 0) ;
               }

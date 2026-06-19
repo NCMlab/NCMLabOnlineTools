@@ -235,7 +235,11 @@ var ManualSubtraction = {
       name: 'ListRecall', 
       
     }
-  ]
+  ],
+  on_finish: function(data) {
+    data.task = 'SerialSubtraction',
+    data.ExpectedResponse = ResponseList
+  },
 }
 
 
