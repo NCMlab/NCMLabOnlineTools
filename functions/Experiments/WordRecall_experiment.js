@@ -232,7 +232,8 @@ var MakeWordListA = {
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
     console.log(parameters)
-    AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
+    //AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
+    AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.FolderName+"/"+LANG+"/"+parameters.SubFolderName, SimpleWordListA, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListA = AudioFileListA.map(function(e) {
       return {Word: e}

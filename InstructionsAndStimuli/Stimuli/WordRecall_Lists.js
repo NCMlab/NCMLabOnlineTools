@@ -61,14 +61,16 @@ add('EN_FaCE_VerB', function(){ WordRecallLists = EN_FaCE_VerB});
 // ====== TRAINING FaCE Word List
 var EN_FaCE_Training = {}
 EN_FaCE_Training.WordListA = [
-	{'Word':"Arm"},		    // 0 
-	{'Word':'Cotton'}, 	    // 1
-	{'Word':'House'}, 		// 2
+		{'Word':"Arm"},		    // 0 
+		{'Word':'Cotton'}, 	    // 1
+		{'Word':'House'}, 		// 2
 	]
 EN_FaCE_Training.AlternatePronunciationsWordListA = []
-EN_FaCE_Training.WordListB = [{'Word':"Neck"},		    // 0
-{'Word':'Wax'}, 	    // 1
-{'Word':'Cable'}], 		// 2
+EN_FaCE_Training.WordListB = [
+		{'Word':"Neck"},		    // 0
+		{'Word':'Wax'}, 	    // 1
+		{'Word':'Cable'}, 		// 2
+	]
 EN_FaCE_Training.RecognitionWordList = []
 EN_FaCE_Training.AlternatePronunciationsWordListB = []
 EN_FaCE_Training.FolderName = '../../assets/SoundFiles/Words/FaCE/EN/EN-US-Neural2-F/'
