@@ -807,13 +807,13 @@ FaCE_Training_Manual_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_Training",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Image Copy",
 });
 FaCE_Training_Manual_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_Training_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Subtract",
 });
 FaCE_Training_Manual_EN_List.push({
   Task: "Fluency",

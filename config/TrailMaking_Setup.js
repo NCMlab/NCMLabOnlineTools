@@ -550,6 +550,7 @@ var TrailMaking_FaCE_Training = {
     AskForNotes: false,
     change_circle_color_only_when_correct: false,
     RecordGIF: true,
+    shortTitle: 'FaCE_Training'
 }
 
 var DemonstrationPractice = [

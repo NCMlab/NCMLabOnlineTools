@@ -82,8 +82,8 @@ SerialSubtract_FaCE_Training_Spoken = {
     RecordAUDIO: true,
 }
 SerialSubtract_FaCE_Training_Manual = {
-	StartValue: 12,
-	StepValue: 2,
+	StartValue: 100,
+	StepValue: 7,
     StopValue: 4,
     ShowInstructions: false,
     ShowWelcome: false,

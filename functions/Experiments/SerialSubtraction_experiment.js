@@ -171,47 +171,73 @@ var trialSPOKEN = {
   recording_duration: 3500
 };
 
+// var ManualSubtractionOLD = {
+//   type: jsPsychSurvey,
+//   pages: [
+//     [
+//       {
+//         type: 'multi-select',
+//         prompt: function() {
+//           var prompt = 
+//           Instructions.GetResponse01+parameters.StepValue+
+//           Instructions.GetResponse02+parameters.StartValue+
+//           Instructions.GetResponse03+parameters.StepValue+
+//           Instructions.GetResponse04
+//           console.log(prompt)
+//           return prompt
+//         },
+//         options:  function() {
+//           return ResponseList
+//         },
+//         columns: 4,
+//         name: 'ListRecall', 
+//       },
+//       {
+//         type: 'text',
+//         prompt: function() { return "Other results"},
+//         placeholder: '',
+//         name: 'Intrusion01', 
+//         required: false,
+//       }, 
+//     ]
+//   ],
+//   title: function() { return Instructions.title },//'Word Recall',
+//   button_label_next: 'Continue',
+//   button_label_back: 'Previous',
+//   button_label_finish: function() { return LabelNames.Submit },
+//   show_question_numbers: 'off',
+//   on_finish: function(data) {
+//     data.task = 'SerialSubtract'
+//     data.ExpectedResponse = ResponseList
+//     console.log(data)
+//   },
+// };
+
+
 var ManualSubtraction = {
-  type: jsPsychSurvey,
-  pages: [
-    [
-      {
-        type: 'multi-select',
-        prompt: function() {
-          var prompt = 
-          Instructions.GetResponse01+parameters.StepValue+
-          Instructions.GetResponse02+parameters.StartValue+
-          Instructions.GetResponse03+parameters.StepValue+
-          Instructions.GetResponse04
-          console.log(prompt)
-          return prompt
-        },
-        options:  function() {
-          return ResponseList
-        },
-        columns: 4,
-        name: 'ListRecall', 
+  type: jsPsychSurveyMultiSelect,
+  colCount: 4,
+  showOtherOption: true,
+  questions: [
+    {
+      prompt: function() {
+        var prompt = 
+        Instructions.GetResponse01+parameters.StepValue+
+        Instructions.GetResponse02+parameters.StartValue+
+        Instructions.GetResponse03+parameters.StepValue+
+        Instructions.GetResponse04
+        console.log(prompt)
+        return prompt
       },
-      {
-        type: 'text',
-        prompt: function() { return "Other results"},
-        placeholder: '',
-        name: 'Intrusion01', 
-        required: false,
-      }, 
-    ]
-  ],
-  title: function() { return Instructions.title },//'Word Recall',
-  button_label_next: 'Continue',
-  button_label_back: 'Previous',
-  button_label_finish: function() { return LabelNames.Submit },
-  show_question_numbers: 'off',
-  on_finish: function(data) {
-    data.task = 'SerialSubtract'
-    data.ExpectedResponse = ResponseList
-    console.log(data)
-  },
-};
+      options:  function() {
+        return ResponseList
+      },
+      name: 'ListRecall', 
+      
+    }
+  ]
+}
+
 
 
 var if_SpokenResponse01 = {
@@ -246,12 +272,12 @@ var if_ManualResponse = {
 
 // ======================================================================= 
 // Add procedures to the timeline
-timeline.push(UpdateHeaderCall)  
+
 timeline.push(if_SpokenResponse01)
 timeline.push(Welcome)
 timeline.push(if_SpokenResponse02)
 timeline.push(if_ManualResponse)
 //timeline.push(enter_fullscreen)
-timeline.push(Notes)
+//timeline.push(Notes)
 timeline.push(ThankYou)
 timeline.push(SendData)

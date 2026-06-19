@@ -97,7 +97,7 @@ FR_InstructionsB.TimeRemainingLabel = "restant"
 add('FR_Instructions_DefaultB', function(){ Instructions = FR_InstructionsB});
 // ==================================================================================
 
-/*
+
 var EN_Instructions_FaCE = {}
 EN_Instructions_FaCE.FirstCircleLabel = 'begin'
 EN_Instructions_FaCE.LastCircleLabel = 'end'
@@ -115,7 +115,7 @@ EN_Instructions_FaCE.NotesForResultsPage = 'The provided Response Time is how lo
 
 add('EN_Instructions_FaCE', function(){ Instructions = EN_Instructions_FaCE});
 // ==================================================================================
-var FR_Instructions = {}
+/*var FR_Instructions = {}
 FR_Instructions.FirstCircleLabel = 'Début'
 FR_Instructions.LastCircleLabel = 'Fin'
 FR_Instructions.WelcomeText = [{'page': 'Welcome to the Trail Making Task.</p>'}]
