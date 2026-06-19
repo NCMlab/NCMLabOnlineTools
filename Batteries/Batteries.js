@@ -819,7 +819,7 @@ FaCE_Training_Manual_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_Training_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Fluency",
 });
 FaCE_Training_Manual_EN_List.push({
   Task: "Word Recall",

@@ -68,28 +68,16 @@ var GetCategory = {
 }
 
 var ManualRecall = {
-  type: jsPsychSurvey,
-  pages: [
-    [
-      {
-        type: 'html',
-        prompt: function() { 
-            return 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'  
-          },
-        name: 'fluidityText',
-        textbox_rows: 10,
-        required: false,
+  type: jsPsychSurveyText,
+  questions: [
+    {
+      prompt: function() { 
+        return 'Please, say as many <b>'+category+'</b> as possible.<p><span id="clock">1:00</span></p>'  
       },
-      {
-        type: 'text',
-        prompt: " ",
-        textbox_rows: 10,
-      }
-    ]
+      rows: 10,
+    },
   ],
-  button_label_next: function() { return LabelNames.Continue },
-  button_label_back: function() { return LabelNames.Back },
-  button_label_finish: function() { return LabelNames.Submit },
+  
   on_load: function(){ // This inserts a timer on the recall duration
     var wait_time = parameters.TimeLimit * 1000; // in milliseconds
     var start_time = performance.now();
