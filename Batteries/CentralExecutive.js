@@ -672,6 +672,8 @@ function CentralExecutive() {
                 console.log(DataToWrite)
                 var DataToWriteParsed = JSON.parse(DataToWrite)
                 console.log(DataToWriteParsed)
+
+                
                 break;
             default:
                 console.log("No Choice Provided")
@@ -687,6 +689,10 @@ function CentralExecutive() {
         }
         
         resolve("EVERYTHING IS SETUP")
+        
     })
+
+    
 }
+
 
