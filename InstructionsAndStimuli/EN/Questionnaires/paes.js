@@ -1,6 +1,6 @@
 
-var title = "Physical Activity Enjoyment Scale"
-var shortTitle = 'PAES'  
+var title = "Physical ACtivity Enjoyment Scale"
+var shortTitle = 'PACES'  
 // All questions use the same direction so enter that single flag as an array of size 1
 var survey_JSON = 
     { 
@@ -16,10 +16,10 @@ var survey_JSON =
                 
                 rows: [
 
-                    {value: 'paes001', text: 'I enjoy it'},
-                    {value: 'paes002', text: 'I find it pleasurable'},
-                    {value: 'paes003', text: 'It is very pleasant'},
-                    {value: 'paes004', text: 'It feels good'},
+                    {value: 'paces001', text: 'I enjoy it'},
+                    {value: 'paces002', text: 'I find it pleasurable'},
+                    {value: 'paces003', text: 'It is very pleasant'},
+                    {value: 'paces004', text: 'It feels good'},
                 ],
                 columns: [
                     { "value": 1, text: 'Strongly disagree' }, 
