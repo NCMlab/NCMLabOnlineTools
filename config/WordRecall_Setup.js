@@ -143,78 +143,155 @@ var FaCE_Immediate_Manual_Training_EN = {
 	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
-	WelcomeSpoken: true,
+	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: false
 }
 
+var FaCE_Delayed_Manual_Training_EN = {
+	// specify the word list to use
+	WordList: 'FaCE_Training', // Use this to pick the word list 
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'FaCE/', // use these two lines to find where the audio files are
+	SubFolderName: 'Training/',
+	FileExtension: '.wav',
+	NBlocks: 1,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 300, // milliseconds
+	DelayedRecallFlag: true,
+	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: false
+}
 
 var FaCE_Immediate_Manual_VerA_EN = {
 	// specify the word list to use
-	WordList: 'FaCE',
+	WordList: 'FaCE_VerA', // Use this to pick the word list 
 	// Specify the folder of audio files to use. This allows for presentation of different voices
 	// without the need to change the word list file
-	FolderName: 'Set001/',
+	FolderName: 'FaCE/', // use these two lines to find where the audio files are
+	SubFolderName: 'VerA/',
 	FileExtension: '.wav',
 	NBlocks: 2,
 	BListFlag: false, // Check to see if there is a second set of words
 	AudioPresentation: true,
 	VisualPresentation: true,
-	RecallType: 'Spoken',
+	RecallType: 'Manual',
 	RecallDuration: 120, // seconds
 	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
 	ShowWelcome: true,
-	WelcomeSpoken: true,
+	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: false
 }
 
-var FaCE_Delayed_EN = {
-	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
-	WordList: 'FaCE',
+
+var FaCE_Delayed_Manual_VerA_EN = {
+	// specify the word list to use
+	WordList: 'FaCE_VerA', // Use this to pick the word list 
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'FaCE/', // use these two lines to find where the audio files are
+	SubFolderName: 'VerA/',
 	FileExtension: '.wav',
 	NBlocks: 1,
 	BListFlag: false, // Check to see if there is a second set of words
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
-	TimePerWord: 1500, // milliseconds
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
-	ShowInstructions: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: false
+}
+
+var FaCE_Immediate_Manual_VerB_EN = {
+	// specify the word list to use
+	WordList: 'FaCE_VerB', // Use this to pick the word list 
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'FaCE/', // use these two lines to find where the audio files are
+	SubFolderName: 'VerB/',
+	FileExtension: '.wav',
+	NBlocks: 2,
+	BListFlag: false, // Check to see if there is a second set of words
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 300, // milliseconds
+	DelayedRecallFlag: false,
+	ShowWelcome: true,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
+	AskForNotes: false,
+	RecordAUDIO: false
 }
 
 
-var FaCE_Delayed_Training_EN = {
-	FolderName: 'FaCE_en-US-Neural2-F_Speed70/',
-	WordList: 'FaCE_Training',
+var FaCE_Delayed_Manual_VerB_EN = {
+	// specify the word list to use
+	WordList: 'FaCE_VerB', // Use this to pick the word list 
+	// Specify the folder of audio files to use. This allows for presentation of different voices
+	// without the need to change the word list file
+	FolderName: 'FaCE/', // use these two lines to find where the audio files are
+	SubFolderName: 'VerB/',
 	FileExtension: '.wav',
 	NBlocks: 1,
 	BListFlag: false, // Check to see if there is a second set of words
-	RecallType: 'Spoken',
-	RecallDuration: 60, // seconds
-	DelayBeforeShowingDoneButton: 10,
-	TimePerWord: 1500, // milliseconds
+	AudioPresentation: true,
+	VisualPresentation: true,
+	RecallType: 'Manual',
+	RecallDuration: 120, // seconds
+	DelayBeforeShowingDoneButton: 3, // seconds
+	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: true,
 	ShowWelcome: false,
+	WelcomeSpoken: false,
+	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
 	ShowThankYou: false,
-	ShowInstructions: true,
+	ShowInstructions: true, 
+	InstructionsSpoken: false,
 	AskForNotes: false,
-	RecordAUDIO: true
+	RecordAUDIO: false
 }
+
+
+
+
 
 
 var TEST_Spoken = {

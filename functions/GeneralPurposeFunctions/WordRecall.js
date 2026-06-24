@@ -2,56 +2,60 @@ console.log("LOADING WORD RECALL")
 var userSaidWords = []
 var ListeningFlag = false
 
+function AddNoneRecalled(WordList) {
+  WordList.push(LabelNames.NoneRecalled)
+  return WordList
+}
 
 // ============= JASON EDITS ============
 var ManualRecallA = {
     type: jsPsychSurveyHtmlForm,
     survey_json: function() {
-    const PPP ={
-      showProgressBar: "none",
-      progressBarShowPageNumbers: false,
-      progressBarShowPageTitles: false,
-      showCompletedPage: false,
-      showTitle: true,
-      pages: 
-      [
-        
-        {      
-          title: '<p><span id="clock">1:00</span></p>',
-          elements: [
-            {type: "tagbox",
-            name: "Recall",
-            title: Instructions.WordRecallPrompt,
-            choices:  MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA)),
-            name: 'ListRecall',
-            required: false
-            },
-          {
-            type: 'textarea',
-            title: Instructions.IntrusionPrompt,
-            name: 'Intrusion01', 
-            required: false,
-          }, 
-          {
-            type: 'textarea',
-            title:  Instructions.IntrusionPrompt,
-            placeholder: '',
-            name: 'Intrusion02', 
-            required: false,
-          }, 
-          {
-            type: 'textarea',
-            title: Instructions.IntrusionPrompt,
-            placeholder: '',
-            name: 'Intrusion03', 
-            required: false,
-          }, 
+      const PPP ={
+        showProgressBar: "none",
+        progressBarShowPageNumbers: false,
+        progressBarShowPageTitles: false,
+        showCompletedPage: false,
+        showTitle: true,
+        pages: 
+        [
+          
+          {      
+            title: '<p><span id="clock">1:00</span></p>',
+            elements: [
+              {type: "tagbox",
+              name: "Recall",
+              title: Instructions.WordRecallPrompt,
+              choices: AddNoneRecalled(MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))),
+              name: 'ListRecall',
+              required: false
+              },
+            {
+              type: 'textarea',
+              title: Instructions.IntrusionPrompt,
+              name: 'Intrusion01', 
+              required: false,
+            }, 
+            {
+              type: 'textarea',
+              title:  Instructions.IntrusionPrompt,
+              placeholder: '',
+              name: 'Intrusion02', 
+              required: false,
+            }, 
+            {
+              type: 'textarea',
+              title: Instructions.IntrusionPrompt,
+              placeholder: '',
+              name: 'Intrusion03', 
+              required: false,
+            }, 
+          ]
+          }
         ]
-        }
-  ]
-  }
-  console.log(PPP)
-  return PPP
+      }
+      console.log(PPP)
+      return PPP
     },
     button_label: function() { return LabelNames.Submit},
     button_label_empty_responses: function() { return LabelNames.SubmitAnyway},
@@ -63,23 +67,22 @@ var ManualRecallA = {
 
 
     on_load: function() {
-    console.log("WORD RECALL SETUP")
-
-    var wait_time = parameters.RecallDuration * 1000; // in milliseconds
-    var start_time = performance.now();
-    interval = setInterval(function(){
-    time_left = wait_time - (performance.now() - start_time);
-      var minutes = Math.floor(time_left / 1000 / 60);
-      var seconds = Math.floor((time_left - minutes*1000*60)/1000);
-      var seconds_str = seconds.toString().padStart(2,'0');
-      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-      if(time_left <= 0){
-        document.querySelector('#clock').innerHTML = "0:00";
-        document.querySelector('button').disabled = false;
-        clearInterval(interval);
-        // STOP VOICE RECORDING!!!
-      }
-    }, 250)
+      console.log("WORD RECALL SETUP")
+      var wait_time = parameters.RecallDuration * 1000; // in milliseconds
+      var start_time = performance.now();
+      interval = setInterval(function(){
+      time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes*1000*60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        if(time_left <= 0){
+          document.querySelector('#clock').innerHTML = "0:00";
+          document.querySelector('button').disabled = false;
+          clearInterval(interval);
+          // STOP VOICE RECORDING!!!
+        }
+      }, 250)
     },
         //console.log(document.getElementById("jspsych-progressbar-container"))
         //document.getElementById("jspsych-progressbar-container").style.visibility = "hidden"

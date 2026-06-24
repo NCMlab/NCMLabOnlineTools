@@ -61,6 +61,7 @@ EN_LabelNames.ThankYou = "Thank you for your participation. You may close this w
 EN_LabelNames.Hello = 'Hello'
 EN_LabelNames.EnterName = 'Please enter a name first.'
 EN_LabelNames.TrailMakingRemaining = 'remaining'
+EN_LabelNames.NoneRecalled = 'None Recalled'
 
 var FR_LabelNames = {}
 FR_LabelNames.NoYes = ['No','Oui']

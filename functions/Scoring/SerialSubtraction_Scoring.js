@@ -43,6 +43,5 @@ function SerialSubtraction_Scoring(data) {
 	Results.parameters = parameters
 	console.log(Results)
 	console.log("DONE WITH RESULTS")
-	console.log(BREAK)
 	return Results
 }

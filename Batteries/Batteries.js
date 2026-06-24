@@ -774,9 +774,9 @@ BatteryList.push({
 // TODO FIX MANUAL DELAYED RECALL
 // ==================================================================
 // 		ENGLISH
+ // ==========================================
 // 			TRAINING
-// 				Spoken
-
+// ==========================================
 // 	Manual
 var FaCE_Training_Manual_EN_List = [];
 FaCE_Training_Manual_EN_List.push({
@@ -795,7 +795,7 @@ FaCE_Training_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Manual_Training_EN",
   Instructions: "FaCE",
-  IconName: "Word Recall",
+  IconName: "Word Recall, Immediate",
 });
 FaCE_Training_Manual_EN_List.push({
   Task: "Trail Making",
@@ -825,10 +825,8 @@ FaCE_Training_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Manual_Training_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Word Recall, Delayed",
 });
-
-
 BatteryList.push({
   index: 602,
   name: "FaCE Battery: Training",
@@ -839,7 +837,7 @@ BatteryList.push({
   RunAudioTest: true,
   Footer: "©GagnonBruno 2016",
 });
-
+// ==========================================
 // VERSION A
 // ==========================================
 // =============== Manual ===================
@@ -888,7 +886,7 @@ BatteryList.push({
   name: "FaCE Battery: Version A",
   description: "A web-based version of the FaCE using manual recall",
   TaskList: FaCE_VerA_Manual_EN_List,
-  BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+  BatteryInstructions: "<h1>Fast Cognitive Evaluation: Ver A</h1>",
   Language: "EN",
   RunAudioTest: true,
   Footer: "©GagnonBruno 2016",

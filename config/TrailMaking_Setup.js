@@ -522,6 +522,7 @@ var TrailMaking_FaCE = {
     AskForNotes: false,
     change_circle_color_only_when_correct: false,
     RecordGIF: true,
+    shortTitle: 'FaCE'
 }
 
 var FaCE_Training = [
