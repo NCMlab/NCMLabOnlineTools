@@ -217,6 +217,8 @@ var Notes = {
 var thank_you = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
+        console.log(Instructions)
+        console.log(Instructions.ThankYouText)
       return Instructions.ThankYouText[0].page
     },
     post_trial_gap: 0,

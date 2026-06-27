@@ -304,7 +304,10 @@ var SendData = {
     var data = jsPsych.data.get()
     console.log(data)
     Results = WordRecall_Scoring(data, SimpleWordListA, SimpleWordListB)
+    console.log(Results)
+    //console.log(BREAK)
     jsPsych.finishTrial(Results)
+    
   }
 }
 

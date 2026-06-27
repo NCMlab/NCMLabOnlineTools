@@ -89,6 +89,7 @@ EN_Instructions.Instructions01 = [
 	{'page': 'You are going to hear a wordlist that you will have to remember. Pay close attention. When the list is done, you are to say as many words as possible that you remember from that list, in any given order'},	
 	]
 EN_Instructions.Instructions02 = [
+	{'page':''},
 	{'page': 'Now, you will hear the same wordlist a second time. Try to remember and say as many words as you can from that list, even the ones that you recalled during your first try, in any given order'},
 	]
 EN_Instructions.Instructions03 = [
@@ -107,7 +108,9 @@ EN_Instructions.InstructionsDelayed = [
 	]	
 
 EN_Instructions.WordPrompt = 'empty'
-EN_Instructions.ThankYouText = [{'page': 'Try to remember the words from the list, you will be asked to repeat them at the end of the test.'}]
+EN_Instructions.ThankYouText = [
+	{'page': 'Try to remember the words from the list, you will be asked to repeat them at the end of the test.'}
+]
 EN_Instructions.title = 'Word Recall'
 EN_Instructions.WordRecallPrompt = 'Which words were recalled?'
 EN_Instructions.IntrusionPrompt = 'Intrusion? (Words not in the list)'

@@ -143,6 +143,12 @@ var FormTitle = 'FaCE Orientation Form'
 var EN_pages = [
   [
     {
+      type: 'html',
+      name: 'Instructions',
+      title: 'Instructions',
+      prompt: "You will start with a few practice questions that will not contribute to your test\’s final score.",
+    },
+    {
       type: 'drop-down',
       prompt: "What MONTH are we in?", 
       name: 'CurrentMonth', 
@@ -177,6 +183,17 @@ var EN_pages = [
         name: 'CurrentCity', 
         required: false,
       }, 
+  ],
+  [
+    {
+      type: 'html',
+      name: 'Instructions',
+      title: 'Instructions',
+      prompt: "The test will now begin. You will be asked questions to which you will try to answer to the best of your  ability.",
+    },
+
+
+    
   ]
 ]
 var EN_Orient_parameters = {}

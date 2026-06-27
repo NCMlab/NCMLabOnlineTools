@@ -893,47 +893,48 @@ BatteryList.push({
 });
 
 
-
+// ==========================================
 // VERSION B
+// ==========================================
 // 				Manual
 var FaCE_VerB_Manual_EN_List = [];
-//FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:''})
-//FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:''})
+FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'IntakeFaCE', IconName:'Intake'})
+FaCE_VerB_Manual_EN_List.push({Task: 'Intake Form', Parameters: 'IntakeForm_EN', Instructions: 'OrientationFaCE', IconName:'Orientation'})
 FaCE_VerB_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Immediate_Manual_VerB_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Word Recall, Immediate",
 });
 FaCE_VerB_Manual_EN_List.push({
   Task: "Trail Making",
   Parameters: "TrailMaking_FaCE",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Trail Making",
 });
 FaCE_VerB_Manual_EN_List.push({
   Task: "Image Copy",
   Parameters: "ImageCopy_FaCE_VerB",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Image Copy",
 });
 FaCE_VerB_Manual_EN_List.push({
   Task: "Serial Subtraction",
   Parameters: "SerialSubtract_FaCE_VerB_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Subtraction",
 });
 FaCE_VerB_Manual_EN_List.push({
   Task: "Fluency",
   Parameters: "FaCE_VerB_Manual",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Fluency",
 });
 FaCE_VerB_Manual_EN_List.push({
   Task: "Word Recall",
   Parameters: "FaCE_Delayed_Manual_VerB_EN",
   Instructions: "FaCE",
-  IconName: "",
+  IconName: "Word Recall, Delayed",
 });
 
 BatteryList.push({
@@ -941,7 +942,7 @@ BatteryList.push({
   name: "FaCE Battery: Version B",
   description: "A web-based version of the FaCE using manual scoring",
   TaskList: FaCE_VerB_Manual_EN_List,
-  BatteryInstructions: "<h1>Fast Cognitive Evaluation</h1>",
+  BatteryInstructions: "<h1>Fast Cognitive Evaluation: Ver B</h1>",
   Language: "EN",
   RunAudioTest: true,
   Footer: "©GagnonBruno 2016",

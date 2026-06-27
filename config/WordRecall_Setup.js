@@ -142,10 +142,10 @@ var FaCE_Immediate_Manual_Training_EN = {
 	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
@@ -196,10 +196,10 @@ var FaCE_Immediate_Manual_VerA_EN = {
 	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
@@ -251,10 +251,10 @@ var FaCE_Immediate_Manual_VerB_EN = {
 	DelayBeforeShowingDoneButton: 3, // seconds
 	TimePerWord: 300, // milliseconds
 	DelayedRecallFlag: false,
-	ShowWelcome: true,
+	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
@@ -282,7 +282,7 @@ var FaCE_Delayed_Manual_VerB_EN = {
 	ShowWelcome: false,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: false,
+	ShowThankYou: true,
 	ShowInstructions: true, 
 	InstructionsSpoken: false,
 	AskForNotes: false,
