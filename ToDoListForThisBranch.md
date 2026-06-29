@@ -53,3 +53,10 @@ We can always meet about any of this in a call if necessary to discuss.
 ## 
 Make function to take CSV data, convert to JSON and push to the dB
 
+## June 29, 2026
+In the participant Overview of the NeuroClinic A post-intervention test shows up as "Baseline" since it
+is using the Battery Name instead of the SessionSetup Button name.
+The easiest fix is to name the battery Baseline/Post.
+I do not want to do that now since I dont want to break anything.
+
+
