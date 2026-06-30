@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="15 50 705 310" width="705" height="310">
+  <defs>
+    <style>
+      .ink         { fill: none; stroke: #161616; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; }
+      .inkFill     { fill: #161616; stroke: none; }
+      .accent      { fill: #F7941D; }
+      .mapInk      { fill: none; stroke: #161616; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .mapOutline  { fill: #FFFFFF; stroke: #161616; stroke-width: 12; stroke-linejoin: round; }
+      .mapFoldFill { fill: #E8E8E8; stroke: #161616; stroke-width: 6; stroke-linejoin: round; }
+      .compassBar  { stroke: #161616; stroke-width: 6; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <!-- ===== Map (right, drawn first so brain overlaps its left edge) ===== -->
+  <g>
+    <rect class="mapOutline" x="505" y="160" width="190" height="140" rx="14" />
+    <path class="mapFoldFill" d="M 665 160 L 695 160 L 695 190 Z" />
+    <path class="mapInk" d="M 568 160 L 568 300" stroke-dasharray="2 10" />
+    <path class="mapInk" d="M 632 160 L 632 300" stroke-dasharray="2 10" />
+
+    <!-- compass rose -->
+    <g transform="translate(530,188)">
+      <path class="inkFill" d="M 0 -15 L 5 0 L 0 15 L -5 0 Z" />
+      <path class="compassBar" d="M -15 0 L 15 0" />
+    </g>
+
+    <!-- terrain parcels -->
+    <path class="mapInk" d="M 520 240 C 530 232 545 236 548 248 C 552 260 538 268 526 264 C 516 260 512 248 520 240 Z" />
+    <path class="mapInk" d="M 650 258 C 662 251 678 257 680 269 C 682 281 666 289 654 283 C 644 278 640 265 650 258 Z" />
+
+    <!-- dashed route -->
+    <path class="mapInk" d="M 520 278 C 555 263 555 223 600 228 C 635 231 635 260 658 243" stroke-dasharray="6 8" />
+
+    <!-- location pin -->
+    <path class="accent" d="M 635 180 C 652 180 663 193 663 206 C 663 222 635 250 635 250 C 635 250 607 222 607 206 C 607 193 618 180 635 180 Z" />
+    <circle cx="635" cy="204" r="9" fill="#FFFFFF" />
+  </g>
+
+  <!-- ===== Brain (center, overlaps the map's left edge) ===== -->
+  <g transform="translate(177.5,33.65) scale(0.85)">
+    <path class="ink" fill="#FFFFFF" d="
+      M 250 120
+      C 226 96, 184 96, 168 122
+      C 138 118, 116 142, 124 168
+      C 100 178, 96 210, 118 226
+      C 102 244, 108 274, 134 284
+      C 128 306, 146 330, 172 328
+      C 176 350, 202 364, 224 352
+      C 232 366, 250 366, 250 350
+
+      C 250 366, 268 366, 276 352
+      C 298 364, 324 350, 328 328
+      C 354 330, 372 306, 366 284
+      C 392 274, 398 244, 382 226
+      C 404 210, 400 178, 376 168
+      C 384 142, 362 118, 332 122
+      C 316 96, 274 96, 250 120
+      Z" />
+    <path class="ink" d="M 250 122 L 250 350" />
+    <path class="ink" d="M 168 200 C 180 200, 184 214, 174 222" />
+    <path class="ink" d="M 332 200 C 320 200, 316 214, 326 222" />
+    <path class="ink" d="M 186 268 C 200 264, 210 276, 202 288" />
+    <path class="ink" d="M 314 268 C 300 264, 290 276, 298 288" />
+  </g>
+
+  <!-- ===== Thought bubble (left, trailing into the brain) ===== -->
+  <g transform="translate(-90,50) scale(0.78)">
+    <path class="ink" d="
+      M 188 78
+      C 178 50, 210 30, 232 38
+      C 240 18, 272 18, 282 38
+      C 308 28, 334 48, 326 72
+      C 340 82, 338 106, 318 112
+      C 322 130, 302 144, 282 136
+      C 270 150, 244 150, 232 138
+      C 210 144, 188 128, 192 108
+      C 174 100, 174 86, 188 78
+      Z" />
+    <circle class="inkFill" cx="214" cy="160" r="15" />
+    <circle class="inkFill" cx="233" cy="186" r="10" />
+    <circle class="inkFill" cx="247" cy="206" r="6" />
+  </g>
+  <circle class="inkFill" cx="200" cy="222" r="4" />
+  <circle class="inkFill" cx="225" cy="228" r="3" />
+</svg>
