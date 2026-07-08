@@ -135,7 +135,7 @@ Full detail for each of these is in `SetupInstructions.md`.
 
 - [ ] Install MySQL and run `mysql_secure_installation` (§1.1)
 - [ ] Create the `ncmuser` database user (§1.3)
-- [ ] Run `CreateSchema.sql` to create the database and 7 tables (§1.4)
+- [ ] Run `CreateSchema.sql` to create the database and 8 tables (§1.4)
 - [ ] Run `SeedData_TaskTypes.sql` to load the 34 task types + Word Recall example (§1.5)
 - [ ] Run `migrate/Migrated_TaskConfig.sql` to load the 227 auto-extracted parameter/instruction
       sets + 139 `ui_labels` rows (EN/FR/KR) + 7 `session_chooser_configs` rows —
@@ -150,6 +150,59 @@ Full detail for each of these is in `SetupInstructions.md`.
       server (§2.6)
 - [ ] Restrict CORS (`Access-Control-Allow-Origin`) to the real JATOS origin before going live
       (§2.7) — currently `*` in both PHP files, fine for local testing only
+
+---
+
+## Part 2b — Admin Write API (NCMBatteryWebsite integration)
+
+Full detail in `admin/AdminSetupInstructions.md`. API built 2026-07-08; NCMBatteryWebsite wired
+to call it the same day (Jason: "Do it"). Not yet deployed anywhere — both repos still only
+run locally.
+
+- [x] Wire `NCMBatteryWebsite` to call the admin API instead of its old behavior (downloaded a
+      `battery.json` file via `localStorage`, no backend calls at all). Added `src/api.js`
+      (client for both the public read API and the admin write API), `src/AuthContext.js` +
+      `src/Login.js` (login gate wrapping the whole app), and rewrote `Home.js`/`FormSettings.js`
+      to use them. `npm run build` succeeds (verified 2026-07-08).
+- [x] Point `NCMBatteryWebsite`'s task/parameter lists at the live database instead of the
+      frozen `src/configFiles/` copy — added a new public endpoint, `API_list_config.php`
+      (task types don't have a "list" endpoint yet, only "fetch one specific named thing"), and
+      deleted `src/configFiles/` entirely since nothing references it anymore. Instruction-set
+      listing is *not* wired up — see gap below.
+- [x] Added `API_admin_whoami.php` (not in the original design) so the React app can recover
+      login state and a fresh CSRF token after a page reload, since the in-memory CSRF token
+      doesn't survive a refresh.
+- [x] Found and fixed a latent bug in `NCMBatteryWebsite` while touching this code: `uuid` is
+      imported in `App.js`/`Home.js` but was never listed in `package.json` — it only resolved
+      because some other dependency happened to hoist it into `node_modules`. Added it as an
+      explicit dependency.
+- [x] Fixed `NCMBatteryWebsite/README.md` — it was a corrupted UTF-16 file containing only the
+      repo name; replaced with real setup instructions (env vars, login flow, current scope).
+- [ ] **New gap found while wiring this up: no instructions-set picker.** The DB schema and
+      admin API support attaching an `instruction_id` to a `battery_tasks` row, but the original
+      UI never had any instructions concept — `FormSettings.js` only ever edited "settings"
+      (parameters). Rather than invent unrequested UI, batteries are currently saved with
+      `instruction_id` left `null` (the schema allows this). Needs its own design pass if
+      instructions should be pickable from this UI.
+- [ ] Run `php admin/create_admin_user.php <username>` on the server to create the first
+      login (no self-registration by design — privileged lab staff only)
+- [ ] Edit `DB_HOST`/`DB_NAME`/`DB_USER`/`DB_PASS` in `admin/admin_common.php` and
+      `admin/create_admin_user.php`
+- [ ] **Set `ADMIN_ALLOWED_ORIGIN` in `admin/admin_common.php`** to NCMBatteryWebsite's real
+      deployed URL once it has one — currently a placeholder
+      (`https://your-admin-site.example.edu`). Cannot be `*`; these requests carry a session
+      cookie and browsers reject wildcard CORS on credentialed requests.
+- [ ] Deploy over HTTPS — the session cookie is marked `secure`, so login will silently fail
+      over plain HTTP
+- [ ] Deploy `admin_common.php` + the 6 `API_admin_*.php` files together; keep
+      `create_admin_user.php` off any web-accessible path (it self-blocks HTTP execution, but
+      don't rely on that alone). Deploy `API_list_config.php` alongside the existing public API.
+- [ ] Create `user-website/.env.local` with `REACT_APP_API_BASE` / `REACT_APP_ADMIN_API_BASE`
+      pointing at the deployed PHP endpoints — see `NCMBatteryWebsite/README.md`
+- [ ] Before handling real lab data from outside your own machine, add the items listed under
+      "Known gaps" in `admin/AdminSetupInstructions.md`: login rate limiting, an audit log
+      (`created_by` column), and update/delete endpoints (deliberately not built yet — this UI
+      can currently only create new parameter sets/batteries, never edit or remove one)
 
 ---
 

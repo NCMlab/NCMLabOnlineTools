@@ -158,6 +158,23 @@ CREATE TABLE IF NOT EXISTS battery_tasks (
 );
 
 -- -------------------------------------------------------
+-- admin_users
+-- Login accounts for the NCMBatteryWebsite battery-builder UI.
+-- Privileged researchers only, not the general public -- no
+-- self-registration endpoint; accounts are created directly via
+-- admin/create_admin_user.php (a CLI script, never exposed over HTTP).
+-- password_hash is a PHP password_hash() bcrypt hash, never a
+-- plaintext or reversibly-encrypted password.
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS admin_users (
+    admin_user_id  INT           AUTO_INCREMENT PRIMARY KEY,
+    username       VARCHAR(100)  NOT NULL UNIQUE,
+    password_hash  VARCHAR(255)  NOT NULL,
+    active         TINYINT(1)    NOT NULL DEFAULT 1,
+    created_at     TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+
+-- -------------------------------------------------------
 -- Useful indexes for runtime lookups
 -- -------------------------------------------------------
 CREATE INDEX idx_batteries_index ON batteries(battery_index);

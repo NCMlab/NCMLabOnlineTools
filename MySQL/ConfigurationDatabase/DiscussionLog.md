@@ -358,10 +358,11 @@ See files: `API_battery.php` and `API_example_fetch.js` for implementation.
 | `ToDo.md` | Checklist: decisions needed from you, setup/deployment steps, remaining migration work |
 | `AddNewLabel.md` | How-to: add one new UI label with EN/FR/KR translations |
 | `AddNewLanguage.md` | How-to: add a whole new language to `ui_labels` |
-| `CreateSchema.sql` | SQL to create database, all 7 tables, indexes, and view |
+| `CreateSchema.sql` | SQL to create database, all 8 tables, indexes, and view |
 | `SeedData_TaskTypes.sql` | INSERT for all 34 task types + full Word Recall example |
 | `API_battery.php` | PHP endpoint returning a whole battery as JSON |
 | `API_task_config.php` | PHP endpoint returning one parameter set or instruction set |
+| `API_list_config.php` | PHP endpoint listing task types, or parameter/instruction sets for one task type (browsing, not fetching one known item) |
 | `API_example_fetch.js` | Conceptual fetch() example (see WordRecallDatabaseConfig.html for real usage) |
 | `SetupInstructions.md` | Step-by-step: MySQL setup, PHP deployment, API testing |
 | `migrate/extract.js` | Node script: executes each config/instructions JS file in a vm sandbox and captures its `add()` registrations as JSON |
@@ -369,6 +370,15 @@ See files: `API_battery.php` and `API_example_fetch.js` for implementation.
 | `migrate/extracted/*.json` | Raw extraction output, one file per source `.js` file |
 | `migrate/Migrated_TaskConfig.sql` | Generated `INSERT IGNORE` statements: 227 task_parameters/task_instructions rows, 139 ui_labels rows, 7 session_chooser_configs rows |
 | `migrate/MANUAL_REVIEW.md` | Everything the script could not place automatically, with reasons |
+| `admin/admin_common.php` | Shared DB connection, session/CSRF, and CORS setup for every admin endpoint |
+| `admin/API_admin_login.php` | Authenticates an `admin_users` account, starts a session, returns a CSRF token |
+| `admin/API_admin_logout.php` | Destroys the current admin session |
+| `admin/API_admin_whoami.php` | Checks the session cookie and reissues a CSRF token (used to restore login state after a page reload) |
+| `admin/API_admin_create_parameter.php` | Authenticated: inserts one `task_parameters` row |
+| `admin/API_admin_create_instruction.php` | Authenticated: inserts one `task_instructions` row |
+| `admin/API_admin_create_battery.php` | Authenticated: inserts one `batteries` row + its `battery_tasks`, in a transaction |
+| `admin/create_admin_user.php` | CLI-only script to create/update an admin login (no HTTP registration endpoint) |
+| `admin/AdminSetupInstructions.md` | Deployment steps, request shapes, and known security gaps for the admin API |
 
 ## Task HTML Files (in html/JATOS/)
 
@@ -716,11 +726,159 @@ registrations never produced valid data, so removing them lost nothing).
 
 ---
 
-**Status as of the end of this log:** all schema/SQL work above exists only in files — nothing
-has been applied to a live database (`ToDo.md` Part 2, unstarted). Remaining open items:
+**Jason's prompt:**
+> "I have another repository named NCMBatteryWebsite which is a ReactJS UI for creating Battery
+> configurations like in teh Batteries/Batteries.js file. I would like to use this UI for making
+> entries into the dB that was just created."
+
+*(Interrupted and re-sent by Jason with more detail:)*
+
+**Jason's prompt:**
+> "I have another repository named NCMBatteryWebsite which is a ReactJS UI for creating Battery
+> configurations like in the Batteries/Batteries.js file. I would like to use this UI for making
+> entries into the dB that was just created. The users that will be using this UI will be
+> privileged used, not the general publiuc, so I can use a login and passowrd for validation of
+> them. I believe this is an issue since I want any writing to teh dB to be secure. How do I
+> include this other repo into my primary repo (the current one)?"
+
+**Claude:** Located `NCMBatteryWebsite` locally (`Documents/GitHub/NCMBatteryWebsite`) and
+inspected it: a Create React App project whose git remote points to a different GitHub account
+(`Keynaan-I`), with `node_modules` accidentally tracked in git (no `.gitignore`, ~38,800 files).
+Rather than assume how to combine the two repos, asked three questions: how to connect them at
+the repo level, whether to fix the `node_modules` tracking issue, and whether the write-access
+login should be a new system or reuse an existing one.
+
+**Jason's choices** (all three from multiple-choice prompts):
+- Repo integration: *"Keep them separate repos (Recommended)"* — no git-level merge; the React
+  app stays its own repo and talks to a new authenticated PHP API over HTTP, the same pattern
+  the existing read-only `API_battery.php` already uses.
+- `node_modules` cleanup: *"Yes, clean it up (Recommended)"*
+- Auth design: *"Design a fresh login table (Recommended)"*
+
+**Claude:** Added a `.gitignore` to `NCMBatteryWebsite/user-website/` and ran
+`git rm -r --cached node_modules`, committing locally (38,809 files changed, not pushed — that
+remote belongs to a different account, so pushing is Jason's call). Then read
+`NCMBatteryWebsite`'s actual source (`App.js`, `Home.js`, `FormSettings.js`) before designing
+anything further, and found the UI is currently a client-only prototype: "Save as Battery"
+downloads a `battery.json` file via `localStorage`, there is no backend call anywhere in the
+app yet, the task list is hardcoded, and `FormSettings.js` reads default parameters from a
+frozen copy of the old `config/*.js` files (`src/configFiles/`) that already disagrees with the
+database (different naming, missing the Cancellation/Stroop/EQ5D/etc. additions from earlier in
+this log). Reported this and asked one more question: should the write API only let the UI
+assemble batteries from *existing* task types/parameters/instructions, or also let it create
+*new* parameter/instruction sets.
+
+**Jason's choice:** *"Batteries + new parameter/instruction sets"*
+
+**Jason's prompt** (sent while the above was being designed):
+> "pause, I need to restart my computer"
+
+**Claude:** Confirmed both repos were in a clean, fully-committed state (nothing left
+uncommitted or half-done) and stopped.
+
+**Jason's prompt:**
+> "continue"
+
+**Claude:** Built the authenticated write API. Added `admin_users` to `CreateSchema.sql` as
+Table 8 (`username`, bcrypt `password_hash`, `active`) — no self-registration endpoint, since
+these are privileged accounts, not public sign-up. Built 6 new files under a new `admin/`
+folder, deliberately separate from the existing public `API_battery.php`/`API_task_config.php`
+(which stay unauthenticated and wide-open CORS, appropriate for study participants' browsers):
+
+- `admin_common.php` — shared DB connection, PHP session config (`httpOnly`, `secure`,
+  `SameSite=Strict` cookie), CORS locked to one explicit origin (not `*` — browsers reject
+  wildcard CORS on credentialed requests), and a `require_admin_session()` check every write
+  endpoint calls first (verifies both an active session *and* a CSRF token sent via
+  `X-CSRF-Token`, checked with `hash_equals()` to avoid timing attacks).
+- `API_admin_login.php` — `password_verify()` against the bcrypt hash, identical error message
+  for "no such user" and "wrong password" (distinguishing them would let an attacker enumerate
+  valid usernames), `session_regenerate_id(true)` on success to block session fixation, issues a
+  fresh CSRF token.
+- `API_admin_logout.php` — destroys the session.
+- `API_admin_create_parameter.php` / `API_admin_create_instruction.php` — insert one
+  `task_parameters`/`task_instructions` row each; validate the name against
+  `^[A-Za-z0-9_]+$`, resolve `task_type_id` or `task_name` to a real row first, and return 409
+  rather than silently overwriting if that (task_type, name) pair already exists — there's no
+  update endpoint yet, so overwriting-by-default would be a dangerous behavior for a name other
+  batteries may already reference.
+- `API_admin_create_battery.php` — inserts one `batteries` row plus its `battery_tasks` in a
+  single transaction (all-or-nothing), and cross-checks that any `parameter_id`/`instruction_id`
+  supplied for a task actually belongs to that task's `task_type_id` (not just that the ID
+  exists at all — a valid Word Recall parameter set attached to a Trail Making task slot would
+  pass a plain foreign-key check but be logically wrong).
+- `create_admin_user.php` — CLI-only (checks `php_sapi_name() !== 'cli'` and refuses to run
+  under a web server even if this file ends up somewhere web-accessible), prompts for a
+  password without echoing it, requires 12+ characters, hashes with `password_hash()`.
+- `AdminSetupInstructions.md` — deployment steps, the exact request/response shape the React
+  app needs to call, and an explicit "known gaps" section: no login rate-limiting, no audit log
+  of which admin created what, no update/delete endpoints (scope decision, not an oversight) —
+  documented rather than silently shipped as if complete.
+
+Updated `ToDo.md` with a new "Part 2b" covering deployment of this API and wiring
+`NCMBatteryWebsite` to it (including pointing its task/parameter lists at the live read API
+instead of the stale `src/configFiles/` copy). None of this has been deployed or connected to
+the actual React app yet — it's the API surface only.
+
+---
+
+**Jason's prompt:**
+> "Do it: 'Wiring the React app to actually call this new API is the next piece of work
+> whenever you're ready for it.'"
+
+**Claude:** Wired `NCMBatteryWebsite` to the admin API built in the previous entry. First added
+one more server-side piece the design had missed: `API_list_config.php` (public, unauthenticated
+— a "list what exists" endpoint; the earlier `API_task_config.php` only supports "fetch one
+already-known-by-name thing," which isn't enough for a UI that needs to *populate a picker*) and
+`admin/API_admin_whoami.php` (lets the React app recover login state and a fresh CSRF token
+after a page reload, since the in-memory CSRF token from login doesn't survive one).
+
+On the React side, added `src/api.js` (a client for both the public read API and the admin write
+API), `src/AuthContext.js` + `src/Login.js` (a login gate wrapping the whole app, using
+`credentials: 'include'` so the session cookie flows automatically), and rewrote `Home.js` and
+`FormSettings.js`:
+- `Home.js`'s task grid now comes from `API_list_config.php?resource=task_types` instead of a
+  hardcoded list of 20 ad-hoc names (some of which, like "Trails A"/"Trails B" or "DS,
+  Forward"/"DS, Backwards", didn't correspond to the database's task-type granularity at all —
+  the database models "Trail Making" and "Digit Span" as one task type each, with the
+  Forward/Backward/A/B distinction living at the parameter-set level instead).
+- "Save as Battery" now `POST`s to `API_admin_create_battery.php` instead of downloading a
+  `battery.json` file.
+- `FormSettings.js` no longer imports frozen default objects from `src/configFiles/` (which was
+  already out of sync with the database — different naming, missing recent additions). It now
+  lets the user either pick an existing parameter set for that task type (loaded read-only, since
+  there's no update endpoint) or build a new one and save it via
+  `API_admin_create_parameter.php`.
+- Deleted `src/configFiles/` entirely — nothing referenced it anymore.
+
+Two things found and fixed along the way, not part of the original ask but directly blocking or
+adjacent to it: `uuid` was imported in `App.js`/`Home.js` but never listed in `package.json` —
+it only worked because some other dependency happened to hoist it into `node_modules`, a latent
+bug that would break on a clean install; added it as an explicit dependency. Also
+`NCMBatteryWebsite/README.md` turned out to be a corrupted UTF-16 file containing only the repo
+name — replaced with real setup instructions, since this work introduced real setup steps
+(`.env.local` variables) worth documenting.
+
+Verified with `npm run build` (`CI=true npx react-scripts build`) — compiles cleanly, no syntax
+or missing-import errors. Could not verify against a live backend (no PHP server running
+locally), so this is confirmed to *build*, not confirmed to *work end-to-end* against a real
+database yet.
+
+One scope gap surfaced during this work: the original UI never had any concept of instruction
+sets (only "settings"/parameters), so batteries built through this UI currently save with
+`instruction_id` left `null` — the schema allows it, but picking an instruction set per task
+would need its own design pass, not an assumption bundled into this one.
+
+---
+
+**Status as of the end of this log:** the database schema/SQL work (`ToDo.md` Part 2) and the
+admin API deployment (`ToDo.md` Part 2b) both remain undeployed — everything so far has been
+built and verified locally, but nothing has touched a live server. `NCMBatteryWebsite` is now
+wired to call the admin API but has not been run against a real backend. Remaining open items:
 `SelfReport_Setup.js` is deferred pending investigation into what it is; the FR/KR `Info`
 translation gap is deferred by Jason's own choice until translation work happens; the broken
-relative paths in the two moved-but-unfinished HTML files are unresolved.
+relative paths in the two moved-but-unfinished HTML files are unresolved; the admin API's known
+gaps (rate limiting, audit log, update/delete endpoints) are undone by design, not by accident;
+there is no instruction-set picker in the UI yet.
 See `ToDo.md` for the authoritative, currently-live checklist.
 
 ---
