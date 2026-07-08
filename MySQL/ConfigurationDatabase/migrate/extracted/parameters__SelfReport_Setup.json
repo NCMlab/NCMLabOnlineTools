@@ -1,0 +1,34 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/SelfReport_Setup.js",
+  "registrations": [
+    {
+      "key": "stai",
+      "error": "callback threw: stai is not defined"
+    },
+    {
+      "key": "nfc6",
+      "error": "callback threw: nfc6 is not defined"
+    },
+    {
+      "key": "nfc10",
+      "error": "callback threw: nfc10 is not defined"
+    },
+    {
+      "key": "nfcs",
+      "error": "callback threw: nfcs is not defined"
+    },
+    {
+      "key": "panas",
+      "error": "callback threw: panas is not defined"
+    },
+    {
+      "key": "rtq",
+      "error": "callback threw: rtq is not defined"
+    },
+    {
+      "key": "dass",
+      "error": "callback threw: dass is not defined"
+    }
+  ],
+  "kind": "parameters"
+}

@@ -1,0 +1,64 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/Fluency_Setup.js",
+  "registrations": [
+    {
+      "key": "Fluency_Animals",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"Animals\",\"TimeLimit\":60,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "Fluency_FruitsVegetable",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"FruitsVegetables\",\"TimeLimit\":60,\"ResponseType\":\"Spoken\",\"ShowInstructions\":true,\"ShowWelcome\":true,\"ShowThankYou\":true,\"AskForNotes\":false,\"RecordAUDIO\":true,\"DelayBeforeShowingDoneButton\":10}"
+    },
+    {
+      "key": "Fluency_F",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"LetterF\",\"TimeLimit\":60,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "Fluency_TEST",
+      "error": "callback threw: Fluency_TEST is not defined"
+    },
+    {
+      "key": "FaCE_Training_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"DinnerTable\",\"TimeLimit\":15,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Spoken\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Training_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"DinnerTable\",\"TimeLimit\":15,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "FaCE_VerA_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"FruitsVegetables\",\"TimeLimit\":60,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Spoken\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_VerA_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"FruitsVegetables\",\"TimeLimit\":60,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_VerB_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"Animals\",\"TimeLimit\":60,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Spoken\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_VerB_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Category\":\"Animals\",\"TimeLimit\":60,\"DelayBeforeShowingDoneButton\":5,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    }
+  ],
+  "kind": "parameters"
+}

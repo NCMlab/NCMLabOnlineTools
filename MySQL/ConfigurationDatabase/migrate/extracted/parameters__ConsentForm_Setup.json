@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/ConsentForm_Setup.js",
+  "registrations": [
+    {
+      "key": "EN_ConsentForm_uOttawa_Steffener",
+      "sourceVar": "parameters",
+      "language": "EN",
+      "json": "{\"ShowWelcome\":true,\"ShowThankYou\":false,\"WelcomeSpoken\":false,\"Text\":\"InstructionsAndStimuli/ConsentForms/EN_uOttawa_H-10-23-9755_Steffener.html\"}"
+    },
+    {
+      "key": "FR_ConsentForm_uOttawa_Steffener",
+      "sourceVar": "parameters",
+      "language": "FR",
+      "json": "{\"ShowWelcome\":true,\"ShowThankYou\":false,\"WelcomeSpoken\":false,\"Text\":\"InstructionsAndStimuli/ConsentForms/FR_uOttawa_H-10-23-9755_Steffener.html\"}"
+    }
+  ],
+  "kind": "parameters"
+}

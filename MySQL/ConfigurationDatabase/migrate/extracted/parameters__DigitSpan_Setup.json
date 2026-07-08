@@ -1,0 +1,76 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/DigitSpan_Setup.js",
+  "registrations": [
+    {
+      "key": "DigitSpan_Audio_Forward_Adaptive_14",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"forward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"staircase\",\"Parameters\":{\"Current\":3,\"MinValue\":1,\"MaxValue\":30,\"StepSize\":1,\"NUp\":2,\"NDown\":1,\"FastStart\":true,\"MaxReversals\":50,\"MaxTime\":420,\"MaxTrials\":14},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Visual_Forward_Adaptive_14",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"forward\",\"StimulusMode\":\"visual\",\"DeliveryMethod\":\"staircase\",\"Parameters\":{\"Current\":3,\"MinValue\":1,\"MaxValue\":30,\"StepSize\":1,\"NUp\":2,\"NDown\":1,\"FastStart\":true,\"MaxReversals\":50,\"MaxTime\":420,\"MaxTrials\":14},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Audio_Backward_Adaptive_14",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"staircase\",\"Parameters\":{\"Current\":2,\"MinValue\":1,\"MaxValue\":30,\"StepSize\":1,\"NUp\":2,\"NDown\":1,\"FastStart\":true,\"MaxReversals\":50,\"MaxTime\":420,\"MaxTrials\":14},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Visual_Backward_Adaptive_14",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"visual\",\"DeliveryMethod\":\"staircase\",\"Parameters\":{\"Current\":2,\"MinValue\":1,\"MaxValue\":30,\"StepSize\":1,\"NUp\":2,\"NDown\":1,\"FastStart\":true,\"MaxReversals\":50,\"MaxTime\":420,\"MaxTrials\":14},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Visual_Forward_TwoErrors",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"forward\",\"StimulusMode\":\"visual\",\"DeliveryMethod\":\"numberErrors\",\"Parameters\":{\"Current\":3,\"MaxValue\":30,\"StepSize\":1,\"Nerrors\":2,\"MaxTrials\":20},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Visual_Backward_TwoErrors",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"visual\",\"DeliveryMethod\":\"numberErrors\",\"Parameters\":{\"Current\":2,\"MaxValue\":30,\"StepSize\":1,\"Nerrors\":2,\"MaxTrials\":20},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Audio_Forward_TwoErrors",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"forward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"numberErrors\",\"Parameters\":{\"Current\":3,\"MaxValue\":30,\"StepSize\":1,\"Nerrors\":2,\"MaxTrials\":20},\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false}"
+    },
+    {
+      "key": "DigitSpan_Audio_Backward_TwoErrors",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"numberErrors\",\"Parameters\":{\"Current\":2,\"MaxValue\":30,\"StepSize\":1,\"Nerrors\":2,\"MaxTrials\":20},\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false}"
+    },
+    {
+      "key": "DigitSpan_Visual_Forward_Fixed01_Load05",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"fixed\",\"Parameters\":{\"Current\":3,\"MaxTrials\":1},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Visual_Backward_Fixed01_Load03",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"backward\",\"StimulusMode\":\"visual\",\"DeliveryMethod\":\"fixed\",\"Parameters\":{\"Current\":3,\"MaxTrials\":1},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Audio_Forward_Fixed01_Load05",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"direction\":\"forward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"fixed\",\"Parameters\":{\"Current\":5,\"MaxTrials\":1},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "DigitSpan_Audio_Backward_Fixed01_Load03",
+      "error": "callback threw: DigitSpan_Audio_Backward_Fixed01_Load03 is not defined"
+    }
+  ],
+  "kind": "parameters"
+}

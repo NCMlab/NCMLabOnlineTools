@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/ReadingListening_Setup.js",
+  "registrations": [
+    {
+      "key": "ReadingListeningList01",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":true,\"ScoreNeeded\":0.7,\"SentencesToRepeat\":3}"
+    },
+    {
+      "key": "ReadingListeningList02",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"ShowThankYou\":true,\"AskForNotes\":false,\"RecordAUDIO\":true,\"ScoreNeeded\":0.7,\"SentencesToRepeat\":5}"
+    }
+  ],
+  "kind": "parameters"
+}

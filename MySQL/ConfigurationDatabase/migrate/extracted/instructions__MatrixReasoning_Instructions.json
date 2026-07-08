@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/MatrixReasoning_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions\":[{\"page\":\"For this task you will see 3x3 arrays of geometric shapes with one of the nine shapes missing. You are to identify which of six geometric shapes presented below the grid best complete the stimuli.\"},{\"page\":\"<div>You will see images like this and will need to pick from a series of options (not shown here) which best fit where the question mark is.<br />Notice the different shapes, the different colorings, and the different orientations. Use all of this information when making your decisions.</div><div><img src=assets/Images/MatrixReasoning/InstructionalImage.png alt=Instructional Image></image></div>\"},{\"page\":\"You will have ten minutes to complete eleven trials. <div>Press next to begin</div>\"}],\"ThankYouText\":[{\"page\":\"Thank you. Press Next to Continue\"}],\"OptionsPrompt\":\"<p>Please indicate which is the best answer to complete the figure.\",\"WelcomeText\":[{\"page\":\"Welcome to the Matrix Reasoning Task.\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions\":[{\"page\":\"FR: For this task you will see 3x3 arrays of geometric shapes with one of the nine shapes missing. You are to identify which of six geometric shapes presented below the grid best complete the stimuli.\"},{\"page\":\"<div>You will see images like this and will need to pick from a series of options (not shown here) which best fit where the question mark is.<br />Notice the different shapes, the different colorings, and the different orientations. Use all of this information when making your decisions.</div><div><img src=assets/Images/MatrixReasoning/InstructionalImage.png alt=Instructional Image></image></div>\"},{\"page\":\"You will have ten minutes to complete eleven trials. <div>Press next to begin</div>\"}],\"ThankYouText\":[{\"page\":\"FR: Thank you. Press Next to Continue\"}],\"OptionsPrompt\":\"<p>FR: Please indicate which is the best answer to complete the figure.\",\"WelcomeText\":[{\"page\":\"FR: Welcome to the Matrix Reasoning Task.\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

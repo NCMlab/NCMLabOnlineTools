@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/Cancellation_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Cancellation_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Cancellation Task.\"}],\"SingleLetterCancellationInstructionText\":[{\"page\":\"You will see multiple lines of items and you will need to click on all of the specified target items.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}]}"
+    },
+    {
+      "key": "FR_Cancellation_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"WelcomeText\":[{\"page\":\"FR: Welcome to the Cancellation experiment.\"}],\"SingleLetterCancellationInstructionText\":[{\"page\":\"FR: You will see multiple lines of items and you will need to click on all of the specified target items.\"}],\"ThankYouText\":[{\"page\":\"FR: Thank you.\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

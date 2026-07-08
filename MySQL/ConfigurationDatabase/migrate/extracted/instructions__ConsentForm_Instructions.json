@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/ConsentForm_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Please carefully read through the following consent form.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"WelcomeText\":[{\"page\":\"Veuillez lire attentivement le formulaire de consentement suivant.\"}],\"ThankYouText\":[{\"page\":\"Merci.\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/IntakeForm_Setup.js",
+  "registrations": [
+    {
+      "key": "EN_IntakeForm",
+      "sourceVar": "parameters",
+      "language": "EN",
+      "json": "{\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":false,\"Instructions01Audio\":[\"assets/SoundFiles/Instructions/IntakeForm_InstructionsPage01.wav\",\"assets/SoundFiles/Instructions/IntakeForm_InstructionsPage02.wav\"],\"Instructions01Time\":[24000,15000]}"
+    },
+    {
+      "key": "FR_IntakeForm",
+      "sourceVar": "parameters",
+      "language": "FR",
+      "json": "{\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":false,\"Instructions01Audio\":[\"assets/SoundFiles/Instructions/IntakeForm_InstructionsPage01.wav\",\"assets/SoundFiles/Instructions/IntakeForm_InstructionsPage02.wav\"],\"Instructions01Time\":[24000,15000]}"
+    }
+  ],
+  "kind": "parameters"
+}

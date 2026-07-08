@@ -1,0 +1,52 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/ImageCopy_Setup.js",
+  "registrations": [
+    {
+      "key": "ImageCopy_Default",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":400,\"canvas_height\":400,\"ShowWelcome\":true,\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"Circle.png\",\"Lozange.png\",\"TwoRectangles.png\",\"NeckerCube.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_Smile",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"SmileFace.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_TwoCircles",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"TwoCircles.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_CBprotocol",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":true,\"ShowThankYou\":false,\"ShowInstructions\":false,\"AskForNotes\":false,\"Image\":[\"NeckerCube.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_FaCE",
+      "error": "callback threw: ImageCopy_FaCE is not defined"
+    },
+    {
+      "key": "ImageCopy_FaCE_Training",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"TwoCircles.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_FaCE_VerA",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"NeckerCube.png\"],\"RecordGIF\":true}"
+    },
+    {
+      "key": "ImageCopy_FaCE_VerB",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"Image\":[\"InverseNeckerCube.png\"],\"RecordGIF\":true}"
+    }
+  ],
+  "kind": "parameters"
+}

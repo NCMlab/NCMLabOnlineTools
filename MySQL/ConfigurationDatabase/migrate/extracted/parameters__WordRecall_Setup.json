@@ -1,0 +1,144 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/WordRecall_Setup.js",
+  "registrations": [
+    {
+      "key": "RAVLT_Manual_Immediate",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"RAVLT\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":true,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":8,\"TimePerWord\":500,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "RAVLT_Spoken_Immediate",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"RAVLT\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":true,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":8,\"TimePerWord\":500,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true,\"Instructions01Audio\":[\"assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav\",\"assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav\"],\"Instructions01Time\":[10000,8000],\"Instructions02Audio\":[\"assets/SoundFiles/Instructions/WordRecall_Instructions02A.wav\",\"assets/SoundFiles/Instructions/WordRecall_Instructions02B.wav\"],\"Instructions02Time\":[10000,8000],\"Instructions03Audio\":[\"assets/SoundFiles/Instructions/WordRecall_Instructions03A.wav\",\"assets/SoundFiles/Instructions/WordRecall_Instructions03B.wav\"],\"Instructions03Time\":[10000,8000],\"Instructions04Audio\":[\"assets/SoundFiles/Instructions/WordRecall_Instructions04.wav\"],\"Instructions04Time\":[10000]}"
+    },
+    {
+      "key": "RAVLT_Manual_Delayed",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"RAVLT\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":false,\"RecallType\":\"Manual\",\"RecallDuration\":60,\"TimePerWord\":500,\"DelayedRecallFlag\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"AskForNotes\":false,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "RAVLT_Spoken_Delayed",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"RAVLT\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":false,\"RecallType\":\"Spoken\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":10,\"TimePerWord\":1500,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Spoken_Training_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_Training\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Spoken_VerA_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"FaCE\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Spoken_VerB_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_VerB\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Manual_Training_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_Training\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Manual_VerA_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"FaCE\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Immediate_Manual_VerB_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_VerB\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Spoken_Training_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_Training\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Spoken_VerA_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"FaCE\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Spoken_VerB_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_VerB\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Manual_Training_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_Training\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Manual_VerA_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"FaCE\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "FaCE_Delayed_Manual_VerB_EN",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_FaCE_VerB\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":300,\"DelayedRecallFlag\":true,\"ShowWelcome\":true,\"WelcomeSpoken\":true,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "Demo",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"Demo\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":2,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":10,\"TimePerWord\":1500,\"DelayedRecallFlag\":false,\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "DemoENDelayed",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"EN_Demo\",\"FolderName\":\"Demo/EN/EN-US-Neural2-F/\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Spoken\",\"RecallDuration\":120,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":1500,\"DelayedRecallFlag\":true,\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "DemoENManual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"WordList\":\"Demo\",\"FolderName\":\"Set001/\",\"FileExtension\":\".wav\",\"NBlocks\":5,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":3,\"TimePerWord\":200,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"Instructions01Time\":10,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "CERAD_Spoken_Immediate",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"CERAD\",\"FileExtension\":\".wav\",\"NBlocks\":3,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":false,\"RecallType\":\"Spoken\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":8,\"TimePerWord\":1500,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true,\"WordListOrder\":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}"
+    },
+    {
+      "key": "CERAD_Manual_Immediate",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"CERAD\",\"FileExtension\":\".wav\",\"NBlocks\":3,\"BListFlag\":false,\"AudioPresentation\":false,\"VisualPresentation\":true,\"RecallType\":\"Manual\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":8,\"TimePerWord\":500,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true,\"WordListOrder\":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}"
+    },
+    {
+      "key": "CERAD_Manual_Delayed",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"CERAD\",\"FileExtension\":\".wav\",\"NBlocks\":1,\"BListFlag\":false,\"RecallType\":\"Manual\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":10,\"TimePerWord\":1500,\"DelayedRecallFlag\":true,\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false,\"RecordAUDIO\":true,\"WordListOrder\":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}"
+    },
+    {
+      "key": "Hopkins_Spoken_Immediate",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"FolderName\":\"Set001/\",\"WordList\":\"Hopkins\",\"FileExtension\":\".wav\",\"NBlocks\":3,\"BListFlag\":false,\"AudioPresentation\":true,\"VisualPresentation\":false,\"RecallType\":\"Spoken\",\"RecallDuration\":60,\"DelayBeforeShowingDoneButton\":8,\"TimePerWord\":1500,\"DelayedRecallFlag\":false,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/Welcome_WordRecall.wav\",\"ShowThankYou\":true,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"AskForNotes\":false,\"RecordAUDIO\":true}"
+    }
+  ],
+  "kind": "parameters"
+}

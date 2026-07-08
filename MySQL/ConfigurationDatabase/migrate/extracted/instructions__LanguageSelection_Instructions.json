@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/LanguageSelection_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions01\":[{\"page\":\"Welcome to the NCM Lab.<br />Use button in the upper right hand corner to select your language.<br /><br />Bienvenue au laboratoire NCM.<br /> Utilisez le bouton dans le coin supérieur droit pour sélectionner votre langue.\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

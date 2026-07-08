@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/Listening_Setup.js",
+  "registrations": [
+    {
+      "key": "Listening_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"WelcomeSpoken\":false,\"AskForNotes\":false,\"InstructionsSpoken\":false,\"NumberOfTrials\":5,\"FolderOfAudioFiles\":\"assets/SoundFiles/AudioTest/\",\"SubfolderOfAudioFiles\":\"Set001/\",\"AudioFileType\":\".wav\"}"
+    }
+  ],
+  "kind": "parameters"
+}

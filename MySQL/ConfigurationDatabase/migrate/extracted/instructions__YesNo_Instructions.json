@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/YesNo_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Animals\":\"Animals\",\"FruitsVegetables\":\"fruits and vegetables\",\"LetterF\":\"words that start with F\",\"Instructions\":[{\"page\":\"This is a test of word fluency. You will be given a category and will need to name as many items from that category as possible within one minute. Do not name varieties of the same item. </br></br>Press next to begin.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"WelcomeText\":[{\"page\":\"Welcome to the Fluency Task.\"}],\"ResponsePage01\":\"Say as many <b>\",\"ResponsePage02\":\"</b> as possible.<p><span id=\\\"clock\\\">1:00</span> As the administrator: Press Next for every correct response made. <p /><div>\",\"ResponsePage03\":\"</div>When the timer runs out, press Next again to finish.\"}"
+    }
+  ],
+  "kind": "instructions"
+}

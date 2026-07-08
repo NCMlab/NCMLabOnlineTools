@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/WordRecog_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Word Recognition Task.\"}],\"Instructions01\":[{\"page\":\"You are going to hear a list that contains the words from the first list, the one you studied several times.\"},{\"page\":\"If the word was on that first list, press <em>yes</em>, and if it was not on the first list, then press <em>no</em>.\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"WelcomeText\":[{\"page\":\"Bienvelu(e) dans la tâche de reconnaissance de mots\"}],\"Instructions01\":[{\"page\":\"Vous allez voir une liste qui contient les mots de la première liste, celle que vous avez étudiée plusieurs fois.voir\"},{\"page\":\"Si le mot figurait sur cette première liste, appuyez sur <em>oui</em>, et s'il ne figurait pas sur la première liste, appuyez sur <em>non</em>.\"}],\"ThankYouText\":[{\"page\":\"Merci\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

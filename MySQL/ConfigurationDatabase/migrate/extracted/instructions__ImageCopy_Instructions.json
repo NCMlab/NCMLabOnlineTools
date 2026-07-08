@@ -1,0 +1,30 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/ImageCopy_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_ImageCopy_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions\":\"Draw a copy of a this image, take your time.\",\"WelcomeText\":[{\"page\":\"Welcome to the Image Copying Task.\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}],\"NotesForResultsPage\":\"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired.\"}"
+    },
+    {
+      "key": "FR_ImageCopy_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions\":\"Je veux que vous copiez ce dessin le plus précisément possible\",\"WelcomeText\":[{\"page\":\"This is the Cube Copying Task. Press <b>Next</b> to Continue\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}],\"NotesForResultsPage\":\"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired.\"}"
+    },
+    {
+      "key": "EN_ImageCopy_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions\":\"Copy this drawing in the most accurate way possible\",\"WelcomeText\":[{\"page\":\"This is the Cube Copying Task. Press <b>Next</b> to Continue\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}],\"NotesForResultsPage\":\"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired.\"}"
+    },
+    {
+      "key": "FR_ImageCopy_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions\":\"Je veux que vous copiez ce dessin le plus précisément possible\",\"WelcomeText\":[{\"page\":\"This is the Cube Copying Task. Press <b>Next</b> to Continue\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}],\"NotesForResultsPage\":\"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired.\"}"
+    }
+  ],
+  "kind": "instructions"
+}

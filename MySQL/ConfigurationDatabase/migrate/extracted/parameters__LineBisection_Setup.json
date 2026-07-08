@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/LineBisection_Setup.js",
+  "registrations": [
+    {
+      "key": "LineBisection_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"Lines\":[{\"LeftX\":0.27,\"LeftY\":0.06,\"RightX\":0.97,\"RightY\":0.06},{\"LeftX\":0.11,\"LeftY\":0.11,\"RightX\":0.89,\"RightY\":0.11},{\"LeftX\":0.03,\"LeftY\":0.17,\"RightX\":0.59,\"RightY\":0.17},{\"LeftX\":0.06,\"LeftY\":0.22,\"RightX\":0.97,\"RightY\":0.22},{\"LeftX\":0.08,\"LeftY\":0.28,\"RightX\":0.92,\"RightY\":0.28},{\"LeftX\":0.03,\"LeftY\":0.33,\"RightX\":0.38,\"RightY\":0.33}],\"SuggestedWidth\":1000,\"SuggestedHeight\":1000,\"ShowTimer\":false,\"Duration\":180000,\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"stroke_width\":5}"
+    }
+  ],
+  "kind": "parameters"
+}

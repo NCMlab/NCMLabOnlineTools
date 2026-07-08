@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/PatternComparison_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions01\":[{\"page\":\"You will be presented with two figures. \\nIf the figures are the same, press \\\"Same\\\". \\nIf they are different, press \\\"Different\\\". The sets of images change quickly so please respond as quickly and accurately as possible.\"}],\"Instructions02\":[{\"page\":\"First, will be a few trials with feedback for practice.\"}],\"Instructions03\":[{\"page\":\"You will now start the real experiment with no feedback.\"}],\"WelcomeText\":[{\"page\":\"Welcome to the Pattern Comparison Task.\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions01\":[{\"page\":\"Deux figures vous seront présentés. Si les chiffres sont les mêmes, appuyez sur <em>Mêmes</em>. Si elles sont différentes, appuyez sur <em>Différent</em>. Les séries d'images changent rapidement, veuillez donc répondre aussi rapidement et précisément que possible.\"}],\"Instructions02\":[{\"page\":\"Vous effectuerez quelques essais avec des retours pour vous entraîner.\"}],\"Instructions03\":[{\"page\":\"Vous allez maintenant commencer la véritable tâche sans rétroaction.\"}],\"WelcomeText\":[{\"page\":\"Bienvenu(e) dans la tâche de comparaison de figures.\"}],\"ThankYouText\":[{\"page\":\"Merci\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

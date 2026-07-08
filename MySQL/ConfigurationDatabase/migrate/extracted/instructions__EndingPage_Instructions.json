@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/EndingPage_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions01\":[{\"page\":\"Thank you for your participation\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

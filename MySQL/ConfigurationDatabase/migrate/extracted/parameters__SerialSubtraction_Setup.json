@@ -1,0 +1,56 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/SerialSubtraction_Setup.js",
+  "registrations": [
+    {
+      "key": "SerialSubtract_FaCE",
+      "error": "callback threw: SerialSubtract_FaCE is not defined"
+    },
+    {
+      "key": "SerialSubtract_FaCE_02",
+      "error": "callback threw: SerialSubtract_FaCE is not defined"
+    },
+    {
+      "key": "SerialSubtract_Default",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":100,\"StepValue\":7,\"StopValue\":65,\"ShowInstructions\":true,\"ShowWelcome\":true,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Spoken\",\"TimeLimit\":120,\"DelayBeforeShowingDoneButton\":10,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_Training_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":12,\"StepValue\":2,\"StopValue\":4,\"ShowInstructions\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Spoken\",\"TimeLimit\":30,\"DelayBeforeShowingDoneButton\":5,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_Training_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":12,\"StepValue\":2,\"StopValue\":4,\"ShowInstructions\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Manual\",\"TimeLimit\":30,\"DelayBeforeShowingDoneButton\":5,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_VerA_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":101,\"StepValue\":7,\"StopValue\":67,\"ShowInstructions\":false,\"ShowWelcome\":true,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Spoken\",\"TimeLimit\":120,\"DelayBeforeShowingDoneButton\":10,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_VerA_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":101,\"StepValue\":7,\"StopValue\":67,\"ShowInstructions\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Manual\",\"TimeLimit\":120,\"DelayBeforeShowingDoneButton\":10,\"RecordAUDIO\":false}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_VerB_Spoken",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":103,\"StepValue\":7,\"StopValue\":67,\"ShowInstructions\":false,\"ShowWelcome\":true,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Spoken\",\"TimeLimit\":120,\"DelayBeforeShowingDoneButton\":10,\"RecordAUDIO\":true}"
+    },
+    {
+      "key": "SerialSubtract_FaCE_VerB_Manual",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"StartValue\":103,\"StepValue\":7,\"StopValue\":67,\"ShowInstructions\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"ResponseType\":\"Manual\",\"TimeLimit\":120,\"DelayBeforeShowingDoneButton\":10,\"RecordAUDIO\":false}"
+    }
+  ],
+  "kind": "parameters"
+}

@@ -1,0 +1,264 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/Questionnaire_Setup.js",
+  "registrations": [
+    {
+      "key": "PANAS_TEST",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"panas\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "AES_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"aes\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "EQ5D_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"eq5dJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "STAI_S_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"stai_state\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "STAI_S_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"stai_state\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":true,\"ShowWelcome\":false,\"ShowThankYou\":true,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "STAI_T_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"stai_trait\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "BDI_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"bdi\",\"gds\"],\"criteria\":[\"( XXX > 17 ) && ( XXX < 31 )\",\"( XXX > 59 )\"],\"variable\":\"Age\",\"AskForNotes\":true,\"ShowWelcome\":false,\"ShowThankYou\":true,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "BDI_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"bdi\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CFS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"cfs\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "GAS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"gas\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "GDS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"gds\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "GDS_004",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"gds_04\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "EQ5D_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"eq5dJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "MusicDemographics_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"IntakeForm_Music\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "WEMWBS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"wemwbs\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PANAS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"panasJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "UCLA_LONELINESS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"UCLAloneliness\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
+    },
+    {
+      "key": "BERKSYME_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"berksyme\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "STANFORDSLEEPINESS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"stanfordSleepiness\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CESAM_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"cesam\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "WEMWBS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"wemwbs\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PANAS_Short_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"panasShortJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PAES_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"paes\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PANAS_ShortWeekly_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"panasShortWeekly\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PANAS_ShortBaseline_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"panasShortBaselineJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "MusicEnterName_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"EnterName_Music\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "TESTJSON",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"TESTJSON\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CESAM_001TEST",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"cesamJSONformSHORT\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "MusicDemographics_001SHORT",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"IntakeForm_MusicJSONSHORT\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "PARQ_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"parq\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CCICIMAQ_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"cci_cimaq\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "COGQUOT_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"cog_quot\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "IPAQ_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"ipaq\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "SLEEP_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"sleep_cimaq2014\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "SLEEP_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"sleep_cimaq2014\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CompExp01_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"compExp_part01\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CompExp02_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"compExp_part02\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CompExp03_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"compExp_part03\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "CompExp04_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"compExp_part04\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "ADLPI_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"adl_pi\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "FRS_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"FRS\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "SocioMontreal_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"Sociodemographic\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    },
+    {
+      "key": "ScoringMMSE_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"questionnaire\":[\"ScoringMMSE\"],\"criteria\":[],\"variable\":[],\"AskForNotes\":false,\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":false}"
+    }
+  ],
+  "kind": "parameters"
+}

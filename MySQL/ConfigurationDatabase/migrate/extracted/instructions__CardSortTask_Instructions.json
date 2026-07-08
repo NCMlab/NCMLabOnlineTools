@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/CardSortTask_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_CardSortTask_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions01\":[{\"page\":\" For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: color, number of objects, shape of objects. You will also see a card at the bottom of the screen which you will match to one of the four cards at the top.\"},{\"page\":\"<div class=\\\"InstructImage\\\"><img src=assets/InstructionalImages/EN_CardSortInstructions.png max-width=\\\"600px\\\"></img></div>\"},{\"page\":\" Select one of the four cards displayed at the top of the screen such that the selected card matches the card displayed at the bottom of the screen. \"},{\"page\":\" You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice.\"}],\"Instructions02\":[{\"page\":\"You will now perform a few practice trials.\"}],\"Instructions03\":[{\"page\":\"You will now perform the actual task.\"}],\"Debrief\":[\"<p>You responded correctly on \",\"% of the trials.<p> with an average response time of \",\" ms\"],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"DiscardPileText\":\"Discard Pile\",\"WelcomeText\":[{\"page\":\"This is the Card Sort Task.\"}]}"
+    },
+    {
+      "key": "FR_CardSortTask_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions01\":[{\"page\":\" Pour cette tâche, vous verrez quatre cartes en haut de l'écran. Ce qu'ils affichent différera en fonction de trois critères: la couleur, le nombre d'objets, la forme des objets. Vous verrez également une carte en bas de l'écran que vous associerez à l'une des quatre cartes en haut.\"},{\"page\":\"<div class=\\\"InstructImage\\\"><img src=assets/InstructionalImages/FR_CardSortInstructions.png max-width=\\\"600px\\\"></img></div>\"},{\"page\":\"Sélectionnez l'une des quatre cartes affichées en haut de l'écran de telle sorte que la carte sélectionnée corresponde à la carte affichée en bas de l'écran.\"},{\"page\":\"Vous recevrez un retour indiquant si la carte sélectionnée était VRAIE ou FAUSSE. À l’aide de ces commentaires, déterminez quelle critères est ciblée et sélectionnez la carte en conséquence. Le critère ciblé peut changer de temps à autre sans préavis.\"}],\"Instructions02\":[{\"page\":\"Vous allez maintenant effectuer quelques essais pratiques.\"}],\"Instructions03\":[{\"page\":\"Vous allez maintenant effectuer la tâche réelle.\"}],\"Debrief\":[\"<p>Vous avez  correctement répondu sur \",\"% des essais.<p> avec un temps de réponse moyen de \",\" ms\"],\"ThankYouText\":[{\"page\":\"Merci.\"}],\"DiscardPileText\":\"La défausse\",\"WelcomeText\":[{\"page\":\"Bienvenu(e) au test de tri de cartes multi-dimensionnelles.\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

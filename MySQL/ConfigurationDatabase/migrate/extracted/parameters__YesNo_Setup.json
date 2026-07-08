@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/YesNo_Setup.js",
+  "registrations": [
+    {
+      "key": "YesNo_TEST",
+      "sourceVar": "YesNo_parameters",
+      "language": null,
+      "json": "{\"TimeLimit\":10,\"RecallType\":\"Spoken\",\"ShowInstructions\":false,\"ShowWelcome\":false,\"ShowThankYou\":true,\"AskForNotes\":true,\"RecordAUDIO\":false}"
+    }
+  ],
+  "kind": "parameters"
+}

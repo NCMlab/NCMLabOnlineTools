@@ -1,0 +1,36 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/SpatialDMS_setup.js",
+  "registrations": [
+    {
+      "key": "SpatialDMS_Adaptive",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"MaxTrials\":40,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"MaskOnTime\":300,\"StimOnTime\":2500,\"RetOnTime\":3200,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "SpatialDMS_AdaptiveSHORT",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"MaxTrials\":4,\"NPracticeTrials\":2,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"MaskOnTime\":300,\"StimOnTime\":2500,\"RetOnTime\":3200,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "SpatialDMS_Adaptive_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"MaxTrials\":40,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"MaskOnTime\":300,\"StimOnTime\":2500,\"RetOnTime\":3200,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "SpatialDMS_Adaptive_003",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"MaxTrials\":4,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"MaskOnTime\":300,\"StimOnTime\":2500,\"RetOnTime\":3200,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "SpatialDMS_Adaptive_003B",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"MaxTrials\":4,\"NPracticeTrials\":1,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"MaskOnTime\":300,\"StimOnTime\":250,\"RetOnTime\":320,\"ProbeOnTime\":250,\"ITITime\":100,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    }
+  ],
+  "kind": "parameters"
+}

@@ -1,0 +1,24 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/vDMS_setup.js",
+  "registrations": [
+    {
+      "key": "vDMS_Adaptive",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"ShowThankYou\":true,\"ShowInstructions\":true,\"WelcomeSpoken\":false,\"AskForNotes\":true,\"InstructionsSpoken\":false,\"MaxTrials\":10,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":20,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"WaitTime\":300,\"StimOnTime\":3500,\"RetOnTime\":3500,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "vDMS_Adaptive_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false,\"MaxTrials\":40,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":9,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"WaitTime\":300,\"StimOnTime\":3500,\"RetOnTime\":3500,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    },
+    {
+      "key": "vDMS_Adaptive_003",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"WelcomeSpoken\":false,\"ShowThankYou\":true,\"ShowInstructions\":true,\"AskForNotes\":false,\"MaxTrials\":4,\"NPracticeTrials\":4,\"MaxReversals\":15,\"StartValue\":1,\"MinValue\":1,\"MaxValue\":9,\"StepSize\":1,\"NUp\":3,\"NDown\":1,\"FastStart\":true,\"WaitTime\":300,\"StimOnTime\":3500,\"RetOnTime\":3500,\"ProbeOnTime\":2500,\"ITITime\":1000,\"ButtonLabels\":[\"Yes\",\"No\"],\"KeyboardValues\":[\"arrowleft\",\"arrowright\"],\"KeyboardMappings\":[true,false]}"
+    }
+  ],
+  "kind": "parameters"
+}

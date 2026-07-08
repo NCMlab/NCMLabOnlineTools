@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/PatternComparison_Setup.js",
+  "registrations": [
+    {
+      "key": "PatternComparison_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":false,\"ShowThankYou\":false,\"ShowInstructions\":true,\"WelcomeSpoken\":false,\"AskForNotes\":false,\"InstructionsSpoken\":false}"
+    },
+    {
+      "key": "PatternComparison_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"ShowWelcome\":true,\"ShowThankYou\":true,\"ShowInstructions\":true,\"WelcomeSpoken\":false,\"AskForNotes\":false,\"InstructionsSpoken\":false}"
+    }
+  ],
+  "kind": "parameters"
+}

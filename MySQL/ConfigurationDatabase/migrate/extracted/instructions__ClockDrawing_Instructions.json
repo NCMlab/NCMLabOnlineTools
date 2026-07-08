@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/ClockDrawing_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions\":\"You are to to draw a clock. Start by drawing the face of the clock, then add the numbers to the clock's face. Finally, add the clock arms showing the time as 10 minutes after 11 o'clock.\",\"WelcomeText\":[{\"page\":\"Welcome to the Clock Drawing Task.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"NotesForResultsPage\":\"Scoring is as follows: 10  Full No Impairment or Unlikely Impairment. 8-9 Other clinical determinants must be present otherwise no impairment. 5-8  Cognitive Impairment. 0-4  Prominent Cognitive Impairment\"}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions\":\"<div>Vous devez dessiner une horloge. Commencez par dessiner le cadran de l'horloge, puis ajoutez les chiffres au cadran de l'horloge. Enfin, ajoutez les aiguilles de l'horloge indiquant l'heure 10 minutes après 11 heures.</div>\",\"WelcomeText\":[{\"page\":\"C'est la tâche de dessin d'horloge.\"}],\"ThankYouText\":[{\"page\":\"Merci. Appuyez sur <b>Suivant</b> pour Continuer.\"}],\"NotesForResultsPage\":\"FR:Scoring is as follows: 10  Full No Impairment or Unlikely Impairment. 8-9 Other clinical determinants must be present otherwise no impairment. 5-8  Cognitive Impairment. 0-4  Prominent Cognitive Impairment\"}"
+    }
+  ],
+  "kind": "instructions"
+}

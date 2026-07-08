@@ -1,0 +1,30 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/Fluency_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Animals\":\"Animals\",\"FruitsVegetables\":\"fruits and vegetables\",\"LetterF\":\"words that start with F\",\"DinnerTable\":\"items you can find on a dinner table\",\"Instructions01\":[{\"page\":\"This is a test of word fluency. You will be given a category and will need to name as many items from that category as possible. Do not name varieties of the same item. </br>\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"WelcomeText\":[{\"page\":\"Welcome to the Fluency Task.\"}],\"ResponsePage01\":\"Name as many <b>\",\"ResponsePage02\":\"</b> as possible.<p><span id=\\\"clock\\\">1:00</span> As the administrator: Press Next for every correct response made. <p /><div>\",\"ResponsePage03\":\"</div>When the timer runs out, press Next again to finish.\"}"
+    },
+    {
+      "key": "EN_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Animals\":\"Animals\",\"FruitsVegetables\":\"fruits and vegetables\",\"LetterF\":\"words that start with F\",\"DinnerTable\":\"items you can find on a dinner table\",\"Instructions01\":[{\"page\":\"This is a test of word fluency. You will be given a category and will need to name as many items from that category as possible. Do not name varieties of the same item. </br>\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"WelcomeText\":[{\"page\":\"Welcome to the Fluency Task.\"}],\"ResponsePage01\":\"Name as many <b>\",\"ResponsePage02\":\"</b> as possible.<p><span id=\\\"clock\\\">1:00</span> As the administrator: Press Next for every correct response made. <p /><div>\",\"ResponsePage03\":\"</div>When the timer runs out, press Next again to finish.\"}"
+    },
+    {
+      "key": "FR_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Animals\":\"Animals\",\"FruitsVegetables\":\"fruits et de légumes\",\"LetterF\":\"words that start with F\",\"Instructions\":[{\"page\":\"Je veux que vous me disiez le plus de noms de fruits et légumes différents possible. Ne dites pas plusieurs variétés du même fruit ou légume, par exemple, raisins verts et raisins rouges. Je vais vous dire d’arrêter après une minute. Êtes-vous prêt ? Maintenant, commencez </br></br>Appuyez sur <b>Suivant</b> pour Continuer.\"}],\"ThankYouText\":[{\"page\":\"Merci.\"}],\"WelcomeText\":[{\"page\":\"Welcome to the Fluency Task.\"}],\"ResponsePage01\":\"Dites-en autant <b>\",\"ResponsePage02\":\"</b> que possible.<p><span id=\\\"clock\\\">1:00</span> En tant qu'administrateur : appuyez sur Suivant pour chaque réponse correcte effectuée. <p /><div>\",\"ResponsePage03\":\"</div>Lorsque le temps imparti est écoulé, appuyez à nouveau sur Suivant pour terminer.\"}"
+    },
+    {
+      "key": "FR_Instructions",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Animals\":\"Animaux\",\"FruitsVegetables\":\"fruits et légumes\",\"LetterF\":\"mots commençant par F\",\"Instructions\":[{\"page\":\"Langage et rapidité d’idéation. Vous recevrez une catégorie et devrez dire autant d'éléments de cette catégorie que possible en une minute. Les noms propres ne sont pas acceptés. </br></br>Appuyez sur <b>Suivant</b> pour Continuer.\"}],\"ThankYouText\":[{\"page\":\"Merci\"}],\"WelcomeText\":[{\"page\":\"Langage et rapidité d’idéation.\"}],\"ResponsePage01\":\"Dites-en autant <b>\",\"ResponsePage02\":\"</b> que possible.<p><span id=\\\"clock\\\">1:00</span> En tant qu'administrateur : appuyez sur Suivant pour chaque réponse correcte effectuée. <p /><div><p>\",\"ResponsePage03\":\"</div>Lorsque le temps imparti est écoulé, appuyez à nouveau sur Suivant pour terminer.\"}"
+    }
+  ],
+  "kind": "instructions"
+}

@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/Listening_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"AudioTestList\":[\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"H\",\"I\",\"J\",\"K\",\"L\",\"M\",\"N\",\"O\",\"P\",\"Q\",\"R\",\"S\",\"T\",\"U\",\"V\",\"W\",\"X\",\"Y\",\"Z\",\"One\",\"Two\",\"Three\",\"Four\",\"Five\",\"Six\",\"Seven\",\"Eight\",\"Nine\"],\"Instructions01\":[{\"page\":\"This verifies that the computer's sound is correct and that you can hear well.\"},{\"page\":\"You will hear series of letters and numbers. Click on the corresponding letter or number on the screen. Do not use your keyboard. If you are not sure, just click any key.\"}],\"TrialText\":\"Press the letter or number you heard\",\"WelcomeText\":[{\"page\":\"Welcome to the Listening Task.\"}],\"ThankYouText\":[{\"page\":\"Thank you\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"AudioTestList\":[\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"H\",\"I\",\"J\",\"K\",\"L\",\"M\",\"N\",\"O\",\"P\",\"Q\",\"R\",\"S\",\"T\",\"U\",\"V\",\"W\",\"X\",\"Y\",\"Z\",\"Un\",\"Deux\",\"Trois\",\"Quatre\",\"Cinq\",\"Six\",\"Sept\",\"Huit\",\"Neuf\"],\"Instructions01\":[{\"page\":\"Cela permet de vérifier que le son de l'ordinateur est correct et que vous entendez bien.\"},{\"page\":\"Vous entendrez des séries de lettres et de chiffres. Cliquez sur la lettre ou le chiffre correspondant à l'écran. N'utilisez pas votre clavier.\"}],\"TrialText\":\"Appuyez sur la lettre ou le chiffre que vous avez entendu\",\"WelcomeText\":[{\"page\":\"Bienvenu(e) dans la tâche d'écoute.\"}],\"ThankYouText\":[{\"page\":\"Merci\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

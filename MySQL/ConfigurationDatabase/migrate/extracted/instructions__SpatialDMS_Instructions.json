@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/SpatialDMS_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"Instructions01\":[{\"page\":\"This is a test of short-term memory. You will see one or more dots on the screen and you will need to remember where they are. They will be removed from the screen. After a few seconds you will see a single blue dot. You need to decide whether or not the blue dot is in one of the locations you studied.\"},{\"page\":\"<div class=\\\"InstructImage\\\"><img src=assets/InstructionalImages/EN_VSTMInstructions.png max-width=\\\"600px\\\" alt=Instructional image</img></div>\"},{\"page\":\"Press [Yes] on the screen or Left-Arrow on the keyboard if the dot WAS in the set.<br>Press [No] on the screen or Right-Arrow on the keyboard if the letter WAS NOT in the set.\"},{\"page\":\"Try to respond as quickly and as accurately as possible.\"}],\"Instructions02\":[{\"page\":\"First, there will be some practice trials with feedback.\"}],\"Instructions03\":[{\"page\":\"Now you will perfom the test with no feedback.\"}],\"ThankYouText\":[{\"page\":\"Thank you. Press any key to continue.\"}],\"WelcomeText\":[{\"page\":\"This is the Spatial Delayed Match to Sample Task.\"}]}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"Instructions01\":[{\"page\":\"Il s'agit d'un test de mémoire à court terme. Vous verrez un ou plusieurs points à l'écran et vous devrez vous rappeler où ils se trouvent. Ils seront supprimés de l'écran après quelques secondes. Vous verrez un seul point bleu. Vous devez décider si le point bleu se trouve ou non dans l’un des endroits que vous avez étudiés.\"},{\"page\":\"<div class=\\\"InstructImage\\\"><img src=assets/InstructionalImages/FR_VSTMInstructions.png max-width=\\\"600px\\\" alt=Instructional image</img></div>\"},{\"page\":\"Appuyez sur [Oui] sur l'écran ou flèche gauche sur le clavier si le point ÉTAIT dans l'ensemble.<br>Appuyez sur [Non] sur l'écran ou flèche driote sur le clavier si le point N'ÉTAIT PAS dans l'ensemble.\"},{\"page\":\"Essayez de répondre le plus rapidement et le plus précisément possible.\"}],\"Instructions02\":[{\"page\":\"Vous effectuerez quelques essais avec des retours pour vous entraîner.\"}],\"Instructions03\":[{\"page\":\"Vous allez maintenant commencer la véritable tâche sans rétroaction.\"}],\"ThankYouText\":[{\"page\":\"Merci\"}],\"WelcomeText\":[{\"page\":\"Bienvenu(e) dans la tâche de correspondance spatial retardé\"}]}"
+    }
+  ],
+  "kind": "instructions"
+}

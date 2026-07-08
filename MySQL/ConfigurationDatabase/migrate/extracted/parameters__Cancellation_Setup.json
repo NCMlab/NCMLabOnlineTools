@@ -1,0 +1,24 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/Cancellation_Setup.js",
+  "registrations": [
+    {
+      "key": "Cancellation_Default",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"NRows\":6,\"NCols\":52,\"NTargets\":104,\"non_target_labels\":[\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"I\"],\"target_labels\":\"H\",\"ShowWelcome\":true,\"ShowThankYou\":true,\"AskForNotes\":true,\"RecordGIF\":true}"
+    },
+    {
+      "key": "Cancellation_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"NRows\":10,\"NCols\":13,\"font_size\":28,\"NTargets\":40,\"non_target_labels\":[\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"I\"],\"target_labels\":\"H\",\"ShowWelcome\":true,\"ShowThankYou\":true,\"AskForNotes\":false,\"RecordGIF\":true,\"save_final_image\":true}"
+    },
+    {
+      "key": "Cancellation_Demo",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"NRows\":8,\"NCols\":5,\"font_size\":28,\"NTargets\":6,\"non_target_labels\":[\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"I\"],\"target_labels\":\"H\",\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordGIF\":true}"
+    }
+  ],
+  "kind": "parameters"
+}

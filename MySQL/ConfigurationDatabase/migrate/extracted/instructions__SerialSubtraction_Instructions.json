@@ -1,0 +1,24 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/SerialSubtraction_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Serial Subtraction Task.\"}],\"Instructions01\":[{\"page\":\"This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"GetResponse01\":\"Subtract \",\"GetResponse02\":\" from \",\"GetResponse03\":\" and continue to subtract \",\"GetResponse04\":\" from the result even if the result is wrong.\"}"
+    },
+    {
+      "key": "EN_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Serial Subtraction Task.\"}],\"Instructions01\":[{\"page\":\"This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"GetResponse01\":\"Subtract \",\"GetResponse02\":\" from \",\"GetResponse03\":\" and continue to subtract \",\"GetResponse04\":\" from the result even if the result is wrong.\"}"
+    },
+    {
+      "key": "FR_Instructions_FaCE",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Serial Subtraction Task.\"}],\"Instructions01\":[{\"page\":\"This is a test of attention. You will be given a large number and asked to subtract a value from it and to continue subtracting the value from the result, even if the result is wrong.  </br></br>Press next to begin.\"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"GetResponse01\":\"Calculiez \",\"GetResponse02\":\" - \",\"GetResponse03\":\", et ensuite, continuez de soustraire \",\"GetResponse04\":\" de votre réponse, jusqu’à ce que je vous dise d'arrêter\"}"
+    }
+  ],
+  "kind": "instructions"
+}

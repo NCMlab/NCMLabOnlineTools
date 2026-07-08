@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/InstructionsAndStimuli/Instructions/LineBisection_Instructions.js",
+  "registrations": [
+    {
+      "key": "EN_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "EN",
+      "json": "{\"WelcomeText\":[{\"page\":\"Welcome to the Line Bisection Task.\"}],\"Instructions01\":[{\"page\":\"For this task you will see lines. You are to mark the center of each line as closely as possible. \"}],\"ThankYouText\":[{\"page\":\"Thank you.\"}],\"NotesForResultsPage\":\"The scores on this test range from -50 to +50. The negative numbers represent a bias to the left. Positive numbers reflect a right hand bias.\"}"
+    },
+    {
+      "key": "FR_Instructions_Default",
+      "sourceVar": "Instructions",
+      "language": "FR",
+      "json": "{\"WelcomeText\":[{\"page\":\"FR: Welcome to the Line Bisection Task.\"}],\"Instructions01\":[{\"page\":\"FR: For this task you will see lines. You are to mark the center of each line as closely as possible. \"}],\"ThankYouText\":[{\"page\":\"FR: Thank you.\"}],\"NotesForResultsPage\":\"FR: The scores on this test range from -50 to +50. The negative numbers represent a bias to the left. Positive numbers reflect a right hand bias.\"}"
+    }
+  ],
+  "kind": "instructions"
+}

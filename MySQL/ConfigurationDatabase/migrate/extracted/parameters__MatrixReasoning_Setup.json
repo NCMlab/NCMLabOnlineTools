@@ -1,0 +1,12 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/MatrixReasoning_Setup.js",
+  "registrations": [
+    {
+      "key": "MatrixReasoning_ICAR",
+      "sourceVar": "MatrixReasoning_parameters",
+      "language": null,
+      "json": "{\"StimulusFolderName\":\"ICAR\",\"StimList\":[{\"stim\":\"12043\",\"correct\":4},{\"stim\":\"12044\",\"correct\":3},{\"stim\":\"12045\",\"correct\":5},{\"stim\":\"12046\",\"correct\":2},{\"stim\":\"12047\",\"correct\":2},{\"stim\":\"12048\",\"correct\":4},{\"stim\":\"12050\",\"correct\":5},{\"stim\":\"12053\",\"correct\":3},{\"stim\":\"12054\",\"correct\":1},{\"stim\":\"12055\",\"correct\":4},{\"stim\":\"12056\",\"correct\":5}],\"StimWidth\":\"70vw\",\"StimHeight\":\"70vh\",\"FixationTimeBetweenTrials\":2000,\"OptionMapping\":\"123456\",\"AllowedTime\":600,\"ShowWelcome\":true,\"ShowThankYou\":true,\"ShowInstructions\":true}"
+    }
+  ],
+  "kind": "parameters"
+}

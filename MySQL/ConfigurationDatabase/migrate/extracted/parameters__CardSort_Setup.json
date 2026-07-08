@@ -1,0 +1,18 @@
+{
+  "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/CardSort_Setup.js",
+  "registrations": [
+    {
+      "key": "CardSort_001",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"PracticeRuleChangeCount\":4,\"RuleChangeCount\":10,\"PracticeNumberOfCards\":10,\"NumberOfCards\":64,\"PracticeRuleList\":[0,2,0,2,0,2,0,2,0],\"RuleList\":[1,2,0,1,2,0,1,2,0,1,2,0],\"CardHeight\":\"60vh\",\"StimCardHeight\":\"120\",\"FeedbackSize\":4,\"FeedbackDuration\":\"750\",\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/WCST_Welcome.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"Instructions01Audio\":[\"assets/SoundFiles/Instructions/WCST_Instructions01.wav\",\"assets/SoundFiles/Instructions/WCST_Instructions02.wav\"],\"Instructions01Time\":[30000,20000],\"Instructions02Audio\":[\"assets/SoundFiles/Instructions/WCST_Practice.wav\"],\"Instructions02Time\":[5000],\"Instructions03Audio\":[\"assets/SoundFiles/Instructions/WCST_Test.wav\"],\"Instructions03Time\":[5000]}"
+    },
+    {
+      "key": "CardSort_002",
+      "sourceVar": "parameters",
+      "language": null,
+      "json": "{\"PracticeRuleChangeCount\":4,\"RuleChangeCount\":10,\"PracticeNumberOfCards\":10,\"NumberOfCards\":64,\"PracticeRuleList\":[0,2,0,2,0,2,0,2,0],\"RuleList\":[1,2,0,1,2,0,1,2,0,1,2,0],\"CardHeight\":\"60vh\",\"StimCardHeight\":\"120\",\"FeedbackSize\":4,\"FeedbackDuration\":\"750\",\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"WelcomeAudio\":\"assets/SoundFiles/Instructions/WCST_Welcome.wav\",\"ShowThankYou\":false,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"Instructions01Audio\":[\"assets/SoundFiles/Instructions/WCST_Instructions01.wav\",\"assets/SoundFiles/Instructions/WCST_Instructions02.wav\"],\"Instructions01Time\":[30000,20000],\"Instructions02Audio\":[\"assets/SoundFiles/Instructions/WCST_Practice.wav\"],\"Instructions02Time\":[5000],\"Instructions03Audio\":[\"assets/SoundFiles/Instructions/WCST_Test.wav\"],\"Instructions03Time\":[5000]}"
+    }
+  ],
+  "kind": "parameters"
+}
