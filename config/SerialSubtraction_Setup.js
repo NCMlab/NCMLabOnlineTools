@@ -111,8 +111,6 @@ SerialSubtract_Default = {
 }
 
 
-add('SerialSubtract_FaCE', function(){ parameters = SerialSubtract_FaCE});
-add('SerialSubtract_FaCE_02', function(){ parameters = SerialSubtract_FaCE});
 add('SerialSubtract_Default', function(){ parameters = SerialSubtract_Default});
 add('SerialSubtract_FaCE_Training_Spoken', function(){ parameters = SerialSubtract_FaCE_Training_Spoken});
 add('SerialSubtract_FaCE_Training_Manual', function(){ parameters = SerialSubtract_FaCE_Training_Manual});

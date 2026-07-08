@@ -66,7 +66,6 @@ var Stroop_Golden = {
 }
 
 add('Stroop_Default', function(){ parameters = Stroop_Default});
-add('Stroop_001', function(){ parameters = Stroop_001});
 add('Stroop_Victoria', function(){ parameters = Stroop_Victoria});
 add('Stroop_Golden', function(){ parameters = Stroop_Golden});
 

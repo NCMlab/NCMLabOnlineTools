@@ -66,10 +66,6 @@
       "sourceVar": "parameters",
       "language": null,
       "json": "{\"direction\":\"forward\",\"StimulusMode\":\"audio\",\"DeliveryMethod\":\"fixed\",\"Parameters\":{\"Current\":5,\"MaxTrials\":1},\"ShowWelcome\":false,\"WelcomeSpoken\":false,\"ShowThankYou\":false,\"ShowInstructions\":true}"
-    },
-    {
-      "key": "DigitSpan_Audio_Backward_Fixed01_Load03",
-      "error": "callback threw: DigitSpan_Audio_Backward_Fixed01_Load03 is not defined"
     }
   ],
   "kind": "parameters"

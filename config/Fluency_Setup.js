@@ -91,7 +91,6 @@ let FaCE_VerB_Manual = Object.assign({}, FaCE_VerB_Spoken)
 add('Fluency_Animals', function(){ parameters = Fluency_Animals});
 add('Fluency_FruitsVegetable', function(){ parameters = Fluency_FruitsVegetable});
 add('Fluency_F', function(){ parameters = Fluency_F});
-add('Fluency_TEST', function(){ parameters = Fluency_TEST});
 add('FaCE_Training_Spoken', function(){ parameters = FaCE_Training_Spoken});
 add('FaCE_Training_Manual', function(){ parameters = FaCE_Training_Manual});
 add('FaCE_VerA_Spoken', function(){ parameters = FaCE_VerA_Spoken});

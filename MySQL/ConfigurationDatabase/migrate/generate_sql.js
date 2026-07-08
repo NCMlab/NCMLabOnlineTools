@@ -14,18 +14,25 @@ const EXTRACTED_DIR = path.join(__dirname, 'extracted');
 const SQL_OUT = path.join(__dirname, 'Migrated_TaskConfig.sql');
 const REVIEW_OUT = path.join(__dirname, 'MANUAL_REVIEW.md');
 
-// Basename (without _Setup.js / _setup.js / _Instructions.js) -> task_types.task_name.
-// Built by comparing config/InstructionsAndStimuli filenames against the 27 rows
+// Basename (without _Setup.js / _setup.js / _Instructions.js) -> task_types.task_name,
+// or an array of task_names when one source file's parameter/instruction sets are shared
+// verbatim across multiple task_types (e.g. Stroop_Setup.js has one object per parameter
+// set with combined Color*/Word*/ColorWord* fields, read by three separate HTML pages --
+// each array entry gets the identical extracted JSON inserted under its own task_type_id).
+// Built by comparing config/InstructionsAndStimuli filenames against the rows
 // SeedData_TaskTypes.sql currently defines. Files with no entry here have no
 // matching task_types row yet (see MANUAL_REVIEW.md) and are not migrated.
 const TASK_NAME_BY_BASENAME = {
+  Cancellation: 'Cancellation',
   CardSort: 'Card Sort',
   CardSortTask: 'Card Sort',
   ClockDrawing: 'Clock Drawing',
   ConsentForm: 'Consent Form',
   DigitSpan: 'Digit Span',
   EndingPage: 'Ending Page',
+  EQ5D: 'EQ5D',
   Fluency: 'Fluency',
+  ImageCopy: 'Image Copy',
   IntakeForm: 'Intake Form',
   LanguageSelection: 'Language Selection',
   LineBisection: 'Line Bisection',
@@ -33,22 +40,32 @@ const TASK_NAME_BY_BASENAME = {
   MatrixReasoning: 'Matrix Reasoning',
   PatternComparison: 'Pattern Comparison',
   Questionnaire: 'Questionnaire',
+  ReadingListening: 'Reading/Listening Test',
   Screening: 'Screening',
   SerialSubtraction: 'Serial Subtraction',
   SpatialDMS: 'Spatial DMS',
+  Stroop: ['Stroop Color', 'Stroop Word', 'Stroop Color/Word'],
   TrailMaking: 'Trail Making',
   VASrating: 'VAS Rating',
   WordRecall: 'Word Recall',
   WordRecog: 'Word Recognition',
   YesNo: 'Yes No',
-  vDMS: 'Verbal DMS', // medium confidence -- confirm "vDMS" means Verbal DMS, not a second spatial variant
+  vDMS: 'Verbal DMS', // confirmed correct by Jason, 2026-07-08
 };
 
 // Registrations that are legitimately not task_parameters rows at all --
 // they belong to shared/global config, not to any one task_type. Excluded
 // from SQL generation and called out in the report instead of silently
 // dropped or wrongly inserted.
-const NON_TASK_FILES = new Set(['General_Setup.js', 'SessionChooser_config.js', 'Button_config.js']);
+const NON_TASK_FILES = new Set(['General_Setup.js', 'Button_config.js']);
+
+// Files explicitly set aside at Jason's request, pending his own investigation into what they
+// are -- not yet judged "unused" (see config/unused/) or a "task type to add", just deferred.
+// Skipped before any per-registration processing so nothing from these files reaches
+// Migrated_TaskConfig.sql or MANUAL_REVIEW.md's other sections.
+const SKIP_FILES = {
+  'SelfReport_Setup.js': 'Jason, 2026-07-08: "ignore the file SelfReport_Setup.js. I am not sure what that is yet."',
+};
 
 function sqlEscape(str) {
   return str.replace(/\\/g, '\\\\').replace(/'/g, "''");
@@ -76,12 +93,22 @@ function main() {
   const unmappedFiles = []; // whole files with no task_types match
   const skippedNonTask = []; // registrations from shared/global files
   const sourceErrors = []; // genuine bugs found in the existing .js source
+  const skippedFiles = []; // files explicitly deferred, not processed at all
   let insertCount = 0;
+  let uiLabelCount = 0;
+  let sessionChooserCount = 0;
 
   for (const result of files) {
     const fname = path.basename(result.file);
+
+    if (SKIP_FILES[fname]) {
+      skippedFiles.push({ file: fname, reason: SKIP_FILES[fname] });
+      continue;
+    }
+
     const base = baseName(result.file);
-    const taskName = TASK_NAME_BY_BASENAME[base];
+    const mapped = TASK_NAME_BY_BASENAME[base];
+    const taskNames = mapped === undefined ? [] : Array.isArray(mapped) ? mapped : [mapped];
 
     for (const reg of result.registrations || []) {
       if (reg.error) {
@@ -92,11 +119,36 @@ function main() {
         skippedNonTask.push({ file: fname, key: reg.key, reason: 'pushes a jsPsych trial fragment onto the shared timeline, not a task_parameters object' });
         continue;
       }
+      if (fname === 'General_Setup.js' && reg.sourceVar === 'LabelNames') {
+        const lang = reg.language || 'EN';
+        const labelObj = JSON.parse(reg.json);
+        sqlLines.push(`-- ${lang} LabelNames (${Object.keys(labelObj).length} keys)`);
+        for (const [labelKey, value] of Object.entries(labelObj)) {
+          sqlLines.push(
+            `INSERT IGNORE INTO ui_labels (label_key, language, label_value)`,
+            `VALUES ('${sqlEscape(labelKey)}', '${sqlEscape(lang)}', '${sqlEscape(JSON.stringify(value))}');`
+          );
+          uiLabelCount++;
+        }
+        sqlLines.push('');
+        continue;
+      }
+      if (fname === 'SessionChooser_config.js') {
+        const lang = reg.language || 'EN';
+        const configName = reg.key.slice(lang.length + 1); // strip the "EN_"/"FR_"/"KR_" prefix extract.js matched
+        sqlLines.push(
+          `INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)`,
+          `VALUES ('${sqlEscape(configName)}', '${sqlEscape(lang)}', '${sqlEscape(reg.json)}');`,
+          ''
+        );
+        sessionChooserCount++;
+        continue;
+      }
       if (NON_TASK_FILES.has(fname)) {
         skippedNonTask.push({ file: fname, key: reg.key, reason: `${fname} defines shared/global config, not a single task's parameters` });
         continue;
       }
-      if (!taskName) {
+      if (taskNames.length === 0) {
         if (!unmappedFiles.includes(fname)) unmappedFiles.push(fname);
         continue;
       }
@@ -104,6 +156,8 @@ function main() {
       const lang = reg.language || 'EN';
       const json = sqlEscape(reg.json);
       const nameCol = sqlEscape(reg.key);
+
+      for (const taskName of taskNames) {
       const taskNameEsc = sqlEscape(taskName);
 
       if (result.kind === 'parameters') {
@@ -122,6 +176,7 @@ function main() {
         );
       }
       insertCount++;
+      }
     }
   }
 
@@ -130,7 +185,9 @@ function main() {
   const review = [
     '# Migration: Manual Review',
     '',
-    `Generated by \`generate_sql.js\`. ${insertCount} INSERT statements were written to \`Migrated_TaskConfig.sql\`.`,
+    `Generated by \`generate_sql.js\`. ${insertCount} task_parameters/task_instructions INSERTs, ` +
+      `${uiLabelCount} ui_labels INSERTs, and ${sessionChooserCount} session_chooser_configs INSERTs ` +
+      `were written to \`Migrated_TaskConfig.sql\`.`,
     '',
     '## Files with no matching task_types row',
     '',
@@ -145,8 +202,10 @@ function main() {
     '',
     'These are real, cleanly-extracted values, but they are shared/global config or jsPsych',
     'timeline fragments rather than one task\'s parameter/instruction set, so they do not belong',
-    'in `task_parameters`/`task_instructions` as currently designed. Needs a design decision on',
-    'where they should live (e.g. a `ui_labels` table for LabelNames, or leaving them as JS).',
+    'in `task_parameters`/`task_instructions` as currently designed. (LabelNames and',
+    'SessionChooser_config.js used to be here too -- they now go to the `ui_labels` and',
+    '`session_chooser_configs` tables instead -- see `Migrated_TaskConfig.sql`.) Still needs a',
+    'design decision on where the rest of these belong.',
     '',
     skippedNonTask.length
       ? skippedNonTask.map((r) => `- **${r.file}** \`${r.key}\` — ${r.reason}`).join('\n')
@@ -162,10 +221,20 @@ function main() {
       ? sourceErrors.map((e) => `- **${e.file}** \`${e.key}\` — ${e.error}`).join('\n')
       : '_none_',
     '',
+    '## Files explicitly deferred (not processed)',
+    '',
+    'Set aside at Jason\'s request pending his own investigation -- not judged unused, not',
+    'mapped to a task type, just skipped entirely for now. None of their registrations appear',
+    'anywhere above or in `Migrated_TaskConfig.sql`.',
+    '',
+    skippedFiles.length
+      ? skippedFiles.map((f) => `- **${f.file}** — ${f.reason}`).join('\n')
+      : '_none_',
+    '',
   ];
   fs.writeFileSync(REVIEW_OUT, review.join('\n'));
 
-  console.log(`Wrote ${insertCount} INSERT statements to ${path.relative(process.cwd(), SQL_OUT)}`);
+  console.log(`Wrote ${insertCount} task INSERT statements + ${uiLabelCount} ui_labels INSERTs + ${sessionChooserCount} session_chooser_configs INSERTs to ${path.relative(process.cwd(), SQL_OUT)}`);
   console.log(`${unmappedFiles.length} files unmapped, ${skippedNonTask.length} registrations excluded as non-task, ${sourceErrors.length} pre-existing source bugs.`);
   console.log(`See ${path.relative(process.cwd(), REVIEW_OUT)} for details.`);
 }

@@ -2,14 +2,6 @@
   "file": "/Users/jasonsteffener/Documents/jatos_mac_java/study_assets_root/NCMBattery/config/SerialSubtraction_Setup.js",
   "registrations": [
     {
-      "key": "SerialSubtract_FaCE",
-      "error": "callback threw: SerialSubtract_FaCE is not defined"
-    },
-    {
-      "key": "SerialSubtract_FaCE_02",
-      "error": "callback threw: SerialSubtract_FaCE is not defined"
-    },
-    {
       "key": "SerialSubtract_Default",
       "sourceVar": "parameters",
       "language": null,

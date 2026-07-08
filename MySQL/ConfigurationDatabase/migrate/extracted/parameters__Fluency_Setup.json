@@ -20,10 +20,6 @@
       "json": "{\"Category\":\"LetterF\",\"TimeLimit\":60,\"ResponseType\":\"Manual\",\"ShowInstructions\":true,\"ShowWelcome\":false,\"ShowThankYou\":false,\"AskForNotes\":false,\"RecordAUDIO\":false}"
     },
     {
-      "key": "Fluency_TEST",
-      "error": "callback threw: Fluency_TEST is not defined"
-    },
-    {
       "key": "FaCE_Training_Spoken",
       "sourceVar": "parameters",
       "language": null,

@@ -281,5 +281,4 @@ add('DigitSpan_Audio_Backward_TwoErrors', function(){ parameters = DigitSpan_Aud
 add('DigitSpan_Visual_Forward_Fixed01_Load05', function(){ parameters = DigitSpan_Visual_Forward_Fixed01_Load05});
 add('DigitSpan_Visual_Backward_Fixed01_Load03', function(){ parameters = DigitSpan_Visual_Backward_Fixed01_Load03});
 add('DigitSpan_Audio_Forward_Fixed01_Load05', function(){ parameters = DigitSpan_Audio_Forward_Fixed01_Load05});
-add('DigitSpan_Audio_Backward_Fixed01_Load03', function(){ parameters = DigitSpan_Audio_Backward_Fixed01_Load03});
 

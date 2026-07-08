@@ -8,10 +8,6 @@
       "json": "{\"ColorPracticeRepeats\":1,\"WordPracticeRepeats\":1,\"ColorWordPracticeRepeats\":1,\"ColorTestRepeats\":2,\"WordTestRepeats\":1,\"ColorWordTestRepeats\":1,\"ITI_Range\":[250,500,750,1000,1250,1500,1750,2000],\"ITI_Duration\":-99,\"AllowedTime\":-99,\"Score_NumberTrials\":null,\"Score_ProcedureName\":null,\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"ShowWelcome\":true,\"ShowThankYou\":true}"
     },
     {
-      "key": "Stroop_001",
-      "error": "callback threw: Stroop_001 is not defined"
-    },
-    {
       "key": "Stroop_Victoria",
       "sourceVar": "parameters",
       "language": null,

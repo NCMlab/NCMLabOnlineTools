@@ -602,4 +602,3 @@ add('TrailMakingB_DefaultMirrorXY', function(){ parameters = TrailMakingB_Defaul
 add('TrailMaking_FaCE', function(){ parameters = TrailMaking_FaCE});
 add('TrailMaking_FaCE_Training', function(){ parameters = TrailMaking_FaCE_Training});
 add('TrailMaking_Demonstration', function(){ parameters = TrailMaking_Demonstration});
-add('TrailMakingB_DefaultTEST', function(){ parameters = TrailMakingB_DefaultTEST});

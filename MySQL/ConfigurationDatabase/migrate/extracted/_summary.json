@@ -9,24 +9,6 @@
     "fileError": null
   },
   {
-    "file": "BGR_Setup.js",
-    "kind": "parameters",
-    "total": 0,
-    "ok": 0,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
-    "file": "Button_config.js",
-    "kind": "parameters",
-    "total": 0,
-    "ok": 0,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
     "file": "Cancellation_Setup.js",
     "kind": "parameters",
     "total": 3,
@@ -65,10 +47,10 @@
   {
     "file": "DigitSpan_Setup.js",
     "kind": "parameters",
-    "total": 12,
+    "total": 11,
     "ok": 11,
     "review": 0,
-    "errs": 1,
+    "errs": 0,
     "fileError": null
   },
   {
@@ -92,10 +74,10 @@
   {
     "file": "Fluency_Setup.js",
     "kind": "parameters",
-    "total": 10,
+    "total": 9,
     "ok": 9,
     "review": 0,
-    "errs": 1,
+    "errs": 0,
     "fileError": null
   },
   {
@@ -110,10 +92,10 @@
   {
     "file": "ImageCopy_Setup.js",
     "kind": "parameters",
-    "total": 8,
+    "total": 7,
     "ok": 7,
     "review": 0,
-    "errs": 1,
+    "errs": 0,
     "fileError": null
   },
   {
@@ -200,10 +182,10 @@
   {
     "file": "SerialSubtraction_Setup.js",
     "kind": "parameters",
-    "total": 9,
+    "total": 7,
     "ok": 7,
     "review": 0,
-    "errs": 2,
+    "errs": 0,
     "fileError": null
   },
   {
@@ -227,19 +209,19 @@
   {
     "file": "Stroop_Setup.js",
     "kind": "parameters",
-    "total": 4,
+    "total": 3,
     "ok": 3,
     "review": 0,
-    "errs": 1,
+    "errs": 0,
     "fileError": null
   },
   {
     "file": "TrailMaking_Setup.js",
     "kind": "parameters",
-    "total": 12,
+    "total": 11,
     "ok": 11,
     "review": 0,
-    "errs": 1,
+    "errs": 0,
     "fileError": null
   },
   {
@@ -279,28 +261,10 @@
     "fileError": null
   },
   {
-    "file": "cfi_Setup.js",
-    "kind": "parameters",
-    "total": 0,
-    "ok": 0,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
     "file": "vDMS_setup.js",
     "kind": "parameters",
     "total": 3,
     "ok": 3,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
-    "file": "AFT_Instructions.js",
-    "kind": "instructions",
-    "total": 0,
-    "ok": 0,
     "review": 0,
     "errs": 0,
     "fileError": null
@@ -387,15 +351,6 @@
     "fileError": null
   },
   {
-    "file": "ICAR_MatrixReasoning_Instructions.js",
-    "kind": "instructions",
-    "total": 0,
-    "ok": 0,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
     "file": "ImageCopy_Instructions.js",
     "kind": "instructions",
     "total": 4,
@@ -472,15 +427,6 @@
     "kind": "instructions",
     "total": 2,
     "ok": 2,
-    "review": 0,
-    "errs": 0,
-    "fileError": null
-  },
-  {
-    "file": "ReyComplexFigure_Instructions.js",
-    "kind": "instructions",
-    "total": 0,
-    "ok": 0,
     "review": 0,
     "errs": 0,
     "fileError": null

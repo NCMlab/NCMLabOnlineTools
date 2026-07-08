@@ -84,9 +84,11 @@ Expected output:
 +--------------------------------+
 | batteries                      |
 | battery_tasks                  |
+| session_chooser_configs        |
 | task_instructions              |
 | task_parameters                |
 | task_types                     |
+| ui_labels                      |
 +--------------------------------+
 ```
 
@@ -352,7 +354,7 @@ DELETE FROM task_parameters WHERE parameter_name = 'MyNewParameterSet';
 
 | File | What it does | Where to run/deploy |
 |---|---|---|
-| `CreateSchema.sql` | Creates database, all 5 tables, indexes, view | `mysql < CreateSchema.sql` on the server |
+| `CreateSchema.sql` | Creates database, all 7 tables, indexes, view | `mysql < CreateSchema.sql` on the server |
 | `SeedData_TaskTypes.sql` | Inserts 27 task types + Word Recall example | `mysql ncmbattery_config < SeedData_TaskTypes.sql` |
 | `API_battery.php` | Returns full battery as JSON | Copy to Apache document root |
 | `API_task_config.php` | Returns one parameter set or instruction set | Copy to Apache document root |

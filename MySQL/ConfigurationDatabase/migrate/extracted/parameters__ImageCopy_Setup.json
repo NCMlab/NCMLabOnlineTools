@@ -26,10 +26,6 @@
       "json": "{\"canvas_width\":\"400vw\",\"canvas_height\":\"400vh\",\"ShowWelcome\":true,\"ShowThankYou\":false,\"ShowInstructions\":false,\"AskForNotes\":false,\"Image\":[\"NeckerCube.png\"],\"RecordGIF\":true}"
     },
     {
-      "key": "ImageCopy_FaCE",
-      "error": "callback threw: ImageCopy_FaCE is not defined"
-    },
-    {
       "key": "ImageCopy_FaCE_Training",
       "sourceVar": "parameters",
       "language": null,

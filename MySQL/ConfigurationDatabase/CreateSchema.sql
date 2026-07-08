@@ -60,6 +60,54 @@ CREATE TABLE IF NOT EXISTS task_instructions (
 );
 
 -- -------------------------------------------------------
+-- ui_labels
+-- Shared button/UI label text (e.g. "Quit", "Home", "Submit"),
+-- one row per (label_key, language) pair. Not tied to any task_type --
+-- every task's HTML page reads the same label set. Replaces the
+-- LabelNames objects (EN_LabelNames, FR_LabelNames, KR_LabelNames)
+-- defined in config/General_Setup.js.
+-- One row per key (rather than one JSON blob per language) so that
+-- adding/editing a single label doesn't require rewriting a whole
+-- blob, and so missing translations are a plain query instead of a
+-- manual JSON diff -- e.g. FR and KR are both missing an "Info" key
+-- that EN has.
+-- label_value is JSON, not VARCHAR, because a few values are arrays
+-- (e.g. NoYes: ["No","Yes"]) rather than plain strings.
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS ui_labels (
+    ui_label_id   INT           AUTO_INCREMENT PRIMARY KEY,
+    label_key     VARCHAR(100)  NOT NULL,
+    language      CHAR(2)       NOT NULL,
+    label_value   JSON          NOT NULL,
+    created_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_label_lang (label_key, language)
+);
+
+-- -------------------------------------------------------
+-- session_chooser_configs
+-- Button-grid configuration for the session-picker screen
+-- (config/SessionChooser_config.js), one row per named config per
+-- language (e.g. "COMM_99" EN and FR, "Mont_99" FR). Not tied to any
+-- task_type -- this isn't a task, it's a separate landing page that
+-- launches a battery (via battery_index in each List entry) per
+-- button clicked.
+-- Stored as a single JSON blob per row (like task_parameters), NOT
+-- normalized like ui_labels, because unlike ui_labels the internal
+-- shape genuinely varies row to row -- each config's List array has
+-- a different, config-specific set of fields per entry (some include
+-- Phase/Test/ButtonUsageType, some don't), so there's no fixed set of
+-- "columns" to normalize into.
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS session_chooser_configs (
+    session_chooser_config_id INT           AUTO_INCREMENT PRIMARY KEY,
+    config_name                VARCHAR(100) NOT NULL,   -- e.g. "COMM_99", "Mont_99" (registration key minus its language prefix)
+    language                   CHAR(2)      NOT NULL DEFAULT 'EN',
+    config_json                JSON         NOT NULL,   -- [{ index, Title, List: [...], runNameCheck? }] -- kept as the same single-element array the source registers
+    created_at                 TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_session_chooser (config_name, language)
+);
+
+-- -------------------------------------------------------
 -- batteries
 -- One row per battery (study session configuration).
 -- battery_index is the numeric key used at runtime to look

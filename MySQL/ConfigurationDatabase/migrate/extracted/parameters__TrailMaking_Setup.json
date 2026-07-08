@@ -66,10 +66,6 @@
       "sourceVar": "parameters",
       "language": null,
       "json": "{\"Circles\":[{\"centerX\":0.2,\"centerY\":0.2,\"radius\":15,\"label\":\"1\"},{\"centerX\":0.8,\"centerY\":0.2,\"radius\":15,\"label\":\"2\"},{\"centerX\":0.6,\"centerY\":0.5,\"radius\":15,\"label\":\"3\"},{\"centerX\":0.8,\"centerY\":0.8,\"radius\":15,\"label\":\"4\"},{\"centerX\":0.2,\"centerY\":0.8,\"radius\":15,\"label\":\"5\"},{\"centerX\":0.4,\"centerY\":0.5,\"radius\":15,\"label\":\"6\"},{\"centerX\":0.2,\"centerY\":0.5,\"radius\":15,\"label\":\"7\"}],\"SuggestedWidth\":450,\"SuggestedHeight\":450,\"ShowTimer\":true,\"Duration\":120000,\"ShowPractice\":false,\"PracticeCircles\":[{\"centerX\":0.2,\"centerY\":0.2,\"radius\":15,\"label\":\"1\"},{\"centerX\":0.8,\"centerY\":0.2,\"radius\":15,\"label\":\"2\"},{\"centerX\":0.8,\"centerY\":0.8,\"radius\":15,\"label\":\"3\"},{\"centerX\":0.2,\"centerY\":0.8,\"radius\":15,\"label\":\"4\"}],\"PracticeSuggestedWidth\":450,\"PracticeSuggestedHeight\":450,\"ShowInstructions\":false,\"InstructionsSpoken\":false,\"ShowWelcome\":false,\"ShowThankYou\":true,\"AskForNotes\":false,\"change_circle_color_only_when_correct\":false,\"RecordGIF\":true,\"shortTitle\":\"TrailsA\"}"
-    },
-    {
-      "key": "TrailMakingB_DefaultTEST",
-      "error": "callback threw: TrailMakingB_DefaultTEST is not defined"
     }
   ],
   "kind": "parameters"

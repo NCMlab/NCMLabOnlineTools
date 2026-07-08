@@ -106,7 +106,6 @@ add('ImageCopy_Default', function(){ parameters = ImageCopy_Default});
 add('ImageCopy_Smile', function(){ parameters = ImageCopy_Smile});
 add('ImageCopy_TwoCircles', function(){ parameters = ImageCopy_TwoCircles});
 add('ImageCopy_CBprotocol', function(){ parameters = ImageCopy_CBprotocol});
-add('ImageCopy_FaCE', function(){ parameters = ImageCopy_FaCE});
 add('ImageCopy_FaCE_Training', function(){ parameters = ImageCopy_FaCE_Training});
 add('ImageCopy_FaCE_VerA', function(){ parameters = ImageCopy_FaCE_VerA});
 add('ImageCopy_FaCE_VerB', function(){ parameters = ImageCopy_FaCE_VerB});

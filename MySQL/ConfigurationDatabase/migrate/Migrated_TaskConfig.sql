@@ -3,6 +3,14 @@
 USE ncmbattery_config;
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Cancellation_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Welcome to the Cancellation Task."}],"SingleLetterCancellationInstructionText":[{"page":"You will see multiple lines of items and you will need to click on all of the specified target items."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'Cancellation';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Cancellation_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"FR: Welcome to the Cancellation experiment."}],"SingleLetterCancellationInstructionText":[{"page":"FR: You will see multiple lines of items and you will need to click on all of the specified target items."}],"ThankYouText":[{"page":"FR: Thank you."}]}'
+FROM task_types WHERE task_name = 'Cancellation';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_CardSortTask_Instructions_Default', 'EN', '{"Instructions01":[{"page":" For this task you will see four cards at the top of the screen. What they display will differ based on three dimensions: color, number of objects, shape of objects. You will also see a card at the bottom of the screen which you will match to one of the four cards at the top."},{"page":"<div class=\\"InstructImage\\"><img src=assets/InstructionalImages/EN_CardSortInstructions.png max-width=\\"600px\\"></img></div>"},{"page":" Select one of the four cards displayed at the top of the screen such that the selected card matches the card displayed at the bottom of the screen. "},{"page":" You will be given feedback on whether the selected card was RIGHT or WRONG. Using this feedback, determine which dimension is targeted, and select the card accordingly. The targeted dimension may change from time to time without notice."}],"Instructions02":[{"page":"You will now perform a few practice trials."}],"Instructions03":[{"page":"You will now perform the actual task."}],"Debrief":["<p>You responded correctly on ","% of the trials.<p> with an average response time of "," ms"],"ThankYouText":[{"page":"Thank you."}],"DiscardPileText":"Discard Pile","WelcomeText":[{"page":"This is the Card Sort Task."}]}'
 FROM task_types WHERE task_name = 'Card Sort';
 
@@ -35,6 +43,14 @@ SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"
 FROM task_types WHERE task_name = 'Digit Span';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'EQ5D';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'EQ5D';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"Instructions01":[{"page":"Thank you for your participation"}]}'
 FROM task_types WHERE task_name = 'Ending Page';
 
@@ -53,6 +69,22 @@ FROM task_types WHERE task_name = 'Fluency';
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions', 'FR', '{"Animals":"Animaux","FruitsVegetables":"fruits et légumes","LetterF":"mots commençant par F","Instructions":[{"page":"Langage et rapidité d’idéation. Vous recevrez une catégorie et devrez dire autant d''éléments de cette catégorie que possible en une minute. Les noms propres ne sont pas acceptés. </br></br>Appuyez sur <b>Suivant</b> pour Continuer."}],"ThankYouText":[{"page":"Merci"}],"WelcomeText":[{"page":"Langage et rapidité d’idéation."}],"ResponsePage01":"Dites-en autant <b>","ResponsePage02":"</b> que possible.<p><span id=\\"clock\\">1:00</span> En tant qu''administrateur : appuyez sur Suivant pour chaque réponse correcte effectuée. <p /><div><p>","ResponsePage03":"</div>Lorsque le temps imparti est écoulé, appuyez à nouveau sur Suivant pour terminer."}'
 FROM task_types WHERE task_name = 'Fluency';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_ImageCopy_Instructions_Default', 'EN', '{"Instructions":"Draw a copy of a this image, take your time.","WelcomeText":[{"page":"Welcome to the Image Copying Task."}],"ThankYouText":[{"page":"Thank you"}],"NotesForResultsPage":"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_ImageCopy_Instructions_Default', 'FR', '{"Instructions":"Je veux que vous copiez ce dessin le plus précisément possible","WelcomeText":[{"page":"This is the Cube Copying Task. Press <b>Next</b> to Continue"}],"ThankYouText":[{"page":"Thank you"}],"NotesForResultsPage":"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_ImageCopy_Instructions_FaCE', 'EN', '{"Instructions":"Copy this drawing in the most accurate way possible","WelcomeText":[{"page":"This is the Cube Copying Task. Press <b>Next</b> to Continue"}],"ThankYouText":[{"page":"Thank you"}],"NotesForResultsPage":"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_ImageCopy_Instructions_FaCE', 'FR', '{"Instructions":"Je veux que vous copiez ce dessin le plus précisément possible","WelcomeText":[{"page":"This is the Cube Copying Task. Press <b>Next</b> to Continue"}],"ThankYouText":[{"page":"Thank you"}],"NotesForResultsPage":"The copy should be transparent, have 12 lines and 8 corners. Score is 0-2; 0 no impairment; 1 mild impairment; 2 impaired."}'
+FROM task_types WHERE task_name = 'Image Copy';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_IntakeFaCE', 'EN', '{"title":"FaCE Intake Form","pages":[[{"type":"text","prompt":"Participant ID","placeholder":"00000000","name":"ParticipantID","required":true},{"type":"drop-down","prompt":"How many years of education have you completed? (completed elementary school: 6 years; completed high school : 5 years; CEGEP and university depending on the program studied)","name":"YearsEdu","options":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","other"],"required":false},{"type":"drop-down","prompt":"In what MONTH were you born?","name":"MonthOfBirth","options":["January","February","March","April","May","June","July","August","September","October","November","December"],"required":false},{"type":"text","prompt":"What is your DAY of birth?","placeholder":"1","name":"DayOfBirth","required":false},{"type":"text","prompt":"What is your YEAR of birth?","placeholder":"1900","name":"YearOfBirth","required":false},{"type":"multi-choice","prompt":"What is your sex?","options":["Female","Male","Other","Do not want to answer"],"name":"Sex","required":false},{"type":"multi-choice","prompt":"Which hand is your dominant one?","options":["Left","Right"],"name":"Handed","required":false}]],"Instructions01":[{"page":" Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. Please, do not press your browser''s back or reload buttons."},{"page":"If you have feedback you would like to share with us, there will be a text box at the very end of the experiment where you can type in comments."}]}'
@@ -131,6 +163,14 @@ SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"List":[{"stim":"Rice is often served in round bowls."},{"stim":"The birch canoe slid on the smooth planks."},{"stim":"Glue the sheet to the dark blue background."},{"stim":"It''s easy to tell the depth of a well."},{"stim":"These days a chicken leg is a rare dish."},{"stim":"The juice of lemons makes fine punch."},{"stim":"The box was thrown beside the parked truck."},{"stim":"The hogs were fed chopped corn and garbage."},{"stim":"4 hours of steady work faced us."},{"stim":"A large size in stockings is hard to sell."},{"stim":"The boy was there when the sun rose."},{"stim":"A rod is used to catch pink salmon."},{"stim":"The source of the huge river is the clear spring."},{"stim":"Kick the ball straight and follow through."},{"stim":"Help the woman get back to her feet."},{"stim":"A pot of tea helps to pass the evening."},{"stim":"Smoky fires lack flame and heat."},{"stim":"The soft cushion broke the man''s fall."},{"stim":"The salt breeze came across from the sea."},{"stim":"The girl at the booth sold fifty bonds."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.</p><p>Even if the speech recognition is not accurate, that is OK, as long as you are being heard.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">This is a Reading Test Task.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Thank you"}]}'
+FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"List":[{"stim":"La lampe de néon rouge irise ses cheveux."},{"stim":"La nacelle du ballon tire sa souplesse de l’osier."},{"stim":"Devine qui a volé le précieux collier de jade."},{"stim":"C’est facile d’atteindre la branche en sautant du muret."},{"stim":"Ne collez jamais d’affiche sur le mur de la poste."},{"stim":"Découpe de fines lamelles de cette truffe noire."},{"stim":"Une croisière dans un grand bateau, c’est un bonheur parfait."},{"stim":"Une brèche dans le mur laissait entrer de l’air."},{"stim":"Le groupe d’amis s’est quitté devant le kiosque."},{"stim":"La voiture de course partit en trombe sur la piste."},{"stim":"Note sur le papier le poids de la bonbonne de gaz."},{"stim":"Prends ce chiffon pour enlever la graisse de ton visage."},{"stim":"La source de la rivière boueuse est un ruisseau clair."},{"stim":"Tire la fléchette et inscris tes points sur le tableau."},{"stim":"Aide la femme à monter à l’arrière du tramway."},{"stim":"Ils ont enfin trouvé une place à la crèche publique."},{"stim":"L’affaire reste étrange pour les vieux et les sages."},{"stim":"Il a un cou propre sur un col net et soigné."},{"stim":"Son dernier congé dura deux semaines."},{"stim":"L’idée est de coudre ensemble ces morceaux de tissus."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">Pour vous assurer que l''ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur l''écran suivant.</p><p>Même si la reconnaissance vocale n''est pas précise, ce n''est pas grave, tant que vous êtes entendu.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">Bienvenu(e) à la tâche de lecture.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Merci"}]}'
+FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"Instructions01":[{"page":"<p>The purpose of this study is to study the effects of aging on memory using online browser-based tools. This includes tasks that require listening, speaking, and drawing. To do this, you will need to use a computer or tablet with a microphone and speakers, not a cell phone. This will take between 20 and 30 minutes.</p><p>The steps include:</p><ul><li>A brief screening for eligibility.</li><li>Reading and providing informed consent.</li><li>Completing a brief questionnaire.</li><li>Testing your speakers.</li><li>Testing your microphone.</li><li>A task where you listen to lists of words and repeat them back.</li><li>A task where you sort cards.</li><li>Two drawing tasks, similair to \\"connect the dots.\\"</li><li>Two brief tasks based on your memory of the words you listened to.</li></ul>"},{"page":"There are buttons in the upper left hand corner. The <em>Stop</em> button allows you to stop the experiment but to keep your data. The <em>Quit</em> button allows you to leave the experiment and have your data removed."},{"page":"When you press next you will start with a screening form."}]}'
 FROM task_types WHERE task_name = 'Screening';
 
@@ -157,6 +197,30 @@ FROM task_types WHERE task_name = 'Spatial DMS';
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"Instructions01":[{"page":"Il s''agit d''un test de mémoire à court terme. Vous verrez un ou plusieurs points à l''écran et vous devrez vous rappeler où ils se trouvent. Ils seront supprimés de l''écran après quelques secondes. Vous verrez un seul point bleu. Vous devez décider si le point bleu se trouve ou non dans l’un des endroits que vous avez étudiés."},{"page":"<div class=\\"InstructImage\\"><img src=assets/InstructionalImages/FR_VSTMInstructions.png max-width=\\"600px\\" alt=Instructional image</img></div>"},{"page":"Appuyez sur [Oui] sur l''écran ou flèche gauche sur le clavier si le point ÉTAIT dans l''ensemble.<br>Appuyez sur [Non] sur l''écran ou flèche driote sur le clavier si le point N''ÉTAIT PAS dans l''ensemble."},{"page":"Essayez de répondre le plus rapidement et le plus précisément possible."}],"Instructions02":[{"page":"Vous effectuerez quelques essais avec des retours pour vous entraîner."}],"Instructions03":[{"page":"Vous allez maintenant commencer la véritable tâche sans rétroaction."}],"ThankYouText":[{"page":"Merci"}],"WelcomeText":[{"page":"Bienvenu(e) dans la tâche de correspondance spatial retardé"}]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Stroop_Instructions', 'EN', '{"ColorWelcomeText":[{"page":"Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ThankYouText":[{"page":"Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>What color is the word written in?","Color01Name":"Red","Color02Name":"Yellow","Color03Name":"Green","Color04Name":"Blue","ResponseButtons":["Red","Yellow","Green","Blue"],"DebriefTextPart01":"<p>You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Color';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Stroop_Instructions', 'EN', '{"ColorWelcomeText":[{"page":"Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ThankYouText":[{"page":"Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>What color is the word written in?","Color01Name":"Red","Color02Name":"Yellow","Color03Name":"Green","Color04Name":"Blue","ResponseButtons":["Red","Yellow","Green","Blue"],"DebriefTextPart01":"<p>You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Word';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Stroop_Instructions', 'EN', '{"ColorWelcomeText":[{"page":"Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ThankYouText":[{"page":"Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>What color is the word written in?","Color01Name":"Red","Color02Name":"Yellow","Color03Name":"Green","Color04Name":"Blue","ResponseButtons":["Red","Yellow","Green","Blue"],"DebriefTextPart01":"<p>You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Color/Word';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Stroop_Instructions', 'FR', '{"ColorWelcomeText":[{"page":"FR: Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"FR: You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"FR: Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"FR: In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"FR: You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"FR: Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"FR: In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"FR: You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"FR: You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ColorThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"WordThankYouText":[{"page":"FR: Thank you. Press Next to end the experiment."}],"ColorWordThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>FR: What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>FR: What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>FR: What color is the word written in?","Color01Name":"Rouge","Color02Name":"Jaune","Color03Name":"Vert","Color04Name":"Bleu","ResponseButtons":["Rouge","Jaune","Vert","Bleu"],"DebriefTextPart01":"<p>FR: You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Color';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Stroop_Instructions', 'FR', '{"ColorWelcomeText":[{"page":"FR: Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"FR: You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"FR: Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"FR: In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"FR: You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"FR: Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"FR: In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"FR: You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"FR: You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ColorThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"WordThankYouText":[{"page":"FR: Thank you. Press Next to end the experiment."}],"ColorWordThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>FR: What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>FR: What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>FR: What color is the word written in?","Color01Name":"Rouge","Color02Name":"Jaune","Color03Name":"Vert","Color04Name":"Bleu","ResponseButtons":["Rouge","Jaune","Vert","Bleu"],"DebriefTextPart01":"<p>FR: You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Word';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Stroop_Instructions', 'FR', '{"ColorWelcomeText":[{"page":"FR: Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"FR: You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"FR: Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"FR: In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"FR: You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"FR: Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"FR: Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"FR: In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"FR: You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"FR: Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"FR: There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"FR: You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ColorThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"WordThankYouText":[{"page":"FR: Thank you. Press Next to end the experiment."}],"ColorWordThankYouText":[{"page":"FR: Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>FR: What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>FR: What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>FR: What color is the word written in?","Color01Name":"Rouge","Color02Name":"Jaune","Color03Name":"Vert","Color04Name":"Bleu","ResponseButtons":["Rouge","Jaune","Vert","Bleu"],"DebriefTextPart01":"<p>FR: You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
+FROM task_types WHERE task_name = 'Stroop Color/Word';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_DefaultA', 'EN', '{"WelcomeText":[{"page":"Welcome to the Trail Making Task.</p>"}],"PracticePrompt":[{"page":"First, you will perform a practice test."}],"RealTaskPrompt":[{"page":"Press <b>Next</b> to begin the task."}],"Instructions":[{"page":"For this task you will see some numbers in circles. Please, draw a line from one number to the next, in order. Start at 1, then go to 2, then go to 3, and so on. Continue until you reach the number labeled end."},{"page":"Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br> If the circle does not change color, you have made a mistake and need to draw your line to a different circle."}],"InstructionsShownWithPractice":"Begin at number 1 and draw a line from 1 to 2, 2 to 3, 3 to 4 and so on, in order, until you reach the number labeled end.</br>Draw your line as fast as you can. When your line enters a correct circle it will change color, indicating that this is the next correct circle in the sequence.</br>If the circle does not change color, you have made a mistake and need to draw your line to a different circle","ThankYouText":[{"page":"Thank you."}],"NotesForResultsPage":"The provided Response Time is how long it took to complete the entire trail and press the Finish button. Note that thios time is in milliseconds. The errors refer to the number of times a participant drew a trail to a number/letter that was not the next correct item.","FirstCircleLabel":"begin","LastCircleLabel":"end","FinishedLabel":"Finished"}'
@@ -227,6 +291,18 @@ SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"Instructions01":[{"page
 FROM task_types WHERE task_name = 'Verbal DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Cancellation_Default', 'EN', '{"NRows":6,"NCols":52,"NTargets":104,"non_target_labels":["A","B","C","D","E","F","G","I"],"target_labels":"H","ShowWelcome":true,"ShowThankYou":true,"AskForNotes":true,"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Cancellation';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Cancellation_001', 'EN', '{"NRows":10,"NCols":13,"font_size":28,"NTargets":40,"non_target_labels":["A","B","C","D","E","F","G","I"],"target_labels":"H","ShowWelcome":true,"ShowThankYou":true,"AskForNotes":false,"RecordGIF":true,"save_final_image":true}'
+FROM task_types WHERE task_name = 'Cancellation';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Cancellation_Demo', 'EN', '{"NRows":8,"NCols":5,"font_size":28,"NTargets":6,"non_target_labels":["A","B","C","D","E","F","G","I"],"target_labels":"H","ShowWelcome":false,"ShowThankYou":false,"AskForNotes":false,"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Cancellation';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CardSort_001', 'EN', '{"PracticeRuleChangeCount":4,"RuleChangeCount":10,"PracticeNumberOfCards":10,"NumberOfCards":64,"PracticeRuleList":[0,2,0,2,0,2,0,2,0],"RuleList":[1,2,0,1,2,0,1,2,0,1,2,0],"CardHeight":"60vh","StimCardHeight":"120","FeedbackSize":4,"FeedbackDuration":"750","ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/WCST_Welcome.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"Instructions01Audio":["assets/SoundFiles/Instructions/WCST_Instructions01.wav","assets/SoundFiles/Instructions/WCST_Instructions02.wav"],"Instructions01Time":[30000,20000],"Instructions02Audio":["assets/SoundFiles/Instructions/WCST_Practice.wav"],"Instructions02Time":[5000],"Instructions03Audio":["assets/SoundFiles/Instructions/WCST_Test.wav"],"Instructions03Time":[5000]}'
 FROM task_types WHERE task_name = 'Card Sort';
 
@@ -295,6 +371,10 @@ SELECT task_type_id, 'DigitSpan_Audio_Forward_Fixed01_Load05', 'EN', '{"directio
 FROM task_types WHERE task_name = 'Digit Span';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"Instructions":"<ul><li>We would like to know how good or bad your health is TODAY</li><li>This scale is numbered from 0 to 100.</li><li>100 means the best health you can imagine. 0 means the worst health you can imagine.</li><li>Indicate on the slider how your health is TODAY.</li></ul>","minValue":0,"maxValue":100,"sliderStart":0,"sliderStepSize":1,"showSmallTicks":true,"distanceBetweenLabeledValues":5,"textAboveSlider":"The best health you can imagine","textBelowSlider":"The worst health you can imagine","ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"shortTitle":"EQ5D"}'
+FROM task_types WHERE task_name = 'EQ5D';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'Fluency_Animals', 'EN', '{"Category":"Animals","TimeLimit":60,"ResponseType":"Manual","ShowInstructions":true,"ShowWelcome":false,"ShowThankYou":false,"AskForNotes":false,"RecordAUDIO":false}'
 FROM task_types WHERE task_name = 'Fluency';
 
@@ -329,6 +409,318 @@ FROM task_types WHERE task_name = 'Fluency';
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_VerB_Manual', 'EN', '{"Category":"Animals","TimeLimit":60,"DelayBeforeShowingDoneButton":5,"ResponseType":"Manual","ShowInstructions":true,"ShowWelcome":false,"ShowThankYou":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Fluency';
+
+-- EN LabelNames (47 keys)
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoYes', 'EN', '["No","Yes"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('YesNo', 'EN', '["Yes","No"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Home', 'EN', '"Home"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Restart', 'EN', '"Restart"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Info', 'EN', '"Info"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Stop', 'EN', '"Stop"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Quit', 'EN', '"Quit"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Skip', 'EN', '"Skip"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Finished', 'EN', '"Finished"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProcessSpeech', 'EN', '"Processing Speech"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Clear', 'EN', '"Clear"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Undo', 'EN', '"Undo"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Redo', 'EN', '"Redo"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Repeat', 'EN', '"Repeat"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Next', 'EN', '"Next"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Continue', 'EN', '"Continue"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Previous', 'EN', '"Previous"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Enter', 'EN', '"Enter"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Submit', 'EN', '"Submit"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnyway', 'EN', '"Submit with unanswered questions"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnywayAreYouSure', 'EN', '"You have chosen to submit without answering all questions. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Done', 'EN', '"Done"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Other', 'EN', '"Other (describe)"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('CurrentAnswer', 'EN', '"Current Answer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Correct', 'EN', '"Correct"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Incorrect', 'EN', '"Incorrect"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Same', 'EN', '"Same"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Different', 'EN', '"Different"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PressNext', 'EN', '"Press Next to Continue"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListA', 'EN', '"List A"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListB', 'EN', '"List B"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProgressBar', 'EN', '"Completion Progress"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PleaseRead', 'EN', '"Please read the following sentence out loud"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SelectMicrophone', 'EN', '"<p>Please select the microphone you would like to use.</p>"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('UseThisMicrophone', 'EN', '"Use this microphone."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoteInputBox', 'EN', '"Please, type in any notes or feedback you have about this task. (Optional)"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NonEligible', 'EN', '"I am sorry to say that you are not eligible for this study."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('BroswerNonEligible', 'EN', '"You are eligible, but our software does not work on mobile. Please try again using a laptop or tablet."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('StopStudy', 'EN', '"This will stop the study but not remove your data. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ExitStudy', 'EN', '"This will remove all data collected so far. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SkipTask', 'EN', '"This will SKIP the current task. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_label', 'EN', '"Please select an item"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_text', 'EN', '"Please answer all questions"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ThankYou', 'EN', '"Thank you for your participation. You may close this window."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Hello', 'EN', '"Hello"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('EnterName', 'EN', '"Please enter a name first."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('TrailMakingRemaining', 'EN', '"remaining"');
+
+-- FR LabelNames (46 keys)
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoYes', 'FR', '["No","Oui"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('YesNo', 'FR', '["Oui","No"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Home', 'FR', '"Page d''accueil"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Restart', 'FR', '"Recommencer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Stop', 'FR', '"Arrêt"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Quit', 'FR', '"Quitter"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Skip', 'FR', '"Passer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Finished', 'FR', '"Terminé"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProcessSpeech', 'FR', '"Traitement de la parole"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Clear', 'FR', '"Effacer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Undo', 'FR', '"Défaire"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Redo', 'FR', '"Refaire"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Repeat', 'FR', '"Répéter"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Next', 'FR', '"Suivant"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Continue', 'FR', '"Continuer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Previous', 'FR', '"Précédent"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Enter', 'FR', '"Entrer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Submit', 'FR', '"Soumettre"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnyway', 'FR', '"Soumettre avec des questions sans réponse"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnywayAreYouSure', 'FR', '"You have chosen to submit without answering all questions. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Done', 'FR', '"Fini"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('CurrentAnswer', 'FR', '"Réponse Actuelle"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Correct', 'FR', '"Correct"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Incorrect', 'FR', '"Incorrect"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Same', 'FR', '"Mêmes"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Different', 'FR', '"Différent"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PressNext', 'FR', '"Appuyez sur Suivant pour continuer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListA', 'FR', '"Liste A"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListB', 'FR', '"Liste B"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProgressBar', 'FR', '"Progrès"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PleaseRead', 'FR', '"Veuillez lire la phrase suivante à haute voix."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SelectMicrophone', 'FR', '"<p>Veuillez sélectionner le microphone que vous souhaitez utiliser.</p>"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('UseThisMicrophone', 'FR', '"Utilisez ce micro."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoteInputBox', 'FR', '"Veuillez saisir toutes les notes ou commentaires que vous avez sur cette tâche. (Facultatif)"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NonEligible', 'FR', '"Je suis désolé de vous annoncer que vous n''êtes pas éligible pour cette étude."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('BroswerNonEligible', 'FR', '"You are eligible, but our software does not work on mobile. Please try again using a laptop or tablet."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('StopStudy', 'FR', '"Cela arrêtera l''étude mais ne supprimera pas vos données. Êtes-vous sûr?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ExitStudy', 'FR', '"Cela supprimera toutes les données collectées jusqu''à présent. Êtes-vous sûr?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SkipTask', 'FR', '"Cela va SAUTER la tâche en cours. Etes-vous sûr?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_label', 'FR', '"Veuillez sélectionner un article"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_text', 'FR', '"Veuillez répondre à toutes les questions"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ThankYou', 'FR', '"Merci pour votre participation. Vous pouvez fermer cette fenêtre."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Hello', 'FR', '"Bonjour"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('EnterName', 'FR', '"Veuillez d''abord entrer un nom."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('TrailMakingRemaining', 'FR', '"restantes"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Other', 'FR', '"Autre (décrire)"');
+
+-- KR LabelNames (46 keys)
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoYes', 'KR', '["아니요","예"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('YesNo', 'KR', '["예","아니요"]');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Home', 'KR', '"홈페이지"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Restart', 'KR', '"다시 시작하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Stop', 'KR', '"멈추다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Quit', 'KR', '"그만두다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Skip', 'KR', '"Skip"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Finished', 'KR', '"완전한"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProcessSpeech', 'KR', '"Processing Speech"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Clear', 'KR', '"지우세요"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Undo', 'KR', '"해제"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Redo', 'KR', '"다시 하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Repeat', 'KR', '"반복하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Next', 'KR', '"다음"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Continue', 'KR', '"계속하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Previous', 'KR', '"이전의"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Enter', 'KR', '"입력하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Submit', 'KR', '"제출하다"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnyway', 'KR', '"답변하지 못한 질문이 있으면 양식을 제출해 주세요"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SubmitAnywayAreYouSure', 'KR', '"You have chosen to submit without answering all questions. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Done', 'KR', '"완료"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('CurrentAnswer', 'KR', '"Current Answer"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Correct', 'KR', '"옳은"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Incorrect', 'KR', '"잘못된"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Same', 'KR', '"Same"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Different', 'KR', '"Different"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PressNext', 'KR', '"계속하려면 다음을 클릭하세요"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListA', 'KR', '"List A"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('WordListB', 'KR', '"List B"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ProgressBar', 'KR', '"Completion Progress"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('PleaseRead', 'KR', '"Please read the following sentence out loud"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SelectMicrophone', 'KR', '"<p>Please select the microphone you would like to use.</p>"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('UseThisMicrophone', 'KR', '"Use this microphone."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NoteInputBox', 'KR', '"Please, type in any notes or feedback you have about this task. (Optional)"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('NonEligible', 'KR', '"I am sorry to say that you are not eligible for this study."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('BroswerNonEligible', 'KR', '"You are eligible, but our software does not work on mobile. Please try again using a laptop or tablet."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('StopStudy', 'KR', '"This will stop the study but not remove your data. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ExitStudy', 'KR', '"This will remove all data collected so far. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('SkipTask', 'KR', '"This will SKIP the current task. Are you sure?"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_label', 'KR', '"항목을 선택해 주세요."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('missed_question_text', 'KR', '"모든 질문에 답변해 주세요."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('ThankYou', 'KR', '"참여해 주셔서 감사합니다. 이 창을 닫아도 됩니다."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Hello', 'KR', '"안녕하세요"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('EnterName', 'KR', '"먼저 이름을 입력하세요."');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('TrailMakingRemaining', 'KR', '"남음"');
+INSERT IGNORE INTO ui_labels (label_key, language, label_value)
+VALUES ('Other', 'KR', '"기타 (설명)"');
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_Default', 'EN', '{"canvas_width":400,"canvas_height":400,"ShowWelcome":true,"ShowThankYou":true,"ShowInstructions":true,"AskForNotes":false,"Image":["Circle.png","Lozange.png","TwoRectangles.png","NeckerCube.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_Smile', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"Image":["SmileFace.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_TwoCircles', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"Image":["TwoCircles.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_CBprotocol', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":true,"ShowThankYou":false,"ShowInstructions":false,"AskForNotes":false,"Image":["NeckerCube.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_FaCE_Training', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"Image":["TwoCircles.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_FaCE_VerA', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"Image":["NeckerCube.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ImageCopy_FaCE_VerB', 'EN', '{"canvas_width":"400vw","canvas_height":"400vh","ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"Image":["InverseNeckerCube.png"],"RecordGIF":true}'
+FROM task_types WHERE task_name = 'Image Copy';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'EN_IntakeForm', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":false,"Instructions01Audio":["assets/SoundFiles/Instructions/IntakeForm_InstructionsPage01.wav","assets/SoundFiles/Instructions/IntakeForm_InstructionsPage02.wav"],"Instructions01Time":[24000,15000]}'
@@ -531,6 +923,14 @@ SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ReadingListeningList01', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":false,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":3}'
+FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ReadingListeningList02', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":true,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":5}'
+FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SerialSubtract_Default', 'EN', '{"StartValue":100,"StepValue":7,"StopValue":65,"ShowInstructions":true,"ShowWelcome":true,"ShowThankYou":false,"AskForNotes":false,"ResponseType":"Spoken","TimeLimit":120,"DelayBeforeShowingDoneButton":10,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Serial Subtraction';
 
@@ -558,6 +958,27 @@ INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, para
 SELECT task_type_id, 'SerialSubtract_FaCE_VerB_Manual', 'EN', '{"StartValue":103,"StepValue":7,"StopValue":67,"ShowInstructions":false,"ShowWelcome":false,"ShowThankYou":false,"AskForNotes":false,"ResponseType":"Manual","TimeLimit":120,"DelayBeforeShowingDoneButton":10,"RecordAUDIO":false}'
 FROM task_types WHERE task_name = 'Serial Subtraction';
 
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_01', 'EN', '[{"index":3,"Title":"What session is this?","List":[{"name":"Intake","battery":"72","row":1,"BitIndex":1},{"name":"Baseline","battery":"3","row":1,"BitIndex":2},{"name":"Lesson 1","battery":"4","row":3,"BitIndex":3},{"name":"Lesson 2","battery":"4","row":4,"BitIndex":4},{"name":"Lesson 3","battery":"4","row":5,"BitIndex":5},{"name":"Post-intervention","battery":"3","row":6,"BitIndex":6},{"name":"Pick a Test","battery":"6","row":8,"BitIndex":99,"ButtonUsageType":"UserChoice"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_01', 'FR', '[{"index":2,"Title":"De quelle session s''agit-il?","List":[{"name":"Entrez votre nom","battery":"72"},{"name":"Admission","battery":"73"},{"name":"Référence","battery":"74"},{"name":"Test de Création de Sentiers","battery":"78"},{"name":"Visite-Pré","battery":"75"},{"name":"Post-visite","battery":"76"},{"name":"Post-Intervention","battery":"77"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_DEMO', 'EN', '[{"index":3,"Title":"What session is this?","List":[{"name":"Intake","battery":"72","row":1,"BitIndex":1},{"name":"Baseline","battery":"3","row":1,"BitIndex":2},{"name":"Lesson 1","battery":"4","row":3,"BitIndex":3},{"name":"Lesson 2","battery":"4","row":4,"BitIndex":4},{"name":"Lesson 3","battery":"4","row":5,"BitIndex":5},{"name":"Post-intervention","battery":"3","row":6,"BitIndex":6},{"name":"Pick a Test","battery":"6","row":8,"BitIndex":99,"ButtonUsageType":"UserChoice"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_99', 'EN', '[{"index":3,"Title":"What session is this?","List":[{"name":"Enter Name","battery":"72","row":1,"BitIndex":1,"Phase":"Name","Test":"Name"},{"name":"Demographics","battery":"73","row":1,"BitIndex":2,"Phase":"Demog","Test":"Demog"},{"name":"CESAM","battery":"74","row":1,"BitIndex":3,"Phase":"CESAM","Test":"CESAM"},{"name":"Baseline 1","battery":"77","row":2,"BitIndex":4,"Phase":"Baseline","Test":"BL-1"},{"name":"Baseline 2","battery":"77","row":2,"BitIndex":5,"Phase":"Baseline","Test":"BL-2"},{"name":"Baseline 3","battery":"77","row":2,"BitIndex":6,"Phase":"Baseline","Test":"BL-3"},{"name":"Baseline Trails 1","battery":"78","row":3,"BitIndex":7,"Phase":"Baseline","Test":"BL-Tr-1"},{"name":"Baseline Trails 2","battery":"83","row":3,"BitIndex":8,"Phase":"Baseline","Test":"BL-Tr-2"},{"name":"Baseline Trails 3","battery":"84","row":3,"BitIndex":9,"Phase":"Baseline","Test":"BL-Tr-3"},{"name":"Lesson 1, Pre","battery":"75","row":4,"BitIndex":10,"Phase":"Pre-class","Test":"1"},{"name":"Lesson 1, Post","battery":"80","row":4,"BitIndex":11,"Phase":"Post-class","Test":"1"},{"name":"Lesson 2, Pre","battery":"75","row":5,"BitIndex":12,"Phase":"Pre-class","Test":"2"},{"name":"Lesson 2, Post","battery":"81","row":5,"BitIndex":13,"Phase":"Post-class","Test":"2"},{"name":"Lesson 3, Pre","battery":"75","row":6,"BitIndex":14,"Phase":"Pre-class","Test":"3"},{"name":"Lesson 3, Post","battery":"82","row":6,"BitIndex":15,"Phase":"Post-class","Test":"3"},{"name":"Lesson 4, Pre","battery":"75","row":7,"BitIndex":16,"Phase":"Pre-class","Test":"4"},{"name":"Lesson 4, Post","battery":"80","row":7,"BitIndex":17,"Phase":"Post-class","Test":"4"},{"name":"Lesson 5, Pre","battery":"75","row":8,"BitIndex":18,"Phase":"Pre-class","Test":"5"},{"name":"Lesson 5, Post","battery":"81","row":8,"BitIndex":19,"Phase":"Post-class","Test":"5"},{"name":"Lesson 6, Pre","battery":"75","row":9,"BitIndex":20,"Phase":"Pre-class","Test":"6"},{"name":"Lesson 6, Post","battery":"82","row":9,"BitIndex":21,"Phase":"Post-class","Test":"6"},{"name":"Lesson 7, Pre","battery":"75","row":10,"BitIndex":22,"Phase":"Pre-class","Test":"7"},{"name":"Lesson 7, Post","battery":"80","row":10,"BitIndex":23,"Phase":"Post-class","Test":"7"},{"name":"Lesson 8, Pre","battery":"75","row":11,"BitIndex":24,"Phase":"Pre-class","Test":"8"},{"name":"Lesson 8, Post","battery":"81","row":11,"BitIndex":25,"Phase":"Post-class","Test":"8"},{"name":"Lesson 9, Pre","battery":"75","row":12,"BitIndex":26,"Phase":"Pre-class","Test":"9"},{"name":"Lesson 9, Post","battery":"82","row":12,"BitIndex":27,"Phase":"Post-class","Test":"9"},{"name":"Lesson 10, Pre","battery":"75","row":13,"BitIndex":28,"Phase":"Pre-class","Test":"10"},{"name":"Lesson 10, Post","battery":"85","row":13,"BitIndex":29,"Phase":"Post-class","Test":"10"},{"name":"Post-intervention 1","battery":"77","row":14,"BitIndex":30,"Phase":"Post-intervention","Test":"PI-1"},{"name":"Post-intervention 2","battery":"77","row":14,"BitIndex":31,"Phase":"Post-intervention","Test":"PI-2"},{"name":"Post-intervention 3","battery":"77","row":14,"BitIndex":32,"Phase":"Post-intervention","Test":"PI-3"},{"name":"Post-intervention Trails 1","battery":"78","row":15,"BitIndex":33,"Phase":"Post-intervention","Test":"PI-Tr-1"},{"name":"Post-intervention Trails 2","battery":"83","row":15,"BitIndex":34,"Phase":"Post-intervention","Test":"PI-Tr-2"},{"name":"Post-intervention Trails 3","battery":"84","row":15,"BitIndex":35,"Phase":"Post-intervention","Test":"PI-Tr-3"},{"name":"Lesson 11, Pre","battery":"75","row":17,"BitIndex":36,"Phase":"Pre-class","Test":"11"},{"name":"Lesson 11, Post","battery":"80","row":17,"BitIndex":37,"Phase":"Post-class","Test":"11"},{"name":"Lesson 12, Pre","battery":"75","row":18,"BitIndex":38,"Phase":"Pre-class","Test":"12"},{"name":"Lesson 12, Post","battery":"81","row":18,"BitIndex":39,"Phase":"Post-class","Test":"12"},{"name":"Lesson 13, Pre","battery":"75","row":19,"BitIndex":40,"Phase":"Pre-class","Test":"13"},{"name":"Lesson 13, Post","battery":"82","row":19,"BitIndex":41,"Phase":"Post-class","Test":"13"},{"name":"Pick a Test","battery":"79","row":20,"BitIndex":9999,"ButtonUsageType":"UserChoice","Phase":"User Choice","Test":"9999"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_99', 'FR', '[{"index":3,"Title":"De quelle session s''agit-il?","List":[{"name":"Entrez votre nom","battery":"72","row":1,"BitIndex":1,"Phase":"Name","Test":"Name"},{"name":"Démographique","battery":"73","row":1,"BitIndex":2,"Phase":"Demog","Test":"Demog"},{"name":"CESAM","battery":"74","row":1,"BitIndex":3,"Phase":"CESAM","Test":"CESAM"},{"name":"Référence 1","battery":"77","row":2,"BitIndex":4,"Phase":"Référence","Test":"BL-1"},{"name":"Référence 2","battery":"77","row":2,"BitIndex":5,"Phase":"Référence","Test":"BL-2"},{"name":"Référence 3","battery":"77","row":2,"BitIndex":6,"Phase":"Référence","Test":"BL-3"},{"name":"Référence Trails 1","battery":"78","row":3,"BitIndex":7,"Phase":"Référence","Test":"BL-Tr-1"},{"name":"Référence Trails 2","battery":"83","row":3,"BitIndex":8,"Phase":"Référence","Test":"BL-Tr-2"},{"name":"Référence Trails 3","battery":"84","row":3,"BitIndex":9,"Phase":"Référence","Test":"BL-Tr-3"},{"name":"Leçon 1, Pre","battery":"75","row":4,"BitIndex":10,"Phase":"Pre-class","Test":"1"},{"name":"Leçon 1, Post","battery":"80","row":4,"BitIndex":11,"Phase":"Post-class","Test":"1"},{"name":"Leçon 2, Pre","battery":"75","row":5,"BitIndex":12,"Phase":"Pre-class","Test":"2"},{"name":"Leçon 2, Post","battery":"81","row":5,"BitIndex":13,"Phase":"Post-class","Test":"2"},{"name":"Leçon 3, Pre","battery":"75","row":6,"BitIndex":14,"Phase":"Pre-class","Test":"3"},{"name":"Leçon 3, Post","battery":"82","row":6,"BitIndex":15,"Phase":"Post-class","Test":"3"},{"name":"Leçon 4, Pre","battery":"75","row":7,"BitIndex":16,"Phase":"Pre-class","Test":"4"},{"name":"Leçon 4, Post","battery":"80","row":7,"BitIndex":17,"Phase":"Post-class","Test":"4"},{"name":"Leçon 5, Pre","battery":"75","row":8,"BitIndex":18,"Phase":"Pre-class","Test":"5"},{"name":"Leçon 5, Post","battery":"81","row":8,"BitIndex":19,"Phase":"Post-class","Test":"5"},{"name":"Leçon 6, Pre","battery":"75","row":9,"BitIndex":20,"Phase":"Pre-class","Test":"6"},{"name":"Leçon 6, Post","battery":"82","row":9,"BitIndex":21,"Phase":"Post-class","Test":"6"},{"name":"Leçon 7, Pre","battery":"75","row":10,"BitIndex":22,"Phase":"Pre-class","Test":"7"},{"name":"Leçon 7, Post","battery":"80","row":10,"BitIndex":23,"Phase":"Post-class","Test":"7"},{"name":"Leçon 8, Pre","battery":"75","row":11,"BitIndex":24,"Phase":"Pre-class","Test":"8"},{"name":"Leçon 8, Post","battery":"81","row":11,"BitIndex":25,"Phase":"Post-class","Test":"8"},{"name":"Leçon 9, Pre","battery":"75","row":12,"BitIndex":26,"Phase":"Pre-class","Test":"9"},{"name":"Leçon 9, Post","battery":"82","row":12,"BitIndex":27,"Phase":"Post-class","Test":"9"},{"name":"Leçon 10, Pre","battery":"75","row":13,"BitIndex":28,"Phase":"Pre-class","Test":"10"},{"name":"Leçon 10, Post","battery":"85","row":13,"BitIndex":29,"Phase":"Post-class","Test":"10"},{"name":"Post-intervention 1","battery":"77","row":14,"BitIndex":30,"Phase":"Post-intervention","Test":"PI-1"},{"name":"Post-intervention 2","battery":"77","row":14,"BitIndex":31,"Phase":"Post-intervention","Test":"PI-2"},{"name":"Post-intervention 3","battery":"77","row":14,"BitIndex":32,"Phase":"Post-intervention","Test":"PI-3"},{"name":"Post-intervention Trails 1","battery":"78","row":15,"BitIndex":33,"Phase":"Post-intervention","Test":"PI-Tr-1"},{"name":"Post-intervention Trails 2","battery":"83","row":15,"BitIndex":34,"Phase":"Post-intervention","Test":"PI-Tr-2"},{"name":"Post-intervention Trails 3","battery":"84","row":15,"BitIndex":35,"Phase":"Post-intervention","Test":"PI-Tr-3"},{"name":"Leçon 11, Pre","battery":"75","row":17,"BitIndex":36,"Phase":"Pre-class","Test":"11"},{"name":"Leçon 11, Post","battery":"80","row":17,"BitIndex":37,"Phase":"Post-class","Test":"11"},{"name":"Leçon 12, Pre","battery":"75","row":18,"BitIndex":38,"Phase":"Pre-class","Test":"12"},{"name":"Leçon 12, Post","battery":"81","row":18,"BitIndex":39,"Phase":"Post-class","Test":"12"},{"name":"Leçon 13, Pre","battery":"75","row":19,"BitIndex":40,"Phase":"Pre-class","Test":"13"},{"name":"Leçon 13, Post","battery":"82","row":19,"BitIndex":41,"Phase":"Post-class","Test":"13"},{"name":"Pick a Test","battery":"79","row":20,"BitIndex":9999,"ButtonUsageType":"UserChoice","Phase":"User Choice","Test":"9999"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('COMM_99', 'KR', '[{"index":3,"Title":"이건 무슨 세션이에요?","List":[{"name":"이름","battery":"72","row":1,"BitIndex":1},{"name":"인구통계","battery":"73","row":1,"BitIndex":2},{"name":"CESAM","battery":"74","row":1,"BitIndex":3},{"name":"기준선 1","battery":"77","row":2,"BitIndex":4},{"name":"기준선 2","battery":"77","row":2,"BitIndex":5},{"name":"기준선 3","battery":"77","row":2,"BitIndex":6},{"name":"기준선 Trails 1","battery":"78","row":3,"BitIndex":7},{"name":"기준선 Trails 2","battery":"83","row":3,"BitIndex":8},{"name":"기준선 Trails 3","battery":"84","row":3,"BitIndex":9},{"name":"제1과, Pre","battery":"75","row":4,"BitIndex":10},{"name":"제1과, Post","battery":"80","row":4,"BitIndex":11},{"name":"제2과, Pre","battery":"75","row":5,"BitIndex":12},{"name":"제2과, Post","battery":"80","row":5,"BitIndex":13},{"name":"제3과, Pre","battery":"75","row":6,"BitIndex":14},{"name":"제3과, Post","battery":"81","row":6,"BitIndex":15},{"name":"제4과, Pre","battery":"75","row":7,"BitIndex":16},{"name":"제4과, Post","battery":"80","row":7,"BitIndex":17},{"name":"제5과, Pre","battery":"75","row":8,"BitIndex":18},{"name":"제5과, Post","battery":"81","row":8,"BitIndex":19},{"name":"제6과, Pre","battery":"75","row":9,"BitIndex":20},{"name":"제6과, Post","battery":"82","row":9,"BitIndex":21},{"name":"제7과, Pre","battery":"75","row":10,"BitIndex":22},{"name":"제7과, Post","battery":"80","row":10,"BitIndex":23},{"name":"제8과, Pre","battery":"75","row":11,"BitIndex":24},{"name":"제8과, Post","battery":"81","row":11,"BitIndex":25},{"name":"제9과, Pre","battery":"75","row":12,"BitIndex":26},{"name":"제9과, Post","battery":"82","row":12,"BitIndex":27},{"name":"제10과, Pre","battery":"75","row":13,"BitIndex":28},{"name":"제10과, Post","battery":"85","row":13,"BitIndex":29},{"name":"1개입 후","battery":"77","row":14,"BitIndex":30},{"name":"2개입 후","battery":"77","row":14,"BitIndex":31},{"name":"3개입 후","battery":"77","row":14,"BitIndex":32},{"name":"Trails 1 개입 후","battery":"78","row":15,"BitIndex":33},{"name":"Trails 2 개입 후","battery":"83","row":15,"BitIndex":34},{"name":"Trails 3 개입 후","battery":"84","row":15,"BitIndex":35},{"name":"제11과, Pre","battery":"75","row":17,"BitIndex":36},{"name":"제11과, Post","battery":"80","row":17,"BitIndex":37},{"name":"제12과, Pre","battery":"75","row":18,"BitIndex":38},{"name":"제12과, Post","battery":"81","row":18,"BitIndex":39},{"name":"제13과, Pre","battery":"75","row":19,"BitIndex":40},{"name":"제13과, Post","battery":"82","row":19,"BitIndex":41},{"name":"테스트를 선택하세요","battery":"79","row":20,"BitIndex":9999,"ButtonUsageType":"UserChoice"}]}]');
+
+INSERT IGNORE INTO session_chooser_configs (config_name, language, config_json)
+VALUES ('Mont_99', 'FR', '[{"index":4,"Title":"What session is this?","List":[{"name":"Enter Name","battery":"72","row":1,"BitIndex":1,"Phase":"Eligibility"},{"name":"Demographics","battery":"98701","row":2,"BitIndex":2,"Phase":"Eligibility"},{"name":"xMRI Safety","battery":"98702","row":2,"BitIndex":3,"Phase":"Eligibility"},{"name":"xQVieActive","battery":"98703","row":2,"BitIndex":4,"Phase":"Eligibility"},{"name":"ADL-PD","battery":"98704","row":2,"BitIndex":5,"Phase":"Eligibility"},{"name":"CompExp","battery":"98705","row":2,"BitIndex":6,"Phase":"Eligibility"},{"name":"xVideoExp","battery":"98706","row":2,"BitIndex":7,"Phase":"Eligibility"},{"name":"CCI","battery":"98711","row":4,"BitIndex":8,"Phase":"Health"},{"name":"FRS","battery":"98712","row":4,"BitIndex":9,"Phase":"Health"},{"name":"xWH","battery":"98713","row":4,"BitIndex":10,"Phase":"Health"},{"name":"GAI","battery":"98714","row":4,"BitIndex":11,"Phase":"Health"},{"name":"GDS","battery":"98715","row":4,"BitIndex":12,"Phase":"Health"},{"name":"xCRQ","battery":"98721","row":6,"BitIndex":13,"Phase":"Moderators"},{"name":"xLTPAQ","battery":"98722","row":6,"BitIndex":14,"Phase":"Moderators"},{"name":"xNASA-TLX-1","battery":"98751","row":8,"BitIndex":15,"Phase":"Workload"},{"name":"xNASA-TLX-2","battery":"98751","row":8,"BitIndex":16,"Phase":"Workload"},{"name":"xNASA-TLX-3","battery":"98751","row":8,"BitIndex":17,"Phase":"Workload"},{"name":"xNASA-TLX-4","battery":"98751","row":8,"BitIndex":18,"Phase":"Workload"},{"name":"Leçon 1","battery":"98713","row":10,"BitIndex":19,"Phase":"Weekly","Test":1},{"name":"Leçon 2","battery":"98713","row":10,"BitIndex":20,"Phase":"Weekly","Test":2},{"name":"Leçon 3","battery":"98713","row":10,"BitIndex":21,"Phase":"Weekly","Test":3},{"name":"Leçon 4","battery":"98713","row":10,"BitIndex":22,"Phase":"Weekly","Test":4},{"name":"Leçon 5","battery":"98713","row":11,"BitIndex":23,"Phase":"Weekly","Test":5},{"name":"Leçon 6","battery":"98713","row":11,"BitIndex":24,"Phase":"Weekly","Test":6},{"name":"Leçon 7","battery":"98713","row":11,"BitIndex":25,"Phase":"Weekly","Test":7},{"name":"Leçon 8","battery":"98713","row":11,"BitIndex":26,"Phase":"Weekly","Test":8},{"name":"Leçon 9","battery":"98713","row":12,"BitIndex":27,"Phase":"Weekly","Test":9},{"name":"Leçon 10","battery":"98713","row":12,"BitIndex":28,"Phase":"Weekly","Test":10},{"name":"Leçon 11","battery":"98713","row":12,"BitIndex":29,"Phase":"Weekly","Test":11},{"name":"Leçon 12","battery":"98713","row":12,"BitIndex":30,"Phase":"Weekly","Test":12},{"name":"Leçon 13","battery":"98713","row":13,"BitIndex":31,"Phase":"Weekly","Test":13},{"name":"Leçon 14","battery":"98713","row":13,"BitIndex":32,"Phase":"Weekly","Test":14},{"name":"Leçon 15","battery":"98713","row":13,"BitIndex":33,"Phase":"Weekly","Test":15},{"name":"Leçon 16","battery":"98713","row":13,"BitIndex":34,"Phase":"Weekly","Test":16},{"name":"Leçon 17","battery":"98713","row":14,"BitIndex":35,"Phase":"Weekly","Test":17},{"name":"Leçon 18","battery":"98713","row":14,"BitIndex":36,"Phase":"Weekly","Test":18},{"name":"Leçon 19","battery":"98713","row":14,"BitIndex":37,"Phase":"Weekly","Test":19},{"name":"Leçon 20","battery":"98713","row":14,"BitIndex":38,"Phase":"Weekly","Test":20},{"name":"Leçon 21","battery":"98713","row":15,"BitIndex":39,"Phase":"Weekly","Test":21},{"name":"Leçon 22","battery":"98713","row":15,"BitIndex":40,"Phase":"Weekly","Test":22},{"name":"Leçon 23","battery":"98713","row":15,"BitIndex":41,"Phase":"Weekly","Test":23},{"name":"Leçon 24","battery":"98713","row":15,"BitIndex":42,"Phase":"Weekly","Test":24}],"runNameCheck":false}]');
+
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_Adaptive', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"MaxTrials":40,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
@@ -577,6 +998,42 @@ FROM task_types WHERE task_name = 'Spatial DMS';
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_Adaptive_003B', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":1,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":250,"RetOnTime":320,"ProbeOnTime":250,"ITITime":100,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Default', 'EN', '{"ColorPracticeRepeats":1,"WordPracticeRepeats":1,"ColorWordPracticeRepeats":1,"ColorTestRepeats":2,"WordTestRepeats":1,"ColorWordTestRepeats":1,"ITI_Range":[250,500,750,1000,1250,1500,1750,2000],"ITI_Duration":-99,"AllowedTime":-99,"Score_NumberTrials":null,"Score_ProcedureName":null,"ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
+FROM task_types WHERE task_name = 'Stroop Color';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Default', 'EN', '{"ColorPracticeRepeats":1,"WordPracticeRepeats":1,"ColorWordPracticeRepeats":1,"ColorTestRepeats":2,"WordTestRepeats":1,"ColorWordTestRepeats":1,"ITI_Range":[250,500,750,1000,1250,1500,1750,2000],"ITI_Duration":-99,"AllowedTime":-99,"Score_NumberTrials":null,"Score_ProcedureName":null,"ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
+FROM task_types WHERE task_name = 'Stroop Word';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Default', 'EN', '{"ColorPracticeRepeats":1,"WordPracticeRepeats":1,"ColorWordPracticeRepeats":1,"ColorTestRepeats":2,"WordTestRepeats":1,"ColorWordTestRepeats":1,"ITI_Range":[250,500,750,1000,1250,1500,1750,2000],"ITI_Duration":-99,"AllowedTime":-99,"Score_NumberTrials":null,"Score_ProcedureName":null,"ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
+FROM task_types WHERE task_name = 'Stroop Color/Word';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Color';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Word';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Color/Word';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Golden', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":1,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":45,"Score_NumberTrials":null,"Score_ProcedureName":"Golden","ShowInstructions":false,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Color';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Golden', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":1,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":45,"Score_NumberTrials":null,"Score_ProcedureName":"Golden","ShowInstructions":false,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Word';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Stroop_Golden', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":1,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":45,"Score_NumberTrials":null,"Score_ProcedureName":"Golden","ShowInstructions":false,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+FROM task_types WHERE task_name = 'Stroop Color/Word';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'TrailMakingA_Default', 'EN', '{"Circles":[{"centerX":0.711,"centerY":0.534,"radius":15,"label":"1"},{"centerX":0.486,"centerY":0.652,"radius":15,"label":"2"},{"centerX":0.78,"centerY":0.703,"radius":15,"label":"3"},{"centerX":0.757,"centerY":0.333,"radius":15,"label":"4"},{"centerX":0.427,"centerY":0.355,"radius":15,"label":"5"},{"centerX":0.601,"centerY":0.437,"radius":15,"label":"6"},{"centerX":0.413,"centerY":0.527,"radius":15,"label":"7"},{"centerX":0.271,"centerY":0.685,"radius":15,"label":"8"},{"centerX":0.321,"centerY":0.796,"radius":15,"label":"9"},{"centerX":0.394,"centerY":0.674,"radius":15,"label":"10"},{"centerX":0.656,"centerY":0.821,"radius":15,"label":"11"},{"centerX":0.165,"centerY":0.857,"radius":15,"label":"12"},{"centerX":0.248,"centerY":0.513,"radius":15,"label":"13"},{"centerX":0.138,"centerY":0.566,"radius":15,"label":"14"},{"centerX":0.087,"centerY":0.075,"radius":15,"label":"15"},{"centerX":0.248,"centerY":0.226,"radius":15,"label":"16"},{"centerX":0.532,"centerY":0.054,"radius":15,"label":"17"},{"centerX":0.491,"centerY":0.254,"radius":15,"label":"18"},{"centerX":0.789,"centerY":0.14,"radius":15,"label":"19"},{"centerX":0.624,"centerY":0.129,"radius":15,"label":"20"},{"centerX":0.867,"centerY":0.054,"radius":15,"label":"21"},{"centerX":0.881,"centerY":0.326,"radius":15,"label":"22"},{"centerX":0.922,"centerY":0.849,"radius":15,"label":"23"},{"centerX":0.839,"centerY":0.516,"radius":15,"label":"24"},{"centerX":0.817,"centerY":0.821,"radius":15,"label":"25"}],"SuggestedWidth":850,"SuggestedHeight":1100,"ShowTimer":true,"Duration":180000,"ShowPractice":true,"PracticeCircles":[{"centerX":0.540983606557377,"centerY":0.660919540229885,"radius":15,"label":"1"},{"centerX":0.79672131147541,"centerY":0.186781609195402,"radius":15,"label":"2"},{"centerX":0.959016393442623,"centerY":0.718390804597701,"radius":15,"label":"3"},{"centerX":0.763934426229508,"centerY":0.554597701149425,"radius":15,"label":"4"},{"centerX":0.814754098360656,"centerY":0.92551724137931,"radius":15,"label":"5"},{"centerX":0.178688524590164,"centerY":0.928390804597701,"radius":15,"label":"6"},{"centerX":0.168852459016393,"centerY":0.376436781609195,"radius":15,"label":"7"},{"centerX":0.49016393442623,"centerY":0.333333333333333,"radius":15,"label":"8"}],"PracticeSuggestedWidth":610,"PracticeSuggestedHeight":348,"ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":false,"AskForNotes":false,"RecordGIF":true,"shortTitle":"Trails A"}'
