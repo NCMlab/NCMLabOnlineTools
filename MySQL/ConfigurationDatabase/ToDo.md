@@ -184,10 +184,19 @@ run locally.
       (parameters). Rather than invent unrequested UI, batteries are currently saved with
       `instruction_id` left `null` (the schema allows this). Needs its own design pass if
       instructions should be pickable from this UI.
+- [x] **Credentials no longer live in tracked source.** Jason: "Ideally, the login and password
+      should not be in the code. If I add my credentials and push to github, that is bad."
+      Resolved 2026-07-08: all 5 PHP files that previously had `define('DB_USER', ...)` /
+      `define('DB_PASS', ...)` inline now `require_once` a shared `db_config.php`
+      (`MySQL/ConfigurationDatabase/db_config.php`), which is listed in `.gitignore`. Only
+      `db_config.example.php` (placeholder values) is tracked. Verified with
+      `git check-ignore -v` that the real file is actually ignored, not just assumed to be.
+- [ ] Copy `db_config.example.php` to `db_config.php` and fill in real credentials, once per
+      deployment location (and once for local dev) — see `SetupInstructions.md` §2.3 or
+      `admin/AdminSetupInstructions.md` Part 1.5
 - [ ] Run `php admin/create_admin_user.php <username>` on the server to create the first
-      login (no self-registration by design — privileged lab staff only)
-- [ ] Edit `DB_HOST`/`DB_NAME`/`DB_USER`/`DB_PASS` in `admin/admin_common.php` and
-      `admin/create_admin_user.php`
+      login (no self-registration by design — privileged lab staff only). Requires the above
+      step first, or it fails with `Access denied for user 'your_db_user'@'localhost'`.
 - [ ] **Set `ADMIN_ALLOWED_ORIGIN` in `admin/admin_common.php`** to NCMBatteryWebsite's real
       deployed URL once it has one — currently a placeholder
       (`https://your-admin-site.example.edu`). Cannot be `*`; these requests carry a session

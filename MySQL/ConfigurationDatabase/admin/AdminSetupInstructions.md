@@ -32,6 +32,27 @@ mysql -u ncmuser -p ncmbattery_config < MySQL/ConfigurationDatabase/CreateSchema
 
 ---
 
+## Part 1.5 — Set up database credentials (kept out of source control)
+
+`create_admin_user.php` and every `API_admin_*.php` endpoint load their DB credentials from one
+shared file, `../db_config.php` (relative to this `admin/` folder — i.e.
+`MySQL/ConfigurationDatabase/db_config.php`). That file is listed in `.gitignore`, so it can
+never end up committed or pushed, even accidentally. If you've already done this as part of the
+main `SetupInstructions.md` §2.3, skip this — it's the same file, shared by both the public and
+admin APIs.
+
+```bash
+cd MySQL/ConfigurationDatabase
+cp db_config.example.php db_config.php   # only needed once per deployment/dev copy
+nano db_config.php                        # fill in your real DB_USER / DB_PASS
+```
+
+Without this, `create_admin_user.php` will fail with something like
+`Access denied for user 'your_db_user'@'localhost'` — that's the placeholder value in
+`db_config.example.php` you copied from, not a real error with your database.
+
+---
+
 ## Part 2 — Create your first admin account
 
 There is no HTTP registration endpoint on purpose — these are privileged lab-staff accounts, not
@@ -51,17 +72,10 @@ if this folder ends up inside a web-accessible path by mistake.
 
 ## Part 3 — Configure and deploy the PHP files
 
-Edit the same four DB constants as the public API, in **each** of these files: `admin_common.php`,
-`create_admin_user.php`:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ncmbattery_config');
-define('DB_USER', 'ncmuser');
-define('DB_PASS', 'StrongPassword123!');
-```
-
-Then, in `admin_common.php` only, set the exact origin NCMBatteryWebsite will be served from —
+DB credentials are already handled by Part 1.5's `db_config.php` — nothing to edit per-file for
+that. The one thing still configured directly in code, because it isn't a secret, just an
+environment-specific setting: in `admin_common.php`, set the exact origin NCMBatteryWebsite will
+be served from —
 **this cannot be `*`**, because these requests carry a session cookie and browsers reject
 wildcard CORS on credentialed requests:
 
@@ -78,6 +92,11 @@ public, unauthenticated "what exists?" endpoint NCMBatteryWebsite uses to popula
 grid and parameter-set dropdowns. Do **not** deploy `create_admin_user.php` to a web-accessible
 path — keep it somewhere only reachable by SSH/CLI, even though it self-protects against HTTP
 execution.
+
+`admin_common.php` loads `../db_config.php`, so `db_config.php` needs to exist one level *above*
+wherever you put the `admin/` folder — i.e. `/var/www/html/api/db_config.php`, a sibling of
+`API_battery.php`, not inside `admin/` itself. If you followed Part 1.5 and the main
+`SetupInstructions.md` §2.3 against the same deployment location, this is already true.
 
 **HTTPS is not optional here.** The session cookie is marked `secure`, meaning browsers will
 refuse to send it at all over plain HTTP — login will appear to silently fail. Put this behind

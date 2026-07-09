@@ -22,13 +22,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); // Restrict to your JATOS/admin domains in production
 
-// -- Database connection settings ------------------------------------------
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ncmbattery_config');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_db_password');
-define('DB_CHARSET', 'utf8mb4');
-// --------------------------------------------------------------------------
+require_once __DIR__ . '/db_config.php';
 
 function respond_error(int $code, string $message): void {
     http_response_code($code);

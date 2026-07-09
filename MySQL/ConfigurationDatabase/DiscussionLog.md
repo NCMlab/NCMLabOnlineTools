@@ -359,6 +359,7 @@ See files: `API_battery.php` and `API_example_fetch.js` for implementation.
 | `AddNewLabel.md` | How-to: add one new UI label with EN/FR/KR translations |
 | `AddNewLanguage.md` | How-to: add a whole new language to `ui_labels` |
 | `CreateSchema.sql` | SQL to create database, all 8 tables, indexes, and view |
+| `db_config.example.php` | Tracked template for DB credentials — copy to `db_config.php` (gitignored) and fill in real values |
 | `SeedData_TaskTypes.sql` | INSERT for all 34 task types + full Word Recall example |
 | `API_battery.php` | PHP endpoint returning a whole battery as JSON |
 | `API_task_config.php` | PHP endpoint returning one parameter set or instruction set |
@@ -870,15 +871,65 @@ would need its own design pass, not an assumption bundled into this one.
 
 ---
 
+**Jason's prompt:**
+> "What is the login and password for the ReactJS site?"
+
+**Claude:** Answered directly: no account exists yet anywhere — `create_admin_user.php` has
+never been run, so `admin_users` has zero rows, and nothing has been deployed. Explained the CLI
+command to create the first one, and that Claude neither sets nor knows the credentials (bcrypt
+hash only).
+
+**Jason's prompt:**
+> "I get this response: Database connection failed: SQLSTATE[HY000] [1045] Access denied for
+> user 'your_db_user'@'localhost' (using password: YES)"
+
+**Claude:** Diagnosed: `create_admin_user.php` still had the literal placeholder
+`define('DB_USER', 'your_db_user')` from when it was first written — expected, not a real
+failure. Checked locally (a `mysql` client exists, a server is reachable, but no
+`ncmbattery_config` database or dedicated user exists yet — couldn't check further without root's
+password, which Claude didn't ask for). Gave Jason the exact `CREATE USER`/`GRANT` SQL to run
+himself interactively, and offered to fill in `DB_USER` once he'd picked one — deliberately
+suggesting Jason edit `DB_PASS` himself rather than paste it into the conversation.
+
+**Jason's prompt:**
+> "Ideally, the login and password should not be in the code. If I add my credentials and push
+> to github, that is bad. Update the SetupInstructions for using credentials in a manner that
+> does not risk them going to github."
+
+**Claude:** Restructured how every PHP file gets its DB credentials, rather than just updating
+docs around the existing pattern. Created `db_config.example.php` (tracked, placeholder values
+only) and added `MySQL/ConfigurationDatabase/db_config.php` to the root `.gitignore` — verified
+with `git check-ignore -v` that it actually takes effect, not just assumed. Replaced the inline
+`define('DB_HOST', ...)` block in all 5 PHP files that had one
+(`API_battery.php`, `API_task_config.php`, `API_list_config.php`, `admin/admin_common.php`,
+`admin/create_admin_user.php`) with `require_once __DIR__ . '/db_config.php'` (or `/../db_config.php`
+for the two files in `admin/`). Created a local `db_config.php` pre-filled with the same
+placeholders (safe, since it's gitignored) for Jason to edit directly with real values — the
+same "don't paste secrets into the conversation" approach from the previous prompt.
+
+Updated both setup docs to match: `SetupInstructions.md` §2.3 changed from "edit credentials in
+each file" to "copy `db_config.example.php` once per deployment location"; added a new
+"Part 1.5" to `admin/AdminSetupInstructions.md` (had to slot in *before* Part 2's
+`create_admin_user.php` step, since that script now depends on `db_config.php` existing first),
+and trimmed Part 3's now-redundant credential instructions down to just the one setting that
+genuinely isn't a secret (`ADMIN_ALLOWED_ORIGIN`). Confirmed no file outside the gitignored
+`db_config.php` and the intentional troubleshooting example in
+`AdminSetupInstructions.md` still mentions the placeholder value.
+
+---
+
 **Status as of the end of this log:** the database schema/SQL work (`ToDo.md` Part 2) and the
 admin API deployment (`ToDo.md` Part 2b) both remain undeployed — everything so far has been
 built and verified locally, but nothing has touched a live server. `NCMBatteryWebsite` is now
-wired to call the admin API but has not been run against a real backend. Remaining open items:
-`SelfReport_Setup.js` is deferred pending investigation into what it is; the FR/KR `Info`
-translation gap is deferred by Jason's own choice until translation work happens; the broken
-relative paths in the two moved-but-unfinished HTML files are unresolved; the admin API's known
-gaps (rate limiting, audit log, update/delete endpoints) are undone by design, not by accident;
-there is no instruction-set picker in the UI yet.
+wired to call the admin API but has not been run against a real backend. DB credentials are no
+longer at risk of being committed (`db_config.php` is gitignored), but Jason still needs to fill
+in real values in his local `db_config.php` before `create_admin_user.php` or any API endpoint
+will connect successfully. Remaining open items: `SelfReport_Setup.js` is deferred pending
+investigation into what it is; the FR/KR `Info` translation gap is deferred by Jason's own
+choice until translation work happens; the broken relative paths in the two
+moved-but-unfinished HTML files are unresolved; the admin API's known gaps (rate limiting, audit
+log, update/delete endpoints) are undone by design, not by accident; there is no instruction-set
+picker in the UI yet.
 See `ToDo.md` for the authoritative, currently-live checklist.
 
 ---

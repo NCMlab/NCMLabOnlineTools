@@ -10,19 +10,14 @@
  * ordered task list with parameters and instructions for each task.
  *
  * Deploy this file on the same server as your MySQL instance.
- * Update the $db_* constants below to match your server.
+ * Credentials come from db_config.php (gitignored -- see db_config.example.php),
+ * not from constants in this file, so they never end up in source control.
  */
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); // Restrict to your JATOS domain in production
 
-// -- Database connection settings ------------------------------------------
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ncmbattery_config');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_db_password');
-define('DB_CHARSET', 'utf8mb4');
-// --------------------------------------------------------------------------
+require_once __DIR__ . '/db_config.php';
 
 function respond_error(int $code, string $message): void {
     http_response_code($code);

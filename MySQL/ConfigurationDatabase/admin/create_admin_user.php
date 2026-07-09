@@ -20,11 +20,9 @@ if (php_sapi_name() !== 'cli') {
     exit('This script may only be run from the command line.');
 }
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ncmbattery_config');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_db_password');
-define('DB_CHARSET', 'utf8mb4');
+// Credentials come from db_config.php (gitignored -- see ../db_config.example.php),
+// not from constants in this file, so they never end up in source control.
+require_once __DIR__ . '/../db_config.php';
 
 $username = $argv[1] ?? null;
 if (!$username) {

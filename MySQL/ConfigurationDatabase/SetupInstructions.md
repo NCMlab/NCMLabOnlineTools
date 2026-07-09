@@ -201,42 +201,69 @@ Two options:
 
 ```bash
 sudo mkdir -p /var/www/html/api
-sudo cp MySQL/ConfigurationDatabase/API_battery.php     /var/www/html/api/
-sudo cp MySQL/ConfigurationDatabase/API_task_config.php /var/www/html/api/
+sudo cp MySQL/ConfigurationDatabase/API_battery.php      /var/www/html/api/
+sudo cp MySQL/ConfigurationDatabase/API_task_config.php  /var/www/html/api/
+sudo cp MySQL/ConfigurationDatabase/API_list_config.php  /var/www/html/api/
+sudo cp MySQL/ConfigurationDatabase/db_config.example.php /var/www/html/api/
 ```
 
 The API will be reachable at:
 - `http://yourserver/api/API_battery.php?index=16`
 - `http://yourserver/api/API_task_config.php?type=parameters&task=Word+Recall&name=RAVLT_Spoken_Immediate`
+- `http://yourserver/api/API_list_config.php?resource=task_types`
 
 **Option B — Deploy as a subfolder of the JATOS static files** (only works if Apache serves the NCMBattery assets, not JATOS itself):
 
 ```bash
 mkdir -p /home/jason/jatos_linux_java/study_assets_root/NCMBattery/api
-cp MySQL/ConfigurationDatabase/API_battery.php     /path/to/web_root/NCMBattery/api/
-cp MySQL/ConfigurationDatabase/API_task_config.php /path/to/web_root/NCMBattery/api/
+cp MySQL/ConfigurationDatabase/API_battery.php      /path/to/web_root/NCMBattery/api/
+cp MySQL/ConfigurationDatabase/API_task_config.php  /path/to/web_root/NCMBattery/api/
+cp MySQL/ConfigurationDatabase/API_list_config.php  /path/to/web_root/NCMBattery/api/
+cp MySQL/ConfigurationDatabase/db_config.example.php /path/to/web_root/NCMBattery/api/
 ```
 
 ---
 
-### 2.3 Edit the database credentials in each PHP file
+### 2.3 Set up database credentials (kept out of source control)
 
-Open each file and replace the four placeholder constants at the top:
+All three PHP files above load their DB credentials from **one shared file, `db_config.php`**,
+instead of having credentials written into each file directly. `db_config.php` is listed in
+`.gitignore` — even `git add -A` will never stage it, so real credentials can never end up
+committed or pushed to GitHub. Only `db_config.example.php` (placeholder values, safe to commit)
+is tracked.
+
+On the server, in the same folder you deployed the API files to:
 
 ```bash
-sudo nano /var/www/html/api/API_task_config.php
+cd /var/www/html/api   # or wherever you deployed to in Step 2.2
+sudo mv db_config.example.php db_config.php
+sudo nano db_config.php
 ```
 
-Find these lines and update them:
+Fill in your real values:
 
 ```php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ncmbattery_config');
 define('DB_USER', 'ncmuser');            // <-- the user you created in Step 1.3
 define('DB_PASS', 'StrongPassword123!'); // <-- the password from Step 1.3
+define('DB_CHARSET', 'utf8mb4');
 ```
 
-Do the same in `API_battery.php`.
+That's it — `db_config.php` only needs to exist once per deployment location; every PHP file in
+that folder (including `admin/`, one level down, which loads `../db_config.php`) reads from it.
+
+**If you're developing locally** (not deploying to a server yet), do the same thing directly in
+your working copy of the repo:
+
+```bash
+cd MySQL/ConfigurationDatabase
+cp db_config.example.php db_config.php
+# edit db_config.php with your real local MySQL credentials
+```
+
+`git status` will not show `db_config.php` as a new/changed file once you do this — that's
+`.gitignore` working correctly, not a mistake.
 
 ---
 

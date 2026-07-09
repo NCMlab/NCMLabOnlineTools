@@ -9,12 +9,9 @@
  * Not a standalone endpoint -- included by API_admin_*.php files only.
  */
 
-// -- Database connection settings ------------------------------------------
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'ncmbattery_config');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_db_password');
-define('DB_CHARSET', 'utf8mb4');
+// Credentials come from db_config.php (gitignored -- see ../db_config.example.php),
+// not from constants in this file, so they never end up in source control.
+require_once __DIR__ . '/../db_config.php';
 
 // -- CORS: this must be the exact origin NCMBatteryWebsite is served from --
 // Unlike the public API_battery.php/API_task_config.php (Access-Control-Allow-Origin: *),

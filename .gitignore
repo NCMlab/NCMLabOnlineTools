@@ -17,3 +17,6 @@ TestLocal.html
 functions/poldrack_utils.js
 html/Emilie/
 html/LOCAL/
+
+# Real DB credentials -- never commit this. See MySQL/ConfigurationDatabase/db_config.example.php
+MySQL/ConfigurationDatabase/db_config.php
