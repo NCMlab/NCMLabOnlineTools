@@ -12,16 +12,16 @@
     <link rel="stylesheet" type="text/css" href="../css/defaultV2.min.css">
     <link rel="stylesheet" type="text/css" href="../css/NCMLabGeneral.css">
     <link rel="stylesheet" type="text/css" href="../css/ButtonsHeaderBody.css">
-
+    <link rel="stylesheet" type="text/css" href="../css/CostOfSports.css">
     
     <script src="../jspsych/dist/jspsych.js"></script>
     <script src="../jspsych/dist/plugin-survey.js"></script>
     <script src="../functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
     <script src="https://unpkg.com/survey-core@latest/survey.core.min.js"></script>
     <script src="https://unpkg.com/survey-jquery@latest/survey.jquery.min.js"></script>
-    <script src="TestCOS002.js"></script>
- 
-    <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>
+
+  <!-- <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSportCalculation.js"></script>-->
+    <script src="../InstructionsAndStimuli/EN/Questionnaires/costOfSport_subParts.js"></script>
 <style>
 
       /* Center the radiogroup choices */
@@ -133,14 +133,14 @@
         }
       });
 
-      console.log("Loaded survey JSON:", Test002_json);
+      
 
   
 
       var form_trial = {
         type: jsPsychSurvey,
         survey_json: function () {
-          return Test002_json//EN_CostOfSportCalculation.survey_JSON;
+          return EN_CostOfSport.survey_JSON;
         },
         button_label: "Submit",
         required: true,
@@ -152,7 +152,6 @@
         }
       };
 
-     
       jsPsych.run([form_trial]);
     </script>
   </head>

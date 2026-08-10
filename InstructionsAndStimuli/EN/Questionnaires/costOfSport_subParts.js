@@ -554,47 +554,49 @@ const json = {
             verticalAlign: "middle"
 
           },
-          //calculation for practice table
-
-          // {
-          //   type: "expression",
-          //   name: "SP_PR_Freq",
-          //   title: "Total practices last year",
-          //   displayStyle: "decimal",
-          //   precision: 2,
-          //   expression:
-          //     "{practice_table.freq.SP_PR_1} * 16 + " + // keep this idea, but use the new format
-          //     "{practice_table.freq.SP_PR_2} * 2  + " +
-          //     "{practice_table.freq.SP_PR_3} * 12 + " +
-          //     "{practice_table.freq.SP_PR_4} * 13 + " +
-          //     "{practice_table.freq.SP_PR_5} * 9"
-          // },
-          // {
-          //   type: "expression",
-          //   name: "SP_PR_NT_Total",
-          //   title: "Total NET hours (all periods)",
-          //   displayStyle: "decimal",
-          //   precision: 2,
-          //   expression:
-          //     "{practice_table.net_time.SP_PR_1} * 16 + " +
-          //     "{practice_table.net_time.SP_PR_2} * 2  + " +
-          //     "{practice_table.net_time.SP_PR_3} * 12 + " +
-          //     "{practice_table.net_time.SP_PR_4} * 13 + " +
-          //     "{practice_table.net_time.SP_PR_5} * 9"
-          // },
-          // {
-          //   type: "expression",
-          //   name: "SP_PR_GT_Total",
-          //   title: "Total GROSS hours (all periods)",
-          //   displayStyle: "decimal",
-          //   precision: 2,
-          //   expression:
-          //     "{practice_table.gross_time.SP_PR_1} * 16 +" +
-          //     "{practice_table.gross_time.SP_PR_2} * 2  + " +
-          //     "{practice_table.gross_time.SP_PR_3} * 12 + " +
-          //     "{practice_table.gross_time.SP_PR_4} * 13 + " +
-          //     "{practice_table.gross_time.SP_PR_5} * 9"
-          // },
+          
+          // calculation for practice table
+          // These expressions work, but they display the results. 
+          // This may be good or bad right now.
+          {
+            type: "expression",
+            name: "SP_PR_Freq",
+            title: "Total practices last year",
+            displayStyle: "decimal",
+            precision: 2,
+            expression:
+              "{practice_table.freq.SP_PR_1} * 16 + " + // keep this idea, but use the new format
+              "{practice_table.freq.SP_PR_2} * 2  + " +
+              "{practice_table.freq.SP_PR_3} * 12 + " +
+              "{practice_table.freq.SP_PR_4} * 13 + " +
+              "{practice_table.freq.SP_PR_5} * 9"
+          },
+          {
+            type: "expression",
+            name: "SP_PR_NT_Total",
+            title: "Total NET hours (all periods)",
+            displayStyle: "decimal",
+            precision: 2,
+            expression:
+              "{practice_table.freq.SP_PR_1} * {practice_table.net_time.SP_PR_1} * 16 + " +
+              "{practice_table.freq.SP_PR_2} * {practice_table.net_time.SP_PR_2} * 2  + " +
+              "{practice_table.freq.SP_PR_3} * {practice_table.net_time.SP_PR_3} * 12 + " +
+              "{practice_table.freq.SP_PR_4} * {practice_table.net_time.SP_PR_4} * 13 + " +
+              "{practice_table.freq.SP_PR_5} * {practice_table.net_time.SP_PR_5} * 9"
+          },
+          {
+            type: "expression",
+            name: "SP_PR_GT_Total",
+            title: "Total GROSS hours (all periods)",
+            displayStyle: "decimal",
+            precision: 2,
+            expression:
+              "{practice_table.freq.SP_PR_1} * {practice_table.gross_time.SP_PR_1} * 16 +" +
+              "{practice_table.freq.SP_PR_2} * {practice_table.gross_time.SP_PR_2} * 2  + " +
+              "{practice_table.freq.SP_PR_3} * {practice_table.gross_time.SP_PR_3} * 12 + " +
+              "{practice_table.freq.SP_PR_4} * {practice_table.gross_time.SP_PR_4} * 13 + " +
+              "{practice_table.freq.SP_PR_5} * {practice_table.gross_time.SP_PR_5} * 9"
+          },
           // Championships question
 
 
@@ -633,7 +635,9 @@ const json = {
               },
             ],
             "rows": [
-              { "text": "One-day competitions without an overnight stay.", "value": 1 },
+              { "text": "One-day competitions without an overnight stay.", "value": 1 }, 
+              // Using numerical values may make it hard to perform calculations later. 
+              // Consider using text values or descriptive labels instead.
               { "text": "One-day competitions with one overnight stay.", "value": 2 },
               { "text": "Competitions with two overnight stays", "value.": 3 },
               { "text": "Competitions with three or more overnight stays.", "value": 4 },
@@ -799,7 +803,7 @@ const json = {
 
     {
       "type": "matrixdropdown",
-      "name": "framework-ratings",
+      "name": "annual_membership_fees",
       "title": "ANNUAL FEES",
       //"titleLocation": "hidden",
       "columnMinWidth": "130px",
@@ -812,7 +816,7 @@ const json = {
           "defaultValue": "No"
         },
         {
-          "name": "experience",
+          "name": "cost_per_year",
           "title": "If yes, how much $/year?",
           "cellType": "text",
           "inputType": "number",
@@ -828,7 +832,16 @@ const json = {
       ],
       "transposeData": false
     },
-
+    // These expressions are correct (Aug 10, 2026)
+      {
+          type: "expression",
+          name: "Annual_Fees_$Y",
+          title: "Estimated annual fees",
+          displayStyle: "decimal",
+          precision: 2,
+          expression:
+            "{annual_membership_fees.fee_membership.cost_per_year} + {annual_membership_fees.fee_license.cost_per_year} + {annual_membership_fees.fee_program.cost_per_year} + {annual_membership_fees.fee_tournament.cost_per_year}"
+  },
     /*  REPLACED THESE QUESTIONS BY THE TABLE BELOW TO MAKE IT MORE COMPACT
           {
             type: "radiogroup",
@@ -877,7 +890,7 @@ const json = {
 // PER-USE FEES
           {
       "type": "matrixdropdown",
-      "name": "framework-ratings",
+      "name": "per_use_fees",
       "title": "PER-USE FEES",
 
       "showHeader": true,
@@ -891,7 +904,7 @@ const json = {
           "defaultValue": "No"
         },
         {
-          "name": "experience",
+          "name": "avg_per_use_fee",
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
@@ -899,7 +912,7 @@ const json = {
           "allowResize": false,
         },
                 {
-          "name": "experience",
+          "name": "freq_per_use_fee",
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
@@ -908,12 +921,29 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "fee_entrance" },
       ],
       "transposeData": false
     },
-
-
+// These expressions are correct (Aug 10, 2026)
+    {
+        type: "expression",
+        name: "Per_Use_Fees_$Y",
+        title: "Estimated annual per use fees",
+        displayStyle: "decimal",
+        precision: 2,
+        expression:
+          "{per_use_fees.fee_entrance.avg_per_use_fee} * {per_use_fees.fee_entrance.freq_per_use_fee}"
+    },
+        {
+        type: "expression",
+        name: "Total_Fees_$Y",
+        title: "Estimated annual fees",
+        displayStyle: "decimal",
+        precision: 2,
+        expression:
+          "{Per_Use_Fees_$Y} + {Annual_Fees_$Y}"
+    },
         ]
       },
 
@@ -964,7 +994,18 @@ const json = {
                 ],
                 "transposeData": false
               },
-        
+              {
+                type: "expression",
+                name: "Cost_Coach_$Y",
+                title: "Estimated yearly coaching cost",
+                displayStyle: "decimal",
+                precision: 2,
+                expression:
+                  "{coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year} + " +
+                  "{coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}"  // keep this idea, but use the new format
+              },
+
+
     //    {
     //         type: "expression",
     //         name: "Cost_Coach_$Y",
@@ -2050,3 +2091,4 @@ EN_CostOfSport.title = title;
 EN_CostOfSport.survey_JSON = json;
 EN_CostOfSport.shortTitle = shortTitle
 EN_CostOfSport.QuestionnaireType = 'Varied'
+
