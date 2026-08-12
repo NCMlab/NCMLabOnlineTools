@@ -1057,7 +1057,6 @@ const json = {
             choices: [
               'Yes',
               'No',
-
             ]
           },
 
@@ -1095,8 +1094,8 @@ const json = {
             columns: [
               { name: "SP_APP_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
               //{ name: "SP_APP_Quantity", title: "How", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_APP_Usage", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
-              { name: "SP_APP_$U", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
+              { name: "SP_APP_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
+              { name: "SP_APP_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
               
 /*              {
                 name: "SP_APP_$Y",
@@ -1116,16 +1115,17 @@ const json = {
             ],
             footerText: "Sub-total (a)"
           },
-
+// NEED TO FIGURE HOW TO ADD ANY SORT OF EXPRESSION HERE TO THE APPAREL. 
+// I HAVE TRIED EVEN SIMPLE MULTIPLICATION WITH A CONSTANT AND NOTHING EXCEPT A SINGLE VALUE WORKS HERE.
           {
             type: "expression",
             name: "SP_APP_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
+            expression: "sumInArray({SP_APP}, 'SP_APP_Cost')",
             displayStyle: "currency",
             currency: "CAD",
             currencyDisplay: "code",
-            visible: false
+            //visible: false
           },
 
           /* --------------- (b) Sports equipment ----------------- */
@@ -1303,6 +1303,19 @@ const json = {
                 "transposeData": false
               },
          
+ {
+            type: "expression",
+            name: "EQ_Rent_$Y",
+            title: "Estimated yearly rental cost",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2,
+            visible: false,
+            expression:
+              "{EQ_Rent.rental_equipment.cost_per_usage} * {EQ_Rent.rental_equipment.frequency_per_year}+" + 
+              "{EQ_Rent.maintenance_equipment.cost_per_usage} * {EQ_Rent.maintenance_equipment.frequency_per_year}"
+          },
+
           // {
           //   type: "expression",
           //   name: "EQ_Rent_$Y",
@@ -1377,7 +1390,7 @@ const json = {
                     "defaultValue": "No"
                   },
                   {
-                    "name": "cost_per_usage",
+                    "name": "usage_percentage",
                     "title": "How often in %?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1399,25 +1412,147 @@ const json = {
                 "transposeData": false
               },
           {
-            name: "SP_How",
+            name: "TR_Distance_OneWay_MotorbikeCar",
             type: "text",
             inputType: "number",
-            title: "If by foot/wheeling, how many km one way per practice?",
-            visibleIf: "{TR_Pr.travel_foot_wheeling.usage} = 'Yes'", // CAN I ADD AN OR STATEMENT???
+            title: "If by Motorbike or Car, how many km one way per practice?",
+            visibleIf: "{TR_Pr.travel_family_own_car.usage} = 'Yes' || {TR_Pr.travel_motorbike.usage} = 'Yes'", 
             minLength: 10,
             isRequired: false
           },
-// ****************** TO DO, TO DO, TO DO ************************
-          //  NEED VISIBLEIF QUESTIONS BASED ON EACH OF THE RESPONSES.
-// FOR EACH MODE CHOSEN, THERE IS A UNIQUE VISIBLEIF QUESTION.
-// TO DO THIS, THE VISIBLEIF NEEDS TO BE CONNECTED TO PARTICULAR ROW INTHE TABLE. 
-// THIS IS DONE BY USING {row.NAME} IN THE VISIBLEIF CONDITION, WHERE NAME 
-// IS THE VALUE OF THE ROW. FOR EXAMPLE, FOR THE FIRST ROW, THE VISIBLEIF CONDITION 
-// WOULD BE {row.travel_foot_wheeling} = 'Yes'.
-// THis works, now add the remaining visibleif questions.
-// make response not as wide and left aligned.
-//
-// LOTS TO DO HERE, see notes
+          {
+            name: "TR_Cost_Oneway_PublicTransport",
+            type: "text",
+            inputType: "number",
+            title: "If by Public Transportation, what is the one-way cost?",
+            visibleIf: "{TR_Pr.travel_public_transportation.usage} = 'Yes'",
+            minLength: 10,
+            isRequired: false
+          },
+          {
+            name: "TR_Cost_Oneway_Carpool",
+            type: "text",
+            inputType: "number",
+            title: "If Carpooling, what is the one-way cost?",
+            visibleIf: "{TR_Pr.travel_carpooling.usage} = 'Yes'", 
+            minLength: 10,
+            isRequired: false
+          },
+          {
+            name: "TR_Cost_Oneway_TaxiPrivateBus",
+            type: "text",
+            inputType: "number",
+            title: "If by Taxi/Private Bus, what is the one-way cost?",
+            visibleIf: "{TR_Pr.travel_taxi_private_bus.usage} = 'Yes'", 
+            minLength: 10,
+            isRequired: false
+          },          
+          {
+            name: "TR_Cost_Oneway_SpecialTransport",
+            type: "text",
+            inputType: "number",
+            title: "If by Special Transport, what is the one-way cost?",
+            visibleIf: "{TR_Pr.travel_special_transportation.usage} = 'Yes'", 
+            minLength: 10,
+            isRequired: false
+          },          
+
+          {
+            name: "TR_Cost_Oneway_Other",
+            type: "text",
+            inputType: "number",
+            title: "If by Other, what is the one-way cost?",
+            visibleIf: "{TR_Pr.travel_other.usage} = 'Yes'", 
+            minLength: 10,
+            isRequired: false
+          },        
+          
+          // Calculated costs for each transporation mode
+          //
+          // The gas rate used is 0.5
+          // This value needs to be added and loaded from a configuration file
+          {
+            type: "expression",
+            name: "Motorbike_Cost_$Y",
+            title: "Estimated yearly motorbike transportation cost",
+            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_motorbike.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+          {
+            type: "expression",
+            name: "Car_Cost_$Y",
+            title: "Estimated yearly car transportation cost",
+            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_family_own_car.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
+          {
+            type: "expression",
+            name: "PublicTransport_Cost_$Y",
+            title: "Estimated yearly public transportation cost",
+            expression: "{SP_PR_Freq}*{TR_Pr.travel_public_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_PublicTransport}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+           {
+            type: "expression",
+            name: "Carpool_Cost_$Y",
+            title: "Estimated yearly public transportation cost",
+            expression: "{SP_PR_Freq}*{TR_Pr.travel_carpooling.usage_percentage}/100*2*{TR_Cost_Oneway_Carpool}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+          {
+            type: "expression",
+            name: "Taxi_Cost_$Y",
+            title: "Estimated yearly taxi cost",
+            expression: "{SP_PR_Freq}*{TR_Pr.travel_taxi_private_bus.usage_percentage}/100*2*{TR_Cost_Oneway_TaxiPrivateBus}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
+          {
+            type: "expression",
+            name: "Taxi_SpecialTransport_$Y",
+            title: "Estimated yearly special transportation cost",
+            expression: "{SP_PR_Freq}*{TR_Pr.travel_special_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_SpecialTransport}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+          {
+            type: "expression",
+            name: "Other_Cost_$Y",
+            title: "Estimated yearly other transportation cost",
+            expression: "{SP_PR_Freq}*{TR_Pr.travel_other.usage_percentage}/100*2*{TR_Cost_Oneway_Other}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
+          {
+            type: "expression",
+            name: "Total_transport_cost_$Y",
+            title: "Estimated yearly TOTAL transportation cost",
+            expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
+              "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
+              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
+          // ****************** TO DO, TO DO, TO DO ************************
+
+            // make response not as wide and left aligned.
+
 
 {
                 "type": "matrixdropdown",
