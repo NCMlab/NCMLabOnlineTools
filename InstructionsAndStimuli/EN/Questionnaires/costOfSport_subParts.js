@@ -603,7 +603,7 @@ const json = {
           // CHANGE THIS TO BE NUMBER INPUT WITH ZERO AS DEFAULT AND STEP SIZE OF 1.
           {
             "type": "matrixdropdown",
-            "name": "framework-ratings",
+            "name": "COMP_Freq",
             "title": "COMPETITIONS (GAMES, TOURNAMENTS, OR CHAMPIONSHIPS)",
             description: 'Estimate how many competitions, games, tournaments, or championships you participated in over the past year.',
 
@@ -617,7 +617,7 @@ const json = {
               //   "defaultValue": "No"
               // },
               {
-                "name": "experience",
+                "name": "Comp_Freq_Value",
                 "title": "On average, how many do you participate in per year?",
                 "choices": [
                   { "text": "0", "value": 0 },
@@ -635,16 +635,17 @@ const json = {
               },
             ],
             "rows": [
-              { "text": "One-day competitions without an overnight stay.", "value": 1 }, 
+              { "text": "One-day competitions without an overnight stay.", "value": "Comp_Freq_OnedayNoOvernight" }, 
               // Using numerical values may make it hard to perform calculations later. 
               // Consider using text values or descriptive labels instead.
-              { "text": "One-day competitions with one overnight stay.", "value": 2 },
-              { "text": "Competitions with two overnight stays", "value.": 3 },
-              { "text": "Competitions with three or more overnight stays.", "value": 4 },
-              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 5 }
+              { "text": "One-day competitions with one overnight stay.", "value": "Comp_Freq_OnedayWithOvernight" },
+              { "text": "Competitions with two overnight stays", "value.": "Comp_Freq_TwodayWithOvernight" },
+              { "text": "Competitions with three or more overnight stays.", "value": "Comp_Freq_ThreedayWithOvernight" },
+              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": "Comp_Freq_Vacations" }
             ],
             "transposeData": false
           },
+
           // {
           //   name: "SP_CC_ODWithout",
           //   type: "text",
@@ -1615,11 +1616,25 @@ const json = {
                   { "text": "One-day games/competitions/championships without an overnight stay.", "value": 'other_oneday_no_overnight' },
                   { "text": "One-day games/competitions/championships with one overnight stay.", "value": 'other_oneday_with_overnight' },
                   { "text": "Games/competitions/championships with two-night stay.", "value": 'other_twonight' },
-                  { "text": "Games/competitions/championships with three or more overnight stay.", "value": 'other_threenight_plus' },
+                  { "text": "Games/competitions/championships with three or more overnight stay.", "value": 'other_threenight' },
                   { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'other_vacations' },
                 ],
                 "transposeData": false
               },
+          {
+            type: "expression",
+            name: "Total_competition_cost_$Y",
+            title: "Estimated yearly TOTAL competition cost",
+            expression: "{TR_Comp.other_oneday_no_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayNoOvernight.Comp_Freq_Value} + " + 
+              "{TR_Comp.other_oneday_with_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayWithOvernight.Comp_Freq_Value} + " +
+              "{TR_Comp.other_twonight.cost_per_usage}*{COMP_Freq.Comp_Freq_TwodayWithOvernight.Comp_Freq_Value} + " + 
+              "{TR_Comp.other_threenight.cost_per_usage}*{COMP_Freq.Comp_Freq_ThreedayWithOvernight.Comp_Freq_Value} + " +
+              "{TR_Comp.other_vacations.cost_per_usage}*{COMP_Freq.Comp_Freq_Vacations.Comp_Freq_Value}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
         ]
       },
       {
