@@ -275,6 +275,7 @@ const json = {
               }
             ]
           },
+         
         ]
       },
       // ################################################################
@@ -1643,7 +1644,7 @@ const json = {
         elements: [
               {
                 "type": "matrixdropdown",
-                "name": "B_P",
+                "name": "SocialCosts_Practice",
                 "title": "Social Costs",
                 "titleLocation": "hidden",
                 "showHeader": true,
@@ -1656,11 +1657,14 @@ const json = {
                     "choices": [ "Yes", "No" ]
                   },
                   {
-                    "name": "usage",
+                    "name": "usage_frequency",
                     "title": "How many times per year?:",
                     "cellType": "dropdown",
-                    "choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
-                    "defaultValue": "Never (0%)"
+                    //"choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
+                    "choices": [ {text: "Never (0%)", value: 0}, {text: "Rarely (25%)", value: 25},
+                      {text: "Sometimes (50%)", value: 50}, {text: "Often (75%)", value: 75}, {text: "Always (100%)", value: 100}
+                     ],
+                    "defaultValue": 0,
                   },
                   {
                     "name": "cost_per_usage",
@@ -1677,29 +1681,10 @@ const json = {
                 "transposeData": false
               },
 
-        
-
-
- 
-
-          // "{SOC_F&B} * {SOC_F&B_$U} * ({SP_PR_Freq} + {SP_CC_ODWithout})"    total practice
-
-
-          //to add another question to separate between practices and one-day competitions without overnight stay
-
-
-
-     
-
-       
-
-        
-
-
           // question 16
             { 
                 "type": "matrixdropdown",
-                "name": "B_P",
+                "name": "SocialCosts_Club",
                 "title": "Social Club",
                 "showHeader": true,
                 "titleLocation": "hidden",
@@ -1721,18 +1706,27 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": 'social_club_costs' },
+                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": "social_club_costs" },
                 ],
                 "transposeData": false
               },
 
-
+{
+            type: "expression",
+            name: "Total_Practice_Social_cost_$Y",
+            title: "Estimated yearly TOTAL social cost during practices",
+            expression: "{SP_PR_Freq}*{SocialCosts_Practice.social_costs.cost_per_usage}*{SocialCosts_Practice.social_costs.usage_frequency}/100 + " +
+              "{SocialCosts_Club.social_club_costs.cost_per_usage}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
 
 
           // Other indirect costs
         ]
       },
-
+// DONE UP TO HERE (AUGUST 12)
       // IDEA IDEA IDEA
       // Can the text enetered on page one, the sport name, be used throughout the survey??
       // IDEA 
