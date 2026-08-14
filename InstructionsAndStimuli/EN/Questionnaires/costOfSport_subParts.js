@@ -208,7 +208,7 @@ const json = {
       //make question font size bigger than choices in radiogroups
       // ################################################################
       // ##### SECTION 0    #############################################
-      
+     
       {
         name: "Intro",
         title: "Reference Sport",
@@ -273,8 +273,18 @@ const json = {
                 isRequired: false,
                 width: "25%"
               }
-            ]
+            ],
+            rows: [{text: "...", value: 'DDD'}]
           },
+  {
+            type: "expression",
+            name: "temp",
+            title: "Sport Name",
+            displayStyle: "text",
+            expression:
+              "{Sport_current.DDD.Sport_Curr}",
+          },
+
          
         ]
       },
@@ -1099,13 +1109,15 @@ const json = {
               { name: "SP_APP_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
               { name: "SP_APP_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
               
-/*              {
+              {
                 name: "SP_APP_$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression:
+                /* expression:
                   "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
                   " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+                  */
+                expression: "{row.SP_APP_Cost}/{row.SP_APP_Years_of_Usage}",
                 displayStyle: "currency",
                 currency: "CAD",
 
@@ -1113,7 +1125,7 @@ const json = {
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
                 width: "15%"
-              } */
+              } 
             ],
             footerText: "Sub-total (a)"
           },
@@ -1123,10 +1135,11 @@ const json = {
             type: "expression",
             name: "SP_APP_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "sumInArray({SP_APP}, 'SP_APP_Cost')",
+            expression: "{SP_APP-SP_APP_$Y.total}",
+            //expression: "{SP_APP.SP_APP_Cost}",
             displayStyle: "currency",
             currency: "CAD",
-            currencyDisplay: "code",
+            //currencyDisplay: "code",
             //visible: false
           },
 
@@ -1711,7 +1724,7 @@ const json = {
                 "transposeData": false
               },
 
-{
+          {
             type: "expression",
             name: "Total_Practice_Social_cost_$Y",
             title: "Estimated yearly TOTAL social cost during practices",
@@ -1774,9 +1787,22 @@ const json = {
                 "transposeData": false
               },
 
-
+              {
+                type: "expression",
+                name: "Total_other_indirect_cost_$Y",
+                title: "Estimated yearly TOTAL other indirect costs",
+                expression: "{B_P.other_medical.cost_per_usage} + {B_P.other_body_care.cost_per_usage} + " +
+                  "{B_P.other_insurance.cost_per_usage} + {B_P.other_babysitting.cost_per_usage} + " +
+                  "{B_P.other_documentation.cost_per_usage} + {B_P.other_spectator.cost_per_usage} + " +
+                  "{B_P.other_indirect.cost_per_usage}",
+                displayStyle: "currency",
+                currency: "CAD",
+                precision: 2
+              },
             ]
           },
+
+        
           // question 24
 
       {
@@ -1813,6 +1839,15 @@ const json = {
             ],
           },
 
+              {
+                type: "expression",
+                name: "Total_sports_earnings_$Y",
+                title: "Estimated yearly TOTAL sports earnings",
+                expression: "{SP_Earnings.SP_Equip_$U}",
+                displayStyle: "currency",
+                currency: "CAD",
+                precision: 2
+              },
           
         ]
 
