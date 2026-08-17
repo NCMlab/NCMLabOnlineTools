@@ -1105,10 +1105,8 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_APP_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
-              //{ name: "SP_APP_Quantity", title: "How", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
               { name: "SP_APP_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
               { name: "SP_APP_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
-              
               {
                 name: "SP_APP_$Y",
                 title: "Write-off / year (C$)",
@@ -1124,23 +1122,22 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
+                visible: false,
                 width: "15%"
               } 
             ],
             footerText: "Sub-total (a)"
           },
-// NEED TO FIGURE HOW TO ADD ANY SORT OF EXPRESSION HERE TO THE APPAREL. 
-// I HAVE TRIED EVEN SIMPLE MULTIPLICATION WITH A CONSTANT AND NOTHING EXCEPT A SINGLE VALUE WORKS HERE.
           {
             type: "expression",
             name: "SP_APP_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_APP-SP_APP_$Y.total}",
+            expression: "{SP_APP-total.SP_APP_$Y}",
             //expression: "{SP_APP.SP_APP_Cost}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            //visible: false
+            visible: true
           },
 
           /* --------------- (b) Sports equipment ----------------- */
@@ -1156,43 +1153,36 @@ const json = {
             columns: [
               { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
               //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_Equip_Usage", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { name: "SP_Equip_$U", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
-              // {
-
-              //   name: "SP_Equip_$Y",
-              //   title: "Write-off / year (C$)",
-              //   cellType: "expression",
-              //   expression:
-              //     "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
-              //     " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
-              //   displayStyle: "currency",
-              //   currency: "CAD",
-
-              //   totalType: "sum",
-              //   totalDisplayStyle: "currency",
-              //   currencyDisplay: "code",
-              //   width: "15%"
-
-              // }
+              { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+              { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              {
+                name: "SP_Equip_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: false,
+                width: "15%"
+              },
             ],
-            //footerText: "Sub-total (b)"
+            footerText: "Sub-total (b)"
           },
-
           {
             type: "expression",
             name: "SP_Equip_$Y_Total",
-            title: "Sub-total b: Total write-off per year (all equipment items)",
-            expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
+            title: "Sub-total (a): Total write-off per year (all equipment items)",
+            expression: "{SP_Equip-total.SP_Equip_$Y}",
             displayStyle: "currency",
             currency: "CAD",
-            currencyDisplay: "code",
-            visible: false
+            //currencyDisplay: "code",
+            visible: true
           },
 
           /*  --------- c) Additional equipment -----------------   */
-
-
           {
             type: "matrixdynamic",
             name: "SP_AddEquip",
@@ -1204,46 +1194,35 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-              //{ name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_AddEquip_Usage", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { name: "SP_AddEquip_$U", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
-              /*{
-
+              { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+              { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              {
                 name: "SP_AddEquip_$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression:
-                  "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
-                  " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
+                expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
                 displayStyle: "currency",
                 currency: "CAD",
-
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
+                visible: false,
                 width: "15%"
-              }*/
+              },
             ],
             footerText: "Sub-total (c)"
           },
 
-          {
+         {
             type: "expression",
             name: "SP_AddEquip_$Y_Total",
-            title: "Sub-total (c): Total write-off per year (additonal items)",
-            expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
+            title: "Sub-total (a): Total write-off per year (all additional equipment items)",
+            expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
             displayStyle: "currency",
             currency: "CAD",
-            currencyDisplay: "code",
-            visible: false
+            //currencyDisplay: "code",
+            visible: true
           },
-
-
-
-
-
-
-
 
           // question 11
 
@@ -1274,14 +1253,11 @@ const json = {
             visibleIf: "{sports_equipment_sources} contains 8"
           },
 
-
-
-
           // question 12 
 
         {
                 "type": "matrixdropdown",
-                "name": "EQ_Rent",
+                "name": "EQ_RentMaintenance",
                 "title": "Rental Fees and Maintenance Costs",
                 //"titleLocation": "hidden",
                 "showHeader": true,
@@ -1320,58 +1296,26 @@ const json = {
          
  {
             type: "expression",
-            name: "EQ_Rent_$Y",
+            name: "EQ_RentMaintenance_$Y_Total",
             title: "Estimated yearly rental cost",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
-            visible: false,
+            visible: true,
             expression:
-              "{EQ_Rent.rental_equipment.cost_per_usage} * {EQ_Rent.rental_equipment.frequency_per_year}+" + 
-              "{EQ_Rent.maintenance_equipment.cost_per_usage} * {EQ_Rent.maintenance_equipment.frequency_per_year}"
+              "{EQ_RentMaintenance.rental_equipment.cost_per_usage} * {EQ_RentMaintenance.rental_equipment.frequency_per_year}+" + 
+              "{EQ_RentMaintenance.maintenance_equipment.cost_per_usage} * {EQ_RentMaintenance.maintenance_equipment.frequency_per_year}"
           },
-
-          // {
-          //   type: "expression",
-          //   name: "EQ_Rent_$Y",
-          //   title: "Estimated yearly rental cost",
-          //   visibleIf: "{EQ_Rent} = 1",
-          //   expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
-          //   displayStyle: "currency",
-          //   currency: "CAD",
-          //   precision: 2
-          // },
-
-
-          // question 13
-
-     
-
-          // {
-          //   type: "expression",
-          //   name: "EQ_Maint_$Y",
-          //   title: "Estimated yearly maintenance cost",
-          //   visibleIf: "{EQ_Maint} = 1",
-          //   expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
-          //   displayStyle: "currency",
-          //   currency: "CAD",
-          //   precision: 2
-          // },
-
-
-
-
-
-          // {
-          //   type: "expression",
-          //   name: "SP_Equip_APP_$Y_Total",
-          //   title: "Apparel & Equipment / YEAR (Total)",
-          //   displayStyle: "decimal",
-          //   precision: 2,
-          //   expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
-          // },
-
-
+          {
+            type: "expression",
+            name: "SP_Equip_APP_$Y_Total",
+            title: "Apparel & Equipment / YEAR (Total)",
+            displayStyle: "decimal",
+            precision: 2,
+            expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Total}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_RentMaintenance_$Y_Total}",
+            displayStyle: "currency",
+            currency: "CAD",
+          },
 
         ]
 
@@ -1834,30 +1778,38 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_Earn_Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
-              { name: "SP_Equip_$U", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
-              
-            ],
-          },
-
+              { name: "SP_Earn_$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
               {
-                type: "expression",
-                name: "Total_sports_earnings_$Y",
-                title: "Estimated yearly TOTAL sports earnings",
-                expression: "{SP_Earnings.SP_Equip_$U}",
+                name: "SP_Earnings_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression: "{row.SP_Earn_$Y}",
                 displayStyle: "currency",
                 currency: "CAD",
-                precision: 2
-              },
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: true,
+                width: "15%"
+              } 
+            ],
+          },
+          {
+            type: "expression",
+            name: "SP_Earnings_$Y_Total",
+            title: "Sub-total (a): Total write-off per year (all apparel items)",
+            expression: "{SP_Earnings-total.SP_Earnings_$Y}",
+            displayStyle: "currency",
+            currency: "CAD",
+            //currencyDisplay: "code",
+            visible: true
+          },
           
         ]
-
       },
 
 
-
       // SECTION IV : General information
-
-
       {
         name: "GeneralInformation",
         title: "Section III: General Information",
