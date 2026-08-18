@@ -208,7 +208,7 @@ const json = {
       //make question font size bigger than choices in radiogroups
       // ################################################################
       // ##### SECTION 0    #############################################
-     
+      
       {
         name: "Intro",
         title: "Reference Sport",
@@ -273,19 +273,8 @@ const json = {
                 isRequired: false,
                 width: "25%"
               }
-            ],
-            rows: [{text: "...", value: 'DDD'}]
+            ]
           },
-  {
-            type: "expression",
-            name: "temp",
-            title: "Sport Name",
-            displayStyle: "text",
-            expression:
-              "{Sport_current.DDD.Sport_Curr}",
-          },
-
-         
         ]
       },
       // ################################################################
@@ -515,6 +504,7 @@ const json = {
             name: "SP_Fac",
             title: "The sports facility you mainly play/practice is: ",
             isRequired: false,
+            colCount: 1,
             choices: [
               { "value": 1, "text": "No sports facility" },
               { "value": 2, "text": "A public facility (community sport complex run by the city)" },
@@ -565,56 +555,54 @@ const json = {
             verticalAlign: "middle"
 
           },
-          
-          // calculation for practice table
-          // These expressions work, but they display the results. 
-          // This may be good or bad right now.
-          {
-            type: "expression",
-            name: "SP_PR_Freq",
-            title: "Total practices last year",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.freq.SP_PR_1} * 16 + " + // keep this idea, but use the new format
-              "{practice_table.freq.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * 9"
-          },
-          {
-            type: "expression",
-            name: "SP_PR_NT_Total",
-            title: "Total NET hours (all periods)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.freq.SP_PR_1} * {practice_table.net_time.SP_PR_1} * 16 + " +
-              "{practice_table.freq.SP_PR_2} * {practice_table.net_time.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * {practice_table.net_time.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * {practice_table.net_time.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * {practice_table.net_time.SP_PR_5} * 9"
-          },
-          {
-            type: "expression",
-            name: "SP_PR_GT_Total",
-            title: "Total GROSS hours (all periods)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{practice_table.freq.SP_PR_1} * {practice_table.gross_time.SP_PR_1} * 16 +" +
-              "{practice_table.freq.SP_PR_2} * {practice_table.gross_time.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * {practice_table.gross_time.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * {practice_table.gross_time.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * {practice_table.gross_time.SP_PR_5} * 9"
-          },
+          //calculation for practice table
+
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_Freq",
+          //   title: "Total practices last year",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.freq.SP_PR_1} * 16 + " + // keep this idea, but use the new format
+          //     "{practice_table.freq.SP_PR_2} * 2  + " +
+          //     "{practice_table.freq.SP_PR_3} * 12 + " +
+          //     "{practice_table.freq.SP_PR_4} * 13 + " +
+          //     "{practice_table.freq.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_NT_Total",
+          //   title: "Total NET hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.net_time.SP_PR_1} * 16 + " +
+          //     "{practice_table.net_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.net_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.net_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.net_time.SP_PR_5} * 9"
+          // },
+          // {
+          //   type: "expression",
+          //   name: "SP_PR_GT_Total",
+          //   title: "Total GROSS hours (all periods)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression:
+          //     "{practice_table.gross_time.SP_PR_1} * 16 +" +
+          //     "{practice_table.gross_time.SP_PR_2} * 2  + " +
+          //     "{practice_table.gross_time.SP_PR_3} * 12 + " +
+          //     "{practice_table.gross_time.SP_PR_4} * 13 + " +
+          //     "{practice_table.gross_time.SP_PR_5} * 9"
+          // },
           // Championships question
 
 
           // CHANGE THIS TO BE NUMBER INPUT WITH ZERO AS DEFAULT AND STEP SIZE OF 1.
           {
             "type": "matrixdropdown",
-            "name": "COMP_Freq",
+            "name": "framework-ratings",
             "title": "COMPETITIONS (GAMES, TOURNAMENTS, OR CHAMPIONSHIPS)",
             description: 'Estimate how many competitions, games, tournaments, or championships you participated in over the past year.',
 
@@ -628,7 +616,7 @@ const json = {
               //   "defaultValue": "No"
               // },
               {
-                "name": "Comp_Freq_Value",
+                "name": "experience",
                 "title": "On average, how many do you participate in per year?",
                 "choices": [
                   { "text": "0", "value": 0 },
@@ -646,17 +634,14 @@ const json = {
               },
             ],
             "rows": [
-              { "text": "One-day competitions without an overnight stay.", "value": "Comp_Freq_OnedayNoOvernight" }, 
-              // Using numerical values may make it hard to perform calculations later. 
-              // Consider using text values or descriptive labels instead.
-              { "text": "One-day competitions with one overnight stay.", "value": "Comp_Freq_OnedayWithOvernight" },
-              { "text": "Competitions with two overnight stays", "value.": "Comp_Freq_TwodayWithOvernight" },
-              { "text": "Competitions with three or more overnight stays.", "value": "Comp_Freq_ThreedayWithOvernight" },
-              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": "Comp_Freq_Vacations" }
+              { "text": "One-day competitions without an overnight stay.", "value": 1 },
+              { "text": "One-day competitions with one overnight stay.", "value": 2 },
+              { "text": "Competitions with two overnight stays", "value.": 3 },
+              { "text": "Competitions with three or more overnight stays.", "value": 4 },
+              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 5 }
             ],
             "transposeData": false
           },
-
           // {
           //   name: "SP_CC_ODWithout",
           //   type: "text",
@@ -815,7 +800,7 @@ const json = {
 
     {
       "type": "matrixdropdown",
-      "name": "annual_membership_fees",
+      "name": "framework-ratings",
       "title": "ANNUAL FEES",
       //"titleLocation": "hidden",
       "columnMinWidth": "130px",
@@ -828,7 +813,7 @@ const json = {
           "defaultValue": "No"
         },
         {
-          "name": "cost_per_year",
+          "name": "experience",
           "title": "If yes, how much $/year?",
           "cellType": "text",
           "inputType": "number",
@@ -844,16 +829,7 @@ const json = {
       ],
       "transposeData": false
     },
-    // These expressions are correct (Aug 10, 2026)
-      {
-          type: "expression",
-          name: "Annual_Fees_$Y",
-          title: "Estimated annual fees",
-          displayStyle: "decimal",
-          precision: 2,
-          expression:
-            "{annual_membership_fees.fee_membership.cost_per_year} + {annual_membership_fees.fee_license.cost_per_year} + {annual_membership_fees.fee_program.cost_per_year} + {annual_membership_fees.fee_tournament.cost_per_year}"
-  },
+
     /*  REPLACED THESE QUESTIONS BY THE TABLE BELOW TO MAKE IT MORE COMPACT
           {
             type: "radiogroup",
@@ -902,7 +878,7 @@ const json = {
 // PER-USE FEES
           {
       "type": "matrixdropdown",
-      "name": "per_use_fees",
+      "name": "framework-ratings",
       "title": "PER-USE FEES",
 
       "showHeader": true,
@@ -916,7 +892,7 @@ const json = {
           "defaultValue": "No"
         },
         {
-          "name": "avg_per_use_fee",
+          "name": "experience",
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
@@ -924,7 +900,7 @@ const json = {
           "allowResize": false,
         },
                 {
-          "name": "freq_per_use_fee",
+          "name": "experience",
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
@@ -933,29 +909,12 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "fee_entrance" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" },
       ],
       "transposeData": false
     },
-// These expressions are correct (Aug 10, 2026)
-    {
-        type: "expression",
-        name: "Per_Use_Fees_$Y",
-        title: "Estimated annual per use fees",
-        displayStyle: "decimal",
-        precision: 2,
-        expression:
-          "{per_use_fees.fee_entrance.avg_per_use_fee} * {per_use_fees.fee_entrance.freq_per_use_fee}"
-    },
-        {
-        type: "expression",
-        name: "Total_Fees_$Y",
-        title: "Estimated annual fees",
-        displayStyle: "decimal",
-        precision: 2,
-        expression:
-          "{Per_Use_Fees_$Y} + {Annual_Fees_$Y}"
-    },
+
+
         ]
       },
 
@@ -1006,18 +965,7 @@ const json = {
                 ],
                 "transposeData": false
               },
-              {
-                type: "expression",
-                name: "Cost_Coach_$Y",
-                title: "Estimated yearly coaching cost",
-                displayStyle: "decimal",
-                precision: 2,
-                expression:
-                  "{coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year} + " +
-                  "{coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}"  // keep this idea, but use the new format
-              },
-
-
+        
     //    {
     //         type: "expression",
     //         name: "Cost_Coach_$Y",
@@ -1069,6 +1017,7 @@ const json = {
             choices: [
               'Yes',
               'No',
+
             ]
           },
 
@@ -1105,39 +1054,38 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_APP_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
-              { name: "SP_APP_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
-              { name: "SP_APP_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
-              {
+              //{ name: "SP_APP_Quantity", title: "How", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_APP_Usage", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
+              { name: "SP_APP_$U", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
+              
+/*              {
                 name: "SP_APP_$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                /* expression:
+                expression:
                   "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
                   " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
-                  */
-                expression: "{row.SP_APP_Cost}/{row.SP_APP_Years_of_Usage}",
                 displayStyle: "currency",
                 currency: "CAD",
 
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
                 width: "15%"
-              } 
+              } */
             ],
             footerText: "Sub-total (a)"
           },
+
           {
             type: "expression",
             name: "SP_APP_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_APP-total.SP_APP_$Y}",
-            //expression: "{SP_APP.SP_APP_Cost}",
+            expression: "sumInArray({SP_APP}, 'SP_APP_$Y')",
             displayStyle: "currency",
             currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
+            currencyDisplay: "code",
+            visible: false
           },
 
           /* --------------- (b) Sports equipment ----------------- */
@@ -1153,36 +1101,43 @@ const json = {
             columns: [
               { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
               //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
-              {
-                name: "SP_Equip_$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
-                displayStyle: "currency",
-                currency: "CAD",
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                visible: false,
-                width: "15%"
-              },
+              { name: "SP_Equip_Usage", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+              { name: "SP_Equip_$U", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              // {
+
+              //   name: "SP_Equip_$Y",
+              //   title: "Write-off / year (C$)",
+              //   cellType: "expression",
+              //   expression:
+              //     "iif(or({row.SP_Equip_Usage} = 0, isEmpty({row.SP_Equip_Usage})), 0," +
+              //     " {row.SP_Equip_Quantity} * {row.SP_Equip_$U} / {row.SP_Equip_Usage})",
+              //   displayStyle: "currency",
+              //   currency: "CAD",
+
+              //   totalType: "sum",
+              //   totalDisplayStyle: "currency",
+              //   currencyDisplay: "code",
+              //   width: "15%"
+
+              // }
             ],
-            footerText: "Sub-total (b)"
+            //footerText: "Sub-total (b)"
           },
+
           {
             type: "expression",
             name: "SP_Equip_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all equipment items)",
-            expression: "{SP_Equip-total.SP_Equip_$Y}",
+            title: "Sub-total b: Total write-off per year (all equipment items)",
+            expression: "sumInArray({SP_Equip}, 'SP_Equip_$Y')",
             displayStyle: "currency",
             currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
+            currencyDisplay: "code",
+            visible: false
           },
 
           /*  --------- c) Additional equipment -----------------   */
+
+
           {
             type: "matrixdynamic",
             name: "SP_AddEquip",
@@ -1194,35 +1149,46 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-              { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
-              {
+              //{ name: "SP_AddEquip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_AddEquip_Usage", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+              { name: "SP_AddEquip_$U", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              /*{
+
                 name: "SP_AddEquip_$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
+                expression:
+                  "iif(or({row.SP_AddEquip_Usage} = 0, isEmpty({row.SP_AddEquip_Usage})), 0," +
+                  " {row.SP_AddEquip_Quantity} * {row.SP_AddEquip_$U} / {row.SP_AddEquip_Usage})",
                 displayStyle: "currency",
                 currency: "CAD",
+
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
                 width: "15%"
-              },
+              }*/
             ],
             footerText: "Sub-total (c)"
           },
 
-         {
+          {
             type: "expression",
             name: "SP_AddEquip_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all additional equipment items)",
-            expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
+            title: "Sub-total (c): Total write-off per year (additonal items)",
+            expression: "sumInArray({SP_AddEquip}, 'SP_AddEquip_$Y')",
             displayStyle: "currency",
             currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
+            currencyDisplay: "code",
+            visible: false
           },
+
+
+
+
+
+
+
 
           // question 11
 
@@ -1253,11 +1219,14 @@ const json = {
             visibleIf: "{sports_equipment_sources} contains 8"
           },
 
+
+
+
           // question 12 
 
         {
                 "type": "matrixdropdown",
-                "name": "EQ_RentMaintenance",
+                "name": "EQ_Rent",
                 "title": "Rental Fees and Maintenance Costs",
                 //"titleLocation": "hidden",
                 "showHeader": true,
@@ -1294,28 +1263,47 @@ const json = {
                 "transposeData": false
               },
          
- {
-            type: "expression",
-            name: "EQ_RentMaintenance_$Y_Total",
-            title: "Estimated yearly rental cost",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2,
-            visible: true,
-            expression:
-              "{EQ_RentMaintenance.rental_equipment.cost_per_usage} * {EQ_RentMaintenance.rental_equipment.frequency_per_year}+" + 
-              "{EQ_RentMaintenance.maintenance_equipment.cost_per_usage} * {EQ_RentMaintenance.maintenance_equipment.frequency_per_year}"
-          },
-          {
-            type: "expression",
-            name: "SP_Equip_APP_$Y_Total",
-            title: "Apparel & Equipment / YEAR (Total)",
-            displayStyle: "decimal",
-            precision: 2,
-            expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Total}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_RentMaintenance_$Y_Total}",
-            displayStyle: "currency",
-            currency: "CAD",
-          },
+          // {
+          //   type: "expression",
+          //   name: "EQ_Rent_$Y",
+          //   title: "Estimated yearly rental cost",
+          //   visibleIf: "{EQ_Rent} = 1",
+          //   expression: "iif({EQ_Rent} = 1 && !isEmpty({EQ_Rent_$U}) && !isEmpty({EQ_Rent_UY}), {EQ_Rent_$U} * {EQ_Rent_UY}, 0)",
+          //   displayStyle: "currency",
+          //   currency: "CAD",
+          //   precision: 2
+          // },
+
+
+          // question 13
+
+     
+
+          // {
+          //   type: "expression",
+          //   name: "EQ_Maint_$Y",
+          //   title: "Estimated yearly maintenance cost",
+          //   visibleIf: "{EQ_Maint} = 1",
+          //   expression: "iif({EQ_Maint} = 1 && !isEmpty({EQ_Maint_$U}) && !isEmpty({EQ_Maint_UY}), {EQ_Maint_$U} * {EQ_Maint_UY}, 0)",
+          //   displayStyle: "currency",
+          //   currency: "CAD",
+          //   precision: 2
+          // },
+
+
+
+
+
+          // {
+          //   type: "expression",
+          //   name: "SP_Equip_APP_$Y_Total",
+          //   title: "Apparel & Equipment / YEAR (Total)",
+          //   displayStyle: "decimal",
+          //   precision: 2,
+          //   expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
+          // },
+
+
 
         ]
 
@@ -1349,7 +1337,7 @@ const json = {
                     "defaultValue": "No"
                   },
                   {
-                    "name": "usage_percentage",
+                    "name": "cost_per_usage",
                     "title": "How often in %?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1371,147 +1359,25 @@ const json = {
                 "transposeData": false
               },
           {
-            name: "TR_Distance_OneWay_MotorbikeCar",
+            name: "SP_How",
             type: "text",
             inputType: "number",
-            title: "If by Motorbike or Car, how many km one way per practice?",
-            visibleIf: "{TR_Pr.travel_family_own_car.usage} = 'Yes' || {TR_Pr.travel_motorbike.usage} = 'Yes'", 
+            title: "If by foot/wheeling, how many km one way per practice?",
+            visibleIf: "{TR_Pr.travel_foot_wheeling.usage} = 'Yes'", // CAN I ADD AN OR STATEMENT???
             minLength: 10,
             isRequired: false
           },
-          {
-            name: "TR_Cost_Oneway_PublicTransport",
-            type: "text",
-            inputType: "number",
-            title: "If by Public Transportation, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_public_transportation.usage} = 'Yes'",
-            minLength: 10,
-            isRequired: false
-          },
-          {
-            name: "TR_Cost_Oneway_Carpool",
-            type: "text",
-            inputType: "number",
-            title: "If Carpooling, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_carpooling.usage} = 'Yes'", 
-            minLength: 10,
-            isRequired: false
-          },
-          {
-            name: "TR_Cost_Oneway_TaxiPrivateBus",
-            type: "text",
-            inputType: "number",
-            title: "If by Taxi/Private Bus, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_taxi_private_bus.usage} = 'Yes'", 
-            minLength: 10,
-            isRequired: false
-          },          
-          {
-            name: "TR_Cost_Oneway_SpecialTransport",
-            type: "text",
-            inputType: "number",
-            title: "If by Special Transport, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_special_transportation.usage} = 'Yes'", 
-            minLength: 10,
-            isRequired: false
-          },          
-
-          {
-            name: "TR_Cost_Oneway_Other",
-            type: "text",
-            inputType: "number",
-            title: "If by Other, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_other.usage} = 'Yes'", 
-            minLength: 10,
-            isRequired: false
-          },        
-          
-          // Calculated costs for each transporation mode
-          //
-          // The gas rate used is 0.5
-          // This value needs to be added and loaded from a configuration file
-          {
-            type: "expression",
-            name: "Motorbike_Cost_$Y",
-            title: "Estimated yearly motorbike transportation cost",
-            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_motorbike.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-          {
-            type: "expression",
-            name: "Car_Cost_$Y",
-            title: "Estimated yearly car transportation cost",
-            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_family_own_car.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-          {
-            type: "expression",
-            name: "PublicTransport_Cost_$Y",
-            title: "Estimated yearly public transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_public_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_PublicTransport}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-           {
-            type: "expression",
-            name: "Carpool_Cost_$Y",
-            title: "Estimated yearly public transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_carpooling.usage_percentage}/100*2*{TR_Cost_Oneway_Carpool}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-          {
-            type: "expression",
-            name: "Taxi_Cost_$Y",
-            title: "Estimated yearly taxi cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_taxi_private_bus.usage_percentage}/100*2*{TR_Cost_Oneway_TaxiPrivateBus}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-          {
-            type: "expression",
-            name: "Taxi_SpecialTransport_$Y",
-            title: "Estimated yearly special transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_special_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_SpecialTransport}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-          {
-            type: "expression",
-            name: "Other_Cost_$Y",
-            title: "Estimated yearly other transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_other.usage_percentage}/100*2*{TR_Cost_Oneway_Other}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-          {
-            type: "expression",
-            name: "Total_transport_cost_$Y",
-            title: "Estimated yearly TOTAL transportation cost",
-            expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
-              "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
-              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-          // ****************** TO DO, TO DO, TO DO ************************
-
-            // make response not as wide and left aligned.
-
+// ****************** TO DO, TO DO, TO DO ************************
+          //  NEED VISIBLEIF QUESTIONS BASED ON EACH OF THE RESPONSES.
+// FOR EACH MODE CHOSEN, THERE IS A UNIQUE VISIBLEIF QUESTION.
+// TO DO THIS, THE VISIBLEIF NEEDS TO BE CONNECTED TO PARTICULAR ROW INTHE TABLE. 
+// THIS IS DONE BY USING {row.NAME} IN THE VISIBLEIF CONDITION, WHERE NAME 
+// IS THE VALUE OF THE ROW. FOR EXAMPLE, FOR THE FIRST ROW, THE VISIBLEIF CONDITION 
+// WOULD BE {row.travel_foot_wheeling} = 'Yes'.
+// THis works, now add the remaining visibleif questions.
+// make response not as wide and left aligned.
+//
+// LOTS TO DO HERE, see notes
 
 {
                 "type": "matrixdropdown",
@@ -1574,25 +1440,11 @@ const json = {
                   { "text": "One-day games/competitions/championships without an overnight stay.", "value": 'other_oneday_no_overnight' },
                   { "text": "One-day games/competitions/championships with one overnight stay.", "value": 'other_oneday_with_overnight' },
                   { "text": "Games/competitions/championships with two-night stay.", "value": 'other_twonight' },
-                  { "text": "Games/competitions/championships with three or more overnight stay.", "value": 'other_threenight' },
+                  { "text": "Games/competitions/championships with three or more overnight stay.", "value": 'other_threenight_plus' },
                   { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'other_vacations' },
                 ],
                 "transposeData": false
               },
-          {
-            type: "expression",
-            name: "Total_competition_cost_$Y",
-            title: "Estimated yearly TOTAL competition cost",
-            expression: "{TR_Comp.other_oneday_no_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayNoOvernight.Comp_Freq_Value} + " + 
-              "{TR_Comp.other_oneday_with_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayWithOvernight.Comp_Freq_Value} + " +
-              "{TR_Comp.other_twonight.cost_per_usage}*{COMP_Freq.Comp_Freq_TwodayWithOvernight.Comp_Freq_Value} + " + 
-              "{TR_Comp.other_threenight.cost_per_usage}*{COMP_Freq.Comp_Freq_ThreedayWithOvernight.Comp_Freq_Value} + " +
-              "{TR_Comp.other_vacations.cost_per_usage}*{COMP_Freq.Comp_Freq_Vacations.Comp_Freq_Value}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
         ]
       },
       {
@@ -1601,7 +1453,7 @@ const json = {
         elements: [
               {
                 "type": "matrixdropdown",
-                "name": "SocialCosts_Practice",
+                "name": "B_P",
                 "title": "Social Costs",
                 "titleLocation": "hidden",
                 "showHeader": true,
@@ -1614,14 +1466,11 @@ const json = {
                     "choices": [ "Yes", "No" ]
                   },
                   {
-                    "name": "usage_frequency",
+                    "name": "usage",
                     "title": "How many times per year?:",
                     "cellType": "dropdown",
-                    //"choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
-                    "choices": [ {text: "Never (0%)", value: 0}, {text: "Rarely (25%)", value: 25},
-                      {text: "Sometimes (50%)", value: 50}, {text: "Often (75%)", value: 75}, {text: "Always (100%)", value: 100}
-                     ],
-                    "defaultValue": 0,
+                    "choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
+                    "defaultValue": "Never (0%)"
                   },
                   {
                     "name": "cost_per_usage",
@@ -1638,10 +1487,29 @@ const json = {
                 "transposeData": false
               },
 
+        
+
+
+ 
+
+          // "{SOC_F&B} * {SOC_F&B_$U} * ({SP_PR_Freq} + {SP_CC_ODWithout})"    total practice
+
+
+          //to add another question to separate between practices and one-day competitions without overnight stay
+
+
+
+     
+
+       
+
+        
+
+
           // question 16
             { 
                 "type": "matrixdropdown",
-                "name": "SocialCosts_Club",
+                "name": "B_P",
                 "title": "Social Club",
                 "showHeader": true,
                 "titleLocation": "hidden",
@@ -1663,27 +1531,18 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": "social_club_costs" },
+                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": 'social_club_costs' },
                 ],
                 "transposeData": false
               },
 
-          {
-            type: "expression",
-            name: "Total_Practice_Social_cost_$Y",
-            title: "Estimated yearly TOTAL social cost during practices",
-            expression: "{SP_PR_Freq}*{SocialCosts_Practice.social_costs.cost_per_usage}*{SocialCosts_Practice.social_costs.usage_frequency}/100 + " +
-              "{SocialCosts_Club.social_club_costs.cost_per_usage}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
+
 
 
           // Other indirect costs
         ]
       },
-// DONE UP TO HERE (AUGUST 12)
+
       // IDEA IDEA IDEA
       // Can the text enetered on page one, the sport name, be used throughout the survey??
       // IDEA 
@@ -1731,22 +1590,9 @@ const json = {
                 "transposeData": false
               },
 
-              {
-                type: "expression",
-                name: "Total_other_indirect_cost_$Y",
-                title: "Estimated yearly TOTAL other indirect costs",
-                expression: "{B_P.other_medical.cost_per_usage} + {B_P.other_body_care.cost_per_usage} + " +
-                  "{B_P.other_insurance.cost_per_usage} + {B_P.other_babysitting.cost_per_usage} + " +
-                  "{B_P.other_documentation.cost_per_usage} + {B_P.other_spectator.cost_per_usage} + " +
-                  "{B_P.other_indirect.cost_per_usage}",
-                displayStyle: "currency",
-                currency: "CAD",
-                precision: 2
-              },
+
             ]
           },
-
-        
           // question 24
 
       {
@@ -1778,38 +1624,21 @@ const json = {
             showFooter: true,
             columns: [
               { name: "SP_Earn_Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
-              { name: "SP_Earn_$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
-              {
-                name: "SP_Earnings_$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression: "{row.SP_Earn_$Y}",
-                displayStyle: "currency",
-                currency: "CAD",
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                visible: true,
-                width: "15%"
-              } 
+              { name: "SP_Equip_$U", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              
             ],
           },
-          {
-            type: "expression",
-            name: "SP_Earnings_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_Earnings-total.SP_Earnings_$Y}",
-            displayStyle: "currency",
-            currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
-          },
+
           
         ]
+
       },
 
 
+
       // SECTION IV : General information
+
+
       {
         name: "GeneralInformation",
         title: "Section III: General Information",
@@ -2222,4 +2051,3 @@ EN_CostOfSport.title = title;
 EN_CostOfSport.survey_JSON = json;
 EN_CostOfSport.shortTitle = shortTitle
 EN_CostOfSport.QuestionnaireType = 'Varied'
-
