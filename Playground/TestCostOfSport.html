@@ -117,7 +117,11 @@
 
       
         on_finish: function () {
-          
+          console.log("FINISHING THE jsPSYCH FUNCTION") // This is second
+          console.log("DATA FROM JSPSYCH.DATA.GET")
+          console.log(jsPsych.data.get())
+
+
           const csv = jsPsych.data.get().csv();
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
@@ -144,8 +148,25 @@
 
         
         on_finish: function (data) {
-          console.log("Survey trial data:", data);
+          console.log('FINISHING THE form_trial function') // This is first
+          //console.log("Survey trial data:", data);
+          console.log("RAW DATA")
+          console.log(data)
           addFlatResponseToData(data);
+          console.log("DATA AFTER FLATTENED DATA ADDED")
+          // It is not clear what the flattening does since it seems to not do anything.
+          // The data format has all of the variable names in it and the responses. The response output
+          // also has all of the same information.
+          // I could simply cycle over just the data in response.
+          // I would need to flatten all of the matrices which are from the dynamicmatrix type questions.
+          for (const [key, value] of Object.entries(data.response)) {
+            console.log(`Key: ${key}, Value: ${value}`);
+            // check to see if each value is a matrix. If it is flatten it and replace the current object with the flattened information.
+            // for instance, for current sports. Use the column one name as the primary. Add the matrix index tro teh end then the name of the remaining columns.
+            // This approach may not work for other dynamic matrices.
+          }
+
+          console.log(data)
         }
       };
 

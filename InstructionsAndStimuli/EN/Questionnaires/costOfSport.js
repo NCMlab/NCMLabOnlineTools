@@ -220,6 +220,8 @@ const json = {
           //   type: "text",
           //   isRequired: false
           // },
+          // The following question type creates data that is an array.
+          // The array is an array of objects with object names the names of the columns
            {
             type: "matrixdynamic",
             name: "Sport_current",
@@ -239,7 +241,7 @@ const json = {
                 width: "25%"
               },
               {
-                name: "Sport_Curr_Context",
+                name: "Context",
                 title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
@@ -251,7 +253,7 @@ const json = {
                 width: "40%"
               },
               {
-                name: "Sport_Curr_level",
+                name: "Level",
                 title: "Current level",
                 cellType: "radiogroup",
                 choices: [
@@ -263,7 +265,7 @@ const json = {
                 width: "35%"
               },
               {
-                name: "Sport_Curr_nY",
+                name: "nY",
                 title: "Years",
                 cellType: "text",
                 inputType: "number",

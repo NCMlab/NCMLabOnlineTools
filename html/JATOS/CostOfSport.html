@@ -108,14 +108,13 @@
 
       
         on_finish: function () {
-          
+          console.log(jsPsych.data.get());
+          console.log(jsPsych.data.get().csv());
           const csv = jsPsych.data.get().csv();
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
 
           downloadCSV(filename, csv);
-
-         
           //jsPsych.data.displayData('json');
           
         }
