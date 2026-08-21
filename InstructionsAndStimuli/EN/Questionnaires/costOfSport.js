@@ -224,7 +224,7 @@ const json = {
           // The array is an array of objects with object names the names of the columns
            {
             type: "matrixdynamic",
-            name: "Sport_current",
+            name: "Sport_Curr",
             title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT: " ,
             description: "Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school",
             rowCount: 1,
@@ -310,7 +310,7 @@ const json = {
           },
           {
             type: "matrixdynamic",
-            name: "Sport_current",
+            name: "Sport_Curr",
             title: "CURRENTLY (top three)",
             
             rowCount: 3,
@@ -327,7 +327,7 @@ const json = {
                 width: "25%"
               },
               {
-                name: "Sport_Curr_Context",
+                name: "Context",
                 title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
@@ -339,7 +339,7 @@ const json = {
                 width: "40%"
               },
               {
-                name: "Sport_Curr_level",
+                name: "Level",
                 title: "Current level",
                 cellType: "radiogroup",
                 choices: [
@@ -351,7 +351,7 @@ const json = {
                 width: "35%"
               },
               {
-                name: "Sport_Curr_nY",
+                name: "nY",
                 title: "Years",
                 cellType: "text",
                 inputType: "number",
