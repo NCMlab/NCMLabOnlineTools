@@ -119,8 +119,10 @@
         on_finish: function () {
           console.log("FINISHING THE jsPSYCH FUNCTION") // This is second
           console.log("DATA FROM JSPSYCH.DATA.GET")
+          // Get all of the data from jsPsych
           var temp = jsPsych.data.get()
           console.log(temp)
+          // Only work with data in "response"
           var temp2 = temp.trials[0].response
           console.log(temp2)
           for ( const [key, value] of Object.entries(temp2)) {
@@ -163,6 +165,8 @@
           // I may provide an order and force the data to stick to it. 
           // This may be important since if someone only fills out two current sports, the matrix will only have two entries.
           // The output data expects three. This would be a problem.
+          // https://www.google.com/search?q=javascript+save+data+as+csv+in+a+fixed+order+of+columns&oq=javascript+save+data+as+csv+in+a+fixed+order+of+columns&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTE0ODA0ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8
+
           const csv = jsPsych.data.get().csv();
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
