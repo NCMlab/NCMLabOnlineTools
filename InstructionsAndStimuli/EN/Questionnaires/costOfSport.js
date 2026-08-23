@@ -365,7 +365,7 @@ const json = {
           },
           {
             type: "matrixdynamic",
-            name: "Sport_previous",
+            name: "Sport_Past",
             title: "IN THE PAST (top three)",
             rowCount: 3,
             minRowCount: 3,
@@ -374,14 +374,14 @@ const json = {
             allowRemoveRows: false,
             columns: [
               {
-                name: "Sport_past",
+                name: "Sport_Past",
                 title: "Sport",
                 cellType: "text",
                 isRequired: false,
                 width: "25%"
               },
               {
-                name: "Sport_past_Context",
+                name: "Context",
                 title: "Past context",
                 cellType: "radiogroup",
                 choices: [
@@ -393,7 +393,7 @@ const json = {
                 width: "40%"
               },
               {
-                name: "Sport_past_level",
+                name: "Level",
                 title: "Past level",
                 cellType: "radiogroup",
                 choices: [
@@ -405,7 +405,7 @@ const json = {
                 width: "35%"
               },
               {
-                name: "Sport_past_nY",
+                name: "nY",
                 title: "Years",
                 cellType: "text",
                 inputType: "number",
@@ -559,9 +559,9 @@ const json = {
               { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0}
             ],
             rows: [
-              { value: "freq", text: "1. Number of practices per week" },
-              { value: "net_time", text: "2. Practice time only, per practice" },
-              { value: "gross_time", text: "3. Total time per practice, including travel/changing/socializing" }
+              { value: "FREQ", text: "1. Number of practices per week" },
+              { value: "NT", text: "2. Practice time only, per practice" },
+              { value: "GT", text: "3. Total time per practice, including travel/changing/socializing" }
             ],
             cellErrorLocation: "bottom",
             verticalAlign: "middle"
@@ -578,11 +578,11 @@ const json = {
             displayStyle: "decimal",
             precision: 2,
             expression:
-              "{practice_table.freq.SP_PR_1} * 16 + " + // keep this idea, but use the new format
-              "{practice_table.freq.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * 9"
+              "{practice_table.FREQ.SP_PR_1} * 16 + " + // keep this idea, but use the new format
+              "{practice_table.FREQ.SP_PR_2} * 2  + " +
+              "{practice_table.FREQ.SP_PR_3} * 12 + " +
+              "{practice_table.FREQ.SP_PR_4} * 13 + " +
+              "{practice_table.FREQ.SP_PR_5} * 9"
           },
           {
             type: "expression",
@@ -591,11 +591,11 @@ const json = {
             displayStyle: "decimal",
             precision: 2,
             expression:
-              "{practice_table.freq.SP_PR_1} * {practice_table.net_time.SP_PR_1} * 16 + " +
-              "{practice_table.freq.SP_PR_2} * {practice_table.net_time.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * {practice_table.net_time.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * {practice_table.net_time.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * {practice_table.net_time.SP_PR_5} * 9"
+              "{practice_table.FREQ.SP_PR_1} * {practice_table.NT.SP_PR_1} * 16 + " +
+              "{practice_table.FREQ.SP_PR_2} * {practice_table.NT.SP_PR_2} * 2  + " +
+              "{practice_table.FREQ.SP_PR_3} * {practice_table.NT.SP_PR_3} * 12 + " +
+              "{practice_table.FREQ.SP_PR_4} * {practice_table.NT.SP_PR_4} * 13 + " +
+              "{practice_table.FREQ.SP_PR_5} * {practice_table.NT.SP_PR_5} * 9"
           },
           {
             type: "expression",
@@ -604,11 +604,11 @@ const json = {
             displayStyle: "decimal",
             precision: 2,
             expression:
-              "{practice_table.freq.SP_PR_1} * {practice_table.gross_time.SP_PR_1} * 16 +" +
-              "{practice_table.freq.SP_PR_2} * {practice_table.gross_time.SP_PR_2} * 2  + " +
-              "{practice_table.freq.SP_PR_3} * {practice_table.gross_time.SP_PR_3} * 12 + " +
-              "{practice_table.freq.SP_PR_4} * {practice_table.gross_time.SP_PR_4} * 13 + " +
-              "{practice_table.freq.SP_PR_5} * {practice_table.gross_time.SP_PR_5} * 9"
+              "{practice_table.FREQ.SP_PR_1} * {practice_table.GT.SP_PR_1} * 16 +" +
+              "{practice_table.FREQ.SP_PR_2} * {practice_table.GT.SP_PR_2} * 2  + " +
+              "{practice_table.FREQ.SP_PR_3} * {practice_table.GT.SP_PR_3} * 12 + " +
+              "{practice_table.FREQ.SP_PR_4} * {practice_table.GT.SP_PR_4} * 13 + " +
+              "{practice_table.FREQ.SP_PR_5} * {practice_table.GT.SP_PR_5} * 9"
           },
           // Championships question
 
@@ -630,7 +630,7 @@ const json = {
               //   "defaultValue": "No"
               // },
               {
-                "name": "Comp_Freq_Value",
+                "name": "SP_CC",
                 "title": "On average, how many do you participate in per year?",
                 "choices": [
                   { "text": "0", "value": 0 },
@@ -648,13 +648,13 @@ const json = {
               },
             ],
             "rows": [
-              { "text": "One-day competitions without an overnight stay.", "value": "Comp_Freq_OnedayNoOvernight" }, 
+              { "text": "One-day competitions without an overnight stay.", "value": "ODWithout" }, 
               // Using numerical values may make it hard to perform calculations later. 
               // Consider using text values or descriptive labels instead.
-              { "text": "One-day competitions with one overnight stay.", "value": "Comp_Freq_OnedayWithOvernight" },
-              { "text": "Competitions with two overnight stays", "value.": "Comp_Freq_TwodayWithOvernight" },
-              { "text": "Competitions with three or more overnight stays.", "value": "Comp_Freq_ThreedayWithOvernight" },
-              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": "Comp_Freq_Vacations" }
+              { "text": "One-day competitions with one overnight stay.", "value": "ODWith" },
+              { "text": "Competitions with two overnight stays", "value.": "TWONIGHTS" },
+              { "text": "Competitions with three or more overnight stays.", "value": "Multiday" },
+              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": "Vacations" }
             ],
             "transposeData": false
           },

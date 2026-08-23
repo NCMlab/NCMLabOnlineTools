@@ -89,6 +89,114 @@
     
     <script>
      
+// provided by google in response to the question:
+//  JAVASCRIPT flatten an object of objects
+function flattenObject(obj, prefix = '') {
+  let result = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // Create the path key (e.g., "user.profile.name")
+      const newKey = prefix ? `${key}_${prefix}` : key;
+      
+      const value = obj[key];
+
+      // Check if value is a plain object (and not an array or null)
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Recursively merge the nested object properties
+        Object.assign(result, flattenObject(value, newKey));
+      } else {
+        // Assign the primitive value or array to the new key path
+        result[newKey] = value;
+      }
+    }
+  }
+  return result;
+}
+// LOAD A CSV FILE FOR THE COLUMN HEADERS OF THE OUTPUT DATA FILE.
+// THIS ENSURES AN ORDER AND THAT THE CORRECT DATA IS OUTPUT, EVEN
+// WHEN THERE IS NO VALUE PROVIDED FOR A GIVEN COLUMN.
+
+      // Minimal CSV parser: handles quoted fields, embedded commas/quotes,
+      // and CRLF/LF line endings. Returns an array of row-arrays.
+      function parseCSVText(text) {
+        text = text.replace(/^\uFEFF/, ''); // strip UTF-8 BOM if present
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          if (inQuotes) {
+            if (c === '"') {
+              if (text[i + 1] === '"') { field += '"'; i++; }
+              else { inQuotes = false; }
+            } else {
+              field += c;
+            }
+          } else if (c === '"') {
+            inQuotes = true;
+          } else if (c === ',') {
+            row.push(field);
+            field = '';
+          } else if (c === '\r') {
+            // ignore; the following \n (or end of a lone \r line) ends the row
+          } else if (c === '\n') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += c;
+          }
+        }
+        // last field/row if the file doesn't end with a newline
+        if (field.length > 0 || row.length > 0) {
+          row.push(field);
+          rows.push(row);
+        }
+        return rows;
+      }
+
+      // Fetches CodeBookSheet.csv and returns the ordered list of column
+      // names (its first, and currently only, column).
+      async function loadCodeBookHeaders(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Could not load code book "${url}": ${response.status} ${response.statusText}`);
+        }
+        const text = await response.text();
+        return parseCSVText(text)
+          .map(row => (row[0] || '').replace(/\u00A0/g, ' ').trim())
+          .filter(name => name.length > 0);
+      }
+
+      function csvEscapeField(value) {
+        if (value === undefined || value === null) return '';
+        const str = String(value);
+        if (/[",\r\n]/.test(str)) {
+          return '"' + str.replace(/"/g, '""') + '"';
+        }
+        return str;
+      }
+
+      // Builds a CSV string (header row + one data row) with columns in the
+      // exact order given by `headers`. Any header missing from `dataObj`
+      // is written as an empty field rather than being skipped or erroring.
+      function objectToOrderedCSV(dataObj, headers) {
+        const headerRow = headers.map(csvEscapeField).join(',');
+        const dataRow = headers.map(h => csvEscapeField(dataObj[h])).join(',');
+        return headerRow + '\r\n' + dataRow + '\r\n';
+      }
+
+      // Loads the code book, builds the ordered CSV for dataObj, and
+      // triggers a browser download of it.
+      async function saveObjectAsOrderedCSV(dataObj, codeBookUrl, filename) {
+        const headers = await loadCodeBookHeaders(codeBookUrl);
+        const csvString = objectToOrderedCSV(dataObj, headers);
+        downloadCSV(filename, csvString);
+      }
 
       function downloadCSV(filename, csvString) {
         const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
@@ -116,7 +224,7 @@
         auto_update_progress_bar: false,
 
       
-        on_finish: function () {
+        on_finish: async function () {
           console.log("FINISHING THE jsPSYCH FUNCTION") // This is second
           console.log("DATA FROM JSPSYCH.DATA.GET")
           // Get all of the data from jsPsych
@@ -127,11 +235,11 @@
           console.log(temp2)
           for ( const [key, value] of Object.entries(temp2)) {
             //console.log(`Key: ${key}, Value: ${value}`);
+            // CHECK FOR AN ARRAY.
+            //  THIS INCLUDES THE CURRENT AND PAST SPORTS
             if ( Array.isArray(value) ) {
-              // ientified this as an array.
               // It must be a dynamicmatrix.
               // The name of the output variable should start with the name of this 
-              // dynamicmatrix
               //console.log(">> ARRAY ARRAY ARRAY <<")
               for ( let i = 0; i <  value.length; i++ ) {
                 // cycle over entries in the array
@@ -155,27 +263,41 @@
               // Once the dynamicmatrix array is unpacked, delete it
             delete temp2[key]
             }
+            // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
+            // THIS WILL LOOK FOR THE PRACTICE TABLE
             // I need to ensure that all dynamicmatrix questions can use the same name format as the Sport_Curr question.
-
+            if ( typeof value === 'object' && value !== null && !Array.isArray(value) ) {
+              // It must be a dynamicmatrix.
+              // The name of the output variable should start with the name of this 
+              console.log(">> OBJECT OBJECT OBJECT <<")
+              console.log(flattenObject(value))
+              // Now add the flattened object back to the temp2 object
+              const flattened = flattenObject(value);
+              for ( const [key3, value3] of Object.entries(flattened)) {
+                temp2[key3] = value3;
+              }
+              // Once the dynamicmatrix object is unpacked, delete it
+            }
+            delete temp2[key]
           }
+
+          // displaythe response data after unpacking it
           for ( const [key, value] of Object.entries(temp2)) {
             console.log(`Key: ${key}, Value: ${value}`);
           }
-          // Ideally, I need some way to keep the data in a predescribed order. 
-          // I may provide an order and force the data to stick to it. 
-          // This may be important since if someone only fills out two current sports, the matrix will only have two entries.
-          // The output data expects three. This would be a problem.
-          // https://www.google.com/search?q=javascript+save+data+as+csv+in+a+fixed+order+of+columns&oq=javascript+save+data+as+csv+in+a+fixed+order+of+columns&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTE0ODA0ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8
 
-          const csv = jsPsych.data.get().csv();
+          // Keep the data in the predescribed order given by CodeBookSheet.csv,
+          // regardless of how many entries any dynamicmatrix ended up unpacking.
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
+          // try {
+          //   await saveObjectAsOrderedCSV(temp2, "../assets/OutputDataFormatting/CodeBookSheet.csv", filename);
+          // } catch (error) {
+          //   console.error("Error saving ordered CSV:", error);
+          // }
 
-          //downloadCSV(filename, csv);
-
-         
           jsPsych.data.displayData('json');
-          
+
         }
       });
 

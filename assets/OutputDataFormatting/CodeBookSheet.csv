@@ -1,0 +1,230 @@
+﻿SP_Context
+SP_Level 
+SP_Years
+Sport_Curr1
+Sport_Curr1_Context
+Sport_Curr1_Level
+Sport_Curr1_nY
+Sport_Curr2
+Sport_Curr2_Context
+Sport_Curr2_Level
+Sport_Curr2_nY
+Sport_Curr3
+Sport_Curr3_Context
+Sport_Curr3_Level
+Sport_Curr3_nY
+Sport_Past1
+Sport_Past1_Context
+Sport_Past1_Level
+Sport_Past1_nY
+Sport_Past2
+Sport_Past2_Context
+Sport_Past2_Level
+Sport_Past2_nY
+Sport_Past3
+Sport_Past3_Context
+Sport_Past3_Level
+Sport_Past3_nY
+SP_How
+SP_Class
+SP_Class_Ex
+SP_Fac
+SP_Fac_Ex
+SP_Fac_PC
+SP_PR_1_FREQ
+SP_PR_2_FREQ
+SP_PR_3_FREQ
+SP_PR_4_FREQ
+SP_PR_5_FREQ
+SP_PR_Tot
+SP_PR_1_NT
+SP_PR_2_NT
+SP_PR_3_NT
+SP_PR_4_NT
+SP_PR_5_NT
+SP_PR_NT_Tot
+SP_PR_1_GT
+SP_PR_2_GT
+SP_PR_3_GT
+SP_PR_4_GT
+SP_PR_5_GT
+SP_PR_GT_Tot
+SP_CC_ODWithout
+SP_CC_ODWith
+SP_CC_TWONIGHTS
+SP_CC_Multiday
+SP_CC_Vacations
+Cost_Gen
+Cost_Memb
+Cost_Memb_$Y
+Cost_Lic
+Cost_Lic_$Y
+Cost_PF
+Cost_PF_$Y
+Cost_Comp
+Cost_Comp_$Y
+Cost_Entr
+Cost_Entr_$U
+Cost_Entr_UY
+Cost_Entr_$Y
+Cost_Coach
+Cost_Coach_$U
+Cost_Coach_UY
+Cost_Coach_$Y
+Cost_Clinic
+Cost_Clinic_$U
+Cost_Clinic_UY
+Cost_Clinic_$Y
+AB_EQ_Sport
+AB_EQ_Sport_Ex
+SP_APP1_Describe
+SP_APP1_$Total
+SP_APP1_nY
+SP_APP1_$Y
+SP_APP2_Describe
+SP_APP2_$Total
+SP_APP2_nY
+SP_APP2_$Y
+SP_APP3_Describe
+SP_APP3_$Total
+SP_APP3_nY
+SP_APP3_$Y
+SP_APP_$Y_Total
+SP_Equip1_Describe
+SP_Equip1_$Total
+SP_Equip1_ nY
+SP_Equip1_$Y
+SP_Equip2_Describe
+SP_Equip2_$Total
+SP_Equip2_ nY
+SP_Equip2_$Y
+SP_Equip3_Describe
+SP_Equip3_$Total
+SP_Equip3_ nY
+SP_Equip3_$Y
+SP_Equip_$Y_Total
+SP_AddEquip1_Describe
+SP_AddEquip1__$Total
+SP_AddEquip1_ nY
+SP_AddEquip1_$Y
+SP_AddEquip2_Describe
+SP_AddEquip2__$Total
+SP_AddEquip2_ nY
+SP_AddEquip2_$Y
+SP_AddEquip3_Describe
+SP_AddEquip3__$Total
+SP_AddEquip3_ nY
+SP_AddEquip3_$Y
+SP_AppEQ_$Y_Total
+EQ_Buy
+EQ_Buy_Ex
+EQ_Rent
+EQ_Rent_$U
+EQ_Rent_nY
+EQ_Rent_$Y
+EQ_Maint
+EQ_ Maint _$U
+EQ_Maint_nY
+EQ_ Maint _$Y
+TR_Pr_F&W
+TR_Pr_F&W_%
+TR_Pr_Bike
+TR_Pr_Bike_%
+TR_Pr_MotorB
+TR_Pr_MotorB_%
+TR_Pr_Car
+TR_Pr_Car_%
+TR_Pr_Pub
+TR_Pr_Pub_%
+TR_Pr_Carp
+TR_Pr_ Carp _%
+TR_Pr_Taxi
+TR_Pr_ Taxi _%
+TR_Pr_Spec
+TR_Pr_ Spec _%
+TR_Pr_Other
+TR_Pr_ Other _%
+TR_Pr_km
+TR_Pr_Pub_$
+TR_Pr_Carp_$
+TR_Pr_Taxi_$
+TR_Pr_Spec_$
+TR_Pr_Other_Ex
+TR_Pr_Other_$
+TR_Pr_MotorB_$Y
+TR_Pr_Car_$Y
+TR_Pr_Pub_$Y
+TR_Pr_Carp_$Y
+TR_Pr_Taxi_$Y
+TR_Pr_Spec_$Y
+TR_Pr_Other_$Y
+TR_Pr_Park
+TR_Pr_Park_$Y
+TR_Pr_$Y_Total
+Cost_CC_ODWithout
+Cost_CC_ODWithout_$
+Cost_CC_ODWithout_$Y
+Cost_CC_ODWith
+Cost_CC_ODWith_$
+Cost_CC_ODWith_$Y
+Cost_CC_ TWONIGHTS
+Cost_CC_ TWONIGHTS_$
+Cost_CC_ TWONIGHTS_$Y
+Cost_CC_ Multiday
+Cost_CC_ Multiday _$
+Cost_CC_ Multiday_$Y
+Cost_CC_ Vacations
+Cost_CC_ Vacations _$
+Cost_CC_ Vacations _$Y
+TR_CC_$Y_Total
+SOC_F&B
+SOC_F&B_%
+SOC_F&B_$Y
+SOC_Club
+SOC_Club_$Y
+OIC_MED
+OIC_MED_$Y
+OIC_Body
+OIC_Body_$Y
+OIC_Insur
+OIC_Insur_$Y
+OIC_BPsitting
+OIC_BPsitting_$Y
+OIC_DOC
+OIC_DOC_$Y
+OIC_Spect
+OIC_Spect_$Y
+OIC_Other
+OIC_Other_$Y
+SP_Earnings
+SP_Earnings1_EX
+SP_Earnings1_$Y
+Sex
+Gender
+Gender_EX
+Age
+FirstNation
+Race
+Race_EX
+HH_N
+HH_NChild
+HH_Pos
+HH_Pos_EX
+HH_Sport
+HH_Educ
+HH_Income_EX
+HH_Income_IN
+AB_Timing
+AB_Class
+AB_Loi
+Future
+MEMB-ENTR
+COACHING
+APP&EQUIP
+TOTAL DIRECT COSTS
+TRAVEL
+SOCIAL
+OTHER ID
+TOTAL INDICERCT
+EARNINGS
+TOTAL COST_Y
