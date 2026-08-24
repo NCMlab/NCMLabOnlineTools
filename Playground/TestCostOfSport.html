@@ -91,20 +91,21 @@
      
 // provided by google in response to the question:
 //  JAVASCRIPT flatten an object of objects
-function flattenObject(obj, prefix = '') {
+function flattenMatrixDropdownObject(obj, prefix = '') {
   let result = {};
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       // Create the path key (e.g., "user.profile.name")
+      // The name here is COLUMN_ROW, which works for matrixdropdown
       const newKey = prefix ? `${key}_${prefix}` : key;
-      
+      // We would like the name to be ROW_COLUMN for matrixdynamic
       const value = obj[key];
 
       // Check if value is a plain object (and not an array or null)
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // Recursively merge the nested object properties
-        Object.assign(result, flattenObject(value, newKey));
+        Object.assign(result, flattenMatrixDropdownObject(value, newKey));
       } else {
         // Assign the primitive value or array to the new key path
         result[newKey] = value;
@@ -113,6 +114,30 @@ function flattenObject(obj, prefix = '') {
   }
   return result;
 }
+function flattenMatrixDynamicObject(obj, prefix = '') {
+  let result = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // Create the path key (e.g., "user.profile.name")
+      // The name here is COLUMN_ROW, which works for matrixdropdown
+      const newKey = prefix ? `${prefix}_${key}` : key;
+      // We would like the name to be ROW_COLUMN for matrixdynamic
+      const value = obj[key];
+
+      // Check if value is a plain object (and not an array or null)
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Recursively merge the nested object properties
+        Object.assign(result, flattenMatrixDynamicObject(value, newKey));
+      } else {
+        // Assign the primitive value or array to the new key path
+        result[newKey] = value;
+      }
+    }
+  }
+  return result;
+}
+
 // LOAD A CSV FILE FOR THE COLUMN HEADERS OF THE OUTPUT DATA FILE.
 // THIS ENSURES AN ORDER AND THAT THE CORRECT DATA IS OUTPUT, EVEN
 // WHEN THERE IS NO VALUE PROVIDED FOR A GIVEN COLUMN.
@@ -229,13 +254,31 @@ function flattenObject(obj, prefix = '') {
           console.log("DATA FROM JSPSYCH.DATA.GET")
           // Get all of the data from jsPsych
           var temp = jsPsych.data.get()
+
+          const users = EN_CostOfSport.survey_JSON;
+          console.log(users)
+          for ( let i = 0; i <  users.pages.length; i++ ) {
+            for ( let j = 0; j <  users.pages[i].elements.length; j++ ) {
+              if ( users.pages[i].elements[j].type === "matrixdynamic" ) {
+                console.log("Found a matrixdynamic question")
+                console.log(users.pages[i].elements[j])
+              }
+              else if ( users.pages[i].elements[j].type === "matrixdropdown" ) {
+                console.log("Found a matrixdropdown question")
+                console.log(users.pages[i].elements[j])
+              }
+            }
+          }
+
           console.log(temp)
           // Only work with data in "response"
           var temp2 = temp.trials[0].response
           console.log(temp2)
           for ( const [key, value] of Object.entries(temp2)) {
             //console.log(`Key: ${key}, Value: ${value}`);
+            // =============================
             // CHECK FOR AN ARRAY.
+            // =============================
             //  THIS INCLUDES THE CURRENT AND PAST SPORTS
             if ( Array.isArray(value) ) {
               // It must be a dynamicmatrix.
@@ -263,7 +306,9 @@ function flattenObject(obj, prefix = '') {
               // Once the dynamicmatrix array is unpacked, delete it
             delete temp2[key]
             }
+            // =============================
             // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
+            // =============================
             // THIS WILL LOOK FOR THE PRACTICE TABLE
             // I need to ensure that all dynamicmatrix questions can use the same name format as the Sport_Curr question.
             if ( typeof value === 'object' && value !== null && !Array.isArray(value) ) {
@@ -290,11 +335,11 @@ function flattenObject(obj, prefix = '') {
           // regardless of how many entries any dynamicmatrix ended up unpacking.
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
-          // try {
-          //   await saveObjectAsOrderedCSV(temp2, "../assets/OutputDataFormatting/CodeBookSheet.csv", filename);
-          // } catch (error) {
-          //   console.error("Error saving ordered CSV:", error);
-          // }
+          try {
+            await saveObjectAsOrderedCSV(temp2, "../assets/OutputDataFormatting/CodeBookSheet.csv", filename);
+          } catch (error) {
+            console.error("Error saving ordered CSV:", error);
+          }
 
           jsPsych.data.displayData('json');
 

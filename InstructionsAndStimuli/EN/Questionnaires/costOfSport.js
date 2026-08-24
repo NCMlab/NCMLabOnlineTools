@@ -918,7 +918,7 @@ const json = {
           "defaultValue": "No"
         },
         {
-          "name": "avg_per_use_fee",
+          "name": "$U",
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
@@ -926,7 +926,7 @@ const json = {
           "allowResize": false,
         },
                 {
-          "name": "freq_per_use_fee",
+          "name": "UY",
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
@@ -935,7 +935,7 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "fee_entrance" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Cost_Entr" },
       ],
       "transposeData": false
     },
