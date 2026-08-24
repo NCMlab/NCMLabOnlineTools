@@ -235,6 +235,19 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
         URL.revokeObjectURL(url);
       }
 
+      // Searches EN_CostOfSport.survey_JSON for the element whose "name"
+      // matches key, and returns its "type" ('other' if not found).
+      function getQuestionType(key) {
+        const survey = EN_CostOfSport.survey_JSON;
+        for (const page of survey.pages) {
+          for (const element of page.elements) {
+            if (element.name === key) {
+              return element.type || 'other';
+            }
+          }
+        }
+        return 'other';
+      }
      
       function addFlatResponseToData(trialData) {
         const resp = trialData.response || {};
@@ -255,75 +268,77 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
           // Get all of the data from jsPsych
           var temp = jsPsych.data.get()
 
-          const users = EN_CostOfSport.survey_JSON;
-          console.log(users)
-          for ( let i = 0; i <  users.pages.length; i++ ) {
-            for ( let j = 0; j <  users.pages[i].elements.length; j++ ) {
-              if ( users.pages[i].elements[j].type === "matrixdynamic" ) {
-                console.log("Found a matrixdynamic question")
-                console.log(users.pages[i].elements[j])
-              }
-              else if ( users.pages[i].elements[j].type === "matrixdropdown" ) {
-                console.log("Found a matrixdropdown question")
-                console.log(users.pages[i].elements[j])
-              }
-            }
-          }
+          
 
           console.log(temp)
           // Only work with data in "response"
           var temp2 = temp.trials[0].response
           console.log(temp2)
           for ( const [key, value] of Object.entries(temp2)) {
+            var qType = getQuestionType(key)
+            console.log("Question type: "+qType)
+            if (qType === 'matrixdropdown') {
+              const flattened = flattenMatrixDropdownObject(value);
+              for (const [key2, value2] of Object.entries(flattened)) {
+                temp2[key2] = value2;
+              }
+              delete temp2[key];
+            } else if (qType === 'matrixdynamic') {
+              const flattened = flattenMatrixDynamicObject(value);
+              for (const [key3, value3] of Object.entries(flattened)) {
+                temp2[key3] = value3;
+              }
+              delete temp2[key];
+            }
             //console.log(`Key: ${key}, Value: ${value}`);
             // =============================
             // CHECK FOR AN ARRAY.
             // =============================
             //  THIS INCLUDES THE CURRENT AND PAST SPORTS
-            if ( Array.isArray(value) ) {
-              // It must be a dynamicmatrix.
-              // The name of the output variable should start with the name of this 
-              //console.log(">> ARRAY ARRAY ARRAY <<")
-              for ( let i = 0; i <  value.length; i++ ) {
-                // cycle over entries in the array
-                for ( const [key2, value2] of Object.entries(value[i])) {
-                  if ( key2 === key)
-                  {
-                    console.log(`Key: ${key}${i+1}, Value: ${value2}`);
-                    name = `${key}${i+1}`;
-                    temp2[name] = value2;
+          //   if ( Array.isArray(value) ) {
+          //     // It must be a dynamicmatrix.
+          //     // The name of the output variable should start with the name of this 
+          //     //console.log(">> ARRAY ARRAY ARRAY <<")
+          //     for ( let i = 0; i <  value.length; i++ ) {
+          //       // cycle over entries in the array
+          //       for ( const [key2, value2] of Object.entries(value[i])) {
+          //         if ( key2 === key)
+          //         {
+          //           console.log(`Key: ${key}${i+1}, Value: ${value2}`);
+          //           name = `${key}${i+1}`;
+          //           temp2[name] = value2;
 
-                  }
-                  else 
-                  {
-                    console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
-                    name = `${key}${i+1}_${key2}`;
-                    temp2[name] = value2;
-                  }
+          //         }
+          //         else 
+          //         {
+          //           console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
+          //           name = `${key}${i+1}_${key2}`;
+          //           temp2[name] = value2;
+          //         }
                   
-                }
-              }
-              // Once the dynamicmatrix array is unpacked, delete it
-            delete temp2[key]
-            }
-            // =============================
-            // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
-            // =============================
-            // THIS WILL LOOK FOR THE PRACTICE TABLE
-            // I need to ensure that all dynamicmatrix questions can use the same name format as the Sport_Curr question.
-            if ( typeof value === 'object' && value !== null && !Array.isArray(value) ) {
-              // It must be a dynamicmatrix.
-              // The name of the output variable should start with the name of this 
-              console.log(">> OBJECT OBJECT OBJECT <<")
-              console.log(flattenObject(value))
-              // Now add the flattened object back to the temp2 object
-              const flattened = flattenObject(value);
-              for ( const [key3, value3] of Object.entries(flattened)) {
-                temp2[key3] = value3;
-              }
-              // Once the dynamicmatrix object is unpacked, delete it
-            }
-            delete temp2[key]
+          //       }
+          //     }
+          //     // Once the dynamicmatrix array is unpacked, delete it
+          //   delete temp2[key]
+          //   }
+          //   // =============================
+          //   // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
+          //   // =============================
+          //   // THIS WILL LOOK FOR THE PRACTICE TABLE
+          //   // I need to ensure that all dynamicmatrix questions can use the same name format as the Sport_Curr question.
+          //   if ( typeof value === 'object' && value !== null && !Array.isArray(value) ) {
+          //     // It must be a dynamicmatrix.
+          //     // The name of the output variable should start with the name of this 
+          //     console.log(">> OBJECT OBJECT OBJECT <<")
+          //     console.log(flattenObject(value))
+          //     // Now add the flattened object back to the temp2 object
+          //     const flattened = flattenObject(value);
+          //     for ( const [key3, value3] of Object.entries(flattened)) {
+          //       temp2[key3] = value3;
+          //     }
+          //     // Once the dynamicmatrix object is unpacked, delete it
+          //   }
+          //   delete temp2[key]
           }
 
           // displaythe response data after unpacking it

@@ -823,26 +823,26 @@ const json = {
       "columnMinWidth": "130px",
       "columns": [
         {
-          "name": "usage",
+          "name": "Cost",
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [ "Yes", "No" ],
           "defaultValue": "No"
         },
         {
-          "name": "cost_per_year",
+          "name": "Cost_$Y",
           "title": "If yes, how much $/year?",
           "cellType": "text",
           "inputType": "number",
-          "enableIf": "{row.usage} = 'Yes'",
+          "enableIf": "{row.Cost} = 'Yes'",
           "allowResize": false,
         },
       ],
       "rows": [
-        { "text": "Membership fee", "value": "fee_membership" },
-        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "fee_license" },
-        { "text": "Other program fees (If not included in the previous questions.)", "value": "fee_program" },
-        { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "fee_tournament" }
+        { "text": "Membership fee", "value": "Memb" },
+        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "Lic" },
+        { "text": "Other program fees (If not included in the previous questions.)", "value": "PF" },
+        { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "Comp" }
       ],
       "transposeData": false
     },
@@ -911,14 +911,14 @@ const json = {
       "columnMinWidth": "130px",
       "columns": [
         {
-          "name": "usage",
+          "name": "Cost",
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [ "Yes", "No" ],
           "defaultValue": "No"
         },
         {
-          "name": "$U",
+          "name": "Cost_$U",
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
@@ -926,7 +926,7 @@ const json = {
           "allowResize": false,
         },
                 {
-          "name": "UY",
+          "name": "Cost_UY",
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
@@ -935,7 +935,7 @@ const json = {
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Cost_Entr" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Entr" },
       ],
       "transposeData": false
     },
