@@ -284,43 +284,36 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
               }
               delete temp2[key];
             } else if (qType === 'matrixdynamic') {
-              const flattened = flattenMatrixDynamicObject(value);
-              for (const [key3, value3] of Object.entries(flattened)) {
-                temp2[key3] = value3;
+              // Now check to see if it is an array
+              if ( Array.isArray(value) ) {
+                console.log(">> ARRAY ARRAY ARRAY <<")
+                for ( let i = 0; i <  value.length; i++ ) {
+                // cycle over entries in the array
+                  for ( const [key2, value2] of Object.entries(value[i])) {
+                    if ( key2 === key)
+                    {
+                      console.log(`Key: ${key}${i+1}, Value: ${value2}`);
+                      name = `${key}${i+1}`;
+                      temp2[name] = value2;
+                    }
+                    else 
+                    {
+                      console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
+                      name = `${key}${i+1}_${key2}`;
+                      temp2[name] = value2;
+                    }
+                  }
+                }
+              }
+              else { 
+                const flattened = flattenMatrixDynamicObject(value);
+                for (const [key3, value3] of Object.entries(flattened)) {
+                  temp2[key3] = value3;
+                }
               }
               delete temp2[key];
             }
-            //console.log(`Key: ${key}, Value: ${value}`);
-            // =============================
-            // CHECK FOR AN ARRAY.
-            // =============================
-            //  THIS INCLUDES THE CURRENT AND PAST SPORTS
-          //   if ( Array.isArray(value) ) {
-          //     // It must be a dynamicmatrix.
-          //     // The name of the output variable should start with the name of this 
-          //     //console.log(">> ARRAY ARRAY ARRAY <<")
-          //     for ( let i = 0; i <  value.length; i++ ) {
-          //       // cycle over entries in the array
-          //       for ( const [key2, value2] of Object.entries(value[i])) {
-          //         if ( key2 === key)
-          //         {
-          //           console.log(`Key: ${key}${i+1}, Value: ${value2}`);
-          //           name = `${key}${i+1}`;
-          //           temp2[name] = value2;
-
-          //         }
-          //         else 
-          //         {
-          //           console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
-          //           name = `${key}${i+1}_${key2}`;
-          //           temp2[name] = value2;
-          //         }
-                  
-          //       }
-          //     }
-          //     // Once the dynamicmatrix array is unpacked, delete it
-          //   delete temp2[key]
-          //   }
+          
           //   // =============================
           //   // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
           //   // =============================
