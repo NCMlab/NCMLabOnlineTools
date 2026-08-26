@@ -745,7 +745,7 @@ const json = {
           "name": "Cost",
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
-          "choices": [ "Yes", "No" ],
+          "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
           "defaultValue": "No"
         },
         {
@@ -753,7 +753,7 @@ const json = {
           "title": "If yes, how much $/year?",
           "cellType": "text",
           "inputType": "number",
-          "enableIf": "{row.Cost} = 'Yes'",
+          "enableIf": "{row.Cost} = 1",
           "allowResize": false,
         },
       ],
@@ -778,7 +778,7 @@ const json = {
   
 // ADD A COLUMN NAME TO COLUMN ONE: 
 // PER-USE FEES
-// Aug 26, the following question does not work
+
           {
       "type": "matrixdropdown",
       "name": "per_use_fees",
@@ -791,28 +791,28 @@ const json = {
           "name": "Cost",
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
-          "choices": [ "Yes", "No" ],
-          "defaultValue": "No"
+          "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+          "defaultValue": 0
         },
         {
           "name": "Cost_$U",
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
-          "enableIf": "{row.usage} = 'Yes'",
+          "enableIf": "{row.Cost} = 1",
           "allowResize": false,
         },
-                {
+        {
           "name": "Cost_UY",
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
-          "enableIf": "{row.usage} = 'Yes'",
+          "enableIf": "{row.Cost} = 1",
           "allowResize": false,
         },
       ],
       "rows": [
-        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Entr" },
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , "value": "Entr" }
       ],
       "transposeData": false
     },
@@ -824,7 +824,7 @@ const json = {
         displayStyle: "decimal",
         precision: 2,
         expression:
-          "{per_use_fees.fee_entrance.avg_per_use_fee} * {per_use_fees.fee_entrance.freq_per_use_fee}"
+          "{per_use_fees.Entr.Cost_$U} * {per_use_fees.Entr.Cost_UY}"
     },
         {
         type: "expression",
@@ -842,100 +842,100 @@ const json = {
 
 
 
-//       {
-//         name: "CostActiveSportParticipation",
-//         title: "Section II.2. Cost of Coaching and Clinics",
-//         elements: [
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II.2. Cost of Coaching and Clinics",
+        elements: [
 
 
-//           {
-//                 "type": "matrixdropdown",
-//                 "name": "coaching_costs",
-//                 "title": "Coaching and Clinics / Year",
-//                 "titleLocation": "hidden",
-//                 "showHeader": true,
-//                 "columnMinWidth": "130px",
-//                 "columns": [
-//                   {
-//                     "name": "usage",
-//                     "title": "Did you pay this fee?",
-//                     "cellType": "radiogroup",
-//                     "choices": [ "Yes", "No" ],
-//                     "defaultValue": "No"
-//                   },
-//                   {
-//                     "name": "cost_per_usage",
-//                     "title": "If yes, average cost per use",
-//                     "cellType": "text",
-//                     "inputType": "number",
-//                     "enableIf": "{row.usage} = 'Yes'",
-//                     "allowResize": false,
-//                   },
-//                           {
-//                     "name": "frequency_per_year",
-//                     "title": "Number of times per year",
-//                     "cellType": "text",
-//                     "inputType": "number",
-//                     "enableIf": "{row.usage} = 'Yes'",
-//                     "allowResize": false,
-//                   },
-//                 ],
-//                 "rows": [
-//                   { "text": "Lessons, guidance or coaching?", "name":"lesson_cost", "value": 'lessons' },
-//                   { "text": "Clinics regarding your sport practice?","value": 'clinics' } 
+          {
+                "type": "matrixdropdown",
+                "name": "coaching_costs",
+                "title": "Coaching and Clinics / Year",
+                "titleLocation": "hidden",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "Cost",
+                    "title": "Did you pay this fee?",
+                    "cellType": "radiogroup",
+                    "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "Cost_$U",
+                    "title": "If yes, average cost per use",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.Cost} = 1",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "Cost_UY",
+                    "title": "Number of times per year",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.Cost} = 1",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Lessons, guidance or coaching?", "name":"lesson_cost", "value": 'Coach' },
+                  { "text": "Clinics regarding your sport practice?","value": 'Clinic' } 
                   
-//                 ],
-//                 "transposeData": false
-//               },
-//               {
-//                 type: "expression",
-//                 name: "Cost_Coach_$Y",
-//                 title: "Estimated yearly coaching cost",
-//                 displayStyle: "decimal",
-//                 precision: 2,
-//                 displayStyle: "currency",
-//                 currency: "CAD",
-//                 expression:
-//                   "{coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year} + " +
-//                   "{coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}"  // keep this idea, but use the new format
-//               },
+                ],
+                "transposeData": false
+              },
+              {
+                type: "expression",
+                name: "Cost_Coach_$Y",
+                title: "Estimated yearly coaching cost",
+                displayStyle: "decimal",
+                precision: 2,
+                displayStyle: "currency",
+                currency: "CAD",
+                expression:
+                  "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY} + " +
+                  "{coaching_costs.Clinic.Cost_$U} * {coaching_costs.Clinic.Cost_UY}"  // keep this idea, but use the new format
+              },
 
 
-//     //    {
-//     //         type: "expression",
-//     //         name: "Cost_Coach_$Y",
-//     //         title: "Estimated yearly coaching cost",
-//     //         //visibleIf: "{Cost_Coach} = 1",
-//     //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-//     //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-//     //         displayStyle: "decimal",
-//     //         //currency: "CAD",
-//     //         precision: 2
-//     //       },
-//     // {
-//     //         type: "expression",
-//     //         name: "Clinic_Coach_$Y",
-//     //         title: "Estimated yearly clinic cost",
-//     //         //visibleIf: "{Cost_Coach} = 1",
-//     //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-//     //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-//     //         displayStyle: "decimal",
-//     //         //currency: "CAD",
-//     //         precision: 2
-//     //       },
-//     //       {
-//     //         type: "expression",
-//     //         name: "Cost_Clinic_$Y",
-//     //         title: "Estimated yearly clinic cost",
-//     //         visibleIf: "{Cost_Clinic} = 1",
-//     //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-//     //         displayStyle: "currency",
-//     //         currency: "CAD",
-//     //         precision: 2
-//     //       },
+    //    {
+    //         type: "expression",
+    //         name: "Cost_Coach_$Y",
+    //         title: "Estimated yearly coaching cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    // {
+    //         type: "expression",
+    //         name: "Clinic_Coach_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         //visibleIf: "{Cost_Coach} = 1",
+    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
+    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
+    //         displayStyle: "decimal",
+    //         //currency: "CAD",
+    //         precision: 2
+    //       },
+    //       {
+    //         type: "expression",
+    //         name: "Cost_Clinic_$Y",
+    //         title: "Estimated yearly clinic cost",
+    //         visibleIf: "{Cost_Clinic} = 1",
+    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
+    //         displayStyle: "currency",
+    //         currency: "CAD",
+    //         precision: 2
+    //       },
 
-//         ]
-//       },
+        ]
+      },
 //       {
 //         name: "CostActiveSportParticipation",
 //         title: "Section II.3: Cost of Apparel and Equipment",
