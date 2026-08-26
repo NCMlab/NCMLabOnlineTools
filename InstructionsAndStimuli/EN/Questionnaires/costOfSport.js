@@ -245,9 +245,9 @@ const json = {
                 title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "non_org", "text": "Non-organized" }, // Can this be changed to 1,2,3, as per the code book?
-                  { "value": "club", "text": "Club" },
-                  { "value": "school", "text": "School" }
+                  { "value": 1, "text": "Non-organized" }, // Can this be changed to 1,2,3, as per the code book?
+                  { "value": 2, "text": "Club" },
+                  { "value": 3, "text": "School" }
                 ],
                 isRequired: false,
                 width: "40%"
@@ -257,9 +257,9 @@ const json = {
                 title: "Current level",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "recreational", "text": "Mainly recreational" },
-                  { "value": "competitive", "text": "Mainly competitive" },
-                  { "value": "both", "text": "Both equally" }
+                  { "value": 1, "text": "Mainly recreational" },
+                  { "value": 2, "text": "Mainly competitive" },
+                  { "value": 3, "text": "Both equally" }
                 ],
                 isRequired: false,
                 width: "35%"
@@ -331,9 +331,9 @@ const json = {
                 title: "Main current context",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "non_org", "text": "Non-organized" },
-                  { "value": "club", "text": "Club" },
-                  { "value": "school", "text": "School" }
+                  { "value": 1, "text": "Non-organized" },
+                  { "value": 2, "text": "Club" },
+                  { "value": 3, "text": "School" }
                 ],
                 isRequired: false,
                 width: "40%"
@@ -343,9 +343,9 @@ const json = {
                 title: "Current level",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "recreational", "text": "Mainly recreational" },
-                  { "value": "competitive", "text": "Mainly competitive" },
-                  { "value": "both", "text": "Both equally" }
+                  { "value": 1, "text": "Mainly recreational" },
+                  { "value": 2, "text": "Mainly competitive" },
+                  { "value": 3, "text": "Both equally" }
                 ],
                 isRequired: false,
                 width: "35%"
@@ -385,9 +385,9 @@ const json = {
                 title: "Past context",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "non_org", "text": "Non-organized" },
-                  { "value": "club", "text": "Club" },
-                  { "value": "school", "text": "School" }
+                  { "value": 1, "text": "Non-organized" },
+                  { "value": 2, "text": "Club" },
+                  { "value": 3, "text": "School" }
                 ],
                 isRequired: false,
                 width: "40%"
@@ -397,9 +397,9 @@ const json = {
                 title: "Past level",
                 cellType: "radiogroup",
                 choices: [
-                  { "value": "recreational", "text": "Mainly recreational" },
-                  { "value": "competitive", "text": "Mainly competitive" },
-                  { "value": "both", "text": "Both equally" }
+                  { "value": 1, "text": "Mainly recreational" },
+                  { "value": 2, "text": "Mainly competitive" },
+                  { "value": 3, "text": "Both equally" }
                 ],
                 isRequired: false,
                 width: "35%"
@@ -432,16 +432,16 @@ const json = {
             isRequired: false,
             colCount: 3,   // horizontal layout for Yes / No / N/A
             choices: [
-              { value: "Yes", text: "Yes" },
-              { value: "No", text: "No" },
-              { value: "N/A", text: "N/A" }
+              { value: 1, text: "Yes" },
+              { value: 0, text: "No" },
+              { value: 2, text: "N/A" }
             ]
           },
           {
             type: "comment",
             name: "SP_Class_Ex",
             title: "Please explain:",
-            visibleIf: "{SP_Class} = 'yes'",
+            visibleIf: "{SP_Class} = 1",
             isRequired: false
           },
           //   {
@@ -695,150 +695,150 @@ const json = {
       },
 //       // ################################################################
 //       // ##### SECTION II    #############################################
-// // Aug 25, the calculations are not showing up. Are the names correct in the expression?
-//       {
-//         name: "CostActiveSportParticipation",
-//         title: "Section II: Cost of Active (Para)Sport Participation",
-//         elements: [
-//           //make it two columns
-//           {
-//             type: "radiogroup",
-//             name: "Cost_Gen",
-//             title: "How much do you think you spend annually on your (para)sport participation?",
-//             isRequired: false,
-//             choices: [
-//               { "value": 1, "text": " <  100 CAD/yr " },
-//               { "value": 2, "text": "100 < 250 CAD/yr" },
-//               { "value": 3, "text": "250 < 500 CAD/yr" },
-//               { "value": 4, "text": "500 < 750 CAD/yr" },
-//               { "value": 5, "text": "750 < 1,000 CAD/yr" },
-//               { "value": 6, "text": "1,000 < 1,500 CAD/yr" },
-//               { "value": 7, "text": "1,500 < 3,000 CAD/yr" },
-//               { "value": 8, "text": "3,000 < 5,000 CAD/yr" },
-//               { "value": 9, "text": "5,000 < 10,000 CAD/yr" },
-//               { "value": 10, "text": "> 10,000 CAD/yr" },
-//             ],
-//             colCount: 3,
-//           },
-//           {
-//             type: "html",
-//             name: "membership_subtitle",
-//             html: `
-//                 <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
-//                 II.1. Membership and Entrance Fees / Year
-//                 </div>`
-//           },
-// // Can the text in () below be in italics or grey?  
-// // One solution could be: to have a column of just text, with no input it just includes the stuff in ()
-// // Can the inputType: number be changed so that there are no up/down arrows???
-// // Add a column name above the first column???
-// // make it say: ANNUAL FEES
-// // Can the yes/no responses be centered under their column name
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II: Cost of Active (Para)Sport Participation",
+        elements: [
+          //make it two columns
+          {
+            type: "radiogroup",
+            name: "Cost_Gen",
+            title: "How much do you think you spend annually on your (para)sport participation?",
+            isRequired: false,
+            choices: [
+              { "value": 1, "text": " <  100 CAD/yr " },
+              { "value": 2, "text": "100 < 250 CAD/yr" },
+              { "value": 3, "text": "250 < 500 CAD/yr" },
+              { "value": 4, "text": "500 < 750 CAD/yr" },
+              { "value": 5, "text": "750 < 1,000 CAD/yr" },
+              { "value": 6, "text": "1,000 < 1,500 CAD/yr" },
+              { "value": 7, "text": "1,500 < 3,000 CAD/yr" },
+              { "value": 8, "text": "3,000 < 5,000 CAD/yr" },
+              { "value": 9, "text": "5,000 < 10,000 CAD/yr" },
+              { "value": 10, "text": "> 10,000 CAD/yr" },
+            ],
+            colCount: 3,
+          },
+          {
+            type: "html",
+            name: "membership_subtitle",
+            html: `
+                <div style="font-weight: bold; font-size: 40px; margin-top: 20px;">
+                II.1. Membership and Entrance Fees / Year
+                </div>`
+          },
+// Can the text in () below be in italics or grey?  
+// One solution could be: to have a column of just text, with no input it just includes the stuff in ()
+// Can the inputType: number be changed so that there are no up/down arrows???
+// Add a column name above the first column???
+// make it say: ANNUAL FEES
+// Can the yes/no responses be centered under their column name
 
-//     {
-//       "type": "matrixdropdown",
-//       "name": "annual_membership_fees",
-//       "title": "ANNUAL FEES",
-//       //"titleLocation": "hidden",
-//       "columnMinWidth": "130px",
-//       "columns": [
-//         {
-//           "name": "Cost",
-//           "title": "Did you pay this fee?",
-//           "cellType": "radiogroup",
-//           "choices": [ "Yes", "No" ],
-//           "defaultValue": "No"
-//         },
-//         {
-//           "name": "Cost_$Y",
-//           "title": "If yes, how much $/year?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.Cost} = 'Yes'",
-//           "allowResize": false,
-//         },
-//       ],
-//       "rows": [
-//         { "text": "Membership fee", "value": "Memb" },
-//         { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "Lic" },
-//         { "text": "Other program fees (If not included in the previous questions.)", "value": "PF" },
-//         { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "Comp" }
-//       ],
-//       "transposeData": false
-//     },
-//     // These expressions are correct (Aug 10, 2026)
-//       {
-//           type: "expression",
-//           name: "Annual_Fees_$Y",
-//           title: "Estimated annual fees",
-//           displayStyle: "decimal",
-//           precision: 2,
-//           expression:
-//             "{annual_membership_fees.fee_membership.cost_per_year} + {annual_membership_fees.fee_license.cost_per_year} + {annual_membership_fees.fee_program.cost_per_year} + {annual_membership_fees.fee_tournament.cost_per_year}"
-//   },
+    {
+      "type": "matrixdropdown",
+      "name": "annual_membership_fees",
+      "title": "ANNUAL FEES",
+      //"titleLocation": "hidden",
+      "columnMinWidth": "130px",
+      "columns": [
+        {
+          "name": "Cost",
+          "title": "Did you pay this fee?",
+          "cellType": "radiogroup",
+          "choices": [ "Yes", "No" ],
+          "defaultValue": "No"
+        },
+        {
+          "name": "Cost_$Y",
+          "title": "If yes, how much $/year?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.Cost} = 'Yes'",
+          "allowResize": false,
+        },
+      ],
+      "rows": [
+        { "text": "Membership fee", "value": "Memb" },
+        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "Lic" },
+        { "text": "Other program fees (If not included in the previous questions.)", "value": "PF" },
+        { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "Comp" }
+      ],
+      "transposeData": false
+    },
+    // These expressions are correct (Aug 10, 2026)
+      {
+          type: "expression",
+          name: "Annual_Fees_$Y",
+          title: "Estimated annual fees",
+          displayStyle: "decimal",
+          precision: 2,
+          expression:
+            "{annual_membership_fees.Memb.Cost_$Y} + {annual_membership_fees.Lic.Cost_$Y} + {annual_membership_fees.PF.Cost_$Y} + {annual_membership_fees.Comp.Cost_$Y}"
+  },
   
-// // ADD A COLUMN NAME TO COLUMN ONE: 
-// // PER-USE FEES
-//           {
-//       "type": "matrixdropdown",
-//       "name": "per_use_fees",
-//       "title": "PER-USE FEES",
+// ADD A COLUMN NAME TO COLUMN ONE: 
+// PER-USE FEES
+// Aug 26, the following question does not work
+          {
+      "type": "matrixdropdown",
+      "name": "per_use_fees",
+      "title": "PER-USE FEES",
 
-//       "showHeader": true,
-//       "columnMinWidth": "130px",
-//       "columns": [
-//         {
-//           "name": "Cost",
-//           "title": "Did you pay this fee?",
-//           "cellType": "radiogroup",
-//           "choices": [ "Yes", "No" ],
-//           "defaultValue": "No"
-//         },
-//         {
-//           "name": "Cost_$U",
-//           "title": "If yes, average $ per usage?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.usage} = 'Yes'",
-//           "allowResize": false,
-//         },
-//                 {
-//           "name": "Cost_UY",
-//           "title": "How many times per year?",
-//           "cellType": "text",
-//           "inputType": "number",
-//           "enableIf": "{row.usage} = 'Yes'",
-//           "allowResize": false,
-//         },
-//       ],
-//       "rows": [
-//         { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Entr" },
-//       ],
-//       "transposeData": false
-//     },
-// // These expressions are correct (Aug 10, 2026)
-//     {
-//         type: "expression",
-//         name: "Per_Use_Fees_$Y",
-//         title: "Estimated annual per use fees",
-//         displayStyle: "decimal",
-//         precision: 2,
-//         expression:
-//           "{per_use_fees.fee_entrance.avg_per_use_fee} * {per_use_fees.fee_entrance.freq_per_use_fee}"
-//     },
-//         {
-//         type: "expression",
-//         name: "Total_Fees_$Y",
-//         title: "Estimated annual fees",
-//         displayStyle: "decimal",
-//         precision: 2,
-//         displayStyle: "currency",
-//         currency: "CAD",
-//         expression:
-//           "{Per_Use_Fees_$Y} + {Annual_Fees_$Y}"
-//     },
-//         ]
-//       },
+      "showHeader": true,
+      "columnMinWidth": "130px",
+      "columns": [
+        {
+          "name": "Cost",
+          "title": "Did you pay this fee?",
+          "cellType": "radiogroup",
+          "choices": [ "Yes", "No" ],
+          "defaultValue": "No"
+        },
+        {
+          "name": "Cost_$U",
+          "title": "If yes, average $ per usage?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+                {
+          "name": "Cost_UY",
+          "title": "How many times per year?",
+          "cellType": "text",
+          "inputType": "number",
+          "enableIf": "{row.usage} = 'Yes'",
+          "allowResize": false,
+        },
+      ],
+      "rows": [
+        { "text": "Entrance and/or rental fees (e.g., green fee, renting a tennis court, drop-in fee)" , value: "Entr" },
+      ],
+      "transposeData": false
+    },
+// These expressions are correct (Aug 10, 2026)
+    {
+        type: "expression",
+        name: "Per_Use_Fees_$Y",
+        title: "Estimated annual per use fees",
+        displayStyle: "decimal",
+        precision: 2,
+        expression:
+          "{per_use_fees.fee_entrance.avg_per_use_fee} * {per_use_fees.fee_entrance.freq_per_use_fee}"
+    },
+        {
+        type: "expression",
+        name: "Total_Fees_$Y",
+        title: "Estimated annual fees",
+        displayStyle: "decimal",
+        precision: 2,
+        displayStyle: "currency",
+        currency: "CAD",
+        expression:
+          "{Per_Use_Fees_$Y} + {Annual_Fees_$Y}"
+    },
+        ]
+      },
 
 
 

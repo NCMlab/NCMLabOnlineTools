@@ -274,9 +274,10 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
           // Only work with data in "response"
           var temp2 = temp.trials[0].response
           console.log(temp2)
+
           for ( const [key, value] of Object.entries(temp2)) {
             var qType = getQuestionType(key)
-            console.log("Question type: "+qType)
+            // console.log("Question type: "+qType)
             if (qType === 'matrixdropdown') {
               const flattened = flattenMatrixDropdownObject(value);
               for (const [key2, value2] of Object.entries(flattened)) {
@@ -286,19 +287,19 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
             } else if (qType === 'matrixdynamic') {
               // Now check to see if it is an array
               if ( Array.isArray(value) ) {
-                console.log(">> ARRAY ARRAY ARRAY <<")
+                // console.log(">> ARRAY ARRAY ARRAY <<")
                 for ( let i = 0; i <  value.length; i++ ) {
                 // cycle over entries in the array
                   for ( const [key2, value2] of Object.entries(value[i])) {
                     if ( key2 === key)
                     {
-                      console.log(`Key: ${key}${i+1}, Value: ${value2}`);
+                      // console.log(`Key: ${key}${i+1}, Value: ${value2}`);
                       name = `${key}${i+1}`;
                       temp2[name] = value2;
                     }
                     else 
                     {
-                      console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
+                      // console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
                       name = `${key}${i+1}_${key2}`;
                       temp2[name] = value2;
                     }
