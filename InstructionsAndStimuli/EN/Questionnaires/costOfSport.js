@@ -765,10 +765,9 @@ const json = {
       ],
       "transposeData": false
     },
-    // These expressions are correct (Aug 10, 2026)
       {
           type: "expression",
-          name: "Annual_Fees_$Y",
+          name: "Cost_Entr_$Y",
           title: "Estimated annual fees",
           displayStyle: "decimal",
           precision: 2,
@@ -816,7 +815,6 @@ const json = {
       ],
       "transposeData": false
     },
-// These expressions are correct (Aug 10, 2026)
     {
         type: "expression",
         name: "Per_Use_Fees_$Y",
@@ -839,9 +837,6 @@ const json = {
     },
         ]
       },
-
-
-
       {
         name: "CostActiveSportParticipation",
         title: "Section II.2. Cost of Coaching and Clinics",
@@ -896,316 +891,294 @@ const json = {
                 displayStyle: "currency",
                 currency: "CAD",
                 expression:
-                  "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY} + " +
+                  "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY}"
+                  
+              },
+              {
+                type: "expression",
+                name: "Cost_Clinic_$Y",
+                title: "Estimated yearly clinic cost",
+                displayStyle: "decimal",
+                precision: 2,
+                displayStyle: "currency",
+                currency: "CAD",
+                expression:
                   "{coaching_costs.Clinic.Cost_$U} * {coaching_costs.Clinic.Cost_UY}"  // keep this idea, but use the new format
               },
-
-
-    //    {
-    //         type: "expression",
-    //         name: "Cost_Coach_$Y",
-    //         title: "Estimated yearly coaching cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    // {
-    //         type: "expression",
-    //         name: "Clinic_Coach_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    //       {
-    //         type: "expression",
-    //         name: "Cost_Clinic_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         visibleIf: "{Cost_Clinic} = 1",
-    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         precision: 2
-    //       },
-
         ]
       },
-//       {
-//         name: "CostActiveSportParticipation",
-//         title: "Section II.3: Cost of Apparel and Equipment",
-//         elements: [
+      {
+        name: "CostActiveSportParticipation",
+        title: "Section II.3: Cost of Apparel and Equipment",
+        elements: [
 
-//           //moved to section apparel and Equipment from section I: ability
+          //moved to section apparel and Equipment from section I: ability
 
-//           {
-//             type: "radiogroup",
-//             title: "Does your ability require adaptive apparel/equipment to participate this sport?",
-//             name: 'AB_EQ_DL_Ex',
-//             titleLocation: "left",
-//             colCount: 0,
-//             choices: [
-//               'Yes',
-//               'No',
-//             ]
-//           },
+          {
+            type: "radiogroup",
+            title: "Does your ability require adaptive apparel/equipment to participate this sport?",
+            name: 'AB_EQ_DL_Ex',
+            titleLocation: "left",
+            colCount: 0,
+            choices: [
+              'Yes',
+              'No',
+            ]
+          },
 
-//           {
-//             type: "comment",
-//             name: "adaptive_equipment_explanation",
-//             title: "Please explain:",
-//             visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-//             isRequired: false
-//           },
+          {
+            type: "comment",
+            name: "adaptive_equipment_explanation",
+            title: "Please explain:",
+            visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+            isRequired: false
+          },
 
-//           // question 10 to adjust
-//           //fix html text 
-//           {
-//             type: "html",
-//             name: "apparel_subtitle",
-//             html: `
-//       <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
-//       List ALL a) sports apparel, b) sports equipment, and c) other equipment you currently possess and purchased specifically to play your sport. 
-//       How much did you pay and how long are you/have you been using this/these item(s)? 
-//       </div>`
-//           },
-
-
-//           /* ----------------- (a) Sports apparel ----------------- */ //fixed 
-//           {
-//             type: "matrixdynamic",
-//             name: "SP_APP",
-//             title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
-//             addRowText: "➕ Add apparel item",
-//             removeRowText: "➖ Remove",
-//             minRowCount: 1,
-//             rowCount: 0,
-//             showFooter: true,
-//             columns: [
-//               { name: "SP_APP_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
-//               { name: "SP_APP_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
-//               { name: "SP_APP_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
-//               {
-//                 name: "SP_APP_$Y",
-//                 title: "Write-off / year (C$)",
-//                 cellType: "expression",
-//                 /* expression:
-//                   "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
-//                   " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
-//                   */
-//                 expression: "{row.SP_APP_Cost}/{row.SP_APP_Years_of_Usage}",
-//                 displayStyle: "currency",
-//                 currency: "CAD",
-
-//                 totalType: "sum",
-//                 totalDisplayStyle: "currency",
-//                 currencyDisplay: "code",
-//                 visible: false,
-//                 width: "15%"
-//               } 
-//             ],
-//             footerText: "Sub-total (a)"
-//           },
-//           {
-//             type: "expression",
-//             name: "SP_APP_$Y_Total",
-//             title: "Sub-total (a): Total write-off per year (all apparel items)",
-//             expression: "{SP_APP-total.SP_APP_$Y}",
-//             //expression: "{SP_APP.SP_APP_Cost}",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//             //currencyDisplay: "code",
-//             visible: true
-//           },
-
-//           /* --------------- (b) Sports equipment ----------------- */
-//           {
-//             type: "matrixdynamic",
-//             name: "SP_Equip",
-//             title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
-//             addRowText: "➕ Add equipment item",
-//             removeRowText: "➖ Remove",
-//             minRowCount: 1,
-//             rowCount: 0,
-//             showFooter: true,
-//             columns: [
-//               { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
-//               //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-//               { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-//               { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
-//               {
-//                 name: "SP_Equip_$Y",
-//                 title: "Write-off / year (C$)",
-//                 cellType: "expression",
-//                 expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
-//                 displayStyle: "currency",
-//                 currency: "CAD",
-//                 totalType: "sum",
-//                 totalDisplayStyle: "currency",
-//                 currencyDisplay: "code",
-//                 visible: false,
-//                 width: "15%"
-//               },
-//             ],
-//             footerText: "Sub-total (b)"
-//           },
-//           {
-//             type: "expression",
-//             name: "SP_Equip_$Y_Total",
-//             title: "Sub-total (a): Total write-off per year (all equipment items)",
-//             expression: "{SP_Equip-total.SP_Equip_$Y}",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//             //currencyDisplay: "code",
-//             visible: true
-//           },
-
-//           /*  --------- c) Additional equipment -----------------   */
-//           {
-//             type: "matrixdynamic",
-//             name: "SP_AddEquip",
-//             title: "C) Additional equipment, ex.towels ..",
-//             addRowText: "➕ Add equipment item",
-//             removeRowText: "➖ Remove",
-//             minRowCount: 1,
-//             rowCount: 0,
-//             showFooter: true,
-//             columns: [
-//               { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-//               { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-//               { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
-//               {
-//                 name: "SP_AddEquip_$Y",
-//                 title: "Write-off / year (C$)",
-//                 cellType: "expression",
-//                 expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
-//                 displayStyle: "currency",
-//                 currency: "CAD",
-//                 totalType: "sum",
-//                 totalDisplayStyle: "currency",
-//                 currencyDisplay: "code",
-//                 visible: false,
-//                 width: "15%"
-//               },
-//             ],
-//             footerText: "Sub-total (c)"
-//           },
-
-//          {
-//             type: "expression",
-//             name: "SP_AddEquip_$Y_Total",
-//             title: "Sub-total (a): Total write-off per year (all additional equipment items)",
-//             expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//             //currencyDisplay: "code",
-//             visible: true
-//           },
-
-//           // question 11
+          // question 10 to adjust
+          //fix html text 
+          {
+            type: "html",
+            name: "apparel_subtitle",
+            html: `
+      <div style="font-weight: bold; font-size: 20px; margin-top: 20px;">
+      List ALL a) sports apparel, b) sports equipment, and c) other equipment you currently possess and purchased specifically to play your sport. 
+      How much did you pay and how long are you/have you been using this/these item(s)? 
+      </div>`
+          },
 
 
-//           {
-//             type: "checkbox",
-//             name: "sports_equipment_sources",
-//             title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
-//             isRequired: false,
-//             itemLayout: "horizontal",
-//             choices: [
-//               { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
-//               { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
-//               { "value": 3, "text": "In a privately owned sports shop" },
-//               { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
-//               { "value": 5, "text": "Buy from individual people or second hand" },
-//               { "value": 6, "text": "Wholesale" },
-//               { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
-//               { "value": 8, "text": "Other (please describe)" }
-//             ],
-//             colCount: 2
-//           },
+          /* ----------------- (a) Sports apparel ----------------- */ //fixed 
+          {
+            type: "matrixdynamic",
+            name: "SP_APP",
+            title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
+            addRowText: "➕ Add apparel item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
+              { name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
+              { name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
+              {
+                name: "$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                /* expression:
+                  "iif(or({row.SP_APP_Usage} = 0, isEmpty({row.SP_APP_Usage})), 0," +
+                  " {row.SP_APP_Quantity} * {row.SP_APP_$U} / {row.SP_APP_Usage})",
+                  */
+                expression: "{row.$Total}/{row.nY}",
+                displayStyle: "currency",
+                currency: "CAD",
 
-//           {
-//             type: "comment",
-//             name: "sports_equipment_sources_other",
-//             title: "If you selected 'Other (please describe)', please specify:",
-//             visibleIf: "{sports_equipment_sources} contains 8"
-//           },
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: false,
+                width: "15%"
+              } 
+            ],
+            footerText: "Sub-total (a)"
+          },
+          {
+            type: "expression",
+            name: "SP_APP_$Y_Total",
+            title: "Sub-total (a): Total write-off per year (all apparel items)",
+            expression: "{SP_APP-total.$Y}",
+            //expression: "{SP_APP.SP_APP_Cost}",
+            displayStyle: "currency",
+            currency: "CAD",
+            //currencyDisplay: "code",
+            visible: true
+          },
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// Good up to here. Aug 27, 2026
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          /* --------------- (b) Sports equipment ----------------- */
+          {
+            type: "matrixdynamic",
+            name: "SP_Equip",
+            title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+            addRowText: "➕ Add equipment item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
+              //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+              { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+              { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              {
+                name: "SP_Equip_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: false,
+                width: "15%"
+              },
+            ],
+            footerText: "Sub-total (b)"
+          },
+          {
+            type: "expression",
+            name: "SP_Equip_$Y_Total",
+            title: "Sub-total (a): Total write-off per year (all equipment items)",
+            expression: "{SP_Equip-total.SP_Equip_$Y}",
+            displayStyle: "currency",
+            currency: "CAD",
+            //currencyDisplay: "code",
+            visible: true
+          },
 
-//           // question 12 
+          /*  --------- c) Additional equipment -----------------   */
+          {
+            type: "matrixdynamic",
+            name: "SP_AddEquip",
+            title: "C) Additional equipment, ex.towels ..",
+            addRowText: "➕ Add equipment item",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            columns: [
+              { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
+              { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+              { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              {
+                name: "SP_AddEquip_$Y",
+                title: "Write-off / year (C$)",
+                cellType: "expression",
+                expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: false,
+                width: "15%"
+              },
+            ],
+            footerText: "Sub-total (c)"
+          },
 
-//         {
-//                 "type": "matrixdropdown",
-//                 "name": "EQ_RentMaintenance",
-//                 "title": "Rental Fees and Maintenance Costs",
-//                 //"titleLocation": "hidden",
-//                 "showHeader": true,
-//                 "columnMinWidth": "130px",
-//                 "columns": [
-//                   {
-//                     "name": "usage",
-//                     "title": "Did you pay?",
-//                     "cellType": "radiogroup",
-//                     "choices": [ "Yes", "No" ],
-//                     "defaultValue": "No"
-//                   },
-//                   {
-//                     "name": "cost_per_usage",
-//                     "title": "If yes, average cost per use",
-//                     "cellType": "text",
-//                     "inputType": "number",
-//                     "enableIf": "{row.usage} = 'Yes'",
-//                     "allowResize": false,
-//                   },
-//                           {
-//                     "name": "frequency_per_year",
-//                     "title": "Number of times per year",
-//                     "cellType": "text",
-//                     "inputType": "number",
-//                     "enableIf": "{row.usage} = 'Yes'",
-//                     "allowResize": false,
-//                   },
-//                 ],
-//                 "rows": [
-//                   { "text": "Rental fees for sports apparel or equipment", "value": 'rental_equipment' },
-//                   { "text": "Maintenance costs for sports apparel or equipment? (e.g., maintenance, repair, dry cleaning, …)", "value": 'maintenance_equipment' },                  
-//                 ],
-//                 "transposeData": false
-//               },
+         {
+            type: "expression",
+            name: "SP_AddEquip_$Y_Total",
+            title: "Sub-total (a): Total write-off per year (all additional equipment items)",
+            expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
+            displayStyle: "currency",
+            currency: "CAD",
+            //currencyDisplay: "code",
+            visible: true
+          },
+
+          // question 11
+
+
+          {
+            type: "checkbox",
+            name: "sports_equipment_sources",
+            title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
+            isRequired: false,
+            itemLayout: "horizontal",
+            choices: [
+              { "value": 1, "text": "In a general store, not specialized in sport (e.g., Walmart, ...)" },
+              { "value": 2, "text": "In a general sports store (e.g., Sport Check, ...)" },
+              { "value": 3, "text": "In a privately owned sports shop" },
+              { "value": 4, "text": "In a shop specialized in your specific sport (ex. golf shop)" },
+              { "value": 5, "text": "Buy from individual people or second hand" },
+              { "value": 6, "text": "Wholesale" },
+              { "value": 7, "text": "Mail order company (e.g., Amazon, eBay, ...)" },
+              { "value": 8, "text": "Other (please describe)" }
+            ],
+            colCount: 2
+          },
+
+          {
+            type: "comment",
+            name: "sports_equipment_sources_other",
+            title: "If you selected 'Other (please describe)', please specify:",
+            visibleIf: "{sports_equipment_sources} contains 8"
+          },
+
+          // question 12 
+
+        {
+                "type": "matrixdropdown",
+                "name": "EQ_RentMaintenance",
+                "title": "Rental Fees and Maintenance Costs",
+                //"titleLocation": "hidden",
+                "showHeader": true,
+                "columnMinWidth": "130px",
+                "columns": [
+                  {
+                    "name": "usage",
+                    "title": "Did you pay?",
+                    "cellType": "radiogroup",
+                    "choices": [ "Yes", "No" ],
+                    "defaultValue": "No"
+                  },
+                  {
+                    "name": "cost_per_usage",
+                    "title": "If yes, average cost per use",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                          {
+                    "name": "frequency_per_year",
+                    "title": "Number of times per year",
+                    "cellType": "text",
+                    "inputType": "number",
+                    "enableIf": "{row.usage} = 'Yes'",
+                    "allowResize": false,
+                  },
+                ],
+                "rows": [
+                  { "text": "Rental fees for sports apparel or equipment", "value": 'rental_equipment' },
+                  { "text": "Maintenance costs for sports apparel or equipment? (e.g., maintenance, repair, dry cleaning, …)", "value": 'maintenance_equipment' },                  
+                ],
+                "transposeData": false
+              },
          
-//  {
-//             type: "expression",
-//             name: "EQ_RentMaintenance_$Y_Total",
-//             title: "Estimated yearly rental cost",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//             precision: 2,
-//             visible: true,
-//             expression:
-//               "{EQ_RentMaintenance.rental_equipment.cost_per_usage} * {EQ_RentMaintenance.rental_equipment.frequency_per_year}+" + 
-//               "{EQ_RentMaintenance.maintenance_equipment.cost_per_usage} * {EQ_RentMaintenance.maintenance_equipment.frequency_per_year}"
-//           },
-//           {
-//             type: "expression",
-//             name: "SP_Equip_APP_$Y_Total",
-//             title: "Apparel & Equipment / YEAR (Total)",
-//             displayStyle: "decimal",
-//             precision: 2,
-//             expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Total}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_RentMaintenance_$Y_Total}",
-//             displayStyle: "currency",
-//             currency: "CAD",
-//           },
+ {
+            type: "expression",
+            name: "EQ_RentMaintenance_$Y_Total",
+            title: "Estimated yearly rental cost",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2,
+            visible: true,
+            expression:
+              "{EQ_RentMaintenance.rental_equipment.cost_per_usage} * {EQ_RentMaintenance.rental_equipment.frequency_per_year}+" + 
+              "{EQ_RentMaintenance.maintenance_equipment.cost_per_usage} * {EQ_RentMaintenance.maintenance_equipment.frequency_per_year}"
+          },
+          {
+            type: "expression",
+            name: "SP_Equip_APP_$Y_Total",
+            title: "Apparel & Equipment / YEAR (Total)",
+            displayStyle: "decimal",
+            precision: 2,
+            expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Total}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_RentMaintenance_$Y_Total}",
+            displayStyle: "currency",
+            currency: "CAD",
+          },
 
-//         ]
+        ]
 
-//         // to add the sum of maintenance and apparel together 
+        // to add the sum of maintenance and apparel together 
 
 
-//       },
+      },
 
 
 
