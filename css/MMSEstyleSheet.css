@@ -1,0 +1,16 @@
+/* Lay the MMSE radio button choices out horizontally, centered, instead of stacked. */
+.radiogroup_alignment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  text-align: center;
+  padding-left: 0;
+}
+
+.radiogroup_alignment > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
