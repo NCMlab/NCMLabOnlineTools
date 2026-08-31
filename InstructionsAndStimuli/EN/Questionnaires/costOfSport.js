@@ -765,10 +765,9 @@ const json = {
       ],
       "transposeData": false
     },
-    // These expressions are correct (Aug 10, 2026)
       {
           type: "expression",
-          name: "Annual_Fees_$Y",
+          name: "Cost_Entr_$Y",
           title: "Estimated annual fees",
           displayStyle: "decimal",
           precision: 2,
@@ -816,7 +815,6 @@ const json = {
       ],
       "transposeData": false
     },
-// These expressions are correct (Aug 10, 2026)
     {
         type: "expression",
         name: "Per_Use_Fees_$Y",
@@ -839,9 +837,6 @@ const json = {
     },
         ]
       },
-
-
-
       {
         name: "CostActiveSportParticipation",
         title: "Section II.2. Cost of Coaching and Clinics",
@@ -896,7 +891,18 @@ const json = {
                 displayStyle: "currency",
                 currency: "CAD",
                 expression:
-                  "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY} + " +
+                  "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY}"
+                  
+              },
+              {
+                type: "expression",
+                name: "Cost_Clinic_$Y",
+                title: "Estimated yearly clinic cost",
+                displayStyle: "decimal",
+                precision: 2,
+                displayStyle: "currency",
+                currency: "CAD",
+                expression:
                   "{coaching_costs.Clinic.Cost_$U} * {coaching_costs.Clinic.Cost_UY}"  // keep this idea, but use the new format
               },
 
@@ -943,25 +949,25 @@ const json = {
 
           //moved to section apparel and Equipment from section I: ability
 
-          {
-            type: "radiogroup",
-            title: "Does your ability require adaptive apparel/equipment to participate this sport?",
-            name: 'AB_EQ_Sport',
-            titleLocation: "left",
-            colCount: 0,
-            choices: [
-              'Yes',
-              'No',
-            ]
-          },
+//           {
+//             type: "radiogroup",
+//             title: "Does your ability require adaptive apparel/equipment to participate this sport?",
+//             name: 'AB_EQ_DL_Ex',
+//             titleLocation: "left",
+//             colCount: 0,
+//             choices: [
+//               'Yes',
+//               'No',
+//             ]
+//           },
 
-          {
-            type: "comment",
-            name: "AB_EQ_Sport_Ex",
-            title: "Please explain:",
-            visibleIf: "{AB_EQ_Sport} = 'yes'",
-            isRequired: false
-          },
+//           {
+//             type: "comment",
+//             name: "adaptive_equipment_explanation",
+//             title: "Please explain:",
+//             visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
+//             isRequired: false
+//           },
 
           // question 10 to adjust
           //fix html text 
@@ -1002,109 +1008,110 @@ const json = {
                 displayStyle: "currency",
                 currency: "CAD",
 
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                visible: false,
-                width: "15%"
-              } 
-            ],
-            footerText: "Sub-total (a)"
-          },
-          {
-            type: "expression",
-            name: "SP_APP_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_APP-total.$Y}",
-            //expression: "{SP_APP.SP_APP_Cost}",
-            displayStyle: "currency",
-            currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
-          },
+//                 totalType: "sum",
+//                 totalDisplayStyle: "currency",
+//                 currencyDisplay: "code",
+//                 visible: false,
+//                 width: "15%"
+//               } 
+//             ],
+//             footerText: "Sub-total (a)"
+//           },
+//           {
+//             type: "expression",
+//             name: "SP_APP_$Y_Total",
+//             title: "Sub-total (a): Total write-off per year (all apparel items)",
+//             expression: "{SP_APP-total.SP_APP_$Y}",
+//             //expression: "{SP_APP.SP_APP_Cost}",
+//             displayStyle: "currency",
+//             currency: "CAD",
+//             //currencyDisplay: "code",
+//             visible: true
+//           },
 
-          /* --------------- (b) Sports equipment ----------------- */
-          {
-            type: "matrixdynamic",
-            name: "SP_Equip",
-            title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
-            addRowText: "➕ Add equipment item",
-            removeRowText: "➖ Remove",
-            minRowCount: 1,
-            rowCount: 0,
-            showFooter: true,
-            columns: [
-              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
-              { name: "$Total", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { name: "nY", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
-              {
-                name: "$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression: "{row.$Total}/{row.nY}",
-                displayStyle: "currency",
-                currency: "CAD",
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                visible: false,
-                width: "15%"
-              },
-            ],
-            footerText: "Sub-total (b)"
-          },
-          {
-            type: "expression",
-            name: "SP_Equip_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all equipment items)",
-            expression: "{SP_Equip-total.$Y}",
-            displayStyle: "currency",
-            currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
-          },
+//           /* --------------- (b) Sports equipment ----------------- */
+//           {
+//             type: "matrixdynamic",
+//             name: "SP_Equip",
+//             title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
+//             addRowText: "➕ Add equipment item",
+//             removeRowText: "➖ Remove",
+//             minRowCount: 1,
+//             rowCount: 0,
+//             showFooter: true,
+//             columns: [
+//               { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
+//               //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
+//               { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+//               { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+//               {
+//                 name: "SP_Equip_$Y",
+//                 title: "Write-off / year (C$)",
+//                 cellType: "expression",
+//                 expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
+//                 displayStyle: "currency",
+//                 currency: "CAD",
+//                 totalType: "sum",
+//                 totalDisplayStyle: "currency",
+//                 currencyDisplay: "code",
+//                 visible: false,
+//                 width: "15%"
+//               },
+//             ],
+//             footerText: "Sub-total (b)"
+//           },
+//           {
+//             type: "expression",
+//             name: "SP_Equip_$Y_Total",
+//             title: "Sub-total (a): Total write-off per year (all equipment items)",
+//             expression: "{SP_Equip-total.SP_Equip_$Y}",
+//             displayStyle: "currency",
+//             currency: "CAD",
+//             //currencyDisplay: "code",
+//             visible: true
+//           },
 
-          /*  --------- c) Additional equipment -----------------   */
-          {
-            type: "matrixdynamic",
-            name: "SP_AddEquip",
-            title: "C) Additional equipment, ex.towels ..",
-            addRowText: "➕ Add equipment item",
-            removeRowText: "➖ Remove",
-            minRowCount: 1,
-            rowCount: 0,
-            showFooter: true,
-            columns: [
-              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-              { name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
-              {
-                name: "$Y",
-                title: "Write-off / year (C$)",
-                cellType: "expression",
-                expression: "{row.$Total}/{row.nY}",
-                displayStyle: "currency",
-                currency: "CAD",
-                totalType: "sum",
-                totalDisplayStyle: "currency",
-                currencyDisplay: "code",
-                visible: false,
-                width: "15%"
-              },
-            ],
-            footerText: "Sub-total (c)"
-          },
+//           /*  --------- c) Additional equipment -----------------   */
+//           {
+//             type: "matrixdynamic",
+//             name: "SP_AddEquip",
+//             title: "C) Additional equipment, ex.towels ..",
+//             addRowText: "➕ Add equipment item",
+//             removeRowText: "➖ Remove",
+//             minRowCount: 1,
+//             rowCount: 0,
+//             showFooter: true,
+//             columns: [
+//               { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
+//               { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+//               { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+//               {
+//                 name: "SP_AddEquip_$Y",
+//                 title: "Write-off / year (C$)",
+//                 cellType: "expression",
+//                 expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
+//                 displayStyle: "currency",
+//                 currency: "CAD",
+//                 totalType: "sum",
+//                 totalDisplayStyle: "currency",
+//                 currencyDisplay: "code",
+//                 visible: false,
+//                 width: "15%"
+//               },
+//             ],
+//             footerText: "Sub-total (c)"
+//           },
 
-         {
-            type: "expression",
-            name: "SP_AddEquip_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all additional equipment items)",
-            expression: "{SP_AddEquip-total.$Y}",
-            displayStyle: "currency",
-            currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
-          },
+//          {
+//             type: "expression",
+//             name: "SP_AddEquip_$Y_Total",
+//             title: "Sub-total (a): Total write-off per year (all additional equipment items)",
+//             expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
+//             displayStyle: "currency",
+//             currency: "CAD",
+//             //currencyDisplay: "code",
+//             visible: true
+//           },
 
           // question 11
 
