@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/3CLogo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1417,10 +1417,10 @@
 <h2 id="the-icon-grid">The icon grid<a class="headerlink" href="#the-icon-grid" title="Permanent link">&para;</a></h2>
 <p>Each task in the <code>TaskList</code> array appears as a labelled button. The button label comes from the <code>IconName</code> field in the task definition:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">List</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Digit Span&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigitSpan_Forward_Audio&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Digit Span Fwd&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// This text appears on the button</span>
+<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">"Digit Span"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">"DigitSpan_Forward_Audio"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">"Digit Span Fwd"</span><span class="p">,</span><span class="w">  </span><span class="c1">// This text appears on the button</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Buttons for tasks that have already been completed in the current session are visually distinguished (e.g., greyed out or marked), so the administrator can track what has been done.</p>
@@ -1440,17 +1440,17 @@
 <h2 id="multiple-parameter-versions">Multiple parameter versions<a class="headerlink" href="#multiple-parameter-versions" title="Permanent link">&para;</a></h2>
 <p>A task component can appear more than once in the same <code>TaskList</code> with different <code>Parameters</code> values. In User Choice mode, each version appears as a separate button with its own <code>IconName</code>. This lets an administrator choose between, for example, a short version and a long version of the same task, or forward and backward variants of digit span.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">List</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Digit Span&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigitSpan_Forward_Audio&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DS Forward&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">"Digit Span"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">"DigitSpan_Forward_Audio"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">"DS Forward"</span><span class="p">,</span>
 <span class="p">});</span>
 
 <span class="nx">List</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Digit Span&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigitSpan_Backward_Audio&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DS Backward&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Task</span><span class="o">:</span><span class="w"> </span><span class="s2">"Digit Span"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Parameters</span><span class="o">:</span><span class="w"> </span><span class="s2">"DigitSpan_Backward_Audio"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Instructions</span><span class="o">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">IconName</span><span class="o">:</span><span class="w"> </span><span class="s2">"DS Backward"</span><span class="p">,</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Both buttons appear in the grid, and the administrator can run either or both.</p>
@@ -1536,7 +1536,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.tracking", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
