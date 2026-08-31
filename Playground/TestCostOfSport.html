@@ -91,13 +91,140 @@
 </style>
     
     <script>
-    // function downloadSurveyPDF() {
-    //    const surveyPdf = new SurveyPDF.SurveyPDF(EN_CostOfSport.survey_JSON, {
-    //   fontSize: 12,
-    //   margins: { left: 10, right: 10, top: 10, bot: 10 }
-    //   });
-    //   surveyPdf.save("CostOfSport.pdf");
-    // }
+     
+// provided by google in response to the question:
+//  JAVASCRIPT flatten an object of objects
+function flattenMatrixDropdownObject(obj, prefix = '') {
+  let result = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // Create the path key (e.g., "user.profile.name")
+      // The name here is COLUMN_ROW, which works for matrixdropdown
+      const newKey = prefix ? `${key}_${prefix}` : key;
+      // We would like the name to be ROW_COLUMN for matrixdynamic
+      const value = obj[key];
+
+      // Check if value is a plain object (and not an array or null)
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Recursively merge the nested object properties
+        Object.assign(result, flattenMatrixDropdownObject(value, newKey));
+      } else {
+        // Assign the primitive value or array to the new key path
+        result[newKey] = value;
+      }
+    }
+  }
+  return result;
+}
+function flattenMatrixDynamicObject(obj, prefix = '') {
+  let result = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // Create the path key (e.g., "user.profile.name")
+      // The name here is COLUMN_ROW, which works for matrixdropdown
+      const newKey = prefix ? `${prefix}_${key}` : key;
+      // We would like the name to be ROW_COLUMN for matrixdynamic
+      const value = obj[key];
+
+      // Check if value is a plain object (and not an array or null)
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Recursively merge the nested object properties
+        Object.assign(result, flattenMatrixDynamicObject(value, newKey));
+      } else {
+        // Assign the primitive value or array to the new key path
+        result[newKey] = value;
+      }
+    }
+  }
+  return result;
+}
+
+// LOAD A CSV FILE FOR THE COLUMN HEADERS OF THE OUTPUT DATA FILE.
+// THIS ENSURES AN ORDER AND THAT THE CORRECT DATA IS OUTPUT, EVEN
+// WHEN THERE IS NO VALUE PROVIDED FOR A GIVEN COLUMN.
+
+      // Minimal CSV parser: handles quoted fields, embedded commas/quotes,
+      // and CRLF/LF line endings. Returns an array of row-arrays.
+      function parseCSVText(text) {
+        text = text.replace(/^\uFEFF/, ''); // strip UTF-8 BOM if present
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          if (inQuotes) {
+            if (c === '"') {
+              if (text[i + 1] === '"') { field += '"'; i++; }
+              else { inQuotes = false; }
+            } else {
+              field += c;
+            }
+          } else if (c === '"') {
+            inQuotes = true;
+          } else if (c === ',') {
+            row.push(field);
+            field = '';
+          } else if (c === '\r') {
+            // ignore; the following \n (or end of a lone \r line) ends the row
+          } else if (c === '\n') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += c;
+          }
+        }
+        // last field/row if the file doesn't end with a newline
+        if (field.length > 0 || row.length > 0) {
+          row.push(field);
+          rows.push(row);
+        }
+        return rows;
+      }
+
+      // Fetches CodeBookSheet.csv and returns the ordered list of column
+      // names (its first, and currently only, column).
+      async function loadCodeBookHeaders(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Could not load code book "${url}": ${response.status} ${response.statusText}`);
+        }
+        const text = await response.text();
+        return parseCSVText(text)
+          .map(row => (row[0] || '').replace(/\u00A0/g, ' ').trim())
+          .filter(name => name.length > 0);
+      }
+
+      function csvEscapeField(value) {
+        if (value === undefined || value === null) return '';
+        const str = String(value);
+        if (/[",\r\n]/.test(str)) {
+          return '"' + str.replace(/"/g, '""') + '"';
+        }
+        return str;
+      }
+
+      // Builds a CSV string (header row + one data row) with columns in the
+      // exact order given by `headers`. Any header missing from `dataObj`
+      // is written as an empty field rather than being skipped or erroring.
+      function objectToOrderedCSV(dataObj, headers) {
+        const headerRow = headers.map(csvEscapeField).join(',');
+        const dataRow = headers.map(h => csvEscapeField(dataObj[h])).join(',');
+        return headerRow + '\r\n' + dataRow + '\r\n';
+      }
+
+      // Loads the code book, builds the ordered CSV for dataObj, and
+      // triggers a browser download of it.
+      async function saveObjectAsOrderedCSV(dataObj, codeBookUrl, filename) {
+        const headers = await loadCodeBookHeaders(codeBookUrl);
+        const csvString = objectToOrderedCSV(dataObj, headers);
+        downloadCSV(filename, csvString);
+      }
 
       function downloadCSV(filename, csvString) {
         const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
@@ -111,6 +238,19 @@
         URL.revokeObjectURL(url);
       }
 
+      // Searches EN_CostOfSport.survey_JSON for the element whose "name"
+      // matches key, and returns its "type" ('other' if not found).
+      function getQuestionType(key) {
+        const survey = EN_CostOfSport.survey_JSON;
+        for (const page of survey.pages) {
+          for (const element of page.elements) {
+            if (element.name === key) {
+              return element.type || 'other';
+            }
+          }
+        }
+        return 'other';
+      }
      
       function addFlatResponseToData(trialData) {
         const resp = trialData.response || {};
@@ -125,17 +265,96 @@
         auto_update_progress_bar: false,
 
       
-        on_finish: function () {
+        on_finish: async function () {
+          console.log("FINISHING THE jsPSYCH FUNCTION") // This is second
+          console.log("DATA FROM JSPSYCH.DATA.GET")
+          // Get all of the data from jsPsych
+          var temp = jsPsych.data.get()
+
           
-          const csv = jsPsych.data.get().csv();
+
+          console.log(temp)
+          // Only work with data in "response"
+          var temp2 = temp.trials[0].response
+          console.log(temp2)
+
+          for ( const [key, value] of Object.entries(temp2)) {
+            var qType = getQuestionType(key)
+            // console.log("Question type: "+qType)
+            if (qType === 'matrixdropdown') {
+              const flattened = flattenMatrixDropdownObject(value);
+              for (const [key2, value2] of Object.entries(flattened)) {
+                temp2[key2] = value2;
+              }
+              delete temp2[key];
+            } else if (qType === 'matrixdynamic') {
+              // Now check to see if it is an array
+              if ( Array.isArray(value) ) {
+                // console.log(">> ARRAY ARRAY ARRAY <<")
+                for ( let i = 0; i <  value.length; i++ ) {
+                // cycle over entries in the array
+                  for ( const [key2, value2] of Object.entries(value[i])) {
+                    if ( key2 === key)
+                    {
+                      // console.log(`Key: ${key}${i+1}, Value: ${value2}`);
+                      name = `${key}${i+1}`;
+                      temp2[name] = value2;
+                    }
+                    else 
+                    {
+                      // console.log(`Key: ${key}${i+1}_${key2}, Value: ${value2}`);
+                      name = `${key}${i+1}_${key2}`;
+                      temp2[name] = value2;
+                    }
+                  }
+                }
+              }
+              else { 
+                const flattened = flattenMatrixDynamicObject(value);
+                for (const [key3, value3] of Object.entries(flattened)) {
+                  temp2[key3] = value3;
+                }
+              }
+              delete temp2[key];
+            }
+          
+          //   // =============================
+          //   // CHECK FOR AN OBJECT THAT MAY BE A DYNAMICMATRIX AND UNPACK IT
+          //   // =============================
+          //   // THIS WILL LOOK FOR THE PRACTICE TABLE
+          //   // I need to ensure that all dynamicmatrix questions can use the same name format as the Sport_Curr question.
+          //   if ( typeof value === 'object' && value !== null && !Array.isArray(value) ) {
+          //     // It must be a dynamicmatrix.
+          //     // The name of the output variable should start with the name of this 
+          //     console.log(">> OBJECT OBJECT OBJECT <<")
+          //     console.log(flattenObject(value))
+          //     // Now add the flattened object back to the temp2 object
+          //     const flattened = flattenObject(value);
+          //     for ( const [key3, value3] of Object.entries(flattened)) {
+          //       temp2[key3] = value3;
+          //     }
+          //     // Once the dynamicmatrix object is unpacked, delete it
+          //   }
+          //   delete temp2[key]
+          }
+
+          // displaythe response data after unpacking it
+          for ( const [key, value] of Object.entries(temp2)) {
+            console.log(`Key: ${key}, Value: ${value}`);
+          }
+
+          // Keep the data in the predescribed order given by CodeBookSheet.csv,
+          // regardless of how many entries any dynamicmatrix ended up unpacking.
           const ts = new Date().toISOString().replace(/[:.]/g, "-");
           const filename = "CostOfSport_" + ts + ".csv";
+          try {
+            await saveObjectAsOrderedCSV(temp2, "../assets/OutputDataFormatting/CodeBookSheet.csv", filename);
+          } catch (error) {
+            console.error("Error saving ordered CSV:", error);
+          }
 
-          downloadCSV(filename, csv);
-
-         
           jsPsych.data.displayData('json');
-          
+
         }
       });
 
@@ -156,9 +375,24 @@
         //   downloadSurveyPDF()
         // },
         on_finish: function (data) {
-          console.log("Survey trial data:", data);
+          console.log('FINISHING THE form_trial function') // This is first
+          //console.log("Survey trial data:", data);
+          console.log("RAW DATA")
+          console.log(data)
           addFlatResponseToData(data);
-        }
+          console.log("DATA AFTER FLATTENED DATA ADDED")
+          // It is not clear what the flattening does since it seems to not do anything.
+          // The data format has all of the variable names in it and the responses. The response output
+          // also has all of the same information.
+          // I could simply cycle over just the data in response.
+          // I would need to flatten all of the matrices which are from the dynamicmatrix type questions.
+            // check to see if each value is a matrix. If it is flatten it and replace the current object with the flattened information.
+            // for instance, for current sports. Use the column one name as the primary. Add the matrix index tro teh end then the name of the remaining columns.
+            // This approach may not work for other dynamic matrices.
+          }
+
+          
+      
       };
 
      
