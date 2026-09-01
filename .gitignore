@@ -1,4 +1,6 @@
+
 .DS_Store
+jspsych/
 Notes.md
 assets/Images/MatrixReasoning/ICAR/
 assets/Images/PatternComparison/
@@ -6,12 +8,4 @@ NonpublicBackgroundMaterial/
 Notes.txt
 InstructionsAndStimuli/ConsentForms/
 Batteries/FaCEBatteries.js
-RemovedFiles/
-LocalTrash/
-WIP/
-NeuroClinicInstallInstructions.md
-BackgroundMaterial/
-TestLocal.html
-functions/poldrack_utils.js
-html/Emilie/
-html/LOCAL/
+
