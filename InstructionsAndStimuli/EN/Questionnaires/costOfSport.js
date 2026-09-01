@@ -1008,15 +1008,15 @@ const json = {
                 displayStyle: "currency",
                 currency: "CAD",
 
-//                 totalType: "sum",
-//                 totalDisplayStyle: "currency",
-//                 currencyDisplay: "code",
-//                 visible: false,
-//                 width: "15%"
-//               } 
-//             ],
-//             footerText: "Sub-total (a)"
-//           },
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: false,
+                width: "15%"
+              } 
+            ],
+            footerText: "Sub-total (a)"
+          },
 //           {
 //             type: "expression",
 //             name: "SP_APP_$Y_Total",
@@ -1963,17 +1963,10 @@ const json = {
             visibleIf: "{Future_Research} = 'Yes'",
             isRequired: false
           },
-
-
-
-
-
-
         ]
       },
-
-
     ]
+    
 }
 
 // at the end, the excel csv how can the researchers have it if the user does the questionnaire from their phone.
