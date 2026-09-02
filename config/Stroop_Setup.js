@@ -34,9 +34,9 @@ var Stroop_Victoria = {
 	ColorWordPracticeRepeats:2,
 	ColorTestRepeats:6,
 	WordTestRepeats:6,
-	ColorWordTestRepeats:2,
+	ColorWordTestRepeats:3,
 	ITI_Range: [],
-	ITI_Duration: 10,
+	ITI_Duration: 500,
 	AllowedTime: -99, // in seconds
 	Score_NumberTrials: 24,
 	Score_ProcedureName: 'Victoria',

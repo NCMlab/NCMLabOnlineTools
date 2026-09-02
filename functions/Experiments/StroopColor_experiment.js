@@ -47,6 +47,7 @@ var fixation = {
     return stim
   },
   choices:  function() {return Instructions.ResponseButtons},
+  button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: function() {return Instructions.StroopColorPrompt},
@@ -65,17 +66,19 @@ var Stimulus = {
   stimulus: function()
   {
     var color = jsPsych.timelineVariable('Color')
-    var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
+    // var stim = '<svg width="200" height="100"><rect width="200" height="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
+    var stim = '<svg width="200" height="200"><circle cx="100" cy="100" r="100" style="fill:rgb'+color+'; stroke-width:3;stroke:rgb(0,0,0)" /></svg>'
     stim = PutStimIntoTable(Instructions.StroopColorPrompt, stim) 
     return stim
   },
-  choices: function() {return Instructions.ResponseButtons}, 
+  choices: function() {return Instructions.ResponseButtons},
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
-  prompt: function() {return Instructions.StroopColorPrompt}, 
+  prompt: function() {return Instructions.StroopColorPrompt},
+  button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
   on_finish: function(data){
     data.button = jsPsych.timelineVariable('button'),
-    // check to see if the response is correct 
+    // check to see if the response is correct
     data.correct = data.response == data.button;
   },
 };
@@ -95,6 +98,7 @@ var feedback = {
     return PutStimIntoTable(Instructions.StroopColorPrompt, stim)
   },
   choices:  function() {return Instructions.ResponseButtons},
+  button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
   prompt: function() {return Instructions.StroopColorPrompt},

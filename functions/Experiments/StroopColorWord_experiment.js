@@ -46,6 +46,7 @@ var fixation = {
     return stim
   },
   choices: function() {return Instructions.ResponseButtons},
+  button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
   post_trial_gap: 0,
   margin_horizontal: GapBetweenButtons,
   prompt: function() {return Instructions.StroopColorWordPrompt},
@@ -68,6 +69,7 @@ var fixation = {
         return Stim
       },
     choices: function() {return Instructions.ResponseButtons}, 
+    button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
     margin_horizontal: GapBetweenButtons,
     post_trial_gap: 0,
     prompt: function() {return Instructions.StroopColorPrompt},
@@ -94,6 +96,7 @@ var feedback = {
     return PutStimIntoTable(Instructions.StroopColorWordPrompt, stim)
   },
   choices:  function() {return Instructions.ResponseButtons},
+  button_html: '<button class="jspsych-btn stroop-stimulus-btn">%choice%</button>',
   margin_horizontal: GapBetweenButtons,
   post_trial_gap: 0,
   prompt:  function() {return Instructions.StroopColorWordPrompt},

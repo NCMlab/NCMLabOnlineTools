@@ -1,0 +1,11 @@
+
+/* Larger buttons for the Stroop color stimulus trials only (see Stimulus in StroopColor_experiment.js) */
+.jspsych-btn.stroop-stimulus-btn {
+    padding: 20px 40px;
+    font-size: 48px;
+}
+
+/* Background override for all Stroop task pages (StroopWord, StroopColorWord, StroopColor) */
+body {
+    background-color: #d9e6f2;
+}

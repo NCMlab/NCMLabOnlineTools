@@ -545,19 +545,19 @@ List.push({
 });
 List.push({
   Task: "Stroop Color",
-  Parameters: "Stroop_Default",
+  Parameters: "Stroop_Victoria",
   Instructions: "Default",
   IconName: "Color",
 });
 List.push({
   Task: "Stroop Word",
-  Parameters: "Stroop_Default",
+  Parameters: "Stroop_Victoria",
   Instructions: "Default",
   IconName: "Word",
 });
 List.push({
   Task: "Stroop Color/Word",
-  Parameters: "Stroop_Default",
+  Parameters: "Stroop_Victoria",
   Instructions: "Default",
   IconName: "Color/Word",
 });
