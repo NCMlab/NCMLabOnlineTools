@@ -43,7 +43,7 @@ var Stroop_Victoria = {
 	ShowInstructions: true,
 	InstructionsSpoken: false,
 	ShowWelcome: true,
-	ShowThankYou: false,
+	ShowThankYou: true,
 }
 
 var Stroop_Golden = {
