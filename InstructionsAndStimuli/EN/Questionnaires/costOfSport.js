@@ -1443,12 +1443,7 @@ const json = {
             currency: "CAD",
             precision: 2
           },
-          
 
-       // IDEAL!!! Only show the rows that are relevant to the user based on their previous answers. 
-       // Based on the responses in section1, page 2.
-          // This would remove the Yes/No question here.
-          // If we cannot do this, then bring in the number of times (based on their response) from the previous section 1.
               {
                 "type": "matrixdropdown",
                 "name": "TR_Comp",
