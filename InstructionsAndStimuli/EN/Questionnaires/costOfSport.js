@@ -1249,7 +1249,7 @@ const json = {
                   },
                   // Idealy the total of all of these values cannot surpass the value of {SP_PR_Freq}.  If it does, then a warning message should appear.  This is not possible with the current surveyjs framework.  It would require a custom widget to be created.
                   {
-                    "name": "usage_percentage", // Change the name
+                    "name": "usage_count", // Change the name
                     "title": "Number of practices?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1268,9 +1268,18 @@ const json = {
                   { "text": "Special Transportation", "value": 'travel_special_transportation' },
                   { "text": "Other", "value": 'travel_other' }
                 ],
-                "transposeData": false
+                "transposeData": false,
+                // See if I can add a total to the dropdown list to help with the addition.
+                "validators": [
+                  {
+                    "type": "expression",
+                    "expression": "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count} == {SP_PR_Freq}",
+                    "text": "The total number of practices for all transportation modes must equal the total number of practices per year."
+                  }
+                ]
               },
-          {
+          
+              {
             name: "TR_Distance_OneWay_MotorbikeCar",
             type: "text",
             inputType: "number",
@@ -1402,13 +1411,14 @@ const json = {
 
             // make response not as wide and left aligned.
 
-
-{
+          // Parking should only be asked for motorbik or family car
+          {
                 "type": "matrixdropdown",
                 "name": "TR_Pr",
                 "title": "Parking costs for PRACTICE",
                 "showHeader": true,
                 "columnMinWidth": "130px",
+                visibleIf: "{TR_Pr.travel_family_own_car.usage} = 'Yes' || {TR_Pr.travel_motorbike.usage} = 'Yes'", 
                 "columns": [
                   {
                     "name": "usage",
@@ -1431,6 +1441,16 @@ const json = {
                 ],
                 "transposeData": false
               },
+          {
+            type: "expression",
+            name: "Parking_$Y",
+            title: "Estimated yearly parking cost",
+            expression: "{SP_PR_Freq}*",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
+
 
 { // This needs to also include parking fees
             type: "expression",

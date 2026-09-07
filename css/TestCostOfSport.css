@@ -269,6 +269,18 @@ table {
 .sd-table__cell--header { padding-top: 2px; }
 .sd-table__cell--header { padding-bottom: 2px; }
 
+/* The padding-left:0 overrides above remove the padding that SurveyJS's error
+   box normally bleeds into via a negative margin-left (see --sd-base-padding).
+   With no padding to compensate for, the error bar shifts left and its first
+   word gets clipped, and since the box is wider than 100% the text never
+   needs to wrap. Reset both so the error box stays within the question. */
+.sd-element--with-frame > .sd-element__erbox,
+.sd-element--nested-with-borders > .sd-element__erbox {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
 /* Allow table cells to shrink below the SurveyJS default 120px minimum */
 .sd-table__cell:not(.sd-table__cell--empty):not(.sd-table__cell--actions):not(:empty) {
   min-width: calc(10 * (var(--sjs-base-unit, var(--base-unit, 8px))));
