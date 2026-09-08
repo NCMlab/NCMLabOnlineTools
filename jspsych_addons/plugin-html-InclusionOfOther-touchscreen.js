@@ -151,6 +151,10 @@ var jsPsychHtmlInclusionOfOtherTouchscreen = (function (jspsych) {
             html += '</div>';
 
           html += '</tr>'
+          html += '<tr>'
+          html += '<td>'
+          html += trial.prompt
+          html += '</tr>'
 
           html += '</table>'
 
