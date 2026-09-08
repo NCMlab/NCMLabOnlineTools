@@ -444,30 +444,6 @@ const json = {
             visibleIf: "{SP_Class} = 1",
             isRequired: false
           },
-          //   {
-          //   type: 'dropdown',
-          //   title: "How many years have you played/participated in this sport? ",
-          //   name: 'SP_Years',
-          //   choices: Array.from({ length: 50 }, (_, i) => i + 1),
-
-          //  isRequired: false
-          // },
-
-
-          // {
-          //   type: "radiogroup",
-          //   name: "SP_Context",
-          //   title: "Indicate the context of your participation?",
-          //   colCount:1,
-          //   isRequired: false,
-          //   choices: [
-          //             { "value": 1, "text": "Non-organized"},
-          //             { "value": 2, "text": "Organized"},
-          //             { "value": 3, "text": "Both"},
-          //             { "value": 4, "text": "Other"},
-
-          //           ]
-          // },
           {
             type: "comment",
             name: "SP_Context_Ex",
@@ -475,21 +451,6 @@ const json = {
             visibleIf: "{SP_Context}= 4",
             isRequired: false
           },
-          // {
-          //   type: "radiogroup",
-          //   name: "SP_Level",
-          //   title: "Indicate your level of participation: ",
-          //   isRequired: false,
-          //   choices: [
-          //             { "value": 1, "text": "Recreational Only"},
-          //             { "value": 2, "text": "Mainly recreational, but also competitive"},
-          //             { "value": 3, "text": "Mainly competitive, but also recreational"},
-          //             { "value": 4, "text": "Competitive only"},
-          //             { "value": 5, "text": "Other"},
-
-          //           ]
-          // },
-
           {
             type: "comment",
             name: "SP_Level_Ex",
@@ -497,21 +458,6 @@ const json = {
             visibleIf: "{SP_Level}=5",
             isRequired: false
           },
-          // {
-          //    name: "SP_Level_Current",
-          //    type: "text",
-          //    title: "What is your current level of participation?",
-          //    minLength: 10,
-          //    isRequired: false
-          //   },
-
-          //  {
-          //  name: "SP_Level_Highest",
-          //  type: "text",
-          //  title: "What was your highest level in this sport?",
-          //  minLength: 10,
-          //  isRequired: false
-          // },
           {
             type: "radiogroup",
             name: "SP_Fac",
@@ -575,7 +521,7 @@ const json = {
           // This may be good or bad right now.
           {
             type: "expression",
-            name: "SP_PR_Freq",
+            name: "SP_PR_Tot",
             title: "Total practices last year",
             displayStyle: "decimal",
             precision: 2,
@@ -588,7 +534,7 @@ const json = {
           },
           {
             type: "expression",
-            name: "SP_PR_NT_Total",
+            name: "SP_PR_NT_Tot",
             title: "Total NET hours (all periods)",
             displayStyle: "decimal",
             precision: 2,
@@ -601,7 +547,7 @@ const json = {
           },
           {
             type: "expression",
-            name: "SP_PR_GT_Total",
+            name: "SP_PR_GT_Tot",
             title: "Total GROSS hours (all periods)",
             displayStyle: "decimal",
             precision: 2,
@@ -645,7 +591,7 @@ const json = {
                   { "text": "7", "value": 7 },
                   { "text": "8", "value": 8 },
                   { "text": "9", "value": 9 },
-                  { "text": "10 or more", "value": 10 }
+                  { "text": "10 or more", "value": 10 },
                 ],
               },
             ],
@@ -660,14 +606,40 @@ const json = {
             ],
             "transposeData": false
           },
- {
+          {
             type: "expression",
-            name: "TESTComp",
+            name: "SP_CC_ODWithout",
             title: "One Day Comp",
-            displayStyle: "decimal",
-            precision: 2,
-            expression:
-              "{COMP_Freq.ODWithout.SP_CC}"
+            visible: false,
+            expression: "{COMP_Freq.ODWithout.SP_CC}"
+          },
+          {
+            type: "expression",
+            name: "SP_CC_ODWith",
+            title: "One Day Comp",
+            visible: false,
+            expression: "{COMP_Freq.ODWith.SP_CC}"
+          },
+          {
+            type: "expression",
+            name: "SP_CC_TWONIGHTS",
+            title: "Two Overnight Stays",
+            visible: false,
+            expression: "{COMP_Freq.TWONIGHTS.SP_CC}"
+          },
+          {
+            type: "expression",
+            name: "SP_CC_Multiday",
+            title: "Multi-day Competitions",
+            visible: false,
+            expression: "{COMP_Freq.Multiday.SP_CC}"
+          },
+          {
+            type: "expression",
+            name: "SP_CC_Vacations",
+            title: "Vacations",
+            visible: false,
+            expression: "{COMP_Freq.Vacations.SP_CC}"
           },
           // {
           //   name: "SP_CC_ODWithout",
@@ -756,7 +728,7 @@ const json = {
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
-          "defaultValue": "No"
+          //"defaultValue": "No"
         },
         {
           "name": "Cost_$Y",
@@ -801,7 +773,7 @@ const json = {
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
-          "defaultValue": 0
+          //"defaultValue": 0
         },
         {
           "name": "Cost_$U",
@@ -866,7 +838,7 @@ const json = {
                     "title": "Did you pay this fee?",
                     "cellType": "radiogroup",
                     "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
-                    "defaultValue": "No"
+                    //"defaultValue": "No"
                   },
                   {
                     "name": "Cost_$U",
@@ -917,38 +889,7 @@ const json = {
               },
 
 
-    //    {
-    //         type: "expression",
-    //         name: "Cost_Coach_$Y",
-    //         title: "Estimated yearly coaching cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.lessons.usage} == 'Yes', {coaching_costs.lessons.cost_per_usage} * {coaching_costs.lessons.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    // {
-    //         type: "expression",
-    //         name: "Clinic_Coach_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         //visibleIf: "{Cost_Coach} = 1",
-    //         //expression: "iif({Cost_Coach} = 1 && !isEmpty({Cost_Coach_$U}) && !isEmpty({Cost_Coach_UY}), {Cost_Coach_$U} * {Cost_Coach_UY}, 0)",
-    //         expression: "iif({coaching_costs.clinics.usage} == 'Yes', {coaching_costs.clinics.cost_per_usage} * {coaching_costs.clinics.frequency_per_year}, -99)",
-    //         displayStyle: "decimal",
-    //         //currency: "CAD",
-    //         precision: 2
-    //       },
-    //       {
-    //         type: "expression",
-    //         name: "Cost_Clinic_$Y",
-    //         title: "Estimated yearly clinic cost",
-    //         visibleIf: "{Cost_Clinic} = 1",
-    //         expression: "iif({Cost_Clinic} = 1 && !isEmpty({Cost_Clinic_$U}) && !isEmpty({Cost_Clinic_UY}), {Cost_Clinic_$U} * {Cost_Clinic_UY}, 0)",
-    //         displayStyle: "currency",
-    //         currency: "CAD",
-    //         precision: 2
-    //       },
+
 
         ]
       },
@@ -956,31 +897,6 @@ const json = {
         name: "CostActiveSportParticipation",
         title: "Section II.3: Cost of Apparel and Equipment",
         elements: [
-
-          //moved to section apparel and Equipment from section I: ability
-
-//           {
-//             type: "radiogroup",
-//             title: "Does your ability require adaptive apparel/equipment to participate this sport?",
-//             name: 'AB_EQ_DL_Ex',
-//             titleLocation: "left",
-//             colCount: 0,
-//             choices: [
-//               'Yes',
-//               'No',
-//             ]
-//           },
-
-//           {
-//             type: "comment",
-//             name: "adaptive_equipment_explanation",
-//             title: "Please explain:",
-//             visibleIf: "{AB_EQ_DL_Ex} = 'yes'",
-//             isRequired: false
-//           },
-
-          // question 10 to adjust
-          //fix html text 
           {
             type: "html",
             name: "apparel_subtitle",
@@ -1236,9 +1152,12 @@ const json = {
            {
                 "type": "matrixdropdown",
                 "name": "TR_Pr",
-                "title": "You indicated practicing {SP_PR_Freq} times per year. Indicate the number of times you used the various transportation modes for your Practices.",
+                "title": "You indicated practicing {SP_PR_Tot} times per year. Indicate the number of times you used the various transportation modes for your practices. So far you have entered {Practice_Transport_Count} practices, please enter another {Practice_Transport_Count_Left}.",
                 "showHeader": true,
                 "columnMinWidth": "130px",
+                "totalType": "sum",
+                "totalDisplayStyle": "currency",
+
                 "columns": [
                   {
                     "name": "usage",
@@ -1273,11 +1192,26 @@ const json = {
                 "validators": [
                   {
                     "type": "expression",
-                    "expression": "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count} == {SP_PR_Freq}",
+                    "expression": "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count} == {SP_PR_Tot}",
                     "text": "The total number of practices for all transportation modes must equal the total number of practices per year."
                   }
                 ]
               },
+          {
+            type: "expression",
+            name: "Practice_Transport_Count",
+            title: "Estimated yearly carpooling transportation cost",
+            expression: "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count}",
+            visible: false,
+          },
+          {
+            type: "expression",
+            name: "Practice_Transport_Count_Left",
+            title: "Estimated yearly carpooling transportation cost",
+            expression: "{SP_PR_Tot} - {Practice_Transport_Count}",
+            visible: false,
+          },
+
           
               {
             name: "TR_Distance_OneWay_MotorbikeCar",
@@ -1343,7 +1277,7 @@ const json = {
             type: "expression",
             name: "Motorbike_Cost_$Y",
             title: "Estimated yearly motorbike transportation cost",
-            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_motorbike.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.travel_motorbike.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1352,7 +1286,7 @@ const json = {
             type: "expression",
             name: "Car_Cost_$Y",
             title: "Estimated yearly car transportation cost",
-            expression: "0.5 * {SP_PR_Freq}*{TR_Pr.travel_family_own_car.usage_percentage}/100*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.travel_family_own_car.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1362,7 +1296,7 @@ const json = {
             type: "expression",
             name: "PublicTransport_Cost_$Y",
             title: "Estimated yearly public transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_public_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_PublicTransport}",
+            expression: "{TR_Pr.travel_public_transportation.usage_count}*2*{TR_Cost_Oneway_PublicTransport}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1371,7 +1305,7 @@ const json = {
             type: "expression",
             name: "Carpool_Cost_$Y",
             title: "Estimated yearly carpooling transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_carpooling.usage_percentage}/100*2*{TR_Cost_Oneway_Carpool}",
+            expression: "{TR_Pr.travel_carpooling.usage_count}*2*{TR_Cost_Oneway_Carpool}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1380,7 +1314,7 @@ const json = {
             type: "expression",
             name: "Taxi_Cost_$Y",
             title: "Estimated yearly taxi cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_taxi_private_bus.usage_percentage}/100*2*{TR_Cost_Oneway_TaxiPrivateBus}",
+            expression: "{TR_Pr.travel_taxi_private_bus.usage_count}*2*{TR_Cost_Oneway_TaxiPrivateBus}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1390,7 +1324,7 @@ const json = {
             type: "expression",
             name: "Taxi_SpecialTransport_$Y",
             title: "Estimated yearly special transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_special_transportation.usage_percentage}/100*2*{TR_Cost_Oneway_SpecialTransport}",
+            expression: "{TR_Pr.travel_special_transportation.usage_count}*2*{TR_Cost_Oneway_SpecialTransport}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1399,19 +1333,14 @@ const json = {
             type: "expression",
             name: "Other_Cost_$Y",
             title: "Estimated yearly other transportation cost",
-            expression: "{SP_PR_Freq}*{TR_Pr.travel_other.usage_percentage}/100*2*{TR_Cost_Oneway_Other}",
+            expression: "{TR_Pr.travel_other.usage_count}*2*{TR_Cost_Oneway_Other}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
           },
 
-          
-
           // ****************** TO DO, TO DO, TO DO ************************
-
             // make response not as wide and left aligned.
-
-          // Parking should only be asked for motorbik or family car
           {
                 "type": "matrixdropdown",
                 "name": "TR_Pr",
@@ -1428,7 +1357,7 @@ const json = {
                     "defaultValue": "No"
                   },
                   {
-                    "name": "travel_parking_cost_per_usage",
+                    "name": "travel_parking_cost_per_year",
                     "title": "How much $ per year?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1443,22 +1372,11 @@ const json = {
               },
           {
             type: "expression",
-            name: "Parking_$Y",
-            title: "Estimated yearly parking cost",
-            expression: "{SP_PR_Freq}*",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
-
-
-{ // This needs to also include parking fees
-            type: "expression",
             name: "Total_transport_cost_$Y",
             title: "Estimated yearly TOTAL transportation cost",
             expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
               "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
-              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y}",
+              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Pr.travel_parking.travel_parking_cost_per_year}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1482,11 +1400,11 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "For your {COMP_Freq.ODWithout.SP_CC} one-day games/competitions/championships without an overnight stay.", "value": 'other_oneday_Without' },
-                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "For your {COMP_Freq.ODWith.SP_CC} one-day games/competitions/championships with one overnight stay.", "value": 'other_oneday_with_overnight' },
-                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "For your {COMP_Freq.TWONIGHTS.SP_CC} games/competitions/championships with two-night stay.", "value": 'other_twonight' },
-                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "For your {COMP_Freq.Multiday.SP_CC} games/competitions/championships with three or more overnight stay.", "value": 'other_threenight' },
-                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "For your {COMP_Freq.Vacations.SP_CC} vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'other_vacations' },
+                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "For your {COMP_Freq.ODWithout.SP_CC} one-day games/competitions/championships without an overnight stay.", "value": 'ODWithout' },
+                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "For your {COMP_Freq.ODWith.SP_CC} one-day games/competitions/championships with one overnight stay.", "value": 'ODWith' },
+                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "For your {COMP_Freq.TWONIGHTS.SP_CC} games/competitions/championships with two-night stay.", "value": 'TWONIGHTS' },
+                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "For your {COMP_Freq.Multiday.SP_CC} games/competitions/championships with three or more overnight stay.", "value": 'Multiday' },
+                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "For your {COMP_Freq.Vacations.SP_CC} vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'Vacations' },
                 ],
                 "transposeData": false
               },
@@ -1494,11 +1412,11 @@ const json = {
             type: "expression",
             name: "Total_competition_cost_$Y",
             title: "Estimated yearly TOTAL competition cost",
-            expression: "{TR_Comp.other_oneday_no_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayNoOvernight.Comp_Freq_Value} + " + 
-              "{TR_Comp.other_oneday_with_overnight.cost_per_usage}*{COMP_Freq.Comp_Freq_OnedayWithOvernight.Comp_Freq_Value} + " +
-              "{TR_Comp.other_twonight.cost_per_usage}*{COMP_Freq.Comp_Freq_TwodayWithOvernight.Comp_Freq_Value} + " + 
-              "{TR_Comp.other_threenight.cost_per_usage}*{COMP_Freq.Comp_Freq_ThreedayWithOvernight.Comp_Freq_Value} + " +
-              "{TR_Comp.other_vacations.cost_per_usage}*{COMP_Freq.Comp_Freq_Vacations.Comp_Freq_Value}",
+            expression: "{TR_Comp.ODWithout.cost_per_usage}*{COMP_Freq.ODWithout.SP_CC} + " + 
+              "{TR_Comp.ODWith.cost_per_usage}*{COMP_Freq.ODWith.SP_CC} + " +
+              "{TR_Comp.TWONIGHTS.cost_per_usage}*{COMP_Freq.TWONIGHTS.SP_CC} + " +
+              "{TR_Comp.Multiday.cost_per_usage}*{COMP_Freq.Multiday.SP_CC} + " +
+              "{TR_Comp.Vacations.cost_per_usage}*{COMP_Freq.Vacations.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1583,7 +1501,7 @@ const json = {
             type: "expression",
             name: "Total_Practice_Social_cost_$Y",
             title: "Estimated yearly TOTAL social cost during practices",
-            expression: "{SP_PR_Freq}*{SocialCosts_Practice.social_costs.cost_per_usage}*{SocialCosts_Practice.social_costs.usage_frequency}/100 + " +
+            expression: "{SP_PR_Tot}*{SocialCosts_Practice.social_costs.cost_per_usage}*{SocialCosts_Practice.social_costs.usage_frequency}/100 + " +
               "{SocialCosts_Club.social_club_costs.cost_per_usage}",
             displayStyle: "currency",
             currency: "CAD",
