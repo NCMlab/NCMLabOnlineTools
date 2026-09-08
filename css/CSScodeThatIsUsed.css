@@ -652,3 +652,65 @@ body {
 .sd-root-modern__wrapper {
     position: relative
 }
+
+
+.jspsych-html-button-response-btngroup-vertical button {
+   display: block; /* Make the buttons appear below each other */
+}
+
+.jspsych-html-button-response-btngroup-horizontal button {
+
+}
+
+.jspsych-html-button-response-btngroup-vertical button,
+.jspsych-html-button-response-btngroup-horizontal button {
+    background: none;
+    border: none;
+}
+
+.jspsych-html-button-response-btngroup-horizontal img,
+.jspsych-html-button-response-btngroup-vertical img {
+    width: clamp(60px, 12vw, 180px);
+    height: auto;
+}
+
+/* Center stimulus text and stacked buttons when button_orientation is vertical
+   (picture-response-touchscreen plugin) */
+table:has(.jspsych-html-button-response-btngroup-vertical) tr:first-child td {
+    text-align: center;
+}
+
+.jspsych-html-button-response-btngroup-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Left/right text labels overlaid on each image button
+   (html-InclusionOfOther-touchscreen plugin) */
+.jspsych-inclusion-of-other-image-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.jspsych-inclusion-of-other-image-wrap img {
+    display: block;
+}
+
+.jspsych-inclusion-of-other-label {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.jspsych-inclusion-of-other-label-left {
+    left: 25%;
+}
+
+.jspsych-inclusion-of-other-label-right {
+    left: 75%;
+}
+
