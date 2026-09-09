@@ -68,12 +68,12 @@ Cost_$U_Entr
 Cost_UY_Entr
 Cost_$Y_Entr
 Cost_Coach
-Cost_Coach_$U
-Cost_Coach_UY
+Cost_$U_Coach
+Cost_UY_Coach
 Cost_Coach_$Y
 Cost_Clinic
-Cost_Clinic_$U
-Cost_Clinic_UY
+Cost_$U_Clinic
+Cost_UY_Clinic
 Cost_Clinic_$Y
 AB_EQ_Sport
 AB_EQ_Sport_Ex

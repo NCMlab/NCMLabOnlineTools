@@ -907,7 +907,8 @@ const json = {
       </div>`
           },
 
-
+// NOTE: Sept 9
+// Sometimes the totals for each table do not show up ion the output file!
           /* ----------------- (a) Sports apparel ----------------- */ //fixed 
           {
             type: "matrixdynamic",
@@ -937,7 +938,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
+                visible: true,
                 width: "15%"
               } 
             ],
@@ -952,7 +953,7 @@ const json = {
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: false
+            visible: true
           },
 
 //           /* --------------- (b) Sports equipment ----------------- */
@@ -966,21 +967,20 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "SP_Equip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
-              //{ name: "SP_Equip_Quantity", title: "Quantity", cellType: "text", inputType: "number", min: 0, isRequired: false, width: "10%" },
-              { name: "SP_Equip_Cost", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { name: "SP_Equip_Years_of_Usage", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
+              { name: "$Total", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+              { name: "nY", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
               {
-                name: "SP_Equip_$Y",
+                name: "$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression: "{row.SP_Equip_Cost}/{row.SP_Equip_Years_of_Usage}",
+                expression: "{row.$Total}/{row.nY}",
                 displayStyle: "currency",
                 currency: "CAD",
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
+                visible: true,
                 width: "15%"
               },
             ],
@@ -994,7 +994,7 @@ const json = {
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: false
+            visible: true
           },
 
 //           /*  --------- c) Additional equipment -----------------   */
@@ -1008,20 +1008,20 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "SP_AddEquip_Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-              { name: "SP_AddEquip_Cost", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { name: "SP_AddEquip_Years_of_Usage", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
+              { name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+              { name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
               {
-                name: "SP_AddEquip_$Y",
+                name: "$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression: "{row.SP_AddEquip_Cost}/{row.SP_AddEquip_Years_of_Usage}",
+                expression: "{row.$Total}/{row.nY}",
                 displayStyle: "currency",
                 currency: "CAD",
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
+                visible: true,
                 width: "15%"
               },
             ],
@@ -1036,7 +1036,7 @@ const json = {
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: false
+            visible: true
           },
 
           // question 11
