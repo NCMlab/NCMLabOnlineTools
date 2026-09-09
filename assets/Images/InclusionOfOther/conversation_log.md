@@ -57,5 +57,35 @@ Request: "Can the circles be made larger to fill up the buttons"
 
 Each image is now 440×220px, transparent background, both circles vertically centered at y=110, radius 100px, black outline only, no fill and no text.
 
+## New series: IOOpeople stick figures
+
+Request:
+
+> In the assets/Images/InclusonOfOther folder create another set of seven images, call them IOOpeople. The first image will have a blue stick figure on the lrft and three red stick figures all right next to each other touching on the right. The last figure will have all four stick figures touching going red, blue, red, red. The in between images will have the blue figure getting closer and closer.
+
+1. Wrote a Python script (`make_ioo_people.py`, in the session scratchpad) using PIL to procedurally draw seven 640×260 transparent-background PNGs. Each figure is a simple stick person (filled head circle, body line, diagonal arms, diagonal legs) drawn in solid blue or red.
+2. Frames 1–6: the three red figures sit still as a touching trio (fixed slot centers 80px apart); the blue figure starts far to the left (isolated) and moves rightward frame by frame, closing the gap but always stopping short of the 80px touching distance.
+3. Frame 7: a distinct final layout — red, blue, red, red — all four figures spaced exactly 80px apart center-to-center so every adjacent pair touches.
+4. Generated a contact-sheet preview after each iteration to check spacing visually.
+
+Follow-up corrections from the user:
+
+> Image one needs to be farther away. Image 6 has blue standing to the left of the red figures, not touching. Only figure seven has blue touching red.
+
+- Widened the canvas (480→640px) and increased blue's starting x-offset so image 1 shows a clearly larger gap, and confirmed only image 7 has any touching pair involving blue (images 1–6 all stay above the 80px touching threshold).
+
+> Make blue in image six a little closer and adjust 2,3,4,5 accordingly.
+
+- Reduced blue's frame-6 gap from 120px to 100px (still non-touching) and re-interpolated frames 2–5 evenly between the (unchanged) frame-1 position and the new frame-6 position.
+
+## Output files (IOOpeople)
+
+- `assets/Images/InclusionOfOther/IOOpeople_1.png` — blue far left, isolated; red trio touching on the right
+- `assets/Images/InclusionOfOther/IOOpeople_2.png` through `IOOpeople_5.png` — blue approaching evenly, still not touching
+- `assets/Images/InclusionOfOther/IOOpeople_6.png` — blue closest to the group without touching (100px gap)
+- `assets/Images/InclusionOfOther/IOOpeople_7.png` — final layout, all touching, order red, blue, red, red
+
+Each image is 640×260px, transparent background, filled-color stick figures (blue `rgb(30,80,220)`, red `rgb(220,30,30)`), 8px line width, no text.
+
 ---
 Signed: Claude Sonnet 5 (`claude-sonnet-5`) — 2026-09-08
