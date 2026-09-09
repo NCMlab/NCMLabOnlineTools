@@ -127,6 +127,8 @@ var jsPsychHtmlInclusionOfOtherTouchscreen = (function (jspsych) {
           html += '<div class="jspsych-html-button-response-btngroup-' + trial.button_orientation + '" style="text-align:center; align:center;">';
                   for (var i = 0; i < trial.choices.length; i++) {
                       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+                      const leftPos = trial.left_positions[i]
+                      const rightPos = trial.right_positions[i]
                       html +=
                             '<button>' +
                           '<div ' +
@@ -138,10 +140,10 @@ var jsPsychHtmlInclusionOfOtherTouchscreen = (function (jspsych) {
                               '">' +
                               '<div class="jspsych-inclusion-of-other-image-wrap">' +
                               str +
-                              '<span class="jspsych-inclusion-of-other-label jspsych-inclusion-of-other-label-left">' +
+                              '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + leftPos + '%;">' +
                               trial.left_circle_text +
                               '</span>' +
-                              '<span class="jspsych-inclusion-of-other-label jspsych-inclusion-of-other-label-right">' +
+                              '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + rightPos + '%;">' +
                               trial.right_circle_text +
                               '</span>' +
                               '</div>' +

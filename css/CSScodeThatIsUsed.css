@@ -668,9 +668,16 @@ body {
     border: none;
 }
 
+/* Show a solid line around the response image on hover */
+.jspsych-html-button-response-btngroup-vertical button:hover,
+.jspsych-html-button-response-btngroup-horizontal button:hover {
+    border: 2px solid black;
+    border-radius: 12px; /* Controls the roundness */
+}
+
 .jspsych-html-button-response-btngroup-horizontal img,
 .jspsych-html-button-response-btngroup-vertical img {
-    width: clamp(60px, 12vw, 180px);
+    width: clamp(100px, 12vw, 180px);
     height: auto;
 }
 
@@ -686,6 +693,18 @@ table:has(.jspsych-html-button-response-btngroup-vertical) tr:first-child td {
     align-items: center;
 }
 
+/* Size the seven stacked response images from the viewport height so they
+   use the available vertical space and grow accordingly, instead of being
+   capped by a fixed width. Table cells don't reliably pass percentage
+   heights down to descendants, so this is driven by vh instead of trying
+   to chain height:100% through the table/row/cell.
+   (html-InclusionOfOther-touchscreen plugin, e.g. LocalTestPictureChoice.html) */
+.jspsych-html-button-response-btngroup-vertical img {
+    width: auto;
+    height: clamp(50px, 8.5vh, 140px);
+    max-width: 90vw;
+}
+
 /* Left/right text labels overlaid on each image button
    (html-InclusionOfOther-touchscreen plugin) */
 .jspsych-inclusion-of-other-image-wrap {
@@ -698,19 +717,21 @@ table:has(.jspsych-html-button-response-btngroup-vertical) tr:first-child td {
 }
 
 .jspsych-inclusion-of-other-label {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    /* position: absolute; */
+    top: -0%;
+    /* transform: translate(-50%, -50%); */
     font-weight: 600;
     pointer-events: none;
     white-space: nowrap;
 }
 
-.jspsych-inclusion-of-other-label-left {
-    left: 25%;
+.html-button-response-button-text {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    font-weight: 400;
 }
 
-.jspsych-inclusion-of-other-label-right {
-    left: 75%;
+.Smiley_Button {
+  transition-duration: 0.1s;
 }
-

@@ -17,6 +17,13 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
               default: undefined,
               array: true,
           },
+          button_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Button Text",
+              default: undefined,
+              array: true,
+          },
+
           valid_choices: 
           {
               type: jspsych.ParameterType.STRING,
@@ -118,21 +125,33 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
                   for (var i = 0; i < trial.choices.length; i++) {
                       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                       html +=
-                            '<button>' +
-                          '<div ' +
-                           // '<div>' + 
+                            '<button class="Smiley_Button">' +
+                            '<div ' +
+                            // '<div>' + 
                               'id="jspsych-html-button-response-button-' +
                               i +
                               '" data-choice="' +
                               i +
                               '">' +
                               str +
-                              "</div>" +
-                              '</button>' 
+                              "</div>" 
+                              // If there is available button text, then add it
+                              if (trial.button_text !== undefined) {
+                                html += '<div class="html-button-response-button-text">'
+                                html += trial.button_text[i]
+                                html += '</div>'
+                              }
+                              html += '</button>' 
                   }
             html += '</div>';
 
           html += '</tr>'
+                    html += '<tr>'
+          html += '<td>'
+          html += trial.prompt
+          html += '</tr>'
+
+
 
           html += '</table>'
 
