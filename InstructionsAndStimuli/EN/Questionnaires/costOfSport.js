@@ -815,7 +815,7 @@ const json = {
         displayStyle: "currency",
         currency: "CAD",
         expression:
-          "{Per_Use_Fees_$Y} + {Annual_Fees_$Y}"
+          "{Cost_Entr_$Y} + {Per_Use_Fees_$Y}"
     },
         ]
       },
