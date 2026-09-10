@@ -1466,6 +1466,16 @@ const json = {
                 ],
                 "transposeData": false
               },
+{ // FIx this to make sure it gets both questions, not just the second.
+            type: "expression",
+            name: "TEST01",
+            title: "Freq",
+            expression: "{SocialCosts_Practice.social_costs.Social_often_per_year}/100*" +
+              "{SocialCosts_Practice.social_costs.cost_per_usage}*{SP_PR_Tot}",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2
+          },
 
           // question 16
             { 
@@ -1497,11 +1507,13 @@ const json = {
                 "transposeData": false
               },
 
+
           { // FIx this to make sure it gets both questions, not just the second.
             type: "expression",
             name: "Total_Practice_Social_cost_$Y",
             title: "Estimated yearly TOTAL social cost during practices",
-            expression: "{SP_PR_Tot}*{SocialCosts_Practice.social_costs.cost_per_usage}*{SocialCosts_Practice.social_costs.usage_frequency}/100 + " +
+            expression: "{SocialCosts_Practice.social_costs.Social_often_per_year}/100*" +
+              "{SocialCosts_Practice.social_costs.cost_per_usage}*{SP_PR_Tot} + " +
               "{SocialCosts_Club.social_club_costs.cost_per_usage}",
             displayStyle: "currency",
             currency: "CAD",
