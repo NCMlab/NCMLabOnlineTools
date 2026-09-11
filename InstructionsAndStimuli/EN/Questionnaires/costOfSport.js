@@ -17,89 +17,88 @@ const json = {
   // ################################################################
   // ##### CALCULATIONS #############################################
   "calculatedValues": [
-    // {
-    //   type: "expression",
-    //   name: "MEMB_ENTR",
-    //   title: "Total Membership, License, Participation & Entrance Costs / YEAR",
-    //   displayStyle: "decimal",
-    //   precision: 2,
-    //   expression: "{Cost_Memb_$Y}" + " + {Cost_Lic_$Y}" + " + {Cost_PF_$Y}" + " + {Cost_Comp_$Y}" + " + {Cost_Entr_$Y}"
-    // },
-    // {
-    //   type: "expression",
-    //   name: "App_Equip",
-    //   title: "Apparel & Equipment / YEAR (Total)",
-    //   displayStyle: "decimal",
-    //   precision: 2,
-    //   expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Totall}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_Rent_$Y}" + " + {EQ_Maint_$Y}"
-    // },
-    // {
-    //   type: "expression",
-    //   name: "Coaching_costs",
-    //   title: "Coaching",
-    //   displayStyle: "decimal",
-    //   precision: 2,
-    //   expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
-    // },
     {
       type: "expression",
-      name: "Travel",
-      title: "Total Travel Costs / YEAR",
+      name: "MEMB_ENTR",
+      title: "Total Membership, License, Participation & Entrance Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{TR_$Y_Total}"
+      expression: "{Total_Fees_$Y}"
     },
     {
       type: "expression",
-      name: "SOC_Total_$Y",
+      name: "APP_EQUIP",
+      title: "Apparel & Equipment / YEAR (Total)",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_Equip_APP_$Y_Total}"
+    },
+    {
+      type: "expression",
+      name: "COACHING",
+      title: "Coaching",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
+    },
+    {
+      type: "expression",
+      name: "TRAVEL",
+      title: "Total Travel Costs / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Total_transport_cost_$Y} + {Total_competition_cost_$Y}"
+    },
+    {
+      type: "expression",
+      name: "SOCIAL",
       title: "Total Social Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
       expression:
-        "{SOC_F&B_$Y}" + " + {SOC_Club_$Y}"
+        "{Total_Practice_Social_cost_$Y}"
     },
     {
       type: "expression",
-      name: "Direct_cost",
+      name: "TOTAL_DIRECT_COSTS",
       title: "Total Direct Costs",
       displayStyle: "decimal",
       precision: 2,
       expression:
-        "{Total_Fees_$Y}" + " + {Cost_Coach_$Y}" + "+{SP_Equip_APP_$Y_Total}"
+        "{MEMB_ENTR} + {COACHING} + {APP_EQUIP}"
     },
     {
       type: "expression",
-      name: "OIC_Total",
+      name: "OTHER_ID",
       title: "Other Indirect Costs per Year",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{OIC_MED_$Y}" + " + {OIC_Body_$Y}" + " + {OIC_Insur_$Y}" + " + {OIC_BPsitting_$Y}" + " + {OIC_DOC_$Y}" +
-        " + {OIC_Spect_$Y}" + " + {OIC_Other_$Y}"
+      expression: "{Total_other_indirect_cost_$Y}"
     },
     {
       type: "expression",
-      name: "total_indirect",
+      name: "TOTAL_INDIRECT",
       title: "Total Indirect costs",
       displayStyle: "decimal",
       precision: 2,
       expression:
-        "{OIC_Total}" + " + {SOC_Total_$Y}" + "+ {Travel}"
+        "{OIC_Total} + {SOCIAL} + {TRAVEL}"
     },
     {
       type: "expression",
-      name: "Earning",
+      name: "EARNINGS",
       title: "Total Earnings",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{SP_Earnings_$Y}"
+      expression: "{SP_Earnings_$Y_Total}"
     },
     {
       type: "expression",
-      name: "Total_Cost_$Y",
+      name: "TOTAL_COSTS_Y",
       title: "TOTAL COST / YEAR",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{Direct_cost} + {total_indirect} - {Earning}"
+      expression: "{TOTAL_DIRECT_COSTS} + {TOTAL_INDIRECT} - {EARNINGS}"
     }
   ],
 
@@ -126,21 +125,21 @@ const json = {
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Membership, licence, participation & entrance</span>
-                <strong>{Total_Fees_$Y}</strong>
+                <strong>{MEMB_ENTR}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Apparel & equipment (total)</span>
-                <strong>{SP_Equip_APP_$Y_Total}</strong>
+                <strong>{APP_EQUIP}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Coaching</span>
-                <strong>{Cost_Coach_$Y}</strong>
+                <strong>{COACHING}</strong>
               </div>
             </div>
             <hr style="margin:10px 0;">
             <div style="display:flex; justify-content:space-between; font-size:15px;">
               <span><strong>Total direct costs</strong></span>
-              <span style="font-weight:bold; color:#0052cc;">{Direct_cost}</span>
+              <span style="font-weight:bold; color:#0052cc;">{TOTAL_DIRECT_COSTS}</span>
             </div>
           </div>
 
@@ -150,21 +149,21 @@ const json = {
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Travel costs / YEAR</span>
-                <strong>{Travel}</strong>
+                <strong>{TRAVEL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Social costs / YEAR</span>
-                <strong>{SOC_Total_$Y}</strong>
+                <strong>{SOCIAL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
                 <span>Other indirect costs / YEAR</span>
-                <strong>{OIC_Total}</strong>
+                <strong>{OTHER_ID}</strong>
               </div>
             </div>
             <hr style="margin:10px 0;">
             <div style="display:flex; justify-content:space-between; font-size:15px;">
               <span><strong>Total indirect costs</strong></span>
-              <span style="font-weight:bold; color:#14833b;">{total_indirect}</span>
+              <span style="font-weight:bold; color:#14833b;">{TOTAL_INDIRECT}</span>
             </div>
           </div>
         </div>
@@ -172,11 +171,11 @@ const json = {
         <!-- Earnings + equation -->
         <div style="background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:28px; text-align:center;">
           <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:16px; font-size:16px; margin-bottom:10px;">
-            <span><strong>Direct costs</strong> = {Direct_cost}</span>
+            <span><strong>Direct costs</strong> = {TOTAL_DIRECT_COSTS}</span>
             <span style="font-size:22px;">+</span>
-            <span><strong>Indirect costs</strong> = {total_indirect}</span>
+            <span><strong>Indirect costs</strong> = {TOTAL_INDIRECT}</span>
             <span style="font-size:22px;">−</span>
-            <span><strong>Sport earnings</strong> = <span style="color:#c0392b;">{Earning}</span></span>
+            <span><strong>Sport earnings</strong> = <span style="color:#c0392b;">{EARNINGS}</span></span>
           </div>
           <div style="font-size:14px; color:#666;">
             This formula is used to calculate your final total cost per year.
@@ -189,7 +188,7 @@ const json = {
             Total costs / year
           </div>
           <div style="font-size:32px; font-weight:700; color:#001e6b;">
-            {Total_Cost_$Y}
+            {TOTAL_COSTS_Y}
           </div>
         </div>
 
@@ -709,12 +708,12 @@ const json = {
                 II.1. Membership and Entrance Fees / Year
                 </div>`
           },
-// Can the text in () below be in italics or grey?  
-// One solution could be: to have a column of just text, with no input it just includes the stuff in ()
-// Can the inputType: number be changed so that there are no up/down arrows???
-// Add a column name above the first column???
-// make it say: ANNUAL FEES
-// Can the yes/no responses be centered under their column name
+          // Can the text in () below be in italics or grey?  
+          // One solution could be: to have a column of just text, with no input it just includes the stuff in ()
+          // Can the inputType: number be changed so that there are no up/down arrows???
+          // Add a column name above the first column???
+          // make it say: ANNUAL FEES
+          // Can the yes/no responses be centered under their column name
 
     {
       "type": "matrixdropdown",
@@ -808,7 +807,7 @@ const json = {
     },
         {
         type: "expression",
-        name: "Total_Fees_$Y",
+        name: "Total_Fees_$Y", // THIS GOES INTO THE REPORT CARD AS MEMB-ENTR
         title: "Estimated TOTAL annual membership and per use fees",
         displayStyle: "decimal",
         precision: 2,
@@ -1424,6 +1423,9 @@ const json = {
 
         ]
       },
+
+
+
       {
         name: "CostActiveSportParticipation",
         title: "Section II.5: Social Costs",
@@ -1466,16 +1468,6 @@ const json = {
                 ],
                 "transposeData": false
               },
-{ // FIx this to make sure it gets both questions, not just the second.
-            type: "expression",
-            name: "TEST01",
-            title: "Freq",
-            expression: "{SocialCosts_Practice.social_costs.Social_often_per_year}/100*" +
-              "{SocialCosts_Practice.social_costs.cost_per_usage}*{SP_PR_Tot}",
-            displayStyle: "currency",
-            currency: "CAD",
-            precision: 2
-          },
 
           // question 16
             { 
