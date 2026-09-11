@@ -2389,7 +2389,33 @@ List.push({
     shortName: '',
 	})
 
+// ==================== TESTER ==============
   
-  
+  var List = []
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_SmileyHoriz",
+  Instructions: "Default",
+  IconName: "Smiley, H",
+});
+List.push({
+  Task: "Labeled Picture Choice",
+  Parameters: "LabeledPictureChoice_Figures",
+  Instructions: "Default",
+  IconName: "IOO Figures",
+});
+	BatteryList.push({index: 11111, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   
