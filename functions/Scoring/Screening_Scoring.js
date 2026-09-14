@@ -4,25 +4,41 @@ function Screening_Scoring(data) {
 	Eligible = true
 	trialData = data.filter({trial: 'Screening'}).trials[0]
 	console.log(trialData)
+	// responses
+	var responses = trialData.response.map(a => a.responseValue)
+	console.log(trialData.response.map(a => a.responseValue))
+	// criteria
+	var criteria = trialData.pages.pages[0].elements.map(a=>a.criteria)
+	console.log(trialData.pages.pages[0].elements.map(a=>a.criteria))
 	var InclusionFlag = true
-	Results.PrimaryResults = {}
-	Results.AllResults = {}
-	console.log(trialData.response)
-	keys = Object.keys(trialData.response)
-	console.log(keys)
-	InclusionFlag = true
-	if (( trialData.response.Age < 18 ))// || 	(( trialData.response.Age > 30 ) && ( trialData.response.Age < 60 )))
-	{ InclusionFlag = false }
-	
-	for ( var i = 0; i < keys.length; i++ )
-	{	
-		Results.AllResults[keys[i]] = trialData.response[keys[i]]
-		if ( keys[i] != 'Age' ) {
-			if ( !trialData.pages[0][i].correct_response === trialData.response[keys[i]] )
-			{ InclusionFlag = false }
+	for ( var i = 0; i < criteria.length; i++ )
+	{
+		if ( criteria[i] != undefined ) {
+			if (typeof criteria[i] === 'string' || criteria[i] instanceof String)
+			{
+				if ( ! eval(responses[i] + criteria[i]))
+				{ 
+					console.log("Not eligible")
+					InclusionFlag = false 
+					break
+				} else {console.log("Passed criteria")}
+			}
+			else {
+				 if (! responses[i] == criteria[i] )
+				 {
+					console.log("Not eligible")
+					InclusionFlag = false 
+					break
+				} else {console.log("Passed criteria")}
+			}
 		}
 	}
 	console.log(InclusionFlag)
+
+	var InclusionFlag = true
+	Results.PrimaryResults = {}
+	Results.AllResults = {}
+
 	if ( ! InclusionFlag ) 
 	{ Eligible = false }
 	Results.PrimaryResults['ScoreName'] = 'Eligible'

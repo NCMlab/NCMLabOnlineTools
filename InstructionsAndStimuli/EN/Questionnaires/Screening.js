@@ -1,3 +1,82 @@
+const json = {
+  showProgressBar: "top",
+  progressBarType: "pages",
+  progressBarShowPageNumbers: true,
+  progressBarShowPageTitles: true,
+  showCompletedPage: false,
+  showTitle: true,
+  pages: 
+  [
+
+    {      
+      name: "Demographic Information",
+      title: "Demographic Information",
+      elements: [
+     
+        {
+          name: "screen0102_age",
+          title: "What is your age",
+          type: "input",
+          inputType: "number",
+          choicesMin: 0,
+          choicesMax: 150,
+          defaultValue: '',
+          isRequired: true,
+          criteria: ">=18",
+        },
+                {
+          name: 'screen0101_EngFre',
+          title: "Is English or French your maternal or primary spoken language?",
+          type: 'dropdown',
+          choices: [
+            {value: 1, text:'Yes'},
+            {value: 2, text:'No'},
+          ],
+          showOtherItem: false,
+          isRequired: true,
+          criteria: 1,
+        },
+                {
+          name: 'screen0101_Vision',
+          title: "Do you have normal (or correct to normal) vision? This includes glasses, contacts and corrective surgery.",
+          type: 'dropdown',
+          choices: [
+            {value: 1, text:'Yes'},
+            {value: 2, text:'No'},
+          ],
+          showOtherItem: false,
+          isRequired: true,
+          criteria: 1,
+        },        
+        {
+          name: 'screen0101_Hearing',
+          title: "Do you have normal (or correct to normal) hearing?",
+          type: 'dropdown',
+          choices: [
+            {value: 1, text:'Yes'},
+            {value: 2, text:'No'},
+          ],
+          showOtherItem: false,
+          isRequired: true,
+          criteria: 1,
+        },        
+        {
+          name: 'screen0101_Neurological',
+          title: "Do you have any neurological disorders? (e.g. lupus)?",
+          type: 'dropdown',
+          choices: [
+            {value: 1, text:'Yes'},
+            {value: 2, text:'No'},
+          ],
+          showOtherItem: false,
+          isRequired: true,
+          criteria: 2,
+        },
+    ]
+}
+  ]
+}
+
 var pages = [
     [
         {
@@ -47,7 +126,7 @@ var pages = [
 ]
 var EN_BriefScreening = {}
 EN_BriefScreening.title = "Screening"
-EN_BriefScreening.pages = pages
+EN_BriefScreening.pages = json
 EN_BriefScreening.ShowInstructions = true
 add('EN_BriefScreening', function(){ parameters = EN_BriefScreening });
 // =====================================================
