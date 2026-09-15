@@ -79,7 +79,7 @@ var form_trial = {
 var CheckEligibilityData = {
     type: jsPsychCallFunction,
     func: function() {
-        console.log(jatos)
+        // console.log(jatos)
       var data = jsPsych.data.get()
       console.log(data)
       Results = Screening_Scoring(data)

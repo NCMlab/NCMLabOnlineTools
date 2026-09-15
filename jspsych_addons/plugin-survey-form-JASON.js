@@ -308,9 +308,9 @@ console.log(trial)
                             { Str += " Required" }
                             else { Str += " Not-Required" }
                             Str += '" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
-                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label><p>'
+                            Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
 
-                            // the visible class is used to only use visible questions when validating 
+                            // the visible class is used to only use visible questions when validating
                             // the form.
                             console.log(VisibleIfConditionsPages[page][i])
                             if ( VisibleIfConditionsPages[page][i].onChangeResponses ) {
@@ -494,7 +494,7 @@ console.log(trial)
                             Str += '<div class="surveyFormLabel" id="div-'+thisQuestion.name+'">'
                             Str += thisQuestion.title
                             //Str += '</div><input class="textInput" name="'+thisQuestion.name+'" type="'+thisQuestion.inputType+'" />'
-                            Str += '</div><p><input type="'+ thisQuestion.inputType +'" class="numberInput FormInput '
+                            Str += '</div><div><input type="'+ thisQuestion.inputType +'" class="numberInput FormInput '
                             Str += VisibleIfConditionsPages[page][i].visibleClass
                             Str += '" width="40%"'
                             if (Object.hasOwn(thisQuestion,'choicesMax'))
@@ -504,7 +504,7 @@ console.log(trial)
                             Str += ' id="'+thisQuestion.name+'"></input>'
                             if ( thisQuestion.hasOwnProperty("units") )
                             { Str += '<div class="surveyFormResponseLabel">'+thisQuestion.units+'</div>' }
-                            Str += '</p>'
+                            Str += '</div>'
                             Str += '</div><hr>'
 
                         default:

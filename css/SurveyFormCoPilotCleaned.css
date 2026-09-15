@@ -214,9 +214,12 @@ input[type=checkbox] {
 
 /* Add breathing room so bottom UI doesn't overlap content */
 
-body,
-.surveyFormDiv {
+body {
   padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+}
+
+.surveyFormDiv {
+  margin-bottom: 0.1rem;
 }
 
 .tableSubmitButton {
