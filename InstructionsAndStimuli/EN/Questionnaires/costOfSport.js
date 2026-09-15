@@ -886,10 +886,6 @@ const json = {
                 expression:
                   "{coaching_costs.Clinic.Cost_$U} * {coaching_costs.Clinic.Cost_UY}"  // keep this idea, but use the new format
               },
-
-
-
-
         ]
       },
       {
@@ -1589,7 +1585,7 @@ const json = {
         elements: [
           {
             type: "radiogroup",
-            name: "SP_earn_YN",
+            name: "SP_Earn_YN",
             title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
             choices: [
               "Yes",
@@ -1610,13 +1606,13 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "SP_Earn_Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
-              { name: "SP_Earn_$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              { name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+              { name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
               {
                 name: "SP_Earnings_$Y",
                 title: "Write-off / year (C$)",
                 cellType: "expression",
-                expression: "{row.SP_Earn_$Y}",
+                expression: "{row.$Y}",
                 displayStyle: "currency",
                 currency: "CAD",
                 totalType: "sum",
@@ -1631,7 +1627,7 @@ const json = {
             type: "expression",
             name: "SP_Earnings_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_Earnings-total.SP_Earnings_$Y}",
+            expression: "{SP_Earnings-total.$Y}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
@@ -1649,14 +1645,29 @@ const json = {
         elements: [
           {
             type: "dropdown",
-            name: "Gender",
-            title: "Gender",
+            title: "What sex were you assigned at birth, on you original birth certificate?",
+            name: "Sex",
             choices: [
-              "Male",
-              "Female"
+              {value: 1, text: "Female"},
+              {value: 2, text: "Male"}
             ],
             showOtherItem: true,
             otherText: "You don't have an option that applies to me. I identify as:",
+            isRequired: false
+          },
+          {
+            type: "dropdown",
+            name: "Gender",
+            title: "What is your current gender identity?",
+            choices: [
+              {value: 1, text: "Female"},
+              {value: 2, text: "Male"},
+              {value: 3, text: "Trans male/trans man"},
+              {value: 4, text: "Trans female/trans woman"},
+              {value: 5, text: "Genderqueer/gender non-conforming"}
+            ],
+            showOtherItem: true,
+            otherText: "Different identity (please state):",
             isRequired: false
           },
 
@@ -1672,7 +1683,7 @@ const json = {
 
       {
           type: "radiogroup",
-          name: "HH_FirstNations",
+          name: "FirstNation",
           title: "Do you identify as First Nations, Inuk/Inuit and/or Métis?",
           
           choices: [ "Yes, First Nations",
@@ -1691,7 +1702,7 @@ const json = {
         },
       {
           type: "checkbox",
-          name: "HH_Race",
+          name: "Race",
           title: "Which category(ies) best describes your race or racial background? Check all that apply:",
           
           choices: [ "Black",
@@ -1717,7 +1728,7 @@ const json = {
                     //dropdown to 20
           {
             type: "dropdown",
-            name: "HH_Npeople",
+            name: "HH_N",
             title: "How many people live in your household (under the same roof) including yourself?",
             isRequired: false,
             choices: [
@@ -1731,7 +1742,7 @@ const json = {
           },
           {
             type: "dropdown",
-            name: "HH_Nchildren",
+            name: "HH_NChild",
             title: "How many children under the age of 18 live in your household?",
             isRequired: false,
             choices: [
@@ -1745,7 +1756,7 @@ const json = {
           },
           {
             type: "radiogroup",
-            name: "HH_Position",
+            name: "HH_Pos",
             title: "What is your position in this household?",
             isRequired: false,
             choices: [
@@ -1792,7 +1803,7 @@ const json = {
           // make it 2 columns
           {
             type: "radiogroup",
-            name: "HH_Income_ExcludeBenefits",
+            name: "HH_Income_EX",
             title: " What is your annual household income BEFORE taxes, EXCLUDING provincial or federal disability benefits",
             colCount: 2,
             isRequired: false,
@@ -1811,7 +1822,7 @@ const json = {
           },
           {
             type: "radiogroup",
-            name: "HH_Income_IncludeBenefits",
+            name: "HH_Income_IN",
             title: " What is your annual household income BEFORE taxes, INCLUDING provincial or federal disability benefits",
             colCount: 2,
             isRequired: false,
@@ -1840,7 +1851,7 @@ const json = {
           {
             type: "radiogroup",
             title: "Timing of Impairement?",
-            name: "Time_Disability",
+            name: "AB_Timing",
             colCount: 2,
             choices: [
               'Congenital',
@@ -1852,7 +1863,7 @@ const json = {
           {
             type: "checkbox",
             title: "Classification of disabilities (check all that apply)?",
-            name: "Class_Disability",
+            name: "AB_Class",
             colCount: 2,
             choices: [
               'Mobility',

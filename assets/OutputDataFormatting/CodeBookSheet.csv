@@ -196,20 +196,21 @@ OIC_Spect
 OIC_Spect_$Y
 OIC_Other
 OIC_Other_$Y
-SP_Earnings
-SP_Earnings1_EX
+SP_Earn_YN
+SP_Earnings1_Describe
 SP_Earnings1_$Y
 Sex
+Sex-Comment
 Gender
-Gender_EX
+Gender-Comment
 Age
 FirstNation
 Race
-Race_EX
+Race-Comment
 HH_N
 HH_NChild
 HH_Pos
-HH_Pos_EX
+HH_Pos-Comment
 HH_Sport
 HH_Educ
 HH_Income_EX
@@ -218,13 +219,13 @@ AB_Timing
 AB_Class
 AB_Loi
 Future
-MEMB-ENTR
+MEMB_ENTR
 COACHING
-APP&EQUIP
-TOTAL DIRECT COSTS
+APP_EQUIP
+TOTAL_DIRECT_COSTS
 TRAVEL
 SOCIAL
-OTHER ID
-TOTAL INDICERCT
+OTHER_ID
+TOTAL_INDICERCT
 EARNINGS
-TOTAL COST_Y
+TOTAL_COSTS_Y
