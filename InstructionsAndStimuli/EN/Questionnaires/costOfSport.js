@@ -90,7 +90,7 @@ const json = {
       title: "Total Earnings",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{SP_Earnings_$Y_Total}"
+      expression: "{SP_Earnings_$Y}"
     },
     {
       type: "expression",
@@ -175,7 +175,7 @@ const json = {
             <span style="font-size:22px;">+</span>
             <span><strong>Indirect costs</strong> = {TOTAL_INDIRECT}</span>
             <span style="font-size:22px;">−</span>
-            <span><strong>Sport earnings</strong> = <span style="color:#c0392b;">{EARNINGS}</span></span>
+            <span><strong>Sport Earnings</strong> = {EARNINGS}</span>
           </div>
           <div style="font-size:14px; color:#666;">
             This formula is used to calculate your final total cost per year.
@@ -1610,7 +1610,7 @@ const json = {
               { name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
               {
                 name: "SP_Earnings_$Y",
-                title: "Write-off / year (C$)",
+                title: "Amount / year (C$)",
                 cellType: "expression",
                 expression: "{row.$Y}",
                 displayStyle: "currency",
@@ -1626,8 +1626,8 @@ const json = {
           {
             type: "expression",
             name: "SP_Earnings_$Y_Total",
-            title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_Earnings-total.$Y}",
+            title: "Total Earnings",
+            expression: "{SP_Earnings_$Y}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
