@@ -76,9 +76,11 @@
             parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
             pseudoSwitch(parameters)
             parameters.Language = LANG
+            console.log(parameters)
             // prepare the questionnaire file name
             var dirName = "InstructionsAndStimuli/"+LANG+"/Questionnaires/"
             fileName = dirName+parameters.questionnaire[0]+".js"         
+            console.log("Loading questionnaire file: "+fileName)
             // load the questionaire JS file
             loadScriptSequentially(fileName)
             .then(() =>

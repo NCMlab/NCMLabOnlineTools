@@ -401,7 +401,12 @@ console.log(trial)
                                 { 
                                     console.log("NEED to show other ")
                                     console.log(LabelNames)
-                                    Str += '<option value="9999">'+LabelNames.Other+'</option>'
+                                    Str += '<option value="9999">'
+                                    if ( thisQuestion.other_option_text )  
+                                        { Str += thisQuestion.other_option_text }
+                                    else   { Str += LabelNames.Other }                                    
+
+                                    Str += '</option>'
                                 }
                             }
                             Str += '</select></div><hr>'
@@ -568,9 +573,8 @@ console.log(trial)
     function ShowOther(elemID) {
         console.log("ON CHANGE")
         const elem = document.getElementById(elemID)
-        console.log(elem)
-        console.log(elem.name)
-        if ( elem.options[elem.selectedIndex].text == LabelNames.Other )
+
+        if ( elem.options[elem.selectedIndex].value === '9999' )
         {
             var Str = ''
             //Str += '<div class="surveyFormDiv">'

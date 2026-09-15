@@ -31,8 +31,6 @@ var MusicDemographics_001SHORT = {
     ShowInstructions: false,
  }
  
-
-
  var MusicDemographics_001 = { 
     questionnaire: ['IntakeForm_Music'], 
     criteria: [],
@@ -42,6 +40,17 @@ var MusicDemographics_001SHORT = {
     ShowThankYou: false,
     ShowInstructions: false,
  }
+
+var NCMDemographics_001 = { 
+    questionnaire: ['IntakeForm_NCM'], 
+    criteria: [],
+    variable: [],
+    AskForNotes: false,
+    ShowWelcome: false,
+    ShowThankYou: false,
+    ShowInstructions: false,
+ }
+
 
 var STAI_S_001 = { 
     questionnaire: ['stai_state'], 
@@ -462,3 +471,4 @@ add('ADLPI_001', function(){ parameters = ADLPI_001});
 add('FRS_001', function(){ parameters = FRS_001});
 add('SocioMontreal_001', function(){ parameters = SocioMontreal_001});
 add('ScoringMMSE_001', function(){ parameters = ScoringMMSE_001});
+add('NCMDemographics_001', function(){ parameters = NCMDemographics_001});
