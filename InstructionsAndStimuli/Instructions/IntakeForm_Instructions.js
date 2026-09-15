@@ -453,3 +453,105 @@ EN_IntakeForm_Music.Instructions01 = [
 ]
 add('EN_Instructions_Music', function(){ Instructions = EN_IntakeForm_Music });
 
+// ============================================================================
+// ============= CONVERT TO JSON FORMAT =======================================
+var FormTitle = 'Intake Form'
+var pages = [
+      [
+        {
+          type: 'text',
+          prompt: "In what month and year were you born?", 
+          name: 'Year-Month of Birth', 
+          input_type: "month",
+          required: false,
+        },
+        {
+          type: 'multi-choice',
+          prompt: "What sex were assigned at birth, on your original birth certificate?", 
+          options: ['Female','Male'],
+          add_other_option: true,
+          other_option_text: 'You don\’t have an option that applies to me. I identify as (please specify)',
+          name: 'Sex', 
+          required: false,
+        }, 
+        {
+          type: 'multi-choice',
+          prompt: 'What is your gender?', 
+          options: ['Woman','Man','Trans Woman','Trans Man','Non-Binary'],
+          add_other_option: true,
+          other_option_text: 'You don\’t have an option that applies to me. I identify as (please specify)',
+          name: 'Gender', 
+          required: false,
+        },
+        {
+          type: 'drop-down',
+          prompt: "How many years of education have you completed? (for example completing high school is 12, completing a BA/BS is 16, completing an MA/MS is 18, completing a PhD is 21", 
+          name: 'YearsEdu', 
+          options: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','other'],
+          required: false,
+          },
+        {
+          type: 'multi-choice',
+          prompt: 'What hand do you prefer to use?', 
+          options: ['Left','No preference','Right',"I don't know",'Prefer not to answer'],
+          name: 'Handedness', 
+          required: false,
+        }
+        
+          /*{
+            type: 'likert-table',
+            prompt: 'What hand do you prefer to use when:',
+            name: "Handedness",
+            statements: [{name:'Writing'},{name:'Drawing'},
+            {name:'Throwing'},{name:'Using scissors'},{name:'Using a toothbrush'},
+            {name:'Using a knife (without a fork)'},{name:'Using a spoon'},
+            {name:'Striking a match'},{name:'Using a broom (upper hand)'},
+            {name:'Opening a box (lid)'}],
+            options: ['Left','No preference','Right',"I don't know",'Prefer not to answer'],
+          }*/
+      ]
+    ]
+    
+
+const json = {
+  showProgressBar: "top",
+  progressBarType: "pages",
+  progressBarShowPageNumbers: true,
+  progressBarShowPageTitles: true,
+  showCompletedPage: false,
+  showTitle: true,
+  pages: 
+  [
+
+    {      
+      name: "Intake Form",
+      title: "Intake Form",
+      elements: [
+   {
+          name: 'dem0101_gender',
+          title: "Gender",
+          type: 'dropdown',
+          choices: [
+            {value: 1, text:'Male'},
+            {value: 2, text:'Female'},
+          ],
+          showOtherItem: true,
+          isRequired: true
+        },
+      ]
+    }
+  ]
+}
+     
+  var EN_IntakeForm_Generic = {}
+    EN_IntakeForm_Generic.title = FormTitle
+    EN_IntakeForm_Generic.pages = json  
+    
+    EN_IntakeForm_Generic.Instructions01 = [
+    {'page': ' Please, make sure your microphone and speakers are on and that the volume is set so you can hear the tasks. '+
+      'Please, do not press your browser\'s back or reload buttons.'},
+      {'page': 'If you have feedback you would like to share '+
+      'with us, there will be a text box at the very end of the experiment where you can type in comments.'} 
+    
+    ]
+add('EN_Instructions_Default', function(){ Instructions = EN_IntakeForm_Generic });

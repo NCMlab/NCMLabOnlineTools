@@ -104,7 +104,7 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
 
 
 // ====================
-
+console.log(trial)
 var NPages = trial.survey_json.pages.length
 // These are the progress dots
 console.log(trial)
