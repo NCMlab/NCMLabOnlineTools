@@ -933,7 +933,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: true,
+                visible: false,
                 width: "15%"
               } 
             ],
@@ -943,12 +943,12 @@ const json = {
             type: "expression",
             name: "SP_APP_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all apparel items)",
-            expression: "{SP_APP-total.SP_APP_$Y}",
+            expression: "{SP_APP-total.$Y}",
             //expression: "{SP_APP.SP_APP_Cost}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: true
+            visible: false
           },
 
 //           /* --------------- (b) Sports equipment ----------------- */
@@ -975,7 +975,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: true,
+                visible: false,
                 width: "15%"
               },
             ],
@@ -985,11 +985,11 @@ const json = {
             type: "expression",
             name: "SP_Equip_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all equipment items)",
-            expression: "{SP_Equip-total.SP_Equip_$Y}",
+            expression: "{SP_Equip-total.$Y}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: true
+            visible: false
           },
 
 //           /*  --------- c) Additional equipment -----------------   */
@@ -1016,7 +1016,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: true,
+                visible: false,
                 width: "15%"
               },
             ],
@@ -1027,11 +1027,11 @@ const json = {
             type: "expression",
             name: "SP_AddEquip_$Y_Total",
             title: "Sub-total (a): Total write-off per year (all additional equipment items)",
-            expression: "{SP_AddEquip-total.SP_AddEquip_$Y}",
+            expression: "{SP_AddEquip-total.$Y}",
             displayStyle: "currency",
             currency: "CAD",
             //currencyDisplay: "code",
-            visible: true
+            visible: false
           },
 
           // question 11
@@ -1104,7 +1104,7 @@ const json = {
                 "transposeData": false
               },
          
- {
+          {  
             type: "expression",
             name: "EQ_RentMaintenance_$Y_Total",
             title: "Estimated yearly rental cost",
@@ -1125,6 +1125,7 @@ const json = {
             expression: "{SP_APP_$Y_Total}" + " + {SP_Equip_$Y_Total}" + " + {SP_AddEquip_$Y_Total}" + " + {EQ_RentMaintenance_$Y_Total}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false
           },
 
         ]
@@ -1618,7 +1619,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: true,
+                visible: false,
                 width: "15%"
               } 
             ],
@@ -1626,12 +1627,12 @@ const json = {
           {
             type: "expression",
             name: "SP_Earnings_$Y_Total",
-            title: "Total Earnings",
-            expression: "{SP_Earnings_$Y}",
+            title: "Sub-total (a): Total write-off per year (all apparel items)",
+            expression: "{SP_Earnings-total.SP_Earnings_$Y}",
             displayStyle: "currency",
             currency: "CAD",
-            //currencyDisplay: "code",
-            visible: true
+            precision: 2,
+            visible: false
           },
           
         ]

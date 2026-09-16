@@ -321,3 +321,7 @@ input[type=number] {
   width: auto;
 }
 
+.sd-table-wrapper {
+  /* min-width: calc(95% = 2 * var(--sd-base-padding)); */
+  min-width: 95%;
+}
