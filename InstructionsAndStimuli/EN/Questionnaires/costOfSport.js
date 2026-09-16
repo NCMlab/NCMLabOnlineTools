@@ -90,7 +90,7 @@ const json = {
       title: "Total Earnings",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{SP_Earnings_$Y}"
+      expression: "{SP_Earnings_$Y_Total}"
     },
     {
       type: "expression",
@@ -1619,7 +1619,7 @@ const json = {
                 totalType: "sum",
                 totalDisplayStyle: "currency",
                 currencyDisplay: "code",
-                visible: false,
+                visible: true,
                 width: "15%"
               } 
             ],
@@ -1632,7 +1632,7 @@ const json = {
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
-            visible: false
+            visible: true
           },
           
         ]
