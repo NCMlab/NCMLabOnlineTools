@@ -163,6 +163,7 @@ BatteryList.push({
   BatteryInstructions:
     'Welcome to the University of Ottawa\'s Neural Cognitive Mapping Laboratory - Cognitive Evaluation',
   Language: "EN",
+  LanguagesToShow: ['EN','FR'],
   RunAudioTest: true,
   Footer: "©NCMLab 2025",
   shortName: "NCMLab",

@@ -1,5 +1,5 @@
 
-const json = {
+const ENjson = {
   showProgressBar: "top",
   progressBarType: "pages",
   progressBarShowPageNumbers: true,
@@ -118,7 +118,7 @@ const json = {
     
     EN_IntakeForm_NCM.title = 'Intake Form',
     EN_IntakeForm_NCM.shortTitle = 'Intake Form',
-    EN_IntakeForm_NCM.survey_JSON = json
+    EN_IntakeForm_NCM.survey_JSON = ENjson
     EN_IntakeForm_NCM.description = ""
     EN_IntakeForm_NCM.QuestionnaireType = 'form'
     EN_IntakeForm_NCM.references = "references"
@@ -131,3 +131,8 @@ const json = {
     //   {'page': 'If you have feedback you would like to share '+
     //   'with us, there will be a text box at the very end of the experiment where you can type in comments.'} 
     // ]
+
+
+// =====================================================
+
+    

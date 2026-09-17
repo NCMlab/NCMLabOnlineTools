@@ -128,11 +128,16 @@ FR_Instructions.Instructions01 = [
 	{'page': 'Maintenant je vais lire la même liste de mots une seconde fois. Essayez de vous rappeler du plus grand nombre de mots possible, y compris ceux que vous avez énoncés la première fois et dites les moi, dans l\’ordre que vous souhaitez'},
 	]
 	FR_Instructions.Instructions03 = [
-	{'page': 'Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin.'},
+	{'page': "Vous allez maintenant entendre une deuxième liste de mots. Écoutez attentivement, car à la fin de cette liste, vous devrez répéter autant de mots que possible. L'ordre n'a pas d'importance, essayez simplement d'en mémoriser le plus grand nombre.<br/><br/> Appuyez sur Suivant pour commencer."},
 	]
 	FR_Instructions.Instructions04 = [
-	{'page': 'Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin.'},
+	{'page': "Maintenant, répétez tous les mots dont vous vous souvenez de la première liste, celle que vous avez entendue plusieurs fois.<br/><br/>Appuyez sur suivant pour commencer."},
 	]
+	FR_Instructions.Instructions05 = [
+	{'page': ''},
+	{'page': "Préparez-vous à vous souvenir des mots que vous venez d'entendre."},
+]
+
 	FR_Instructions.InstructionsDelayed = [
 	{'page': 'Je vous ai lu une série de mots plus tôt dont je vous ai demandé de vous rappeler. Maintenant, dites-moi tous les mots dont vous vous rappelez.'},
 	]	
