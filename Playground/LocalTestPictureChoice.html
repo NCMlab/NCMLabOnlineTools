@@ -36,23 +36,21 @@
     <!-- <script src="../jspsych/dist/plugin-html-keyboard-response.js"></script> -->
     <script src="../jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
     <script src="../jspsych_addons/plugin-html-picture-response-touchscreen.js"></script>
-    <script src="../jspsych_addons/plugin-html-InclusionOfOther-touchscreen.js"></script>
+  
     <!-- <script src="../jspsych/dist/plugin-html-button-response.js"></script> -->
     <script src="../functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
     <script src="../config/General_Setup.js"></script>
     <script src="../functions/GeneralPurposeFunctions/CommonParts.js"></script>
     <!-- <script src="../InstructionsAndStimuli/Instructions/Stroop_Instructions.js"></script> -->
     <!-- <script src="../InstructionsAndStimuli/EN/Stimuli/Stroop.js"></script> -->
-    <!-- <script src="../config/Stroop_Setup.js"></script> -->
+    <script src="../config/PictureChoice_Setup.js"></script>
 
 
     <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
-    <div id="screen_timer">
-      <p>Time: <span id="clock">00:00</span></p>
-    </div>
     <script>
-      var Stroop_parameters = 'empty'
-      var parameters = 'empty'
+
+      var parameters = 'PictureChoice_IOO'
+      // var parameters = 'PictureChoice_Smiley'
       // jatos.onLoad(() => {
       //   if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
       //   {
@@ -64,7 +62,7 @@
       //     InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
       //   }
 
-        var parameters = {}        
+
         pseudoSwitch(parameters)
         console.log(parameters)
         // LANG = jatos.studySessionData.Language

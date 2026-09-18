@@ -682,6 +682,13 @@ List.push({
   Instructions: "Default",
   IconName: "BDI",
 });
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_IOO",
+  Instructions: "Default",
+  IconName: "IOO",
+});
+
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 BatteryList.push({
@@ -1858,6 +1865,7 @@ BatteryList.push({
 
 // ============ MUSIC STUDY -- TEST ==================
 var List = []
+List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
 List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
 
 BatteryList.push({index: 71234, 

@@ -130,25 +130,25 @@ var jsPsychHtmlInclusionOfOtherTouchscreen = (function (jspsych) {
                       const leftPos = trial.left_positions[i]
                       const rightPos = trial.right_positions[i]
                       html +=
-                            '<button>' +
-                          '<div ' +
-                           // '<div>' +
+                        '<button>' +
+                            '<div ' +
                               'id="jspsych-html-button-response-button-' +
                               i +
                               '" data-choice="' +
                               i +
-                              '">' +
-                              '<div class="jspsych-inclusion-of-other-image-wrap">' +
-                              str +
-                              '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + leftPos + '%;">' +
-                              trial.left_circle_text +
-                              '</span>' +
-                              '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + rightPos + '%;">' +
-                              trial.right_circle_text +
-                              '</span>' +
-                              '</div>' +
-                              "</div>" +
-                              '</button>'
+                            '">' +
+                              
+                                '<div class="jspsych-inclusion-of-other-image-wrap">' +
+                                    str +
+                                    '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + leftPos + '%;">' +
+                                        trial.left_circle_text +
+                                    '</span>' +
+                                    '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + rightPos + '%;">' +
+                                        trial.right_circle_text +
+                                    '</span>' +
+                                '</div>' +
+                            "</div>" +
+                        '</button>'
                   }
             html += '</div>';
 

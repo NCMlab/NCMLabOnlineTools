@@ -81,6 +81,26 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
               default: "horizontal",
               options: ["vertical", "horizontal"],
           },
+          left_circle_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Left Circle Text",
+          },
+          right_circle_text: {
+              type: jspsych.ParameterType.STRING,
+              pretty_name: "Right Circle Text",
+          },
+          left_positions: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Left Positions",
+              default: undefined,
+              array: true,
+          },
+          right_positions: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Right Positions",
+              default: undefined,
+              array: true,
+          },
       },
   };
   /**
@@ -112,7 +132,7 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
                   buttons.push(trial.button_html);
               }
           }
-          
+          console.log(trial)
           var html = '';
           html += '<table >'
           html += '<tr>'
@@ -123,25 +143,45 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
           html += '<td style="text-align: center; vertical-align: middle; align:center">'
           html += '<div class="jspsych-html-button-response-btngroup-' + trial.button_orientation + '" style="text-align:center; align:center;">';
                   for (var i = 0; i < trial.choices.length; i++) {
-                      var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-                      html +=
-                            '<button class="Smiley_Button">' +
-                            '<div ' +
-                            // '<div>' + 
-                              'id="jspsych-html-button-response-button-' +
+                    // str is the <img> object  
+                    var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+                      console.log(str)
+                    html +=
+                        // define the button
+                        '<button>' +
+                            '<div id="jspsych-html-button-response-button-' +
                               i +
                               '" data-choice="' +
                               i +
-                              '">' +
-                              str +
-                              "</div>" 
-                              // If there is available button text, then add it
-                              if (trial.button_text !== undefined) {
-                                html += '<div class="html-button-response-button-text">'
-                                html += trial.button_text[i]
+                            '">'
+                            // now add text to the top of the button if there is any
+                            if (trial.left_circle_text !== undefined) {
+                                html += '<div class="jspsych-inclusion-of-other-image-wrap">'          
+                                // add the image
+                                html += str
+                                var leftPos = trial.left_positions[i]
+                                var rightPos = trial.right_positions[i]
+                                // make the <span > element and include the text position
+                                html += '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + leftPos + '%;">'
+                                // the text itself
+                                html += trial.left_circle_text 
+                                html += '</span>'
+                                html += '<span class="jspsych-inclusion-of-other-label" style="position: absolute; left: ' + rightPos + '%;">'
+                                html += trial.right_circle_text
+                                html += '</span>'
                                 html += '</div>'
-                              }
-                              html += '</button>' 
+                            }
+                            else { html+= str }
+
+                            // is there any text to go below the image?
+                            if (trial.button_text !== undefined) {
+                                    html += '<div class="html-button-response-button-text">'
+                                    html += trial.button_text[i]
+                                    html += '</div>'
+                                }
+                            html += "</div>"
+                        html += '</button>'
+
                   }
             html += '</div>';
 

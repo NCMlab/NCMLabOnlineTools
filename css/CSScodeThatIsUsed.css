@@ -673,6 +673,7 @@ body {
 .jspsych-html-button-response-btngroup-horizontal button:hover {
     border: 2px solid black;
     border-radius: 12px; /* Controls the roundness */
+    background-color: #e6f6f3;    
 }
 
 .jspsych-html-button-response-btngroup-horizontal img,
