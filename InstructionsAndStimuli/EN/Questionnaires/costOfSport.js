@@ -13,7 +13,7 @@
 // Line 1870, if someone selects able-bodied, then the next two questions are hidden.
 // At the start of the receipt make the estimated/predicted costs in BOLD so they stand out a bit
 // Make sure that the top buttons are turned off.
-// DONE (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
+// XX (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
 // Mark a question with isSuggested: true (like Cost_Gen below) to get a soft warning + "Proceed with unanswered question" button.
 // Confirm that the data goes to teh database when submit is pressed and the receipt shows up.
 // What happens when teh browser back is pressed?
