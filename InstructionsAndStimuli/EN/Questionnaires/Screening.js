@@ -39,7 +39,7 @@ const ENjson = {
                 {
           name: 'screen0101_Vision',
           title: "Do you have normal (or correct to normal) vision? This includes glasses, contacts and corrective surgery.",
-          type: 'dropdown',
+          type: 'radiogroup',
           choices: [
             {value: 1, text:'Yes'},
             {value: 2, text:'No'},
@@ -51,7 +51,7 @@ const ENjson = {
         {
           name: 'screen0101_Hearing',
           title: "Do you have normal (or correct to normal) hearing?",
-          type: 'dropdown',
+          type: 'radiogroup',
           choices: [
             {value: 1, text:'Yes'},
             {value: 2, text:'No'},
@@ -63,7 +63,7 @@ const ENjson = {
         {
           name: 'screen0101_Neurological',
           title: "Do you have any neurological disorders? (e.g. lupus)?",
-          type: 'dropdown',
+          type: 'radiogroup',
           choices: [
             {value: 1, text:'Yes'},
             {value: 2, text:'No'},
