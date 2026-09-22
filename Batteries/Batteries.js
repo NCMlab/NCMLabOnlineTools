@@ -90,12 +90,6 @@ List.push({
   IconName: "Consent",
 });
 List.push({
-  Task: "Intake Form",
-  Parameters: "IntakeForm",
-  Instructions: "Default",
-  IconName: "Intake",
-});
-List.push({
   Task: "Form Questionnaire",
   Parameters: "NCMDemographics_001",
   Instructions: "Default",

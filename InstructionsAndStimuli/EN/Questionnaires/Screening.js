@@ -27,7 +27,7 @@ const ENjson = {
                 {
           name: 'screen0101_EngFre',
           title: "Is English or French your maternal or primary spoken language?",
-          type: 'dropdown',
+          type: 'radiogroup',
           choices: [
             {value: 1, text:'Yes'},
             {value: 2, text:'No'},
