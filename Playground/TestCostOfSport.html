@@ -87,6 +87,14 @@
   margin: 0 auto;
 }
 
+/* "Proceed with unanswered question" button (isSuggested override) */
+.suggested-proceed-btn button,
+.suggested-proceed-btn input[type="button"],
+.suggested-proceed-btn .sd-btn {
+  background-color: #f0ad4e !important;
+  border-color: #eb9316 !important;
+  color: #202020 !important;
+}
 
 </style>
     
@@ -257,7 +265,121 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
         jsPsych.data.addProperties(resp);
       }
 
-  
+      // Recursively collects the `name` of every question flagged `isSuggested: true`
+      // anywhere in the survey JSON (pages, panels, paneldynamic templates, etc.).
+      function collectSuggestedNames(node, names) {
+        names = names || new Set();
+        if (Array.isArray(node)) {
+          node.forEach(function (item) { collectSuggestedNames(item, names); });
+        } else if (node && typeof node === "object") {
+          if (node.isSuggested === true && typeof node.name === "string") {
+            names.add(node.name);
+          }
+          Object.keys(node).forEach(function (key) {
+            collectSuggestedNames(node[key], names);
+          });
+        }
+        return names;
+      }
+
+      // Wires up the "isSuggested" behavior: a soft, non-blocking version of isRequired.
+      // Unanswered isSuggested questions show the same red error styling as a required
+      // question, and both page-to-page "Next" and the final "Complete" are held until
+      // the participant either answers them or clicks "Proceed with unanswered question".
+      // Once that button is clicked for a given question, that question is remembered
+      // as acknowledged and will not be re-flagged later (e.g. at final Complete after
+      // already being overridden on its own page).
+      function setupSuggestedQuestions(survey) {
+        var suggestedNames = collectSuggestedNames(EN_CostOfSport.survey_JSON);
+        if (suggestedNames.size === 0) return;
+
+        var overrideConfirmed = false;
+        var pendingAction = null; // "nextPage" | "complete", set right before a block
+        var lastFlaggedNames = [];
+        var acknowledgedUnanswered = new Set();
+        var suggestedMessage = "This question is optional but suggested. Please answer it, or click \"Proceed with unanswered question\" below.";
+
+        var proceedAction = survey.addNavigationItem({
+          id: "proceed-unanswered",
+          title: "Proceed with unanswered question",
+          visible: false,
+          css: "suggested-proceed-btn",
+          action: function () {
+            overrideConfirmed = true;
+            if (pendingAction === "nextPage") {
+              survey.nextPage();
+            } else {
+              survey.completeLastPage();
+            }
+          }
+        });
+
+        function unansweredAmong(questions) {
+          return questions.filter(function (q) {
+            return suggestedNames.has(q.name) && q.isEmpty() && !acknowledgedUnanswered.has(q.name);
+          });
+        }
+
+        function unansweredAcrossSurvey() {
+          var unanswered = [];
+          suggestedNames.forEach(function (name) {
+            var q = survey.getQuestionByName(name);
+            if (q && q.isEmpty() && !acknowledgedUnanswered.has(name)) unanswered.push(q);
+          });
+          return unanswered;
+        }
+
+        function flag(unanswered) {
+          lastFlaggedNames = unanswered.map(function (q) { return q.name; });
+          unanswered.forEach(function (q) { q.addError(suggestedMessage); });
+          proceedAction.visible = true;
+          unanswered[0].focus();
+        }
+
+        function consumeOverride() {
+          overrideConfirmed = false;
+          lastFlaggedNames.forEach(function (name) { acknowledgedUnanswered.add(name); });
+          lastFlaggedNames = [];
+          proceedAction.visible = false;
+        }
+
+        survey.onCurrentPageChanging.add(function (sender, options) {
+          if (!options.isGoingForward) return;
+          if (overrideConfirmed) {
+            consumeOverride();
+            return;
+          }
+          var unanswered = unansweredAmong(options.oldCurrentPage.questions);
+          if (unanswered.length > 0) {
+            options.allowChanging = false;
+            pendingAction = "nextPage";
+            flag(unanswered);
+          }
+        });
+
+        survey.onCompleting.add(function (sender, options) {
+          if (overrideConfirmed) {
+            consumeOverride();
+            return;
+          }
+          var unanswered = unansweredAcrossSurvey();
+          if (unanswered.length > 0) {
+            options.allowComplete = false;
+            pendingAction = "complete";
+            flag(unanswered);
+          }
+        });
+
+        survey.onValueChanged.add(function (sender, options) {
+          if (!suggestedNames.has(options.name)) return;
+          options.question.clearErrors();
+          if (unansweredAcrossSurvey().length === 0) {
+            proceedAction.visible = false;
+          }
+        });
+      }
+
+
 
       var jsPsych = initJsPsych({
         display_element: 'jspsych-target',
@@ -366,6 +488,9 @@ function flattenMatrixDynamicObject(obj, prefix = '') {
         type: jsPsychSurvey,
         survey_json: function () {
           return EN_CostOfSport.survey_JSON;
+        },
+        survey_function: function (survey) {
+          setupSuggestedQuestions(survey);
         },
         button_label: "Submit",
         required: true,

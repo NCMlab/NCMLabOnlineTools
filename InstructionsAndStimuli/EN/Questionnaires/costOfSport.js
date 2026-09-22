@@ -1,8 +1,35 @@
 
-// Format notes.
-// Make question names a bit bigger font, since the responses are typically a larger font size. Be consistent with left or center align across question types.
-// How to make PDF of this questionnaire.
-https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
+// Make a first page which will provide detailed instructions for this survey.
+// These are instructions with respect to teh time frame the survey refers to.
+//
+// XX Edit line 141 for the start of the report card
+
+// XX Clean up formatting of matrix dynamic elements (the yes/no questions and their titles are not aligned)
+// Line 1156 summary of practices and transportation. Make it easier to see and also make sure that you cannot go 
+// over the transport number of practices. Right now it gives a negative value. It gets caught when next is pressed, but can it be caught
+// as soon as the user goes over?
+// Move the "So far you have entered ## practices..." Can this become the column title? Instead of "Number of practices?"
+// Line 1620, sports earnings make sure there are only two columns, not the calculated row extra column. It looks fine on local but not on remote.
+// Line 1870, if someone selects able-bodied, then the next two questions are hidden.
+// At the start of the receipt make the estimated/predicted costs in BOLD so they stand out a bit
+// Make sure that the top buttons are turned off.
+// DONE (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
+// Mark a question with isSuggested: true (like Cost_Gen below) to get a soft warning + "Proceed with unanswered question" button.
+// Confirm that the data goes to teh database when submit is pressed and the receipt shows up.
+// What happens when teh browser back is pressed?
+// Add a download as PDF button so people can have a copy of their receipt
+// The downloaded report card has more detail than just the receipt.
+// It can include...
+// -- the practice count and the competition counts --> Add these to the recipt itself.
+// "Your sport profile...""
+// You participated in XX number of practuices, XX number of competitions
+// "Cost of sport profile"
+// Current receipt info
+// Add the name of the sport to the top of the receipt.
+
+
+// How to make PDF of this questionnaire?
+// https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
@@ -17,6 +44,20 @@ const json = {
   // ################################################################
   // ##### CALCULATIONS #############################################
   "calculatedValues": [
+    {
+      type: "expression",
+      name: "SPORTNAME",
+      title: "Sport Name XXX",
+      displayStyle: "text",
+      expression:
+        "{CurrentSportName}",
+    },
+    {
+      type: "expression",
+      name: "ExpectedCosts",
+      title: "Expected Costs",
+      expression: "displayValue('Cost_Gen')"
+    },
     {
       type: "expression",
       name: "MEMB_ENTR",
@@ -112,7 +153,9 @@ const json = {
         <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
           <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Cost of sports</h2>
           <p style="margin:0; font-size:14px; color:#555;">
-            Below is a summary of your estimated yearly costs and earnings related to your sport.
+          <div><span>At the start of this survey you estimated your annual costs of participating in </span><strong>{SPORTNAME}</strong></div> 
+          to be around <strong>{ExpectedCosts}</strong>
+            Below is a summary of your actual yearly costs and earnings related to your sport.
           </p>
         </div>
 
@@ -124,11 +167,11 @@ const json = {
             <h3 style="margin:0 0 10px 0; font-size:18px;">Direct costs / YEAR</h3>
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Membership, licence, participation & entrance</span>
+                <span>Membership & entrance fees</span>
                 <strong>{MEMB_ENTR}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Apparel & equipment (total)</span>
+                <span>Apparel & equipment</span>
                 <strong>{APP_EQUIP}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
@@ -148,15 +191,15 @@ const json = {
             <h3 style="margin:0 0 10px 0; font-size:18px;">Indirect costs / YEAR</h3>
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Travel costs / YEAR</span>
+                <span>Travel costs</span>
                 <strong>{TRAVEL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Social costs / YEAR</span>
+                <span>Social costs</span>
                 <strong>{SOCIAL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Other indirect costs / YEAR</span>
+                <span>Other indirect costs</span>
                 <strong>{OTHER_ID}</strong>
               </div>
             </div>
@@ -225,7 +268,7 @@ const json = {
             type: "matrixdynamic",
             name: "Sport_Curr",
             title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT: " ,
-            description: "Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school",
+            description: "Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school",
             rowCount: 1,
             minRowCount: 1,
             maxRowCount: 1,
@@ -236,7 +279,7 @@ const json = {
                 name: "Sport_Curr",
                 title: "Sport",
                 cellType: "text",
-                isRequired: false,
+                isRequired: true,
                 width: "25%"
               },
               {
@@ -277,15 +320,14 @@ const json = {
             ],
             rows: [{text: "...", value: 'DDD'}]
           },
-  // {
-  //           type: "expression",
-  //           name: "temp",
-  //           title: "Sport Name",
-  //           displayStyle: "text",
-  //           expression:
-  //             "{Sport_current.DDD.Sport_Curr}",
-  //         },
-
+          {
+            type: "expression",
+            name: "CurrentSportName",
+            title: "Sport Name",
+            visible: false,
+            expression:
+              "{Sport_Curr[0].Sport_Curr}",
+          },
          
         ]
       },
@@ -303,7 +345,7 @@ const json = {
          <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
           List up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
           </div>
-          <div>Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school,
+          <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
           </div>
           `
           },
@@ -524,6 +566,7 @@ const json = {
             title: "Total practices last year",
             displayStyle: "decimal",
             precision: 2,
+            visible: false,
             expression:
               "{practice_table.FREQ.SP_PR_1} * 16 + " + // keep this idea, but use the new format
               "{practice_table.FREQ.SP_PR_2} * 2  + " +
@@ -536,6 +579,7 @@ const json = {
             name: "SP_PR_NT_Tot",
             title: "Total NET hours (all periods)",
             displayStyle: "decimal",
+            visible: false,
             precision: 2,
             expression:
               "{practice_table.FREQ.SP_PR_1} * {practice_table.NT.SP_PR_1} * 16 + " +
@@ -550,6 +594,7 @@ const json = {
             title: "Total GROSS hours (all periods)",
             displayStyle: "decimal",
             precision: 2,
+            visible: false,
             expression:
               "{practice_table.FREQ.SP_PR_1} * {practice_table.GT.SP_PR_1} * 16 +" +
               "{practice_table.FREQ.SP_PR_2} * {practice_table.GT.SP_PR_2} * 2  + " +
@@ -578,7 +623,7 @@ const json = {
               // },
               {
                 "name": "SP_CC",
-                "title": "On average, how many do you participate in per year?",
+                "title": "How many did you participate in over the past year?",
                 "choices": [
                   { "text": "0", "value": 0 },
                   { "text": "1", "value": 1 },
@@ -686,6 +731,7 @@ const json = {
             name: "Cost_Gen",
             title: "How much do you think you spend annually on your (para)sport participation?",
             isRequired: false,
+            isSuggested: true,
             choices: [
               { "value": 1, "text": " <  100 CAD/yr " },
               { "value": 2, "text": "100 < 250 CAD/yr" },
@@ -1555,7 +1601,7 @@ const json = {
                   { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'other_insurance' },
                   { "text": "Extra costs for baby-sitting/pet sitting", "value": 'other_babysitting' },
                   { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'other_documentation' },
-                  { "text": "Attending competitions as a spectator", "value": 'other_spectator' },
+                  { "text": "Attending competitions as a spectator specifically related to the sport under investigation", "value": 'other_spectator' },
                   { "text": "Any other indirect costs not already included", "value": 'other_indirect' },
                 ],
                 "transposeData": false
