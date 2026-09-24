@@ -87,7 +87,7 @@ var RAVLT_Spoken_Delayed = {
 	ShowWelcome: true,
 	WelcomeSpoken: false,
 	WelcomeAudio: 'assets/SoundFiles/Instructions/Welcome_WordRecall.wav',
-	ShowThankYou: true,
+	ShowThankYou: false,
 	ShowInstructions: true,
 	AskForNotes: false,
 	RecordAUDIO: true

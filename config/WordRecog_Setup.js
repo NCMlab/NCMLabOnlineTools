@@ -45,7 +45,7 @@ var RAVLT_WordRecog_Manual = {
 	ShowThankYou: false,
 	ShowInstructions: true,
 	InstructionsSpoken: false,
-	AskForNotes: false,
+	AskForNotes: true,
 	RecordAUDIO: false,
 }
 
