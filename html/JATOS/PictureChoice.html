@@ -11,9 +11,11 @@
     
     <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>-->
     <!--<link rel="stylesheet" type='text/css' href='css/SurveyMatrix.css'>-->
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
     <link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
     <!--<link rel="stylesheet" type='text/css' href='css/ButtonsHeaderBody.css'>-->
-
+    
+    <div id="headerButtons"></div>
     <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
@@ -29,8 +31,8 @@
     <!-- <script src="functions/Scoring/Questionnaire_Scoring.js"></script> -->
     <script src="config/General_Setup.js"></script>
     <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
-    <script src="InstructionsAndStimuli/Instructions/PictureChoiceTask_Instructions.js"></script>
-    <script src="config/PictureChoiceTask_Setup.js"></script>
+    <script src="InstructionsAndStimuli/Instructions/PictureChoice_Instructions.js"></script>
+    <script src="config/PictureChoice_Setup.js"></script>
     <script src="functions/Experiments/PictureChoice_experiment.js"></script>
     <!-- <script src="InstructionsAndStimuli/ConsentForms/MentalHealthResources.js"></script> -->
     
@@ -83,6 +85,7 @@
             console.log(jatos)
             console.log(jatos.studySessionData)
             parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+            console.log(parameters)
             pseudoSwitch(parameters)
             console.log(parameters)
             parameters.Language = LANG

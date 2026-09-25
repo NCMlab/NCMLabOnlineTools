@@ -5,7 +5,7 @@ var PictureChoice_Smiley = {
 	WelcomeSpoken: false,
 	AskForNotes: false,
 	InstructionsSpoken: false,
-    button_orientation: 'vertical',
+    button_orientation: 'horizontal',
     question: 'How do you feel at this moment?',
     choices: [1,2,3,4,5],
     button_text: ['Very Sad', 'Somewhat Sad', 'Neutral', 'Somewhat Happy', 'Very Happy'],
@@ -51,3 +51,33 @@ var PictureChoice_IOO = {
 }
 
 add('PictureChoice_IOO', function(){ parameters = PictureChoice_IOO});
+
+var PictureChoice_IOO_Circles = {
+	ShowWelcome: false,
+	ShowThankYou: false,
+	ShowInstructions: true, 
+	WelcomeSpoken: false,
+	AskForNotes: false,
+	InstructionsSpoken: false,
+    button_orientation: 'horizontal',
+    question: 'How do you feel at this moment?',
+    choices:  [1,2,3,4,5,6,7],
+    // button_text: ['Very Sad', 'Somewhat Sad', 'Neutral', 'Somewhat Happy', 'Very Happy'],
+    imageFolder: "assets/Images/InclusionOfOther/",
+    images: [
+        "InclusionOfOther_1.png",
+        "InclusionOfOther_2.png",
+        "InclusionOfOther_3.png",
+        "InclusionOfOther_4.png",
+        "InclusionOfOther_5.png",
+        "InclusionOfOther_6.png",
+        "InclusionOfOther_7.png",
+    ],
+    prompt: 'Select One',
+    left_circle_text: "Self",
+    right_circle_text: "Others",
+    left_positions: [0,5,8,13,16,20,35],
+    right_positions: [45,45,45,45,45,45,55],
+}
+
+add('PictureChoice_IOO_Circles', function(){ parameters = PictureChoice_IOO_Circles});

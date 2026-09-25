@@ -20,7 +20,7 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
           button_text: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Button Text",
-              default: undefined,
+              default: null,
               array: true,
           },
 
@@ -92,13 +92,13 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
           left_positions: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Left Positions",
-              default: undefined,
+              default: null,
               array: true,
           },
           right_positions: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Right Positions",
-              default: undefined,
+              default: null,
               array: true,
           },
       },
@@ -144,7 +144,7 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
           html += '<div class="jspsych-html-button-response-btngroup-' + trial.button_orientation + '" style="text-align:center; align:center;">';
                   for (var i = 0; i < trial.choices.length; i++) {
                     // str is the <img> object  
-                    var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+                    var str = '<img src="' + buttons[i].replace(/%choice%/g, trial.choices[i]) + '">';
                       console.log(str)
                     html +=
                         // define the button
@@ -174,7 +174,7 @@ var jsPsychHtmlPictureResponseTouchscreen = (function (jspsych) {
                             else { html+= str }
 
                             // is there any text to go below the image?
-                            if (trial.button_text !== undefined) {
+                            if (trial.button_text !== null) {
                                     html += '<div class="html-button-response-button-text">'
                                     html += trial.button_text[i]
                                     html += '</div>'

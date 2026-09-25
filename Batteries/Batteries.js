@@ -688,7 +688,18 @@ List.push({
   Instructions: "Default",
   IconName: "IOO",
 });
-
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_Smiley",
+  Instructions: "Default",
+  IconName: "Smiley",
+});
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_IOO_Circles",
+  Instructions: "Default",
+  IconName: "IOO Circles",
+});
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 BatteryList.push({

@@ -17,12 +17,21 @@ var trial01 = {
   stimulus: function() { return parameters.question},
   choices: function() { return parameters.choices},
   button_text: function() { return parameters.button_text},
-  button_html: function() { return parameters.images},
+  button_html: function() { 
+    var imagePaths = []
+    for ( var i = 0; i < parameters.images.length; i++ )
+    {
+      imagePaths.push(parameters.imageFolder + parameters.images[i] )
+    }
+    return imagePaths
+  },
   prompt: function() { return parameters.prompt},
   valid_choices: [],
-  button_orientation: 'horizontal',
-  left_circle_text: "Self",
-  right_circle_text: "Others",
+  button_orientation: function() { return parameters.button_orientation},
+  left_circle_text: function() { return parameters.left_circle_text},
+  right_circle_text: function() { return parameters.right_circle_text},
+  left_positions: function() { return parameters.left_positions},
+  right_positions: function() { return parameters.right_positions},
 };
 
 // var trial02 = {
