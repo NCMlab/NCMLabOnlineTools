@@ -684,6 +684,24 @@ List.push({
   Instructions: "Default",
   IconName: "BDI",
 });
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_IOO",
+  Instructions: "Default",
+  IconName: "IOO",
+});
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_Smiley",
+  Instructions: "Default",
+  IconName: "Smiley",
+});
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_IOO_Circles",
+  Instructions: "Default",
+  IconName: "IOO Circles",
+});
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 BatteryList.push({
@@ -1861,6 +1879,7 @@ BatteryList.push({
 // ============ MUSIC STUDY -- TEST ==================
 var List = []
 List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
+List.push({Task: 'Matrix Questionnaire', Parameters: 'PANAS_TEST', Instructions: 'Default', IconName: 'PANAS'})
 
 BatteryList.push({index: 71234, 
 	name:'Music Motion: Trails', 
@@ -2391,7 +2410,33 @@ List.push({
     shortName: '',
 	})
 
+// ==================== TESTER ==============
   
-  
+  var List = []
+List.push({
+  Task: "Picture Choice",
+  Parameters: "PictureChoice_SmileyHoriz",
+  Instructions: "Default",
+  IconName: "Smiley, H",
+});
+List.push({
+  Task: "Labeled Picture Choice",
+  Parameters: "LabeledPictureChoice_Figures",
+  Instructions: "Default",
+  IconName: "IOO Figures",
+});
+	BatteryList.push({index: 11111, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
 
   
