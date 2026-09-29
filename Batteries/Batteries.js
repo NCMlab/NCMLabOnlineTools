@@ -702,6 +702,19 @@ List.push({
   Instructions: "Default",
   IconName: "IOO Circles",
 });
+List.push({
+  Task: "EQ5D",
+  Parameters: "EQ5D_001",
+  Instructions: "Default",
+  IconName: "EQ-5D",
+});
+List.push({
+  Task: "Matrix Questionnaire",
+  Parameters: "PAES_001",
+  Instructions: "Default",
+  IconName: "PACES",
+});
+
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 //List.push({Task: '', Parameters: '', Instructions: '', IconName: ''})
 BatteryList.push({
