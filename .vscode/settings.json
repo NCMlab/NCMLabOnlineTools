@@ -1,3 +1,28 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "sshOptions": {
+                "port": 22,
+                "host": "206.12.103.191",
+                "username": "ubuntu",
+                "privateKeyPath": "/Users/jasonsteffener/OnlineTasks/JasonKeyPair",
+                "passphrase": "JasonSteffener"
+            },
+            "driver": "MySQL",
+            "name": "JATOS Production",
+            "database": "jatos",
+            "username": "root",
+            "connectionTimeout": 30,
+            "askForPassword": true
+        }
+    ]
 }
