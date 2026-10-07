@@ -406,7 +406,7 @@ const json = {
           {
             type: "matrixdynamic",
             name: "Sport_Curr2",
-            title: "CURRENTLY (top three)",
+            title: "CURRENTLY (top two)",
             
             rowCount: 2,
             minRowCount: 2,
@@ -1748,6 +1748,7 @@ const json = {
             minRowCount: 1,
             rowCount: 0,
             showFooter: true,
+            visibleIf: "{SP_Earn_YN} = 'Yes'",
             columns: [
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },

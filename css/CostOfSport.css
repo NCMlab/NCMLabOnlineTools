@@ -1,7 +1,9 @@
 /* =============================================================
- * TestCostOfSport.css
- * All CSS needed by TestCostOfSport.html, consolidated and
- * deduplicated into a single file.
+ * CostOfSport.css
+ * All CSS needed by the Cost of Sport questionnaire, consolidated
+ * and deduplicated into a single file. Used by both
+ * html/JATOS/CostOfSport.html and Playground/TestCostOfSport.html,
+ * which should not contain any inline <style> of their own.
  *
  * The SurveyJS theme (defaultV2.min.css) is imported below
  * because it is a 272 KB minified file covering all sd-* and sv-*
@@ -120,94 +122,10 @@ table {
   cursor: not-allowed;
 }
 
-/* ── Progress bar ───────────────────────────────────────────── */
-
-#jspsych-progressbar-container {
-  color: #555;
-  border-bottom: 1px solid #dedede;
-  background-color: #f9f9f9;
-  margin-bottom: 1em;
-  text-align: center;
-  padding: 8px 0px;
-  width: 100%;
-  line-height: 1em;
-}
-
-#jspsych-progressbar-container span {
-  font-size: 14px;
-  padding-right: 14px;
-}
-
-#jspsych-progressbar-outer {
-  background-color: #eee;
-  width: 50%;
-  margin: auto;
-  height: 14px;
-  display: inline-block;
-  vertical-align: middle;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-#jspsych-progressbar-inner {
-  background-color: #aaa;
-  width: 0%;
+/* Container the survey is rendered into */
+#jspsych-target {
+  overflow: auto;
   height: 100%;
-}
-
-#jspsych-data-display {
-  text-align: left;
-}
-
-/* ── Header buttons ─────────────────────────────────────────── */
-
-#header-btn-group {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-start;
-  width: 100%;
-  position: relative;
-}
-
-#header-btn-group > button {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  margin-top: 15px;
-  border: 2px solid #ccc;
-  padding: 0.8vw 1.5vw;
-  font-size: 1.2rem;
-  color: #000000;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  margin-left: 15px;
-}
-
-#header-btn-group button:hover,
-#header-btn-group #LanguageSelectPulldown:hover {
-  background-color: #ada9a9;
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-}
-
-#language-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-left: auto;
-  margin-right: 15px;
-  margin-top: 15px;
-}
-
-#LanguageSelectPulldown {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-  padding: 0.8vw 1.5vw;
-  font-size: 1.2rem;
-  color: #000000;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* ── SurveyJS overrides ─────────────────────────────────────── */
@@ -298,27 +216,44 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* ── Radiogroup: single column, left-aligned ─────────────────── */
+/* ── Radiogroup: single column, centered list ───────────────── */
 
-/* Force single column regardless of colCount set in the JSON */
-.sd-question--radiogroup .sd-selectbase__list {
-  column-count: 1 !important;
-  width: 100%;
-}
-
-/* Stack choices vertically, flush left */
+/* A one-column grid sized to the widest choice and centered in the question.
+   Choices stack vertically (regardless of colCount set in the JSON) and share
+   a common left edge, so the list as a whole is centered. */
 .sd-question--radiogroup .sd-selectbase {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
 }
 
-/* Each choice row: radio + label side by side, left-aligned */
+/* Each choice row: radio + label side by side, left-aligned within the list */
 .sd-question--radiogroup .sd-item {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: auto;
+  text-align: left;
+}
+
+/* ── Survey root ────────────────────────────────────────────── */
+
+/* Center the survey in .jspsych-content (which is text-align: center)
+   while keeping everything inside it left-aligned */
+.jspsych-content .sd-root-modern {
+  display: inline-block;
+  text-align: left;
+  width: 90%;
+  max-width: 100%;
+}
+
+/* ── "Proceed with unanswered question" button (isSuggested) ── */
+
+.suggested-proceed-btn button,
+.suggested-proceed-btn input[type="button"],
+.suggested-proceed-btn .sd-btn {
+  background-color: #f0ad4e !important;
+  border-color: #eb9316 !important;
+  color: #202020 !important;
 }
 
 .sd-table-wrapper {

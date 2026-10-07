@@ -1,380 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <meta name="description" content="jsPsych Questionnaire">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Jason Steffener, NCMLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
-  <link rel="stylesheet" type='text/css' href='css/defaultV2.min.css'> 
-  <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
-  <link rel="stylesheet" type='text/css' href='css/ButtonsHeaderBody.css'>
-  <script src="jatos.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/CostOfSport.css">
+    <script src="jatos.js"></script>
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-survey.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.14.0/html2pdf.bundle.min.js"></script>
-    <!--<script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>-->
+    <script src="https://unpkg.com/survey-core@latest/survey.core.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@latest/survey.jquery.min.js"></script>
     <script src="InstructionsAndStimuli/EN/Questionnaires/costOfSport.js"></script>
-    <!--<script src="../InstructionsAndStimuli/EN/Questionnaires/stanfordSleepinessJSON.js"></script>-->
+    <script src="functions/TaskSpecificFunctions/CostOfSport_functions.js"></script>
 
-   <style>
-  /* Center the whole survey/question area on the page */
-  .jspsych-content {
-    text-align: center;            /* center children (the survey root) */
-  }
-
-  /* The SurveyJS root: make it an inline-block so it can be centered */
-  .jspsych-content .sd-root-modern {
-    display: inline-block;
-    text-align: left;              /* everything INSIDE is left-aligned */
-    width: 90%;
-    max-width: 100%;
-  }
-
-  /* Make all radiogroup choices start at the same left position */
-
-  .sd-question--radiogroup .sd-selectbase__item,
-  .sd-question--radiogroup .sd-selectbase__label,
-  .sd-question--radiogroup .sd-selectbase__label-text {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    text-align: left !important;
-    width: 100%;
-  }
-
-  .sd-question--radiogroup .sd-selectbase__label {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .sd-question--radiogroup .sd-selectbase__control {
-    margin-right: 0.5rem;
-  }
-
-  /* Center the entire radiogroup options block */
-  .sd-question--radiogroup .sd-selectbase {
-  display: flex;
-  justify-content: center;  /* horizontally center the list */
-  }
-
-/* Make sure the inner list doesn’t stretch full width */
-  .sd-question--radiogroup .sd-selectbase__list {
-  width: auto;
-  margin: 0 auto;
-  }
-
-  /* NCMLabGeneral.css zeros out .sd-element--with-frame padding, but SurveyJS
-     still applies a negative margin-left on the error box to bleed past that
-     padding. With 0 padding there is nothing to compensate for, so the bar
-     shifts left and gets clipped. Reset the margin so it stays in bounds. */
-  .sd-element--with-frame > .sd-element__erbox {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-  }
-
-  /* "Proceed with unanswered question" button (isSuggested override) */
-  .suggested-proceed-btn button,
-  .suggested-proceed-btn input[type="button"],
-  .suggested-proceed-btn .sd-btn {
-    background-color: #f0ad4e !important;
-    border-color: #eb9316 !important;
-    color: #202020 !important;
-  }
-</style>
-
-
-    
-      
-   <script>
-     
-
-      function downloadCSV(filename, csvString) {
-        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      }
-
-     
-      function addFlatResponseToData(trialData) {
-        const resp = trialData.response || {};
-        jsPsych.data.addProperties(resp);
-      }
-
-      // Scans the survey JSON for isSuggested: true. Plain questions go in .questions;
-      // matrix columns (matrixdynamic / matrixdropdown) go in .columns as
-      // matrixName -> Set(columnName), because their cells aren't survey-level questions.
-      function collectSuggestedNames(node, found) {
-        found = found || { questions: new Set(), columns: new Map() };
-        if (Array.isArray(node)) {
-          node.forEach(function (item) { collectSuggestedNames(item, found); });
-        } else if (node && typeof node === "object") {
-          if (Array.isArray(node.columns) && typeof node.name === "string") {
-            node.columns.forEach(function (col) {
-              if (col && col.isSuggested === true && typeof col.name === "string") {
-                if (!found.columns.has(node.name)) found.columns.set(node.name, new Set());
-                found.columns.get(node.name).add(col.name);
-              }
-            });
-          }
-          if (node.isSuggested === true && typeof node.name === "string" && !node.cellType) {
-            found.questions.add(node.name);
-          }
-          Object.keys(node).forEach(function (key) {
-            if (key !== "columns") collectSuggestedNames(node[key], found);
-          });
-        }
-        return found;
-      }
-
-      // Wires up the "isSuggested" behavior: a soft, non-blocking version of isRequired.
-      // Unanswered isSuggested questions (or matrix cells in an isSuggested column) show
-      // the same red error styling as a required question, and both page-to-page "Next"
-      // and the final "Complete" are held until the participant either answers them or
-      // clicks "Proceed with unanswered question". Once that button is clicked, the
-      // flagged items are remembered as acknowledged and will not be re-flagged later.
-      function setupSuggestedQuestions(survey) {
-        var suggested = collectSuggestedNames(EN_CostOfSport.survey_JSON);
-        if (suggested.questions.size === 0 && suggested.columns.size === 0) return;
-
-        var overrideConfirmed = false;
-        var pendingAction = null; // "nextPage" | "complete", set right before a block
-        var lastFlaggedKeys = [];
-        var acknowledgedUnanswered = new Set();
-        var suggestedMessage = "This question is optional but suggested. Please answer it, or click \"Proceed with unanswered question\" below.";
-
-        var proceedAction = survey.addNavigationItem({
-          id: "proceed-unanswered",
-          title: "Proceed with unanswered question",
-          visible: false,
-          css: "suggested-proceed-btn",
-          action: function () {
-            overrideConfirmed = true;
-            if (pendingAction === "nextPage") {
-              survey.nextPage();
-            } else {
-              survey.completeLastPage();
-            }
-          }
-        });
-
-        // Returns [{ q, key }] for every unanswered, unacknowledged suggested item among
-        // the given questions. For matrices, q is the cell question and key identifies
-        // matrix + row + column.
-        function unansweredAmong(questions) {
-          var unanswered = [];
-          questions.forEach(function (q) {
-            if (!q.isVisible) return;
-            if (suggested.questions.has(q.name)) {
-              if (q.isEmpty() && !acknowledgedUnanswered.has(q.name)) {
-                unanswered.push({ q: q, key: q.name });
-              }
-            }
-            var cols = suggested.columns.get(q.name);
-            if (cols && q.visibleRows) {
-              q.visibleRows.forEach(function (row, i) {
-                cols.forEach(function (colName) {
-                  var cell = row.getQuestionByColumnName(colName);
-                  var key = q.name + "|" + i + "|" + colName;
-                  if (cell && cell.isVisible && !cell.isReadOnly && cell.isEmpty() &&
-                      !acknowledgedUnanswered.has(key)) {
-                    unanswered.push({ q: cell, key: key });
-                  }
-                });
-              });
-            }
-          });
-          return unanswered;
-        }
-
-        function unansweredAcrossSurvey() {
-          return unansweredAmong(survey.getAllQuestions());
-        }
-
-        function flag(unanswered) {
-          lastFlaggedKeys = unanswered.map(function (u) { return u.key; });
-          unanswered.forEach(function (u) { u.q.addError(suggestedMessage); });
-          proceedAction.visible = true;
-          try { unanswered[0].q.focus(); } catch (e) { /* matrix cells may not focus */ }
-        }
-
-        function consumeOverride() {
-          overrideConfirmed = false;
-          lastFlaggedKeys.forEach(function (key) { acknowledgedUnanswered.add(key); });
-          lastFlaggedKeys = [];
-          proceedAction.visible = false;
-        }
-
-        survey.onCurrentPageChanging.add(function (sender, options) {
-          if (!options.isGoingForward) return;
-          if (overrideConfirmed) {
-            consumeOverride();
-            return;
-          }
-          var unanswered = unansweredAmong(options.oldCurrentPage.questions);
-          if (unanswered.length > 0) {
-            options.allowChanging = false;
-            pendingAction = "nextPage";
-            flag(unanswered);
-          }
-        });
-
-        survey.onCompleting.add(function (sender, options) {
-          if (overrideConfirmed) {
-            consumeOverride();
-            return;
-          }
-          var unanswered = unansweredAcrossSurvey();
-          if (unanswered.length > 0) {
-            options.allowComplete = false;
-            pendingAction = "complete";
-            flag(unanswered);
-          }
-        });
-
-        // Hide the button once everything that blocked the last action is answered:
-        // the current page for "Next", the whole survey for "Complete".
-        function hideButtonIfDone() {
-          var remaining = pendingAction === "nextPage"
-            ? unansweredAmong(survey.currentPage.questions)
-            : unansweredAcrossSurvey();
-          if (remaining.length === 0) {
-            proceedAction.visible = false;
-          }
-        }
-
-        survey.onValueChanged.add(function (sender, options) {
-          if (!suggested.questions.has(options.name)) return;
-          options.question.clearErrors();
-          hideButtonIfDone();
-        });
-
-        survey.onMatrixCellValueChanged.add(function (sender, options) {
-          var cols = suggested.columns.get(options.question.name);
-          if (!cols || !cols.has(options.columnName)) return;
-          if (options.cellQuestion && !options.cellQuestion.isEmpty()) {
-            options.cellQuestion.clearErrors();
-          }
-          hideButtonIfDone();
-        });
-      }
-
-
-
+    <script>
       var jsPsych = initJsPsych({
         display_element: 'jspsych-target',
         show_progress_bar: false,
         auto_update_progress_bar: false,
 
-      
-        on_finish: function () {
-          console.log(jsPsych.data.get());
-          console.log(jsPsych.data.get().csv());
-          const csv = jsPsych.data.get().csv();
-          const ts = new Date().toISOString().replace(/[:.]/g, "-");
-          const filename = "CostOfSport_" + ts + ".csv";
+        on_finish: async function () {
+          // Only work with data in "response", with the matrix questions unpacked
+          var response = jsPsych.data.get().trials[0].response;
+          var flat = flattenSurveyResponse(response);
 
-          downloadCSV(filename, csv);
-          //jsPsych.data.displayData('json');
-          
+          // Keep the data in the predescribed order given by CodeBookSheet.csv,
+          // regardless of how many entries any dynamicmatrix ended up unpacking.
+          try {
+            const csv = await buildOrderedCSV(flat, "assets/OutputDataFormatting/CodeBookSheet.csv");
+            // Local copy of the data; remove once testing is completed
+            downloadCSV(costOfSportFilename(), csv);
+            await jatos.submitResultData(csv);
+          } catch (error) {
+            console.error("Error saving ordered CSV:", error);
+          }
         }
       });
-
-      console.log("Loaded survey JSON:", EN_CostOfSport.survey_JSON);
-
-  
-
-      // Save the completedHtml report card (#costReport) as a PDF.
-      // .no-pdf elements are removed and .pdf-only elements are shown in the PDF copy.
-      function downloadCostReport() {
-        var report = document.getElementById("costReport");
-        if (!report) return;
-        var copy = report.cloneNode(true);
-        copy.removeAttribute("id");
-        copy.style.minHeight = "auto";
-        copy.querySelectorAll(".no-pdf").forEach(function (el) { el.remove(); });
-        copy.querySelectorAll(".pdf-only").forEach(function (el) { el.style.display = "block"; });
-        html2pdf().set({
-          margin: 10,
-          filename: "CostOfSport_Report.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          pagebreak: { mode: ["css", "legacy"] }
-        }).from(copy).save();
-      }
 
       var form_trial = {
         type: jsPsychSurvey,
         survey_json: function () {
           return EN_CostOfSport.survey_JSON;
         },
-        survey_function: function (survey) {
-          setupSuggestedQuestions(survey);
-          // Render HTML (e.g. <b>, <em>) in titles/descriptions
-          survey.onTextMarkdown.add(function (_, options) { options.html = options.text; });
-          // Reset a TR_Pr row's count to 0 when its Yes/No is switched to No
-          // (setValueIf can't do this: the cell is already read-only via enableIf)
-          survey.onMatrixCellValueChanged.add(function (sender, options) {
-            if (options.question.name !== "TR_Pr") return;
-            if (options.columnName === "usage" && options.value === "No") {
-              var countCell = options.getCellQuestion("usage_count");
-              if (countCell) countCell.value = 0;
-            }
-          });
-          // Live check: flag as soon as the TR_Pr total exceeds SP_PR_Tot ("must equal" is still checked on Next)
-          survey.onValueChanged.add(function (sender, options) {
-            if (options.name !== "TR_Pr") return;
-            var q = options.question;
-            var rows = options.value || {};
-            var sum = 0;
-            Object.keys(rows).forEach(function (k) {
-              sum += Number(rows[k].usage_count) || 0;
-            });
-            var max = Number(sender.getValue("SP_PR_Tot")) || 0;
-            q.errors = [];
-            if (sum > max) {
-              q.addError("You have entered " + sum + " practices, which is more than the " + max + " practices per year you reported.");
-            }
-          });
-        },
+        survey_function: setupCostOfSportSurvey,
         button_label: "Submit",
         required: true,
 
-
         on_finish: function (data) {
-          console.log("Survey trial data:", data);
           addFlatResponseToData(data);
-          jatos.submitResultData(data);
-      
         }
       };
-      jatos.onLoad(() =>
-        {
-          jsPsych.run([form_trial]);
-      })
-     
-      
+
+      jatos.onLoad(() => {
+        jsPsych.run([form_trial]);
+      });
     </script>
   </head>
-<body>
-  <script>
-    var Blk = '1'
-    console.log("WM_"+Blk.padStart(2,"0"))</script>
-  
-	
-  <!--<div class="btn-group-header" id="header-btn-group"></div>-->
-  <div id="jspsych-target" style="overflow:auto; height:100%"></div>
-  <!--<script src="functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"></script>-->
 
-  
-</body>
+  <body>
+    <div id="jspsych-target"></div>
+  </body>
 </html>
