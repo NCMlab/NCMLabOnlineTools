@@ -864,6 +864,7 @@ const json = {
           title: "Estimated annual fees",
           displayStyle: "decimal",
           precision: 2,
+          visible: false,
           expression:
             "{annual_membership_fees.Memb.Cost_$Y} + {annual_membership_fees.Lic.Cost_$Y} + {annual_membership_fees.PF.Cost_$Y} + {annual_membership_fees.Comp.Cost_$Y}"
   },
@@ -917,6 +918,7 @@ const json = {
         title: "Estimated annual per use fees",
         displayStyle: "decimal",
         precision: 2,
+        visible: false,
         expression:
           "{per_use_fees.Entr.Cost_$U} * {per_use_fees.Entr.Cost_UY}"
     },
@@ -928,6 +930,7 @@ const json = {
         precision: 2,
         displayStyle: "currency",
         currency: "CAD",
+        visible: false,
         expression:
           "{Cost_Entr_$Y} + {Per_Use_Fees_$Y}"
     },
@@ -989,6 +992,7 @@ const json = {
                 precision: 2,
                 displayStyle: "currency",
                 currency: "CAD",
+                visible: false,
                 expression:
                   "{coaching_costs.Coach.Cost_$U} * {coaching_costs.Coach.Cost_UY}"
                   
@@ -1001,6 +1005,7 @@ const json = {
                 precision: 2,
                 displayStyle: "currency",
                 currency: "CAD",
+                visible: false,
                 expression:
                   "{coaching_costs.Clinic.Cost_$U} * {coaching_costs.Clinic.Cost_UY}"  // keep this idea, but use the new format
               },
@@ -1408,7 +1413,9 @@ const json = {
             expression: "0.5 * {TR_Pr.travel_motorbike.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
-            precision: 2
+            precision: 2,
+            visible: false
+
           },
           {
             type: "expression",
@@ -1417,7 +1424,8 @@ const json = {
             expression: "0.5 * {TR_Pr.travel_family_own_car.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
-            precision: 2
+            precision: 2,
+            visible: false
           },
 
           {
@@ -1427,6 +1435,7 @@ const json = {
             expression: "{TR_Pr.travel_public_transportation.usage_count}*2*{TR_Cost_Oneway_PublicTransport}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
            {
@@ -1436,6 +1445,7 @@ const json = {
             expression: "{TR_Pr.travel_carpooling.usage_count}*2*{TR_Cost_Oneway_Carpool}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
           {
@@ -1445,6 +1455,7 @@ const json = {
             expression: "{TR_Pr.travel_taxi_private_bus.usage_count}*2*{TR_Cost_Oneway_TaxiPrivateBus}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
 
@@ -1455,6 +1466,7 @@ const json = {
             expression: "{TR_Pr.travel_special_transportation.usage_count}*2*{TR_Cost_Oneway_SpecialTransport}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
           {
@@ -1464,6 +1476,7 @@ const json = {
             expression: "{TR_Pr.travel_other.usage_count}*2*{TR_Cost_Oneway_Other}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
 
@@ -1508,6 +1521,7 @@ const json = {
               "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Parking.travel_parking.travel_parking_cost_per_year}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
 
@@ -1549,6 +1563,7 @@ const json = {
               "{TR_Comp.Vacations.cost_per_usage}*{COMP_Freq.Vacations.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
 
@@ -1644,6 +1659,7 @@ const json = {
               "{SocialCosts_Club.social_club_costs.cost_per_usage}",
             displayStyle: "currency",
             currency: "CAD",
+            visible: false,
             precision: 2
           },
 
@@ -1711,6 +1727,7 @@ const json = {
                   "{B_P.other_indirect.cost_per_usage}",
                 displayStyle: "currency",
                 currency: "CAD",
+                visible: false,
                 precision: 2
               },
             ]
@@ -1775,7 +1792,7 @@ const json = {
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
-            visible: true
+            visible: false
           },
           
         ]
