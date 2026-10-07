@@ -1,8 +1,46 @@
 
-// Format notes.
-// Make question names a bit bigger font, since the responses are typically a larger font size. Be consistent with left or center align across question types.
-// How to make PDF of this questionnaire.
-https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
+// Make a first page which will provide detailed instructions for this survey.
+// These are instructions with respect to teh time frame the survey refers to.
+//
+// XX Edit line 141 for the start of the report card
+
+// XX Clean up formatting of matrix dynamic elements (the yes/no questions and their titles are not aligned)
+
+// XXLine 1156 summary of practices and transportation. Make it easier to see and also make sure that you cannot go 
+// over the transport number of practices. Right now it gives a negative value. It gets caught when next is pressed, but can it be caught
+// as soon as the user goes over?
+// XX Move the "So far you have entered ## practices..." Can this become the column title? Instead of "Number of practices?"
+
+
+// Line 1620, sports earnings make sure there are only two columns, not the calculated row extra column. It looks fine on local but not on remote.
+// XX Line 1870, if someone selects able-bodied, then the next two questions are hidden.
+// At the start of the receipt make the estimated/predicted costs in BOLD so they stand out a bit
+// Make sure that the top buttons are turned off.
+// XX (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
+// Mark a question with isSuggested: SUGGEST_ALL_QUESTIONS (global switch below) to get a soft warning + "Proceed with unanswered question" button.
+// Confirm that the data goes to teh database when submit is pressed and the receipt shows up.
+// What happens when teh browser back is pressed?
+// Add a download as PDF button so people can have a copy of their receipt
+// The downloaded report card has more detail than just the receipt.
+// XX It can include...
+// XX -- the practice count and the competition counts --> Add these to the recipt itself.
+// "Your sport profile...""
+// XX You participated in XX number of practuices, XX number of competitions
+// "Cost of sport profile"
+// Current receipt info
+// Add the name of the sport to the top of the receipt.
+
+
+// How to make PDF of this questionnaire?
+// https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
+
+// ################################################################
+// ##### GLOBAL SETTING: SUGGESTED QUESTIONS ######################
+// true  = every question with isSuggested: SUGGEST_ALL_QUESTIONS warns when left blank
+//         and shows the "Proceed with unanswered question" button (normal use).
+// false = no isSuggested warnings at all, so you can click through pages for testing.
+// (isRequired questions are not affected. Sport_Curr2 and Sport_Past are not flagged.)
+var SUGGEST_ALL_QUESTIONS = true;
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
@@ -17,6 +55,20 @@ const json = {
   // ################################################################
   // ##### CALCULATIONS #############################################
   "calculatedValues": [
+    {
+      type: "expression",
+      name: "SPORTNAME",
+      title: "Sport Name XXX",
+      displayStyle: "text",
+      expression:
+        "{CurrentSportName}",
+    },
+    {
+      type: "expression",
+      name: "ExpectedCosts",
+      title: "Expected Costs",
+      expression: "displayValue('Cost_Gen')"
+    },
     {
       type: "expression",
       name: "MEMB_ENTR",
@@ -99,20 +151,48 @@ const json = {
       displayStyle: "decimal",
       precision: 2,
       expression: "{TOTAL_DIRECT_COSTS} + {TOTAL_INDIRECT} - {EARNINGS}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_PRACTICES",
+      title: "TOTAL PRACTICES",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_PR_Tot}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_COMPETITIONS",
+      title: "TOTAL COMPETITIONS",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_CC_ODWithout} + {SP_CC_ODWith} + {SP_CC_TWONIGHTS} + {SP_CC_Multiday} + {SP_CC_Vacations}"
     }
   ],
 
+
   // ################################################################
   // ##### REPORT CARD ##############################################
+  // #costReport is what downloadCostReport() (in the HTML file) saves to PDF.
+  // .no-pdf elements are left out of the PDF; .pdf-only elements appear only in the PDF.
   completedHtml: `
-    <div style="font-family: Arial, sans-serif; background:#f7f7fb; min-height:100vh; padding:30px 10px;">
+    <div id="costReport" style="font-family: Arial, sans-serif; background:#f7f7fb; min-height:100vh; padding:30px 10px;">
       <div style="max-width: 960px; margin:0 auto;">
 
         <!-- Title / intro -->
         <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
-          <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Cost of sports</h2>
+          <h2 style="margin:0 0 8px 0; font-size:28px;">Your sport profile:</h2>
           <p style="margin:0; font-size:14px; color:#555;">
-            Below is a summary of your estimated yearly costs and earnings related to your sport.
+          You participated in <strong>{TOTAL_PRACTICES}</strong> practices and <strong>{TOTAL_COMPETITIONS}</strong> competitions over the past year.
+          </p>
+        </div>
+        
+        <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
+          <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Cost of Sports</h2>
+          <p style="margin:0; font-size:14px; color:#555;">
+          <div><span>At the start of this survey you estimated your annual costs of participating in </span><strong>{SPORTNAME}</strong></div> 
+          to be around <strong>{ExpectedCosts}</strong>
+            Below is a summary of your actual yearly costs and earnings related to your sport.
           </p>
         </div>
 
@@ -124,11 +204,11 @@ const json = {
             <h3 style="margin:0 0 10px 0; font-size:18px;">Direct costs / YEAR</h3>
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Membership, licence, participation & entrance</span>
+                <span>Membership & entrance fees</span>
                 <strong>{MEMB_ENTR}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Apparel & equipment (total)</span>
+                <span>Apparel & equipment</span>
                 <strong>{APP_EQUIP}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
@@ -148,15 +228,15 @@ const json = {
             <h3 style="margin:0 0 10px 0; font-size:18px;">Indirect costs / YEAR</h3>
             <div style="font-size:14px;">
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Travel costs / YEAR</span>
+                <span>Travel costs</span>
                 <strong>{TRAVEL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Social costs / YEAR</span>
+                <span>Social costs</span>
                 <strong>{SOCIAL}</strong>
               </div>
               <div style="display:flex; justify-content:space-between; margin:4px 0;">
-                <span>Other indirect costs / YEAR</span>
+                <span>Other indirect costs</span>
                 <strong>{OTHER_ID}</strong>
               </div>
             </div>
@@ -196,6 +276,19 @@ const json = {
           Thank you for completing the questionnaire. Your responses have been recorded.
         </p>
 
+        <!-- Extra information shown only in the PDF (placeholder: fill in later) -->
+        <div class="pdf-only" style="display:none; background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-top:24px;">
+          <h3 style="margin:0 0 10px 0; font-size:18px;">Additional information</h3>
+          <p style="margin:0; font-size:14px; color:#555;">[Placeholder: additional PDF content goes here.]</p>
+        </div>
+
+        <!-- Download button (not included in the PDF) -->
+        <div class="no-pdf" style="text-align:center; margin-top:20px;">
+          <button type="button" onclick="downloadCostReport()" style="background:#001e6b; color:white; border:none; border-radius:8px; padding:12px 24px; font-size:16px; cursor:pointer;">
+            Download PDF
+          </button>
+        </div>
+
       </div>
     </div>
   `,
@@ -225,7 +318,7 @@ const json = {
             type: "matrixdynamic",
             name: "Sport_Curr",
             title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT: " ,
-            description: "Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school",
+            description: "Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school",
             rowCount: 1,
             minRowCount: 1,
             maxRowCount: 1,
@@ -236,7 +329,7 @@ const json = {
                 name: "Sport_Curr",
                 title: "Sport",
                 cellType: "text",
-                isRequired: false,
+                isRequired: true,
                 width: "25%"
               },
               {
@@ -249,6 +342,7 @@ const json = {
                   { "value": 3, "text": "School" }
                 ],
                 isRequired: false,
+                isSuggested: SUGGEST_ALL_QUESTIONS,
                 width: "40%"
               },
               {
@@ -261,6 +355,7 @@ const json = {
                   { "value": 3, "text": "Both equally" }
                 ],
                 isRequired: false,
+                isSuggested: SUGGEST_ALL_QUESTIONS,
                 width: "35%"
               },
               {
@@ -272,20 +367,20 @@ const json = {
                 max: 99,
                 placeholder: "0",
                 isRequired: false,
+                isSuggested: SUGGEST_ALL_QUESTIONS,
                 width: "25%"
               }
             ],
             rows: [{text: "...", value: 'DDD'}]
           },
-  // {
-  //           type: "expression",
-  //           name: "temp",
-  //           title: "Sport Name",
-  //           displayStyle: "text",
-  //           expression:
-  //             "{Sport_current.DDD.Sport_Curr}",
-  //         },
-
+          {
+            type: "expression",
+            name: "CurrentSportName",
+            title: "Sport Name",
+            visible: false,
+            expression:
+              "{Sport_Curr[0].Sport_Curr}",
+          },
          
         ]
       },
@@ -301,20 +396,21 @@ const json = {
             name: "current_past_subtitle",
             html: `
          <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-          List up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
+         In addition to <em>{CurrentSportName}</em>,  
+         list up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
           </div>
-          <div>Context: Non-organized = by yourself or with your famly or friends; Club = with a team; School = competing in a school team or doing it at school,
+          <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
           </div>
           `
           },
           {
             type: "matrixdynamic",
-            name: "Sport_Curr",
-            title: "CURRENTLY (top three)",
+            name: "Sport_Curr2",
+            title: "CURRENTLY (top two)",
             
-            rowCount: 3,
-            minRowCount: 3,
-            maxRowCount: 3,
+            rowCount: 2,
+            minRowCount: 2,
+            maxRowCount: 2,
             allowAddRows: false,
             allowRemoveRows: false,
             columns: [
@@ -420,12 +516,14 @@ const json = {
           {
             name: "SP_How",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             title: "How did you get into the current (para)sport under investigation?",
             minLength: 10,
             isRequired: false
           },
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class",
             title: "Do you have classification and/or specialty and/or player position in this sport?",
             isRequired: false,
@@ -438,6 +536,7 @@ const json = {
           },
           {
             type: "comment",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Class} = 1",
@@ -445,6 +544,7 @@ const json = {
           },
           {
             type: "comment",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Context_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Context}= 4",
@@ -452,6 +552,7 @@ const json = {
           },
           {
             type: "comment",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Level_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Level}=5",
@@ -459,6 +560,7 @@ const json = {
           },
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Fac",
             title: "The sports facility you mainly play/practice is: ",
             isRequired: false,
@@ -471,6 +573,7 @@ const json = {
           },
           {
             type: "comment",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Fac_Ex",
             title: "Please explain:",
             visibleIf: "{SP_Fac}= 4",
@@ -479,6 +582,7 @@ const json = {
           {
             name: "SP_Fac_PC",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             title: "Can you provide the first 3 characters of the postal code or name of the city of the facility where you play/practice most frequently?",
             minLength: 3,
             isRequired: false
@@ -492,6 +596,7 @@ const json = {
           },
           {
             type: "matrixdropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "practice_table",
             title: "PRACTICES (TRAINING SESSIONS)",
             description: "For each period, estimate your usual number of practices per week and the hours spent per practice.",
@@ -524,6 +629,7 @@ const json = {
             title: "Total practices last year",
             displayStyle: "decimal",
             precision: 2,
+            visible: false,
             expression:
               "{practice_table.FREQ.SP_PR_1} * 16 + " + // keep this idea, but use the new format
               "{practice_table.FREQ.SP_PR_2} * 2  + " +
@@ -536,6 +642,7 @@ const json = {
             name: "SP_PR_NT_Tot",
             title: "Total NET hours (all periods)",
             displayStyle: "decimal",
+            visible: false,
             precision: 2,
             expression:
               "{practice_table.FREQ.SP_PR_1} * {practice_table.NT.SP_PR_1} * 16 + " +
@@ -550,6 +657,7 @@ const json = {
             title: "Total GROSS hours (all periods)",
             displayStyle: "decimal",
             precision: 2,
+            visible: false,
             expression:
               "{practice_table.FREQ.SP_PR_1} * {practice_table.GT.SP_PR_1} * 16 +" +
               "{practice_table.FREQ.SP_PR_2} * {practice_table.GT.SP_PR_2} * 2  + " +
@@ -578,7 +686,8 @@ const json = {
               // },
               {
                 "name": "SP_CC",
-                "title": "On average, how many do you participate in per year?",
+                "isSuggested": SUGGEST_ALL_QUESTIONS,
+                "title": "How many did you participate in over the past year?",
                 "choices": [
                   { "text": "0", "value": 0 },
                   { "text": "1", "value": 1 },
@@ -686,6 +795,7 @@ const json = {
             name: "Cost_Gen",
             title: "How much do you think you spend annually on your (para)sport participation?",
             isRequired: false,
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             choices: [
               { "value": 1, "text": " <  100 CAD/yr " },
               { "value": 2, "text": "100 < 250 CAD/yr" },
@@ -724,6 +834,7 @@ const json = {
       "columns": [
         {
           "name": "Cost",
+          "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
@@ -731,6 +842,7 @@ const json = {
         },
         {
           "name": "Cost_$Y",
+          "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "If yes, how much $/year?",
           "cellType": "text",
           "inputType": "number",
@@ -769,6 +881,7 @@ const json = {
       "columns": [
         {
           "name": "Cost",
+          "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
           "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
@@ -776,6 +889,7 @@ const json = {
         },
         {
           "name": "Cost_$U",
+          "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "If yes, average $ per usage?",
           "cellType": "text",
           "inputType": "number",
@@ -784,6 +898,7 @@ const json = {
         },
         {
           "name": "Cost_UY",
+          "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "How many times per year?",
           "cellType": "text",
           "inputType": "number",
@@ -834,6 +949,7 @@ const json = {
                 "columns": [
                   {
                     "name": "Cost",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay this fee?",
                     "cellType": "radiogroup",
                     "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
@@ -841,6 +957,7 @@ const json = {
                   },
                   {
                     "name": "Cost_$U",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "If yes, average cost per use",
                     "cellType": "text",
                     "inputType": "number",
@@ -849,6 +966,7 @@ const json = {
                   },
                           {
                     "name": "Cost_UY",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Number of times per year",
                     "cellType": "text",
                     "inputType": "number",
@@ -907,6 +1025,7 @@ const json = {
           /* ----------------- (a) Sports apparel ----------------- */ //fixed 
           {
             type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_APP",
             title: "a) Sports apparel (e.g., shoes, pants, shirts …)",
             addRowText: "➕ Add apparel item",
@@ -915,9 +1034,9 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
-              { name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
-              { name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -954,6 +1073,7 @@ const json = {
 //           /* --------------- (b) Sports equipment ----------------- */
           {
             type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Equip",
             title: "b) Sports equipment (e.g., skates, golf clubs, bags …)",
             addRowText: "➕ Add equipment item",
@@ -962,9 +1082,9 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
-              { name: "$Total", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { name: "nY", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -995,6 +1115,7 @@ const json = {
 //           /*  --------- c) Additional equipment -----------------   */
           {
             type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_AddEquip",
             title: "C) Additional equipment, ex.towels ..",
             addRowText: "➕ Add equipment item",
@@ -1003,9 +1124,9 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
-              { name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
-              { name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -1039,6 +1160,7 @@ const json = {
 
           {
             type: "checkbox",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "sports_equipment_sources",
             title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
             isRequired: false,
@@ -1058,6 +1180,7 @@ const json = {
 
           {
             type: "comment",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "sports_equipment_sources_other",
             title: "If you selected 'Other (please describe)', please specify:",
             visibleIf: "{sports_equipment_sources} contains 8"
@@ -1082,6 +1205,7 @@ const json = {
                   },
                   {
                     "name": "cost_per_usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "If yes, average cost per use",
                     "cellType": "text",
                     "inputType": "number",
@@ -1090,6 +1214,7 @@ const json = {
                   },
                           {
                     "name": "frequency_per_year",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Number of times per year",
                     "cellType": "text",
                     "inputType": "number",
@@ -1148,7 +1273,7 @@ const json = {
            {
                 "type": "matrixdropdown",
                 "name": "TR_Pr",
-                "title": "You indicated practicing {SP_PR_Tot} times per year. Indicate the number of times you used the various transportation modes for your practices. So far you have entered {Practice_Transport_Count} practices, please enter another {Practice_Transport_Count_Left}.",
+                "title": "You indicated practicing <span style='font-size: 24px';>{SP_PR_Tot}</span> times per year. Indicate the number of times you used the various transportation modes for your practices.",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "totalType": "sum",
@@ -1165,7 +1290,8 @@ const json = {
                   // Idealy the total of all of these values cannot surpass the value of {SP_PR_Freq}.  If it does, then a warning message should appear.  This is not possible with the current surveyjs framework.  It would require a custom widget to be created.
                   {
                     "name": "usage_count", // Change the name
-                    "title": "Number of practices?",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
+                    "title": "So far you have entered <span style='font-size: 24px';>{Practice_Transport_Count}</span> practices, <br />please enter another <span style='font-size: 24px';>{Practice_Transport_Count_Left}</span>.<br />",
                     "cellType": "text",
                     "inputType": "number",
                     "enableIf": "{row.usage} = 'Yes'",
@@ -1212,6 +1338,7 @@ const json = {
               {
             name: "TR_Distance_OneWay_MotorbikeCar",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Motorbike or Car, how many km one way per practice?",
             visibleIf: "{TR_Pr.travel_family_own_car.usage} = 'Yes' || {TR_Pr.travel_motorbike.usage} = 'Yes'", 
@@ -1221,6 +1348,7 @@ const json = {
           {
             name: "TR_Cost_Oneway_PublicTransport",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Public Transportation, what is the one-way cost?",
             visibleIf: "{TR_Pr.travel_public_transportation.usage} = 'Yes'",
@@ -1230,6 +1358,7 @@ const json = {
           {
             name: "TR_Cost_Oneway_Carpool",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If Carpooling, what is the one-way cost?",
             visibleIf: "{TR_Pr.travel_carpooling.usage} = 'Yes'", 
@@ -1239,6 +1368,7 @@ const json = {
           {
             name: "TR_Cost_Oneway_TaxiPrivateBus",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Taxi/Private Bus, what is the one-way cost?",
             visibleIf: "{TR_Pr.travel_taxi_private_bus.usage} = 'Yes'", 
@@ -1248,6 +1378,7 @@ const json = {
           {
             name: "TR_Cost_Oneway_SpecialTransport",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Special Transport, what is the one-way cost?",
             visibleIf: "{TR_Pr.travel_special_transportation.usage} = 'Yes'", 
@@ -1258,6 +1389,7 @@ const json = {
           {
             name: "TR_Cost_Oneway_Other",
             type: "text",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Other, what is the one-way cost?",
             visibleIf: "{TR_Pr.travel_other.usage} = 'Yes'", 
@@ -1339,7 +1471,7 @@ const json = {
             // make response not as wide and left aligned.
           {
                 "type": "matrixdropdown",
-                "name": "TR_Pr",
+                "name": "TR_Parking",
                 "title": "Parking costs for PRACTICE",
                 "showHeader": true,
                 "columnMinWidth": "130px",
@@ -1354,6 +1486,7 @@ const json = {
                   },
                   {
                     "name": "travel_parking_cost_per_year",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $ per year?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1372,7 +1505,7 @@ const json = {
             title: "Estimated yearly TOTAL transportation cost",
             expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
               "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
-              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Pr.travel_parking.travel_parking_cost_per_year}",
+              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Parking.travel_parking.travel_parking_cost_per_year}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2
@@ -1388,6 +1521,7 @@ const json = {
                 "columns": [
                   {
                     "name": "cost_per_usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Average $ per time",
                     "cellType": "text",
                     "inputType": "number",
@@ -1437,6 +1571,7 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you purchase?",
                     "cellType": "radiogroup",
                     "choices": [ "Yes", "No" ]
@@ -1453,6 +1588,7 @@ const json = {
                   },
                   {
                     "name": "cost_per_usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Average $ per time?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1477,12 +1613,14 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay?",
                     "cellType": "radiogroup",
                     "choices": [ "Yes", "No" ],
                   },
                   {
                     "name": "cost_per_usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $/year?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1536,12 +1674,14 @@ const json = {
                 "columns": [
                   {
                     "name": "usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay for?",
                     "cellType": "radiogroup",
                     "choices": [ "Yes", "No" ],
                   },
                   {
                     "name": "cost_per_usage",
+                    "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $/year?",
                     "cellType": "text",
                     "inputType": "number",
@@ -1555,7 +1695,7 @@ const json = {
                   { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'other_insurance' },
                   { "text": "Extra costs for baby-sitting/pet sitting", "value": 'other_babysitting' },
                   { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'other_documentation' },
-                  { "text": "Attending competitions as a spectator", "value": 'other_spectator' },
+                  { "text": "Attending competitions as a spectator specifically related to the sport under investigation", "value": 'other_spectator' },
                   { "text": "Any other indirect costs not already included", "value": 'other_indirect' },
                 ],
                 "transposeData": false
@@ -1586,6 +1726,7 @@ const json = {
         elements: [
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Earn_YN",
             title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
             choices: [
@@ -1598,6 +1739,7 @@ const json = {
           },
           {
             type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Earnings",
             title: "If yes, describe",
             titleLocation: "hidden",
@@ -1606,9 +1748,10 @@ const json = {
             minRowCount: 1,
             rowCount: 0,
             showFooter: true,
+            visibleIf: "{SP_Earn_YN} = 'Yes'",
             columns: [
-              { name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
-              { name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
               {
                 name: "SP_Earnings_$Y",
                 title: "Amount / year (C$)",
@@ -1646,6 +1789,7 @@ const json = {
         elements: [
           {
             type: "dropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             title: "What sex were you assigned at birth, on you original birth certificate?",
             name: "Sex",
             choices: [
@@ -1658,6 +1802,7 @@ const json = {
           },
           {
             type: "dropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "Gender",
             title: "What is your current gender identity?",
             choices: [
@@ -1676,6 +1821,7 @@ const json = {
           //dropdown to 100
           {
             type: "dropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "Age",
             title: "Your age:",
             isRequired: false,
@@ -1684,6 +1830,7 @@ const json = {
 
       {
           type: "radiogroup",
+          isSuggested: SUGGEST_ALL_QUESTIONS,
           name: "FirstNation",
           title: "Do you identify as First Nations, Inuk/Inuit and/or Métis?",
           
@@ -1703,6 +1850,7 @@ const json = {
         },
       {
           type: "checkbox",
+          isSuggested: SUGGEST_ALL_QUESTIONS,
           name: "Race",
           title: "Which category(ies) best describes your race or racial background? Check all that apply:",
           
@@ -1729,6 +1877,7 @@ const json = {
                     //dropdown to 20
           {
             type: "dropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_N",
             title: "How many people live in your household (under the same roof) including yourself?",
             isRequired: false,
@@ -1743,6 +1892,7 @@ const json = {
           },
           {
             type: "dropdown",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_NChild",
             title: "How many children under the age of 18 live in your household?",
             isRequired: false,
@@ -1757,6 +1907,7 @@ const json = {
           },
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_Pos",
             title: "What is your position in this household?",
             isRequired: false,
@@ -1779,6 +1930,7 @@ const json = {
 
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_Educ",
             title: "  Select the highest level of education achieved by any member in your household? ",
             isRequired: false,
@@ -1804,6 +1956,7 @@ const json = {
           // make it 2 columns
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_Income_EX",
             title: " What is your annual household income BEFORE taxes, EXCLUDING provincial or federal disability benefits",
             colCount: 2,
@@ -1823,6 +1976,7 @@ const json = {
           },
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_Income_IN",
             title: " What is your annual household income BEFORE taxes, INCLUDING provincial or federal disability benefits",
             colCount: 2,
@@ -1851,6 +2005,7 @@ const json = {
           
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             title: "Timing of Impairement?",
             name: "AB_Timing",
             colCount: 2,
@@ -1863,9 +2018,11 @@ const json = {
           },
           {
             type: "checkbox",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             title: "Classification of disabilities (check all that apply)?",
             name: "AB_Class",
             colCount: 2,
+            visibleIf: "{AB_Timing} = 'Congenital' || {AB_Timing} = 'Acquired'",
             choices: [
               'Mobility',
               'Vision',
@@ -1878,9 +2035,11 @@ const json = {
 
           {
             type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "AB_Loi",
             title: "How would you rate your ability to perform daily tasks?",
             isRequired: false,
+            visibleIf: "{AB_Timing} = 'Congenital' || {AB_Timing} = 'Acquired'",
             choices: [
               { "value": 1, "text": "1 - Total Assistance — Dependent, requires full help from others." },
               { "value": 2, "text": "2 - Maximal Assistance — Needs 75% help to complete tasks." },
