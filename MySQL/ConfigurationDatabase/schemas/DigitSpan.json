@@ -1,0 +1,194 @@
+{
+  "taskTypes": [
+    "Digit Span"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-09 from 11 parameter sets; code scanned: DigitSpan.html",
+  "readByCodeButNotInAnySet": [
+    "Instructions01Audio",
+    "Instructions01Time",
+    "Instructions02Audio",
+    "Instructions02Time",
+    "Instructions03Audio",
+    "Instructions03Time",
+    "Instructions04Audio",
+    "Instructions04Time",
+    "Instructions05Audio",
+    "Instructions05Time",
+    "InstructionsSpoken",
+    "RecordGIF",
+    "WelcomeAudio"
+  ],
+  "schema": {
+    "type": "object",
+    "title": "Digit Span parameters",
+    "required": [
+      "direction",
+      "StimulusMode",
+      "DeliveryMethod",
+      "Parameters",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions"
+    ],
+    "properties": {
+      "direction": {
+        "type": "string",
+        "title": "Direction",
+        "enum": [
+          "backward",
+          "forward"
+        ],
+        "default": "backward"
+      },
+      "StimulusMode": {
+        "type": "string",
+        "title": "Stimulus mode",
+        "enum": [
+          "audio",
+          "visual"
+        ],
+        "default": "audio"
+      },
+      "DeliveryMethod": {
+        "type": "string",
+        "title": "Delivery method",
+        "enum": [
+          "fixed",
+          "numberErrors",
+          "staircase"
+        ],
+        "default": "staircase"
+      },
+      "Parameters": {
+        "type": "object",
+        "title": "Parameters",
+        "required": [
+          "Current",
+          "MaxTrials"
+        ],
+        "properties": {
+          "Current": {
+            "type": "integer",
+            "title": "Current"
+          },
+          "MinValue": {
+            "type": "integer",
+            "title": "Min value"
+          },
+          "MaxValue": {
+            "type": "integer",
+            "title": "Max value"
+          },
+          "StepSize": {
+            "type": "integer",
+            "title": "Step size"
+          },
+          "NUp": {
+            "type": "integer",
+            "title": "N up"
+          },
+          "NDown": {
+            "type": "integer",
+            "title": "N down"
+          },
+          "FastStart": {
+            "type": "boolean",
+            "title": "Fast start"
+          },
+          "MaxReversals": {
+            "type": "integer",
+            "title": "Max reversals"
+          },
+          "MaxTime": {
+            "type": "integer",
+            "title": "Max time"
+          },
+          "MaxTrials": {
+            "type": "integer",
+            "title": "Max trials"
+          },
+          "Nerrors": {
+            "type": "integer",
+            "title": "Nerrors"
+          }
+        },
+        "additionalProperties": true,
+        "default": {
+          "Current": 3,
+          "MinValue": 1,
+          "MaxValue": 30,
+          "StepSize": 1,
+          "NUp": 2,
+          "NDown": 1,
+          "FastStart": true,
+          "MaxReversals": 50,
+          "MaxTime": 420,
+          "MaxTrials": 14
+        }
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome",
+        "default": false
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Welcome spoken",
+        "default": false
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank you",
+        "default": false
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for notes",
+        "default": false,
+        "description": "in 2 of 11 sets"
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "Parameters": {
+      "FastStart": {
+        "ui:widget": "radio"
+      }
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "direction",
+      "StimulusMode",
+      "DeliveryMethod",
+      "Parameters",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "AskForNotes",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "taskTypes": [
+    "Questionnaire",
+    "Matrix Questionnaire",
+    "Form Questionnaire",
+    "Questionnaire JSON",
+    "IPAQ Questionnaire",
+    "Matrix Questionnaire ExtraQ"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-09 from 43 parameter sets; code scanned: BUQuestionnaire.html, FormQuestionnaire.html, IPAQQuestionnaire.html, LikertQuestionnaire.html, MatrixQuestionnaire.html, MatrixQuestionnaireExtraQ.html, OLDQuestionnaire.html, Questionnaire.html, QuestionnaireJSON.html, TestQuest.html",
+  "readByCodeButNotInAnySet": [
+    "Instructions01Audio",
+    "Instructions01Time",
+    "Instructions02Audio",
+    "Instructions02Time",
+    "Instructions03Audio",
+    "Instructions03Time",
+    "Instructions04Audio",
+    "Instructions04Time",
+    "Instructions05Audio",
+    "Instructions05Time",
+    "InstructionsSpoken",
+    "Language",
+    "RecordGIF",
+    "WelcomeAudio",
+    "WelcomeSpoken",
+    "isPromiseResolved"
+  ],
+  "schema": {
+    "type": "object",
+    "title": "Questionnaire parameters",
+    "required": [
+      "questionnaire",
+      "criteria",
+      "variable",
+      "AskForNotes",
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions"
+    ],
+    "properties": {
+      "questionnaire": {
+        "type": "array",
+        "title": "Questionnaires (in order)",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "enum": [
+            "EnterName_Music",
+            "FRS",
+            "IntakeForm_Music",
+            "IntakeForm_MusicJSONSHORT",
+            "ScoringMMSE",
+            "Sociodemographic",
+            "TESTJSON",
+            "UCLAloneliness",
+            "adl_pi",
+            "aes",
+            "bdi",
+            "berksyme",
+            "cci_cimaq",
+            "cesam",
+            "cesamJSONformSHORT",
+            "cfs",
+            "cog_quot",
+            "compExp_part01",
+            "compExp_part02",
+            "compExp_part03",
+            "compExp_part04",
+            "eq5dJSON",
+            "gas",
+            "gds",
+            "gds_04",
+            "ipaq",
+            "paes",
+            "panas",
+            "panasJSON",
+            "panasShortBaselineJSON",
+            "panasShortJSON",
+            "panasShortWeekly",
+            "parq",
+            "sleep_cimaq2014",
+            "stai_state",
+            "stai_trait",
+            "stanfordSleepiness",
+            "wemwbs"
+          ]
+        }
+      },
+      "criteria": {
+        "type": "array",
+        "title": "Criteria",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "variable": {
+        "title": "Variable",
+        "description": "Edited as JSON (array or string).",
+        "default": []
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for notes",
+        "default": false
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome",
+        "default": false
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank you",
+        "default": false
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": false
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "variable": {
+      "ui:field": "json"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "questionnaire",
+      "criteria",
+      "variable",
+      "AskForNotes",
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "*"
+    ]
+  }
+}

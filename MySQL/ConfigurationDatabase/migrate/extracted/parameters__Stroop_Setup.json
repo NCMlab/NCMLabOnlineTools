@@ -11,7 +11,7 @@
       "key": "Stroop_Victoria",
       "sourceVar": "parameters",
       "language": null,
-      "json": "{\"ColorPracticeRepeats\":2,\"WordPracticeRepeats\":2,\"ColorWordPracticeRepeats\":2,\"ColorTestRepeats\":6,\"WordTestRepeats\":6,\"ColorWordTestRepeats\":2,\"ITI_Range\":[],\"ITI_Duration\":10,\"AllowedTime\":-99,\"Score_NumberTrials\":24,\"Score_ProcedureName\":\"Victoria\",\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"ShowWelcome\":true,\"ShowThankYou\":false}"
+      "json": "{\"ColorPracticeRepeats\":2,\"WordPracticeRepeats\":2,\"ColorWordPracticeRepeats\":2,\"ColorTestRepeats\":6,\"WordTestRepeats\":6,\"ColorWordTestRepeats\":3,\"ITI_Range\":[],\"ITI_Duration\":500,\"AllowedTime\":-99,\"Score_NumberTrials\":24,\"Score_ProcedureName\":\"Victoria\",\"ShowInstructions\":true,\"InstructionsSpoken\":false,\"ShowWelcome\":true,\"ShowThankYou\":true}"
     },
     {
       "key": "Stroop_Golden",

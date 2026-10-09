@@ -34,6 +34,12 @@ const BASE_FOLDER_NAME_BY_FILE = {
   'vDMS_Instructions.js': 'assets/InstructionalImages/',
 };
 
+// Parameter files that live outside config/ -- Screening.html loads its parameter sets
+// (EN_BriefScreening, FR_BriefScreening, ...) from here rather than from a config/*_Setup.js.
+const EXTRA_PARAMETER_FILES = [
+  path.join(REPO_ROOT, 'InstructionsAndStimuli', 'EN', 'Questionnaires', 'Screening.js'),
+];
+
 const GENERAL_SETUP_PATH = path.join(CONFIG_DIR, 'General_Setup.js');
 
 function extractFile(filePath) {
@@ -172,6 +178,7 @@ function main() {
   const targets = [
     ...jsFilesIn(CONFIG_DIR).map((file) => ({ file, kind: 'parameters' })),
     ...jsFilesIn(INSTR_DIR).map((file) => ({ file, kind: 'instructions' })),
+    ...EXTRA_PARAMETER_FILES.map((file) => ({ file, kind: 'parameters' })),
   ];
 
   const summary = [];

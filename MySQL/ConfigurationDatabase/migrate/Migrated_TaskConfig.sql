@@ -159,16 +159,64 @@ SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Please fill out the following survey."}],"ThankYouText":[{"page":"Thank you."}]}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Veuillez remplir les sondages suivants."}],"ThankYouText":[{"page":"Merci"}]}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"List":[{"stim":"Rice is often served in round bowls."},{"stim":"The birch canoe slid on the smooth planks."},{"stim":"Glue the sheet to the dark blue background."},{"stim":"It''s easy to tell the depth of a well."},{"stim":"These days a chicken leg is a rare dish."},{"stim":"The juice of lemons makes fine punch."},{"stim":"The box was thrown beside the parked truck."},{"stim":"The hogs were fed chopped corn and garbage."},{"stim":"4 hours of steady work faced us."},{"stim":"A large size in stockings is hard to sell."},{"stim":"The boy was there when the sun rose."},{"stim":"A rod is used to catch pink salmon."},{"stim":"The source of the huge river is the clear spring."},{"stim":"Kick the ball straight and follow through."},{"stim":"Help the woman get back to her feet."},{"stim":"A pot of tea helps to pass the evening."},{"stim":"Smoky fires lack flame and heat."},{"stim":"The soft cushion broke the man''s fall."},{"stim":"The salt breeze came across from the sea."},{"stim":"The girl at the booth sold fifty bonds."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.</p><p>Even if the speech recognition is not accurate, that is OK, as long as you are being heard.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">This is a Reading Test Task.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Thank you"}]}'
 FROM task_types WHERE task_name = 'Reading/Listening Test';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"List":[{"stim":"Rice is often served in round bowls."},{"stim":"The birch canoe slid on the smooth planks."},{"stim":"Glue the sheet to the dark blue background."},{"stim":"It''s easy to tell the depth of a well."},{"stim":"These days a chicken leg is a rare dish."},{"stim":"The juice of lemons makes fine punch."},{"stim":"The box was thrown beside the parked truck."},{"stim":"The hogs were fed chopped corn and garbage."},{"stim":"4 hours of steady work faced us."},{"stim":"A large size in stockings is hard to sell."},{"stim":"The boy was there when the sun rose."},{"stim":"A rod is used to catch pink salmon."},{"stim":"The source of the huge river is the clear spring."},{"stim":"Kick the ball straight and follow through."},{"stim":"Help the woman get back to her feet."},{"stim":"A pot of tea helps to pass the evening."},{"stim":"Smoky fires lack flame and heat."},{"stim":"The soft cushion broke the man''s fall."},{"stim":"The salt breeze came across from the sea."},{"stim":"The girl at the booth sold fifty bonds."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">To ensure the computer can accurately hear and understand you, please, clearly read out loud each of the sentences on the next few screens.</p><p>Even if the speech recognition is not accurate, that is OK, as long as you are being heard.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">This is a Reading Test Task.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Thank you"}]}'
+FROM task_types WHERE task_name = 'Reading Test';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"List":[{"stim":"La lampe de néon rouge irise ses cheveux."},{"stim":"La nacelle du ballon tire sa souplesse de l’osier."},{"stim":"Devine qui a volé le précieux collier de jade."},{"stim":"C’est facile d’atteindre la branche en sautant du muret."},{"stim":"Ne collez jamais d’affiche sur le mur de la poste."},{"stim":"Découpe de fines lamelles de cette truffe noire."},{"stim":"Une croisière dans un grand bateau, c’est un bonheur parfait."},{"stim":"Une brèche dans le mur laissait entrer de l’air."},{"stim":"Le groupe d’amis s’est quitté devant le kiosque."},{"stim":"La voiture de course partit en trombe sur la piste."},{"stim":"Note sur le papier le poids de la bonbonne de gaz."},{"stim":"Prends ce chiffon pour enlever la graisse de ton visage."},{"stim":"La source de la rivière boueuse est un ruisseau clair."},{"stim":"Tire la fléchette et inscris tes points sur le tableau."},{"stim":"Aide la femme à monter à l’arrière du tramway."},{"stim":"Ils ont enfin trouvé une place à la crèche publique."},{"stim":"L’affaire reste étrange pour les vieux et les sages."},{"stim":"Il a un cou propre sur un col net et soigné."},{"stim":"Son dernier congé dura deux semaines."},{"stim":"L’idée est de coudre ensemble ces morceaux de tissus."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">Pour vous assurer que l''ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur l''écran suivant.</p><p>Même si la reconnaissance vocale n''est pas précise, ce n''est pas grave, tant que vous êtes entendu.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">Bienvenu(e) à la tâche de lecture.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Merci"}]}'
 FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"List":[{"stim":"La lampe de néon rouge irise ses cheveux."},{"stim":"La nacelle du ballon tire sa souplesse de l’osier."},{"stim":"Devine qui a volé le précieux collier de jade."},{"stim":"C’est facile d’atteindre la branche en sautant du muret."},{"stim":"Ne collez jamais d’affiche sur le mur de la poste."},{"stim":"Découpe de fines lamelles de cette truffe noire."},{"stim":"Une croisière dans un grand bateau, c’est un bonheur parfait."},{"stim":"Une brèche dans le mur laissait entrer de l’air."},{"stim":"Le groupe d’amis s’est quitté devant le kiosque."},{"stim":"La voiture de course partit en trombe sur la piste."},{"stim":"Note sur le papier le poids de la bonbonne de gaz."},{"stim":"Prends ce chiffon pour enlever la graisse de ton visage."},{"stim":"La source de la rivière boueuse est un ruisseau clair."},{"stim":"Tire la fléchette et inscris tes points sur le tableau."},{"stim":"Aide la femme à monter à l’arrière du tramway."},{"stim":"Ils ont enfin trouvé une place à la crèche publique."},{"stim":"L’affaire reste étrange pour les vieux et les sages."},{"stim":"Il a un cou propre sur un col net et soigné."},{"stim":"Son dernier congé dura deux semaines."},{"stim":"L’idée est de coudre ensemble ces morceaux de tissus."}],"Instructions01":[{"page":"<p class=\\"Instructions\\">Pour vous assurer que l''ordinateur peut vous entendre et vous comprendre avec précision, veuillez lire clairement à haute voix chacune des phrases sur l''écran suivant.</p><p>Même si la reconnaissance vocale n''est pas précise, ce n''est pas grave, tant que vous êtes entendu.</p>"}],"WelcomeText":[{"page":"<p class=\\"Instructions\\">Bienvenu(e) à la tâche de lecture.</p>"}],"ThankYouText":[{"page":"<p class=\\"Instructions\\">Merci"}]}'
+FROM task_types WHERE task_name = 'Reading Test';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"Instructions01":[{"page":"<p>The purpose of this study is to study the effects of aging on memory using online browser-based tools. This includes tasks that require listening, speaking, and drawing. To do this, you will need to use a computer or tablet with a microphone and speakers, not a cell phone. This will take between 20 and 30 minutes.</p><p>The steps include:</p><ul><li>A brief screening for eligibility.</li><li>Reading and providing informed consent.</li><li>Completing a brief questionnaire.</li><li>Testing your speakers.</li><li>Testing your microphone.</li><li>A task where you listen to lists of words and repeat them back.</li><li>A task where you sort cards.</li><li>Two drawing tasks, similair to \\"connect the dots.\\"</li><li>Two brief tasks based on your memory of the words you listened to.</li></ul>"},{"page":"There are buttons in the upper left hand corner. The <em>Stop</em> button allows you to stop the experiment but to keep your data. The <em>Quit</em> button allows you to leave the experiment and have your data removed."},{"page":"When you press next you will start with a screening form."}]}'
@@ -195,8 +243,16 @@ SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"Instructions01":[{"page
 FROM task_types WHERE task_name = 'Spatial DMS';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"Instructions01":[{"page":"This is a test of short-term memory. You will see one or more dots on the screen and you will need to remember where they are. They will be removed from the screen. After a few seconds you will see a single blue dot. You need to decide whether or not the blue dot is in one of the locations you studied."},{"page":"<div class=\\"InstructImage\\"><img src=assets/InstructionalImages/EN_VSTMInstructions.png max-width=\\"600px\\" alt=Instructional image</img></div>"},{"page":"Press [Yes] on the screen or Left-Arrow on the keyboard if the dot WAS in the set.<br>Press [No] on the screen or Right-Arrow on the keyboard if the letter WAS NOT in the set."},{"page":"Try to respond as quickly and as accurately as possible."}],"Instructions02":[{"page":"First, there will be some practice trials with feedback."}],"Instructions03":[{"page":"Now you will perfom the test with no feedback."}],"ThankYouText":[{"page":"Thank you. Press any key to continue."}],"WelcomeText":[{"page":"This is the Spatial Delayed Match to Sample Task."}]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"Instructions01":[{"page":"Il s''agit d''un test de mémoire à court terme. Vous verrez un ou plusieurs points à l''écran et vous devrez vous rappeler où ils se trouvent. Ils seront supprimés de l''écran après quelques secondes. Vous verrez un seul point bleu. Vous devez décider si le point bleu se trouve ou non dans l’un des endroits que vous avez étudiés."},{"page":"<div class=\\"InstructImage\\"><img src=assets/InstructionalImages/FR_VSTMInstructions.png max-width=\\"600px\\" alt=Instructional image</img></div>"},{"page":"Appuyez sur [Oui] sur l''écran ou flèche gauche sur le clavier si le point ÉTAIT dans l''ensemble.<br>Appuyez sur [Non] sur l''écran ou flèche driote sur le clavier si le point N''ÉTAIT PAS dans l''ensemble."},{"page":"Essayez de répondre le plus rapidement et le plus précisément possible."}],"Instructions02":[{"page":"Vous effectuerez quelques essais avec des retours pour vous entraîner."}],"Instructions03":[{"page":"Vous allez maintenant commencer la véritable tâche sans rétroaction."}],"ThankYouText":[{"page":"Merci"}],"WelcomeText":[{"page":"Bienvenu(e) dans la tâche de correspondance spatial retardé"}]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"Instructions01":[{"page":"Il s''agit d''un test de mémoire à court terme. Vous verrez un ou plusieurs points à l''écran et vous devrez vous rappeler où ils se trouvent. Ils seront supprimés de l''écran après quelques secondes. Vous verrez un seul point bleu. Vous devez décider si le point bleu se trouve ou non dans l’un des endroits que vous avez étudiés."},{"page":"<div class=\\"InstructImage\\"><img src=assets/InstructionalImages/FR_VSTMInstructions.png max-width=\\"600px\\" alt=Instructional image</img></div>"},{"page":"Appuyez sur [Oui] sur l''écran ou flèche gauche sur le clavier si le point ÉTAIT dans l''ensemble.<br>Appuyez sur [Non] sur l''écran ou flèche driote sur le clavier si le point N''ÉTAIT PAS dans l''ensemble."},{"page":"Essayez de répondre le plus rapidement et le plus précisément possible."}],"Instructions02":[{"page":"Vous effectuerez quelques essais avec des retours pour vous entraîner."}],"Instructions03":[{"page":"Vous allez maintenant commencer la véritable tâche sans rétroaction."}],"ThankYouText":[{"page":"Merci"}],"WelcomeText":[{"page":"Bienvenu(e) dans la tâche de correspondance spatial retardé"}]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Stroop_Instructions', 'EN', '{"ColorWelcomeText":[{"page":"Welcome to the Stroop Color experiment."}],"ColorInstrText":[{"page":"You need to indicate what color is shown on the screen. </br>You will press the button that corresponds to that color."}],"ColorPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"WordWelcomeText":[{"page":"Welcome to the Stroop Word experiment."}],"WordInstrText":[{"page":"In this task, words will appear in the center of the screen, like this:BLUE"},{"page":"You need to indicate what word is written. </br>You will press the button that corresponds to that color."}],"WordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"WordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"WordTestInstrText":[{"page":"Now you will do the task.</br>It will be exactly like the practice except you will not get feedback. "}],"ColorWordWelcomeText":[{"page":"Welcome to the Stroop Color/Word experiment."}],"ColorWordInstrText":[{"page":"In this task, words will appear like this:<p style=\\"font-size:60px; color:rgb(250,0,0)\\">BLUE"},{"page":"You need to indicate the COLOR that the word is written in (and ignore what the word says). Press the button that corresponds to that color."}],"ColorWordPracticeText":[{"page":"Before doing the actual experiment you will complete some practice trials. These will give you feedback about your accuracy. Remember to respond as accurately and quickly as possible."}],"ColorWordInstrPoorPerformanceText":[{"page":"There will be another run of practice trials with feedback. Remember to respond as accurately and quickly as possible."}],"ColorWordTestInstrText":[{"page":"You will now respond without any feedback. Try to respond as quickly and accurately as possible. "}],"ThankYouText":[{"page":"Thank you. Press any key to end the experiment."}],"StroopWordPrompt":"<p class=''PromptText''>What word is shown below?","StroopColorPrompt":"<p class=''PromptText''>What color is shown below?","StroopColorWordPrompt":"<p class=''PromptText''>What color is the word written in?","Color01Name":"Red","Color02Name":"Yellow","Color03Name":"Green","Color04Name":"Blue","ResponseButtons":["Red","Yellow","Green","Blue"],"DebriefTextPart01":"<p>You responded correctly on <strong>","DebriefTextPart02":"%</strong> of the ","DebriefTextPart03":" trials.<p>Press any key to continue the experiment. "}'
@@ -255,20 +311,40 @@ SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"RecallInstructions":"Please repeat the entire word list","GetReadyInstructions":"Get ready for the next trial","Instructions01":[{"page":"You are going to hear a list of words, this is <b>List A</b>. Listen carefully. At the end of the list you are to repeat back as many words as you can recall."},{"page":"It does not matter in what order you repeat them, just try to recall as many as you can."}],"Instructions05":[{"page":""},{"page":"Get ready to recall the words you just heard."}],"Instructions02":[{"page":""},{"page":"Now you will hear the same words again, and once again, at the end of the list repeat back as many words as you can recall, including words you said the first time. "},{"page":"It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before."}],"Instructions03":[{"page":""},{"page":"Now you will hear a second list of words, this is <b>List B</b>. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. "},{"page":"It does not matter in what order you repeat them, just try to remember as many as you can."}],"Instructions04":[{"page":""},{"page":"Now repeat back all the words you can recall from <b>List A</b>, the list you heard a number of times."}],"InstructionsDelayed":[{"page":"Recall all the words you can remember from the list you heard a number of times, <b>List A</b>."}],"WordPrompt":"empty","ThankYouText":[{"page":"Thank you"}],"IntrusionPrompt":"Intrusion? (Words not in the list)","WordRecallPrompt":"Which words were recalled?"}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Bienvenu(e) dans la tâche de rappel de mots."}],"RecallInstructions":"Veuillez répéter toute la liste de mots","GetReadyInstructions":"Préparez-vous pour le prochain essai","Instructions01":[{"page":"Vous entendrez une liste de mots. Ecoutez attentivement, en fin de liste vous devrez répéter tous les mots dont vous vous souviendrez. "},{"page":"Peu importe l''ordre dans lequel vous les répétez, essayez juste de vous souvenir d''autant que vous le pouvez."}],"Instructions02":[{"page":"Maintenant vous entendrez les mêmes mots, et encore une fois en fin de liste vous dites autant de mots dont vous vous souvenez, y compris les mots que vous avez dits la première fois. "},{"page":"Peu importe l''ordre dans lequel vous les dites, dites simplement autant de mots dont vous pouvez vous souvenir, que vous les aviez dits ou pas avant."}],"Instructions03":[{"page":"Vous allez maintenant entendre une deuxième liste de mots, c''est la <b>Liste B</b>. Écoutez attentivement, car à la fin de la liste, vous devez répéter autant de mots dont vous vous souvenez. "},{"page":"Peu importe l''ordre dans lequel vous les dites, dites simplement autant de mots dont vous pouvez vous souvenir, que vous les aviez dits ou pas avant."}],"Instructions04":[{"page":"Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises."}],"InstructionsDelayed":[{"page":"Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises."}],"WordPrompt":"empty","ThankYouText":[{"page":"Merci"}],"WordRecallPrompt":"Quels mots ont été rappelés?"}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_Default', 'FR', '{"WelcomeText":[{"page":"Bienvenu(e) dans la tâche de rappel de mots."}],"RecallInstructions":"Veuillez répéter toute la liste de mots","GetReadyInstructions":"Préparez-vous pour le prochain essai","Instructions01":[{"page":"Vous entendrez une liste de mots. Ecoutez attentivement, en fin de liste vous devrez répéter tous les mots dont vous vous souviendrez. "},{"page":"Peu importe l''ordre dans lequel vous les répétez, essayez juste de vous souvenir d''autant que vous le pouvez."}],"Instructions02":[{"page":"Maintenant vous entendrez les mêmes mots, et encore une fois en fin de liste vous dites autant de mots dont vous vous souvenez, y compris les mots que vous avez dits la première fois. "},{"page":"Peu importe l''ordre dans lequel vous les dites, dites simplement autant de mots dont vous pouvez vous souvenir, que vous les aviez dits ou pas avant."}],"Instructions03":[{"page":"Vous allez maintenant entendre une deuxième liste de mots, c''est la <b>Liste B</b>. Écoutez attentivement, car à la fin de la liste, vous devez répéter autant de mots dont vous vous souvenez. "},{"page":"Peu importe l''ordre dans lequel vous les dites, dites simplement autant de mots dont vous pouvez vous souvenir, que vous les aviez dits ou pas avant."}],"Instructions04":[{"page":"Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises."}],"InstructionsDelayed":[{"page":"Dites tous les mots dont vous vous souvenez parmi <b>Liste A</b>, la liste que vous avez entendue à plusieurs reprises."}],"WordPrompt":"empty","ThankYouText":[{"page":"Merci"}],"WordRecallPrompt":"Quels mots ont été rappelés?"}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_FaCE', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"RecallInstructions":"Please repeat the entire word list","GetReadyInstructions":"Get ready for the next trial","Instructions01":[{"page":"You are going to hear a wordlist that you will have to remember. Pay close attention. When the list is done, you are to say as many words as possible that you remember from that list, in any given order"}],"Instructions02":[{"page":"Now, you will hear the same wordlist a second time. Try to remember and say as many words as you can from that list, even the ones that you recalled during your first try, in any given order"}],"Instructions03":[{"page":"Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin."}],"Instructions04":[{"page":"Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin."}],"Instructions05":[{"page":""},{"page":"Get ready to recall the words you just heard."}],"InstructionsDelayed":[{"page":"Earlier, you heard a wordlist that you were asked you to remember. Now, you are to name every word that you remember from that list."}],"WordPrompt":"empty","ThankYouText":[{"page":"Try to remember the words from the list, you will be asked to repeat them at the end of the test."}],"title":"Word Recall","WordRecallPrompt":"Which words were recalled?","IntrusionPrompt":"Intrusion? (Words not in the list)"}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_FaCE', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"RecallInstructions":"Please repeat the entire word list","GetReadyInstructions":"Get ready for the next trial","Instructions01":[{"page":"You are going to hear a wordlist that you will have to remember. Pay close attention. When the list is done, you are to say as many words as possible that you remember from that list, in any given order"}],"Instructions02":[{"page":"Now, you will hear the same wordlist a second time. Try to remember and say as many words as you can from that list, even the ones that you recalled during your first try, in any given order"}],"Instructions03":[{"page":"Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin."}],"Instructions04":[{"page":"Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin."}],"Instructions05":[{"page":""},{"page":"Get ready to recall the words you just heard."}],"InstructionsDelayed":[{"page":"Earlier, you heard a wordlist that you were asked you to remember. Now, you are to name every word that you remember from that list."}],"WordPrompt":"empty","ThankYouText":[{"page":"Try to remember the words from the list, you will be asked to repeat them at the end of the test."}],"title":"Word Recall","WordRecallPrompt":"Which words were recalled?","IntrusionPrompt":"Intrusion? (Words not in the list)"}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'FR_Instructions_FaCE', 'FR', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"RecallInstructions":"FR: Please repeat the entire word list","GetReadyInstructions":"Get ready for the next trial","Instructions01":[{"page":"Je vais vous lire une liste de mots que vous aurez à retenir. Écoutez-les attentivement. Quand j’aurai terminé, je veux que vous me redisiez le plus de mots possible dont vous vous rappelez, dans l’ordre que vous voulez"}],"Instructions02":[{"page":"Maintenant je vais lire la même liste de mots une seconde fois. Essayez de vous rappeler du plus grand nombre de mots possible, y compris ceux que vous avez énoncés la première fois et dites les moi, dans l’ordre que vous souhaitez"}],"Instructions03":[{"page":"Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin."}],"Instructions04":[{"page":"Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin."}],"InstructionsDelayed":[{"page":"Je vous ai lu une série de mots plus tôt dont je vous ai demandé de vous rappeler. Maintenant, dites-moi tous les mots dont vous vous rappelez."}],"WordPrompt":"empty","ThankYouText":[{"page":"Gardez-en mémoire les mots que je vous ai lus, je vais vous demander de les répéter à la fin du test."}],"title":"Rappel différé","WordRecallPrompt":"Quels mots ont été rappelés?","IntrusionPrompt":"Intrusion? (Mots absents de la liste)"}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'FR_Instructions_FaCE', 'FR', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"RecallInstructions":"FR: Please repeat the entire word list","GetReadyInstructions":"Get ready for the next trial","Instructions01":[{"page":"Je vais vous lire une liste de mots que vous aurez à retenir. Écoutez-les attentivement. Quand j’aurai terminé, je veux que vous me redisiez le plus de mots possible dont vous vous rappelez, dans l’ordre que vous voulez"}],"Instructions02":[{"page":"Maintenant je vais lire la même liste de mots une seconde fois. Essayez de vous rappeler du plus grand nombre de mots possible, y compris ceux que vous avez énoncés la première fois et dites les moi, dans l’ordre que vous souhaitez"}],"Instructions03":[{"page":"Now you will hear a second list of words. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember. It does not matter in what order you repeat them, just try to remember as many as you can.<br/><br/> Press next to begin."}],"Instructions04":[{"page":"Now repeat back all the words you can recall from the first list, the list you heard a number of times.<br/><br/>Press next to begin."}],"InstructionsDelayed":[{"page":"Je vous ai lu une série de mots plus tôt dont je vous ai demandé de vous rappeler. Maintenant, dites-moi tous les mots dont vous vous rappelez."}],"WordPrompt":"empty","ThankYouText":[{"page":"Gardez-en mémoire les mots que je vous ai lus, je vais vous demander de les répéter à la fin du test."}],"title":"Rappel différé","WordRecallPrompt":"Quels mots ont été rappelés?","IntrusionPrompt":"Intrusion? (Mots absents de la liste)"}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_CERAD', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"Instructions01":[{"page":"You will see some words printed on the screen one at a time. Please read each word out loud and try to remember it, because later you will be asked to try to remember all of the words you have been shown you. Ready? Read the word and try to remember it."}],"Instructions05":[{"page":"Good, say all the words you can remember."}],"Instructions02":[{"page":""},{"page":"Now you will see the same words again. Read each word out loud and try to remember it."}],"InstructionsDelayed":[{"page":"A few minutes ago you read some words printed on the screen. Say all of the words you can remember that were on the screen."}],"ThankYouText":"Thank you","IntrusionPrompt":"Intrusion? (Words not in the list)","WordRecallPrompt":"Which words were recalled?"}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+SELECT task_type_id, 'EN_Instructions_CERAD', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recall Task."}],"Instructions01":[{"page":"You will see some words printed on the screen one at a time. Please read each word out loud and try to remember it, because later you will be asked to try to remember all of the words you have been shown you. Ready? Read the word and try to remember it."}],"Instructions05":[{"page":"Good, say all the words you can remember."}],"Instructions02":[{"page":""},{"page":"Now you will see the same words again. Read each word out loud and try to remember it."}],"InstructionsDelayed":[{"page":"A few minutes ago you read some words printed on the screen. Say all of the words you can remember that were on the screen."}],"ThankYouText":"Thank you","IntrusionPrompt":"Intrusion? (Words not in the list)","WordRecallPrompt":"Which words were recalled?"}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT task_type_id, 'EN_Instructions_Default', 'EN', '{"WelcomeText":[{"page":"Welcome to the Word Recognition Task."}],"Instructions01":[{"page":"You are going to hear a list that contains the words from the first list, the one you studied several times."},{"page":"If the word was on that first list, press <em>yes</em>, and if it was not on the first list, then press <em>no</em>."}],"ThankYouText":[{"page":"Thank you"}]}'
@@ -755,180 +831,1060 @@ SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_TEST', 'EN', '{"questionnaire":["panas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'AES_001', 'EN', '{"questionnaire":["aes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_001', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_S_002', 'EN', '{"questionnaire":["stai_state"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STAI_T_001', 'EN', '{"questionnaire":["stai_trait"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_001', 'EN', '{"questionnaire":["bdi","gds"],"criteria":["( XXX > 17 ) && ( XXX < 31 )","( XXX > 59 )"],"variable":"Age","AskForNotes":true,"ShowWelcome":false,"ShowThankYou":true,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BDI_002', 'EN', '{"questionnaire":["bdi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CFS_001', 'EN', '{"questionnaire":["cfs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GAS_001', 'EN', '{"questionnaire":["gas"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_001', 'EN', '{"questionnaire":["gds"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'GDS_004', 'EN', '{"questionnaire":["gds_04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EQ5D_001', 'EN', '{"questionnaire":["eq5dJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001', 'EN', '{"questionnaire":["IntakeForm_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_001', 'EN', '{"questionnaire":["panasJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'UCLA_LONELINESS_001', 'EN', '{"questionnaire":["UCLAloneliness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'BERKSYME_001', 'EN', '{"questionnaire":["berksyme"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'STANFORDSLEEPINESS_001', 'EN', '{"questionnaire":["stanfordSleepiness"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001', 'EN', '{"questionnaire":["cesam"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'WEMWBS_001', 'EN', '{"questionnaire":["wemwbs"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_Short_001', 'EN', '{"questionnaire":["panasShortJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PAES_001', 'EN', '{"questionnaire":["paes"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortWeekly_001', 'EN', '{"questionnaire":["panasShortWeekly"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PANAS_ShortBaseline_001', 'EN', '{"questionnaire":["panasShortBaselineJSON"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicEnterName_001', 'EN', '{"questionnaire":["EnterName_Music"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'TESTJSON', 'EN', '{"questionnaire":["TESTJSON"],"criteria":[],"variable":[],"AskForNotes":true,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CESAM_001TEST', 'EN', '{"questionnaire":["cesamJSONformSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'MusicDemographics_001SHORT', 'EN', '{"questionnaire":["IntakeForm_MusicJSONSHORT"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'PARQ_001', 'EN', '{"questionnaire":["parq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CCICIMAQ_001', 'EN', '{"questionnaire":["cci_cimaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'COGQUOT_001', 'EN', '{"questionnaire":["cog_quot"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'IPAQ_001', 'EN', '{"questionnaire":["ipaq"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SLEEP_001', 'EN', '{"questionnaire":["sleep_cimaq2014"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp01_001', 'EN', '{"questionnaire":["compExp_part01"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp02_001', 'EN', '{"questionnaire":["compExp_part02"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp03_001', 'EN', '{"questionnaire":["compExp_part03"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CompExp04_001', 'EN', '{"questionnaire":["compExp_part04"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ADLPI_001', 'EN', '{"questionnaire":["adl_pi"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FRS_001', 'EN', '{"questionnaire":["FRS"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SocioMontreal_001', 'EN', '{"questionnaire":["Sociodemographic"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
 FROM task_types WHERE task_name = 'Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Form Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Questionnaire JSON';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'IPAQ Questionnaire';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ScoringMMSE_001', 'EN', '{"questionnaire":["ScoringMMSE"],"criteria":[],"variable":[],"AskForNotes":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":false}'
+FROM task_types WHERE task_name = 'Matrix Questionnaire ExtraQ';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'ReadingListeningList01', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":false,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":3}'
 FROM task_types WHERE task_name = 'Reading/Listening Test';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ReadingListeningList01', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":false,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":3}'
+FROM task_types WHERE task_name = 'Reading Test';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'ReadingListeningList02', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":true,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":5}'
 FROM task_types WHERE task_name = 'Reading/Listening Test';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'ReadingListeningList02', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowInstructions":true,"InstructionsSpoken":false,"ShowThankYou":true,"AskForNotes":false,"RecordAUDIO":true,"ScoreNeeded":0.7,"SentencesToRepeat":5}'
+FROM task_types WHERE task_name = 'Reading Test';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EN_BriefScreening', 'EN', '{"title":"Screening","pages":[[{"type":"text","prompt":"What is your Age?","placeholder":"","input_type":"number","name":"Age","required":true},{"type":"multi-choice","prompt":"Is English or French your maternal or primary spoken language?","options":["Yes","No"],"name":"Language","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Do you have normal (or correct to normal) vision? This includes glasses, contacts and corrective surgery.","options":["Yes","No"],"name":"Vision","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Do you have normal (or correct to normal) hearing?","options":["Yes","No"],"name":"Hearing","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Do you have any neurological disorders? (e.g. lupus)?","options":["Yes","No"],"name":"Neurological","required":true,"correct_response":"No"}]],"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Screening';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FR_BriefScreening', 'FR', '{"title":"Dépistage","pages":[[{"type":"text","prompt":"Quel âge avez-vous?","placeholder":"","input_type":"number","name":"Age","required":true},{"type":"multi-choice","prompt":"L''anglais ou le français est-il votre langue maternelle ou votre langue parlée principale?","options":["Qui","No"],"name":"Language","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Avez-vous une vision normale (ou correcte à normale) ? Cela comprend les lunettes, les lentilles de contact et la chirurgie correctrice.","options":["Qui","No"],"name":"Vision","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Avez-vous une audition normale (ou correcte à normale)?","options":["Qui","No"],"name":"Hearing","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Avez-vous des troubles neurologiques? (par exemple lupus)?","options":["Qui","No"],"name":"Neurological","required":true,"correct_response":"No"}]],"ShowInstructions":true}'
+FROM task_types WHERE task_name = 'Screening';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'EN_BriefScreening_DEMO', 'EN', '{"title":"Screening","pages":[[{"type":"text","prompt":"What is your Age?","placeholder":"","input_type":"number","name":"Age","required":true},{"type":"multi-choice","prompt":"Is English or French your maternal or primary spoken language?","options":["Yes","No"],"name":"Language","required":true,"correct_response":"Yes"},{"type":"multi-choice","prompt":"Do you have any neurological disorders? (e.g. lupus)?","options":["Yes","No"],"name":"Neurological","required":true,"correct_response":"No"}]]}'
+FROM task_types WHERE task_name = 'Screening';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SerialSubtract_Default', 'EN', '{"StartValue":100,"StepValue":7,"StopValue":65,"ShowInstructions":true,"ShowWelcome":true,"ShowThankYou":false,"AskForNotes":false,"ResponseType":"Spoken","TimeLimit":120,"DelayBeforeShowingDoneButton":10,"RecordAUDIO":true}'
@@ -984,20 +1940,40 @@ SELECT task_type_id, 'SpatialDMS_Adaptive', 'EN', '{"ShowWelcome":false,"Welcome
 FROM task_types WHERE task_name = 'Spatial DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SpatialDMS_Adaptive', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"MaxTrials":40,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_AdaptiveSHORT', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":2,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SpatialDMS_AdaptiveSHORT', 'EN', '{"ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":2,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_Adaptive_002', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":40,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SpatialDMS_Adaptive_002', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":40,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_Adaptive_003', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SpatialDMS_Adaptive_003', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":4,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":2500,"RetOnTime":3200,"ProbeOnTime":2500,"ITITime":1000,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'SpatialDMS_Adaptive_003B', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":1,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":250,"RetOnTime":320,"ProbeOnTime":250,"ITITime":100,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
 FROM task_types WHERE task_name = 'Spatial DMS';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'SpatialDMS_Adaptive_003B', 'EN', '{"ShowWelcome":true,"WelcomeSpoken":false,"ShowThankYou":true,"ShowInstructions":true,"MaxTrials":4,"NPracticeTrials":1,"MaxReversals":15,"StartValue":1,"MinValue":1,"MaxValue":20,"StepSize":1,"NUp":3,"NDown":1,"FastStart":true,"MaskOnTime":300,"StimOnTime":250,"RetOnTime":320,"ProbeOnTime":250,"ITITime":100,"ButtonLabels":["Yes","No"],"KeyboardValues":["arrowleft","arrowright"],"KeyboardMappings":[true,false]}'
+FROM task_types WHERE task_name = 'TEST Spatial DMS';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'Stroop_Default', 'EN', '{"ColorPracticeRepeats":1,"WordPracticeRepeats":1,"ColorWordPracticeRepeats":1,"ColorTestRepeats":2,"WordTestRepeats":1,"ColorWordTestRepeats":1,"ITI_Range":[250,500,750,1000,1250,1500,1750,2000],"ITI_Duration":-99,"AllowedTime":-99,"Score_NumberTrials":null,"Score_ProcedureName":null,"ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
@@ -1012,15 +1988,15 @@ SELECT task_type_id, 'Stroop_Default', 'EN', '{"ColorPracticeRepeats":1,"WordPra
 FROM task_types WHERE task_name = 'Stroop Color/Word';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
-SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":3,"ITI_Range":[],"ITI_Duration":500,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
 FROM task_types WHERE task_name = 'Stroop Color';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
-SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":3,"ITI_Range":[],"ITI_Duration":500,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
 FROM task_types WHERE task_name = 'Stroop Word';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
-SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":2,"ITI_Range":[],"ITI_Duration":10,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":false}'
+SELECT task_type_id, 'Stroop_Victoria', 'EN', '{"ColorPracticeRepeats":2,"WordPracticeRepeats":2,"ColorWordPracticeRepeats":2,"ColorTestRepeats":6,"WordTestRepeats":6,"ColorWordTestRepeats":3,"ITI_Range":[],"ITI_Duration":500,"AllowedTime":-99,"Score_NumberTrials":24,"Score_ProcedureName":"Victoria","ShowInstructions":true,"InstructionsSpoken":false,"ShowWelcome":true,"ShowThankYou":true}'
 FROM task_types WHERE task_name = 'Stroop Color/Word';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
@@ -1088,92 +2064,184 @@ SELECT task_type_id, 'RAVLT_Manual_Immediate', 'EN', '{"FolderName":"Set001/","W
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'RAVLT_Manual_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":true,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'RAVLT_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":true,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"Instructions01Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav"],"Instructions01Time":[10000,8000],"Instructions02Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions02A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions02B.wav"],"Instructions02Time":[10000,8000],"Instructions03Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions03A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions03B.wav"],"Instructions03Time":[10000,8000],"Instructions04Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions04.wav"],"Instructions04Time":[10000]}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'RAVLT_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":true,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"Instructions01Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav"],"Instructions01Time":[10000,8000],"Instructions02Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions02A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions02B.wav"],"Instructions02Time":[10000,8000],"Instructions03Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions03A.wav","assets/SoundFiles/Instructions/WordRecall_Instructions03B.wav"],"Instructions03Time":[10000,8000],"Instructions04Audio":["assets/SoundFiles/Instructions/WordRecall_Instructions04.wav"],"Instructions04Time":[10000]}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'RAVLT_Manual_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Manual","RecallDuration":60,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":false}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'RAVLT_Manual_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Manual","RecallDuration":60,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":false,"ShowThankYou":false,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":false}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'RAVLT_Spoken_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'RAVLT_Spoken_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Spoken_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Spoken_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Spoken_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Spoken_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Spoken_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Spoken_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Manual_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Manual_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Manual_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Manual_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Immediate_Manual_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Immediate_Manual_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Spoken_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Spoken_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Spoken_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Spoken_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Spoken_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Spoken_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Manual_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Manual_Training_EN', 'EN', '{"WordList":"EN_FaCE_Training","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Manual_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Manual_VerA_EN', 'EN', '{"WordList":"FaCE","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'FaCE_Delayed_Manual_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'FaCE_Delayed_Manual_VerB_EN', 'EN', '{"WordList":"EN_FaCE_VerB","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":300,"DelayedRecallFlag":true,"ShowWelcome":true,"WelcomeSpoken":true,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'Demo', 'EN', '{"WordList":"Demo","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Demo', 'EN', '{"WordList":"Demo","FolderName":"Set001/","FileExtension":".wav","NBlocks":2,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'DemoENDelayed', 'EN', '{"WordList":"EN_Demo","FolderName":"Demo/EN/EN-US-Neural2-F/","FileExtension":".wav","NBlocks":1,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'DemoENDelayed', 'EN', '{"WordList":"EN_Demo","FolderName":"Demo/EN/EN-US-Neural2-F/","FileExtension":".wav","NBlocks":1,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecallDuration":120,"DelayBeforeShowingDoneButton":3,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'DemoENManual', 'EN', '{"WordList":"Demo","FolderName":"Set001/","FileExtension":".wav","NBlocks":5,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":3,"TimePerWord":200,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"Instructions01Time":10,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'DemoENManual', 'EN', '{"WordList":"Demo","FolderName":"Set001/","FileExtension":".wav","NBlocks":5,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":3,"TimePerWord":200,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"Instructions01Time":10,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CERAD_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CERAD_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CERAD_Manual_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":false,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CERAD_Manual_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":false,"VisualPresentation":true,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'CERAD_Manual_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
 FROM task_types WHERE task_name = 'Word Recall';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'CERAD_Manual_Delayed', 'EN', '{"FolderName":"Set001/","WordList":"CERAD","FileExtension":".wav","NBlocks":1,"BListFlag":false,"RecallType":"Manual","RecallDuration":60,"DelayBeforeShowingDoneButton":10,"TimePerWord":1500,"DelayedRecallFlag":true,"ShowWelcome":false,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"AskForNotes":false,"RecordAUDIO":true,"WordListOrder":[[0,1,2,3,4,5,6,7,8,9],[7,5,0,2,9,1,4,3,6,8],[4,8,1,5,6,2,0,9,7,3]]}'
+FROM task_types WHERE task_name = 'Word Recall Database';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'Hopkins_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"Hopkins","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
 FROM task_types WHERE task_name = 'Word Recall';
+
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+SELECT task_type_id, 'Hopkins_Spoken_Immediate', 'EN', '{"FolderName":"Set001/","WordList":"Hopkins","FileExtension":".wav","NBlocks":3,"BListFlag":false,"AudioPresentation":true,"VisualPresentation":false,"RecallType":"Spoken","RecallDuration":60,"DelayBeforeShowingDoneButton":8,"TimePerWord":1500,"DelayedRecallFlag":false,"ShowWelcome":true,"WelcomeSpoken":false,"WelcomeAudio":"assets/SoundFiles/Instructions/Welcome_WordRecall.wav","ShowThankYou":true,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'
+FROM task_types WHERE task_name = 'Word Recall Database';
 
 INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT task_type_id, 'RAVLT_WordRecog_Spoken', 'EN', '{"FolderName":"Set001/","WordList":"RAVLT","FileExtension":".wav","AudioPresentation":true,"VisualPresentation":true,"RecallType":"Spoken","RecogDuration":10,"ShowWelcome":false,"WelcomeSpoken":false,"ShowThankYou":false,"ShowInstructions":true,"InstructionsSpoken":false,"AskForNotes":false,"RecordAUDIO":true}'

@@ -6,7 +6,9 @@
 
 USE ncmbattery_config;
 
-INSERT INTO task_types (task_name, html_file, icon_file) VALUES
+-- INSERT IGNORE (task_name is UNIQUE) so this file can be re-run to add new rows to an
+-- existing database without failing on the rows already there.
+INSERT IGNORE INTO task_types (task_name, html_file, icon_file) VALUES
 ('Cancellation',        'html/JATOS/Cancellation.html',      'assets/Icons/Cancellation.png'),
 ('Card Sort',           'html/JATOS/CardSort.html',          'assets/Icons/CardSort.png'),
 ('Clock Drawing',       'html/JATOS/ClockDrawing.html',      'assets/Icons/ClockDrawing.png'),
@@ -40,14 +42,23 @@ INSERT INTO task_types (task_name, html_file, icon_file) VALUES
 ('Verbal DMS',          'html/JATOS/VerbalDMS.html',         'assets/Icons/VerbalDMS.png'),
 ('Word Recall',         'html/JATOS/WordRecall.html',        'assets/Icons/WordRecall.png'),
 ('Word Recognition',    'html/JATOS/WordRecog.html',         'assets/Icons/WordRecog.png'),
-('Yes No',              'html/JATOS/YesNo.html',             'assets/Icons/YesNo.png');
+('Yes No',              'html/JATOS/YesNo.html',             'assets/Icons/YesNo.png'),
+-- Added 2026-10-09 so every task named in Batteries/Batteries.js has a row
+-- (see migrate/migrate_batteries.js). Names match Batteries/ComponentList.js.
+('Questionnaire JSON',  'html/JATOS/QuestionnaireJSON.html', 'assets/Icons/MultiChoice.png'),
+('IPAQ Questionnaire',  'html/JATOS/IPAQQuestionnaire.html', 'assets/Icons/MultiChoice.png'),
+('Matrix Questionnaire ExtraQ', 'html/JATOS/MatrixQuestionnaireExtraQ.html', 'assets/Icons/MultiChoice.png'),
+('TEST Spatial DMS',    'html/JATOS/TESTSpatialDMS.html',    'assets/Icons/SpatialDMS.png'),
+('Ready Hold',          'html/JATOS/ReadyHold.html',         'assets/Icons/MultiChoice.png'),
+('Cost of Sport',       'html/JATOS/CostOfSport.html',       'assets/Icons/MultiChoice.png'),
+('Word Recall Database','html/JATOS/WordRecallDatabaseConfig.html', 'assets/Icons/WordRecall.png');
 
 -- ============================================================
 -- Example: Insert one parameter set for Word Recall
 -- (RAVLT_Spoken_Immediate from config/WordRecall_Setup.js)
 -- ============================================================
 
-INSERT INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
+INSERT IGNORE INTO task_parameters (task_type_id, parameter_name, language, parameters_json)
 SELECT
     tt.task_type_id,
     'RAVLT_Spoken_Immediate',
@@ -101,7 +112,7 @@ WHERE tt.task_name = 'Word Recall';
 -- (EN_Instructions_Default from WordRecall_Instructions.js)
 -- ============================================================
 
-INSERT INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
+INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
 SELECT
     tt.task_type_id,
     'Default',

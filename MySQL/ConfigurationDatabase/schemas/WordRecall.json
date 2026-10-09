@@ -1,0 +1,368 @@
+{
+  "taskTypes": [
+    "Word Recall",
+    "Word Recall Database"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-09 from 23 parameter sets; code scanned: WordRecall.html, WordRecallDatabaseConfig.html",
+  "readByCodeButNotInAnySet": [
+    "Instructions05Audio",
+    "Instructions05Time",
+    "RecordGIF"
+  ],
+  "schema": {
+    "type": "object",
+    "title": "Word Recall parameters",
+    "required": [
+      "FolderName",
+      "WordList",
+      "FileExtension",
+      "NBlocks",
+      "BListFlag",
+      "RecallType",
+      "RecallDuration",
+      "TimePerWord",
+      "DelayedRecallFlag",
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "AskForNotes"
+    ],
+    "properties": {
+      "FolderName": {
+        "type": "string",
+        "title": "Folder name",
+        "default": "Set001/"
+      },
+      "WordList": {
+        "type": "string",
+        "title": "Word list",
+        "enum": [
+          "CERAD",
+          "Demo",
+          "EN_Demo",
+          "EN_FaCE_Training",
+          "EN_FaCE_VerB",
+          "FaCE",
+          "Hopkins",
+          "RAVLT"
+        ],
+        "default": "RAVLT"
+      },
+      "FileExtension": {
+        "type": "string",
+        "title": "File extension",
+        "default": ".wav"
+      },
+      "NBlocks": {
+        "type": "integer",
+        "title": "N blocks",
+        "default": 2,
+        "description": "Values in use: 1, 2, 5, 3"
+      },
+      "BListFlag": {
+        "type": "boolean",
+        "title": "B list flag",
+        "default": false
+      },
+      "AudioPresentation": {
+        "type": "boolean",
+        "title": "Audio presentation",
+        "default": true,
+        "description": "in 20 of 23 sets"
+      },
+      "VisualPresentation": {
+        "type": "boolean",
+        "title": "Visual presentation",
+        "default": true,
+        "description": "in 20 of 23 sets"
+      },
+      "RecallType": {
+        "type": "string",
+        "title": "Recall type",
+        "enum": [
+          "Manual",
+          "Spoken"
+        ],
+        "default": "Manual"
+      },
+      "RecallDuration": {
+        "type": "integer",
+        "title": "Recall duration",
+        "default": 120,
+        "description": "Values in use: 60, 120"
+      },
+      "DelayBeforeShowingDoneButton": {
+        "type": "integer",
+        "title": "Delay before showing done button",
+        "default": 3,
+        "description": "Values in use: 8, 10, 3 · in 22 of 23 sets"
+      },
+      "TimePerWord": {
+        "type": "integer",
+        "title": "Time per word",
+        "default": 300,
+        "description": "Values in use: 500, 1500, 300, 200"
+      },
+      "DelayedRecallFlag": {
+        "type": "boolean",
+        "title": "Delayed recall flag",
+        "default": false
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome",
+        "default": true
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Welcome spoken",
+        "default": true,
+        "description": "in 22 of 23 sets"
+      },
+      "WelcomeAudio": {
+        "type": "string",
+        "title": "Welcome audio",
+        "default": "assets/SoundFiles/Instructions/Welcome_WordRecall.wav",
+        "description": "in 22 of 23 sets"
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank you",
+        "default": false
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Instructions spoken",
+        "default": false,
+        "description": "in 20 of 23 sets"
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for notes",
+        "default": false
+      },
+      "RecordAUDIO": {
+        "type": "boolean",
+        "title": "Record AUDIO",
+        "default": true,
+        "description": "not found in the task code (may be unused)"
+      },
+      "Instructions01Audio": {
+        "type": "array",
+        "title": "Instructions01 audio",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav",
+          "assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav"
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions01Time": {
+        "title": "Instructions01 time",
+        "description": "Edited as JSON (array or number). · in 2 of 23 sets",
+        "default": [
+          10000,
+          8000
+        ]
+      },
+      "Instructions02Audio": {
+        "type": "array",
+        "title": "Instructions02 audio",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WordRecall_Instructions02A.wav",
+          "assets/SoundFiles/Instructions/WordRecall_Instructions02B.wav"
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions02Time": {
+        "type": "array",
+        "title": "Instructions02 time",
+        "items": {
+          "type": "integer"
+        },
+        "default": [
+          10000,
+          8000
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions03Audio": {
+        "type": "array",
+        "title": "Instructions03 audio",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WordRecall_Instructions03A.wav",
+          "assets/SoundFiles/Instructions/WordRecall_Instructions03B.wav"
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions03Time": {
+        "type": "array",
+        "title": "Instructions03 time",
+        "items": {
+          "type": "integer"
+        },
+        "default": [
+          10000,
+          8000
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions04Audio": {
+        "type": "array",
+        "title": "Instructions04 audio",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WordRecall_Instructions04.wav"
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "Instructions04Time": {
+        "type": "array",
+        "title": "Instructions04 time",
+        "items": {
+          "type": "integer"
+        },
+        "default": [
+          10000
+        ],
+        "description": "in 1 of 23 sets"
+      },
+      "WordListOrder": {
+        "type": "array",
+        "title": "Word list order",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "default": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            7,
+            5,
+            0,
+            2,
+            9,
+            1,
+            4,
+            3,
+            6,
+            8
+          ],
+          [
+            4,
+            8,
+            1,
+            5,
+            6,
+            2,
+            0,
+            9,
+            7,
+            3
+          ]
+        ],
+        "description": "in 3 of 23 sets"
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "BListFlag": {
+      "ui:widget": "radio"
+    },
+    "AudioPresentation": {
+      "ui:widget": "radio"
+    },
+    "VisualPresentation": {
+      "ui:widget": "radio"
+    },
+    "DelayedRecallFlag": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordAUDIO": {
+      "ui:widget": "radio"
+    },
+    "Instructions01Time": {
+      "ui:field": "json"
+    },
+    "ui:order": [
+      "FolderName",
+      "WordList",
+      "FileExtension",
+      "NBlocks",
+      "BListFlag",
+      "RecallType",
+      "RecallDuration",
+      "TimePerWord",
+      "DelayedRecallFlag",
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "AskForNotes",
+      "AudioPresentation",
+      "VisualPresentation",
+      "DelayBeforeShowingDoneButton",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "InstructionsSpoken",
+      "RecordAUDIO",
+      "Instructions01Audio",
+      "Instructions01Time",
+      "Instructions02Audio",
+      "Instructions02Time",
+      "Instructions03Audio",
+      "Instructions03Time",
+      "Instructions04Audio",
+      "Instructions04Time",
+      "WordListOrder",
+      "*"
+    ]
+  }
+}

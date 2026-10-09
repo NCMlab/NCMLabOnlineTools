@@ -20,12 +20,14 @@ require_once __DIR__ . '/../db_config.php';
 define('ADMIN_ALLOWED_ORIGIN', 'https://your-admin-site.example.edu');
 // ----------------------------------------------------------------------------
 
+
+
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if ($origin === ADMIN_ALLOWED_ORIGIN) {
     header("Access-Control-Allow-Origin: $origin");
 }
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
 header('Content-Type: application/json');
 
@@ -64,6 +66,18 @@ function get_admin_pdo(): PDO {
     } catch (PDOException $e) {
         respond_error(500, 'Database connection failed.');
     }
+}
+
+/**
+ * For read-only admin endpoints (GET): confirms a logged-in session but does
+ * not check the CSRF token -- CSRF only matters for state-changing requests.
+ * Exits with 401 on failure.
+ */
+function require_admin_login(): int {
+    if (empty($_SESSION['admin_user_id'])) {
+        respond_error(401, 'Not logged in.');
+    }
+    return (int) $_SESSION['admin_user_id'];
 }
 
 /**

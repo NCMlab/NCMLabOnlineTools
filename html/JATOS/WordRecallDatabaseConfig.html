@@ -65,6 +65,41 @@
       // Update this URL to point to your deployed API_task_config.php
       // =============================================================
       const DB_API_URL = 'http://127.0.0.1/api/API_task_config.php';
+      console.log('[DB] Page origin:', window.location.origin, '| DB_API_URL:', DB_API_URL);
+
+      // =============================================================
+      // Shared fetch helper with verbose logging so you can see exactly
+      // what the server returns (status, headers, raw body).
+      // =============================================================
+      async function fetchJSONWithLogging(label, url) {
+        console.log(`[DB] ${label}: requesting`, url);
+        const t0 = performance.now();
+        let response;
+        try {
+          response = await fetch(url);
+        } catch (err) {
+          // A TypeError here usually means the server is not running,
+          // the URL is wrong, or the request was blocked by CORS.
+          console.error(`[DB] ${label}: network error (server down, wrong URL, or CORS block)`, err);
+          throw err;
+        }
+        console.log(`[DB] ${label}: response status ${response.status} ${response.statusText} in ${(performance.now() - t0).toFixed(0)} ms`);
+        console.log(`[DB] ${label}: content-type =`, response.headers.get('content-type'),
+                    '| access-control-allow-origin =', response.headers.get('access-control-allow-origin'));
+        const text = await response.text();
+        console.log(`[DB] ${label}: raw response body:`, text);
+        if (!response.ok) {
+          throw new Error(`${label} fetch failed (${response.status}): ${text}`);
+        }
+        try {
+          const data = JSON.parse(text);
+          console.log(`[DB] ${label}: parsed JSON:`, data);
+          return data;
+        } catch (err) {
+          console.error(`[DB] ${label}: response is not valid JSON (PHP error/warning in output?)`, err);
+          throw err;
+        }
+      }
 
       // =============================================================
       // Fetch a parameter set from the database.
@@ -74,11 +109,7 @@
         const url = `${DB_API_URL}?type=parameters`
                   + `&task=${encodeURIComponent(taskName)}`
                   + `&name=${encodeURIComponent(parameterName)}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Parameters fetch failed (${response.status}) for name="${parameterName}"`);
-        }
-        return response.json();
+        return fetchJSONWithLogging(`Parameters (task="${taskName}", name="${parameterName}")`, url);
       }
 
       // =============================================================
@@ -90,11 +121,7 @@
                   + `&task=${encodeURIComponent(taskName)}`
                   + `&name=${encodeURIComponent(instructionName)}`
                   + `&lang=${encodeURIComponent(lang)}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Instructions fetch failed (${response.status}) for name="${instructionName}" lang="${lang}"`);
-        }
-        return response.json();
+        return fetchJSONWithLogging(`Instructions (task="${taskName}", name="${instructionName}", lang="${lang}")`, url);
       }
 
       // =============================================================
@@ -107,6 +134,8 @@
       var parameters = 'empty';
 
       jatos.onLoad(async () => {
+        console.log('[DB] Database onLoad handler started');
+        console.log('[DB] studySessionData:', jatos.studySessionData);
 
         // -- 1. Determine which parameter set and instruction set to use --------
         //    This logic is unchanged from the original WordRecall.html.
@@ -152,6 +181,7 @@
         // -- 6. Load label names via pseudoSwitch (unchanged) -------------------
         pseudoSwitch(LANG + '_LabelNames');
         console.log('Instructions object:', Instructions);
+        console.log('[DB] Database onLoad handler finished');
 
       });
     </script>
@@ -204,6 +234,7 @@
         console.log(JATOSID)
         var resultsData = {'name':'JASON'};
         jatos.addJatosIds(resultsData);
+        console.log('[DB] Second onLoad handler: calling jsPsych.run(timeline). parameters is currently:', parameters);
         jsPsych.run(timeline);
       });
   </script>

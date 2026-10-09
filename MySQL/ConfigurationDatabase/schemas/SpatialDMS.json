@@ -1,0 +1,244 @@
+{
+  "taskTypes": [
+    "Spatial DMS",
+    "TEST Spatial DMS"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-09 from 5 parameter sets; code scanned: SpatialDMS.html, TESTSpatialDMS.html",
+  "readByCodeButNotInAnySet": [
+    "AskForNotes",
+    "Instructions01Audio",
+    "Instructions01Time",
+    "Instructions02Audio",
+    "Instructions02Time",
+    "Instructions03Audio",
+    "Instructions03Time",
+    "Instructions04Audio",
+    "Instructions04Time",
+    "Instructions05Audio",
+    "Instructions05Time",
+    "InstructionsSpoken",
+    "RecordGIF",
+    "WelcomeAudio"
+  ],
+  "schema": {
+    "type": "object",
+    "title": "Spatial DMS parameters",
+    "required": [
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "MaxTrials",
+      "NPracticeTrials",
+      "MaxReversals",
+      "StartValue",
+      "MinValue",
+      "MaxValue",
+      "StepSize",
+      "NUp",
+      "NDown",
+      "FastStart",
+      "MaskOnTime",
+      "StimOnTime",
+      "RetOnTime",
+      "ProbeOnTime",
+      "ITITime",
+      "ButtonLabels",
+      "KeyboardValues",
+      "KeyboardMappings"
+    ],
+    "properties": {
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome",
+        "default": true
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Welcome spoken",
+        "default": false
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank you",
+        "default": true
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true
+      },
+      "MaxTrials": {
+        "type": "integer",
+        "title": "Max trials",
+        "default": 4,
+        "description": "Values in use: 40, 4"
+      },
+      "NPracticeTrials": {
+        "type": "integer",
+        "title": "N practice trials",
+        "default": 4,
+        "description": "Values in use: 4, 2, 1"
+      },
+      "MaxReversals": {
+        "type": "integer",
+        "title": "Max reversals",
+        "default": 15,
+        "description": "Values in use: 15"
+      },
+      "StartValue": {
+        "type": "integer",
+        "title": "Start value",
+        "default": 1,
+        "description": "Values in use: 1"
+      },
+      "MinValue": {
+        "type": "integer",
+        "title": "Min value",
+        "default": 1,
+        "description": "Values in use: 1"
+      },
+      "MaxValue": {
+        "type": "integer",
+        "title": "Max value",
+        "default": 20,
+        "description": "Values in use: 20"
+      },
+      "StepSize": {
+        "type": "integer",
+        "title": "Step size",
+        "default": 1,
+        "description": "Values in use: 1"
+      },
+      "NUp": {
+        "type": "integer",
+        "title": "N up",
+        "default": 3,
+        "description": "Values in use: 3"
+      },
+      "NDown": {
+        "type": "integer",
+        "title": "N down",
+        "default": 1,
+        "description": "Values in use: 1"
+      },
+      "FastStart": {
+        "type": "boolean",
+        "title": "Fast start",
+        "default": true
+      },
+      "MaskOnTime": {
+        "type": "integer",
+        "title": "Mask on time",
+        "default": 300,
+        "description": "Values in use: 300"
+      },
+      "StimOnTime": {
+        "type": "integer",
+        "title": "Stim on time",
+        "default": 2500,
+        "description": "Values in use: 2500, 250"
+      },
+      "RetOnTime": {
+        "type": "integer",
+        "title": "Ret on time",
+        "default": 3200,
+        "description": "Values in use: 3200, 320"
+      },
+      "ProbeOnTime": {
+        "type": "integer",
+        "title": "Probe on time",
+        "default": 2500,
+        "description": "Values in use: 2500, 250"
+      },
+      "ITITime": {
+        "type": "integer",
+        "title": "ITI time",
+        "default": 1000,
+        "description": "Values in use: 1000, 100"
+      },
+      "ButtonLabels": {
+        "type": "array",
+        "title": "Button labels",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "Yes",
+          "No"
+        ]
+      },
+      "KeyboardValues": {
+        "type": "array",
+        "title": "Keyboard values",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "arrowleft",
+          "arrowright"
+        ]
+      },
+      "KeyboardMappings": {
+        "type": "array",
+        "title": "Keyboard mappings",
+        "items": {
+          "type": "boolean"
+        },
+        "default": [
+          true,
+          false
+        ]
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "FastStart": {
+      "ui:widget": "radio"
+    },
+    "KeyboardMappings": {
+      "items": {
+        "ui:widget": "radio"
+      }
+    },
+    "ui:order": [
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "MaxTrials",
+      "NPracticeTrials",
+      "MaxReversals",
+      "StartValue",
+      "MinValue",
+      "MaxValue",
+      "StepSize",
+      "NUp",
+      "NDown",
+      "FastStart",
+      "MaskOnTime",
+      "StimOnTime",
+      "RetOnTime",
+      "ProbeOnTime",
+      "ITITime",
+      "ButtonLabels",
+      "KeyboardValues",
+      "KeyboardMappings",
+      "*"
+    ]
+  }
+}

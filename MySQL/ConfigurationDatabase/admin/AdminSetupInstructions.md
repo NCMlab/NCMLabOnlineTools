@@ -85,7 +85,8 @@ define('ADMIN_ALLOWED_ORIGIN', 'https://battery-admin.your-lab.edu');
 
 Deploy `admin_common.php`, `API_admin_login.php`, `API_admin_logout.php`, `API_admin_whoami.php`,
 `API_admin_create_parameter.php`, `API_admin_create_instruction.php`,
-`API_admin_create_battery.php` together to a folder on your PHP/Apache server (e.g.
+`API_admin_create_battery.php`, `API_admin_get.php`, `API_admin_delete.php`,
+`API_admin_set_battery_active.php` together to a folder on your PHP/Apache server (e.g.
 `/var/www/html/api/admin/`). Also deploy the parent folder's `API_list_config.php` alongside the
 existing public `API_battery.php`/`API_task_config.php` (e.g. `/var/www/html/api/`) — it's the
 public, unauthenticated "what exists?" endpoint NCMBatteryWebsite uses to populate its task-type
@@ -156,9 +157,30 @@ lab data from outside your own machine:
 - **No audit log.** Nothing currently records *which* admin created a given battery/parameter
   set, or when. If more than one person will use this UI, consider adding a `created_by`
   column (FK to `admin_users`) to `batteries`/`task_parameters`/`task_instructions`.
-- **No "update" or "delete" endpoints.** Only `create_*`. This was a deliberate scope decision
-  (see `DiscussionLog.md`) — editing/removing existing parameter sets that other batteries may
-  already reference needs its own careful design (what happens to a battery using a parameter
-  set someone just changed?), not a quick addition to this API.
+- **Editing is copy-on-edit, by design — there is no "update" endpoint.** Chosen by Jason
+  2026-10-09 so that data already collected stays tied to the exact configuration that produced
+  it. See "Copy-on-edit" below.
+- **No provenance column.** A copied set doesn't record which set it was copied from (the
+  `_v2`/`_v3` naming suggestion is the only link). Add a nullable `derived_from_id` column to
+  `task_parameters`/`task_instructions`/`batteries` if that history matters.
 - **Session lifetime is PHP's default** (`session.gc_maxlifetime`, typically 24 minutes of
   inactivity). Fine for a low-traffic internal tool; revisit if that's annoying in practice.
+
+---
+
+## Copy-on-edit (added 2026-10-09)
+
+Nothing in `task_parameters`, `task_instructions`, or `batteries` is ever edited in place:
+
+| Endpoint | Method | What it does |
+|---|---|---|
+| `API_admin_get.php?type=parameter\|instruction\|battery&id=` | GET (login, no CSRF) | One full record by primary key, JSON decoded. Parameter/instruction records include `used_by` (the batteries that reference them); battery records include their ordered `tasks`. |
+| `API_admin_create_*.php` | POST | Unchanged. "Edit" in the UI = load with `API_admin_get.php`, change, save through these as a **new** name / battery index. |
+| `API_admin_delete.php` `{type, id}` | POST | Parameter/instruction sets: refused (409) while any battery uses them — the foreign keys are `ON DELETE SET NULL`, so without this check a delete would silently strip config out of existing batteries. Batteries: refused (409) while still active. |
+| `API_admin_set_battery_active.php` `{battery_id, active}` | POST | The only in-place change. Retires the original after a copy is saved, and is the required first step before deleting a battery. |
+
+`../API_list_config.php` also gained `resource=batteries`, a `used_by` count on parameter and
+instruction rows, and an optional `task_type_id` (omit it to list every task type's sets).
+
+`require_admin_login()` was added to `admin_common.php` for read-only admin endpoints (checks the
+session, not the CSRF token), and `Access-Control-Allow-Methods` now includes `GET`.

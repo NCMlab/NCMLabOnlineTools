@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS task_types (
     task_name      VARCHAR(100)  NOT NULL UNIQUE,
     html_file      VARCHAR(255)  NOT NULL,
     icon_file      VARCHAR(255),
+    parameter_schema JSON        NULL,   -- JSON Schema describing this task's parameters (see schemas/); NULL = edit as raw JSON
     created_at     TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
 );
 

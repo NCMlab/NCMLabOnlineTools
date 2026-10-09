@@ -520,5 +520,14 @@
     "review": 0,
     "errs": 0,
     "fileError": null
+  },
+  {
+    "file": "Screening.js",
+    "kind": "parameters",
+    "total": 3,
+    "ok": 3,
+    "review": 0,
+    "errs": 0,
+    "fileError": null
   }
 ]

@@ -12,11 +12,19 @@
  *
  * Usage:
  *   GET ?resource=task_types
- *     -> [{task_type_id, task_name, html_file, icon_file}, ...]
- *   GET ?resource=parameters&task_type_id=25
- *     -> [{parameter_id, parameter_name, language}, ...]
- *   GET ?resource=instructions&task_type_id=25
- *     -> [{instruction_id, instruction_name, language}, ...]
+ *     -> [{task_type_id, task_name, html_file, icon_file, parameter_schema}, ...]
+ *        parameter_schema is {reviewed, schema, uiSchema} (see schemas/) or null
+ *   GET ?resource=parameters[&task_type_id=25]
+ *     -> [{parameter_id, task_type_id, task_name, parameter_name, language, created_at, used_by}, ...]
+ *   GET ?resource=instructions[&task_type_id=25]
+ *     -> [{instruction_id, task_type_id, task_name, instruction_name, language, created_at, used_by}, ...]
+ *   GET ?resource=batteries
+ *     -> [{battery_id, battery_index, battery_name, description, language, active, created_at, task_count}, ...]
+ *
+ * task_type_id is optional for parameters/instructions -- omit it to list
+ * every task type's sets at once. used_by is the number of battery_tasks
+ * rows (across all batteries, active or not) that reference the set; the
+ * admin UI uses it to warn before deleting and to show what a set is for.
  */
 
 header('Content-Type: application/json');
@@ -31,8 +39,8 @@ function respond_error(int $code, string $message): void {
 }
 
 $resource = $_GET['resource'] ?? '';
-if (!in_array($resource, ['task_types', 'parameters', 'instructions'], true)) {
-    respond_error(400, 'Parameter "resource" must be "task_types", "parameters", or "instructions".');
+if (!in_array($resource, ['task_types', 'parameters', 'instructions', 'batteries'], true)) {
+    respond_error(400, 'Parameter "resource" must be "task_types", "parameters", "instructions", or "batteries".');
 }
 
 try {
@@ -47,34 +55,58 @@ try {
 
 if ($resource === 'task_types') {
     $stmt = $pdo->query('
-        SELECT task_type_id, task_name, html_file, icon_file
+        SELECT task_type_id, task_name, html_file, icon_file, parameter_schema
         FROM task_types
         ORDER BY task_name
+    ');
+    $rows = $stmt->fetchAll();
+    foreach ($rows as &$row) {
+        $row['parameter_schema'] = $row['parameter_schema'] === null ? null : json_decode($row['parameter_schema'], true);
+    }
+    unset($row);
+    echo json_encode($rows, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+if ($resource === 'batteries') {
+    $stmt = $pdo->query('
+        SELECT b.battery_id, b.battery_index, b.battery_name, b.description, b.language,
+               b.active, b.created_at, COUNT(bt.battery_task_id) AS task_count
+        FROM batteries b
+        LEFT JOIN battery_tasks bt ON bt.battery_id = b.battery_id
+        GROUP BY b.battery_id
+        ORDER BY b.battery_index
     ');
     echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+// task_type_id is optional: present -> one task type's sets, absent -> all of them.
 $taskTypeId = $_GET['task_type_id'] ?? null;
-if (!ctype_digit((string) $taskTypeId)) {
-    respond_error(400, 'Parameter "task_type_id" (integer) is required for this resource.');
+if ($taskTypeId !== null && !ctype_digit((string) $taskTypeId)) {
+    respond_error(400, 'Parameter "task_type_id" must be an integer.');
 }
-$taskTypeId = (int) $taskTypeId;
+$where = $taskTypeId === null ? '' : 'WHERE x.task_type_id = :id';
+$args = $taskTypeId === null ? [] : [':id' => (int) $taskTypeId];
 
 if ($resource === 'parameters') {
-    $stmt = $pdo->prepare('
-        SELECT parameter_id, parameter_name, language
-        FROM task_parameters
-        WHERE task_type_id = :id
-        ORDER BY parameter_name
-    ');
+    $stmt = $pdo->prepare("
+        SELECT x.parameter_id, x.task_type_id, tt.task_name, x.parameter_name, x.language, x.created_at,
+               (SELECT COUNT(*) FROM battery_tasks bt WHERE bt.parameter_id = x.parameter_id) AS used_by
+        FROM task_parameters x
+        JOIN task_types tt ON tt.task_type_id = x.task_type_id
+        $where
+        ORDER BY tt.task_name, x.parameter_name
+    ");
 } else { // instructions
-    $stmt = $pdo->prepare('
-        SELECT instruction_id, instruction_name, language
-        FROM task_instructions
-        WHERE task_type_id = :id
-        ORDER BY instruction_name
-    ');
+    $stmt = $pdo->prepare("
+        SELECT x.instruction_id, x.task_type_id, tt.task_name, x.instruction_name, x.language, x.created_at,
+               (SELECT COUNT(*) FROM battery_tasks bt WHERE bt.instruction_id = x.instruction_id) AS used_by
+        FROM task_instructions x
+        JOIN task_types tt ON tt.task_type_id = x.task_type_id
+        $where
+        ORDER BY tt.task_name, x.instruction_name, x.language
+    ");
 }
-$stmt->execute([':id' => $taskTypeId]);
+$stmt->execute($args);
 echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);

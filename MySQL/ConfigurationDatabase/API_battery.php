@@ -61,8 +61,9 @@ if (!$battery) {
 $battery_id = $battery['battery_id'];
 
 // Decode JSON columns stored by MySQL
-$battery['header_buttons']    = json_decode($battery['header_buttons']);
-$battery['languages_to_show'] = json_decode($battery['languages_to_show']);
+// Both are nullable; json_decode(null) emits a deprecation notice into the response on PHP 8.1+.
+$battery['header_buttons']    = $battery['header_buttons'] === null ? null : json_decode($battery['header_buttons']);
+$battery['languages_to_show'] = $battery['languages_to_show'] === null ? null : json_decode($battery['languages_to_show']);
 $battery['run_audio_test']    = (bool) $battery['run_audio_test'];
 unset($battery['battery_id']);
 
