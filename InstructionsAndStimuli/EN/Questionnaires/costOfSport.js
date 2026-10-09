@@ -40,7 +40,7 @@
 //         and shows the "Proceed with unanswered question" button (normal use).
 // false = no isSuggested warnings at all, so you can click through pages for testing.
 // (isRequired questions are not affected. Sport_Curr2 and Sport_Past are not flagged.)
-var SUGGEST_ALL_QUESTIONS = true;
+var SUGGEST_ALL_QUESTIONS = false;
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
@@ -52,6 +52,7 @@ const json = {
   progressBarShowPageNumbers: true,
   progressBarShowPageTitles: false,
   showCompletedPage: true,
+  clearInvisibleValues: "none", // This makes sure the calculated values are available when the results are converted to the CSV file.
   // ################################################################
   // ##### CALCULATIONS #############################################
   "calculatedValues": [
@@ -860,7 +861,7 @@ const json = {
     },
       {
           type: "expression",
-          name: "Cost_Entr_$Y",
+          name: "Cost_Memb_$Y",
           title: "Estimated annual fees",
           displayStyle: "decimal",
           precision: 2,
@@ -914,7 +915,7 @@ const json = {
     },
     {
         type: "expression",
-        name: "Per_Use_Fees_$Y",
+        name: "Cost_$Y_Entr",
         title: "Estimated annual per use fees",
         displayStyle: "decimal",
         precision: 2,
@@ -932,7 +933,7 @@ const json = {
         currency: "CAD",
         visible: false,
         expression:
-          "{Cost_Entr_$Y} + {Per_Use_Fees_$Y}"
+          "{Cost_Memb_$Y} + {Cost_$Y_Entr}"
     },
         ]
       },
