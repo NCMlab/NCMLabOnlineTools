@@ -709,6 +709,12 @@ List.push({
   IconName: "EQ-5D",
 });
 List.push({
+  Task: "VAS Rating",
+  Parameters: "WellnessRating_001",
+  Instructions: "Default",
+  IconName: "VAS Rating",
+});
+List.push({
   Task: "Matrix Questionnaire",
   Parameters: "PAES_001",
   Instructions: "Default",
