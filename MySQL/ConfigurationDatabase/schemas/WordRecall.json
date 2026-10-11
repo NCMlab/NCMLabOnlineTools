@@ -4,18 +4,23 @@
     "Word Recall Database"
   ],
   "reviewed": false,
-  "generated": "migrate/infer_schemas.js on 2026-10-09 from 23 parameter sets; code scanned: WordRecall.html, WordRecallDatabaseConfig.html",
-  "readByCodeButNotInAnySet": [
-    "Instructions05Audio",
-    "Instructions05Time",
-    "RecordGIF"
+  "generated": "migrate/infer_schemas.js on 2026-10-09 from 23 parameter sets; titles, explanations and limits written by hand 2026-10-11 from functions/Experiments/WordRecall_experiment.js, GeneralPurposeFunctions/WordRecall.js, CommonParts.js, InstructionsAndStimuli/Stimuli/WordRecall_Lists.js and the folders in assets/SoundFiles/Words/",
+  "reviewNotes": [
+    "Descriptions starting with 'CHECK:' describe code behaviour that may not be intended, or a judgment call. Confirm or correct each, then set reviewed to true.",
+    "Task order (immediate session): welcome; microphone check if Spoken; learning trial 1 (Instructions 01, words, Instructions 05, recall); learning trials 2..N (Instructions 02, words, recall); if List B: Instructions 03, List B words, recall of B, then Instructions 04 and recall of List A again without re-presenting it; notes; thank you. A delayed session (Delayed recall = Yes) skips all presentation: delayed instructions, then recall of List A.",
+    "Possible bugs in existing sets, found while writing this (not changed):",
+    "  - 9 FaCE/Demo sets use Word list EN_FaCE_Training, EN_FaCE_VerB or EN_Demo. The page looks up <LANG>_<Word list>, i.e. EN_EN_FaCE_Training, which doesn't exist, and there is no matching audio folder. These values are kept as pull-down options marked CHECK so the sets still open.",
+    "  - RAVLT_Manual_Delayed has Delayed recall = No and no Audio/Visual presentation setting, so it would present no words before recall. It probably needs Delayed recall = Yes, like RAVLT_Spoken_Delayed.",
+    "  - FaCE_Immediate_Spoken_VerA_EN has Recall type = Manual despite 'Spoken' in its name.",
+    "  - DemoENManual has Instructions01Time = 10 (a single number; the code expects a list of milliseconds). Harmless while Speak the instructions is No.",
+    "Not added: RecordGIF (drawing tasks only)."
   ],
   "schema": {
     "type": "object",
     "title": "Word Recall parameters",
     "required": [
-      "FolderName",
       "WordList",
+      "FolderName",
       "FileExtension",
       "NBlocks",
       "BListFlag",
@@ -29,330 +34,313 @@
       "AskForNotes"
     ],
     "properties": {
-      "FolderName": {
-        "type": "string",
-        "title": "Folder name",
-        "default": "Set001/"
+      "DelayedRecallFlag": {
+        "type": "boolean",
+        "title": "Delayed recall session",
+        "description": "Yes: this is the delayed-recall part. No words are presented; the participant sees the delayed-recall instructions and recalls List A once. All presentation settings below are then ignored. No: an immediate session with learning trials.",
+        "default": false
       },
       "WordList": {
         "type": "string",
         "title": "Word list",
-        "enum": [
-          "CERAD",
-          "Demo",
-          "EN_Demo",
-          "EN_FaCE_Training",
-          "EN_FaCE_VerB",
-          "FaCE",
-          "Hopkins",
-          "RAVLT"
+        "description": "Which words are used. The page loads the list named <language>_<Word list> from InstructionsAndStimuli/Stimuli/WordRecall_Lists.js, and the audio from assets/SoundFiles/Words/<Word list>/<language>/<Audio folder>.",
+        "oneOf": [
+          {
+            "const": "RAVLT",
+            "title": "RAVLT (Rey Auditory Verbal Learning Test): English and French, with audio"
+          },
+          {
+            "const": "CERAD",
+            "title": "CERAD: English, with audio"
+          },
+          {
+            "const": "Hopkins",
+            "title": "Hopkins (HVLT): English, with audio"
+          },
+          {
+            "const": "FaCE",
+            "title": "FaCE version A: English, with audio"
+          },
+          {
+            "const": "Demo",
+            "title": "Demo: English, with audio"
+          },
+          {
+            "const": "FaCE_VerB",
+            "title": "FaCE version B: English list, no audio folder (visual only)"
+          },
+          {
+            "const": "FaCE_Training",
+            "title": "FaCE training: English list, no audio folder (visual only)"
+          },
+          {
+            "const": "RAVLTSHORT",
+            "title": "RAVLT short: English list, no audio folder (visual only)"
+          },
+          {
+            "const": "Test",
+            "title": "Test list: English list, no audio folder (visual only)"
+          },
+          {
+            "const": "EN_FaCE_Training",
+            "title": "EN_FaCE_Training: CHECK: looks up EN_EN_FaCE_Training, which doesn't exist (probably meant FaCE_Training)"
+          },
+          {
+            "const": "EN_FaCE_VerB",
+            "title": "EN_FaCE_VerB: CHECK: looks up EN_EN_FaCE_VerB, which doesn't exist (probably meant FaCE_VerB)"
+          },
+          {
+            "const": "EN_Demo",
+            "title": "EN_Demo: CHECK: looks up EN_EN_Demo, which doesn't exist (probably meant Demo)"
+          }
         ],
         "default": "RAVLT"
       },
+      "FolderName": {
+        "type": "string",
+        "title": "Audio folder (voice)",
+        "description": "Subfolder of the word list's audio holding one recording per word, so a different voice can be used without changing the list. Every list currently has only 'Set001/'. Keep the trailing slash.",
+        "default": "Set001/"
+      },
       "FileExtension": {
         "type": "string",
-        "title": "File extension",
+        "title": "Audio file extension",
+        "description": "Extension of the word audio files, including the dot. All existing word audio is .wav.",
         "default": ".wav"
       },
       "NBlocks": {
         "type": "integer",
-        "title": "N blocks",
-        "default": 2,
-        "description": "Values in use: 1, 2, 5, 3"
-      },
-      "BListFlag": {
-        "type": "boolean",
-        "title": "B list flag",
-        "default": false
+        "title": "Learning trials",
+        "description": "How many times List A is presented and recalled in an immediate session (RAVLT standard: 5). Ignored in a delayed session.",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 5
       },
       "AudioPresentation": {
         "type": "boolean",
-        "title": "Audio presentation",
-        "default": true,
-        "description": "in 20 of 23 sets"
+        "title": "Speak the words",
+        "description": "Play each word's audio. If Show the words is also Yes, the word is shown on screen while it plays. CHECK: if both this and Show the words are No, no words are presented at all.",
+        "default": true
       },
       "VisualPresentation": {
         "type": "boolean",
-        "title": "Visual presentation",
-        "default": true,
-        "description": "in 20 of 23 sets"
+        "title": "Show the words",
+        "description": "Show each word on screen. With Speak the words = No, the words are shown silently. CHECK: List B is only ever presented as audio, so a visual-only session with List B shows no List B words.",
+        "default": true
+      },
+      "TimePerWord": {
+        "type": "integer",
+        "title": "Time per word (ms)",
+        "description": "How long each word is presented. A 200 ms fixation cross comes before each word (fixed in config/WordRecall_Setup.js). With audio, allow enough time for the recording to finish (existing audio sets use 500-1500 ms).",
+        "minimum": 100,
+        "maximum": 10000,
+        "multipleOf": 50,
+        "default": 1500
+      },
+      "BListFlag": {
+        "type": "boolean",
+        "title": "Include List B (interference list)",
+        "description": "After the learning trials: present List B once and recall it, then ask for List A again without re-presenting it (the standard RAVLT interference and short-delay recall).",
+        "default": false
+      },
+      "WordListOrder": {
+        "title": "Word order",
+        "description": "Optional. Positions of the words in the list, starting at 0. Leave empty to present the words in list order every trial.",
+        "anyOf": [
+          {
+            "title": "Different order for each learning trial",
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          {
+            "title": "Same order for every learning trial",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
       },
       "RecallType": {
         "type": "string",
         "title": "Recall type",
-        "enum": [
-          "Manual",
-          "Spoken"
+        "description": "How recalled words are collected.",
+        "oneOf": [
+          {
+            "const": "Spoken",
+            "title": "Spoken: the participant says the words; recorded, with speech recognition (microphone check first)"
+          },
+          {
+            "const": "Manual",
+            "title": "Manual: recalled words are picked from the list on screen, plus boxes for words not on the list"
+          }
         ],
-        "default": "Manual"
+        "default": "Spoken"
       },
       "RecallDuration": {
         "type": "integer",
-        "title": "Recall duration",
-        "default": 120,
-        "description": "Values in use: 60, 120"
+        "title": "Recall time (s)",
+        "description": "How long each recall period lasts. The countdown clock starts at this value.",
+        "minimum": 10,
+        "maximum": 600,
+        "default": 60
       },
       "DelayBeforeShowingDoneButton": {
         "type": "integer",
-        "title": "Delay before showing done button",
-        "default": 3,
-        "description": "Values in use: 8, 10, 3 · in 22 of 23 sets"
-      },
-      "TimePerWord": {
-        "type": "integer",
-        "title": "Time per word",
-        "default": 300,
-        "description": "Values in use: 500, 1500, 300, 200"
-      },
-      "DelayedRecallFlag": {
-        "type": "boolean",
-        "title": "Delayed recall flag",
-        "default": false
-      },
-      "ShowWelcome": {
-        "type": "boolean",
-        "title": "Show welcome",
-        "default": true
-      },
-      "WelcomeSpoken": {
-        "type": "boolean",
-        "title": "Welcome spoken",
-        "default": true,
-        "description": "in 22 of 23 sets"
-      },
-      "WelcomeAudio": {
-        "type": "string",
-        "title": "Welcome audio",
-        "default": "assets/SoundFiles/Instructions/Welcome_WordRecall.wav",
-        "description": "in 22 of 23 sets"
-      },
-      "ShowThankYou": {
-        "type": "boolean",
-        "title": "Show thank you",
-        "default": false
+        "title": "Seconds before the Done button appears",
+        "description": "The participant can end a recall period early once this many seconds have passed. Must be less than Recall time. CHECK: if this is missing, the Done button never appears and recall always runs the full time.",
+        "minimum": 0,
+        "maximum": 600,
+        "default": 8
       },
       "ShowInstructions": {
         "type": "boolean",
         "title": "Show instructions",
+        "description": "Show the instruction pages from the instruction set before each part of the task.",
         "default": true
       },
       "InstructionsSpoken": {
         "type": "boolean",
-        "title": "Instructions spoken",
-        "default": false,
-        "description": "in 20 of 23 sets"
-      },
-      "AskForNotes": {
-        "type": "boolean",
-        "title": "Ask for notes",
+        "title": "Speak the instructions",
+        "description": "Play an audio file for each instruction page, with a progress bar. Needs the Instructions NN audio and time lists below for every instruction block used.",
         "default": false
-      },
-      "RecordAUDIO": {
-        "type": "boolean",
-        "title": "Record AUDIO",
-        "default": true,
-        "description": "not found in the task code (may be unused)"
       },
       "Instructions01Audio": {
         "type": "array",
-        "title": "Instructions01 audio",
+        "title": "Instructions 01 audio (before learning trial 1)",
+        "description": "One audio file per instruction page, e.g. assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav. Only used when Speak the instructions is Yes.",
         "items": {
           "type": "string"
-        },
-        "default": [
-          "assets/SoundFiles/Instructions/WordRecall_Instructions01A.wav",
-          "assets/SoundFiles/Instructions/WordRecall_Instructions01B.wav"
-        ],
-        "description": "in 1 of 23 sets"
+        }
       },
       "Instructions01Time": {
-        "title": "Instructions01 time",
-        "description": "Edited as JSON (array or number). · in 2 of 23 sets",
-        "default": [
-          10000,
-          8000
-        ]
+        "title": "Instructions 01 times (ms)",
+        "description": "Time each Instructions 01 page stays up while its audio plays, one number per page in milliseconds, e.g. [10000, 8000]. CHECK: kept as a JSON box because one existing set (DemoENManual) has a single number (10) here instead of a list."
       },
       "Instructions02Audio": {
         "type": "array",
-        "title": "Instructions02 audio",
+        "title": "Instructions 02 audio (before learning trials 2 and up)",
         "items": {
           "type": "string"
-        },
-        "default": [
-          "assets/SoundFiles/Instructions/WordRecall_Instructions02A.wav",
-          "assets/SoundFiles/Instructions/WordRecall_Instructions02B.wav"
-        ],
-        "description": "in 1 of 23 sets"
+        }
       },
       "Instructions02Time": {
         "type": "array",
-        "title": "Instructions02 time",
+        "title": "Instructions 02 times (ms)",
         "items": {
-          "type": "integer"
-        },
-        "default": [
-          10000,
-          8000
-        ],
-        "description": "in 1 of 23 sets"
+          "type": "integer",
+          "minimum": 0
+        }
       },
       "Instructions03Audio": {
         "type": "array",
-        "title": "Instructions03 audio",
+        "title": "Instructions 03 audio (before List B)",
         "items": {
           "type": "string"
-        },
-        "default": [
-          "assets/SoundFiles/Instructions/WordRecall_Instructions03A.wav",
-          "assets/SoundFiles/Instructions/WordRecall_Instructions03B.wav"
-        ],
-        "description": "in 1 of 23 sets"
+        }
       },
       "Instructions03Time": {
         "type": "array",
-        "title": "Instructions03 time",
+        "title": "Instructions 03 times (ms)",
         "items": {
-          "type": "integer"
-        },
-        "default": [
-          10000,
-          8000
-        ],
-        "description": "in 1 of 23 sets"
+          "type": "integer",
+          "minimum": 0
+        }
       },
       "Instructions04Audio": {
         "type": "array",
-        "title": "Instructions04 audio",
+        "title": "Instructions 04 audio (before recalling List A after List B)",
         "items": {
           "type": "string"
-        },
-        "default": [
-          "assets/SoundFiles/Instructions/WordRecall_Instructions04.wav"
-        ],
-        "description": "in 1 of 23 sets"
+        }
       },
       "Instructions04Time": {
         "type": "array",
-        "title": "Instructions04 time",
+        "title": "Instructions 04 times (ms)",
         "items": {
-          "type": "integer"
-        },
-        "default": [
-          10000
-        ],
-        "description": "in 1 of 23 sets"
+          "type": "integer",
+          "minimum": 0
+        }
       },
-      "WordListOrder": {
+      "Instructions05Audio": {
         "type": "array",
-        "title": "Word list order",
+        "title": "Instructions 05 audio (before the first recall)",
+        "description": "CHECK: no existing set defines Instructions 05 audio/times, although the code plays them when Speak the instructions is Yes.",
         "items": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        "default": [
-          [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9
-          ],
-          [
-            7,
-            5,
-            0,
-            2,
-            9,
-            1,
-            4,
-            3,
-            6,
-            8
-          ],
-          [
-            4,
-            8,
-            1,
-            5,
-            6,
-            2,
-            0,
-            9,
-            7,
-            3
-          ]
-        ],
-        "description": "in 3 of 23 sets"
+          "type": "string"
+        }
+      },
+      "Instructions05Time": {
+        "type": "array",
+        "title": "Instructions 05 times (ms)",
+        "items": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "description": "Show the welcome page (from the instruction set) before the task.",
+        "default": true
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "description": "Only applies when the welcome is shown: play the welcome audio with a Repeat button and a 4 s progress bar.",
+        "default": false
+      },
+      "WelcomeAudio": {
+        "type": "string",
+        "title": "Welcome audio file",
+        "description": "Only used when Speak the welcome is Yes.",
+        "default": "assets/SoundFiles/Instructions/Welcome_WordRecall.wav"
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "description": "At the end, show a free-text box for notes about the session.",
+        "default": false
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "description": "Show the thank-you page (from the instruction set) at the end.",
+        "default": true
+      },
+      "RecordAUDIO": {
+        "type": "boolean",
+        "title": "Record audio",
+        "description": "CHECK: has no effect. No Word Recall code reads this setting; spoken recall is always recorded, and manual recall never is.",
+        "default": true
       }
     },
     "additionalProperties": true
   },
   "uiSchema": {
-    "BListFlag": {
-      "ui:widget": "radio"
-    },
-    "AudioPresentation": {
-      "ui:widget": "radio"
-    },
-    "VisualPresentation": {
-      "ui:widget": "radio"
-    },
-    "DelayedRecallFlag": {
-      "ui:widget": "radio"
-    },
-    "ShowWelcome": {
-      "ui:widget": "radio"
-    },
-    "WelcomeSpoken": {
-      "ui:widget": "radio"
-    },
-    "ShowThankYou": {
-      "ui:widget": "radio"
-    },
-    "ShowInstructions": {
-      "ui:widget": "radio"
-    },
-    "InstructionsSpoken": {
-      "ui:widget": "radio"
-    },
-    "AskForNotes": {
-      "ui:widget": "radio"
-    },
-    "RecordAUDIO": {
-      "ui:widget": "radio"
-    },
-    "Instructions01Time": {
-      "ui:field": "json"
-    },
     "ui:order": [
-      "FolderName",
+      "DelayedRecallFlag",
       "WordList",
+      "FolderName",
       "FileExtension",
       "NBlocks",
-      "BListFlag",
-      "RecallType",
-      "RecallDuration",
-      "TimePerWord",
-      "DelayedRecallFlag",
-      "ShowWelcome",
-      "ShowThankYou",
-      "ShowInstructions",
-      "AskForNotes",
       "AudioPresentation",
       "VisualPresentation",
+      "TimePerWord",
+      "BListFlag",
+      "WordListOrder",
+      "RecallType",
+      "RecallDuration",
       "DelayBeforeShowingDoneButton",
-      "WelcomeSpoken",
-      "WelcomeAudio",
+      "ShowInstructions",
       "InstructionsSpoken",
-      "RecordAUDIO",
       "Instructions01Audio",
       "Instructions01Time",
       "Instructions02Audio",
@@ -361,8 +349,51 @@
       "Instructions03Time",
       "Instructions04Audio",
       "Instructions04Time",
-      "WordListOrder",
+      "Instructions05Audio",
+      "Instructions05Time",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordAUDIO",
       "*"
-    ]
+    ],
+    "DelayedRecallFlag": {
+      "ui:widget": "radio"
+    },
+    "AudioPresentation": {
+      "ui:widget": "radio"
+    },
+    "VisualPresentation": {
+      "ui:widget": "radio"
+    },
+    "BListFlag": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "Instructions01Time": {
+      "ui:field": "json"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "RecordAUDIO": {
+      "ui:widget": "radio"
+    }
   }
 }
