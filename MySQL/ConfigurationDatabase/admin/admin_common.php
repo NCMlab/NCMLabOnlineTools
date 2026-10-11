@@ -17,7 +17,7 @@ require_once __DIR__ . '/../db_config.php';
 // Unlike the public API_battery.php/API_task_config.php (Access-Control-Allow-Origin: *),
 // these endpoints carry a session cookie, so the origin must be an explicit
 // value, not '*' -- browsers refuse credentialed requests with a wildcard origin.
-define('ADMIN_ALLOWED_ORIGIN', 'https://your-admin-site.example.edu');
+define('ADMIN_ALLOWED_ORIGIN', 'http://localhost:3000');
 // ----------------------------------------------------------------------------
 
 

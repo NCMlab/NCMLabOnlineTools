@@ -2389,7 +2389,32 @@ List.push({
     shortName: '',
 	})
 
+  var List = []
+List.push({
+  Task: "Word Recall Database",
+  Parameters: "RAVLT_Spoken_Immediate",
+  Instructions: "Default",
+  IconName: "Immediate",
+});
+	BatteryList.push({index: 98702, 
+		name:'Neural Cognitive Mapping Lab', 
+		description: '',
+		TaskList: List,
+		BatteryInstructions: "Neural Cognitive Mapping Lab",
+		Language:'FR',
+    LanguagesToShow: ['FR'],
+		RunAudioTest: true,
+		Footer: '©NCMLab 2024',
+    HeaderButtonsToShow: [],
+    Redirect: '',
+    shortName: '',
+	})
+
   
   
+
+  // http://127.0.0.1:9000/publix/eaAvjeIkuc2?Battery=98702
+  
+  // http://127.0.0.1/api/API_task_config.php?type=parameters&task=Word%20Recall&name=RAVLT_Spoken_Immediate
 
   
