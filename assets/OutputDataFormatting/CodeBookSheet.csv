@@ -1,7 +1,4 @@
-﻿SP_Context
-SP_Level 
-SP_Years
-Sport_Curr1
+﻿Sport_Curr1
 Sport_Curr1_Context
 Sport_Curr1_Level
 Sport_Curr1_nY
@@ -75,8 +72,6 @@ Cost_Clinic
 Cost_$U_Clinic
 Cost_UY_Clinic
 Cost_Clinic_$Y
-AB_EQ_Sport
-AB_EQ_Sport_Ex
 SP_APP1_Describe
 SP_APP1_$Total
 SP_APP1_nY
@@ -92,28 +87,28 @@ SP_APP3_$Y
 SP_APP_$Y_Total
 SP_Equip1_Describe
 SP_Equip1_$Total
-SP_Equip1_ nY
+SP_Equip1_nY
 SP_Equip1_$Y
 SP_Equip2_Describe
 SP_Equip2_$Total
-SP_Equip2_ nY
+SP_Equip2_nY
 SP_Equip2_$Y
 SP_Equip3_Describe
 SP_Equip3_$Total
-SP_Equip3_ nY
+SP_Equip3_nY
 SP_Equip3_$Y
 SP_Equip_$Y_Total
 SP_AddEquip1_Describe
-SP_AddEquip1__$Total
-SP_AddEquip1_ nY
+SP_AddEquip1_$Total
+SP_AddEquip1_nY
 SP_AddEquip1_$Y
 SP_AddEquip2_Describe
-SP_AddEquip2__$Total
-SP_AddEquip2_ nY
+SP_AddEquip2_$Total
+SP_AddEquip2_nY
 SP_AddEquip2_$Y
 SP_AddEquip3_Describe
-SP_AddEquip3__$Total
-SP_AddEquip3_ nY
+SP_AddEquip3_$Total
+SP_AddEquip3_nY
 SP_AddEquip3_$Y
 SP_AppEQ_$Y_Total
 EQ_Buy
@@ -123,9 +118,9 @@ EQ_Rent_$U
 EQ_Rent_nY
 EQ_Rent_$Y
 EQ_Maint
-EQ_ Maint _$U
+EQ_Maint_$U
 EQ_Maint_nY
-EQ_ Maint _$Y
+EQ_Maint_$Y
 TR_Pr_F&W
 TR_Pr_F&W_%
 TR_Pr_Bike
@@ -137,13 +132,13 @@ TR_Pr_Car_%
 TR_Pr_Pub
 TR_Pr_Pub_%
 TR_Pr_Carp
-TR_Pr_ Carp _%
+TR_Pr_Carp _%
 TR_Pr_Taxi
-TR_Pr_ Taxi _%
+TR_Pr_Taxi _%
 TR_Pr_Spec
-TR_Pr_ Spec _%
+TR_Pr_Spec _%
 TR_Pr_Other
-TR_Pr_ Other _%
+TR_Pr_Other _%
 TR_Pr_km
 TR_Pr_Pub_$
 TR_Pr_Carp_$
@@ -167,15 +162,15 @@ Cost_CC_ODWithout_$Y
 Cost_CC_ODWith
 Cost_CC_ODWith_$
 Cost_CC_ODWith_$Y
-Cost_CC_ TWONIGHTS
-Cost_CC_ TWONIGHTS_$
-Cost_CC_ TWONIGHTS_$Y
-Cost_CC_ Multiday
-Cost_CC_ Multiday _$
-Cost_CC_ Multiday_$Y
+Cost_CC_TWONIGHTS
+Cost_CC_TWONIGHTS_$
+Cost_CC_TWONIGHTS_$Y
+Cost_CC_Multiday
+Cost_CC_Multiday_$
+Cost_CC_Multiday_$Y
 Cost_CC_ Vacations
-Cost_CC_ Vacations _$
-Cost_CC_ Vacations _$Y
+Cost_CC_ Vacations_$
+Cost_CC_ Vacations_$Y
 TR_CC_$Y_Total
 SOC_F&B
 SOC_F&B_%
@@ -218,7 +213,6 @@ HH_Income_IN
 AB_Timing
 AB_Class
 AB_Loi
-Future
 MEMB_ENTR
 COACHING
 APP_EQUIP

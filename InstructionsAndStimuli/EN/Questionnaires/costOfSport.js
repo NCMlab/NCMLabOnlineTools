@@ -19,7 +19,7 @@
 // XX (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
 // Mark a question with isSuggested: SUGGEST_ALL_QUESTIONS (global switch below) to get a soft warning + "Proceed with unanswered question" button.
 // Confirm that the data goes to teh database when submit is pressed and the receipt shows up.
-// What happens when teh browser back is pressed?
+// What happens when the browser back is pressed?
 // Add a download as PDF button so people can have a copy of their receipt
 // The downloaded report card has more detail than just the receipt.
 // XX It can include...
@@ -29,7 +29,30 @@
 // "Cost of sport profile"
 // Current receipt info
 // Add the name of the sport to the top of the receipt.
-
+// ====================================
+// FEEDBACK FROM OCT 13
+// ensure the current sports are getting to the CSV
+// In line 540:
+          // {
+          //   type: "comment",
+          //   isSuggested: SUGGEST_ALL_QUESTIONS,
+          //   name: "SP_Class_Ex",
+          //   title: "Please explain:",
+          //   visibleIf: "{SP_Class} = 1",
+          //   isRequired: false
+          // },
+      // if 4/5 is entered here it gets interpretted as a date in Excel. Can this be forced to be 
+      // interpretted as a string?
+// For apparel. equipment and additional eqiuip. Put up to 10 in the CSV file
+// STarting at EQ_Buy no output values go to teh CSV file!
+// SP_Earn is written as Yes/No, it shoudl be coded as 1 and 0
+// Make sure all of the demographic responses are numeric coded.
+// MISSING HH_SPORT question, see codebook.
+// MAKE SURE THE CALCULATED VALUES GET INTO THE CSV FILE!!!!!
+// Stop having the CSV file downloaded to the USERS computer. Make sure it goes somewhere else.
+// Make sure that the data is easily accessible and downloadable.
+// In teh PDF output, can the top two boxes be centered like in the online version.
+// ====================================
 
 // How to make PDF of this questionnaire?
 // https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
@@ -40,7 +63,7 @@
 //         and shows the "Proceed with unanswered question" button (normal use).
 // false = no isSuggested warnings at all, so you can click through pages for testing.
 // (isRequired questions are not affected. Sport_Curr2 and Sport_Past are not flagged.)
-var SUGGEST_ALL_QUESTIONS = true;
+var SUGGEST_ALL_QUESTIONS = false;
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
@@ -592,7 +615,7 @@ const json = {
           {
             type: "html",
             name: "practice_intro",
-            html: `<b>Please tell us about your practices and competitions over the past year for the (para)sport under investigation. Answer the practice questions and competition questions separately.</b>`
+            html: `<b>Please tell us about your practices and competitions over the past year for <em>{CurrentSportName}</em>. Answer the practice questions and competition questions separately.</b>`
           },
           {
             type: "matrixdropdown",
@@ -1729,10 +1752,7 @@ const json = {
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Earn_YN",
             title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
-            choices: [
-              "Yes",
-              "No"
-            ],
+            choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
             colCount: 2,
             showOtherItem: false,
             isRequired: false
