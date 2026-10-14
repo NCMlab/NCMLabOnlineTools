@@ -70,7 +70,7 @@ So the fixes in 2C must go into the `config/*.js` files too, or the live studies
 
 | # | What the code does now | Options | Your decision |
 |---|---|---|---|
-| D1 | **"Fixed" isn't fixed:** it starts at the starting length and adds 1 digit every trial. | (a) Keep it; the label now says "Fixed start". (b) Change the code so every trial keeps the same length. | |
+| D1 | **"Fixed" isn't fixed:** it starts at the starting length and adds 1 digit every trial. | (a) Keep it; the label now says "Fixed start". (b) Change the code so every trial keeps the same length. | Keep it. |
 | D2 | **"Errors in a row to get shorter" (`NDown`) does nothing:** the staircase gets shorter after **every** error. | (a) Make the code use NDown. (b) Remove the field. (c) Leave as is. | |
 | D3 | **`MaxReversals` and `MaxTime` do nothing** (the config's own comments say "Not implemented"). | (a) Implement them as stopping rules. (b) Hide them from the form. | |
 | D4 | **"Number of errors" has no maximum length**, and its errors-in-a-row count runs across lengths. | (a) Fine as is. (b) Stop at "Longest length". (c) Stop only when both trials **at the same length** are wrong (WAIS-style). | |
