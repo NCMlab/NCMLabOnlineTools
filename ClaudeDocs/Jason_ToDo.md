@@ -2,7 +2,7 @@
 
 Updated 2026-10-11. In order: do section 1 first, then 2, then 3.
 
-- How to set up and start the website: [ConfigDatabase_Website_Setup.md](ConfigDatabase_Website_Setup.md)
+- How to set up and start the website: [SetupInstructions.md](SetupInstructions.md)
 - What was built: [ConfigDatabase_AdminSite_2026-10-09.md](ConfigDatabase_AdminSite_2026-10-09.md)
 
 **Already done:**
