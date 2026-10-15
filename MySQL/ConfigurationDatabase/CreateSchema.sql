@@ -43,21 +43,41 @@ CREATE TABLE IF NOT EXISTS task_parameters (
 );
 
 -- -------------------------------------------------------
--- task_instructions
--- One row per named instruction set for a given task type.
--- Instructions differ by language, so language is part of
--- the unique key.
+-- instruction_sets
+-- One row per named instruction set for a given task type,
+-- e.g. Digit Span "Default" or Word Recall "FaCE". The text
+-- itself lives in instruction_translations, one row per
+-- language, so a battery picks the set and the participant's
+-- language picks the translation at run time.
+-- instruction_name has no language prefix: the source files'
+-- "EN_Instructions_Default" and "FR_Instructions_Default" are
+-- the EN and FR translations of the set "Default" (see
+-- instructionSetName() in migrate/task_mapping.js).
 -- -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS task_instructions (
-    instruction_id    INT           AUTO_INCREMENT PRIMARY KEY,
-    task_type_id      INT           NOT NULL,
-    instruction_name  VARCHAR(150)  NOT NULL,
-    language          CHAR(2)       NOT NULL DEFAULT 'EN',
-    instructions_json JSON          NOT NULL,
-    created_at        TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uq_task_instr (task_type_id, instruction_name, language),
+CREATE TABLE IF NOT EXISTS instruction_sets (
+    instruction_set_id INT           AUTO_INCREMENT PRIMARY KEY,
+    task_type_id       INT           NOT NULL,
+    instruction_name   VARCHAR(150)  NOT NULL,
+    created_at         TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_instr_set (task_type_id, instruction_name),
     FOREIGN KEY (task_type_id) REFERENCES task_types(task_type_id)
         ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- -------------------------------------------------------
+-- instruction_translations
+-- One language's text for an instruction set. Deleting a set
+-- deletes its translations.
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS instruction_translations (
+    translation_id     INT           AUTO_INCREMENT PRIMARY KEY,
+    instruction_set_id INT           NOT NULL,
+    language           CHAR(2)       NOT NULL,
+    instructions_json  JSON          NOT NULL,
+    created_at         TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_instr_lang (instruction_set_id, language),
+    FOREIGN KEY (instruction_set_id) REFERENCES instruction_sets(instruction_set_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -------------------------------------------------------
@@ -136,8 +156,10 @@ CREATE TABLE IF NOT EXISTS batteries (
 -- battery_tasks
 -- Ordered list of tasks within each battery.
 -- sort_order determines the sequence tasks are presented.
--- parameter_id and instruction_id are nullable because some
+-- parameter_id and instruction_set_id are nullable because some
 -- tasks (e.g. Language Selection) have no parameters.
+-- instruction_set_id points at the set, not one language: the
+-- translation is chosen at run time from the participant's language.
 -- -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS battery_tasks (
     battery_task_id   INT           AUTO_INCREMENT PRIMARY KEY,
@@ -145,7 +167,7 @@ CREATE TABLE IF NOT EXISTS battery_tasks (
     task_type_id      INT           NOT NULL,
     sort_order        INT           NOT NULL,
     parameter_id      INT           NULL,
-    instruction_id    INT           NULL,
+    instruction_set_id INT          NULL,
     icon_name         VARCHAR(100),
     UNIQUE KEY uq_battery_order (battery_id, sort_order),
     FOREIGN KEY (battery_id)     REFERENCES batteries(battery_id)
@@ -154,7 +176,7 @@ CREATE TABLE IF NOT EXISTS battery_tasks (
         ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (parameter_id)   REFERENCES task_parameters(parameter_id)
         ON DELETE SET NULL ON UPDATE CASCADE,
-    FOREIGN KEY (instruction_id) REFERENCES task_instructions(instruction_id)
+    FOREIGN KEY (instruction_set_id) REFERENCES instruction_sets(instruction_set_id)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
 
@@ -181,12 +203,12 @@ CREATE TABLE IF NOT EXISTS admin_users (
 CREATE INDEX idx_batteries_index ON batteries(battery_index);
 CREATE INDEX idx_battery_tasks_order ON battery_tasks(battery_id, sort_order);
 CREATE INDEX idx_params_name ON task_parameters(task_type_id, parameter_name);
-CREATE INDEX idx_instr_name ON task_instructions(task_type_id, instruction_name, language);
 
 -- -------------------------------------------------------
 -- View: full battery with task details
 -- Use this view in the API to assemble one battery in a
--- single query.
+-- single query. Instructions are the battery language's
+-- translation (NULL if the set has none in that language).
 -- -------------------------------------------------------
 CREATE OR REPLACE VIEW v_battery_tasks AS
 SELECT
@@ -207,13 +229,14 @@ SELECT
     tt.html_file,
     tp.parameter_name,
     tp.parameters_json,
-    ti.instruction_name,
-    ti.language        AS instruction_language,
-    ti.instructions_json
+    ins.instruction_name,
+    it.language        AS instruction_language,
+    it.instructions_json
 FROM batteries b
 JOIN battery_tasks  bt ON bt.battery_id    = b.battery_id
 JOIN task_types     tt ON tt.task_type_id  = bt.task_type_id
 LEFT JOIN task_parameters  tp ON tp.parameter_id   = bt.parameter_id
-LEFT JOIN task_instructions ti ON ti.instruction_id = bt.instruction_id
+LEFT JOIN instruction_sets ins ON ins.instruction_set_id = bt.instruction_set_id
+LEFT JOIN instruction_translations it ON it.instruction_set_id = bt.instruction_set_id AND it.language = b.language
 WHERE b.active = 1
 ORDER BY b.battery_index, bt.sort_order;

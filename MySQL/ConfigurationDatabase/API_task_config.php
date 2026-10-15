@@ -9,6 +9,7 @@
  * Usage:
  *   GET parameters: /api/api_task_config.php?type=parameters&task=Word+Recall&name=RAVLT_Spoken_Immediate
  *   GET instructions: /api/api_task_config.php?type=instructions&task=Word+Recall&name=Default&lang=EN
+ *   (name is the instruction set, lang picks its translation)
  *
  * Returns the JSON object directly (the same shape that the old JS variable held).
  */
@@ -66,12 +67,13 @@ if ($type === 'parameters') {
 
 } else { // instructions
     $stmt = $pdo->prepare('
-        SELECT ti.instructions_json
-        FROM task_instructions ti
-        JOIN task_types tt ON tt.task_type_id = ti.task_type_id
+        SELECT it.instructions_json
+        FROM instruction_sets s
+        JOIN task_types tt ON tt.task_type_id = s.task_type_id
+        JOIN instruction_translations it ON it.instruction_set_id = s.instruction_set_id
         WHERE tt.task_name       = :task
-          AND ti.instruction_name = :name
-          AND ti.language         = :lang
+          AND s.instruction_name = :name
+          AND it.language        = :lang
         LIMIT 1
     ');
     $stmt->execute([':task' => $task, ':name' => $name, ':lang' => $lang]);

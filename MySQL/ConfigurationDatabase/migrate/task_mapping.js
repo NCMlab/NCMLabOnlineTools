@@ -1,4 +1,4 @@
-// Shared by generate_sql.js (config files -> task_parameters/task_instructions) and
+// Shared by generate_sql.js (config files -> task_parameters/instruction_sets) and
 // migrate_batteries.js (Batteries.js -> batteries/battery_tasks), so both resolve
 // source files to task types the same way.
 
@@ -60,4 +60,20 @@ function baseName(filePath) {
   return path.basename(filePath).replace(/(_(Setup|setup|Instructions|config))?\.js$/, '');
 }
 
-module.exports = { TASK_NAME_BY_BASENAME, baseName };
+// Instruction source files register one object per language: "EN_Instructions_Default",
+// "FR_Instructions_Default", sometimes "<LANG>_<Task>_Instructions_<name>". The database
+// stores those as one instruction set ("Default") with a translation per language, so the
+// name a battery uses (Batteries.js Instructions: "Default") is the set name.
+// Names that don't follow the pattern but are translations of another language's set:
+const INSTRUCTION_SET_RENAMES = {
+  IntakeForm_FaCE: 'IntakeFaCE', // FR_IntakeForm_FaCE <-> EN_Instructions_IntakeFaCE
+  OrientationForm_FaCE: 'OrientationFaCE', // FR_OrientationForm_FaCE <-> EN_Instructions_OrientationFaCE
+};
+
+/** "EN_Instructions_FaCE" -> "FaCE"; a key with nothing left ("EN_Stroop_Instructions") -> "Default". */
+function instructionSetName(key, language) {
+  const name = key.replace(new RegExp(`^${language}_`), '').replace(/^(?:\w+?_)?Instructions(?:_|$)/, '');
+  return INSTRUCTION_SET_RENAMES[name] || name || 'Default';
+}
+
+module.exports = { TASK_NAME_BY_BASENAME, baseName, instructionSetName, INSTRUCTION_SET_RENAMES };

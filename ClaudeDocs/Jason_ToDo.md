@@ -66,17 +66,6 @@ them. Once a task's CHECKs are all answered, Claude sets the form to "reviewed" 
 **Important:** the live tasks still read `config/*.js`, not the database (that's section 3).
 So the fixes in 2C must go into the `config/*.js` files too, or the live studies keep the bug.
 
-### 2A. Digit Span: task code behaviour
-
-| # | What the code does now | Options | Your decision |
-|---|---|---|---|
-| D1 | **"Fixed" isn't fixed:** it starts at the starting length and adds 1 digit every trial. | (a) Keep it; the label now says "Fixed start". (b) Change the code so every trial keeps the same length. | |
-| D2 | **"Errors in a row to get shorter" (`NDown`) does nothing:** the staircase gets shorter after **every** error. | (a) Make the code use NDown. (b) Remove the field. (c) Leave as is. | |
-| D3 | **`MaxReversals` and `MaxTime` do nothing** (the config's own comments say "Not implemented"). | (a) Implement them as stopping rules. (b) Hide them from the form. | |
-| D4 | **"Number of errors" has no maximum length**, and its errors-in-a-row count runs across lengths. | (a) Fine as is. (b) Stop at "Longest length". (c) Stop only when both trials **at the same length** are wrong (WAIS-style). | |
-| D5 | **Starting length is limited to 1–20 digits** in the form (a judgment call). | (a) OK. (b) Other limit: ___ | |
-| D6 | **No set uses the spoken welcome yet**, but `Welcome_DigitSpanForward.wav` / `Welcome_DigitSpanBackard.wav` exist. | (a) Leave it. (b) Turn it on for some sets. | |
-
 ### 2B. Word Recall: task code behaviour
 
 | # | What the code does now | Options | Your decision |
@@ -174,9 +163,8 @@ changes.
 
 Decide these first:
 
-- [ ] **Instructions per language.** A battery task stores one instruction set (one language),
-      but pages choose instructions by the participant's language. Should batteries store the
-      instruction **name** and let the page add the language?
+- [x] ~~**Instructions per language.**~~ Done 2026-10-14: a battery task now stores the
+      instruction **set** (e.g. "Default"), and the participant's language picks the translation.
 - [ ] **5 batteries weren't loaded:** 1 ("Survey") and 171, 9999, 123, 98700 ("Session Chooser").
       Options: add these as task types, treat Session Chooser pages separately, or retire them.
 - [ ] **19 batteries point at sets that don't exist** (list in
@@ -200,6 +188,19 @@ Then ask Claude to change how batteries are chosen, so they come from `API_batte
       no explanations or limits yet; ask Claude to write them, as for Digit Span and Word Recall.
 - [ ] Draft forms for the remaining task types (Card Sort, Clock Drawing, …).
 - [ ] Optional: convert NCMBatteryWebsite's `README.md` from UTF-16 to UTF-8, so GitHub shows it.
+- [ ] **Check how instruction sets were grouped (2026-10-14).** The old per-language names were
+      merged into sets, mostly mechanically (`EN_Instructions_FaCE` + `FR_Instructions_FaCE` →
+      "FaCE"). These were judgment calls; say if any is wrong:
+      - Intake Form: `FR_IntakeForm_FaCE` is treated as the FR of "IntakeFaCE", and
+        `FR_OrientationForm_FaCE` as the FR of "OrientationFaCE".
+      - Fluency: `FR_Instructions` (no "Default") is treated as the FR of "Default".
+      - Stroop (all three pages): `EN_Stroop_Instructions` / `FR_Stroop_Instructions` → "Default".
+      - Word Recall had two EN "Default"s: the July seed example and the copy from
+        `WordRecall_Instructions.js`. The file's copy was kept. This changes what
+        `WordRecallDatabaseConfig.html` shows: it used to get the seed example.
+- [ ] If any other machine has the configuration database, run `AddInstructionSets.sql` there
+      once (setup guide, Part 4). Your Mac's database is already converted; the old table is kept
+      as `task_instructions_pre_sets`, so drop it once you're happy.
 
 ## 5. Before the website goes on a real server
 

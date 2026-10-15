@@ -15,7 +15,7 @@
  *   "languages_to_show": ["EN","FR"],      // optional
  *   "redirect_url": "...",                 // optional
  *   "tasks": [
- *     { "task_type_id": 5, "parameter_id": 12, "instruction_id": 8, "icon_name": "Immediate" },
+ *     { "task_type_id": 5, "parameter_id": 12, "instruction_set_id": 8, "icon_name": "Immediate" },
  *     ...
  *   ]
  * }
@@ -103,10 +103,10 @@ try {
 
     $taskTypeCheck = $pdo->prepare('SELECT 1 FROM task_types WHERE task_type_id = :id LIMIT 1');
     $paramCheck = $pdo->prepare('SELECT 1 FROM task_parameters WHERE parameter_id = :id AND task_type_id = :tid LIMIT 1');
-    $instrCheck = $pdo->prepare('SELECT 1 FROM task_instructions WHERE instruction_id = :id AND task_type_id = :tid LIMIT 1');
+    $instrCheck = $pdo->prepare('SELECT 1 FROM instruction_sets WHERE instruction_set_id = :id AND task_type_id = :tid LIMIT 1');
     $insertTask = $pdo->prepare('
-        INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_id, icon_name)
-        VALUES (:battery_id, :task_type_id, :sort_order, :parameter_id, :instruction_id, :icon_name)
+        INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_set_id, icon_name)
+        VALUES (:battery_id, :task_type_id, :sort_order, :parameter_id, :instruction_set_id, :icon_name)
     ');
 
     foreach (array_values($tasks) as $i => $task) {
@@ -124,11 +124,11 @@ try {
             }
         }
 
-        $instructionId = isset($task['instruction_id']) ? (int) $task['instruction_id'] : null;
-        if ($instructionId !== null) {
-            $instrCheck->execute([':id' => $instructionId, ':tid' => $taskTypeId]);
+        $instructionSetId = isset($task['instruction_set_id']) ? (int) $task['instruction_set_id'] : null;
+        if ($instructionSetId !== null) {
+            $instrCheck->execute([':id' => $instructionSetId, ':tid' => $taskTypeId]);
             if (!$instrCheck->fetch()) {
-                throw new RuntimeException("tasks[{$i}]: instruction_id {$instructionId} does not belong to task_type_id {$taskTypeId}.");
+                throw new RuntimeException("tasks[{$i}]: instruction_set_id {$instructionSetId} does not belong to task_type_id {$taskTypeId}.");
             }
         }
 
@@ -137,7 +137,7 @@ try {
             ':task_type_id'   => $taskTypeId,
             ':sort_order'     => $i + 1,
             ':parameter_id'   => $parameterId,
-            ':instruction_id' => $instructionId,
+            ':instruction_set_id' => $instructionSetId,
             ':icon_name'      => $task['icon_name'] ?? null,
         ]);
     }

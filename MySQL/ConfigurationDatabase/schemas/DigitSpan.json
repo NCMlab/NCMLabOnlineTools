@@ -42,7 +42,7 @@
       "StimulusMode": {
         "type": "string",
         "title": "How digits are presented",
-        "description": "Audio digits are preloaded from the instruction set's FolderOfAudioFiles. Audio: each digit plays in a 1.5 s slot. Visual: each digit is shown for 1 s, then a 0.5 s blank. Those timings are fixed in the task code and config/DigitSpan_Setup.js, not set here.",
+        "description": "Audio digits are preloaded from the instruction set's FolderOfAudioFiles. Audio: each digit plays in a 1.5 s slot. Visual: each digit is shown for 1 s, then a 0.5 s blank. Both: each digit plays and is shown on screen for the whole 1.5 s slot, with the audio instructions. Those timings are fixed in the task code and config/DigitSpan_Setup.js, not set here.",
         "oneOf": [
           {
             "const": "audio",
@@ -51,6 +51,10 @@
           {
             "const": "visual",
             "title": "Visual: digits are shown on screen"
+          },
+          {
+            "const": "both",
+            "title": "Both Visual and Audio: digits are spoken and shown on screen"
           }
         ],
         "default": "audio"

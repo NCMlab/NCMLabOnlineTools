@@ -5,7 +5,7 @@
 
 **Scope note:** this document covers adding a new language's UI button labels (`ui_labels`
 only) — the shared text like `Quit`, `Home`, `Submit`. It does **not** cover translating a
-task's actual instructions/parameters (`task_instructions`, per task, e.g.
+task's actual instructions/parameters (`instruction_translations`, per task, e.g.
 `InstructionsAndStimuli/Instructions/WordRecall_Instructions.js`), word lists, or adding the new
 language as a selectable option in `LanguageSelection.html` / a battery's `LanguagesToShow`
 array in `Batteries/Batteries.js` — those are separate, larger efforts (see `ToDo.md`).
@@ -21,7 +21,7 @@ Example throughout: adding Spanish, language code `ES`.
 ## Step 1 — Pick a 2-letter language code
 
 The `language` column is `CHAR(2)` everywhere in this schema (`ui_labels`, `task_parameters`,
-`task_instructions`, `batteries`), so it must be exactly 2 characters. The existing codes are
+`instruction_translations`, `batteries`), so it must be exactly 2 characters. The existing codes are
 `EN`, `FR`, `KR` — note `KR` is this codebase's own convention, not strict ISO 639-1 (which
 would be `KO`), so match the project's existing style rather than looking up a standard.
 

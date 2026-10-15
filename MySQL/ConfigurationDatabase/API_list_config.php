@@ -17,7 +17,8 @@
  *   GET ?resource=parameters[&task_type_id=25]
  *     -> [{parameter_id, task_type_id, task_name, parameter_name, language, created_at, used_by}, ...]
  *   GET ?resource=instructions[&task_type_id=25]
- *     -> [{instruction_id, task_type_id, task_name, instruction_name, language, created_at, used_by}, ...]
+ *     -> [{instruction_set_id, task_type_id, task_name, instruction_name, languages, created_at, used_by}, ...]
+ *        languages is the set's translations, e.g. ["EN","FR"], EN first
  *   GET ?resource=batteries
  *     -> [{battery_id, battery_index, battery_name, description, language, active, created_at, task_count}, ...]
  *
@@ -100,13 +101,23 @@ if ($resource === 'parameters') {
     ");
 } else { // instructions
     $stmt = $pdo->prepare("
-        SELECT x.instruction_id, x.task_type_id, tt.task_name, x.instruction_name, x.language, x.created_at,
-               (SELECT COUNT(*) FROM battery_tasks bt WHERE bt.instruction_id = x.instruction_id) AS used_by
-        FROM task_instructions x
+        SELECT x.instruction_set_id, x.task_type_id, tt.task_name, x.instruction_name,
+               (SELECT GROUP_CONCAT(it.language ORDER BY it.language <> 'EN', it.language)
+                FROM instruction_translations it WHERE it.instruction_set_id = x.instruction_set_id) AS languages,
+               x.created_at,
+               (SELECT COUNT(*) FROM battery_tasks bt WHERE bt.instruction_set_id = x.instruction_set_id) AS used_by
+        FROM instruction_sets x
         JOIN task_types tt ON tt.task_type_id = x.task_type_id
         $where
-        ORDER BY tt.task_name, x.instruction_name, x.language
+        ORDER BY tt.task_name, x.instruction_name
     ");
 }
 $stmt->execute($args);
-echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);
+$rows = $stmt->fetchAll();
+if ($resource === 'instructions') {
+    foreach ($rows as &$row) {
+        $row['languages'] = $row['languages'] === null ? [] : explode(',', $row['languages']);
+    }
+    unset($row);
+}
+echo json_encode($rows, JSON_UNESCAPED_UNICODE);

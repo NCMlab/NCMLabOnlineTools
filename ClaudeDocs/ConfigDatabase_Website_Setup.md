@@ -207,6 +207,7 @@ Click each Terminal window and press **Ctrl+C**. MySQL can keep running.
 | The website (`NCMBatteryWebsite`) | `cd ~/Documents/GitHub/NCMBatteryWebsite/user-website && git pull && npm install`, then restart Terminal 2 |
 | A parameter form (`schemas/*.json`) | `cd …/MySQL/ConfigurationDatabase/migrate && node load_schemas.js`, then load `migrate/Load_ParameterSchemas.sql` as in Step 5; refresh the browser |
 | The PHP API files | Nothing; they're read fresh on every request |
+| Instruction sets with languages (2026-10-14), on a database set up before that date | Once: `cd …/MySQL/ConfigurationDatabase && mysql --default-character-set=utf8mb4 -u ncmuser -p ncmbattery_config < AddInstructionSets.sql`. It needs the MySQL 8 client (Step 1.1's PATH), keeps the old table as `task_instructions_pre_sets`, and does nothing if run again |
 
 ## If something goes wrong
 

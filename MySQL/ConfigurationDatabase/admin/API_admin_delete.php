@@ -3,7 +3,8 @@
  * API_admin_delete.php
  * POST (session + X-CSRF-Token required):
  *   { "type": "parameter",   "id": 12 }
- *   { "type": "instruction", "id": 8 }
+ *   { "type": "instruction", "id": 8 }   (id = instruction_set_id; deletes every translation)
+ *   { "type": "translation", "id": 8, "language": "FR" }   (one language of instruction set 8)
  *   { "type": "battery",     "id": 3 }   (id = batteries.battery_id)
  *
  * Deletes are deliberately narrow, to protect batteries that are already in
@@ -13,6 +14,9 @@
  *    references them, active battery or not. The schema's foreign keys are
  *    ON DELETE SET NULL, so without this check a delete would silently strip
  *    the configuration out of existing batteries instead of failing.
+ *  - One translation: same rule as its set (a battery running in that
+ *    language would lose its text), and refused for the set's last
+ *    translation -- delete the set instead.
  *  - Batteries: refused (409) unless the battery has been deactivated first
  *    (API_admin_set_battery_active.php). A battery_index may be baked into
  *    JATOS study links or session-chooser configs, so retiring one is a
@@ -30,8 +34,8 @@ $body = read_json_body();
 $type = $body['type'] ?? '';
 $id = $body['id'] ?? null;
 
-if (!in_array($type, ['parameter', 'instruction', 'battery'], true)) {
-    respond_error(400, '"type" must be "parameter", "instruction", or "battery".');
+if (!in_array($type, ['parameter', 'instruction', 'translation', 'battery'], true)) {
+    respond_error(400, '"type" must be "parameter", "instruction", "translation", or "battery".');
 }
 if (!(is_int($id) && $id > 0) && !(is_string($id) && ctype_digit($id))) {
     respond_error(400, '"id" must be a positive integer.');
@@ -57,7 +61,7 @@ if ($type === 'battery') {
 
 [$table, $idColumn, $label] = $type === 'parameter'
     ? ['task_parameters', 'parameter_id', 'parameter set']
-    : ['task_instructions', 'instruction_id', 'instruction set'];
+    : ['instruction_sets', 'instruction_set_id', 'instruction set'];
 
 $stmt = $pdo->prepare("SELECT 1 FROM $table WHERE $idColumn = :id");
 $stmt->execute([':id' => $id]);
@@ -75,8 +79,26 @@ $stmt = $pdo->prepare("
 $stmt->execute([':id' => $id]);
 $usedBy = $stmt->fetchAll(PDO::FETCH_COLUMN);
 if ($usedBy) {
-    respond_error(409, "This {$label} is used by battery index " . implode(', ', $usedBy)
+    $what = $type === 'translation' ? 'This language cannot be removed: its instruction set' : "This {$label}";
+    respond_error(409, "{$what} is used by battery index " . implode(', ', $usedBy)
         . '. Remove it from those batteries (or delete them) first.');
+}
+
+if ($type === 'translation') {
+    $language = strtoupper(trim($body['language'] ?? ''));
+    $stmt = $pdo->prepare('SELECT language FROM instruction_translations WHERE instruction_set_id = :id');
+    $stmt->execute([':id' => $id]);
+    $languages = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    if (!in_array($language, $languages, true)) {
+        respond_error(404, "Instruction set {$id} has no \"{$language}\" translation.");
+    }
+    if (count($languages) === 1) {
+        respond_error(409, "{$language} is this set's only language. Delete the whole set instead.");
+    }
+    $pdo->prepare('DELETE FROM instruction_translations WHERE instruction_set_id = :id AND language = :lang')
+        ->execute([':id' => $id, ':lang' => $language]);
+    echo json_encode(['deleted' => 'translation', 'id' => $id, 'language' => $language]);
+    exit;
 }
 
 $pdo->prepare("DELETE FROM $table WHERE $idColumn = :id")->execute([':id' => $id]);

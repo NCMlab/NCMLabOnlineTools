@@ -56,7 +56,7 @@ var preload_digits = {
 var if_node = {
   timeline: [preload_digits],
   conditional_function: function(){
-    if ( parameters.StimulusMode == 'audio' )
+    if ( parameters.StimulusMode == 'audio' || parameters.StimulusMode == 'both' )
       { return true }
     else { return false }
   }
@@ -115,7 +115,7 @@ var SetupTrial = {
     func: function(data){
         console.log("Current List Length: "+CurrentListLength)
         stimList = CreateDigitList(CurrentListLength)
-        if ( parameters.StimulusMode == 'audio' ) {
+        if ( parameters.StimulusMode == 'audio' || parameters.StimulusMode == 'both' ) {
             stim = MakeListOfStimuli(Instructions.FolderOfAudioFiles, stimList)
             console.log("Made this list of stimuli: "+stim)
         }
@@ -234,6 +234,30 @@ var VisualStim = {
   }
 };
 
+// Audio and visual presentation: the digit is spoken and shown for the whole audio slot
+var AudioVisualStim = {
+  type: jsPsychAudioButtonResponse,
+  stimulus: function(){
+    return stim[idx]
+  },
+  choices: [],
+  trial_ends_after_audio: false,
+  trial_duration: 1500,
+  response_ends_trial: false,
+  prompt: function(){
+    return '<p class="Fixation">'+stimList[idx] +'</p>'},
+  on_finish: function(data) {
+    data.TrialNumber = TrialCount - 1
+    data.task = 'audio+visual'
+    idx += 1; //update the index
+      //check to see if we are at the end of the letter array
+      if (idx == stimList.length) {
+          exitLetters = 1;
+      } else  {
+          exitLetters = 0;
+      }
+  }
+};
 
 var AudioForward_Instructions = {
   type: jsPsychHtmlButtonResponseTouchscreen,
@@ -371,6 +395,13 @@ var present_audio = {
       else { return false }
     }
 }
+var present_audio_visual = {
+  timeline: [AudioVisualStim],
+  loop_function: function(){
+    if ( exitLetters == 0 ){ return true }
+    else { return false }
+  }
+}
 var present_visual = {
   timeline: [VisualStim],
   loop_function: function(){
@@ -385,7 +416,7 @@ var if_audio_forward_instr = {
     conditional_function: function() {
       console.log("CHECKING FOR AUDIO FORWARD")
       console.log(parameters)
-        if ( parameters.StimulusMode == 'audio' && parameters.direction =='forward' )
+        if ( (parameters.StimulusMode == 'audio' || parameters.StimulusMode == 'both') && parameters.direction =='forward' )
             { return true }
         else { return false }
     }
@@ -395,7 +426,7 @@ var if_audio_backward_instr = {
     timeline_variables: function() {return Instructions.BackwardAudioInstructions},
     conditional_function: function() {
       console.log("CHECKING FOR AUDIO BACKWARD")
-        if ( parameters.StimulusMode == 'audio' && parameters.direction =='backward' )
+        if ( (parameters.StimulusMode == 'audio' || parameters.StimulusMode == 'both') && parameters.direction =='backward' )
             { return true }
         else { return false }
     }
@@ -439,8 +470,17 @@ var if_visual = {
   }
 }
 
+var if_both = {
+  timeline: [present_audio_visual],
+  conditional_function: function(){
+    if ( parameters.StimulusMode == 'both' )
+      { return true }
+    else { return false }
+  }
+}
+
 var procedure = {
-  timeline: [SetupTrial, TrialNumber, if_audio, if_visual, get_response, UpdateListLength, CheckWhetherToStop],//, NumberPadResponse],
+  timeline: [SetupTrial, TrialNumber, if_audio, if_visual, if_both, get_response, UpdateListLength, CheckWhetherToStop],//, NumberPadResponse],
   loop_function: function(){
     return StopFlag
   }

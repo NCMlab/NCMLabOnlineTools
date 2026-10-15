@@ -15,6 +15,8 @@
 //                 the Stroop pages ignore the name and load "<LANG>_Stroop_Instructions".
 // LANG is the battery's Language (default EN). If no instruction set exists in that
 // language, the EN one is used and the fallback is listed in the report.
+// The matched key is then turned into its set name (instructionSetName() in
+// task_mapping.js), and battery_tasks points at that set; the language is chosen at run time.
 //
 // The generated SQL looks rows up by name (not id), so it runs on any database that
 // has had SeedData_TaskTypes.sql and Migrated_TaskConfig.sql applied. Each battery is
@@ -28,7 +30,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const { TASK_NAME_BY_BASENAME, baseName } = require('./task_mapping');
+const { TASK_NAME_BY_BASENAME, baseName, instructionSetName } = require('./task_mapping');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 const BATTERIES_JS = path.join(REPO_ROOT, 'Batteries', 'Batteries.js');
@@ -213,10 +215,10 @@ function main() {
         ? `(SELECT parameter_id FROM task_parameters WHERE task_type_id = ${tt} AND parameter_name = ${sql(param.name)})`
         : 'NULL';
       const instrSql = instr.row
-        ? `(SELECT instruction_id FROM task_instructions WHERE task_type_id = ${tt} AND instruction_name = ${sql(instr.row.name)} AND language = ${sql(instr.row.language)})`
+        ? `(SELECT instruction_set_id FROM instruction_sets WHERE task_type_id = ${tt} AND instruction_name = ${sql(instructionSetName(instr.row.name, instr.row.language))})`
         : 'NULL';
       out.push(
-        'INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_id, icon_name)',
+        'INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_set_id, icon_name)',
         `VALUES (@battery_id, ${tt}, ${i + 1}, ${paramSql}, ${instrSql}, ${sql(t.IconName ?? null)});`
       );
       taskRows++;

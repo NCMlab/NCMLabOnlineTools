@@ -8,6 +8,9 @@
  *
  * Returns the battery whose battery_index = 16, including the
  * ordered task list with parameters and instructions for each task.
+ * Each task's "instructions" holds every translation of its instruction
+ * set, keyed by language ({"EN": {...}, "FR": {...}}), because the
+ * participant can pick a language other than the battery's at run time.
  *
  * Deploy this file on the same server as your MySQL instance.
  * Credentials come from db_config.php (gitignored -- see db_config.example.php),
@@ -76,13 +79,14 @@ $stmt = $pdo->prepare('
         tt.html_file,
         tp.parameter_name,
         tp.parameters_json,
-        ti.instruction_name,
-        ti.language  AS instruction_language,
-        ti.instructions_json
+        ins.instruction_name,
+        (SELECT JSON_OBJECTAGG(it.language, it.instructions_json)
+         FROM instruction_translations it
+         WHERE it.instruction_set_id = bt.instruction_set_id) AS instructions_json
     FROM battery_tasks bt
     JOIN task_types tt ON tt.task_type_id = bt.task_type_id
     LEFT JOIN task_parameters  tp ON tp.parameter_id   = bt.parameter_id
-    LEFT JOIN task_instructions ti ON ti.instruction_id = bt.instruction_id
+    LEFT JOIN instruction_sets ins ON ins.instruction_set_id = bt.instruction_set_id
     WHERE bt.battery_id = :bid
     ORDER BY bt.sort_order
 ');
@@ -99,7 +103,6 @@ foreach ($rows as $row) {
         'parameter_name'       => $row['parameter_name'],
         'parameters'           => $row['parameters_json']    ? json_decode($row['parameters_json'])    : null,
         'instruction_name'     => $row['instruction_name'],
-        'instruction_language' => $row['instruction_language'],
         'instructions'         => $row['instructions_json']  ? json_decode($row['instructions_json'])  : null,
     ];
 }

@@ -251,10 +251,12 @@ run locally.
 - [ ] **Fix the unresolved references in `BATTERY_REVIEW.md`** (19 batteries): names like
       `WordRecog_Spoken`, `IntakeForm_EN`, `RAVLT_Spoken_Immediate_002` that exist in no config
       file — already broken in Batteries.js today. Loaded with that parameter/instruction empty.
-- [ ] **Schema question: instructions per language.** `battery_tasks.instruction_id` pins one
-      language's row, but pages pick instructions by the participant's chosen LANG at runtime.
-      The migration picks the battery's Language. Before pages read batteries from the DB, decide
-      whether battery_tasks should store the instruction *name* and resolve LANG at runtime.
+- [x] ~~**Schema question: instructions per language.**~~ Resolved 2026-10-14: instructions are
+      now `instruction_sets` (one per name, e.g. "Default") + `instruction_translations` (one per
+      language), and `battery_tasks.instruction_set_id` points at the set, so LANG is resolved at
+      run time. Names lost their language prefix (`instructionSetName()` in
+      `migrate/task_mapping.js`). Existing databases: run `AddInstructionSets.sql` once. The
+      admin site edits a set as text boxes with a language pull-down.
 - [ ] **`task_types.html_file` values don't all match real files** (e.g. `CardSort.html` vs
       `CardSortTask.html`, `WordRecog.html` vs `WordRecognition.html`, `ReadingTest.html` doesn't
       exist). Harmless until something launches pages from `html_file`.

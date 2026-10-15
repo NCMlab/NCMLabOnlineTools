@@ -107,49 +107,7 @@ SELECT
 FROM task_types tt
 WHERE tt.task_name = 'Word Recall';
 
--- ============================================================
--- Example: Insert one instruction set for Word Recall
--- (EN_Instructions_Default from WordRecall_Instructions.js)
--- ============================================================
-
-INSERT IGNORE INTO task_instructions (task_type_id, instruction_name, language, instructions_json)
-SELECT
-    tt.task_type_id,
-    'Default',
-    'EN',
-    JSON_OBJECT(
-        'WelcomeText',          JSON_ARRAY(JSON_OBJECT('page', 'Welcome to the Word Recall Task.')),
-        'RecallInstructions',   'Please repeat the entire word list',
-        'GetReadyInstructions', 'Get ready for the next trial',
-        'Instructions01',       JSON_ARRAY(
-            JSON_OBJECT('page', 'You are going to hear a list of words, this is <b>List A</b>. Listen carefully. At the end of the list you are to repeat back as many words as you can recall.'),
-            JSON_OBJECT('page', 'It does not matter in what order you repeat them, just try to recall as many as you can.')
-        ),
-        'Instructions02',       JSON_ARRAY(
-            JSON_OBJECT('page', ''),
-            JSON_OBJECT('page', 'Now you will hear the same words again, and once again, at the end of the list repeat back as many words as you can recall, including words you said the first time. '),
-            JSON_OBJECT('page', 'It does not matter in what order you say them, just say as many words as you can remember, whether or not you said them before.')
-        ),
-        'Instructions03',       JSON_ARRAY(
-            JSON_OBJECT('page', ''),
-            JSON_OBJECT('page', 'Now you will hear a second list of words, this is <b>List B</b>. Listen carefully, for at the end of the list you are to repeat back as many words as you can remember.'),
-            JSON_OBJECT('page', 'It does not matter in what order you repeat them, just try to remember as many as you can.')
-        ),
-        'Instructions04',       JSON_ARRAY(
-            JSON_OBJECT('page', ''),
-            JSON_OBJECT('page', 'Now repeat back all the words you can recall from <b>List A</b>, the list you heard a number of times.')
-        ),
-        'Instructions05',       JSON_ARRAY(
-            JSON_OBJECT('page', ''),
-            JSON_OBJECT('page', 'Get ready to recall the words you just heard.')
-        ),
-        'InstructionsDelayed',  JSON_ARRAY(
-            JSON_OBJECT('page', 'Recall all the words you can remember from the list you heard a number of times, <b>List A</b>.')
-        ),
-        'WordPrompt',           'empty',
-        'ThankYouText',         JSON_ARRAY(JSON_OBJECT('page', 'Thank you')),
-        'IntrusionPrompt',      'Intrusion? (Words not in the list)',
-        'WordRecallPrompt',     'Which words were recalled?'
-    )
-FROM task_types tt
-WHERE tt.task_name = 'Word Recall';
+-- Instruction sets are not seeded here: migrate/Migrated_TaskConfig.sql loads every one
+-- (as instruction_sets + instruction_translations) from InstructionsAndStimuli/Instructions/.
+-- An example here used to insert an older copy of Word Recall "Default" that the real one
+-- could not replace.

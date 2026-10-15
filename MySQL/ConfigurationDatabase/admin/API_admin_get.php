@@ -3,13 +3,17 @@
  * API_admin_get.php
  * GET (session required, no CSRF token -- read only):
  *   ?type=parameter&id=12
- *   ?type=instruction&id=8
+ *   ?type=instruction&id=8      (id = instruction_sets.instruction_set_id)
  *   ?type=battery&id=3          (id = batteries.battery_id, not battery_index)
  *
  * Returns one full record by primary key, including its decoded JSON, so the
  * admin UI can pre-fill an editor. Looking up by id (rather than by name, as
- * API_task_config.php does) is unambiguous: instruction names repeat across
- * languages, and the UI already has the id from API_list_config.php.
+ * API_task_config.php does) is unambiguous: set names repeat across task
+ * types, and the UI already has the id from API_list_config.php.
+ *
+ * An instruction set comes back with all of its translations:
+ *   "translations": [{"language": "EN", "created_at": ..., "instructions": {...}}, ...]
+ * EN first, then the other languages alphabetically.
  *
  * Copy-on-edit: nothing here is ever edited in place. The UI loads a record
  * with this endpoint, lets the user change it, and saves the result as a NEW
@@ -75,20 +79,29 @@ if ($type === 'parameter') {
 
 if ($type === 'instruction') {
     $stmt = $pdo->prepare('
-        SELECT i.instruction_id, i.task_type_id, tt.task_name, i.instruction_name, i.language,
-               i.instructions_json, i.created_at
-        FROM task_instructions i
-        JOIN task_types tt ON tt.task_type_id = i.task_type_id
-        WHERE i.instruction_id = :id
+        SELECT s.instruction_set_id, s.task_type_id, tt.task_name, s.instruction_name, s.created_at
+        FROM instruction_sets s
+        JOIN task_types tt ON tt.task_type_id = s.task_type_id
+        WHERE s.instruction_set_id = :id
     ');
     $stmt->execute([':id' => $id]);
     $row = $stmt->fetch();
     if (!$row) {
         respond_error(404, "No instruction set with id {$id}.");
     }
-    $row['instructions'] = json_decode($row['instructions_json'], true);
-    unset($row['instructions_json']);
-    $row['used_by'] = batteries_using($pdo, 'instruction_id', $id);
+    $stmt = $pdo->prepare("
+        SELECT language, created_at, instructions_json
+        FROM instruction_translations
+        WHERE instruction_set_id = :id
+        ORDER BY language <> 'EN', language
+    ");
+    $stmt->execute([':id' => $id]);
+    $row['translations'] = array_map(fn($t) => [
+        'language'     => $t['language'],
+        'created_at'   => $t['created_at'],
+        'instructions' => json_decode($t['instructions_json'], true),
+    ], $stmt->fetchAll());
+    $row['used_by'] = batteries_using($pdo, 'instruction_set_id', $id);
     echo json_encode($row, JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -111,19 +124,24 @@ $battery['active'] = (bool) $battery['active'];
 $battery['header_buttons'] = $battery['header_buttons'] === null ? null : json_decode($battery['header_buttons'], true);
 $battery['languages_to_show'] = $battery['languages_to_show'] === null ? null : json_decode($battery['languages_to_show'], true);
 
-$stmt = $pdo->prepare('
+$stmt = $pdo->prepare("
     SELECT bt.sort_order, bt.task_type_id, tt.task_name, tt.icon_file,
            bt.parameter_id, tp.parameter_name,
-           bt.instruction_id, ti.instruction_name, ti.language AS instruction_language,
+           bt.instruction_set_id, ins.instruction_name,
+           (SELECT GROUP_CONCAT(it.language ORDER BY it.language <> 'EN', it.language)
+            FROM instruction_translations it WHERE it.instruction_set_id = bt.instruction_set_id) AS instruction_languages,
            bt.icon_name
     FROM battery_tasks bt
     JOIN task_types tt ON tt.task_type_id = bt.task_type_id
     LEFT JOIN task_parameters tp ON tp.parameter_id = bt.parameter_id
-    LEFT JOIN task_instructions ti ON ti.instruction_id = bt.instruction_id
+    LEFT JOIN instruction_sets ins ON ins.instruction_set_id = bt.instruction_set_id
     WHERE bt.battery_id = :id
     ORDER BY bt.sort_order
-');
+");
 $stmt->execute([':id' => $id]);
-$battery['tasks'] = $stmt->fetchAll();
+$battery['tasks'] = array_map(function ($t) {
+    $t['instruction_languages'] = $t['instruction_languages'] === null ? [] : explode(',', $t['instruction_languages']);
+    return $t;
+}, $stmt->fetchAll());
 
 echo json_encode($battery, JSON_UNESCAPED_UNICODE);

@@ -82,10 +82,12 @@ Expected output:
 +--------------------------------+
 | Tables_in_ncmbattery_config    |
 +--------------------------------+
+| admin_users                    |
 | batteries                      |
 | battery_tasks                  |
+| instruction_sets               |
+| instruction_translations       |
 | session_chooser_configs        |
-| task_instructions              |
 | task_parameters                |
 | task_types                     |
 | ui_labels                      |
@@ -115,11 +117,12 @@ mysql -u ncmuser -p ncmbattery_config \
   -e "SELECT parameter_name, JSON_KEYS(parameters_json) FROM task_parameters LIMIT 5;"
 ```
 
-Verify the Word Recall instruction example:
+Instruction sets are not in the seed file; they come from `migrate/Migrated_TaskConfig.sql`.
+Each set (e.g. Word Recall "Default") has one translation per language. After loading that file:
 
 ```bash
 mysql -u ncmuser -p ncmbattery_config \
-  -e "SELECT instruction_name, language FROM task_instructions;"
+  -e "SELECT s.instruction_name, t.language FROM instruction_sets s JOIN instruction_translations t USING (instruction_set_id) LIMIT 10;"
 ```
 
 ---
@@ -156,9 +159,10 @@ INSERT INTO batteries (
 SET @battery_id   = (SELECT battery_id   FROM batteries       WHERE battery_index   = 16);
 SET @task_id      = (SELECT task_type_id FROM task_types       WHERE task_name       = 'Word Recall');
 SET @param_id     = (SELECT parameter_id FROM task_parameters  WHERE parameter_name  = 'RAVLT_Spoken_Immediate');
-SET @instr_id     = (SELECT instruction_id FROM task_instructions WHERE instruction_name = 'Default' AND language = 'EN');
+SET @instr_id     = (SELECT instruction_set_id FROM instruction_sets WHERE task_type_id = @task_id AND instruction_name = 'Default');
 
-INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_id, icon_name)
+-- The battery points at the set; the participant's language picks the translation at run time.
+INSERT INTO battery_tasks (battery_id, task_type_id, sort_order, parameter_id, instruction_set_id, icon_name)
 VALUES (@battery_id, @task_id, 7, @param_id, @instr_id, 'Immediate');
 ```
 
@@ -352,11 +356,13 @@ FROM task_parameters tp
 JOIN task_types tt ON tt.task_type_id = tp.task_type_id
 WHERE tt.task_name = 'Word Recall';
 
--- List all instruction sets for Word Recall
-SELECT instruction_name, language
-FROM task_instructions ti
-JOIN task_types tt ON tt.task_type_id = ti.task_type_id
-WHERE tt.task_name = 'Word Recall';
+-- List all instruction sets for Word Recall, with their languages
+SELECT s.instruction_name, GROUP_CONCAT(t.language ORDER BY t.language) AS languages
+FROM instruction_sets s
+JOIN task_types tt ON tt.task_type_id = s.task_type_id
+JOIN instruction_translations t ON t.instruction_set_id = s.instruction_set_id
+WHERE tt.task_name = 'Word Recall'
+GROUP BY s.instruction_set_id;
 
 -- View a full battery with all tasks
 SELECT * FROM v_battery_tasks WHERE battery_index = 16;
