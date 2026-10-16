@@ -52,7 +52,6 @@ var mentalHealthFeedback = {
 var EligibilityCheck = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-        console.log(Results.AllResults['Computer Information'].indexOf("Chrome"))
       return LabelNames.NonEligible
     },
     post_trial_gap: 0,
@@ -69,7 +68,6 @@ var EligibilityCheck = {
   var if_Eligibile = {
     timeline: [EligibilityCheck],
     conditional_function: function(){
-        console.log(Results.AllResults['Computer Information'].indexOf("Chrome"))
       if ( Results.PrimaryResults['Accuracy'] )
       { return false }
       else { return true }
@@ -85,11 +83,11 @@ var EligibilityCheck = {
     margin_horizontal: GapBetweenButtons,
     prompt: 'PROMPT',
     choices: function() {return [LabelNames.Next]}, 
-    on_finish: function() {
-        jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results])
+    // on_finish: function() {
+        // jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results])
         //jsPsych.finishTrial(Results)    
         //jatos.endStudyAndRedirect("https://ncmlab.github.io/", Results);
-    }
+    // }
   }
   
   var if_BrowserEligibile = {
@@ -109,6 +107,35 @@ var EligibilityCheck = {
     }
   }
 
+
+  var BrowserLanguageEligibilityCheck = {
+    type: jsPsychHtmlButtonResponseTouchscreen,
+    stimulus: function() {
+      return LabelNames.BroswerLanguageNonEligible
+    },
+    post_trial_gap: 0,
+    margin_horizontal: GapBetweenButtons,
+    prompt: 'PROMPT',
+    choices: function() {return [LabelNames.Next]}, 
+    // on_finish: function() {
+        // jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results])
+        //jsPsych.finishTrial(Results)    
+        //jatos.endStudyAndRedirect("https://ncmlab.github.io/", Results);
+    // }
+  }
+  
+  var if_BrowserLanguageEligibile = {
+    timeline: [BrowserLanguageEligibilityCheck],
+    conditional_function: function(){
+        console.log(Results)
+        const result = Results.AllResults["Available Language"].filter(index => 
+            index.toLowerCase().includes(Results.AllResults["User Language"].toLowerCase())
+        );
+        console.log(result)
+        return false
+    
+    }
+  }
 
 // ============== WELCOME ==============
 // Welcome can be presented as written or as written with voice over.
