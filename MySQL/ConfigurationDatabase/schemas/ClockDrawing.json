@@ -1,0 +1,79 @@
+{
+  "taskTypes": [
+    "Clock Drawing"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 2 parameter sets; code scanned: ClockDrawing.html",
+  "schema": {
+    "type": "object",
+    "title": "Clock Drawing parameters",
+    "required": [
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "RecordGIF",
+      "AskForNotes"
+    ],
+    "properties": {
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "RecordGIF": {
+        "type": "boolean",
+        "title": "Record the drawing as a GIF",
+        "default": true,
+        "description": "Record what the participant draws as an animated GIF, saved with the results."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "RecordGIF": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "ShowInstructions",
+      "ShowWelcome",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordGIF",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

@@ -3,24 +3,8 @@
     "Spatial DMS",
     "TEST Spatial DMS"
   ],
-  "reviewed": false,
+  "reviewed": true,
   "generated": "migrate/infer_schemas.js on 2026-10-09 from 5 parameter sets; code scanned: SpatialDMS.html, TESTSpatialDMS.html",
-  "readByCodeButNotInAnySet": [
-    "AskForNotes",
-    "Instructions01Audio",
-    "Instructions01Time",
-    "Instructions02Audio",
-    "Instructions02Time",
-    "Instructions03Audio",
-    "Instructions03Time",
-    "Instructions04Audio",
-    "Instructions04Time",
-    "Instructions05Audio",
-    "Instructions05Time",
-    "InstructionsSpoken",
-    "RecordGIF",
-    "WelcomeAudio"
-  ],
   "schema": {
     "type": "object",
     "title": "Spatial DMS parameters",
@@ -51,145 +35,165 @@
     "properties": {
       "ShowWelcome": {
         "type": "boolean",
-        "title": "Show welcome",
-        "default": true
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
       },
       "WelcomeSpoken": {
         "type": "boolean",
-        "title": "Welcome spoken",
-        "default": false
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
       },
       "ShowThankYou": {
         "type": "boolean",
-        "title": "Show thank you",
-        "default": true
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
       },
       "ShowInstructions": {
         "type": "boolean",
         "title": "Show instructions",
-        "default": true
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
       },
       "MaxTrials": {
         "type": "integer",
-        "title": "Max trials",
+        "title": "Test trials",
         "default": 4,
-        "description": "Values in use: 40, 4"
+        "description": "The test staircase stops after this many trials.",
+        "minimum": 1
       },
       "NPracticeTrials": {
         "type": "integer",
-        "title": "N practice trials",
+        "title": "Practice trials",
         "default": 4,
-        "description": "Values in use: 4, 2, 1"
+        "description": "Trials in the practice staircase (with feedback), before the test.",
+        "minimum": 0
       },
       "MaxReversals": {
         "type": "integer",
         "title": "Max reversals",
         "default": 15,
-        "description": "Values in use: 15"
+        "description": "The staircase also stops after this many reversals (changes of direction).",
+        "minimum": 1
       },
       "StartValue": {
         "type": "integer",
-        "title": "Start value",
+        "title": "Starting load",
         "default": 1,
-        "description": "Values in use: 1"
+        "description": "Number of items to remember in the first trial.",
+        "minimum": 1
       },
       "MinValue": {
         "type": "integer",
-        "title": "Min value",
+        "title": "Lowest load",
         "default": 1,
-        "description": "Values in use: 1"
+        "description": "The load never goes below this.",
+        "minimum": 1
       },
       "MaxValue": {
         "type": "integer",
-        "title": "Max value",
+        "title": "Highest load",
         "default": 20,
-        "description": "Values in use: 20"
+        "description": "The load never goes above this.",
+        "minimum": 1
       },
       "StepSize": {
         "type": "integer",
         "title": "Step size",
         "default": 1,
-        "description": "Values in use: 1"
+        "description": "How much the load changes at each step up or down.",
+        "minimum": 1
       },
       "NUp": {
         "type": "integer",
-        "title": "N up",
+        "title": "Correct in a row to go up",
         "default": 3,
-        "description": "Values in use: 3"
+        "description": "After the fast start, this many correct trials in a row raise the load one step.",
+        "minimum": 1
       },
       "NDown": {
         "type": "integer",
-        "title": "N down",
+        "title": "Errors in a row to go down (not used)",
         "default": 1,
-        "description": "Values in use: 1"
+        "description": "Not used: the staircase code lowers the load one step after every error, whatever this says (same as Digit Span)."
       },
       "FastStart": {
         "type": "boolean",
         "title": "Fast start",
-        "default": true
+        "default": true,
+        "description": "Until the first error, every correct trial raises the load (ignores 'Correct in a row')."
       },
       "MaskOnTime": {
         "type": "integer",
-        "title": "Mask on time",
+        "title": "Mask on screen (ms)",
         "default": 300,
-        "description": "Values in use: 300"
+        "minimum": 0
       },
       "StimOnTime": {
         "type": "integer",
-        "title": "Stim on time",
+        "title": "Dots on screen (ms)",
         "default": 2500,
-        "description": "Values in use: 2500, 250"
+        "minimum": 0
       },
       "RetOnTime": {
         "type": "integer",
-        "title": "Ret on time",
+        "title": "Retention delay (ms)",
         "default": 3200,
-        "description": "Values in use: 3200, 320"
+        "description": "Blank delay between the mask and the probe.",
+        "minimum": 0
       },
       "ProbeOnTime": {
         "type": "integer",
-        "title": "Probe on time",
+        "title": "Probe on screen (ms)",
         "default": 2500,
-        "description": "Values in use: 2500, 250"
+        "minimum": 0
       },
       "ITITime": {
         "type": "integer",
-        "title": "ITI time",
+        "title": "Pause between trials (ms)",
         "default": 1000,
-        "description": "Values in use: 1000, 100"
+        "minimum": 0
       },
       "ButtonLabels": {
         "type": "array",
-        "title": "Button labels",
+        "title": "Response button labels",
         "items": {
-          "type": "string"
+          "type": "string",
+          "title": "Label"
         },
         "default": [
           "Yes",
           "No"
-        ]
+        ],
+        "description": "Text on the two response buttons, e.g. Yes / No."
       },
       "KeyboardValues": {
         "type": "array",
-        "title": "Keyboard values",
+        "title": "Response keys",
         "items": {
-          "type": "string"
+          "type": "string",
+          "title": "Key"
         },
         "default": [
           "arrowleft",
           "arrowright"
-        ]
+        ],
+        "description": "Keyboard keys that answer, in the same order as the buttons (e.g. arrowleft, arrowright)."
       },
       "KeyboardMappings": {
         "type": "array",
-        "title": "Keyboard mappings",
+        "title": "What each key means",
         "items": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "Means 'yes, it was there'"
         },
         "default": [
           true,
           false
-        ]
+        ],
+        "description": "For each response key, in order: Yes = 'the probe was in the set', No = 'it was not'."
       }
     },
     "additionalProperties": true
@@ -216,12 +220,8 @@
       }
     },
     "ui:order": [
-      "ShowWelcome",
-      "WelcomeSpoken",
-      "ShowThankYou",
-      "ShowInstructions",
-      "MaxTrials",
       "NPracticeTrials",
+      "MaxTrials",
       "MaxReversals",
       "StartValue",
       "MinValue",
@@ -230,15 +230,22 @@
       "NUp",
       "NDown",
       "FastStart",
-      "MaskOnTime",
       "StimOnTime",
+      "MaskOnTime",
       "RetOnTime",
       "ProbeOnTime",
       "ITITime",
       "ButtonLabels",
       "KeyboardValues",
       "KeyboardMappings",
+      "ShowInstructions",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
       "*"
     ]
-  }
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
 }

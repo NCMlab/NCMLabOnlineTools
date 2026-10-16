@@ -5,6 +5,7 @@
  *   ?type=parameter&id=12
  *   ?type=instruction&id=8      (id = instruction_sets.instruction_set_id)
  *   ?type=battery&id=3          (id = batteries.battery_id, not battery_index)
+ *   ?type=session&id=2          (id = sessions.session_id)
  *
  * Returns one full record by primary key, including its decoded JSON, so the
  * admin UI can pre-fill an editor. Looking up by id (rather than by name, as
@@ -34,8 +35,8 @@ require_admin_login();
 
 $type = $_GET['type'] ?? '';
 $id = $_GET['id'] ?? '';
-if (!in_array($type, ['parameter', 'instruction', 'battery'], true)) {
-    respond_error(400, 'Parameter "type" must be "parameter", "instruction", or "battery".');
+if (!in_array($type, ['parameter', 'instruction', 'battery', 'session'], true)) {
+    respond_error(400, 'Parameter "type" must be "parameter", "instruction", "battery", or "session".');
 }
 if (!ctype_digit((string) $id)) {
     respond_error(400, 'Parameter "id" (integer) is required.');
@@ -103,6 +104,49 @@ if ($type === 'instruction') {
     ], $stmt->fetchAll());
     $row['used_by'] = batteries_using($pdo, 'instruction_set_id', $id);
     echo json_encode($row, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+if ($type === 'session') {
+    $stmt = $pdo->prepare('SELECT session_id, session_name, created_at FROM sessions WHERE session_id = :id');
+    $stmt->execute([':id' => $id]);
+    $session = $stmt->fetch();
+    if (!$session) {
+        respond_error(404, "No session with id {$id}.");
+    }
+    // Every language with its buttons, EN first.
+    $stmt = $pdo->prepare("
+        SELECT session_language_id, language, title, chooser_index, run_name_check, created_at
+        FROM session_languages WHERE session_id = :id
+        ORDER BY language <> 'EN', language
+    ");
+    $stmt->execute([':id' => $id]);
+    $buttons = $pdo->prepare('
+        SELECT name, battery_index, button_row, bit_index, phase, test, button_usage_type
+        FROM session_buttons WHERE session_language_id = :lid ORDER BY sort_order
+    ');
+    $toInt = fn($v) => $v === null ? null : (int) $v;
+    $session['languages'] = [];
+    foreach ($stmt->fetchAll() as $l) {
+        $buttons->execute([':lid' => $l['session_language_id']]);
+        $session['languages'][] = [
+            'language'       => $l['language'],
+            'title'          => $l['title'],
+            'chooser_index'  => $toInt($l['chooser_index']),
+            'run_name_check' => $l['run_name_check'] === null ? null : (bool) $l['run_name_check'],
+            'created_at'     => $l['created_at'],
+            'buttons'        => array_map(fn($b) => [
+                'name'              => $b['name'],
+                'battery_index'     => (int) $b['battery_index'],
+                'button_row'        => $toInt($b['button_row']),
+                'bit_index'         => $toInt($b['bit_index']),
+                'phase'             => $b['phase'],
+                'test'              => $b['test'],
+                'button_usage_type' => $b['button_usage_type'],
+            ], $buttons->fetchAll()),
+        ];
+    }
+    echo json_encode($session, JSON_UNESCAPED_UNICODE);
     exit;
 }
 

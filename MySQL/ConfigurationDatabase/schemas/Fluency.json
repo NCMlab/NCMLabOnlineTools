@@ -1,0 +1,140 @@
+{
+  "taskTypes": [
+    "Fluency"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 9 parameter sets; code scanned: FluencyTask.html, OldFluencyTask.html",
+  "schema": {
+    "type": "object",
+    "title": "Fluency parameters",
+    "required": [
+      "Category",
+      "TimeLimit",
+      "ResponseType",
+      "ShowInstructions",
+      "ShowWelcome",
+      "ShowThankYou",
+      "AskForNotes"
+    ],
+    "properties": {
+      "Category": {
+        "type": "string",
+        "title": "Category",
+        "default": "Animals",
+        "description": "What the participant names. The category text comes from the instruction set. CHECK: the FR instruction sets have no Dinner table category.",
+        "oneOf": [
+          {
+            "const": "Animals",
+            "title": "Animals"
+          },
+          {
+            "const": "FruitsVegetables",
+            "title": "Fruits and vegetables"
+          },
+          {
+            "const": "DinnerTable",
+            "title": "Things on a dinner table (EN only)"
+          },
+          {
+            "const": "LetterF",
+            "title": "Words starting with F"
+          }
+        ]
+      },
+      "TimeLimit": {
+        "type": "integer",
+        "title": "Time limit (s)",
+        "default": 60,
+        "description": "How long the participant has to name words, in seconds.",
+        "minimum": 1,
+        "maximum": 600
+      },
+      "ResponseType": {
+        "type": "string",
+        "title": "How the participant responds",
+        "default": "Manual",
+        "oneOf": [
+          {
+            "const": "Spoken",
+            "title": "Spoken: says the answers aloud (recorded)"
+          },
+          {
+            "const": "Manual",
+            "title": "Manual: the examiner records the answers"
+          }
+        ]
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "RecordAUDIO": {
+        "type": "boolean",
+        "title": "Record audio (not used)",
+        "default": true,
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged. Spoken responses are always recorded and manual responses never are."
+      },
+      "DelayBeforeShowingDoneButton": {
+        "type": "integer",
+        "title": "Seconds before the Done button appears",
+        "default": 5,
+        "description": "The participant can only finish early this many seconds after the response period starts.",
+        "minimum": 0
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordAUDIO": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "Category",
+      "TimeLimit",
+      "ResponseType",
+      "DelayBeforeShowingDoneButton",
+      "ShowInstructions",
+      "ShowWelcome",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordAUDIO",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15.",
+    "CHECK: FR Fluency instruction sets lack the DinnerTable category, and name their instruction page 'Instructions' where the task expects 'Instructions01'."
+  ]
+}

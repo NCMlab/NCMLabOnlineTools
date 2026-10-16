@@ -101,7 +101,7 @@ What each one does:
 |---|---|
 | `CreateSchema.sql` | All tables, indexes and the `v_battery_tasks` view (current schema — no separate upgrade scripts needed on a fresh install) |
 | `SeedData_TaskTypes.sql` | One row per task type (`task_types`) |
-| `migrate/Migrated_TaskConfig.sql` | **Every** parameter set, instruction set + its translations, session-chooser config and UI label, migrated from the old `config/*.js` files |
+| `migrate/Migrated_TaskConfig.sql` | **Every** parameter set, instruction set + its translations, session (button page) with its buttons per language, and UI label, migrated from the old `config/*.js` files |
 | `migrate/Migrated_Batteries.sql` | **Every** existing battery and its ordered task list |
 | `migrate/Load_ParameterSchemas.sql` | The reviewed parameter-entry forms (currently Digit Span and Word Recall) for the admin UI — other task types get a plain JSON editor until their form is written |
 
@@ -122,11 +122,12 @@ mysql -u ncmuser -p ncmbattery_config -e "
   SELECT (SELECT COUNT(*) FROM task_types)   AS task_types,
          (SELECT COUNT(*) FROM task_parameters) AS parameter_sets,
          (SELECT COUNT(*) FROM instruction_sets) AS instruction_sets,
+         (SELECT COUNT(*) FROM sessions)     AS sessions,
          (SELECT COUNT(*) FROM batteries)    AS batteries;"
 ```
 
-You should see dozens of task types, hundreds of parameter sets, dozens of instruction sets, and
-more than one battery. If `batteries` shows `1`, `Migrated_Batteries.sql` didn't run — go back and
+You should see dozens of task types, hundreds of parameter sets, dozens of instruction sets, 4
+sessions, and more than one battery. If `batteries` shows `1`, `Migrated_Batteries.sql` didn't run — go back and
 run it.
 
 ---
@@ -277,6 +278,7 @@ In the website:
 - **New battery** page: the task-type grid populates (no "Request failed").
 - **Batteries** page: lists many batteries, not just one.
 - Open any battery → its task list shows real parameter/instruction set names.
+- **Sessions** page: lists COMM_01, COMM_99, COMM_DEMO and Mont_99; View shows the button layout.
 - **Parameter sets** page, filtered to **Digit Span** or **Word Recall**: "Edit as copy" opens a
   real form with labeled fields. Every other task type still opens a plain JSON editor — that's
   expected; their reviewed forms haven't been written yet (see `Jason_ToDo.md`).

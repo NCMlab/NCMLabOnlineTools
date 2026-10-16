@@ -205,3 +205,56 @@ the translation at run time. Databases created before this need `../AddInstructi
 
 Changing the text of an existing translation is still copy-on-edit: the site saves the whole set
 (every language) under a new name.
+
+---
+
+## Sessions (added 2026-10-15)
+
+A session is the button page in `html/JATOS/CentralExecutive.html` (formerly
+`config/SessionChooser_config.js`): `sessions` (one per name, e.g. "COMM_99"),
+`session_languages` (a title and a whole button list per language) and `session_buttons`
+(name, battery index, row, bit index, phase, test, usage type). Databases created before this
+need `../AddSessions.sql` once, or a clean reinstall. Public read:
+`../API_session.php?name=COMM_99&lang=FR` returns the same `parameters` shape the config file gave
+the page.
+
+| Endpoint | Body | What it does |
+|---|---|---|
+| `API_admin_create_session.php` | `{session_name, languages: {EN: {title, chooser_index?, run_name_check?, buttons: [...]}}}` | New session, all languages in one transaction. 409 if the name exists. |
+| `API_admin_add_session_language.php` | `{session_id, language, title, buttons, ...}` | Adds one language; the others don't change. 409 if it exists. |
+| `API_admin_get.php?type=session&id=` | | The session with every language and its buttons, EN first. |
+| `API_admin_delete.php` | `{type: "session", id}` / `{type: "session_language", id, language}` | Deletes a session, or one language (not the last). No in-use check: JATOS components name sessions, the database doesn't know which. |
+
+Shared validation is in `session_common.php`: every button needs a name and battery index, and
+two normal buttons may not share a bit index ("pick a test" buttons are exempt). Copy-on-edit
+applies, as for batteries: the site saves an edited session under a new name.
+
+**One exception, chosen by Jason 2026-10-15:** `API_admin_set_session_battery.php`
+`{session_id, from_battery_index, to_battery_index, scope, language?, sort_order?}` points session
+buttons at another battery **in place**, so the JATOS component that names the session keeps
+working. `scope` is `button` (one button), `language` (every button in that language using the
+old battery) or `session` (every language). The target battery must exist and be active. The old
+battery is not changed, and results record which battery index ran, so past data still matches
+its configuration. The site uses it after **Edit battery** on a session button: battery → builder
+→ saved under a new index → "Update the session".
+
+
+---
+
+## In-place edits for parameter sets and batteries (added 2026-10-15)
+
+Jason asked to also be able to change an existing parameter set or battery without making a
+copy. The site now has **Edit** beside **Edit as copy** for both (instruction sets and sessions
+are unchanged).
+
+| Endpoint | Body | What it does |
+|---|---|---|
+| `API_admin_update_parameter.php` | `{parameter_id, parameters}` | Replaces the set's values; name, task type and language stay. Returns `used_by` (battery indexes that now run the new values). |
+| `API_admin_update_battery.php` | `{battery_id, ...same fields as create...}` | Overwrites the header and replaces the task list in one transaction (a bad task rolls everything back). `battery_index` never changes; one in the body is ignored. |
+
+The header and task checks are shared with `API_admin_create_battery.php` in `battery_common.php`.
+
+What this gives up: results don't record which version of a set or battery produced them, so
+data collected before an in-place edit no longer matches what the database shows. The site
+warns, and asks for confirmation when batteries use the set, before saving. Use Edit as copy
+when the old version must stay reproducible.

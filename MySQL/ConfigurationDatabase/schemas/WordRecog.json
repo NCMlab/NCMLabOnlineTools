@@ -1,0 +1,193 @@
+{
+  "taskTypes": [
+    "Word Recognition"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 6 parameter sets; code scanned: WordRecognition.html",
+  "schema": {
+    "type": "object",
+    "title": "Word Recognition parameters",
+    "required": [
+      "FolderName",
+      "WordList",
+      "FileExtension",
+      "AudioPresentation",
+      "VisualPresentation",
+      "RecallType",
+      "RecogDuration",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "AskForNotes"
+    ],
+    "properties": {
+      "FolderName": {
+        "type": "string",
+        "title": "Audio folder",
+        "default": "Set001/",
+        "description": "Folder of the spoken words, inside the word list's language folder, e.g. RAVLT_en_US-Neural2-F_Speed100/ or Set001/."
+      },
+      "WordList": {
+        "type": "string",
+        "title": "Word list",
+        "default": "RAVLT",
+        "description": "Which list's words are tested; must match the Word Recall list the participant learned.",
+        "oneOf": [
+          {
+            "const": "RAVLT",
+            "title": "RAVLT"
+          },
+          {
+            "const": "CERAD",
+            "title": "CERAD"
+          },
+          {
+            "const": "Hopkins",
+            "title": "Hopkins"
+          }
+        ]
+      },
+      "FileExtension": {
+        "type": "string",
+        "title": "Audio file type",
+        "default": ".wav",
+        "oneOf": [
+          {
+            "const": ".wav",
+            "title": ".wav"
+          },
+          {
+            "const": ".mp3",
+            "title": ".mp3"
+          }
+        ]
+      },
+      "AudioPresentation": {
+        "type": "boolean",
+        "title": "Speak the words",
+        "default": true
+      },
+      "VisualPresentation": {
+        "type": "boolean",
+        "title": "Show the words",
+        "default": true
+      },
+      "RecallType": {
+        "type": "string",
+        "title": "How the participant responds",
+        "default": "Manual",
+        "oneOf": [
+          {
+            "const": "Spoken",
+            "title": "Spoken: says yes/no aloud (recorded)"
+          },
+          {
+            "const": "Manual",
+            "title": "Manual: taps yes/no"
+          }
+        ]
+      },
+      "RecogDuration": {
+        "type": "integer",
+        "title": "Time per word (s)",
+        "default": 10,
+        "description": "How long each word is shown for a response, in seconds.",
+        "minimum": 1
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "RecordAUDIO": {
+        "type": "boolean",
+        "title": "Record audio (not used)",
+        "default": true,
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged. Spoken responses are always recorded and manual responses never are."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "AudioPresentation": {
+      "ui:widget": "radio"
+    },
+    "VisualPresentation": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordAUDIO": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "WordList",
+      "FolderName",
+      "FileExtension",
+      "AudioPresentation",
+      "VisualPresentation",
+      "RecallType",
+      "RecogDuration",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordAUDIO",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

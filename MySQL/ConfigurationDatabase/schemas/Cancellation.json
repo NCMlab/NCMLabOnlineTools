@@ -1,0 +1,143 @@
+{
+  "taskTypes": [
+    "Cancellation"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 3 parameter sets; code scanned: Cancellation.html",
+  "schema": {
+    "type": "object",
+    "title": "Cancellation parameters",
+    "required": [
+      "NRows",
+      "NCols",
+      "NTargets",
+      "non_target_labels",
+      "target_labels",
+      "ShowWelcome",
+      "ShowThankYou",
+      "AskForNotes",
+      "RecordGIF"
+    ],
+    "properties": {
+      "NRows": {
+        "type": "integer",
+        "title": "Rows of letters",
+        "default": 6,
+        "minimum": 1,
+        "maximum": 30
+      },
+      "NCols": {
+        "type": "integer",
+        "title": "Letters per row",
+        "default": 52,
+        "minimum": 1,
+        "maximum": 80
+      },
+      "NTargets": {
+        "type": "integer",
+        "title": "Number of target letters",
+        "default": 104,
+        "description": "How many of the letters in the grid are the target. Must not be more than rows x letters per row.",
+        "minimum": 1
+      },
+      "non_target_labels": {
+        "type": "array",
+        "title": "Other letters",
+        "items": {
+          "type": "string",
+          "title": "Letter"
+        },
+        "default": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "I"
+        ],
+        "description": "Letters used to fill the rest of the grid."
+      },
+      "target_labels": {
+        "type": "string",
+        "title": "Target letter",
+        "default": "H",
+        "description": "The letter to cross out. Also shown in the prompt: 'Click on all of the H that you see'."
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "RecordGIF": {
+        "type": "boolean",
+        "title": "Record the drawing as a GIF",
+        "default": true,
+        "description": "Record what the participant draws as an animated GIF, saved with the results."
+      },
+      "font_size": {
+        "type": "integer",
+        "title": "Letter size (px)",
+        "default": 28,
+        "description": "Font size of the grid letters. Leave out to use the plugin's default.",
+        "minimum": 8,
+        "maximum": 120
+      },
+      "save_final_image": {
+        "type": "boolean",
+        "title": "Save final image (not used)",
+        "default": true,
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordGIF": {
+      "ui:widget": "radio"
+    },
+    "save_final_image": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "NRows",
+      "NCols",
+      "NTargets",
+      "target_labels",
+      "non_target_labels",
+      "font_size",
+      "ShowWelcome",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordGIF",
+      "save_final_image",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

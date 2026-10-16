@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jsPsych Test NCMLab">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Intake Form</title>
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link href="css/LikertQuestionnaires.css" rel="stylesheet">
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='css/QuestionnaireWideBody.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+
+  </head>
+  <body>
+    <div id="headerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>    
+    <script src="jspsych_addons/plugin-external-html.js"></script>
+    <!--<script src="jspsych/dist/plugin-survey.js"></script>-->
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <!-- config/ConsentForm_Setup.js: now from the configuration database -->
+    <!-- InstructionsAndStimuli/Instructions/ConsentForm_Instructions.js: now from the configuration database -->
+    <script src="functions/Scoring/ConsentForm_Scoring.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
+
+
+    <script src="functions/GeneralPurposeFunctions/DatabaseConfig.js"></script>
+    <!-- html/dB page: parameter and instruction sets come from the configuration database -->
+    <script>
+      var IntakeFormParameters = 'empty'
+      var parameters = 'empty'
+      var InstructionsToUse = 'Default'
+      //var BatteryHtmlID
+      jatos.onLoad(() => NCMdb.load(async () => {
+        
+            if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+            { parameters = 'EN_ConsentForm_uOttawa_Steffener' }
+            else { parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]}
+          // load the language specific instructions
+            LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+            console.log(LANG)
+            // load the parameters
+            console.log(LANG+"_"+parameters)
+            parameters = (await NCMdb.parameters('Consent Form', LANG + "_" + parameters)) ?? window.parameters
+            console.log(parameters)
+            Instructions = (await NCMdb.instructions('Consent Form', LANG+'_Instructions_'+InstructionsToUse, LANG)) ?? window.Instructions
+            console.log(Instructions)
+            //load general label names
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(LabelNames)
+            $(function(){
+              $("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() { UpdateHeader() });});
+      }))
+      
+    </script> 
+   <script src="functions/Experiments/ConsentForm_experiment.js"></script>
+  <div id="jspsych-target"  style="overflow:auto; height:100%;overflow:auto"  class='center' ></div>
+
+
+
+<script>
+var setup = []
+var TrialCount = 1;
+var jsPsych = initJsPsych({
+    display_element: 'jspsych-target',
+    auto_update_progress_bar: false,
+    show_progress_bar: true,    
+    on_trial_start: function() {
+      //http://127.0.0.1:9000/publix/fNTRhuguK1x
+//      console.log(jatos.urlQueryParameters);
+      var input = jatos.urlQueryParameters;
+      console.log(TrialCount)
+      TrialCount += 1
+      // Add jatos info to the data file
+      jsPsych.data.addProperties({assignedURLID: input.a});
+      jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+      jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+      jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+      jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      console.log(jatos.studySessionData)
+      console.log(jatos.studySessionData.TaskNameList[2])
+      console.log(jatos.studySessionData.UsageType == 'Battery')
+    },
+    on_finish: function() {
+
+      // Go back to usage management 
+      jatos.submitResultData(jsPsych.data.get().json())
+      .then(() => whereToGoNext(jatos.studySessionData))
+    }
+  });
+  jatos.onLoad(() => NCMdb.start(() => {
+      var JATOSID = jatos.workerId;
+      console.log(jatos)
+      console.log(JATOSID)
+      var resultsData = {'name':'JASON'};
+      jatos.addJatosIds(resultsData);     
+      jsPsych.run(timeline);
+    }));
+  </script>
+    <div id="footerText"></div>
+    <script>
+      jatos.onLoad(() => NCMdb.start(() => {
+      //document.getElementById('header-home-button').style.visibility = "hidden"
+      document.getElementById('header-info-button').style.visibility = "hidden"
+      document.getElementById('header-skip-button').style.visibility = "hidden"
+      document.getElementById('header-restart-button').style.visibility = "hidden"
+      }));
+  </script>
+    </body>
+</html>

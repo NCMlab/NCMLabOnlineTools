@@ -1,0 +1,158 @@
+{
+  "taskTypes": [
+    "VAS Rating"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 1 parameter sets; code scanned: VASrating.html",
+  "schema": {
+    "type": "object",
+    "title": "VAS Rating parameters",
+    "required": [
+      "Instructions",
+      "sliderStart",
+      "sliderStepSize",
+      "showSmallTicks",
+      "distanceBetweenLabeledValues",
+      "textAboveSlider",
+      "textBelowSlider",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "AskForNotes",
+      "shortTitle"
+    ],
+    "properties": {
+      "Instructions": {
+        "type": "string",
+        "title": "Text above the slider",
+        "default": "<ul><li>We would like to know how good or bad your health is TODAY</li><li>This scale is numbered from 0 to 100.</li><li>100 means the best health you can imagine. 0 means the worst health you can imagine.</li><li>Indicate on the slider how your health is TODAY.</li></ul>",
+        "description": "Shown on the slider page (HTML allowed)."
+      },
+      "minValue": {
+        "type": "integer",
+        "title": "Slider minimum (CHECK: not used)",
+        "default": 0,
+        "description": "CHECK: the task reads 'min', not 'minValue', so this has no effect."
+      },
+      "maxValue": {
+        "type": "integer",
+        "title": "Slider maximum (CHECK: not used)",
+        "default": 100,
+        "description": "CHECK: the task reads 'max', not 'maxValue', so this has no effect."
+      },
+      "sliderStart": {
+        "type": "integer",
+        "title": "Slider starting value",
+        "default": 0
+      },
+      "sliderStepSize": {
+        "type": "integer",
+        "title": "Slider step",
+        "default": 1,
+        "minimum": 1
+      },
+      "showSmallTicks": {
+        "type": "boolean",
+        "title": "Show small ticks",
+        "default": true
+      },
+      "distanceBetweenLabeledValues": {
+        "type": "integer",
+        "title": "Numbers every",
+        "default": 5,
+        "description": "Label every Nth value on the slider scale.",
+        "minimum": 1
+      },
+      "textAboveSlider": {
+        "type": "string",
+        "title": "Label at the top of the slider",
+        "default": "The best health you can imagine"
+      },
+      "textBelowSlider": {
+        "type": "string",
+        "title": "Label at the bottom of the slider",
+        "default": "The worst health you can imagine"
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "shortTitle": {
+        "type": "string",
+        "title": "Short title in the results",
+        "default": "Health Rating",
+        "description": "A short name saved with the results to label this run (e.g. 'Trails A')."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "showSmallTicks": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "Instructions",
+      "textAboveSlider",
+      "textBelowSlider",
+      "sliderStart",
+      "sliderStepSize",
+      "distanceBetweenLabeledValues",
+      "showSmallTicks",
+      "minValue",
+      "maxValue",
+      "shortTitle",
+      "ShowInstructions",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "AskForNotes",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15.",
+    "CHECK: The slider reads min/max but the set defines minValue/maxValue."
+  ]
+}

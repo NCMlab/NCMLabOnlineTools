@@ -6,6 +6,8 @@
  *   { "type": "instruction", "id": 8 }   (id = instruction_set_id; deletes every translation)
  *   { "type": "translation", "id": 8, "language": "FR" }   (one language of instruction set 8)
  *   { "type": "battery",     "id": 3 }   (id = batteries.battery_id)
+ *   { "type": "session",     "id": 2 }   (id = sessions.session_id; deletes every language)
+ *   { "type": "session_language", "id": 2, "language": "KR" }
  *
  * Deletes are deliberately narrow, to protect batteries that are already in
  * use:
@@ -17,6 +19,9 @@
  *  - One translation: same rule as its set (a battery running in that
  *    language would lose its text), and refused for the set's last
  *    translation -- delete the set instead.
+ *  - Sessions: allowed. Nothing in this database refers to a session -- JATOS study
+ *    components name it -- so the site asks for confirmation instead. One language of a
+ *    session can be removed unless it is the last one.
  *  - Batteries: refused (409) unless the battery has been deactivated first
  *    (API_admin_set_battery_active.php). A battery_index may be baked into
  *    JATOS study links or session-chooser configs, so retiring one is a
@@ -34,8 +39,8 @@ $body = read_json_body();
 $type = $body['type'] ?? '';
 $id = $body['id'] ?? null;
 
-if (!in_array($type, ['parameter', 'instruction', 'translation', 'battery'], true)) {
-    respond_error(400, '"type" must be "parameter", "instruction", "translation", or "battery".');
+if (!in_array($type, ['parameter', 'instruction', 'translation', 'battery', 'session', 'session_language'], true)) {
+    respond_error(400, '"type" must be "parameter", "instruction", "translation", "battery", "session", or "session_language".');
 }
 if (!(is_int($id) && $id > 0) && !(is_string($id) && ctype_digit($id))) {
     respond_error(400, '"id" must be a positive integer.');
@@ -56,6 +61,33 @@ if ($type === 'battery') {
     }
     $pdo->prepare('DELETE FROM batteries WHERE battery_id = :id')->execute([':id' => $id]);
     echo json_encode(['deleted' => 'battery', 'id' => $id]);
+    exit;
+}
+
+if ($type === 'session' || $type === 'session_language') {
+    $stmt = $pdo->prepare('SELECT language FROM session_languages WHERE session_id = :id');
+    $stmt->execute([':id' => $id]);
+    $languages = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $stmt = $pdo->prepare('SELECT session_name FROM sessions WHERE session_id = :id');
+    $stmt->execute([':id' => $id]);
+    if (!$stmt->fetch()) {
+        respond_error(404, "No session with id {$id}.");
+    }
+    if ($type === 'session') {
+        $pdo->prepare('DELETE FROM sessions WHERE session_id = :id')->execute([':id' => $id]);
+        echo json_encode(['deleted' => 'session', 'id' => $id]);
+        exit;
+    }
+    $language = strtoupper(trim($body['language'] ?? ''));
+    if (!in_array($language, $languages, true)) {
+        respond_error(404, "Session {$id} has no \"{$language}\" version.");
+    }
+    if (count($languages) === 1) {
+        respond_error(409, "{$language} is this session's only language. Delete the whole session instead.");
+    }
+    $pdo->prepare('DELETE FROM session_languages WHERE session_id = :id AND language = :lang')
+        ->execute([':id' => $id, ':lang' => $language]);
+    echo json_encode(['deleted' => 'session_language', 'id' => $id, 'language' => $language]);
     exit;
 }
 

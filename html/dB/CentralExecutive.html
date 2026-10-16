@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Central Executive">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab</title>
+    <!--<link rel="stylesheet" href="jspsych/dist/jspsych.css" />-->
+    <!--<link rel="stylesheet" type='text/css' href='css/CSScodeThatIsUsed.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <link rel="stylesheet" type='text/css' href='css/CentralExecutive.css'>-->
+    <link rel="stylesheet" type='text/css' href='css/CentralExecutive_CoPilot.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+
+    <div id="headerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <!--<script src="jspsych_addons/plugin-html-button-response-table.js"></script>-->
+    <script src="jspsych_addons/plugin-html-button-response-table.js"></script>
+    <script src="functions/GeneralPurposeFunctions/pseudoSwitch.js"></script>
+    <!--<script src="config/General_Setup.js"></script>-->
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="Batteries/ComponentList.js"></script>
+    <script src="Batteries/Batteries.js"></script>
+    
+    <!-- config/SessionChooser_config.js: sessions now come from the configuration database -->
+    <script src="functions/GeneralPurposeFunctions/DatabaseConfig.js"></script>
+    <!-- html/dB page: session buttons come from the configuration database -->
+    
+    <script> 
+    // Once jatos is fully loaded, the the URL parameters can be checked.
+    
+    jatos.onload(function() {
+      // first load the JS file for the central executive
+
+      loadScriptSequentially("Batteries/CentralExecutive.js")
+      .then(()=> loadScriptSequentially("functions/GeneralPurposeFunctions/HeaderButtonsSetup.js"))
+      .then(()=> loadScriptSequentially("config/General_Setup.js"))
+      .then(() => {
+            var LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+            console.log("The language is: "+LANG)
+            if (LANG == null) {LANG = 'EN'}
+            console.log("The language is: "+LANG)
+            console.log(LANG+'_LabelNames')
+            pseudoSwitch(LANG+'_LabelNames')
+            console.log(LabelNames)
+
+      })
+      
+      // Register every session from the database under its old SessionChooser_config.js name,
+      // so CentralExecutive.js finds the one it needs with pseudoSwitch() as before.
+      .then(() => NCMdb.load(() => NCMdb.registerAllSessions()))
+      .then(() => NCMdb.start(() => CentralExecutive()))
+      // once everything is setup, then proceed to displaying the jspsych timeline
+      .then(() => NCMdb.start(() =>
+          UpdateHeaderPromise()
+      ))
+    })
+
+            
+    </script>
+  </head>    
+  <body>
+    <div class="btn-group-header" id="header-btn-group"></div>
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+
+  </body>
+
+</html>
+

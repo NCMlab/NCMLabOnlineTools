@@ -202,6 +202,7 @@ M="mysql --default-character-set=utf8mb4 -u ncmuser -p ncmbattery_config"
 $M < SeedData_TaskTypes.sql
 $M < AddParameterSchemaColumn.sql
 $M < AddInstructionSets.sql          # added 2026-10-14; databases from before instruction sets had languages
+$M < AddSessions.sql                 # added 2026-10-15; databases from before sessions had their own tables
 $M < migrate/Migrated_TaskConfig.sql
 $M < migrate/Migrated_Batteries.sql
 $M < migrate/Load_ParameterSchemas.sql

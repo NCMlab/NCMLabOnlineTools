@@ -2,22 +2,8 @@
   "taskTypes": [
     "Trail Making"
   ],
-  "reviewed": false,
+  "reviewed": true,
   "generated": "migrate/infer_schemas.js on 2026-10-09 from 11 parameter sets; code scanned: TrailMaking.html",
-  "readByCodeButNotInAnySet": [
-    "Instructions01Audio",
-    "Instructions01Time",
-    "Instructions02Audio",
-    "Instructions02Time",
-    "Instructions03Audio",
-    "Instructions03Time",
-    "Instructions04Audio",
-    "Instructions04Time",
-    "Instructions05Audio",
-    "Instructions05Time",
-    "InstructionsShownWithPractice",
-    "WelcomeAudio"
-  ],
   "schema": {
     "type": "object",
     "title": "Trail Making parameters",
@@ -41,9 +27,10 @@
     "properties": {
       "Circles": {
         "type": "array",
-        "title": "Circles",
+        "title": "Circles (test)",
         "items": {
           "type": "object",
+          "title": "Circle",
           "required": [
             "centerX",
             "centerY",
@@ -53,22 +40,26 @@
           "properties": {
             "centerX": {
               "type": "number",
-              "title": "Center X"
+              "title": "Centre X",
+              "minimum": 0,
+              "maximum": 1
             },
             "centerY": {
               "type": "number",
-              "title": "Center Y"
+              "title": "Centre Y",
+              "minimum": 0,
+              "maximum": 1
             },
             "radius": {
               "type": "integer",
-              "title": "Radius"
+              "title": "Radius (px)",
+              "minimum": 1
             },
             "label": {
               "type": "string",
               "title": "Label"
             }
-          },
-          "additionalProperties": true
+          }
         },
         "default": [
           {
@@ -221,34 +212,37 @@
             "radius": 15,
             "label": "25"
           }
-        ]
+        ],
+        "description": "Each circle's centre as a proportion of the canvas (0-1), its radius in pixels, and its label (1, 2, 3 ... or A, B ...). The participant joins them in list order."
       },
       "SuggestedWidth": {
         "type": "integer",
-        "title": "Suggested width",
+        "title": "Test canvas width (px)",
         "default": 850,
-        "description": "Values in use: 850, 450"
+        "description": "Size the circles are laid out on; scaled to fit the screen.",
+        "minimum": 100
       },
       "SuggestedHeight": {
         "type": "integer",
-        "title": "Suggested height",
+        "title": "Test canvas height (px)",
         "default": 1100,
-        "description": "Values in use: 1100, 475, 700, 450"
+        "minimum": 100
       },
       "ShowTimer": {
         "type": "boolean",
-        "title": "Show timer",
+        "title": "Show countdown timer",
         "default": true
       },
       "Duration": {
         "type": "integer",
-        "title": "Duration",
+        "title": "Time limit (ms)",
         "default": 180000,
-        "description": "Values in use: 180000, 300000, 120000"
+        "description": "In milliseconds, e.g. 180000 = 3 minutes.",
+        "minimum": 1000
       },
       "ShowPractice": {
         "type": "boolean",
-        "title": "Show practice",
+        "title": "Run a practice trail first",
         "default": true
       },
       "PracticeCircles": {
@@ -256,9 +250,10 @@
           "array",
           "null"
         ],
-        "title": "Practice circles",
+        "title": "Circles (practice)",
         "items": {
           "type": "object",
+          "title": "Circle",
           "required": [
             "centerX",
             "centerY",
@@ -268,22 +263,26 @@
           "properties": {
             "centerX": {
               "type": "number",
-              "title": "Center X"
+              "title": "Centre X",
+              "minimum": 0,
+              "maximum": 1
             },
             "centerY": {
               "type": "number",
-              "title": "Center Y"
+              "title": "Centre Y",
+              "minimum": 0,
+              "maximum": 1
             },
             "radius": {
               "type": "integer",
-              "title": "Radius"
+              "title": "Radius (px)",
+              "minimum": 1
             },
             "label": {
               "type": "string",
               "title": "Label"
             }
-          },
-          "additionalProperties": true
+          }
         },
         "default": [
           {
@@ -334,78 +333,80 @@
             "radius": 15,
             "label": "8"
           }
-        ]
+        ],
+        "description": "Same as the test circles. Only used when the practice is run."
       },
       "PracticeSuggestedWidth": {
         "type": [
           "integer",
           "null"
         ],
-        "title": "Practice suggested width",
+        "title": "Practice canvas width (px)",
         "default": 610,
-        "description": "Values in use: 610, null, 450"
+        "minimum": 100
       },
       "PracticeSuggestedHeight": {
         "type": [
           "integer",
           "null"
         ],
-        "title": "Practice suggested height",
+        "title": "Practice canvas height (px)",
         "default": 348,
-        "description": "Values in use: 348, null, 450"
+        "minimum": 100
       },
       "ShowInstructions": {
         "type": "boolean",
         "title": "Show instructions",
-        "default": true
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
       },
       "InstructionsSpoken": {
         "type": "boolean",
-        "title": "Instructions spoken",
-        "default": false
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
       },
       "ShowWelcome": {
         "type": "boolean",
-        "title": "Show welcome",
-        "default": false
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
       },
       "WelcomeSpoken": {
         "type": "boolean",
-        "title": "Welcome spoken",
+        "title": "Speak the welcome",
         "default": false,
-        "description": "in 8 of 11 sets"
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
       },
       "ShowThankYou": {
         "type": "boolean",
-        "title": "Show thank you",
-        "default": false
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
       },
       "AskForNotes": {
         "type": "boolean",
-        "title": "Ask for notes",
-        "default": false
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
       },
       "RecordGIF": {
         "type": "boolean",
-        "title": "Record GIF",
-        "default": true
+        "title": "Record the drawing as a GIF",
+        "default": true,
+        "description": "Record what the participant draws as an animated GIF, saved with the results."
       },
       "shortTitle": {
         "type": "string",
-        "title": "Short title",
-        "enum": [
-          "Trails A",
-          "Trails B",
-          "TrailsA"
-        ],
+        "title": "Short title in the results",
         "default": "Trails A",
-        "description": "in 9 of 11 sets"
+        "description": "e.g. Trails A or Trails B."
       },
       "change_circle_color_only_when_correct": {
         "type": "boolean",
-        "title": "Change circle color only when correct",
+        "title": "Colour a circle only when reached correctly",
         "default": false,
-        "description": "in 3 of 11 sets"
+        "description": "If No, every circle the participant touches changes colour, right or wrong."
       }
     },
     "additionalProperties": true
@@ -442,25 +443,28 @@
       "ui:widget": "radio"
     },
     "ui:order": [
+      "shortTitle",
       "Circles",
       "SuggestedWidth",
       "SuggestedHeight",
-      "ShowTimer",
       "Duration",
+      "ShowTimer",
       "ShowPractice",
       "PracticeCircles",
       "PracticeSuggestedWidth",
       "PracticeSuggestedHeight",
+      "change_circle_color_only_when_correct",
       "ShowInstructions",
       "InstructionsSpoken",
       "ShowWelcome",
-      "ShowThankYou",
-      "AskForNotes",
-      "RecordGIF",
       "WelcomeSpoken",
-      "shortTitle",
-      "change_circle_color_only_when_correct",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordGIF",
       "*"
     ]
-  }
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
 }

@@ -1,0 +1,139 @@
+{
+  "taskTypes": [
+    "Intake Form"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 2 parameter sets; code scanned: IntakeForm.html",
+  "schema": {
+    "type": "object",
+    "title": "Intake Form parameters",
+    "required": [
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "ShowThankYou",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "AskForNotes",
+      "Instructions01Audio",
+      "Instructions01Time"
+    ],
+    "properties": {
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "WelcomeAudio": {
+        "type": "string",
+        "title": "Welcome audio file",
+        "default": "",
+        "description": "Path to the welcome audio, e.g. assets/SoundFiles/Instructions/Welcome_Task.wav. Only used when 'Speak the welcome' is Yes."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "RecordAUDIO": {
+        "type": "boolean",
+        "title": "Record audio (not used)",
+        "default": false,
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged. Spoken responses are always recorded and manual responses never are."
+      },
+      "Instructions01Audio": {
+        "type": "array",
+        "title": "Instructions 01 audio files",
+        "items": {
+          "type": "string",
+          "title": "Audio file"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/IntakeForm_InstructionsPage01.wav",
+          "assets/SoundFiles/Instructions/IntakeForm_InstructionsPage02.wav"
+        ],
+        "description": "One audio file per page of the instruction set's Instructions 01, in page order (e.g. assets/SoundFiles/Instructions/Task_Instructions01.wav). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions01Time": {
+        "type": "array",
+        "title": "Instructions 01 page times (ms)",
+        "items": {
+          "type": "integer",
+          "title": "Milliseconds",
+          "minimum": 0
+        },
+        "default": [
+          24000,
+          15000
+        ],
+        "description": "How long each Instructions 01 page stays up while its audio plays, one number per page, in milliseconds (e.g. 10000 = 10 s). Only used when 'Speak the instructions' is Yes."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordAUDIO": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "Instructions01Audio",
+      "Instructions01Time",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordAUDIO",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

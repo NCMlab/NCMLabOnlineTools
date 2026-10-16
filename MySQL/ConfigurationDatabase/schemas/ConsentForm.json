@@ -1,0 +1,65 @@
+{
+  "taskTypes": [
+    "Consent Form"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 2 parameter sets; code scanned: ConsentForm.html",
+  "schema": {
+    "type": "object",
+    "title": "Consent Form parameters",
+    "required": [
+      "ShowWelcome",
+      "ShowThankYou",
+      "WelcomeSpoken",
+      "Text"
+    ],
+    "properties": {
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "Text": {
+        "type": "string",
+        "title": "Consent form page",
+        "default": "InstructionsAndStimuli/ConsentForms/EN_uOttawa_H-10-23-9755_Steffener.html",
+        "description": "The consent document shown to the participant, an HTML file in the study folder, e.g. InstructionsAndStimuli/ConsentForms/EN_uOttawa_H-10-23-9755_Steffener.html."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "Text",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="jsPsych Stroop Word">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Jason Steffener, NCMLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCMLab: Line Bisection</title>
+    <link rel="stylesheet" href="jspsych/dist/jspsych.css" />
+    <link rel="stylesheet" type='text/css' href='css/survey.css'>
+    <link rel="stylesheet" type='text/css' href='css/NCMLabGeneral.css'>
+    <script src="ImportedModules/jquery-3.6.4.js"></script> 
+
+  </head>    
+  <body>
+    <div id="headerButtons"></div>
+    <script src="jatos.js"></script>
+    <script src="functions/GeneralPurposeFunctions/NCMGeneralFunctions.js"></script>
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych_addons/plugin-audio-button-response.js"></script>
+    <script src="jspsych_addons/plugin-html-button-response-touchscreen.js"></script>
+    <script src="jspsych_addons/plugin-sketchpad-linebisection.js"></script>
+
+    
+    <script src="config/General_Setup.js"></script>
+    <script src="functions/GeneralPurposeFunctions/CommonParts.js"></script>
+    <script src="functions/GeneralPurposeFunctions/HeaderFunctions.js"></script>
+    <script src="config/LineBisection_Setup.js"></script> <!-- for LineWidth, pen_width, LocationsAsProportions; its parameter sets are not used -->
+    <script src="Batteries/ComponentList.js"></script>
+    <script src="functions/GeneralPurposeFunctions/FindCanvasSize.js"></script>
+    <!-- InstructionsAndStimuli/Instructions/LineBisection_Instructions.js: now from the configuration database -->
+    <script>var BaseFolderName = 'assets/SoundFiles/Words/'</script>
+     <script> 
+    // use jquery to load up the header button html content 
+    // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
+        $(function(){$("#headerButtons").load("functions/GeneralPurposeFunctions/HeaderButtons.html",
+              function() {UpdateHeader()});})
+    </script> 
+    <script src="functions/GeneralPurposeFunctions/DatabaseConfig.js"></script>
+    <!-- html/dB page: parameter and instruction sets come from the configuration database -->
+    <script>
+      
+
+
+        console.log("JASON JASON")
+      var parameters = 'empty'
+      jatos.onLoad(() => NCMdb.load(async () => {
+        
+        if (jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex]==='undefined')
+        {
+          parameters = 'RAVLT_Manual_Immediate'
+          InstructionsToUse = 'Default'
+        }
+        else {
+          parameters = jatos.studySessionData.ComponentParameterLists[jatos.studySessionData.CurrentIndex] 
+          InstructionsToUse = jatos.studySessionData.InstructionList[jatos.studySessionData.CurrentIndex] 
+        }
+        console.log(parameters)
+        parameters = (await NCMdb.parameters('Line Bisection', parameters)) ?? window.parameters      
+        console.log(parameters)
+        //parameters = WordRecall_parameters
+        LANG = jatos.batchSession.get(jatos.workerId+"_Language")
+        // Load language specific instructions
+        console.log(LANG)
+        Instructions = (await NCMdb.instructions('Line Bisection', LANG+'_Instructions_'+InstructionsToUse, LANG)) ?? window.Instructions
+        
+        //load general label names
+        pseudoSwitch(LANG+'_LabelNames')
+        console.log(Instructions)
+      }))
+    </script> 
+
+    <script src="functions/Experiments/LineBisection_experiment.js"></script>
+    <script src="functions/Scoring/LineBisection_Scoring.js"></script>
+    
+    <div id="jspsych-target"  style="overflow:auto; height:100%" class='center'></div>
+  
+  
+  <script>
+    var setup = []
+    var jsPsych = initJsPsych({
+      display_element: 'jspsych-target',
+      show_progress_bar: true,    
+      auto_update_progress_bar: false,
+      
+      on_trial_start: function() {
+        //http://127.0.0.1:9000/publix/fNTRhuguK1x
+        //console.log(jatos.urlQueryParameters);
+        var input = jatos.urlQueryParameters;
+        //console.log(input.a);
+        
+        // Add jatos info to the data file
+        jsPsych.data.addProperties({assignedURLID: input.a});
+        jsPsych.data.addProperties({jatosWorkerID: jatos.workerId});
+        jsPsych.data.addProperties({jatosBatchID: jatos.batchId});
+        jsPsych.data.addProperties({jatosStudyName: jatos.studyProperties.title});
+        jsPsych.data.addProperties({jatosTaskName: jatos.componentProperties.title});
+      },
+      on_finish: function() {
+        if ( jatos.urlQueryParameters.SaveLocal ) {
+          const d = new Date();
+          var StrDate = d.getDate() + "_"+String(Number(d.getMonth())+1)+"_"+d.getFullYear();
+          var StrTime = d.getHours() + "_"+d.getMinutes();
+          var StrDateTime = "_"+StrDate+"__"+StrTime;
+          jsPsych.data.get().localSave('csv',jatos.workerId+StrDateTime+'_WordRecall.csv');
+        }    
+
+        jatos.submitResultData(jsPsych.data.get().json())
+        .then(() => whereToGoNext(jatos.studySessionData))
+      }
+    });
+    jatos.waitSendDataOverlayConfig = { text: "Sending data. Please wait. This may take a minute or two depending on the internet connection." };
+    jatos.onLoad(() => NCMdb.start(() => {
+
+        var JATOSID = jatos.workerId;
+        console.log(jatos)
+        console.log(JATOSID)
+        var resultsData = {'name':'JASON'};
+        jatos.addJatosIds(resultsData);
+        jsPsych.run(timeline);
+      }));
+  </script>
+
+  
+
+
+</body>
+</html>

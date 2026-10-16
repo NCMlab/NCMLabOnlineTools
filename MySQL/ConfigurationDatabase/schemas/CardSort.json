@@ -1,0 +1,320 @@
+{
+  "taskTypes": [
+    "Card Sort"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 2 parameter sets; code scanned: CardSortTask.html",
+  "schema": {
+    "type": "object",
+    "title": "Card Sort parameters",
+    "required": [
+      "PracticeRuleChangeCount",
+      "RuleChangeCount",
+      "PracticeNumberOfCards",
+      "NumberOfCards",
+      "PracticeRuleList",
+      "RuleList",
+      "CardHeight",
+      "StimCardHeight",
+      "FeedbackDuration",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "ShowThankYou",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "Instructions01Audio",
+      "Instructions01Time",
+      "Instructions02Audio",
+      "Instructions02Time",
+      "Instructions03Audio",
+      "Instructions03Time"
+    ],
+    "properties": {
+      "PracticeRuleChangeCount": {
+        "type": "integer",
+        "title": "Practice: change the rule after",
+        "default": 4,
+        "description": "In practice, the sorting rule changes after this many trials (source comment: 'how many cards before the rules change').",
+        "minimum": 1
+      },
+      "RuleChangeCount": {
+        "type": "integer",
+        "title": "Test: change the rule after this many correct",
+        "default": 10,
+        "description": "The sorting rule changes after this many correct sorts in a row.",
+        "minimum": 1
+      },
+      "PracticeNumberOfCards": {
+        "type": "integer",
+        "title": "Practice cards",
+        "default": 10,
+        "minimum": 1
+      },
+      "NumberOfCards": {
+        "type": "integer",
+        "title": "Test cards",
+        "default": 64,
+        "description": "Number of test trials (the card images available limit this to 64).",
+        "minimum": 1,
+        "maximum": 64
+      },
+      "PracticeRuleList": {
+        "type": "array",
+        "title": "Practice rule order",
+        "items": {
+          "type": "integer",
+          "title": "Rule",
+          "oneOf": [
+            {
+              "const": 0,
+              "title": "Number"
+            },
+            {
+              "const": 1,
+              "title": "Colour"
+            },
+            {
+              "const": 2,
+              "title": "Shape"
+            }
+          ]
+        },
+        "default": [
+          0,
+          2,
+          0,
+          2,
+          0,
+          2,
+          0,
+          2,
+          0
+        ],
+        "description": "The sorting rules in the order they are used in practice."
+      },
+      "RuleList": {
+        "type": "array",
+        "title": "Test rule order",
+        "items": {
+          "type": "integer",
+          "title": "Rule",
+          "oneOf": [
+            {
+              "const": 0,
+              "title": "Number"
+            },
+            {
+              "const": 1,
+              "title": "Colour"
+            },
+            {
+              "const": 2,
+              "title": "Shape"
+            }
+          ]
+        },
+        "default": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0
+        ],
+        "description": "The sorting rules in order. Only as many are used as the test needs; a long list is fine."
+      },
+      "CardHeight": {
+        "type": "string",
+        "title": "Choice card height",
+        "default": "60vh",
+        "description": "Height of the four cards to sort onto, as a CSS size, e.g. 60vh (60% of the screen height)."
+      },
+      "StimCardHeight": {
+        "type": "string",
+        "title": "Card to sort height (px)",
+        "default": "120",
+        "description": "Height of the card being sorted, in pixels, e.g. 120.",
+        "pattern": "^[0-9]+$"
+      },
+      "FeedbackSize": {
+        "type": "integer",
+        "title": "Feedback size (not used)",
+        "default": 4,
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged."
+      },
+      "FeedbackDuration": {
+        "type": "string",
+        "title": "Feedback time (ms)",
+        "default": "750",
+        "description": "How long Correct/Incorrect stays on screen, in milliseconds, e.g. 750.",
+        "pattern": "^[0-9]+$"
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "WelcomeAudio": {
+        "type": "string",
+        "title": "Welcome audio file",
+        "default": "assets/SoundFiles/Instructions/WCST_Welcome.wav",
+        "description": "Path to the welcome audio, e.g. assets/SoundFiles/Instructions/Welcome_Task.wav. Only used when 'Speak the welcome' is Yes."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
+      },
+      "Instructions01Audio": {
+        "type": "array",
+        "title": "Instructions 01 audio files",
+        "items": {
+          "type": "string",
+          "title": "Audio file"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WCST_Instructions01.wav",
+          "assets/SoundFiles/Instructions/WCST_Instructions02.wav"
+        ],
+        "description": "One audio file per page of the instruction set's Instructions 01, in page order (e.g. assets/SoundFiles/Instructions/Task_Instructions01.wav). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions01Time": {
+        "type": "array",
+        "title": "Instructions 01 page times (ms)",
+        "items": {
+          "type": "integer",
+          "title": "Milliseconds",
+          "minimum": 0
+        },
+        "default": [
+          30000,
+          20000
+        ],
+        "description": "How long each Instructions 01 page stays up while its audio plays, one number per page, in milliseconds (e.g. 10000 = 10 s). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions02Audio": {
+        "type": "array",
+        "title": "Instructions 02 audio files",
+        "items": {
+          "type": "string",
+          "title": "Audio file"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WCST_Practice.wav"
+        ],
+        "description": "One audio file per page of the instruction set's Instructions 02, in page order (e.g. assets/SoundFiles/Instructions/Task_Instructions01.wav). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions02Time": {
+        "type": "array",
+        "title": "Instructions 02 page times (ms)",
+        "items": {
+          "type": "integer",
+          "title": "Milliseconds",
+          "minimum": 0
+        },
+        "default": [
+          5000
+        ],
+        "description": "How long each Instructions 02 page stays up while its audio plays, one number per page, in milliseconds (e.g. 10000 = 10 s). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions03Audio": {
+        "type": "array",
+        "title": "Instructions 03 audio files",
+        "items": {
+          "type": "string",
+          "title": "Audio file"
+        },
+        "default": [
+          "assets/SoundFiles/Instructions/WCST_Test.wav"
+        ],
+        "description": "One audio file per page of the instruction set's Instructions 03, in page order (e.g. assets/SoundFiles/Instructions/Task_Instructions01.wav). Only used when 'Speak the instructions' is Yes."
+      },
+      "Instructions03Time": {
+        "type": "array",
+        "title": "Instructions 03 page times (ms)",
+        "items": {
+          "type": "integer",
+          "title": "Milliseconds",
+          "minimum": 0
+        },
+        "default": [
+          5000
+        ],
+        "description": "How long each Instructions 03 page stays up while its audio plays, one number per page, in milliseconds (e.g. 10000 = 10 s). Only used when 'Speak the instructions' is Yes."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "PracticeNumberOfCards",
+      "PracticeRuleChangeCount",
+      "PracticeRuleList",
+      "NumberOfCards",
+      "RuleChangeCount",
+      "RuleList",
+      "CardHeight",
+      "StimCardHeight",
+      "FeedbackDuration",
+      "FeedbackSize",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "Instructions01Audio",
+      "Instructions01Time",
+      "Instructions02Audio",
+      "Instructions02Time",
+      "Instructions03Audio",
+      "Instructions03Time",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "WelcomeAudio",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

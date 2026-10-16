@@ -21,6 +21,9 @@
  *        languages is the set's translations, e.g. ["EN","FR"], EN first
  *   GET ?resource=batteries
  *     -> [{battery_id, battery_index, battery_name, description, language, active, created_at, task_count}, ...]
+ *   GET ?resource=sessions
+ *     -> [{session_id, session_name, languages, button_count, battery_indexes, created_at}, ...]
+ *        languages EN first; button_count and battery_indexes are for the first language
  *
  * task_type_id is optional for parameters/instructions -- omit it to list
  * every task type's sets at once. used_by is the number of battery_tasks
@@ -40,8 +43,8 @@ function respond_error(int $code, string $message): void {
 }
 
 $resource = $_GET['resource'] ?? '';
-if (!in_array($resource, ['task_types', 'parameters', 'instructions', 'batteries'], true)) {
-    respond_error(400, 'Parameter "resource" must be "task_types", "parameters", "instructions", or "batteries".');
+if (!in_array($resource, ['task_types', 'parameters', 'instructions', 'batteries', 'sessions'], true)) {
+    respond_error(400, 'Parameter "resource" must be "task_types", "parameters", "instructions", "batteries", or "sessions".');
 }
 
 try {
@@ -79,6 +82,34 @@ if ($resource === 'batteries') {
         ORDER BY b.battery_index
     ');
     echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+if ($resource === 'sessions') {
+    $stmt = $pdo->query("
+        SELECT s.session_id, s.session_name, s.created_at,
+               GROUP_CONCAT(sl.language ORDER BY sl.language <> 'EN', sl.language) AS languages
+        FROM sessions s
+        LEFT JOIN session_languages sl ON sl.session_id = s.session_id
+        GROUP BY s.session_id
+        ORDER BY s.session_name
+    ");
+    $rows = $stmt->fetchAll();
+    $buttons = $pdo->prepare('
+        SELECT COUNT(*) AS n, GROUP_CONCAT(DISTINCT b.battery_index ORDER BY b.battery_index) AS batteries
+        FROM session_buttons b
+        JOIN session_languages sl ON sl.session_language_id = b.session_language_id
+        WHERE sl.session_id = :id AND sl.language = :lang
+    ');
+    foreach ($rows as &$row) {
+        $row['languages'] = $row['languages'] === null ? [] : explode(',', $row['languages']);
+        $buttons->execute([':id' => $row['session_id'], ':lang' => $row['languages'][0] ?? '']);
+        $b = $buttons->fetch();
+        $row['button_count'] = (int) $b['n'];
+        $row['battery_indexes'] = $b['batteries'] === null ? [] : array_map('intval', explode(',', $b['batteries']));
+    }
+    unset($row);
+    echo json_encode($rows, JSON_UNESCAPED_UNICODE);
     exit;
 }
 

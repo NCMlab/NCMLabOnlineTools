@@ -105,27 +105,72 @@ CREATE TABLE IF NOT EXISTS ui_labels (
 );
 
 -- -------------------------------------------------------
--- session_chooser_configs
--- Button-grid configuration for the session-picker screen
--- (config/SessionChooser_config.js), one row per named config per
--- language (e.g. "COMM_99" EN and FR, "Mont_99" FR). Not tied to any
--- task_type -- this isn't a task, it's a separate landing page that
--- launches a battery (via battery_index in each List entry) per
--- button clicked.
--- Stored as a single JSON blob per row (like task_parameters), NOT
--- normalized like ui_labels, because unlike ui_labels the internal
--- shape genuinely varies row to row -- each config's List array has
--- a different, config-specific set of fields per entry (some include
--- Phase/Test/ButtonUsageType, some don't), so there's no fixed set of
--- "columns" to normalize into.
+-- sessions
+-- A session is the button page a participant starts from
+-- (html/JATOS/CentralExecutive.html): each button launches one
+-- battery and marks a bit in the participant's progress when done.
+-- Replaces config/SessionChooser_config.js. session_name is the
+-- registration key without its language prefix ("COMM_99" for
+-- EN_COMM_99 / FR_COMM_99); JATOS passes it to the page in
+-- ComponentParameterLists and the page adds the language.
 -- -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS session_chooser_configs (
-    session_chooser_config_id INT           AUTO_INCREMENT PRIMARY KEY,
-    config_name                VARCHAR(100) NOT NULL,   -- e.g. "COMM_99", "Mont_99" (registration key minus its language prefix)
-    language                   CHAR(2)      NOT NULL DEFAULT 'EN',
-    config_json                JSON         NOT NULL,   -- [{ index, Title, List: [...], runNameCheck? }] -- kept as the same single-element array the source registers
-    created_at                 TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uq_session_chooser (config_name, language)
+CREATE TABLE IF NOT EXISTS sessions (
+    session_id    INT           AUTO_INCREMENT PRIMARY KEY,
+    session_name  VARCHAR(100)  NOT NULL UNIQUE,
+    created_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+
+-- -------------------------------------------------------
+-- session_languages
+-- One language's version of a session: its title and its own
+-- button list. A whole list per language, not just translated
+-- labels, because the source files' languages differ in more
+-- than text (e.g. KR COMM_99 points some lessons at other
+-- batteries and has no Phase/Test values).
+-- chooser_index and run_name_check keep the source object's
+-- "index" and "runNameCheck" (NULL when the source has none).
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS session_languages (
+    session_language_id INT           AUTO_INCREMENT PRIMARY KEY,
+    session_id          INT           NOT NULL,
+    language            CHAR(2)       NOT NULL,
+    title               VARCHAR(255)  NOT NULL,
+    chooser_index       INT           NULL,
+    run_name_check      TINYINT(1)    NULL,
+    created_at          TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_session_lang (session_id, language),
+    FOREIGN KEY (session_id) REFERENCES sessions(session_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -------------------------------------------------------
+-- session_buttons
+-- One button on a session page, in sort_order.
+--   battery_index  the battery the button runs. Not a foreign key:
+--                  batteries are looked up by index at run time and
+--                  some sessions name batteries not loaded here.
+--   button_row     which row of the page the button sits on
+--   bit_index      the participant-progress bit set when this
+--                  button's battery is completed
+--   phase, test    copied into the results when the button is used
+--   button_usage_type  NULL for a normal button; 'UserChoice' lets
+--                  the participant pick a task from the battery
+-- Row, bit, phase and test are NULL where the source omits them.
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS session_buttons (
+    session_button_id   INT           AUTO_INCREMENT PRIMARY KEY,
+    session_language_id INT           NOT NULL,
+    sort_order          INT           NOT NULL,
+    name                VARCHAR(200)  NOT NULL,
+    battery_index       INT           NOT NULL,
+    button_row          INT           NULL,
+    bit_index           INT           NULL,
+    phase               VARCHAR(100)  NULL,
+    test                VARCHAR(50)   NULL,
+    button_usage_type   VARCHAR(50)   NULL,
+    UNIQUE KEY uq_session_button_order (session_language_id, sort_order),
+    FOREIGN KEY (session_language_id) REFERENCES session_languages(session_language_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -------------------------------------------------------

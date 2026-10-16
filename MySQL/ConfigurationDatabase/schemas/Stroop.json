@@ -1,0 +1,184 @@
+{
+  "taskTypes": [
+    "Stroop Color",
+    "Stroop Word",
+    "Stroop Color/Word"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 3 parameter sets; code scanned: StroopColor.html, StroopColorWord.html, StroopWord.html",
+  "schema": {
+    "type": "object",
+    "title": "Stroop Color parameters",
+    "required": [
+      "ColorPracticeRepeats",
+      "WordPracticeRepeats",
+      "ColorWordPracticeRepeats",
+      "ColorTestRepeats",
+      "ColorWordTestRepeats",
+      "ITI_Range",
+      "ITI_Duration",
+      "AllowedTime",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "ShowWelcome",
+      "ShowThankYou"
+    ],
+    "properties": {
+      "ColorPracticeRepeats": {
+        "type": "integer",
+        "title": "Colour: practice blocks",
+        "default": 2,
+        "minimum": 0
+      },
+      "WordPracticeRepeats": {
+        "type": "integer",
+        "title": "Word: practice blocks",
+        "default": 2,
+        "minimum": 0
+      },
+      "ColorWordPracticeRepeats": {
+        "type": "integer",
+        "title": "Colour-word: practice blocks",
+        "default": 1,
+        "minimum": 0
+      },
+      "ColorTestRepeats": {
+        "type": "integer",
+        "title": "Colour: test blocks",
+        "default": 6,
+        "description": "Ignored when a time limit is set. CHECK: the Word page also uses this, not 'Word: test blocks'.",
+        "minimum": 1
+      },
+      "WordTestRepeats": {
+        "type": "integer",
+        "title": "Word: test blocks (CHECK: not used)",
+        "default": 6,
+        "description": "CHECK: StroopWord_experiment.js repeats the test 'Colour: test blocks' times and never reads this.",
+        "minimum": 1
+      },
+      "ColorWordTestRepeats": {
+        "type": "integer",
+        "title": "Colour-word: test blocks",
+        "default": 1,
+        "description": "Ignored when a time limit is set.",
+        "minimum": 1
+      },
+      "ITI_Range": {
+        "type": "array",
+        "title": "Random pauses to choose from (ms)",
+        "items": {
+          "type": "integer",
+          "title": "Milliseconds",
+          "minimum": 0
+        },
+        "default": [],
+        "description": "Only used when the fixed pause is -99."
+      },
+      "ITI_Duration": {
+        "type": "integer",
+        "title": "Pause between trials (ms)",
+        "default": -99,
+        "description": "A fixed pause. -99 = instead pick a random pause from the list below each trial."
+      },
+      "AllowedTime": {
+        "type": "integer",
+        "title": "Time limit (s)",
+        "default": -99,
+        "description": "Run test trials for this many seconds instead of a fixed number of blocks. -99 = no time limit."
+      },
+      "Score_NumberTrials": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "title": "Trials scored",
+        "default": null,
+        "description": "For the Victoria method: score the first this-many test trials. Empty for the default method.",
+        "minimum": 1
+      },
+      "Score_ProcedureName": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "title": "Scoring method",
+        "default": null,
+        "oneOf": [
+          {
+            "const": null,
+            "title": "Default: all test trials"
+          },
+          {
+            "const": "Victoria",
+            "title": "Victoria"
+          },
+          {
+            "const": "Golden",
+            "title": "Golden"
+          }
+        ]
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "ColorPracticeRepeats",
+      "ColorTestRepeats",
+      "WordPracticeRepeats",
+      "WordTestRepeats",
+      "ColorWordPracticeRepeats",
+      "ColorWordTestRepeats",
+      "AllowedTime",
+      "ITI_Duration",
+      "ITI_Range",
+      "Score_ProcedureName",
+      "Score_NumberTrials",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "ShowWelcome",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15.",
+    "CHECK: Stroop Word repeats its test 'ColorTestRepeats' times; WordTestRepeats is never read."
+  ]
+}

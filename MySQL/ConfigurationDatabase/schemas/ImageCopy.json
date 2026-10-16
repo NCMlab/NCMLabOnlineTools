@@ -1,0 +1,145 @@
+{
+  "taskTypes": [
+    "Image Copy"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 7 parameter sets; code scanned: ImageCopy.html",
+  "schema": {
+    "type": "object",
+    "title": "Image Copy parameters",
+    "required": [
+      "canvas_width",
+      "canvas_height",
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "AskForNotes",
+      "Image",
+      "RecordGIF"
+    ],
+    "properties": {
+      "canvas_width": {
+        "title": "Canvas width (not used)",
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged. (The code that read it is commented out.) A number of pixels or a CSS size such as 400vw."
+      },
+      "canvas_height": {
+        "title": "Canvas height (not used)",
+        "description": "Not used by the task: no code reads this setting. Kept so existing sets open unchanged. (The code that read it is commented out.) A number of pixels or a CSS size such as 400vh."
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "Image": {
+        "type": "array",
+        "title": "Images to copy",
+        "items": {
+          "type": "string",
+          "title": "Image",
+          "oneOf": [
+            {
+              "const": "Circle.png",
+              "title": "Circle"
+            },
+            {
+              "const": "Lozange.png",
+              "title": "Lozange"
+            },
+            {
+              "const": "TwoRectangles.png",
+              "title": "TwoRectangles"
+            },
+            {
+              "const": "NeckerCube.png",
+              "title": "NeckerCube"
+            },
+            {
+              "const": "InverseNeckerCube.png",
+              "title": "InverseNeckerCube"
+            },
+            {
+              "const": "SmileFace.png",
+              "title": "SmileFace"
+            },
+            {
+              "const": "TwoCircles.png",
+              "title": "TwoCircles"
+            },
+            {
+              "const": "CubeCopyBackground.png",
+              "title": "CubeCopyBackground"
+            }
+          ]
+        },
+        "default": [
+          "TwoCircles.png"
+        ],
+        "description": "Shown one after another; the participant copies each on the drawing canvas."
+      },
+      "RecordGIF": {
+        "type": "boolean",
+        "title": "Record the drawing as a GIF",
+        "default": true,
+        "description": "Record what the participant draws as an animated GIF, saved with the results."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "canvas_width": {
+      "ui:field": "numberOrText"
+    },
+    "canvas_height": {
+      "ui:field": "numberOrText"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "RecordGIF": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "Image",
+      "canvas_width",
+      "canvas_height",
+      "ShowInstructions",
+      "ShowWelcome",
+      "AskForNotes",
+      "ShowThankYou",
+      "RecordGIF",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

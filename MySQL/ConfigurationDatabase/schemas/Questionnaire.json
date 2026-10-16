@@ -7,26 +7,8 @@
     "IPAQ Questionnaire",
     "Matrix Questionnaire ExtraQ"
   ],
-  "reviewed": false,
+  "reviewed": true,
   "generated": "migrate/infer_schemas.js on 2026-10-09 from 43 parameter sets; code scanned: BUQuestionnaire.html, FormQuestionnaire.html, IPAQQuestionnaire.html, LikertQuestionnaire.html, MatrixQuestionnaire.html, MatrixQuestionnaireExtraQ.html, OLDQuestionnaire.html, Questionnaire.html, QuestionnaireJSON.html, TestQuest.html",
-  "readByCodeButNotInAnySet": [
-    "Instructions01Audio",
-    "Instructions01Time",
-    "Instructions02Audio",
-    "Instructions02Time",
-    "Instructions03Audio",
-    "Instructions03Time",
-    "Instructions04Audio",
-    "Instructions04Time",
-    "Instructions05Audio",
-    "Instructions05Time",
-    "InstructionsSpoken",
-    "Language",
-    "RecordGIF",
-    "WelcomeAudio",
-    "WelcomeSpoken",
-    "isPromiseResolved"
-  ],
   "schema": {
     "type": "object",
     "title": "Questionnaire parameters",
@@ -42,7 +24,7 @@
     "properties": {
       "questionnaire": {
         "type": "array",
-        "title": "Questionnaires (in order)",
+        "title": "Questionnaire",
         "minItems": 1,
         "items": {
           "type": "string",
@@ -86,47 +68,53 @@
             "stanfordSleepiness",
             "wemwbs"
           ]
-        }
+        },
+        "description": "The questionnaire to give. With eligibility rules below, list one per rule: the first whose rule matches is given."
       },
       "criteria": {
         "type": "array",
-        "title": "Criteria",
+        "title": "Eligibility rules (optional)",
         "items": {
-          "type": "string"
+          "type": "string",
+          "title": "Rule"
         },
-        "default": []
+        "default": [],
+        "description": "Only used when there are 2 or more: each rule picks the questionnaire in the same position, using the screening answer named below. Write XXX for the answer, e.g. ( XXX > 17 ) && ( XXX < 31 )."
       },
       "variable": {
-        "title": "Variable",
-        "description": "Edited as JSON (array or string).",
-        "default": []
+        "title": "Screening answer the rules test",
+        "description": "The 'Name in the results' of a screening question, e.g. Age. Leave empty when there are no rules."
       },
       "AskForNotes": {
         "type": "boolean",
-        "title": "Ask for notes",
-        "default": false
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
       },
       "ShowWelcome": {
         "type": "boolean",
-        "title": "Show welcome",
-        "default": false
+        "title": "Show welcome page",
+        "default": false,
+        "description": "Show the welcome page (from the instruction set) before the task."
       },
       "ShowThankYou": {
         "type": "boolean",
-        "title": "Show thank you",
-        "default": false
+        "title": "Show thank-you page",
+        "default": false,
+        "description": "Show the thank-you page (from the instruction set) at the end."
       },
       "ShowInstructions": {
         "type": "boolean",
         "title": "Show instructions",
-        "default": false
+        "default": false,
+        "description": "Show the instruction pages (from the instruction set) before the task."
       }
     },
     "additionalProperties": true
   },
   "uiSchema": {
     "variable": {
-      "ui:field": "json"
+      "ui:field": "optionalText"
     },
     "AskForNotes": {
       "ui:widget": "radio"
@@ -144,11 +132,14 @@
       "questionnaire",
       "criteria",
       "variable",
-      "AskForNotes",
-      "ShowWelcome",
-      "ShowThankYou",
       "ShowInstructions",
+      "ShowWelcome",
+      "AskForNotes",
+      "ShowThankYou",
       "*"
     ]
-  }
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
 }

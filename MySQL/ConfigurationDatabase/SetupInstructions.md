@@ -87,7 +87,9 @@ Expected output:
 | battery_tasks                  |
 | instruction_sets               |
 | instruction_translations       |
-| session_chooser_configs        |
+| session_buttons                |
+| session_languages              |
+| sessions                       |
 | task_parameters                |
 | task_types                     |
 | ui_labels                      |

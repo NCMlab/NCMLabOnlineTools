@@ -222,7 +222,7 @@
       },
       "Instructions01Time": {
         "title": "Instructions 01 times (ms)",
-        "description": "Time each Instructions 01 page stays up while its audio plays, one number per page in milliseconds, e.g. [10000, 8000]. CHECK: kept as a JSON box because one existing set (DemoENManual) has a single number (10) here instead of a list."
+        "description": "How long each Instructions 01 page stays up while its audio plays, one number per page in milliseconds, separated by commas, e.g. 10000, 8000. One existing set (DemoENManual) has a single number here; saving it turns that into a one-item list, which is what the task expects."
       },
       "Instructions02Audio": {
         "type": "array",
@@ -378,7 +378,7 @@
       "ui:widget": "radio"
     },
     "Instructions01Time": {
-      "ui:field": "json"
+      "ui:field": "numberList"
     },
     "ShowWelcome": {
       "ui:widget": "radio"

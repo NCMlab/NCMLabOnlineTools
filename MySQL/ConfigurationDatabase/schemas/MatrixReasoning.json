@@ -1,0 +1,178 @@
+{
+  "taskTypes": [
+    "Matrix Reasoning"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 1 parameter sets; code scanned: MatrixReasoning.html",
+  "schema": {
+    "type": "object",
+    "title": "Matrix Reasoning parameters",
+    "required": [
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions"
+    ],
+    "properties": {
+      "StimulusFolderName": {
+        "type": "string",
+        "title": "Puzzle set",
+        "default": "ICAR",
+        "description": "Folder of puzzle images in assets/Images/MatrixReasoning/.",
+        "oneOf": [
+          {
+            "const": "ICAR",
+            "title": "ICAR"
+          }
+        ]
+      },
+      "StimList": {
+        "type": "array",
+        "title": "Puzzles",
+        "items": {
+          "type": "object",
+          "title": "Puzzle",
+          "required": [
+            "stim",
+            "correct"
+          ],
+          "properties": {
+            "stim": {
+              "type": "string",
+              "title": "Image ID",
+              "description": "e.g. 12043"
+            },
+            "correct": {
+              "type": "integer",
+              "title": "Correct option",
+              "minimum": 1,
+              "maximum": 6
+            }
+          }
+        },
+        "default": [
+          {
+            "stim": "12043",
+            "correct": 4
+          },
+          {
+            "stim": "12044",
+            "correct": 3
+          },
+          {
+            "stim": "12045",
+            "correct": 5
+          },
+          {
+            "stim": "12046",
+            "correct": 2
+          },
+          {
+            "stim": "12047",
+            "correct": 2
+          },
+          {
+            "stim": "12048",
+            "correct": 4
+          },
+          {
+            "stim": "12050",
+            "correct": 5
+          },
+          {
+            "stim": "12053",
+            "correct": 3
+          },
+          {
+            "stim": "12054",
+            "correct": 1
+          },
+          {
+            "stim": "12055",
+            "correct": 4
+          },
+          {
+            "stim": "12056",
+            "correct": 5
+          }
+        ],
+        "description": "Each puzzle's image ID and the number of the correct option."
+      },
+      "StimWidth": {
+        "type": "string",
+        "title": "Option width",
+        "default": "70vw",
+        "description": "Size of the answer options, as a CSS size, e.g. 70vw."
+      },
+      "StimHeight": {
+        "type": "string",
+        "title": "Option height",
+        "default": "70vh",
+        "description": "As a CSS size, e.g. 70vh."
+      },
+      "FixationTimeBetweenTrials": {
+        "type": "integer",
+        "title": "Pause between puzzles (ms)",
+        "default": 2000,
+        "minimum": 0
+      },
+      "OptionMapping": {
+        "type": "string",
+        "title": "Option numbers",
+        "default": "123456",
+        "description": "The number each answer button scores as, in button order, e.g. 123456."
+      },
+      "AllowedTime": {
+        "type": "integer",
+        "title": "Time limit (s)",
+        "default": 600,
+        "description": "Total time for all puzzles, in seconds (600 = 10 minutes). 0 or less = no limit."
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "StimulusFolderName",
+      "StimList",
+      "AllowedTime",
+      "FixationTimeBetweenTrials",
+      "StimWidth",
+      "StimHeight",
+      "OptionMapping",
+      "ShowInstructions",
+      "ShowWelcome",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

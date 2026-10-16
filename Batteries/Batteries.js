@@ -2392,11 +2392,11 @@ List.push({
   var List = []
 List.push({
   Task: "Word Recall Database",
-  Parameters: "RAVLT_Spoken_Immediate",
+  Parameters: "RAVLT_Spoken_Immediate_v2",
   Instructions: "Default",
   IconName: "Immediate",
 });
-	BatteryList.push({index: 98702, 
+	BatteryList.push({index: 987022, 
 		name:'Neural Cognitive Mapping Lab', 
 		description: '',
 		TaskList: List,

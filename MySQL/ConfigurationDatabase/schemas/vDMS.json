@@ -1,0 +1,270 @@
+{
+  "taskTypes": [
+    "Verbal DMS"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 3 parameter sets; code scanned: vDMS_Adaptive.html",
+  "schema": {
+    "type": "object",
+    "title": "Verbal DMS parameters",
+    "required": [
+      "ShowWelcome",
+      "ShowThankYou",
+      "ShowInstructions",
+      "WelcomeSpoken",
+      "AskForNotes",
+      "MaxTrials",
+      "NPracticeTrials",
+      "MaxReversals",
+      "StartValue",
+      "MinValue",
+      "MaxValue",
+      "StepSize",
+      "NUp",
+      "NDown",
+      "FastStart",
+      "StimOnTime",
+      "RetOnTime",
+      "ITITime",
+      "ButtonLabels",
+      "KeyboardValues",
+      "KeyboardMappings"
+    ],
+    "properties": {
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "AskForNotes": {
+        "type": "boolean",
+        "title": "Ask for examiner notes",
+        "default": false,
+        "description": "At the end, show a free-text box for notes about the session."
+      },
+      "InstructionsSpoken": {
+        "type": "boolean",
+        "title": "Speak the instructions",
+        "default": false,
+        "description": "Play an audio file with each instruction page, with a progress bar. Needs the 'Instructions NN audio files' and 'page times' lists below for every instruction block the task shows."
+      },
+      "MaxTrials": {
+        "type": "integer",
+        "title": "Test trials",
+        "default": 10,
+        "description": "The test staircase stops after this many trials.",
+        "minimum": 1
+      },
+      "NPracticeTrials": {
+        "type": "integer",
+        "title": "Practice trials",
+        "default": 4,
+        "description": "Trials in the practice staircase (with feedback), before the test.",
+        "minimum": 0
+      },
+      "MaxReversals": {
+        "type": "integer",
+        "title": "Max reversals",
+        "default": 15,
+        "description": "The staircase also stops after this many reversals (changes of direction).",
+        "minimum": 1
+      },
+      "StartValue": {
+        "type": "integer",
+        "title": "Starting load",
+        "default": 1,
+        "description": "Number of items to remember in the first trial.",
+        "minimum": 1
+      },
+      "MinValue": {
+        "type": "integer",
+        "title": "Lowest load",
+        "default": 1,
+        "description": "The load never goes below this.",
+        "minimum": 1
+      },
+      "MaxValue": {
+        "type": "integer",
+        "title": "Highest load",
+        "default": 9,
+        "description": "The load never goes above this.",
+        "minimum": 1
+      },
+      "StepSize": {
+        "type": "integer",
+        "title": "Step size",
+        "default": 1,
+        "description": "How much the load changes at each step up or down.",
+        "minimum": 1
+      },
+      "NUp": {
+        "type": "integer",
+        "title": "Correct in a row to go up",
+        "default": 3,
+        "description": "After the fast start, this many correct trials in a row raise the load one step.",
+        "minimum": 1
+      },
+      "NDown": {
+        "type": "integer",
+        "title": "Errors in a row to go down (not used)",
+        "default": 1,
+        "description": "Not used: the staircase code lowers the load one step after every error, whatever this says (same as Digit Span)."
+      },
+      "FastStart": {
+        "type": "boolean",
+        "title": "Fast start",
+        "default": true,
+        "description": "Until the first error, every correct trial raises the load (ignores 'Correct in a row')."
+      },
+      "WaitTime": {
+        "type": "integer",
+        "title": "Wait time (ms) (CHECK: not used)",
+        "default": 300,
+        "description": "CHECK: the task reads 'WaitOnTime', not 'WaitTime', so this has no effect."
+      },
+      "StimOnTime": {
+        "type": "integer",
+        "title": "Letters on screen (ms)",
+        "default": 3500,
+        "minimum": 0
+      },
+      "RetOnTime": {
+        "type": "integer",
+        "title": "Retention delay (ms)",
+        "default": 3500,
+        "description": "Blank delay between the letters and the probe.",
+        "minimum": 0
+      },
+      "ProbeOnTime": {
+        "type": "integer",
+        "title": "Probe on screen (ms) (CHECK: not used)",
+        "default": 2500,
+        "description": "CHECK: the task uses the fixed ProbeOnTime in config/vDMS_setup.js (5000 ms), not this."
+      },
+      "ITITime": {
+        "type": "integer",
+        "title": "Pause between trials (ms)",
+        "default": 1000,
+        "minimum": 0
+      },
+      "ButtonLabels": {
+        "type": "array",
+        "title": "Response button labels",
+        "items": {
+          "type": "string",
+          "title": "Label"
+        },
+        "default": [
+          "Yes",
+          "No"
+        ],
+        "description": "Text on the two response buttons, e.g. Yes / No."
+      },
+      "KeyboardValues": {
+        "type": "array",
+        "title": "Response keys",
+        "items": {
+          "type": "string",
+          "title": "Key"
+        },
+        "default": [
+          "arrowleft",
+          "arrowright"
+        ],
+        "description": "Keyboard keys that answer, in the same order as the buttons (e.g. arrowleft, arrowright)."
+      },
+      "KeyboardMappings": {
+        "type": "array",
+        "title": "What each key means",
+        "items": {
+          "type": "boolean",
+          "title": "Means 'yes, it was there'"
+        },
+        "default": [
+          true,
+          false
+        ],
+        "description": "For each response key, in order: Yes = 'the probe was in the set', No = 'it was not'."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "AskForNotes": {
+      "ui:widget": "radio"
+    },
+    "InstructionsSpoken": {
+      "ui:widget": "radio"
+    },
+    "FastStart": {
+      "ui:widget": "radio"
+    },
+    "KeyboardMappings": {
+      "items": {
+        "ui:widget": "radio"
+      }
+    },
+    "ui:order": [
+      "NPracticeTrials",
+      "MaxTrials",
+      "MaxReversals",
+      "StartValue",
+      "MinValue",
+      "MaxValue",
+      "StepSize",
+      "NUp",
+      "NDown",
+      "FastStart",
+      "StimOnTime",
+      "RetOnTime",
+      "ProbeOnTime",
+      "ITITime",
+      "WaitTime",
+      "ButtonLabels",
+      "KeyboardValues",
+      "KeyboardMappings",
+      "ShowInstructions",
+      "InstructionsSpoken",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "AskForNotes",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15.",
+    "CHECK: Verbal DMS reads WaitOnTime (sets have WaitTime) and uses a fixed ProbeOnTime instead of the set's."
+  ]
+}

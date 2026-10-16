@@ -101,60 +101,71 @@ There are two stages. Stage 1 is safe to do page by page. Stage 2 needs decision
 Batteries still come from `Batteries.js` as now. Only **where each page gets its settings**
 changes.
 
-- [ ] **3.1 Finish the pilot page, `html/JATOS/WordRecallDatabaseConfig.html`.** Ask Claude to:
-  - Fix the timing bug: `jsPsych.run(timeline)` starts before the database answer arrives.
-  - Request instructions by their full name. The database stores `EN_Instructions_Default`, not
-    `Default`; the pilot only works today because of one hand-made "Default" row.
-- [ ] **3.2 Test the pilot in JATOS on your Mac.** Start the API (setup guide, Part 2, Terminal 1),
-      run a battery that uses it, and compare the results file with the old `WordRecall.html`.
-- [ ] **3.3 Ask Claude to write one shared helper** (e.g.
-      `functions/GeneralPurposeFunctions/ConfigDatabase.js`). Every page then uses the same
-      code to:
-  - set the API address in **one place** instead of in every page;
-  - fetch parameters and instructions, adding the language prefix where a page needs it;
-  - show a clear error screen if the database can't be reached;
-  - start the task only after everything has loaded.
-- [ ] **3.4 Convert the pages one at a time.** For each page: Claude converts it → you test it
-      in JATOS → tick it off. Suggested order: Digit Span and Word Recall first (their forms
-      are reviewed), then the rest.
+- [x] ~~3.1-3.3 Pilot fixes and shared helper~~ Done 2026-10-15. Every live task page now has a
+      database version in **`html/dB/`** (same file names; `html/JATOS/` is untouched), plus
+      `CentralExecutive.html`, which reads its session buttons from the database.
+  - One shared file sets the API address and does the loading:
+    `functions/GeneralPurposeFunctions/DatabaseConfig.js` (`DB_API_BASE`, now
+    `http://localhost:8000`). Moving to a server = change that one line.
+  - Each page asks for the same set names it used with `pseudoSwitch`, and starts the task only
+    after the answers arrive; if the database can't be reached it shows an error instead.
+  - A set name that isn't in the database changes nothing, exactly like `pseudoSwitch`.
+  - Still loaded from JS: word lists, button labels, questionnaire definitions, and 11 config files
+    that also hold constants the task code reads (e.g. `FixationTimeBetweenWords` in
+    `WordRecall_Setup.js`, which the pilot had dropped). Their parameter sets are no longer used.
+  - `html/dB/WordRecall.html` replaces the pilot `WordRecallDatabaseConfig.html` (built from
+    `WordRecall.html` the same way as the other pages).
+  - Checked: for all 198 parameter/instruction lookups the batteries make (every language), the
+    database gives exactly what the JS files gave (179) or, like the JS, nothing (19 already-broken
+    names). Each page was also run in a simulated browser next to its html/JATOS original: same
+    start-up, same settings. Not yet run in real JATOS.
+- [ ] **3.4 Test in JATOS, page by page:** point a component's HTML file at `html/dB/<Page>.html`
+      (start the API first: setup guide, Part 4), run it, compare with the html/JATOS version,
+      and tick it off below.
 
-| Done | Page (`html/JATOS/`) | Reads now | Notes |
-|---|---|---|---|
-| [ ] | DigitSpan.html | DigitSpan_Setup.js | do first |
-| [ ] | WordRecall.html | WordRecall_Setup.js | do first; the word lists stay in JS for now |
-| [ ] | WordRecognition.html | WordRecog_Setup.js | word lists stay in JS |
-| [ ] | TrailMaking.html | TrailMaking_Setup.js | |
-| [ ] | SpatialDMS.html | SpatialDMS_setup.js | |
-| [ ] | TESTSpatialDMS.html | SpatialDMS_setup.js | |
-| [ ] | vDMS_Adaptive.html | vDMS_setup.js | |
-| [ ] | CardSortTask.html | CardSort_Setup.js | |
-| [ ] | ClockDrawing.html | ClockDrawing_Setup.js | |
-| [ ] | Cancellation.html | Cancellation_Setup.js | |
-| [ ] | FluencyTask.html | Fluency_Setup.js | |
-| [ ] | ImageCopy.html | ImageCopy_Setup.js | |
-| [ ] | LineBisection.html | LineBisection_Setup.js | |
-| [ ] | Listening.html | Listening_Setup.js | |
-| [ ] | MatrixReasoning.html | MatrixReasoning_Setup.js | |
-| [ ] | PatternComparison.html | PatternComparison_Setup.js | |
-| [ ] | ReadingListeningTest.html | ReadingListening_Setup.js | |
-| [ ] | SerialSubtractionTask.html | SerialSubtraction_Setup.js | |
-| [ ] | StroopColor.html | Stroop_Setup.js | |
-| [ ] | StroopWord.html | Stroop_Setup.js | |
-| [ ] | StroopColorWord.html | Stroop_Setup.js | |
-| [ ] | VASrating.html | VASrating_setup.js | |
-| [ ] | EQ5D.html | EQ5D_Setup.js | |
-| [ ] | Questionnaire.html | Questionnaire_Setup.js | |
-| [ ] | MatrixQuestionnaire.html | Questionnaire_Setup.js | |
-| [ ] | MatrixQuestionnaireExtraQ.html | Questionnaire_Setup.js | |
-| [ ] | FormQuestionnaire.html | Questionnaire_Setup.js | |
-| [ ] | QuestionnaireJSON.html | Questionnaire_Setup.js | |
-| [ ] | IPAQQuestionnaire.html | Questionnaire_Setup.js | |
-| [ ] | LikertQuestionnaire.html | Questionnaire_Setup.js | |
-| [ ] | IntakeForm.html | IntakeForm_Setup.js | uses `<LANG>_` parameter names |
-| [ ] | ConsentForm.html | ConsentForm_Setup.js | uses `<LANG>_` parameter names |
-| [ ] | Screening.html | InstructionsAndStimuli/EN/Questionnaires/Screening.js | uses `<LANG>_` parameter names |
-| [ ] | EndingPage.html | EndingPage_Instructions.js | parameters use `<LANG>_` names; check where they come from |
-| [ ] | LanguageSelection.html | LanguageSelection_Instructions.js | parameters use `<LANG>_` names; check where they come from |
+| Tested | Page (`html/dB/`) | Notes |
+|---|---|---|
+| [ ] | DigitSpan.html | |
+| [ ] | WordRecall.html | word lists stay in JS |
+| [ ] | WordRecognition.html | word lists stay in JS |
+| [ ] | TrailMaking.html | |
+| [ ] | SpatialDMS.html | |
+| [ ] | TESTSpatialDMS.html | |
+| [ ] | vDMS_Adaptive.html | |
+| [ ] | CardSortTask.html | |
+| [ ] | ClockDrawing.html | |
+| [ ] | Cancellation.html | |
+| [ ] | FluencyTask.html | |
+| [ ] | ImageCopy.html | |
+| [ ] | LineBisection.html | |
+| [ ] | Listening.html | |
+| [ ] | MatrixReasoning.html | |
+| [ ] | PatternComparison.html | |
+| [ ] | ReadingListeningTest.html | |
+| [ ] | SerialSubtractionTask.html | |
+| [ ] | StroopColor.html | see the Stroop note below |
+| [ ] | StroopWord.html | see the Stroop note below |
+| [ ] | StroopColorWord.html | see the Stroop note below |
+| [ ] | VASrating.html | |
+| [ ] | EQ5D.html | |
+| [ ] | Questionnaire.html | questionnaire files stay in JS |
+| [ ] | MatrixQuestionnaire.html | questionnaire files stay in JS |
+| [ ] | MatrixQuestionnaireExtraQ.html | questionnaire files stay in JS |
+| [ ] | FormQuestionnaire.html | questionnaire files stay in JS |
+| [ ] | QuestionnaireJSON.html | questionnaire files stay in JS |
+| [ ] | IPAQQuestionnaire.html | questionnaire files stay in JS |
+| [ ] | IntakeForm.html | batteries ask for `IntakeForm_EN`, which exists nowhere (the page runs without a parameter set, as now); FR FaCE intake now gets its instructions (it never did from JS) |
+| [ ] | ConsentForm.html | |
+| [ ] | Screening.html | |
+| [ ] | EndingPage.html | instructions only (no parameter sets) |
+| [ ] | LanguageSelection.html | instructions only (no parameter sets) |
+| [ ] | CentralExecutive.html | session buttons from the database; Mont_99's Test values arrive as text ("1") instead of numbers |
+
+Not converted: `LikertQuestionnaire.html` (not a task type) and the backups/old copies.
+
+**Found while converting (existing behaviour, kept as is):** the Stroop pages declare
+`Stroop_parameters` but the sets go into `parameters`, so Stroop code that reads
+`Stroop_parameters` (instructions switch, timer, scoring method) always sees nothing.
 
 - [ ] **3.5 When every page is converted,** stop loading the old `config/*.js` and instruction
       files from the pages. **Don't delete them yet:** the migration scripts read them.
@@ -184,9 +195,23 @@ Then ask Claude to change how batteries are chosen, so they come from `API_batte
 
 - [ ] Merge NCMBatteryWebsite's `config-library` branch into `main` (on GitHub: open a pull
       request from `config-library`, then merge).
-- [ ] Review the three other draft forms: Trail Making, Spatial DMS and Questionnaire. They have
-      no explanations or limits yet; ask Claude to write them, as for Digit Span and Word Recall.
-- [ ] Draft forms for the remaining task types (Card Sort, Clock Drawing, …).
+- [x] ~~Parameter forms for every task type~~ Done 2026-10-15: all 35 task types with parameter
+      sets have a form, checked against each task's code; JSON editing is gone from the site. Every
+      one of the 385 existing sets opens in its form. Forms with open CHECKs below show "Draft form".
+- [ ] **CHECKs found while writing the forms** (task code bugs; the forms only describe them):
+      - EQ5D and VAS Rating: the slider reads `min`/`max`, but the sets define `minValue`/`maxValue`,
+        so the range setting does nothing. EQ5D also shows a leftover prompt under the slider: "Is
+        this color closer to purple or blue?"
+      - Stroop Word: the test repeats `ColorTestRepeats` times; `WordTestRepeats` is never read.
+      - Verbal DMS: the code reads `WaitOnTime` (sets have `WaitTime`), and uses the fixed
+        `ProbeOnTime` in `vDMS_setup.js` (5000 ms) instead of the set's (2500 ms).
+      - Screening FR: the choices are "Qui"/"No" (should be "Oui"/"Non") but the answer needed is
+        still "Yes", so **no French participant can pass the FR screening**.
+      - Fluency FR: the FR instruction sets have no DinnerTable category, and call their page
+        `Instructions` where the task expects `Instructions01`.
+      - Not used by any code (labelled "not used" in the forms): `RecordAUDIO` (many tasks),
+        Cancellation `save_final_image`, Card Sort `FeedbackSize`, Image Copy canvas size, EQ5D
+        `shortTitle`, and NDown in both DMS staircases (as in Digit Span).
 - [ ] Optional: convert NCMBatteryWebsite's `README.md` from UTF-16 to UTF-8, so GitHub shows it.
 - [ ] **Check how instruction sets were grouped (2026-10-14).** The old per-language names were
       merged into sets, mostly mechanically (`EN_Instructions_FaCE` + `FR_Instructions_FaCE` →
@@ -201,6 +226,28 @@ Then ask Claude to change how batteries are chosen, so they come from `API_batte
 - [ ] If any other machine has the configuration database, run `AddInstructionSets.sql` there
       once (setup guide, Part 4). Your Mac's database is already converted; the old table is kept
       as `task_instructions_pre_sets`, so drop it once you're happy.
+
+### Sessions (added 2026-10-15)
+
+The Sessions tab in the website, and the `sessions` / `session_languages` / `session_buttons`
+tables, hold everything from `config/SessionChooser_config.js`. Things to decide or check:
+
+- [ ] **`EN_COMM_01` is not the list at the top of the file.** `parameters001` is defined twice,
+      and the second one ("Demonstration", batteries 72/3/4/6) wins at run time, so `EN_COMM_01`
+      and `EN_COMM_DEMO` both show the Demonstration buttons. The database copies that run-time
+      behaviour. If `EN_COMM_01` should be the first list (Enter Name, Intake, Baseline, ...),
+      say so and Claude will fix the session. `FR_COMM_01` does use its own list.
+- [ ] **Batteries some buttons point at aren't in the database:** 3 and 4 (COMM_01/COMM_DEMO),
+      76 (no session uses it now), and 98703, 98706, 98721, 98722, 98751 (the Mont_99 buttons
+      whose names start with "x"). The Sessions pages flag them.
+- [ ] **Mont_99's Test values are numbers in the file** (`Test: 1`) and text everywhere else
+      (`Test: '1'`). The database stores text, so results would record "1" instead of 1. Fine
+      unless the analysis depends on the type.
+- [ ] **`CentralExecutive.html` still reads `SessionChooser_config.js`.** Switching it to
+      `API_session.php?name=…&lang=…` (same data shape) belongs with section 3.
+- [ ] If another machine already has the configuration database, run `AddSessions.sql` there once
+      (or reinstall). Your Mac's database is converted; the old table is kept as
+      `session_chooser_configs_pre_sessions` until you drop it.
 
 ## 5. Before the website goes on a real server
 

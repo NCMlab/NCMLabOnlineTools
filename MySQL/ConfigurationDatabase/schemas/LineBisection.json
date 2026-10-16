@@ -1,0 +1,193 @@
+{
+  "taskTypes": [
+    "Line Bisection"
+  ],
+  "reviewed": true,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 1 parameter sets; code scanned: BULineBisection.html, LineBisection.html",
+  "schema": {
+    "type": "object",
+    "title": "Line Bisection parameters",
+    "required": [
+      "Lines",
+      "SuggestedWidth",
+      "SuggestedHeight",
+      "ShowTimer",
+      "Duration",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "ShowInstructions",
+      "stroke_width"
+    ],
+    "properties": {
+      "Lines": {
+        "type": "array",
+        "title": "Lines to bisect",
+        "items": {
+          "type": "object",
+          "title": "Line",
+          "required": [
+            "LeftX",
+            "LeftY",
+            "RightX",
+            "RightY"
+          ],
+          "properties": {
+            "LeftX": {
+              "type": "number",
+              "title": "Left end X",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "LeftY": {
+              "type": "number",
+              "title": "Left end Y",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "RightX": {
+              "type": "number",
+              "title": "Right end X",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "RightY": {
+              "type": "number",
+              "title": "Right end Y",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "default": [
+          {
+            "LeftX": 0.27,
+            "LeftY": 0.06,
+            "RightX": 0.97,
+            "RightY": 0.06
+          },
+          {
+            "LeftX": 0.11,
+            "LeftY": 0.11,
+            "RightX": 0.89,
+            "RightY": 0.11
+          },
+          {
+            "LeftX": 0.03,
+            "LeftY": 0.17,
+            "RightX": 0.59,
+            "RightY": 0.17
+          },
+          {
+            "LeftX": 0.06,
+            "LeftY": 0.22,
+            "RightX": 0.97,
+            "RightY": 0.22
+          },
+          {
+            "LeftX": 0.08,
+            "LeftY": 0.28,
+            "RightX": 0.92,
+            "RightY": 0.28
+          },
+          {
+            "LeftX": 0.03,
+            "LeftY": 0.33,
+            "RightX": 0.38,
+            "RightY": 0.33
+          }
+        ],
+        "description": "Each line's two ends, as proportions of the canvas (0 = left/top, 1 = right/bottom)."
+      },
+      "SuggestedWidth": {
+        "type": "integer",
+        "title": "Canvas width (px)",
+        "default": 1000,
+        "description": "Drawing area size the lines are laid out on; scaled down to fit the screen.",
+        "minimum": 100
+      },
+      "SuggestedHeight": {
+        "type": "integer",
+        "title": "Canvas height (px)",
+        "default": 1000,
+        "minimum": 100
+      },
+      "ShowTimer": {
+        "type": "boolean",
+        "title": "Show countdown timer",
+        "default": false
+      },
+      "Duration": {
+        "type": "integer",
+        "title": "Time limit (ms)",
+        "default": 180000,
+        "description": "In milliseconds, e.g. 180000 = 3 minutes.",
+        "minimum": 1000
+      },
+      "ShowWelcome": {
+        "type": "boolean",
+        "title": "Show welcome page",
+        "default": true,
+        "description": "Show the welcome page (from the instruction set) before the task."
+      },
+      "WelcomeSpoken": {
+        "type": "boolean",
+        "title": "Speak the welcome",
+        "default": false,
+        "description": "Only applies when the welcome page is shown: play the welcome audio, with a Repeat button and a 4 s progress bar. Needs a welcome audio file."
+      },
+      "ShowThankYou": {
+        "type": "boolean",
+        "title": "Show thank-you page",
+        "default": true,
+        "description": "Show the thank-you page (from the instruction set) at the end."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      },
+      "stroke_width": {
+        "type": "integer",
+        "title": "Pen width (px)",
+        "default": 5,
+        "minimum": 1
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "ShowTimer": {
+      "ui:widget": "radio"
+    },
+    "ShowWelcome": {
+      "ui:widget": "radio"
+    },
+    "WelcomeSpoken": {
+      "ui:widget": "radio"
+    },
+    "ShowThankYou": {
+      "ui:widget": "radio"
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "Lines",
+      "SuggestedWidth",
+      "SuggestedHeight",
+      "Duration",
+      "ShowTimer",
+      "stroke_width",
+      "ShowInstructions",
+      "ShowWelcome",
+      "WelcomeSpoken",
+      "ShowThankYou",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15."
+  ]
+}

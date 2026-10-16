@@ -1,0 +1,193 @@
+{
+  "taskTypes": [
+    "Screening"
+  ],
+  "reviewed": false,
+  "generated": "migrate/infer_schemas.js on 2026-10-15 from 3 parameter sets; code scanned: none found",
+  "schema": {
+    "type": "object",
+    "title": "Screening parameters",
+    "required": [
+      "title",
+      "pages"
+    ],
+    "properties": {
+      "title": {
+        "type": "string",
+        "title": "Title",
+        "enum": [
+          "Dépistage",
+          "Screening"
+        ],
+        "default": "Screening",
+        "description": "Heading of the screening questionnaire."
+      },
+      "pages": {
+        "type": "array",
+        "title": "Pages of questions",
+        "items": {
+          "type": "array",
+          "title": "Page",
+          "items": {
+            "type": "object",
+            "title": "Question",
+            "required": [
+              "type",
+              "prompt",
+              "name",
+              "required"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "title": "Question type",
+                "oneOf": [
+                  {
+                    "const": "multi-choice",
+                    "title": "Multiple choice"
+                  },
+                  {
+                    "const": "text",
+                    "title": "Text box"
+                  }
+                ]
+              },
+              "prompt": {
+                "type": "string",
+                "title": "Question"
+              },
+              "name": {
+                "type": "string",
+                "title": "Name in the results",
+                "description": "Short ID saved with the answer, e.g. Age. Keep it the same in every language."
+              },
+              "required": {
+                "type": "boolean",
+                "title": "Must be answered"
+              },
+              "options": {
+                "type": "array",
+                "title": "Choices (multiple choice)",
+                "items": {
+                  "type": "string",
+                  "title": "Choice"
+                }
+              },
+              "correct_response": {
+                "type": "string",
+                "title": "Answer needed to be eligible",
+                "description": "Must match one of the choices exactly."
+              },
+              "input_type": {
+                "type": "string",
+                "title": "Text box type",
+                "oneOf": [
+                  {
+                    "const": "text",
+                    "title": "Text"
+                  },
+                  {
+                    "const": "number",
+                    "title": "Number"
+                  }
+                ]
+              },
+              "placeholder": {
+                "type": "string",
+                "title": "Placeholder text"
+              }
+            }
+          }
+        },
+        "default": [
+          [
+            {
+              "type": "text",
+              "prompt": "What is your Age?",
+              "placeholder": "",
+              "input_type": "number",
+              "name": "Age",
+              "required": true
+            },
+            {
+              "type": "multi-choice",
+              "prompt": "Is English or French your maternal or primary spoken language?",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "name": "Language",
+              "required": true,
+              "correct_response": "Yes"
+            },
+            {
+              "type": "multi-choice",
+              "prompt": "Do you have normal (or correct to normal) vision? This includes glasses, contacts and corrective surgery.",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "name": "Vision",
+              "required": true,
+              "correct_response": "Yes"
+            },
+            {
+              "type": "multi-choice",
+              "prompt": "Do you have normal (or correct to normal) hearing?",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "name": "Hearing",
+              "required": true,
+              "correct_response": "Yes"
+            },
+            {
+              "type": "multi-choice",
+              "prompt": "Do you have any neurological disorders? (e.g. lupus)?",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "name": "Neurological",
+              "required": true,
+              "correct_response": "No"
+            }
+          ]
+        ],
+        "description": "Each page is a list of questions. A participant whose answer differs from a question's 'Answer needed to be eligible' is screened out."
+      },
+      "ShowInstructions": {
+        "type": "boolean",
+        "title": "Show instructions",
+        "default": true,
+        "description": "Show the instruction pages (from the instruction set) before the task."
+      }
+    },
+    "additionalProperties": true
+  },
+  "uiSchema": {
+    "pages": {
+      "items": {
+        "items": {
+          "required": {
+            "ui:widget": "radio"
+          }
+        }
+      }
+    },
+    "ShowInstructions": {
+      "ui:widget": "radio"
+    },
+    "ui:order": [
+      "title",
+      "pages",
+      "ShowInstructions",
+      "*"
+    ]
+  },
+  "reviewNotes": [
+    "Reviewed against the task code 2026-10-15.",
+    "CHECK: FR_BriefScreening offers 'Qui' (should be 'Oui') but the answer needed is still 'Yes', so no French participant can pass."
+  ]
+}
