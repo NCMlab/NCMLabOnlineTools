@@ -19,7 +19,7 @@
 // XX (see ClaudeDocs/IsSuggestedQuestions.md): isSuggested property added, wired in html/JATOS/CostOfSport.html.
 // Mark a question with isSuggested: SUGGEST_ALL_QUESTIONS (global switch below) to get a soft warning + "Proceed with unanswered question" button.
 // Confirm that the data goes to teh database when submit is pressed and the receipt shows up.
-// What happens when teh browser back is pressed?
+// What happens when the browser back is pressed?
 // Add a download as PDF button so people can have a copy of their receipt
 // The downloaded report card has more detail than just the receipt.
 // XX It can include...
@@ -29,7 +29,32 @@
 // "Cost of sport profile"
 // Current receipt info
 // Add the name of the sport to the top of the receipt.
+// ====================================
+// FEEDBACK FROM OCT 13
+// XX ensure the current sports are getting to the CSV
+// XX In line 540:
+          // {
+          //   type: "comment",
+          //   isSuggested: SUGGEST_ALL_QUESTIONS,
+          //   name: "SP_Class_Ex",
+          //   title: "Please explain:",
+          //   visibleIf: "{SP_Class} = 1",
+          //   isRequired: false
+          // },
+      // if 4/5 is entered here it gets interpretted as a date in Excel. Can this be forced to be 
+      // interpretted as a string?
+// XX For apparel. equipment and additional eqiuip. Put up to 10 in the CSV file
 
+// STarting at EQ_Buy no output values go to teh CSV file!
+
+// XX SP_Earn is written as Yes/No, it shoudl be coded as 1 and 0
+// XX Make sure all of the demographic responses are numeric coded.
+// MISSING HH_SPORT question, see codebook.
+// MAKE SURE THE CALCULATED VALUES GET INTO THE CSV FILE!!!!!
+// Stop having the CSV file downloaded to the USERS computer. Make sure it goes somewhere else.
+// Make sure that the data is easily accessible and downloadable.
+// In teh PDF output, can the top two boxes be centered like in the online version.
+// ====================================
 
 // How to make PDF of this questionnaire?
 // https://surveyjs.io/pdf-generator?gad_source=1&gad_campaignid=23252761383&gbraid=0AAAAAo0HYCrfGtaRe57eePxaRVY4HIrau&gclid=Cj0KCQjwrs7RBhDuARIsAIVfBD2d8TUVZyLox1uiR6GnoQ9Ebp2-Fdo7TfTcbfZl58eYrclG0Z9bRoMaAiIbEALw_wcB
@@ -416,7 +441,7 @@ const json = {
             allowRemoveRows: false,
             columns: [
               {
-                name: "Sport_Curr",
+                name: "Sport_Curr2",
                 title: "Sport",
                 cellType: "text",
                 isRequired: false,
@@ -593,7 +618,7 @@ const json = {
           {
             type: "html",
             name: "practice_intro",
-            html: `<b>Please tell us about your practices and competitions over the past year for the (para)sport under investigation. Answer the practice questions and competition questions separately.</b>`
+            html: `<b>Please tell us about your practices and competitions over the past year for <em>{CurrentSportName}</em>. Answer the practice questions and competition questions separately.</b>`
           },
           {
             type: "matrixdropdown",
@@ -838,7 +863,10 @@ const json = {
           "isSuggested": SUGGEST_ALL_QUESTIONS,
           "title": "Did you pay this fee?",
           "cellType": "radiogroup",
-          "choices": [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+          "choices": [
+            {"value": 1, "text": "Yes"}, 
+            {"value": 0, "text": "No"}
+          ],
           //"defaultValue": "No"
         },
         {
@@ -1206,8 +1234,11 @@ const json = {
                     "name": "usage",
                     "title": "Did you pay?",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
-                    "defaultValue": "No"
+                    "choices": [
+                        { value: 1, text: "Yes" },
+                        { value: 0, text: "No" },
+                    ],
+                    "defaultValue": 0
                   },
                   {
                     "name": "cost_per_usage",
@@ -1215,7 +1246,7 @@ const json = {
                     "title": "If yes, average cost per use",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 'Yes'",
+                    "enableIf": "{row.usage} = 1",
                     "allowResize": false,
                   },
                           {
@@ -1224,7 +1255,7 @@ const json = {
                     "title": "Number of times per year",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 'Yes'",
+                    "enableIf": "{row.usage} = 1",
                     "allowResize": false,
                   },
                 ],
@@ -1290,7 +1321,10 @@ const json = {
                     "name": "usage",
                     "title": "Yes/No",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
+                    "choices": [
+                      { value: 1, text: "Yes" },
+                      { value: 0, text: "No" },
+                    ],
                     "defaultValue": "No"
                   },
                   // Idealy the total of all of these values cannot surpass the value of {SP_PR_Freq}.  If it does, then a warning message should appear.  This is not possible with the current surveyjs framework.  It would require a custom widget to be created.
@@ -1495,7 +1529,10 @@ const json = {
                     "name": "usage",
                     "title": "Yes/No",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
+                    "choices": [              
+                      { value: 1, text: "Yes" },
+                      { value: 0, text: "No" },
+                    ],
                     "defaultValue": "No"
                   },
                   {
@@ -1590,7 +1627,10 @@ const json = {
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you purchase?",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ]
+                    "choices": [
+                      { value: 1, text: "Yes" },
+                      { value: 0, text: "No" },
+                    ],
                   },
                   {
                     "name": "Social_often_per_year",
@@ -1632,7 +1672,10 @@ const json = {
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay?",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
+                    "choices": [
+                      { value: 1, text: "Yes" },
+                      { value: 0, text: "No" },
+                    ],
                   },
                   {
                     "name": "cost_per_usage",
@@ -1694,7 +1737,10 @@ const json = {
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay for?",
                     "cellType": "radiogroup",
-                    "choices": [ "Yes", "No" ],
+                    "choices": [
+                      { value: 1, text: "Yes" },
+                      { value: 0, text: "No" },
+                    ],
                   },
                   {
                     "name": "cost_per_usage",
@@ -1747,10 +1793,7 @@ const json = {
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Earn_YN",
             title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
-            choices: [
-              "Yes",
-              "No"
-            ],
+            choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
             colCount: 2,
             showOtherItem: false,
             isRequired: false
@@ -1852,12 +1895,13 @@ const json = {
           name: "FirstNation",
           title: "Do you identify as First Nations, Inuk/Inuit and/or Métis?",
           
-          choices: [ "Yes, First Nations",
-                    "Yes, Inuk/Inuit",
-                    "Yes, Métis",
-                    "No",
-                    "Do not know",
-                    "Prefer not to answer"
+          choices: [ 
+            {value: 1, text: "Yes, First Nations"},
+            {value: 2, text: "Yes, Inuk/Inuit"},
+            {value: 3, text: "Yes, Métis"},
+            {value: 4, text: "No"},
+            {value: 5, text: "Do not know"},
+            {value: 6, text: "Prefer not to answer"}
           ],
           "isRequired": false,
           "colCount": 2,
@@ -1872,16 +1916,17 @@ const json = {
           name: "Race",
           title: "Which category(ies) best describes your race or racial background? Check all that apply:",
           
-          choices: [ "Black",
-                    "East Asian",
-                    "Indigenous (First Nations, Inuk/Inuit, Métis)",
-                    "Latin American",
-                    "Middle Eastern",
-                    "South Asian",
-                    "Southeast Asian",
-                    "White",
-                    "Do not know",
-                    "Prefer not to answer"
+          choices: [ 
+            {value: 1, text: "Black"},
+            {value: 2, text: "East Asian"},
+            {value: 3, text: "Indigenous (First Nations, Inuk/Inuit, Métis)"},
+            {value: 4, text: "Latin American"},
+            {value: 5, text: "Middle Eastern"},
+            {value: 6, text: "South Asian"},
+            {value: 7, text: "Southeast Asian"},
+            {value: 8, text: "White"},
+            {value: 9, text: "Do not know"},
+            {value: 10, text: "Prefer not to answer"}
           ],
           "isRequired": false,
           "colCount": 2,
@@ -1930,12 +1975,12 @@ const json = {
             title: "What is your position in this household?",
             isRequired: false,
             choices: [
-              "Son",
-              "Daughter",
-              "Spouse",
-              "Parent",
-              "Guardian",
-              "Sole occupant"
+              {value: 1, text: "Son"},
+              {value: 2, text: "Daughter"},
+              {value: 3, text: "Spouse"},
+              {value: 4, text: "Parent"},
+              {value: 5, text: "Guardian"},
+              {value: 6, text: "Sole occupant"}
             ],
             colCount: 2,
             showOtherItem: true,
@@ -2028,10 +2073,10 @@ const json = {
             name: "AB_Timing",
             colCount: 2,
             choices: [
-              'Congenital',
-              'Acquired',
-              'Able-Bodied',
-              'Prefer not to answer'
+              {value: 1, text: 'Congenital'},
+              {value: 2, text: 'Acquired'},
+              {value: 3, text: 'Able-Bodied'},
+              {value: 4, text: 'Prefer not to answer'}
             ]
           },
           {
@@ -2040,13 +2085,13 @@ const json = {
             title: "Classification of disabilities (check all that apply)?",
             name: "AB_Class",
             colCount: 2,
-            visibleIf: "{AB_Timing} = 'Congenital' || {AB_Timing} = 'Acquired'",
+            visibleIf: "{AB_Timing} = 1 || {AB_Timing} = 2",
             choices: [
-              'Mobility',
-              'Vision',
-              'Hearing',
-              'Cognitive function',
-              'Not Applicable'
+              {value: 1, text: 'Mobility'},
+              {value: 2, text: 'Vision'},
+              {value: 3, text: 'Hearing'},
+              {value: 4, text: 'Cognitive function'},
+              {value: 5, text: 'Not Applicable'}
             ]
           },
 
@@ -2068,6 +2113,121 @@ const json = {
               { "value": 7, "text": "7 - Complete Independance — No assistance, performs safely." }
             ]
           },
+
+// ===================================
+    {
+      type: "expression",
+      name: "SPORTNAME",
+      title: "Sport Name XXX",
+      displayStyle: "text",
+      expression:
+        "{CurrentSportName}",
+    },
+    {
+      type: "expression",
+      name: "ExpectedCosts",
+      title: "Expected Costs",
+      expression: "displayValue('Cost_Gen')"
+    },
+    {
+      type: "expression",
+      name: "MEMB_ENTR",
+      title: "Total Membership, License, Participation & Entrance Costs / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Total_Fees_$Y}"
+    },
+    {
+      type: "expression",
+      name: "APP_EQUIP",
+      title: "Apparel & Equipment / YEAR (Total)",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_Equip_APP_$Y_Total}"
+    },
+    {
+      type: "expression",
+      name: "COACHING",
+      title: "Coaching",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Cost_Coach_$Y} + {Cost_Clinic_$Y}"
+    },
+    {
+      type: "expression",
+      name: "TRAVEL",
+      title: "Total Travel Costs / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Total_transport_cost_$Y} + {Total_competition_cost_$Y}"
+    },
+    {
+      type: "expression",
+      name: "SOCIAL",
+      title: "Total Social Costs / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{Total_Practice_Social_cost_$Y}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_DIRECT_COSTS",
+      title: "Total Direct Costs",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{MEMB_ENTR} + {COACHING} + {APP_EQUIP}"
+    },
+    {
+      type: "expression",
+      name: "OTHER_ID",
+      title: "Other Indirect Costs per Year",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{Total_other_indirect_cost_$Y}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_INDIRECT",
+      title: "Total Indirect costs",
+      displayStyle: "decimal",
+      precision: 2,
+      expression:
+        "{OIC_Total} + {SOCIAL} + {TRAVEL}"
+    },
+    {
+      type: "expression",
+      name: "EARNINGS",
+      title: "Total Earnings",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_Earnings_$Y_Total}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_COSTS_Y",
+      title: "TOTAL COST / YEAR",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{TOTAL_DIRECT_COSTS} + {TOTAL_INDIRECT} - {EARNINGS}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_PRACTICES",
+      title: "TOTAL PRACTICES",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_PR_Tot}"
+    },
+    {
+      type: "expression",
+      name: "TOTAL_COMPETITIONS",
+      title: "TOTAL COMPETITIONS",
+      displayStyle: "decimal",
+      precision: 2,
+      expression: "{SP_CC_ODWithout} + {SP_CC_ODWith} + {SP_CC_TWONIGHTS} + {SP_CC_Multiday} + {SP_CC_Vacations}"
+    }
 
           // {
           //   type: "radiogroup",

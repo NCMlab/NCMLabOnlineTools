@@ -160,17 +160,19 @@ function parseCSVText(text) {
   return rows;
 }
 
-// Fetches CodeBookSheet.csv and returns the ordered list of column
-// names (its first, and currently only, column).
+// Fetches CodeBookSheet.csv and returns the ordered list of columns as
+// { name, type } objects. The first column of the code book is the
+// column name; the optional second column is its type (e.g. "text").
 async function loadCodeBookHeaders(url) {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Could not load code book "${url}": ${response.status} ${response.statusText}`);
   }
   const text = await response.text();
+  const clean = s => (s || '').replace(/ /g, ' ').trim();
   return parseCSVText(text)
-    .map(row => (row[0] || '').replace(/ /g, ' ').trim())
-    .filter(name => name.length > 0);
+    .map(row => ({ name: clean(row[0]), type: clean(row[1]).toLowerCase() }))
+    .filter(col => col.name.length > 0);
 }
 
 function csvEscapeField(value) {
@@ -182,12 +184,23 @@ function csvEscapeField(value) {
   return str;
 }
 
+// Wraps a value as ="value" so Excel keeps it as text instead of
+// converting entries like 4/5 into dates or 1e5 into numbers.
+function excelTextField(value) {
+  if (value === undefined || value === null || value === '') return '';
+  return csvEscapeField('="' + String(value).replace(/"/g, '""') + '"');
+}
+
 // Builds a CSV string (header row + one data row) with columns in the
 // exact order given by `headers`. Any header missing from `dataObj`
 // is written as an empty field rather than being skipped or erroring.
+// Columns marked "text" in the code book are protected from Excel.
 function objectToOrderedCSV(dataObj, headers) {
-  const headerRow = headers.map(csvEscapeField).join(',');
-  const dataRow = headers.map(h => csvEscapeField(dataObj[h])).join(',');
+  console.log(dataObj)
+  const headerRow = headers.map(col => csvEscapeField(col.name)).join(',');
+  const dataRow = headers.map(col => col.type === 'text'
+    ? excelTextField(dataObj[col.name])
+    : csvEscapeField(dataObj[col.name])).join(',');
   return headerRow + '\r\n' + dataRow + '\r\n';
 }
 
