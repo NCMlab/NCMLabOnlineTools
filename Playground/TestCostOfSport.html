@@ -27,7 +27,7 @@
           var response = jsPsych.data.get().trials[0].response;
           console.log(response)
           var flat = flattenSurveyResponse(response);
-
+          console.log(flat)
           // displaythe response data after unpacking it
           for (const [key, value] of Object.entries(flat)) {
             console.log(`Key: ${key}, Value: ${value}`);
