@@ -29,7 +29,7 @@ var form_trial = {
       ComputerInfo.AvailableLanguage = NAV.languages
       ComputerInfo.appVersion = NAV.appVersion
       data.ComputerInfo = ComputerInfo
-
+      data.UserLanguage = jatos.batchSession.get(jatos.workerId+"_Language")
 
       var TTT = jsPsych.data.get()
       console.log(TTT)
@@ -84,12 +84,14 @@ var CheckEligibilityData = {
       console.log(data)
       Results = Screening_Scoring(data)
       console.log(Results)
+      
     }
 }
 
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
+    console.log(BREAK)
     if ( ! Results.AllResults['Accuracy'] ) 
     { jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results]) } 
     else { jsPsych.finishTrial(Results) }
@@ -103,6 +105,7 @@ timeline.push(Notes)
 timeline.push(CheckEligibilityData)
 timeline.push(if_Eligibile)
 timeline.push(if_BrowserEligibile)
+timeline.push(if_BrowserLanguageEligibile)
 timeline.push(SendData)
 
 

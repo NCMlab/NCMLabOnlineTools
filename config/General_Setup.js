@@ -53,6 +53,7 @@ EN_LabelNames.UseThisMicrophone = 'Use this microphone.'
 EN_LabelNames.NoteInputBox = "Please, type in any notes or feedback you have about this task. (Optional)"
 EN_LabelNames.NonEligible = ("I am sorry to say that you are not eligible for this study.")
 EN_LabelNames.BroswerNonEligible = ("You are eligible, but our software does not work on mobile. Please try again using a laptop or tablet.")
+EN_LabelNames.BroswerLanguageNonEligible = ("You are eligible, but the language setting in your browser is not set correctly. Please try again using a laptop or tablet.")
 EN_LabelNames.StopStudy = "This will stop the study but not remove your data. Are you sure?"
 EN_LabelNames.ExitStudy = 'This will remove all data collected so far. Are you sure?'
 EN_LabelNames.SkipTask = "This will SKIP the current task. Are you sure?"

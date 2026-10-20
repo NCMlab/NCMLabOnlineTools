@@ -55,6 +55,7 @@ function Screening_Scoring(data) {
 	Results.AllResults['Computer Information'] = ComputerInfo.appVersion
 	Results.AllResults['Current Language'] = ComputerInfo.CurrentLanguage
 	Results.AllResults['Available Language'] = ComputerInfo.AvailableLanguage
+	Results.AllResults['User Language'] = trialData.UserLanguage
 
 	return Results
 }
