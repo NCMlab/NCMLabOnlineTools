@@ -51,9 +51,23 @@
 // XX Make sure all of the demographic responses are numeric coded.
 // XX MISSING HH_SPORT question, see codebook.
 // MAKE SURE THE CALCULATED VALUES GET INTO THE CSV FILE!!!!!
-// Stop having the CSV file downloaded to the USERS computer. Make sure it goes somewhere else.
-// Make sure that the data is easily accessible and downloadable.
-// In teh PDF output, can the top two boxes be centered like in the online version.
+// >>> Stop having the CSV file downloaded to the USERS computer. Make sure it goes somewhere else.
+// >>> Make sure that the data is easily accessible and downloadable.
+// >>> In the PDF output, can the top two boxes be centered like in the online version.
+// ====================================
+// Notes from 10/20
+// XX Add instructions to a page 0
+// Make sure the sugest all questions ise to true
+// Make sure travel details are in the CSV.
+// Make sure data goes to database
+// Stop CSV download
+// XX Move the Current two sports and past three sports to the end
+
+// XX This would be a new IV (General Sports Participation Profile)
+// XX Ability would then become section V
+// XX Make Section 1: {SPort Name} Participation Profile
+// XX Section I :How did you get into {sport name}?
+// XX Section I: "Do you have classification and/or specialty and/or player position in {sport name}?""
 // ====================================
 
 // How to make PDF of this questionnaire?
@@ -207,7 +221,7 @@ const json = {
 
         <!-- Title / intro -->
         <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
-          <h2 style="margin:0 0 8px 0; font-size:28px;">Your sport profile:</h2>
+          <h2 style="margin:0 0 8px 0; font-size:28px;">Your sport profile for {SPORTNAME}</h2>
           <p style="margin:0; font-size:14px; color:#555;">
           You participated in <strong>{TOTAL_PRACTICES}</strong> practices and <strong>{TOTAL_COMPETITIONS}</strong> competitions over the past year.
           </p>
@@ -326,7 +340,16 @@ const json = {
       //make question font size bigger than choices in radiogroups
       // ################################################################
       // ##### SECTION 0    #############################################
-     
+      {
+        "name": "intro_page",
+        "elements": [
+          {
+            "type": "html",
+            "name": "welcome_text",
+            "html": "<h3>Welcome to the Survey</h3><p>Please read these instructions carefully before proceeding to the questions.</p>"
+          }
+        ]
+      },
       {
         name: "Intro",
         title: "Reference Sport",
@@ -414,136 +437,136 @@ const json = {
       // ##### SECTION 1    #############################################
       {
         name: "SportParticipation",
-        title: "Section I: Sport  Participation Profile",
+        title: "Section I: {CurrentSportName} Participation Profile",
         elements: [
-          // Add : Before starting to report
-          {
-            type: "html",
-            name: "current_past_subtitle",
-            html: `
-         <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-         In addition to <em>{CurrentSportName}</em>,  
-         list up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
-          </div>
-          <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
-          </div>
-          `
-          },
-          {
-            type: "matrixdynamic",
-            name: "Sport_Curr2",
-            title: "CURRENTLY (top two)",
+        //   // Add : Before starting to report
+        //   {
+        //     type: "html",
+        //     name: "current_past_subtitle",
+        //     html: `
+        //  <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+        //  In addition to <em>{CurrentSportName}</em>,  
+        //  list up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
+        //   </div>
+        //   <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
+        //   </div>
+        //   `
+        //   },
+        //   {
+        //     type: "matrixdynamic",
+        //     name: "Sport_Curr2",
+        //     title: "CURRENTLY (top two)",
             
-            rowCount: 2,
-            minRowCount: 2,
-            maxRowCount: 2,
-            allowAddRows: false,
-            allowRemoveRows: false,
-            columns: [
-              {
-                name: "Sport_Curr2",
-                title: "Sport",
-                cellType: "text",
-                isRequired: false,
-                width: "25%"
-              },
-              {
-                name: "Context",
-                title: "Main current context",
-                cellType: "radiogroup",
-                choices: [
-                  { "value": 1, "text": "Non-organized" },
-                  { "value": 2, "text": "Club" },
-                  { "value": 3, "text": "School" }
-                ],
-                isRequired: false,
-                width: "40%"
-              },
-              {
-                name: "Level",
-                title: "Current level",
-                cellType: "radiogroup",
-                choices: [
-                  { "value": 1, "text": "Mainly recreational" },
-                  { "value": 2, "text": "Mainly competitive" },
-                  { "value": 3, "text": "Both equally" }
-                ],
-                isRequired: false,
-                width: "35%"
-              },
-              {
-                name: "nY",
-                title: "Years",
-                cellType: "text",
-                inputType: "number",
-                min: 0,
-                max: 99,
-                placeholder: "0",
-                isRequired: false,
-                width: "25%"
-              }
-            ]
-          },
-          {
-            type: "matrixdynamic",
-            name: "Sport_Past",
-            title: "IN THE PAST (top three)",
-            rowCount: 3,
-            minRowCount: 3,
-            maxRowCount: 3,
-            allowAddRows: false,
-            allowRemoveRows: false,
-            columns: [
-              {
-                name: "Sport_Past",
-                title: "Sport",
-                cellType: "text",
-                isRequired: false,
-                width: "25%"
-              },
-              {
-                name: "Context",
-                title: "Past context",
-                cellType: "radiogroup",
-                choices: [
-                  { "value": 1, "text": "Non-organized" },
-                  { "value": 2, "text": "Club" },
-                  { "value": 3, "text": "School" }
-                ],
-                isRequired: false,
-                width: "40%"
-              },
-              {
-                name: "Level",
-                title: "Past level",
-                cellType: "radiogroup",
-                choices: [
-                  { "value": 1, "text": "Mainly recreational" },
-                  { "value": 2, "text": "Mainly competitive" },
-                  { "value": 3, "text": "Both equally" }
-                ],
-                isRequired: false,
-                width: "35%"
-              },
-              {
-                name: "nY",
-                title: "Years",
-                cellType: "text",
-                inputType: "number",
-                min: 0,
-                max: 99,
-                placeholder: "0",
-                isRequired: false,
-                width: "25%"
-              }
-            ]
-          },
+        //     rowCount: 2,
+        //     minRowCount: 2,
+        //     maxRowCount: 2,
+        //     allowAddRows: false,
+        //     allowRemoveRows: false,
+        //     columns: [
+        //       {
+        //         name: "Sport_Curr2",
+        //         title: "Sport",
+        //         cellType: "text",
+        //         isRequired: false,
+        //         width: "25%"
+        //       },
+        //       {
+        //         name: "Context",
+        //         title: "Main current context",
+        //         cellType: "radiogroup",
+        //         choices: [
+        //           { "value": 1, "text": "Non-organized" },
+        //           { "value": 2, "text": "Club" },
+        //           { "value": 3, "text": "School" }
+        //         ],
+        //         isRequired: false,
+        //         width: "40%"
+        //       },
+        //       {
+        //         name: "Level",
+        //         title: "Current level",
+        //         cellType: "radiogroup",
+        //         choices: [
+        //           { "value": 1, "text": "Mainly recreational" },
+        //           { "value": 2, "text": "Mainly competitive" },
+        //           { "value": 3, "text": "Both equally" }
+        //         ],
+        //         isRequired: false,
+        //         width: "35%"
+        //       },
+        //       {
+        //         name: "nY",
+        //         title: "Years",
+        //         cellType: "text",
+        //         inputType: "number",
+        //         min: 0,
+        //         max: 99,
+        //         placeholder: "0",
+        //         isRequired: false,
+        //         width: "25%"
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     type: "matrixdynamic",
+        //     name: "Sport_Past",
+        //     title: "IN THE PAST (top three)",
+        //     rowCount: 3,
+        //     minRowCount: 3,
+        //     maxRowCount: 3,
+        //     allowAddRows: false,
+        //     allowRemoveRows: false,
+        //     columns: [
+        //       {
+        //         name: "Sport_Past",
+        //         title: "Sport",
+        //         cellType: "text",
+        //         isRequired: false,
+        //         width: "25%"
+        //       },
+        //       {
+        //         name: "Context",
+        //         title: "Past context",
+        //         cellType: "radiogroup",
+        //         choices: [
+        //           { "value": 1, "text": "Non-organized" },
+        //           { "value": 2, "text": "Club" },
+        //           { "value": 3, "text": "School" }
+        //         ],
+        //         isRequired: false,
+        //         width: "40%"
+        //       },
+        //       {
+        //         name: "Level",
+        //         title: "Past level",
+        //         cellType: "radiogroup",
+        //         choices: [
+        //           { "value": 1, "text": "Mainly recreational" },
+        //           { "value": 2, "text": "Mainly competitive" },
+        //           { "value": 3, "text": "Both equally" }
+        //         ],
+        //         isRequired: false,
+        //         width: "35%"
+        //       },
+        //       {
+        //         name: "nY",
+        //         title: "Years",
+        //         cellType: "text",
+        //         inputType: "number",
+        //         min: 0,
+        //         max: 99,
+        //         placeholder: "0",
+        //         isRequired: false,
+        //         width: "25%"
+        //       }
+        //     ]
+        //   },
           //modified 
           {
             name: "SP_How",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
-            title: "How did you get into the current (para)sport under investigation?",
+            title: "How did you get into {CurrentSportName}",
             minLength: 10,
             isRequired: false
           },
@@ -551,7 +574,7 @@ const json = {
             type: "radiogroup",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class",
-            title: "Do you have classification and/or specialty and/or player position in this sport?",
+            title: "Do you have classification and/or specialty and/or player position in {CurrentSportName}",
             isRequired: false,
             colCount: 3,   // horizontal layout for Yes / No / N/A
             choices: [
@@ -734,9 +757,9 @@ const json = {
               // Using numerical values may make it hard to perform calculations later. 
               // Consider using text values or descriptive labels instead.
               { "text": "One-day competitions with one overnight stay.", "value": "ODWith" },
-              { "text": "Competitions with two overnight stays", "value": "TWONIGHTS" },
+              { "text": "Competitions with two overnight stays.", "value": "TWONIGHTS" },
               { "text": "Competitions with three or more overnight stays.", "value": "Multiday" },
-              { "text": "Vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": "Vacations" }
+              { "text": "Vacations (where the PRIMARY purpose of your travel is to participate in {CurrentSportName}).", "value": "Vacations" }
             ],
             "transposeData": false
           },
@@ -1151,7 +1174,7 @@ const json = {
             type: "matrixdynamic",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_AddEquip",
-            title: "C) Additional equipment, ex.towels ..",
+            title: "C) Additional equipment (e.g., towels ...)",
             addRowText: "➕ Add equipment item",
             removeRowText: "➖ Remove",
             minRowCount: 1,
@@ -1591,7 +1614,7 @@ const json = {
                 "type": "matrixdropdown",
                 "name": "TR_Comp",
                 // update title according to notes.
-                "title": "Travel Costs for COMPETITIONS (include ALL expenditures for travel, lodging, meals, etc. not previously included)",
+                "title": "Travel Costs for your COMPETITIONS (include ALL expenditures for travel, lodging, meals, etc. not previously included)",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "columns": [
@@ -1606,11 +1629,11 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "For your {COMP_Freq.ODWithout.SP_CC} one-day games/competitions/championships without an overnight stay.", "value": 'ODWithout_$' },
-                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "For your {COMP_Freq.ODWith.SP_CC} one-day games/competitions/championships with one overnight stay.", "value": 'ODWith_$' },
-                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "For your {COMP_Freq.TWONIGHTS.SP_CC} games/competitions/championships with two-night stay.", "value": 'TWONIGHTS_$' },
-                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "For your {COMP_Freq.Multiday.SP_CC} games/competitions/championships with three or more overnight stay.", "value": 'Multiday_$' },
-                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "For your {COMP_Freq.Vacations.SP_CC} vacations (the PRIMARY purpose of your travel is to participate in your sport)", "value": 'Vacations_$' },
+                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "One-day competitions without an overnight stay.", "value": 'ODWithout_$' },
+                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "One-day competitions with one overnight stay.", "value": 'ODWith_$' },
+                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "Competitions with two-night stay.", "value": 'TWONIGHTS_$' },
+                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "Competitions with three or more overnight stay.", "value": 'Multiday_$' },
+                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "Vacations (the PRIMARY purpose of your travel is to participate in {CurrentSportName}.", "value": 'Vacations_$' },
                 ],
                 "transposeData": false
               },
@@ -1832,7 +1855,7 @@ const json = {
                   { "text": "Extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …)", "value": 'Body' },
                   { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'Insur' },
                   { "text": "Extra costs for baby-sitting/pet sitting", "value": 'BPsitting' },
-                  { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'DOC' },
+                  { "text": "Specific documentation (e.g., online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'DOC' },
                   { "text": "Attending competitions as a spectator specifically related to the sport under investigation", "value": 'Spect' },
                   { "text": "Any other indirect costs not already included", "value": 'Other' },
                 ],
@@ -2068,6 +2091,7 @@ const json = {
             title: "How many members of your household or any other family members participate in this sport (do not include yourself)?",
             isRequired: false,
             choices: [
+              "0",
               "1",
               "2",
               "3",
@@ -2145,10 +2169,137 @@ const json = {
         ]
       },
 
-
+{
+        name: "SportParticipationOther",
+        title: "Section IV: Sport Participation Profile",
+        elements: [
+          // Add : Before starting to report
+          {
+            type: "html",
+            name: "current_past_subtitle",
+            html: `
+         <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
+         In addition to <em>{CurrentSportName}</em>,  
+         list up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
+          </div>
+          <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
+          </div>
+          `
+          },
+          {
+            type: "matrixdynamic",
+            name: "Sport_Curr2",
+            title: "CURRENTLY (top two)",
+            
+            rowCount: 2,
+            minRowCount: 2,
+            maxRowCount: 2,
+            allowAddRows: false,
+            allowRemoveRows: false,
+            columns: [
+              {
+                name: "Sport_Curr2",
+                title: "Sport",
+                cellType: "text",
+                isRequired: false,
+                width: "25%"
+              },
+              {
+                name: "Context",
+                title: "Main current context",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": 1, "text": "Non-organized" },
+                  { "value": 2, "text": "Club" },
+                  { "value": 3, "text": "School" }
+                ],
+                isRequired: false,
+                width: "40%"
+              },
+              {
+                name: "Level",
+                title: "Current level",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": 1, "text": "Mainly recreational" },
+                  { "value": 2, "text": "Mainly competitive" },
+                  { "value": 3, "text": "Both equally" }
+                ],
+                isRequired: false,
+                width: "35%"
+              },
+              {
+                name: "nY",
+                title: "Years",
+                cellType: "text",
+                inputType: "number",
+                min: 0,
+                max: 99,
+                placeholder: "0",
+                isRequired: false,
+                width: "25%"
+              }
+            ]
+          },
+          {
+            type: "matrixdynamic",
+            name: "Sport_Past",
+            title: "IN THE PAST (top three)",
+            rowCount: 3,
+            minRowCount: 3,
+            maxRowCount: 3,
+            allowAddRows: false,
+            allowRemoveRows: false,
+            columns: [
+              {
+                name: "Sport_Past",
+                title: "Sport",
+                cellType: "text",
+                isRequired: false,
+                width: "25%"
+              },
+              {
+                name: "Context",
+                title: "Past context",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": 1, "text": "Non-organized" },
+                  { "value": 2, "text": "Club" },
+                  { "value": 3, "text": "School" }
+                ],
+                isRequired: false,
+                width: "40%"
+              },
+              {
+                name: "Level",
+                title: "Past level",
+                cellType: "radiogroup",
+                choices: [
+                  { "value": 1, "text": "Mainly recreational" },
+                  { "value": 2, "text": "Mainly competitive" },
+                  { "value": 3, "text": "Both equally" }
+                ],
+                isRequired: false,
+                width: "35%"
+              },
+              {
+                name: "nY",
+                title: "Years",
+                cellType: "text",
+                inputType: "number",
+                min: 0,
+                max: 99,
+                placeholder: "0",
+                isRequired: false,
+                width: "25%"
+              }
+            ]
+          },
+        ]
+        },
       {
         name: "Section Ability",
-        title: "Section IV:  Ability",
+        title: "Section V:  Ability",
         elements: [
           
           {
