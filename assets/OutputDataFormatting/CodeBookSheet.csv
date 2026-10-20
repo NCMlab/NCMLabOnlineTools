@@ -1,18 +1,15 @@
-﻿SP_Context
-SP_Level 
-SP_Years
-Sport_Curr1
+﻿Sport_Curr1
 Sport_Curr1_Context
 Sport_Curr1_Level
 Sport_Curr1_nY
-Sport_Curr2
-Sport_Curr2_Context
-Sport_Curr2_Level
-Sport_Curr2_nY
-Sport_Curr3
-Sport_Curr3_Context
-Sport_Curr3_Level
-Sport_Curr3_nY
+Sport_Curr21
+Sport_Curr21_Context
+Sport_Curr21_Level
+Sport_Curr21_nY
+Sport_Curr22
+Sport_Curr22_Context
+Sport_Curr22_Level
+Sport_Curr22_nY
 Sport_Past1
 Sport_Past1_Context
 Sport_Past1_Level
@@ -27,9 +24,9 @@ Sport_Past3_Level
 Sport_Past3_nY
 SP_How
 SP_Class
-SP_Class_Ex
+SP_Class_Ex, text 
 SP_Fac
-SP_Fac_Ex
+SP_Fac_Ex, text 
 SP_Fac_PC
 SP_PR_1_FREQ
 SP_PR_2_FREQ
@@ -75,8 +72,6 @@ Cost_Clinic
 Cost_$U_Clinic
 Cost_UY_Clinic
 Cost_Clinic_$Y
-AB_EQ_Sport
-AB_EQ_Sport_Ex
 SP_APP1_Describe
 SP_APP1_$Total
 SP_APP1_nY
@@ -89,43 +84,127 @@ SP_APP3_Describe
 SP_APP3_$Total
 SP_APP3_nY
 SP_APP3_$Y
+SP_APP4_Describe
+SP_APP4_$Total
+SP_APP4_nY
+SP_APP4_$Y
+SP_APP5_Describe
+SP_APP5_$Total
+SP_APP5_nY
+SP_APP5_$Y
+SP_APP6_Describe
+SP_APP6_$Total
+SP_APP6_nY
+SP_APP6_$Y
+SP_APP7_Describe
+SP_APP7_$Total
+SP_APP7_nY
+SP_APP7_$Y
+SP_APP8_Describe
+SP_APP8_$Total
+SP_APP8_nY
+SP_APP8_$Y
+SP_APP9_Describe
+SP_APP9_$Total
+SP_APP9_nY
+SP_APP9_$Y
+SP_APP10_Describe
+SP_APP10_$Total
+SP_APP10_nY
+SP_APP10_$Y
 SP_APP_$Y_Total
 SP_Equip1_Describe
 SP_Equip1_$Total
-SP_Equip1_ nY
+SP_Equip1_nY
 SP_Equip1_$Y
 SP_Equip2_Describe
 SP_Equip2_$Total
-SP_Equip2_ nY
+SP_Equip2_nY
 SP_Equip2_$Y
 SP_Equip3_Describe
 SP_Equip3_$Total
-SP_Equip3_ nY
+SP_Equip3_nY
 SP_Equip3_$Y
+SP_Equip4_Describe
+SP_Equip4_$Total
+SP_Equip4_nY
+SP_Equip4_$Y
+SP_Equip5_Describe
+SP_Equip5_$Total
+SP_Equip5_nY
+SP_Equip5_$Y
+SP_Equip6_Describe
+SP_Equip6_$Total
+SP_Equip6_nY
+SP_Equip6_$Y
+SP_Equip7_Describe
+SP_Equip7_$Total
+SP_Equip7_nY
+SP_Equip7_$Y
+SP_Equip8_Describe
+SP_Equip8_$Total
+SP_Equip8_nY
+SP_Equip8_$Y
+SP_Equip9_Describe
+SP_Equip9_$Total
+SP_Equip9_nY
+SP_Equip9_$Y
+SP_Equip10_Describe
+SP_Equip10_$Total
+SP_Equip10_nY
+SP_Equip10_$Y
 SP_Equip_$Y_Total
 SP_AddEquip1_Describe
-SP_AddEquip1__$Total
-SP_AddEquip1_ nY
+SP_AddEquip1_$Total
+SP_AddEquip1_nY
 SP_AddEquip1_$Y
 SP_AddEquip2_Describe
-SP_AddEquip2__$Total
-SP_AddEquip2_ nY
+SP_AddEquip2_$Total
+SP_AddEquip2_nY
 SP_AddEquip2_$Y
 SP_AddEquip3_Describe
-SP_AddEquip3__$Total
-SP_AddEquip3_ nY
+SP_AddEquip3_$Total
+SP_AddEquip3_nY
 SP_AddEquip3_$Y
+SP_AddEquip4_Describe
+SP_AddEquip4_$Total
+SP_AddEquip4_nY
+SP_AddEquip4_$Y
+SP_AddEquip5_Describe
+SP_AddEquip5_$Total
+SP_AddEquip5_nY
+SP_AddEquip5_$Y
+SP_AddEquip6_Describe
+SP_AddEquip6_$Total
+SP_AddEquip6_nY
+SP_AddEquip6_$Y
+SP_AddEquip7_Describe
+SP_AddEquip7_$Total
+SP_AddEquip7_nY
+SP_AddEquip7_$Y
+SP_AddEquip8_Describe
+SP_AddEquip8_$Total
+SP_AddEquip8_nY
+SP_AddEquip8_$Y
+SP_AddEquip9_Describe
+SP_AddEquip9_$Total
+SP_AddEquip9_nY
+SP_AddEquip9_$Y
+SP_AddEquip10_Describe
+SP_AddEquip10_$Total
+SP_AddEquip10_nY
+SP_AddEquip10_$Y
 SP_AppEQ_$Y_Total
 EQ_Buy
 EQ_Buy_Ex
 EQ_Rent
-EQ_Rent_$U
-EQ_Rent_nY
+EQ_$U_Rent
+EQ_nY_Rent
 EQ_Rent_$Y
 EQ_Maint
-EQ_ Maint _$U
-EQ_Maint_nY
-EQ_ Maint _$Y
+EQ_$U_Maint
+EQ_nY_Maint
+EQ_Maint_$Y
 TR_Pr_F&W
 TR_Pr_F&W_%
 TR_Pr_Bike
@@ -137,13 +216,13 @@ TR_Pr_Car_%
 TR_Pr_Pub
 TR_Pr_Pub_%
 TR_Pr_Carp
-TR_Pr_ Carp _%
+TR_Pr_Carp _%
 TR_Pr_Taxi
-TR_Pr_ Taxi _%
+TR_Pr_Taxi _%
 TR_Pr_Spec
-TR_Pr_ Spec _%
+TR_Pr_Spec _%
 TR_Pr_Other
-TR_Pr_ Other _%
+TR_Pr_Other _%
 TR_Pr_km
 TR_Pr_Pub_$
 TR_Pr_Carp_$
@@ -161,44 +240,62 @@ TR_Pr_Other_$Y
 TR_Pr_Park
 TR_Pr_Park_$Y
 TR_Pr_$Y_Total
-Cost_CC_ODWithout
+
 Cost_CC_ODWithout_$
 Cost_CC_ODWithout_$Y
-Cost_CC_ODWith
+
 Cost_CC_ODWith_$
 Cost_CC_ODWith_$Y
-Cost_CC_ TWONIGHTS
-Cost_CC_ TWONIGHTS_$
-Cost_CC_ TWONIGHTS_$Y
-Cost_CC_ Multiday
-Cost_CC_ Multiday _$
-Cost_CC_ Multiday_$Y
-Cost_CC_ Vacations
-Cost_CC_ Vacations _$
-Cost_CC_ Vacations _$Y
+
+Cost_CC_TWONIGHTS_$
+Cost_CC_TWONIGHTS_$Y
+
+Cost_CC_Multiday_$
+Cost_CC_Multiday_$Y
+
+Cost_CC_ Vacations_$
+Cost_CC_ Vacations_$Y
 TR_CC_$Y_Total
 SOC_F&B
-SOC_F&B_%
-SOC_F&B_$Y
+SOC_%_F&B
+SOC_$Y_F&B
 SOC_Club
-SOC_Club_$Y
+SOC_$Y_Club
 OIC_MED
-OIC_MED_$Y
+OIC_$Y_MED
 OIC_Body
-OIC_Body_$Y
+OIC_$Y_Body
 OIC_Insur
-OIC_Insur_$Y
+OIC_$Y_Insur
 OIC_BPsitting
-OIC_BPsitting_$Y
+OIC_$Y_BPsitting
 OIC_DOC
-OIC_DOC_$Y
+OIC_$Y_DOC
 OIC_Spect
-OIC_Spect_$Y
+OIC_$Y_Spect
 OIC_Other
-OIC_Other_$Y
+OIC_$Y_Other
 SP_Earn_YN
 SP_Earnings1_Describe
 SP_Earnings1_$Y
+SP_Earnings2_Describe
+SP_Earnings2_$Y
+SP_Earnings3_Describe
+SP_Earnings3_$Y
+SP_Earnings4_Describe
+SP_Earnings4_$Y
+SP_Earnings5_Describe
+SP_Earnings5_$Y
+SP_Earnings6_Describe
+SP_Earnings6_$Y
+SP_Earnings7_Describe
+SP_Earnings7_$Y
+SP_Earnings8_Describe
+SP_Earnings8_$Y
+SP_Earnings9_Describe
+SP_Earnings9_$Y
+SP_Earnings10_Describe
+SP_Earnings10_$Y
 Sex
 Sex-Comment
 Gender
@@ -218,7 +315,6 @@ HH_Income_IN
 AB_Timing
 AB_Class
 AB_Loi
-Future
 MEMB_ENTR
 COACHING
 APP_EQUIP
@@ -226,6 +322,6 @@ TOTAL_DIRECT_COSTS
 TRAVEL
 SOCIAL
 OTHER_ID
-TOTAL_INDICERCT
+TOTAL_INDIRECT
 EARNINGS
 TOTAL_COSTS_Y
