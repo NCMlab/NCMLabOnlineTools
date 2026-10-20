@@ -45,7 +45,7 @@
       // interpretted as a string?
 // XX For apparel. equipment and additional eqiuip. Put up to 10 in the CSV file
 
-// STarting at EQ_Buy no output values go to teh CSV file!
+// XX STarting at EQ_Buy no output values go to teh CSV file!
 
 // XX SP_Earn is written as Yes/No, it shoudl be coded as 1 and 0
 // XX Make sure all of the demographic responses are numeric coded.
@@ -65,7 +65,7 @@
 //         and shows the "Proceed with unanswered question" button (normal use).
 // false = no isSuggested warnings at all, so you can click through pages for testing.
 // (isRequired questions are not affected. Sport_Curr2 and Sport_Past are not flagged.)
-var SUGGEST_ALL_QUESTIONS = false;
+var SUGGEST_ALL_QUESTIONS = true;
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
@@ -1224,14 +1224,14 @@ const json = {
 
         {
                 "type": "matrixdropdown",
-                "name": "EQ_RentMaintenance",
+                "name": "EQ",
                 "title": "Rental Fees and Maintenance Costs",
                 //"titleLocation": "hidden",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "columns": [
                   {
-                    "name": "usage",
+                    "name": "EQ",
                     "title": "Did you pay?",
                     "cellType": "radiogroup",
                     "choices": [
@@ -1241,31 +1241,54 @@ const json = {
                     "defaultValue": 0
                   },
                   {
-                    "name": "cost_per_usage",
+                    "name": "EQ_$U",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "If yes, average cost per use",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.EQ} = 1",
                     "allowResize": false,
                   },
                           {
-                    "name": "frequency_per_year",
+                    "name": "EQ_nY",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Number of times per year",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.EQ} = 1",
                     "allowResize": false,
                   },
                 ],
                 "rows": [
-                  { "text": "Rental fees for sports apparel or equipment", "value": 'rental_equipment' },
-                  { "text": "Maintenance costs for sports apparel or equipment? (e.g., maintenance, repair, dry cleaning, …)", "value": 'maintenance_equipment' },                  
+                  { "text": "Rental fees for sports apparel or equipment", "value": 'Rent' },
+                  { "text": "Maintenance costs for sports apparel or equipment? (e.g., maintenance, repair, dry cleaning, …)", "value": 'Maint' },                  
                 ],
                 "transposeData": false
               },
-         
+
+          {  
+            type: "expression",
+            name: "EQ_Rent_$Y",
+            title: "Estimated yearly rental cost",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2,
+            visible: false,
+            expression:
+              "{EQ.Rent.EQ_$U} * {EQ.Rent.EQ_nY}" 
+          },
+          {  
+            type: "expression",
+            name: "EQ_Maint_$Y",
+            title: "Estimated yearly maintenance cost",
+            displayStyle: "currency",
+            currency: "CAD",
+            precision: 2,
+            visible: false,
+            expression:
+              "{EQ.Maint.EQ_$U} * {EQ.Maint.EQ_nY}"
+          },
+
           {  
             type: "expression",
             name: "EQ_RentMaintenance_$Y_Total",
@@ -1275,9 +1298,10 @@ const json = {
             precision: 2,
             visible: false,
             expression:
-              "{EQ_RentMaintenance.rental_equipment.cost_per_usage} * {EQ_RentMaintenance.rental_equipment.frequency_per_year}+" + 
-              "{EQ_RentMaintenance.maintenance_equipment.cost_per_usage} * {EQ_RentMaintenance.maintenance_equipment.frequency_per_year}"
+              "{EQ.Rent.EQ_$U} * {EQ.Rent.EQ_nY}+"+
+              "{EQ.Maint.EQ_$U} * {EQ.Maint.EQ_nY}"
           },
+
           {
             type: "expression",
             name: "SP_Equip_APP_$Y_Total",
@@ -1624,7 +1648,7 @@ const json = {
             type: "expression",
             name: "Cost_CC_Multiday_$Y",
             title: "Estimated yearly competition cost, Multiday",
-            expression: "{TR_Comp.Multiday$.Cost_CC}*{COMP_Freq.Multiday.SP_CC}",
+            expression: "{TR_Comp.Multiday_$.Cost_CC}*{COMP_Freq.Multiday.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1674,7 +1698,7 @@ const json = {
                 "columnMinWidth": "130px",
                 "columns": [
                   {
-                    "name": "usage",
+                    "name": "SOC",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you purchase?",
                     "cellType": "radiogroup",
@@ -1684,7 +1708,7 @@ const json = {
                     ],
                   },
                   {
-                    "name": "Social_often_per_year",
+                    "name": "SOC_%",
                     "title": "How many times per year?:",
                     "cellType": "dropdown",
                     //"choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
@@ -1694,17 +1718,17 @@ const json = {
                     "defaultValue": 0,
                   },
                   {
-                    "name": "cost_per_usage",
+                    "name": "SOC_$Y",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Average $ per time?",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.SOC} = 1",
                     "allowResize": false,
                   },
                 ],
                 "rows": [
-                  { "text": "Drinks or food before, during, or after your PRACTICES?", "value": 'social_costs' },
+                  { "text": "Drinks or food before, during, or after your PRACTICES?", "value": 'F&B' },
                 ],
                 "transposeData": false
               },
@@ -1719,7 +1743,7 @@ const json = {
                 "columnMinWidth": "130px",
                 "columns": [
                   {
-                    "name": "usage",
+                    "name": "SOC",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay?",
                     "cellType": "radiogroup",
@@ -1729,17 +1753,17 @@ const json = {
                     ],
                   },
                   {
-                    "name": "cost_per_usage",
+                    "name": "SOC_$Y",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $/year?",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.SOC} = 1",
                     "allowResize": false,
                   },
                 ],
                 "rows": [
-                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": "social_club_costs" },
+                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": "Club" },
                 ],
                 "transposeData": false
               },
@@ -1749,9 +1773,9 @@ const json = {
             type: "expression",
             name: "Total_Practice_Social_cost_$Y",
             title: "Estimated yearly TOTAL social cost during practices",
-            expression: "{SocialCosts_Practice.social_costs.Social_often_per_year}/100*" +
-              "{SocialCosts_Practice.social_costs.cost_per_usage}*{SP_PR_Tot} + " +
-              "{SocialCosts_Club.social_club_costs.cost_per_usage}",
+            expression: "{SocialCosts_Practice.F&B.SOC_%}/100*" +
+              "{SocialCosts_Practice.F&B.SOC_$Y}*{SP_PR_Tot} + " +
+              "{SocialCosts_Club.Club.SOC_$Y}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1784,7 +1808,7 @@ const json = {
                 "columnMinWidth": "130px",
                 "columns": [
                   {
-                    "name": "usage",
+                    "name": "OIC",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "Did you pay for?",
                     "cellType": "radiogroup",
@@ -1794,23 +1818,23 @@ const json = {
                     ],
                   },
                   {
-                    "name": "cost_per_usage",
+                    "name": "OIC_$Y",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $/year?",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.OIC} = 1",
                     "allowResize": false,
                   },
                 ],
                 "rows": [
-                  { "text": "Extra medical costs and/or care costs (e.g., physiotherapy, medication, …)", "value": 'other_medical' },
-                  { "text": "Extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …)", "value": 'other_body_care' },
-                  { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'other_insurance' },
-                  { "text": "Extra costs for baby-sitting/pet sitting", "value": 'other_babysitting' },
-                  { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'other_documentation' },
-                  { "text": "Attending competitions as a spectator specifically related to the sport under investigation", "value": 'other_spectator' },
-                  { "text": "Any other indirect costs not already included", "value": 'other_indirect' },
+                  { "text": "Extra medical costs and/or care costs (e.g., physiotherapy, medication, …)", "value": 'MED' },
+                  { "text": "Extra costs to take care of your body (e.g., body creme, …) or to buy special nutrition (e.g., supplements, …)", "value": 'Body' },
+                  { "text": "Extra insurance costs related to your (para)sports participation (if not already included in the membership fee)", "value": 'Insur' },
+                  { "text": "Extra costs for baby-sitting/pet sitting", "value": 'BPsitting' },
+                  { "text": "Specific documentation (ex. online subscriptions, eBooks, newspapers, books, magazines, …)", "value": 'DOC' },
+                  { "text": "Attending competitions as a spectator specifically related to the sport under investigation", "value": 'Spect' },
+                  { "text": "Any other indirect costs not already included", "value": 'Other' },
                 ],
                 "transposeData": false
               },
@@ -1819,10 +1843,10 @@ const json = {
                 type: "expression",
                 name: "Total_other_indirect_cost_$Y",
                 title: "Estimated yearly TOTAL other indirect costs",
-                expression: "{B_P.other_medical.cost_per_usage} + {B_P.other_body_care.cost_per_usage} + " +
-                  "{B_P.other_insurance.cost_per_usage} + {B_P.other_babysitting.cost_per_usage} + " +
-                  "{B_P.other_documentation.cost_per_usage} + {B_P.other_spectator.cost_per_usage} + " +
-                  "{B_P.other_indirect.cost_per_usage}",
+                expression: "{B_P.MED.OIC_$Y} + {B_P.Body.OIC_$Y} + " +
+                  "{B_P.Insur.OIC_$Y} + {B_P.BPsitting.OIC_$Y} + " +
+                  "{B_P.DOC.OIC_$Y} + {B_P.Spect.OIC_$Y} + " +
+                  "{B_P.Other.OIC_$Y}",
                 displayStyle: "currency",
                 currency: "CAD",
                 visible: false,
@@ -1860,7 +1884,7 @@ const json = {
             minRowCount: 1,
             rowCount: 0,
             showFooter: true,
-            visibleIf: "{SP_Earn_YN} = 'Yes'",
+            visibleIf: "{SP_Earn_YN} = 1",
             columns: [
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
