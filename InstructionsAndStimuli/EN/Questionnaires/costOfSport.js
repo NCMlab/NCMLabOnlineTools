@@ -59,6 +59,7 @@
 // XX Add instructions to a page 0
 // Make sure the sugest all questions ise to true
 // Make sure travel details are in the CSV.
+//    Travel amounts are in. To do: Per trip costs*practice numbers
 // Make sure data goes to database
 // Stop CSV download
 // XX Move the Current two sports and past three sports to the end
@@ -566,7 +567,7 @@ const json = {
             name: "SP_How",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
-            title: "How did you get into {CurrentSportName}",
+            title: "How did you get into {CurrentSportName}?",
             minLength: 10,
             isRequired: false
           },
@@ -574,7 +575,7 @@ const json = {
             type: "radiogroup",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class",
-            title: "Do you have classification and/or specialty and/or player position in {CurrentSportName}",
+            title: "Do you have classification and/or specialty and/or player position in {CurrentSportName}?",
             isRequired: false,
             colCount: 3,   // horizontal layout for Yes / No / N/A
             choices: [
@@ -1376,7 +1377,7 @@ const json = {
                   },
                   // Idealy the total of all of these values cannot surpass the value of {SP_PR_Freq}.  If it does, then a warning message should appear.  This is not possible with the current surveyjs framework.  It would require a custom widget to be created.
                   {
-                    "name": "usage_count", // Change the name
+                    "name": "TR_Pr", // Change the name
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "So far you have entered <span style='font-size: 24px';>{Practice_Transport_Count}</span> practices, <br />please enter another <span style='font-size: 24px';>{Practice_Transport_Count_Left}</span>.<br />",
                     "cellType": "text",
@@ -1386,22 +1387,22 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Foot/Wheeling", "value": 'travel_foot_wheeling' },
-                  { "text": "Bike", "value": 'travel_bike' },
-                  { "text": "Motorbike", "value": 'travel_motorbike' },
-                  { "text": "Family/Own Car", "value": 'travel_family_own_car' },
-                  { "text": "Public Transportation", "value": 'travel_public_transportation' },
-                  { "text": "Carpooling", "value": 'travel_carpooling' },
-                  { "text": "Taxi/Private Bus", "value": 'travel_taxi_private_bus' },
-                  { "text": "Special Transportation", "value": 'travel_special_transportation' },
-                  { "text": "Other", "value": 'travel_other' }
+                  { "text": "Foot/Wheeling", "value": 'F&W' },
+                  { "text": "Bike", "value": 'Bike' },
+                  { "text": "Motorbike", "value": 'MotorB' },
+                  { "text": "Family/Own Car", "value": 'Car' },
+                  { "text": "Public Transportation", "value": 'Pub' },
+                  { "text": "Carpooling", "value": 'Carp' },
+                  { "text": "Taxi/Private Bus", "value": 'Taxi' },
+                  { "text": "Special Transportation", "value": 'Spec' },
+                  { "text": "Other", "value": 'Other' }
                 ],
                 "transposeData": false,
                 // See if I can add a total to the dropdown list to help with the addition.
                 "validators": [
                   {
                     "type": "expression",
-                    "expression": "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count} == {SP_PR_Tot}",
+                    "expression": "{TR_Pr.F&W.TR_Pr} + {TR_Pr.Bike.TR_Pr} + {TR_Pr.MotorB.TR_Pr} + {TR_Pr.Car.TR_Pr} + {TR_Pr.Pub.TR_Pr} + {TR_Pr.Carp.TR_Pr} + {TR_Pr.Taxi.TR_Pr} + {TR_Pr.Spec.TR_Pr} + {TR_Pr.Other.TR_Pr} == {SP_PR_Tot}",
                     "text": "The total number of practices for all transportation modes must equal the total number of practices per year."
                   }
                 ]
@@ -1410,7 +1411,7 @@ const json = {
             type: "expression",
             name: "Practice_Transport_Count",
             title: "Estimated yearly carpooling transportation cost",
-            expression: "{TR_Pr.travel_foot_wheeling.usage_count} + {TR_Pr.travel_bike.usage_count} + {TR_Pr.travel_motorbike.usage_count} + {TR_Pr.travel_family_own_car.usage_count} + {TR_Pr.travel_public_transportation.usage_count} + {TR_Pr.travel_carpooling.usage_count} + {TR_Pr.travel_taxi_private_bus.usage_count} + {TR_Pr.travel_special_transportation.usage_count} + {TR_Pr.travel_other.usage_count}",
+            expression: "{TR_Pr.F&W.TR_Pr} + {TR_Pr.Bike.TR_Pr} + {TR_Pr.MotorB.TR_Pr} + {TR_Pr.Car.TR_Pr} + {TR_Pr.Pub.TR_Pr} + {TR_Pr.Carp.TR_Pr} + {TR_Pr.Taxi.TR_Pr} + {TR_Pr.Spec.TR_Pr} + {TR_Pr.Other.TR_Pr}",
             visible: false,
           },
           {
@@ -1423,52 +1424,52 @@ const json = {
 
           
               {
-            name: "TR_Distance_OneWay_MotorbikeCar",
+            name: "TR_Pr_km",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Motorbike or Car, how many km one way per practice?",
-            visibleIf: "{TR_Pr.travel_family_own_car.usage} = 1 || {TR_Pr.travel_motorbike.usage} = 1", 
+            visibleIf: "{TR_Pr.Car.usage} = 1 || {TR_Pr.MotorB.usage} = 1", 
             minLength: 10,
             isRequired: false
           },
           {
-            name: "TR_Cost_Oneway_PublicTransport",
+            name: "TR_Pr_Pub_$",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Public Transportation, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_public_transportation.usage} = 1",
+            visibleIf: "{TR_Pr.Pub.usage} = 1",
             minLength: 10,
             isRequired: false
           },
           {
-            name: "TR_Cost_Oneway_Carpool",
+            name: "TR_Pr_Carp_$",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If Carpooling, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_carpooling.usage} = 1", 
+            visibleIf: "{TR_Pr.Carp.usage} = 1", 
             minLength: 10,
             isRequired: false
           },
           {
-            name: "TR_Cost_Oneway_TaxiPrivateBus",
+            name: "TR_Pr_Taxi_$",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Taxi/Private Bus, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_taxi_private_bus.usage} = 1", 
+            visibleIf: "{TR_Pr.Taxi.usage} = 1", 
             minLength: 10,
             isRequired: false
           },          
           {
-            name: "TR_Cost_Oneway_SpecialTransport",
+            name: "TR_Pr_Spec_$",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Special Transport, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_special_transportation.usage} = 1", 
+            visibleIf: "{TR_Pr.Spec.usage} = 1", 
             minLength: 10,
             isRequired: false
           },          
@@ -1479,7 +1480,7 @@ const json = {
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
             title: "If by Other, what is the one-way cost?",
-            visibleIf: "{TR_Pr.travel_other.usage} = 1", 
+            visibleIf: "{TR_Pr.Other.usage} = 1", 
             minLength: 10,
             isRequired: false
           },        
@@ -1492,7 +1493,7 @@ const json = {
             type: "expression",
             name: "Motorbike_Cost_$Y",
             title: "Estimated yearly motorbike transportation cost",
-            expression: "0.5 * {TR_Pr.travel_motorbike.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.MotorB.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
@@ -1503,7 +1504,7 @@ const json = {
             type: "expression",
             name: "Car_Cost_$Y",
             title: "Estimated yearly car transportation cost",
-            expression: "0.5 * {TR_Pr.travel_family_own_car.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.Car.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
@@ -1514,7 +1515,7 @@ const json = {
             type: "expression",
             name: "PublicTransport_Cost_$Y",
             title: "Estimated yearly public transportation cost",
-            expression: "{TR_Pr.travel_public_transportation.usage_count}*2*{TR_Cost_Oneway_PublicTransport}",
+            expression: "{TR_Pr.Pub.usage_count}*2*{TR_Cost_Oneway_PublicTransport}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1524,7 +1525,7 @@ const json = {
             type: "expression",
             name: "Carpool_Cost_$Y",
             title: "Estimated yearly carpooling transportation cost",
-            expression: "{TR_Pr.travel_carpooling.usage_count}*2*{TR_Cost_Oneway_Carpool}",
+            expression: "{TR_Pr.Carp.usage_count}*2*{TR_Cost_Oneway_Carpool}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1534,7 +1535,7 @@ const json = {
             type: "expression",
             name: "Taxi_Cost_$Y",
             title: "Estimated yearly taxi cost",
-            expression: "{TR_Pr.travel_taxi_private_bus.usage_count}*2*{TR_Cost_Oneway_TaxiPrivateBus}",
+            expression: "{TR_Pr.Taxi.usage_count}*2*{TR_Cost_Oneway_TaxiPrivateBus}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1545,7 +1546,7 @@ const json = {
             type: "expression",
             name: "Taxi_SpecialTransport_$Y",
             title: "Estimated yearly special transportation cost",
-            expression: "{TR_Pr.travel_special_transportation.usage_count}*2*{TR_Cost_Oneway_SpecialTransport}",
+            expression: "{TR_Pr.Spec.usage_count}*2*{TR_Cost_Oneway_SpecialTransport}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1555,7 +1556,7 @@ const json = {
             type: "expression",
             name: "Other_Cost_$Y",
             title: "Estimated yearly other transportation cost",
-            expression: "{TR_Pr.travel_other.usage_count}*2*{TR_Cost_Oneway_Other}",
+            expression: "{TR_Pr.Other.usage_count}*2*{TR_Cost_Oneway_Other}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1570,10 +1571,10 @@ const json = {
                 "title": "Parking costs for PRACTICE",
                 "showHeader": true,
                 "columnMinWidth": "130px",
-                visibleIf: "{TR_Pr.travel_family_own_car.usage} = 1 || {TR_Pr.travel_motorbike.usage} = 1", 
+                visibleIf: "{TR_Pr.Car.usage} = 1 || {TR_Pr.MotorB.usage} = 1", 
                 "columns": [
                   {
-                    "name": "usage",
+                    "name": "TR_Pr",
                     "title": "Yes/No",
                     "cellType": "radiogroup",
                     "choices": [              
@@ -1583,17 +1584,17 @@ const json = {
                     "defaultValue": "No"
                   },
                   {
-                    "name": "travel_parking_cost_per_year",
+                    "name": "TR_Pr_$Y",
                     "isSuggested": SUGGEST_ALL_QUESTIONS,
                     "title": "How much $ per year?",
                     "cellType": "text",
                     "inputType": "number",
-                    "enableIf": "{row.usage} = 1",
+                    "enableIf": "{row.TR_Pr} = 1",
                     "allowResize": false,
                   },
                 ],
                 "rows": [
-                  { "text": "Do you pay for parking?", "value": 'travel_parking' },
+                  { "text": "Do you pay for parking?", "value": 'Park' },
                 ],
                 "transposeData": false
               },
@@ -1603,7 +1604,7 @@ const json = {
             title: "Estimated yearly TOTAL transportation cost",
             expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
               "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
-              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Parking.travel_parking.travel_parking_cost_per_year}",
+              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Parking.Park.TR_Pr_$Y}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -2171,7 +2172,7 @@ const json = {
 
 {
         name: "SportParticipationOther",
-        title: "Section IV: Sport Participation Profile",
+        title: "Section IV: General Sport Participation Profile",
         elements: [
           // Add : Before starting to report
           {
