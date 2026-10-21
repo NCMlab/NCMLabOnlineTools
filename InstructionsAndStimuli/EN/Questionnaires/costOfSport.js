@@ -1252,7 +1252,7 @@ const json = {
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "EQ_Buy_ex",
             title: "If you selected 'Other (please describe)', please specify:",
-            visibleIf: "{sports_equipment_sources} contains 8"
+            visibleIf: "{EQ_Buy} contains 8"
           },
 
           // question 12 
