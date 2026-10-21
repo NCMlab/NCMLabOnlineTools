@@ -206,23 +206,14 @@ EQ_$U_Maint
 EQ_nY_Maint
 EQ_Maint_$Y
 TR_Pr_F&W
-TR_Pr_F&W_%
 TR_Pr_Bike
-TR_Pr_Bike_%
 TR_Pr_MotorB
-TR_Pr_MotorB_%
 TR_Pr_Car
-TR_Pr_Car_%
 TR_Pr_Pub
-TR_Pr_Pub_%
 TR_Pr_Carp
-TR_Pr_Carp _%
 TR_Pr_Taxi
-TR_Pr_Taxi _%
 TR_Pr_Spec
-TR_Pr_Spec _%
 TR_Pr_Other
-TR_Pr_Other _%
 TR_Pr_km
 TR_Pr_Pub_$
 TR_Pr_Carp_$
@@ -238,23 +229,18 @@ TR_Pr_Taxi_$Y
 TR_Pr_Spec_$Y
 TR_Pr_Other_$Y
 TR_Pr_Park
-TR_Pr_Park_$Y
+TR_Pr_$Y_Park
 TR_Pr_$Y_Total
-
 Cost_CC_ODWithout_$
 Cost_CC_ODWithout_$Y
-
 Cost_CC_ODWith_$
 Cost_CC_ODWith_$Y
-
 Cost_CC_TWONIGHTS_$
 Cost_CC_TWONIGHTS_$Y
-
 Cost_CC_Multiday_$
 Cost_CC_Multiday_$Y
-
-Cost_CC_ Vacations_$
-Cost_CC_ Vacations_$Y
+Cost_CC_Vacations_$
+Cost_CC_Vacations_$Y
 TR_CC_$Y_Total
 SOC_F&B
 SOC_%_F&B
@@ -315,13 +301,13 @@ HH_Income_IN
 AB_Timing
 AB_Class
 AB_Loi
-MEMB_ENTR
-COACHING
-APP_EQUIP
-TOTAL_DIRECT_COSTS
-TRAVEL
-SOCIAL
-OTHER_ID
-TOTAL_INDIRECT
-EARNINGS
-TOTAL_COSTS_Y
+MEMB_ENTR2
+COACHING2
+APP_EQUIP2
+TOTAL_DIRECT_COSTS2
+TRAVEL2
+SOCIAL2
+OTHER_ID2
+TOTAL_INDIRECT2
+EARNINGS2
+TOTAL_COSTS_Y2
