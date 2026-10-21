@@ -80,7 +80,7 @@
 //         and shows the "Proceed with unanswered question" button (normal use).
 // false = no isSuggested warnings at all, so you can click through pages for testing.
 // (isRequired questions are not affected. Sport_Curr2 and Sport_Past are not flagged.)
-var SUGGEST_ALL_QUESTIONS = false;
+var SUGGEST_ALL_QUESTIONS = true;
 
 var title = "Demographic Questionnaire "
 var shortTitle = 'Cost Of Sports'
