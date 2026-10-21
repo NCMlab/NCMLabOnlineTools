@@ -140,7 +140,7 @@ const json = {
       title: "Total Travel Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
-      expression: "{Total_transport_cost_$Y} + {Total_competition_cost_$Y}"
+      expression: "{TR_Pr_$Y_Total} + {TR_CC_$Y_Total}"
     },
     {
       type: "expression",
@@ -347,7 +347,18 @@ const json = {
           {
             "type": "html",
             "name": "welcome_text",
-            "html": "<h3>Welcome to the Survey</h3><p>Please read these instructions carefully before proceeding to the questions.</p>"
+            "html": "<h3>Introduction and instructions for the survey</h3>" +
+            "Please complete this XX-minute online survey. This survey asks about:" +
+            "<ol><li>Your participation in a specific (para)sport</li>"+
+            "<li>Participation-related costs</li>"+
+            "<li>Socio-demographic background</li>"+
+            "<li>General sport participation, and</li>"+
+            "<li>Ability-related condition.</li></ol>"+
+            "After completion of the survey, you will receive a 'cost of sport report'"+
+            " with a comprehensive overview of your annual participation-related expenditures "+
+            "across various expense categories, allowing you to reflect on your expenditures. "+
+            "You will also have the option to download this report for your reference."
+
           }
         ]
       },
@@ -1219,7 +1230,7 @@ const json = {
           {
             type: "checkbox",
             isSuggested: SUGGEST_ALL_QUESTIONS,
-            name: "sports_equipment_sources",
+            name: "EQ_Buy",
             title: "Where do you usually buy your sports apparel and/or equipment? (Check all that apply)",
             isRequired: false,
             itemLayout: "horizontal",
@@ -1239,7 +1250,7 @@ const json = {
           {
             type: "comment",
             isSuggested: SUGGEST_ALL_QUESTIONS,
-            name: "sports_equipment_sources_other",
+            name: "EQ_Buy_ex",
             title: "If you selected 'Other (please describe)', please specify:",
             visibleIf: "{sports_equipment_sources} contains 8"
           },
@@ -1475,7 +1486,7 @@ const json = {
           },          
 
           {
-            name: "TR_Cost_Oneway_Other",
+            name: "TR_Pr_Other_$",
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
@@ -1491,9 +1502,9 @@ const json = {
           // This value needs to be added and loaded from a configuration file
           {
             type: "expression",
-            name: "Motorbike_Cost_$Y",
+            name: "TR_Pr_MotorB_$Y",
             title: "Estimated yearly motorbike transportation cost",
-            expression: "0.5 * {TR_Pr.MotorB.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.MotorB.TR_Pr}*2*{TR_Pr_km}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
@@ -1502,9 +1513,9 @@ const json = {
           },
           {
             type: "expression",
-            name: "Car_Cost_$Y",
+            name: "TR_Pr_Car_$Y",
             title: "Estimated yearly car transportation cost",
-            expression: "0.5 * {TR_Pr.Car.usage_count}*2*{TR_Distance_OneWay_MotorbikeCar}",
+            expression: "0.5 * {TR_Pr.Car.TR_Pr}*2*{TR_Pr_km}",
             displayStyle: "currency",
             currency: "CAD",
             precision: 2,
@@ -1513,9 +1524,9 @@ const json = {
 
           {
             type: "expression",
-            name: "PublicTransport_Cost_$Y",
+            name: "TR_Pr_Pub_$Y",
             title: "Estimated yearly public transportation cost",
-            expression: "{TR_Pr.Pub.usage_count}*2*{TR_Cost_Oneway_PublicTransport}",
+            expression: "{TR_Pr.Pub.TR_Pr}*2*{TR_Pr_Pub_$}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1523,9 +1534,9 @@ const json = {
           },
            {
             type: "expression",
-            name: "Carpool_Cost_$Y",
+            name: "TR_Pr_Carp_$Y",
             title: "Estimated yearly carpooling transportation cost",
-            expression: "{TR_Pr.Carp.usage_count}*2*{TR_Cost_Oneway_Carpool}",
+            expression: "{TR_Pr.Carp.TR_Pr}*2*{TR_Pr_Carp_$}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1533,9 +1544,9 @@ const json = {
           },
           {
             type: "expression",
-            name: "Taxi_Cost_$Y",
+            name: "TR_Pr_Taxi_$Y",
             title: "Estimated yearly taxi cost",
-            expression: "{TR_Pr.Taxi.usage_count}*2*{TR_Cost_Oneway_TaxiPrivateBus}",
+            expression: "{TR_Pr.Taxi.TR_Pr}*2*{TR_Pr_Taxi_$}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1544,9 +1555,9 @@ const json = {
 
           {
             type: "expression",
-            name: "Taxi_SpecialTransport_$Y",
+            name: "TR_Pr_Spec_$Y",
             title: "Estimated yearly special transportation cost",
-            expression: "{TR_Pr.Spec.usage_count}*2*{TR_Cost_Oneway_SpecialTransport}",
+            expression: "{TR_Pr.Spec.TR_Pr}*2*{TR_Pr_Spec_$}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1554,9 +1565,9 @@ const json = {
           },
           {
             type: "expression",
-            name: "Other_Cost_$Y",
+            name: "TR_Pr_Other_$Y",
             title: "Estimated yearly other transportation cost",
-            expression: "{TR_Pr.Other.usage_count}*2*{TR_Cost_Oneway_Other}",
+            expression: "{TR_Pr.Other.TR_Pr}*2*{TR_Pr_Other_$}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1600,11 +1611,11 @@ const json = {
               },
           {
             type: "expression",
-            name: "Total_transport_cost_$Y",
+            name: "TR_Pr_$Y_Total",
             title: "Estimated yearly TOTAL transportation cost",
-            expression: "{Motorbike_Cost_$Y} + {Car_Cost_$Y} + " +
-              "{PublicTransport_Cost_$Y} + {Carpool_Cost_$Y} + {Taxi_Cost_$Y} + " + 
-              "{Taxi_SpecialTransport_$Y} + {Other_Cost_$Y} + {TR_Parking.Park.TR_Pr_$Y}",
+            expression: "{TR_Pr_MotorB_$Y} + {TR_Pr_Car_$Y} + " +
+              "{TR_Pr_Pub_$Y} + {TR_Pr_Carp_$Y} + {TR_Pr_Taxi_$Y} + " + 
+              "{TR_Pr_Spec_$Y} + {TR_Pr_Other_$Y} + {TR_Parking.Park.TR_Pr_$Y}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
@@ -1691,7 +1702,7 @@ const json = {
 
           {
             type: "expression",
-            name: "Total_competition_cost_$Y",
+            name: "TR_CC_$Y_Total",
             title: "Estimated yearly TOTAL competition cost",
             expression: "{TR_Comp.ODWithout_$.Cost_CC}*{COMP_Freq.ODWithout.SP_CC} + " + 
               "{TR_Comp.ODWith_$.Cost_CC}*{COMP_Freq.ODWith.SP_CC} + " +
@@ -2370,7 +2381,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "MEMB_ENTR",
+      name: "MEMB_ENTR2",
       title: "Total Membership, License, Participation & Entrance Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
@@ -2379,7 +2390,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "APP_EQUIP",
+      name: "APP_EQUIP2",
       title: "Apparel & Equipment / YEAR (Total)",
       displayStyle: "decimal",
       precision: 2,
@@ -2388,7 +2399,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "COACHING",
+      name: "COACHING2",
       title: "Coaching",
       displayStyle: "decimal",
       precision: 2,
@@ -2397,16 +2408,16 @@ const json = {
     },
     {
       type: "expression",
-      name: "TRAVEL",
+      name: "TRAVEL2",
       title: "Total Travel Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
       visible: false,
-      expression: "{Total_transport_cost_$Y} + {Total_competition_cost_$Y}"
+      expression: "{TR_Pr_$Y_Total} + {TR_CC_$Y_Total}"
     },
     {
       type: "expression",
-      name: "SOCIAL",
+      name: "SOCIAL2",
       title: "Total Social Costs / YEAR",
       displayStyle: "decimal",
       precision: 2,
@@ -2416,7 +2427,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "TOTAL_DIRECT_COSTS",
+      name: "TOTAL_DIRECT_COSTS2",
       title: "Total Direct Costs",
       displayStyle: "decimal",
       precision: 2,
@@ -2426,7 +2437,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "OTHER_ID",
+      name: "OTHER_ID2",
       title: "Other Indirect Costs per Year",
       displayStyle: "decimal",
       precision: 2,
@@ -2435,7 +2446,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "TOTAL_INDIRECT",
+      name: "TOTAL_INDIRECT2",
       title: "Total Indirect costs",
       displayStyle: "decimal",
       precision: 2,
@@ -2445,7 +2456,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "EARNINGS",
+      name: "EARNINGS2",
       title: "Total Earnings",
       displayStyle: "decimal",
       precision: 2,
@@ -2454,7 +2465,7 @@ const json = {
     },
     {
       type: "expression",
-      name: "TOTAL_COSTS_Y",
+      name: "TOTAL_COSTS_Y2",
       title: "TOTAL COST / YEAR",
       displayStyle: "decimal",
       precision: 2,
