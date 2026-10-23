@@ -348,17 +348,19 @@ const json = {
             "type": "html",
             "name": "welcome_text",
             "html": "<h3>Introduction and instructions for the survey</h3>" +
-            "Please complete this XX-minute online survey. This survey asks about:" +
+            "Please complete this XX-minute online survey, reflecting on your participation in "+
+            "<b>one specific sport over the past 12 months.</b>"+
+            "<br /><br />The survey covers five areas:<br />" +
             "<ol><li>Your participation in a specific (para)sport</li>"+
-            "<li>Participation-related costs</li>"+
-            "<li>Socio-demographic background</li>"+
-            "<li>General sport participation, and</li>"+
-            "<li>Ability-related condition.</li></ol>"+
-            "After completion of the survey, you will receive a 'cost of sport report'"+
-            " with a comprehensive overview of your annual participation-related expenditures "+
-            "across various expense categories, allowing you to reflect on your expenditures. "+
-            "You will also have the option to download this report for your reference."
-
+            "<li>Costs associated with your sport participation</li>"+
+            "<li>Your socio-demographic background</li>"+
+            "<li>Your general sport participation</li>"+
+            "<li>Your ability-related condition</li></ol>"+
+            "Upon completing the survey, you will receive a personalized <b>Cost of Sport Report,</b>"+
+            " providing a comprehensive breakdown of your annual sport participation expenditures across "+
+            "various expense categories. This report will help you better understand and reflect on the "+
+            "financial costs associated with your sport participation. You will also have the option to "+
+            "download the report for future reference.<br /><br />"
           }
         ]
       },
@@ -1645,7 +1647,7 @@ const json = {
                   { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "One-day competitions with one overnight stay.", "value": 'ODWith_$' },
                   { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "Competitions with two-night stay.", "value": 'TWONIGHTS_$' },
                   { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "Competitions with three or more overnight stay.", "value": 'Multiday_$' },
-                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "Vacations (the PRIMARY purpose of your travel is to participate in {CurrentSportName}.", "value": 'Vacations_$' },
+                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "Vacations (the PRIMARY purpose of your travel is to participate in {CurrentSportName}).", "value": 'Vacations_$' },
                 ],
                 "transposeData": false
               },
