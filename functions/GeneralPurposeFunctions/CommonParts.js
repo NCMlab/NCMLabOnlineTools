@@ -77,7 +77,7 @@ var EligibilityCheck = {
   var BrowserEligibilityCheck = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-      return LabelNames.BroswerNonEligible
+      return LabelNames.BrowserNonEligible
     },
     post_trial_gap: 0,
     margin_horizontal: GapBetweenButtons,
@@ -111,7 +111,7 @@ var EligibilityCheck = {
   var BrowserLanguageEligibilityCheck = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
-      return LabelNames.BroswerLanguageNonEligible
+      return LabelNames.BrowserLanguageNonEligible
     },
     post_trial_gap: 0,
     margin_horizontal: GapBetweenButtons,
