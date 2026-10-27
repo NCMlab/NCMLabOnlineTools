@@ -452,7 +452,7 @@ console.log(trial)
                         // =====
                         case 'radiogroup':
                             console.log("========= RADIO GROUP QUESTION ==========") 
-                            Str += '<div class="surveyFormDiv surveryFormRadioGroup" id="div-'+thisQuestion.name+'">'
+                            Str += '<div class="surveyFormDiv surveryFormRadioGroup '+VisibleIfConditionsPages[page][i].visibleClass+'" id="div-'+thisQuestion.name+'" '+VisibleIfConditionsPages[page][i].div+'>'
                             
                             Str += '<label class="surveyFormLabel">'+thisQuestion.title+'</label>'
                             // if there is a subtitle add it
@@ -965,16 +965,22 @@ function PrepareDataForSubmission()
                
                 this_question_data.label = AllQuestionsOnThisTab[currentQuestion].getElementsByClassName("surveyFormLabel")[0].innerHTML
                 this_question_data.responseValue = Number(y[0].value)
+                
                 console.log("---------- NEW QUESTION -------------")
 
                 if ( y[0].classList.contains("radiogroup") ) 
                 {
                     var respValue = Number(document.querySelector('input[name="'+y[0].id+'"]:checked').value)
                     console.log("RESPONSE VALUE: "+respValue)
+                    console.log(this_question_data)
+                    
                     this_question_data.responseText = document.querySelector('label[for="'+y[0].id+'_'+respValue+'"]').innerHTML
+                    console.log(this_question_data)
+                    
                     this_question_data.responseValue = respValue
+                    console.log(this_question_data)
                 }
-        
+                console.log(this_question_data)
                 if ( y[0].classList.contains("TagBox") )
                 {
                     var Str = ''
@@ -987,10 +993,15 @@ function PrepareDataForSubmission()
                 }
                 // Add response text if it is available
                 if ( y[0][y[0].selectedIndex] != undefined )
-                { this_question_data.responseText = y[0][y[0].selectedIndex].text }
+                { 
+                    this_question_data.responseText = y[0][y[0].selectedIndex].text 
+                }
                 else { console.log("NO SELECTED INDEX") }
                 if ( this_question_data.responseValue == 9999 )
-                { this_question_data.responseText = y[1].value }
+                { 
+                    console.log(this_question_data)
+                    this_question_data.responseText = y[1].value 
+                }
                 else { console.log("NO RESPONSE VALUE") }
                 
                 

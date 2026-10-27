@@ -21,6 +21,7 @@ var form_trial = {
     },
     on_finish: function(data) {
       data.trial = "Screening"
+      console.log(data)
       data.pages = parameters.pages
       data.values = parameters.values
       var NAV = navigator;
@@ -83,10 +84,13 @@ var CheckEligibilityData = {
       var data = jsPsych.data.get()
       console.log(data)
       Results = Screening_Scoring(data)
-      console.log(Results)
-      
+      console.log("RESPONSES: "+Results.AllResults['Accuracy'])
+      console.log("BROWSER: "+CheckBrowserEligibility())
+      console.log("LANGUAGE: "+CheckBrowserLanguageEligibility(Results))
     }
 }
+
+// Check Browser
 
 var SendData = {
   type: jsPsychCallFunction,
@@ -104,7 +108,7 @@ timeline.push(form_trial)
 timeline.push(Notes)
 timeline.push(CheckEligibilityData)
 timeline.push(if_Eligibile)
-timeline.push(if_BrowserEligibile)
+// timeline.push(if_BrowserEligibile)
 timeline.push(if_BrowserLanguageEligibile)
 timeline.push(SendData)
 

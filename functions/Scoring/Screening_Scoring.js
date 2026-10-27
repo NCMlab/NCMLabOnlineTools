@@ -3,13 +3,13 @@ function Screening_Scoring(data) {
 	Results = {}	
 	Eligible = true
 	trialData = data.filter({trial: 'Screening'}).trials[0]
-	console.log(trialData)
+	// console.log(trialData)
 	// responses
 	var responses = trialData.response.map(a => a.responseValue)
-	console.log(trialData.response.map(a => a.responseValue))
+	// console.log(trialData.response.map(a => a.responseValue))
 	// criteria
 	var criteria = trialData.pages.pages[0].elements.map(a=>a.criteria)
-	console.log(trialData.pages.pages[0].elements.map(a=>a.criteria))
+	// console.log(trialData.pages.pages[0].elements.map(a=>a.criteria))
 	var InclusionFlag = true
 	for ( var i = 0; i < criteria.length; i++ )
 	{
@@ -24,7 +24,7 @@ function Screening_Scoring(data) {
 				} else {console.log("Passed criteria")}
 			}
 			else {
-				 if (! responses[i] == criteria[i] )
+				 if (!(responses[i] == criteria[i]))
 				 {
 					console.log("Not eligible")
 					InclusionFlag = false 
@@ -33,9 +33,6 @@ function Screening_Scoring(data) {
 			}
 		}
 	}
-	console.log(InclusionFlag)
-
-	var InclusionFlag = true
 	Results.PrimaryResults = {}
 	Results.AllResults = {}
 

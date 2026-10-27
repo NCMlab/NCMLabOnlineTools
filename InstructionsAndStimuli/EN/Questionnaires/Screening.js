@@ -172,38 +172,36 @@ add('FR_BriefScreening', function(){ parameters = FR_BriefScreening });
 
 
 // ========================= DEMO =============================
-var pages = [
-    [
-        {
-            type: 'text',
-            prompt: "What is your Age?", 
-            placeholder: '',
-            input_type: "number",
-            name: 'Age', 
-            required: true,
-            
-          }, 
-          
-          {
-            type: 'multi-choice',
-            prompt: "Is English or French your maternal or primary spoken language?", 
-            options:  ['Yes','No'],
-            name: 'Language', 
-            required: true,
-            correct_response: 'Yes',
-        }, 
-        {
-            type: 'multi-choice',
-            prompt: "Do you have any neurological disorders? (e.g. lupus)?", 
-            options: ['Yes','No'],
-            name: 'Neurological', 
-            required: true,
-            correct_response: 'No',
-        },        
-        
-    ]
-]
+const ENjsonDEMO = {
+  showProgressBar: "top",
+  progressBarType: "pages",
+  progressBarShowPageNumbers: true,
+  progressBarShowPageTitles: true,
+  showCompletedPage: false,
+  showTitle: true,
+  pages: 
+  [
+
+    {      
+      name: "Screening",
+      title: "Screening",
+      elements: [
+
+                {
+          name: 'screen0101_EngFre',
+          title: "Is English or French your maternal or primary spoken language?",
+          type: 'radiogroup',
+          choices: [
+            {value: 1, text:'Yes'},
+            {value: 2, text:'No'},
+          ],
+          showOtherItem: false,
+          isRequired: true,
+          criteria: 1,
+          visible: "Yes",
+        },
+      ]}]}
 var EN_BriefScreening_DEMO = {}
 EN_BriefScreening_DEMO.title = "Screening"
-EN_BriefScreening_DEMO.pages = pages
+EN_BriefScreening_DEMO.pages = ENjsonDEMO
 add('EN_BriefScreening_DEMO', function(){ parameters = EN_BriefScreening_DEMO });
