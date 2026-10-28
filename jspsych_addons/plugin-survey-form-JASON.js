@@ -640,7 +640,7 @@ console.log(trial)
             //document.getElementById("regForm").submit();
             console.log(x)
             PrepareDataForSubmission()
-            this.jsPsych.finishTrial();
+            // this.jsPsych.finishTrial();
             
             return false;
         }

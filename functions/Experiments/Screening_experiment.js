@@ -90,12 +90,9 @@ var CheckEligibilityData = {
     }
 }
 
-// Check Browser
-
 var SendData = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(BREAK)
     if ( ! Results.AllResults['Accuracy'] ) 
     { jatos.endStudyAndRedirect("https://ncmlab.github.io/", [Results]) } 
     else { jsPsych.finishTrial(Results) }
@@ -103,14 +100,41 @@ var SendData = {
   }
 }
 
+var if_Data = {
+  timeline: [EligibleData, SendData],
+  conditional_function: function() {
+    console.log("CHECKING DATA: "+!Results.AllResults['Accuracy'])
+    return !Results.AllResults['Accuracy']
+  }
+}
+var if_Browser = {
+  timeline: [EligibleBrowser, SendData],
+  conditional_function: function() {
+    console.log("CHECKING BROWSWER")
+    return !CheckBrowserEligibility()
+  }
+}
+var if_Language = {
+  timeline: [EligibleLanguage, SendData],
+  conditional_function: function() {
+    console.log("CHECKING LANGUAGE")
+    return !CheckBrowserLanguageEligibility(Results)
+  }
+}
+
+// Check Browser
+
+
+
 timeline.push(Instructions01)
 timeline.push(form_trial)
 timeline.push(Notes)
 timeline.push(CheckEligibilityData)
-timeline.push(if_Eligibile)
+timeline.push(if_Data)
+timeline.push(if_Browser)
+timeline.push(if_Language)
 // timeline.push(if_BrowserEligibile)
-timeline.push(if_BrowserLanguageEligibile)
-timeline.push(SendData)
+// timeline.push(SendData)
 
 
 
