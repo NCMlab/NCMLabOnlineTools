@@ -50,7 +50,7 @@ var mentalHealthFeedback = {
 
   // ============== SCREENING ==============
 var EligibleData = {
-  type: jsPsychHtmlButtonResponse,
+  type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
       return LabelNames.NonEligible
     },
@@ -59,7 +59,7 @@ var EligibleData = {
 };
 
 var EligibleBrowser = {
-  type: jsPsychHtmlButtonResponse,
+  type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
       return LabelNames.BrowserNonEligible
     },
@@ -68,7 +68,7 @@ var EligibleBrowser = {
 };
 
 var EligibleLanguage = {
-  type: jsPsychHtmlButtonResponse,
+  type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function() {
       return LabelNames.BrowserLanguageNonEligible
     },

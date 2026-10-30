@@ -17,11 +17,11 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: undefined,
               array: true,
           },
-          valid_choices: 
-          {
+          /** Keys that also count as a response. Default "ALL_KEYS" accepts any key; use "NO_KEYS", "" or [] to disable the keyboard. */
+          valid_choices: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Valid Choices",
-              default: undefined,
+              default: "ALL_KEYS",
               array: true,
           },
           /** The HTML for creating button. Can create own style. Use the "%choice%" string to indicate where the label from the choices parameter should be inserted. */
@@ -31,8 +31,7 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               default: '<button class="jspsych-btn">%choice%</button>',
               array: true,
           },
-
-          /** Any content here will be displayed under the button(s). */
+          /** Not displayed by this plugin (kept so existing trial definitions still validate). */
           prompt: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Prompt",
@@ -81,9 +80,6 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           this.jsPsych = jsPsych;
       }
       trial(display_element, trial) {
-          // display stimulus
-          //show prompt if there is one
-
           //display buttons
           var buttons = [];
           if (Array.isArray(trial.button_html)) {
@@ -100,42 +96,36 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               }
           }
 
-          var html = '';
-          html += '<table class="touchscreen-table">'
-          html += '<tr>'
-          html += '<td>'
-          html += trial.stimulus
-          html += '</tr>'
-          html += '<tr style="height:25%; text-align:center">'
-          html += '<td>'
+          // stimulus in the top row, buttons in the bottom row
+          var html = '<table class="touchscreen-table">';
+          html += '<tr><td>';
+          html += '<div id="jspsych-html-button-response-stimulus">' + trial.stimulus + "</div>";
+          html += '</td></tr>';
+          html += '<tr style="height:25%; text-align:center"><td>';
           html += '<div id="jspsych-html-button-response-btngroup">';
-                  for (var i = 0; i < trial.choices.length; i++) {
-                      var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-                      html +=
-                          '<div class="jspsych-html-button-response-button" style="display: inline-block; font-size:2em; margin:' +
-                              trial.margin_vertical +
-                              " " +
-                              trial.margin_horizontal +
-                              '" id="jspsych-html-button-response-button-' +
-                              i +
-                              '" data-choice="' +
-                              i +
-                              '">' +
-                              str +
-                              "</div>";
-                  }
-
-          html += '</tr>'
-          html += '</table>'
-
-         
+          for (var i = 0; i < trial.choices.length; i++) {
+              var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+              html +=
+                  '<div class="jspsych-html-button-response-button" style="display: inline-block; font-size:2em; margin:' +
+                      trial.margin_vertical +
+                      " " +
+                      trial.margin_horizontal +
+                      '" id="jspsych-html-button-response-button-' +
+                      i +
+                      '" data-choice="' +
+                      i +
+                      '">' +
+                      str +
+                      "</div>";
+          }
+          html += "</div>";
+          html += '</td></tr>';
+          html += '</table>';
           display_element.innerHTML = html;
           // start time
           var start_time = performance.now();
           // add event listeners to buttons
           for (var i = 0; i < trial.choices.length; i++) {
-            console.log(trial)
-            console.log(trial.choices)
               display_element
                   .querySelector("#jspsych-html-button-response-button-" + i)
                   .addEventListener("click", (e) => {
@@ -153,11 +143,8 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
           const end_trial = () => {
               // kill any remaining setTimeout handlers
               this.jsPsych.pluginAPI.clearAllTimeouts();
-                // kill keyboard listeners
-              if (typeof keyboardListener !== "undefined") {
-                  this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-              }
-
+              // kill keyboard listeners
+              cancel_keyboard();
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
@@ -170,46 +157,47 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
               this.jsPsych.finishTrial(trial_data);
           };
           // function to handle responses by the subject
-          function after_response(choice) {
-              console.log("RESPONSE RESPONSE: ")
-              console.log(choice)
-              if ( typeof choice === 'object' )
-              {
-                response.button = choice.key
-                response.rt = choice.rt
-                }
+          // keyboard responses are { key, rt } objects; button clicks are the button index
+          // (so data.response is a key string for key presses and a number for clicks)
+          const after_response = (choice) => {
+              if (typeof choice === "object") {
+                  response.button = choice.key;
+                  response.rt = choice.rt;
+              }
               else {
-                
-                var end_time = performance.now();
-                var rt = Math.round(end_time - start_time);
-                response.button = parseInt(choice);
-                response.rt = rt;
-                }
-                // measure rt
-              
-              
+                  // measure rt
+                  var end_time = performance.now();
+                  var rt = Math.round(end_time - start_time);
+                  response.button = parseInt(choice);
+                  response.rt = rt;
+              }
+              // only one response per trial, whether by key or button
+              cancel_keyboard();
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
-              // display_element.querySelector("#jspsych-html-button-response-stimulus").className +=
-              //     " responded";
+              display_element.querySelector("#jspsych-html-button-response-stimulus").className +=
+                  " responded";
               // disable all the buttons after a response
               var btns = document.querySelectorAll(".jspsych-html-button-response-button button");
               for (var i = 0; i < btns.length; i++) {
-                  //btns[i].removeEventListener('click');
                   btns[i].setAttribute("disabled", "disabled");
               }
               if (trial.response_ends_trial) {
-                console.log("ENDING TRIAL")
-                console.log(response)  
-                end_trial();
+                  end_trial();
               }
-          }
-          // JASON NEW
-            // start the response listener
-          if (trial.choices != "NO_KEYS") {
-            console.log("KEY PRESS")
-            console.log(trial)
-              var keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
+          };
+          // start the keyboard listener unless keys are disabled
+          var keyboardListener = null;
+          const cancel_keyboard = () => {
+              if (keyboardListener !== null) {
+                  this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+                  keyboardListener = null;
+              }
+          };
+          var keys_disabled = trial.valid_choices === "NO_KEYS" || trial.valid_choices === "" ||
+              (Array.isArray(trial.valid_choices) && trial.valid_choices.length === 0);
+          if (!keys_disabled) {
+              keyboardListener = this.jsPsych.pluginAPI.getKeyboardResponse({
                   callback_function: after_response,
                   valid_responses: trial.valid_choices,
                   rt_method: "performance",
@@ -217,8 +205,6 @@ var jsPsychHtmlButtonResponseTouchscreen = (function (jspsych) {
                   allow_held_key: false,
               });
           }
-          // -----
-
           // hide image if timing is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
