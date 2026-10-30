@@ -1,7 +1,12 @@
 
 var EN_Instructions_Default = {}
 EN_Instructions_Default.WelcomeText = [
-    {'page': 'Welcome to the Word Recall Task.'},
+    {'page': 'Welcome to the Word Recall Task. '+
+	'It is very important that we collect high quality data. If the data are compromised '+
+	'then the conclusions we make will be wrong and could be misleading to us and others who are trying to understand learning and memory. '+
+	'We have had people cheat by recording the words or writing things down to make their performance appear better. There is no benefit '+
+	'for anyone to do this. No one is expected to perform perfectly on any of these tests. Thank you for working with us to ensure we have quality data. '}
+
 ]
 EN_Instructions_Default.RecallInstructions = 'Please repeat the entire word list'
 EN_Instructions_Default.GetReadyInstructions = 'Get ready for the next trial'

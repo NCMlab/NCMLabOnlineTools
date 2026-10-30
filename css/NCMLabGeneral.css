@@ -422,10 +422,17 @@ span:hover + div {
 }
 
 .InstructImage img {
-  max-height: 500px;
-  max-width: 500px;
-  height: 100%;
+  /* max-height: 500px;
+  max-width: 500px; */
+  display: block;
   width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.touchscreen-table {
+  height: 75vh;
+  width: 9ß5vh
 }
 
 .PatternCompTable {

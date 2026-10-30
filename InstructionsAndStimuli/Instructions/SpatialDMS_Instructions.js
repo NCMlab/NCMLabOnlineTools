@@ -1,9 +1,9 @@
 var EN_Instructions = {}
 EN_Instructions.Instructions01 = [
-	{'page': 'This is a test of short-term memory. You will see one or more dots on the screen and you will need to remember where they are. '+
+	{'page': 'This is a test of short-term memory. You will see one or more dots on the screen and you will need to remember WHERE they are. '+
 	'They will be removed from the screen. After a few seconds you will see a single blue dot. '+
-	'You need to decide whether or not the blue dot is in one of the locations you studied.'},
-	{'page': '<div class="InstructImage"><img src='+BaseFolderName+'EN_VSTMInstructions.png max-width="600px" alt=Instructional image</img></div>'},
+	'You need to decide whether or not the blue dot is in ONE OF THE SAME LOCATIONS you studied.'},
+	{'page': '<div class="InstructImage"><img src='+BaseFolderName+'EN_VSTMInstructionsv2.png alt=Instructional image</img></div>'},
 	{'page': 'Press [Yes] on the screen or Left-Arrow on the keyboard if the dot WAS in the set.<br>Press [No] on the screen or Right-Arrow on the keyboard if the letter WAS NOT in the set.'},
 	//{'page': 'You will NOT receive feedback after each trial.'},
 	{'page': 'Try to respond as quickly and as accurately as possible.'},
