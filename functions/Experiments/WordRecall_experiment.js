@@ -122,20 +122,20 @@ var SetupSpeechRecognition = {
       annyang.setLanguage(LANG)
 
       annyang.addCallback('start', function() {
-        console.log('Started Speech Recognition')
+        // console.log('Started Speech Recognition')
       })
       annyang.addCallback('result', function() {
-        console.log('Received Speech Recognition Result')
+        // console.log('Received Speech Recognition Result')
       })
       annyang.addCallback('end', function() {
         
-        console.log('Ended Speech Recognition')
+        // console.log('Ended Speech Recognition')
       })
       annyang.addCallback('result', function(userSaid) {
         // userSaid contains multiple possibilities for what was heard
         userSaidWords += userSaid
         userSaidWords += ';'
-        console.log(userSaidWords)
+        // console.log(userSaidWords)
       });
   }
 }
@@ -151,7 +151,7 @@ var SetupSpeechRecognitionB = {
         // userSaid contains multiple possibilities for what was heard
         userSaidWords += userSaid
         userSaidWords += ';'
-        console.log(userSaidWords)
+        // console.log(userSaidWords)
       });
   }
 }
@@ -174,7 +174,7 @@ var preload_audioB = {
 var if_BList_preload = {
   timeline: [preload_audioB],
   conditional_function: function(){
-    console.log(parameters.BListFlag)
+    // console.log(parameters.BListFlag)
     return  parameters.BListFlag}
 }
 
@@ -183,7 +183,7 @@ var HowManyBlocks = {
   type: jsPsychCallFunction,
   func: function() {
     NumberBlocks = parameters.NBlocks
-    console.log("This task will run for "+NumberBlocks+ " blocks")
+    // console.log("This task will run for "+NumberBlocks+ " blocks")
   }
 }
 
@@ -192,7 +192,7 @@ var MakeResponseArrayA = {
   type: jsPsychCallFunction,
   func: function() {
     ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(parameters.NBlocks).fill(-99))
-    console.log(ResponseArrayA)
+    // console.log(ResponseArrayA)
   }
 }
 
@@ -200,7 +200,7 @@ var MakeDelayedResponseArray = {
   type: jsPsychCallFunction,
   func: function() {
     ResponseArrayA = Array.from(Array(WordRecallLists.WordListA.length), _ => Array(1).fill(-99))
-    console.log(ResponseArrayA)
+    // console.log(ResponseArrayA)
   }
 }
 
@@ -208,21 +208,21 @@ var MakeResponseArrayB = {
   type: jsPsychCallFunction,
   func: function() {
     ResponseArrayB = Array.from(Array(WordRecallLists.WordListB.length), _ => Array(1).fill(-99))
-    console.log(ResponseArrayB)
+    // console.log(ResponseArrayB)
   }
 }
 
 var MakeWordListA = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(parameters)
-    console.log(WordRecallLists)
-    console.log("ONE")
+    // console.log(parameters)
+    // console.log(WordRecallLists)
+    // console.log("ONE")
     SimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.WordListA))
-    console.log("TWO")
+    // console.log("TWO")
     SimpleRecogWordList = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.RecognitionWordList))
     // Make a simple list of the alternative pronunciations
-    console.log("THREE")
+    // console.log("THREE")
     AltSimpleWordListA = MakeAllWordsUpperCase(CreateSimpleWordList(WordRecallLists.AlternatePronunciationsWordListA))
     // Make a full list the words and thier alternative pronunciations
     FullWordListA = SimpleWordListA.concat(WordRecallLists.AltSimpleWordListA)
@@ -231,7 +231,7 @@ var MakeWordListA = {
     // indices for the world list containing the alternatives
     FullListIndexA = CreateSimpleIndexList(WordRecallLists.WordListA, WordRecallLists.AlternatePronunciationsWordListA)
     // convert WordList to a list of filenames for teh audio files for each word
-    console.log(parameters)
+    // console.log(parameters)
     AudioFileListA = CreateAudioFileList(BaseFolderName+parameters.WordList+"/"+LANG+"/"+parameters.FolderName, SimpleWordListA, parameters.FileExtension)
     // convert it back to a list of dictionaries
     AudioFileDictListA = AudioFileListA.map(function(e) {
@@ -247,7 +247,7 @@ var MakeWordListA = {
       'WordListIndex': WordListIndexA,
       'FullListIndex': FullListIndexA,
     }
-    console.log(AudioFileDictListA)
+    // console.log(AudioFileDictListA)
   }
 }
 
@@ -279,8 +279,8 @@ var MakeWordListB = {
       'WordListIndex': WordListIndexB,
       'FullListIndex': FullListIndexB,
     }
-    console.log(WordListBForRecall)
-    console.log(AudioFileDictListB)
+    // console.log(WordListBForRecall)
+    // console.log(AudioFileDictListB)
   }
 }
 
@@ -293,7 +293,7 @@ var ResetCounter = {
   type: jsPsychCallFunction,
   func: function() {
     ItemCount = 0
-    console.log("Resetting counter")
+    // console.log("Resetting counter")
   }
 }
 
@@ -301,7 +301,7 @@ var SendData = {
   type: jsPsychCallFunction,
   func: function() {
     var data = jsPsych.data.get()
-    console.log(data)
+    // console.log(data)
     Results = WordRecall_Scoring(data, SimpleWordListA, SimpleWordListB)
     jsPsych.finishTrial(Results)
   }
@@ -422,7 +422,7 @@ var VisualStimulus = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function()
       {
-        console.log(jsPsych.timelineVariable('Word'))
+        // console.log(jsPsych.timelineVariable('Word'))
         var Str = '<p>'+ LabelNames.WordListB+'</p>' + 
           '<p class="Fixation">'+SimpleWordListB[GetCurrentWordIndex(parameters.WordListOrder, BlockCount, ItemCount)]+'</p>'
         return Str
@@ -444,7 +444,7 @@ var VisualStimulus = {
     type: jsPsychAudioButtonResponse,
     on_start: function() {
         // Move this
-        console.log("HELLO")
+        // console.log("HELLO")
         annyang.start({autorestart: false, continuous: true});
     },
     stimulus: function()
@@ -454,7 +454,7 @@ var VisualStimulus = {
         //Stim = jsPsych.timelineVariable('Word')
         Stim = AudioFileListA[ItemCount]
         // return the chosen stimulus
-        console.log(Stim)
+        // console.log(Stim)
         return Stim
         },
         // If there is to be audio AND visual 
@@ -478,7 +478,7 @@ var VisualStimulus = {
         annyang.abort()
         // updatethe trial counter
         TrialCount++
-        console.log('Finished Audio Presentation')
+        // console.log('Finished Audio Presentation')
     },
 };    
 // Define instructions
@@ -500,7 +500,7 @@ var InstructionsDelayed = {
 var InstructionsDelayed_loop = {
   timeline: [InstructionsDelayed],
   loop_function: function(data){
-    console.log(countInstrDelay)
+    // console.log(countInstrDelay)
     countInstrDelay+=1
     if ( countInstrDelay < Instructions.InstructionsDelayed.length){
         return true} else { return false}
@@ -661,7 +661,7 @@ var AfterFirstBlockLoop = {
   loop_function: function(data) {
     // reset count for instructions
     countInstr02 = 0
-    console.log("Block Count (in loop): " + (BlockCount))
+    // console.log("Block Count (in loop): " + (BlockCount))
     if ( ((BlockCount)) < NumberBlocks )
     { return true }
     else { return false }
@@ -722,7 +722,7 @@ var DelayedRecalBlockA = {
 var DelayedRecallNo = {
   timeline: [MakeWordListA, if_WordListB, preload_audioA, if_BList_preload, HowManyBlocks, FirstBlock, if_MoreThanOneBlock],
   conditional_function: function() {
-    console.log(parameters)
+    // console.log(parameters)
     if ( parameters.DelayedRecallFlag)
     { return false }
     else { return true }

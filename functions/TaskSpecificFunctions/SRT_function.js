@@ -21,7 +21,7 @@ var CreateResponseArray = function(NWords, NBlocks) {
 }
 
 var CreateSimpleWordList = function(WordList) {
-	console.log(WordList)
+	// console.log(WordList)
 	var SimpleList = []
 	for (var i = 0; i < WordList.length; i++) {
 		SimpleList.push(WordList[i]['Word'])
@@ -71,9 +71,9 @@ var CreateWordListIndex = function(WordList) {
 
 var CreateAudioFileList = function(FolderName, WordList, FileExtension) {
 	var AudioFileList = []
-	console.log("MAKING AUDIO FILE NAMES")
-	console.log(FolderName)
-	console.log(WordList)
+	// console.log("MAKING AUDIO FILE NAMES")
+	// console.log(FolderName)
+	// console.log(WordList)
 	for ( var i = 0; i < WordList.length; i++ ) {
 		AudioFileList.push(FolderName + WordList[i] + FileExtension)
 	}
@@ -93,25 +93,25 @@ console.log(FullListIndex)
 */
 
 var FindRecalledWords01 = function(tag) {
-    console.log(tag)
-    console.log(WordListAForRecall.FullWordList)
+    // console.log(tag)
+    // console.log(WordListAForRecall.FullWordList)
     // record multipel words at once and cycle through the list
     var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     // See if this item is in the word list
     for (var i = 0; i < response.length; i++) {
     	var IndexOfWordRecalled = WordListAForRecall.FullWordList.indexOf(response[i].toUpperCase())
-    	console.log(IndexOfWordRecalled)
+    	// console.log(IndexOfWordRecalled)
 	    if (IndexOfWordRecalled > -1) 
 	    {
 	      // find the words index in the list
-	      console.log('Found One')
+	    //   console.log('Found One')
 	      // remove the item
 	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
 	      //WordListIndex[IndexOfWordRecalled]=-99
 		  WordListIndex[WordListAForRecall.FullListIndex[IndexOfWordRecalled]]=-99
 	      HeardList.push(response[i])
 	      // record this response in the response array with index starting at 1
-		  console.log("Block Count: "+BlockCount/2)
+		//   console.log("Block Count: "+BlockCount/2)
 		  TempRecall[WordListAForRecall.FullListIndex[IndexOfWordRecalled]] = BlockRecallCount
 		  
 	      BlockRecallCount++
@@ -125,18 +125,18 @@ var FindRecalledWords01 = function(tag) {
   }
 }
 var FindRecalledWords02 = function(tag) {
-    console.log(tag)
-    console.log(WordListBForRecall.FullWordList)
+    // console.log(tag)
+    // console.log(WordListBForRecall.FullWordList)
     // record multipel words at once and cycle through the list
     var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     // See if this item is in the word list
     for (var i = 0; i < response.length; i++) {
     	var IndexOfWordRecalled = WordListBForRecall.FullWordList.indexOf(response[i].toUpperCase())
-    	console.log(IndexOfWordRecalled)
+    	// console.log(IndexOfWordRecalled)
 	    if (IndexOfWordRecalled > -1) 
 	    {
 	      // find the words index in the list
-	      console.log('Found One')
+	    //   console.log('Found One')
 	      // remove the item
 	      //SimpleList.splice(SimpleList.indexOf(tag.toUpperCase()),1)
 	      //WordListIndex[IndexOfWordRecalled]=-99
@@ -156,7 +156,7 @@ var FindRecalledWords02 = function(tag) {
 }
 
 var RecordSpeechRecognition = function(tag) {
-    console.log(tag)
+    // console.log(tag)
     // record multipel words at once and cycle through the list
     var response = tag.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     // See if this item is in the word list
@@ -178,8 +178,8 @@ var FindWordListLength = function(WordList) {
 
 // Make functions for scoring the SRT results
 function create2DArray(Nrows, Ncols) {
-	console.log("NRows: " + Nrows)
-	console.log("NCols: " + Ncols)
+	// console.log("NRows: " + Nrows)
+	// console.log("NCols: " + Ncols)
     var arr = Array.from(Array(Nrows), _ => Array(Ncols).fill(-99))
     return arr
   }
@@ -291,7 +291,7 @@ function CalcLongTermStorage(ResponseArray) {
 			PrevTrial = CurrentTrial
 		}
 	}
-	console.log(LTSList)
+	// console.log(LTSList)
 }
 
 

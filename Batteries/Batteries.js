@@ -79,7 +79,7 @@ List.push({
 });
 List.push({
   Task: "Screening",
-  Parameters: "BriefScreening_DEMO",
+  Parameters: "BriefScreening",
   Instructions: "Default",
   IconName: "Screening",
 });

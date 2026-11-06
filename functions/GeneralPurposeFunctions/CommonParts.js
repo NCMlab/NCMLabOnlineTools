@@ -147,8 +147,8 @@ var WelcomeSpoken_loop = {
 var if_WelcomeWritten = {
     timeline: [WelcomeWritten],
     conditional_function: function() {
-        console.log("HELLO FROM IF WELCOME WRITTEN")
-        console.log(parameters)
+        // console.log("HELLO FROM IF WELCOME WRITTEN")
+        // console.log(parameters)
       if ( parameters.ShowWelcome  & !( parameters.WelcomeSpoken))
       { return true }
       else { return false }
@@ -240,7 +240,7 @@ var Instructions01_progress_bar_timer_start = {
     func: function(){ 
       if ( parameters.InstructionsSpoken > 0 ) {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible"
-        console.log(LabelNames.ProgressBar)
+        // console.log(LabelNames.ProgressBar)
         document.getElementById("progress-bar-text").innerHTML = LabelNames.ProgressBar
         timer_progress_bar(parameters.Instructions01Time[countInstr01]) }
     }
@@ -259,8 +259,8 @@ var Instructions01_progress_bar_timer_stop = {
 var Instructions01Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
-        console.log("JASON -- INSTRUCTIONS 01")
-        console.log(Instructions)
+        // console.log("JASON -- INSTRUCTIONS 01")
+        // console.log(Instructions)
         
         var Str = Instructions.Instructions01[countInstr01].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
@@ -294,7 +294,7 @@ var Instructions01SpokenRepeat_loop = {
 var Instructions01Spoken_loop = {
     timeline: [Instructions01SpokenRepeat_loop],
     loop_function: function(data){
-      console.log(countInstr01)
+    //   console.log(countInstr01)
       countInstr01+=1
       if ( countInstr01 < Instructions.Instructions01.length) 
       { return true} else { return false}
@@ -350,7 +350,7 @@ var Instructions02_progress_bar_timer_stop = {
 var Instructions02Written = {
     type: jsPsychHtmlButtonResponseTouchscreen,
     stimulus: function (){
-        console.log("JASON -- INSTRUCTIONS 02")
+        // console.log("JASON -- INSTRUCTIONS 02")
         var Str = Instructions.Instructions02[countInstr02].page
         Str += '<p>'+ LabelNames.PressNext +'</p>'
         return Str
@@ -396,9 +396,9 @@ var Instructions02Spoken_loop = {
 var Instructions02Written_loop = {
     timeline: [Instructions02Written],
     loop_function: function(data){
-        console.log("HELLO FROM INSTRUCTIONS 02 WRITTEN LOOP")
+    //     console.log("HELLO FROM INSTRUCTIONS 02 WRITTEN LOOP")
       
-      console.log(countInstr02)
+    //   console.log(countInstr02)
       if ( countInstr02 < Instructions.Instructions02.length) 
       { return true} else { return false}
     }
@@ -407,7 +407,7 @@ var Instructions02Written_loop = {
 var if_Instructions02Written = {
     timeline: [Instructions02Written_loop],
     conditional_function: function() {
-        console.log("HELLO FROM IF INSTRUCTIONS 02 WRITTEN")
+        // console.log("HELLO FROM IF INSTRUCTIONS 02 WRITTEN")
           if ( parameters.ShowInstructions & ! parameters.InstructionsSpoken)
           { return true }
           else { return false }

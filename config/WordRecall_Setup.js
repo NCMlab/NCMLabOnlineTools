@@ -57,7 +57,7 @@ var RAVLT_Spoken_Immediate = {
 	NBlocks: 5,
 	BListFlag: true, // Check to see if there is a second set of words
 	AudioPresentation: true,
-	VisualPresentation: true,
+	VisualPresentation: false,
 	RecallType: 'Spoken', // Spoken / Manual
 	RecallDuration: 60, // seconds
 	DelayBeforeShowingDoneButton: 8, // seconds
