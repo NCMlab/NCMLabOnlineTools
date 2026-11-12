@@ -229,11 +229,11 @@ const json = {
         </div>
         
         <div style="background:white; border-radius:12px; padding:20px 24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
-          <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Cost of Sports</h2>
+          <h2 style="margin:0 0 8px 0; font-size:28px;">Results: Annual Cost of Sports</h2>
           <p style="margin:0; font-size:14px; color:#555;">
           <div><span>At the start of this survey you estimated your annual costs of participating in </span><strong>{SPORTNAME}</strong></div> 
-          to be around <strong>{ExpectedCosts}</strong>
-            Below is a summary of your actual yearly costs and earnings related to your sport.
+          to be around <strong>{ExpectedCosts}</strong>. 
+            Below is a summary of your actual costs and earnings related to your sport.
           </p>
         </div>
 
@@ -316,6 +316,9 @@ const json = {
         <p style="margin-top:24px; font-size:13px; color:#777; text-align:center;">
           Thank you for completing the questionnaire. Your responses have been recorded.
         </p>
+<!-- ADD additional lines about inkind and for grants subsidaries 
+THESE values do not enter into any other calculations. They are just used for informational purposes
+in the final report -->
 
         <!-- Extra information shown only in the PDF (placeholder: fill in later) -->
         <div class="pdf-only" style="display:none; background:white; border-radius:12px; padding:18px 20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-top:24px;">
@@ -364,7 +367,7 @@ const json = {
       },
       {
         name: "Intro",
-        title: "Reference Sport",
+        title: "Your Sport",
         elements: [
         
           // {
@@ -386,6 +389,7 @@ const json = {
             allowAddRows: false,
             allowRemoveRows: false,
             columns: [
+              // Change this to a drop-down menu with other. Start with Wheelchair basketball and other
               {
                 name: "Sport_Curr",
                 title: "Sport",
@@ -395,12 +399,14 @@ const json = {
               },
               {
                 name: "Context",
-                title: "Main current context",
-                cellType: "radiogroup",
+                title: "Current context",
+                cellType: "radiogroup", // change to select all that apply
+                // we will add additional levels here too
                 choices: [
                   { "value": 1, "text": "Non-organized" }, // Can this be changed to 1,2,3, as per the code book?
                   { "value": 2, "text": "Club" },
                   { "value": 3, "text": "School" }
+
                 ],
                 isRequired: false,
                 isSuggested: SUGGEST_ALL_QUESTIONS,
@@ -592,7 +598,7 @@ const json = {
             choices: [
               { value: 1, text: "Yes" },
               { value: 0, text: "No" },
-              { value: 2, text: "N/A" }
+              { value: 2, text: "N/A" } 
             ]
           },
           {
@@ -663,11 +669,12 @@ const json = {
             description: "For each period, estimate your usual number of practices per week and the hours spent per practice.",
             isRequired: false,
             columns: [
-              { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
-              { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
-              { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
-              { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0},
-              { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, defaultValue:0}
+              // can I get a lightgrey placeholder here instead of a default
+              { name: "SP_PR_1", title: "Sept–Dec \n (16 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, placeholder: '0'},
+              { name: "SP_PR_2", title: "Winter Holiday \n (2 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, placeholder: '0'},
+              { name: "SP_PR_3", title: "Jan–Mar \n (12 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, placeholder: '0'},
+              { name: "SP_PR_4", title: "Apr–Jun \n (13 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, placeholder: '0'},
+              { name: "SP_PR_5", title: "Jul–Aug \n  (9 weeks)", cellType: "text", inputType: "number", min: 0, step:0.5, placeholder: '0'}
             ],
             rows: [
               { value: "FREQ", text: "1. Number of practices per week" },
@@ -733,8 +740,8 @@ const json = {
           {
             "type": "matrixdropdown",
             "name": "COMP_Freq",
-            "title": "COMPETITIONS (GAMES, TOURNAMENTS, OR CHAMPIONSHIPS)",
-            description: 'Estimate how many competitions, games, tournaments, or championships you participated in over the past year.',
+            "title": "COMPETITIONS (GAMES, TOURNAMENTS, OR CHAMPIONSHIPS) AND NON-LOCAL PRACTICES",
+            description: 'Estimate how many competitions, games, tournaments, or championships and non-local practices you participated in over the past year.',
 
             "columnMinWidth": "130px",
             "columns": [
@@ -765,13 +772,13 @@ const json = {
               },
             ],
             "rows": [
-              { "text": "One-day competitions without an overnight stay.", "value": "ODWithout" }, 
+              { "text": "One-day competitions/non-local practices without an overnight stay.", "value": "ODWithout" }, 
               // Using numerical values may make it hard to perform calculations later. 
               // Consider using text values or descriptive labels instead.
-              { "text": "One-day competitions with one overnight stay.", "value": "ODWith" },
-              { "text": "Competitions with two overnight stays.", "value": "TWONIGHTS" },
-              { "text": "Competitions with three or more overnight stays.", "value": "Multiday" },
-              { "text": "Vacations (where the PRIMARY purpose of your travel is to participate in {CurrentSportName}).", "value": "Vacations" }
+              { "text": "One-day competitions/non-local practices with one overnight stay.", "value": "ODWith" },
+              { "text": "Competitions/non-local practices with two overnight stays.", "value": "TWONIGHTS" },
+              { "text": "Competitions/non-local practices with three or more overnight stays.", "value": "Multiday" },
+              { "text": "Vacations (e.g., golf vacation, paraski vacation, the PRIMARY purpose of your travel is to participate in {CurrentSportName}).", "value": "Vacations" }
             ],
             "transposeData": false
           },
@@ -858,16 +865,16 @@ const json = {
             isRequired: false,
             isSuggested: SUGGEST_ALL_QUESTIONS,
             choices: [
-              { "value": 1, "text": " <  100 CAD/yr " },
-              { "value": 2, "text": "100 < 250 CAD/yr" },
-              { "value": 3, "text": "250 < 500 CAD/yr" },
-              { "value": 4, "text": "500 < 750 CAD/yr" },
-              { "value": 5, "text": "750 < 1,000 CAD/yr" },
-              { "value": 6, "text": "1,000 < 1,500 CAD/yr" },
-              { "value": 7, "text": "1,500 < 3,000 CAD/yr" },
-              { "value": 8, "text": "3,000 < 5,000 CAD/yr" },
-              { "value": 9, "text": "5,000 < 10,000 CAD/yr" },
-              { "value": 10, "text": "> 10,000 CAD/yr" },
+              { "value": 1, "text": "less than $100/yr " },
+              { "value": 2, "text": "$100 - $249/yr" },
+              { "value": 3, "text": "$250 - $499/yr" },
+              { "value": 4, "text": "$500 - $749/yr" },
+              { "value": 5, "text": "$750 - $999/yr" },
+              { "value": 6, "text": "$1,000 - $1,499/yr" },
+              { "value": 7, "text": "$1,500 - $2,999/yr" },
+              { "value": 8, "text": "$3,000 - $4,999/yr" },
+              { "value": 9, "text": "$5,000 - $9,999/yr" },
+              { "value": 10, "text": "greater than $10,000/yr" },
             ],
             colCount: 3,
           },
@@ -900,7 +907,9 @@ const json = {
           "cellType": "radiogroup",
           "choices": [
             {"value": 1, "text": "Yes"}, 
-            {"value": 0, "text": "No"}
+            {"value": 0, "text": "No"}//,
+            //{"value": -1, "text": "No, but would have liked to"}
+
           ],
           //"defaultValue": "No"
         },
@@ -916,7 +925,7 @@ const json = {
       ],
       "rows": [
         { "text": "Membership fee", "value": "Memb" },
-        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered and eligible to participate in organized competition, if not included in the membership fee.)", "value": "Lic" },
+        { "text": "License or registration fee (Paid to a sport governing body, league, or federation to be officially registered, insured, and eligible to participate in organized competition, if not included in the membership fee.)", "value": "Lic" },
         { "text": "Other program fees (If not included in the previous questions.)", "value": "PF" },
         { "text": "Tournament or competition fees (If not included in the membership fee.)", "value": "Comp" }
       ],
@@ -1042,8 +1051,8 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "Lessons, guidance or coaching?", "name":"lesson_cost", "value": 'Coach' },
-                  { "text": "Clinics regarding your sport practice?","value": 'Clinic' } 
+                  { "text": "Additional private lessons, training or coaching", "name":"lesson_cost", "value": 'Coach' },
+                  { "text": "Clinics regarding your sport practice","value": 'Clinic' } 
                   
                 ],
                 "transposeData": false
@@ -1103,9 +1112,11 @@ const json = {
             rowCount: 0,
             showFooter: true,
             columns: [
+// ***          // Make sure that only numbers can be entered and NO dashes in the numbers.
+              // This prevents someone from entering 11-15
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., 6 t-shirts", isRequired: false, width: "35%" },
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $120", width: "15%" },
-              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of expected usage?", cellType: "text", inputType: "number", placeholder: "e.g., 2 years", min: 0, isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -1153,7 +1164,7 @@ const json = {
             columns: [
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., specialized wheelchair", isRequired: false, width: "35%" },
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", placeholder: "e.g., $5000",inputType: "number", width: "15%" },
-              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of expected usage?", cellType: "text", placeholder: "e.g., 10 years", inputType: "number", isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -1195,7 +1206,7 @@ const json = {
             columns: [
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "Describe items", cellType: "text", placeholder: "e.g., towel", isRequired: false, width: "35%" },
               { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Total", title: "How much did you pay in total?", cellType: "text", inputType: "number", placeholder: "e.g., $40", width: "15%" },
-              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "nY", title: "How many years of expected usage?", cellType: "text", inputType: "number", placeholder: "e.g., 5 years", isRequired: false, width: "15%" },
               {
                 name: "$Y",
                 title: "Write-off / year (C$)",
@@ -1398,14 +1409,17 @@ const json = {
                   },
                 ],
                 "rows": [
+// **  MAKE SURE THE ENTRIES ARE INCOPORTAED INTO ALL OF THE SUBSEQUENT CALCULATIONS PROPERLY
                   { "text": "Foot/Wheeling", "value": 'F&W' },
                   { "text": "Bike", "value": 'Bike' },
                   { "text": "Motorbike", "value": 'MotorB' },
                   { "text": "Family/Own Car", "value": 'Car' },
                   { "text": "Public Transportation", "value": 'Pub' },
+                  { "text": "Public Para Transportation", "value": 'Spec' },
+                  { "text": "Private Para Transportation", "value": 'PRIVATE-Spec' },
                   { "text": "Carpooling", "value": 'Carp' },
                   { "text": "Taxi/Private Bus", "value": 'Taxi' },
-                  { "text": "Special Transportation", "value": 'Spec' },
+                  
                   { "text": "Other", "value": 'Other' }
                 ],
                 "transposeData": false,
@@ -1439,7 +1453,7 @@ const json = {
             type: "text",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             inputType: "number",
-            title: "If by Motorbike or Car, how many km one way per practice?",
+            title: "If by Motorbike or Car, how many km one way per practice? (This program uses standard cost of 50 cents per km)",
             visibleIf: "{TR_Pr.Car.usage} = 1 || {TR_Pr.MotorB.usage} = 1", 
             minLength: 10,
             isRequired: false
@@ -1626,7 +1640,7 @@ const json = {
                 "type": "matrixdropdown",
                 "name": "TR_Comp",
                 // update title according to notes.
-                "title": "Travel Costs for your COMPETITIONS (include ALL expenditures for travel, lodging, meals, etc. not previously included)",
+                "title": "Travel Costs for your COMPETITIONS/NON-LOCAL PRACTICES (include ALL expenditures for travel, lodging, meals, etc. not previously included)",
                 "showHeader": true,
                 "columnMinWidth": "130px",
                 "columns": [
@@ -1641,28 +1655,29 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "One-day competitions without an overnight stay.", "value": 'ODWithout_$' },
-                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "One-day competitions with one overnight stay.", "value": 'ODWith_$' },
-                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "Competitions with two-night stay.", "value": 'TWONIGHTS_$' },
-                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "Competitions with three or more overnight stay.", "value": 'Multiday_$' },
-                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "Vacations (the PRIMARY purpose of your travel is to participate in {CurrentSportName}.", "value": 'Vacations_$' },
+                  { "visibleIf": "{COMP_Freq.ODWithout.SP_CC}>0", "text": "One-day competitions/non-local practices without an overnight stay.", "value": 'ODWithout_$' },
+                  { "visibleIf": "{COMP_Freq.ODWith.SP_CC}>0","text": "One-day competitions/non-local practices with one overnight stay.", "value": 'ODWith_$' },
+                  { "visibleIf": "{COMP_Freq.TWONIGHTS.SP_CC}>0","text": "Competitions/non-local practices with two-night stay.", "value": 'TWONIGHTS_$' },
+                  { "visibleIf": "{COMP_Freq.Multiday.SP_CC}>0","text": "Competitions/non-local practices with three or more overnight stay.", "value": 'Multiday_$' },
+                  { "visibleIf": "{COMP_Freq.Vacations.SP_CC}>0","text": "Vacations (e.g., golf vacation, paraski vacation, the PRIMARY purpose of your travel is to participate in {CurrentSportName}).", "value": 'Vacations_$' },
                 ],
                 "transposeData": false
               },
           {
             type: "expression",
             name: "Cost_CC_ODWithout_$Y",
-            title: "Estimated yearly competition cost, One day without",
+            title: "Estimated yearly competitions/non-local practices cost, One day without",
             expression: "{TR_Comp.ODWithout_$.Cost_CC}*{COMP_Freq.ODWithout.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
             visible: false,
             precision: 2
           },
+        
           {
             type: "expression",
             name: "Cost_CC_ODWith_$Y",
-            title: "Estimated yearly competition cost, One day with",
+            title: "Estimated yearly competitions/non-local practices cost, One day with",
             expression: "{TR_Comp.ODWith_$.Cost_CC}*{COMP_Freq.ODWith.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
@@ -1672,7 +1687,7 @@ const json = {
           {
             type: "expression",
             name: "Cost_CC_TWONIGHTS_$Y",
-            title: "Estimated yearly competition cost, TWONIGHTS",
+            title: "Estimated yearly competitions/non-local practices cost, TWONIGHTS",
             expression: "{TR_Comp.TWONIGHTS_$.Cost_CC}*{COMP_Freq.TWONIGHTS.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
@@ -1682,7 +1697,7 @@ const json = {
                     {
             type: "expression",
             name: "Cost_CC_Multiday_$Y",
-            title: "Estimated yearly competition cost, Multiday",
+            title: "Estimated yearly competitions/non-local practices cost, Multiday",
             expression: "{TR_Comp.Multiday_$.Cost_CC}*{COMP_Freq.Multiday.SP_CC}",
             displayStyle: "currency",
             currency: "CAD",
@@ -1744,7 +1759,7 @@ const json = {
                   },
                   {
                     "name": "SOC_%",
-                    "title": "How many times per year?:",
+                    "title": "How often per year?",
                     "cellType": "dropdown",
                     //"choices": [ "Never (0%)", "Rarely (25%)", "Sometimes (50%)", "Often (75%)", "Always (100%)" ],
                     "choices": [ {text: "Never (0%)", value: 0}, {text: "Rarely (25%)", value: 25},
@@ -1798,7 +1813,7 @@ const json = {
                   },
                 ],
                 "rows": [
-                  { "text": "To participate in club activities (e.g., fundraisers, diner, chocolate bar sales, …)?", "value": "Club" },
+                  { "text": "To participate in club activities (e.g., fundraisers, dinner, chocolate bar sales, …)?", "value": "Club" },
                 ],
                 "transposeData": false
               },
@@ -1895,14 +1910,14 @@ const json = {
 
       {
         name: "CostActiveSportParticipation",
-        title: "Section II.7: Sports Earnings/year",
+        title: "Section II.7: Sports Releated-Income, Support and Unmet Needs",
         // description: "Related to THIS (Para)Sport Participation"
         elements: [
           {
             type: "radiogroup",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Earn_YN",
-            title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns,)?",
+            title: "Did you earn money related to your (para)sports participation (e.g., prize money, any other monetary returns)?",
             choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
             colCount: 2,
             showOtherItem: false,
@@ -1938,6 +1953,8 @@ const json = {
               } 
             ],
           },
+
+          
           {
             type: "expression",
             name: "SP_Earnings_$Y_Total",
@@ -1949,6 +1966,134 @@ const json = {
             visible: false
           },
           
+
+           {
+            type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_grant_YN",
+            title: "Did you receive any direct financial support (e.g., grants or subsidies, waived fee, ...) related to {your sport}?",
+            choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+            colCount: 2,
+            showOtherItem: false,
+            isRequired: false
+          },
+          {
+            type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_Earnings",
+            title: "If yes, describe",
+            titleLocation: "hidden",
+            addRowText: "➕ Add source",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            visibleIf: "{SP_grant_YN} = 1",
+            columns: [
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "If yes, describe source", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "How much per year?", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              {
+                name: "SP_Earnings_$Y",
+                title: "Amount / year (C$)",
+                cellType: "expression",
+                expression: "{row.$Y}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: true,
+                width: "15%"
+              } 
+            ],
+          },
+
+
+           {
+            type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_InKind_YN",
+            title: "Did you receive any goods or services for free? (e.g., sport equipment, clothing, ...)?",
+            choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+            colCount: 2,
+            showOtherItem: false,
+            isRequired: false
+          },
+          {
+            type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_Earnings",
+            title: "If yes, describe",
+            titleLocation: "hidden",
+            addRowText: "➕ Add source",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            visibleIf: "{SP_InKind_YN} = 1",
+            columns: [
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "DescribeGoods", title: "Describe goods/services", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "Describe", title: "From whom?", cellType: "text", isRequired: false, width: "35%" },
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "Estimate $ amount", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              {
+                name: "SP_Earnings_$Y",
+                title: "Amount / year (C$)",
+                cellType: "expression",
+                expression: "{row.$Y}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: true,
+                width: "15%"
+              } 
+            ],
+          },
+
+  {
+            type: "radiogroup",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_InKind_YN",
+            title: "Are there any goods or services you would have liked but could not afford?",
+            choices: [{"value": 1, "text": "Yes"}, {"value": 0, "text": "No"}],
+            colCount: 2,
+            showOtherItem: false,
+            isRequired: false
+          },
+          {
+            type: "matrixdynamic",
+            isSuggested: SUGGEST_ALL_QUESTIONS,
+            name: "SP_Earnings",
+            title: "If yes, describe",
+            titleLocation: "hidden",
+            addRowText: "➕ Add source",
+            removeRowText: "➖ Remove",
+            minRowCount: 1,
+            rowCount: 0,
+            showFooter: true,
+            visibleIf: "{SP_InKind_YN} = 1",
+            columns: [
+              // Make this into a pull-down that they add to a list using the "Add source" button
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "DescribeGoods", title: "Describe goods/services", cellType: "text", placeholder: "Describe source", isRequired: false, width: "35%" },
+        
+              { isSuggested: SUGGEST_ALL_QUESTIONS, name: "$Y", title: "Estimate $ amount per year", cellType: "text", inputType: "number", isRequired: false, width: "15%" },
+              {
+                name: "SP_Earnings_$Y",
+                title: "Amount / year (C$)",
+                cellType: "expression",
+                expression: "{row.$Y}",
+                displayStyle: "currency",
+                currency: "CAD",
+                totalType: "sum",
+                totalDisplayStyle: "currency",
+                currencyDisplay: "code",
+                visible: true,
+                width: "15%"
+              } 
+            ],
+          },
+
         ]
       },
 
@@ -2046,8 +2191,8 @@ const json = {
           "showSelectAllItem": false,
           "separateSpecialChoices": false
         },
-
-                    //dropdown to 20
+// *** INSERT QUESTIONS ABOUT ABILITY HERE.
+                    
           {
             type: "dropdown",
             isSuggested: SUGGEST_ALL_QUESTIONS,
@@ -2083,6 +2228,7 @@ const json = {
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "HH_Pos",
             title: "What is your position in this household?",
+// *** CHANGE TO SELECT all that apply            
             isRequired: false,
             choices: [
               {value: 1, text: "Son"},
@@ -2310,6 +2456,8 @@ const json = {
         ]
         },
       {
+// ** This section is removed and the question is moved to the demographics section
+// and started with a yes/no question
         name: "Section Ability",
         title: "Section V:  Ability",
         elements: [
@@ -2317,13 +2465,14 @@ const json = {
           {
             type: "radiogroup",
             isSuggested: SUGGEST_ALL_QUESTIONS,
-            title: "Timing of Impairement?",
+            title: "Timing of Impairment?",
             name: "AB_Timing",
             colCount: 2,
             choices: [
+// CAN THESE BE ALL IN ONE VERICAL LIST??              
               {value: 1, text: 'Congenital'},
               {value: 2, text: 'Acquired'},
-              {value: 3, text: 'Able-Bodied'},
+              // {value: 3, text: 'Able-Bodied'},
               {value: 4, text: 'Prefer not to answer'}
             ]
           },
@@ -2339,7 +2488,7 @@ const json = {
               {value: 2, text: 'Vision'},
               {value: 3, text: 'Hearing'},
               {value: 4, text: 'Cognitive function'},
-              {value: 5, text: 'Not Applicable'}
+              {value: 5, text: 'Unknown'}
             ]
           },
 
