@@ -265,3 +265,30 @@ input[type=number] {
   /* This makes sure the yes/no column in a dynamicmatrix is centered */
   display: inline-flex;
 }
+
+/* ── Matrix text cells: make enabled vs. disabled obvious ───── */
+
+/* Cells whose enableIf is false (e.g. "If yes, how much?" before Yes is
+   chosen): flat grey, dashed outline, no shadow, so they read as "off". */
+.sd-table .sd-input.sd-input--disabled,
+.sd-table .sd-input.sd-input--readonly {
+  background-color: #e4e4e4 !important;
+  border: 1px dashed #b5b5b5 !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+/* Enabled cells: white with a solid green border and a soft glow,
+   matching the lab's green submit button. */
+.sd-table .sd-input:not(.sd-input--disabled):not(.sd-input--readonly) {
+  background-color: #ffffff !important;
+  border: 2px solid rgb(56, 97, 56) !important;
+  box-shadow: 0 0 0 3px rgba(56, 97, 56, 0.18) !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Keyboard focus on an enabled cell: stronger glow */
+.sd-table .sd-input:not(.sd-input--disabled):not(.sd-input--readonly):focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(56, 97, 56, 0.40) !important;
+}
