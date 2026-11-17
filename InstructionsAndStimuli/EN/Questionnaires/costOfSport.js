@@ -458,7 +458,7 @@ in the final report -->
             type: "expression",
             name: "CurrentSportName",
             title: "Sport Name",
-            visible: true,
+            visible: false,
             expression:
               "{Sport_Curr01_Text}",
           },
