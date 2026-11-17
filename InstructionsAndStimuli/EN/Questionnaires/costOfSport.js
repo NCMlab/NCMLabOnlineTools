@@ -353,15 +353,23 @@ in the final report -->
             "html": "<h3>Introduction and instructions for the survey</h3>" +
             "Please complete this XX-minute online survey. This survey asks about:" +
             "<ol><li>Your participation in a specific (para)sport</li>"+
-            "<li>Participation-related costs</li>"+
+            "<li>Costs associated with your sport participation</li>"+
+            "<ul>"+
+            "<li>Membership and Entrance Fees</li>"+
+            "<li>Coaching and Clinics</li>"+
+            "<li>Apparel and Equipment</li>"+
+            "<li>Travel</li>"+
+            "<li>Social</li>"+
+            "<li>Other Indirect Costs</li>"+
+            "</ul>"+
             "<li>Socio-demographic background</li>"+
             "<li>General sport participation, and</li>"+
             "<li>Ability-related condition.</li></ol>"+
             "After completion of the survey, you will receive a 'cost of sport report'"+
             " with a comprehensive overview of your annual participation-related expenditures "+
             "across various expense categories, allowing you to reflect on your expenditures. "+
-            "You will also have the option to download this report for your reference."
-
+            "You will also have the option to download this report for your reference."+
+            "<p></p>You must complete the survey in one sitting; if you shut down, you will need to restart."
           }
         ]
       },
@@ -382,7 +390,7 @@ in the final report -->
             type: "matrixdynamic",
             name: "Sport_Curr",
             title: "THIS SURVEY IS ABOUT MY PARTICIPATION IN THE FOLLOWING (PARA)SPORT: " ,
-            description: "Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school",
+            description: "Context: Non-organized = by yourself or with your family or friends; Community Club = with a team; School / University = competing in a school / university team or doing it at school / university",
             rowCount: 1,
             minRowCount: 1,
             maxRowCount: 1,
@@ -391,22 +399,26 @@ in the final report -->
             columns: [
               // Change this to a drop-down menu with other. Start with Wheelchair basketball and other
               {
-                name: "Sport_Curr",
+                name: "Sport_Curr01",
                 title: "Sport",
-                cellType: "text",
+                // cellType: "text",
+                cellType: "dropdown",                    
+                choices: [ {text: "Basketball", value: 1}],
+                showOtherItem: true,
                 isRequired: true,
                 width: "25%"
               },
               {
                 name: "Context",
-                title: "Current context",
-                cellType: "radiogroup", // change to select all that apply
+                title: "Current context (check all that apply)",
+                cellType: "checkbox", // change to select all that apply
                 // we will add additional levels here too
                 choices: [
                   { "value": 1, "text": "Non-organized" }, // Can this be changed to 1,2,3, as per the code book?
-                  { "value": 2, "text": "Club" },
-                  { "value": 3, "text": "School" }
-
+                  { "value": 2, "text": "Community Club" },
+                  { "value": 3, "text": "School/University" },
+                  { "value": 4, "text": "Provincial team" },
+                  { "value": 5, "text": "National team" }
                 ],
                 isRequired: false,
                 isSuggested: SUGGEST_ALL_QUESTIONS,
@@ -444,9 +456,9 @@ in the final report -->
             type: "expression",
             name: "CurrentSportName",
             title: "Sport Name",
-            visible: false,
+            visible: true,
             expression:
-              "{Sport_Curr[0].Sport_Curr}",
+              "{Sport_Curr01_Text}",
           },
          
         ]
@@ -457,129 +469,7 @@ in the final report -->
         name: "SportParticipation",
         title: "Section I: {CurrentSportName} Participation Profile",
         elements: [
-        //   // Add : Before starting to report
-        //   {
-        //     type: "html",
-        //     name: "current_past_subtitle",
-        //     html: `
-        //  <div style="font-weight: bold; font-size: 25px; margin-top: 20px;">
-        //  In addition to <em>{CurrentSportName}</em>,  
-        //  list up to two other important current and three past (para)sport you participate(d) in. Also include the context, the level, and the number of years you participate(d) in those sports.
-        //   </div>
-        //   <div>Context: Non-organized = by yourself or with your family or friends; Club = with a team; School = competing in a school team or doing it at school,
-        //   </div>
-        //   `
-        //   },
-        //   {
-        //     type: "matrixdynamic",
-        //     name: "Sport_Curr2",
-        //     title: "CURRENTLY (top two)",
-            
-        //     rowCount: 2,
-        //     minRowCount: 2,
-        //     maxRowCount: 2,
-        //     allowAddRows: false,
-        //     allowRemoveRows: false,
-        //     columns: [
-        //       {
-        //         name: "Sport_Curr2",
-        //         title: "Sport",
-        //         cellType: "text",
-        //         isRequired: false,
-        //         width: "25%"
-        //       },
-        //       {
-        //         name: "Context",
-        //         title: "Main current context",
-        //         cellType: "radiogroup",
-        //         choices: [
-        //           { "value": 1, "text": "Non-organized" },
-        //           { "value": 2, "text": "Club" },
-        //           { "value": 3, "text": "School" }
-        //         ],
-        //         isRequired: false,
-        //         width: "40%"
-        //       },
-        //       {
-        //         name: "Level",
-        //         title: "Current level",
-        //         cellType: "radiogroup",
-        //         choices: [
-        //           { "value": 1, "text": "Mainly recreational" },
-        //           { "value": 2, "text": "Mainly competitive" },
-        //           { "value": 3, "text": "Both equally" }
-        //         ],
-        //         isRequired: false,
-        //         width: "35%"
-        //       },
-        //       {
-        //         name: "nY",
-        //         title: "Years",
-        //         cellType: "text",
-        //         inputType: "number",
-        //         min: 0,
-        //         max: 99,
-        //         placeholder: "0",
-        //         isRequired: false,
-        //         width: "25%"
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     type: "matrixdynamic",
-        //     name: "Sport_Past",
-        //     title: "IN THE PAST (top three)",
-        //     rowCount: 3,
-        //     minRowCount: 3,
-        //     maxRowCount: 3,
-        //     allowAddRows: false,
-        //     allowRemoveRows: false,
-        //     columns: [
-        //       {
-        //         name: "Sport_Past",
-        //         title: "Sport",
-        //         cellType: "text",
-        //         isRequired: false,
-        //         width: "25%"
-        //       },
-        //       {
-        //         name: "Context",
-        //         title: "Past context",
-        //         cellType: "radiogroup",
-        //         choices: [
-        //           { "value": 1, "text": "Non-organized" },
-        //           { "value": 2, "text": "Club" },
-        //           { "value": 3, "text": "School" }
-        //         ],
-        //         isRequired: false,
-        //         width: "40%"
-        //       },
-        //       {
-        //         name: "Level",
-        //         title: "Past level",
-        //         cellType: "radiogroup",
-        //         choices: [
-        //           { "value": 1, "text": "Mainly recreational" },
-        //           { "value": 2, "text": "Mainly competitive" },
-        //           { "value": 3, "text": "Both equally" }
-        //         ],
-        //         isRequired: false,
-        //         width: "35%"
-        //       },
-        //       {
-        //         name: "nY",
-        //         title: "Years",
-        //         cellType: "text",
-        //         inputType: "number",
-        //         min: 0,
-        //         max: 99,
-        //         placeholder: "0",
-        //         isRequired: false,
-        //         width: "25%"
-        //       }
-        //     ]
-        //   },
-          //modified 
+        
           {
             name: "SP_How",
             type: "text",
@@ -592,21 +482,21 @@ in the final report -->
             type: "radiogroup",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class",
-            title: "Do you have classification and/or specialty and/or player position in {CurrentSportName}?",
+            title: "What is your current classification or assigned classification in {CurrentSportName}?",
             isRequired: false,
             colCount: 3,   // horizontal layout for Yes / No / N/A
             choices: [
-              { value: 1, text: "Yes" },
-              { value: 0, text: "No" },
-              { value: 2, text: "N/A" } 
+              { value: 1, text: "I do not have a classification or assigned classification value." },
+              { value: 2, text: "I don't know my classification."},
+              { value: 3, text: "I have a sport classification or assigned category."}
             ]
           },
           {
             type: "comment",
             isSuggested: SUGGEST_ALL_QUESTIONS,
             name: "SP_Class_Ex",
-            title: "Please explain:",
-            visibleIf: "{SP_Class} = 1",
+            title: "Please enter the classification or point value used for you in your sport, whether formally assessed or assigned by your club, league, or sport organization. Examples: 4.5 (wheelchair basketball), S8 (para swimming), T54 (para athletics).",
+            visibleIf: "{SP_Class} = 3",
             isRequired: false
           },
           {

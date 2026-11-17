@@ -391,6 +391,24 @@ function setupSuggestedQuestions(survey) {
 
 // ── Survey setup (jsPsychSurvey survey_function) ─────────────
 
+// Looks up the text of the choice selected in Sport_Curr[0].Sport_Curr01 and stores it
+// in the survey variable Sport_Curr01_Text (variables are not saved in the response data).
+function updateSportCurrText(survey) {
+  var matrix = survey.getQuestionByName("Sport_Curr");
+  if (!matrix) return;
+  var row = (matrix.value || [])[0] || {};
+  var value = row.Sport_Curr01;
+  var text = "";
+  if (value === "other") {
+    text = row["Sport_Curr01-Comment"] || "";
+  } else if (value !== undefined && value !== null && value !== "") {
+    var column = matrix.getColumnByName("Sport_Curr01");
+    var choice = column && column.choices.find(function (c) { return c.value == value; });
+    text = choice ? choice.text : String(value);
+  }
+  survey.setVariable("Sport_Curr01_Text", text);
+}
+
 function setupCostOfSportSurvey(survey) {
   setupSuggestedQuestions(survey);
   // Render HTML (e.g. <b>, <em>) in titles/descriptions
@@ -404,6 +422,13 @@ function setupCostOfSportSurvey(survey) {
       if (countCell) countCell.value = 0;
     }
   });
+  // Keep the survey variable {Sport_Curr01_Text} set to the TEXT of the sport chosen in
+  // the Sport_Curr dropdown (or the typed answer when "Other" is chosen), so expressions
+  // can show the name instead of the stored value.
+  survey.onValueChanged.add(function (sender, options) {
+    if (options.name === "Sport_Curr") updateSportCurrText(sender);
+  });
+  updateSportCurrText(survey);
   // Live check: flag as soon as the TR_Pr total exceeds SP_PR_Tot ("must equal" is still checked on Next)
   survey.onValueChanged.add(function (sender, options) {
     if (options.name !== "TR_Pr") return;
